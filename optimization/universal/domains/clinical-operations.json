@@ -58,6 +58,10 @@
     {
      "item": "practice-financial-intelligence-playbook",
      "note": "Adds a simple capacity model (clinic hours times visits per hour) and a utilization measure. Its 85% to 95% utilization target and its work-unit medians have no source."
+    },
+    {
+     "item": "kpi-09-charge-lag",
+     "note": "Suggests showing each clinician's charge lag beside their work units, so the person who controls the delay sees it. Its lag thresholds have no source."
     }
    ],
    "sources": [
@@ -89,14 +93,14 @@
      "cadence": "annual",
      "benchmark_typical": "about 6,500 for family physicians and 4,600 for primary care nurse practitioners",
      "benchmark_red": "far above the median without audit support",
-     "benchmark_note": "AMGA medians, 2025 data, 451 mostly large groups: family medicine 6,505, internal medicine 6,390, primary care nurse practitioner 4,647. Geriatrics and facility-based medians are not in the free release. The red flag is a judgment.",
+     "benchmark_note": "AMGA (American Medical Group Association) medians, 2025 data, 451 mostly large groups: family medicine 6,505, internal medicine 6,390, primary care nurse practitioner 4,647. Geriatrics and facility-based medians are not in the free release. The red flag is a judgment.",
      "confidence": "medium",
      "sources": [
       "amga-2026"
      ],
      "data_hint": "Services by code and rendering clinician, multiplied by the work value in the Medicare fee schedule.",
      "vendor_claim": "The purchased financial playbook gives median yearly work units of about 5,200 for family medicine and 4,000 for internal medicine, with red flags below 3,200 and 3,000.",
-     "vendor_verdict": "Unverifiable. It cites MGMA loosely with no table or year. AMGA's published 2025 medians are 6,505 and 6,390, so the internal medicine figure looks far too low."
+     "vendor_verdict": "Unverifiable. It names the Medical Group Management Association but no table or year. AMGA's published 2025 medians are 6,505 and 6,390, so its internal medicine figure looks too low."
     }
    ]
   },
@@ -321,7 +325,7 @@
     },
     {
      "action": "Mark physician-only visits",
-     "detail": "For example the first comprehensive visit in a skilled nursing facility.",
+     "detail": "The first comprehensive visit in a skilled nursing facility is one. For nursing facility residents not in skilled care, a state may let a nurse practitioner or physician assistant not employed by the facility do it (42 CFR 483.30).",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
@@ -446,7 +450,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Practices providing primary care to patients with chronic conditions, in offices, at home or in facilities. For facility residents the counted time must come from staff the practice employs or contracts and supervises, not facility staff, and the facility place of service pays a quarter to a third less (2024 Medicare averages).",
+   "applies_when": "Practices providing primary care to patients with chronic conditions, in offices, at home or in facilities. For facility residents the counted time must come from staff the practice employs or contracts and supervises, not facility staff, and the facility place of service pays a quarter to a third less for staff-time codes (2024 Medicare averages).",
    "vendor_refs": [
     {
      "item": "geriatrics-companion-guide",
@@ -648,7 +652,12 @@
     }
    ],
    "applies_when": "Every practice responsible for patients outside office hours, and heaviest in small hospital and facility practices, where nursing staff call at all hours. Nursing facilities must arrange physician services 24 hours a day for emergencies and a second physician when the attending is unavailable (42 CFR 483.30), and monthly care-management billing requires 24-hour access for urgent needs.",
-   "vendor_refs": [],
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Mentions 24-hour access only as a requirement for billing care management. It has nothing on call schedules, cross-coverage or calls from facility nurses."
+    }
+   ],
    "sources": [
     "cfr-483-30",
     "cms-mln-ccm",
@@ -811,7 +820,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Rounding practices document on the move, so mobile tools and same-day completion matter most there.",
+   "applies_when": "Every practice. Rounding practices document on the move, so mobile tools and same-day completion matter most there. In nursing facilities, 42 CFR 483.30 requires a signed and dated progress note at each required visit, so the facility needs the note in its chart too.",
    "vendor_refs": [
     {
      "item": "kpi-09-charge-lag",
@@ -821,6 +830,7 @@
    "sources": [
     "cms-pim-ch3",
     "cms-cpm-ch12",
+    "cfr-483-30",
     "mgma-stat-ar-2026",
     "ama-burnout-2026"
    ],
@@ -916,7 +926,7 @@
      "direction": "higher",
      "cadence": "quarterly",
      "benchmark_typical": "79% rated their clinician 9 or 10 out of 10",
-     "benchmark_note": "AHRQ CAHPS Clinician and Group database, adult survey, 2019 chartbook (fielded January 2019 to June 2020, 2,002 practice sites). Provider communication 85%, access 65%. Office-based practices only and now dated.",
+     "benchmark_note": "Agency for Healthcare Research and Quality CAHPS Clinician and Group database, adult survey, 2019 chartbook (fielded January 2019 to June 2020, 2,002 practice sites). Provider communication 85%, access 65%. Office-based only and now dated.",
      "confidence": "medium",
      "sources": [
       "ahrq-cgcahps-chartbook-2019",

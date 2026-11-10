@@ -325,12 +325,36 @@
   "slug": "no-surprises-act-playbook",
   "vendor": "CleanClaimRx",
   "bundle": "Compliance playbooks",
-  "title": "No Surprises Act Playbook",
+  "title": "No Surprises Act Compliance Playbook: What Your Practice Must Do, What It Must Not Miss, and What Is Still Coming",
   "doc_type": "Compliance playbook",
   "pages": 56,
   "words": 8186,
   "list_price_usd": 29.4,
-  "verdict": "Not yet reviewed.",
+  "quality_score": 3,
+  "specificity_score": 4,
+  "practice_relevance_score": 2,
+  "summary": "Vendor playbook on the No Surprises Act good-faith-estimate duty for uninsured and self-pay patients: who triggers it, business-day deadlines, content, notices, the $400 dispute process, penalties, a ten-step workflow, template, 90-day plan and checklists. Core mechanics mostly right; content list, co-provider enforcement and penalty math are unreliable. Almost inapplicable to a federal-program, facility-based practice.",
+  "top_ideas": [
+   "Gate the rule by coverage category first: federal-program patients fall outside it, so only truly uninsured or commercially insured patients paying cash enter the estimate workflow.",
+   "Start the estimate from the scheduling event with business-day deadlines and keep proof of delivery date and method, instead of handing it over at check-in.",
+   "Compare every self-pay bill with its estimate before release; hold anything $400 or more above it until the reason is documented or the bill is reduced.",
+   "Use the free CMS model notice on the website and wherever cost questions arise, and run a small monthly sample audit of estimates for existence, content and timeliness."
+  ],
+  "red_flags": [
+   "List of 'required' GFE elements departs from 45 CFR 149.610(c)(1): invents an expiration-date element, drops mandated disclaimers; the template inherits the gaps yet claims full compliance.",
+   "Penalty section multiplies every self-pay visit by $10,000 to show $1.8M-$9.6M yearly exposure; no enforcement action cited, state-first enforcement ignored, and a CMS self-disclosure route appears invented.",
+   "Treats co-provider charge itemization as an enforced failure point; omits HHS enforcement discretion, the 12-month recurring-service rule, and provider duties during a patient dispute.",
+   "Says 'no exemptions' while its own table exempts federal-program patients; cites an August 2026 en banc Fifth Circuit ruling and other dated status claims with no citations."
+  ],
+  "domains": [
+   "compliance-risk",
+   "rcm-front-end",
+   "rcm-claims-ar",
+   "rcm-charge-coding",
+   "payers-contracts",
+   "people-compensation"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,
@@ -1987,12 +2011,39 @@
   "slug": "new-practice-launch-playbook",
   "vendor": "CleanClaimRx",
   "bundle": "Operational playbooks",
-  "title": "New-Practice-Launch-Playbook",
+  "title": "New Practice Launch Playbook: Build the Revenue Cycle Right the First Time",
   "doc_type": "Playbook",
   "pages": 28,
   "words": 7126,
   "list_price_usd": 11.88,
-  "verdict": "Not yet reviewed.",
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 2,
+  "summary": "Start-up guide for physicians opening an office-based independent practice: a ten-step, lead-time-ordered build sequence, pre-opening enrollment and technology setup, a four-month cash reserve worksheet, early claim and coding habits, month-3/6/12 checkups and a 42-item checklist. Unsourced, office-centric, and wrong or outdated on several Medicare enrollment rules; low direct value to an established facility-based practice.",
+  "top_ideas": [
+   "Run enrollment as a tracked pipeline per clinician and payer: panel check, biweekly follow-up, response-deadline alarms, 120-day CAQH re-attestation, and a dollar-valued hold-and-bill log for pending payers.",
+   "Sequence any launch (clinician, site, plan) by external lead time and dependency, starting the slowest approvals first, using corrected Medicare filing and effective-date rules.",
+   "Test every charge against the highest amount any payer actually allows each year, because payers pay the lesser of charge or allowable.",
+   "Pair each ramp KPI with a pre-agreed response at fixed milestones, and audit a new clinician's coding at about 90 days with a small record sample."
+  ],
+  "red_flags": [
+   "Says Medicare can be filed only 30 days before opening; contractor (First Coast) guidance returns applications only beyond 60 days. Its own checklist says file 90 days ahead.",
+   "Cites the CMS-855R, discontinued in 2023, and says every new practice needs both 855I and 855B; a sole-owner entity can generally enroll on the 855I alone.",
+   "Says not to see Medicare patients until approval and that pending payers are unbillable, ignoring filing-date effective dates and the 30-day look-back; contradicts its own retroactive-billing checklist.",
+   "No sources or author; hardship-policy risk blamed on HIPAA instead of kickback and inducement law; 'copays without exception' ignores QMB protections; reserve worksheet omits owner pay and volume ramp."
+  ],
+  "domains": [
+   "lifecycle-value",
+   "payers-contracts",
+   "financial-management",
+   "rcm-charge-coding",
+   "rcm-claims-ar",
+   "rcm-front-end",
+   "technology-data-ai",
+   "strategy-governance",
+   "compliance-risk"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,
@@ -2466,6 +2517,236 @@
    "people-compensation"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-01",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 01: The Insider, Issue 01: Your Billing Software Isn't Broken. Your Configuration Is.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 703,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 2,
+  "practice_relevance_score": 3,
+  "summary": "Undated opinion essay (archive index: March 31, 2026), no news. Argues high denials usually reflect untouched system configuration, not bad software: generic scrubber edits, no contracted fee schedules loaded, no worklist routing by denial code. Offers one audit: map the top five denial codes of 90 days to missing or broken edits. No sources, systems, codes or evidence.",
+  "top_ideas": [
+   "Rank denial reason codes for the trailing 90 days and, for each, decide whether a pre-submission check could have stopped it; then build or repair that check.",
+   "Load an expected allowed amount per payer and code so every payment is compared with what was owed and short payments surface.",
+   "Route denials to separate worklists by reason category with defined follow-up instead of one mixed queue.",
+   "Before replacing a system, test whether recurring denials could be prevented with features already owned; also test rules that exist but failed to fire."
+  ],
+  "red_flags": [
+   "No date on the page (archive index: March 31, 2026) and no news: no rule, deadline or announcement; an evergreen sales essay with zero sources.",
+   "Its one diagnostic is false: many denials (coverage changes, hospice, coordination of benefits, authorization, medical necessity) cannot be prevented by claim edits.",
+   "Unsupported numbers: two or three denial codes removed by one setting change, revenue impact in 30 days, a three-hour fix.",
+   "Claims all systems ship with generic rules only, ignoring vendor and clearinghouse edits. Names no system, payer or code; fee schedule loading and denial routing get no instructions."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "technology-data-ai",
+   "payers-contracts",
+   "rcm-charge-coding"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-02",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 02: The Insider, Issue 02: Your Payer Sent You a Letter. You Filed It. That Was Your Consent.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 828,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "Undated opinion essay (archive index: April 14, 2026), no news. Warns that payer contracts let the payer change rates and rules by written notice, with silence through a 30-90 day window treated as acceptance. Recommends one owner for payer mail, a log, calendared deadlines, written objections and a remittance drift check. Legal claims are unqualified and unsourced.",
+  "top_ideas": [
+   "One named owner for every payer communication across mail, email, portals and bulletins, so nothing is filed unread.",
+   "Payer communications log with date received, change described, effective date, response deadline and action taken; calendar the deadline the day it is logged.",
+   "Monthly check of paid amounts per high-volume code per payer; investigate any step change after ruling out the annual Medicare fee schedule update.",
+   "Inventory each contract's amendment clause in advance (notice period, objection and termination rights) and keep a revenue-impact file for renegotiation."
+  ],
+  "red_flags": [
+   "'This is legal' with no jurisdiction; state laws on material contract changes and Medicare Advantage or Medicaid plan rules are ignored. Florida's rule needs checking.",
+   "Confuses credentialing with contracting: calls the 'next credentialing renewal' the negotiation point. Recredentialing is a verification cycle, not a rate negotiation.",
+   "The example's timeline is impossible: change effective about a week ago, yet payments 9% low for three months. Subhead says every contract, body says almost every commercial one.",
+   "No news: undated on the page (archive index: April 14, 2026), no source, no sample letter or log; advises disputing without warning that objection can trigger termination."
+  ],
+  "domains": [
+   "payers-contracts",
+   "rcm-claims-ar",
+   "strategy-governance"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-03",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 03: The Insider, Issue 03: The Patient Balance Conversation Nobody Has",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1116,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 1,
+  "summary": "Undated opinion essay (archive index: April 28, 2026), no news. Claims practices collecting at check-in get 60 to 80 percent of patient responsibility versus 34% in its example; prescribes early eligibility checks and three scripted conversations. Numbers are unsourced and legal limits on collecting from Medicare and Medicaid patients are ignored. Barely applies here.",
+  "top_ideas": [
+   "Verify eligibility and benefits before every encounter; for facility work, at admission and monthly, to catch plan switches, hospice election and QMB status.",
+   "Measure patient responsibility collection rate (collected divided by billed) by payer type, excluding amounts that may not legally be billed.",
+   "Ask for payment at the earliest moment the amount is known; without a check-in, use a financial agreement and payment authorization at onboarding.",
+   "Size the opportunity with a two-line calculation on actual patient responsibility before building any collection program, using a sourced target rate."
+  ],
+  "red_flags": [
+   "60-80% and 'conservative' 70% collection rates are unsourced and applied to all patient responsibility, including amounts unknown until the claim adjudicates.",
+   "Omits every legal limit: QMB and Medicaid billing prohibitions, Medicare over-collection refunds, good-faith estimates for self-pay. Dangerous as written for a geriatric practice.",
+   "Check-in premise does not fit a facility-based practice with no front desk; near-zero direct applicability.",
+   "No news, no date on the page (archive index: April 28, 2026). Vendor's archive blurb says most practices run 34%; the issue calls 34% not normal."
+  ],
+  "domains": [
+   "rcm-front-end",
+   "rcm-claims-ar",
+   "people-compensation"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-04",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 04: Today Is the Day the Old ABN Form Dies",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 859,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "A single-topic deadline alert. It says CMS reissued the Advance Beneficiary Notice of Noncoverage (Form CMS-R-131) in March 2026 with a 60-day changeover, so that from May 12, 2026 a notice given on the prior version no longer lets a practice bill the patient after a Medicare denial. It gives a basic account of what the notice does, names three...",
+  "top_ideas": [
+   "Keep a register of every government-mandated patient notice the practice uses: form number, version identifier, source link, date installed, next expected renewal.",
+   "Record the date and evidence of each compliance template change.",
+   "Give the notice before the service with time to decide; never afterwards and never as a routine blanket form.",
+   "Gate ABN use on payer type: Original Medicare only."
+  ],
+  "red_flags": [
+   "Scope error: the issue says a notice must be given whenever Medicare may deny a service as 'not covered, or otherwise excluded' and that without one there is no way...",
+   "Overstated finality: 'legally unenforceable', 'not appealable', 'gone'. What an invalid notice costs is the ability to shift liability to the patient under the limitation-on-liability rules (Social Security Act section 1879)....",
+   "One-day ambiguity it does not acknowledge: secondary sources found by web search on 2026-11-10 agree on OMB approval on March 13, 2026 and a changeover ending May 12, 2026, but...",
+   "'Download the current version dated March 2026': the form carries an OMB expiration date in its footer (reported as 03/31/2029), not a March 2026 issue date. Staff told to look..."
+  ],
+  "domains": [
+   "compliance-risk",
+   "rcm-front-end",
+   "rcm-claims-ar"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-05",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 05: Federal IDR: What's Actually Changing",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 859,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 1,
+  "summary": "A one-topic how-to urging small practices to use the No Surprises Act arbitration process (Federal IDR) for underpaid out-of-network claims. Its hook is that clinicians win about 80% of disputes, credited to unnamed CMS data. It frames the decision as a $115 fee plus staff time against the payment gap, suggests batching small claims, summarises the Texas Medical Association litigation...",
+  "top_ideas": [
+   "Before pursuing any dispute or appeal, do the arithmetic: likely recovery times realistic odds, minus every fee and the staff time.",
+   "Screen remittances on a schedule for payments below the expected amount, using a rule (eligible claim type plus dollar threshold) to build a worklist.",
+   "In final-offer arbitration, submit the figure most likely to beat the other side's and back it with evidence on the factors the decision-maker may weigh.",
+   "Keep a dated watch list of open rulemaking and litigation, and keep meeting running deadlines meanwhile."
+  ],
+  "red_flags": [
+   "Missed the main news. A web search on 2026-11-10 of law-firm and CMS summaries shows the Federal IDR Operations final rule was announced May 28, 2026 and published June 4,...",
+   "$115 fee: the same sources report the administrative fee fell to $15 per party for disputes initiated on or after June 11, 2026, two days after the issue date.",
+   "Cost math is incomplete. Besides the administrative fee, each side fronts the certified arbitrator's fee (a few hundred dollars to over $1,000 depending on entity and batching) and the loser...",
+   "Open-negotiation timing is wrong. Under 45 CFR 149.510 a party must send an open-negotiation notice within 30 business days of the initial payment or denial, and the 30-business-day negotiation period..."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "payers-contracts",
+   "compliance-risk"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-06",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 06: The Timely Filing Clock: What It Is, When It Runs Out, and How to Stop the Bleed",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1265,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 4,
+  "summary": "An evergreen how-to on losing claims to payer filing deadlines; it reports no news. It lists typical limits by payer type (Medicare 12 months, commercial 90 to 180 days, Medicaid 90 days to 24 months, Medicare Advantage 90 to 180 days), says the clock runs from the date of service and that a rejected submission does not preserve the deadline,...",
+  "top_ideas": [
+   "Work every clearinghouse and payer front-end rejection on the day it appears, with one named owner and a daily cut-off.",
+   "Hold a sourced payer limit table: initial filing, corrected claim, secondary claim and appeal windows, each with its source document and the date it was checked.",
+   "Stamp each claim with its filing deadline when it is created, and stamp the secondary deadline when the primary is sent.",
+   "Flag aging claims by share of the filing window used (60%, 80%, 90%) and send the last tier to a human."
+  ],
+  "red_flags": [
+   "'Set by contract, not by law' is wrong. Original Medicare's limit is statutory (Affordable Care Act section 6404; 42 CFR 424.44: one calendar year after the date of service). Federal...",
+   "Medicaid 'up to 24 months' conflicts with the 12-month federal ceiling for initial claims; longer periods exist only for exceptions such as Medicare crossovers, retroactive eligibility and court-ordered payment.",
+   "The date-of-service clock is stated as universal. Secondary claims are commonly measured from the primary payer's decision or remittance date, and wrong-payer cases often run from when the correct insurer...",
+   "Rejections and denials are blurred. A front-end rejection or unprocessable claim does not count as filed, but an adjudicated denial (for example for a missing modifier) usually has its own..."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "rcm-front-end",
+   "payers-contracts",
+   "technology-data-ai"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,

@@ -240,6 +240,70 @@
   "verdict": "not checked"
  },
  {
+  "id": "no-surprises-act-playbook:C1",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "CMS may impose civil monetary penalties of up to $10,000 per GFE violation, indexed annually for inflation under 45 CFR part 102; voluntary self-disclosure to CMS has specific procedures and potential penalty mitigation outcomes.",
+  "kind": "penalty",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C2",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "Patients covered by Medicare, Medicaid, TRICARE or VA (federal or state government health programs) are exempt from the NSA GFE requirement; separate program protections apply.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C3",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "Scheduled 10+ business days ahead: GFE within 3 business days of scheduling; 3-9 business days ahead: within 1 business day; request without scheduling: within 3 business days; under 3 business days: no regulatory deadline.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C4",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "A compliant GFE must contain 10 required content elements, the tenth being an expiration date; there is no federal standard for expiration, and best practice is 90 days for stable services, 30 days for services subject to fee changes.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C5",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "If the final bill exceeds the GFE by $400 or more, the patient has 120 days from the date of the bill to start a dispute; the $25 administrative fee is paid by the patient; the determination is binding.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C6",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "Notice of the right to a GFE has three requirements: on the practice website (within two clicks of the homepage), posted in the office, and given at scheduling orally and always in writing; the CMS model notice satisfies them.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C7",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "Omitting co-provider charges is a compliance failure: a GFE must itemize expected charges of co-providers such as anesthesiologists, pathologists and assistant surgeons who bill separately, listed by name and NPI.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "no-surprises-act-playbook:C8",
+  "item_slug": "no-surprises-act-playbook",
+  "claim": "The uninsured and self-pay GFE, notice and dispute requirements have been enforced by CMS since January 1, 2022, while the insured-patient GFE and Advanced EOB requirement is delayed indefinitely, with a proposed rule only targeted as of early 2026.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
   "id": "stark-antikickback-playbook:C1",
   "item_slug": "stark-antikickback-playbook",
   "claim": "Once a provider has identified or should have identified an overpayment, it must be reported and returned within 60 days; 'identifies' means when the provider should have known through reasonable diligence; look-back extends up to six years.",
@@ -3168,6 +3232,70 @@
   "verdict": "not checked"
  },
  {
+  "id": "new-practice-launch-playbook:C1",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "File as early as legally possible, which is 30 days before the practice opens.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C2",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "Medicare enrollment for a new practice requires two applications, the CMS-855I ... and the CMS-855B ... Submit CMS-855B first, the organizational enrollment must be in process before the individual reassignment (CMS-855R) ... can be submitted",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C3",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "The Medicare effective date cannot precede the date of the application ... Do not see Medicare patients until enrollment is confirmed, billing Medicare for services rendered before the effective enrollment date is a compliance violation",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C4",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "Non-enrolled payers cannot be billed at all ... Revenue generated in months 1, 3 from unenrolled payers cannot be recovered retroactively in most cases.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C5",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "Medicare enrollment applications require active management and response to information requests within 30 days or the application is rejected",
+  "kind": "deadline",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C6",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "Set a calendar reminder to re-attest every 120 days, CAQH profiles expire and an expired profile will pause enrollment applications mid-process",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C7",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "Financial hardship policy, define the income threshold (typically based on federal poverty guidelines) ... The policy must be applied consistently to avoid HIPAA and anti-discrimination exposure.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "new-practice-launch-playbook:C8",
+  "item_slug": "new-practice-launch-playbook",
+  "claim": "set list-price fees in the range of 200 to 250 percent of Medicare allowables ... you can never collect more than your billed charge, even if the contracted rate is higher",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
   "id": "patient-collections-playbook:C1",
   "item_slug": "patient-collections-playbook",
   "claim": "In most independent practices, a substantial and growing share of total revenue - commonly cited in the range of 25 to 35 percent - comes directly from patients.",
@@ -3909,6 +4037,246 @@
   "claim": "Primary Care (2, 5 providers): estimated annual staff labor cost $25K, $50K and estimated annual revenue delay/loss $15K, $40K from prior authorization, described as typical ranges, not worst-case estimates.",
   "kind": "statistic",
   "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-01:C1",
+  "item_slug": "news-insider-01",
+  "claim": "Most PM systems can be configured to automatically flag claims by denial pattern, route them to the right worklist, and trigger follow-up. Hardly anyone turns this on.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-01:C2",
+  "item_slug": "news-insider-01",
+  "claim": "Every PM and billing system ships configured for the average practice. Generic payer rules. Standard claim edits. Default fee schedule logic.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-01:C3",
+  "item_slug": "news-insider-01",
+  "claim": "If your contracted rates aren't loaded into your system, you're billing off your chargemaster and accepting whatever the payer decides to pay; underpayments then go undetected.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-01:C4",
+  "item_slug": "news-insider-01",
+  "claim": "Most practices find two or three high-frequency denial codes that a single configuration change eliminates ... The revenue impact shows up in 30 days.",
+  "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-01:C5",
+  "item_slug": "news-insider-01",
+  "claim": "Does your software regularly pass claims that come back denied? If the answer is yes, your claim edits are not configured for your payers.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-02:C1",
+  "item_slug": "news-insider-02",
+  "claim": "Payer reserves the right to modify contract terms, including reimbursement rates, by providing written notice; with no response in the window (typically 30 to 90 days) the change is deemed accepted. 'This is legal.'",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-02:C2",
+  "item_slug": "news-insider-02",
+  "claim": "The unilateral amendment clause is in every payer contract (subhead); 'It's in almost every commercial payer contract' (body).",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-02:C3",
+  "item_slug": "news-insider-02",
+  "claim": "Payers use this clause to push through fee schedule reductions, add prior authorization requirements, change timely filing windows, and alter billing guidelines ... without a new signature.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-02:C4",
+  "item_slug": "news-insider-02",
+  "claim": "When the window has already closed, document the change and its revenue impact. Your next credentialing renewal is a negotiation point.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-02:C5",
+  "item_slug": "news-insider-02",
+  "claim": "Many practices have negotiated rates back simply by responding. Payers account for silence. They do not always account for resistance.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-03:C1",
+  "item_slug": "news-insider-03",
+  "claim": "Practices with a functioning point-of-service collection program ... run 60 to 80 percent collection rates on patient responsibility.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-03:C2",
+  "item_slug": "news-insider-03",
+  "claim": "Patient balance collections were running at 34%. ... She assumed this was normal. It isn't.",
+  "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-03:C3",
+  "item_slug": "news-insider-03",
+  "claim": "For patients with known deductible exposure, you can calculate an estimated patient responsibility before the visit. Presenting that estimate at check-in ... gives the patient the opportunity to pay ... before the claim is ever processed.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-03:C4",
+  "item_slug": "news-insider-03",
+  "claim": "Now multiply the same total by 70%. That's a conservative estimate of what a functioning POS collection program produces.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-03:C5",
+  "item_slug": "news-insider-03",
+  "claim": "Eligibility verification 'you should be doing 24 to 48 hours before every appointment'; with it 'you know their deductible status, their copay, and their out-of-pocket balance'.",
+  "kind": "benchmark",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-04:C1",
+  "item_slug": "news-insider-04",
+  "claim": "May 12, 2026 is the CMS-R-131 transition deadline; an ABN issued that day on the old version is 'legally unenforceable' and the practice cannot bill the patient.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-04:C2",
+  "item_slug": "news-insider-04",
+  "claim": "CMS updated the ABN (CMS-R-131) in March 2026 with a 60-day transition window; the form 'did not change in any meaningful way', only readability and formatting.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-04:C3",
+  "item_slug": "news-insider-04",
+  "claim": "When Medicare is likely to deny a service as not medically necessary, not covered, or otherwise excluded, the practice must notify the patient first; without a valid ABN there is 'no legal mechanism to collect from the patient'.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-04:C4",
+  "item_slug": "news-insider-04",
+  "claim": "ABNs apply to Medicare fee-for-service. They do not apply to Medicare Advantage.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-04:C5",
+  "item_slug": "news-insider-04",
+  "claim": "The ABN must be presented before the service; a signature obtained afterward creates no valid financial liability, as 'courts and auditors have consistently held'.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-05:C1",
+  "item_slug": "news-insider-05",
+  "claim": "Providers win approximately 80% of Federal IDR disputes; this is 'documented CMS data from hundreds of thousands of disputes' resolved since 2022.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-05:C2",
+  "item_slug": "news-insider-05",
+  "claim": "The only real question is whether the dollar amount on the claim justifies 'the $115 administrative filing fee' and the staff time to submit.",
+  "kind": "payment_rate",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-05:C3",
+  "item_slug": "news-insider-05",
+  "claim": "Open negotiation is 'the 30-day window before you can file IDR' and starts from the date of the initial payment or denial; if it has passed 'you can still file' within 4 business days after it ends.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-05:C4",
+  "item_slug": "news-insider-05",
+  "claim": "The Fifth Circuit panel upheld the QPA method, en banc review was granted, and as of June 9, 2026 no en banc decision has issued; a provider-favorable ruling 'may create retroactive adjustment opportunities' on decided disputes.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-05:C5",
+  "item_slug": "news-insider-05",
+  "claim": "The 'statutory factors' that move an arbitrator above the QPA are provider training/experience/quality, 'market rate comparables', case complexity, and 'demonstration of good faith' shown by participating in open negotiation.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-06:C1",
+  "item_slug": "news-insider-06",
+  "claim": "Timely filing limits are 'set by contract, not by law. Every payer sets its own.'",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-06:C2",
+  "item_slug": "news-insider-06",
+  "claim": "Medicare: 12 months from date of service (with limited exceptions).",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-06:C3",
+  "item_slug": "news-insider-06",
+  "claim": "Medicaid: varies by state, 'ranges from 90 days to 24 months'.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-06:C4",
+  "item_slug": "news-insider-06",
+  "claim": "Medicare Advantage: 'Set by the plan, not CMS', often 90 to 180 days, sometimes shorter.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-06:C5",
+  "item_slug": "news-insider-06",
+  "claim": "The clock starts on the date of service, not on submission or rejection; 'The original submission does not preserve your timely filing. Only a clean, accepted submission does.'",
+  "kind": "program_rule",
+  "stakes": "high",
   "verdict": "not checked"
  }
 ]
