@@ -46,8 +46,8 @@ def mdy(yyyymmdd):
 # ---- PLACE OF SERVICE IN THE NURSING BUILDINGS (William 11/10/2026, STANDING - practices/ehpa/rules.md) -------------------------------
 # The five nursing buildings arrive from Claimocity as POS 31 whatever the resident's status ("that is the only way we have to do it in
 # claimocity"), so the place of service is decided here by William's frequency rule, per charge line, when the charge is entered. It is
-# an operating rule read from the chart's visit pattern, not a check of the building's Part A list. Medicare's own line: 31 is
-# always allowed; 32 is for a resident who is not in a Part A stay, and every 32 line is matched to the facility's Part A claim. So 32 is
+# an operating rule read from the chart's visit pattern, not a check of the building's Part A list. How the code reads Medicare's line: 31 is
+# what was billed before; 32 is for a resident who is not in a Part A stay, and Medicare can match a 32 line to the facility's Part A claim. So 32 is
 # given only where the chart SHOWS the long-term pattern, and everything unclear keeps the feed's 31 - exactly what was billed before.
 #   CCM 99487 / 99489          -> 32: "all the ccm services performed in the nursing facility setting by us are done on our long term
 #                                 residents that are not being actively skilled". ALF / home CCM keeps its home location (13).

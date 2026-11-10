@@ -376,7 +376,7 @@ ci.PARSED[:] = BASE
 
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
-for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py"):
+for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "working_denials.py"):
     m = re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(helper), mir); m = m and type("M", (), {"group": lambda self, i, _m=m: _m.group(1) or _m.group(2)})()
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
@@ -387,6 +387,12 @@ step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
 ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
 ingest = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
 check("the rule's version line is the same in the helper, mirror.py, the ingest guard and the runbook's step (c)", ver in open(HELPER).read() and ver in mir and ver in ingest and ("grep -c '%s' /home/claude/unbilled/claimocity_import.py" % ver) in step, ver)
+check("... and in the retry driver, which checks the import helper itself before it enters charges and says an old one in its RESULT line", ver in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read() and mir.count(ver) == 3
+      and "+ pos_warn)" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read())
+_wd = [open(os.path.join(ROOT, d, "working_denials.py")).read() for d in ("boards", os.path.join("scripts", "helpers"))]
+check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
+check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
+      "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
 check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
 check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
 check("ingest: when only some helpers could be replaced the result line names the ones that are still older copies; the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in ingest and "pos_warn" in ingest[ingest.index("FEED HELPERS NOT ALL CURRENT") - 200:ingest.index("FEED HELPERS NOT ALL CURRENT")]

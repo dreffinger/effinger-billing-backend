@@ -128,6 +128,14 @@ if nohl7:
     json.dump(ready, open("feed_parsed_%s.json" % rstamp, "w"), indent=1)
     if not ready: os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
 env["FEED_HL7_DIR"] = os.path.abspath(hdir)
+# 11/10/2026 (review): the retry enters charges with the same import helper as the ingest, so it checks that helper the same way. It never
+# holds a visit for this (rules.md part 6): an old helper is said in the RESULT line and goes to the top of the report.
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.4"'; pos_warn = ""
+try: _current = POS_RULE in open(os.path.join(HERE, "claimocity_import.py"), errors="replace").read()
+except OSError: _current = False
+if not _current:
+    pos_warn = " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is an old copy or an earlier version of the rule - check the place of service, the building and the clinician of every visit this retry entered"
+    print("PLACE OF SERVICE RULE NOT CURRENT (retry): claimocity_import.py in %s is an old copy or an earlier version of the rule - say so at the top of the report" % HERE)
 print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s | mode %s" % (rstamp, len(ready), ", ".join(batches), ("; %d still wait on %s" % (waiting, ", ".join(sorted(missing)))) if waiting else "", "LIVE" if live else "DRY"))
 step("import", [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"])
 if live:
@@ -140,5 +148,5 @@ imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skippe
 reg.setdefault("runs", []).append({"stamp": rstamp, "at": utcnow().isoformat() + "Z", "live": live, "files": [], "retry_of": batches, "exit": 0})
 json.dump(reg, open(REGF, "w"), indent=1)
 print("RESULT retry %s: visits created %d, skipped %d, failed %d%s%s" % (rstamp, len(imp["created"]), len(imp["skipped"]), len(imp["failed"]),
-      "" if live else " (DRY - nothing written)", (" | still waiting on codes: " + ", ".join(sorted(missing))) if waiting else ""))
+      "" if live else " (DRY - nothing written)", (" | still waiting on codes: " + ", ".join(sorted(missing))) if waiting else "") + pos_warn)
 if live and os.path.exists("feed_digest_%s.md" % rstamp): print("digest: feed_digest_%s.md" % rstamp)
