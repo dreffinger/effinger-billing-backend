@@ -355,10 +355,10 @@
    "people-compensation"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 4,
+  "claims_partly": 3,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -2044,11 +2044,11 @@
    "compliance-risk"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 4,
+  "claims_contradicted": 1,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -2786,10 +2786,10 @@
    "compliance-risk"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 5,
+  "claims_supported": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -2825,12 +2825,12 @@
    "compliance-risk"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 2,
+  "claims_partly": 2,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "news-insider-09",
@@ -2864,12 +2864,12 @@
    "people-compensation"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Fits this practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 1,
+  "claims_partly": 3,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "news-insider-10",
@@ -2942,9 +2942,9 @@
    "clinical-operations"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 1,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -2981,9 +2981,9 @@
    "technology-data-ai"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 4,
+  "claims_supported": 2,
+  "claims_partly": 2,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
