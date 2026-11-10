@@ -20,9 +20,14 @@ for v in reg["created"]:
     dod = rec.get("dod")
     if not dod or not re.match(r"\d{4}-\d{2}-\d{2}$", str(dod)): continue
     if deceased_guard._iso(v["dos"]) <= dod: continue
-    cid = re.sub(r"\D", "", v["charges"][0])
-    d = ET.fromstring(resave.detail(cid)); vis = d.find(".//visit"); pat = d.find(".//patient")
-    live = [c for c in d.iter("charge") if c.get("void") != "1"]
+    # 11/10/2026: EVERY charge the import recorded for the visit is read and voided (the detail of one charge answers for that charge only;
+    # a visit can hold two code lines, and since the quality code 1123F a one-code visit holds a second, no-charge line)
+    vis = pat = None; live = []; _seen = set()
+    for _c in v.get("charges") or []:
+        d = ET.fromstring(resave.detail(re.sub(r"\D", "", _c)))
+        if vis is None: vis = d.find(".//visit"); pat = d.find(".//patient")
+        for c in d.iter("charge"):
+            if c.get("void") != "1" and c.get("id") not in _seen: _seen.add(c.get("id")); live.append(c)
     if vis is None or not live: out.append({"visit": v["visit"], "pid": v["pid"], "dos": v["dos"], "dod": dod, "result": "no live charge found"}); continue
     paid = [p for c in live for p in c.iter("payment") if p.get("void") != "1" and float(p.get("amount") or 0) != 0]
     if paid: out.append({"visit": v["visit"], "pid": v["pid"], "dos": v["dos"], "dod": dod, "result": "HAS PAYMENT - not voided"}); continue

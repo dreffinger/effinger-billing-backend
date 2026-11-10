@@ -294,6 +294,26 @@ def _bills(charge_id, pcode=None):
         if not out and c.get("insbilled") == "1" and (c.get("datebilled") or "").strip(): out = [c.get("datebilled").strip()[:10]]
         return out
     return None
+def answer_charges(r):
+    """Every charge AdvancedMD's answer lists, in its order: [(charge number, procedure id, amount, place of service)], '' where the answer
+    does not carry a value."""
+    out = []
+    for m in re.finditer(r"<charge\b([^>]*)>", r or ""):
+        a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1)))
+        if re.match(r"charge\d+$", a.get("id") or ""): out.append((a["id"], a.get("proccode") or "", a.get("fee") or "", a.get("pos") or ""))
+    return out
+def quality_in_answer(ans, n_codes, fee):
+    """Which of the answer's charges is the quality line (its index), or None when the answer does not hold it: by its procedure; else the ONE
+    charge whose amount is the line's amount ($0.00 or $0.01 - no visit code has such a fee); else, when the answer names no procedure at
+    all and lists more charges than the message has codes, the last one."""
+    by = [i for i, c in enumerate(ans) if c[1] == QUALITY_PCODE]
+    if by: return by[0]
+    def money(x):
+        try: return round(float(x), 2)
+        except Exception: return None
+    f = money(fee); same = [i for i, c in enumerate(ans) if c[2] != "" and money(c[2]) == f]
+    if f is not None and len(same) == 1: return same[0]
+    return len(ans) - 1 if (len(ans) > n_codes and not any(c[1] for c in ans)) else None
 def chart_lines_now(pid):
     """(code, DOS) of every live charge on the chart right now - one read of the chart's history, the same lines chart_ctx calls live."""
     out = set()
@@ -444,13 +464,14 @@ def chart_ctx(pid):
     if pid in _ctx: return _ctx[pid]
     num = re.sub(r"\D", "", pid)
     root = txh.fetch(num)
-    live = set(); rows = set(); sample = None; newest = ""
+    live = set(); rows = set(); sample = None; newest = ""; qsample = None
     for c in root.iter("charge"):
         a = c.attrib
         if a.get("void") == "1" or (a.get("fee") or "").startswith("-"): continue
         live.add((a.get("proccode"), a.get("dos")))
         if a.get("proccode") in NF_VISIT or a.get("proccode") in HOSP_VISIT or a.get("proccode") in HOME_VISIT: rows.add((a.get("proccode"), a.get("dos"), a.get("facname") or ""))
-        if (a.get("dos") or "") > newest or sample is None:
+        if a.get("proccode") in QUALITY_SAME: qsample = qsample or a.get("id")      # a quality line is the sample only when the chart has nothing else
+        elif (a.get("dos") or "") > newest or sample is None:
             newest = a.get("dos") or ""; sample = a.get("id")
     ctx = {"live": live, "nfrows": rows, "episode": "", "resp": "", "refplan": "", "insorder": ""}   # nfrows: (code, DOS, facility name) of visit charges, for the place-of-service rule
     r = amd.post('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="%s" nocookie="1"/>' % (amd._msgtime(), pid))
@@ -458,6 +479,7 @@ def chart_ctx(pid):
     ctx["resp"] = a.get("respparty", ""); ctx["insorder"] = a.get("insorder", "") or "1"; ctx["deceased"] = a.get("deceased", "")
     pl = re.findall(r'<insplan id="(ins\d+)" carrier="(car\d+)" begindate="([^"]*)" enddate="([^"]*)"[^>]*sequence="(\d+)"', r)
     ctx["plans"] = pl
+    sample = sample or qsample
     if sample:
         d = ET.fromstring(resave.detail(re.sub(r"\D", "", sample)))
         v = d.find(".//visit")
@@ -682,16 +704,19 @@ def main():
                 fees = re.findall(r'<charge [^>]* fee="([^"]*)"', r)
                 # what AdvancedMD stored: its answer echoes the charges - compare their place of service with what was sent (any order).
                 # pos_stored None = the answer did not carry it for every line (then nothing is claimed either way)
+                _qidx = None
                 try:
-                    _st = re.findall(r'<charge id="charge\d+"[^>]*?\bpos="(\d+)"', r)
-                    # a visit that carries the quality line has one more charge in the answer: compare with that line's place of service too
-                    _want = [list(info["pos_lines"])] + ([list(info["pos_lines"]) + [info["quality_pos"]]] if info.get("quality_codes") and info.get("quality_pos") else [])
-                    _sent = next((e for e in reversed(_want) if len(e) == len(_st)), None)
-                    info["pos_stored"] = _st if _sent is not None else None
-                    if _sent is not None and len(_sent) != len(info["pos_lines"]): info["pos_sent"] = _sent      # only when it differs from pos_lines
-                    if _sent is not None and sorted(_st) != sorted(_sent):
+                    if info.get("quality_codes"):      # find the quality charge first: the comparison below is about the visit's OWN lines
+                        _ans = answer_charges(r); _qidx = quality_in_answer(_ans, len(info["cpts"]), info.get("quality_fee"))
+                        _own = [c for i, c in enumerate(_ans) if i != _qidx]; _st = [c[3] for c in _own if c[3]]
+                        if len(_st) != len(_own): _st = []
+                        if _qidx is not None and _ans[_qidx][3]: info["quality_pos_stored"] = _ans[_qidx][3]
+                    else:
+                        _st = re.findall(r'<charge id="charge\d+"[^>]*?\bpos="(\d+)"', r)
+                    info["pos_stored"] = _st if len(_st) == len(info["pos_lines"]) else None
+                    if (info["pos_stored"] is not None and sorted(_st) != sorted(info["pos_lines"])) or (info.get("quality_pos_stored") and info.get("quality_pos") and info["quality_pos_stored"] != info["quality_pos"]):
                         stats["ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE (stored differs from sent)"] += 1
-                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", _sent, "stored", _st)
+                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", info["pos_lines"], "stored", _st, ("quality line sent %s stored %s" % (info.get("quality_pos"), info.get("quality_pos_stored"))) if info.get("quality_pos_stored") else "")
                 except Exception: info["pos_stored"] = None
                 if info["admit"] and any(c in HOSP for c in info["cpts"]):
                     # the extins child is ignored on create - write the admission date with the proven updextrainsinfo shape
@@ -702,8 +727,7 @@ def main():
                             re_ = amd.post(amd.msg("updextrainsinfo", "chargeentry", {"visitid": vm.group(1), "nocookie": "1"}, ext), timeout=120)
                             info["admit_written"] = "Fault" not in re_ and 'hospitalizationfrom="%s"' % mdy(info["admit"][:8]) in re_
                 if info.get("quality_codes"):
-                    _q = re.findall(r'<charge id="(charge\d+)"[^>]*?\bproccode="%s"' % QUALITY_PCODE, r) + re.findall(r'<charge [^>]*?\bproccode="%s"[^>]*?\bid="(charge\d+)"' % QUALITY_PCODE, r)
-                    info["quality_charge"] = _q[0] if _q else (cids[-1] if len(cids) > len(info["cpts"]) else "")
+                    info["quality_charge"] = _ans[_qidx][0] if _qidx is not None else ""      # by procedure, else by amount, else the last of an unnamed list
                     if not info["quality_charge"]:      # the visit was stored, the line was not: the next run reads this like a refusal
                         quality_undo(info, pid); info["quality_not_stored"] = info.get("quality_fee") or "0.00"; info["quality_codes"] = []
                         stats["QUALITY CODE: AdvancedMD stored the visit WITHOUT the line"] += 1

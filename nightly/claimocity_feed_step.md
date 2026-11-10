@@ -99,8 +99,9 @@ Offline proof: `python3 tools/selftest/test_pos_rule.py` (no AMD, no network).
 ## Quality code 1123F, advance care plan (William 11/10/2026 - practices/ehpa/rules.md)
 The import adds one line with 1123F, at no charge, once per patient per year, to a Medicare visit of a patient 65 or older (William: "yes for
 all"; the rulebook says exactly when). Nothing is done by hand. What to copy into the report, after the place-of-service line:
-`grep -h 'QUALITY ' logs/claimocity_<stamp>_*.log` (one line: how many visits carry it, the line amount, and where the pilot stands) and the
-digest's "Quality code 1123F" line with the lines under it. Lines of that block that say TOP OF THE REPORT go to the top, word for word.
+`grep -h '^QUALITY 1123F' logs/claimocity_<stamp>_*.log` (the line that says how many visits carry it, the line amount, and where the pilot
+stands - also for the retry's own stamp <stamp>R when the retry entered visits) and the digest's "Quality code 1123F" line with the lines
+under it. Lines of that block that say TOP OF THE REPORT go to the top, word for word.
 THE PILOT: the first run puts the line on at most 3 visits; the next runs add none ("PILOT, waiting") until AdvancedMD shows that one of
 those lines was billed to insurance - the import reads that itself (two reads per open line) and from then on every eligible visit carries
 the line. If AdvancedMD bills a visit and leaves the $0.00 line off, the import switches to one cent, starts a new pilot of 3 and lists the
@@ -112,8 +113,10 @@ off until William says to try again.
 NEVER: add, move or remove a quality line by hand; hold a visit for it; bypass, rework or resend anything because of it. On a Medicare
 remittance, reason 246 with remark N620 on a 1123F line means Medicare counted the code: no work, no appeal, and a one-cent charge on that
 line is contractual. If the Claim Inspector holds a visit and its message names 1123F or a zero or one-cent charge, copy the pattern number
-and its words to the TOP of the report and leave the visit as it is; William decides.
-SWITCHES (only on William's word, for ONE run, set in front of the ingest command): `QUALITY_CODE=off` adds no line in that run;
+and its words to the TOP of the report and leave the visit as it is; William decides. The digest itself names every held visit that carries
+the line ("HELD by the Claim Inspector"), whatever the inspector's words.
+SWITCHES (only on William's word, for ONE run, set in front of the ingest command AND in front of the claimocity_retry_dx.py command of the
+same run - the retry enters visits with the same import helper): `QUALITY_CODE=off` adds no line in that run;
 `QUALITY_CODE=reset` starts the pilot again after "the quality code is OFF" (the cause must have been fixed first). Without a switch the
 import follows its own registers (`quality_gate` in registers/feed_import_<stamp>.json).
 

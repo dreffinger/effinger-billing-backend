@@ -67,13 +67,14 @@ def fast_set_insorder(v, order):
     """Visit insorder by full echo of THIS import's charges (the register holds every charge id of the visit, so no
     gettxhistory paging): one getchargedetaildataicd10 per charge + one updvisitwithcharges force=1. -> (ok, msg)"""
     import xml.etree.ElementTree as ET
-    charges = []; vis = pat = None
+    charges = []; vis = pat = None; qgone = 0
     for cid in v["charges"]:
         d = ET.fromstring(resave.detail(re.sub(r"\D", "", cid)))
         if vis is None: vis = d.find(".//visit"); pat = d.find(".//patient")
         for c in d.iter("charge"):
             if c.get("id") == cid and c.get("void") != "1": charges.append(c)
-    if vis is None or len(charges) != len(v["charges"]):
+            elif c.get("id") == cid and cid == (v.get("quality_charge") or "-"): qgone = 1      # 11/10/2026: a VOID no-charge quality line has nothing to echo and never holds the visit
+    if vis is None or not charges or len(charges) != len(v["charges"]) - qgone:
         return False, "detail read mismatch (%d of %d charges live)" % (len(charges), len(v["charges"]))
     if (vis.get("insorder") or "").replace(" ", "") == order: return True, "already %s" % order
     chg = ""
@@ -87,7 +88,7 @@ def fast_set_insorder(v, order):
                  "inspectorenabled": "1", "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"},
                  "<visit %s><chargelist>%s</chargelist></visit>" % (" ".join('%s="%s"' % (k, x) for k, x in va.items()), chg)), timeout=180)
     if "Fault" in r: return False, "resave FAULT " + re.sub(r"\s+", " ", r[:200])
-    d2 = ET.fromstring(resave.detail(re.sub(r"\D", "", v["charges"][0]))); v2 = d2.find(".//visit")
+    d2 = ET.fromstring(resave.detail(re.sub(r"\D", "", charges[0].get("id")))); v2 = d2.find(".//visit")      # read back through a charge that is live
     live = [c for c in d2.iter("charge") if c.get("void") != "1"]
     got = (v2.get("insorder") or "").replace(" ", "") if v2 is not None else ""
     return got == order and len(live) >= 1, "insorder %s -> %s" % (vis.get("insorder"), got)

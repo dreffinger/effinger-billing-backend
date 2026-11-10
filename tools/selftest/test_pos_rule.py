@@ -23,6 +23,17 @@
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
 import os, sys, json, types, tempfile, importlib.util, io, re, contextlib
 import xml.etree.ElementTree as ET
+# THIS SELF-TEST NEVER REACHES ADVANCEDMD OR ANY OTHER HOST. Every network route is closed here, for this process and for every program it
+# starts, before anything else is loaded: scripts/helpers holds the real amd / resave / txh / void_tx modules, and a helper STARTED AS A
+# PROGRAM from that folder loads them (Python puts the program's own folder first on its path) - with them a "test" would read, and could
+# void, real charges. So: (1) helpers that talk to AdvancedMD are only ever run INSIDE this process with stand-in modules (see run_inside);
+# (2) the only helpers started as programs are ones that load none of those modules (checked below); (3) the network is shut either way.
+import socket as _socket
+def _no_network(*a, **k): raise RuntimeError("the self-test must not use the network")
+_socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
+for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"): os.environ[_k] = "http://127.0.0.1:9"
+os.environ.update(NO_PROXY="", no_proxy="")
+AMD_MODULES = ("amd", "resave", "txh", "void_tx", "deceased_guard", "freq1_visit", "move_to_ins", "ins_update")
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_import.py")
 FAILS = []
@@ -85,7 +96,7 @@ DEMOG = {"order": "1", "plans": ""}                                    # the sta
 MEDICARE = '<insplan id="ins1" carrier="car6085" begindate="01/01/2020" enddate="" x="" sequence="1"/>'
 OTHER = '<insplan id="ins2" carrier="car6404" begindate="01/01/2020" enddate="" x="" sequence="2"/>'
 BILLS = {}                                                             # charge number -> the dates AdvancedMD lists under billed to insurance
-ECHO = {"flip": False, "none": False, "refuse_quality": False, "refuse_all": False, "fail_create": 0, "drop_quality": False, "partial": None, "proccode": False}
+ECHO = {"flip": False, "none": False, "refuse_quality": False, "refuse_all": False, "fail_create": 0, "drop_quality": False, "partial": None, "proccode": False, "fees": False, "qfirst": False}
 ECHO0 = dict(ECHO); SEQ = [100]                                         # visit numbers never repeat between runs (the charge numbers are built from them)                                  # flip: the stand-in stores 31 where 32 was sent; none: its answer carries no place of service
 def _post(body, timeout=0):
     POSTS.append(body)
@@ -97,10 +108,12 @@ def _post(body, timeout=0):
         if ECHO["refuse_all"] or (ECHO["refuse_quality"] and "pcode65441" in body):
             if ECHO["partial"]: CHART.setdefault(ECHO["partial"][0], []).append(tuple(ECHO["partial"][1:]))      # the stand-in stores a line although it answers with a fault
             return "<r><Fault>the charge amount is not accepted</Fault></r>"
-        sent = re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)"', body); vid = re.search(r'<visit id="(vst\d+)"', body).group(1)
+        sent = re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)" tos="01" units="[^"]*" netfee="0" fee="([^"]*)"', body); vid = re.search(r'<visit id="(vst\d+)"', body).group(1)
         if ECHO["drop_quality"]: sent = [x for x in sent if x[0] != "pcode65441"]
-        return '<r><visit id="%s">%s</visit></r>' % (vid, "".join('<charge id="charge%d%d"%s fee="1.00"%s/>' % (int(vid[3:]), i, ' proccode="%s"' % pc if ECHO["proccode"] else "",
-                                                 "" if ECHO["none"] else ' pos="%s"' % ("31" if ECHO["flip"] and q == "32" else q)) for i, (pc, q) in enumerate(sent)))
+        num = list(enumerate(sent))                                                   # the charge number follows the order SENT ...
+        if ECHO["qfirst"]: num = sorted(num, key=lambda x: x[1][0] != "pcode65441")   # ... the answer can list the quality charge first
+        return '<r><visit id="%s">%s</visit></r>' % (vid, "".join('<charge id="charge%d%d"%s fee="%s"%s/>' % (int(vid[3:]), i, ' proccode="%s"' % pc if ECHO["proccode"] else "", fee if ECHO["fees"] else "1.00",
+                                                 "" if ECHO["none"] else ' pos="%s"' % ("31" if ECHO["flip"] and q == "32" else q)) for i, (pc, q, fee) in num))
     return "<r/>"
 amd.post = _post
 resave = types.ModuleType("resave")
@@ -576,15 +589,33 @@ BILLS.clear()
 many = {"created": [dict(qrows[0], pid="pat5%02d" % i, visit="vst9%02d" % i, quality_charge="charge99%02d1" % i, charges=["charge99%02d0" % i, "charge99%02d1" % i]) for i in range(8)], "skipped": [], "failed": []}
 clear_regs(); keep(many, "20261111T0100Z"); out, regm = live(visits("20261109", (4,)))
 check("at most six earlier lines are looked up in one run (two reads each); the rest keep the pilot waiting", len([d for d in DETAILS if d.startswith("99")]) == 12 and regm["quality_gate"]["wait"] is True and len(regm["quality_gate"]["pending"]) == 8, (DETAILS, regm["quality_gate"]))
-# what AdvancedMD stored is checked for a visit that carries the quality line too (its answer lists one more charge)
+# what AdvancedMD stored is checked for a visit that carries the quality line too: its own lines as before, the quality line apart
 clear_regs(); BILLS.clear(); charts0(); keep(dict(RUN1, quality_gate=dict(RUN1["quality_gate"], confirmed=True)), "20261111T0100Z")
 out, regk = run_live(visits("20261203", (6,)))
 rk = regk["created"][0]
-check("a monthly visit with the quality line: the answer's two charges are compared with both lines sent (32, 32) - kept as sent", rk.get("quality_codes") == ["1123F"] and rk["pos_lines"] == ["32"] and rk["quality_pos"] == "32"
-      and rk["pos_stored"] == ["32", "32"] and rk["pos_sent"] == ["32", "32"] and "POS NOT KEPT" not in out, (rk, out[-300:]))
+check("a monthly visit with the quality line: the visit's own line is compared as before (32), the quality line's place of service is recorded apart - kept as sent", rk.get("quality_codes") == ["1123F"] and rk["pos_lines"] == ["32"]
+      and rk["quality_pos"] == "32" and rk["pos_stored"] == ["32"] and rk["quality_pos_stored"] == "32" and "pos_sent" not in rk and "POS NOT KEPT" not in out, (rk, out[-300:]))
 charts0(); out, regk2 = run_live(visits("20261204", (7,)), flip=True)
 rk2 = regk2["created"][0]
-check("... and when AdvancedMD stores 31 where 32 was sent on such a visit, it is said loudly", rk2.get("quality_codes") == ["1123F"] and rk2["pos_stored"] == ["31", "31"] and "POS NOT KEPT" in out and "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE" in out, (rk2, out[-400:]))
+check("... and when AdvancedMD stores 31 where 32 was sent on such a visit, it is said loudly", rk2.get("quality_codes") == ["1123F"] and rk2["pos_stored"] == ["31"] and rk2["quality_pos_stored"] == "31" and "POS NOT KEPT" in out and "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE" in out, (rk2, out[-400:]))
+charts0(); CHART["408"] = [("99309", "10/03/2026")]; out, regf = live([Q_("n2", "q8", [("99309", "20261207"), ("99497", "20261207")])], fees=True, qfirst=True)
+rf = regf["created"][0]
+check("the answer lists the quality charge FIRST and names no procedure: the charge is found by its amount - the right charge number, the visit's own fees in order, the visit's own lines compared",
+      rf.get("quality_codes") == ["1123F"] and rf["quality_charge"] == rf["charges"][0] and len(rf["charges"]) == 3 and rf["fees"] == ["141.00", "133.00"] and rf["pos_stored"] == rf["pos_lines"] and rf["quality_pos_stored"] == rf["quality_pos"], rf)
+charts0(); out, regn = live(visits("20261208", (9,)), proccode=True, qfirst=True)
+rn = regn["created"][0]
+check("the answer names procedures: the quality charge is found by its procedure wherever it stands", rn.get("quality_codes") == ["1123F"] and rn["quality_charge"] == rn["charges"][0] and rn["fees"] == ["1.00"], rn)
+check("quality_in_answer: by procedure, else the one charge with the line's amount, else the last of an unnamed longer list, else nothing",
+      ci.quality_in_answer([("charge1", "pcode65119", "141.00", "32"), ("charge2", "pcode65441", "0.00", "32")], 1, "0.00") == 1
+      and ci.quality_in_answer([("charge2", "", "0.00", "32"), ("charge1", "", "141.00", "32")], 1, "0.00") == 0 and ci.quality_in_answer([("charge1", "", "1.00", ""), ("charge2", "", "1.00", "")], 1, "0.00") == 1
+      and ci.quality_in_answer([("charge1", "pcode65119", "141.00", "32")], 1, "0.00") is None and ci.quality_in_answer([("charge1", "pcode65119", "141.00", "32"), ("charge2", "pcode492667", "133.00", "32")], 2, "0.01") is None
+      and ci.quality_in_answer([], 1, "0.00") is None and ci.answer_charges('<r><charge pos="32" fee="0.00" id="charge7"/><charge id="x"/><charge id="charge8" proccode="pcode65441"/></r>') == [("charge7", "", "0.00", "32"), ("charge8", "pcode65441", "", "")])
+# the chart's sample charge (its episode and referral plan are read from it) is never a quality line when the chart has another
+CHART["410"] = [("99309", "10/03/2026"), ("1123F", "11/02/2026")]; ci._ctx.clear(); DETAILS.clear(); ci.chart_ctx("pat410")
+check("chart context: the sample charge is the ordinary charge, not the newer quality line", DETAILS == ["1"], DETAILS)
+CHART["411"] = [("1123F", "11/02/2026")]; ci._ctx.clear(); DETAILS.clear(); ci.chart_ctx("pat411")
+check("chart context: ... a chart that holds nothing but a quality line still gives a sample", DETAILS == ["1"], DETAILS)
+ci._ctx.clear(); DETAILS.clear()
 clear_regs()
 # AdvancedMD refuses a visit that carries the line
 clear_regs(); BILLS.clear(); charts0()
@@ -745,9 +776,21 @@ def qdigest(rows, gate, stamp="20261111T0100Z", failed=()):
     return r, "\n".join(l for l in r.stdout.splitlines() if "uality code" in l or l.startswith("  - carried by") or "QUALITY CODE" in l or "quality line" in l or "quality-code" in l)
 G0 = {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False, "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "reset": False, "pilot_cap": 3, "notes": []}
 qrow = dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_fee="0.00", quality_charge="charge77", charges=["charge1", "charge77"], fees=["1.00"])
-r, line = digest([dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge77", quality_pos="32", pos_stored=["32", "32"], pos_sent=["32", "32"]),
-                  dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge78", quality_pos="32", pos_stored=["31", "31"], pos_sent=["32", "32"])])
-check("digest: a visit with the quality line is read back with both of its lines", "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on 1 of 2 visit(s) read back" in r.stdout and "sent ['32', '32'] stored ['31', '31']" in r.stdout, r.stdout[-600:])
+r, line = digest([dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge77", quality_pos="32", pos_stored=["32"], quality_pos_stored="32"),
+                  dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge78", quality_pos="32", pos_stored=["31"], quality_pos_stored="31"),
+                  dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge79", quality_pos="32", pos_stored=["32"], quality_pos_stored="31")])
+check("digest: a visit with the quality line is read back like any other, and a quality line stored at another place of service is said too", "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on 2 of 3 visit(s) read back" in r.stdout
+      and "sent ['32'] stored ['31']" in r.stdout and "(quality line sent 32 stored 31)" in r.stdout, r.stdout[-700:])
+json.dump({"fixed": [], "bypassed": [], "laterality": [], "held": [{"visit": "1", "pid": "pat9", "why": "Pattern 88001: Charge amount is zero for this procedure"},
+                                                                    {"visit": "7", "pid": "pat7", "why": "Pattern 24078: something else"}]}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
+r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
+check("digest: a visit that carries the quality line and is held by the Claim Inspector goes to the top of the report, whatever the inspector's words; a held visit without the line is not named there",
+      "TOP OF THE REPORT - 1 visit(s) that carry the quality line are HELD by the Claim Inspector" in r.stdout and "pat9 vst1 - Pattern 88001: Charge amount is zero for this procedure" in r.stdout
+      and "pat7 vst7 - Pattern" not in r.stdout, r.stdout[-900:] + r.stderr[-400:])
+json.dump({"fixed": [], "bypassed": [], "laterality": [], "held": [{"visit": "7", "pid": "pat7", "why": "Pattern 24078: something else"}]}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
+r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
+check("digest: ... and no such line when none of the held visits carries the quality line", "are HELD by the Claim Inspector" not in r.stdout and "Quality code 1123F" in r.stdout, r.stdout[-600:] + r.stderr[-300:])
+os.remove(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"))
 r, ql = qdigest([qrow, rows[4]], G0)
 check("digest: the quality code has its own line with the visits under it, says it is a pilot and what proves a line", r.returncode == 0 and "Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on 1 visit(s) in this batch, line amount $0.00; PILOT - at most 3 visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD." in ql
       and "carried by: pat9 vst1 charge77" in ql and "remark N620 on the 1123F line means Medicare counted it" in r.stdout and "2 visits / 2 charge lines created" in r.stdout, (ql, r.stdout[:400], r.stderr[-300:]))
@@ -775,7 +818,109 @@ for oddg in ("odd", {"pending": 5, "dead_zero_lines": "x", "notes": 3, "proof": 
 import importlib.util as _iu
 wd = open(os.path.join(ROOT, "boards", "working_denials.py")).read()
 check("denial table: Medicare's acceptance of a reporting code (reason 246) is information, never work", '"246": ("INFO"' in wd and "N620" in wd)
-check("runbook and rulebook carry the owner's words for the quality code", '"yes for all: billing adds 1123F automatically, once per patient, to the next Medicare claim for every patient 65 and older."' in open(os.path.join(ROOT, "practices", "ehpa", "rules.md")).read() and "## Quality code 1123F, advance care plan" in step and "QUALITY_CODE=reset" in step and "grep -h 'QUALITY ' logs/claimocity_<stamp>_*.log" in step)
+check("runbook and rulebook carry the owner's words for the quality code", '"yes for all: billing adds 1123F automatically, once per patient, to the next Medicare claim for every patient 65 and older."' in open(os.path.join(ROOT, "practices", "ehpa", "rules.md")).read() and "## Quality code 1123F, advance care plan" in step and "QUALITY_CODE=reset" in step and "grep -h '^QUALITY 1123F' logs/claimocity_<stamp>_*.log" in step and "in front of the claimocity_retry_dx.py command" in step)
+# the insurance-check step: a void quality line never holds the visit (its function is run here with stand-ins; the rest of that helper is not loaded)
+_vsrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _vsrc = _vsrc[_vsrc.index("def fast_set_insorder(v, order):"):_vsrc.index("def main():")]
+class _RS:
+    CHG_FIELDS = ["fee", "pos"]; state = {"order": "1,2", "void": set(), "sent": []}
+    @staticmethod
+    def detail(cid): return '<r><patient id="pat1"/><visit id="vst1" episode="e1" insorder="%s"/><charge id="charge%s" fee="1.00" pos="32" void="%s"/></r>' % (_RS.state["order"], cid, "1" if str(cid) in _RS.state["void"] else "0")
+class _AM:
+    @staticmethod
+    def msg(action, cls, attrs=None, children=""): return children
+    @staticmethod
+    def post(body, timeout=0):
+        _RS.state["sent"].append(body); m_ = re.search(r'insorder="([^"]*)"', body); _RS.state["order"] = m_.group(1) if m_ else _RS.state["order"]; return "<r/>"
+_ns = {"resave": _RS, "amd": _AM, "re": re}; exec(_vsrc, _ns)
+_row = {"visit": "vst1", "charges": ["charge10", "charge11"], "quality_charge": "charge11"}
+_RS.state.update(order="1,2", void={"11"}, sent=[]); ok1, m1 = _ns["fast_set_insorder"](_row, "2")
+check("insurance check: the quality line is void - the visit's order is still set, with the live charge only (no hold)", ok1 is True and len(_RS.state["sent"]) == 1 and 'id="charge10"' in _RS.state["sent"][0] and "charge11" not in _RS.state["sent"][0], (ok1, m1, _RS.state["sent"]))
+_RS.state.update(order="1,2", void=set(), sent=[]); ok2, m2 = _ns["fast_set_insorder"](_row, "2")
+check("insurance check: both charges live - both are echoed (a charge left out would be voided)", ok2 is True and 'id="charge10"' in _RS.state["sent"][0] and 'id="charge11"' in _RS.state["sent"][0], (ok2, m2))
+_RS.state.update(order="1,2", void={"10"}, sent=[]); ok3, m3 = _ns["fast_set_insorder"](_row, "2")
+check("insurance check: the visit's OWN charge is void - held as before, nothing sent", ok3 is False and "mismatch" in m3 and _RS.state["sent"] == [], (ok3, m3))
+_RS.state.update(order="1,2", void={"10", "11"}, sent=[]); ok4, m4 = _ns["fast_set_insorder"](_row, "2")
+check("insurance check: everything void - held, nothing sent", ok4 is False and _RS.state["sent"] == [], (ok4, m4))
+# the programs this self-test starts as programs load no module that talks to AdvancedMD (those are only ever run inside this process)
+_started = [os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py"), os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py")]
+def loads(src):
+    """The names a piece of Python loads with import / from, first name of each (import a.b as c -> a)."""
+    out_ = set()
+    for kind, rest in re.findall(r"^[ \t]*(import|from)[ \t]+([^\n#]+)", src, re.M):
+        for n in (rest.split(",") if kind == "import" else [rest]):
+            n = n.strip().split()[0].split(".")[0] if n.strip() else ""
+            if n: out_.add(n)
+    return out_
+_names = {os.path.basename(f): loads(open(f).read()) for f in _started}
+check("the helpers this self-test starts as programs load none of the modules that talk to AdvancedMD", all(not (v & set(AMD_MODULES)) for v in _names.values()) and len(_names) == 2
+      and loads("import os as _os\nimport amd as a, resave.x\n    import void_tx\nfrom txh import fetch_visit\n") == {"os", "amd", "resave", "void_tx", "txh"}, _names)
+_me = open(os.path.abspath(__file__)).read()
+_runs = re.findall(r"subprocess\.\w+\(", _me)
+_known = re.findall(r'subprocess\.run\(\[sys\.executable,(?: "-B",)? os\.path\.join\(ROOT, (?:"scripts", "helpers", "claimocity_report\.py"|"tools", "feed", "feed_clinician_audit\.py")\)', _me)
+check("... and nothing else is started as a program from here (every program start in this file is one of those two)", len(_runs) == len(_known) and len(_runs) >= 5
+      and not re.search(r"os\.system\(|os\.popen\(|runpy\.", _me.replace('r"os\\.system\\(|os\\.popen\\(|runpy\\."', "")), (len(_runs), len(_known)))
+def run_inside(path, standins, cwd, env=None, argv=()):
+    """Run a helper that talks to AdvancedMD INSIDE this process: its amd / resave / ... are the stand-in modules given here, put in
+    sys.modules for the run and taken out again. Refuses to run unless every module of AMD_MODULES the helper loads is a stand-in."""
+    src = open(path).read(); wanted = loads(src) & set(AMD_MODULES)
+    missing = sorted(wanted - set(standins))
+    if missing: raise RuntimeError("no stand-in for %s - the helper is not run" % missing)
+    old_mod = {k: sys.modules.get(k) for k in standins}; old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); out = io.StringIO(); err = ""
+    import time as _time
+    old_sleep = _time.sleep
+    try:
+        for k, v in standins.items():
+            m = types.ModuleType(k); m.STAND_IN = True
+            for n, f in v.items(): setattr(m, n, f)
+            sys.modules[k] = m
+        os.chdir(cwd); os.environ.update(env or {}); sys.argv = [path] + list(argv); _time.sleep = lambda *_a: None
+        with contextlib.redirect_stdout(out):
+            try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path})
+            except SystemExit: pass
+            except Exception as e: err = "%s: %s" % (type(e).__name__, e)
+    finally:
+        _time.sleep = old_sleep; os.chdir(old_cwd); sys.argv = old_argv
+        for k in list(os.environ):
+            if k not in old_env: del os.environ[k]
+        os.environ.update(old_env)
+        for k, v in old_mod.items():
+            if v is None: sys.modules.pop(k, None)
+            else: sys.modules[k] = v
+    return out.getvalue(), err
+# the helper that voids a visit dated after a death voids EVERY charge of the visit - its own charge and the quality line
+vdd = tempfile.mkdtemp(prefix="posrule_vd_"); os.makedirs(os.path.join(vdd, "registers"))
+VD = {"void": set(), "asked": [], "voided": [], "login": 0}
+def _vd_detail(cid): VD["asked"].append(str(cid)); return '<r><patient id="pat1"/><visit id="vst1"/><charge id="charge%s" void="%s"/></r>' % (cid, "1" if ("charge%s" % cid) in VD["void"] else "0")
+def _vd_void(num, cid): VD["voided"].append((num, cid)); VD["void"].add(cid); return True, "ok"
+def _vd_txh(num, vnum):
+    r_ = ET.Element("r")
+    for c_ in ("charge10", "charge11"): ET.SubElement(r_, "charge", {"id": c_, "void": "1" if c_ in VD["void"] else "0", "proccode": "x", "fee": "1.00"})
+    return r_
+def _vd_login(*a): VD["login"] += 1
+VD_STAND = {"amd": {"login_cached": _vd_login}, "resave": {"detail": _vd_detail}, "txh": {"fetch_visit": _vd_txh}, "void_tx": {"void_charge": _vd_void},
+            "deceased_guard": {"_iso": lambda mdy: mdy[6:10] + "-" + mdy[0:2] + "-" + mdy[3:5]}}
+VD_HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_void_deceased.py")
+def vd_run(created, dead):
+    VD.update(void=set(), asked=[], voided=[], login=0)
+    json.dump({"created": created}, open(os.path.join(vdd, "registers", "feed_import_T1.json"), "w")); json.dump(dead, open(os.path.join(vdd, "dc.json"), "w"))
+    o_, e_ = run_inside(VD_HELPER, VD_STAND, vdd, env={"FEED_STAMP": "T1", "DECEASED_CACHE": os.path.join(vdd, "dc.json")})
+    f_ = os.path.join(vdd, "registers", "feed_void_deceased_T1.json"); res = json.load(open(f_)) if os.path.exists(f_) and not e_ else None
+    if os.path.exists(f_): os.remove(f_)
+    return o_, e_, res
+_vrow = {"pid": "pat1", "visit": "vst1", "dos": "11/02/2026", "cpts": ["99309"], "charges": ["charge10", "charge11"], "quality_charge": "charge11"}
+_DAY1 = "2026-11-" + "01"; _DAY2 = "2026-11-" + "02"      # written in two pieces: the privacy gate rewrites a whole date that stands beside such a key
+try:
+    run_inside(VD_HELPER, {k: v for k, v in VD_STAND.items() if k != "void_tx"}, vdd); _refused = False
+except RuntimeError as e: _refused = "no stand-in for ['void_tx']" in str(e)
+check("a helper that talks to AdvancedMD is not run here unless every such module it loads has a stand-in", _refused is True and sys.modules.get("amd") is amd and "void_tx" not in sys.modules)
+o_, e_, res = vd_run([_vrow], {"1": {"dod": _DAY1}})
+check("a visit dated after the date of death is voided WHOLE - its own charge and the quality line", not e_ and sorted(c for _n, c in VD["voided"]) == ["charge10", "charge11"] and res and res[0]["result"] == "VOIDED"
+      and sorted(VD["asked"]) == ["10", "11"] and VD["login"] == 1, (o_[-300:], e_, res, VD))
+o_, e_, res = vd_run([_vrow], {"1": {"dod": _DAY2}})
+check("... a visit on the day of death or before it is left alone", not e_ and VD["voided"] == [] and res == [], (e_, res, VD))
+o_, e_, res = vd_run([dict(_vrow, charges=["charge10"])], {"1": {"dod": _DAY1}})
+check("... a visit recorded with one charge has that charge voided (as before)", not e_ and VD["voided"] == [("1", "charge10")], (e_, res, VD))
+check("the stand-ins are gone again after such a run (the import helper's own stand-ins are back)", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and sys.modules.get("txh") is txh and "void_tx" not in sys.modules and "deceased_guard" not in sys.modules)
 
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)

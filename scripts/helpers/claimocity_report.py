@@ -54,8 +54,8 @@ try:
         if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
         if x.get("pos_stored") is not None and x.get("pos_lines"):
             _ps["readback"] += 1
-            _sent = x.get("pos_sent") if isinstance(x.get("pos_sent"), list) else x["pos_lines"]      # pos_sent: with the quality line when the visit carried one
-            if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in _sent): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), _sent, x["pos_stored"]))
+            _qdiff = bool(x.get("quality_pos_stored")) and bool(x.get("quality_pos")) and str(x["quality_pos_stored"]) != str(x["quality_pos"])      # the quality line's own place of service
+            if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]) or _qdiff: _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s%s" % (_tag(x), x["pos_lines"], x["pos_stored"], (" (quality line sent %s stored %s)" % (x["quality_pos"], x["quality_pos_stored"])) if _qdiff else ""))
         if x.get("pos_err"): _ps["err"] += 1; _who["err"].append("%s (%s)" % (_tag(x), str(x["pos_err"])[:70])); continue
         if not x.get("pos_lines"):
             if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1; _who["norule"].append(_tag(x))
@@ -112,6 +112,8 @@ try:
     _qf = [x for x in (reg.get("failed") or []) if isinstance(x, dict) and x.get("stored") and isinstance(x.get("info"), dict) and "quality_tried" in x["info"]]   # refused, NOT sent again
     _pend = [str(v) for v in (_qg.get("pending") or [])] if isinstance(_qg.get("pending"), list) else []
     _dead = [d for d in (_qg.get("dead_zero_lines") or []) if isinstance(d, list)] if isinstance(_qg.get("dead_zero_lines"), list) else []
+    _held = {re.sub(r"\D", "", str(h.get("visit") or "")): str(h.get("why") or "")[:140] for h in (insp.get("held") if isinstance(insp, dict) and isinstance(insp.get("held"), list) else []) if isinstance(h, dict)}
+    _qh = [(x, _held[re.sub(r"\D", "", str(x.get("visit") or ""))]) for x in _qa if re.sub(r"\D", "", str(x.get("visit") or "")) in _held and re.sub(r"\D", "", str(x.get("visit") or ""))]
     if _qa or _qn or _qr or _qf or _qg.get("off") or _qg.get("notes") or _qg.get("proof") or _qg.get("wait") or _dead or _qg.get("reset"):
         _pf = _qg.get("proof") if isinstance(_qg.get("proof"), dict) else {}
         _days = None
@@ -129,6 +131,8 @@ try:
         if _qa and not _qg.get("confirmed"): L("  - first lines: when Medicare's remittance for one of these visits arrives, remark N620 on the 1123F line means Medicare counted it (reason 246 with it is acceptance, not a denial).")
         if _qg.get("wait") and _days is not None and _days >= 3:
             L("  - TOP OF THE REPORT - the quality-code pilot has waited %d days: the visit(s) carrying its first line(s) are still not billed (%s). Look at them in AdvancedMD (Claim Inspector? insurance?) and tell William - he decides whether the line comes off." % (_days, ", ".join(_pend[:6])))
+        if _qh: L("  - TOP OF THE REPORT - %d visit(s) that carry the quality line are HELD by the Claim Inspector (the visit's own charge waits with it; William decides whether the line comes off): %s" % (
+            len(_qh), "; ".join("%s %s - %s" % (x.get("pid"), x.get("visit"), w) for x, w in _qh[:10])))
         if _qr: L("  - TOP OF THE REPORT - QUALITY CODE NOT ACCEPTED by AdvancedMD on %d visit(s); each visit was entered without it: %s" % (len(_qr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("quality_refused"))[:80]) for x in _qr[:10])))
         if _qn: L("  - TOP OF THE REPORT - AdvancedMD stored %d visit(s) WITHOUT the quality line that was sent with it (the visit itself is entered): %s" % (len(_qn), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _qn[:10])))
         if _qf: L("  - TOP OF THE REPORT - %d visit(s) were refused with the quality line and NOT sent again, because the chart shows part of the visit or could not be read - enter or check them by hand: %s" % (
