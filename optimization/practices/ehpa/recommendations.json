@@ -70,7 +70,7 @@
    "Place of service set from it",
    "Hospice modifiers applied automatically"
   ],
-  "impact_basis": "Care management paid at the correct rate for long-term residents, and fewer wrong-payer denials. Depends on the care-management review.",
+  "impact_basis": "2026 visits to long-term residents repaid at the correct rate (about $10,000 to $25,000), care management paid at the right rate, and fewer wrong-payer denials.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",

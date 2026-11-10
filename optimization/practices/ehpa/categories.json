@@ -314,7 +314,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. The two pay differently, and for care management the difference is about a third.",
+  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and care management about a third less, so the practice has been underpaid on its long-term residents.",
   "evidence": [
    "Place of service 32 was never used",
    "Care management paid $63 at the facility rate on 32 lines and $112 at the non-facility rate on 12 lines"
@@ -650,6 +650,7 @@
   "evidence": [
    "Seven code families above the national top-level share by 20 points or more",
    "As billed, the physician's work units run near three times the family medicine median",
+   "Care management is on the Florida Medicare contractor's active review list",
    "Care management is on the Florida Medicare contractor's active review list"
   ],
   "next_step": "Review the outlier table every quarter and keep the audit results that explain it."

@@ -715,6 +715,24 @@
   "note": "Patient information stored offsite or in the cloud must be physically kept in the continental United States, its territories or Canada."
  },
  {
+  "slug": "ahrq-cgcahps",
+  "title": "CAHPS Clinician and Group Survey database",
+  "publisher": "Agency for Healthcare Research and Quality",
+  "year": "2021",
+  "url": "https://www.ahrq.gov/cahps/cahps-database/cg-database/index.html",
+  "kind": "primary",
+  "note": "Last national results are for 2019. New submissions were suspended in 2021, so nothing newer exists nationally."
+ },
+ {
+  "slug": "mgma-fin-ops-2025",
+  "title": "2025 Financials and Operations: key insights",
+  "publisher": "MGMA",
+  "year": "2025",
+  "url": "https://www.mgma.com/2025-financials-and-operations",
+  "kind": "secondary",
+  "note": "Primary care revenue per physician $760,383 (2024 data). The full tables are paywalled."
+ },
+ {
   "slug": "cfr-411-351",
   "title": "42 CFR 411.351: Definitions (physician self-referral), including fair market value, general market value and isolated financial transaction",
   "publisher": "eCFR",
@@ -1324,7 +1342,7 @@
   "year": "2022",
   "url": "https://www.ama-assn.org/system/files/2023-e-m-descriptors-guidelines.pdf",
   "kind": "primary",
-  "note": "Two of three decision-making elements must be met or exceeded. Rules extended to hospital, nursing facility and home or residence visits. Minimum times shown here differ from later code descriptors for some codes, so check the current code book."
+  "note": "Two of three decision-making elements must be met or exceeded. Rules extended to hospital, nursing facility and home or residence visits. Some minimum times here were later revised: this 2023 text gives 45 minutes for 99306 and 15 for 99308, while the descriptors quoted in the 2027 fee schedule final rule give 50 and 20. Check the current code book."
  },
  {
   "slug": "kff-private-vs-medicare-2020",
@@ -1352,6 +1370,480 @@
   "url": "https://x12.org/codes/claim-adjustment-reason-codes",
   "kind": "primary",
   "note": "Definitions of reason codes 4, 5, 11, 50, 58, 97, 119, 151, 167 and 236. Read November 10, 2026."
+ },
+ {
+  "slug": "fr-pfs-2027-final",
+  "title": "Medicare and Medicaid Programs; CY 2027 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 91 FR 70992)",
+  "publisher": "CMS, Federal Register",
+  "year": "2026",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm",
+  "kind": "primary",
+  "note": "Published November 9, 2026, effective January 1, 2027. Facility practice expense set equal to non-facility for nursing facility visit codes 99304 to 99310, 99315 and 99316 (pages 71018 to 71019). 20 percent reduction when an office visit is billed with a zero-day global procedure. Modifiers B1 and B2 replace G2211. Telehealth modifiers BB and BC. Staff advance care planning codes G0572 and G0573."
+ },
+ {
+  "slug": "fr-pfs-2025-final",
+  "title": "Medicare and Medicaid Programs; CY 2025 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 89 FR 97710)",
+  "publisher": "CMS, Federal Register",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-09/html/2024-25382.htm",
+  "kind": "primary",
+  "note": "Pages 97894 to 97896: chronic, principal and transitional care management and listed communication services may not be billed in the same month as advanced primary care management by the same practitioner. Another practitioner may bill them when medically necessary."
+ },
+ {
+  "slug": "cms-pfs-rvu-2026",
+  "title": "2026 National Physician Fee Schedule Relative Value File, October release (RVU26D)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/zip/rvu26d.zip",
+  "kind": "primary",
+  "note": "Released August 26, 2026. Conversion factor 33.4009. Gives status, global period and facility and non-facility relative values by code. Used for 2026 facility versus non-facility payment of nursing facility visit and care-management codes, and to confirm code status (99417 and 99418 not valid for Medicare, 45385 not an add-on code, 20611 includes ultrasound)."
+ },
+ {
+  "slug": "cfr-405-926",
+  "title": "42 CFR 405.926: Actions that are not initial determinations",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.926",
+  "kind": "primary",
+  "note": "Not appealable: a finding that a claim was not filed timely (paragraph n) and claims returned or rejected as incomplete or invalid (paragraph s)."
+ },
+ {
+  "slug": "cfr-405-942",
+  "title": "42 CFR 405.942: Time frame for filing a request for a redetermination",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.942",
+  "kind": "primary",
+  "note": "120 calendar days from receipt of the initial determination. Receipt is presumed 5 days after the notice date. Good cause can extend."
+ },
+ {
+  "slug": "cfr-405-962",
+  "title": "42 CFR 405.962: Timeframe for filing a request for a reconsideration",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.962",
+  "kind": "primary",
+  "note": "180 calendar days from receipt of the redetermination notice."
+ },
+ {
+  "slug": "cfr-405-966",
+  "title": "42 CFR 405.966: Evidence to be submitted with the reconsideration request",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.966",
+  "kind": "primary",
+  "note": "Absent good cause, evidence not submitted before the reconsideration notice is issued cannot be considered later."
+ },
+ {
+  "slug": "cfr-405-1006",
+  "title": "42 CFR 405.1006: Amount in controversy required for an ALJ hearing and judicial review",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.1006",
+  "kind": "primary",
+  "note": "The minimum amount in dispute for the third and fifth appeal levels is adjusted each year."
+ },
+ {
+  "slug": "cfr-405-379",
+  "title": "42 CFR 405.379: Limitation on recoupment of provider and supplier overpayments",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.379",
+  "kind": "primary",
+  "note": "Recoupment can begin no earlier than 41 days after the first demand and stops when a valid, timely redetermination request is received."
+ },
+ {
+  "slug": "cms-mln-appeals",
+  "title": "Medicare Parts A and B Appeals Process (MLN006562)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2025",
+  "url": "https://www.cms.gov/files/document/mln006562-medicare-parts-b-appeals-process.pdf",
+  "kind": "primary",
+  "note": "Five appeal levels, filing deadlines, decision times and tips. Booklet dated September 2025."
+ },
+ {
+  "slug": "cms-ffs-appeals-data-2025",
+  "title": "Original Medicare Claim Appeals Data, 2025 (Appeals Fact Sheets)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/appeals-grievances/fee-for-service/second-level-appeal",
+  "kind": "primary",
+  "note": "Fact sheets are in the ZIP file linked on this page (https://www.cms.gov/files/zip/appeals-fact-sheets.zip). 2025: 911 million Part B claims processed, 89 million denied (10%), 2% of denied claims appealed. Part B first-level decisions: 45% favorable, 3% partly favorable. Second level: 24% and 1%."
+ },
+ {
+  "slug": "cms-cpm-ch22",
+  "title": "Medicare Claims Processing Manual, Chapter 22: Remittance Advice",
+  "publisher": "CMS",
+  "year": "2022",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c22.pdf",
+  "kind": "primary",
+  "note": "Section 60.1: group code CO (contractual obligation) is generally a provider write-off and is not billed to the patient. PR is patient responsibility."
+ },
+ {
+  "slug": "cms-cpm-ch28",
+  "title": "Medicare Claims Processing Manual, Chapter 28: Coordination With Medigap, Medicaid, and Other Complementary Insurers",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c28.pdf",
+  "kind": "primary",
+  "note": "Section 70.6: automatic crossover of adjudicated claims to supplemental insurers and Medicaid, and how the remittance shows it."
+ },
+ {
+  "slug": "cms-cpm-ch34",
+  "title": "Medicare Claims Processing Manual, Chapter 34: Reopening and Revision of Claim Determinations and Decisions",
+  "publisher": "CMS",
+  "year": "2019",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c34.pdf",
+  "kind": "primary",
+  "note": "Section 10.4: what counts as a clerical error. Section 10.5: telephone reopenings for Part B."
+ },
+ {
+  "slug": "cfr-422-101",
+  "title": "42 CFR 422.101: Requirements relating to basic benefits (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.101",
+  "kind": "primary",
+  "note": "Plans must follow national and local coverage determinations and original Medicare coverage rules. Internal criteria are allowed only where Medicare criteria are not fully established."
+ },
+ {
+  "slug": "cfr-422-138",
+  "title": "42 CFR 422.138: Prior authorization (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.138",
+  "kind": "primary",
+  "note": "Paragraph (c): a service approved in advance may not later be denied for lack of medical necessity, except for good cause or fraud."
+ },
+ {
+  "slug": "cfr-422-402",
+  "title": "42 CFR 422.402: Federal preemption of State law (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.402",
+  "kind": "primary",
+  "note": "Federal standards supersede state law for Medicare Advantage plans, other than licensing and solvency."
+ },
+ {
+  "slug": "cfr-422-520",
+  "title": "42 CFR 422.520: Prompt payment by MA organization",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.520",
+  "kind": "primary",
+  "note": "Non-contract providers: 95% of clean claims within 30 days, all others within 60. Contracts with providers must contain a prompt payment provision agreed by both sides."
+ },
+ {
+  "slug": "cfr-422-562",
+  "title": "42 CFR 422.562: General provisions (Medicare Advantage grievances and appeals)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.562",
+  "kind": "primary",
+  "note": "Paragraph (c)(2): a contract provider's payment claim, where the enrollee has no further liability, is not subject to the enrollee appeal process."
+ },
+ {
+  "slug": "cms-ma-appeals-guidance",
+  "title": "Parts C and D Enrollee Grievances, Organization/Coverage Determinations, and Appeals Guidance (effective July 6, 2026)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/appeals-and-grievances/mmcag/downloads/parts-c-and-d-enrollee-grievances-organization-coverage-determinations-and-appeals-guidance.pdf",
+  "kind": "primary",
+  "note": "Contract provider payment disputes are governed by the contract. Non-contract providers may appeal with a waiver of liability within 65 days of the remittance notice."
+ },
+ {
+  "slug": "cfr-447-45",
+  "title": "42 CFR 447.45: Timely claims payment (Medicaid)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-447.45",
+  "kind": "primary",
+  "note": "Providers must file within 12 months. The agency must pay 90% of clean practitioner claims within 30 days and 99% within 90 days."
+ },
+ {
+  "slug": "cfr-447-15",
+  "title": "42 CFR 447.15: Acceptance of State payment as payment in full (Medicaid)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-447.15",
+  "kind": "primary"
+ },
+ {
+  "slug": "cfr-411-24",
+  "title": "42 CFR 411.24: Recovery of conditional payments (Medicare Secondary Payer)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.24",
+  "kind": "primary",
+  "note": "Paragraph (h): a party that receives a primary payment must reimburse Medicare within 60 days."
+ },
+ {
+  "slug": "cms-mln-msp",
+  "title": "Medicare Secondary Payer (MLN006903)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2025",
+  "url": "https://www.cms.gov/files/document/mln006903-medicare-secondary-payer.pdf",
+  "kind": "primary",
+  "note": "Ask about other coverage at each visit and bill any primary payer before Medicare. Booklet dated July 2025."
+ },
+ {
+  "slug": "macpac-crossover-2025",
+  "title": "State Medicaid Payment Policies for Medicare Cost Sharing (Policy in Brief)",
+  "publisher": "MACPAC",
+  "year": "2025",
+  "url": "https://www.macpac.gov/wp-content/uploads/2025/08/2025.08-Policy-in-Brief-State-Medicaid-Payment-Policies-for-Medicare-Cost-Sharing.pdf",
+  "kind": "secondary",
+  "note": "As of May 2025, 41 states used lesser-of policies for physician services, 5 paid cost sharing in full and 5 used other policies."
+ },
+ {
+  "slug": "cfr-162-925",
+  "title": "45 CFR 162.925: Additional requirements for health plans (HIPAA transactions)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-162.925",
+  "kind": "primary",
+  "note": "If an entity asks a health plan to conduct a transaction as a standard transaction, the plan must do so."
+ },
+ {
+  "slug": "cfr-162-1602",
+  "title": "45 CFR 162.1602: Standards for health care electronic funds transfers and remittance advice transaction",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-162.1602",
+  "kind": "primary",
+  "note": "Bank transfer format with the reassociation trace number that also appears on the electronic remittance."
+ },
+ {
+  "slug": "cms-vcc-eft-2022",
+  "title": "Guidance letter GL-2022-04: health plans' payment of claims using virtual credit cards and the adopted standards for electronic funds transfer and remittance advice",
+  "publisher": "CMS",
+  "year": "2022",
+  "url": "https://www.cms.gov/files/document/guidance-letter-vcc-eft-era.pdf",
+  "kind": "primary",
+  "note": "Plans may pay by virtual card but must use the standard bank transfer and remittance when a provider asks, and may not require use of a vendor's services as a condition. Providers must ask their own bank to deliver the trace number."
+ },
+ {
+  "slug": "x12-rarc",
+  "title": "Remittance Advice Remark Codes",
+  "publisher": "X12",
+  "year": "2026",
+  "url": "https://x12.org/codes/remittance-advice-remark-codes",
+  "kind": "primary",
+  "note": "MA18: claim forwarded to the supplemental insurer. MA19: not forwarded because the Medigap information was invalid. MA13: penalties for billing amounts not marked patient responsibility. MA130: unprocessable claim, no appeal rights."
+ },
+ {
+  "slug": "x12-claim-status",
+  "title": "Claim Status Codes",
+  "publisher": "X12",
+  "year": "2026",
+  "url": "https://x12.org/codes/claim-status-codes",
+  "kind": "primary",
+  "note": "Used to check a vendor document's error code meanings: codes 4 and 5 concern requests for information, 21 is missing or invalid information."
+ },
+ {
+  "slug": "fcso-sequestration",
+  "title": "Federal sequestration payment reductions",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/fee-schedules/federal-sequestration-payment-reductions",
+  "kind": "primary",
+  "note": "The 2% reduction applies to the final payment after deductible and coinsurance and is shown with reason code 253. Page dated July 7, 2026."
+ },
+ {
+  "slug": "cfr-45-149-620",
+  "title": "45 CFR 149.620: Patient-provider dispute resolution process",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.620",
+  "kind": "primary",
+  "note": "A bill at least $400 above the good faith estimate is substantially in excess. The patient has 120 calendar days from the bill to start a dispute."
+ },
+ {
+  "slug": "cfr-45-149-510",
+  "title": "45 CFR 149.510: Independent dispute resolution process (No Surprises Act)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.510",
+  "kind": "primary",
+  "note": "Out-of-network commercial claims only. The arbitrator must not consider public payer rates, usual and customary charges or billed charges."
+ },
+ {
+  "slug": "cfr-160-103",
+  "title": "45 CFR 160.103: Definitions (HIPAA), business associate",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-160.103",
+  "kind": "primary"
+ },
+ {
+  "slug": "cfr-1026-2",
+  "title": "12 CFR 1026.2: Definitions and rules of construction (Truth in Lending, Regulation Z)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-12/section-1026.2",
+  "kind": "primary",
+  "note": "A creditor is a person who regularly extends consumer credit payable by written agreement in more than four installments, or subject to a finance charge. Regularly means more than 25 times in the prior year."
+ },
+ {
+  "slug": "usc-42-1320a-7k",
+  "title": "42 U.S.C. 1320a-7k(d): Reporting and returning of overpayments",
+  "publisher": "U.S. Code",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title42/html/USCODE-2024-title42-chap7-subchapXI-partA-sec1320a-7k.htm",
+  "kind": "primary",
+  "note": "Covers funds received under Medicare or Medicaid. Deadline is 60 days after the overpayment is identified. An overpayment kept past the deadline is an obligation under the False Claims Act."
+ },
+ {
+  "slug": "fl-408-7057",
+  "title": "Florida Statutes 408.7057: Statewide provider and health plan claim dispute resolution program",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0408/Sections/0408.7057.html",
+  "kind": "primary",
+  "note": "Covers state-regulated insurers, HMOs and Medicaid prepaid plans. Excludes Medicare appeals, plans not regulated by the state and interest disputes. File within 12 months of the final determination."
+ },
+ {
+  "slug": "fl-409-908",
+  "title": "Florida Statutes 409.908: Reimbursement of Medicaid providers",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0409/Sections/0409.908.html",
+  "kind": "primary",
+  "note": "Subsection (13): Medicaid pays no part of Medicare deductibles and coinsurance when Medicare's payment equals or exceeds the Medicaid rate."
+ },
+ {
+  "slug": "fl-456-0625",
+  "title": "Florida Statutes 456.0625: Patient overpayments; refunds",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0456/Sections/0456.0625.html",
+  "kind": "primary",
+  "note": "Refund within 30 days after determining that the patient overpaid. A violation is grounds for discipline. Added by chapter 2025-48."
+ },
+ {
+  "slug": "fl-559-72",
+  "title": "Florida Statutes 559.72: Prohibited practices generally (Florida Consumer Collection Practices Act)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0559/Sections/0559.72.html",
+  "kind": "primary",
+  "note": "Applies to any person collecting consumer debts, including an original creditor."
+ },
+ {
+  "slug": "fl-717-102",
+  "title": "Florida Statutes 717.102: Property presumed abandoned; general rule",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0717/Sections/0717.102.html",
+  "kind": "primary",
+  "note": "Dormancy period is 5 years unless another period is specified."
+ },
+ {
+  "slug": "fl-717-117",
+  "title": "Florida Statutes 717.117: Holder due diligence and report of abandoned property",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0717/Sections/0717.117.html",
+  "kind": "primary",
+  "note": "Written notice to the owner 90 to 180 days before reporting for property of $50 or more. Report before May 1 each year."
+ },
+ {
+  "slug": "pwc-hfma-2021",
+  "title": "Revenue Cycle Management and Revenue Calculations (presentation to an HFMA chapter, November 2021)",
+  "publisher": "PwC",
+  "year": "2021",
+  "url": "https://www.hfma.org/wp-content/uploads/2023/07/Revenue-Cycle-Management-2021-mari.pdf",
+  "kind": "secondary",
+  "note": "Hospital scorecard targets: clean claim rate 85% or more, billed receivables over 90 days 20% or less, net denial write-offs 1.5% or less of net revenue, bad debt 2% or less of gross revenue. Based on PwC, HFMA, MGMA and HARA data. Not practice data."
+ },
+ {
+  "slug": "mgma-stat-ar-2021",
+  "title": "Not-so-graceful aging: half of practices saw days in A/R increase in 2021 (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2021",
+  "url": "https://www.mgma.com/mgma-stats/not-so-graceful-aging-half-of-practices-saw-days-in-a-r-increase-in-2021",
+  "kind": "secondary",
+  "note": "Quotes the 2021 MGMA DataDive Cost and Revenue median for receivables over 120 days in multispecialty practices: 13.54%."
+ },
+ {
+  "slug": "mgma-embezzlement-2026",
+  "title": "What internal controls actually catch embezzlement in physician practices",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://www.mgma.com/articles/internal-controls-to-catch-embezzlement-in-physician-practices",
+  "kind": "secondary",
+  "note": "The person who collects payments should not also post adjustments and reconcile the bank account. Article dated April 26, 2026. Only the public part was read."
+ },
+ {
+  "slug": "hfma-timely-filing-qa",
+  "title": "Ask the Experts: Timely filing measurement",
+  "publisher": "Healthcare Financial Management Association",
+  "year": "2019",
+  "url": "https://www.hfma.org/revenue-cycle/kpis/ask-the-experts-timely-filing-measurement/",
+  "kind": "secondary",
+  "note": "No industry standard known. One hospital respondent put timely filing at probably less than 1% of denial dollars."
+ },
+ {
+  "slug": "kodiak-2025",
+  "title": "Rate of initial denials of medical insurance claims continued to rise in 2024, Kodiak Solutions' proprietary data show (press release, syndicated copy)",
+  "publisher": "Kodiak Solutions",
+  "year": "2025",
+  "url": "https://markets.financialcontent.com/winslow/article/bizwire-2025-5-21-rate-of-initial-denials-of-medical-insurance-claims-continued-to-rise-in-2024-kodiak-solutions-proprietary-data-show",
+  "kind": "secondary",
+  "note": "Vendor data from more than 2,100 hospitals and 300,000 physicians. Providers collected 34.46% of amounts owed by insured patients in 2024, down from 37.58% in 2023."
+ },
+ {
+  "slug": "kodiak-2026",
+  "title": "Hospitals lost over $48B from claims denials, uncollected bills (report on Kodiak Solutions data)",
+  "publisher": "TechTarget",
+  "year": "2026",
+  "url": "https://www.techtarget.com/revcyclemanagement/news/366641065/Hospitals-lost-over-48B-from-claims-denials-uncollected-bills",
+  "kind": "secondary",
+  "note": "Hospital medians: final denial rate 2.5% (2024) and 2.7% (2025), bad debt 1.1% and 1.3%. Overturn rate 42.1% in 2025. Secondary report of a vendor dataset."
+ },
+ {
+  "slug": "kff-aca-2026",
+  "title": "Claims Denials and Appeals in ACA Marketplace Plans in 2024",
+  "publisher": "KFF",
+  "year": "2026",
+  "url": "https://www.kff.org/patient-consumer-protections/claims-denials-and-appeals-in-aca-marketplace-plans-in-2024/",
+  "kind": "secondary",
+  "note": "19% of in-network claims denied. Fewer than 1% of denied claims were appealed, and insurers upheld 66% of appeals."
+ },
+ {
+  "slug": "uhc-admin-guide-2026",
+  "title": "2026 UnitedHealthcare Care Provider Administrative Guide",
+  "publisher": "UnitedHealthcare",
+  "year": "2026",
+  "url": "https://www.uhcprovider.com/content/dam/provider/docs/public/admin-guides/2026-UHC-Administrative-Guide.pdf",
+  "kind": "primary",
+  "note": "One large insurer's manual, used as an example: rejected claims are not proof of timely filing, at least 90 days to file for participating commercial providers, disputes within 12 months of the remittance, virtual card payment when bank transfer is not set up."
+ },
+ {
+  "slug": "trizetto-2026",
+  "title": "A clean claim isn't a fully paid claim (2026 healthcare payments report card)",
+  "publisher": "TriZetto Provider Solutions (Cognizant)",
+  "year": "2026",
+  "url": "https://www.trizettoprovider.com/resource-library/a-clean-claim-isnt-a-fully-paid-claim",
+  "kind": "secondary",
+  "note": "Vendor marketing based on 630 million professional claims: underpayments on 4.9% of claims, averaging 27% below the allowed amount. Method not published."
+ },
+ {
+  "slug": "cms-cpm-ch30",
+  "title": "Medicare Claims Processing Manual, Chapter 30: Financial Liability Protections",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
+  "kind": "primary",
+  "note": "Advance Beneficiary Notice rules. The notice is for Original Medicare and is not used for Medicare Advantage."
+ },
+ {
+  "slug": "cfr-149-610",
+  "title": "45 CFR 149.610: Good faith estimates for uninsured or self-pay individuals",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.610",
+  "kind": "primary"
  },
  {
   "slug": "cfr-424-502",
@@ -1577,67 +2069,5 @@
   "url": "https://www.hcinnovationgroup.com/finance-revenue-cycle/news/13028929/survey-it-expenses-per-physician-continue-to-rise-to-nearly-19000",
   "kind": "secondary",
   "note": "The most recent public MGMA figure found: $14,000 to $19,000 of technology operating expense per full-time physician in 2016."
- },
- {
-  "slug": "ahrq-cgcahps",
-  "title": "CAHPS Clinician and Group Survey database",
-  "publisher": "Agency for Healthcare Research and Quality",
-  "year": "2021",
-  "url": "https://www.ahrq.gov/cahps/cahps-database/cg-database/index.html",
-  "kind": "primary",
-  "note": "Last national results are for 2019. New submissions were suspended in 2021, so nothing newer exists nationally."
- },
- {
-  "slug": "mgma-fin-ops-2025",
-  "title": "2025 Financials and Operations: key insights",
-  "publisher": "MGMA",
-  "year": "2025",
-  "url": "https://www.mgma.com/2025-financials-and-operations",
-  "kind": "secondary",
-  "note": "Primary care revenue per physician $760,383 (2024 data). The full tables are paywalled."
- },
- {
-  "slug": "fr-pfs-2027-final",
-  "title": "Medicare and Medicaid Programs; CY 2027 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 91 FR 70992)",
-  "publisher": "CMS, Federal Register",
-  "year": "2026",
-  "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm",
-  "kind": "primary",
-  "note": "Published November 9, 2026, effective January 1, 2027. Facility practice expense set equal to non-facility for nursing facility visit codes 99304 to 99310, 99315 and 99316 (pages 71018 to 71019). 20 percent reduction when an office visit is billed with a zero-day global procedure. Modifiers B1 and B2 replace G2211. Telehealth modifiers BB and BC. Staff advance care planning codes G0572 and G0573."
- },
- {
-  "slug": "fr-pfs-2025-final",
-  "title": "Medicare and Medicaid Programs; CY 2025 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 89 FR 97710)",
-  "publisher": "CMS, Federal Register",
-  "year": "2024",
-  "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-09/html/2024-25382.htm",
-  "kind": "primary",
-  "note": "Pages 97894 to 97896: chronic, principal and transitional care management and listed communication services may not be billed in the same month as advanced primary care management by the same practitioner. Another practitioner may bill them when medically necessary."
- },
- {
-  "slug": "cms-pfs-rvu-2026",
-  "title": "2026 National Physician Fee Schedule Relative Value File, October release (RVU26D)",
-  "publisher": "CMS",
-  "year": "2026",
-  "url": "https://www.cms.gov/files/zip/rvu26d.zip",
-  "kind": "primary",
-  "note": "Released August 26, 2026. Conversion factor 33.4009. Gives status, global period and facility and non-facility relative values by code. Used for 2026 facility versus non-facility payment of nursing facility visit and care-management codes, and to confirm code status (99417 and 99418 not valid for Medicare, 45385 not an add-on code, 20611 includes ultrasound)."
- },
- {
-  "slug": "cms-cpm-ch30",
-  "title": "Medicare Claims Processing Manual, Chapter 30: Financial Liability Protections",
-  "publisher": "CMS",
-  "year": "2026",
-  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
-  "kind": "primary",
-  "note": "Advance Beneficiary Notice rules. The notice is for Original Medicare and is not used for Medicare Advantage."
- },
- {
-  "slug": "cfr-149-610",
-  "title": "45 CFR 149.610: Good faith estimates for uninsured or self-pay individuals",
-  "publisher": "eCFR",
-  "year": "2026",
-  "url": "https://www.ecfr.gov/current/title-45/section-149.610",
-  "kind": "primary"
  }
 ]

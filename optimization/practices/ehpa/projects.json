@@ -60,7 +60,7 @@
   "priority": "now",
   "impact_low": 15000,
   "impact_high": 60000,
-  "impact_note": "Correct setting codes, fewer wrong-payer denials, and care management paid at the right rate.",
+  "impact_note": "Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, fewer wrong-payer denials, and care management paid at the right rate.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-10",

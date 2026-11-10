@@ -336,7 +336,7 @@
     },
     {
      "item": "kpi-action-guide-vol2-specialty",
-     "note": "Comparing level mix by clinician is sound. Its 10 and 20 percent tolerance bands are invented, and medical necessity is never mentioned."
+     "note": "Comparing level mix by clinician is sound. Its 10 and 20 percent tolerance bands are invented, and its coding chapter never mentions medical necessity."
     }
    ],
    "sources": [
@@ -407,7 +407,7 @@
      ],
      "data_hint": "The coding audit worksheet, counting only visits billed higher than the note supports.",
      "vendor_claim": "Upcoding rate under 1 percent, with any pattern sent to compliance review.",
-     "vendor_verdict": "Partly supported. Zero is the only defensible target, but the library never mentions the 60-day duty to refund what an audit finds."
+     "vendor_verdict": "Partly supported. Zero is the only defensible target, but the coding guides never mention the 60-day duty to refund what an audit finds."
     }
    ]
   },

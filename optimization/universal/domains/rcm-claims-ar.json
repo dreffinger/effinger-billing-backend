@@ -1,0 +1,1656 @@
+{
+ "domain": "rcm-claims-ar",
+ "categories": [
+  {
+   "slug": "ar-claim-submission",
+   "name": "Claim scrubbing and submission",
+   "summary": "Turning finished charges into claims a payer accepts: automated checks before sending, a daily batch, a short and dated list of held claims, and saved proof of acceptance. A claim that is late, rejected or never accepted earns nothing.",
+   "good_looks_like": [
+    "Completed charges go out in a batch every business day. Each held claim is listed with a reason, an owner and its age, and the list is short.",
+    "A claim with an open scrubber edit does not leave. It is fixed, or released with a recorded reason and the name of the person who released it.",
+    "Each batch is matched to the clearinghouse and payer acceptance reports. Within two business days every claim is known to be accepted, rejected or missing.",
+    "Reports showing the date the payer received and accepted each claim are saved where staff can find them, as proof of timely filing.",
+    "When a denial exposes a rule the scrubber missed, a new edit is added, tested and logged with the date and the reason."
+   ],
+   "failure_modes": [
+    "Claims wait on hold for a missing note, signature or enrollment and nobody ages the list. Some pass the payer's filing limit and the money is lost.",
+    "Staff override scrubber warnings to clear the queue. The same errors return weeks later as rejections and denials that cost more to fix.",
+    "A claim is counted as filed when it leaves the billing system. It was rejected, and a rejected claim is not proof of timely filing.",
+    "One figure called clean claim rate is reported, and nobody can say whether it means passed the scrubber, accepted by the payer, or paid.",
+    "All claims go through one clearinghouse with no tested second route. An outage stops submission and cash from every payer at once."
+   ],
+   "key_questions": [
+    "How many days pass, on average, from the date of service to the day the payer accepts the claim?",
+    "How many claims are on hold today, and how old is the oldest?",
+    "Can we produce the payer's acceptance record for any claim sent in the last 12 months, yes or no?",
+    "Is a claim with an open scrubber edit stopped from going out, yes or no?",
+    "What share of claims was paid on the first submission last quarter?"
+   ],
+   "actions": [
+    {
+     "action": "Send claims every business day",
+     "detail": "Batch all completed charges daily. The Medical Group Management Association (MGMA) advises closing notes within 72 hours and posting charges within two days. Measure to the day the payer accepts the claim, not to charge entry.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review held claims by age every week",
+     "detail": "List every unsent claim with reason, owner and days since service. Escalate anything older than a set age, such as 7 days, or within 30 days of that payer's filing limit.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Match sent claims to acceptance reports",
+     "detail": "Compare each batch with the clearinghouse and payer acknowledgments. Every claim must show accepted or rejected. Chase any claim with no response within two business days.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Save proof of timely filing",
+     "detail": "Keep reports showing the date the payer received and accepted each claim, with the member number and date of service. One large insurer's 2026 manual says a rejected claim is not proof.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Add a scrubber edit after each repeated denial",
+     "detail": "When one denial reason repeats, write an edit that stops the claim before it is sent. Record who approved it and why. Review all custom edits after each yearly code update.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice that bills insurance. Practices with no front desk, such as hospital, nursing facility and home-visit practices, build claims from census and rounding lists, so their holds usually wait on a missing note or a coverage change and are best reviewed by facility.",
+   "vendor_refs": [
+    {
+     "item": "kpi-02-clean-claim-rate",
+     "note": "Useful split between clearinghouse acceptance and payer acceptance. Its bands, above 95% best and below 88% serious, have no source, and it blends three different definitions."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Daily exception queues and first-pass tracking are sound. Targets such as first-pass acceptance above 97% have no source."
+    },
+    {
+     "item": "denial-management-playbook",
+     "note": "Good rule that no claim leaves with an unresolved scrubber edit. Its 30 and 60 day alarms for unsent claims are too slow for payers with short filing limits."
+    },
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Its 3 to 5 business day submission target is the vendor's own figure. It defines clean claim rate as payer acceptance, which is not the standard definition."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch1",
+    "hfma-map-keys",
+    "pwc-hfma-2021",
+    "hbma-2024",
+    "mgma-stat-ar-2026",
+    "mgma-ops-2023",
+    "uhc-admin-guide-2026"
+   ],
+   "evidence_note": "What counts as a filed claim comes from the Medicare Claims Processing Manual, chapter 1, section 70, and from each payer's manual. Speed targets are MGMA advice. Clean claim targets are convention. Measured figures come from small billing-company surveys.",
+   "metrics": [
+    {
+     "slug": "ar-clean-claim-rate",
+     "name": "Clean claim rate",
+     "definition": "Share of claims that pass all pre-submission edits with no manual fix the first time they are scrubbed. This is the Healthcare Financial Management Association (HFMA) definition. It does not mean accepted by the payer or paid.",
+     "formula": "Claims passing scrubber edits with no manual intervention / claims entering the scrubber",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "95% or more (convention, no data behind it)",
+     "benchmark_typical": "93% to 94% (measured first-pass acceptance)",
+     "benchmark_red": "under 85% (below a 2021 hospital target)",
+     "benchmark_note": "HFMA defines the measure and sets no target. A PwC hospital scorecard (2021) used 85% or more. A 2024 survey by HBMA, the Healthcare Business Management Association, found 93% to 94% of claims accepted by the clearinghouse on first pass, a looser measure.",
+     "confidence": "low",
+     "sources": [
+      "hfma-map-keys",
+      "pwc-hfma-2021",
+      "hbma-2024"
+     ],
+     "data_hint": "Scrubber or clearinghouse report of claims that needed manual correction before release.",
+     "vendor_claim": "Above 95% is the top band, 92% to 95% acceptable, and below 88% serious underperformance.",
+     "vendor_verdict": "Partly supported. 95% is a convention with no dataset behind it. HFMA sets no target, and measured first-pass acceptance averages 93% to 94%."
+    },
+    {
+     "slug": "ar-first-pass-resolution",
+     "name": "First-pass resolution rate",
+     "definition": "Share of claims paid on the first submission, with no rejection, denial or resubmission. Count claims, not lines, and decide in advance whether a partly paid claim counts.",
+     "formula": "Claims paid on first submission / claims submitted, for the same service month",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_typical": "86% to 88% (measured, billing companies)",
+     "benchmark_note": "HBMA 2024 survey of billing companies (38 responses): mean 85.7% for office-based and 88.3% for hospital-based practices. No authoritative target exists. The often quoted 90% has no source. Set targets by payer from your own history.",
+     "confidence": "medium",
+     "sources": [
+      "hbma-2024"
+     ],
+     "data_hint": "Remittance data matched to first submissions, by payer.",
+     "vendor_claim": "First-pass acceptance above 97%, with below 95% a sign of systematic coding problems.",
+     "vendor_verdict": "Unverifiable. No source is given, and billing companies report 86% to 88% of claims paid on first submission."
+    },
+    {
+     "slug": "ar-days-to-submit",
+     "name": "Days from service to claim submission",
+     "definition": "Average calendar days from the date of service to the day the claim is first sent to the payer. Includes note completion, coding, charge entry and any hold.",
+     "formula": "Sum of (first submission date minus date of service) / number of claims",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_best": "about 5 days (MGMA advice)",
+     "benchmark_typical": "3 to 8 days (measured)",
+     "benchmark_note": "MGMA Stat (July 2026) advises notes closed within 72 hours and charges posted within two days, and reports a three to seven day lag across the sector. MGMA single-specialty data: 3.8 days in 2019, 7.75 days in 2022.",
+     "confidence": "medium",
+     "sources": [
+      "mgma-stat-ar-2026",
+      "mgma-ops-2023"
+     ],
+     "data_hint": "Claim file from the billing system with date of service and first submission date.",
+     "vendor_claim": "Claims submitted within 3 to 5 business days, with more than 7 days a workflow problem.",
+     "vendor_verdict": "Partly supported. The figure is the vendor's own. It is close to MGMA advice, while the measured lag was 7.75 days in 2022."
+    }
+   ]
+  },
+  {
+   "slug": "ar-rejections",
+   "name": "Clearinghouse and payer rejections",
+   "summary": "A rejection is a claim turned back before the payer decides it, usually for a wrong identifier, payer or enrollment detail. Most rejections never appear on a remittance, so they are easy to miss, and a rejected claim does not count as filed.",
+   "good_looks_like": [
+    "Clearinghouse and payer rejection reports are opened every business day. Each rejected claim is corrected and resent within a set standard, such as two business days.",
+    "Rejections are counted apart from denials and grouped by cause: patient identifier, wrong payer, clinician enrollment, missing or invalid data.",
+    "Each month the most common cause is fixed where it starts: registration, coverage checking, payer enrollment or claim setup.",
+    "Staff know that Medicare gives no appeal for a claim returned as unprocessable. It must be corrected and filed again within one year of the service."
+   ],
+   "failure_modes": [
+    "Rejections sit in a clearinghouse portal nobody opens. The claims never reach the payer and appear on no remittance and no aging report.",
+    "A rejected claim is logged as filed. Months later the corrected claim is denied as late, and the payer does not accept the rejection as proof of filing.",
+    "A new clinician's claims reject for weeks because payer enrollment is unfinished, and nobody links the pattern to credentialing.",
+    "Staff appeal a Medicare claim returned as unprocessable. No appeal exists for it (42 CFR 405.926), so time is lost while the filing clock runs.",
+    "A rejected claim is resent unchanged. It rejects again, and days are lost for nothing."
+   ],
+   "key_questions": [
+    "How many rejected claims are waiting for correction right now, and how old is the oldest?",
+    "What share of claims was rejected before adjudication last month?",
+    "What are the top three rejection reasons, and who owns the fix for each?",
+    "Are clearinghouse rejections and payer rejections both reviewed every business day, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Work the rejection queue every business day",
+     "detail": "Open clearinghouse and payer rejection reports daily. Correct and resend each claim and record the cause from a fixed list. Confirm that the corrected claim was accepted.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Age unresolved rejections every week",
+     "detail": "Report count and dollars of rejected claims not yet accepted, by age. These claims do not show on the receivables aging. Send anything past a set age, such as 14 days, to the practice owner.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Fix the leading rejection cause each month",
+     "detail": "Rank causes by count. Change the upstream step for the largest: identifier capture, coverage check, enrollment record or claim template. Recheck the count next month.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track payer enrollment for each clinician",
+     "detail": "Keep a table of enrollment status by clinician and payer. Hold claims for a pending payer on a dated list, release them when enrollment is effective, and watch that payer's filing limit.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices that send electronic claims. Facility-based practices see more wrong-payer and identifier rejections, because coverage comes from a facility face sheet and can change during a stay, so they should recheck coverage at each admission and at the start of each month.",
+   "vendor_refs": [
+    {
+     "item": "kpi-02-clean-claim-rate",
+     "note": "Separates clearinghouse acceptance from payer acceptance and ranks rejections by cause. Wrongly treats missing authorization as a rejection, and advises holding resubmissions with no time limit."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Target of under 2% rejections has no source. Its error codes 004 and 005 do not carry the stated meanings on the X12 claim status code list."
+    },
+    {
+     "item": "kpi-07-write-off-rate-by-reason",
+     "note": "Sound advice to audit aged rejected claims on a schedule. Correctly notes that the original date of service still sets the filing deadline."
+    },
+    {
+     "item": "credentialing-and-re-credentialing-management-playbook",
+     "note": "Covers claims held while payer enrollment is pending and Medicare's retroactive billing window. Never mentions the filing limits that keep running on held claims."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch1",
+    "cfr-405-926",
+    "cfr-424-44",
+    "hbma-2024",
+    "uhc-admin-guide-2026",
+    "x12-claim-status",
+    "x12-rarc"
+   ],
+   "evidence_note": "That an unprocessable claim is not a filed claim and has no appeal rights comes from 42 CFR 405.926 and the Medicare Claims Processing Manual, chapter 1, sections 70 and 80.3. The rejection rate is inferred from one small survey.",
+   "metrics": [
+    {
+     "slug": "ar-rejection-rate",
+     "name": "Claim rejection rate",
+     "definition": "Share of submitted claims turned back by the clearinghouse or by the payer's front-end edits before adjudication.",
+     "formula": "Claims rejected before adjudication / claims submitted",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_typical": "about 6% to 7% (inferred from one survey)",
+     "benchmark_note": "A 2024 survey by HBMA, the Healthcare Business Management Association (38 billing-company responses), found 93% to 94% of claims accepted by the clearinghouse on first pass. That implies about 6% to 7% rejected. This is an inference. No published target was found.",
+     "confidence": "low",
+     "sources": [
+      "hbma-2024"
+     ],
+     "data_hint": "Clearinghouse rejection report plus payer acknowledgment rejections, divided by claims sent.",
+     "vendor_claim": "Clearinghouse rejection rate under 2%, with more than 3% a warning.",
+     "vendor_verdict": "Unverifiable. No source is given, and billing companies report first-pass clearinghouse acceptance of 93% to 94%."
+    },
+    {
+     "slug": "ar-unresolved-rejections",
+     "name": "Rejected claims not yet resubmitted",
+     "definition": "Count and dollar value of rejected claims that have not yet been corrected and accepted by the payer, with the age of the oldest.",
+     "formula": "Count of claims in rejected status with no later accepted submission",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_note": "No public benchmark was found. Set the target from first principles: none older than a few business days, because a rejected claim has not been filed and the payer's filing deadline keeps running.",
+     "confidence": "none",
+     "sources": [
+      "cms-cpm-ch1"
+     ],
+     "data_hint": "Clearinghouse rejection report compared with later acceptance reports."
+    }
+   ]
+  },
+  {
+   "slug": "ar-payment-posting",
+   "name": "Payment posting and remittances",
+   "summary": "Recording what each payer paid, adjusted and denied, line by line. Posting drives patient balances, secondary claims, denial work and every collection measure. Wrong adjustment codes at this step hide lost revenue.",
+   "good_looks_like": [
+    "Every payer sends an electronic remittance and pays by electronic funds transfer. Paper checks and virtual credit cards are rare, known exceptions.",
+    "Remittances post within a set standard, such as two business days. Zero-payment remittances post with the rest, so denials reach the work queue at once.",
+    "A written map ties each payer reason code to a practice adjustment category. Only true fee-schedule reductions post as contractual.",
+    "Denied lines stay open with the payer's reason code and go to a denial queue. They are not written off at posting.",
+    "For each remittance, the total posted equals the amount the payer reports as paid."
+   ],
+   "failure_modes": [
+    "Zero-payment remittances are skipped because no money arrived. The denials on them are never seen and their appeal deadlines pass.",
+    "The system posts every amount the payer labels a contractual obligation as contractual. Late-filing and no-authorization losses vanish, and the net collection rate looks perfect.",
+    "A plan pays by virtual credit card because the practice never enrolled in bank transfer. The practice pays a card fee on each payment and keys numbers by hand.",
+    "A payment posts to the wrong patient or line. One account shows a false credit and another patient is billed for a paid service.",
+    "Remittances pile up unposted while a staff member is out. Secondary claims and statements stall, and receivables are overstated."
+   ],
+   "key_questions": [
+    "What share of remittance lines posts automatically with no manual touch?",
+    "How many remittances, and how many dollars, are received but not yet posted today?",
+    "Which payers still pay by paper check or virtual credit card?",
+    "Are zero-payment remittances posted on the same schedule as paid ones, yes or no?",
+    "Who can change the posting rules, and who reviews those changes?"
+   ],
+   "actions": [
+    {
+     "action": "Enroll every payer in electronic remittance and funds transfer",
+     "detail": "List payers by payment method. Ask each for standard electronic funds transfer and remittance. A health plan must comply with that request (45 CFR 162.925). Medicare requires funds transfer at enrollment (42 CFR 424.510).",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Ask plans to stop virtual card payments",
+     "detail": "Request bank transfer in writing from the plan or its payment vendor. A plan may not make its vendor's extra services a condition of standard payment (federal guidance letter GL-2022-04). Keep the confirmation.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Post all remittances on a fixed schedule",
+     "detail": "Post paid, partly paid and zero-payment remittances together. Track unposted items daily by count, dollars and age of the oldest.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review the adjustment-code map each quarter",
+     "detail": "Check which payer reason codes post as contractual. Code 45 is the fee-schedule reduction. Late filing (29), missing authorization (197) and duplicates (18) need their own categories. Record who approved each change.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Audit a sample of posted remittances monthly",
+     "detail": "Recheck a sample, such as 20 remittances, against the payer's document: patient, line, amount and adjustment category. Use a person who did not post them.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Where most patients have Medicare, most lines post automatically and the risk moves to crossover and zero-payment remittances, and in a one-person billing office the owner or an outside bookkeeper should sample posted remittances each month.",
+   "vendor_refs": [
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Good buying question: what share of electronic remittances posts with no staff touch. Gives no benchmark."
+    },
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Sets posting lag under 2 business days and posting accuracy above 99%. Reasonable internal standards, but neither has a source."
+    },
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Sets payment posting within 24 hours of deposit as a written expectation. A reasonable house standard, but no source is given."
+    },
+    {
+     "item": "kpi-08-net-collection-rate",
+     "note": "Rightly says to audit what is posted as contractual before trusting the net collection rate. Its own formula never says which adjustments count as contractual."
+    }
+   ],
+   "sources": [
+    "cfr-162-925",
+    "cfr-162-1602",
+    "cms-vcc-eft-2022",
+    "cfr-424-510",
+    "cms-cpm-ch22",
+    "x12-carc",
+    "caqh-2024",
+    "cms-cpm-ch1",
+    "cfr-447-45",
+    "cfr-422-520",
+    "fl-627-6131",
+    "uhc-admin-guide-2026"
+   ],
+   "evidence_note": "The right to standard electronic payment and remittance is federal rule (45 CFR 162.925). Code meanings come from the X12 code lists and the Medicare manual. Posting speed and accuracy standards are convention. CAQH measures adoption and cost, not posting quality.",
+   "metrics": [
+    {
+     "slug": "ar-auto-post-rate",
+     "name": "Remittance lines posted automatically",
+     "definition": "Share of remittance service lines that the billing system posts with no person keying or correcting them.",
+     "formula": "Remittance lines posted with no manual intervention / all remittance lines posted",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark for automatic posting was found. The 2024 CAQH Index reports that 89% of medical remittance advices were electronic in 2023, which caps what can post automatically. Compare with your own trend and ask your software vendor for its client median.",
+     "confidence": "none",
+     "sources": [
+      "caqh-2024"
+     ],
+     "data_hint": "Posting log or vendor report that separates automatic from manual postings."
+    },
+    {
+     "slug": "ar-unposted-remits",
+     "name": "Unposted remittances",
+     "definition": "Remittances received, electronic or paper, that have not been posted to patient accounts. Report the count, the dollars and the age of the oldest.",
+     "formula": "Count and dollar total of remittances received but not posted at the end of the day",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "daily",
+     "benchmark_note": "No public benchmark was found. Set the target from first principles: nothing older than the practice's posting standard, and none unposted at month end, so that receivables and collections tie to the bank.",
+     "confidence": "none",
+     "data_hint": "Clearinghouse remittance list compared with the posting batch log, plus the paper mail log.",
+     "vendor_claim": "Payment posting lag under 2 business days. Another document says within 24 hours of deposit.",
+     "vendor_verdict": "Unverifiable. Neither figure has a source. Either is a reasonable internal standard."
+    },
+    {
+     "slug": "ar-days-to-payment",
+     "name": "Days from claim receipt to payment",
+     "definition": "Average days from the day the payer received a clean claim to the payment date, by payer. Shows which payers pay later than their legal or contract deadline.",
+     "formula": "Sum of (payment date minus payer receipt date) / number of paid claims, by payer",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "14 days (earliest Medicare may pay)",
+     "benchmark_typical": "14 to 30 days (the Medicare window)",
+     "benchmark_red": "over 30 days on clean claims",
+     "benchmark_note": "These are rules, not survey data. Medicare: no payment before day 14, interest after day 30 (Claims Processing Manual, chapter 1, section 80.2). Medicaid: 90% of clean claims within 30 days (42 CFR 447.45). Florida insurers: pay, deny or contest electronic claims within 20 days.",
+     "confidence": "high",
+     "sources": [
+      "cms-cpm-ch1",
+      "cfr-447-45",
+      "fl-627-6131",
+      "cfr-422-520"
+     ],
+     "data_hint": "Payer acceptance date from the acknowledgment report and payment date from the remittance.",
+     "vendor_claim": "Commercial payers usually owe payment within 30 days on electronic claims. Another document says 30 to 45 days.",
+     "vendor_verdict": "Partly supported. Deadlines come from state law and contract. In Florida, insurers have 20 days to pay, deny or contest an electronic claim."
+    }
+   ]
+  },
+  {
+   "slug": "ar-deposit-reconciliation",
+   "name": "Reconciling payments to the bank",
+   "summary": "Proving that every dollar a payer or patient says it paid reached the practice's bank account, and that every deposit is explained by a posted payment. It is the main control against lost payments, posting errors and theft.",
+   "good_looks_like": [
+    "Each bank deposit is matched to a remittance or a patient payment batch. Electronic payments are paired by the trace number that also appears on the remittance.",
+    "Each posted remittance is matched to a deposit. Remittances with no money, and money with no remittance, are listed and chased.",
+    "At month end, payments posted in the billing system equal deposits on the bank statement, and every difference is explained in writing.",
+    "The person who reconciles the bank account does not post payments or adjustments. In a very small practice the owner does this review.",
+    "Paper checks are logged when the mail is opened, stamped for deposit only, and deposited by the next business day."
+   ],
+   "failure_modes": [
+    "A remittance shows a payment, but the money went to an old bank account or sits on an unredeemed virtual card. Automatic posting hides the gap.",
+    "One trusted person opens mail, posts payments, writes off balances and reconciles the bank. A theft can stay hidden behind an adjustment for years.",
+    "Deposits arrive with no remittance and sit unapplied. Patient balances stay open and patients are billed for amounts already paid.",
+    "Collections in the billing system and in the accounting books differ at month end and nobody can say why. Financial statements and collection rates cannot be trusted."
+   ],
+   "key_questions": [
+    "Did posted payments equal bank deposits last month, with every difference explained?",
+    "How many deposits are unmatched to a remittance today, and how many remittances are unmatched to a deposit?",
+    "Does the person who reconciles the bank account also post payments or adjustments, yes or no?",
+    "Does our bank report the trace number on each electronic health care payment, yes or no?",
+    "How many virtual cards and paper checks arrived last month, and was every one deposited?"
+   ],
+   "actions": [
+    {
+     "action": "Match deposits to remittances every week",
+     "detail": "Pair each electronic payment with its remittance by trace number. List unmatched items in both directions and resolve each within a set time, such as five business days.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Ask the bank to pass through the trace number",
+     "detail": "Health plans must put the same trace number on the payment and the remittance (45 CFR 162.1602). The practice must ask its own bank to deliver that number with each deposit (federal guidance letter GL-2022-04).",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Tie billing system payments to the bank monthly",
+     "detail": "Compare total payments posted with total deposits. Document timing differences, refunds, card fees and returned items. The owner reviews and signs the reconciliation.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Separate posting from reconciling",
+     "detail": "The Medical Group Management Association (MGMA) advises that the person who collects payments should not also post adjustments and reconcile the bank account. With one billing person, the owner reviews the bank statement and adjustment report monthly.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Log and deposit paper checks promptly",
+     "detail": "Record payer, amount and check number when mail is opened, with two people present where possible. Deposit by the next business day. Consider a bank lockbox if check volume is high.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Those with many Medicare Advantage and commercial plans see more virtual cards and split payments than those paid mostly by Medicare bank transfer, and a practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
+   "vendor_refs": [
+    {
+     "item": "new-practice-launch-playbook",
+     "note": "One sentence on bank lockbox services. The library has no method for matching deposits to remittances and never mentions separation of duties or virtual cards."
+    }
+   ],
+   "sources": [
+    "cfr-162-1602",
+    "cms-vcc-eft-2022",
+    "mgma-embezzlement-2026"
+   ],
+   "evidence_note": "The trace number that links a payment to its remittance is part of the federal standard (45 CFR 162.1602). Separation of duties is standard internal control advice, repeated by MGMA in 2026. No benchmark data exist for reconciliation.",
+   "metrics": [
+    {
+     "slug": "ar-deposit-match-rate",
+     "name": "Bank deposits matched to posted remittances",
+     "definition": "Share of insurance and patient deposit dollars in the bank that are matched to a posted remittance or payment batch within the month.",
+     "formula": "Deposit dollars matched to posted payments / total patient-service deposit dollars for the month",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. The target from first principles is 100% each month, with every unmatched item listed by payer and age. Track unmatched deposit dollars and unmatched remittance dollars as the working numbers.",
+     "confidence": "none",
+     "data_hint": "Bank statement or bank file with trace numbers, compared with the billing system's payment batch report."
+    }
+   ]
+  },
+  {
+   "slug": "ar-followup",
+   "name": "Insurance receivables follow-up",
+   "summary": "Chasing claims a payer has accepted but has not yet paid or denied. Most claims pay on their own. Follow-up finds the ones that stalled and acts before filing and appeal deadlines close.",
+   "good_looks_like": [
+    "The aging report is read by payer, not only in total, and balances are aged from the date of service.",
+    "Each payer has its own follow-up trigger, set just past its normal payment time, for example about 30 days after receipt for Medicare.",
+    "Every open claim past its trigger has a status, a last action and a next action date. Work is ordered by deadline first and dollars second.",
+    "Claim status is checked electronically in batches. Phone calls are kept for claims the electronic answer does not explain.",
+    "Balances older than 120 days are reviewed every month, and each ends in a decision: pursue with a named step, or write off under policy."
+   ],
+   "failure_modes": [
+    "Staff work the newest and easiest claims. Old balances sit untouched until the payer's filing or appeal window has closed.",
+    "The practice watches one total for days in receivables. A slow payer hides inside a good average.",
+    "When a balance moves to a secondary payer or to the patient, the aging clock restarts. Old receivables look new.",
+    "Follow-up means resending the same claim. The payer denies each copy as a duplicate and the real problem is never fixed.",
+    "Credit balances are netted against receivables, so the total looks smaller and younger than it is."
+   ],
+   "key_questions": [
+    "What are our days in receivables for each of our five largest payers?",
+    "What share of insurance receivables is older than 90 days and older than 120 days, from the date of service?",
+    "How many open claims have had no recorded action in the last 30 days?",
+    "For our ten largest unpaid claims, do we know the status and the next step, yes or no?",
+    "Is aging measured from the date of service, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Run the aging report by payer every week",
+     "detail": "Sort by payer and age bucket from the date of service. Leave out credit balances. Compare each payer with its own prior months, not only with other payers.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set a follow-up trigger for each payer",
+     "detail": "Use the payer's rule or contract. Medicare pays clean electronic claims between day 14 and day 30. In Florida, insurers and health maintenance organizations must pay, deny or contest within 20 days. Start follow-up just past the due date.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Check claim status electronically before calling",
+     "detail": "Use the standard claim status transaction or the payer portal in batches. The 2024 CAQH Index puts a manual inquiry at $13.80 of staff cost against $3.64 electronically (2023 data).",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Choose the right fix for each stalled claim",
+     "detail": "Payer has no record: resend with proof of filing. Rejected: correct and resend. Denied: corrected claim, reopening or appeal. Wrong payer: bill the right one. Never resend an unchanged claim.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review all balances over 120 days monthly",
+     "detail": "For each balance decide to pursue, with a named next step and date, or to write off under the written policy using the true reason code. The owner sees the list.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice with insurance receivables. Medicare fee-for-service pays quickly, so a Medicare-heavy or facility-based practice should run well under general targets, and its old balances usually point to a wrong payer, a hospice election or a secondary payer problem.",
+   "vendor_refs": [
+    {
+     "item": "kpi-03-days-in-ar",
+     "note": "Its bands, 30 to 40 days best and over 60 a crisis, have no source. Says Medicaid takes 60 days, though federal rules require most clean claims paid within 30."
+    },
+    {
+     "item": "kpi-04-ar-aging-buckets",
+     "note": "Reading the shape of the aging report is a useful idea. Its bucket targets, such as under 5% beyond 120 days, are tighter than any published data."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Good rule: no claim leaves a queue without an action and a next date. Its day 14 Medicare status check lands on the first day Medicare may pay."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Its collectability factors by age, such as under 40% after 120 days, have no source. Medicare claims stay payable for a year from service."
+    }
+   ],
+   "sources": [
+    "aafp-finances",
+    "aapc-kpi-2012",
+    "hbma-2024",
+    "mgma-stat-ar-2026",
+    "mgma-stat-ar-2021",
+    "hfma-map-keys",
+    "mgma-glossary",
+    "pwc-hfma-2021",
+    "caqh-2024",
+    "cms-cpm-ch1",
+    "cfr-447-45",
+    "fl-627-6131",
+    "fl-641-3155"
+   ],
+   "evidence_note": "Targets for days in receivables and aging are conventions from the American Academy of Family Physicians (AAFP) and a 2012 AAPC article. Measured values, from the Medical Group Management Association (MGMA) and a small billing-company survey, are worse. Payer payment deadlines are regulation.",
+   "metrics": [
+    {
+     "slug": "ar-days-in-ar",
+     "name": "Days in accounts receivable",
+     "definition": "Receivables expressed as days of average charges. Shows how long money waits. Versions based on gross charges and on net revenue give different answers, so pick one and keep it.",
+     "formula": "Total receivables excluding credit balances / (charges for the last 3 months / days in those months)",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "under 35 days",
+     "benchmark_typical": "35 to 50 days",
+     "benchmark_red": "over 50 days",
+     "benchmark_note": "Targets are AAFP (undated) and AAPC (2012) convention with no data. A 2024 survey by HBMA, the Healthcare Business Management Association (25 billing-company responses), found a mean of 42.3 days. MGMA poll, July 2026: 32% of practices said days had risen in a year.",
+     "confidence": "medium",
+     "sources": [
+      "aafp-finances",
+      "aapc-kpi-2012",
+      "hbma-2024",
+      "mgma-stat-ar-2026"
+     ],
+     "data_hint": "Aging report total and charge report from the practice management system. Compute it yourself so the method never changes.",
+     "vendor_claim": "Under 35 days is the target and over 50 days an emergency. Another document calls 30 to 40 days best practice.",
+     "vendor_verdict": "Supported as convention. The numbers match AAFP and the 2012 AAPC article, which rest on no published data."
+    },
+    {
+     "slug": "ar-pct-over-90",
+     "name": "Receivables older than 90 days",
+     "definition": "Share of receivable dollars older than 90 days from the date of service. Count debit balances only, and do not restart the age when a balance moves to another payer.",
+     "formula": "Receivables older than 90 days from the date of service / total receivables",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "20% or less (2021 hospital target)",
+     "benchmark_typical": "about 29% (measured mean)",
+     "benchmark_note": "No practice standard exists. A PwC hospital scorecard (2021) used 20% or less of billed insurance receivables. The HBMA 2024 survey of billing companies (25 responses) found a mean of 28.6%. Targets of under 10% or 15% appear only in vendor material.",
+     "confidence": "medium",
+     "sources": [
+      "pwc-hfma-2021",
+      "hbma-2024",
+      "hfma-map-keys"
+     ],
+     "data_hint": "Aging report from the practice management system, aged from the date of service.",
+     "vendor_claim": "Under 15% of receivables older than 90 days, with over 20% a warning and over 25% a crisis.",
+     "vendor_verdict": "Unverifiable. No source is given. The one measured figure found is a mean of 28.6%."
+    },
+    {
+     "slug": "ar-pct-over-120",
+     "name": "Receivables older than 120 days",
+     "definition": "Share of receivable dollars older than 120 days from the date of service. The usual early warning for money that is about to be lost.",
+     "formula": "Receivables older than 120 days from the date of service / total receivables",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "under 12%",
+     "benchmark_typical": "12% to 25%",
+     "benchmark_red": "over 25%",
+     "benchmark_note": "Bands are from a 2012 AAPC article that names no data. MGMA's 2021 DataDive median for multispecialty practices was 13.54%. Writing balances off or sending them to an agency lowers the figure without collecting anything.",
+     "confidence": "medium",
+     "sources": [
+      "aapc-kpi-2012",
+      "mgma-stat-ar-2021",
+      "mgma-glossary"
+     ],
+     "data_hint": "Aging report from the practice management system, aged from the date of service.",
+     "vendor_claim": "Under 5% of receivables older than 120 days. Another document allows 10%.",
+     "vendor_verdict": "Contradicted by measured data. MGMA's multispecialty median was 13.54%, and the AAPC best band is under 12%."
+    },
+    {
+     "slug": "ar-untouched-claims",
+     "name": "Open claims with no action in 30 days",
+     "definition": "Count and dollars of unpaid insurance claims past the payer's follow-up trigger with no status check, correction, appeal or note recorded in the last 30 days.",
+     "formula": "Count of open claims past trigger whose last recorded action is more than 30 days old",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_note": "No public benchmark was found. The target from first principles is zero. This number shows whether follow-up is actually happening, which aging percentages cannot show.",
+     "confidence": "none",
+     "data_hint": "Open claim list with last action date from the billing system's notes or work queue."
+    }
+   ]
+  },
+  {
+   "slug": "ar-denials",
+   "name": "Denial management and prevention",
+   "summary": "A denial is a payer's decision not to pay a claim or line it has processed. Each one needs the correct response before a deadline, and each repeated pattern points to an earlier step that can be fixed.",
+   "good_looks_like": [
+    "Every denial is logged with payer, reason code, expected payment, clinician, site and the deadline for the correct remedy.",
+    "Denials are grouped into a fixed set of causes. Each cause has a named owner at the step where it starts: coverage, authorization, coding, enrollment or documentation.",
+    "The denial rate is reported for each payer, and denials the practice could have prevented are shown apart from payer-driven ones.",
+    "A monthly review ranks causes by dollars and ends with at most three fixes, each with an owner and a date. Last month's fixes are rechecked.",
+    "Denials are counted the same way every month: by claim, on first adjudication, leaving out amounts that are the patient's share."
+   ],
+   "failure_modes": [
+    "Denials are reworked one claim at a time. The same cause produces the same denial next month and rework becomes a permanent job.",
+    "A single blended denial rate looks acceptable while one plan denies a fifth of the practice's claims.",
+    "Denied lines are adjusted off as contractual when the remittance posts. The denial rate looks low and the loss is invisible.",
+    "Staff treat every denial as an appeal. Many need a corrected claim or a reopening, and the wrong remedy uses up the deadline.",
+    "A denial the practice caused is moved to the patient's balance. Medicare remittances warn of penalties for billing amounts not marked as patient responsibility."
+   ],
+   "key_questions": [
+    "What share of claims was denied on first adjudication last quarter, for each major payer?",
+    "What are the top five denial causes by dollars, and who owns each one?",
+    "How many denials are open today, and how many are within 30 days of a deadline?",
+    "How many dollars of denials did we write off last quarter?",
+    "Did last quarter's fixes reduce the denials they targeted, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Log every denial the day it posts",
+     "detail": "Record payer, reason and remark codes, expected payment, clinician, site and the remedy deadline. Calculate the deadline when the denial is logged and sort the work list by it.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Map payer reason codes to causes and owners",
+     "detail": "Build a table from standard reason codes to about ten practice causes. Examples: 29 late filing, 109 wrong payer, 197 no authorization, 16 missing information, 18 duplicate, B9 hospice enrollment.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Hold a monthly denial review",
+     "detail": "Rank causes by expected dollars and by payer. Choose at most three fixes, each with an owner, a date and proof of completion. Judge results over 60 to 90 days, because denials lag service.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Report preventable and payer-driven denials separately",
+     "detail": "Write a rule that classifies each cause. Preventable: coverage, authorization, late filing, missing data, enrollment. Payer-driven: medical necessity disputes and payer errors. Set a target for each payer.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Send each owner their denials",
+     "detail": "Give each owner a short monthly list of denials that started at their step, with the fix expected. For documentation denials, show the clinician the note beside the payer's rule.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Payer mix sets the baseline, since Medicare Advantage plans deny far more claims than practices see on average, and facility-based practices should add causes for hospice election, plan switches, skilled-stay status and visit-frequency edits and send feedback to clinicians and whoever keeps the census.",
+   "vendor_refs": [
+    {
+     "item": "denial-management-playbook",
+     "note": "Sound two-part method: recover and prevent. Its table of a typical denial mix and the $25 to $118 rework cost have no sound source. Treats every fix as an appeal."
+    },
+    {
+     "item": "denial-control-kit-workbook",
+     "note": "Useful monthly routine: rank by dollars, at most three decisions, recheck. It defines none of its inputs, maps no codes and keeps no history."
+    },
+    {
+     "item": "kpi-01-denial-rate-by-payer",
+     "note": "Right to insist on a denial rate for each payer. Gives reason code 252 a wrong meaning. Its bands, under 5% healthy and over 12% crisis, ignore payer mix."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Gives reason code 27 the meaning of code 26 and files a coding code under registration errors. Check every code against the X12 list."
+    }
+   ],
+   "sources": [
+    "hfma-map-keys",
+    "aafp-finances",
+    "aapc-kpi-2012",
+    "mgma-stat-ar-2026",
+    "mgma-ops-2023",
+    "cms-ffs-appeals-data-2025",
+    "vabson-2025",
+    "premier-2025",
+    "kodiak-2026",
+    "pwc-hfma-2021",
+    "x12-carc",
+    "x12-rarc",
+    "cms-cpm-ch22",
+    "cms-cpm-ch11"
+   ],
+   "evidence_note": "Definitions come from the Healthcare Financial Management Association (HFMA). The under 5% target is convention from the American Academy of Family Physicians (AAFP) and AAPC. Measured rates come from the Medical Group Management Association (MGMA), Medicare and published studies. Popular rework-cost figures lack sources.",
+   "metrics": [
+    {
+     "slug": "ar-initial-denial-rate",
+     "name": "Initial denial rate",
+     "definition": "Share of claims denied on first adjudication. Count claims, not lines. Leave out rejections, duplicates and amounts that are the patient's share. Report it by payer.",
+     "formula": "Claims with an actionable denial on first adjudication / claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "under 5% (convention)",
+     "benchmark_typical": "7% to 8% (measured in practices)",
+     "benchmark_red": "over 10%",
+     "benchmark_note": "Under 5% and over 10% are AAFP and AAPC convention. MGMA: 7% to 8% of practice claims denied on first submission over four years. Medicare's own data: 10% of Part B claims denied in 2025. Health Affairs: Medicare Advantage plans denied 17% (2019).",
+     "confidence": "medium",
+     "sources": [
+      "aafp-finances",
+      "aapc-kpi-2012",
+      "mgma-stat-ar-2026",
+      "cms-ffs-appeals-data-2025",
+      "vabson-2025",
+      "hfma-map-keys"
+     ],
+     "data_hint": "Remittance data: claims carrying a denial reason code on first adjudication, by payer.",
+     "vendor_claim": "Under 5% is healthy, 8% to 12% calls for action, and above 12% is a crisis, for any payer.",
+     "vendor_verdict": "Supported as convention only. Measured practice rates are 7% to 8%, and Medicare Advantage plans denied 17% of initial claims."
+    },
+    {
+     "slug": "ar-final-denial-writeoff",
+     "name": "Denials written off as a share of net revenue",
+     "definition": "Dollars finally written off because of denials, net of later recoveries, as a share of net patient revenue. This is the loss that remains after all corrections and appeals.",
+     "formula": "Net dollars written off as denials in the period / net patient service revenue for the period",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_best": "1.5% or less (2021 hospital target)",
+     "benchmark_typical": "2.5% to 2.7% (hospital final denial rate, median)",
+     "benchmark_note": "No practice benchmark was found. A PwC hospital scorecard (2021) used 1.5% or less. Kodiak's median hospital final denial rate was 2.5% in 2024 and 2.7% in 2025, as reported by TechTarget. Denials posted as contractual never appear here.",
+     "confidence": "low",
+     "sources": [
+      "hfma-map-keys",
+      "pwc-hfma-2021",
+      "kodiak-2026"
+     ],
+     "data_hint": "Adjustment report filtered to denial write-off codes. A cash-basis practice can use collections as the revenue figure.",
+     "vendor_claim": "Write-offs of denials whose appeal window lapsed above 1% of gross charges call for action.",
+     "vendor_verdict": "Unverifiable. No source is given, and a ratio to gross charges depends on how high the practice sets its fees."
+    }
+   ]
+  },
+  {
+   "slug": "ar-appeals",
+   "name": "Appeals and payer disputes",
+   "summary": "The formal routes for challenging a denial or a payment: Medicare's appeal levels, each plan's dispute process and state programs. Each route has its own deadline, and using the wrong one can forfeit the claim.",
+   "good_looks_like": [
+    "A one-page table lists each payer's remedies, deadlines and submission address or portal, with the source of each rule and the date it was last checked.",
+    "Before appealing, staff choose the remedy: corrected claim, reopening or formal appeal. Clerical errors on Medicare claims go to reopening, not appeal.",
+    "Appeal letters answer the payer's stated reason point by point, cite the payer's own policy and attach every supporting document the first time.",
+    "Results are tracked by payer and denial reason: appeals filed, overturned, dollars recovered and days to decision. Lost appeals are read for lessons.",
+    "Medicare Advantage payment disputes from a contracted practice follow the dispute process in the contract or provider manual."
+   ],
+   "failure_modes": [
+    "Staff file a formal Medicare appeal for a wrong modifier or date. A clerical error reopening would have corrected it sooner.",
+    "A contracted practice sends a Medicare Advantage payment dispute down the federal enrollee appeal route. That route is closed to contract providers, and the contract deadline passes.",
+    "Evidence is held back for a later level. For Medicare, evidence not submitted before the reconsideration decision is generally not considered afterward.",
+    "The practice files a state insurance complaint about a Medicare Advantage claim. Federal rules, not state law, govern those plans, and weeks are lost.",
+    "Only large claims are appealed. Small visit claims denied for one repeated reason add up to more, and nobody appeals them together."
+   ],
+   "key_questions": [
+    "What share of appealable denials did we appeal or reopen last quarter?",
+    "What share of our decided appeals was overturned, by payer?",
+    "How many appeal or dispute deadlines did we miss last quarter?",
+    "Do we have each plan's dispute deadline in writing, from the contract or provider manual, yes or no?",
+    "How many Medicare denials did we resolve by reopening last quarter?"
+   ],
+   "actions": [
+    {
+     "action": "Build a remedy and deadline table by payer",
+     "detail": "Record each deadline from the regulation, contract or manual. Medicare: redetermination within 120 days of receiving the decision, reconsideration within 180 days (42 CFR 405.942 and 405.962). Recheck the table every year.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Use reopening for clerical errors on Medicare claims",
+     "detail": "For a wrong modifier, date or code, or a claim wrongly denied as a duplicate, ask the Medicare contractor for a clerical error reopening. A party may ask within one year for any reason (42 CFR 405.980).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Send complete evidence at the first level",
+     "detail": "Attach the note, orders and the payer's policy with a short letter. Medicare generally bars evidence first offered after the reconsideration decision (42 CFR 405.966), and first-level appeals succeed more often than second-level ones.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Cite Medicare's rules in Medicare Advantage disputes",
+     "detail": "Plans must follow Medicare coverage rules and national and local coverage determinations (42 CFR 422.101). A plan generally may not deny for medical necessity a service it approved in advance (42 CFR 422.138).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Appeal repeated small denials as a group",
+     "detail": "When one reason hits many claims, write one template and file the claims together. Test each batch: likely recovery times your own win rate, less staff cost.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. In Florida, unresolved disputes with state-regulated insurers, health maintenance organizations and Medicaid plans can go to the state claim dispute program (section 408.7057), which excludes Medicare appeals, and hospital-based specialties with out-of-network commercial claims also have the federal dispute process in 45 CFR 149.510.",
+   "vendor_refs": [
+    {
+     "item": "denial-management-playbook",
+     "note": "Four-part appeal letter and deadline calendar are useful. Counts Medicare's 120 days from the denial date, not from receipt of the decision. Presents external review as the practice's own remedy."
+    },
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "Its appeal ladder is the path for enrollees and non-contract providers. Contracted practices must use the contract's dispute process. Dollar thresholds shown are 2025 values."
+    },
+    {
+     "item": "federal-idr-playbook",
+     "note": "Applies only to out-of-network commercial claims. Tells readers to anchor offers to Medicare rates, which the regulation bars the arbitrator from considering."
+    },
+    {
+     "item": "prior-authorization-management-playbook",
+     "note": "Calls peer-to-peer review the highest-yield appeal step, with no data. Request windows are set by each plan and can be short."
+    }
+   ],
+   "sources": [
+    "cfr-405-942",
+    "cfr-405-962",
+    "cfr-405-966",
+    "cfr-405-980",
+    "cfr-405-926",
+    "cfr-405-1006",
+    "cfr-405-379",
+    "cms-mln-appeals",
+    "cms-cpm-ch34",
+    "cms-ffs-appeals-data-2025",
+    "cms-ma-appeals-guidance",
+    "cfr-422-562",
+    "cfr-422-520",
+    "cfr-422-101",
+    "cfr-422-138",
+    "cfr-422-402",
+    "fl-408-7057",
+    "fl-627-6131",
+    "uhc-admin-guide-2026",
+    "cfr-45-149-510",
+    "kff-ma-pa",
+    "kff-aca-2026",
+    "vabson-2025",
+    "kodiak-2026"
+   ],
+   "evidence_note": "Medicare deadlines and remedies are regulation (42 CFR part 405). Medicare Advantage rules come from 42 CFR part 422 and federal guidance. Overturn rates are measured, but vary two-fold with the denominator. No study supports claims about appeal templates.",
+   "metrics": [
+    {
+     "slug": "ar-appeal-overturn-rate",
+     "name": "Appeal overturn rate",
+     "definition": "Share of decided appeals and reopenings that ended in full or partial payment. State the denominator: appeals decided, not all denials. Track dollars recovered beside it.",
+     "formula": "Appeals decided with full or partial payment / appeals decided in the period",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "about 80% (Medicare Advantage authorization appeals)",
+     "benchmark_typical": "42% to 57% (measured, definitions vary)",
+     "benchmark_note": "Medicare data: 48% of Part B first-level appeals decided in 2025 were fully or partly favorable. Health Affairs: 57% of Medicare Advantage claim denials overturned (2019). Kodiak: 42.1% (2025). KFF: 80.7% of appealed Medicare Advantage prior authorization denials overturned (2024).",
+     "confidence": "medium",
+     "sources": [
+      "cms-ffs-appeals-data-2025",
+      "vabson-2025",
+      "kodiak-2026",
+      "kff-ma-pa"
+     ],
+     "data_hint": "Appeal log with outcome and dollars, by payer and denial reason.",
+     "vendor_claim": "Appeal success above 60% for clinical denials, with below 40% a signal to review appeal quality.",
+     "vendor_verdict": "Partly supported. Published rates run from 42% to 81% depending on what is counted. No authority sets 60%."
+    },
+    {
+     "slug": "ar-denials-appealed-share",
+     "name": "Share of appealable denials that were appealed",
+     "definition": "Of the denials where an appeal or reopening was the right remedy, the share where one was filed before the deadline.",
+     "formula": "Appealable denials with an appeal or reopening filed on time / appealable denials",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No benchmark for the share a practice should appeal was found. For context, 2% of denied original Medicare claims were appealed in 2025, and KFF reports 11.5% of denied Medicare Advantage prior authorization requests (2024). Act on every denial worth more than its cost.",
+     "confidence": "none",
+     "sources": [
+      "cms-ffs-appeals-data-2025",
+      "kff-ma-pa",
+      "kff-aca-2026"
+     ],
+     "data_hint": "Denial log: denials flagged appealable, with the date an appeal or reopening was filed."
+    },
+    {
+     "slug": "ar-appeal-deadlines-missed",
+     "name": "Appeal and dispute deadlines missed",
+     "definition": "Count and expected dollars of denials that became final in the period because the deadline for a corrected claim, reopening, appeal or plan dispute passed with no action.",
+     "formula": "Count of denials written off with a lapsed-deadline reason in the period",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. The target is zero. Review each case for its cause: a denial nobody saw, a zero-payment remittance not posted, or a deadline taken from the wrong payer rule.",
+     "confidence": "none",
+     "data_hint": "Adjustment report filtered to the lapsed-appeal reason code, checked against the denial log."
+    }
+   ]
+  },
+  {
+   "slug": "ar-underpayments",
+   "name": "Underpayment detection",
+   "summary": "A paid claim can still be paid short. No denial code marks it, so nobody works it. Detection means comparing the allowed amount on each payment with the amount the fee schedule or contract promises, and disputing the difference in time.",
+   "good_looks_like": [
+    "The current fee schedule for each major payer is loaded in the billing system, by code, modifier, place of service and clinician type.",
+    "The allowed amount on each payment line is compared with the expected allowed amount. Lines that differ by more than a small tolerance go to a work list.",
+    "Known reductions are expected, not flagged: the 2% Medicare sequestration cut, multiple procedure reductions, and the 85% rate for nurse practitioners and physician assistants.",
+    "Recurring shortfalls are grouped by payer and code and disputed together, inside each payer's deadline for payment disputes.",
+    "Interest owed under law or contract is checked on old claims that were finally paid late."
+   ],
+   "failure_modes": [
+    "No fee schedules are loaded, so the system accepts whatever the payer allows. A plan pays an old rate for a year and nobody notices.",
+    "Staff compare the paid amount with the contract rate. Deductibles and coinsurance make most lines look short, and real underpayments are lost in the noise.",
+    "A plan loads the practice under the wrong fee schedule after a contract change or when a new clinician joins. Every claim pays short until someone compares.",
+    "A shortfall is found after the dispute window has closed. In Florida, a physician's underpayment claim must reach the insurer within 12 months of payment.",
+    "Payment equals the billed charge on some lines. The practice's fee is below the payer's allowed amount, and money is left unclaimed every time."
+   ],
+   "key_questions": [
+    "Are current fee schedules for our top payers loaded in the billing system, yes or no?",
+    "What share of paid lines last quarter had an allowed amount below the expected amount?",
+    "How many dollars of underpayments did we dispute last quarter, and how many did we recover?",
+    "Do we know each payer's deadline for disputing a payment, yes or no?",
+    "How many lines were paid at exactly our billed charge last quarter?"
+   ],
+   "actions": [
+    {
+     "action": "Load each payer's current fee schedule",
+     "detail": "Ask each plan for its fee schedule for your top codes every year and after any amendment. Load Medicare's schedule each January. Keep rates by place of service and clinician type.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Run an allowed-versus-expected report monthly",
+     "detail": "Compare allowed amounts, not paid amounts, with the loaded schedule. Review lines outside a small tolerance. With no automated tool, sample paid lines by hand each quarter, such as 20 to 30 per payer.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Dispute shortfalls in batches by payer",
+     "detail": "Group by payer, code and cause. Send one dispute with the contract page or fee schedule and the claim list. Record the date, the reference number and the payer's deadline.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Record each payer's payment dispute deadline",
+     "detail": "Take it from the contract or manual. One large insurer allows 12 months from the remittance date. In Florida, underpayment claims by physicians must reach the insurer within 12 months of payment (section 627.6131).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Check interest on late payments",
+     "detail": "Medicare owes interest on clean claims not paid within 30 days of receipt. In Florida, overdue claims carry 12% simple interest a year. Compare payment dates with receipt dates on old claims.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Any practice paid under fee schedules. Medicare fee-for-service pays by a public schedule, so shortfalls there usually trace to place of service, modifiers or clinician type, while commercial and Medicare Advantage rates need the contract in hand and small practices can sample by hand.",
+   "vendor_refs": [
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "Useful quarterly sample of 20 to 30 paid claims per payer. It compares the paid amount with the contract rate, which wrongly flags deductibles, coinsurance and sequestration."
+    },
+    {
+     "item": "universal-specialty-billing-framework",
+     "note": "Suggests a 3% variance trigger on the top twenty codes, with no source. Advises state insurance complaints, which do not reach Medicare Advantage plans."
+    },
+    {
+     "item": "kpi-07-write-off-rate-by-reason",
+     "note": "Good advice to check payer-posted contractual adjustments against the loaded fee schedule instead of accepting the remittance."
+    },
+    {
+     "item": "fee-schedule-optimization-playbook",
+     "note": "Worth using: watch remittances for lines paid at the billed charge, a sign the fee is below the allowed amount."
+    }
+   ],
+   "sources": [
+    "fcso-sequestration",
+    "x12-carc",
+    "cms-cpm-ch12",
+    "cfr-414-56",
+    "cfr-422-402",
+    "fl-627-6131",
+    "uhc-admin-guide-2026",
+    "cms-cpm-ch1",
+    "trizetto-2026"
+   ],
+   "evidence_note": "Expected Medicare amounts follow public rules: the fee schedule, the 2% sequestration reduction, multiple procedure rules and 42 CFR 414.56. Dispute deadlines come from contract and state law. The only frequency figure found is one vendor's claims data.",
+   "metrics": [
+    {
+     "slug": "ar-underpayment-rate",
+     "name": "Claims paid below the expected amount",
+     "definition": "Share of paid claim lines whose allowed amount is below the fee-schedule or contract amount, after expected reductions. Report it by payer, with the dollars short.",
+     "formula": "Paid lines with allowed amount below expected allowed amount / paid lines compared",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No independent benchmark was found. One vendor, TriZetto, reports underpayments on 4.9% of professional claims, averaging 27% below the allowed amount (2026 report). Treat that as marketing data. Compare with your own trend by payer.",
+     "confidence": "none",
+     "sources": [
+      "trizetto-2026"
+     ],
+     "data_hint": "Remittance allowed amounts compared with fee schedules loaded in the billing system or a contract tool.",
+     "vendor_claim": "Systematic underpayment of 2% to 5% of contracted rates is common, by the vendor's own modeled estimate. Any variance above 3% on a code warrants a payer inquiry.",
+     "vendor_verdict": "Unverifiable. The vendor calls the estimate modeled and unverified, and the 3% trigger has no source."
+    }
+   ]
+  },
+  {
+   "slug": "ar-secondary-crossover",
+   "name": "Secondary billing and crossovers",
+   "summary": "After the first payer pays, a second payer often owes part of the rest: a Medigap policy, a retiree plan or Medicaid. Much of this moves automatically from Medicare. The rest needs prompt billing, and some balances may never be billed to the patient.",
+   "good_looks_like": [
+    "Staff can read on each Medicare remittance whether the claim was forwarded to a second insurer, and to which one.",
+    "Claims that Medicare forwarded are not billed again. Claims it did not forward go to the second payer within days of the first payer's remittance.",
+    "Balances waiting on a second payer are tracked as their own group, aged from the date of service, with a follow-up trigger.",
+    "Qualified Medicare Beneficiary status is checked at eligibility and on remittances. Those patients get no bill for Medicare deductibles or coinsurance.",
+    "What Medicaid does not pay on a crossover claim posts as a contractual adjustment, not as a patient balance or bad debt."
+   ],
+   "failure_modes": [
+    "Staff send a secondary claim for a claim Medicare already forwarded. The second insurer denies it as a duplicate and the account stalls.",
+    "Medicare did not forward the claim because the supplemental insurer's details were wrong. Nobody reads the remark code and the balance ages unbilled.",
+    "A dual-eligible patient gets a statement for coinsurance. Federal law bars billing a Qualified Medicare Beneficiary for it, even when Medicaid pays nothing.",
+    "Another insurer was primary and Medicare was billed first. Medicare denies or later takes its payment back, and the primary payer's filing limit has passed.",
+    "The secondary filing limit runs out while staff wait. In Florida, a secondary claim is due within 90 days of the primary insurer's final decision."
+   ],
+   "key_questions": [
+    "What share of our insurance receivables is waiting on a secondary payer?",
+    "How many secondary balances are older than 60 days from the primary payment?",
+    "How many statements went last quarter to patients flagged as Qualified Medicare Beneficiaries?",
+    "Are we enrolled with the state Medicaid program so crossover claims can process, yes or no?",
+    "Do we ask about other insurance at every admission or visit, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Read the crossover message on every Medicare remittance",
+     "detail": "Remark code MA18 means the claim was forwarded to the supplemental insurer. MA19 means it was not, because that insurer's details were wrong. Bill the second payer yourself only when the claim was not forwarded.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Bill non-forwarded secondary claims within days",
+     "detail": "Send the claim with the first payer's remittance data as soon as it posts. Keep each payer's secondary deadline in the filing limit table. One large insurer allows at least 90 days from the primary payer's action.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Flag Qualified Medicare Beneficiaries in the billing system",
+     "detail": "Check status in Medicare eligibility responses and on remittances. Block statements for Medicare cost sharing. Recall any such bills already sent, including from collection agencies, and refund amounts collected (Medicare booklet MLN7936176).",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Enroll with Medicaid for crossover claims",
+     "detail": "States must let Medicare-enrolled clinicians enroll so that cost-sharing claims can process. A Medicaid remittance, even one that pays nothing, closes the account and documents the adjustment.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Ask about other coverage at every admission or visit",
+     "detail": "Medicare requires billing any primary payer first. If a primary payer pays after Medicare did, Medicare must be repaid within 60 days (42 CFR 411.24).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices with Medicare patients, most of all those with many dual-eligible or nursing facility patients, where the second payer is often Medicaid and pays little. Practices with mainly commercial patients meet this as coordination of benefits between two employer plans.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Correctly says to bill Medicare first and never bill the patient the dual-eligible balance. Never names the Qualified Medicare Beneficiary rule or explains how automatic crossover works."
+    },
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "One page on coordination of benefits. Speaks of Medigap-equivalent products without explaining them, and omits the Qualified Medicare Beneficiary rule."
+    },
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Sound advice to ask about secondary coverage at every registration. Nothing on what to do after the primary payer pays."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch28",
+    "x12-rarc",
+    "cms-qmb",
+    "cms-mln-msp",
+    "cfr-411-24",
+    "cfr-447-45",
+    "cfr-447-15",
+    "cfr-422-504",
+    "fl-409-908",
+    "fl-627-6131",
+    "macpac-crossover-2025",
+    "uhc-admin-guide-2026"
+   ],
+   "evidence_note": "Crossover mechanics are in the Medicare Claims Processing Manual, chapter 28. The ban on billing Qualified Medicare Beneficiaries is federal law. State payment of cost sharing varies: the federal Medicaid advisory commission MACPAC counted 41 states with lesser-of policies for physician services in 2025.",
+   "metrics": [
+    {
+     "slug": "ar-secondary-ar-share",
+     "name": "Share of receivables waiting on a secondary payer",
+     "definition": "Insurance receivable dollars whose primary payer has paid and whose balance now sits with a second or third payer, as a share of insurance receivables.",
+     "formula": "Receivables with secondary or tertiary payer responsibility / total insurance receivables",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. The level depends on how many patients have two payers. Watch the trend and the age: secondary balances older than 60 days from the primary payment mean crossovers or secondary claims are stalling.",
+     "confidence": "none",
+     "data_hint": "Aging report filtered by the rank of the payer now responsible, or by financial class for secondary balances."
+    }
+   ]
+  },
+  {
+   "slug": "ar-patient-billing",
+   "name": "Patient statements and collections",
+   "summary": "Billing patients for what they owe after insurance: a prompt, clear statement, easy ways to pay, a written policy for small balances and hardship, and care not to bill people the law says may not be billed.",
+   "good_looks_like": [
+    "The first statement goes out within days of the insurer's payment posting. It shows the service, what insurance paid, what is owed and how to pay.",
+    "A written policy sets the statement cycle, payment plans, the small-balance threshold, hardship review and agency referral. It is applied the same way to everyone.",
+    "The system blocks statements to patients who may not be billed, such as Qualified Medicare Beneficiaries, and for amounts the payer marks as the practice's obligation.",
+    "Hardship write-offs are decided case by case on documented need. Medicare cost sharing is never waived as a routine.",
+    "Patient receivables are reported apart from insurance receivables, with their own collection rate and aging."
+   ],
+   "failure_modes": [
+    "Statements go out in a monthly batch weeks after insurance pays. The patient has forgotten the visit and the balance ages.",
+    "Coinsurance is waived for every Medicare patient to avoid complaints. The federal Office of Inspector General treats routine waiver as unlawful.",
+    "An amount the payer adjusted as a contractual obligation is billed to the patient. Medicare's manual says such amounts are a provider write-off.",
+    "A denied claim is billed to the patient while the practice still disputes it. In Florida that is barred during the insurer's dispute process, and so is credit reporting.",
+    "Accounts go to a collection agency with no written agreement and no check for patients who may not be billed."
+   ],
+   "key_questions": [
+    "How many days pass from insurance payment posting to the first patient statement?",
+    "What share of patient balances billed last year was collected?",
+    "Do we have a written policy for small balances, hardship and agency referral, yes or no?",
+    "How many accounts did we send to a collection agency last quarter, and what share of dollars came back?",
+    "Can the system stop statements for patients who may not be billed, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Send statements on a rolling cycle",
+     "detail": "Generate the first statement within a few days of the insurer's remittance posting, then at fixed intervals. Show the service date, the insurance payment, the amount owed and several ways to pay.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write and apply one financial policy",
+     "detail": "Cover the small-balance threshold, hardship criteria and proof, payment plans and agency referral. Written plans of more than four installments can bring federal lending disclosure rules (12 CFR 1026.2), so have counsel review the plan form.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Block statements where billing is barred",
+     "detail": "Flag Qualified Medicare Beneficiaries, Medicaid balances beyond permitted copayments, and lines adjusted under group code CO (contractual obligation). A Medicare medical necessity denial is billable only with a signed advance notice (Claims Processing Manual, chapter 30, section 50).",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Offer self-pay patients a written estimate",
+     "detail": "Federal rules require a good faith estimate for uninsured and self-pay patients (45 CFR 149.610). The patient can dispute a bill that is at least $400 above the estimate (45 CFR 149.620).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Vet the collection agency and its contract",
+     "detail": "Sign a business associate agreement and share only the data needed (45 CFR 164.502). Fix the fee, reporting and conduct rules in writing. In Florida, collection conduct rules also bind the practice itself (section 559.72).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices whose patients owe deductibles, coinsurance or self-pay fees. Facility-based practices have no checkout, so statements carry everything and often go to a family member or representative, and where most patients have Medigap or Medicaid behind Medicare the true patient balances are small.",
+   "vendor_refs": [
+    {
+     "item": "patient-collections-playbook",
+     "note": "Useful dated statement ladder and payment plan design. Its copay-before-rooming rule with no exceptions ignores patients who may not be billed, and its 90% collection target has no source."
+    },
+    {
+     "item": "kpi-06-patient-collection-rate",
+     "note": "The funnel view of where patient dollars are lost is useful. Targets above 90% and claims about statement timing have no source. Never mentions Medicare or Medicaid billing limits."
+    },
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Suggests writing off balances under $25 or $50 after one statement. For Medicare patients that needs a written policy and a real collection effort."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Contradicts the playbook: calls 45% to 50% patient collection strong and cites a national average of 34% to 48% with no named source."
+    }
+   ],
+   "sources": [
+    "cms-qmb",
+    "oig-waiver-1994",
+    "cms-cpm-ch22",
+    "cms-cpm-ch30",
+    "cfr-447-15",
+    "cfr-45-149-610",
+    "cfr-45-149-620",
+    "cfr-164-501",
+    "cfr-164-502",
+    "cfr-160-103",
+    "cfr-1026-2",
+    "fl-627-6131",
+    "fl-559-72",
+    "hbma-2024",
+    "kodiak-2025",
+    "kodiak-2026",
+    "mgma-stat-ar-2026",
+    "hfma-map-keys",
+    "mgma-glossary",
+    "pwc-hfma-2021",
+    "x12-rarc"
+   ],
+   "evidence_note": "Who may not be billed is set by federal law, the Medicare manual and state statute. The waiver rule comes from a federal Office of Inspector General fraud alert republished in 1994. Collection rates are measured, but definitions differ. Statement timing advice is convention.",
+   "metrics": [
+    {
+     "slug": "ar-patient-collection-rate",
+     "name": "Patient balance collection rate",
+     "definition": "Share of balances billed to patients that was collected, counted for one period of service after enough time has passed, such as 120 days. Leave out balances that may not be billed.",
+     "formula": "Patient payments on balances from the period / patient responsibility billed for the period",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_typical": "about 35% to 54% (measured, definitions differ)",
+     "benchmark_note": "No standard exists. A 2024 survey by HBMA, the Healthcare Business Management Association, found self-pay collection averaging 54% for office-based and 44% for hospital-based practices. Kodiak: providers collected 34.5% of amounts owed by insured patients in 2024. Targets of 90% appear only in vendor material.",
+     "confidence": "medium",
+     "sources": [
+      "hbma-2024",
+      "kodiak-2025"
+     ],
+     "data_hint": "Patient payments and patient-responsibility charges by date of service from the practice management system.",
+     "vendor_claim": "Above 90% is best practice and 60% to 75% is significant leakage. Another document in the library calls 45% to 50% strong.",
+     "vendor_verdict": "Contradicted. The library disagrees with itself, and measured collection of patient balances runs from about 35% to 54%."
+    },
+    {
+     "slug": "ar-bad-debt-rate",
+     "name": "Bad debt rate",
+     "definition": "Patient balances written off as uncollectible after real collection effort, as a share of gross charges. Excludes contractual adjustments, hardship write-offs and balances that may not be billed.",
+     "formula": "Bad debt write-offs in the period / gross charges for the same period",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_typical": "1.1% to 1.3% (hospital median, 2024 and 2025)",
+     "benchmark_red": "over 2% of gross revenue (2021 hospital target)",
+     "benchmark_note": "No practice benchmark was found. HFMA, the Healthcare Financial Management Association, defines bad debt against gross revenue. Kodiak's hospital median was 1.1% in 2024 and 1.3% in 2025, as reported by TechTarget. A PwC hospital scorecard (2021) used 2% or less.",
+     "confidence": "low",
+     "sources": [
+      "hfma-map-keys",
+      "kodiak-2026",
+      "pwc-hfma-2021"
+     ],
+     "data_hint": "Adjustment report filtered to the bad debt code, divided by gross charges for the same period.",
+     "vendor_claim": "Bad debt under 3% of net revenue is acceptable and over 5% needs action. Another document says under 1% of gross charges.",
+     "vendor_verdict": "Unverifiable. Neither figure has a source, and the two use different denominators."
+    }
+   ]
+  },
+  {
+   "slug": "ar-credit-balances",
+   "name": "Credit balances and refunds",
+   "summary": "A credit balance is money the practice holds that belongs to a payer or a patient. It comes from duplicate payments, two insurers each paying as primary, or patient prepayments. Keeping it is a legal risk, not income.",
+   "good_looks_like": [
+    "A credit balance report runs every month, split into payer credits and patient credits, with the age of each.",
+    "Each credit is traced to a cause before any refund: duplicate payment, wrong payer order, posting error or patient overpayment.",
+    "Medicare and Medicaid overpayments are reported and returned within 60 days of being identified, through the payer's refund or claim adjustment process.",
+    "Patient overpayments are refunded within a set number of days, and a log shows when each was found and when it was paid.",
+    "Credits are never cleared by an adjustment. Refunds that cannot be delivered follow the state's unclaimed property rules."
+   ],
+   "failure_modes": [
+    "Credits sit for years because refunding is nobody's job. A payer audit or a buyer's review finds them all at once.",
+    "Staff write off small credits to tidy the aging report. Money owed to a patient or a government program has been kept.",
+    "A Medicare overpayment is known but not returned. After the 60-day deadline it becomes an obligation under the False Claims Act (42 CFR 401.305).",
+    "Credits are netted against debit balances. Receivables look smaller, days in receivables look better, and the credits stay hidden.",
+    "A refund is paid on a false credit caused by a posting error. The account that was really owed the money is now short."
+   ],
+   "key_questions": [
+    "What is our total credit balance today, split between payers and patients?",
+    "How old is our oldest credit balance?",
+    "How many days does a refund take from the day a credit is identified?",
+    "Were any credit balances cleared by adjustment last year, yes or no?",
+    "Do we file an unclaimed property report each year, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Run and work a credit balance report monthly",
+     "detail": "List every account with a credit, by payer or patient, amount and age. Assign each to one person to research. Leave credits out of the receivables total and show them on their own line.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Return Medicare and Medicaid overpayments within 60 days",
+     "detail": "Use the Medicare contractor's voluntary refund or claim adjustment process (42 CFR 401.305). Record the date each overpayment was identified. A timely good-faith investigation of related overpayments can suspend the deadline for up to 180 days.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Refund patients on a fixed clock",
+     "detail": "Set a standard, such as 30 days from finding the overpayment. In Florida the law requires a refund within 30 days of determining that a patient overpaid (section 456.0625).",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Answer insurer refund demands in writing and on time",
+     "detail": "Check each demand against the claim before paying. In Florida, an insurer must send the demand within 12 months of paying a physician, and the practice has 40 days to pay, deny or contest it (section 627.6131).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "File the state unclaimed property report",
+     "detail": "Refunds that cannot be delivered belong to the owner, then to the state. In Florida, property unclaimed for five years is reported before May 1 each year, after written notice to the owner (sections 717.102 and 717.117).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Credits are most common where patients prepay estimates or where two payers are involved, such as Medicare plus a supplement or Medicaid, so practices that collect nothing at the time of service have fewer patient credits but still receive duplicate insurer payments.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Says buyers review refunds and repayments, but frames returning Medicare overpayments as optional voluntary disclosure. The 60-day rule makes return mandatory."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Offers accepting the audit risk as a choice after finding overpayments. Federal law requires identified overpayments to be returned. Gives no credit balance routine."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Covers repayment after a self-referral violation only. The library has no procedure for routine credit balances, patient refunds or unclaimed property."
+    }
+   ],
+   "sources": [
+    "cfr-401-305",
+    "usc-42-1320a-7k",
+    "fl-627-6131",
+    "fl-456-0625",
+    "fl-717-102",
+    "fl-717-117",
+    "hfma-map-keys",
+    "pwc-hfma-2021"
+   ],
+   "evidence_note": "The 60-day rule is federal statute and regulation (42 U.S.C. 1320a-7k, 42 CFR 401.305). Refund and unclaimed property rules are state law, shown here with Florida examples. No benchmark for credit balances was found.",
+   "metrics": [
+    {
+     "slug": "ar-credit-balance-days",
+     "name": "Credit balances in days of revenue",
+     "definition": "Total dollars in credit balances expressed as days of average daily net revenue. The Healthcare Financial Management Association (HFMA) calls this net days in credit balance.",
+     "formula": "Total credit balance dollars / (net patient service revenue for the last 3 months / days in those months)",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "HFMA defines the measure and sets no target. No benchmark for this ratio was found. A PwC hospital scorecard (2021) used a different measure: 2 days or less to issue a credit. Aim near zero, and track the age of the oldest credit.",
+     "confidence": "none",
+     "sources": [
+      "hfma-map-keys",
+      "pwc-hfma-2021"
+     ],
+     "data_hint": "Credit balance report from the billing system, divided by average daily collections or net revenue."
+    }
+   ]
+  },
+  {
+   "slug": "ar-writeoffs-timely",
+   "name": "Write-offs, adjustments and timely filing",
+   "summary": "Every dollar charged ends as a payment, a contractual adjustment or a write-off. Reason codes decide whether lost money is visible. Filing deadlines by payer decide whether a late claim can be paid at all.",
+   "good_looks_like": [
+    "Every adjustment carries a reason from a fixed list that separates contractual reductions from avoidable losses such as late filing, missed appeals and missing authorization.",
+    "Write-offs above a set dollar amount need approval from someone who does not post payments. The owner reviews a monthly list by reason.",
+    "One table holds each payer's filing limit for first claims, corrected claims and secondary claims, with the source and the date checked.",
+    "A weekly list shows unbilled and unresolved claims that are within 30 days of their payer's filing limit.",
+    "The net collection rate is computed the same way each month, and avoidable write-offs are shown beside it in dollars."
+   ],
+   "failure_modes": [
+    "Late-filing and missed-appeal losses are posted as contractual adjustments. The net collection rate reads 99% while real money is lost.",
+    "Staff assume every payer allows a year. A plan with a 90-day limit denies the claims and nothing can be done.",
+    "A patient's plan change is found months later. The correct payer's limit has passed and the visits are written off.",
+    "One person posts payments and writes off balances with no review. Errors and theft can hide inside adjustments.",
+    "A late-filed Medicare claim is billed in full to the patient. The Claims Processing Manual (chapter 1, section 70.4) allows only the deductible and coinsurance that would have applied."
+   ],
+   "key_questions": [
+    "What was our net collection rate for the last 12 months, and how is it calculated?",
+    "How many dollars did we write off for late filing last year?",
+    "What share of net revenue went to avoidable write-offs last quarter?",
+    "Does every write-off above our dollar limit have a second person's approval, yes or no?",
+    "Do we have a written filing limit for every payer we bill, yes or no?"
+   ],
+   "actions": [
+    {
+     "action": "Adopt a fixed list of adjustment reasons",
+     "detail": "Separate contractual (fee schedule, sequestration, Medicaid crossover shortfall) from avoidable (late filing, lapsed appeal, no authorization, not enrolled) and from patient write-offs (hardship, small balance, bad debt). Remove any catch-all code.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Set approval limits for write-offs",
+     "detail": "Require a second person's approval above a set amount. The Medical Group Management Association (MGMA) advises that whoever collects payments should not also post adjustments and reconcile the bank. The owner reads the monthly adjustment report.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a filing limit table for every payer",
+     "detail": "Medicare: one calendar year from service (42 CFR 424.44). Medicaid programs: no more than 12 months (42 CFR 447.45). In Florida, insurers must get claims within 6 months. Medicare Advantage and commercial limits come from the contract.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "List claims near their filing limit weekly",
+     "detail": "Report every unbilled, rejected or unresolved claim within 30 days of its limit. Work these first, whatever their dollar value.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review avoidable write-offs each month",
+     "detail": "Trace each late-filing or lapsed-appeal write-off to its cause. Check Medicare's exceptions first: retroactive entitlement, or a Medicare Advantage plan that took its payment back after retroactive disenrollment (42 CFR 424.44).",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Facility-based practices face more late-found coverage changes, because patients move between Medicare, Medicare Advantage, hospice and Medicaid during a stay, so they should age wrong-payer claims weekly and post unpaid crossover coinsurance for dual-eligible patients as a contractual adjustment.",
+   "vendor_refs": [
+    {
+     "item": "kpi-07-write-off-rate-by-reason",
+     "note": "Right that every adjustment needs a specific reason and that avoidable losses need their own line. Suggests moving late-filing losses to the patient, which Medicare and most contracts bar."
+    },
+    {
+     "item": "kpi-08-net-collection-rate",
+     "note": "Useful breakdown of the collection gap by cause. Its 97% target ignores payer mix, and its formula does not subtract refunds or define contractual."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Sensible approval tiers and tracing of every late-filing loss. Says payers may accept late claims with proof of earlier attempts. Medicare's exceptions are much narrower."
+    },
+    {
+     "item": "kpi-09-charge-lag",
+     "note": "Links slow charge entry to late-filing losses. Gives only generic filing limits, 90 days to one year, and cites no rule."
+    }
+   ],
+   "sources": [
+    "aafp-finances",
+    "aapc-kpi-2012",
+    "hbma-2024",
+    "mgma-glossary",
+    "cfr-424-44",
+    "cms-cpm-ch1",
+    "cfr-447-45",
+    "fl-627-6131",
+    "fl-641-3155",
+    "uhc-admin-guide-2026",
+    "cms-qmb",
+    "fl-409-908",
+    "fcso-sequestration",
+    "x12-carc",
+    "hfma-timely-filing-qa",
+    "pwc-hfma-2021",
+    "mgma-embezzlement-2026"
+   ],
+   "evidence_note": "Filing limits are regulation, statute or contract. The 95% net collection floor is convention from the American Academy of Family Physicians (AAFP) and AAPC. Measured means from one billing-company survey are 85% to 93%. No benchmark exists for avoidable or late-filing write-offs.",
+   "metrics": [
+    {
+     "slug": "ar-net-collection-rate",
+     "name": "Net collection rate",
+     "definition": "Payments collected as a share of what the practice was allowed to collect: charges minus true contractual adjustments. Shows money lost to denials, late filing and unpaid patient balances.",
+     "formula": "Payments net of refunds / (charges minus contractual adjustments), for the same 12 months of service",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "99% or more",
+     "benchmark_typical": "95% to 99%",
+     "benchmark_red": "under 95%",
+     "benchmark_note": "Bands are AAFP (undated) and AAPC (2012) convention. A 2024 survey by HBMA, the Healthcare Business Management Association (37 billing-company responses), reported means of 84.9% for office-based and 93.2% for hospital-based practices. Any write-off coded contractual inflates the rate.",
+     "confidence": "medium",
+     "sources": [
+      "aafp-finances",
+      "aapc-kpi-2012",
+      "hbma-2024",
+      "mgma-glossary"
+     ],
+     "data_hint": "Payments, refunds, charges and adjustments by reason from the practice management system, for a 12-month period.",
+     "vendor_claim": "Above 97% is best practice and 95% to 97% strong. Below 90% is called significant failure, for any practice.",
+     "vendor_verdict": "Partly supported. The 95% floor matches AAFP and AAPC convention. Billing companies report means of 85% to 93%."
+    },
+    {
+     "slug": "ar-gross-collection-rate",
+     "name": "Gross collection rate",
+     "definition": "Payments as a share of gross charges at the practice's full fees. It mostly reflects how high the fee schedule is set, so it cannot be compared between practices.",
+     "formula": "Payments net of refunds / gross charges, for the same period",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "monthly",
+     "benchmark_note": "No valid benchmark exists, because the rate depends on the fee schedule. For reference, the HBMA 2024 survey reported means of 53.6% for office-based and 64.7% for hospital-based practices. Use it only to watch your own trend.",
+     "confidence": "none",
+     "sources": [
+      "hbma-2024",
+      "mgma-glossary"
+     ],
+     "data_hint": "Total payments and total charges from the practice management system."
+    },
+    {
+     "slug": "ar-avoidable-writeoff-rate",
+     "name": "Avoidable write-offs as a share of net revenue",
+     "definition": "Write-offs the practice could have prevented, such as late filing, lapsed appeals, missing authorization and enrollment gaps, as a share of net revenue.",
+     "formula": "Avoidable write-off dollars in the period / net patient service revenue (or collections) for the period",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. For hospitals, a 2021 PwC scorecard used 1.5% or less of net revenue for all denial write-offs. Set a target from your own first year of clean data and drive it toward zero.",
+     "confidence": "none",
+     "sources": [
+      "pwc-hfma-2021"
+     ],
+     "data_hint": "Adjustment report grouped by reason code, using the fixed list of avoidable reasons.",
+     "vendor_claim": "Avoidable write-offs should stay below 5% of all write-offs. Above 10% is a recurring surrender of revenue.",
+     "vendor_verdict": "Unverifiable. No source is given, and a share of total write-offs moves with the size of contractual adjustments."
+    },
+    {
+     "slug": "ar-timely-filing-writeoffs",
+     "name": "Timely-filing write-offs",
+     "definition": "Dollars written off because a claim reached the payer after its filing limit, valued at the expected payment, not the billed charge.",
+     "formula": "Sum of expected payment on claims written off for late filing in the period",
+     "unit": "dollars",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No benchmark exists. In a Healthcare Financial Management Association (HFMA) forum answer (2019), one hospital revenue executive knew of no industry standard and put that hospital at probably under 1% of denial dollars. The target is zero. Review every case for its cause.",
+     "confidence": "none",
+     "sources": [
+      "hfma-timely-filing-qa"
+     ],
+     "data_hint": "Adjustment report filtered to the late-filing reason code, plus remittance lines denied with reason code 29.",
+     "vendor_claim": "Zero is the target. One document calls 0.2% of gross charges fixed and above 0.5% an action threshold.",
+     "vendor_verdict": "Unverifiable. No source is given for the percentages. Zero is the right aim, though some cases fall under Medicare's exceptions."
+    }
+   ]
+  }
+ ]
+}
