@@ -1,0 +1,1053 @@
+{
+ "slug": "kpi-action-guide-vol2-specialty",
+ "title": "The KPI Action Guide — Complete Bundle, Volume II: Specialty & Situational KPIs (Chapters 11–15)",
+ "doc_type": "kpi_guide",
+ "pages": 58,
+ "audience": "Revenue cycle professionals and billing teams in independent practices who already run the ten core KPIs from Volume I. Aimed at practices with heavy prior authorization volume, several providers or recent hires, referral dependence, or significant patient bad debt. The disclaimer describes it as educational workflow material for billing teams, not legal, coding or compliance advice.",
+ "summary": "Second volume of a two-part KPI guide. It covers five 'situational' revenue-cycle measures: prior authorization first-submission approval, coding accuracy and E/M level distribution, credentialing lag for new clinicians, referral conversion, and bad debt as a share of revenue. Every chapter repeats one five-step scaffold: a benchmark table with target and action thresholds, three root-cause diagnostics, five ranked interventions, floor routines (weekly, monthly or quarterly reviews), and a test for whether a gain has lasted. The advice is prose only: it tells the reader to build matrices, trackers, checklists and reports but supplies none. Benchmarks are unsourced apart from loose name-drops of KFF, CMS, MGMA and HFMA, and each of the five benchmark tables contains an error, an inconsistency or a leftover revision note. The content assumes an office-based practice with a front desk, schedulers and procedure authorizations; Medicare-specific enrollment, coding, cost-sharing and prior-authorization rules are largely absent.",
+ "outline": [
+  {
+   "section": "Introduction: When the Core 10 Are Not Enough",
+   "gist": "Positions five situational KPIs as a second tier after Volume I's Core 10; says skip chapters that do not fit; carries a not-advice disclaimer."
+  },
+  {
+   "section": "Ch. 11 Prior Authorization Approval Rate — Step 1 Diagnostic Trigger",
+   "gist": "Defines first-submission approval rate; target 82–90%, watch 70–82%, action under 70%; adds payer denial, peer-to-peer, turnaround and expiration measures."
+  },
+  {
+   "section": "Ch. 11 — Step 2 Root Cause Analysis",
+   "gist": "Three causes: documentation that misses payer criteria, unmapped payer-specific rules, and tracking failures that let approvals expire or go unlinked to claims."
+  },
+  {
+   "section": "Ch. 11 — Step 3 Prioritized Intervention Stack",
+   "gist": "Requirements matrix for top ten procedures and five payers, criterion-based templates, 24-hour submission rule, peer-to-peer protocol, and systematic regulator complaints."
+  },
+  {
+   "section": "Ch. 11 — Step 4 Floor Execution Guide",
+   "gist": "Dedicated authorization specialist, a 30-minute weekly review of pending requests with day-based triggers, and quarterly physician reports with annotated denials."
+  },
+  {
+   "section": "Ch. 11 — Step 5 Fixed vs. Temporarily Improved",
+   "gist": "Monthly 30-minute payer-policy review by a named staff member, with matrix updates reaching staff before denials expose a rule change."
+  },
+  {
+   "section": "Ch. 12 Coding Accuracy Rate — Step 1 Diagnostic Trigger",
+   "gist": "Splits accuracy into technical correctness and E/M level mix versus specialty norms; sets targets for audit accuracy, upcoding, undercoding and modifiers."
+  },
+  {
+   "section": "Ch. 12 — Step 2 Root Cause Analysis",
+   "gist": "Pull each provider's twelve-month E/M distribution, audit 20–30 outlier encounters, then separate documentation shortfalls from code-selection behaviour."
+  },
+  {
+   "section": "Ch. 12 — Step 3 Prioritized Intervention Stack",
+   "gist": "Quarterly provider coding reports, pre-bill review flags, documentation-framed provider conversations, annual internal and periodic external audits, and a written modifier policy."
+  },
+  {
+   "section": "Ch. 12 — Step 4 Floor Execution Guide",
+   "gist": "Monthly practice-level distribution trend check and a dated written record of every provider documentation conversation."
+  },
+  {
+   "section": "Ch. 12 — Step 5 Fixed vs. Temporarily Improved",
+   "gist": "A correction counts as durable only when the provider's distribution stays in band for two consecutive quarterly reports."
+  },
+  {
+   "section": "Ch. 13 Credentialing Lag — Step 1 Diagnostic Trigger",
+   "gist": "Defines lag from start date to first accepted clean claim per payer; prices a 120-day delay near $130,000; sets day targets by payer type."
+  },
+  {
+   "section": "Ch. 13 — Step 2 Root Cause Analysis",
+   "gist": "Three causes: slow application start after offer acceptance, incomplete applications, and infrequent follow-up on pending applications."
+  },
+  {
+   "section": "Ch. 13 — Step 3 Prioritized Intervention Stack",
+   "gist": "Begin at offer acceptance, map real payer timelines, contact payers weekly, know interim billing options in advance, and prepare a retroactive claims protocol."
+  },
+  {
+   "section": "Ch. 13 — Step 4 Floor Execution Guide",
+   "gist": "Build a revenue impact model for each hire and cultivate named contacts inside payer enrollment departments."
+  },
+  {
+   "section": "Ch. 13 — Step 5 Fixed vs. Temporarily Improved",
+   "gist": "Make credentialing initiation an automatic onboarding trigger tied to the offer letter, because urgency fades between hires."
+  },
+  {
+   "section": "Ch. 14 Referral Conversion Rate — Step 1 Diagnostic Trigger",
+   "gist": "Defines conversion as referrals becoming completed new-patient visits; target above 75%, plus access-time, abandonment, referrer satisfaction and lost-to-competitor measures."
+  },
+  {
+   "section": "Ch. 14 — Step 2 Root Cause Analysis",
+   "gist": "Three causes: appointment access delays, multi-step scheduling friction, and referring-provider relationships eroding unseen without source-level tracking."
+  },
+  {
+   "section": "Ch. 14 — Step 3 Prioritized Intervention Stack",
+   "gist": "Full-lifecycle referral log, 24-hour patient contact rule, single-interaction scheduling, monthly reports to referrers, and twelve-month volume trending by source."
+  },
+  {
+   "section": "Ch. 14 — Step 4 Floor Execution Guide",
+   "gist": "Monthly meeting joining intake, scheduling and clinical staff around one shared set of referral metrics."
+  },
+  {
+   "section": "Ch. 14 — Step 5 Fixed vs. Temporarily Improved",
+   "gist": "Durable only if conversion holds through a volume spike and no key source is quietly declining behind the average."
+  },
+  {
+   "section": "Ch. 15 Bad Debt as a Percentage of Revenue — Step 1 Diagnostic Trigger (incl. 'What This Number Is Not Telling You')",
+   "gist": "Defines bad debt as uncollected patient balances over net revenue; frames it as a front-end experience failure; requires charity care be tracked separately."
+  },
+  {
+   "section": "Ch. 15 — Step 2 Root Cause Analysis",
+   "gist": "Test fifty written-off accounts against four front-end questions, measure the adjudication-to-statement gap, and check whether paying by phone is easy."
+  },
+  {
+   "section": "Ch. 15 — Step 3 Prioritized Intervention Stack",
+   "gist": "Patient financial journey audit, counseling protocol, plain-language statement redesign, proactive assistance screening, and a quarterly backward trace of write-offs."
+  },
+  {
+   "section": "Ch. 15 — Step 4 Floor Execution Guide",
+   "gist": "Written patient financial experience standard for every touchpoint, staff training, quarterly observed audits, and a respectful-language principle."
+  },
+  {
+   "section": "Ch. 15 — Step 5 Fixed vs. Temporarily Improved, and The Broader Implication",
+   "gist": "Confirm with two quarters of twelve-month trend data and separate bad-debt and charity codes; argues bad debt mirrors patient experience."
+  },
+  {
+   "section": "Closing: The Full Picture",
+   "gist": "Fix the Core 10 first, then situational metrics; ranks chapters by specialty type; asserts all fifteen metrics interlock."
+  }
+ ],
+ "framework_elements": [
+  "Five-step KPI method (trigger, root cause, intervention stack, floor execution, sustained-versus-temporary test)",
+  "Target / watch / action threshold bands for each KPI",
+  "Core-metrics-first sequencing rule",
+  "Prior authorization first-submission approval tracking by payer and denial reason",
+  "Payer-by-service authorization requirements matrix",
+  "Criterion-mapped authorization request templates with checkoffs",
+  "24-hour order-to-authorization submission standard",
+  "Peer-to-peer review protocol and outcome log",
+  "Weekly pending-authorization review (expirations, claim linkage, 48-hour appeal decision)",
+  "Monthly payer policy change monitoring",
+  "Payer denial evidence file for regulator complaints",
+  "Provider-level E/M distribution benchmarking with quarterly provider report",
+  "Monthly practice-level coding distribution trend check",
+  "Outlier documentation audit with documentation-versus-coding triage",
+  "Pre-bill coding review feedback loop",
+  "Documented provider documentation-improvement conversations",
+  "Annual internal and periodic external coding audits",
+  "Written modifier policy, scrubber edits and modifier audits",
+  "Credentialing start trigger at offer acceptance",
+  "Pre-submission application completeness checklist",
+  "Payer credentialing timeline map built from actual experience",
+  "Weekly application status follow-up log",
+  "Interim billing options review for the enrollment gap",
+  "Retroactive claims protocol and success tracking",
+  "New-provider revenue impact model",
+  "Referral lifecycle tracking with 24-hour patient contact standard",
+  "Low-friction new-patient scheduling protocol",
+  "Referral-source reporting, volume trending and monthly cross-team referral meeting",
+  "Patient financial experience standard (pre-service communication, counseling, statement timing and design, payment access)",
+  "Bad debt versus charity care separation, proactive assistance screening and quarterly backward-trace review"
+ ],
+ "processes": [
+  {
+   "name": "Five-step KPI management cycle (applied to every metric)",
+   "steps": [
+    "Compare the metric with its target, watch and action bands",
+    "Segment the result by payer, provider or source to locate the cause",
+    "Work the ranked intervention list from the top",
+    "Install standing weekly, monthly or quarterly routines",
+    "Confirm the gain holds for consecutive periods before calling it fixed"
+   ],
+   "owner_role": "Revenue cycle lead or practice administrator (the document names no single owner)",
+   "cadence": "Continuous; review rhythm set per metric"
+  },
+  {
+   "name": "Weekly pending-authorization review",
+   "steps": [
+    "List all pending authorizations sorted by expected service date",
+    "Chase any request not yet approved for a service due within seven days",
+    "Call scheduling about approvals expiring within thirty days with no service booked",
+    "Record a root cause for each denial received in the prior week",
+    "Decide on appeal within 48 hours of each denial"
+   ],
+   "owner_role": "Authorization specialist or authorization team",
+   "cadence": "Weekly, about 30 minutes"
+  },
+  {
+   "name": "Payer authorization requirements matrix and policy monitoring",
+   "steps": [
+    "List the top ten procedure types and top five payers",
+    "Record for each pair whether authorization is needed, required documentation, the payer's own clinical criteria, submission method and timeline, and promised turnaround",
+    "Build request templates that walk through each criterion with a checkoff",
+    "Submit every request within 24 hours of the order",
+    "Assign one person to read payer bulletins and portal notices monthly",
+    "Update the matrix and brief staff before denials appear"
+   ],
+   "owner_role": "Designated authorization staff member",
+   "cadence": "Build once; 30-minute monthly policy review; quarterly physician feedback report"
+  },
+  {
+   "name": "Provider E/M distribution review and documentation conversation",
+   "steps": [
+    "Pull trailing twelve-month E/M counts by level for each provider",
+    "Convert to percentages and compare with the specialty benchmark",
+    "Flag providers roughly 15–20 points off in either direction",
+    "Audit 20–30 encounters across the deviating codes",
+    "Classify the cause as documentation shortfall or code-selection habit",
+    "Meet the provider with three to five specific encounter examples",
+    "Log date, findings, response, agreed changes and follow-up date",
+    "Recheck for two consecutive quarters"
+   ],
+   "owner_role": "Practice administrator with a qualified coder or coding supervisor",
+   "cadence": "Quarterly provider report; monthly practice-level trend check"
+  },
+  {
+   "name": "Pre-bill coding and modifier check with audit program",
+   "steps": [
+    "Review each claim before submission by coder or software",
+    "Flag codes that do not match the documentation present",
+    "Have the coder confirm or change the code",
+    "Add modifier-specific edits to the claim scrubber under a written modifier policy",
+    "Run a separate modifier audit each quarter",
+    "Audit 20–30 claims per provider internally each year",
+    "Commission an external audit with written findings every two to three years"
+   ],
+   "owner_role": "Coder or coding supervisor; independent consultant for the external audit",
+   "cadence": "Every claim; quarterly modifier audit; annual internal audit; external audit every 2–3 years"
+  },
+  {
+   "name": "New-provider credentialing and enrollment run",
+   "steps": [
+    "Assign a coordinator within 48 hours of the signed offer",
+    "Start document collection, CAQH profile review and payer requirement mapping at once",
+    "Check each application against a completeness checklist before submitting",
+    "Log submission date, last contact, status and next contact for every application",
+    "Contact every open application at least weekly",
+    "Model revenue at risk by payer and present it to the owner at hire",
+    "Identify permitted interim billing options before the start date",
+    "Record all encounters during the gap and submit retroactive claims on approval"
+   ],
+   "owner_role": "Credentialing coordinator or designee",
+   "cadence": "Per hire; weekly follow-up until every decision is received"
+  },
+  {
+   "name": "Referral intake, conversion and source management",
+   "steps": [
+    "Log each referral with received date, source, type and stage dates",
+    "Attempt patient contact within 24 hours",
+    "Offer and confirm an appointment in one interaction, verifying insurance during the call",
+    "Start any authorization at scheduling rather than before offering a date",
+    "Send the consultation report promptly to the referrer",
+    "Send each referrer a monthly volume, completion and turnaround report",
+    "Trend volume by source and phone any referrer after three declining months",
+    "Review shared metrics in a monthly cross-team meeting"
+   ],
+   "owner_role": "Referral intake, scheduling and clinical teams jointly",
+   "cadence": "Daily intake; monthly reports and meeting"
+  },
+  {
+   "name": "Bad debt prevention and quarterly backward trace",
+   "steps": [
+    "Give charity care and bad debt separate adjustment codes",
+    "Sample fifty written-off accounts and answer four front-end questions for each",
+    "Measure average days from adjudication to first statement",
+    "Walk the whole financial journey as a patient and note failure points",
+    "Define which patients trigger a financial counseling conversation and who holds it",
+    "Redesign the statement around amount owed, payment options and plain language",
+    "Offer assistance screening before accounts age",
+    "Trace a sample of recent write-offs backward each quarter",
+    "Train staff to a written standard and audit it quarterly"
+   ],
+   "owner_role": "Billing lead or practice administrator with front-desk staff",
+   "cadence": "Quarterly trace and standard audit; rolling 12-month trend"
+  }
+ ],
+ "tools_templates": [
+  "Five KPI benchmark tables (one per chapter) — metric, benchmark and action threshold; the only tabular tools actually supplied, and each has a defect",
+  "Payer-by-service authorization requirements matrix — field list only (services needing approval, documentation, payer criteria, submission method, turnaround); no template supplied",
+  "Authorization request templates with criterion checkoffs — described as a concept; none supplied",
+  "Weekly authorization review rules — three day-based triggers (7-day, 30-day, 48-hour) in prose; no worksheet",
+  "Peer-to-peer protocol — four elements listed (reduce calls, triage by value and urgency, pre-call criteria brief, outcome log); no form",
+  "Quarterly physician authorization report — described (own rate versus practice and specialty, three to five annotated denials); no layout",
+  "Monthly payer policy review — calendar item described; no checklist of sources",
+  "E/M distribution report — method described; no worksheet and no benchmark values provided",
+  "Quarterly provider-level coding report — described; no layout",
+  "Provider documentation conversation script — one framing sentence supplied",
+  "Provider conversation record — five fields listed (date, findings, response, agreed changes, follow-up date)",
+  "Coding audit plan — sample sizes and frequency stated; no audit tool or scoring method",
+  "Written modifier policy — recommended; not supplied",
+  "Monthly distribution trend check — described; no chart or threshold",
+  "Credentialing pre-submission completeness checklist — recommended; not supplied",
+  "Payer-specific credentialing timeline map — rough day ranges given; reader told to use own history",
+  "Credentialing tracking spreadsheet — five columns listed (application, submission date, last contact, status, next contact)",
+  "New-provider revenue impact model — four inputs listed; no calculator or formulas",
+  "Retroactive claims protocol — described in one paragraph; no payer rules",
+  "Referral tracking log — seven fields listed; no template",
+  "Monthly referring-provider report — three metrics listed (volume, completion rate, report turnaround)",
+  "Referral volume-by-source trend report — described; three-month decline trigger",
+  "Monthly referral performance meeting — five agenda metrics listed",
+  "Bad-debt account sample audit — four yes/no questions applied to fifty written-off accounts",
+  "Statement timing audit — adjudication date versus first statement date on a sample",
+  "Patient financial experience walk-through audit — described; no checklist",
+  "Financial counseling protocol — four design questions (who triggers, who initiates, what is covered, how documented)",
+  "Patient statement redesign criteria — three priorities (amount owed prominent, payment options visible, plain-language reason)",
+  "Financial assistance screening script — one sentence supplied",
+  "Quarterly backward-trace protocol — five trace questions listed",
+  "Written patient financial experience standard — eight touchpoints listed; no model text",
+  "Specialty priority guide (closing) — which chapter matters most for which specialty group",
+  "Not included: no 30/60/90-day plan, calculator, scoring rubric, fillable form or worked example anywhere in the volume"
+ ],
+ "metrics": [
+  {
+   "name": "First-submission prior authorization approval rate",
+   "definition": "Share of prior authorization requests approved on first submission, with no peer-to-peer review or appeal",
+   "formula": "Requests approved on first submission ÷ requests submitted (given in words only)",
+   "target": "82–90% (varies by payer and specialty); watch band 70–82%",
+   "red_flag": "Below 70%: immediate process audit",
+   "source_cited": "KFF '2025' approval-rate reporting (no report named)"
+  },
+  {
+   "name": "Authorization denial rate by payer",
+   "definition": "",
+   "formula": "",
+   "target": "Benchmark cell reads 'Watch band 70-82%', which is an approval-rate band misfiled in a denial-rate row; no real denial target given",
+   "red_flag": "Above 25% for any payer, or overall approval below 70%: escalation protocol",
+   "source_cited": "none"
+  },
+  {
+   "name": "Peer-to-peer request rate",
+   "definition": "",
+   "formula": "Peer-to-peer requests ÷ authorizations (implied by 'of auths')",
+   "target": "Under 10% of authorizations",
+   "red_flag": "Above 20%: documentation is not meeting payer criteria",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization turnaround time",
+   "definition": "",
+   "formula": "",
+   "target": "Under 3 days",
+   "red_flag": "Over 5 days for urgent cases: escalation pathway",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization expiration rate",
+   "definition": "Approvals that lapse before the service is rendered (described in text)",
+   "formula": "",
+   "target": "Under 2%",
+   "red_flag": "Above 5%: tracking system inadequate",
+   "source_cited": "none"
+  },
+  {
+   "name": "Order-to-authorization submission time",
+   "definition": "Time from the order to submission of the authorization request",
+   "formula": "",
+   "target": "Within 24 hours of the order",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization appeal decision time",
+   "definition": "Time from receipt of a denial to a recorded root cause and appeal decision",
+   "formula": "",
+   "target": "Within 48 hours",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization specialist caseload",
+   "definition": "Active authorizations handled per dedicated specialist",
+   "formula": "",
+   "target": "40–60 active authorizations per week",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "E/M distribution versus specialty benchmark",
+   "definition": "Each provider's share of visits at each E/M level compared with the national mix for the specialty",
+   "formula": "Percent of office visits at each level (99202–99205 new, 99211–99215 established), trailing twelve months, per provider, compared with benchmark",
+   "target": "Within 10% of specialty norm",
+   "red_flag": "More than 20% deviation: CDI review (text says 15–20 percentage points either way)",
+   "source_cited": "CMS and specialty society publications (no dataset named)"
+  },
+  {
+   "name": "Coding accuracy rate (audit)",
+   "definition": "Share of audited claims coded correctly (modifiers, diagnosis specificity, procedure match); not defined precisely",
+   "formula": "",
+   "target": "Above 95%",
+   "red_flag": "Below 90%: mandatory coder training",
+   "source_cited": "none"
+  },
+  {
+   "name": "Upcoding rate",
+   "definition": "",
+   "formula": "",
+   "target": "Under 1%",
+   "red_flag": "Any pattern: compliance review",
+   "source_cited": "none"
+  },
+  {
+   "name": "Undercoding rate",
+   "definition": "",
+   "formula": "",
+   "target": "Under 5%",
+   "red_flag": "Above 10%: systematic revenue leakage",
+   "source_cited": "none"
+  },
+  {
+   "name": "Modifier accuracy rate",
+   "definition": "",
+   "formula": "",
+   "target": "Above 97%",
+   "red_flag": "Below 93%: focused modifier training",
+   "source_cited": "none"
+  },
+  {
+   "name": "Credentialing lag (commercial)",
+   "definition": "Days from the provider's start date to the first clean claim submitted and accepted by the payer",
+   "formula": "Date of first accepted clean claim − provider start date, per payer (given in words only)",
+   "target": "Under 60 days, labelled top-quartile/aspirational; typical range stated as 90–150 days",
+   "red_flag": "Over 90 days: process overhaul",
+   "source_cited": "'2024-2026 industry sources' (unnamed)"
+  },
+  {
+   "name": "Credentialing lag (Medicare)",
+   "definition": "Same definition, Medicare enrollment through PECOS",
+   "formula": "",
+   "target": "Under 45 days",
+   "red_flag": "Over 60 days: enrollment management failure",
+   "source_cited": "none"
+  },
+  {
+   "name": "Credentialing lag (Medicare Advantage)",
+   "definition": "Same definition, Medicare Advantage plans",
+   "formula": "",
+   "target": "Under 90 days",
+   "red_flag": "Over 120 days: payer escalation strategy",
+   "source_cited": "none"
+  },
+  {
+   "name": "Hospital privileging completion",
+   "definition": "Days from privileging application to completion",
+   "formula": "",
+   "target": "Under 30 days post-application",
+   "red_flag": "Over 60 days: work on the medical staff office relationship",
+   "source_cited": "none"
+  },
+  {
+   "name": "Retroactive enrollment success rate",
+   "definition": "Share of retroactively submitted claims approved after enrollment (described loosely)",
+   "formula": "",
+   "target": "Above 80%",
+   "red_flag": "Below 60% in the table (claims permanently lost); below 70% in the text",
+   "source_cited": "none"
+  },
+  {
+   "name": "Offer-acceptance-to-application gap",
+   "definition": "Days between offer acceptance and credentialing application submission, measured on the last five hires",
+   "formula": "Application submission date − offer acceptance date",
+   "target": "Two weeks or less",
+   "red_flag": "More than two weeks for any hire",
+   "source_cited": "none"
+  },
+  {
+   "name": "Application follow-up interval",
+   "definition": "Days since the last status contact on each open application",
+   "formula": "",
+   "target": "Contact at least weekly",
+   "red_flag": "More than seven days without a status update",
+   "source_cited": "none"
+  },
+  {
+   "name": "Referral conversion rate",
+   "definition": "Share of inbound referrals that become a completed new-patient encounter",
+   "formula": "Completed new-patient encounters from referrals ÷ referrals received (given in words only)",
+   "target": "Above 75% (text: 70–85%)",
+   "red_flag": "Below 60%: scheduling and intake audit",
+   "source_cited": "'industry sources' (unnamed)"
+  },
+  {
+   "name": "Time to first appointment (referral-to-appointment lag)",
+   "definition": "Days from referral receipt to the first appointment offered",
+   "formula": "Average days between referral received and first available appointment offered, by referral type and urgency",
+   "target": "Under 7 days urgent; under 14 days routine",
+   "red_flag": "Text: routine over 14 days or urgent over 5 days (the table gives no action threshold)",
+   "source_cited": "none"
+  },
+  {
+   "name": "Referral abandonment rate",
+   "definition": "",
+   "formula": "",
+   "target": "Under 15% (document labels it an internal target)",
+   "red_flag": "Above 25%: scheduling friction or authorization delay",
+   "source_cited": "none (document admits it is not an external benchmark)"
+  },
+  {
+   "name": "Referring provider satisfaction",
+   "definition": "",
+   "formula": "",
+   "target": "Tracked quarterly",
+   "red_flag": "Declining trend: relationship intervention",
+   "source_cited": "none"
+  },
+  {
+   "name": "Lost-to-competitor rate",
+   "definition": "",
+   "formula": "",
+   "target": "Under 10% (document labels it an internal target)",
+   "red_flag": "Above 20%: access and service model review",
+   "source_cited": "none (document admits it is not an external benchmark)"
+  },
+  {
+   "name": "Initial referral contact time",
+   "definition": "Time from referral receipt to first patient contact attempt",
+   "formula": "",
+   "target": "Within 24 hours",
+   "red_flag": "",
+   "source_cited": "'the research' (unnamed)"
+  },
+  {
+   "name": "Consultation report turnaround",
+   "definition": "Time from appointment to the report reaching the referring provider",
+   "formula": "",
+   "target": "Within five business days (implied)",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Referral volume by source (12-month trend)",
+   "definition": "Monthly referral count per referring provider",
+   "formula": "",
+   "target": "Stable or growing (implied)",
+   "red_flag": "Three consecutive months of decline from a source",
+   "source_cited": "none"
+  },
+  {
+   "name": "Bad debt as % of net revenue",
+   "definition": "Share of net revenue written off as uncollectible patient balances after the full collection cycle",
+   "formula": "Bad debt write-offs ÷ net revenue (given in words only)",
+   "target": "Under 1% best-in-class; under 3–5% realistic for most practices",
+   "red_flag": "Above 5%: full patient financial experience audit",
+   "source_cited": "MGMA/HFMA 'guidance' (no publication named)"
+  },
+  {
+   "name": "Bad debt as % of gross charges",
+   "definition": "",
+   "formula": "",
+   "target": "Under 3%",
+   "red_flag": "Above 5%: systemic collection failure",
+   "source_cited": "none"
+  },
+  {
+   "name": "Time to first statement",
+   "definition": "Days from payer adjudication to the first patient statement",
+   "formula": "First statement date − adjudication date, averaged over a sample",
+   "target": "Under 14 days post-adjudication",
+   "red_flag": "Over 30 days in the table; average gap over 21 days in the text",
+   "source_cited": "none"
+  },
+  {
+   "name": "Charity care as % of write-offs",
+   "definition": "Financial-assistance write-offs as a share of all write-offs, kept apart from bad debt",
+   "formula": "",
+   "target": "Track separately under its own adjustment code",
+   "red_flag": "Combining it with bad debt hides collection performance",
+   "source_cited": "none"
+  },
+  {
+   "name": "Bad debt trend (12-month)",
+   "definition": "",
+   "formula": "",
+   "target": "Stable or declining",
+   "red_flag": "Any upward trend: immediate front-end intervention",
+   "source_cited": "none"
+  },
+  {
+   "name": "Clean claim rate (Volume I metric, mentioned in closing)",
+   "definition": "",
+   "formula": "",
+   "target": "",
+   "red_flag": "84% cited as too low to justify work on situational metrics",
+   "source_cited": "none"
+  },
+  {
+   "name": "Days in AR (Volume I metric, mentioned in closing)",
+   "definition": "",
+   "formula": "",
+   "target": "",
+   "red_flag": "Trending above 50 days cited as a reason to fix fundamentals first",
+   "source_cited": "none"
+  }
+ ],
+ "numeric_claims": [
+  {
+   "claim": "Practices with documented, standardized authorization processes reach 82–90% first-submission approval, said to match KFF's 2025 reporting.",
+   "section": "Ch. 11 Step 1",
+   "source_cited": "KFF (no report named)"
+  },
+  {
+   "claim": "Practices handling authorization ad hoc typically reach 60–75%.",
+   "section": "Ch. 11 Step 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Benchmarks: peer-to-peer requests under 10% of authorizations, turnaround under 3 days, expirations under 2%.",
+   "section": "Ch. 11 table",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Practices with a current payer requirements matrix run 15–20 percentage points higher approval.",
+   "section": "Ch. 11 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Four physician hours a week on peer-to-peer calls equals $2,000–$6,000 of lost revenue in a specialty practice.",
+   "section": "Ch. 11 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "One dedicated authorization specialist handles 40–60 active authorizations per week.",
+   "section": "Ch. 11 Step 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Illustration: a practice at 78% overall may be at 92% with a commercial PPO, 94% with traditional Medicare and 41% with one Medicare Advantage plan.",
+   "section": "Ch. 11 Step 2",
+   "source_cited": "none (hypothetical)"
+  },
+  {
+   "claim": "A payer denying 47% of requests for a procedure category over twelve months is called a compliance issue and possibly anti-competitive.",
+   "section": "Ch. 11 Step 3",
+   "source_cited": "none (hypothetical)"
+  },
+  {
+   "claim": "Example specialty benchmark of 34% of visits at 99213 and 41% at 99214, against a provider billing 78% at 99213.",
+   "section": "Ch. 12 Step 1",
+   "source_cited": "none (specialty unnamed)"
+  },
+  {
+   "claim": "Coding targets: audit accuracy above 95%, upcoding under 1%, undercoding under 5%, modifier accuracy above 97%.",
+   "section": "Ch. 12 table",
+   "source_cited": "none"
+  },
+  {
+   "claim": "E/M distribution should sit within 10% of the specialty norm; more than 20% off requires review.",
+   "section": "Ch. 12 table",
+   "source_cited": "CMS and specialty societies (no dataset named)"
+  },
+  {
+   "claim": "The E/M distribution comparison takes under two hours using publicly available CMS data.",
+   "section": "Ch. 12 Step 2",
+   "source_cited": "CMS (no dataset named)"
+  },
+  {
+   "claim": "Pre-bill coding review improves accuracy and distribution alignment within 60–90 days.",
+   "section": "Ch. 12 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Internal audits should cover at least 20–30 claims per provider per year; external audits every two to three years.",
+   "section": "Ch. 12 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A physician collecting $400,000 a year (about $33,000 a month) has $130,000 or more delayed or lost from a 120-day credentialing process.",
+   "section": "Ch. 13 Step 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A 120-day credentialing process is 'not unusual' with Medicare and many commercial payers.",
+   "section": "Ch. 13 Step 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Medicare enrollment through PECOS typically takes 30–45 days when the application is complete and error-free.",
+   "section": "Ch. 13 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Commercial credentialing: 60–90 days at best, commonly 90–150 days.",
+   "section": "Ch. 13 table note and Step 3",
+   "source_cited": "'2024-2026 industry sources' (unnamed)"
+  },
+  {
+   "claim": "Medicare Advantage credentialing ranges from 60 to 180 days by plan and state.",
+   "section": "Ch. 13 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Hospital privileging benchmark: under 30 days after application.",
+   "section": "Ch. 13 table",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Physician hires typically have 60–90 days between offer acceptance and start date.",
+   "section": "Ch. 13 Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "An incomplete application can take two to three times as long as a complete one.",
+   "section": "Ch. 13 Step 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Retroactive enrollment success should exceed 80%; under 60% (table) or under 70% (text) signals a problem.",
+   "section": "Ch. 13 table and Step 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A sound referral intake converts 70–85% of referrals; under 60% means major pipeline loss.",
+   "section": "Ch. 14 Step 1",
+   "source_cited": "'industry sources' (unnamed)"
+  },
+  {
+   "claim": "Referral abandonment under 15% and lost-to-competitor under 10%, admitted to be internal targets.",
+   "section": "Ch. 14 table",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Conversion probability falls measurably with each day of delay in first patient contact.",
+   "section": "Ch. 14 Step 3",
+   "source_cited": "'the research' (unnamed)"
+  },
+  {
+   "claim": "A referring physician who gets no consultation report within five business days will send the next referral elsewhere.",
+   "section": "Ch. 14 Step 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Bad debt under 1% of net revenue is best-in-class; under 3–5% is the standard band; under 3% of gross charges.",
+   "section": "Ch. 15 table",
+   "source_cited": "MGMA/HFMA 'guidance' (no publication named)"
+  },
+  {
+   "claim": "First statements later than 30 days after adjudication materially cut collection probability; 45-day statements collect measurably less than 10-day statements.",
+   "section": "Ch. 15 table and Step 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A financial counseling protocol lowers bad debt within two billing cycles.",
+   "section": "Ch. 15 Step 3",
+   "source_cited": "none"
+  }
+ ],
+ "checkable_claims": [
+  {
+   "id": "C1",
+   "claim": "Medicare allows retroactive claims submission for dates of service during the enrollment period under specific conditions.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Ch. 13, Step 3, Intervention Four (provisional billing options)",
+   "why": "Medicare is the practice's largest payer. The governing rule ties the billing effective date to the application filing date with a short look-back; read as open-ended retroactivity, the vague wording would leave weeks of a new clinician's visits unbillable."
+  },
+  {
+   "id": "C2",
+   "claim": "Even if the practice uses a locum tenens or billing-under-supervision arrangement during the credentialing period... Billing under a supervising physician's NPI is appropriate in some circumstances and inappropriate in others.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Ch. 13, Step 1 and Step 3, Intervention Four",
+   "why": "Billing an unenrolled clinician's hospital or nursing-facility visits under another clinician's number is false-claims exposure. Medicare's substitute-physician and incident-to rules are narrow and largely unavailable in facility settings or for a nurse practitioner."
+  },
+  {
+   "id": "C3",
+   "claim": "Medicare through PECOS, when complete and error-free, typically processes in 30 to 45 days.",
+   "kind": "program_rule",
+   "stakes": "medium",
+   "section": "Ch. 13, Step 3, Intervention Two",
+   "why": "Sets hiring and cash-flow assumptions for adding a clinician. The same chapter says 120 days is not unusual with Medicare, so one statement is wrong; check against the Medicare contractor's processing standards."
+  },
+  {
+   "id": "C4",
+   "claim": "practices with documented, standardized prior authorization submission processes achieve first-submission approval rates of 82% to 90%... consistent with the range KFF has reported for 2025 approval rates",
+   "kind": "statistic",
+   "stakes": "medium",
+   "section": "Ch. 11, Step 1",
+   "why": "The whole target/watch/action band rests on this attribution. KFF's Medicare Advantage figures imply approval above 90% and no report is named; a wrong band misjudges whether a payer or the practice's process is at fault."
+  },
+  {
+   "id": "C5",
+   "claim": "Auth Turnaround Time: benchmark < 3 days; > 5 days for urgent cases requires escalation pathway.",
+   "kind": "deadline",
+   "stakes": "medium",
+   "section": "Ch. 11, Step 1 benchmark table",
+   "why": "Federal rules in force from 2026 require Medicare Advantage and Medicaid plans to decide expedited requests within 72 hours and standard ones within 7 calendar days. A 5-day urgent trigger has staff waiting past the legal deadline."
+  },
+  {
+   "id": "C6",
+   "claim": "When a payer's prior authorization denial rate for a specific service type is materially above the rate for other payers... that is grounds for a formal complaint to your state insurance commissioner.",
+   "kind": "legal",
+   "stakes": "medium",
+   "section": "Ch. 11, Step 3, Intervention Five",
+   "why": "Most of this practice's payers (Medicare Advantage, Medicaid managed care, TRICARE, VA) fall outside a state insurance regulator's authority. Complaints sent to the wrong forum waste the evidence file and delay relief."
+  },
+  {
+   "id": "C7",
+   "claim": "Calculate the percentage of office visits billed at each level — 99202 through 99205 for new patients, 99211 through 99215 for established patients... The benchmark data is publicly available through CMS and through specialty society publications.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Ch. 12, Step 2 (Step One: Pull the E&M Distribution Report)",
+   "why": "The coding chapter depends on a public specialty benchmark. Need to confirm which CMS file supplies it, whether it covers the hospital, nursing-facility and home-visit codes this practice bills, and that it is utilization data, not a compliance standard."
+  },
+  {
+   "id": "C8",
+   "claim": "<1% is best-in-class (aspirational)... MGMA/HFMA guidance treats roughly <3-5% of net revenue as the standard benchmark band for most independent practices.",
+   "kind": "benchmark",
+   "stakes": "medium",
+   "section": "Ch. 15, Step 1 benchmark table note",
+   "why": "Named sources are cited with no publication. If MGMA or HFMA measure bad debt against gross charges rather than net revenue, the band is misapplied and the write-off policy would be judged against the wrong denominator."
+  }
+ ],
+ "domain_map": [
+  {
+   "domain": "rcm-front-end",
+   "weight": 0.28,
+   "topics": [
+    "prior authorization workflow",
+    "payer requirements matrix and request templates",
+    "authorization tracking and expiration",
+    "referral intake and new-patient scheduling",
+    "eligibility check and pre-service financial communication",
+    "financial counseling"
+   ]
+  },
+  {
+   "domain": "payers-contracts",
+   "weight": 0.19,
+   "topics": [
+    "credentialing and enrollment timelines",
+    "PECOS and CAQH",
+    "interim and retroactive billing during enrollment",
+    "payer policy monitoring",
+    "payer escalation and regulator complaints"
+   ]
+  },
+  {
+   "domain": "rcm-charge-coding",
+   "weight": 0.15,
+   "topics": [
+    "E/M level distribution by provider",
+    "coding accuracy audits",
+    "pre-bill coding review",
+    "modifier policy",
+    "documentation improvement"
+   ]
+  },
+  {
+   "domain": "rcm-claims-ar",
+   "weight": 0.14,
+   "topics": [
+    "bad debt measurement",
+    "patient statements and payment options",
+    "charity versus bad debt adjustment codes",
+    "collections sequencing",
+    "retroactive claims"
+   ]
+  },
+  {
+   "domain": "growth-market",
+   "weight": 0.08,
+   "topics": [
+    "referral source relationships",
+    "referrer reporting",
+    "volume trending by source",
+    "competitive leakage"
+   ]
+  },
+  {
+   "domain": "compliance-risk",
+   "weight": 0.07,
+   "topics": [
+    "upcoding and undercoding exposure",
+    "internal and external audit program",
+    "documented provider conversations",
+    "interim billing compliance",
+    "financial assistance"
+   ]
+  },
+  {
+   "domain": "clinical-operations",
+   "weight": 0.03,
+   "topics": [
+    "appointment access",
+    "physician time on peer-to-peer calls",
+    "consult report turnaround",
+    "patient financial experience"
+   ]
+  },
+  {
+   "domain": "people-compensation",
+   "weight": 0.03,
+   "topics": [
+    "authorization specialist role",
+    "credentialing coordinator role",
+    "provider feedback reports",
+    "staff training to a written standard"
+   ]
+  },
+  {
+   "domain": "financial-management",
+   "weight": 0.02,
+   "topics": [
+    "new-provider revenue impact model",
+    "write-off categories",
+    "bad debt as share of revenue"
+   ]
+  },
+  {
+   "domain": "technology-data-ai",
+   "weight": 0.01,
+   "topics": [
+    "tracking spreadsheets",
+    "pre-bill coding software"
+   ]
+  }
+ ],
+ "adopt": [
+  {
+   "idea": "Run every KPI through the same loop: threshold bands, segmented root cause, ranked fixes, standing routines, and a durability test over two consecutive periods.",
+   "why": "Prevents one-off fixes that drift back and gives a fixed review template that agents and the owner can both follow.",
+   "applies_to_practice": "yes",
+   "note": "Good skeleton for an AI-run billing operation. Set the bands from the practice's own baseline; the document's numbers are unsupported."
+  },
+  {
+   "idea": "Segment every rate by payer, provider or source before acting on it.",
+   "why": "An acceptable average can hide one failing payer or one outlier clinician; the fix is usually specific, not global.",
+   "applies_to_practice": "yes",
+   "note": "Cut by Medicare fee-for-service, each Medicare Advantage plan, Medicaid plan, VA and TRICARE, and by physician versus nurse practitioner."
+  },
+  {
+   "idea": "Compare each clinician's E/M level mix with public CMS specialty utilization data every quarter.",
+   "why": "Visit leveling is both the main revenue lever and the main audit exposure; a distribution view catches drift in either direction early.",
+   "applies_to_practice": "yes",
+   "note": "Rebuild around the code families this practice bills (hospital 99221–99233 and 99238–99239, nursing facility 99304–99310 and 99315–99316, home/residence 99341–99350) plus care-management, advance care planning and wellness-visit counts. Compare with geriatric and nursing-facility peers, not family-medicine office norms, and treat the benchmark as a screening signal only."
+  },
+  {
+   "idea": "For any outlier, audit 20–30 notes and classify the cause as a documentation shortfall or a code-selection habit, then log the provider conversation.",
+   "why": "The two causes need different remedies, and a dated record shows the practice monitors itself.",
+   "applies_to_practice": "yes",
+   "note": "Add the step the document omits: quantify and refund any overpayments the audit identifies within the federal 60-day rule."
+  },
+  {
+   "idea": "Pre-bill review that flags a mismatch between the code chosen and what the note supports.",
+   "why": "Catches errors before the claim leaves, which is cheaper than appeals or refunds.",
+   "applies_to_practice": "yes",
+   "note": "Natural fit for the AI billing agents at charge review. Require clinician sign-off on any level change and never raise a level automatically."
+  },
+  {
+   "idea": "Start enrollment and credentialing the day an offer is accepted, keep a weekly status log per payer, and build timeline expectations from the practice's own history.",
+   "why": "Application start date and completeness are the only parts of the timeline the practice controls.",
+   "applies_to_practice": "yes",
+   "note": "Relevant to any growth hire. File the Medicare application before the first visit date and include First Coast, each Medicare Advantage plan, Florida Medicaid and its plans, TRICARE and VA networks, and every hospital and facility credentialing office."
+  },
+  {
+   "idea": "Build a revenue-at-risk model for every new clinician at the time of hire.",
+   "why": "Turns credentialing from clerical work into a cash-flow item the owner can see and plan around.",
+   "applies_to_practice": "yes",
+   "note": "Useful CFO exercise. Add what the document leaves out: ramp-up curve, each payer's effective-date rule and timely-filing limit."
+  },
+  {
+   "idea": "Keep a payer rules matrix and a calendared monthly payer-policy review with a named owner.",
+   "why": "Policy changes are otherwise discovered through denials.",
+   "applies_to_practice": "partly",
+   "note": "Few of the practice's services need authorization. Use the same matrix for each Medicare Advantage plan's referral, telehealth, care-management and frequency rules and for First Coast coverage articles; an agent can run the monthly scan."
+  },
+  {
+   "idea": "Separate hardship write-offs from true bad debt with distinct adjustment codes, measure adjudication-to-first-statement days, and trace a sample of write-offs backward each quarter.",
+   "why": "A single write-off line cannot be managed; the backward trace shows which step failed.",
+   "applies_to_practice": "partly",
+   "note": "Add categories the document misses: dual-eligible cost-sharing that may not be billed, Medicaid crossover shortfalls and small-balance write-offs. Statements go to residents or responsible parties; there is no check-out step."
+  },
+  {
+   "idea": "Trend volume by referral source monthly and contact the source personally after three consecutive declining months.",
+   "why": "Source-level decline is invisible in totals and is usually caused by a fixable service lapse.",
+   "applies_to_practice": "partly",
+   "note": "Translate 'referral source' to facility, hospital unit or discharge planner; track new admissions assigned to the practice and census by building, with a 24-hour response standard to new-admission notices."
+  }
+ ],
+ "practice_relevance": {
+  "score": 3,
+  "why": "The method transfers for two chapters: clinician-level E/M distribution monitoring (visit leveling in hospitals and nursing facilities is this practice's main revenue and audit exposure) and credentialing lag (any growth hire). The other three chapters assume office-based procedure authorizations, inbound specialist referrals and check-out collections, none of which a facility-based geriatrics practice with no front desk has. Nothing addresses facility visit codes, care management services, Medicare enrollment mechanics, dual-eligible cost-sharing or AI-run billing.",
+  "sections_that_do_not_apply": [
+   "Ch. 11 almost entirely: dedicated authorization team, top-ten procedure matrix, peer-to-peer program (hospital, nursing-facility and care-management visits rarely need authorization; only Medicare Advantage HMO referral or authorization rules are relevant)",
+   "Ch. 12 office-visit code ranges and the cardiology and primary-care office examples; emphasis on modifier 59 and bilateral modifiers",
+   "Ch. 13 locum tenens and supervising-physician billing suggestions (unsafe in facility settings); multi-hire onboarding assumptions",
+   "Ch. 14 as written: outpatient referral intake, new-patient scheduling friction, lost-to-competitor tracking",
+   "Ch. 15 check-in and check-out communication, front-desk scripts and point-of-service payment options",
+   "Closing specialty priority list (no facility-based primary care or geriatrics)"
+  ]
+ },
+ "quality": {
+  "score": 2,
+  "specificity": 3,
+  "accuracy_concerns": [
+   "The 82–90% first-submission approval band is pinned on unnamed KFF '2025' reporting. KFF's published Medicare Advantage analyses show roughly 6–8% of requests denied (2023–2024 data), meaning approval above 90%, and that data normally trails by about two years. The attribution looks wrong or invented. The 60–75% figure for practices without documented processes and the 15–20 point lift credited to a matrix have no source at all.",
+   "Traditional Medicare is treated as a payer with a routine authorization approval rate (example of 94%). Original Medicare requires prior authorization for only a short list of items (certain hospital outpatient procedures, some equipment, non-emergency ambulance, limited demonstrations); physician visits need none. The example misleads a Medicare-heavy practice.",
+   "The matrix instruction to record the payer's own criteria 'not CMS guidelines' ignores that Medicare Advantage plans have been required since 2024 to follow Original Medicare coverage rules and may apply internal criteria only where Medicare's are not fully established. For a Medicare Advantage denial the CMS criteria are the main appeal argument, and the guide tells the reader to set them aside.",
+   "Turnaround thresholds (benchmark under 3 days; escalate urgent cases only after 5 days) are looser than the federal decision deadlines that took effect 1 January 2026 for Medicare Advantage, Medicaid and CHIP plans: 72 hours for expedited requests and 7 calendar days for standard ones.",
+   "Advice to complain to the state insurance commissioner omits jurisdiction. State insurance regulators do not oversee Medicare Advantage plans (CMS does), self-funded employer plans (federal law), Medicaid managed care (state Medicaid agency), TRICARE or VA. Calling a high denial rate a compliance issue and possibly anti-competitive is legal speculation with no authority cited.",
+   "Chapter 12 calls a provider who bills every visit as 99213 'technically accurate' at claim level. A code below what the note supports is a coding error under the chapter's own undercoding metric.",
+   "The 10% / 20% tolerance around a national E/M mix is invented. No auditor or regulator uses a fixed band, and the text never says whether it means relative percent or percentage points. Case mix legitimately moves the distribution. Coaching clinicians toward a benchmark rather than toward what each note and medical necessity support is itself an audit risk, and medical necessity is never mentioned.",
+   "The chapter tells the practice to look for unsupported high-level codes and to keep a paper trail of the conversations, but never mentions the duty to report and refund identified Medicare overpayments (the 60-day rule). A file showing the practice knew about overcoding and did not refund is evidence against it, not a defence.",
+   "The credentialing chapter says 120 days is 'not unusual' with Medicare, then says PECOS typically takes 30–45 days. It never states the rule that decides how much Medicare revenue is recoverable: the billing effective date is the later of the application filing date or the first service date at the location, with a 30-day retrospective billing window. 'Unrecoverable' is overstated when the application is filed on time and understated when it is filed late.",
+   "Locum tenens is listed as a way to bill during the credentialing gap. Medicare's substitute-physician rule (fee-for-time, modifier Q6) covers a stand-in for an absent regular physician for up to 60 continuous days; it is not a route for billing a new hire awaiting enrollment and does not cover nurse practitioners. Billing under a supervising physician's number is generally unavailable in hospital and skilled nursing settings. The guide hedges with 'compliance-sensitive' but supplies none of the rules, which is exactly where the false-claims risk sits.",
+   "Retroactive billing is presented as a general recovery mechanism with a success benchmark above 80%. Many commercial and Medicare Advantage contracts set the effective date at approval or contract load with no look-back, and plan timely-filing limits can expire during a long delay. Neither constraint is mentioned.",
+   "Hospital privileging target of under 30 days from application is unrealistic; privileging commonly takes two to four months and, as the text itself admits, depends on committee meeting dates.",
+   "The lag metric is defined from start date to first accepted clean claim, but the benchmark numbers are application processing times. The definition and the targets measure different things, and the $130,000 example assumes full production from day one with every payer taking 120 days.",
+   "Referral conversion of 70–85% is called 'broadly supported by industry sources' with none named. Published studies of referral completion in large health systems report far lower figures (roughly one-third to one-half of referrals ending in a completed specialist visit). The band is an aspiration, not an observed norm. The claim that 'research is consistent' about daily decay in conversion is also unsourced.",
+   "The bad debt band of 3–5% of net revenue is attributed to 'MGMA/HFMA guidance' with no publication. HFMA's bad debt indicator, as far as I know, is measured against gross patient revenue, so the attribution needs checking. The table then sets under 3% of gross charges with the same 5% action line as the net-revenue row; because gross charges are usually a multiple of net revenue, both rows cannot be right.",
+   "Proactive financial-assistance screening by front-desk staff is recommended with no mention of federal limits on waiving Medicare cost-sharing (no routine or advertised waivers; individual, documented hardship determination) or of the ban on billing Qualified Medicare Beneficiaries for cost-sharing. For a mostly Medicare and dual-eligible practice those two rules govern most patient balances.",
+   "Bad debt is loosely defined. The numerator (charges, allowed amounts or patient-responsibility balances) is never specified, and the guide ignores that a cash-basis practice has no deductible bad debt on fees it never collected and that current revenue-recognition rules treat most patient non-payment as a price concession.",
+   "Unsupported effect sizes and productivity figures throughout: $2,000–$6,000 per four physician hours, 40–60 authorizations per specialist per week, coding gains within 60–90 days, bad debt falling within two billing cycles, incomplete applications taking two to three times as long."
+  ],
+  "generic_filler": "medium",
+  "internal_contradictions": [
+   "Ch. 11 table: the row for denial rate by payer shows an approval-rate watch band (70–82%) as its benchmark, and its action cell mixes a denial trigger (over 25%) with an approval trigger (under 70%). The same under-70% trigger calls for a process audit in one row and an escalation protocol in the next.",
+   "Ch. 11 table: turnaround benchmark is under 3 days, yet the action threshold for urgent cases is over 5 days. Urgent requests get a looser trigger than the general benchmark and routine requests get none.",
+   "Ch. 11: the 24-hour submission rule is said to matter more than any gain in submission quality, while the same chapter names incomplete documentation as the most common cause of denial and credits the matrix with a 15–20 point lift.",
+   "Ch. 12: table tolerance is within 10% with review above 20%; the text says to look for gaps of 15–20 percentage points. The zone between 10 and 20 is undefined.",
+   "Ch. 12: all-99213 billing is described as technically accurate, yet undercoding has its own error-rate target (under 5%).",
+   "Ch. 13: Medicare is said to take 120 days 'not unusually' in the opening and 30–45 days in the intervention section; the table target is under 45 days.",
+   "Ch. 13 table: the typical commercial timeline is given as 90–150 days while anything over 90 days requires a process overhaul. The normal outcome is defined as failure.",
+   "Ch. 13: retroactive success thresholds differ: above 80% target and below 60% action in the table, below 70% in the text.",
+   "Ch. 13: privileging target of under 30 days sits beside a statement that timing depends entirely on committee schedules.",
+   "Ch. 13: advises having approvals in hand before the start date (a lag of zero) while benchmarking lag at 45–90 days after the start date.",
+   "Ch. 14: urgent access target is under 7 days in the table, 5 days in the diagnostic text and 2–3 days in the cardiology example. The routine target is printed in the action-threshold column, leaving no action threshold.",
+   "Ch. 15: net-revenue and gross-charge bad debt rows share a 5% action line despite different denominators; first-statement timing is flagged at 14, 21 and 30 days in three places.",
+   "Intro says a primary care practice may skip Chapter 11; Chapter 11 says authorization is a primary revenue driver 'increasingly' in primary care. The closing's specialty lists for Chapters 11 and 14 differ from the lists inside those chapters.",
+   "Intro claims these metrics are almost entirely ignored in standard revenue cycle education; coding accuracy and bad debt are staples of it."
+  ],
+  "time_sensitive_or_outdated": [
+   "References to KFF '2025 approval rates' and '2024-2026 industry sources' are time-stamped but untraceable; any band built on them needs rechecking.",
+   "No mention of the federal prior authorization rule whose operational provisions began 1 January 2026 (72-hour and 7-day decision deadlines, specific denial reasons, annual public reporting of plan authorization metrics from March 2026). That public reporting is now the obvious benchmark source and the guide does not use it.",
+   "No mention of the 2024 Medicare Advantage rule limiting plans' internal coverage criteria and requiring approvals to last the course of treatment.",
+   "Original Medicare prior authorization is changing (a 2026 model adds authorization for selected services in six states, Florida not among them as far as I know). The guide reflects neither the old short list nor the new model.",
+   "Office-visit code ranges (99202–99215) are current, but wording about 'required elements' echoes pre-2021 documentation rules. Level selection now rests on medical decision making or total time, for office visits since 2021 and for hospital and nursing-facility visits since 2023.",
+   "Credentialing content ignores recent changes worth checking: shortened accreditation verification windows (2025), Medicare enrollment form changes for reassignment, and state credentialing-timeliness laws.",
+   "Bad debt content ignores the unsettled medical-debt credit reporting position (federal rule struck down in 2025; voluntary credit bureau limits) and state medical-debt laws (Florida's 2024 law is aimed mainly at hospitals and surgery centers; scope should be confirmed)."
+  ],
+  "ai_generation_signals": [
+   "Three revision notes addressed to an editor, not a reader, are left in the body after benchmark tables: the band 'is nudged to' match KFF and a gap 'in a previous version of this table is now closed' (Ch. 11); a benchmark 'is now explicitly framed' as aspirational (Ch. 13); a figure 'is now framed explicitly' as best-in-class (Ch. 15). A fourth note in Ch. 14 concedes two targets cannot be verified.",
+   "Disclaimer boilerplate requires review of every 'AI-generated draft' in a volume that contains no AI prompts or drafts.",
+   "Identical five-heading scaffold in every chapter, three diagnoses and five interventions each time, and an aphoristic pull quote closing each chapter.",
+   "Recurring sentence templates: 'The practices that...', 'Not X. Not Y. Z.', 'It is not A. It is B.'",
+   "Appeals to unnamed evidence: 'what the data consistently shows', 'the research is consistent and unambiguous', 'industry sources'.",
+   "Round symmetric ranges with no source, alongside falsely precise hypotheticals (78%, 34%, 41%, 47%, 3.1%, 2.2%).",
+   "No author, credential, case example, payer name, form number, regulation or manual citation anywhere in 58 pages.",
+   "Table cells misfiled (approval band in a denial row; routine target in the action column), consistent with unreviewed generated tables."
+  ],
+  "missing_for_real_use": [
+   "Exact formulas for every metric: numerator, denominator, counting rules (partial approvals, pended or withdrawn requests, duplicate referrals) and the report that supplies the data. None is given beyond a sentence.",
+   "The actual tools the text keeps telling the reader to build: matrix, request templates, completeness checklist, tracker, report layouts, revenue model, audit scoring sheet.",
+   "Any citation that can be checked.",
+   "Federal prior authorization rules: decision deadlines, Medicare Advantage coverage-criteria limits, continuity-of-care protections, Original Medicare's narrow authorization list, and appeal levels and timeframes.",
+   "Medicare enrollment mechanics: effective-date rule and 30-day look-back, individual and group applications, reassignment, revalidation, nurse practitioner enrollment, contractor processing standards, plus Medicaid and Medicare Advantage delegated credentialing and facility credentialing at hospitals and nursing facilities.",
+   "Timely-filing limits and contract effective-date rules that cap retroactive billing.",
+   "Coding content for facility-based visit families, care management, advance care planning and wellness visits; split or shared visit rules for a physician and nurse practitioner team; medical necessity; how to compute an audit error rate; sample design; the overpayment refund duty.",
+   "Medicare and Medicaid patient-balance rules: dual-eligible billing prohibition, cost-sharing waiver limits and hardship policy requirements, Medicaid crossover handling, small-balance write-off policy, collection agency and credit reporting rules, self-pay estimate requirements.",
+   "Accounting treatment of write-offs for a cash-basis practice and how each write-off category should be coded in the practice-management system.",
+   "Guidance for small practices: no authorization team, credentialing coordinator or front desk exists in a two-clinician practice, and rates computed on tiny denominators are noise. No staffing, time or cost estimates.",
+   "Privacy and fraud-and-abuse guardrails for referral-source reporting and relationship building.",
+   "Any treatment of automation or AI agents despite the disclaimer's reference to AI drafts.",
+   "A worked example with real numbers for any of the five metrics."
+  ]
+ }
+}

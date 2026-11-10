@@ -1,0 +1,1118 @@
+[
+ {
+  "metric_slug": "sg-revenue-concentration",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "measured",
+  "value": 37.8,
+  "note": "One hospital is 37.8% of charges. The top three sites are 64.8%.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "sg-contracts-inventoried",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No single list of facility, payer, medical director and vendor contracts with renewal dates exists yet.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "sg-monthly-reviews-held",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value": 0,
+  "note": "The dashboard is live and billing runs are logged, but no monthly owner review covering billing, finance and compliance is on record.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fm-operating-margin",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "measured",
+  "value": 55.3,
+  "note": "$585,057 before any owner pay on $1,058,153 of revenue, last twelve months.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-margin-after-market-pay",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "estimated",
+  "value": 16.8,
+  "note": "About $170,000 after a $369,000 loaded market wage for the physician and after removing an estimated $46,000 of one-time collections.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-current-ratio",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "estimated",
+  "value": 2.0,
+  "note": "Cash $94,431 against the $48,053 of debt due within a year. Cash-basis books show no payables, so read this as a rough guide.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-revenue-per-fte-clinician",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "measured",
+  "value": 529076,
+  "note": "Two clinicians: one physician and one nurse practitioner. MGMA reports $760,383 per physician in primary care (2024), a different basis.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-budget-variance",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "unknown",
+  "value_text": "No budget on file",
+  "note": "Without a budget there is nothing to compare each month against.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-days-to-close",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "estimated",
+  "value_text": "Quarterly, about 30 to 40 days after quarter end",
+  "note": "Statements come from the accountant each quarter. There is no monthly close.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-days-cash-on-hand",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "measured",
+  "value": 48,
+  "note": "$94,431 against about $1,970 a day of operating cost, owner salary and interest. Common advice is three to six months.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-cash-forecast-weeks",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value": 0,
+  "note": "No rolling cash forecast found.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-debt-service-coverage",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "estimated",
+  "value": 2.2,
+  "note": "Normalized earnings of $170,057 against about $77,900 a year of interest and scheduled principal. On actual owner pay the ratio is 4.7. Lenders look for 1.2 or more.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-debt-to-ebitda",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "estimated",
+  "value": 1.25,
+  "note": "$212,206 of debt against normalized earnings of $170,057.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-weighted-interest-rate",
+  "as_of": "2026-09-30",
+  "status": "red",
+  "basis": "measured",
+  "value": 13.99,
+  "note": "The main note ($187,206) carries 13.99%. Interest cost was $29,799 in the last twelve months. Each point of rate is about $1,900 a year.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-owner-total-take",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "estimated",
+  "value": 415000,
+  "note": "Nine months of 2026: $135,000 salary plus $176,241 of distributions, which is about $415,000 at an annual rate, before employer taxes and health cost.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-shareholder-loan-balance",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "measured",
+  "value": 162121,
+  "note": "Owed by the owner to the corporation, down from $288,420 at the end of 2023. It has to be cleared before any sale and affects taxes.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-owner-salary-share",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "measured",
+  "value": 43.4,
+  "note": "Salary runs $180,000 a year. Market pay for the same clinical work is about $300,000 to $340,000. Ask the accountant whether the salary is defensible as reasonable compensation.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-overhead-ratio",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "measured",
+  "value": 44.7,
+  "note": "Was 56.7% in 2025 and 58.3% in 2024. Roughly 60% is typical for primary care (MGMA-attributed, not a published median).",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-staff-cost-ratio",
+  "as_of": "2026-09-30",
+  "status": "green",
+  "basis": "measured",
+  "value": 23.3,
+  "note": "$246,801 of staff pay and benefits in the last twelve months, and that includes the nurse practitioner. MGMA reports support staff alone at 30% to 34% of revenue in primary care (2025).",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-cost-to-collect",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "measured",
+  "value": 6.3,
+  "note": "Billing services and software were $63,573 on $1,010,153 of collections. The third quarter alone ran 8.7%, so the trend needs watching.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-contribution-margin-by-line",
+  "as_of": "2026-09-30",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Revenue and cost are not yet split by hospital, nursing facility, assisted living and care management.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-revenue-per-encounter",
+  "as_of": "2026-10-31",
+  "status": "na",
+  "basis": "estimated",
+  "value": 160,
+  "note": "Rough: twelve-month collections divided by about 6,240 face-to-face visits a year at October's pace. Includes care-management and advance care planning revenue.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "fm-adjustments-reviewed",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "A standing rule lets the billing routine write off balances over a year old ($40,686 on November 2, 2026). No monthly owner sign-off of write-offs is recorded.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-encounter-reconciliation",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "The census feeds charges automatically, but no daily count proves every patient seen has a charge.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-eligibility-verified-rate",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 30.6,
+  "note": "151 of 493 patient coverage cards are fully verified. 342 are still in work.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-eligibility-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "31% of denied visits were coverage or payer-order problems",
+  "note": "419 of the 1,356 visits in the denial register: coverage ended, patient in a Medicare Advantage plan, other payer primary, or coordination of benefits.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-no-payer-rate",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "measured",
+  "value": 11.2,
+  "note": "11.2% of charges in the feed had no payer recorded when entered.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-wrong-payer-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Not tracked as a rate. Hospice and plan-switch denials appear in the register (31 hospice, 68 Medicare Advantage).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-auth-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "measured",
+  "value_text": "70 visits in the register",
+  "note": "36 visits denied as out of network or needing the primary care physician's referral and 34 as not payable under a managed care contract.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "fe-pos-collection-rate",
+  "as_of": "2026-11-09",
+  "status": "na",
+  "basis": "measured",
+  "value_text": "Does not apply",
+  "note": "No front desk. Most patients have Medicare with a secondary payer or Medicaid.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-missed-charge-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Needs the daily census-to-charge reconciliation.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-charge-lag-days",
+  "as_of": "2026-11-07",
+  "status": "green",
+  "basis": "measured",
+  "value": 3,
+  "note": "Median 3 days from service to entry, 90th percentile 5 days. MGMA reported 7.75 days across practices (2022).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-open-notes",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Note completion time lives in the clinical record and is not in the practice database.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-top-level-share-gap",
+  "as_of": "2026-11-07",
+  "status": "red",
+  "basis": "measured",
+  "value": 51.5,
+  "note": "Points above the 2024 national Medicare share of the highest code: initial nursing facility care +52, subsequent nursing facility care +47 (second-highest code), initial hospital care +41, subsequent hospital care +37.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-coding-accuracy",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "unknown",
+  "value_text": "No audit on record",
+  "note": "CMS found errors in 12% to 14% of claims nationally for the codes this practice bills most (fiscal 2025).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-documentation-pass-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No chart audit on record.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-pos-error-rate",
+  "as_of": "2026-11-07",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "100% of nursing facility visits billed as place of service 31",
+  "note": "Place of service 32, for residents not in a Medicare Part A skilled stay, was never used. Long-term residents are almost certainly among them.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-app-own-number-share",
+  "as_of": "2026-11-07",
+  "status": "green",
+  "basis": "measured",
+  "value": 100,
+  "note": "The nurse practitioner's 309 encounters were billed under her own number.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-edit-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value_text": "About 14% of recent zero-paid lines",
+  "note": "Duplicate, frequency and not-separately-payable reasons on lines for service since August 1, 2026.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-time-documented-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Time logs for care management and advance care planning are in the clinical record and have not been sampled.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-care-mgmt-paid-rate",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 42,
+  "note": "58 of 137 complex care-management lines paid, service dates since June 1, 2026. The add-on code paid on 40 of 80.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-charge-to-allowed-ratio",
+  "as_of": "2026-11-07",
+  "status": "amber",
+  "basis": "estimated",
+  "value": 1.3,
+  "note": "Lowest ratio among the main codes: about 1.3 times Medicare for subsequent nursing facility and hospital visits. For years the care-management charge sat at the Medicare allowed amount, which capped every other payer.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cc-fee-schedule-age",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Date of the last fee schedule update is not recorded.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-first-pass-resolution",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 70.1,
+  "note": "218 of 311 primary remittance lines for service since August 1, 2026 were paid. Billing companies average 86% to 88% (HBMA, 2024).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-days-to-submit",
+  "as_of": "2026-11-07",
+  "status": "green",
+  "basis": "estimated",
+  "value": 3.5,
+  "note": "Charges are entered in a median of 3 days and claim runs go out every 2 to 6 hours.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-clean-claim-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Scrubber pass rate is not captured in the database.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-rejection-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Clearinghouse rejections are worked in the claims screen but not counted.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-unposted-remits",
+  "as_of": "2026-11-10",
+  "status": "green",
+  "basis": "measured",
+  "value": 0,
+  "note": "Nothing unposted after the latest run.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-days-to-payment",
+  "as_of": "2026-11-09",
+  "status": "green",
+  "basis": "measured",
+  "value": 18,
+  "note": "Median days from service to remittance on paid lines for service since August 1, 2026. 90th percentile 46.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-deposit-match-rate",
+  "as_of": "2026-09-11",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "$12,902 of deposits unmatched in one month",
+  "note": "Medicare deposits with no matching remittance, remittances from one large plan with no money landing, and six payers with no deposits in the month reviewed.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-days-in-ar",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "estimated",
+  "value": 64,
+  "note": "$342,620 open against October gross charges of $164,832. Gross on gross from one month, so treat it as approximate.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-pct-over-90",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 35.4,
+  "note": "$121,404 of $342,620. Billing companies average 28.6% (HBMA, 2024).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-pct-over-120",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "estimated",
+  "value": 31,
+  "note": "25.3% is older than 180 days. The 91 to 180 day bucket is not split, so the over-120 share is estimated.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-initial-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 29.9,
+  "note": "Share of primary lines paid zero, service since August 1, 2026. It includes duplicates and patient-responsibility lines, so the true denial rate is somewhat lower.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-final-denial-writeoff",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "$82,665 of billed charges written off in the denial register",
+  "note": "351 visits, service dates 2022 to 2026. Not yet expressed as a share of revenue.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-appeal-overturn-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Appeals are not tracked separately from resubmissions.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-underpayment-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No contracted fee schedules are loaded, so payments cannot be checked against what was owed.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-net-collection-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Needs payments, contractual adjustments and write-offs by month of service from the billing system. This is the single most useful missing number.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-gross-collection-rate",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "estimated",
+  "value": 51,
+  "note": "Twelve-month collections against gross charges at October's pace. Useful only as a trend.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-avoidable-writeoff-rate",
+  "as_of": "2026-11-02",
+  "status": "red",
+  "basis": "estimated",
+  "value": 3.8,
+  "note": "One batch: $40,686 of balances over a year old written off on November 2, 2026, as a share of twelve-month revenue.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "ar-timely-filing-writeoffs",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 100,
+  "note": "Visits in the denial register whose first denial reason was timely filing. The target is zero.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-payer-mix-top-share",
+  "as_of": "2026-10-31",
+  "status": "na",
+  "basis": "measured",
+  "value": 55.5,
+  "note": "Medicare fee-for-service, by charges. Medicare Advantage plans are about 22% and Medicaid plans about 9%.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-contracts-on-file",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "unknown",
+  "value": 0,
+  "note": "No payer contract or fee schedule is stored where the billing routine can read it.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-rate-vs-medicare",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Depends on collecting the contracts.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-enrollment-current",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "At least 9 open enrollment problems",
+  "note": "Across two clinicians: a commercial plan terminated after a missed recredentialing, Railroad Medicare not enrolled, Tricare and Veterans Affairs gaps, a Medicaid renewal due December 1, 2026, and a stale national provider record for the nurse practitioner.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-credentialing-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "measured",
+  "value_text": "8% of denied visits",
+  "note": "108 of 1,356 visits in the denial register are tagged credentialing.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-fee-schedule-impact",
+  "as_of": "2026-11-04",
+  "status": "amber",
+  "basis": "estimated",
+  "value": -13000,
+  "note": "The 2027 conversion factor falls 2.31%. Applied to about $560,000 of Medicare fee-for-service revenue. Code-level changes for facility visits could add to or reduce this.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-ma-revenue-share",
+  "as_of": "2026-10-31",
+  "status": "na",
+  "basis": "estimated",
+  "value": 22,
+  "note": "By charges: UnitedHealthcare, Humana, Capital Health Plan, Florida Blue and dual-eligible plans.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-ma-denial-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Denials are not yet reported by payer class. Nationally, plans deny 17% of initial claims (Health Affairs, 2025).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pc-dual-share",
+  "as_of": "2024-12-31",
+  "status": "na",
+  "basis": "estimated",
+  "value": 40,
+  "note": "CMS data for 2024: 32% of the physician's and 50% of the nurse practitioner's Medicare fee-for-service patients were dual eligible.",
+  "source": "cms-puf"
+ },
+ {
+  "metric_slug": "pc-policy-review-cadence",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value_text": "No scheduled review",
+  "note": "Rules are added to the billing rulebook as denials appear. Nothing checks the Medicare contractor's bulletins on a schedule.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-program-elements",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "estimated",
+  "value": 2,
+  "note": "Written billing rules and monthly exclusion screening exist. No evidence yet of a named compliance contact, training records, audits, a reporting channel or a corrective-action log.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-audit-coverage",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "unknown",
+  "value": 0,
+  "note": "No outside chart audit on record for either clinician.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-outlier-code-families",
+  "as_of": "2026-11-07",
+  "status": "red",
+  "basis": "measured",
+  "value": 7,
+  "note": "Subsequent and initial hospital care, subsequent and initial nursing facility care, both discharge-day families, and complex versus standard care management.",
+  "source": "cms-puf"
+ },
+ {
+  "metric_slug": "cr-high-scrutiny-revenue-share",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "estimated",
+  "value": 80,
+  "note": "Hospital and nursing facility visits plus complex care management, by charges. CMS error rates for those visit codes are 12% to 14%.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-open-overpayment-reviews",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "measured",
+  "value": 0,
+  "note": "No review has been opened. Four patterns in the risk review warrant one.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-arrangements-documented",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Two medical director arrangements with facilities that also refer patients. Written agreements, fair-market-value support and time logs have not been confirmed.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-risk-analysis-age",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Date of the last security risk analysis is not recorded.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-baa-coverage",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "The database runs in a HIPAA-enabled project and the AI vendor is under a business associate agreement. The full vendor list has not been checked.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-exclusion-screens-done",
+  "as_of": "2026-11-09",
+  "status": "green",
+  "basis": "measured",
+  "value_text": "Running monthly",
+  "note": "The monthly federal exclusion check is on the credentialing board.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-days-to-next-expiration",
+  "as_of": "2026-11-10",
+  "status": "red",
+  "basis": "measured",
+  "value": 21,
+  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, crossover payments stop.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-consent-on-file-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Consent for care management has not been verified for the 257 patients billed in October.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-required-visits-on-time",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "The 30-day and 60-day required visits are not tracked against each resident's admission date.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "cr-insurance-review-age",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Malpractice, cyber and billing-audit coverage have not been reviewed against the current way of working.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-encounters-per-clinician-day",
+  "as_of": "2026-10-31",
+  "status": "na",
+  "basis": "measured",
+  "value": 16,
+  "note": "Physician: about 16 face-to-face visits a day over 18 days. Nurse practitioner: 13.4 a day over 17 days.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-wrvu-per-fte",
+  "as_of": "2026-11-07",
+  "status": "red",
+  "basis": "estimated",
+  "value": 12600,
+  "note": "As billed, about 25,000 work units a year for two clinicians: roughly 19,000 for the physician and 6,300 for the nurse practitioner. Medians are 6,505 for family physicians and 4,647 for primary care nurse practitioners (AMGA, 2025). Code levels and care-management volume drive the gap.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-active-census",
+  "as_of": "2026-10-31",
+  "status": "na",
+  "basis": "measured",
+  "value": 326,
+  "note": "Distinct patients with a charge in October 2026, across 13 sites.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-census-net-change",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Admissions and discharges by site are not trended.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-visits-on-schedule",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No tracker compares each resident's last visit with the required or planned interval.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-awv-rate",
+  "as_of": "2026-11-07",
+  "status": "amber",
+  "basis": "measured",
+  "value": 0,
+  "note": "No annual wellness visit codes in the feed. The practice billed them through 2023.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-app-per-physician",
+  "as_of": "2026-11-09",
+  "status": "na",
+  "basis": "measured",
+  "value": 1.0,
+  "note": "MGMA primary care median is 0.80 (2025).",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-care-mgmt-enrollment",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "measured",
+  "value": 79,
+  "note": "257 patients billed complex care management out of 326 seen. Nationally the complex code is about 8% of care-management claims.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-care-mgmt-minutes",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "estimated",
+  "value": 85,
+  "note": "Minutes per patient implied by the codes billed: 21,810 minutes, about 364 staff hours, in one month. Documented minutes have not been checked.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-tcm-capture",
+  "as_of": "2026-11-07",
+  "status": "amber",
+  "basis": "measured",
+  "value": 0,
+  "note": "No transitional care management codes billed. They apply to patients discharged to assisted living or home, not to a nursing facility.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "co-experience-score",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No survey of patients, families or facility leaders.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "qv-mips-score",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Status in the Medicare quality program is not known for either clinician. Both appear to exceed the low-volume exclusion.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "qv-average-risk-score",
+  "as_of": "2024-12-31",
+  "status": "na",
+  "basis": "measured",
+  "value": 2.18,
+  "note": "CMS data for 2024: 2.10 for the physician's patients and 2.27 for the nurse practitioner's. The Medicare average is 1.0.",
+  "source": "cms-puf"
+ },
+ {
+  "metric_slug": "qv-acp-documented",
+  "as_of": "2026-11-07",
+  "status": "na",
+  "basis": "measured",
+  "value": 8,
+  "note": "Advance care planning was billed on 62 encounters, about 8% of face-to-face visits. Share of patients with a documented plan is not known.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "qv-value-revenue-share",
+  "as_of": "2026-11-09",
+  "status": "na",
+  "basis": "measured",
+  "value": 0,
+  "note": "No shared-savings, quality-bonus or capitated revenue.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "qv-readmission-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Would need hospital admission and discharge dates for the nursing facility census.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pp-roles-with-backup",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "estimated",
+  "value_text": "Few",
+  "note": "The owner is the only person for clinical leadership, facility relationships, finance, contracting and oversight of the billing agents.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pp-outsourced-fee-rate",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "measured",
+  "value_text": "Does not apply",
+  "note": "Billing is run in-house by software agents. See cost to collect.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "pp-agreements-current",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "The nurse practitioner's employment agreement and collaborative protocol have not been reviewed here.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-it-cost-per-clinician",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "measured",
+  "value": 31800,
+  "note": "$63,573 of billing services and software in the last twelve months, across two clinicians.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "td-manual-reentry-points",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value": 3,
+  "note": "Known: paper checks from one Medicaid plan, portal-only eligibility for that plan, and accounting software that is not connected.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-kpi-automation",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "estimated",
+  "value_text": "Billing measures automated, finance not yet",
+  "note": "Receivables, denials, charges, treasury and credentialing are in the database. Net collection rate, service-line results and the financial statements are not.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-data-latency",
+  "as_of": "2026-11-09",
+  "status": "green",
+  "basis": "measured",
+  "value": 6,
+  "note": "The billing routine runs every 2 to 6 hours and writes to the database each time.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-automation-exception-rate",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "How often an automated action is later corrected is not measured. It is the key safety measure for agent-run billing.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-mfa-coverage",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Sign-in protection has not been inventoried across the billing system, bank, email and this application.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "td-restore-test-age",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No restore test on record.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "gm-revenue-growth",
+  "as_of": "2026-09-30",
+  "status": "amber",
+  "basis": "measured",
+  "value": 19.9,
+  "note": "First nine months of 2026 against 2025. It follows declines of 30% in 2024 and 23% in 2025, and part of the 2026 gain is recovery of old receivables.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "gm-referral-concentration",
+  "as_of": "2026-10-31",
+  "status": "red",
+  "basis": "measured",
+  "value": 64.8,
+  "note": "Share of charges from the three largest sites: 37.8%, 17.6% and 9.4%.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "gm-new-patients-per-month",
+  "as_of": "2026-11-07",
+  "status": "na",
+  "basis": "estimated",
+  "value": 92,
+  "note": "120 admission or new-patient visits in 39 days of the charge feed.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "gm-listing-accuracy",
+  "as_of": "2026-11-09",
+  "status": "amber",
+  "basis": "measured",
+  "value_text": "Known errors",
+  "note": "The nurse practitioner's national provider record is out of date with the wrong specialty code, and one plan's directory attestation is overdue.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "gm-market-share",
+  "as_of": "2026-11-09",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "The number of nursing and assisted living facilities in the service area, and their beds, has not been compiled.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "lv-enterprise-value",
+  "as_of": "2026-11-10",
+  "status": "na",
+  "basis": "estimated",
+  "value": 650000,
+  "note": "Indicative. Range $400,000 to $1,000,000. See the valuation page.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "lv-valuation-age",
+  "as_of": "2026-11-10",
+  "status": "amber",
+  "basis": "measured",
+  "value": 0,
+  "note": "This is a planning estimate. No formal appraisal has been done.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "lv-normalized-ebitda",
+  "as_of": "2026-09-30",
+  "status": "na",
+  "basis": "estimated",
+  "value": 170057,
+  "note": "Range $123,000 to $239,000 depending on the market wage and on how much of the 2026 collections recur.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "lv-revenue-cagr-3yr",
+  "as_of": "2026-09-30",
+  "status": "red",
+  "basis": "measured",
+  "value": -16.3,
+  "note": "From $1,727,834 in 2023 to $1,058,153 in the twelve months to September 2026.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "lv-recurring-revenue-share",
+  "as_of": "2026-10-31",
+  "status": "green",
+  "basis": "estimated",
+  "value": 62,
+  "note": "Nursing facility and assisted living residents, who are seen on a recurring schedule. Hospital work, 37.8%, depends on continuing referrals.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "lv-owner-revenue-share",
+  "as_of": "2026-11-07",
+  "status": "red",
+  "basis": "measured",
+  "value": 76.8,
+  "note": "Share of charges billed under the physician-owner.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "lv-owner-only-functions",
+  "as_of": "2026-11-09",
+  "status": "red",
+  "basis": "estimated",
+  "value_text": "Most",
+  "note": "Clinical lead, facility relationships, finance, contracting and the billing rulebook all sit with the owner.",
+  "source": "ehpa-neon"
+ },
+ {
+  "metric_slug": "lv-diligence-readiness",
+  "as_of": "2026-11-10",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "No data room exists. Contracts, an outside audit and monthly statements would be the first requests.",
+  "source": "ehpa-financials"
+ },
+ {
+  "metric_slug": "lv-net-proceeds-estimate",
+  "as_of": "2026-11-10",
+  "status": "na",
+  "basis": "estimated",
+  "value": 622225,
+  "note": "Before tax and deal costs: value plus cash plus collectible receivables less debt.",
+  "source": "ehpa-financials"
+ }
+]

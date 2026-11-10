@@ -1,0 +1,640 @@
+{
+ "domain": "growth-market",
+ "categories": [
+  {
+   "slug": "gm-market-analysis",
+   "name": "Growth plan and market analysis",
+   "summary": "Knowing where the next patients can come from: how large the reachable market is, who serves it now, what share the practice holds, and a written plan with numbers for the next one to three years.",
+   "good_looks_like": [
+    "The practice can state its market in countable units: residents, beds, facilities, or people in an age group within a travel time.",
+    "It knows its main competitors and why referrers choose them.",
+    "A written plan names the two or three sources of growth, with volumes, dates and what each requires.",
+    "Growth is tracked monthly against the plan."
+   ],
+   "failure_modes": [
+    "Growth is whatever happens. Nobody can say whether a good year came from more patients or one-time collections.",
+    "The practice chases every opportunity and finishes none.",
+    "Volume grows faster than clinician capacity, credentialing or cash.",
+    "A decline is noticed only in the bank balance, months after it began."
+   ],
+   "key_questions": [
+    "How many potential patients or beds are within our reach, and what share do we serve?",
+    "Where did last year's revenue change come from: volume, rate, mix or one-time items?",
+    "What are our two main sources of growth for the next 12 months?",
+    "What is the limiting factor: demand, clinician time, enrollment or cash?"
+   ],
+   "actions": [
+    {
+     "action": "Size the market in countable units",
+     "detail": "For a facility practice: every facility within a set drive time, its beds and who covers it. For an office: population by age within the service area.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Split revenue change into its parts",
+     "detail": "Volume, payment per visit, payer mix and one-time collections, each year.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Write a one-page growth plan",
+     "detail": "Two or three initiatives, each with a number, a date, an owner and what it needs.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review growth monthly",
+     "detail": "New patients, active census or panel, visits and collections against plan.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice that wants to grow or needs to replace lost volume. Office practices size the market by population. Facility-based practices size it by facilities and beds and by who decides physician coverage in each.",
+   "sources": [
+    "mgma-bok",
+    "sba-business-plan",
+    "mgma-stat-margin"
+   ],
+   "evidence_note": "Planning practice from general business guidance and the MGMA body of knowledge. No benchmark for growth applies across practices, because costs and payment rates move differently each year.",
+   "metrics": [
+    {
+     "slug": "gm-revenue-growth",
+     "name": "Year-over-year net revenue growth",
+     "definition": "Change in net revenue for a period compared with the same period a year earlier, with one-time collections shown separately.",
+     "formula": "(Net revenue this period - same period last year) / same period last year",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The practical test is whether revenue is growing faster than operating cost.",
+     "confidence": "none",
+     "data_hint": "The income statement, with a note of any one-time collections."
+    },
+    {
+     "slug": "gm-market-share",
+     "name": "Share of the target market served",
+     "definition": "The practice's patients, beds covered or facilities served as a share of the market it defined as reachable.",
+     "formula": "Patients, beds or facilities served / total in the defined market",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Its use is to show how much room remains and whether growth must come from new sites or from deeper share at current ones.",
+     "confidence": "none",
+     "data_hint": "The practice's census and a public list of facilities or population data."
+    }
+   ]
+  },
+  {
+   "slug": "gm-service-lines",
+   "name": "Service-line expansion",
+   "summary": "Adding services that existing patients need and payers cover: care management, wellness visits, advance care planning, transitional care, procedures, diagnostics or telehealth. Usually the cheapest growth, because the patients are already there.",
+   "good_looks_like": [
+    "The practice has listed the covered services its patients qualify for and are not receiving.",
+    "Each new service has a written workflow: who is eligible, who does the work, what is documented, how it is billed.",
+    "A new service starts small, is audited early, then expands.",
+    "Its revenue and cost are tracked on their own line."
+   ],
+   "failure_modes": [
+    "A program is billed for most patients before the staff, logs and consent process exist.",
+    "A time-based service is billed with no record of the time.",
+    "Revenue projections from a vendor selling the program are taken at face value.",
+    "The service is added, then quietly lapses because nobody owns it."
+   ],
+   "key_questions": [
+    "Which covered services do our patients qualify for that we do not provide?",
+    "For each service we added in the last two years, who owns it and what does it earn?",
+    "Has each new service had a chart audit in its first 90 days?",
+    "What would the service earn at Medicare rates, after the staff time it needs?"
+   ],
+   "actions": [
+    {
+     "action": "List eligible but unserved patients for each candidate service",
+     "detail": "Annual wellness visits, transitional care after discharge to home or assisted living, standard chronic care management, advance care planning.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write the workflow before the first claim",
+     "detail": "Eligibility, consent where required, who does what, documentation, code, and frequency limits.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Pilot with a small group and audit it",
+     "detail": "Ten to twenty patients, then an outside review of the records before scaling.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Price it honestly",
+     "detail": "Medicare payment less the staff time and tools it takes, not the vendor's projection.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with an established patient base. Rules differ by setting: transitional care applies to discharges to a community setting, and care-management payment depends on the place of service.",
+   "sources": [
+    "cms-mln-ccm",
+    "cms-ccm-faq",
+    "cms-apcm",
+    "cms-cert-2025"
+   ],
+   "evidence_note": "Coverage rules are CMS manuals and booklets. Medicare's own reviews find high error rates for care management and advance care planning, mostly for missing documentation, so the caution about workflow first is well supported.",
+   "metrics": [
+    {
+     "slug": "gm-new-service-revenue-share",
+     "name": "Share of revenue from services added in the last 24 months",
+     "definition": "Collections from services the practice began offering within the past two years, as a share of total collections.",
+     "formula": "Collections from services started in the last 24 months / total collections",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A high share from one new time-based service is a reason to audit it, not only a success.",
+     "confidence": "none",
+     "data_hint": "Collections by code from the billing system, grouped by service."
+    }
+   ]
+  },
+  {
+   "slug": "gm-referral-relationships",
+   "name": "Referral and facility relationships",
+   "summary": "Most practices depend on a small number of people who send or assign patients: referring physicians, hospital case managers, facility administrators and directors of nursing. Those relationships are an asset that needs deliberate upkeep.",
+   "good_looks_like": [
+    "The practice knows where each new patient came from.",
+    "Each important source has a named contact in the practice and a record of recent contact.",
+    "The practice knows what each source values, such as response time or communication with families, and measures it.",
+    "No single source accounts for a share of revenue the practice could not survive losing."
+   ],
+   "failure_modes": [
+    "A facility changes administrator and the new one brings a different physician group.",
+    "The owner personally holds every relationship and nothing is written down.",
+    "The practice offers gifts, free services or payments to referral sources, which federal law prohibits.",
+    "A source stops referring and nobody asks why."
+   ],
+   "key_questions": [
+    "Which three sources send us the most patients, and what share of revenue is each?",
+    "Who at each source decides, and when did we last speak with them?",
+    "What do they want from us that we could measure?",
+    "Is anything of value going to a referral source?"
+   ],
+   "actions": [
+    {
+     "action": "Record the source of every new patient",
+     "detail": "A required field at intake or admission.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Keep a relationship record for each source",
+     "detail": "Decision makers, last contact, what they want, any agreement and its end date.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Agree service standards and report on them",
+     "detail": "For example, new residents seen within 72 hours and calls returned within an hour.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Have counsel review anything of value given to a source",
+     "detail": "Meals, gifts, free staff time and directorship pay all fall under the kickback and self-referral rules.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice that receives patients from others. For facility-based practices the facility is both site and referral source, and its leaders decide which physicians see its residents.",
+   "sources": [
+    "cfr-1001-952",
+    "cfr-411-357",
+    "oig-nf-guidance-2024"
+   ],
+   "evidence_note": "The limits on payments to referral sources are federal statute and regulation. Relationship management itself is business practice with no measured benchmark.",
+   "metrics": [
+    {
+     "slug": "gm-referral-concentration",
+     "name": "Share of new patients from the top three sources",
+     "definition": "New patients or revenue from the three largest referral sources or sites, as a share of the total.",
+     "formula": "New patients (or revenue) from the top three sources / total",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. As a rule of thumb, losing any one source should not remove more revenue than the practice's cash reserve can cover for three months.",
+     "confidence": "none",
+     "data_hint": "The referral source field in the billing system, or revenue by site."
+    },
+    {
+     "slug": "gm-new-patients-per-month",
+     "name": "New patients per month",
+     "definition": "Count of patients seen by the practice for the first time in the month, by source or site.",
+     "formula": "Count of first-ever visits in the month",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
+     "confidence": "none",
+     "data_hint": "New-patient and initial-visit codes by month, or first date of service per patient."
+    }
+   ]
+  },
+  {
+   "slug": "gm-new-sites",
+   "name": "New sites and geographic expansion",
+   "summary": "Adding an office, a facility or a service area. A site is worth adding when it brings enough volume to justify clinician time and travel, and when the practice can staff it without weakening existing sites.",
+   "good_looks_like": [
+    "Each proposed site has a short case: expected patients, visits, revenue, clinician days, travel and start-up cost.",
+    "A named clinician and schedule exist before the practice commits.",
+    "The site's payer mix and enrollment needs are checked in advance.",
+    "Results are compared with the case at three, six and twelve months."
+   ],
+   "failure_modes": [
+    "A site is added as a favor and never reaches enough volume to cover the trip.",
+    "Existing sites lose attention and their volume falls by as much as the new one adds.",
+    "The new location is not added to Medicare or plan enrollment before billing starts.",
+    "A lease is signed for space the practice's model does not need."
+   ],
+   "key_questions": [
+    "How many patients would this site bring in the first three months and at maturity?",
+    "Which clinician goes, on which days, and what stops if they do?",
+    "Is the location enrolled with every payer before the first visit?",
+    "At what volume does the site cover its cost, and by when?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page case for each site",
+     "detail": "Volume, revenue at current yield, clinician days, travel time, start-up cost, break-even month.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set a minimum starting volume",
+     "detail": "Agree with the facility or referrers on the initial census before committing.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Add the location to enrollments first",
+     "detail": "Medicare requires practice location changes to be reported. Plans have their own rules.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review at three, six and twelve months",
+     "detail": "Keep, fix or exit, decided against the written case.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices considering another office, facility or county. For visiting practices, travel time is the main cost. For office practices, it is the lease and front-desk staff.",
+   "sources": [
+    "cfr-424-516",
+    "fcso-enroll"
+   ],
+   "evidence_note": "Enrollment reporting duties are federal regulation. Site economics are arithmetic from the practice's own yield and costs.",
+   "metrics": [
+    {
+     "slug": "gm-months-to-breakeven-site",
+     "name": "Months for a new site to cover its cost",
+     "definition": "Months from opening until a site's collections exceed its direct cost in the same month, including clinician time and travel.",
+     "formula": "Count of months from first visit to the first month where site collections exceed site direct cost",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare with the written case for that site.",
+     "confidence": "none",
+     "data_hint": "Collections and clinician days by site."
+    }
+   ]
+  },
+  {
+   "slug": "gm-clinician-growth",
+   "name": "Adding clinicians",
+   "summary": "Hiring a physician, nurse practitioner or physician assistant to grow. The decision rests on demand that exists now, the months before the new clinician is paid for their work, and what the hire does to quality and oversight.",
+   "good_looks_like": [
+    "Unmet demand is measured, such as waiting patients, turned-away facilities, or clinicians above a sustainable visit count.",
+    "A hiring case shows cost, expected visits, collections per visit, and the ramp month by month.",
+    "Enrollment starts at offer acceptance and cash is set aside for the ramp.",
+    "The new clinician's charts are audited in the first 90 days."
+   ],
+   "failure_modes": [
+    "A clinician is hired on hope and sits half-full for a year.",
+    "Enrollment delays mean months of visits that cannot be billed.",
+    "A nurse practitioner is assigned work that only a physician may do or bill.",
+    "The owner's oversight is spread too thin and coding patterns drift."
+   ],
+   "key_questions": [
+    "What evidence shows demand for another clinician today?",
+    "At how many visits a day does a new clinician cover their full cost?",
+    "How many months of that clinician's pay can we carry before collections arrive?",
+    "Which visits in our setting must a physician personally perform?"
+   ],
+   "actions": [
+    {
+     "action": "Calculate break-even visits a day",
+     "detail": "Full yearly cost divided by collections per visit times working days.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Model the ramp and the cash need",
+     "detail": "Assume low volume and delayed payment for the first three to six months.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Check scope and billing rules for the role",
+     "detail": "State scope of practice, supervision, Medicare's 85% rate for non-physician clinicians, and visits reserved for physicians.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Audit early",
+     "detail": "Twenty charts in the first month and again at 90 days.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Practices with more demand than clinician time. In nursing facilities, federal rules reserve certain required visits for the physician, which limits how much a physician can delegate.",
+   "sources": [
+    "amga-2026",
+    "cfr-414-56",
+    "cfr-483-30",
+    "fcso-enroll",
+    "fl-464-0123"
+   ],
+   "evidence_note": "Pay medians are survey data from mostly large groups. Payment and visit rules are federal regulation. Break-even is arithmetic from the practice's own numbers.",
+   "metrics": [
+    {
+     "slug": "gm-months-to-breakeven-clinician",
+     "name": "Months for a new clinician to cover their cost",
+     "definition": "Months from a clinician's start date until the collections from their work in a month exceed their full monthly cost.",
+     "formula": "Count of months from start to the first month where attributable collections exceed pay, taxes, benefits and direct costs",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Plan for at least the enrollment period plus the payment lag.",
+     "confidence": "none",
+     "data_hint": "Collections by rendering clinician and payroll."
+    },
+    {
+     "slug": "gm-capacity-utilization",
+     "name": "Clinician capacity in use",
+     "definition": "Visits actually performed as a share of the visits clinicians could sustainably perform in the period.",
+     "formula": "Visits performed / (clinician days x sustainable visits a day)",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The sustainable number is the practice's own judgment. Sustained use above it signals a hire, and well below it signals a demand problem.",
+     "confidence": "none",
+     "data_hint": "Visits by clinician and days worked."
+    }
+   ]
+  },
+  {
+   "slug": "gm-marketing-reputation",
+   "name": "Marketing and reputation",
+   "summary": "How patients, families and referrers find and judge the practice: directory listings, online profiles and reviews, a website, and outreach. For referral-based practices, accuracy matters more than promotion.",
+   "good_looks_like": [
+    "The practice's name, address, phone, specialty and clinicians are correct in the national provider registry, payer directories and major online listings.",
+    "Someone checks reviews and responds without disclosing patient information.",
+    "Referrers have a simple way to reach the practice and know what it offers.",
+    "Marketing spend is small, tracked, and tied to a source of new patients."
+   ],
+   "failure_modes": [
+    "A wrong specialty code or address in a registry causes denials and misdirected referrals.",
+    "A clinician who left years ago is still listed.",
+    "A reply to an online review confirms someone is a patient.",
+    "Money is spent on advertising with no way to tell whether it brought anyone in."
+   ],
+   "key_questions": [
+    "Are our registry and directory entries correct for every clinician and location?",
+    "Who reads and answers online reviews?",
+    "Can a referrer find our phone number and services in under a minute?",
+    "What did we spend on marketing last year, and what came of it?"
+   ],
+   "actions": [
+    {
+     "action": "Correct registry and directory entries",
+     "detail": "The national provider registry, each payer's directory and the main online listings, for every clinician.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Assign someone to reviews",
+     "detail": "Monthly check, with replies that never confirm a patient relationship.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "low"
+    },
+    {
+     "action": "Give referrers a one-page summary",
+     "detail": "What the practice does, where, how to reach it, and response standards.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Track marketing by source",
+     "detail": "Ask every new patient or referrer how they found the practice.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Every practice, at different intensity. Office practices that depend on patient choice need active online presence. Facility-based practices mainly need accurate listings and direct outreach to decision makers.",
+   "sources": [
+    "cfr-162-410",
+    "cfr-424-516"
+   ],
+   "evidence_note": "Keeping registry and enrollment records current is a regulatory duty. The rest is business practice with no measured benchmark.",
+   "metrics": [
+    {
+     "slug": "gm-listing-accuracy",
+     "name": "Directory and payer listings that are correct",
+     "definition": "Share of the practice's registry, payer directory and major online listings that show the right clinicians, specialty, address and phone.",
+     "formula": "Listings verified correct / listings checked",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%, since errors cause denials as well as lost referrals.",
+     "confidence": "none",
+     "data_hint": "A quarterly check of the national provider registry, each payer directory and main listings."
+    }
+   ]
+  },
+  {
+   "slug": "gm-partnerships",
+   "name": "Partnerships and affiliations",
+   "summary": "Formal relationships that bring patients, revenue or services the practice could not build alone: accountable care organizations, health plans, hospitals, hospices, home health agencies, and management or contracting organizations.",
+   "good_looks_like": [
+    "The practice can say what each partner provides and what it expects in return.",
+    "Agreements are written, reviewed by counsel, and state how either side can leave.",
+    "Any payment between the practice and a partner that refers patients is at fair market value for real services.",
+    "Partnership revenue and effort are tracked."
+   ],
+   "failure_modes": [
+    "Joining an organization that takes a fee or a share of payment and delivers little.",
+    "Exclusive terms that block better options later.",
+    "Payments that reward referrals in either direction.",
+    "Dependence on a partner that can end the arrangement on short notice."
+   ],
+   "key_questions": [
+    "Which organizations in our market need what we do?",
+    "For each current partner, what do we receive and what do we give up?",
+    "Could any payment be seen as a reward for referrals?",
+    "What happens to our patients and revenue if the partner leaves?"
+   ],
+   "actions": [
+    {
+     "action": "Map potential partners",
+     "detail": "Plans, accountable care organizations, hospitals, hospices and agencies that serve the same patients.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Hold two exploratory conversations a year",
+     "detail": "Learn what they need and what they pay for before proposing anything.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Have counsel review every agreement",
+     "detail": "Exclusivity, termination, data sharing, and compliance with referral laws.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track results by partner",
+     "detail": "Patients, revenue and time spent.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Practices of any size. Small practices use partnerships to reach value-based contracts and data they could not obtain alone. Facility-based practices are natural partners for plans and organizations responsible for nursing home residents.",
+   "sources": [
+    "cfr-1001-952",
+    "cfr-411-357",
+    "cms-pfs-2027"
+   ],
+   "evidence_note": "Referral law limits are federal regulation. Whether a partnership pays off depends on its contract. Evidence on small-practice results in these programs is mixed.",
+   "metrics": [
+    {
+     "slug": "gm-partner-revenue-share",
+     "name": "Share of revenue that depends on partnerships",
+     "definition": "Revenue that would stop if the practice's formal partnerships and affiliations ended, as a share of net revenue.",
+     "formula": "Revenue dependent on partnership agreements / net revenue",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Read it as a dependence measure as well as a growth measure.",
+     "confidence": "none",
+     "data_hint": "Revenue by source, mapped to agreements in the contract register."
+    }
+   ]
+  },
+  {
+   "slug": "gm-acquisitions",
+   "name": "Acquiring practices or patient panels",
+   "summary": "Growing by buying another practice, taking over a retiring physician's patients, or absorbing a facility contract. It is faster than organic growth and carries the seller's problems with it.",
+   "good_looks_like": [
+    "The buyer values the target on earnings after a market wage for clinicians, not on revenue.",
+    "Diligence covers coding patterns, receivables, payer contracts, enrollment and compliance history.",
+    "The deal is structured so the buyer does not inherit past billing liabilities.",
+    "A plan exists for keeping the seller's patients, staff and referral sources."
+   ],
+   "failure_modes": [
+    "Paying for revenue that leaves with the selling physician.",
+    "Inheriting an overpayment liability because the deal was a stock purchase with no protection.",
+    "Enrollment under the new owner is not in place at closing, and billing stops.",
+    "The purchase is financed with debt the combined practice cannot carry."
+   ],
+   "key_questions": [
+    "How much of the target's revenue depends on the seller personally?",
+    "What does public Medicare data show about the target's coding patterns?",
+    "Will its payer contracts and facility agreements transfer?",
+    "How many years of the target's earnings does the price represent?"
+   ],
+   "actions": [
+    {
+     "action": "Value on normalized earnings",
+     "detail": "Earnings after a market wage for every clinician, with one-time items removed.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Run billing and compliance diligence",
+     "detail": "Code distribution against national data, aged receivables, payer mix, audits, refunds and enrollment files.",
+     "cadence": "per event",
+     "effort": "high",
+     "impact": "high"
+    },
+    {
+     "action": "Prefer an asset purchase with protections",
+     "detail": "Escrow or holdback for billing liabilities, and the seller's commitment to stay through a transition.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "File enrollment changes before closing",
+     "detail": "Medicare billing privileges cannot be sold. A new owner or tax identity needs its own enrollment.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Practices with the management capacity and cash to absorb another. Not advisable while the buyer's own billing or leadership depends on one person.",
+   "sources": [
+    "scope-2025",
+    "iconic-multiples",
+    "cfr-424-550",
+    "pya-checklist",
+    "cfr-401-305"
+   ],
+   "evidence_note": "Price evidence comes from broker and research summaries of small transactions. Enrollment and overpayment rules are federal regulation. Diligence lists are professional practice.",
+   "metrics": [
+    {
+     "slug": "gm-acquisition-payback",
+     "name": "Years to recover the price of an acquisition",
+     "definition": "The purchase price divided by the yearly earnings the acquired practice adds after all costs, including a market wage for its clinicians.",
+     "formula": "Purchase price / added annual normalized earnings",
+     "unit": "ratio",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_typical": "3 to 6 years for small primary care practices",
+     "benchmark_note": "Equivalent to the earnings multiple paid. Reported sales of small primary care practices run 3 to 6 times earnings (Scope Research, 2025). A payback longer than that needs a strategic reason.",
+     "confidence": "medium",
+     "data_hint": "The purchase agreement and the acquired practice's results after closing.",
+     "sources": [
+      "scope-2025"
+     ]
+    }
+   ]
+  }
+ ]
+}

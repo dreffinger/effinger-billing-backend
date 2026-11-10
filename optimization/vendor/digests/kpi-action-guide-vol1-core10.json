@@ -1,0 +1,1253 @@
+{
+  "slug": "kpi-action-guide-vol1-core10",
+  "title": "The KPI Action Guide for Independent Practice, Volume I: The Core 10 (CleanClaimRx 'From the Dashboard to the Floor' complete bundle)",
+  "doc_type": "kpi_guide",
+  "pages": 85,
+  "audience": "Self-described as written for the experienced practice manager or revenue-cycle professional in a small or mid-size independent practice who already has a dashboard and knows the usual benchmarks but lacks a structured way to act on them. Implicitly assumes an office-based practice with a front desk, scheduled visits and a multi-person billing team (biller, supervisor, manager).",
+  "summary": "Volume I of a two-volume vendor guide. It takes ten standard revenue-cycle indicators (denial rate by payer, clean claim rate, days in AR, aging buckets, point-of-service collection, patient collection, write-offs by reason, cost to collect, net collection rate, charge lag) and runs each through one five-step routine: a table of benchmarks with separate act-now thresholds, a root-cause segmentation, a ranked list of interventions, a floor-execution note, and a test of whether the gain is durable. The central method is segmentation (payer, provider, reason code, age, dollar value) followed by narrow, owner-assigned 30- to 90-day fixes and a standing review cadence, one metric at a time. It is written for staffed office practices. Benchmarks are unsourced (one bare mention of HFMA aside), several carry visible after-the-fact correction notes, and nothing addresses Medicare fee-for-service, Medicare Advantage, Medicaid or facility-based billing specifics.",
+  "outline": [
+    {
+      "section": "How This System Works",
+      "gist": "Introduces the five-part structure every chapter follows: diagnostic trigger, root cause analysis, prioritized intervention stack, floor execution guide, fixed versus temporarily improved."
+    },
+    {
+      "section": "Who This Guide Is Written For (plus disclaimer page)",
+      "gist": "Targets experienced practice managers in small independent practices; claims thirty years of unnamed authorship; boilerplate disclaimer says it is not compliance or coding advice."
+    },
+    {
+      "section": "Chapter 1: Denial Rate by Payer",
+      "gist": "Track denials per payer, sort causes into front-end, documentation and payer-behavior groups, build a heat map, work denials within 48 hours, review monthly."
+    },
+    {
+      "section": "Chapter 2: Clean Claim Rate",
+      "gist": "First-submission acceptance by payer and provider; four failure categories; dashboard, front-desk audit, scrubber rules, provider feedback, payer requirement sheets; thirty-day single-payer sprints."
+    },
+    {
+      "section": "Chapter 3: Days in AR",
+      "gist": "Segment AR days by payer, age and charge lag; chase slow payers, rank follow-up by dollars and age, set payer follow-up windows, ring-fence 90-plus work."
+    },
+    {
+      "section": "Chapter 4: AR Aging Buckets",
+      "gist": "Target distribution across five age buckets; bucket-specific causes; monthly audit of 120-plus balances, visible scorecard, written payer escalation ladder, end-of-day next-action check."
+    },
+    {
+      "section": "Chapter 5: Point-of-Service Collection Rate",
+      "gist": "Collect copays, known deductibles and prior balances before the visit using scripted statements, pre-visit clearance calls and a daily staff scoreboard."
+    },
+    {
+      "section": "Chapter 6: Patient Collection Rate",
+      "gist": "Total patient responsibility collected; diagnose expectation, process and statement failures; three-touch cycle, early payment plans, effort segmented by balance size and age."
+    },
+    {
+      "section": "Chapter 7: Write-Off Rate by Reason",
+      "gist": "Separate contractual, bad debt, timely filing and administrative write-offs; monthly reason-code trend, dollar-tier approval matrix, weekly review meeting, quarterly recovery audit."
+    },
+    {
+      "section": "Chapter 8: Cost to Collect",
+      "gist": "Revenue-cycle cost divided by net collections; diagnose over- and under-spending; calculate and trend it, price denial rework, audit technology use."
+    },
+    {
+      "section": "Chapter 9: Net Collection Rate",
+      "gist": "Collections over charges net of contractual adjustments; decompose shortfall into write-offs, unrecovered denials and patient balances; report monthly and by payer."
+    },
+    {
+      "section": "Chapter 10: Charge Lag",
+      "gist": "Days from service to charge entry; daily missing-charge report, provider-level lag targets, same-day documentation, monthly encounter-to-charge reconciliation; hospital charges tracked separately."
+    },
+    {
+      "section": "Bringing It All Together / A Final Word",
+      "gist": "Advises working one metric at a time for ninety days, starting with the largest dollar gap; previews Volume II's five additional metrics."
+    }
+  ],
+  "framework_elements": [
+    "KPI benchmark and action-threshold table",
+    "Five-step KPI response cycle (trigger, cause, ranked fixes, execution, durability)",
+    "Sustainment test (90 days, staffing change, payer-level agreement)",
+    "One-metric-at-a-time 90-day improvement rhythm",
+    "Denial rate by payer",
+    "Denial root-cause classification (front-end, documentation, payer behavior)",
+    "Denial heat map (payer x reason code x CPT)",
+    "Daily denial queue with 48-hour standard",
+    "Preventable versus payer-behavior denial split",
+    "Eligibility verification timing control",
+    "Prior-authorization requirements grid",
+    "Clean claim and first-pass tracking by payer and provider",
+    "Clearinghouse rejection analysis",
+    "Pre-bill scrubbing with payer-specific edits",
+    "Provider documentation and coding feedback loop",
+    "Payer submission-requirements reference sheet",
+    "Days in AR segmentation (payer, age, provider, trend)",
+    "Dollar-and-age prioritized follow-up queue",
+    "Payer-specific follow-up windows",
+    "First-touch resolution and next-action-date rule",
+    "AR aging distribution scorecard",
+    "120-plus audit and payer escalation ladder",
+    "Point-of-service collection scripting and pre-visit financial clearance",
+    "Patient statement cadence, payment plans and balance segmentation",
+    "Write-off categorization by reason",
+    "Write-off authorization matrix and weekly review",
+    "Write-off recovery audit and timely-filing tracing",
+    "Cost-to-collect measurement and technology-stack audit",
+    "Net collection rate reporting and shortfall decomposition",
+    "Charge lag monitoring, missing-charge report and encounter-to-charge reconciliation"
+  ],
+  "processes": [
+    {
+      "name": "Payer denial heat map, root-cause triage and daily denial queue",
+      "steps": [
+        "Pull 12 months of denials by payer, reason code and CPT code",
+        "Build a payer-by-reason-by-CPT matrix and rank cells by volume and dollars",
+        "Classify each top cell as front-end, documentation/coding or payer behavior",
+        "Compare denial rates for the same CPT across payers to isolate payer behavior",
+        "Pick the top three payer/reason combinations as the first 90 days of work",
+        "Give each a named owner, a 30-day target and a weekly check-in",
+        "Work a denial queue every morning before other billing tasks, highest dollars first, within 48 hours",
+        "Report preventable and payer-behavior denials as separate rates",
+        "Hold a 15-minute monthly review and flag any payer that moved more than 2 points"
+      ],
+      "owner_role": "Billing lead or practice manager (data pull, review); billing staff (daily queue)",
+      "cadence": "One-time 12-month pull; daily queue; weekly check-ins; monthly review"
+    },
+    {
+      "name": "Clean-claim baseline and thirty-day payer sprint",
+      "steps": [
+        "Pull six months of clean claim rate by month and payer; record overall rate, trend and the two or three worst payers",
+        "Stand up a weekly report by payer and by rendering provider",
+        "Choose the single lowest-performing payer",
+        "Pull every non-clean claim sent to that payer in the last 60 days",
+        "Group by rejection and denial reason and take the top three by volume",
+        "Fix the step producing those codes (registration, authorization, coding or a payer-specific rule)",
+        "Monitor for two weeks to confirm, then move to the next payer",
+        "Load payer rules into scrubber edits and practice-management workflow prompts; refresh the payer requirement sheet quarterly"
+      ],
+      "owner_role": "Practice manager with billing lead; front desk, coder or provider depending on the failing step",
+      "cadence": "Weekly dashboard; 30-day sprint per payer; quarterly payer-sheet update"
+    },
+    {
+      "name": "AR follow-up prioritization and first-touch resolution",
+      "steps": [
+        "Segment days in AR by payer, by age bucket and by charge lag for the last 90 days",
+        "For payers above 45 days, separate payer adjudication time from internal submission delay",
+        "Sort the follow-up queue by dollars descending within age bucket, starting with 61-90 days",
+        "Set payer follow-up windows (guide suggests day 14 for Medicare, day 21 commercial, day 14 for slow Medicare Advantage plans)",
+        "On every touch complete an action: confirm payment, appeal, resubmit, or document and escalate a write-off decision",
+        "Assign a next follow-up date before the claim returns to any queue",
+        "Reserve fixed weekly hours for 90-plus claims with a weekly dollar-reduction target",
+        "Check at end of day that no 61-90 day claim lacks a next action"
+      ],
+      "owner_role": "Billing staff; billing manager enforces the standard",
+      "cadence": "Daily queue and end-of-day check; weekly protected block for 90-plus claims"
+    },
+    {
+      "name": "Monthly 120-plus audit and payer escalation ladder",
+      "steps": [
+        "List every balance older than 120 days (or trace a sample of twenty to find the pattern)",
+        "Categorize each: denied and never appealed; appeal lost with no further action; documentation never obtained; patient balance never sent onward",
+        "Total the dollars in each category",
+        "Estimate realistic recovery and cost of pursuit per category",
+        "Decide pursue or write off under a documented decision process",
+        "For payer balances past 60 days follow the written ladder: call, documented second call, provider-relations complaint, formal appeal, regulator complaint",
+        "Publish the bucket distribution against targets on a monthly scorecard"
+      ],
+      "owner_role": "Billing manager; a named staff member for each escalation step",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Patient balance cycle (pre-visit to resolution)",
+      "steps": [
+        "Verify eligibility and estimate patient responsibility before the visit",
+        "Call ahead when expected responsibility exceeds $200 or a large prior balance exists",
+        "At check-in state the amount due and ask which payment method, before the patient is roomed",
+        "Offer a card-on-file payment plan as soon as a balance above $150 is identified",
+        "Send a clear first statement; send a second at 30 days",
+        "Make a phone or text contact at 45 days, under three minutes, ending in payment, a plan or a hardship review",
+        "Direct effort by balance size and age; apply small-balance write-off thresholds after the full cycle",
+        "Post the daily point-of-service collection rate where staff can see it"
+      ],
+      "owner_role": "Front desk (visit-time collection) and billing team (statements and calls) jointly",
+      "cadence": "Every visit; statement at day 0 and day 30, personal contact at day 45; daily scoreboard"
+    },
+    {
+      "name": "Write-off governance",
+      "steps": [
+        "Tag every write-off as contractual, bad debt, timely filing or administrative",
+        "Report each category monthly as a percent of gross charges and trend it",
+        "Apply the approval matrix: contractual needs none; under $25 a supervisor note; $25-$200 supervisor approval; over $200 manager review with written justification",
+        "Trace each timely-filing write-off of the last 12 months to its origin (charge never created, claim receipt never confirmed, denial aged past the appeal window)",
+        "Hold a 15-minute weekly meeting on the prior week's write-offs by category",
+        "Each quarter re-audit the prior two quarters' write-offs for recoverable balances",
+        "Move approvals into the practice-management system so thresholds route automatically"
+      ],
+      "owner_role": "Billing manager and supervisor; billers post within their authority",
+      "cadence": "Weekly meeting; monthly trend; quarterly recovery audit"
+    },
+    {
+      "name": "Charge capture accountability and reconciliation",
+      "steps": [
+        "Produce a daily list of encounters without charges by provider and date of service",
+        "Review it every morning and contact the provider or clinical support about anything older than 48 hours",
+        "Give each provider a monthly charge-lag figure beside the target and peer results",
+        "Make same-day note completion the standard and remove obstacles (templates, voice tools, scribes)",
+        "Track hospital and facility encounters as a separate stream with its own workflow",
+        "Analyze charges entered more than five days late by provider, weekday, encounter type and month",
+        "Reconcile monthly encounter counts from scheduling and clinical records to charge counts and chase every gap"
+      ],
+      "owner_role": "Billing manager or practice administrator; providers and clinical support staff",
+      "cadence": "Daily missing-charge review; monthly provider report and reconciliation"
+    },
+    {
+      "name": "Monthly KPI review, cost-to-collect calculation and sustainment check",
+      "steps": [
+        "Compute net collection rate monthly on a rolling six-month basis and review it with denial rate, clean claim rate and days in AR",
+        "Split any net-collection shortfall into non-contractual write-offs, unrecovered denials and uncollected patient balances",
+        "Segment net collection rate by payer at least annually for contract discussions",
+        "Total trailing-12-month revenue-cycle costs (staff with benefits, clearinghouse, billing share of software, collection agency, outsourced fees) and divide by net collections",
+        "Trend cost to collect quarterly over two years and estimate the share of staff time spent on denial rework",
+        "Audit each technology tool for unused features, manual workarounds and overlap",
+        "Pick the one metric furthest from benchmark with the largest dollar effect and work it for 90 days",
+        "Call a fix durable only after 90 days of normal operations, a staffing change without a spike, and payer-level rates that agree with the aggregate"
+      ],
+      "owner_role": "Practice manager or owner",
+      "cadence": "Monthly meeting; quarterly cost trend; 90-day improvement cycles"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Benchmark and action-threshold tables (ten, one per chapter)",
+      "description": "Forty-one metric rows, each with a target and a separate trigger for intervention; the only ready-to-use reference in the guide. No sources given."
+    },
+    {
+      "name": "Five-part diagnostic framework",
+      "description": "Fixed sequence applied to every KPI: trigger, root cause, ranked interventions, floor execution, durable-versus-temporary test."
+    },
+    {
+      "name": "Denial reason-code filter lists",
+      "description": "Two lists of adjustment reason codes used to sort denials into front-end and documentation causes, with a 30% volume test. Contains at least one mislabeled code."
+    },
+    {
+      "name": "Clearinghouse rejection-code filter",
+      "description": "Three codes labeled 'ANSI' with a 40% volume test for registration problems; the codes do not match a recognizable standard list."
+    },
+    {
+      "name": "Payer-specific denial heat map",
+      "description": "Matrix of payer by reason code by CPT built from 12 months of data to pick the top three targets. Described in prose; no template supplied."
+    },
+    {
+      "name": "Prior-authorization tracking grid",
+      "description": "Per-payer list of CPT codes needing authorization, validity window, documentation required and contact, with one named owner. Described only."
+    },
+    {
+      "name": "Payer requirements one-pager",
+      "description": "For the top five payers: required modifiers, attachments, filing windows and adjudication quirks, reviewed quarterly. Described only."
+    },
+    {
+      "name": "Eight-week denial execution plan",
+      "description": "Week 1 data pull, week 2 heat map and priority list, weeks 3-8 targeted fixes with owner, 30-day target and weekly check-in; three priorities fill the first 90 days."
+    },
+    {
+      "name": "Thirty-day clean-claim sprint",
+      "description": "Worst payer, last 60 days of failed claims, top three reason codes, fix, two-week confirmation, repeat."
+    },
+    {
+      "name": "Clean claim dashboard by payer and provider",
+      "description": "Weekly report specification in one sentence; no layout or field list."
+    },
+    {
+      "name": "Provider feedback conversation outline",
+      "description": "Bring the provider's own rate, the elevated codes and two or three example encounters; frame around revenue protection rather than error."
+    },
+    {
+      "name": "Staff accountability statement example",
+      "description": "One sample sentence showing a role-specific, time-bound, step-specific performance message."
+    },
+    {
+      "name": "Payer follow-up calendar",
+      "description": "Status check by day 14 for Medicare, day 21 for commercial, day 14 for slow Medicare Advantage plans, with contacts documented."
+    },
+    {
+      "name": "Dollar-by-age work queue rule",
+      "description": "Sort follow-up by dollars descending inside each age bucket, starting at 61-90 days."
+    },
+    {
+      "name": "First-touch resolution standard",
+      "description": "Every touched claim ends with payment confirmed, appeal filed, resubmission sent or a documented write-off decision, plus a next follow-up date."
+    },
+    {
+      "name": "120-plus audit classification",
+      "description": "Four root-cause categories for aged balances with dollars per category and a pursue-or-write-off decision."
+    },
+    {
+      "name": "Payer escalation protocol",
+      "description": "Five-step ladder from first call to regulator complaint, to be written down with owners and timelines. Steps listed; no timelines or letters supplied."
+    },
+    {
+      "name": "Monthly aging scorecard",
+      "description": "Bucket distribution against targets, posted for the billing team."
+    },
+    {
+      "name": "Daily departure check",
+      "description": "End-of-day confirmation that no 61-90 day claim lacks an assigned next action."
+    },
+    {
+      "name": "Front-desk collection script (two lines)",
+      "description": "Contrasts a weak yes/no question with a stated amount plus a choice of payment method; scenarios for deductible, prior balance and payment plan are named but not scripted."
+    },
+    {
+      "name": "Check-in conversation audit",
+      "description": "One-week observation with three listening questions: is the money talk held before rooming, is the amount stated, is a payment method requested."
+    },
+    {
+      "name": "Pre-visit financial clearance trigger",
+      "description": "Call patients ahead when expected responsibility exceeds $200, a large prior balance exists or a high-deductible plan applies."
+    },
+    {
+      "name": "Daily point-of-service scoreboard",
+      "description": "Staff-visible running collection rate during the day."
+    },
+    {
+      "name": "Three-touch statement cycle",
+      "description": "Statement, second statement at 30 days, phone or text at 45 days capped at three minutes with a defined outcome."
+    },
+    {
+      "name": "Proactive payment-plan rule",
+      "description": "Offer a plan at any balance above $150, set up automatically on a card on file."
+    },
+    {
+      "name": "Patient AR segmentation matrix",
+      "description": "Effort assigned by balance size and age with small-balance write-off thresholds. Described only; no thresholds beyond one $25 example."
+    },
+    {
+      "name": "Write-off authorization matrix",
+      "description": "Dollar tiers: contractual no approval, under $25 supervisor note, $25-$200 supervisor approval, over $200 manager review with justification."
+    },
+    {
+      "name": "Weekly write-off review meeting",
+      "description": "Fifteen-minute agenda: last week's write-offs by category, patterns, appropriate versus avoidable."
+    },
+    {
+      "name": "Quarterly write-off recovery audit",
+      "description": "Look back two quarters for patients with later visits, late filings supportable with proof of earlier submission, and bad debt never offered a plan."
+    },
+    {
+      "name": "Timely-filing trace",
+      "description": "For each timely-filing write-off identify whether the charge was never created, the claim was never confirmed received, or a denial aged out."
+    },
+    {
+      "name": "Cost-to-collect calculation",
+      "description": "Worked example ($180,000 on $3.6 million equals 5%) and a list of cost components; trend quarterly for two years."
+    },
+    {
+      "name": "Biller productivity check",
+      "description": "Claims per biller per day against an 80-120 range."
+    },
+    {
+      "name": "Technology-stack utilization audit",
+      "description": "Four questions on unused features, automatable manual work, clearinghouse edit logic and workarounds."
+    },
+    {
+      "name": "Net-collection shortfall arithmetic",
+      "description": "Three worked ratios: non-contractual write-offs over collectible revenue, denial rate times unrecovered share, patient share times uncollected share."
+    },
+    {
+      "name": "Daily missing-charge report",
+      "description": "Encounters without charges by provider and date of service, with a 48-hour trigger for contacting the provider."
+    },
+    {
+      "name": "Provider charge-lag report card",
+      "description": "Monthly lag per provider beside target and anonymized peers."
+    },
+    {
+      "name": "Monthly encounter-to-charge reconciliation",
+      "description": "Compare encounter counts from scheduling and clinical records with charge counts."
+    },
+    {
+      "name": "Sustainment test and monthly denial review",
+      "description": "Three signals that a fix stuck, plus a 15-minute monthly check for 2-point movements by payer."
+    },
+    {
+      "name": "Ninety-day one-metric rollout rule",
+      "description": "Closing instruction to pick the single metric with the largest gap and dollar effect and run the full cycle before starting another."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Overall denial rate",
+      "definition": "Share of submitted claims denied across all payers. The guide never says whether to count claims, lines or dollars, or initial versus final denials.",
+      "formula": "",
+      "target": "< 5%",
+      "red_flag": "> 7% requires immediate intervention",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate by payer",
+      "definition": "The same rate computed separately for each payer and trended; presented as the only operationally meaningful version.",
+      "formula": "",
+      "target": "< 5% per payer",
+      "red_flag": "> 10% for any single payer is a crisis",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-pass denial rate",
+      "definition": "Claims denied on first submission; a later note says it is the exact complement of first-pass acceptance.",
+      "formula": "100% minus first-pass acceptance (implied by the Chapter 2 note)",
+      "target": "< 3%",
+      "red_flag": "> 5% signals front-end process failure",
+      "source_cited": "none"
+    },
+    {
+      "name": "Avoidable denial rate",
+      "definition": "Denials caused by the practice's own errors; listed in the table but never defined.",
+      "formula": "",
+      "target": "< 2%",
+      "red_flag": "> 4% means systemic rework rather than one-off errors",
+      "source_cited": "none"
+    },
+    {
+      "name": "Front-end denial share (diagnostic)",
+      "definition": "Portion of denial volume carrying the five listed registration and coverage reason codes.",
+      "formula": "denials with CO-4, CO-16, CO-22, CO-27 or PR-27 divided by all denials",
+      "target": "",
+      "red_flag": "> 30% of denial volume places the problem at registration and pre-authorization",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer denial-rate movement (monthly review)",
+      "definition": "Change in each payer's denial rate against the prior three months.",
+      "formula": "",
+      "target": "",
+      "red_flag": "a move of more than 2 percentage points in either direction",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate",
+      "definition": "Share of claims accepted and processed by the payer on first submission with no rejection, denial or request for more information.",
+      "formula": "",
+      "target": "> 95%",
+      "red_flag": "< 90% requires immediate front-end audit",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-pass acceptance",
+      "definition": "Share of claims not denied on first pass.",
+      "formula": "100% minus first-pass denial rate (per the guide's own note)",
+      "target": "> 97%",
+      "red_flag": "< 95% signals systematic coding issues",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clearinghouse rejection rate",
+      "definition": "Share of claims rejected at the clearinghouse before reaching the payer.",
+      "formula": "",
+      "target": "< 2%",
+      "red_flag": "> 3% indicates eligibility or formatting failures",
+      "source_cited": "none"
+    },
+    {
+      "name": "Rework rate",
+      "definition": "Share of claims needing a second touch; not otherwise defined.",
+      "formula": "",
+      "target": "< 5%",
+      "red_flag": "> 8% means staff time is going to preventable errors",
+      "source_cited": "none"
+    },
+    {
+      "name": "Registration-related rejection share (diagnostic)",
+      "definition": "Portion of clearinghouse rejections carrying three codes the guide labels ANSI 004, 005 and 021.",
+      "formula": "rejections with those codes divided by all rejections",
+      "target": "",
+      "red_flag": "> 40% of rejection volume means a registration accuracy problem",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate by rendering provider",
+      "definition": "Clean claim rate split by clinician to find documentation or coding outliers.",
+      "formula": "",
+      "target": "",
+      "red_flag": "one provider far below peers (example given: 81% against 98%)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR (overall)",
+      "definition": "Described as the average number of days from service to payment and treated as the cash conversion cycle; no calculation is given.",
+      "formula": "",
+      "target": "< 35 days (28-32 said to be common for Medicare-heavy primary care; 40-45 tolerated for authorization-heavy specialties)",
+      "red_flag": "> 50 days is a cash flow emergency",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR by payer",
+      "definition": "Days in AR computed for each payer over the last 90 days.",
+      "formula": "",
+      "target": "< 30 days (commercial)",
+      "red_flag": "> 45 days for any major payer requires intervention",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR by provider",
+      "definition": "Days in AR for each provider compared with the practice average.",
+      "formula": "",
+      "target": "within 5 days of practice average",
+      "red_flag": "> 10 days above average signals documentation lag",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR trend",
+      "definition": "Direction of overall days in AR month over month.",
+      "formula": "",
+      "target": "flat or declining",
+      "red_flag": "three consecutive months of increase requires root cause analysis",
+      "source_cited": "none"
+    },
+    {
+      "name": "Share of open AR beyond 60 and 90 days (diagnostic)",
+      "definition": "Portion of the open AR balance older than 60 days and older than 90 days.",
+      "formula": "balance older than the threshold divided by total open AR",
+      "target": "",
+      "red_flag": "> 25% beyond 60 days; > 15% beyond 90 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer payment cycle",
+      "definition": "Average days from clean claim submission to payment for a payer, compared with contract terms.",
+      "formula": "average of (payment date minus clean submission date) over six months",
+      "target": "within contracted terms (stated as usually 30 days for electronic commercial claims)",
+      "red_flag": "consistently beyond contract terms",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR aging: 0-30 days",
+      "definition": "Share of total AR in the youngest bucket.",
+      "formula": "bucket balance divided by total AR",
+      "target": "> 65% of total AR",
+      "red_flag": "< 55% indicates slow initial billing",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR aging: 31-60 days",
+      "definition": "Share of total AR aged 31 to 60 days.",
+      "formula": "bucket balance divided by total AR",
+      "target": "< 15% of total AR",
+      "red_flag": "> 25% signals follow-up gaps",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR aging: 61-90 days",
+      "definition": "Share of total AR aged 61 to 90 days.",
+      "formula": "bucket balance divided by total AR",
+      "target": "< 10% of total AR",
+      "red_flag": "> 15% requires immediate queue intervention",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR aging: 91-120 days",
+      "definition": "Share of total AR aged 91 to 120 days.",
+      "formula": "bucket balance divided by total AR",
+      "target": "< 5% of total AR",
+      "red_flag": "> 8% means denial management is failing",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR aging: 120+ days",
+      "definition": "Share of total AR older than 120 days.",
+      "formula": "bucket balance divided by total AR",
+      "target": "< 5% of total AR",
+      "red_flag": "> 10% is a write-off and recovery crisis",
+      "source_cited": "none"
+    },
+    {
+      "name": "Point-of-service collection rate",
+      "definition": "Share of the patient's known responsibility (copay, known deductible, prior balance) collected at the visit.",
+      "formula": "amount collected at visit divided by known responsibility at visit (implied)",
+      "target": "> 90% of known responsibility",
+      "red_flag": "< 75% requires front desk training and workflow overhaul",
+      "source_cited": "none (the guide itself says the figure is an internal target not verified against a published source)"
+    },
+    {
+      "name": "Copay collection rate",
+      "definition": "Share of copays due that are collected at the visit.",
+      "formula": "",
+      "target": "> 98%",
+      "red_flag": "< 95%, described as a culture problem",
+      "source_cited": "none"
+    },
+    {
+      "name": "Known deductible collection",
+      "definition": "Share of known deductible amounts collected at the visit.",
+      "formula": "",
+      "target": "> 80%",
+      "red_flag": "< 60% means staff are not raising it at all",
+      "source_cited": "none"
+    },
+    {
+      "name": "Prior balance collection",
+      "definition": "Share of outstanding prior balances collected at the visit.",
+      "formula": "",
+      "target": "> 70%",
+      "red_flag": "< 50% indicates no prior-balance protocol",
+      "source_cited": "none"
+    },
+    {
+      "name": "Eligibility verification rate",
+      "definition": "Share of visits in the last 30 days that had a verified eligibility check.",
+      "formula": "",
+      "target": "",
+      "red_flag": "more than 15% of visits without a verified check",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient collection rate",
+      "definition": "Share of total patient financial responsibility collected over the full cycle (visit, statements, plans, collections).",
+      "formula": "patient payments divided by total patient responsibility (implied)",
+      "target": "45-50% or better is strong; > 80% is aspirational top-quartile",
+      "red_flag": "< 34% requires complete redesign of patient financial engagement",
+      "source_cited": "none (unnamed 'published data 2024-2025')"
+    },
+    {
+      "name": "Statement response rate",
+      "definition": "Share of statements that produce a payment.",
+      "formula": "",
+      "target": "> 40%",
+      "red_flag": "< 25% (the text elsewhere uses under 30% within 30 days of the first statement)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payment plan compliance rate",
+      "definition": "Share of payment plans kept current.",
+      "formula": "",
+      "target": "> 85%",
+      "red_flag": "< 70% means plans are set without follow-through",
+      "source_cited": "none"
+    },
+    {
+      "name": "Collections placement rate",
+      "definition": "Share of patient AR sent to an outside agency.",
+      "formula": "",
+      "target": "< 5% of patient AR",
+      "red_flag": "> 10% means a front-end problem is being outsourced",
+      "source_cited": "none"
+    },
+    {
+      "name": "Contractual adjustment rate",
+      "definition": "Adjustments from billed charge to contracted rate, compared with what contracts predict.",
+      "formula": "",
+      "target": "per contract terms",
+      "red_flag": "more than 5% variance from expected requires a contract audit",
+      "source_cited": "none"
+    },
+    {
+      "name": "Bad debt write-off rate",
+      "definition": "Patient balances written off after the full collection cycle.",
+      "formula": "bad debt write-offs divided by gross charges",
+      "target": "< 1% of gross charges",
+      "red_flag": "> 2% signals patient collection system failure",
+      "source_cited": "none"
+    },
+    {
+      "name": "Timely filing write-off rate",
+      "definition": "Write-offs for claims filed after the payer's deadline.",
+      "formula": "",
+      "target": "0%",
+      "red_flag": "any timely filing write-off",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administrative write-off rate",
+      "definition": "Discretionary write-offs made to close a claim.",
+      "formula": "administrative write-offs divided by gross charges",
+      "target": "< 0.5% of gross charges",
+      "red_flag": "> 1% requires an approval process and audit",
+      "source_cited": "none"
+    },
+    {
+      "name": "Non-contractual write-offs to collectible revenue (diagnostic)",
+      "definition": "Share of contractually collectible revenue lost to write-offs other than contractual adjustments.",
+      "formula": "trailing-12-month non-contractual write-offs divided by (gross charges minus contractual adjustments)",
+      "target": "",
+      "red_flag": "> 2%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Cost to collect",
+      "definition": "Total revenue-cycle operating cost as a share of net collections.",
+      "formula": "(billing staff pay and benefits + clearinghouse + billing share of software + collection agency + outsourced billing fees) divided by net collections, trailing 12 months",
+      "target": "3-5% typical in the table (3-8% in the text); 2-4% best-in-class",
+      "red_flag": "> 8% requires an efficiency audit; under 3% also flagged as possible under-investment",
+      "source_cited": "HFMA named for the 2-4% range only, with no publication or year"
+    },
+    {
+      "name": "Billing staff cost per claim",
+      "definition": "Billing labor cost divided by claims handled.",
+      "formula": "",
+      "target": "< $8 per claim",
+      "red_flag": "> $12 means the staff-to-volume ratio is off",
+      "source_cited": "none"
+    },
+    {
+      "name": "Technology cost per claim",
+      "definition": "Revenue-cycle technology cost divided by claims handled.",
+      "formula": "",
+      "target": "< $2 per claim",
+      "red_flag": "> $4 suggests vendor consolidation",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rework cost",
+      "definition": "Cost of reworking denied claims as a share of total billing cost.",
+      "formula": "",
+      "target": "minimized",
+      "red_flag": "any growth in its share",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claims per biller per day",
+      "definition": "Daily claim throughput per biller, counting follow-up, appeals and posting.",
+      "formula": "",
+      "target": "80-120",
+      "red_flag": "below the range",
+      "source_cited": "none (called a commonly cited internal target)"
+    },
+    {
+      "name": "Net collection rate",
+      "definition": "Collections as a share of the amount contractually collectible.",
+      "formula": "collections divided by (gross charges minus contractual adjustments)",
+      "target": "> 95% (above 97% called excellent)",
+      "red_flag": "< 93% requires comprehensive revenue cycle review",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net collection rate trend",
+      "definition": "Direction of net collection rate over time.",
+      "formula": "",
+      "target": "stable or improving",
+      "red_flag": "any decline of more than 1% over 90 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Adjusted collection rate",
+      "definition": "Presented as net collection with bad debt removed, to isolate payer performance; no formula given.",
+      "formula": "",
+      "target": "> 96%",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net collection rate by payer",
+      "definition": "Net collection rate computed per payer.",
+      "formula": "",
+      "target": "track separately",
+      "red_flag": "a payer below 90% warrants contract and process review",
+      "source_cited": "none"
+    },
+    {
+      "name": "Average charge lag",
+      "definition": "Days from date of service to charge entry in the practice-management system.",
+      "formula": "average of (charge entry date minus date of service)",
+      "target": "24-48 hours, with a 72-hour ceiling for any encounter",
+      "red_flag": "> 48 hours requires immediate workflow intervention",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charges with more than 3 days lag",
+      "definition": "Share of encounters whose charge is entered more than three days after service.",
+      "formula": "",
+      "target": "< 5% of total encounters",
+      "red_flag": "> 10% indicates systematic documentation or workflow failure",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge lag by provider",
+      "definition": "Average charge lag for each clinician.",
+      "formula": "",
+      "target": "track individually",
+      "red_flag": "more than 2 days above practice average",
+      "source_cited": "none"
+    },
+    {
+      "name": "Hospital charge lag",
+      "definition": "Charge lag for hospital encounters, tracked apart from office visits.",
+      "formula": "",
+      "target": "< 3 days",
+      "red_flag": "> 5 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Encounter-to-charge gap",
+      "definition": "Encounters with no corresponding charge, found by monthly reconciliation.",
+      "formula": "encounters in scheduling and clinical records minus encounters with charges",
+      "target": "",
+      "red_flag": "any gap; 1-3% of encounter volume said to be typical where no reconciliation exists",
+      "source_cited": "none"
+    },
+    {
+      "name": "Sustainment window",
+      "definition": "Period a metric must hold at target under normal operations before a fix counts as embedded.",
+      "formula": "",
+      "target": "90 consecutive days (two consecutive quarters for cost to collect and net collection rate)",
+      "red_flag": "reverts after a staffing change or once attention moves on",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Moving clean claim rate from 91% to 95% in a practice billing $3 million a year removes about $120,000 of claims needing rework.",
+      "section": "Ch. 2, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "If CO-4, CO-16, CO-22, CO-27 and PR-27 exceed 30% of denial volume, the problem is at registration and pre-authorization.",
+      "section": "Ch. 1, Root Cause Analysis",
+      "source_cited": "none"
+    },
+    {
+      "claim": "If 'ANSI error codes' 004, 005 and 021 exceed 40% of clearinghouse rejections, registration accuracy is the problem.",
+      "section": "Ch. 2, Root Cause Analysis",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Eligibility denials are 100% avoidable; verify within 72 hours of the appointment and again at check-in if the patient has not been seen in 90 days.",
+      "section": "Ch. 1, Intervention Two",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 12-month denial heat map is a one-time data pull that takes two hours.",
+      "section": "Ch. 1, Intervention One",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A claim scrubber with payer-specific edits pays back its implementation cost within the first ninety days.",
+      "section": "Ch. 2, Intervention Three",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Days in AR benchmark is under 35 days for most specialties; Medicare-heavy primary care runs 28 to 32 days; authorization-heavy specialties 40 to 45.",
+      "section": "Ch. 3, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "More than 25% of open AR beyond 60 days signals a follow-up problem; more than 15% beyond 90 days signals sharply rising write-off risk.",
+      "section": "Ch. 3, Root Cause Analysis",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Contracted payment terms for most commercial payers are 30 days for electronic claims.",
+      "section": "Ch. 3, Intervention One",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare claim status should be checked by day 14, commercial claims by day 21, slow Medicare Advantage plans by day 14.",
+      "section": "Ch. 3, Intervention Three",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Healthy AR distribution: over 65% in 0-30 days, under 15% in 31-60, under 10% in 61-90, under 5% in 91-120, under 5% beyond 120.",
+      "section": "Ch. 4, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Practices auditing the 120-plus bucket monthly have substantially smaller buckets than those auditing quarterly.",
+      "section": "Ch. 4, Intervention One",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Collecting a patient balance costs about $3-$5 at point of service, $8-$14 through statements and $20-$35 through collections.",
+      "section": "Ch. 5, Diagnostic Trigger",
+      "source_cited": "none ('the research' is invoked without a citation)"
+    },
+    {
+      "claim": "Point-of-service targets: over 90% of known responsibility, over 98% of copays, over 80% of known deductibles, over 70% of prior balances.",
+      "section": "Ch. 5, Diagnostic Trigger",
+      "source_cited": "none (the guide calls it an internal target not verified against a published source)"
+    },
+    {
+      "claim": "Pre-visit financial clearance raises point-of-service collection rates by 8 to 15 percentage points.",
+      "section": "Ch. 5, Intervention Two",
+      "source_cited": "none"
+    },
+    {
+      "claim": "National average patient collection rate is roughly 34% to 48% per published 2024-2025 data; 80% or more is top-quartile.",
+      "section": "Ch. 6, Diagnostic Trigger",
+      "source_cited": "none (unnamed 'current published data')"
+    },
+    {
+      "claim": "Most practices have six to ten points in the patient-balance workflow where a balance can stall with no next action.",
+      "section": "Ch. 6, Root Cause Analysis",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A third-touch phone call is three to four times more effective than a third paper statement.",
+      "section": "Ch. 6, Intervention One",
+      "source_cited": "none ('the research' is invoked without a citation)"
+    },
+    {
+      "claim": "Payment plans set up early on a card on file exceed 90% compliance; plans set after several collection cycles fall below 50%.",
+      "section": "Ch. 6, Intervention Two",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Write-off targets: bad debt under 1% of gross charges, administrative under 0.5%, timely filing zero.",
+      "section": "Ch. 7, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Quarterly audits of prior write-offs typically recover 10% to 20% of the audited balances.",
+      "section": "Ch. 7, Intervention Three",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Cost to collect for independent practices runs 3% to 8% of net collections; $180,000 of cost on $3.6 million collected equals 5%.",
+      "section": "Ch. 8, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Best-in-class cost to collect is roughly 2% to 4%.",
+      "section": "Ch. 8, Diagnostic Trigger",
+      "source_cited": "HFMA (named only; no publication or year)"
+    },
+    {
+      "claim": "Billing staff cost should be under $8 per claim and technology cost under $2 per claim.",
+      "section": "Ch. 8, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A competent biller handles 80 to 120 claims per day including follow-up, appeals and posting.",
+      "section": "Ch. 8, Root Cause Analysis",
+      "source_cited": "none (called a commonly cited internal target)"
+    },
+    {
+      "claim": "A denied and reworked claim costs three to four times as much to collect as one paid first time; above an 8% denial rate, rework consumes over 30% of billing capacity.",
+      "section": "Ch. 8, Intervention Two",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Net collection rate should exceed 95%; above 97% is excellent; below 93% is a performance gap.",
+      "section": "Ch. 9, Diagnostic Trigger",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 9% denial rate with 60% appeal recovery loses about 3.6% of collectible revenue; a 25% patient share collected at 55% loses about 11%.",
+      "section": "Ch. 9, Root Cause Analysis",
+      "source_cited": "none (worked arithmetic)"
+    },
+    {
+      "claim": "Top-quartile practices enter charges within 24 to 48 hours with a 72-hour ceiling; broader literature publishes 1 to 5 days.",
+      "section": "Ch. 10, Diagnostic Trigger",
+      "source_cited": "none (unnamed 'broader revenue cycle management literature')"
+    },
+    {
+      "claim": "Without formal reconciliation, 1% to 3% of encounters never get a charge.",
+      "section": "Ch. 10, Intervention Four",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "To diagnose front-end failures, filter denials for CO-4 (service inconsistent with modifier), CO-16 (information missing), CO-22 (coordination of benefits), CO-27 (expenses after coverage terminated) and PR-27 (expenses incurred prior to coverage date).",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Ch. 1, Root Cause Category One: Front-End Failures",
+      "why": "These codes drive the root-cause triage and any automated denial-routing rule. On the X12 list 'prior to coverage' is reason code 26, not 27, and code 4 is a coding error rather than a registration failure, so the basket misroutes work and the 30% test is unreliable."
+    },
+    {
+      "id": "C2",
+      "claim": "Clearinghouse rejections: if ANSI error codes 004 (subscriber not eligible), 005 (invalid subscriber ID), or 021 (missing required information) exceed 40% of rejection volume, you have a registration accuracy problem.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Ch. 2, Category One: Demographic and Eligibility Errors",
+      "why": "If these codes do not exist as described, a rejection-triage rule built on them matches nothing. Rejections normally arrive as X12 277CA category and status codes or payer-specific edits, where 4 and 5 carry unrelated meanings."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare Advantage prior authorization requirements that exceed clinical guidelines and medical necessity criteria that differ from published LCDs are payer design choices; cross-payer denial comparisons support a complaint to the state insurance commissioner.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Ch. 1, Root Cause Category Three: Payer-Specific Behavior",
+      "why": "Medicare Advantage is a large share of this practice's revenue. Federal rules since 2024 require plans to follow Medicare national and local coverage policy (42 CFR 422.101) and 2026 rules set prior-authorization decision deadlines, giving concrete appeal grounds the guide omits; complaints about these plans go to CMS because state law is largely preempted."
+    },
+    {
+      "id": "C4",
+      "claim": "Contracted payment terms for most commercial payers are 30 days for electronic claims; a payer consistently exceeding them can be escalated, and state insurance commissioners take timely payment violations seriously.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Ch. 3, Intervention One: Identify and Address Your Highest-Lag Payers",
+      "why": "The follow-up clock, interest entitlement and escalation route all depend on it. Prompt-pay periods are set by state statute and contract (Florida's statutes are believed to use a shorter clock for electronic claims), and state regulators cannot act on self-funded employer plans or Medicare Advantage."
+    },
+    {
+      "id": "C5",
+      "claim": "Quarterly write-off audits can recover timely filing write-offs where the payer may accept a late filing with documentation of prior submission attempts; recovery rates on audited write-offs typically run 10 to 20 percent.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Ch. 7, Intervention Three: Conduct a Quarterly Write-Off Recovery Audit",
+      "why": "Medicare's timely-filing exceptions are narrow and specific (42 CFR 424.44: administrative error, retroactive entitlement, retroactive Medicaid recoupment, retroactive Medicare Advantage disenrollment). Relying on proof of earlier attempts could waste effort or miss the real exception windows that arise with dual-eligible patients. The recovery percentage is unsourced."
+    },
+    {
+      "id": "C6",
+      "claim": "Current published data (2024-2025) puts the national average patient collection rate at about 34% to 48%; 45-50% or better is strong, target-level performance and 80% or more is top-quartile.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Ch. 6, Diagnostic Trigger",
+      "why": "It sets the target band. If the figure comes from hospital self-pay data it misstates what a physician practice should expect and would lower the bar for this practice and for any client practice the owner later advises."
+    },
+    {
+      "id": "C7",
+      "claim": "Cost-to-collect benchmarks for independent practices range from 3% to 8%; a best-in-class range of roughly 2% to 4% is commonly cited by HFMA for the most efficient revenue cycle operations.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Ch. 8, Diagnostic Trigger",
+      "why": "Cost to collect is the yardstick for in-house AI billing economics and for pricing a billing service. HFMA's measure is generally quoted for hospitals and health systems; physician-practice billing costs reported elsewhere run higher, so the stretch target may be unrealistic and the named attribution may not hold."
+    },
+    {
+      "id": "C8",
+      "claim": "Without a formal charge reconciliation process, the gap between encounters and charges is typically 1% to 3% of total encounter volume.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Ch. 10, Intervention Four: Monthly Charge Audit for Late Entries and Missing Charges",
+      "why": "It sizes the revenue at risk from missed charges, the main leakage risk in hospital and nursing-facility rounding where no appointment schedule exists. If real leakage for that kind of work is higher, the practice would under-invest in census-to-charge reconciliation."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.44,
+      "topics": [
+        "denial rate by payer and root-cause triage",
+        "daily denial queue",
+        "clean claim and first-pass tracking",
+        "clearinghouse rejections and scrubbing",
+        "days in AR and aging buckets",
+        "dollar-and-age follow-up prioritization",
+        "120-plus audit and escalation",
+        "patient statements, payment plans, collections placement",
+        "write-off categories and approval tiers",
+        "timely filing",
+        "net collection rate"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.14,
+      "topics": [
+        "eligibility verification timing",
+        "prior-authorization tracking grid",
+        "registration accuracy",
+        "pre-visit financial clearance",
+        "point-of-service collection scripting"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.12,
+      "topics": [
+        "charge lag",
+        "missing-charge report",
+        "encounter-to-charge reconciliation",
+        "hospital charge stream",
+        "provider documentation feedback",
+        "modifier and bundling errors"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.1,
+      "topics": [
+        "cost to collect",
+        "net versus gross collection rate",
+        "cash conversion cycle",
+        "write-off authorization as internal control",
+        "monthly KPI review cadence"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.08,
+      "topics": [
+        "payer-specific denial evidence for negotiation",
+        "payer requirements reference sheet",
+        "prompt-payment escalation",
+        "net collection rate by payer",
+        "Medicare Advantage denial behavior"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.05,
+      "topics": [
+        "role-level accountability",
+        "scripted training and role-play",
+        "biller productivity targets",
+        "visible scoreboards",
+        "provider conversations framed around revenue"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "KPI dashboards by payer and provider",
+        "claim scrubber edits",
+        "technology-stack utilization audit",
+        "workflow prompts inside the practice-management system"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.02,
+      "topics": [
+        "documentation-coding divergence from late charge entry",
+        "write-off approval and justification trail"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.02,
+      "topics": [
+        "same-day note completion",
+        "documentation support (templates, voice tools, scribes)"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Pair every KPI with two numbers, a benchmark to aim for and a separate threshold that triggers action, then run the same five steps (trigger, cause, ranked fixes, execution, durability check).",
+      "why": "Separating watch from act prevents both complacency and thrash, and a uniform routine lets an owner, a manager or an automated agent review any metric the same way.",
+      "applies_to_practice": "yes",
+      "note": "Replace the guide's unsourced thresholds with verified benchmarks and the practice's own trailing baselines per payer; with small monthly volumes use rolling three-month rates."
+    },
+    {
+      "idea": "Measure denials, clean claims, AR days and net collection by payer, and compare the same CPT codes across payers to separate own errors from payer behavior.",
+      "why": "Aggregates hide a single bad payer; same-code comparison is the cleanest evidence that a pattern belongs to the plan rather than the practice.",
+      "applies_to_practice": "yes",
+      "note": "Natural fit: compare UnitedHealthcare, Humana, Capital Health Plan and Florida Blue Medicare Advantage against traditional Medicare on the same facility visit, care-management, advance-care-planning and wellness codes. Send the evidence to plan provider relations, contract talks and CMS rather than the state regulator."
+    },
+    {
+      "idea": "Report preventable denials and payer-behavior denials as two separate rates.",
+      "why": "Keeps the internal error rate honest and gives a defensible number to put in front of a payer.",
+      "applies_to_practice": "yes",
+      "note": "Needs a written rule classifying each reason-code and remark-code pair; do not reuse the guide's code lists without checking them against the X12 code set."
+    },
+    {
+      "idea": "Daily exception queues: denials touched within 48 hours and worked highest dollars first; follow-up sorted by dollars within age bucket; no claim leaves a queue without an action taken and a next follow-up date.",
+      "why": "Turns aging from a monthly discovery into a daily control and removes the 'someone else has it' failure.",
+      "applies_to_practice": "yes",
+      "note": "Directly encodable as hard rules for AI billing agents: every open claim carries a status, last action and next-action date, with a daily exception report to the owner for any that do not."
+    },
+    {
+      "idea": "Exception-based follow-up windows set per payer from expected payment timing, instead of touching everything at day 30.",
+      "why": "Follow-up starts the moment a payment is late for that payer rather than when the calendar says so.",
+      "applies_to_practice": "yes",
+      "note": "Set the windows from actual rules (Medicare's payment floor and clean-claim standard, Florida prompt-pay statutes, each Medicare Advantage and Medicaid plan contract) rather than the guide's 14/21/14 days."
+    },
+    {
+      "idea": "Monthly audit of all balances over 120 days, sorted into four causes with an explicit pursue-or-write-off decision, plus a written escalation ladder with named owners and deadlines.",
+      "why": "Forces a decision on old balances and shows which upstream failure keeps refilling the bucket.",
+      "applies_to_practice": "yes",
+      "note": "Rewrite the ladder's last step by plan type: CMS for Medicare Advantage, the state Medicaid agency for Medicaid plans, the state insurance regulator only for fully insured commercial products. Add appeal deadlines per payer."
+    },
+    {
+      "idea": "Write-off governance: classify every write-off by reason, trend monthly, require approval above dollar tiers, trace every timely-filing loss to its origin, and re-audit past write-offs quarterly.",
+      "why": "Non-contractual write-offs are discretionary decisions; approval tiers create an audit trail and reveal patterns. It is also an internal control a buyer's diligence team will look for.",
+      "applies_to_practice": "yes",
+      "note": "For agent-run billing: agents may post contractual adjustments that match the fee schedule but must queue any other adjustment above a set amount for owner approval. Add rules for Medicare and Medicaid cost-sharing, dual-eligible patients and credit balances, which the guide omits."
+    },
+    {
+      "idea": "Daily list of encounters with no charge and a monthly reconciliation of encounters to charges, with hospital and facility work tracked as its own stream.",
+      "why": "Unbilled visits are invisible to every downstream metric; reconciliation is the only control that finds them.",
+      "applies_to_practice": "yes",
+      "note": "The single most valuable idea for a facility-based practice. There is no appointment schedule, so reconcile against hospital and nursing-facility census, rounding lists and signed notes, by clinician and facility."
+    },
+    {
+      "idea": "Calculate all-in cost to collect and trend it; compute net collection rate monthly on a rolling basis and split any shortfall into write-offs, unrecovered denials and uncollected patient balances.",
+      "why": "Turns two summary ratios into a dollar-ranked list of where money is lost and what it costs to get it.",
+      "applies_to_practice": "yes",
+      "note": "Include AI-agent platform and usage costs, clearinghouse, software and the owner's oversight hours. This doubles as the unit-economics model for any billing or optimization service sold to other practices. Verify benchmark ranges against physician-practice sources first."
+    },
+    {
+      "idea": "Count an improvement as fixed only after 90 days of normal operations, a change in who does the work without a spike, and payer-level rates that agree with the aggregate; work one metric at a time.",
+      "why": "Guards against declaring victory on gains that depend on one person's attention.",
+      "applies_to_practice": "partly",
+      "note": "Translate 'new hire' into a change of agent, prompt, model version or covering clinician; keep regression checks and re-test after each such change."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "Seven of the ten chapters cover metrics this practice must run (payer denials, clean claims, AR days and aging, write-offs, cost to collect, net collection, charge lag), and the hospital-charge-lag and encounter-to-charge reconciliation ideas address its largest exposure. But the guide assumes an office practice with a front desk, scheduled visits, commercially insured high-deductible patients and a human billing hierarchy. It has nothing on Medicare fee-for-service mechanics, Medicare Advantage appeals, Medicaid crossovers, dual-eligible billing limits, census-based charge capture in hospitals and nursing facilities, care-management codes or controls for AI agents. Useful as a KPI skeleton; every threshold and workflow needs re-basing.",
+    "sections_that_do_not_apply": [
+      "Chapter 5 (point-of-service collection) almost entirely: there is no front desk or check-in",
+      "Chapter 6 check-in conversation, pre-visit clearance calls and scoreboard; the statement cadence applies only to a small patient-balance book and must respect dual-eligible billing limits",
+      "Chapter 2 front-desk observation audit and registrar accountability",
+      "Prior-authorization tracking for scheduled procedures (Chapters 1 and 2): limited use for facility evaluation-and-management visits",
+      "Chapter 8 claims-per-biller productivity and staff-cost-per-claim benchmarks: billing is run by AI agents",
+      "Staff scoreboards, role-play training and new-hire sustainment signals as literally written",
+      "Days in AR by provider as a documentation-lag signal: only two clinicians"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Chapter 1 reason codes: PR-27 is described as expenses before coverage began, but that meaning belongs to adjustment reason code 26; code 27 is expenses after coverage ended. CO-4 (procedure and modifier mismatch) is a coding error yet is filed under registration failures, and the codes practices actually see for authorization and eligibility problems (for example 197, 109, 31, 24) are absent, so the 30% front-end test rests on the wrong basket.",
+      "Chapter 2 'ANSI error codes 004, 005 and 021' match no standard X12 acknowledgment or claim-status list as I know it: status code 21 does mean missing or invalid information, but 4 and 5 mean something unrelated. Treat as invented or vendor-specific.",
+      "Medicare Advantage: plan medical-necessity criteria that depart from local coverage determinations are presented as legitimate design choices. Federal rules in force since 2024 require plans to follow Medicare national and local coverage policy and confine internal criteria to gaps, an appeal argument the guide never gives.",
+      "Regulator advice: complaints to the state insurance commissioner are offered as the escalation for payer behavior, including in a passage about Medicare Advantage. State regulators generally have no authority over Medicare Advantage claim disputes (federal preemption; CMS is the regulator) or over self-funded employer plans.",
+      "'Thirty days for electronic claims' is presented as the usual commercial payment term. Prompt-pay periods come from state statute and contract and differ by state (Florida's are shorter, as I recall); no jurisdiction-specific rule is given.",
+      "Days in AR is defined as average days from service to payment, with no formula. Practice-management systems compute it as receivables divided by average daily charges; under that formula unposted charges are not in AR, so the claim that each day of charge lag adds a day to days in AR is not literally true, and provider-level differences mostly reflect payer and service mix rather than documentation lag.",
+      "Aging targets imply under 10% of AR beyond 90 days, tighter than commonly published physician-practice figures, with no source; the aging start date, insurance versus patient AR and credit balances are never addressed.",
+      "Chapter 5 unit costs of collection ($3-5, $8-14, $20-35) are attributed to 'unambiguous' research with no citation; collection agencies normally charge a percentage of recoveries, not a flat amount.",
+      "Chapter 6's national average of 34-48% names no source and resembles hospital self-pay figures rather than physician-practice data.",
+      "Chapter 7 says recovered write-offs were 'already expensed'. A cash-basis practice never recorded that revenue or a bad-debt expense, so recovery is simply late income. Contractual adjustments are also loosely called write-offs.",
+      "Chapter 8: the HFMA 2-4% figure is a hospital and health-system style measure used as a stretch target for small practices; the guide's cost list leaves out front-end, coding, provider and management time, so its ratio is not comparable to any external benchmark.",
+      "Chapter 9: 'adjusted collection rate' is normally another name for net collection rate, not a separate measure with bad debt removed; a payer-level net collection rate of 88% is called negotiating leverage although it also reflects patient balances and the practice's own unworked denials.",
+      "Chapter 10 blames hospital charge lag above five days on 'credentialing', which delays claim release, not charge entry.",
+      "Chapter 1 calls eligibility denials 100% avoidable, ignoring retroactive changes (Medicaid terminations, mid-month plan switches, hospice elections, other-insurance updates) that no pre-visit check can catch.",
+      "Collection and small-balance write-off advice is given with no reference to patients who cannot legally be billed (Qualified Medicare Beneficiaries, Medicaid enrollees) or to the limits on routinely waiving Medicare cost-sharing."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Patient-collection numbers do not fit together: Chapter 5 targets collecting over 90% of known responsibility at the visit (98% of copays), Chapter 6 calls 45-50% overall strong and 80% aspirational, while Chapter 9 expects net collection above 95% and Chapter 7 bad debt under 1% of gross charges. With any meaningful patient share these cannot all hold; Chapter 9's own example (25% patient share collected at 55%) caps net collection near 89%.",
+      "Cost to collect: the text gives 3-8% as the typical range, the table says 3-5% typical; under 3% is said to deserve scrutiny yet 2-4% is the stretch target.",
+      "Chapter 8 productivity versus unit cost: 80-120 claims per biller per day implies roughly $2-$3 of staff cost per claim at ordinary wages, yet the benchmark is under $8 and the alarm is over $12.",
+      "First-pass results are assigned different causes: Chapter 1 says first-pass denials above 5% signal front-end failure; Chapter 2 says first-pass acceptance below 95% (the same condition, by the guide's own complement note) signals coding issues.",
+      "The Chapter 2 note says accepted and denied are exact complements with no third category, but the same table carries a clearinghouse rejection rate, which is exactly a third category.",
+      "Eligibility timing: verify within 72 hours of the appointment and on every visit (Chapter 1), re-verify at check-in only if not seen in 90 days (Chapter 1), in real time or within 24 hours (Chapter 5); Chapter 10 then places charge lag before eligibility is verified.",
+      "Charge-lag thresholds: more than three days is the trigger in Chapter 3; more than 48 hours demands immediate intervention in Chapter 10; the provider example uses a 1.0-day target against a 24-48 hour benchmark.",
+      "Chapter 3 closes by saying days in AR does not measure payer speed, after defining it as service-to-payment time and devoting its first diagnosis and first intervention to slow payers.",
+      "Statement response: benchmark above 40% and alarm below 25% in the table, but the diagnostic text uses below 30% within 30 days.",
+      "Chapter 9 names four causes of low net collection and discusses only three; the fourth (missed charge capture) cannot lower the ratio at all, since unbilled services sit in neither numerator nor denominator.",
+      "The introduction promises a week-by-week, role-by-role floor plan in every chapter; only Chapters 1 and 2 come close, and Chapters 3 to 10 give a single paragraph each.",
+      "Chapter 4's correction note calls upper-limit targets summing to 105% a mathematical impossibility; limits are not shares and need not sum to 100%, so the 'correction' changed a benchmark for a spurious reason."
+    ],
+    "time_sensitive_or_outdated": [
+      "The patient-collection 'national average' is pinned to unnamed 2024-2025 data and is stale and unverifiable in November 2026.",
+      "The Medicare Advantage discussion omits the CMS rule effective 2024 requiring plans to follow national and local coverage determinations, and the prior-authorization decision deadlines and denial-reason requirements that took effect in 2026.",
+      "Patient-collection chapters omit No Surprises Act good-faith estimates for self-pay patients and the changes since 2023 in how medical debt may be reported and collected.",
+      "No benchmark carries a year or a publication; the single named source (HFMA) has no edition, so nothing can be refreshed or audited.",
+      "Technology advice (dictation, voice recognition, scribes, paper statements, staff scoreboards) predates ambient documentation and agent-run billing; there is nothing on automation controls.",
+      "Payer rules are said to change constantly, yet the guide records none of them (filing limits, appeal deadlines, prompt-pay periods), so every operational number must be looked up for the current year."
+    ],
+    "ai_generation_signals": [
+      "Correction notes from an earlier draft left in the body: the Chapter 2 note about a 'phantom' share of claims, the Chapter 4 note explaining a changed 31-60 day figure, the Chapter 10 note that a table cell 'now reads' 24-48 hours.",
+      "Hedging patches layered over original assertions: Chapter 5 admits its headline benchmark is not verified against any published source; Chapter 6 says the average is 'closer to' a new range; Chapter 8 adds a paragraph reconciling two cost-to-collect ranges.",
+      "The disclaimer talks about reviewing 'AI-generated drafts', boilerplate from an AI-prompt product line that does not fit a KPI guide.",
+      "Unnamed first-person authority: thirty years of experience and universally 'tested' recommendations are claimed, and a technique is introduced with 'what I call', yet no author, credential or firm is named.",
+      "Rigid template: identical five headings and step tags in every chapter, each closing on an aphorism built on the same 'not X, it is Y' construction.",
+      "Appeals to 'the research' (twice) with no citation; round-number statistics throughout.",
+      "Content thins steadily: five interventions and a multi-week plan in Chapter 1, two interventions and one-paragraph execution sections by Chapter 9.",
+      "Padded layout: about 16,800 words over 85 pages, with several pages holding only a few lines.",
+      "Plausible-sounding but non-standard identifiers ('ANSI error codes 004, 005, 021') and a mis-described adjustment code."
+    ],
+    "missing_for_real_use": [
+      "Formulas and counting rules for most metrics: denial rate by claim, line or dollars and initial versus final; the days in AR calculation; the aging basis date; denominators and periods for patient-collection measures.",
+      "Any actual template: the heat map, authorization grid, payer sheet, escalation ladder, segmentation matrix and scripts are described in prose only.",
+      "Report specifications for any practice-management system or clearinghouse, and a data dictionary.",
+      "Sources and dates for benchmarks, and guidance for small volumes where one claim moves a payer's monthly rate by several points.",
+      "Appeal mechanics: levels, deadlines and forms for Medicare, Medicare Advantage (contracted versus non-contracted), Medicaid and commercial plans; the difference between a rejected or unprocessable claim that must be corrected and resubmitted and a denial that can be appealed.",
+      "Group-code handling (provider liability versus patient responsibility) and remark codes, without which reason codes cannot be triaged correctly.",
+      "Underpayment and contract-variance detection; the guide's net collection rate cannot see underpayments posted as contractual adjustments.",
+      "Payment posting, remittance and deposit reconciliation, unapplied cash, credit balances and overpayment refunds, secondary and crossover billing.",
+      "Compliance guardrails for patient collections and write-offs: dual-eligible and Qualified Medicare Beneficiary billing limits, Medicare cost-sharing waiver rules, advance beneficiary notices, good-faith estimates, consent for texting and cards on file, installment-plan disclosures, a financial hardship policy.",
+      "Anything for hospital, skilled nursing, nursing facility or assisted living work: census-based charge capture, place-of-service and facility-specific edits, care-management and wellness service rules.",
+      "Adaptation for very small or automated billing operations: the approval tiers and accountability model assume a biller, a supervisor and a manager.",
+      "A way to size dollars at stake per metric so priorities can be ranked on numbers rather than judgment."
+    ]
+  }
+}

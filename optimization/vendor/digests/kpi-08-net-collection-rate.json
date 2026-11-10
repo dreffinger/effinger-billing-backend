@@ -1,0 +1,776 @@
+{
+  "slug": "kpi-08-net-collection-rate",
+  "title": "KPI 08: Net Collection Rate (CleanClaimRx, The KPI Prescription Series, Part 8 of 10)",
+  "doc_type": "kpi_rx",
+  "pages": 26,
+  "audience": "No audience statement. Written for independent practices and addressed to billing managers who report to practice owners or managing partners. The examples assume a multi-provider, office-based practice with $4-6 million of collectible revenue, a front desk and a billing team.",
+  "summary": "Guide presenting net collection rate (payments divided by charges after contractual adjustments) as the master revenue-cycle metric. It gives five performance bands around a 97% target, warns that the figure depends on accurate contractual posting and is best measured by charge cohort, not period cash, and links it to the other series KPIs. The method is decomposition: compute the dollar gap between collectible revenue and collections, allocate it to failure categories (unresubmitted rejections, unworked denials, late filing, patient bad debt, aged patient balances, underpayments, adjustment errors), break it out by payer and trend it over eight quarters. Interventions are sequencing rules (largest component first, upstream before backlog, two changes at once) pointing to other KPI documents, plus a three-phase 90-day plan, monthly owner reporting, provider-level rates, quarterly governance and an annual audit. The metric is also pitched as a valuation driver. No sources, worksheet or Medicare-specific treatment are provided.",
+  "outline": [
+    {
+      "section": "Section 0: The Diagnostic Trigger",
+      "gist": "Defines the formula, five performance bands around a 97% target, and two caveats: contractual-posting accuracy and cohort versus period measurement."
+    },
+    {
+      "section": "Section 1: What the Number Is Actually Telling You",
+      "gist": "Positions the rate as a summary of the other KPIs, with asserted quantitative links, and as a metric buyers examine in practice valuation."
+    },
+    {
+      "section": "Section 2: How to Diagnose Why It's Off",
+      "gist": "Decomposes the dollar collection gap by failure category, computes payer-level rates, and reads eight-quarter trends to find the inflection point."
+    },
+    {
+      "section": "Section 3: The Intervention Stack",
+      "gist": "Three sequencing principles (largest gap first, upstream before backlog, two changes at once) and a routing list to other KPI documents."
+    },
+    {
+      "section": "Section 4: Execution on the Floor",
+      "gist": "Three-phase 90-day plan, monthly leadership reporting with dollar gap, provider-level rates and feedback, and a quarterly governance review."
+    },
+    {
+      "section": "Section 5: Sustained vs. Temporarily Fixed",
+      "gist": "Three tests of structural improvement, annual revenue cycle audit for drift, payer-mix-adjusted benchmarking, and the rate as governing metric."
+    }
+  ],
+  "framework_elements": [
+    "Net collection rate definition and formula",
+    "Net collection rate performance bands",
+    "Contractual adjustment accuracy validation (denominator integrity)",
+    "Period-basis versus cohort-basis measurement",
+    "Collection gap calculation in dollars",
+    "Collection gap decomposition by failure category",
+    "Mapping of gap components to upstream KPIs",
+    "Payer-level net collection rate",
+    "Provider-level net collection rate",
+    "Eight-quarter trend analysis and inflection-point search",
+    "Trend pattern classification (stable high, stable low, declining)",
+    "Largest-gap-first prioritization",
+    "Upstream fix before backlog recovery sequencing",
+    "Two-intervention limit with 60-day measurement window",
+    "Intervention routing by gap type",
+    "90-day improvement plan in three phases",
+    "New-cohort monitoring after a process change",
+    "Tiered receivables backlog recovery project",
+    "Monthly leadership reporting (rate, trend, dollar gap)",
+    "Dollarized gap-to-target calculation",
+    "Provider financial feedback conversation",
+    "Quarterly net collection rate governance review",
+    "Structural versus temporary improvement tests",
+    "Gap concentration limit per component",
+    "Staff-transition resilience test",
+    "Annual revenue cycle audit",
+    "Multi-year drift detection",
+    "Specialty- and payer-mix-adjusted benchmarking",
+    "KPI hierarchy (one governing metric, others diagnostic)",
+    "Revenue cycle performance as a valuation driver"
+  ],
+  "processes": [
+    {
+      "name": "Compute net collection rate (period and cohort)",
+      "steps": [
+        "Audit contractual adjustment posting against current fee schedules before trusting the result",
+        "Total charges, contractual adjustments and payments for the period",
+        "Divide payments by charges net of contractual adjustments",
+        "Recompute on a cohort basis by following one period's charges until they resolve",
+        "Place the result in the performance bands and compare with prior periods"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Monthly for leadership; reviewed quarterly"
+    },
+    {
+      "name": "Collection gap decomposition",
+      "steps": [
+        "Compute net collectible revenue (gross charges less contractual adjustments)",
+        "Subtract actual collections to get the dollar gap",
+        "Pull dollars for each failure category: unresubmitted rejections, expired-appeal denial write-offs, timely-filing write-offs, patient bad debt, patient balances over 120 days not on a plan, payments below contract, adjustment errors",
+        "Express each category as a percentage of net collectible revenue",
+        "Rank the categories; the largest becomes the first priority"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Payer-level rate break",
+      "steps": [
+        "Compute the rate for each major payer using that payer's payments, charges and contractual adjustments",
+        "Compare each payer with the practice average",
+        "If the shortfall is spread across payers, treat it as a practice process failure",
+        "If it is concentrated in one or two payers, run the payer denial diagnostic and review that contract and credentialing status"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Quarterly, after the decomposition"
+    },
+    {
+      "name": "Trend and inflection analysis",
+      "steps": [
+        "Pull the rate for each of the last eight quarters",
+        "Classify the pattern as stable high, stable low or declining",
+        "For a decline, identify the quarter where it began",
+        "Pull denial rate by payer and write-off rate by reason for that quarter to find what changed"
+      ],
+      "owner_role": "Billing manager with practice leadership",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Intervention sequencing",
+      "steps": [
+        "Start with the gap component that carries the most dollars",
+        "Put the upstream process fix in place before working the backlog it created",
+        "Run no more than two major changes at once",
+        "Measure for 60 days before adding a third"
+      ],
+      "owner_role": "Practice leadership and billing manager",
+      "cadence": "Each improvement cycle"
+    },
+    {
+      "name": "90-day improvement plan",
+      "steps": [
+        "Days 1-30: complete the decomposition, pick the top one or two contributors and implement the upstream fixes (the document says to hold backlog recovery)",
+        "Days 31-60: track the rate on claims submitted after the fix and begin tiered backlog recovery",
+        "Days 61-90: add the second-priority fix only if the new-cohort rate is up at least 2 points; otherwise revisit the diagnosis",
+        "Day 90: recompute the overall rate against the starting baseline"
+      ],
+      "owner_role": "Billing manager, sponsored by practice owners",
+      "cadence": "Triggered when the rate is below 93%"
+    },
+    {
+      "name": "Leadership reporting and provider-level review",
+      "steps": [
+        "Report the current rate, the 12-month trend and the annual dollar gap to the 97% target",
+        "Compute the rate for each physician and advanced practice provider",
+        "Show each provider specific examples of where revenue is lost (documentation, charge timing, coding, payer enrollment)",
+        "Frame the discussion as financial output, not clinical quality"
+      ],
+      "owner_role": "Billing manager to owners, partners and individual providers",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Quarterly governance review and annual revenue cycle audit",
+      "steps": [
+        "Quarterly: review rate versus target, four-quarter trend, gap decomposition and progress on the prior quarter's top two interventions",
+        "Annually: check every upstream KPI against its target range",
+        "Annually: review the five-year trend and test contractual adjustment accuracy against current fee schedules",
+        "Produce a ranked improvement list by estimated dollar impact"
+      ],
+      "owner_role": "Practice management",
+      "cadence": "Quarterly and annually"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Net collection rate formula",
+      "description": "Payments received divided by charges net of contractual adjustments."
+    },
+    {
+      "name": "Performance band table (Section 0)",
+      "description": "Five bands from above 97% to below 85%, plus a two-quarter decline trigger."
+    },
+    {
+      "name": "Measurement caveats",
+      "description": "Two warnings: verify contractual posting first; prefer cohort over period measurement."
+    },
+    {
+      "name": "Upstream KPI relationship list",
+      "description": "Five bullets describing how clean claims, denials, aging, patient collections and write-offs feed the rate."
+    },
+    {
+      "name": "Collection gap decomposition procedure",
+      "description": "Five steps from net collectible revenue to ranked failure categories."
+    },
+    {
+      "name": "Collection gap component table (Section 2)",
+      "description": "Seven components with the dollar source for each and the upstream KPI to address."
+    },
+    {
+      "name": "Payer-level rate calculation",
+      "description": "Same ratio computed per payer to separate systemic from payer-specific leakage."
+    },
+    {
+      "name": "Trend pattern guide",
+      "description": "Three patterns over eight quarters, each with a prescribed response."
+    },
+    {
+      "name": "Sequencing principles",
+      "description": "Three rules: largest gap first, upstream before backlog, at most two changes with a 60-day check."
+    },
+    {
+      "name": "Intervention routing list",
+      "description": "Five gap types mapped to sections of other KPI documents in the series."
+    },
+    {
+      "name": "90-day improvement plan",
+      "description": "Three 30-day phases with a 2-point new-cohort gate before the second intervention."
+    },
+    {
+      "name": "Monthly leadership report set",
+      "description": "Three data points: current rate, 12-month trend, annual dollar gap to target."
+    },
+    {
+      "name": "Dollar-gap calculation",
+      "description": "Gap between actual rate and 97% multiplied by net collectible revenue."
+    },
+    {
+      "name": "Provider-level conversation framing",
+      "description": "Guidance on presenting provider-specific collection results as financial, not clinical, feedback."
+    },
+    {
+      "name": "Quarterly review agenda",
+      "description": "Four items: rate versus target, four-quarter trend, gap decomposition, progress on top two interventions."
+    },
+    {
+      "name": "Structural-improvement checklist",
+      "description": "Three signals: four quarters above 95%, no component above 1.5%, rate survives a staff change."
+    },
+    {
+      "name": "Annual revenue cycle audit scope",
+      "description": "Upstream KPIs versus targets, five-year trend, contractual accuracy, ranked improvement list."
+    },
+    {
+      "name": "Named but not supplied",
+      "description": "No worksheet, calculator, sample report, cohort table or fully worked decomposition is included despite the promise of every worked dollar example."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Net collection rate",
+      "definition": "Share of collectible revenue (charges after contractual adjustments) that is actually collected",
+      "formula": "Payments received / (charges billed - contractual adjustments)",
+      "target": "Above 97% best practice; 95% to 97% strong",
+      "red_flag": "90% to 95% action threshold; 85% to 90% significant failure; below 85% crisis",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net collection rate trend",
+      "definition": "Direction of the rate across the last eight quarters",
+      "formula": "",
+      "target": "Stable above 95%",
+      "red_flag": "Decline over two consecutive quarters at any level; stable below 93%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Cohort-based net collection rate",
+      "definition": "Collections on one period's charges tracked as they resolve, regardless of when cash arrives",
+      "formula": "Payments applied to the period's charges / (those charges - their contractual adjustments) (described, not written out)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Collection gap",
+      "definition": "Dollars of collectible revenue not collected",
+      "formula": "(gross charges - contractual adjustments) - collections; annual gap to target = (97% - actual rate) x net collectible revenue",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Gap component share",
+      "definition": "Each failure category's dollars as a share of net collectible revenue",
+      "formula": "Category dollars / net collectible revenue",
+      "target": "No single component above 1.5%",
+      "red_flag": "Any component above 1.5%; one component is said usually to hold 40% to 60% of the gap",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer-level net collection rate",
+      "definition": "The rate computed for a single payer",
+      "formula": "Payments from payer / (charges billed to payer - that payer's contractual adjustments)",
+      "target": "In line with the practice average",
+      "red_flag": "Payer well below average (illustration: 82% versus 93%)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Provider-level net collection rate",
+      "definition": "The rate computed per physician or advanced practice provider",
+      "formula": "",
+      "target": "",
+      "red_flag": "Wide spread between providers (illustration: 96% versus 88%)",
+      "source_cited": "none"
+    },
+    {
+      "name": "New-cohort net collection rate",
+      "definition": "Rate on claims submitted after an upstream fix took effect",
+      "formula": "",
+      "target": "At least 2 percentage points better by days 61 to 90",
+      "red_flag": "No improvement: return to diagnosis before adding interventions",
+      "source_cited": "none"
+    },
+    {
+      "name": "Improvement-plan trigger",
+      "definition": "Level at which a structured 90-day plan is called for",
+      "formula": "",
+      "target": "",
+      "red_flag": "Rate below 93%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Sustained-performance test",
+      "definition": "Evidence that improvement is structural",
+      "formula": "",
+      "target": "Above 95% for four consecutive quarters with clean claim, denial, patient collection and write-off measures in range",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Staff-transition resilience",
+      "definition": "Change in the rate within 90 days of a staffing change",
+      "formula": "",
+      "target": "No material drop",
+      "red_flag": "Drop of 2 or more percentage points",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate (KPI 02, referenced)",
+      "definition": "First-submission claim acceptance; a 5-point gain is said to add 1 to 2 points to net collection rate after 60 days",
+      "formula": "",
+      "target": "",
+      "red_flag": "Drift from 93% to 90% used as an example of unnoticed decline",
+      "source_cited": "none"
+    },
+    {
+      "name": "Receivables over 120 days (KPI 04, referenced)",
+      "definition": "Share of receivables older than 120 days, described as the most predictive leading indicator",
+      "formula": "",
+      "target": "",
+      "red_flag": "Unworked aged balances expected to become write-offs within one to two quarters",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient collection rate (KPI 06, referenced)",
+      "definition": "Share of patient responsibility collected; patient share assumed to be 20% to 35% of collectible revenue",
+      "formula": "",
+      "target": "",
+      "red_flag": "75% is said to cost 5 to 9 points of net collection rate",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate (KPI 01, referenced)",
+      "definition": "Denials by payer; speed of working them matters more than the level",
+      "formula": "",
+      "target": "",
+      "red_flag": "Drift from 5.8% to 7.2% over two years used as an example of unnoticed decline",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient bad-debt write-off rate (KPI 07, referenced)",
+      "definition": "Patient balances written off",
+      "formula": "",
+      "target": "",
+      "red_flag": "Drift from 2.9% to 4.1% over eighteen months used as an example of unnoticed decline",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A net collection rate above 97% is best practice and achievable for any independent practice with clean payer-mix data.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "95% to 97% is strong performance with minor leakage.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "90% to 95% is the action threshold.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "85% to 90% is a significant failure; below 85% is a crisis and an existential margin risk.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a 2-point gain on $5 million of collectible revenue equals $100,000.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A claim that fails first submission adds 20 to 45 days to resolution.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 5 percent improvement in clean claim rate typically yields a 1 to 2 percent improvement in net collection rate after a 60-day lag.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The share of receivables over 120 days is the most predictive leading indicator; unworked aged balances become write-offs within one to two quarters.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Patient responsibility is commonly 20 to 35 percent of net collectible revenue for most practices.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 75 percent patient collection rate drags net collection rate down by 5 to 9 percent.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A practice at 97 percent commands a higher valuation multiple than a peer at 89 percent with the same volume.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a practice at 93 percent with $4 million of collectible charges, where an acquirer is said to model the improvement opportunity into the valuation.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a payer at 82 percent against a practice average of 93 percent indicates a payer-specific problem.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Trend bands: stable high means above 95 percent; stable low means below 93 percent.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The decomposition almost always shows one component contributing 40 to 60 percent of the gap.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: unworked denials responsible for 55 percent of the gap.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Run the top two improvements and measure for 60 days before adding a third.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A rate below 93 percent warrants a structured 90-day improvement plan.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The new-cohort rate must improve by at least 2 percentage points before the second intervention is added (days 61-90).",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: $6 million of collectible revenue at 92 percent leaves a $300,000 annual gap to the 97 percent target.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: provider-level rates of 96 percent and 88 percent within one practice.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a 4-day average charge lag costing a practice $85,000 a year in delayed and lost revenue.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Without continued monitoring the rate drifts back over 12 to 18 months.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Improvement is structural when the rate holds above 95 percent for four consecutive quarters.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "No single gap component should exceed 1.5 percent of net collectible revenue.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A drop of 2 or more points within 90 days of a staff change shows the improvement was person-dependent.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration of drift: denial rate 5.8% to 7.2% over two years, bad debt 2.9% to 4.1% over eighteen months, clean claim rate 93% to 90%, net collection rate 96% to 91%.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A primary care practice with 45 percent Medicaid volume has a structurally lower achievable rate than a 70 percent commercial surgical practice.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a 45 percent Medicaid practice at 91 percent versus adjusted peers at 93 percent.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 2-point gap is worth about $100,000 a year for every $5 million of net collectible revenue.",
+      "section": "Section 5",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Net Collection Rate = (Payments Received) / (Charges Billed minus Contractual Adjustments).",
+      "kind": "other",
+      "stakes": "medium",
+      "section": "Section 0",
+      "why": "The definition drives every figure in the document. Standard definitions subtract refunds and credits from payments and limit the denominator to true contractual allowances; a looser version overstates performance and breaks comparison with published benchmarks."
+    },
+    {
+      "id": "C2",
+      "claim": "A 5 percent improvement in clean claim rate typically produces a 1 to 2 percent improvement in net collection rate with a 60-day lag.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 1",
+      "why": "Offered as a rule of thumb with no source and used to justify where to invest. If unfounded, projected returns from scrubber or eligibility work are guesswork."
+    },
+    {
+      "id": "C3",
+      "claim": "Patient responsibility is commonly estimated at roughly 20 to 35 percent of net collectible revenue for most practices ... A patient collection rate of 75 percent means ... a direct 5 to 9 percent drag on net collection rate.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 1",
+      "why": "Unsourced and built on commercial high-deductible assumptions. In a Medicare, Medigap and dual-eligible panel the true self-pay share is much smaller, so this would badly overstate the patient-collection opportunity and misdirect effort."
+    },
+    {
+      "id": "C4",
+      "claim": "A practice with a net collection rate of 97 percent ... commands a higher valuation multiple than a peer practice at 89 percent with the same clinical volume.",
+      "kind": "other",
+      "stakes": "medium",
+      "section": "Section 1",
+      "why": "The owner's sale planning could lean on this. Buyers price normalized earnings, risk and growth; whether collection efficiency moves the multiple itself, rather than earnings or diligence adjustments, is unsupported here and needs a valuation source."
+    },
+    {
+      "id": "C5",
+      "claim": "A primary care practice with 45 percent Medicaid volume will have a structurally lower achievable net collection rate ... because Medicaid's lower rates and higher administrative burden create a different collection environment.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 5",
+      "why": "Lower fee schedules are removed by the contractual adjustment in the document's own formula, so they cannot lower the ratio. A wrong payer-mix rationale could lead the practice to accept a weak rate as structural or to misclassify Medicaid shortfalls."
+    },
+    {
+      "id": "C6",
+      "claim": "The percentage of AR over 120 days is the most predictive leading indicator of net collection rate. [Unworked aged AR] will become write-offs within one to two quarters.",
+      "kind": "statistic",
+      "stakes": "low",
+      "section": "Section 1",
+      "why": "An unsourced superlative that decides which early-warning measure is watched. If another measure (denial inflow, unresubmitted rejections, wrong-payer rate) predicts losses better here, monitoring effort is misplaced."
+    },
+    {
+      "id": "C7",
+      "claim": "The decomposition in Section 2 will almost always reveal one component that contributes 40 to 60 percent of the total collection gap.",
+      "kind": "statistic",
+      "stakes": "low",
+      "section": "Section 3",
+      "why": "Unsourced; it underpins the fix-one-thing-first sequencing. If the gap is actually diffuse, a single-priority plan with 60-day gates would slow recovery."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.45,
+      "topics": [
+        "net collection rate measurement",
+        "collection gap decomposition",
+        "denial and timely-filing leakage",
+        "backlog recovery sequencing",
+        "patient balance leakage"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.2,
+      "topics": [
+        "headline revenue-cycle metric for owners",
+        "dollarized gap reporting",
+        "cohort versus period measurement",
+        "annual revenue cycle audit",
+        "contractual adjustment accuracy"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.1,
+      "topics": [
+        "quarterly governance review",
+        "monthly owner reporting",
+        "KPI hierarchy and operating rhythm"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.08,
+      "topics": [
+        "payer-level collection rate",
+        "payer-specific contract and credentialing review",
+        "payer-mix-adjusted benchmarks"
+      ]
+    },
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.07,
+      "topics": [
+        "collection rate in buyer diligence",
+        "person-independent processes as value driver"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.04,
+      "topics": [
+        "provider-level financial feedback",
+        "resilience to staff turnover"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.03,
+      "topics": [
+        "charge lag and clean claims as upstream drivers"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "cohort analytics",
+        "trend dashboards"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Measure the rate by date-of-service cohort at fixed maturity points, alongside a rolling period figure.",
+      "why": "Period ratios swing with payment timing and growth; cohort curves show whether billed revenue is actually being converted to cash.",
+      "applies_to_practice": "yes",
+      "note": "Track each service month at 30, 60, 90, 120 and 180 days; at this practice's size use rolling 3- and 12-month views to damp noise."
+    },
+    {
+      "idea": "Audit what is posted as contractual before trusting the rate.",
+      "why": "The denominator is only as good as adjustment coding; mislabeled losses make the rate look better than it is.",
+      "applies_to_practice": "yes",
+      "note": "Define contractual at the remittance-code level (fee-schedule reductions, sequestration, cost-sharing that cannot be billed to dual-eligibles) and post everything else to non-contractual codes; subtract refunds and recoupments from payments."
+    },
+    {
+      "idea": "Decompose the dollar gap into failure categories and rank them.",
+      "why": "Turns one percentage into a prioritized work list.",
+      "applies_to_practice": "yes",
+      "note": "Add the categories that matter here: wrong payer or coverage, Medicare Advantage authorization and network denials, credentialing gaps, crossover non-payment, and never-billed services found by census reconciliation."
+    },
+    {
+      "idea": "Compute the rate separately for each payer.",
+      "why": "Shows whether leakage is a general process problem or concentrated in one plan.",
+      "applies_to_practice": "yes",
+      "note": "Separate Medicare fee-for-service, each Medicare Advantage plan, Medicaid plans, VA and TRICARE, and handle secondary and crossover balances explicitly. Expect noisy results for low-volume payers."
+    },
+    {
+      "idea": "Compute the rate by rendering provider.",
+      "why": "Surfaces enrollment, documentation or charge-timing problems tied to one clinician.",
+      "applies_to_practice": "partly",
+      "note": "With one physician and one nurse practitioner this is mainly a check on the nurse practitioner's payer enrollment and on charge-capture habits."
+    },
+    {
+      "idea": "Fix the largest gap component first, repair the upstream cause before clearing its backlog, and limit concurrent changes.",
+      "why": "Keeps effort on the biggest dollars and makes results attributable.",
+      "applies_to_practice": "partly",
+      "note": "Keep the prioritization. Ignore the instruction to hold all recovery work for 30 days: claims near filing or appeal limits must be worked immediately."
+    },
+    {
+      "idea": "Give the owner a monthly one-line report: current rate, 12-month trend and annual dollars at stake.",
+      "why": "Dollarizing the gap makes investment decisions concrete.",
+      "applies_to_practice": "yes",
+      "note": "At roughly $1.0-1.1 million of net revenue each point is worth about $10-12 thousand a year. Set the target from the practice's own matured cohorts, not the unsourced 97%."
+    },
+    {
+      "idea": "Hold a short quarterly governance review and an annual end-to-end audit to catch slow drift.",
+      "why": "Most backsliding happens after monitoring stops.",
+      "applies_to_practice": "yes",
+      "note": "Four numbers and a decision log each quarter; an annual check of fee schedules and adjustment coding."
+    },
+    {
+      "idea": "Test whether performance survives a change in who does the work.",
+      "why": "A rate that depends on one person is fragile and lowers the value of the business.",
+      "applies_to_practice": "yes",
+      "note": "Adapt to AI-run billing: re-baseline and compare cohort results after any change to agents, prompts, skills, clearinghouse or system configuration."
+    },
+    {
+      "idea": "Treat a clean, auditable collection record as sale-readiness evidence.",
+      "why": "Buyers examine revenue quality during diligence.",
+      "applies_to_practice": "partly",
+      "note": "Reasonable in direction, but the claim that the rate itself raises the multiple is unsupported; documented, person-independent processes and reconciled data are the more defensible value drivers."
+    }
+  ],
+  "practice_relevance": {
+    "score": 4,
+    "why": "Net collection rate is the natural headline number for an owner acting as CFO, and the cohort, payer-level and gap-decomposition ideas translate directly to an AI-run billing operation on AdvancedMD. The fit is imperfect: the patient-responsibility model, front-desk remedies and $4-6 million examples do not match a facility-based Medicare practice of about $1.0-1.1 million, where one point of the rate is worth only about $10-12 thousand a year and monthly figures are noisy. The universal 97% target is unusable until dual-eligible cost-sharing that cannot be billed, sequestration, Medicare Advantage denials and stipend income are classified correctly, none of which the document addresses. The metric also cannot see missed visits, which can matter more in rounding work.",
+    "sections_that_do_not_apply": [
+      "Patient-responsibility model (20-35% of collectible revenue) and the point-of-service and front-desk interventions it leads to",
+      "Dollar examples sized for $4-6 million multi-physician practices, four to six times this practice's scale",
+      "Staffing remedies (denial staffing, senior biller sprint, front-desk turnover test): billing is run by AI agents",
+      "Medicaid-heavy primary care benchmark example and its rate rationale",
+      "A single 97% target applied without reclassifying dual-eligible cost-sharing and sequestration",
+      "Multi-partner provider-comparison narrative; only two clinicians bill"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "The formula uses gross payments; standard definitions subtract refunds and recoupments. It never says which adjustments count as contractual, so payer 'contractual obligation' adjustments for late filing, bundling or missing authorization could be auto-posted into the denominator and inflate the rate.",
+      "States that Medicaid's lower rates make a lower rate structurally unavoidable. Under the document's own formula lower fee schedules are removed as contractual adjustments and cannot reduce the ratio; only denials and uncollectible balances can.",
+      "The 97% 'achievable for any independent practice' target ignores cost-sharing that legally cannot be collected from dual-eligible (QMB) patients and that Medicaid often does not pay, and the 2% Medicare sequestration reduction. Depending on how those are coded, a geriatric practice looks either broken or perfect.",
+      "Patient responsibility 'commonly' at 20-35% of collectible revenue is unsourced and reflects high-deductible commercial populations; a Medicare, Medigap and dual-eligible panel has a far smaller true self-pay share, so the 5-9 point 'drag' does not transfer.",
+      "Asserted links are unsourced: a 5-point clean-claim gain yields 1-2 points after 60 days; failed claims add 20-45 days; receivables over 120 days are the most predictive indicator; one component holds 40-60% of the gap.",
+      "The $85,000 annual cost of a four-day charge lag is implausible: a four-day delay shifts about 1% of a year's cash once and loses nothing unless filing limits are missed.",
+      "The claim that a 97% practice earns a higher valuation multiple than an 89% peer is unsupported; buyers price normalized earnings and risk. The adjacent remark, that an acquirer models a low-rate practice's improvement opportunity into the valuation, establishes no effect on the multiple.",
+      "The decomposition is run on period totals, which mixes timing (open receivables not yet due, growth) with true loss; the listed categories will not reconcile to the gap except on a matured cohort.",
+      "The 90-day plan gates the second intervention on a 2-point gain in a cohort that is at most a few weeks old; without an age-matched comparison this cannot be measured.",
+      "Phase 1 tells the practice not to start backlog recovery for 30 days. Aged claims near filing or appeal limits cannot wait, and the stated reason (recovery work creates new backlog) is illogical.",
+      "Calling this the one governing number overlooks what it cannot see: missed charges, under-coding, fees set below allowed amounts, and losses miscoded as contractual. The rate improves when a practice simply writes more off as contractual."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "A universal 97% target is used for every gap calculation, yet Section 5 says the only meaningful benchmark is specialty- and payer-mix-adjusted and uses 93% peers in its own example.",
+      "The annual audit covers 'eight upstream KPIs' while the same section says all nine other KPIs in the series are components of the rate.",
+      "Section 0 puts the action threshold at anything under 95%, Section 4 triggers the improvement plan only below 93%, and Section 1 calls a stable 94% a mere optimization opportunity; the trend guide leaves 93-95% unclassified.",
+      "Cohort measurement is called the most meaningful basis, but the decomposition, monthly report and dollar-gap figures all use period totals, and the Phase 3 gate needs cohort results before a cohort can mature.",
+      "The formula removes contracted rate levels from the ratio, yet Section 5 blames Medicaid's lower rates for a lower achievable rate.",
+      "The front matter says the document stands alone with every worked dollar example; Section 3 is largely a list of pointers to seven other KPI documents and no decomposition is worked through.",
+      "Drift example says a bad-debt rise from 2.9% to 4.1% and a clean claim rate of 90% trigger no alarm, whereas KPI 07 puts 3-5% bad debt in a warning zone and treats any quarter-over-quarter category growth as an immediate trigger.",
+      "KPI 07 calls patient bad debt up to 3% of net revenue acceptable; here no single gap component may exceed 1.5% of collectible revenue and the whole allowable gap at target is 3%.",
+      "Cover assigns this KPI to Chapter 9 of the companion guide, while KPI 07 maps to Chapter 7 and this is KPI 08; the cross-reference numbering looks unchecked."
+    ],
+    "time_sensitive_or_outdated": [
+      "Benchmarks and rules of thumb carry no date or source, so their vintage cannot be established.",
+      "Valuation commentary is generic and undated; it reflects no identifiable market data or current buyer diligence practice.",
+      "Nothing addresses Medicare payment mechanics that affect the ratio in 2026 (sequestration, quality-program payment adjustments, Medicare Advantage denial and prior-authorization rules)."
+    ],
+    "ai_generation_signals": [
+      "Same five-step 'SYSTEM STEP n OF 5' template and section titles as the rest of the series.",
+      "Closing aphorisms and repeated 'the practices that...' constructions in place of evidence.",
+      "Round-number ranges and tidy arithmetic illustrations ($100,000, $300,000, $85,000) with no source, author or date.",
+      "Says 'eight upstream KPIs' and 'nine other KPIs' within the same section.",
+      "Companion-chapter number does not match the KPI number, unlike the preceding document.",
+      "Promises that every worked dollar example is included, yet the intervention section mostly refers the reader elsewhere.",
+      "One sentence says an uncorrected failed claim adds 20 to 45 days to resolution, which contradicts itself.",
+      "About 4,900 words over 26 pages, with repeated table headers and near-empty pages."
+    ],
+    "missing_for_real_use": [
+      "A remittance-code-level definition of contractual versus non-contractual adjustments, with automatic-posting rules",
+      "Treatment of refunds, recoupments, unapplied cash and credit balances in the numerator",
+      "A step-by-step cohort method: date basis, maturity checkpoints, handling of open receivables",
+      "Treatment of non-claim revenue (stipends, incentive or value-based payments), sequestration, quality-program adjustments, and Medicaid crossover or QMB cost-sharing",
+      "A fully worked decomposition with a reconciling table, and a worksheet or calculator",
+      "Report recipes for a practice-management system (which reports, date basis, filters)",
+      "Small-practice statistics: rolling windows and minimum volumes before reading payer- or provider-level rates",
+      "Sources and dates for benchmarks, and the specialty and payer-mix benchmark tables it tells readers to use",
+      "Companion measures for what this ratio cannot see: charge capture, coding accuracy, fee schedule adequacy, gross collection rate, speed of payment",
+      "Reconciliation of posted payments to bank deposits and the general ledger",
+      "Evidence on how buyers actually use the metric in diligence and pricing"
+    ]
+  }
+}

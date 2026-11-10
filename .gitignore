@@ -28,3 +28,9 @@ node_modules/
 !apps/ehpadb/package-lock.json
 !apps/ehpadb/tsconfig.json
 apps/ehpadb/src/generated/
+
+# Universal Practice Optimization: the preview branch endpoint host (not a secret, but per-container)
+optimization/.preview_host
+!optimization/**/*.json
+optimization/.preview_branch
+apps/ehpadb/dist/

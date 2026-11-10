@@ -1,0 +1,844 @@
+{
+ "domain": "financial-management",
+ "categories": [
+  {
+   "slug": "fm-bookkeeping-close",
+   "name": "Bookkeeping and monthly close",
+   "summary": "Recording every dollar in and out, reconciling the records to the bank, and closing the books on a fixed date each month. Without a monthly close the owner is steering by the bank balance.",
+   "good_looks_like": [
+    "The chart of accounts separates clinician pay, staff pay, billing costs, rent, supplies and owner items.",
+    "Bank and card accounts are reconciled every month.",
+    "Books are closed by a set date, such as the 15th of the following month.",
+    "Collections in the books tie to payments posted in the billing system."
+   ],
+   "failure_modes": [
+    "Statements arrive once a quarter or once a year, long after anything could be done.",
+    "Personal and practice spending run through the same accounts.",
+    "Deposits in the bank do not match payments posted in billing, and nobody knows why.",
+    "The books are built only to file the tax return."
+   ],
+   "key_questions": [
+    "By what date each month are last month's books closed?",
+    "Are all bank and card accounts reconciled monthly, and by whom?",
+    "Do collections in the books equal payments posted in billing?",
+    "Is the accounting on a cash or accrual basis, and do we know what that hides?"
+   ],
+   "actions": [
+    {
+     "action": "Set a monthly close date",
+     "detail": "Agree with the bookkeeper or accountant on a fixed day and a checklist.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Reconcile every account monthly",
+     "detail": "Bank, credit card, loan and payroll accounts, with unexplained items listed.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Tie billing to the books",
+     "detail": "Total payments posted in the billing system against deposits recorded in accounting, each month.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Rebuild the chart of accounts for a practice",
+     "detail": "Separate clinician and owner pay from staff pay, and billing costs from other software.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Cash-basis books are common and acceptable for small practices, but they leave out receivables and unpaid bills, so the owner needs a receivables report beside them.",
+   "sources": [
+    "aafp-finances",
+    "sba-finances",
+    "aicpa-comp-review-audit"
+   ],
+   "evidence_note": "General accounting practice and small-business guidance. An accountant's compilation gives no assurance, a review limited assurance and an audit the most.",
+   "metrics": [
+    {
+     "slug": "fm-days-to-close",
+     "name": "Days from month end to closed books",
+     "definition": "Calendar days between the end of a month and the date its books are reconciled and closed.",
+     "formula": "Close date - month-end date",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A common working standard for small businesses is 10 to 15 days.",
+     "confidence": "none",
+     "data_hint": "The bookkeeper's close checklist."
+    },
+    {
+     "slug": "fm-unreconciled-accounts",
+     "name": "Accounts not reconciled at month end",
+     "definition": "Number of bank, card, loan or payroll accounts not reconciled to their statements for the month just closed.",
+     "formula": "Count of accounts with no completed reconciliation for the month",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is zero.",
+     "confidence": "none",
+     "data_hint": "The reconciliation report in the accounting system."
+    }
+   ]
+  },
+  {
+   "slug": "fm-statements-ratios",
+   "name": "Financial statements and ratios",
+   "summary": "Reading three statements every month: the income statement for profit, the balance sheet for what is owned and owed, and cash flow for where the money went. A practice can collect more than last year and still run short of cash.",
+   "good_looks_like": [
+    "The owner reviews an income statement, balance sheet and cash summary monthly, against budget and the prior year.",
+    "Profit is looked at twice: before owner pay, and after a market wage for the owner's clinical work.",
+    "A short list of ratios is tracked the same way every month.",
+    "Large variances get a one-sentence explanation."
+   ],
+   "failure_modes": [
+    "The owner looks only at the bank balance and collections.",
+    "Profit looks healthy because the owner's own pay is not counted as a cost.",
+    "Debt payments and owner draws, which do not appear in profit, quietly drain cash.",
+    "Each year's statements use different categories, so nothing can be compared."
+   ],
+   "key_questions": [
+    "What was our margin last month before owner pay, and after a market wage for owners?",
+    "Do we see a balance sheet every month?",
+    "Which three ratios do we watch, and what are they now?",
+    "Can we explain each large change from last year?"
+   ],
+   "actions": [
+    {
+     "action": "Review three statements monthly",
+     "detail": "Income statement, balance sheet and a cash summary, with budget and prior-year columns.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Calculate margin both ways",
+     "detail": "Before any owner pay, and after subtracting a market wage with taxes and benefits for each owner's clinical work.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Pick five ratios and keep them fixed",
+     "detail": "Margin, overhead ratio, days cash, days in receivables and debt service coverage.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write one line on each large variance",
+     "detail": "Kept with the statements for next year's comparison.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. For owner-operated practices the split between the owner's wage and the business's profit is the most important adjustment, because it decides what the practice is worth and what a lender will finance.",
+   "sources": [
+    "aafp-vital-signs",
+    "mgma-stat-margin",
+    "mgma-fin-ops-2025",
+    "aafp-finances"
+   ],
+   "evidence_note": "Professional guidance from the AAFP and MGMA. Published ratios for small practices are old or come from large groups, so the practice's own trend matters more than any outside number.",
+   "metrics": [
+    {
+     "slug": "fm-operating-margin",
+     "name": "Operating margin before owner compensation",
+     "definition": "Earnings before owner pay, interest, taxes and depreciation, as a share of net revenue.",
+     "formula": "(Net revenue - operating expenses excluding owner pay) / net revenue",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_typical": "30% to 40% in family medicine",
+     "benchmark_note": "Derived from the AAFP's figure that expenses run 60% to 70% of collections (2009). Old, and lean or automated practices run higher. Use your own trend.",
+     "confidence": "low",
+     "data_hint": "The income statement, with owner pay shown on its own line.",
+     "sources": [
+      "aafp-vital-signs"
+     ]
+    },
+    {
+     "slug": "fm-margin-after-market-pay",
+     "name": "Margin after market-rate clinician pay",
+     "definition": "What remains, as a share of revenue, after every clinician including each owner is charged a market wage with taxes and benefits. This is the profit of the business itself.",
+     "formula": "(Net revenue - operating expenses - market pay for owners' clinical work) / net revenue",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Buyers and lenders value this figure, not profit before owner pay.",
+     "confidence": "none",
+     "data_hint": "The income statement plus a named salary survey for the owner's specialty."
+    },
+    {
+     "slug": "fm-current-ratio",
+     "name": "Current ratio",
+     "definition": "Assets that turn to cash within a year divided by obligations due within a year.",
+     "formula": "Current assets / current liabilities",
+     "unit": "ratio",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No published standard for practices. A common small-business convention is to stay above 1. On cash-basis books, add collectible receivables and unpaid bills by hand.",
+     "confidence": "none",
+     "data_hint": "The balance sheet."
+    },
+    {
+     "slug": "fm-revenue-per-fte-clinician",
+     "name": "Net revenue per full-time clinician",
+     "definition": "Net revenue divided by the number of full-time physicians, or by all full-time clinicians. State which.",
+     "formula": "Net revenue / full-time clinicians",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_typical": "about $760,000 per physician in primary care",
+     "benchmark_note": "MGMA, 2024 data, per physician and including revenue from advanced practice clinicians they work with. Not comparable to a per-clinician figure.",
+     "confidence": "medium",
+     "data_hint": "The income statement and payroll.",
+     "sources": [
+      "mgma-fin-ops-2025"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "fm-budget-forecast",
+   "name": "Budget and forecast",
+   "summary": "A yearly plan for revenue and spending built from volume, payment rates and payer mix, checked monthly, with a forecast that is updated as the year unfolds.",
+   "good_looks_like": [
+    "A budget exists by month, built from expected visits, rates and known cost changes.",
+    "Actual results are compared with budget every month.",
+    "The forecast for the rest of the year is updated each quarter.",
+    "Two or three what-if cases are worked out: a rate cut, loss of a site or clinician, a new hire."
+   ],
+   "failure_modes": [
+    "There is no budget, so no result is ever surprising or actionable.",
+    "The budget is last year plus 3%, with no link to volume or rates.",
+    "A known Medicare rate cut is never priced in.",
+    "A hire or a lease is committed to with no forecast of cash."
+   ],
+   "key_questions": [
+    "Do we have a written budget for this year, by month?",
+    "How far is revenue and spending from budget so far?",
+    "What would a 3% cut in Medicare rates do to earnings?",
+    "What happens to cash if our largest source of patients stops?"
+   ],
+   "actions": [
+    {
+     "action": "Build the budget from drivers",
+     "detail": "Visits by type times expected payment, plus program and other revenue. Costs by line with known changes.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Compare actual with budget monthly",
+     "detail": "A one-page variance report at the monthly review.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Reforecast each quarter",
+     "detail": "Replace the remaining months with a current estimate.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Work three scenarios",
+     "detail": "Rate cut, loss of the largest site or clinician, and one growth case.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. Practices that depend on Medicare should rebuild the revenue side each November, when the next year's fee schedule is final.",
+   "sources": [
+    "sba-finances",
+    "cms-pfs-2027",
+    "aafp-finances"
+   ],
+   "evidence_note": "General business practice. The yearly Medicare fee schedule rule is the one outside input every Medicare practice can and should model.",
+   "metrics": [
+    {
+     "slug": "fm-budget-variance",
+     "name": "Variance of revenue and expense to budget",
+     "definition": "Difference between actual and budgeted revenue, and between actual and budgeted expense, for the period.",
+     "formula": "(Actual - budget) / budget, for revenue and for expense",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Many organizations investigate any line more than about 5% to 10% off budget. That threshold is convention.",
+     "confidence": "none",
+     "data_hint": "The budget against the income statement."
+    }
+   ]
+  },
+  {
+   "slug": "fm-cash-treasury",
+   "name": "Cash management and reserves",
+   "summary": "Having enough cash to meet payroll and bills through an ordinary bad month or a payer delay, knowing weeks ahead when cash will be tight, and keeping idle cash working.",
+   "good_looks_like": [
+    "The owner knows the bank balance and the next two payrolls every week.",
+    "A rolling forecast shows expected cash for the next 13 weeks.",
+    "A reserve target is set in months of operating cost, and distributions wait until it is met.",
+    "An unused line of credit exists for emergencies."
+   ],
+   "failure_modes": [
+    "All spare cash is distributed to the owner, and one slow month means borrowing at a high rate.",
+    "A payer or clearinghouse outage stops receipts for weeks and there is no cushion.",
+    "Estimated tax payments come as a surprise.",
+    "Card processing and bank fees are never reviewed."
+   ],
+   "key_questions": [
+    "How many days of operating cost do we hold in cash?",
+    "Do we have a forecast of cash for the next 13 weeks?",
+    "What is our reserve target, and are we at it?",
+    "Do we have a credit line we are not using?"
+   ],
+   "actions": [
+    {
+     "action": "Set a reserve target",
+     "detail": "A number of months of operating cost, agreed with the accountant, reached before distributions.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a 13-week cash forecast",
+     "detail": "Expected receipts by week, payroll, rent, loan and tax payments.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Arrange a line of credit while it is not needed",
+     "detail": "Banks lend most easily to businesses that do not need the money.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Review bank and card fees yearly",
+     "detail": "Including the cost of payer virtual cards.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Every practice. Practices dependent on one payer, such as Medicare, need a larger cushion, because that payer can suspend payments during a review.",
+   "sources": [
+    "amednews-2011",
+    "ama-new-practice-finance",
+    "sba-finances"
+   ],
+   "evidence_note": "No professional body publishes a cash standard for practices. The three-to-six-month figure is expert advice from 2011 and is widely repeated.",
+   "metrics": [
+    {
+     "slug": "fm-days-cash-on-hand",
+     "name": "Days cash on hand",
+     "definition": "How many days the practice could pay its operating costs from cash in the bank with no new receipts.",
+     "formula": "Cash and equivalents / (annual cash operating cost including owner salary / 365)",
+     "unit": "days",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "90 to 180 days",
+     "benchmark_red": "under 30 days",
+     "benchmark_note": "Expert advice reported by American Medical News in 2011: three to six months of cash or available credit. The red flag is a judgment. No formal standard exists.",
+     "confidence": "low",
+     "data_hint": "Bank balances and the income statement.",
+     "sources": [
+      "amednews-2011"
+     ]
+    },
+    {
+     "slug": "fm-cash-forecast-weeks",
+     "name": "Weeks of forward cash forecast maintained",
+     "definition": "How far ahead the practice keeps a current week-by-week forecast of cash.",
+     "formula": "Count of future weeks in the current forecast",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "weekly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Thirteen weeks is the common convention, since it covers a quarter.",
+     "confidence": "none",
+     "data_hint": "The forecast spreadsheet."
+    }
+   ]
+  },
+  {
+   "slug": "fm-debt-capital",
+   "name": "Debt and capital structure",
+   "summary": "What the practice owes, at what cost, on what terms, and whether earnings cover the payments comfortably. It includes loans, equipment leases, credit lines and any money owed to or by the owner.",
+   "good_looks_like": [
+    "One schedule lists every loan and lease with balance, rate, payment, maturity, covenants and personal guarantees.",
+    "Earnings cover yearly debt payments with room to spare.",
+    "High-cost debt is refinanced or paid down first.",
+    "Borrowing is used for assets that last, not for operating losses."
+   ],
+   "failure_modes": [
+    "Short-term, high-rate financing is used again and again to cover cash gaps.",
+    "The owner has personally guaranteed debt without knowing it.",
+    "A loan covenant is breached and nobody noticed.",
+    "Equipment is leased at a cost far above buying it."
+   ],
+   "key_questions": [
+    "What do we owe in total, and what is the rate on each loan?",
+    "How many times do yearly earnings cover yearly debt payments?",
+    "Which debts carry a personal guarantee?",
+    "Could any loan be refinanced at a lower rate?"
+   ],
+   "actions": [
+    {
+     "action": "Build a debt schedule",
+     "detail": "Lender, balance, rate, payment, maturity, prepayment terms, covenants and guarantees.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Calculate debt service coverage",
+     "detail": "Earnings before interest and depreciation, after a market wage for owners, divided by yearly principal and interest.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Refinance the most expensive debt",
+     "detail": "Ask two banks for a term-loan quote and check prepayment charges first.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Match the loan to the asset",
+     "detail": "Borrow long for equipment and build-out. Avoid funding operating shortfalls with debt.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with loans, leases or a credit line. Start-ups and practices that have been through a downturn most often carry expensive short-term debt worth refinancing.",
+   "sources": [
+    "ama-new-practice-finance",
+    "sba-sop-50-10",
+    "sba-finances"
+   ],
+   "evidence_note": "The coverage figure is what lenders are reported to expect. It is a lending convention, not a rule, and each bank sets its own.",
+   "metrics": [
+    {
+     "slug": "fm-debt-service-coverage",
+     "name": "Debt service coverage ratio",
+     "definition": "Yearly earnings available to pay debt, divided by the year's required principal and interest payments.",
+     "formula": "(Earnings before interest, taxes and depreciation, after a market wage for owners) / (principal + interest due in the year)",
+     "unit": "ratio",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "1.5 or more",
+     "benchmark_red": "under 1.2",
+     "benchmark_note": "The AMA reports that lenders want coverage above 1.2 by a new practice's second year (2026). The 1.5 figure is a common lender comfort level, not a published standard.",
+     "confidence": "medium",
+     "data_hint": "The income statement and the debt schedule.",
+     "sources": [
+      "ama-new-practice-finance"
+     ]
+    },
+    {
+     "slug": "fm-debt-to-ebitda",
+     "name": "Debt to normalized EBITDA",
+     "definition": "Total interest-bearing debt divided by yearly earnings after a market wage for owners.",
+     "formula": "Total debt / normalized EBITDA",
+     "unit": "ratio",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Lower is safer. A figure above about 3 would concern most small-business lenders, by convention.",
+     "confidence": "none",
+     "data_hint": "The debt schedule and the normalized earnings calculation."
+    },
+    {
+     "slug": "fm-weighted-interest-rate",
+     "name": "Weighted average interest rate on debt",
+     "definition": "The average rate paid across all debt, weighted by balance.",
+     "formula": "Sum of (balance x rate) / total debt",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare with a current bank term-loan quote. A large gap means refinancing is worth pursuing.",
+     "confidence": "none",
+     "data_hint": "The debt schedule."
+    }
+   ]
+  },
+  {
+   "slug": "fm-owner-comp-tax",
+   "name": "Owner pay, distributions and tax",
+   "summary": "How the owner takes money out: salary, distributions, benefits and loans. It affects tax, cash, what the practice appears to earn, and what a buyer sees.",
+   "good_looks_like": [
+    "The owner's salary is set deliberately and can be justified against market pay for the work done.",
+    "Distributions happen only after the cash reserve and tax payments are covered.",
+    "Estimated taxes are scheduled, not discovered.",
+    "Loans between the owner and the practice are documented, carry interest, and have a repayment plan."
+   ],
+   "failure_modes": [
+    "An S corporation owner takes a low salary and large distributions, which the tax authority can recharacterize as wages.",
+    "Draws exceed profit and show up as a growing loan from the practice to the owner.",
+    "Personal expenses are paid by the practice with no record.",
+    "Retirement plan options that would save tax go unused."
+   ],
+   "key_questions": [
+    "How much did the owner take last year in salary, distributions and benefits?",
+    "Is the salary defensible as reasonable pay for the clinical work?",
+    "Does the owner owe the practice money, or the reverse?",
+    "Are estimated tax payments on the calendar?"
+   ],
+   "actions": [
+    {
+     "action": "Review owner pay with the accountant yearly",
+     "detail": "Salary against market pay, the split with distributions, and the tax effect.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Distribute only above the reserve",
+     "detail": "A simple rule: reserve first, taxes second, distributions third.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Document and repay owner loans",
+     "detail": "A written note with interest and a schedule, or a plan to clear it.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Use the retirement plan",
+     "detail": "Ask the accountant which plan type fits the practice's size and staff.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Owner-operated practices. The reasonable-pay question is specific to S corporations in the United States. Other entity types face different rules, so this needs an accountant who knows the entity.",
+   "sources": [
+    "irs-s-corp-compensation",
+    "aafp-finances"
+   ],
+   "evidence_note": "The reasonable-compensation requirement for S corporation owners is tax authority guidance. What counts as reasonable is a matter of facts and judgment.",
+   "metrics": [
+    {
+     "slug": "fm-owner-total-take",
+     "name": "Owner total compensation and distributions",
+     "definition": "Everything the owner received from the practice in a year: salary, distributions, benefits and net new loans.",
+     "formula": "Salary + distributions + benefits + increase in loans to owner",
+     "unit": "dollars",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "Not a target. Compare it with earnings before owner pay. Taking more than the practice earns shows up as falling cash or a growing owner loan.",
+     "confidence": "none",
+     "data_hint": "Payroll, the equity section of the balance sheet and the owner loan account."
+    },
+    {
+     "slug": "fm-shareholder-loan-balance",
+     "name": "Loans between the owner and the practice",
+     "definition": "Net amount the owner owes the practice, or the practice owes the owner.",
+     "formula": "Balance of owner loan accounts on the balance sheet",
+     "unit": "dollars",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is zero or a documented, shrinking balance.",
+     "confidence": "none",
+     "data_hint": "The balance sheet."
+    },
+    {
+     "slug": "fm-owner-salary-share",
+     "name": "Owner salary as a share of total owner take",
+     "definition": "The portion of what the owner receives that is paid as wages through payroll.",
+     "formula": "Owner wages / (wages + distributions)",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. No safe-harbor percentage exists. The test is whether wages are reasonable for the work performed.",
+     "confidence": "none",
+     "data_hint": "Payroll and distribution records."
+    }
+   ]
+  },
+  {
+   "slug": "fm-overhead-costs",
+   "name": "Overhead and cost control",
+   "summary": "What it costs to run the practice apart from clinician pay: staff, rent, billing, technology, supplies, insurance. Costs have risen faster than payment rates for more than a decade, so the gap between revenue and cost has to be defended line by line.",
+   "good_looks_like": [
+    "Costs are reported by category as a share of revenue, monthly and against the prior year.",
+    "The three largest categories are reviewed in detail each year.",
+    "Every recurring contract and subscription has an owner and a renewal date.",
+    "The full cost of billing is known."
+   ],
+   "failure_modes": [
+    "Subscriptions and per-claim fees accumulate unnoticed.",
+    "Staffing is cut to hit a ratio and collections fall by more than the savings.",
+    "Rent is paid for space the practice's model no longer needs.",
+    "Costs are compared with a benchmark built for a different kind of practice."
+   ],
+   "key_questions": [
+    "What share of revenue goes to operating cost, and how has it moved over three years?",
+    "What are our three largest cost lines?",
+    "What does billing cost us in total, as a share of collections?",
+    "Which contracts renew in the next six months?"
+   ],
+   "actions": [
+    {
+     "action": "Report costs as a share of revenue",
+     "detail": "By category, monthly, with prior-year comparison.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review the three largest lines yearly",
+     "detail": "Staffing, occupancy and billing or technology, each with one question: what would we do if starting today?",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a contract calendar",
+     "detail": "Vendor, cost, renewal date and notice period.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Calculate the full cost to collect",
+     "detail": "Billing staff, software, clearinghouse, statement and vendor fees over collections.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Published ratios describe office-based practices with a front desk and clinical support. Practices with no office or with automated billing should expect much lower ratios and judge themselves by trend.",
+   "sources": [
+    "mgma-stat-margin",
+    "mgma-app-2026",
+    "aafp-vital-signs",
+    "hfma-map-keys"
+   ],
+   "evidence_note": "MGMA reports operating cost per physician rose 71.6% from 2011 to 2024 against 39.5% inflation. A current published median for total cost as a share of revenue was not found.",
+   "metrics": [
+    {
+     "slug": "fm-overhead-ratio",
+     "name": "Operating expense ratio",
+     "definition": "Operating expenses other than clinician and owner pay, as a share of net revenue.",
+     "formula": "Operating expenses excluding clinician and owner pay / net revenue",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_typical": "roughly 60%",
+     "benchmark_note": "No current MGMA median is public. About 60% is attributed to MGMA in trade press (2026), and the AAFP gave 60% to 70% of collections for family medicine (2009). Treat as a rough guide.",
+     "confidence": "low",
+     "data_hint": "The income statement.",
+     "sources": [
+      "aafp-vital-signs",
+      "mgma-stat-margin"
+     ]
+    },
+    {
+     "slug": "fm-staff-cost-ratio",
+     "name": "Support staff cost as a share of revenue",
+     "definition": "Pay and benefits of non-clinician staff as a share of net revenue.",
+     "formula": "Support staff pay and benefits / net revenue",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_typical": "30% to 34% in primary care",
+     "benchmark_note": "MGMA, 2025 data, office-based primary care at the median. State whether advanced practice clinicians are included. They are not in MGMA's figure.",
+     "confidence": "medium",
+     "data_hint": "Payroll and the income statement.",
+     "sources": [
+      "mgma-app-2026"
+     ]
+    },
+    {
+     "slug": "fm-cost-to-collect",
+     "name": "Cost to collect",
+     "definition": "What the practice spends on its revenue cycle for each dollar collected.",
+     "formula": "Revenue cycle cost (staff, software, clearinghouse, vendor fees) / patient service cash collected",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "HFMA defines the measure and publishes no target. No reliable small-practice benchmark was found. Always read it beside the net collection rate, since cheap billing that collects less is no saving.",
+     "confidence": "low",
+     "data_hint": "Billing-related lines of the income statement over collections.",
+     "sources": [
+      "hfma-map-keys"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "fm-service-line-profit",
+   "name": "Profitability by service line, site and clinician",
+   "summary": "Knowing which parts of the practice make money: each service line, site, payer and clinician. Totals hide the fact that one line may be carrying another.",
+   "good_looks_like": [
+    "Revenue is reported by service line, site and clinician.",
+    "Direct costs, mainly clinician time and travel, are assigned to each.",
+    "The practice knows the contribution of each line after its direct costs.",
+    "Decisions to grow, fix or stop a line are made from these numbers."
+   ],
+   "failure_modes": [
+    "A site that takes a day a week brings in less than the clinician costs.",
+    "A new program looks profitable because the staff time it uses is not counted.",
+    "Payment per visit differs widely by payer and nobody has looked.",
+    "The most profitable work is not the work the practice is growing."
+   ],
+   "key_questions": [
+    "What does each service line, site and clinician bring in?",
+    "What does each cost in clinician days and direct expense?",
+    "Which line has the highest contribution per clinician day?",
+    "Is there a line or site we would not start today?"
+   ],
+   "actions": [
+    {
+     "action": "Tag revenue by line, site and clinician",
+     "detail": "Use place of service, facility and code groups already in the billing system.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Assign clinician days to each line",
+     "detail": "From the schedule or the charge data.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Calculate contribution per clinician day",
+     "detail": "Collections less direct cost, divided by days spent.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Decide yearly what to grow, fix or stop",
+     "detail": "One written decision for each line.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice with more than one site, service line or clinician. Visiting practices should include travel time as a cost of each site.",
+   "sources": [
+    "mgma-bok",
+    "aafp-finances"
+   ],
+   "evidence_note": "Standard managerial accounting. No benchmark applies, because lines and costs differ by practice.",
+   "metrics": [
+    {
+     "slug": "fm-contribution-margin-by-line",
+     "name": "Contribution margin by service line or site",
+     "definition": "Collections of a service line or site less the direct costs of delivering it, as a share of its collections.",
+     "formula": "(Line collections - direct costs of the line) / line collections",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare lines with each other.",
+     "confidence": "none",
+     "data_hint": "Collections by code group and site, with clinician time from the schedule."
+    },
+    {
+     "slug": "fm-revenue-per-encounter",
+     "name": "Net revenue per encounter",
+     "definition": "Collections divided by the number of patient encounters, in total and by payer or setting.",
+     "formula": "Collections / encounters",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. It moves with code mix, payer mix and denials, so read it by payer and setting.",
+     "confidence": "none",
+     "data_hint": "Billing system collections and encounter counts."
+    }
+   ]
+  },
+  {
+   "slug": "fm-internal-controls",
+   "name": "Internal controls and fraud prevention",
+   "summary": "Arranging duties so that no one person, vendor or automated process can both handle money and hide what happened to it. Theft from medical practices is common and usually committed by a trusted person.",
+   "good_looks_like": [
+    "Different people, or a person and the owner, handle receiving money, posting it and reconciling the bank.",
+    "The owner personally reviews bank statements, payroll and write-offs each month.",
+    "Refunds, adjustments above a set amount and new vendors need owner approval.",
+    "The accountant or another outsider reconciles the bank account."
+   ],
+   "failure_modes": [
+    "One trusted employee opens mail, posts payments, makes deposits and reconciles the account.",
+    "Write-offs and adjustments are used to hide diverted payments.",
+    "A fictitious vendor or employee is paid for years.",
+    "Automated processes post and adjust with no human review."
+   ],
+   "key_questions": [
+    "Who could take money here without anyone else noticing?",
+    "Who reviews the bank statement, and is it someone who does not post payments?",
+    "What is the approval limit for write-offs and refunds?",
+    "Does anyone outside the billing process reconcile deposits to postings?"
+   ],
+   "actions": [
+    {
+     "action": "Separate the three money duties",
+     "detail": "Receiving, recording and reconciling. In a very small practice the owner or the accountant takes one of them.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review statements and write-offs monthly",
+     "detail": "Bank statement, payroll register and a report of adjustments above the approval limit.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set approval limits",
+     "detail": "For write-offs, refunds, new vendors and payroll changes.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Have an outsider reconcile the bank",
+     "detail": "The accountant, monthly, with the report sent to the owner directly.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. The smaller the staff, the harder it is to separate duties and the more the owner's own monthly review matters. The same logic applies to vendors and to automated billing.",
+   "sources": [
+    "amednews-embezzlement-2011",
+    "sba-finances"
+   ],
+   "evidence_note": "An MGMA survey reported in 2011 found that nearly 83% of 688 practice managers had worked in a practice that suffered embezzlement. Control design is standard accounting practice.",
+   "metrics": [
+    {
+     "slug": "fm-adjustments-reviewed",
+     "name": "Share of write-offs above the approval limit reviewed by the owner",
+     "definition": "Portion of write-offs, refunds and manual adjustments above the practice's approval limit that the owner reviewed and signed off.",
+     "formula": "Adjustments above the limit with owner sign-off / adjustments above the limit",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
+     "confidence": "none",
+     "data_hint": "The billing system's adjustment report for the month."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,824 @@
+{
+ "domain": "strategy-governance",
+ "categories": [
+  {
+   "slug": "sg-ownership-entity",
+   "name": "Ownership, legal entity and governing documents",
+   "summary": "The legal form of the practice, who owns it, how it is taxed and the documents that say what happens when an owner joins, leaves, becomes disabled or dies. Gaps stay hidden until a crisis, a sale or an audit exposes them.",
+   "good_looks_like": [
+    "The owner can name the entity type and tax election, and the accountant confirms each year that both still fit the practice's income and plans.",
+    "Signed bylaws or operating agreement, an ownership ledger and minutes of an annual owners' meeting are kept in one known place, with a second copy off site.",
+    "With two or more owners, a signed buy-sell agreement sets the trigger events, the price formula, payment terms and how the purchase is funded.",
+    "The state annual report is filed on time, and the state, the Internal Revenue Service (IRS), payers and the bank all show the same legal name and owners.",
+    "Medicare enrollment lists the current owners and managing employees, and names an authorized official plus a delegated official who can sign updates (42 CFR 424.502)."
+   ],
+   "failure_modes": [
+    "No buy-sell agreement, or one with a stale price. A death, disability or divorce leaves the remaining owners negotiating with an estate or a former spouse.",
+    "An S corporation pays its physician-owner a low salary and large distributions. The IRS can reclassify distributions as wages subject to employment taxes.",
+    "A change of ownership is not reported to Medicare within 30 days (42 CFR 424.516(d)). Unreported changes can lead to deactivated billing privileges (42 CFR 424.540).",
+    "Ownership breaks state law. In Florida a practice not wholly owned by licensed practitioners generally needs a clinic license (section 400.9905(4)). California bars practicing medicine through a limited liability company.",
+    "A change of ownership that also changes the tax identification number generally requires a new Medicare enrollment application (42 CFR 424.550(c)). Unplanned, this interrupts billing."
+   ],
+   "key_questions": [
+    "Can you put your hands on the signed bylaws or operating agreement and the current ownership ledger today?",
+    "How many months since an attorney last reviewed the governing documents and any buy-sell agreement?",
+    "If an owner died or lost a license tomorrow, does a signed document set the price and say who may buy the shares?",
+    "If the practice is taxed as an S corporation, does the accountant have a written basis for each owner's salary?",
+    "Do the state, Medicare, your payers and the bank all list the same owners, officers and addresses?"
+   ],
+   "actions": [
+    {
+     "action": "Assemble a corporate record book",
+     "detail": "One folder with formation papers, tax election letters, bylaws or operating agreement, ownership ledger, minutes, licenses and enrollment approvals. Give a second copy to the attorney or accountant.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Hold and record an annual owners' meeting",
+     "detail": "Do this even with one owner. Record officers, bank signers, owner pay method, distributions and major contracts. The Small Business Administration advises corporations to hold annual meetings and keep minutes.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Sign or update a buy-sell agreement",
+     "detail": "Cover death, disability, retirement, loss of license, exclusion from federal health programs and divorce. Fix a price formula and funding. In Florida an owner who loses a license must give up the shares at once (section 621.10).",
+     "cadence": "once",
+     "effort": "high",
+     "impact": "high"
+    },
+    {
+     "action": "Review entity and tax election with the accountant",
+     "detail": "At year end, test whether the election still fits income, owner pay and sale plans. In an S corporation, document why each owner's salary is reasonable and keep distributions proportional to shares (26 CFR 1.1361-1(l)).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Reconcile owners and officers across every registry",
+     "detail": "Compare the state record, Medicare enrollment, Medicaid, payer files and bank signature cards. In Florida the annual report is due by May 1 and entities that never file are dissolved in September.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, including a solo owner, who still needs entity records, a tax election and a plan for death or disability. Ownership limits are state law, and facility-based practices should check whether directorship and coverage agreements are held by the entity or by a physician personally.",
+   "vendor_refs": [
+    {
+     "item": "new-practice-launch-playbook",
+     "note": "Puts entity formation first in its launch sequence and says to confirm state rules with an attorney. Silent on bylaws, buy-sell terms, tax election and annual filings."
+    },
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Describes management company structures as if state bans on non-physician ownership were nearly universal. State rules vary widely, so check your own state."
+    },
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Useful: separate the owner's pay for clinical work, pay for management work and profit from ownership. Its fair market value and Stark statements overreach."
+    }
+   ],
+   "sources": [
+    "cfr-424-516",
+    "cfr-424-502",
+    "cfr-424-540",
+    "cfr-424-550",
+    "irs-s-corp-compensation",
+    "irs-s-corporations",
+    "cfr-26-1-1361-1",
+    "fl-621",
+    "fl-400-9905",
+    "fl-sunbiz-annual-report",
+    "ca-mbc-cpom",
+    "ama-corporate-investors-2025",
+    "sba-stay-compliant",
+    "fincen-boi-2026"
+   ],
+   "evidence_note": "Medicare enrollment and tax rules are federal regulation. Ownership limits are state law and vary widely. Document review intervals are convention. US-formed companies no longer file beneficial ownership reports with the Financial Crimes Enforcement Network (final rule effective August 14, 2026).",
+   "metrics": [
+    {
+     "slug": "sg-governing-docs-age",
+     "name": "Months since governing documents were reviewed",
+     "definition": "Months since the bylaws or operating agreement, any buy-sell agreement and the ownership ledger were last read together and confirmed or amended, with attorney input where terms changed.",
+     "formula": "Today's date minus the date of the last documented review, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published benchmark was found. From first principles, review at the annual owners' meeting that the Small Business Administration recommends, and after any change in owners, tax election, lender terms or state law.",
+     "confidence": "none",
+     "sources": [
+      "sba-stay-compliant"
+     ],
+     "data_hint": "Date on the last minutes or attorney letter that records the review. If no record exists, treat the answer as never."
+    }
+   ]
+  },
+  {
+   "slug": "sg-strategy-plan",
+   "name": "Direction, strategy and annual plan",
+   "summary": "A short written statement of what the practice is for, whom and where it serves, where it should be in three years and the few priorities for this year. It gives the owner a basis for saying no.",
+   "good_looks_like": [
+    "A plan of one or two pages names the purpose, the target patients and sites, the payers the practice wants and the services it will not offer.",
+    "Three-year goals are written as numbers: clinicians, sites or panel size, revenue, owner income and owner hours.",
+    "Three to five priorities for the year each have one named owner, a written measure of done and a due quarter.",
+    "Each priority appears in the budget with the money and clinician hours it needs.",
+    "Progress is reviewed every quarter, and the plan is rewritten once a year and shared with clinicians and staff."
+   ],
+   "failure_modes": [
+    "No written plan. Decisions follow the latest request from a facility, payer or vendor, and the owner's time goes to whatever is urgent.",
+    "Too many priorities. Ten goals with no owners or dates end the year with none finished.",
+    "Growth is chosen without checking capacity, enrollment lead time or cash, so a new site or clinician loses money for months.",
+    "The plan ignores payment changes already published. The 2027 Medicare conversion factor falls 2.31% to $32.63, so a budget built on 2026 rates will miss.",
+    "Nothing is ever stopped. Low-value sites, payers or services keep absorbing clinician hours because the plan never says what to give up."
+   ],
+   "key_questions": [
+    "Is there a written plan, dated within the last 12 months, that fits on two pages?",
+    "How many priorities did you set for this year, and how many are finished?",
+    "Can each clinician and manager name this year's top three priorities?",
+    "Have you written down which patients, sites, payers or services you will turn away?",
+    "Does this year's budget show the money and clinician hours for each priority?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page plan",
+     "detail": "Purpose, target patients and sites, three-year numeric goals, three to five priorities and a short list of what you will not do. The Small Business Administration notes a lean plan can take as little as an hour.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Give each priority an owner, a measure and a due quarter",
+     "detail": "Write what done looks like in one sentence that someone else could check. Split each priority into quarterly steps.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review priorities every quarter",
+     "detail": "Mark each one on track, at risk, done or dropped. Dropping a priority on purpose is allowed, but record why.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Read the Medicare payment rule before setting the plan",
+     "detail": "The final physician fee schedule rule is usually released around the start of November. For 2027 it also changes practice expense payment for visits to patients in a Part A skilled nursing stay.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Test each growth idea against capacity and cash",
+     "detail": "Before adding a site, service or clinician, estimate clinician hours, payer enrollment lead time, start-up cost and months to break even.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, and a solo or two-clinician practice needs one page, not a retreat. For facility-based practices the sites are the hospitals, nursing homes and assisted living communities served, and the plan should say which to add, keep or leave.",
+   "vendor_refs": [
+    {
+     "item": "annual-revenue-cycle-assessment-guide",
+     "note": "Yearly yes or no self-assessment that ranks up to five priorities, each with an owner and a 90-day target. Revenue cycle only: no purpose, market or growth choices."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Has an investment-case format and growth models for new clinicians, sites and service lines, with unsourced figures. No document in the library covers strategy or annual planning itself."
+    }
+   ],
+   "sources": [
+    "baldrige",
+    "mgma-bok",
+    "mgma-stat-strategic-plan-2017",
+    "mgma-stat-strategic-plan-2018",
+    "sba-business-plan",
+    "cms-pfs-2027"
+   ],
+   "evidence_note": "Planning method is convention, drawn from the Baldrige criteria and small-business guidance. Measured data are thin: in Medical Group Management Association polls, 61% of 1,212 leaders (2017) and 58% (2018) said their organization had a 12-month strategic plan.",
+   "metrics": [
+    {
+     "slug": "sg-annual-priorities-done",
+     "name": "Annual priorities completed",
+     "definition": "Share of the priorities set at the start of the year that met their written measure of done by year end. Priorities dropped on purpose are reported separately, not counted as completed.",
+     "formula": "Priorities completed by year end / priorities set at the start of the year x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No published benchmark for completion was found. For context, 58% to 61% of leaders polled by the Medical Group Management Association in 2017 and 2018 had a 12-month plan at all. Compare with your own prior years.",
+     "confidence": "none",
+     "sources": [
+      "mgma-stat-strategic-plan-2017",
+      "mgma-stat-strategic-plan-2018"
+     ],
+     "data_hint": "The written annual plan and the notes from each quarterly review."
+    }
+   ]
+  },
+  {
+   "slug": "sg-operating-rhythm",
+   "name": "Management rhythm and scorecard",
+   "summary": "A fixed calendar of short reviews, daily to annual, built around a one-page scorecard. It lets an owner who spends most days with patients see a problem within a month instead of at tax time.",
+   "good_looks_like": [
+    "A one-page scorecard shows each measure for this month, last month, the same month last year and the target.",
+    "The owner holds a review on a fixed day every month covering profit, cash, receivables, production, people and compliance, and it ends with written decisions.",
+    "Every decision has one owner, one next action and one due date, and open items are read first at the next review.",
+    "Each measure has one written definition and one data source, so the number does not change with the person who runs it.",
+    "Every quarter the compliance contact reports to the owner, the forecast is redone and the scorecard is compared with outside benchmarks."
+   ],
+   "failure_modes": [
+    "The owner sees financial statements once a year at tax time, so a coding, payer or staffing problem runs for months unseen.",
+    "Reports are produced but never discussed. Numbers arrive by email and nothing is decided.",
+    "Reviews end without owners or due dates, and the same problems come back every month.",
+    "The scorecard tracks only billing measures. Cash, overhead, capacity, turnover and compliance are missing, so the practice looks healthy while running short of cash.",
+    "The person who does the work is the only one who measures it. Nobody recomputes what a biller, vendor or software reports."
+   ],
+   "key_questions": [
+    "How many monthly management reviews were held in the last 12 months?",
+    "How many days old is the latest scorecard?",
+    "Does every scorecard measure have a written definition and a named data source?",
+    "How many decisions from the last three reviews are open past their due date?",
+    "Does anyone other than the person doing the billing recompute the billing numbers?"
+   ],
+   "actions": [
+    {
+     "action": "Put a monthly owner review on the calendar",
+     "detail": "Same day each month, after the books close. Fixed agenda: open decisions, scorecard, cash forecast, receivables by payer, people, compliance. With a prepared worksheet the financial part can take as little as 10 minutes.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Build a one-page scorecard",
+     "detail": "Choose about a dozen measures across money, revenue cycle, capacity, people, quality and compliance. Show current month, prior month, same month last year and target. Write one definition per measure.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a decision log",
+     "detail": "One line per decision: what, who, next action, due date, date done. Read open lines first at every review and limit new decisions to what can be finished.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set the daily, weekly, quarterly and annual checks",
+     "detail": "Daily: bank balance and charges sent. Weekly: denials, unpaid claims, staffing gaps. Quarterly: forecast, compliance report, benchmarks. Annual: budget, plan, fee schedule, insurance and contracts.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Have a second person recompute key numbers",
+     "detail": "Each quarter the owner or accountant recalculates three or four measures from raw reports and compares them with what the billing staff, vendor or software reported.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice, though in a solo or two-clinician practice the review may be just the owner with the biller's reports and the accountant's statements. Facility-based practices replace schedule measures with census, required visits coming due and visits per rounding day.",
+   "vendor_refs": [
+    {
+     "item": "performance-system-start-here",
+     "note": "Sound rule: every open item has one owner, one next action and one due date, reviewed weekly and monthly. Built for a front desk with appointments, and gives no targets."
+    },
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Daily to quarterly cadence and a 20-minute monthly owner review of billing measures. Its benchmarks are unsourced and differ between sections. Billing only."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Four-week monthly cycle ending in an owner briefing that asks for decisions, plus a 14-measure dashboard. Office-practice assumptions, and several figures are unsourced."
+    },
+    {
+     "item": "denial-control-kit-workbook",
+     "note": "Monthly meeting pack that caps new decisions at three, each with an owner, due date and proof of completion. Its recovery rate formula overstates results."
+    }
+   ],
+   "sources": [
+    "aafp-vital-signs",
+    "oig-gcpg",
+    "baldrige",
+    "mgma-stat-strategic-plan-2018",
+    "mgma-bok"
+   ],
+   "evidence_note": "The cadence is convention. Published anchors: a monthly financial review in the American Academy of Family Physicians' journal (2009), Office of Inspector General advice that a small practice's compliance contact report to the owner at least quarterly (2023), and the Baldrige review criteria.",
+   "metrics": [
+    {
+     "slug": "sg-monthly-reviews-held",
+     "name": "Monthly management reviews held in the last 12 months",
+     "definition": "Number of the last 12 months in which the owner held a documented review of the scorecard and recorded decisions.",
+     "formula": "Count of months in the trailing 12 that have dated review notes",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "12 of 12",
+     "benchmark_red": "fewer than 4 of 12",
+     "benchmark_note": "Guidance, not measurement. The American Academy of Family Physicians' journal (2009) describes a monthly review. Office of Inspector General guidance (2023) expects compliance reports to the owner at least quarterly. No survey of actual meeting frequency was found.",
+     "confidence": "medium",
+     "sources": [
+      "aafp-vital-signs",
+      "oig-gcpg"
+     ],
+     "data_hint": "Dated agendas, review notes or the decision log."
+    },
+    {
+     "slug": "sg-scorecard-freshness",
+     "name": "Days since the scorecard was last updated",
+     "definition": "Days since the scorecard was last refreshed with a completed month of data.",
+     "formula": "Today's date minus the date of the last scorecard refresh that added a closed month",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No published benchmark was found. From first principles a monthly scorecard should never be more than one cycle old, which keeps this figure under about 45 days. Compare with your own history.",
+     "confidence": "none",
+     "data_hint": "The as-of date printed on the scorecard, or the file date."
+    },
+    {
+     "slug": "sg-decisions-on-time",
+     "name": "Decisions completed by their due date",
+     "definition": "Share of decisions recorded at management reviews that came due in the last 12 months and were finished on or before the due date first set.",
+     "formula": "Decisions closed on or before the original due date / decisions that came due in the period x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No published benchmark was found. Track your own trend. A falling rate usually means too many decisions per review, or owners who lack the time or authority to finish them.",
+     "confidence": "none",
+     "data_hint": "The decision log, counting lines by due date and date done."
+    }
+   ]
+  },
+  {
+   "slug": "sg-decision-rights",
+   "name": "Decision rights, delegation and written policies",
+   "summary": "A written answer to who may decide what: spend, hire, sign, write off, refund, change a code or release a claim. The owner answers for every dollar and every claim, so delegation needs limits, records and review.",
+   "good_looks_like": [
+    "A one-page authority table lists each type of decision, who may make it alone, the dollar limit and who approves above it.",
+    "Write-offs, refunds and voided charges above a set amount need a second approval, and the owner reads a monthly list of all of them.",
+    "A short policy manual covers billing, compliance, privacy, money handling and personnel, and each policy shows an owner and a last review date.",
+    "Billing staff, vendors and software agents work from written standing rules that say what they may do alone and what must go to a clinician or the owner.",
+    "Each person and each automated agent has its own login with only the access the role needs, and rule changes are logged with a date."
+   ],
+   "failure_modes": [
+    "One trusted person collects, posts, adjusts and reconciles unreviewed. In a 2010 Medical Group Management Association survey, about 83% of 688 practice managers had worked where employee theft occurred.",
+    "A blanket rule writes off small Medicare balances. Routinely waiving cost sharing can violate the beneficiary inducement law (42 U.S.C. 1320a-7a(a)(5)). The exception needs non-routine, individual findings of financial need.",
+    "Policies were bought as a binder and never read. Written policy and actual practice differ, which an auditor or a buyer will notice.",
+    "A billing company or software agent changes codes or resubmits claims on its own. The physician remains responsible to Medicare for claims sent in the physician's name.",
+    "Staff do not know their limits. Small decisions wait for the owner, and large ones get made without the owner."
+   ],
+   "key_questions": [
+    "Is there a written table of who may approve spending, write-offs, refunds and contracts, with dollar limits?",
+    "How many people can issue a refund or post a write-off without a second approval, and up to what dollar amount?",
+    "What percent of your written policies show a review date within the last 12 months?",
+    "Do your billing vendor and any software agents have written rules on what needs a clinician's or owner's sign-off?",
+    "Does every user and every automated agent have a separate login, reviewed in the last 12 months?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page authority table",
+     "detail": "Rows: spending, hiring, pay changes, contracts, write-offs, refunds, voids, code changes, appeals and bank payments. Columns: who decides alone, the dollar limit and who approves above it.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review write-offs, refunds and voids every month",
+     "detail": "The owner reads a report of every adjustment, refund and voided charge by person and reason. Thieves hide stolen payments as write-offs or as refunds to their own cards.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review every policy once a year",
+     "detail": "Keep an index with an owner and a last review date for each policy. The Office of Inspector General (OIG) recommends review at least annually. Retire policies nobody follows.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Give vendors and software agents written standing rules",
+     "detail": "State what they may do alone, what needs a clinician or the owner and what is forbidden. Clinicians decide codes and medical necessity. Log every rule change with its date.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Keep control of the bank account that receives payments",
+     "detail": "OIG's guidance for small practices says Medicare payments belong in an account the practice controls, never one a billing service controls alone. Require two approvals for large payments.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, though with few staff the owner's monthly review of adjustments, refunds and bank activity must stand in for a second employee. State law can limit delegation: California's medical board says a licensed physician must keep final responsibility for coding and billing procedures and payer contract terms.",
+   "vendor_refs": [
+    {
+     "item": "performance-system-release-notes",
+     "note": "Shows two habits worth copying: a dated version log and a stated list of known limitations. It miscounts its own files and discloses no defects."
+    },
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Proposes writing off balances under $25 or $50 after one statement. As written this ignores the limits on routinely waiving Medicare cost sharing."
+    },
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Good rule: no balance is written off without a documented decision, with a monthly review of write-off patterns. The pay ranges in the same document are unsourced."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Says to keep ownership of the billing system, data and portal logins and to recompute vendor numbers independently. Its model contract has no coding-accuracy standard or audit right."
+    }
+   ],
+   "sources": [
+    "oig-gcpg",
+    "oig-physician-cpg-2000",
+    "amednews-embezzlement-2011",
+    "nist-ai-rmf",
+    "ca-mbc-cpom",
+    "cfr-164-316"
+   ],
+   "evidence_note": "Office of Inspector General guidance (2000, 2023) and 45 CFR 164.316 are published standards. The federal AI Risk Management Framework, which is voluntary, calls for documented roles and human oversight. The theft figure is one 2010 survey. Approval limits are the owner's choice.",
+   "metrics": [
+    {
+     "slug": "sg-policies-reviewed",
+     "name": "Written policies reviewed in the last 12 months",
+     "definition": "Share of the practice's written policies and procedures whose index entry shows a documented review, with or without changes, in the last 12 months.",
+     "formula": "Policies with a review date in the last 12 months / all written policies x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "100% reviewed within 12 months",
+     "benchmark_red": "any billing or compliance policy past 12 months",
+     "benchmark_note": "The Office of Inspector General's 2023 compliance guidance recommends reviewing policies at least annually. The federal privacy documentation rule (45 CFR 164.316) says periodically. This is guidance, not measurement: no survey of actual review rates was found.",
+     "confidence": "medium",
+     "sources": [
+      "oig-gcpg",
+      "cfr-164-316"
+     ],
+     "data_hint": "The policy index, with one row per policy showing its owner and last review date."
+    }
+   ]
+  },
+  {
+   "slug": "sg-key-relationships",
+   "name": "Key relationships and contracts",
+   "summary": "The few outside parties the practice cannot run without: facilities and hospitals, referral sources, large payers, the landlord and critical vendors. Know how much revenue rests on each and when every agreement renews or can be ended.",
+   "good_looks_like": [
+    "A table shows the share of the last 12 months' revenue from each site, referral source and payer, with the largest of each named.",
+    "One contract register lists every agreement with its owner, start and end dates, renewal rule, notice period and where the signed copy is kept.",
+    "Any paid role with a referral partner, such as a medical directorship, is written, signed, at least one year long, at fair market value and backed by time records.",
+    "The owner or lead clinician meets the leaders of each key facility on a set schedule, and their concerns are logged and answered.",
+    "Hospital privileges, facility credentialing and medical staff reappointment dates sit on the same calendar as contract renewals."
+   ],
+   "failure_modes": [
+    "One facility or referral source supplies a large share of revenue. A change of owner or administrator there can remove it within weeks.",
+    "A contract renews automatically on worse terms because nobody tracked the notice window.",
+    "A medical director stipend is paid with no written agreement or time log. The Office of Inspector General (OIG) treats such payments as a kickback risk.",
+    "The practice assumes it owns its nursing home patients. Residents choose their attending physician (42 CFR 483.10(d)), and the facility may seek another physician if requirements are not met.",
+    "A critical vendor contract has no exit terms, so the practice cannot get its data out or change billing systems without losing weeks of cash."
+   ],
+   "key_questions": [
+    "What percent of the last 12 months' revenue came from the largest site, the largest referral source and the largest payer?",
+    "How many active agreements does the practice have, and how many are in a register with an owner and a renewal date?",
+    "How many agreements renew, expire or reach a notice deadline in the next 180 days?",
+    "For each paid role with a facility or hospital, is there a signed agreement and a monthly time log?",
+    "How many facility or directorship agreements are held in a clinician's own name instead of the practice's?"
+   ],
+   "actions": [
+    {
+     "action": "Build a contract register",
+     "detail": "List every agreement: facilities, hospitals, directorships, payers, lease, loans, billing and software vendors, insurance. Record the owner, dates, renewal rule, notice period, exit rights and file location.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Put every notice deadline on a calendar",
+     "detail": "Set a reminder well ahead of each renewal or notice date, at least twice the notice period, so there is time to renegotiate or leave.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Measure revenue concentration every quarter",
+     "detail": "Run 12 months of revenue by site, referral source and payer. For the largest of each, write what would happen if it stopped and the first three steps you would take.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Document every paid role with a referral partner",
+     "detail": "Use a signed agreement of at least a year that lists duties and sets pay in advance at fair market value. Keep a monthly time log. Have a healthcare attorney review it (42 CFR 411.357(d), 42 CFR 1001.952(d)).",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Hold scheduled reviews with key sites",
+     "detail": "Meet each key facility's administrator and nursing director on a set schedule. Ask what is working, what is not and what is changing: ownership, census or preferred clinician lists.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, with the weight shifting by type: office practices depend most on payers, the lease and referral sources. Hospital-based and facility-based practices depend on a few institutions that can replace them, so site concentration is the first number to know.",
+   "vendor_refs": [
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Recommends an inventory of every financial arrangement with a referral source, screened yearly. Errs on details: says medical directorships must meet a safe harbor and misstates lease rules."
+    },
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "Good idea: one registry of payer agreements with dates, notice periods and amendment rules. Claims outside counsel is rarely needed and uses an impossible payment example."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Lists vendor contract clauses to negotiate: term and auto-renewal, termination, data ownership and performance standards. Every price and performance figure is unsourced."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Flags payer and owner concentration as buyer concerns. Its 45% single-payer threshold has no source and does not fit practices built around Medicare."
+    }
+   ],
+   "sources": [
+    "cfr-411-357",
+    "cfr-1001-952",
+    "oig-gcpg",
+    "oig-nf-icpg-2024",
+    "hallrender-meddir-2025",
+    "cfr-483-70",
+    "cfr-483-10",
+    "pya-checklist"
+   ],
+   "evidence_note": "Rules on paid arrangements with referral partners are regulation (42 CFR 411.357, 42 CFR 1001.952) and OIG guidance. Nursing facilities must designate a physician medical director (42 CFR 483.70(g)). No published concentration threshold exists for medical practices.",
+   "metrics": [
+    {
+     "slug": "sg-revenue-concentration",
+     "name": "Share of revenue from the largest site or referral source",
+     "definition": "Percent of the last 12 months' collections that came from the single largest site of service or referral source. Report the largest payer beside it as a separate figure.",
+     "formula": "Collections from the largest site or referral source in the last 12 months / total collections in the same period x 100",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No published benchmark for medical practices was found. PYA's 2021 buyer checklist lists dependence on a few referral sources as a risk without giving a number. Track your trend and model the loss of the largest source.",
+     "confidence": "none",
+     "sources": [
+      "pya-checklist"
+     ],
+     "data_hint": "Practice management report of payments by facility or place of service and by referring clinician, for 12 months.",
+     "vendor_claim": "The library sets thresholds only for payer concentration: one playbook calls a payer above 25% of net revenue a risk, another says 45% from a single payer.",
+     "vendor_verdict": "Unverifiable. Neither figure has a source, the two disagree, and a practice built around Medicare exceeds both by design."
+    },
+    {
+     "slug": "sg-contracts-inventoried",
+     "name": "Contracts tracked with owner, term and renewal date",
+     "definition": "Share of active agreements that appear in the contract register with a named owner, start and end dates, renewal rule and notice deadline filled in.",
+     "formula": "Agreements in the register with owner, term and renewal date complete / all active agreements x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "100%",
+     "benchmark_red": "any agreement with a referral partner untracked",
+     "benchmark_note": "The Office of Inspector General's 2023 guidance recommends a central tracking system for financial arrangements with referral sources. Extending the 100% target to all contracts is first principles. No survey of contract tracking was found.",
+     "confidence": "medium",
+     "sources": [
+      "oig-gcpg"
+     ],
+     "data_hint": "Compare the register with the vendor list in accounts payable, the payer list and the facility list to find missing agreements."
+    }
+   ]
+  },
+  {
+   "slug": "sg-continuity-succession",
+   "name": "Leadership continuity and emergency succession",
+   "summary": "A written plan for the owner being unavailable for 90 days or for good: who has authority, who covers patients, who can pay staff and send claims. In a small practice the owner is often the only person who can.",
+   "good_looks_like": [
+    "A named person can sign for the entity, approve payroll and pay bills if the owner cannot, and the bank and payroll service already have that person on file.",
+    "A covering physician is arranged in writing for every site, and each facility and hospital knows whom to call.",
+    "At least two people hold administrator access to the health record, billing system, clearinghouse, payer portals and bank, with logins kept in a password manager.",
+    "Written procedures for payroll, charge capture, claim submission, payment posting and month-end close have each been run by a second person.",
+    "The plan was walked through within the last 12 months and the gaps found were fixed."
+   ],
+   "failure_modes": [
+    "The owner is the only bank signer and system administrator. A sudden illness stops payroll and claim submission at the next cycle.",
+    "No covering physician is arranged. A nursing facility must ensure another physician supervises care when the attending is unavailable (42 CFR 483.30(a)), so it will find one itself.",
+    "A substitute physician bills under the absent owner's number for too long. Medicare allows it for no more than 60 continuous days (Claims Processing Manual, chapter 1, section 30.2.11).",
+    "A nurse practitioner is expected to carry the practice alone. Required physician visits in nursing facilities (42 CFR 483.30) and state supervision rules may not allow it.",
+    "A sole owner dies with no plan. In Florida only licensed professionals may hold shares of a professional association (sections 621.09 and 621.11), so heirs cannot take over as owners."
+   ],
+   "key_questions": [
+    "If the owner were unreachable tomorrow, is there a named person who could approve payroll and pay bills, and does the bank know?",
+    "Is there a written agreement with a covering physician for every hospital and facility?",
+    "How many critical systems have only one person with administrator access?",
+    "How many months since the continuity plan was last walked through or tested?",
+    "Would insurance or cash reserves cover fixed costs for 90 days without the owner's production?"
+   ],
+   "actions": [
+    {
+     "action": "Write a two-page emergency succession plan",
+     "detail": "Name who holds authority, who covers each site, who runs payroll and billing, who keeps the records and where logins are. In Florida the board can appoint a records custodian after a practitioner's death or incapacity (section 456.057(20)).",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Add a second signer and a second administrator",
+     "detail": "Add a trusted second signer at the bank and payroll service and a second administrator on each critical system. Name a Medicare delegated official who can sign enrollment updates (42 CFR 424.502).",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Arrange physician coverage in writing",
+     "detail": "Agree coverage for each site. When absent, the regular physician may bill a substitute physician's visits with modifier Q5 or Q6 for up to 60 continuous days, keeping a record of each service.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Write and test the core money procedures",
+     "detail": "Payroll, charge capture, claim submission, payment posting and month-end close. Once a year have a different person run each one from the written steps alone.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Walk through the plan once a year",
+     "detail": "Tabletop: the owner is out for 90 days starting today. Follow the plan step by step and list what fails. For cyber incidents the Medical Group Management Association suggests such exercises twice a year.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Most urgent for solo owners and practices where one physician produces most of the revenue, and larger groups should extend the plan to the administrator and billing lead. Facility-based practices must also plan physician coverage for required nursing facility visits, which a nurse practitioner cannot always perform alone.",
+   "vendor_refs": [
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "For a planned exit it advises a billing operations manual and a credential inventory. Nothing on sudden absence, and several of its regulatory statements are wrong."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Names owner dependence and unwritten billing know-how as key-person risks that buyers price in. Offers no plan for an emergency and no sourced figures."
+    },
+    {
+     "item": "kpi-08-net-collection-rate",
+     "note": "One good test: does performance survive a change in who does the work? Otherwise the document is about a single billing measure."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch1",
+    "cfr-483-30",
+    "cfr-424-502",
+    "cfr-164-308",
+    "hhs-hipaa-security-nprm-2025",
+    "mgma-stat-succession-2026",
+    "mgma-stat-cyber-2026",
+    "sba-prepare-emergencies",
+    "fl-621",
+    "fl-456-057",
+    "baldrige"
+   ],
+   "evidence_note": "The 60-day substitute billing limit, nursing facility physician rules and the contingency plan standard (45 CFR 164.308(a)(7)) are federal. The rest is convention. Measured: 33% of medical groups had a leadership succession plan (Medical Group Management Association poll, February 2026, 302 responses).",
+   "metrics": [
+    {
+     "slug": "sg-continuity-plan-tested",
+     "name": "Months since the continuity plan was tested",
+     "definition": "Months since the practice last walked through or tested its plan for losing the owner, another key person or a critical system, and wrote down what failed.",
+     "formula": "Today's date minus the date of the last documented test or walk-through, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_best": "6 months or less",
+     "benchmark_typical": "not measured. 33% of groups have any succession plan",
+     "benchmark_red": "over 12 months, or never tested",
+     "benchmark_note": "The Medical Group Management Association (October 2026) suggests a tabletop exercise twice a year. A 2025 federal proposal, not final, would require contingency plan tests every 12 months. Both concern system outages. Only 19% of 238 leaders polled felt very confident of quick recovery.",
+     "confidence": "low",
+     "sources": [
+      "mgma-stat-cyber-2026",
+      "mgma-stat-succession-2026",
+      "hhs-hipaa-security-nprm-2025",
+      "cfr-164-308"
+     ],
+     "data_hint": "Dated notes from the last tabletop exercise or backup restore test. No notes means never tested."
+    },
+    {
+     "slug": "sg-single-person-functions",
+     "name": "Critical functions only one person can perform",
+     "definition": "Number of critical functions, such as bank payments, payroll, claim submission, payment posting, system administration and payer enrollment, for which only one person has both access and know-how.",
+     "formula": "Count of critical functions with no second trained person who holds access",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published benchmark was found. The first-principles target is zero. Recount after every staffing or vendor change.",
+     "confidence": "none",
+     "data_hint": "List the functions and name a primary and a backup for each. The blank backup cells are the count."
+    }
+   ]
+  },
+  {
+   "slug": "sg-advisors",
+   "name": "Advisors and outside expertise",
+   "summary": "The outside professionals a small practice uses in place of departments it cannot afford: accountant, healthcare attorney, banker, insurance broker, coding auditor and security support. Know what each is for, when to call and what it costs.",
+   "good_looks_like": [
+    "A one-page list names each advisor, what they handle, how they charge and the date of the last conversation.",
+    "The accountant delivers statements at least quarterly, and the owner knows their level: compiled (no assurance), reviewed (limited assurance) or audited.",
+    "A healthcare attorney reviews any agreement with a referral partner, any ownership change and any possible overpayment before the practice acts.",
+    "An independent coding audit is done at least once a year, the interval the Office of Inspector General (OIG) recommends for small practices.",
+    "The banker sees year-end statements every year, and the insurance broker reviews every coverage type and limit with the owner annually."
+   ],
+   "failure_modes": [
+    "The only advisor is a tax preparer seen once a year. Nobody outside the practice looks at coding, contracts or insurance until something breaks.",
+    "A possible overpayment is handled without a healthcare attorney, and the duty to report and return it within 60 days of identifying it (42 CFR 401.305) is missed.",
+    "Advisors bill by the hour with no agreed scope, and a simple contract review becomes an open-ended project.",
+    "The billing vendor or software seller is treated as the compliance adviser. Its interests differ, and the practice still answers for every claim.",
+    "Advisors never talk to each other. The attorney drafts a buy-sell agreement the accountant has not seen, and the insurance matches neither."
+   ],
+   "key_questions": [
+    "Can you name your accountant, healthcare attorney, banker, insurance broker, coding auditor and security support contact?",
+    "How many months since you last received financial statements, and do you know whether they were compiled, reviewed or audited?",
+    "How many months since the last independent coding audit, and how many records did it cover?",
+    "How much did the practice pay outside professionals in the last 12 months?",
+    "Does every advisor work under a written engagement letter that states scope and fees?"
+   ],
+   "actions": [
+    {
+     "action": "List the advisor bench with scope and fees",
+     "detail": "One page: name, what they handle, fee basis and last contact. For defined work such as a contract review, ask for scope and a fixed fee or cap in writing before it starts.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Meet the accountant and attorney together once a year",
+     "detail": "Agenda: entity and tax election, owner pay, buy-sell value, major contracts, insurance limits and the year's plan. One joint hour prevents conflicting advice.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Commission an independent coding audit every year",
+     "detail": "OIG's guide for small practices suggests five or more records per federal payer, or five to ten per physician. Bring in the attorney first if overpayments are likely.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Call the healthcare attorney before acting on five events",
+     "detail": "A possible overpayment, a government or payer records demand beyond routine, a new paid arrangement with a referral partner, a change of ownership, and a contract dispute or termination.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Brief the banker and the insurance broker yearly",
+     "detail": "Send year-end statements to the banker before credit is needed, and review each policy's limits with the broker. For a new practice, lenders look for projected cash flow above 1.2 times loan payments by the second year.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice, and small ones most of all because they have no in-house finance, legal or technology staff. Facility-based practices should choose an attorney and a coding auditor who know hospital and nursing facility billing rules, which differ from office rules.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Short guide to a sale advisory team: transaction attorney, healthcare accountant and revenue cycle consultant. Sends disclosure decisions to deal counsel when regulatory counsel is needed."
+    },
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "States that contract work needs no legal training or outside counsel in most situations. Its own errors on prompt payment and patient notice show why review matters."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Right instinct: send any flagged arrangement to a healthcare attorney before acting, and stop when a possible violation surfaces. Several of its own legal statements are wrong."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Sets arbitrary cut-offs for calling a lawyer during an audit and treats a consultant as interchangeable with counsel."
+    }
+   ],
+   "sources": [
+    "ama-new-practice-finance",
+    "aicpa-comp-review-audit",
+    "oig-gcpg",
+    "oig-physician-cpg-2000",
+    "cfr-401-305",
+    "cfr-411-357"
+   ],
+   "evidence_note": "Which advisors to keep is expert opinion (American Medical Association, 2026). The annual audit interval is OIG guidance (2000, 2023). The overpayment deadline is regulation. Statement levels follow the American Institute of Certified Public Accountants. No spending benchmark exists.",
+   "metrics": [
+    {
+     "slug": "sg-advisor-spend",
+     "name": "Outside professional fees, last 12 months",
+     "definition": "Total paid to outside accountants, attorneys, consultants, coding auditors and technology security support in the last 12 months, listed by advisor.",
+     "formula": "Sum of payments to outside professional advisors in the trailing 12 months",
+     "unit": "dollars",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "No public benchmark was found. Compare with your own prior year and with the work delivered. A year with nothing spent on legal or coding review is a warning sign, not a saving.",
+     "confidence": "none",
+     "data_hint": "General ledger accounts for legal, accounting and professional fees, checked against vendor payment history."
+    }
+   ]
+  }
+ ]
+}

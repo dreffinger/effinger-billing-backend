@@ -1,0 +1,900 @@
+{
+  "slug": "practice-closure-and-wind-down-revenue-cycle-playbook",
+  "title": "Practice Closure and Wind-Down Revenue Cycle Playbook",
+  "doc_type": "playbook",
+  "pages": 34,
+  "audience": "The cover names physicians, practice administrators and revenue cycle managers. The text speaks to a physician-owner of an independent practice who is retiring, selling, merging or closing, ideally 12 to 24 months before the closing date.",
+  "summary": "A 34-page vendor playbook that treats closing or selling an independent physician practice as a revenue-cycle project. Its method is a reverse timeline: start 12 to 24 months before the closing date and work backward through ten topics: timeline, an accelerated receivables clean-up ranked by claim age, payer, Medicare and Medicaid exit plus credentialing closure, patient notice and a records custodian, record retention and system shutdown, malpractice tail coverage, a pre-closure coding audit, selling leftover receivables, staff retention with knowledge transfer, and a four-phase master checklist. A 90-day launch plan and two short checklists follow. It contains no letters, forms, calculators or tracking tools, and cites one regulation in 34 pages. Several regulatory statements are wrong or oversimplified, and its own timelines contradict each other. It is usable as a list of topics to cover, not as an authority on how or when to do them.",
+  "outline": [
+    {
+      "section": "Introduction: The Most Overlooked Revenue Event",
+      "gist": "Argues closure is a collection problem: receivables at the decision date are still owed, and unmanaged closures write off 20-40% (vendor's own unsourced observation)."
+    },
+    {
+      "section": "Section 1: The Wind-Down Timeline",
+      "gist": "Recommends a 24-month runway, 12 months minimum, triage for unplanned closures; a seven-row table sets milestones from 24 months out to post-closure."
+    },
+    {
+      "section": "Section 2: AR Acceleration Before Closing",
+      "gist": "Five aging buckets, a four-tier work priority list, temporary billing help, a new-patient cutoff 90-120 days out, a worked dollar example, patient-balance clean-up."
+    },
+    {
+      "section": "Section 3: Payer Notification and Credentialing Closure",
+      "gist": "Medicare withdrawal through PECOS, commercial termination letters timed to the longest notice term, post-closure timely filing, Medicaid disenrollment, CAQH and hospital-privilege closure."
+    },
+    {
+      "section": "Section 4: Patient Notification Obligations",
+      "gist": "State-driven written notice to active patients, a named records custodian, wording on outstanding balances, and hand-off plans for patients who depend on ongoing care."
+    },
+    {
+      "section": "Section 5: Billing Documentation Retention",
+      "gist": "Federal, Medicare Advantage and state retention periods with a five-state table, a ten-year working standard, storage format, destruction, minors' records, and EHR shutdown."
+    },
+    {
+      "section": "Section 6: Tail Coverage and Revenue Cycle Implications",
+      "gist": "Explains occurrence versus claims-made policies, tail cost at 150-200% of annual premium, carrier retirement provisions, and timing tail to the last patient encounter."
+    },
+    {
+      "section": "Section 7: The Final Coding and Billing Audit",
+      "gist": "Pre-closure audit of visit levels, incident-to, modifiers, diagnoses and ancillaries; remediate or self-disclose findings; keep an organized archive for later audit defense."
+    },
+    {
+      "section": "Section 8: The Accounts Receivable Sale Option",
+      "gist": "One-time sale or factoring of leftover receivables, advance rates and fees, government-payer assignment limits, buyer vetting; also holds misplaced denial-sprint and timely-filing passages."
+    },
+    {
+      "section": "Section 9: Staff Transition and Knowledge Transfer",
+      "gist": "Inventory what billing staff know, write a billing manual, pay performance-based stay bonuses, consider outsourcing, export practice-management data, involve accountant and attorney early."
+    },
+    {
+      "section": "Section 10: The Complete Closure Checklist",
+      "gist": "Twenty-eight tasks in four phases: 24 to 12 months out, 12 to 6 months out, the final 6 months, and post-closure."
+    },
+    {
+      "section": "90-Day Implementation Plan",
+      "gist": "Twenty launch actions over three months: assess and start the sprint, notify and get quotes, then audit, custodian agreement and a status report."
+    },
+    {
+      "section": "Quick-Reference Checklists",
+      "gist": "Checklist 1: 17 launch items at the closure decision. Checklist 2: 15 items for the last 90 days of collection and claim submission."
+    },
+    {
+      "section": "Closing: The Last Revenue Cycle Work",
+      "gist": "Motivational recap of the main obligations, a pitch for companion playbooks, and a disclaimer that rules change and the text is not legal advice."
+    }
+  ],
+  "framework_elements": [
+    "Exit timeline back-planning with dated gates",
+    "Unplanned (crisis) closure triage",
+    "AR aging segmentation and net collectible estimate",
+    "AR acceleration sprint prioritization",
+    "Dedicated or temporary AR staffing",
+    "New-patient intake cutoff",
+    "Patient balance resolution and payment plans",
+    "Small-balance write-off decision",
+    "Payer contract termination-term register",
+    "Payer termination notice and confirmation tracking",
+    "Medicare enrollment withdrawal",
+    "Medicaid disenrollment",
+    "Credentialing closure (CAQH, privileges, DEA, license)",
+    "Post-closure claim submission within filing limits",
+    "Timely-filing and appeal-deadline tracking",
+    "Denial triage by reason, deadline, value and recovery odds",
+    "Patient closure notification",
+    "Custodian of records designation and agreement",
+    "Care transition plan for dependent patients",
+    "Record retention schedule (federal, Medicare Advantage, state, minors)",
+    "Records format conversion and secure archive",
+    "EHR decommissioning with records-request continuity",
+    "Practice-management billing data export",
+    "Record destruction and destruction log",
+    "Malpractice tail coverage planning",
+    "Pre-closure coding and billing audit",
+    "Overpayment remediation and disclosure decision",
+    "Post-closure correspondence routing and audit-defense file",
+    "Residual AR disposition (self-manage, outsource, sell)",
+    "Billing knowledge transfer manual and staff stay bonuses"
+  ],
+  "processes": [
+    {
+      "name": "Exit timeline back-planning",
+      "steps": [
+        "Fix the closing or sale date",
+        "List every notice, audit, collection and records task with its lead time",
+        "Set gates at 24, 18, 12, 6 and 3 months, closing day and post-closure",
+        "Let the longest payer notice term set the start of notifications",
+        "Assign an owner to each task and track completion",
+        "For an unplanned closure, do the legally required tasks first and accept some lost receivables"
+      ],
+      "owner_role": "Physician-owner with practice administrator",
+      "cadence": "Built once at the decision; updated as circumstances change (no review interval stated)"
+    },
+    {
+      "name": "Receivables acceleration sprint",
+      "steps": [
+        "Pull the aging report and split it into 0-30, 31-60, 61-90, 91-180 and over-180-day buckets",
+        "Estimate net collectible value by age, payer and recovery odds",
+        "List open denials by reason code, appeal deadline, dollar value and recovery odds",
+        "Work 31-90-day claims first, then 91-180-day claims with an actionable denial",
+        "Resolve patient balances under $500 that have current contact details",
+        "Appeal high-value claims of any age that still have an appeal route",
+        "Escalate anything near a filing or appeal deadline above other work",
+        "Set aside over-180-day claims with no route for write-off or sale",
+        "Report collections weekly against the baseline"
+      ],
+      "owner_role": "Billing manager, with dedicated or temporary billing staff",
+      "cadence": "Weekly tracking; runs from 18-24 months out through closing"
+    },
+    {
+      "name": "Payer, Medicare and Medicaid exit",
+      "steps": [
+        "Read every payer contract for its termination notice term",
+        "Send written termination letters with NPI, tax ID, dates, reason and a request for written confirmation",
+        "Use certified mail or the payer portal and keep proof of submission",
+        "Chase any payer that has not confirmed within 30 days",
+        "File the Medicare withdrawal in PECOS",
+        "Send disenrollment notices to each state Medicaid program",
+        "Update CAQH and resign hospital privileges",
+        "Keep billing running to submit remaining claims inside each filing limit"
+      ],
+      "owner_role": "Practice administrator or billing manager; physician signs",
+      "cadence": "One-time, sequenced by notice terms (the document gives conflicting start points)"
+    },
+    {
+      "name": "Patient notice and records custodian",
+      "steps": [
+        "Confirm state board notice rules with counsel",
+        "Define active patients and draft the closure letter",
+        "Include closing date, records request steps, new-provider information and custodian contact",
+        "State that balances remain payable and existing payment plans continue",
+        "Name a records custodian; sign a custody agreement and a business associate agreement",
+        "Build transfer plans for patients who depend on ongoing care",
+        "Record the date and method of every notice"
+      ],
+      "owner_role": "Physician-owner with healthcare attorney",
+      "cadence": "One-time; sent 30 to 90 days or more before closing depending on state"
+    },
+    {
+      "name": "Records retention, archive and system shutdown",
+      "steps": [
+        "Determine the longest retention period that applies (federal, Medicare Advantage, state, minors)",
+        "Convert or export clinical and billing records to a durable, searchable format",
+        "Export full claim, payment, denial and adjustment history before ending the practice-management subscription",
+        "Store encrypted with a separate backup",
+        "Time the EHR shutdown so records requests can still be filled",
+        "Calendar the destruction date and log destruction when it happens"
+      ],
+      "owner_role": "Physician-owner before closing; records custodian afterward",
+      "cadence": "One-time migration in the final 6 months; retention then runs for years"
+    },
+    {
+      "name": "Final coding and billing audit",
+      "steps": [
+        "Review visit-level support, incident-to billing, modifiers, diagnosis specificity and ancillary services",
+        "Document every finding",
+        "Correct problem patterns before final claims go out",
+        "Take overpayment findings to healthcare counsel and decide on disclosure",
+        "File the audit and remediation record in the retained archive"
+      ],
+      "owner_role": "Not stated; implied outside coding auditor plus healthcare counsel",
+      "cadence": "One-time before closing (placed at 18 months, 12-6 months and 3 months in different sections)"
+    },
+    {
+      "name": "Residual receivables disposition",
+      "steps": [
+        "Near closing, choose between self-managed collection, an outsourced billing company or a one-time sale",
+        "For a sale, check the buyer's medical-receivables record and how it handles Medicare and Medicaid restrictions",
+        "Have counsel review the purchase agreement and sign a business associate agreement",
+        "Route all payer mail and remittances to the physician or a named successor",
+        "Send any audit or recoupment letter to counsel on receipt"
+      ],
+      "owner_role": "Physician-owner with counsel",
+      "cadence": "Decision in the final 6 months; collection continues 12 to 18 months after closing"
+    },
+    {
+      "name": "Billing knowledge transfer and staff retention",
+      "steps": [
+        "Identify who holds payer rules, system setup, vendor contacts, credential locations and denial know-how",
+        "Write the billing manual; aim for complete rather than polished",
+        "Store portal logins securely and move system access to the physician",
+        "Offer key staff a written bonus tied to dates and collection results",
+        "Consider moving billing to an outside company if staff are leaving"
+      ],
+      "owner_role": "Physician-owner; billing manager writes the manual",
+      "cadence": "Start in month 1 of the wind-down; finish before staff leave"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Closure Timeline Decision Cascade (table)",
+      "description": "Seven milestones from 24 months before closing to post-closure, each with an action and a one-line reason."
+    },
+    {
+      "name": "AR aging segmentation",
+      "description": "Five age buckets with a qualitative collectibility label for each; no percentages."
+    },
+    {
+      "name": "AR Acceleration Sprint priority list",
+      "description": "Four work tiers plus a defer bucket, ranked mainly by claim age."
+    },
+    {
+      "name": "Temporary billing resource illustration",
+      "description": "Cost-versus-recovery example for a three-month contract biller; an illustration, not a calculator."
+    },
+    {
+      "name": "Timeline worked example",
+      "description": "Compares a 24-month and a six-month wind-down for a practice collecting $1.2 million a year; the arithmetic does not reconcile."
+    },
+    {
+      "name": "Payer termination letter content list",
+      "description": "Elements a termination letter should contain; no sample letter."
+    },
+    {
+      "name": "Patient closure notice content list",
+      "description": "Elements of the patient letter, including balance language; no sample letter."
+    },
+    {
+      "name": "State record-retention table",
+      "description": "Example retention periods for California, Florida, Texas, New York and North Carolina."
+    },
+    {
+      "name": "Final audit scope list",
+      "description": "Five review areas: visit levels, incident-to, modifiers, diagnosis coding, ancillary services."
+    },
+    {
+      "name": "Denial triage matrix (described only)",
+      "description": "Sort open denials by reason code, appeal deadline, dollar value and recovery odds and assign by staff skill; no matrix supplied."
+    },
+    {
+      "name": "Critical knowledge inventory",
+      "description": "Five categories of billing knowledge to capture before staff leave."
+    },
+    {
+      "name": "Wind-down billing manual (described only)",
+      "description": "Operations manual the practice is told to write; no outline or template supplied."
+    },
+    {
+      "name": "Stay-bonus structure (described only)",
+      "description": "Define the period, the metrics and the payout date; no amounts or sample agreement."
+    },
+    {
+      "name": "AR sale due-diligence points",
+      "description": "Four checks before selling receivables: buyer track record, government-payer compliance, counsel review, business associate agreement."
+    },
+    {
+      "name": "Tail cost illustration",
+      "description": "Annual premium multiplied by 150% to 200% to estimate the one-time tail premium."
+    },
+    {
+      "name": "Section 10 Complete Closure Checklist",
+      "description": "28 tasks in four phases: 24 to 12 months, 12 to 6 months, final 6 months, post-closure."
+    },
+    {
+      "name": "90-Day Implementation Plan",
+      "description": "20 launch actions across three months: assess and begin, accelerate and notify, execute and stabilize."
+    },
+    {
+      "name": "Checklist 1: Wind-Down Launch Checklist",
+      "description": "17 items in four groups for the point of the closure decision."
+    },
+    {
+      "name": "Checklist 2: Final AR Collection Checklist",
+      "description": "15 items in three groups for the last 90 days: sprint status, final claims, post-closure collection."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "AR aging distribution",
+      "definition": "Receivables split into five age buckets (0-30, 31-60, 61-90, 91-180, over 180 days), each with a qualitative collectibility label",
+      "formula": "",
+      "target": "",
+      "red_flag": "Over 180 days: treated as effectively uncollectible",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net collectible AR estimate",
+      "definition": "Realistic value of receivables after segmenting by age, payer and recovery probability; no method given",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Wind-down AR write-off share",
+      "definition": "Portion of receivables written off as uncollectible during a closure",
+      "formula": "",
+      "target": "",
+      "red_flag": "20-40% (presented as the usual result of an unmanaged closure)",
+      "source_cited": "CCRx-observed pattern (vendor's own claim; no study, data or date)"
+    },
+    {
+      "name": "Average AR age",
+      "definition": "Average age of receivables in days; appears only in the worked example",
+      "formula": "",
+      "target": "30 days, down from 45 (illustrative)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Weekly collections against baseline",
+      "definition": "Cash collected each week during the sprint compared with the pre-sprint baseline",
+      "formula": "",
+      "target": "Practice sets its own weekly target; none given",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "31-60-day claims with a logged next action",
+      "definition": "Share of claims in the 31-60-day bucket that have an active follow-up status",
+      "formula": "",
+      "target": "100% (no claim without a logged next action)",
+      "red_flag": "Any claim in the bucket with no next action",
+      "source_cited": "none"
+    },
+    {
+      "name": "61-90-day claims reviewed",
+      "definition": "Claims in the 61-90-day bucket with denial codes identified and appeals filed where applicable",
+      "formula": "",
+      "target": "All reviewed",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unbilled services at the final clinical date",
+      "definition": "Services still awaiting coding or documentation after the last day of care",
+      "formula": "",
+      "target": "Zero",
+      "red_flag": "Any claim still in queue",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claims at timely-filing risk",
+      "definition": "Pending claims approaching a payer filing or appeal deadline",
+      "formula": "",
+      "target": "Zero at risk of expiration",
+      "red_flag": "Any claim near a deadline without escalation",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer termination confirmation",
+      "definition": "Written confirmation of termination and effective date from each payer",
+      "formula": "",
+      "target": "Confirmation from every payer; follow up if none within 30 days of the notice",
+      "red_flag": "No confirmation 30 days after notice",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial resolution rate",
+      "definition": "Named as a stay-bonus metric; not defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR collection target",
+      "definition": "Named as a stay-bonus metric; not defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Final claims submission completeness",
+      "definition": "Named as a stay-bonus metric; not defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Factoring advance rate",
+      "definition": "Percentage of net collectible receivable value a buyer pays up front",
+      "formula": "",
+      "target": "Typical range 65-85%; higher for clean, current commercial portfolios",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Factoring fee",
+      "definition": "Buyer's charge on receivables purchased",
+      "formula": "",
+      "target": "1-5% of invoice value per transaction, or about 2-4% per 30 days for ongoing arrangements",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Tail premium multiple",
+      "definition": "One-time cost of an extended reporting endorsement relative to the expiring annual premium",
+      "formula": "Annual premium x 1.5 to 2.0 (implied by the example)",
+      "target": "150-200% of annual premium",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Temporary billing resource return",
+      "definition": "Receivables recovered by a temporary biller compared with the cost",
+      "formula": "",
+      "target": "$25,000-40,000 recovered for $5,000-8,000 a month over three months (illustrative)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "High-value claim threshold",
+      "definition": "Cut-off for claims worth appealing regardless of age",
+      "formula": "",
+      "target": "$1,000 or the practice's 90th-percentile claim value",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Small patient balance threshold",
+      "definition": "Patient balances to work to resolution before they become collection candidates",
+      "formula": "",
+      "target": "Under $500 with current contact information",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "New-patient intake cutoff",
+      "definition": "Lead time before closing at which the practice stops taking new patients",
+      "formula": "",
+      "target": "90-120 days before closing (6 months in the timeline table)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Record retention period",
+      "definition": "Years clinical and billing records are kept after service or closure",
+      "formula": "",
+      "target": "10 years from date of service or closure, whichever is later (recommended safe standard)",
+      "red_flag": "Disposal before the applicable period ends",
+      "source_cited": "45 CFR 164.316 for the six-year federal figure only; none for the rest"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Physicians closing a practice commonly write off 20 to 40 percent of AR as uncollectable during the wind-down",
+      "section": "Introduction",
+      "source_cited": "CCRx-observed pattern (vendor's own claim; no study)"
+    },
+    {
+      "claim": "A well-managed versus a rushed closure differs by tens of thousands to low hundreds of thousands of dollars in AR",
+      "section": "Introduction",
+      "source_cited": "none (labeled illustration)"
+    },
+    {
+      "claim": "AR at the time of the closure decision equals three to six months of production in most practices",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 24-month wind-down gives the best financial outcome; 12 months is the minimum workable timeline",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A temporary biller costing $5,000 to $8,000 a month for three months can recover $25,000 to $40,000 that would otherwise be written off",
+      "section": "Section 2",
+      "source_cited": "none (labeled illustration)"
+    },
+    {
+      "claim": "Stop new-patient intake 90 to 120 days before the closing date",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial payers pay in 30 to 45 days; Medicare and Medicaid payment cycles can run 60 to 90 days",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Worked example: $1.2 million annual collections and about $180,000 AR; cutting average AR age from 45 to 30 days recovers roughly $24,000",
+      "section": "Section 2",
+      "source_cited": "none (labeled illustration)"
+    },
+    {
+      "claim": "Worked example: a billing audit yields $30,000 in corrected claims; a six-month timeline writes off about $45,000; total difference $100,000 or more",
+      "section": "Section 2",
+      "source_cited": "none (labeled illustration)"
+    },
+    {
+      "claim": "High-value claims are those of $1,000 or the practice's 90th-percentile claim value; small patient balances are those under $500",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare withdrawal must be completed within 90 days of the decision to retire or close; DMEPOS suppliers have 30 days",
+      "section": "Section 3",
+      "source_cited": "none (PECOS named; no regulation cited)"
+    },
+    {
+      "claim": "Commercial contracts require 30, 60 or 90 days' termination notice, and 120 days or more for some provider types",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Follow up with any payer that has not confirmed termination within 30 days of receiving the notice",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare's timely filing deadline is one year from the date of service",
+      "section": "Sections 3 and 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial timely filing windows typically run 90 to 180 days, with some payers allowing one year for in-network providers",
+      "section": "Sections 3 and 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most states require 30 to 90 days' written notice to end Medicaid enrollment",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Active patients are typically those seen in the last one to three years; most state boards set a minimum notice of 30 to 90 days before closure",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare fee-for-service documentation must be kept at least six years from creation or the date last in effect, whichever is later",
+      "section": "Section 5",
+      "source_cited": "45 CFR 164.316"
+    },
+    {
+      "claim": "Medicare managed care and Medicare Advantage records must be kept at least ten years",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "HIPAA compliance documentation, including business associate agreements, must be kept six years from the date last in force",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most states require five to seven years of record retention for physician practices; several require up to ten",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "California: 7 years from the date of last service (physicians, effective 2024)",
+      "section": "Section 5 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Florida: 5 years from the date of last patient contact",
+      "section": "Section 5 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Texas: 7 years from last treatment, or until the patient turns 21 for minors, whichever is later",
+      "section": "Section 5 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "New York: 6 years from the patient's last visit for most records",
+      "section": "Section 5 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "North Carolina: 11 years, described as the longest standard state requirement in the country",
+      "section": "Section 5 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Tail coverage commonly costs 150% to 200% of the expiring annual premium, so a $15,000 premium implies $22,500 to $30,000",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "AR purchasers typically advance 65% to 85% of net collectible value",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Factoring fees run 1% to 5% of invoice value per transaction, or about 2% to 4% per 30 days for ongoing arrangements",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Outsourced billing may be used for the final 12 to 24 months, and residual AR may need 12 to 18 months of collection after closing",
+      "section": "Section 9",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Medicare withdrawal must be completed within 90 days of the decision to retire or close, through PECOS; DMEPOS suppliers have 30 days. The clock starts when the decision is made, not when the last patient is seen.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 3: Payer Notification and Credentialing Closure (Medicare Withdrawal box)",
+      "why": "If the 90 days actually run from the date the physician stops furnishing services, filing on the document's reading would end Medicare billing privileges months before the last visit; filing late risks revocation and a re-enrollment bar. It also matters which enrollment is ended (individual, group, reassignment)."
+    },
+    {
+      "id": "C2",
+      "claim": "Medicare Fee-for-Service providers must retain all documentation supporting Medicare claims for a minimum of six years from creation or the date last in effect, whichever is later; the requirement is grounded in HIPAA's administrative simplification rules (45 CFR 164.316).",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 5: Billing Documentation Retention (Federal Retention Framework)",
+      "why": "This sets the minimum life of the billing archive and the custodian contract. If the cited section covers only HIPAA security documentation and other rules run longer (seven years for ordering and certifying records, six-year overpayment lookback, up to ten years under the False Claims Act), a six-year purge destroys audit defense."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare managed care and Medicare Advantage providers face a longer retention requirement: patient records must be kept for a minimum of ten years, regardless of the shorter six-year federal FFS standard.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 5: Billing Documentation Retention (Federal Retention Framework)",
+      "why": "A large share of this practice's non-fee-for-service revenue is Medicare Advantage. A ten-year duty, and the date it runs from, drives archive cost, what must be exported from AdvancedMD, and custodian terms in any sale or closure."
+    },
+    {
+      "id": "C4",
+      "claim": "State medical record retention example for Florida: 5 years from the date of last patient contact.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 5: Billing Documentation Retention (state table)",
+      "why": "The practice is in Florida and the owner is an osteopathic physician, so the osteopathic board's rule governs, and Florida also has closure-specific notice and records rules the document omits. A wrong period risks board discipline and loss of malpractice defense records."
+    },
+    {
+      "id": "C5",
+      "claim": "A practice with primarily commercial payers that pay in 30 to 45 days can stop new patients closer to closing; high Medicare and Medicaid volume, where payment cycles can run 60 to 90 days, needs more lead time.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 2: AR Acceleration (Stopping the Inflow)",
+      "why": "This drives the cash forecast and the intake cutoff. If Medicare fee-for-service pays clean electronic claims about two weeks after receipt, the logic is backwards for a practice that is 55% Medicare and overstates how much money will still be outstanding at closing."
+    },
+    {
+      "id": "C6",
+      "claim": "If the final audit finds overpayment risk, the physician has three choices: remediate before submitting final claims, self-disclose identified overpayments to CMS (via the CMS Self-Referral Disclosure Protocol or OIG's self-disclosure protocol), or accept the post-closure audit risk.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 7: The Final Coding and Billing Audit (Remediating Before Closing)",
+      "why": "If federal law requires identified Medicare overpayments to be reported and returned within 60 days, 'accepting the risk' is not a lawful option and can create False Claims Act liability. The CMS protocol named may cover only self-referral violations, not coding overpayments."
+    },
+    {
+      "id": "C7",
+      "claim": "Medicare and Medicaid receivables cannot be directly assigned to third parties; factoring companies use sweep account structures where the account remains in the practice's name and the factoring company receives funds as payers remit.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 8: The Accounts Receivable Sale Option (AR Sale Market box)",
+      "why": "Decides whether selling leftover receivables is feasible for a book that is mostly Medicare, Medicaid, VA and Tricare, and how receivables must be handled in a practice sale. A non-compliant structure can put Medicare payments and enrollment at risk."
+    },
+    {
+      "id": "C8",
+      "claim": "The final audit should test whether documented E&M visit levels are supported by the clinical documentation, 'using the current 2021 AMA/CMS E&M guidelines.'",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 7: The Final Coding and Billing Audit (Final Audit Scope)",
+      "why": "The 2021 revision applied to office visits. If hospital, nursing facility and home or residence visit codes were revised later (2023), an audit keyed to 2021 would use the wrong standard for nearly all of this practice's visits."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.3,
+      "topics": [
+        "wind-down timeline",
+        "closure versus sale",
+        "crisis closure",
+        "residual receivables sale",
+        "obligations that survive closing",
+        "tail coverage as an exit cost"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.25,
+      "topics": [
+        "aging segmentation",
+        "acceleration sprint priorities",
+        "denial triage",
+        "timely filing after closure",
+        "patient balances and payment plans",
+        "write-offs",
+        "post-closure collections"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.22,
+      "topics": [
+        "record retention periods",
+        "HIPAA duties after closure",
+        "record destruction",
+        "final coding audit",
+        "self-disclosure",
+        "patient notification and abandonment",
+        "custodian of records",
+        "malpractice tail"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "payer termination notices",
+        "Medicare withdrawal",
+        "Medicaid disenrollment",
+        "credentialing closure"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.06,
+      "topics": [
+        "stay bonuses",
+        "knowledge transfer",
+        "temporary billing staff",
+        "outsourcing billing for run-out"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.04,
+      "topics": [
+        "EHR decommissioning",
+        "practice-management data export",
+        "archive format and security"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.03,
+      "topics": [
+        "wind-down budget items",
+        "factoring cost",
+        "coordination with accountant on tax and expense treatment"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Plan any exit backward from a fixed date, with gates for audit, notices, collections and records.",
+      "why": "Most closure losses come from compressed lead time; a dated reverse plan exposes long-lead items early.",
+      "applies_to_practice": "partly",
+      "note": "Use it as a sale-readiness and succession calendar, not a closure plan. Rebuild the gate dates from primary sources; the document's own dates conflict."
+    },
+    {
+      "idea": "Keep a standing register of termination and notice terms for every payer, facility and vendor contract.",
+      "why": "The longest notice term sets the earliest start date for any exit, and the register is cheap to maintain once contracts are indexed.",
+      "applies_to_practice": "yes",
+      "note": "Add medical-director agreements, facility arrangements, AdvancedMD and clearinghouse terms, and the notice rules specific to Medicare Advantage contracts."
+    },
+    {
+      "idea": "Value receivables by age, payer and realistic recovery odds, and work deadline-sensitive items first.",
+      "why": "Gives a defensible net collectible figure for a sale or lender and prevents avoidable filing-limit and appeal-deadline losses.",
+      "applies_to_practice": "yes",
+      "note": "The billing agents can produce this monthly from AdvancedMD. Rank by deadline and expected dollars rather than by the document's tier list."
+    },
+    {
+      "idea": "Fund and staff a billing run-out period after the last date of service.",
+      "why": "Claims, appeals, remittances and audit letters keep arriving for 12 to 18 months; shutting systems on closing day forfeits money and audit defense.",
+      "applies_to_practice": "yes",
+      "note": "Applies to any provider departure, payer exit, facility loss or sale where the seller keeps receivables. Keep the bank account, remittance enrollments, mailing address and system access open."
+    },
+    {
+      "idea": "Run a documented coding and billing audit before any exit and file the remediation record.",
+      "why": "Buyers and auditors look back years; a dated audit with corrective action serves as both diligence material and defense.",
+      "applies_to_practice": "yes",
+      "note": "Scope it to facility work: current visit-level rules for hospital and nursing facility codes, split or shared visits, care-management time and consent, wellness visit elements, place of service. Refund what is found rather than 'accepting the risk'."
+    },
+    {
+      "idea": "Write a retention schedule and keep a portable archive of clinical and billing data, with a destruction log.",
+      "why": "Retention duties outlast the practice and any software subscription; ten years is the working standard once Medicare Advantage is in the mix.",
+      "applies_to_practice": "yes",
+      "note": "Confirm what AdvancedMD will export and in what format; include claims, remittances, denials, adjustments and agent activity logs. Name a custodian in the succession plan."
+    },
+    {
+      "idea": "Maintain a billing operations manual and credential inventory so billing survives the loss of a key person or vendor.",
+      "why": "Undocumented payer rules, system settings and portal access are the first things lost in a transition, and buyers discount for key-person dependence.",
+      "applies_to_practice": "yes",
+      "note": "Here the billing staff are AI agents: document agent runbooks, schedules, portal credentials held in a vault, and a human fallback procedure."
+    },
+    {
+      "idea": "Know the malpractice policy type and price tail coverage early.",
+      "why": "Tail can cost more than a year's premium and is easy to leave out of an exit budget or a sale negotiation.",
+      "applies_to_practice": "yes",
+      "note": "Check the physician's and the nurse practitioner's policies, the retirement, death and disability provisions, and who pays tail under any employment or sale agreement."
+    },
+    {
+      "idea": "Decide in advance the order of work for an unplanned closure: enrollment and payer notices, patient notice and records custody first, collections second.",
+      "why": "A solo-physician practice is one illness away from this scenario, and the legally required steps carry the consequences.",
+      "applies_to_practice": "yes",
+      "note": "The document only gestures at this. Build a real emergency plan: who can access systems, sign, notify facilities and patients, and bill out the remaining work."
+    },
+    {
+      "idea": "Tie a written stay bonus for key billing staff to dates and collection results.",
+      "why": "People leave when a closure or sale is announced, exactly when collection effort matters most.",
+      "applies_to_practice": "no",
+      "note": "No billing staff here. Keep it in the universal framework for practices with human billers, and as a deal term when acquiring a practice."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice is growing and positioning for a possible sale, not closing. The playbook helps in three limited ways: as a seed list of obligations that survive a sale or a provider or payer exit, as a prompt to write an emergency plan for a solo-physician practice, and as a possible service line for other practices. Its mechanics assume an office practice with human billing staff, patient-pay balances and commercial payers. This practice is facility-based, government-payer-heavy and bills through AI agents. Nothing in it addresses facilities, medical-director contracts, Medicare Advantage, VA or Tricare, the Medicare contractor, or AdvancedMD.",
+    "sections_that_do_not_apply": [
+      "Section 2: new-patient cutoff and the patient-balance push (facility census, almost no patient-pay, many dual-eligible patients who cannot be billed for cost-sharing)",
+      "Section 2: temporary billing staff, and Section 9: staff stay bonuses (billing is run by AI agents)",
+      "Section 3: DMEPOS 30-day deadline",
+      "Section 4: examples built on pregnant, oncology and therapy patients",
+      "Section 5: minor-patient retention and the California, Texas, New York and North Carolina rows",
+      "Section 7: incident-to and in-office ancillary (Stark) audit items as written",
+      "Section 8: receivables sale (the book is mostly Medicare, Medicaid, VA and Tricare)",
+      "The premise: the owner intends to grow and possibly sell, not close"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Medicare withdrawal clock is misstated. CMS enrollment guidance (as quoted in search results; the CMS page could not be opened in this session) says a provider who retires or stops participating must withdraw within 90 days, 30 for DMEPOS. The document says the clock starts at the private decision to close, which would have a physician withdraw many months before the last visit. I know of no rule that supports that reading; 42 CFR 424.516(d) keys reporting to the change itself.",
+      "Says Medicare and Medicaid payment cycles can run 60 to 90 days against 30 to 45 for commercial payers. Medicare fee-for-service normally pays clean electronic claims about 14 days after receipt and owes interest after 30; Medicaid programs are held to prompt-pay standards. The lead-time logic is backwards for a Medicare-heavy practice.",
+      "Presents 'accept the post-closure audit risk' as a legitimate choice after an audit finds overpayments. Federal law (the 60-day report-and-return rule, 42 CFR 401.305, with a six-year lookback) requires identified Medicare overpayments to be returned; keeping them invites False Claims Act exposure. The rule is never mentioned.",
+      "Sends coding overpayments to the CMS Self-Referral Disclosure Protocol. That protocol handles only physician self-referral (Stark) violations. Ordinary overpayments go back through the Medicare contractor's voluntary refund process; the OIG protocol is for potential fraud and carries minimum settlement amounts.",
+      "Cites 45 CFR 164.316 as the basis for keeping all claim-supporting clinical records six years. That section governs HIPAA security policies and related documentation, not medical records. The six-year figure echoes a CMS education sheet, but the document omits the seven-year rule for ordering and certifying documentation (42 CFR 424.516(f)) and the six-to-ten-year exposure from overpayment and False Claims Act lookbacks.",
+      "North Carolina '11 years, the longest standard state requirement in the country' appears to be that state's hospital licensure rule, not a physician-office requirement (search summaries indicate North Carolina has no physician-office retention statute). The superlative is unsupported.",
+      "Says a seller 'typically transfers the AR to the buyer'. In small-practice asset sales the seller commonly keeps pre-closing receivables, partly because Medicare receivables cannot be assigned. It also says Medicare withdrawal and records duties stay with the seller 'regardless of the transaction structure', which does not hold for an equity sale.",
+      "Calls 2021 the 'current' E/M guidelines. The 2021 revision covered office visits; hospital, nursing facility and home or residence visit codes were rewritten effective 2023. Incident-to is the only nurse-practitioner risk named, with no mention of the split or shared visit rules that govern facility settings.",
+      "Recommends selling leftover receivables as 'generally more appropriate' than a contingency collection agency and parks denied claims over 180 days for sale. Buyers advance 65 to 85 percent only on clean, current insurer receivables; aged denials and patient debt sell for very little, and a sale ends the practice's control over how patients are pursued.",
+      "Unsupported assertions stated as fact: wind-down write-offs of 20 to 40 percent ('CCRx-observed', no data and no named author), upcoding as 'the most common' audit finding, states that regulate patient accounts at closure, liability from an active CAQH profile, and faster payment from a combined closure notice and balance statement.",
+      "Arithmetic does not reconcile. Cutting average age from 45 to 30 days on $1.2 million of collections frees roughly $49,000, not $24,000, and that is timing rather than recovered money. A temporary biller costing $15,000 to $24,000 who recovers $25,000 to $40,000 returns 1.0 to 2.7 times cost, not 'several times over'.",
+      "Tail guidance is muddled. A claims-made policy responds to claims first made and reported while it is in force, for incidents after its retroactive date; the practical rule is to keep the policy active through the last clinical service, after which the tail runs. The 150 to 200 percent cost range sits at the low end of commonly quoted figures.",
+      "Patient-balance advice ignores the federal bar on billing Qualified Medicare Beneficiaries for Medicare cost-sharing and the compliance risk of blanket write-offs of Medicare coinsurance without a documented policy.",
+      "Treats DEA registration as a matter of state board rules and personal preference. DEA has its own federal requirement to notify the agency when a registrant stops practicing (21 CFR 1301.52).",
+      "States flatly that a receivables buyer is a HIPAA business associate. A purchaser collecting for its own account is not clearly one; the structure decides, and counsel should confirm."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Medicare withdrawal timing: within 90 days of the decision (Section 3), at the closing date (Section 1 table), 12 to 6 months before closing (Section 10), and 'contact the MAC' in month 2 of the launch plan.",
+      "Final billing audit timing: started at 18 months and 'final' at 3 months (Section 1 table), 'completed at month 18' (worked example), 12 to 6 months before closing (Section 10), and month 3 of the launch plan.",
+      "Payer termination letters: 6 months out (Section 1 table), 120-plus days out (Section 3), 12 to 6 months out (Section 10), and months 2 to 3 of a launch plan that begins up to 24 months before closing.",
+      "The 90-day plan is called the accelerated framework for crisis closures (Section 1) and also Phase 1 of a 24-month program; it then includes end-stage tasks such as termination letters, the final audit and patient notices.",
+      "The sprint is said to rank work by value and recovery odds, but Priority 1 is every 31-90-day claim regardless of amount and high-value claims come last. Section 8 then says deadline-sensitive items outrank everything, which the priority list omits.",
+      "Section 2 says to stop taking new patients because their claims will not be collected before closing; Section 3 says claims can be filed and collected after closing. The cutoff is 90 to 120 days in Section 2 and 6 months in the Section 1 table.",
+      "The introduction says receivables equal three to six months of production; the worked example uses $180,000 against $1.2 million of annual collections (under two months) and a 45-day average age.",
+      "Claims over 180 days are 'effectively written off' and yet deferred for a possible sale, while the sale section prices only clean, current receivables and the final checklist says to write them off.",
+      "Collections: the patient notice says unresolved accounts follow standard collection procedures, Section 2 calls collections during wind-down problematic, and Section 8 says to avoid agencies and sell the accounts instead.",
+      "The audit is framed as protection against repayment demands, yet the worked example counts it only as $30,000 of added revenue.",
+      "The closing says records 'must be retained for a decade' and that the retention obligation 'does not begin until the practice closes'; Section 5 gives five-to-seven-year legal minimums measured from service or last contact and offers ten years only as a suggested safe standard."
+    ],
+    "time_sensitive_or_outdated": [
+      "'Current 2021' E/M guidelines: hospital, nursing facility and home visit codes were revised in 2023.",
+      "'CAQH ProView' has been renamed the CAQH Provider Data Portal.",
+      "'Now on the PECOS 2.0 platform': rollout dates moved several times; confirm what the Medicare contractor uses today.",
+      "No mention of the January 2025 amendments to the Medicare 60-day overpayment rule.",
+      "The state retention table is a snapshot (it notes a 2024 California change); the document itself tells readers to verify.",
+      "Medicare withdrawal, Medicaid notice periods and payer filing limits are stated without citations and must be checked against current CMS, state and contract terms.",
+      "Factoring rates, tail multiples and temporary-staff costs are undated, unsourced ranges.",
+      "The EHR shutdown advice does not mention the bulk data-export capability certified EHR systems have had to offer since the end of 2023."
+    ],
+    "ai_generation_signals": [
+      "A 'Tone of This Playbook' passage describes its own voice ('direct and operational'), which reads like a leaked writing instruction.",
+      "Formula rhetoric throughout: 'This is not X. It is Y.', lists of three, heavy dash-linked asides, sentimental opening and closing ('You built this practice').",
+      "Vendor statistics labeled 'CCRx-observed pattern' with no data, sample, date or named author.",
+      "Round illustrative dollar figures whose arithmetic does not reconcile.",
+      "Content sits in the wrong section: the denial sprint and timely-filing passages are inside the receivables-sale section, and filing limits are stated twice.",
+      "The Medicare 90-day statement recurs in nearly every section while its timing changes from one to the next.",
+      "Repeated hand-offs to five sibling products (assessment guide, valuation, contract, staffing and coding-audit playbooks) in place of content.",
+      "Plausible-sounding specifics with no source ('the longest standard state requirement in the country', 'now on the PECOS 2.0 platform').",
+      "Duplicate disclaimers front and back; sections share one shape and similar length regardless of how much there is to say.",
+      "One regulation cited in 34 pages, and it is cited for the wrong proposition."
+    ],
+    "missing_for_real_use": [
+      "Usable templates: no payer termination letter, patient closure letter, custodian agreement, retention schedule, aging worksheet, denial matrix, wind-down budget or cash forecast. Each is only described.",
+      "Medicare mechanics: which enrollment to end (individual, group, reassignments), what effective date to enter, how to keep electronic funds transfer, remittance and claim-submission access alive for run-out, appeal deadlines, and how demands are collected once payments stop.",
+      "The 60-day overpayment rule, audit lookback periods, payer and patient credit balances, refunds and unclaimed-property filings.",
+      "Medicare Advantage and Medicaid managed-care specifics: the federal 60-day minimum notice for without-cause termination of a Medicare Advantage contract (42 CFR 422.202(d)(4)), plan duties to notify members, run-out clauses, risk-adjustment record requests, and quality or shared-savings payments that arrive a year or more later. Nothing on VA or Tricare.",
+      "Anything for a facility-based practice: notifying hospitals, nursing and assisted living facilities, medical-director agreements, attending-of-record transfers, care-management and hospice hand-offs, open home health and equipment certifications.",
+      "State-specific closure rules. For Florida, the two physician boards have rules on published notice of where records can be obtained, notice to the board, and how long records are kept after a practice ends (as summarized in search results; rule text not opened). The document gives Florida one table row.",
+      "DEA registration and controlled-substance records, e-prescribing accounts, the prescription monitoring program, any laboratory certificate, and deactivation of the organization NPI.",
+      "Entity wind-down: how long to keep the legal entity, tax ID, bank account and mailing address open; dissolution and creditor notice; final payroll and tax returns; retirement plan termination; tax treatment of collections received after closing.",
+      "Sale structures: asset versus equity sale, who keeps receivables, successor liability, escrow or indemnity for later recoupments.",
+      "A real emergency plan for the death or disability of a solo physician, despite the promise of a crisis-closure framework.",
+      "Targets and owners: no numeric goals for the sprint, none of the standard revenue-cycle benchmarks, no role matrix beyond 'billing manager', no budget.",
+      "Guidance for practices whose billing is automated or outsourced: system credentials, agent or vendor runbooks, access shut-off.",
+      "A source list or citations a reader could check."
+    ]
+  }
+}

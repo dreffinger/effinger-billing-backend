@@ -1,0 +1,75 @@
+[
+ {
+  "key": "intro",
+  "value": {
+   "lead": "A framework for running any medical practice as a business. It is organized by what has to be managed, not by one vendor's product list: **13 domains**, each broken into areas with what good looks like, where it usually breaks, what to do, and what to measure.",
+   "how_to_use": [
+    "Pick a domain. Each one opens into its areas.",
+    "In an area, read *What good looks like* against your own practice, then the questions. Honest answers are the assessment.",
+    "Use *What to measure* for the definition, the formula and a benchmark. Where no reliable public benchmark exists, the page says so instead of inventing one.",
+    "Open **My practice** to see every area already judged for this practice, with its numbers, risks and next steps."
+   ],
+   "method": "The domain list follows the recognized bodies of knowledge for practice management (the MGMA Body of Knowledge, HFMA MAP Keys, the OIG compliance program guidance, the NCQA medical-home concepts and the Medicare quality program) and was checked against the 60 documents of a purchased vendor library. Rules are cited to the regulation or CMS manual. Benchmarks are cited to their source with the data year, and labelled when they are convention and not measurement."
+  }
+ },
+ {
+  "key": "practice:ehpa:summary",
+  "value": {
+   "as_of": "2026-11-10",
+   "lead": "The universal framework applied to this practice, using its own financial statements, billing data and public Medicare data. **The practice is profitable and its billing machinery is fast. Its main problems are untested billing patterns, coverage and enrollment gaps, and dependence on one physician.**",
+   "headline": [
+    "**Profitable and lean.** $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. Operating cost is 44.7% of revenue.",
+    "**Worth about $650,000 today** as a business (range $400,000 to $1,000,000), because buyers pay for what is left after a physician is paid a market wage, about $170,000 a year.",
+    "**Four billing patterns need a chart review before anyone else asks:** complex care management for 257 patients a month, visit levels far above national patterns, every nursing facility visit billed as a skilled stay, and initial visits billed by the nurse practitioner.",
+    "**Money is leaking upstream.** One charge in nine has no payer, 30% of recent claim lines paid nothing, and $342,620 is open with 35% older than 90 days.",
+    "**One deadline:** the Medicaid provider agreement renewal is due December 1, 2026.",
+    "**First three moves:** engage a healthcare attorney, hold the next care-management batch until 30 charts are read, and commission an outside coding audit."
+   ],
+   "tiles": [
+    {
+     "label": "Revenue, last 12 months",
+     "value": "$1.06M",
+     "sub": "up 19.9% in 2026 after two down years"
+    },
+    {
+     "label": "Earnings before owner pay",
+     "value": "$585K",
+     "sub": "55% of revenue"
+    },
+    {
+     "label": "Open receivables",
+     "value": "$343K",
+     "sub": "35% older than 90 days",
+     "tone": "warn"
+    }
+   ]
+  }
+ },
+ {
+  "key": "practice:ehpa:risk_note",
+  "value": {
+   "lead": "Patterns in the practice's own billing data that an auditor's software would also see, set beside the rule each one touches. **A pattern is a reason to look at charts. It is not a finding that anything was billed wrongly.**",
+   "how_to_use": [
+    "Read the findings in order. Critical and high come first.",
+    "Do the review described before changing how anything is billed, and involve a healthcare attorney first so the review is privileged.",
+    "The billing database holds claims, not clinical notes. Every finding here still has to be tested against the charts.",
+    "When a review is finished, record the result and the date on the work list."
+   ],
+   "foot": "Management information and education, not legal or coding advice. If a chart review shows Medicare was overpaid, federal law requires reporting and returning the money within 60 days of identifying it, with up to 180 days allowed for a timely good-faith investigation."
+  }
+ },
+ {
+  "key": "library:summary",
+  "value": {
+   "lead": "The purchased CleanClaimRx library, read in full and scored. It was used as an outline to make sure the universal framework misses nothing, and every rule or number it states was treated as unverified until found in a primary source.",
+   "verdict": [
+    "**60 documents, 2,566 pages, list price $1,032 for the bundles bought.** Every document was written by an AI system with no named author, sources or dates on its numbers.",
+    "**Quality, scored 1 to 5 after reading each document in full:** 1 scored 1, 27 scored 2, 24 scored 3. None scored 4 or 5.",
+    "**Best use:** as a checklist of topics and worksheets. The operating routines (daily queues, root-cause logs, reconciliation steps) are sound and transfer to any practice.",
+    "**Do not rely on it for rules or numbers.** Benchmarks are unsourced, several code and deadline statements are wrong, and almost nothing addresses Medicare facility-based billing.",
+    "**Claims checked against primary sources so far: 80 of 381 extracted.** 49 partly, 17 contradicted, 8 supported, 4 outdated, 2 unverifiable.",
+    "8 documents have not been reviewed yet."
+   ]
+  }
+ }
+]

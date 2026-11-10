@@ -1,0 +1,816 @@
+{
+  "slug": "front-end-rcm-playbook",
+  "title": "Front-End Revenue Cycle Playbook: The Complete Operational Playbook for Independent Practice (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "playbook",
+  "pages": 69,
+  "audience": "Office managers, front desk staff and billing teams in independent medical practices (stated on the cover and repeated in Section 1).",
+  "summary": "A 69-page vendor playbook arguing that most denials, slow receivables and unpaid patient balances are created before a claim exists, so intake must be run as a revenue function rather than clerical support. It covers seven intake functions (scheduling-stage capture, registration, eligibility verification, insurance discovery, prior authorization, point-of-service collection, financial counseling), then six front-end KPIs, a staffing, training and accountability chapter, and a seven-step priority list. The method is prevention plus measurement: capture a fixed set of data elements, re-verify coverage at every visit, read the entire eligibility response against eight questions, keep a payer-by-service authorization matrix and tracker, tell patients what they owe before the visit and collect at the desk, audit denials quarterly back to the step that caused them, and coach each staff member monthly. It assumes a staffed front desk, and it supplies no forms, no citations and no named author.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe (pp. 5-8)",
+      "gist": "Argues intake errors cause most denials and slow receivables, and back-end rework cannot fully repair them. Framing only; no procedures."
+    },
+    {
+      "section": "Section 2: Patient Registration (pp. 9-16)",
+      "gist": "Data elements to capture and re-verify, new versus established patient protocols, signed consents, extra steps for injury-liability and behavioral health cases."
+    },
+    {
+      "section": "Section 3: Eligibility Verification (pp. 17-25)",
+      "gist": "Eight questions each check must answer, batch timing before visits, day-before exception follow-up, real-time checks for walk-ins, Medicare Advantage specifics."
+    },
+    {
+      "section": "Section 4: Insurance Discovery (pp. 26-29)",
+      "gist": "Four triggers for searching for undisclosed coverage, how vendor searches work, expected conversion, separate Medicaid queries and the related billing prohibition."
+    },
+    {
+      "section": "Section 5: Prior Authorization (pp. 30-36)",
+      "gist": "Payer-by-service requirement matrix, contents of a complete request, central tracker with expiry alerts, dedicated coordinator for heavy specialties, failure-mode table."
+    },
+    {
+      "section": "Section 6: Point-of-Service Collections (pp. 37-44)",
+      "gist": "Pre-visit estimates, check-in and check-out collection wording, card on file, written payment plans, collection-rate tiers and target."
+    },
+    {
+      "section": "Section 7: Financial Counseling (pp. 45-49)",
+      "gist": "Short orientation for new patients, fuller counseling before costly services, written financial assistance policy, warning against routine Medicare cost-sharing waivers."
+    },
+    {
+      "section": "Section 8: Scheduling as a Revenue Cycle Function (pp. 50-53)",
+      "gist": "Schedulers should capture a specific visit reason, insurance and referral status; new-patient paperwork is completed electronically before the appointment is confirmed."
+    },
+    {
+      "section": "Section 9: Front-End Quality Metrics (pp. 54-59)",
+      "gist": "Six KPIs with targets and warning levels, quarterly denial root-cause audit, one-page dashboard, monthly review with staff."
+    },
+    {
+      "section": "Section 10: Building the Front-End Team (pp. 60-64)",
+      "gist": "Staff by volume and authorization burden, train on five named topics with competency checks, measure individuals and coach monthly."
+    },
+    {
+      "section": "Section 11: Closing and Implementation Priority List (pp. 65-69)",
+      "gist": "Restates the thesis, lists seven ordered actions with a claimed 90-day payoff, ends with a disclaimer page."
+    }
+  ],
+  "framework_elements": [
+    "Scheduling-stage financial intake (specific visit reason, insurance, referral status)",
+    "Pre-visit electronic new-patient intake",
+    "Identity and demographic capture matched to payer record",
+    "Insurance card capture at every visit (member ID and group)",
+    "Subscriber and relationship capture",
+    "Payer sequencing and coordination of benefits",
+    "Referring provider and NPI capture",
+    "Guarantor and contact data maintenance",
+    "Assignment of benefits and financial responsibility consents",
+    "Established-patient re-verification cadence",
+    "Special-case registration (workers' compensation, auto liability)",
+    "Behavioral health carve-out verification",
+    "Batch eligibility verification before scheduled visits",
+    "Real-time eligibility for same-day visits",
+    "Eligibility exception worklist with day-before outreach",
+    "Cost-share detail capture (deductible, copay, coinsurance, out-of-pocket maximum)",
+    "Plan-specific network status check",
+    "Referral requirement check",
+    "Benefit limit and visit-count check",
+    "Medicare secondary payer screening",
+    "Medicare Advantage plan-specific verification",
+    "Insurance discovery, including a separate Medicaid query",
+    "Payer-by-service authorization requirement matrix",
+    "Authorization request completeness review",
+    "Authorization tracking log with expiry alerts",
+    "Authorization denial triage (administrative versus clinical)",
+    "Pre-visit patient responsibility estimate",
+    "Point-of-service collection, card on file and written payment plans",
+    "Financial counseling and financial assistance policy (routine-waiver control)",
+    "Front-end KPI dashboard, quarterly denial root-cause audit, role-based training and individual accountability"
+  ],
+  "processes": [
+    {
+      "name": "Scheduling intake and registration",
+      "steps": [
+        "Record a specific visit reason at scheduling so authorization needs can be judged",
+        "Collect or confirm insurance at scheduling; ask established patients whether coverage changed",
+        "Confirm referral status for gatekeeper plans before booking",
+        "Send new-patient forms electronically and require completion before confirming the appointment",
+        "Review completed intake before the visit and flag gaps",
+        "At arrival match name and birth date to ID, scan the card, capture subscriber, payer order, referring NPI and guarantor",
+        "Obtain signed assignment of benefits and financial responsibility forms; renew annually"
+      ],
+      "owner_role": "Scheduling and front desk staff",
+      "cadence": "Every appointment; insurance re-checked every visit; consents annually (address cadence stated inconsistently)"
+    },
+    {
+      "name": "Eligibility verification",
+      "steps": [
+        "Run batch eligibility 48 to 72 hours before each scheduled visit",
+        "Read the full response: active dates, cost share, authorization and referral rules, network status for the specific plan, payer order, benefit limits, Medicare secondary status",
+        "Verify the specific Medicare Advantage plan, not only Medicare enrollment",
+        "Queue exceptions for staff follow-up the day before the visit",
+        "Contact the patient to update coverage or discuss self-pay",
+        "Run real-time checks for walk-ins and same-day visits",
+        "Re-verify before releasing any claim that was held"
+      ],
+      "owner_role": "Front desk or eligibility staff, using clearinghouse automation",
+      "cadence": "Every visit"
+    },
+    {
+      "name": "Insurance discovery",
+      "steps": [
+        "Trigger on self-pay above a set balance threshold, unverifiable coverage, lapsed coverage, or a large open balance at a follow-up visit",
+        "Submit demographics to a clearinghouse or discovery vendor",
+        "Screen returned coverages for stale or unusable results",
+        "Confirm with the patient and update registration",
+        "Query Medicaid separately from commercial coverage",
+        "Bill found coverage, including earlier dates where it applies retroactively",
+        "Correct any self-pay billing of a patient found to have Medicaid"
+      ],
+      "owner_role": "Not specified (front desk or billing staff implied)",
+      "cadence": "Per trigger; the closing list says every self-pay patient"
+    },
+    {
+      "name": "Authorization requirement matrix upkeep",
+      "steps": [
+        "List the top ten payers by revenue and top twenty procedure codes by volume",
+        "For each pair record whether authorization is needed, documentation required, whether peer-to-peer is usual, typical turnaround and submission channel",
+        "Assign a named owner",
+        "Refresh at each contract renewal and at least quarterly (the document also says monthly for Medicare Advantage)"
+      ],
+      "owner_role": "Assigned matrix owner or authorization coordinator",
+      "cadence": "Quarterly and at contract renewal"
+    },
+    {
+      "name": "Authorization request, tracking and denial handling",
+      "steps": [
+        "Identify the requirement at scheduling from the matrix and the eligibility response",
+        "Assemble diagnosis codes, clinical history, prior treatments, procedure codes, ordering provider details and payer forms",
+        "Have a coder check codes against the notes before submission",
+        "Log approval number, service, provider, facility, dates, units, who obtained it and when",
+        "Review the log daily and start renewals for anything expiring within 14 days",
+        "On denial read the stated reason, fix administrative defects and resubmit; reserve peer-to-peer for clinical disputes"
+      ],
+      "owner_role": "Dedicated authorization coordinator in heavy specialties; otherwise front-end staff",
+      "cadence": "Daily"
+    },
+    {
+      "name": "Point-of-service collection",
+      "steps": [
+        "Calculate expected patient responsibility from verified benefits",
+        "Send the estimate at least 24 hours before the visit",
+        "At check-in state and collect the copay and any prior balance",
+        "At check-out state the estimated balance for the day's services and collect it",
+        "Offer a written payment plan above the practice threshold",
+        "Offer card on file to every patient",
+        "Automate plan payments and chase missed payments immediately",
+        "Report the collection rate monthly by provider, visit type and staff member"
+      ],
+      "owner_role": "Check-in and check-out staff",
+      "cadence": "Every visit; measured monthly"
+    },
+    {
+      "name": "Financial counseling and financial assistance",
+      "steps": [
+        "Give every new patient a two-minute billing orientation",
+        "Hold a dedicated cost conversation before scheduling high-cost services",
+        "Combine prior balance and expected new balance in one discussion",
+        "Apply a written financial assistance policy with explicit criteria",
+        "Document each hardship determination in the record",
+        "Do not waive Medicare cost-sharing as routine practice"
+      ],
+      "owner_role": "Not assigned in the document (front-end staff or office manager implied)",
+      "cadence": "At first visit and before any high-cost service"
+    },
+    {
+      "name": "Front-end audit, dashboard and coaching",
+      "steps": [
+        "Pull denial data and classify each denial by root cause",
+        "Trace each category to the front-end function that produced it",
+        "Build a one-page dashboard of the six KPIs against target with a three-month trend",
+        "Review the dashboard with front-end staff",
+        "Break the metrics out by individual and coach each person",
+        "Retrain or redesign workflow where a metric stays outside target"
+      ],
+      "owner_role": "Office manager",
+      "cadence": "Audit quarterly; team review monthly; individual review monthly"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Registration element table (pp. 15-16)",
+      "description": "Seven rows giving each data element, how often to re-verify it and its usual failure."
+    },
+    {
+      "name": "Eight-question eligibility checklist (pp. 17-20)",
+      "description": "Narrative list of what every verification must answer; not laid out as a usable form."
+    },
+    {
+      "name": "Eligibility element consequence table (pp. 24-25)",
+      "description": "Eight rows: element checked, why it matters, what happens when it is missed."
+    },
+    {
+      "name": "Insurance discovery trigger list (p. 27)",
+      "description": "Four situations that should start a coverage search."
+    },
+    {
+      "name": "Authorization requirement matrix specification (pp. 30-31)",
+      "description": "Names the columns for a payer-by-service grid; no blank template supplied."
+    },
+    {
+      "name": "Authorization request content list (p. 32)",
+      "description": "Items a complete submission should contain."
+    },
+    {
+      "name": "Authorization tracker field list (p. 33)",
+      "description": "Ten data fields plus daily review and a 14-day expiry flag; described, not supplied."
+    },
+    {
+      "name": "Authorization failure table (pp. 35-36)",
+      "description": "Six failure types with root cause and prevention."
+    },
+    {
+      "name": "Submission checklist and pre-populated request template (pp. 35-36)",
+      "description": "Named as preventions in the authorization failure table; neither is actually provided."
+    },
+    {
+      "name": "Pre-visit estimate content list (p. 38)",
+      "description": "Four items the patient estimate should state."
+    },
+    {
+      "name": "Collection wording (p. 40)",
+      "description": "One model sentence for stating the amount due; no full script or objection handling."
+    },
+    {
+      "name": "Payment plan documentation list (p. 41)",
+      "description": "Amount, schedule, payment method and signature to record for every plan."
+    },
+    {
+      "name": "Point-of-service collection tier table (pp. 42-44)",
+      "description": "Five rate bands with a performance label and main improvement lever; the only scoring rubric in the document."
+    },
+    {
+      "name": "Financial assistance policy outline (p. 47)",
+      "description": "Says what a policy must cover (criteria, plan terms, forgiveness) without sample language."
+    },
+    {
+      "name": "KPI benchmark and action table (pp. 58-59)",
+      "description": "Six metrics, each with a target and the action to take when below it."
+    },
+    {
+      "name": "Quarterly front-end audit and one-page dashboard (p. 58)",
+      "description": "Procedure described in a paragraph; no dashboard layout or audit worksheet."
+    },
+    {
+      "name": "Five-topic training list (p. 62)",
+      "description": "Required competencies for front-end staff; no curriculum, test or sign-off sheet."
+    },
+    {
+      "name": "Role-to-metric assignment (p. 63)",
+      "description": "Which measure applies to check-in, eligibility, authorization and check-out roles."
+    },
+    {
+      "name": "Workers' compensation and auto registration data list (p. 14)",
+      "description": "Extra fields to capture for liability cases."
+    },
+    {
+      "name": "Seven-step implementation priority list (p. 67)",
+      "description": "Ordered actions with a claimed 90-day payoff; not a dated 30/60/90-day plan."
+    },
+    {
+      "name": "External audit tool reference (p. 44)",
+      "description": "Points to a free online self-assessment on the vendor website; nothing is included in the document itself."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Registration accuracy rate (in substance a registration-related denial rate)",
+      "definition": "Share of submitted claims denied for registration causes such as wrong insurance data, name or birth-date mismatch, missing subscriber data or invalid group number.",
+      "formula": "registration-related denials / total claims submitted in the period",
+      "target": "below 2%",
+      "red_flag": "above 5%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Eligibility verification rate",
+      "definition": "Share of scheduled appointments with eligibility verified before the date of service.",
+      "formula": "appointments verified before the date of service / scheduled appointments (implied; not written out)",
+      "target": "approaching 100% in the text; 100% pre-visit in the table",
+      "red_flag": "below 95%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Prior authorization denial rate",
+      "definition": "Share of claims denied for authorization reasons: none on file, wrong service, expired, or wrong provider.",
+      "formula": "authorization-related denials / claims (denominator given only as 'claims')",
+      "target": "below 3%",
+      "red_flag": "above 5%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Point-of-service collection rate",
+      "definition": "Share of patient-responsible revenue collected at the time of service; elsewhere described as share of estimated patient responsibility.",
+      "formula": "payments taken at the visit / patient-responsible revenue (denominator stated two different ways)",
+      "target": "65-75% in the text; the tier table labels 65-74% above average and 75% or more high performing",
+      "red_flag": "below 50% in the text; the tier table calls 30-49% below average and under 30% critical",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate on first submission",
+      "definition": "Share of claims accepted and paid on first submission without rework, resubmission or appeal.",
+      "formula": "",
+      "target": "95% or above",
+      "red_flag": "below 90%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days to authorization",
+      "definition": "Average time from submitting an authorization request to the payer's decision.",
+      "formula": "",
+      "target": "under 5 business days for routine requests",
+      "red_flag": "practice average above 5 business days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Insurance discovery conversion rate",
+      "definition": "Share of self-pay patients for whom a discovery search finds usable coverage.",
+      "formula": "",
+      "target": "10-25% presented as typical experience, not as a target",
+      "red_flag": "",
+      "source_cited": "vendor's own unverified experience; no external study"
+    },
+    {
+      "name": "Front-end share of denials",
+      "definition": "Percentage of the last 90 days of denials that originated in a front-end function, used as the improvement baseline.",
+      "formula": "denials traced to a front-end cause / all denials in the 90-day sample (implied)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Individual-level front-end metrics by role",
+      "definition": "The practice-level measures cut by staff member: registration denials for check-in staff, verification completion for eligibility staff, authorization denials and days to approval for authorization staff, collection rate for check-out staff.",
+      "formula": "",
+      "target": "",
+      "red_flag": "wide spread between individuals (example given: 1% versus 7% against a 3% practice average)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Authorization coordinator workload",
+      "definition": "Authorization requests handled by one dedicated coordinator per month.",
+      "formula": "",
+      "target": "150-200 requests per month",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-submission authorization approval rate",
+      "definition": "Mentioned as what the best practices maximize; never defined.",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in accounts receivable",
+      "definition": "Named repeatedly as an outcome that a disciplined front end lowers; no definition, formula or number is given.",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "20 to 30 percent of patients presenting as self-pay have active coverage they did not disclose.",
+      "section": "Section 4 (p. 26)",
+      "source_cited": "none (unnamed 'studies' and 'commonly cited estimates')"
+    },
+    {
+      "claim": "Insurance discovery should be triggered when a self-pay balance for the visit would exceed $200 to $500.",
+      "section": "Section 4 (p. 27)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Consistent discovery converts 10 to 25 percent of self-pay patients to insured status.",
+      "section": "Section 4 (p. 28)",
+      "source_cited": "vendor's own operational experience; no external study"
+    },
+    {
+      "claim": "Each converted patient is worth several hundred to several thousand dollars of recoverable revenue per year.",
+      "section": "Section 4 (p. 28)",
+      "source_cited": "vendor's own operational experience"
+    },
+    {
+      "claim": "Roughly 50 to 65 percent of authorization denials stem from administrative causes rather than clinical disagreement.",
+      "section": "Section 5 (p. 32)",
+      "source_cited": "none (unnamed 'public industry benchmarks')"
+    },
+    {
+      "claim": "Many administrative authorization denials are resolved within a day or two once corrected.",
+      "section": "Section 5 (p. 32)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In orthopedics, cardiology, oncology and neurology one authorization denial puts a $15,000 to $40,000 surgical case or a $5,000 to $10,000 diagnostic workup at risk.",
+      "section": "Section 5 (p. 34)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A robust authorization function in those specialties returns hundreds of thousands of dollars a year.",
+      "section": "Section 5 (p. 34)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A dedicated authorization coordinator handles 150 to 200 requests per month.",
+      "section": "Section 5 (p. 34)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Authorizations expiring within 14 days should be flagged daily for renewal.",
+      "section": "Section 5 (p. 33)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The authorization matrix should cover the top ten payers by revenue and top twenty procedure codes by claim volume.",
+      "section": "Section 5 (p. 31)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Billing a patient balance after the visit costs an average of $8 to $14 per statement.",
+      "section": "Section 6 (p. 37)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Balances collected at the time of service cost nothing to collect.",
+      "section": "Section 6 (pp. 37, 44)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Collecting through statements, calls and agencies typically costs 15 to 40 percent of the amount collected.",
+      "section": "Section 6 (p. 44)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payment plans should be offered at check-out for estimated balances above $200 to $300.",
+      "section": "Section 6 (p. 39)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A point-of-service collection rate of 65 to 75 percent is high-performing; below 50 percent is a systematic gap.",
+      "section": "Section 6 (p. 42) and Section 9 (p. 55)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Collection-rate tiers: under 30% critical, 30-49% below average, 50-64% average, 65-74% above average, 75% and up high performing.",
+      "section": "Section 6 table (pp. 42-44)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Closing the point-of-service gap is worth low hundreds of thousands of dollars a year for a mid-sized multi-provider practice.",
+      "section": "Section 6 (p. 42)",
+      "source_cited": "none (labeled illustrative)"
+    },
+    {
+      "claim": "Registration-related denials should stay below 2 percent of claims; above 5 percent signals a systematic problem.",
+      "section": "Section 9 (p. 54)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Eligibility should be verified before nearly 100 percent of appointments; below 95 percent indicates a workflow failure point.",
+      "section": "Section 9 (p. 55)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Authorization-related denials should stay below 3 percent of claims; above 5 percent indicates systematic gaps.",
+      "section": "Section 9 (p. 55)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "First-submission clean claim rate should be 95 percent or higher; below 90 percent points to front-end contributors.",
+      "section": "Section 9 (p. 56)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Routine authorizations averaging more than 5 business days to decision warrant a review of submission quality.",
+      "section": "Section 9 (p. 56)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Real-time eligibility checks typically return in under 30 seconds.",
+      "section": "Section 3 (p. 21)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Eligibility should be run no earlier than 48 hours before the visit (elsewhere: batch 48 to 72 hours before).",
+      "section": "Section 3 (pp. 17, 21)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A registration error produces a denial about 45 days later and takes about 20 minutes of billing time to fix.",
+      "section": "Section 1 (p. 7) and Section 10 (p. 62)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Thirty seconds of verification prevents thirty minutes of denial work.",
+      "section": "Section 3 (p. 25)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Pre-registered new patients need about 5 minutes at check-in versus 20 to 30 minutes without prior intake.",
+      "section": "Section 8 (p. 52)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The gap between a high-performing and an average front end in a typical independent practice is often hundreds of thousands of dollars a year.",
+      "section": "Section 11 (p. 65)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The seven priority actions typically yield measurable gains in clean claim rate, desk collections, authorization denials and days in receivables within 90 days.",
+      "section": "Section 11 (p. 68)",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Routine waiver of Medicare copays without a demonstrated financial hardship determination is a False Claims Act violation.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 7: Financial Counseling (p. 48)",
+      "why": "The practice bills Medicare coinsurance by statement to frail facility residents and collects little. Its write-off and hardship policy has to rest on the correct statutes (Anti-Kickback, beneficiary-inducement penalty, False Claims Act) and the correct exceptions, including failed reasonable collection efforts."
+    },
+    {
+      "id": "C2",
+      "claim": "For Medicare patients, the Medicare Secondary Payer questionnaire must be completed and documented. MSP overpayment demands carry retroactive liability that can extend years into the past.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 3: Eligibility Verification (p. 20)",
+      "why": "About 55% of charges are Medicare fee-for-service. The owner needs to know what a Part B physician practice must actually collect, how often, and how to do it for facility patients; errors mean recoupment on reopened claims."
+    },
+    {
+      "id": "C3",
+      "claim": "Balance billing a Medicaid-eligible patient for services covered by Medicaid is a compliance violation.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 4: Insurance Discovery (p. 29)",
+      "why": "Dual-eligible and Medicaid managed care patients are a core population. The exact scope (Medicaid payment-in-full rule, the separate Qualified Medicare Beneficiary cost-sharing ban, refund duties) decides which patient statements may lawfully be sent."
+    },
+    {
+      "id": "C4",
+      "claim": "A patient enrolled in a Medicare Advantage plan cannot be billed under traditional Medicare rules; the plan's own benefit structure, authorization requirements and network restrictions govern the claim.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 3: Medicare Advantage callout (p. 23)",
+      "why": "Four Medicare Advantage plans carry much of the non-fee-for-service revenue. Exceptions (hospice election, non-contracted services paid at Medicare rates) and the rule tying plans to Medicare coverage criteria change who is billed and how denials are appealed."
+    },
+    {
+      "id": "C5",
+      "claim": "Assignment of benefits and a financial responsibility acknowledgment must be signed at or before the first visit and re-signed annually; without the acknowledgment the patient has a legal argument against balance billing.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 2: Patient Registration (p. 12; table p. 16)",
+      "why": "With no front desk, signatures from facility residents are hard to obtain. The practice needs the real requirement (Medicare signature-on-file and facility-signature rules, state contract law), not an annual re-signing rule that may be unnecessary or unworkable."
+    },
+    {
+      "id": "C6",
+      "claim": "A Medicare Advantage plan that did not require authorization for office visits in January may require it in July after a mid-year policy update; MA plans update authorization requirements more frequently than commercial plans.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 3 (p. 19) and Section 5 (p. 31)",
+      "why": "Sets how often the practice must re-check the rules of its Medicare Advantage payers. If mid-year changes are restricted or need advance notice, monthly manual review is wasted effort; if they are free to change, quarterly review is too slow."
+    },
+    {
+      "id": "C7",
+      "claim": "Patient-responsible balances that leave the building as accounts receivable cost the practice an average of $8 to $14 per statement to bill.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 6: Point-of-Service Collections (p. 37)",
+      "why": "Statements are this practice's main route to patient coinsurance. An inflated per-statement cost would wrongly justify small-balance write-off thresholds, which in turn raises routine-waiver exposure."
+    },
+    {
+      "id": "C8",
+      "claim": "Studies consistently show a substantial share of patients presenting as self-pay, commonly cited at 20 to 30 percent, have active insurance coverage they did not disclose.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 4: Insurance Discovery (p. 26)",
+      "why": "This figure is the entire business case for paying for discovery searches. If it comes from hospital emergency-department vendor marketing, the yield in a physician practice, and in any framework offered to other practices, will be far lower."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.68,
+      "topics": [
+        "scheduling-stage intake",
+        "registration data elements",
+        "eligibility verification",
+        "insurance discovery",
+        "prior authorization matrix and tracking",
+        "referral checks",
+        "pre-visit estimates",
+        "point-of-service collection",
+        "financial counseling"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.1,
+      "topics": [
+        "front-end staffing by volume and authorization burden",
+        "dedicated authorization coordinator",
+        "five-topic competency training",
+        "individual metrics and monthly coaching"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.08,
+      "topics": [
+        "denial root-cause tracing to intake",
+        "first-pass clean claim rate",
+        "patient statements and collection cost",
+        "payment plans",
+        "coordination of benefits denials"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.06,
+      "topics": [
+        "Medicare secondary payer screening",
+        "Medicaid billing prohibition",
+        "routine cost-sharing waivers",
+        "financial assistance policy",
+        "HIPAA training for front-end staff"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.05,
+      "topics": [
+        "Medicare Advantage plan verification",
+        "plan-level network status",
+        "payer authorization rules",
+        "behavioral health carve-outs"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "batch and real-time eligibility through the clearinghouse",
+        "discovery vendors",
+        "electronic intake",
+        "one-page KPI dashboard"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Make eligibility a required-field check rather than an active/inactive lookup, and keep the full response as evidence.",
+      "why": "Most preventable denials (wrong payer, Medicare Advantage versus fee-for-service, payer order, lapsed coverage) are visible in the response if all of it is read.",
+      "applies_to_practice": "yes",
+      "note": "Automate through the clearinghouse feed and extend the field list for geriatrics: Medicare Advantage enrollment, Medicare secondary records, Qualified Medicare Beneficiary flag, hospice election, facility Part A stay, Medigap or Medicaid secondary, wellness-visit eligibility date."
+    },
+    {
+      "idea": "Re-verify coverage on a schedule and again before releasing any held claim.",
+      "why": "Coverage changes silently; long-stay patients switch Medicare Advantage plans, gain or lose Medicaid, or elect hospice between visits.",
+      "applies_to_practice": "yes",
+      "note": "Translate 'every visit' into every admission or new episode, monthly for long-stay and care-management patients, and a full sweep each January and after election periods."
+    },
+    {
+      "idea": "Run a quarterly denial audit that attributes each denial to the intake step that caused it.",
+      "why": "Produces a measured front-end share of denials and shows where to fix process instead of working denials one at a time.",
+      "applies_to_practice": "yes",
+      "note": "Include clearinghouse and payer rejections, which the document ignores; map reason codes to intake steps once and reuse the map."
+    },
+    {
+      "idea": "Search for coverage, with a separate Medicaid query, whenever coverage is unverifiable, lapsed or self-pay.",
+      "why": "Finds billable coverage and prevents prohibited billing of Medicaid and dual-eligible patients.",
+      "applies_to_practice": "partly",
+      "note": "True self-pay is rare here; the useful part is detecting dual status and plan switches. Price the per-search fees before adopting broadly."
+    },
+    {
+      "idea": "Keep a payer-by-service requirement matrix with a named owner and a fixed refresh date.",
+      "why": "Replaces memory and phone calls with one maintained reference.",
+      "applies_to_practice": "partly",
+      "note": "For facility visits the grid is mostly referral, network and assigned-primary-care rules for the Medicare Advantage and Medicaid plans, plus any services the practice orders; fee-for-service Medicare visits need none."
+    },
+    {
+      "idea": "Use a single authorization log with standard fields and a 14-day expiry flag.",
+      "why": "Catches expired, wrong-provider and wrong-service approvals before the service is delivered.",
+      "applies_to_practice": "partly",
+      "note": "Volume is low here; worth keeping only for plan referrals and services the practice orders."
+    },
+    {
+      "idea": "Adopt a written hardship and financial assistance policy, applied uniformly, with a documented determination each time.",
+      "why": "Protects against routine-waiver allegations and against inconsistent treatment of patients.",
+      "applies_to_practice": "yes",
+      "note": "High priority because balances are billed by statement to frail residents and families. Add what the document omits: no billing of Qualified Medicare Beneficiaries, a defined reasonable collection effort, and small-balance thresholds reviewed by counsel."
+    },
+    {
+      "idea": "Track a small set of front-end KPIs by operator and review them monthly.",
+      "why": "Practice-level averages hide the single source producing most errors.",
+      "applies_to_practice": "yes",
+      "note": "Replace staff names with agent or workflow identifiers and facility source; rename the registration measure as an error rate and count rejections as well as denials."
+    },
+    {
+      "idea": "Get intake data before the encounter instead of at it.",
+      "why": "Errors found early can be fixed before a claim exists.",
+      "applies_to_practice": "partly",
+      "note": "The equivalent here is a required data set on every facility admission notice or face sheet (insurance cards, responsible party, secondary coverage) agreed with each facility."
+    },
+    {
+      "idea": "Tell patients or responsible parties what they will owe and how to pay before the first bill arrives.",
+      "why": "Expected bills are paid more often and disputed less.",
+      "applies_to_practice": "partly",
+      "note": "Use a one-page financial orientation at start of care and at care-management consent, where cost-sharing must be disclosed anyway; offer autopay to responsible parties. Desk collection wording does not transfer."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "Written for an office with schedulers, a check-in desk and check-out collection. This practice sees patients in hospitals and facilities, has no front desk, collects almost nothing at the time of service, runs billing through AI agents, and is dominated by Medicare fee-for-service visits that need no authorization. The eligibility, coverage-discovery, Medicare-secondary, Medicaid billing-prohibition, hardship-policy and measurement ideas transfer once rebuilt around census-based intake and automated verification; most of the rest does not. Its main value is as raw material for the front-end domain of a framework aimed at office-based practices.",
+    "sections_that_do_not_apply": [
+      "Section 6 point-of-service collection: no check-in or check-out; most Medicare coinsurance crosses to Medigap or Medicaid, and dual-eligible patients often cannot be charged",
+      "Section 8 scheduling intake: encounters come from facility census and consults, not booked appointments or phone calls",
+      "Section 2 in-person steps: photo ID and card scan at each visit, electronic new-patient packets, workers' compensation, auto and behavioral health callouts",
+      "Section 5 heavy-authorization specialty material: dedicated coordinator, surgical-case economics, peer-to-peer scheduling",
+      "Section 10 front-desk staffing model: functions are run by AI agents; only the competency-check and per-operator metric ideas carry over",
+      "Section 7 pre-service counseling for high-deductible and surgical patients (the hardship policy part does apply)",
+      "Section 4 self-pay balance triggers: very few self-pay patients in a Medicare-age facility population",
+      "Section 3 specialty referral and visit-limit checks: largely moot for fee-for-service Medicare evaluation and management visits"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Routine waiver of Medicare cost-sharing is called a False Claims Act violation. The direct authorities are the Anti-Kickback Statute and the beneficiary-inducement civil monetary penalty; False Claims Act exposure is derivative. The exception is also wider than documented hardship: an unadvertised, non-routine waiver after reasonable collection efforts fail also qualifies. Fee-for-service Medicare has deductibles and coinsurance, not copays.",
+      "'Balance billing' is used to mean billing the patient's own cost share. Real balance billing (charging above the allowed amount) is barred for participating and in-network providers whatever the patient signed, so the statement that a signed acknowledgment underpins balance billing is wrong as written.",
+      "The Medicaid warning omits the rule that matters most for seniors: Medicare providers may not charge Qualified Medicare Beneficiaries any Medicare cost-sharing, whether or not the provider is enrolled in Medicaid. It also never says that amounts already collected must be refunded.",
+      "Medicare secondary payer: the formal CMS questionnaire at each admission or encounter is a hospital obligation; a Part B practice must obtain other-coverage information from the beneficiary and report it on the claim (verify against the secondary payer manual). The document gives no frequency, no question set and no retention guidance.",
+      "Point-of-service collection is said to cost nothing and to be independent of patient and payer mix. Card fees, staff time and refunds are real costs, and Medicaid, Qualified Medicare Beneficiary, Medigap-crossover and dual special-needs patients have little or nothing that may be collected at the desk.",
+      "Collecting estimated deductible and coinsurance at check-out is recommended with no warning that over-collection creates credit balances and refund duties, that secondary coverage often pays the amount, or that some payer contracts restrict collection before adjudication.",
+      "Written installment plans and the remark about balances that grow with interest ignore Truth in Lending (a written plan of more than four installments, or any finance charge, can make the practice a creditor with disclosure duties) and state interest and collection law.",
+      "The pre-visit estimate advice never mentions the No Surprises Act good-faith estimate owed to uninsured and self-pay patients, whose deadlines (one or three business days after scheduling) a message sent 24 hours before the visit would not meet.",
+      "Prior authorization is presented as an absolute payer right to deny. Emergency care, retro-authorization windows, state limits on rescinding approvals, and the Medicare Advantage rules (an approval must hold for the course of treatment; plans must follow Medicare coverage criteria) are absent.",
+      "The $15,000-$40,000 'surgical case' loss mixes facility and implant revenue with a physician practice's professional fee, which is a fraction of that; it inflates the return on an authorization hire.",
+      "The assertion that Medicare Advantage plans change authorization rules more often than commercial plans is unsupported, and authorization for ordinary office visits is an unrealistic example.",
+      "The remedy offered for name mismatches is a photo ID check, but the claim has to match the payer's enrollment record, which is confirmed by the eligibility response, not by a driver's license.",
+      "KPI definitions are loose. 'Registration accuracy rate' is an error rate that counts denials only and misses front-end rejections, where most demographic errors surface. 'Clean claim rate' is defined as accepted and paid first time, which is a first-pass payment rate, a different measure. The authorization denial rate uses all claims as its denominator, so a 3% target means nothing across specialties.",
+      "The point-of-service rate is measured against total patient-responsible revenue in one place and estimated responsibility in another; neither matches the common industry definition (desk payments as a share of all patient cash), so the 65-75% target cannot be compared with published benchmarks.",
+      "Every figure is unsourced: 20-30% hidden coverage ('studies consistently show'), 10-25% conversion, 50-65% administrative authorization denials ('public industry benchmarks'), $8-$14 per statement, 15-40% cost of later collection, 150-200 requests per coordinator, 45 days and 20 minutes per registration error, and 'hundreds of thousands of dollars' of annual upside.",
+      "Discovery is described as having little downside and costing only staff time, although it is sold as a per-search add-on, returns false matches, and relies on Social Security numbers the registration list never tells staff to collect.",
+      "The headline example (eight months of claims sent to a terminated plan before anyone notices) is implausible, because the first denials would arrive within weeks. The real exposure in that scenario is the new payer's timely-filing limit, which the document never mentions anywhere."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 2 promises nine data elements; the text describes seven groupings and the table has seven rows. Nine is reachable only by splitting paired items, and nothing is numbered.",
+      "Guarantor address and phone are to be verified 'every visit' in the narrative, then 'annually or at reported change' two paragraphs later and in the table.",
+      "Eligibility timing: 'no earlier than 48 hours before' on one page; automated batch '48 to 72 hours before' three pages later.",
+      "Medicare Advantage authorization matrix refresh: quarterly in the Section 3 and Section 5 text, monthly in the Section 5 failure table.",
+      "Insurance discovery is triggered only above a $200-$500 balance in Section 4 but run on every self-pay patient in the Section 11 priority list; it is said to cost only staff time although described as a paid add-on service.",
+      "Point-of-service rate: the text calls 65-75% high-performing and 'the target band used consistently'; the table calls 65-74% above average and reserves high-performing for 75% and up. The text calls under 50% a systematic gap; the table calls 50-64% average and only under 30% critical.",
+      "The point-of-service denominator switches between patient-responsible revenue and estimated patient responsibility.",
+      "'Registration accuracy rate' is a denial rate where lower is better; Section 10 then describes an accuracy rate of 3 percent with one registrar at 7 percent.",
+      "Eligibility verification target is 'approach 100 percent' with a 95% floor in the text and a flat 100% in the table.",
+      "The preface says every figure is labeled as public benchmark or vendor observation; the per-statement cost, later-collection cost, coordinator workload and all six KPI targets carry no label.",
+      "Section 6 says the best collection wording 'is not a script', then supplies one and prescribes 'scripting' in its own table.",
+      "Section 10 says a strong front end is 'not a technology solution', while Sections 3, 4 and 6 depend on batch eligibility automation, vendor discovery, electronic intake and card on file.",
+      "Section 11 puts the annual upside for a 'typical' practice in the hundreds of thousands of dollars; Section 6 limits a similar figure to a mid-sized multi-provider practice and calls it illustrative.",
+      "Registration, eligibility, discovery, authorization and desk collection are each declared the highest-impact front-end function in their own sections."
+    ],
+    "time_sensitive_or_outdated": [
+      "Names 'Beacon Health Options' as a behavioral health carve-out manager; that brand was retired in 2023 (now Carelon Behavioral Health). United Behavioral Health has long traded as Optum.",
+      "Uses a 30-session annual psychotherapy cap as a typical benefit limit; hard visit caps of that kind largely disappeared from parity-governed plans years ago.",
+      "Silent on federal prior-authorization changes: the 2024 Medicare Advantage rule, and the interoperability and prior authorization rule whose decision deadlines (72 hours expedited, seven calendar days standard) began in 2026 for Medicare Advantage and Medicaid managed care, with electronic authorization interfaces due in 2027. The five-business-day KPI is tied to none of this.",
+      "Silent on the No Surprises Act good-faith estimate duty, in force since 2022, despite whole sections on patient estimates and self-pay.",
+      "No edition date, plan year or version anywhere, so payer-specific statements (mid-year authorization changes, carve-outs, network differences) cannot be dated.",
+      "'Reimbursement rates are flat or declining' is a blanket claim. For 2026 the Medicare physician conversion factor rose roughly 3% while facility-setting practice-expense values and an efficiency adjustment cut the other way (verify against the final rule); the net effect differs by site of service.",
+      "The collection-agency discussion ignores the 2022-2023 credit-bureau changes that removed paid and sub-$500 medical collections from credit reports, weakening agency leverage on small balances.",
+      "Discovery by Social Security number is described with no mention that Medicare identifiers stopped being based on Social Security numbers by 2020, or that dual-eligible patients can now change coverage far more often than once a year (verify current election rules)."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, date or edition; the reader is sent to the vendor website for 'current editions'.",
+      "The closing disclaimer tells readers to review 'every AI-generated draft', boilerplate from an AI prompt product pasted into a playbook that contains no drafts.",
+      "Claims first-hand experience 'across the independent practices we work with' while the file metadata shows machine generation and no person is named; the experience base is unverifiable.",
+      "Each section crowns its own topic the most important or highest-return function.",
+      "Formulaic rhetoric throughout: negation triplets, three-beat imperatives, and a boxed aphorism restating the content at the end of every section.",
+      "Numbered promises that do not match delivery (nine elements, seven supplied).",
+      "Round, symmetric ranges for every statistic (20-30, 10-25, 50-65, 15-40, 65-75, 150-200), each wrapped in hedging language that reads like a compliance pass over invented figures.",
+      "Automated layout: about 11,000 words spread over 69 pages, near-empty pages, tables split one or two rows per page.",
+      "Describes itself as specific, sequential and actionable while supplying no form, template or worksheet.",
+      "Stale brand names for payers, typical of text generated from older training data."
+    ],
+    "missing_for_real_use": [
+      "Actual instruments: registration form, consent and financial responsibility language, card-on-file authorization, payment plan agreement, hardship application and sliding scale, estimate letter, blank authorization matrix and tracker, eligibility checklist, objection-handling scripts, job descriptions, competency checklists, dashboard layout, dated 30/60/90-day plan.",
+      "A crosswalk from denial and rejection reason codes to the intake step responsible, without which the quarterly root-cause audit cannot be run consistently.",
+      "Field-level guidance on reading an eligibility response, especially Medicare's: Part A and B dates, Medicare Advantage plan, secondary payer records, hospice, home health, facility stay, Qualified Medicare Beneficiary flag, preventive-service dates.",
+      "Regulatory anchors with citations: good-faith estimates, Advance Beneficiary Notice, Qualified Medicare Beneficiary billing ban, Medigap crossover, Medicare Advantage pre-service determinations, privacy notice acknowledgment, consent for calls and texts, card-data security, Truth in Lending for installment plans, state collection and medical-debt law (including any state rule on waiving copays and deductibles).",
+      "Any workflow for practices without a front desk: facility census capture, face sheets, identifying the responsible party or agent for cognitively impaired patients, reliance on a facility's signature on file, consent capture for care-management services.",
+      "The cost side of the return calculation: transaction fees for eligibility and discovery, card fees, staff time; no worksheet to compute return from a practice's own data.",
+      "Data definitions tied to practice-management system reports, so numerators and denominators can actually be pulled; no distinction between rejections and denials.",
+      "Medicare-specific rules on collecting deductible and coinsurance, refunding over-collections and handling credit balances.",
+      "Anything on automation or AI agent controls beyond batch eligibility, despite the product's provenance.",
+      "Timely-filing limits by payer and the rules for late-discovered or retroactive coverage, including state-specific Medicaid retroactive eligibility windows."
+    ]
+  }
+}

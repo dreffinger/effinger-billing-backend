@@ -1,0 +1,763 @@
+{
+  "slug": "behavioralhealth-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Behavioral Health",
+  "doc_type": "specialty",
+  "pages": 38,
+  "audience": "Addressed to owners of outpatient behavioral health practices (psychiatry, psychology, clinical social work, professional counseling and other licensed clinicians) and their billing staff. It assumes the reader has already read the vendor's Universal Specialty Billing Framework. No author, credential, date or fee-schedule year is given.",
+  "summary": "Companion to the vendor's universal billing framework, applied to outpatient behavioral health. Its thesis is that weak collections come from payer behavior (suppressed in-network rates, session limits, repeated authorization reviews) rather than practice error, so the revenue cycle should be built to expect obstruction. It covers payer mix, the time-based psychotherapy codes and E/M add-ons, four prior-authorization failure modes, four documentation failures, four denial patterns (parity, provider taxonomy, telehealth, substance-use codes) and five revenue opportunities (SBIRT, collaborative care, behavioral health integration, group therapy, psychological testing), ending with five operating standards and a five-step action list. Central method: payer-by-payer matrices, note templates that force time and outcome-measure documentation, a reauthorization calendar, and routine use of the federal parity law in appeals. It cites no sources, supplies no actual templates, and contains several material coding and payer-rule errors.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Behavioral Health Is Not Undertreated. It Is Underpaid.",
+      "gist": "Argues weak collections come from deliberate payer rate suppression and utilization management, so the revenue cycle must assume obstruction."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Behavioral Health",
+      "gist": "Three dynamics (out-of-network prevalence, Medicare and Medicaid dependence, Medicare Advantage utilization management), a payer risk table and eight payer questions."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile - Where Behavioral Health Billing Goes Wrong",
+      "gist": "Time-based psychotherapy codes, diagnostic evaluations, E/M plus psychotherapy add-ons, Medicaid H-codes, SBIRT, and the codes most often audited."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Behavioral Health - A System Designed to Deny",
+      "gist": "Four failure modes (no initial request, unmanaged concurrent review, wrong clinician, unused parity law), five documentation elements and a payer threshold table."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Behavioral Health",
+      "gist": "Missing time statements, notes that do not justify continued treatment, absent supervision records, and crisis codes billed without emergency documentation."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Behavioral Health",
+      "gist": "Parity-based denials with a four-step escalation, taxonomy mismatches, telehealth modifier and place-of-service errors, and under-billed substance-use services."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Behavioral Health Practices Are Missing",
+      "gist": "SBIRT, collaborative care, general behavioral health integration, group therapy and psychological testing, each with rough revenue arithmetic."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Behavioral Health",
+      "gist": "Five operating standards (matrices, note template, reauthorization calendar, parity protocol, telehealth checklist) and five prioritized first actions."
+    }
+  ],
+  "framework_elements": [
+    "Payer intelligence map (fixed question set per payer)",
+    "Payer mix segmentation by reimbursement dynamic and primary risk",
+    "Out-of-network billing workflow (superbill, financial counseling, fee transparency)",
+    "State-specific Medicaid billing reference",
+    "Payer-by-payer authorization matrix",
+    "Intake authorization verification step",
+    "Concurrent review and reauthorization calendar",
+    "Authorization-to-rendering-clinician match check",
+    "Parity review and complaint protocol",
+    "Request for payer medical-necessity and treatment-limit criteria",
+    "Time documentation standard for time-based codes",
+    "Separate documentation of E/M and psychotherapy add-on time",
+    "Note template with embedded billing prompts",
+    "Standardized outcome measures in authorization requests",
+    "Continued-treatment medical necessity documentation",
+    "Supervision record for supervised or pre-licensed clinicians",
+    "Crisis code documentation threshold",
+    "Code-level distribution audit",
+    "High-audit-risk code watchlist",
+    "Provider taxonomy and credentialing verification by license type",
+    "Credentialing pipeline for newly eligible clinician types",
+    "Telehealth coverage matrix by payer",
+    "Telehealth billing compliance checklist",
+    "Substance-use code set competency (H-codes, medication treatment, intensive outpatient units)",
+    "Screening and brief intervention billing workflow",
+    "Collaborative care billing",
+    "General behavioral health integration billing",
+    "Group therapy program economics and per-patient authorization",
+    "Psychological testing service line",
+    "Authorization denial rate tracking by reason"
+  ],
+  "processes": [
+    {
+      "name": "Payer intelligence map build",
+      "steps": [
+        "List every payer the practice bills",
+        "Record session limits and the basis on which they are counted",
+        "Record authorization and utilization-review triggers",
+        "Locate the published medical-necessity criteria",
+        "Record telehealth and audio-only policy",
+        "Record rates for the ten highest-volume codes",
+        "Record timely filing limits in and out of network",
+        "Record credentialing timeline and taxonomy requirements by license type",
+        "Note recent parity enforcement actions against the payer"
+      ],
+      "owner_role": "Not specified (billing lead or practice manager implied)",
+      "cadence": "Build once; authorization content reviewed quarterly"
+    },
+    {
+      "name": "Intake authorization check and concurrent review tracking",
+      "steps": [
+        "Verify whether authorization is needed before the first visit",
+        "Confirm the treating clinician matches the clinician on the authorization",
+        "Enter each reauthorization due date in the scheduling system",
+        "Show upcoming due dates to billing two weeks ahead",
+        "Submit updated treatment plan, clinical summary and necessity statement before the date"
+      ],
+      "owner_role": "Billing staff with clinician input (not specified)",
+      "cadence": "Every new patient; reauthorization per payer interval (described as every 4-8 sessions or quarterly)"
+    },
+    {
+      "name": "Authorization request documentation",
+      "steps": [
+        "State the diagnosis with severity, episode and comorbidities",
+        "Include scored measures of symptoms and function",
+        "Name the treatment modality and why it fits this patient",
+        "Justify the visit frequency",
+        "Summarize prior treatment and response"
+      ],
+      "owner_role": "Treating clinician",
+      "cadence": "Each initial and continued-treatment request"
+    },
+    {
+      "name": "Parity denial protocol",
+      "steps": [
+        "Screen denials that cite session limits or medical necessity",
+        "Request the payer's treatment-limit and necessity criteria in writing",
+        "Compare them with the criteria for analogous medical services and document the gap",
+        "Appeal on parity grounds citing the statute",
+        "Escalate to the state insurance regulator or the Department of Labor if unresolved"
+      ],
+      "owner_role": "Not specified (billing lead or owner implied)",
+      "cadence": "Each qualifying denial, as standing procedure"
+    },
+    {
+      "name": "Time documentation standard for psychotherapy notes",
+      "steps": [
+        "Configure the note template to require start and stop times or a total-time statement",
+        "Separate psychotherapy minutes from E/M work in combined visits",
+        "Train clinicians",
+        "Select the code from documented minutes"
+      ],
+      "owner_role": "Clinical lead and EHR administrator (not specified)",
+      "cadence": "One configuration session, then every note"
+    },
+    {
+      "name": "Psychotherapy code distribution audit",
+      "steps": [
+        "Pull 90 days of individual psychotherapy claims",
+        "Compute the share at each time level",
+        "Compare with the document's rule of thumb",
+        "Check whether session length or documentation explains the mix",
+        "Audit code-versus-documentation quarterly"
+      ],
+      "owner_role": "Billing staff",
+      "cadence": "Quarterly, 90-day look-back"
+    },
+    {
+      "name": "Telehealth billing compliance review",
+      "steps": [
+        "Build a payer matrix of covered telehealth services and modalities",
+        "Check modifier use for video versus audio-only",
+        "Check place-of-service codes",
+        "Confirm patient location is documented where required",
+        "Correct and refile claims billed with the wrong modifier"
+      ],
+      "owner_role": "Billing or compliance (not specified)",
+      "cadence": "Quarterly and after every regulatory update"
+    },
+    {
+      "name": "Screening and brief intervention workflow",
+      "steps": [
+        "Add validated alcohol and drug screening tools to intake and annual review",
+        "Document the result and any brief counseling",
+        "Add the intervention code to eligible encounters",
+        "Verify payer coverage before billing"
+      ],
+      "owner_role": "Clinicians and billing (not specified)",
+      "cadence": "Intake and annually"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer category table",
+      "description": "Six payer types with typical reimbursement dynamic and primary risk; descriptive, no numbers."
+    },
+    {
+      "name": "Eight-question payer intelligence map",
+      "description": "Question list to answer for each payer (limits, authorization, criteria, telehealth, rates, filing, credentialing, parity history); no fill-in form supplied."
+    },
+    {
+      "name": "Psychotherapy and behavioral health code table",
+      "description": "Fifteen CPT and HCPCS rows with time thresholds and a one-line billing note each."
+    },
+    {
+      "name": "E/M plus psychotherapy add-on rule list",
+      "description": "Four bullet rules for billing an add-on with a medication visit (one of them appears wrong)."
+    },
+    {
+      "name": "Audit risk code list",
+      "description": "Four code groups said to draw the most payer audits and what auditors look for."
+    },
+    {
+      "name": "Four prior-authorization failure modes",
+      "description": "Narrative checklist of where authorization breaks down."
+    },
+    {
+      "name": "Five authorization documentation elements",
+      "description": "List of what an authorization request should contain."
+    },
+    {
+      "name": "Authorization threshold table by payer type",
+      "description": "Six payer types with a typical authorization rule; unsourced and partly inaccurate."
+    },
+    {
+      "name": "Minimum time-documentation standard",
+      "description": "Three acceptable ways to document psychotherapy time."
+    },
+    {
+      "name": "Concurrent review documentation list",
+      "description": "Four elements a continued-treatment request should show."
+    },
+    {
+      "name": "Parity denial four-step framework",
+      "description": "Request criteria, compare, appeal on parity, escalate to regulator; no letter template."
+    },
+    {
+      "name": "Telehealth denial pattern list",
+      "description": "Four common modifier, coverage, place-of-service and location errors; the checklist itself is not supplied."
+    },
+    {
+      "name": "SBIRT four-step implementation",
+      "description": "Screening tool, documentation, code, coverage check."
+    },
+    {
+      "name": "Group therapy revenue arithmetic",
+      "description": "Worked example of group versus individual hourly yield; not a calculator."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Authorization matrix, note template, reauthorization calendar, parity protocol, telehealth checklist; claimed achievable in 90 days."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "Ordered first steps with 90-day look-back audits; the closest thing to an action plan, without owners or dates."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Psychotherapy code distribution",
+      "definition": "Share of individual psychotherapy claims at each time level (90832, 90834, 90837) over the last 90 days",
+      "formula": "claims at a code / all individual psychotherapy claims in the period",
+      "target": "",
+      "red_flag": "More than 60% at 90834 with under 20% at 90837, read by the document as a likely time-documentation gap",
+      "source_cited": "none"
+    },
+    {
+      "name": "Prior authorization denial rate",
+      "definition": "Authorization denials over the last 90 days, with the top three denial reasons identified",
+      "formula": "",
+      "target": "",
+      "red_flag": "Any top-three reason tied to session limits or continued medical necessity triggers a parity comparison",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-submission authorization approval rate",
+      "definition": "Named in a heading as the outcome better documentation improves; never defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Reauthorization visibility lead time",
+      "definition": "How far ahead billing staff can see each patient's reauthorization due date",
+      "formula": "",
+      "target": "Two weeks ahead for every patient with an active authorization",
+      "red_flag": "Coverage lapsing mid-treatment and discovered only at denial",
+      "source_cited": "none"
+    },
+    {
+      "name": "Authorization matrix review cadence",
+      "definition": "How often the payer-by-payer authorization matrix is refreshed",
+      "formula": "",
+      "target": "Quarterly",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Telehealth coverage matrix review cadence",
+      "definition": "How often payer telehealth rules are re-verified",
+      "formula": "",
+      "target": "Quarterly and after every regulatory update",
+      "red_flag": "Audio-only visits still billed with the video modifier",
+      "source_cited": "none"
+    },
+    {
+      "name": "Psychotherapy coding audit cadence",
+      "definition": "Internal check that documentation supports the time level billed",
+      "formula": "",
+      "target": "Quarterly",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Weekly revenue lost to under-documented session time",
+      "definition": "Illustrative estimate of revenue forgone when sessions are billed one time level low",
+      "formula": "clinicians x sessions per week x payment difference between adjacent codes",
+      "target": "",
+      "red_flag": "Document's example: $8,000 to $12,000 per week for 10 clinicians at 20 sessions each",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue per clinician hour, group versus individual therapy",
+      "definition": "Hourly yield of a group session compared with individual sessions; example given is $320 per hour for an 8-patient group against $90 to $130",
+      "formula": "patients in group x per-patient payment / session hours",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unbilled add-on revenue per combined visit",
+      "definition": "Revenue missed when a prescriber bills only the E/M for a visit that also included documented psychotherapy",
+      "formula": "",
+      "target": "",
+      "red_flag": "Document's figure: $40 to $80 per encounter",
+      "source_cited": "none"
+    },
+    {
+      "name": "Concurrent review interval",
+      "definition": "Sessions between payer reauthorization requirements",
+      "formula": "",
+      "target": "",
+      "red_flag": "Described as typically every 4 to 8 sessions or quarterly",
+      "source_cited": "none"
+    },
+    {
+      "name": "Rate coverage for top codes",
+      "definition": "Whether the practice knows each payer's rate for the ten codes that make up about 80% of volume",
+      "formula": "",
+      "target": "Rates on file for all ten codes for every payer",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "45% to 60% of practicing behavioral health clinicians operate outside insurance networks, the highest rate of any outpatient specialty",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The parity act (MHPAEA) has been federal law since 2008",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "2024 Medicare rule changes extended coverage to marriage and family therapists and mental health counselors",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage plans apply utilization management to behavioral health more than to any other service category and deny mental health claims at substantially higher rates than traditional Medicare",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Ten CPT codes account for 80% of a practice's billing volume",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Psychotherapy time thresholds: 90832 = 16-37 minutes, 90834 = 38-52 minutes, 90837 = 53 or more minutes",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "SBIRT 99408 = 15-30 minutes; 99409 = 31 or more minutes",
+      "section": "Sections 3 and 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Billing only the E/M on combined medication and therapy visits leaves $40 to $80 per encounter unbilled",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A majority of commercial payers now require prior authorization for initial behavioral health evaluations",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most payers require reauthorization every 4 to 8 sessions, quarterly, or at clinical milestones",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage often requires authorization at intake and every 8 sessions",
+      "section": "Section 4 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "EAP plans typically allow 6-12 sessions without authorization",
+      "section": "Section 4 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most payers routinely violate the parity standard for prior authorization",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The payment difference between 90834 and 90837 is typically $40 to $60 per session",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Ten clinicians each seeing 20 patients a week and billing one level low lose $8,000 to $12,000 per week",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Crisis codes 90839/90840 carry the highest reimbursement in the psychotherapy code set",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Parity complaints are resolved at a higher rate than standard appeals",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Behavioral health has the highest rate of telehealth billing errors of any outpatient specialty",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "SBIRT codes go unbilled in 80% of practices that should be using them",
+      "section": "Section 7 heading",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare pays approximately $29 for G0396",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A psychiatric consultant with a 50-patient collaborative care caseload can generate $8,000 to $15,000 per month",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "99484 requires 20 or more minutes of clinical staff time",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Group psychotherapy (90853) pays approximately 50% to 60% of individual psychotherapy rates and is delivered to 6 to 10 patients at once",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Eight patients at $60 each yield $480 per 90-minute group, equal to $320 per hour; individual therapy pays $90 to $130 per hour",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Testing codes pay $150 to $300 or more per hour of clinical time at Medicare rates",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 6 to 8 hour psychological evaluation bills $900 to $2,400 at Medicare rates",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The listed revenue opportunities are actionable within 30 to 60 days",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "All five operating standards are achievable by an independent practice within 90 days",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "More than 60% of individual psychotherapy claims at 90834 with fewer than 20% at 90837 indicates a likely time-documentation gap",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Adding SBIRT codes takes one afternoon to implement",
+      "section": "Section 8",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Collaborative care codes 99492 (first month), 99493 (subsequent months) and 99494 (add-on) pay the psychiatric consulting practitioner for their time; a consultant with a 50-patient caseload can generate $8,000 to $15,000 per month in CoCM billing.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 2: Collaborative Care Management",
+      "why": "Medicare guidance, as I know it, has the treating (usually primary care) practitioner bill these codes and pay the psychiatric consultant by arrangement. If so, a psychiatric practice following this would submit claims it cannot support, and the real opportunity sits with primary care practices such as this one."
+    },
+    {
+      "id": "C2",
+      "claim": "When a psychotherapy add-on (90833, 90836, 90838) is billed with an E/M, the E/M level should be supported by medical decision making or total time, exactly as for any other E/M visit.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, The E&M Plus Psychotherapy Add-On",
+      "why": "CPT instructions, as I know them, bar using time to choose the E/M level when a psychotherapy add-on is reported. Leveling by total time double counts minutes and creates repayment exposure on every combined visit."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare requires HCPCS G0396 and G0397 instead of 99408/99409 for SBIRT; Medicare pays approximately $29 for G0396; the codes are billable in addition to the primary visit code by any provider who performs them.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Sections 6 and 7 (Opportunity 1: SBIRT)",
+      "why": "Decides which code a Medicare-heavy practice may bill, what it pays and who may furnish it. The document's own steps still say to add 99408/99409, which Medicare does not pay."
+    },
+    {
+      "id": "C4",
+      "claim": "MHPAEA requires payers to apply prior authorization to behavioral health services no more restrictively than to analogous medical/surgical services; complaints go to the state insurance commissioner (fully insured) or the U.S. Department of Labor EBSA (ERISA self-funded).",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 4 (Failure Mode 4) and Section 6 (Denial Pattern 1)",
+      "why": "The whole denial strategy rests on this. The legal test, which plan types are covered (traditional Medicare and Medicare Advantage are not, to my knowledge) and the enforcement status of the 2024 parity rule decide whether a complaint has any force."
+    },
+    {
+      "id": "C5",
+      "claim": "A majority of commercial payers now require prior authorization for initial behavioral health evaluations, with concurrent review every 4-8 sessions; TRICARE requires authorization for specialty mental health and typically a PCM referral; traditional Medicare requires none for outpatient psychotherapy.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 4 (Failure Modes 1-2 and the authorization threshold table)",
+      "why": "Drives intake workflow and staffing. Current TRICARE guidance and large commercial plan practice, as I understand them, do not require authorization for routine office psychotherapy, so the table may send staff chasing approvals that are not needed."
+    },
+    {
+      "id": "C6",
+      "claim": "Audio-only telehealth billed with modifier 95 is an error; the correct modifier is 93 for audio-only where covered; claims need place-of-service code 02 (telehealth) or 10 (telehealth in patient's home).",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 6, Denial Pattern 3: Telehealth Coverage Confusion",
+      "why": "A wrong modifier or place of service changes the payment rate and can trigger denial or repayment. Medicare's own conventions differ from commercial payers and the document does not separate them."
+    },
+    {
+      "id": "C7",
+      "claim": "If more than 60% of individual psychotherapy claims are at 90834 with fewer than 20% at 90837, you likely have a time-documentation gap; the 90834 to 90837 difference is typically $40 to $60 per session.",
+      "kind": "benchmark",
+      "stakes": "high",
+      "section": "Section 5 (Documentation Failure 1) and Section 8 (action 2)",
+      "why": "An unsourced threshold used to justify moving claims to the highest-paying code. If it does not match real utilization data, following it invites upcoding and payer audits of 90837."
+    },
+    {
+      "id": "C8",
+      "claim": "Group psychotherapy (90853) is reimbursed at approximately 50% to 60% of individual psychotherapy rates; psychological testing codes pay $150 to $300 or more per hour at Medicare rates, $900 to $2,400 for a full evaluation.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunities 4 and 5",
+      "why": "These figures are the business case for adding service lines. Medicare amounts I know are far lower (about $28 per patient for 90853; roughly $80 to $135 per testing hour), so the case may be overstated two- to three-fold."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.3,
+      "topics": [
+        "time-based code selection",
+        "documentation that supports billed time",
+        "E/M with add-on services",
+        "telehealth modifiers and place of service",
+        "provider taxonomy on claims",
+        "code-level distribution audit"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.2,
+      "topics": [
+        "intake authorization verification",
+        "concurrent review and reauthorization calendar",
+        "authorization documentation content",
+        "authorization matched to rendering clinician"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.17,
+      "topics": [
+        "payer intelligence map",
+        "in-network versus out-of-network strategy",
+        "Medicare Advantage utilization management",
+        "state-specific Medicaid rules",
+        "credentialing by license type",
+        "rates for top codes"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.13,
+      "topics": [
+        "specialty denial patterns",
+        "criteria-specific appeals",
+        "regulator escalation",
+        "refiling corrected telehealth claims"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.1,
+      "topics": [
+        "audit-prone codes",
+        "supervision records for incident-to billing",
+        "crisis code thresholds",
+        "parity law",
+        "telehealth compliance checklist"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.07,
+      "topics": [
+        "group therapy program",
+        "psychological testing service line",
+        "collaborative care arrangements with primary care"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.03,
+      "topics": [
+        "behavioral health integration and collaborative care as care-management programs",
+        "measurement-based care"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Keep a one-page fact sheet per payer that answers a fixed set of questions: authorization triggers, where medical-necessity criteria are published, telehealth rules, filing limits, enrollment requirements by clinician type, and recent regulatory actions against the plan.",
+      "why": "Turns scattered payer knowledge into a maintained asset, makes denials predictable and speeds onboarding of staff or agents.",
+      "applies_to_practice": "yes",
+      "note": "Rewrite the questions for this practice: per Medicare Advantage plan, which facility visit, care-management, advance care planning and wellness codes are paid, what needs authorization, and filing limits."
+    },
+    {
+      "idea": "Hold each payer's contracted rate for the ten or so codes that make up most of the volume and compare payments against them.",
+      "why": "Cheapest route to underpayment detection and to knowing which payers are worth the administrative work.",
+      "applies_to_practice": "yes",
+      "note": "Top codes here are nursing facility and hospital visits, complex chronic care management, advance care planning and wellness visits; load Medicare Advantage contract rates beside the First Coast fee schedule."
+    },
+    {
+      "idea": "Put every expiring approval on a calendar that billing sees two weeks ahead.",
+      "why": "Lapsed approvals are otherwise found only at denial.",
+      "applies_to_practice": "partly",
+      "note": "Few session-based authorizations here, but the same calendar fits Medicare Advantage authorizations, plan re-credentialing dates, facility privileges and certification deadlines."
+    },
+    {
+      "idea": "Build the billing-critical element into the note template (minutes spent, a scored measure, the reason the service was needed) so the clinician cannot sign without it.",
+      "why": "Fixes documentation at the source instead of through after-the-fact queries.",
+      "applies_to_practice": "yes",
+      "note": "Use for the time-based services this practice bills: chronic care management minutes, advance care planning minutes, discharge-day time, prolonged services."
+    },
+    {
+      "idea": "Review code-level distribution on a rolling 90 days to find documentation-driven under- or over-coding.",
+      "why": "A shift in distribution is an early signal of both lost revenue and audit risk.",
+      "applies_to_practice": "yes",
+      "note": "Apply to nursing facility and hospital visit levels and compare with Medicare utilization data for the specialty; do not use the document's psychotherapy thresholds."
+    },
+    {
+      "idea": "Treat behavioral health integration (99484) and collaborative care as a monthly care-management service line billed by the treating practitioner.",
+      "why": "Recurring revenue for work on depression, anxiety and behavioral symptoms that primary care already does.",
+      "applies_to_practice": "partly",
+      "note": "The document assigns the billing to the psychiatric consultant, which I believe is wrong. Verify consent, minute thresholds, setting restrictions and overlap with chronic care management before building it."
+    },
+    {
+      "idea": "Attach a validated alcohol and substance screening tool to intake and annual review, and bill the brief intervention when time thresholds are met.",
+      "why": "Small amount per visit, but a clean example of pairing a quality step with a billable code.",
+      "applies_to_practice": "partly",
+      "note": "For Medicare use the G-codes and check the annual alcohol-misuse screening benefit that pairs with the wellness visit; expect low volume in a facility-based panel."
+    },
+    {
+      "idea": "Maintain a payer-by-payer telehealth sheet (covered services, video versus audio-only modifier, place-of-service code, patient-location note) and re-check it on a schedule and after each rule change.",
+      "why": "Telehealth rules change by statute and by plan, so errors are systematic rather than one-off.",
+      "applies_to_practice": "partly",
+      "note": "Relevant only to whatever telehealth the practice bills; the current federal extension runs through 2027."
+    },
+    {
+      "idea": "For recurring denials, pull the last 90 days, rank the top three reasons, obtain the plan's written criteria and appeal against that specific criterion, escalating to the regulator when the plan ignores its own rules.",
+      "why": "Converts appeals from case-by-case argument into pattern correction.",
+      "applies_to_practice": "yes",
+      "note": "For Medicare Advantage the lever is CMS coverage-criteria and appeal rules, not the parity statute the document relies on."
+    },
+    {
+      "idea": "Use scored measures (PHQ-9, GAD-7 and similar) to show severity and response over time.",
+      "why": "Quantified scores support medical necessity and care-management documentation better than narrative.",
+      "applies_to_practice": "partly",
+      "note": "Fits depression screening at wellness visits, care plans and diagnosis documentation for mood disorders."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice does not bill psychotherapy, has almost no commercial or out-of-network business, and the document's main lever, the federal parity law, does not reach traditional Medicare or Medicare Advantage. What transfers: the per-payer fact-sheet method, time-documentation templates, the look-ahead calendar, denial-pattern work, and behavioral health integration or collaborative care billed from the primary-care side.",
+    "sections_that_do_not_apply": [
+      "Section 2, Dynamic 1 (out-of-network strategy) and the commercial and EAP rows of the payer table",
+      "Section 3 psychotherapy code architecture, crisis codes and Medicaid H-codes (the practice does not bill psychotherapy)",
+      "Section 4 session-based authorization and concurrent review, and the parity lever (unavailable against Medicare and Medicare Advantage)",
+      "Section 5, Failures 3 and 4 (supervision of pre-licensed clinicians; crisis code documentation)",
+      "Section 6, Patterns 1, 2 and 4 (parity denials, behavioral health taxonomy codes, substance-use program billing)",
+      "Section 7, Opportunities 4 and 5 (group therapy, psychological testing) and Opportunity 2 as written from the psychiatric consultant's side",
+      "Section 8, Standards 3 and 4 as written (session reauthorization calendar, parity complaint protocol)"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Collaborative care (99492-99494) is described as paying the psychiatric consultant. Under Medicare the treating, usually primary care, practitioner bills these codes and pays the consultant by arrangement. The document also skips the required care manager, registry, consent and monthly minute thresholds and treats informal consultation as billable. Its $8,000-$15,000 per month for 50 patients is above what national rates I know would yield (roughly $6,500-$8,000 before add-ons).",
+      "Says the E/M level billed with a psychotherapy add-on may rest on medical decision making or total time. CPT's psychotherapy instructions bar time-based E/M selection in that combination; the error leads to double counting of minutes.",
+      "Asserts that most commercial payers require authorization for initial evaluations and re-review every 4-8 sessions. To my knowledge the large commercial and managed behavioral health plans dropped routine outpatient authorization years ago and reserve it for higher levels of care, testing and specialized treatments. A whole section rests on this premise.",
+      "The TRICARE row is wrong for most beneficiaries: current TRICARE guidance says office-based outpatient mental health needs neither referral nor authorization except for active-duty members (checked against tricare.mil summaries, November 2026).",
+      "Parity law is offered as a lever against every authorization denial, and Medicare Advantage is named the most adversarial payer, yet the document never says the parity statute does not govern traditional Medicare or Medicare Advantage. Its physical-therapy comparison treats a different outcome as a likely violation, whereas the test concerns comparable processes within a benefit classification. The claim that complaints succeed more often than appeals has no data behind it.",
+      "Tells practices their clinicians are giving 60-minute sessions and should document them that way, and supplies an unsourced 60%/20% code-mix rule. 90837 needs at least 53 minutes of psychotherapy; the customary 45-50 minute session is 90834. This is an invitation to upcode a code the document itself calls the most audited.",
+      "Group therapy is said to pay 50-60% of individual rates. Medicare national payment for 90853 in recent years is about $28 per patient against roughly $100 for 90834 and $150 for 90837. The $60-per-patient example is unsourced and not a Medicare figure.",
+      "Psychological testing is said to pay $150-$300 or more per hour and $900-$2,400 per evaluation at Medicare rates. National amounts I know are roughly $80-$135 per hour, which puts a 6-8 hour evaluation nearer $600-$950. 96132-96133 are neuropsychological, not psychological, evaluation codes.",
+      "SBIRT: says the codes are billable by any provider and that Medicare and Medicaid are consistent, immediately after stating that Medicare does not accept 99408/99409. The 15-minute minimum is glossed over; 'unbilled in 80% of practices' and 'one afternoon to implement' are unsupported.",
+      "Says medication treatment for substance use must be billed separately from counseling. Medicare's office-based opioid-treatment bundles and opioid treatment program weekly bundles include counseling, and methadone for opioid use disorder can be dispensed only by certified programs, not by an ordinary practice.",
+      "Calls the crisis codes the highest-paying psychotherapy codes; under Medicare 90839 pays about the same as 90837.",
+      "The 45-60% out-of-network figure, the claim that Medicare Advantage manages behavioral health harder than any other service category, and 'weekly review cycles' are asserted without a source; the first appears to stretch survey data about psychiatrists to all clinicians.",
+      "States flatly that authorization is tied to the rendering clinician's NPI; many plans authorize at group level. The traditional Medicare row carries an irrelevant note about locality adjustment."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 1 says the problem is not documentation or coding; Sections 5 and 8 then name a documentation fix (time statements) as the most expensive failure and the highest-return action.",
+      "Section 7 states Medicare requires G0396/G0397 for SBIRT, then its implementation steps say to add 99408/99409 and call Medicare consistent; Section 6 says any provider can bill them.",
+      "Three different things are each called the highest-paying service: 90837 (Section 3), the crisis codes (Section 5) and psychological testing (Section 7).",
+      "Section 4 calls authorization a system designed to deny from the first visit; Section 5 says initial authorization is often approved without difficulty.",
+      "Section 2 presents out-of-network billing as the only viable path for many practices, yet the guide gives no out-of-network workflow and every later section optimizes in-network billing.",
+      "Medicare Advantage is named the hardest payer, but the main remedy offered (parity complaints) cannot be used against it."
+    ],
+    "time_sensitive_or_outdated": [
+      "Telehealth: no statement of current Medicare rules. As of November 2026 the flexibilities run through December 31, 2027 and the in-person visit requirement for mental health telehealth is delayed to January 1, 2028 under the Consolidated Appropriations Act, 2026; none of this appears.",
+      "The 2024 enrollment of marriage and family therapists and mental health counselors is described as a new pipeline; it is nearly three years old, and their reduced payment rate is not mentioned.",
+      "Parity: no mention of the September 2024 final rule or the agencies' 2025 announcement that they would not enforce its new provisions; any parity strategy needs the current status.",
+      "The TRICARE referral and authorization statement reflects older rules.",
+      "Commercial authorization and session-limit descriptions read like pre-parity managed care rather than 2026 practice.",
+      "All dollar figures are undated; the 2026 physician fee schedule changed the conversion factor and practice-expense method, so every amount needs re-pricing.",
+      "No mention of the 2026 add-on codes that let advanced primary care management practices bill behavioral health integration, or of the 2023 move to general supervision for incident-to behavioral health services (verify both)."
+    ],
+    "ai_generation_signals": [
+      "Same eight-section skeleton, headings and closing devices as the cardiology guide (reframe, payer mix, code risk, authorization, documentation failures, denial patterns, revenue opportunities, five standards, five actions, closing aphorism).",
+      "Constant 'not X, it is Y' constructions, triads and boxed slogans that restate the paragraph above them.",
+      "Round, unsourced ranges ($40-$80, $8,000-$12,000, 80% of practices, 45-60%) and appeals to unnamed data.",
+      "Boilerplate leaking from another guide: a locality-adjustment note sits in a prior-authorization table.",
+      "A paragraph that corrects itself mid-stream (Medicare needs G-codes) while the steps beneath it still use the uncorrected codes, typical of patched machine text.",
+      "No author, date, edition, citation, footnote or payer name anywhere in 38 pages.",
+      "Confident but wrong specifics (who bills collaborative care, the E/M time rule) delivered in the same tone as the correct ones."
+    ],
+    "missing_for_real_use": [
+      "Any citation: no CPT year, CMS manual, MLN booklet, regulation or payer policy reference.",
+      "The tools it tells the reader to build (authorization matrix, telehealth matrix, reauthorization calendar, note template, parity appeal and complaint letters) are described, not supplied.",
+      "Standard revenue-cycle measures and targets (denial rate, days in receivables, collection rate); none are defined.",
+      "Owners, staffing and time estimates for each standard.",
+      "Medicare specifics: incident-to and supervision rules for behavioral health, payment by clinician type, the telehealth in-person requirement, audio-only modifier conventions, opioid-treatment bundles, the intensive outpatient benefit.",
+      "Which plan types the parity law covers, how Medicaid managed care parity is enforced, and the Medicare Advantage appeal route.",
+      "Out-of-network and self-pay compliance: good-faith estimates under the No Surprises Act, superbill content, patient collections.",
+      "Privacy limits on what payers may demand: psychotherapy-note protection under HIPAA and substance-use record confidentiality rules.",
+      "Correct-coding edits and same-day limits, credentialing steps and timelines, and the state-by-state Medicaid detail the document itself calls essential.",
+      "Collaborative care and behavioral health integration requirements: consent, care manager, registry, monthly minute thresholds, and overlap rules with other care-management codes."
+    ]
+  }
+}

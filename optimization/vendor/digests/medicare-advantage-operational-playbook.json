@@ -1,0 +1,475 @@
+{
+  "slug": "medicare-advantage-operational-playbook",
+  "title": "Medicare Advantage Operational Playbook (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "playbook",
+  "pages": 69,
+  "audience": "Stated: practice administrators, billing managers and revenue-cycle professionals who manage Medicare Advantage plan relationships. Implied by the workflows: an office-based practice with front-desk staff, referral coordinators, scheduled procedures and a billing team.",
+  "summary": "Vendor primer arguing that Medicare Advantage must be run as a set of separate commercial payers rather than as traditional Medicare with extra paperwork. Ten sections cover plan economics, a five-step prior-authorization workflow built on a per-plan requirement matrix, HCC risk-adjustment capture with yearly recapture and a fourth-quarter gap audit, MA denial categories with an appeal ladder and peer-to-peer calls, claim checkpoints (authorization number, modifiers, coordination of benefits, timely filing), contract inventory and negotiation levers, thumbnail profiles of five national carriers plus regional plans, compliance warnings, Star/HEDIS measures and annual wellness visits, and a management system (dashboard, coordinator role, annual review). A 90-day assessment plan and four checklists close it. The central method: inventory each plan's rules, name an owner, checkpoint every claim, measure monthly. The frame is office-based and procedure-heavy; it cites no regulations and contains material coding, appeals and regulatory errors.",
+  "outline": [
+    {"section": "Important Notice", "gist": "Disclaimers: educational only, not legal or compliance advice, rules change; plus a second boilerplate paragraph about reviewing AI-generated drafts."},
+    {"section": "Introduction: Medicare Advantage Is Not Medicare - And That Difference Is Costing You", "gist": "MA covers over half of beneficiaries; each plan is a separate commercial payer; a fact box of enrollment and denial statistics; scope of the playbook."},
+    {"section": "Section 1: The MA Landscape - What Your Practice Is Actually Dealing With", "gist": "Plan economics (risk-adjusted capitation), authorization burden, risk adjustment as second revenue layer, denial environment, contract complexity, and a comparison table versus traditional Medicare."},
+    {"section": "Section 2: Prior Authorization - Building a System That Works", "gist": "Five-step workflow (identify requirement, submit early, document, track, verify scope), authorization matrix, retrospective requests, appeals, and a warning about post-payment audits."},
+    {"section": "Section 3: Risk Adjustment Coding - Capturing What You Actually Treat", "gist": "RAF and HCC basics, code-specificity table, yearly recapture, fourth-quarter problem-list audit, the documentation line between proper and improper coding, clinician education."},
+    {"section": "Section 4: Denial Management in the MA Environment", "gist": "Four denial categories with responses, a five-level appeal table with deadlines and dollar thresholds, and a peer-to-peer call playbook."},
+    {"section": "Section 5: MA-Specific Billing and Claims Operations", "gist": "Authorization number on the claim, plan-specific modifier handling, coordination of benefits, timely filing limits, and a checkpoint table by role."},
+    {"section": "Section 6: Contract Strategy for MA Plans", "gist": "Audit each contract's terms, benchmark rates, weigh value-based offers against capability and risk tolerance, use quality and network adequacy as leverage, negotiate MA separately."},
+    {"section": "Section 7: Plan-Specific Operational Profiles", "gist": "Short generic sketches of UnitedHealthcare, Humana, Anthem/Elevance, Aetna/CVS, Cigna and regional plans; no plan rules, deadlines or contact details."},
+    {"section": "Section 8: Compliance - Where MA Gets Dangerous", "gist": "False Claims Act exposure from unsupported diagnoses, truthful authorization requests, OIG focus areas, six compliance practices, and a warning about retrospective chart-review programs."},
+    {"section": "Section 9: Quality Measures and Their Revenue Impact", "gist": "Star ratings and bonus mechanics, a table of seven measures, annual wellness visits as the top quality action, plan care-gap reports reviewed monthly."},
+    {"section": "Section 10: Building Your MA Management System", "gist": "Eight-metric dashboard with targets, owners and cadences; a dedicated MA coordinator above 200 MA patients; an annual MA business review; product catalog."},
+    {"section": "90-Day MA Operational Assessment Plan", "gist": "Days 1-30 baseline (panel, contracts, denials, authorization audit, coding sample); days 31-60 fix authorization, coding and quality gaps; days 61-90 measure and set cadence."},
+    {"section": "Checklists and Quick Reference", "gist": "Four checklists: prior authorization (7 items), risk adjustment coding (6), quality measures (5), compliance (6); all restate earlier sections."},
+    {"section": "Closing: MA Is the Future of Medicare - Operate Accordingly", "gist": "Restates the thesis that deliberate MA operations beat ad hoc handling; no new content; ends with a product cross-sell."}
+  ],
+  "framework_elements": [
+    "Payer segmentation: each MA plan managed as its own payer",
+    "Plan-specific prior authorization requirement matrix",
+    "Authorization submission at scheduling with lead-time rules",
+    "Authorization documentation checklist by service type",
+    "Authorization tracking log",
+    "Authorization scope verification before claim submission",
+    "Retrospective authorization triage",
+    "Clinician-authored authorization appeal",
+    "Medical-necessity statement in the clinical note",
+    "Chronic-condition capture with per-condition status documentation",
+    "Annual diagnosis recapture monitoring",
+    "Fourth-quarter problem-list versus claims gap audit",
+    "Diagnosis specificity supported by documentation",
+    "Clinician documentation-improvement training",
+    "MA denial taxonomy by category and sub-type",
+    "Peer-to-peer review protocol with dollar threshold",
+    "Appeal ladder and deadline tracking",
+    "Pre-submission claim scrubbing for coding edits",
+    "Coverage verification (MA versus traditional Medicare) every encounter",
+    "Authorization number on claim checkpoint",
+    "Plan-specific modifier policy reference",
+    "Coordination-of-benefits order confirmation",
+    "Plan-specific timely filing calendar",
+    "MA contract inventory and term abstract",
+    "MA rate benchmarking and separate MA negotiation",
+    "Value-based contract readiness evaluation",
+    "Risk-adjustment coding policy, annual audit and training",
+    "Vetting of plan or vendor chart-review programs",
+    "Wellness-visit due list and plan care-gap report review",
+    "MA dashboard, coordinator role and annual MA business review"
+  ],
+  "processes": [
+    {
+      "name": "Prior authorization workflow",
+      "steps": [
+        "Keep one authorization matrix per MA plan: services and code ranges needing approval, lead times, submission channel, required documents, validity period",
+        "Check the matrix when the service is scheduled and submit the request then",
+        "Build the packet from a service-specific documentation checklist",
+        "Log submission date, plan reference, expected and actual response, approval number, approved service, dates and units in the practice-management system",
+        "Chase open requests before the service date",
+        "Compare the approval with the order (service, dates, units, provider) before the claim goes out",
+        "Put a medical-necessity statement in the clinical note"
+      ],
+      "owner_role": "Authorization coordinator (single named owner of the matrix); nurse or medical assistant assembles packets; billing specialist verifies scope",
+      "cadence": "Per order; matrix reviewed quarterly, at each contract renewal and on any plan policy notice"
+    },
+    {
+      "name": "MA denial triage by category",
+      "steps": [
+        "Sort each denial: authorization deficiency, medical necessity, coding or billing, eligibility or coverage",
+        "Split authorization denials into missing, mismatched, expired or wrong provider",
+        "Missing: decide on a retrospective request using claim value, documentation strength, reason for the miss and the plan's track record",
+        "Mismatch or expired: ask for substitution or a retroactive extension; wrong provider: correct the rendering provider if possible",
+        "Coding denials: fix and resubmit, then correct the upstream process rather than appeal",
+        "Eligibility denials: re-verify plan enrollment for the service month and bill the right payer",
+        "Trend denial rate by plan and category"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Per denial; trend review monthly"
+    },
+    {
+      "name": "Medical-necessity appeal and peer-to-peer call",
+      "steps": [
+        "For any medical-necessity denial above a set dollar threshold, request a peer-to-peer call within 24 to 48 hours",
+        "Pull the criteria the plan cited and the chart evidence that answers each criterion",
+        "Treating physician speaks to the plan medical director using a short case narrative",
+        "If not reversed, file a written appeal authored by the ordering clinician that rebuts the stated denial reason point by point",
+        "Escalate through the remaining appeal levels for high-value cases, watching each filing deadline"
+      ],
+      "owner_role": "Ordering or treating physician; billing manager tracks utilization",
+      "cadence": "Per denial"
+    },
+    {
+      "name": "Chronic-condition coding gap audit (risk adjustment)",
+      "steps": [
+        "List active MA patients (start with a 20 to 30 patient sample having three or more chronic conditions)",
+        "Compare each active problem list with diagnosis codes billed in the current calendar year",
+        "Record conditions not yet coded this year",
+        "Address a gap only at an encounter where the clinician documents monitoring, management or relevance of the condition",
+        "Check that conditions already coded are supported by the notes",
+        "Feed findings into clinician documentation training and a coding checklist"
+      ],
+      "owner_role": "Billing manager with clinicians and coders",
+      "cadence": "Annually in the fourth quarter per the text (the dashboard says quarterly)"
+    },
+    {
+      "name": "MA claim pre-submission checkpoints",
+      "steps": [
+        "Verify plan enrollment and MA-versus-traditional status at every encounter",
+        "Confirm the authorization number is on the claim (item 23), matches the plan's record and covers the billed code",
+        "Check the plan's modifier policy for flagged code pairs",
+        "Confirm order of benefits at claim setup",
+        "Track each plan's filing limit in the weekly aged-receivables review"
+      ],
+      "owner_role": "Front desk or eligibility staff; billing specialist; billing manager; A/R follow-up staff",
+      "cadence": "Every encounter and claim; weekly for filing-limit review"
+    },
+    {
+      "name": "MA contract inventory, benchmarking and negotiation",
+      "steps": [
+        "Read every MA contract in full",
+        "Record rate basis (percent of Medicare, fee schedule or capitation), bonus provisions and measure set, risk-sharing terms, term and renewal dates, termination notice, carve-outs",
+        "Compare paid rates on highest-volume codes across plans and against market data",
+        "Identify leverage: quality results and network adequacy",
+        "Evaluate value-based offers against measured quality performance, population-health capacity and loss tolerance",
+        "Negotiate MA as its own package, separate from commercial terms",
+        "Have an attorney review value-based or risk terms before signing"
+      ],
+      "owner_role": "Administrator (physician-owner in a small practice)",
+      "cadence": "Annually; start benchmarking 12 months before a renewal"
+    },
+    {
+      "name": "Annual wellness visit and care-gap closure",
+      "steps": [
+        "List MA patients with no wellness visit in the current calendar year",
+        "Prompt scheduling at every encounter and by outreach",
+        "Bill the visit under G0438 or G0439 rather than as a routine office visit",
+        "Download each major plan's care-gap report monthly",
+        "Work the gaps into scheduling and care-management routines",
+        "Review measure performance against plan benchmarks quarterly"
+      ],
+      "owner_role": "Care coordinator",
+      "cadence": "Monthly; quarterly measure review"
+    },
+    {
+      "name": "MA operating rhythm: 90-day assessment, dashboard and annual business review",
+      "steps": [
+        "Days 1-30: baseline panel by plan, contract terms, 90-day denial rate, wellness-visit rate, authorization denials and a coding sample",
+        "Days 31-60: rebuild the authorization matrix and tracking, set a peer-to-peer protocol, run documentation training, enroll in plan gap programs",
+        "Days 61-90: re-measure denials, run the full-panel coding gap analysis, flag contracts renewing within 12 months",
+        "Stand up the eight-metric dashboard with an owner and cadence per metric",
+        "Report findings to the physician-owner",
+        "Hold a yearly review of payer mix, renewals, rates, quality, denials and coding-audit results and decide what to renegotiate or rebuild"
+      ],
+      "owner_role": "A committed project owner (5 to 10 hours a week); proposed MA coordinator; physician-owner receives the report",
+      "cadence": "One-time 90 days, then monthly dashboard and an annual review in the fourth quarter"
+    }
+  ],
+  "tools_templates": [
+    {"name": "Traditional Medicare versus Medicare Advantage comparison table", "description": "Seven-row contrast (administrator, fee schedule, authorization, risk adjustment, denials, quality measures, contract type); orientation only."},
+    {"name": "Authorization matrix specification (action box)", "description": "Six fields to record per plan; a field list, not a populated or downloadable matrix."},
+    {"name": "Authorization tracking log field list", "description": "Eight data points to capture per request, named in a paragraph; no log file is supplied."},
+    {"name": "Diagnosis code-specificity table", "description": "Five conditions with lower- and higher-specificity codes and Low/Moderate/High impact labels; three code descriptions are wrong and no coefficients are given."},
+    {"name": "Compliance line box for risk-adjustment coding", "description": "Appropriate / inappropriate / never rules with one hypothetical visit example."},
+    {"name": "MA appeal levels table", "description": "Five levels with decision-maker, deadline and considerations; mislabeled and not applicable as written to contracted providers."},
+    {"name": "Peer-to-peer playbook box", "description": "When to use, who calls, what to prepare, plus a one-sentence opening script."},
+    {"name": "MA billing checkpoint table", "description": "Five checkpoints with performer, timing and common failure."},
+    {"name": "Quality measure table", "description": "Seven rows: what is tracked, revenue relevance, common gap; labeled HEDIS but includes items that are not HEDIS measures."},
+    {"name": "Compliance-forward operation list", "description": "Six practices: written policy, annual audit, training, documented basis for requests, no coaching to add diagnoses, attorney review."},
+    {"name": "Warning boxes", "description": "'Authorization audit trap' and 'retrospective coding trap'; narrative cautions, the first contradicted by current CMS rules."},
+    {"name": "Negotiation tip box", "description": "Advice to negotiate MA terms separately from commercial terms."},
+    {"name": "MA operations dashboard", "description": "Eight metrics with target, owner and cadence; no definitions, formulas or data sources."},
+    {"name": "90-day MA operational assessment plan", "description": "Week-by-week task list in three 30-day phases, about 30 tasks."},
+    {"name": "Prior authorization quick-reference checklist", "description": "Seven yes/no items restating Section 2."},
+    {"name": "Risk adjustment coding checklist", "description": "Six items restating Sections 3 and 8."},
+    {"name": "MA quality measure checklist", "description": "Five items restating Section 9."},
+    {"name": "MA compliance checklist", "description": "Six items restating Section 8."},
+    {"name": "MA fact box", "description": "Five headline statistics, two of them with the number removed and replaced by a hedge."}
+  ],
+  "metrics": [
+    {"name": "Authorization denial rate", "definition": "Not defined; implied share of MA authorization requests the plan denies", "formula": "", "target": "< 5%", "red_flag": "", "source_cited": "none"},
+    {"name": "Retro authorization rate", "definition": "Not defined; implied share of authorizations requested after the service was delivered", "formula": "", "target": "< 2%", "red_flag": "", "source_cited": "none"},
+    {"name": "HCC gap closure rate", "definition": "Share of active chronic conditions that have been coded on a claim in the current year", "formula": "", "target": "> 90% of active conditions coded", "red_flag": "", "source_cited": "none"},
+    {"name": "MA denial rate", "definition": "Not defined; implied share of MA claims denied", "formula": "", "target": "< 6%", "red_flag": "", "source_cited": "none"},
+    {"name": "Peer-to-peer utilization rate", "definition": "Share of medical-necessity denials for which a peer-to-peer call was requested", "formula": "", "target": "> 80% of medical-necessity denials", "red_flag": "", "source_cited": "none"},
+    {"name": "AWV completion rate", "definition": "Share of the MA panel with an annual wellness visit completed in the current calendar year", "formula": "", "target": "> 85% of MA panel", "red_flag": "", "source_cited": "none"},
+    {"name": "Care gap closure rate", "definition": "Not defined; plan-reported open quality gaps closed", "formula": "", "target": "Top quartile per plan", "red_flag": "", "source_cited": "none"},
+    {"name": "MA rate versus benchmark", "definition": "Contracted MA rates on high-volume codes compared with market benchmark", "formula": "", "target": "At or above market", "red_flag": "", "source_cited": "none"},
+    {"name": "MA denial rate by category, trailing 90 days", "definition": "Baseline pulled in week 1 of the 90-day plan, overall and by denial category", "formula": "", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Annual revenue impact by authorization denial sub-type", "definition": "Estimated yearly dollars lost to missing, mismatched, expired and wrong-provider authorization denials", "formula": "", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Chronic-condition coding gap count", "definition": "Problem-list conditions not coded on any current-year claim, first in a 20-30 patient sample and then for the full MA panel", "formula": "", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Authorization matrix review recency", "definition": "Whether the matrix for every MA plan has been reviewed recently", "formula": "", "target": "Reviewed within the last 90 days", "red_flag": "", "source_cited": "none"},
+    {"name": "Medication adherence (PDC)", "definition": "Proportion of days covered for diabetes, RAS-antagonist and statin medications", "formula": "", "target": "> 80%", "red_flag": "", "source_cited": "none"},
+    {"name": "Blood pressure control", "definition": "Hypertensive patients whose blood pressure is below 140/90", "formula": "", "target": "< 140/90", "red_flag": "", "source_cited": "none"},
+    {"name": "Peer-to-peer reversal rate", "definition": "Share of peer-to-peer calls that overturn the denial; reported, not set as a target", "formula": "", "target": "Roughly 30-80% reported", "red_flag": "", "source_cited": "none (unnamed studies and payer sources)"},
+    {"name": "Plan Star rating", "definition": "CMS 1-to-5 star rating of the plan; plan-level, not practice-level", "formula": "", "target": "4 or 5 stars earns the plan a bonus", "red_flag": "3 or fewer stars said to bring restrictions", "source_cited": "none"},
+    {"name": "MA payer mix", "definition": "Share of the practice's MA patients enrolled in each plan", "formula": "", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "HEDIS measure performance versus plan benchmarks", "definition": "Practice results on plan quality measures, reviewed quarterly", "formula": "", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Risk adjustment factor (RAF)", "definition": "Per-enrollee score that sets the plan's monthly payment", "formula": "Sum of the patient's HCC coefficients adjusted for demographics", "target": "", "red_flag": "", "source_cited": "none"}
+  ],
+  "numeric_claims": [
+    {"claim": "More than 33 million people were in MA plans as of 2025, over half of eligible beneficiaries (54%)", "section": "Introduction and fact box", "source_cited": "none"},
+    {"claim": "MA share projected at about 57% by 2031 and about 63-64% by 2034", "section": "Introduction fact box", "source_cited": "CBO (no report named)"},
+    {"claim": "MA insurers denied 7.7% of prior authorization requests overall, 4.2% to 12.8% by insurer", "section": "Introduction fact box; Section 1", "source_cited": "KFF, 2024 (no title)"},
+    {"claim": "94% of physicians said prior authorization had some negative effect on patient care", "section": "Section 1", "source_cited": "American Medical Association, 2024 analysis (no title)"},
+    {"claim": "Revenue lost to MA authorization denials, and a per-patient revenue gap for practices without structured MA operations, are asserted with no figure", "section": "Introduction fact box", "source_cited": "'CCRx-modeled estimate' and 'CCRx client data' (unverifiable)"},
+    {"claim": "Typical lead times: 24 hours for urgent procedures, 3-5 business days routine outpatient, 10-14 business days elective surgery", "section": "Section 2", "source_cited": "none"},
+    {"claim": "Retrospective authorization requests are usually due within 30-90 days of the date of service", "section": "Section 2", "source_cited": "none"},
+    {"claim": "The most effective authorization appeal is filed within 24-48 hours of the denial by a clinician", "section": "Section 2", "source_cited": "none"},
+    {"claim": "HCC diagnoses must be reported at least once each calendar year or they drop out of the risk score", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Hypertension (I10) carries HCC weight; R03.0 does not", "section": "Section 3", "source_cited": "none"},
+    {"claim": "E11.65 is labeled diabetes with CKD and rated High impact versus Low for E11.9; N18.4 High versus N18.9 Low; I70.213 labeled gangrene and rated High", "section": "Section 3 table", "source_cited": "none"},
+    {"claim": "A one-line chronic-condition status note takes about fifteen seconds", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Each appeal level has a 60-day filing window; the plan and the independent reviewer each have 60 days to decide", "section": "Section 4 table", "source_cited": "CMS named generally; no regulation cited"},
+    {"claim": "Minimum amount for an ALJ hearing is $190 and for federal court $1,900 (2025)", "section": "Section 4 table", "source_cited": "none"},
+    {"claim": "Peer-to-peer must usually be requested within 24-72 hours of the denial notice", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Peer-to-peer reversal rates run roughly 30-80% depending on specialty and plan", "section": "Section 4", "source_cited": "unnamed 'studies and payer sources'"},
+    {"claim": "Checking the authorization number takes 90 seconds and prevents a 45-day denial cycle", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Traditional Medicare has a one-year filing limit; most MA plans require claims within 90-365 days of service", "section": "Section 5", "source_cited": "none"},
+    {"claim": "UnitedHealthcare holds about 29% of national MA enrollment as of 2025; Humana is second", "section": "Section 7", "source_cited": "none"},
+    {"claim": "Plans rated 4 or 5 stars get a bonus of 5% of benchmark; plans at 3 or fewer stars face restrictions", "section": "Section 9", "source_cited": "none"},
+    {"claim": "Blood-pressure control means below 140/90; breast screening is a mammogram in the prior 2 years for women 50-74; adherence is PDC above 80%", "section": "Section 9 table", "source_cited": "none"},
+    {"claim": "Transitions of care means follow-up within 7 or 30 days after discharge", "section": "Section 9 table", "source_cited": "none"},
+    {"claim": "The wellness visit has no patient copay and usually pays more than a standard visit of equal time", "section": "Section 9", "source_cited": "none"},
+    {"claim": "Dashboard targets: authorization denials under 5%, retro authorizations under 2%, MA denials under 6%", "section": "Section 10", "source_cited": "none"},
+    {"claim": "Dashboard targets: over 90% of active conditions coded, peer-to-peer on over 80% of medical-necessity denials, wellness visits for over 85% of the MA panel", "section": "Section 10", "source_cited": "none"},
+    {"claim": "A dedicated MA coordinator usually pays off once a practice has more than 200 active MA patients", "section": "Section 10", "source_cited": "none"},
+    {"claim": "The 90-day plan needs 5-10 hours a week from one owner", "section": "90-Day Plan", "source_cited": "none"},
+    {"claim": "Coding review sample: 20-30 complex MA patients with three or more chronic conditions", "section": "90-Day Plan", "source_cited": "none"},
+    {"claim": "The authorization matrix should be reviewed at least quarterly (checklist: within the last 90 days)", "section": "Section 2; Checklists", "source_cited": "none"},
+    {"claim": "Star bonuses are worth hundreds of millions of dollars to the largest plans", "section": "Section 9", "source_cited": "none"}
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Redetermination: the MA plan itself, 60 days to file, plan has 60 days to decide. Reconsideration: Independent Review Entity, 60 days to file after redetermination. ALJ hearing: $190+ claim threshold (2025). Federal Court: $1,900+ threshold (2025).",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 4: MA Appeal Rights and Timelines (table, page 29)",
+      "why": "Level names, filing windows, decision clocks and dollar thresholds drive the appeal calendar. If this ladder is the enrollee and non-contract-provider path and is not open to contracted providers for payment disputes, the practice would file in the wrong forum and miss its contract dispute deadlines."
+    },
+    {
+      "id": "C2",
+      "claim": "Common codes like hypertension (I10) carry HCC weight; elevated blood pressure (R03.0) does not.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3: The HCC Framework (page 21)",
+      "why": "If I10 has no payment HCC, the document's first teaching example is false, and staff or AI agents trained on it will misjudge which diagnoses affect risk scores and where audit exposure sits."
+    },
+    {
+      "id": "C3",
+      "claim": "Type 2 diabetes with diabetic chronic kidney disease (E11.65) has a much higher RAF impact than Type 2 diabetes uncomplicated (E11.9).",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3: The HCC Framework and specificity table (pages 21-22)",
+      "why": "E11.65 is the hyperglycemia code (diabetic CKD is E11.22), and under the current V28 model the diabetes categories appear to share one coefficient. Coding to this advice gains nothing and invites audit findings."
+    },
+    {
+      "id": "C4",
+      "claim": "MA plans ... may approve and pay a claim, then months later audit the medical record and recoup payment if the documentation does not support medical necessity - even if the authorization was obtained prospectively.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 2: warning box 'The Authorization Audit Trap' (page 19)",
+      "why": "42 CFR 422.138(c) appears to bar an MA plan from later denying a prior-authorized service for lack of medical necessity except for good cause or fraud. If so, the practice should contest such recoupments, not treat them as normal."
+    },
+    {
+      "id": "C5",
+      "claim": "MA plans deny claims on medical necessity grounds ... using proprietary clinical criteria that may differ from CMS national coverage determinations ... the InterQual criteria, the MCG guidelines, or the plan's own proprietary policy.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 4: Medical Necessity Denials (page 27)",
+      "why": "Since 2024, 42 CFR 422.101(b)(6) and (c) appear to require plans to follow Medicare coverage rules and allow internal criteria only where Medicare's are not fully established. That is the strongest appeal argument for hospital and nursing-facility care and the document omits it."
+    },
+    {
+      "id": "C6",
+      "claim": "HCC diagnoses must be submitted at least once per calendar year for each patient to be included in that year's risk score calculation ... based on the ICD-10 diagnosis codes submitted on claims from all providers.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 3: How Risk Adjustment Works; The Annual Recapture Requirement (pages 20-23)",
+      "why": "The whole recapture workflow depends on which encounters count (face-to-face visits with eligible clinician types, with one year's diagnoses setting the next year's payment). A facility-based practice needs to know whether hospital and nursing-facility visits qualify."
+    },
+    {
+      "id": "C7",
+      "claim": "Price transparency MRF data includes MA contracted rates alongside commercial rates.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 6: MA Rate Benchmarking (page 38)",
+      "why": "The Transparency in Coverage rule covers group and individual market plans, not Medicare Advantage. If payer files hold no MA rates, the benchmarking method recommended for physician MA rates does not exist as described."
+    },
+    {
+      "id": "C8",
+      "claim": "HEDIS measures most relevant to physician practices include Transitions of Care (follow-up within 7/30 days post-discharge), Annual Wellness Visit (AWV completed in calendar year) and Medication Adherence (PDC > 80%).",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 9: HEDIS Measures Most Relevant to Physician Practices (table, pages 52-53)",
+      "why": "Care-transition and wellness workflows would be built to the wrong specification if the transitions measure is really notification, discharge information, engagement and medication reconciliation within 30 days, and if the wellness-visit and adherence items are not HEDIS measures at all."
+    }
+  ],
+  "domain_map": [
+    {"domain": "payers-contracts", "weight": 0.26, "topics": ["MA plan economics", "per-plan rule inventory", "contract term audit", "rate benchmarking", "value-based contract evaluation", "negotiation leverage (quality, network adequacy)", "carrier profiles"]},
+    {"domain": "rcm-claims-ar", "weight": 0.17, "topics": ["MA denial categories", "appeal levels and deadlines", "peer-to-peer review", "authorization number on claim", "coordination of benefits", "timely filing by plan"]},
+    {"domain": "rcm-front-end", "weight": 0.16, "topics": ["prior authorization matrix", "submission lead times", "authorization tracking and scope check", "retrospective authorization", "MA-versus-traditional eligibility verification"]},
+    {"domain": "quality-value", "weight": 0.16, "topics": ["risk adjustment and RAF", "annual recapture", "Star ratings", "HEDIS measures", "annual wellness visits", "care-gap programs"]},
+    {"domain": "compliance-risk", "weight": 0.10, "topics": ["False Claims Act exposure in diagnosis coding", "risk-adjustment coding policy and audit", "chart-review program vetting", "truthful authorization requests", "attorney review of risk contracts"]},
+    {"domain": "rcm-charge-coding", "weight": 0.09, "topics": ["diagnosis specificity", "per-condition documentation", "modifier policy by plan", "documentation improvement training"]},
+    {"domain": "strategy-governance", "weight": 0.02, "topics": ["annual MA business review", "named owners and cadences"]},
+    {"domain": "people-compensation", "weight": 0.02, "topics": ["dedicated MA coordinator role"]},
+    {"domain": "technology-data-ai", "weight": 0.02, "topics": ["MA dashboard", "authorization tracking in the practice-management system", "payer use of AI in authorization review"]}
+  ],
+  "adopt": [
+    {
+      "idea": "Keep a one-page rule sheet for each MA plan (authorization and referral rules, submission channel, filing limit, dispute deadline, modifier and NP-billing quirks) with a named owner and a last-reviewed date.",
+      "why": "Turns scattered knowledge into rules a biller or AI agent can apply as claim edits; most MA rework comes from plan-specific rules nobody wrote down.",
+      "applies_to_practice": "yes",
+      "note": "For a facility-based practice the content changes: primary-care assignment and referral rules for HMO members seen in facilities, which party holds the stay authorization, coverage of care-management, advance-care-planning and wellness codes, and the dispute path in the contract or provider manual. Build it for the four contracted plans; the document supplies none of the content."
+    },
+    {
+      "idea": "Re-verify coverage on a schedule instead of assuming continuity: at every admission or new facility episode and at least monthly for the standing census.",
+      "why": "Billing traditional Medicare for an MA member, or the wrong plan, is a pure avoidable delay, and MA enrollment is month-specific.",
+      "applies_to_practice": "yes",
+      "note": "The document says 'every encounter' with a front desk in mind. Nursing-facility residents and dual-eligibles can change plans far more often than once a year, so batch eligibility checks on the census are the practical version."
+    },
+    {
+      "idea": "Use a fixed MA denial taxonomy (authorization sub-types, medical necessity, coding, eligibility) with one standard response per type, trended by plan.",
+      "why": "Lets denial work be routed by rule and shows which plan and which root cause is costing money.",
+      "applies_to_practice": "yes",
+      "note": "Add categories the document lacks for this practice: referral or primary-care-assignment denials, non-covered or bundled care-management codes, clinician not credentialed, and facility stay not authorized."
+    },
+    {
+      "idea": "Have the treating clinician own medical-necessity arguments: answer the plan's stated criteria point by point, and use a peer-to-peer call where the plan offers one.",
+      "why": "Specific rebuttals beat form letters, and published KFF data (not used by the document) show that most appealed MA authorization denials are overturned.",
+      "applies_to_practice": "partly",
+      "note": "Most medical-necessity fights for this population concern the hospital or nursing-facility stay and are run by the facility; the physician's part is the call and the documentation. Lead with the Medicare coverage rule the plan must follow, which the document never mentions."
+    },
+    {
+      "idea": "Write a brief status line for each chronic condition actually assessed at a visit, and track that each active condition is addressed at least once per calendar year.",
+      "why": "Supports diagnosis coding, visit leveling and care-management eligibility at once, and is the only defensible form of recapture.",
+      "applies_to_practice": "yes",
+      "note": "Use the current V28 mapping, not the document's examples. The financial benefit is indirect unless a contract shares risk-adjusted revenue; the same documentation also feeds risk scores used in traditional-Medicare ACO and MIPS cost calculations."
+    },
+    {
+      "idea": "Run a yearly two-way diagnosis audit on a sample of MA charts: conditions documented but not coded, and conditions coded without support, under a written policy with retained workpapers.",
+      "why": "Finds legitimate misses while creating the evidence of good faith that matters under the False Claims Act.",
+      "applies_to_practice": "yes",
+      "note": "The document mentions checking support only in passing and never says what to do with unsupported codes. Add a correction and payer-notification step, and make it impossible for AI billing agents to add a diagnosis that is not in the signed note."
+    },
+    {
+      "idea": "Vet any plan or vendor chart-review, gap-form or coding-outreach program before taking part; refuse anything that adds diagnoses from old records without a current-year encounter.",
+      "why": "These programs are where provider-side risk-adjustment liability usually starts.",
+      "applies_to_practice": "yes",
+      "note": "Large MA carriers run exactly these outreach programs. Also check whether the program pays per form or per chart, which raises kickback questions. From payment year 2027 CMS excludes diagnoses from unlinked chart reviews, which will change what plans ask for."
+    },
+    {
+      "idea": "Abstract every MA contract into a term sheet (rate basis and fee-schedule year, bonus programs, term, renewal and termination notice, dispute and recoupment clauses) and negotiate MA separately from other lines.",
+      "why": "A practice cannot detect underpayment or time a renegotiation without knowing its own terms.",
+      "applies_to_practice": "yes",
+      "note": "Add items the document skips: sequestration pass-through, NP payment percentage, lesser-of-charges language, overpayment look-back, and whether care-management and facility visit codes are carved out. The payer price-transparency benchmarking it suggests does not work for MA rates."
+    },
+    {
+      "idea": "Maintain a due list of MA patients with no wellness visit this calendar year and review each plan's care-gap report monthly.",
+      "why": "Wellness visits are paid work the practice already does, and plan gap reports are the only view of what each plan is measuring.",
+      "applies_to_practice": "partly",
+      "note": "Confirm each plan's frequency rule and whether it pays the visit in a facility setting. Many long-stay and frail patients are excluded from screening measures, so gap lists need filtering before anyone acts on them."
+    },
+    {
+      "idea": "Run MA as a managed line of business: a small per-plan scorecard with an owner and cadence per metric, plus an annual MA review that ends in decisions.",
+      "why": "Gives the owner-as-CFO a repeatable view of which plans are worth their administrative cost.",
+      "applies_to_practice": "yes",
+      "note": "Keep the structure and replace the metrics: denial rate by plan, days to pay, paid-versus-contract variance, appeal win rate, credentialing status, share of charges. Drop the unsourced targets and never set a diagnosis-capture quota."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "Medicare Advantage is a real but minority share of this practice's charges, concentrated in four plans (UnitedHealthcare, Humana, Capital Health Plan, Florida Blue). The document's most developed material is scheduling-time prior authorization for imaging, procedures and surgery, which a facility-based evaluation-and-management practice with no front desk rarely needs. The contract, denial-taxonomy, coverage-verification, documentation and wellness-visit ideas transfer after correction. Nothing addresses hospital or nursing-facility care under MA, institutional or dual-eligible special-needs plans, HMO primary-care assignment, care-management codes, Florida plans, or billing run by AI agents.",
+    "sections_that_do_not_apply": [
+      "Section 2 steps tied to appointment scheduling, surgical and imaging authorizations, nurse-assembled packets and front-desk roles",
+      "Section 5 modifier discussion for procedures (59, X-modifiers, 76, global periods); only modifier 25 is occasionally relevant",
+      "Section 5 checkpoint owners (front desk, eligibility staff, billing specialist): no such staff exist",
+      "Section 7 profiles of Anthem/Elevance, Aetna/CVS and Cigna; nothing on Capital Health Plan or Florida Blue",
+      "Section 9 cancer-screening and several chronic-disease measures for long-stay, frail or advanced-illness patients who are excluded from those measures",
+      "Section 10 staffing advice (dedicated MA coordinator above 200 patients)",
+      "Value-based and downside-risk contracting guidance: too thin to use and not a near-term fit for a two-clinician practice"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "ICD-10 examples in the specificity table are wrong, checked against the FY2027 code set: E11.65 is type 2 diabetes with hyperglycemia (diabetic CKD is E11.22); I50.43 is acute on chronic combined systolic and diastolic heart failure (diastolic alone is I50.33); I70.213 is atherosclerosis with intermittent claudication of both legs, not gangrene (gangrene is I70.26x).",
+      "Says essential hypertension (I10) carries HCC weight. I10 does not map to a payment category in the CMS-HCC model; only certain hypertensive combination codes (with heart failure or advanced kidney disease) do.",
+      "Never mentions the V28 (2024 CMS-HCC) model, the only model used for payment since payment year 2026. Under V28 the diabetes categories share one coefficient and the heart-failure categories shown are constrained to be equal, so the table's Low-to-High and Moderate-to-High examples for diabetes and heart failure no longer describe payment; unspecified peripheral vascular disease (I73.9) and the claudication codes dropped out of the payment model.",
+      "Presents acute respiratory failure (J96.00) as a 'higher-specificity' form of COPD. It is a separate acute diagnosis; adding it outside a setting where it was actually treated is a recognized audit target.",
+      "States that each diagnosis code maps to an HCC and that the risk score uses codes on claims from all providers for 'that year's' score. Most codes map to nothing; only face-to-face or audio-video encounters with eligible clinician types in eligible settings count; and the model is prospective (this year's diagnoses set next year's payment).",
+      "Appeals table is wrong in substance. Level 1 at an MA plan is a reconsideration (redetermination is Original Medicare and Part D terminology); an upheld denial is forwarded to the independent reviewer automatically rather than filed by the party; plan clocks are 72 hours expedited, 30 days standard pre-service and 60 days for payment, not a flat 60; the filing window is now generally treated as 65 days from the notice date.",
+      "Presents that CMS ladder as the practice's appeal path. Under 42 CFR Part 422 Subpart M it belongs to enrollees (and physicians acting for them before service) and to non-contract providers who sign a waiver of liability. A contracted provider's payment dispute runs under the contract and provider manual, with plan-specific deadlines the document never mentions.",
+      "Dollar thresholds are calendar-2025 values. For 2026 they are $200 (ALJ) and $1,960 (federal court) under the Federal Register notice of December 4, 2025.",
+      "The 'authorization audit trap' box tells readers a plan may recoup for medical necessity after approving prior authorization. 42 CFR 422.138(c), in force since 2024 and amended in 2025, bars a plan from later denying a prior-authorized service for lack of medical necessity and limits reopening to good cause or fraud or similar fault. The document should be telling readers to cite that rule.",
+      "Medical-necessity section treats InterQual, MCG and plan policies as the governing standard. Since 2024, 42 CFR 422.101(b)(6) and (c) require plans to follow Medicare statutes, regulations, NCDs and LCDs (including inpatient admission, skilled nursing, home-health and rehabilitation criteria) and allow internal criteria only where Medicare's are not fully established. This is the strongest appeal argument and it is absent.",
+      "No regulatory decision deadlines are given (72 hours expedited; 14 calendar days standard, cut to 7 calendar days from January 1, 2026 under the CMS interoperability and prior authorization rule). The 'lead times' offered instead have no source.",
+      "Claims that price-transparency machine-readable files include MA contracted rates. The payer Transparency in Coverage rule covers group and individual market plans, not Medicare Advantage; only hospital files show MA rates, and only for hospital-billed services.",
+      "Star ratings: the bonus is 5 percentage points added to the benchmark for 4 stars and above (roughly as stated), but the consequence threshold is below 3 stars sustained for three years, not '3 or fewer stars'.",
+      "Measure table errors: the annual wellness visit is not a HEDIS or Star measure; the adherence measures are Pharmacy Quality Alliance Part D measures; the HEDIS transitions measure is admission notice, discharge information, patient engagement within 30 days and medication reconciliation within 30 days, not '7/30-day follow-up'; the breast-screening age range has since been widened to start at 40. Exclusions for long-term institutional residents, institutional special-needs plan members, advanced illness with frailty and hospice are not mentioned.",
+      "The assertion that MA plans deny claims more often than other payers is backed only by a prior-authorization-request denial rate. That figure (7.7%, range 4.2% to 12.8%) matches KFF's January 2026 brief on 2024 data, not 'a 2024 KFF analysis'. The same brief's more useful findings (about one in nine denials appealed, about four in five appeals won) are left out.",
+      "Peer-to-peer is described as available after most MA medical-necessity denials within 24 to 72 hours with 30-80% reversal. Windows are plan-specific, some plans do not offer a post-decision call for MA members (the case must go to appeal), and no source is named for the reversal range.",
+      "Coordination of benefits: Medigap policies do not work with MA, so 'Medigap-equivalent products' is misleading; the ban on billing cost sharing to Qualified Medicare Beneficiaries and the handling of Medicaid as secondary to MA are missing.",
+      "'Risk adjustment does not exist in traditional Medicare fee-for-service' is overstated. HCC scores set ACO benchmarks, feed primary-care payment models and adjust MIPS cost measures, which matters to a practice that is majority fee-for-service.",
+      "Carrier profiles: Cigna sold its Medicare Advantage business to HCSC (closed March 2025) yet is profiled as a growing MA carrier; 'AARP Medicare Complete' was renamed years ago; CVS HealthHUB has been de-emphasized; the UnitedHealthcare 'CMS findings', Humana 'most generous' bonuses and 'AI looks for specific clinical language' statements are unsourced.",
+      "Compliance section says any unsupported diagnosis 'is fraudulent billing' without the False Claims Act knowledge standard, never says to correct and report unsupported codes once found, and refers to an 'annual' OIG work plan (it is updated monthly) and to unnamed OIG guidance.",
+      "Every dashboard target (5%, 2%, 90%, 6%, 80%, 85%) and the 200-patient staffing threshold is unsourced. A 'more than 90% of active conditions coded' goal assigned to a billing manager is a capture quota, the incentive design that enforcement agencies criticize.",
+      "Wellness visit: 'typically exceeds a standard E&M rate for the same time' is unsupported (the subsequent-visit code pays about the same as an established level-4 visit; verify against the current fee schedule); the once-per-calendar-year rule is a plan convention, while Original Medicare requires 11 full months between visits."
+    ],
+    "generic_filler": "high",
+    "internal_contradictions": [
+      "Section 1's comparison table calls the MA appeal process plan-specific, while Sections 2 and 4 describe a single CMS-mandated ladder that mirrors traditional Medicare.",
+      "Section 2 names four appeal levels; the Section 4 table has five.",
+      "Peer-to-peer timing is given as 24-72 hours, 24-48 hours and 48 hours in three places; it is to be used above a dollar threshold, yet the dashboard target is use on more than 80% of all medical-necessity denials.",
+      "The coding gap audit is annual in the fourth quarter in Section 3, quarterly on the dashboard, and run in weeks 3-4 and 9-11 of the 90-day plan regardless of the calendar.",
+      "Section 10 says the dashboard covers five domains immediately after listing six (billing operations gets no metric), and calls it monthly although cadences run from weekly to annual.",
+      "Section 3 says undercoding, not overcoding, is the costly failure; Section 8 calls risk-adjustment coding the place MA gets dangerous. A 90% capture target sits badly with the rule never to code for revenue.",
+      "Section 3 states that each diagnosis code maps to an HCC, then says not all codes carry HCC weight.",
+      "The claim that MA plans deny claims more often than other payers is supported only by a prior-authorization-request statistic.",
+      "The disclaimer says denial-rate references rest on published research, while the fact box attributes two items to unpublished vendor modeling and client data and gives no number for either.",
+      "The MA coordinator role moves from 'worth evaluating' to 'in most cases yes' to paying for itself many times over within two paragraphs and without a single figure."
+    ],
+    "time_sensitive_or_outdated": [
+      "Enrollment and market-share figures are 2025 vintage (33+ million, 54%, UnitedHealthcare 29%). KFF's 2026 update shows about 35.2 million (55%), UnitedHealthcare about 26% and Humana about 20%.",
+      "Appeal dollar thresholds are 2025 amounts; 2026 amounts are $200 and $1,960, and a notice for 2027 (reportedly $200 and $2,000) is in the pipeline.",
+      "Risk-adjustment content predates V28, fully phased in for payment year 2026.",
+      "No mention that CMS excludes diagnoses from unlinked chart-review records from payment year 2027 risk scores (rate announcement of April 6, 2026), which bears directly on the chart-review warning.",
+      "No mention of the 2024 MA rule (CMS-4201-F): Medicare coverage criteria binding on plans, limits on internal criteria, authorization valid for the course of treatment, 90-day continuity for new enrollees, no retroactive medical-necessity denial after approval.",
+      "No mention of the interoperability and prior authorization rule (CMS-0057-F): 7-day standard decisions and specific denial reasons from 2026, public authorization metrics from March 2026, electronic prior-authorization interfaces due in 2027.",
+      "No mention of the 2026 MA rule (April 2025) restricting plans from reopening approved inpatient admissions.",
+      "Cigna profile is obsolete (business sold to HCSC in 2025); the 'AARP Medicare Complete' and CVS HealthHUB references are stale.",
+      "The KFF prior-authorization figure is for 2024; a later KFF analysis of 2025 data reportedly shows materially higher denial rates.",
+      "Breast-cancer screening age range (50-74) predates the NCQA change to 40-74.",
+      "The CBO projection of about 57% by 2031 sits oddly beside the 63-64% by 2034 figure quoted with it, and no report is named for either.",
+      "RADV audit expansion, the extrapolation rule and related litigation since 2023 are not covered.",
+      "'Box 23' of the CMS-1500 is paper-era framing; electronic claims carry the number in the prior-authorization reference segment."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, reviewer, version date or footnote anywhere; three sources are named (KFF, AMA, CBO) with no titles or links, and no regulation is cited by number in 69 pages.",
+      "Fact-box entries where the number has been deleted and replaced by a hedge ('a CCRx-modeled estimate', 'CCRx client data suggests a meaningful revenue gap'): claims of proprietary data from a product with no identifiable clients.",
+      "Hedges spliced into sentences mid-thought ('treat these as illustrative patterns rather than fixed rules', 'treat any specific percentage as directional', 'should be confirmed against current plan policy'), consistent with an automated compliance scrub.",
+      "A second boilerplate disclaimer about reviewing 'every AI-generated draft' is pasted under the first and does not relate to this document's content.",
+      "Plausible-looking but wrong ICD-10 examples and a mislabeled appeal ladder: fluent, confident and unchecked.",
+      "Carrier profiles follow one template ('Operational priorities with X MA') and contain no fact a reader could act on; superlatives stand in for data.",
+      "Round-number targets with no derivation; stock phrases repeated throughout ('leaving money on the table', 'pays for itself many times over').",
+      "Padding: about 150 words per page, several pages carrying one or two lines, checklists that restate earlier sections, a closing that restates the introduction, and two product cross-sell blocks.",
+      "Conversion artifacts such as 'E&M;' left in the text.",
+      "The disclaimer promises published research behind denial-rate references that the text never identifies."
+    ],
+    "missing_for_real_use": [
+      "Any actual plan rule: no authorization lists, referral rules, portal or phone details, filing limits or dispute deadlines for any carrier, and nothing on regional plans by name.",
+      "The contracted-provider dispute path (contract clauses, provider-manual deadlines, arbitration), the non-contract path with waiver of liability, and escalation to the CMS regional office.",
+      "Regulatory citations a biller can quote in an appeal (42 CFR 422.101, 422.138, 422.566-422.634, 422.112(b)(8), 422.520).",
+      "Facility-based care: inpatient versus observation and the two-midnight benchmark, facility-held stay authorizations, concurrent review, discharge notices and fast-track appeals, skilled versus long-stay place of service, hospice election, HMO primary-care assignment and referral rules for visiting clinicians.",
+      "Special-needs plans (institutional, dual-eligible, chronic-condition), monthly election rights for institutional and dual-eligible members, and state Medicaid coordination.",
+      "Dual-eligible billing: Qualified Medicare Beneficiary protections, Medicaid crossover of MA cost sharing, bad-debt and write-off treatment.",
+      "Payment integrity: checking paid amounts against contract (percent of Medicare, fee-schedule year, sequestration, NP percentage), prompt-payment interest, recoupment and offset limits, refund handling.",
+      "Risk-adjustment mechanics: V28 mappings and coefficients, which encounter and clinician types count, payment-year timing and submission deadlines, how to delete unsupported codes, handling plan record requests and audits, OIG's high-risk diagnosis list, active-versus-history coding rules.",
+      "Coverage and cost sharing for chronic care management, transitional care, advance care planning and wellness visits under each plan, including same-day visit rules.",
+      "Credentialing and enrollment with MA plans, directory attestations, NP network status.",
+      "Usable templates: appeal and reconsideration letters, a call worksheet, a contract abstract form, an authorization log, a dashboard workbook, policy language.",
+      "Metric definitions, formulas, data sources and a worked dollar example; no return-on-effort math for any recommendation.",
+      "Value-based contract mechanics: attribution, percent-of-premium math, surplus and deficit splits, stop-loss, reserves, coding-intensity adjustments.",
+      "Controls for automated or AI-assisted authorization, coding and appeal work, despite being sold alongside AI workflow material.",
+      "Measure exclusions and how to correct plan attribution or gap lists."
+    ]
+  }
+}

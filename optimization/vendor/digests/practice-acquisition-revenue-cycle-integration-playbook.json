@@ -1,0 +1,879 @@
+{
+  "slug": "practice-acquisition-revenue-cycle-integration-playbook",
+  "title": "Practice Acquisition Revenue Cycle Integration Playbook: The Operational Blueprint for Due Diligence, Day-One Continuity, and Full RC Integration (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "playbook",
+  "pages": 36,
+  "audience": "Acquiring physicians, physician groups, private-equity operators and management companies; in practice whoever runs the integration (a group administrator, a management company's revenue-cycle vice president, or an acquiring physician doing it personally). The closing note inconsistently calls it guidance for independent practice teams.",
+  "summary": "A buy-side guide to keeping a physician practice's revenue cycle intact through an acquisition and then improving it. It follows the deal clock: a seven-area diligence review (collection trends, receivable quality, payer contracts, credentialing, billing staff, compliance history, technology); turning findings into price through a collection-rate gap estimate and age-bucket discounting of receivables; pre-close workstreams starting roughly 90 days out; a day-one continuity checklist; payer contract and Medicare/Medicaid enrollment transition; system migration with a parallel run; billing-staff retention; a 30/60/90-day stabilization sprint; post-90-day performance lift; and roll-up considerations for private-equity operators. The central method is to treat close as the midpoint: appoint one accountable integration lead, settle identifiers, enrollment, contracts and authorizations before day one, then monitor daily against the pre-close baseline. Nothing is sourced, no forms or regulations are named, and the Medicare guidance is thin and partly misleading.",
+  "outline": [
+    {
+      "section": "Front matter (title, contents, disclaimer)",
+      "gist": "Educational-only disclaimer; lists legal topics to take to counsel: corporate practice of medicine, Stark, Anti-Kickback, contract assignment, employment and licensing law."
+    },
+    {
+      "section": "Introduction: Why Revenue Cycle Is Where Acquisitions Succeed or Fail",
+      "gist": "Argues acquisitions underdeliver mainly through revenue-cycle failures between letter of intent and integration; asserts 15-25% collection disruption unmanaged versus under 5% with planning."
+    },
+    {
+      "section": "Section 1: RC Due Diligence - The Seven Domains",
+      "gist": "Seven diligence areas (financial trends, receivable quality, payer contracts, credentialing, billing staff, compliance history, technology), each with documents to request, questions and a risk rating."
+    },
+    {
+      "section": "Section 2: Valuation Implications of RC Performance",
+      "gist": "Converts findings to price: collection-rate gap in dollars, age-bucket discounting of receivables, representations and warranties, and a four-step adjustment argument with a present-value example."
+    },
+    {
+      "section": "Section 3: Pre-Close Planning - The Integration You Start Before Day One",
+      "gist": "Name an integration lead; run four workstreams from 90 to 14 days before close: payer contract path, enrollment applications, system decision, staff retention."
+    },
+    {
+      "section": "Section 4: Day-One Continuity - Keeping Revenue Flowing at Close",
+      "gist": "Written day-one protocol: correct tax ID and NPI on claims, clearinghouse mapping, deposit banking, open authorizations, patient-payment routing; then daily monitoring for 30 days."
+    },
+    {
+      "section": "Section 5: Payer Contract Transition - The Most Underestimated Risk",
+      "gist": "Four contract paths per payer (assign, novate, join buyer's contract, interim gap letter); Medicare and Medicaid require new enrollment; warns against billing under seller's credentials."
+    },
+    {
+      "section": "Section 6: Systems Transition and Data Migration",
+      "gist": "Decide before close whether to migrate or keep the legacy system; separate migration from go-live; define what migrates; 30-day parallel run; test charge capture."
+    },
+    {
+      "section": "Section 7: Staffing the Acquired Billing Operation",
+      "gist": "Retain billing staff with milestone bonuses and candid communication; assess each person within 60 days; pair acquired staff with buddies from the buyer's team."
+    },
+    {
+      "section": "Section 8: The 90-Day RC Integration Sprint",
+      "gist": "Three 30-day blocks: stabilize with daily monitoring, normalize against the pre-close baseline, then build reporting, audits and a management cadence."
+    },
+    {
+      "section": "Section 9: Elevating Performance - From Baseline to Optimized",
+      "gist": "After day 90: gap analysis against baseline and portfolio benchmarks, coding and charge-capture audit, rate benchmarking and renegotiation, and a generic 'performance culture' passage."
+    },
+    {
+      "section": "Section 10: PE and Multi-Site Operator Considerations",
+      "gist": "Roll-up issues: standardized portfolio reporting and systems, management-services-organization billing structure, acquisition pace versus integration capacity, exit diligence, and a portfolio compliance program."
+    },
+    {
+      "section": "Integration Timeline and Milestones",
+      "gist": "Seven-phase table from 120 days before close to 180 days after, listing milestones and success criteria for each phase."
+    },
+    {
+      "section": "Due Diligence Checklist and RC Scorecard",
+      "gist": "A 24-item document request list, a six-KPI scorecard with an empty median column, a nine-item day-one checklist and an eleven-item 90-day checklist."
+    },
+    {
+      "section": "Closing: The Revenue Cycle Determines Whether the Acquisition Was Worth It",
+      "gist": "Restates that returns depend on diligence, continuity planning and post-close improvement; points to six sibling playbooks in the vendor's library."
+    },
+    {
+      "section": "Important Notes on This Playbook (end disclaimer)",
+      "gist": "Says benchmark figures are labeled by origin throughout; no such labels exist in the text. Tells readers to confirm rules themselves."
+    }
+  ],
+  "framework_elements": [
+    "Seven-domain revenue-cycle due diligence",
+    "24-month collections and write-off trend by payer",
+    "Receivable collectibility analysis by payer and age bucket, with aged-claim sampling",
+    "Payer contract inventory with assignment and change-of-control review",
+    "Enrollment and credentialing status verification per payer",
+    "Billing key-person and knowledge-concentration assessment",
+    "Compliance history, audit and recoupment review",
+    "Pre-close and post-close independent coding audit",
+    "Revenue-cycle technology inventory, license assignability and data portability",
+    "Collection-rate gap quantification in dollars",
+    "Receivable quality adjustment or exclusion of pre-close receivables",
+    "Revenue-cycle representations, warranties and indemnification",
+    "Named integration lead with decision authority",
+    "Per-payer contract transition path selection (assign, novate, join existing contract, interim letter)",
+    "Payer notification of entity and tax ID change",
+    "Medicare and Medicaid enrollment under the new entity",
+    "Commercial credentialing under the new entity",
+    "System decision: migrate, run in parallel or keep legacy",
+    "Billing staff retention plan with milestone bonuses",
+    "Day-one continuity protocol",
+    "First-batch claim identifier verification (tax ID, NPI, payer IDs)",
+    "Remittance and deposit account re-pointing",
+    "Open authorization inventory and transfer confirmation",
+    "Pre-close versus post-close patient payment routing rule",
+    "Daily post-close monitoring of submissions, rejections and denials",
+    "Data migration scoping and parallel-run reconciliation",
+    "Charge-capture workflow mapping and pre-go-live testing",
+    "30/60/90-day sprint with baseline comparison reports and retained-staff assessment",
+    "Post-close performance gap analysis and payer contract audit",
+    "Portfolio-level standardized reporting, MSO billing-structure review and compliance hotline"
+  ],
+  "processes": [
+    {
+      "name": "Seven-domain revenue-cycle due diligence",
+      "steps": [
+        "Request 24 months of monthly collections and write-offs by payer; read the trend",
+        "Pull receivable aging by payer and bucket; sample 20-30 claims where a payer has over 15% beyond 120 days",
+        "Collect every payer contract, amendment and fee schedule; record contracting entity, term, rates, assignment and change-of-control terms",
+        "Verify each provider's actual enrollment record per payer (NPI, group, pay-to address) and recredentialing dates",
+        "Interview the billing manager; map who holds undocumented workflow knowledge",
+        "Obtain audit, recoupment and known-error history; commission an independent coding audit where risk is high",
+        "Inventory systems, license terms, assignability and data export options",
+        "Rate each domain and carry findings into price, representations and the integration plan"
+      ],
+      "owner_role": "Acquirer's diligence team and revenue-cycle integration lead (the document does not assign an owner explicitly)",
+      "cadence": "Once per transaction, roughly 120 to 45 days before close"
+    },
+    {
+      "name": "Receivable valuation and price adjustment",
+      "steps": [
+        "Split receivables by payer and age bucket",
+        "Apply a collection probability to each bucket and sum to an adjusted value",
+        "Negotiate the difference from the seller's stated balance, or exclude pre-close receivables so the seller keeps them",
+        "Estimate the collection-rate gap to benchmark in dollars; discount for time to close it; subtract remediation cost",
+        "Present the result as an adjustment and back it with specific representations and indemnity"
+      ],
+      "owner_role": "Acquirer's deal team with the revenue-cycle lead; an independent analyst when receivables are purchased",
+      "cadence": "Once, before price is finalized"
+    },
+    {
+      "name": "Pre-close workstream launch",
+      "steps": [
+        "Appoint an integration lead with access to the seller's billing staff and systems",
+        "Decide the contract path per payer by 60 days out; notify payers by 45 days out",
+        "Submit Medicare and Medicaid applications by 75 days out and commercial applications by 60 days out",
+        "Make the system decision by 60 days out",
+        "Extend retention offers 45 days out; have them accepted 30 days out",
+        "Finalize the written day-one protocol 14 days out"
+      ],
+      "owner_role": "Revenue-cycle integration lead, with credentialing specialist, IT and HR",
+      "cadence": "From 90 to 14 days before close, tracked continuously"
+    },
+    {
+      "name": "Payer contract transition",
+      "steps": [
+        "Have healthcare counsel read each contract's assignment and change-of-control language",
+        "Choose per payer: assign, novate, add providers to the buyer's existing contract, or an interim arrangement",
+        "Request written interim-coverage confirmation from every major payer",
+        "Use the transition to seek the better of the two rate schedules",
+        "Audit between days 61 and 90 that every contract is active under the new entity"
+      ],
+      "owner_role": "Integration lead with healthcare attorney",
+      "cadence": "Starts 90 days before close; contract audit by day 90 after close"
+    },
+    {
+      "name": "Medicare and Medicaid enrollment transition",
+      "steps": [
+        "Treat government enrollment as a separate track from commercial contracting",
+        "Enroll the acquiring entity and link the acquired providers to it",
+        "File early so approval lands at or before close",
+        "Do not bill under the seller's enrollment after ownership changes in an asset deal",
+        "If approval will lag, plan the cash impact and get legal advice on interim billing"
+      ],
+      "owner_role": "Credentialing specialist under the integration lead",
+      "cadence": "Document says start 90+ days before close; this appears to conflict with CMS's 60-day early-filing limit for physician and group applications and must be verified"
+    },
+    {
+      "name": "Day-one continuity and first-30-day monitoring",
+      "steps": [
+        "Confirm payer notifications were sent and acknowledged",
+        "Check clearinghouse mapping, tax ID and NPI per payer before the first batch is transmitted",
+        "Confirm remittance and deposit banking is updated",
+        "Confirm each provider is enrolled or covered by a written interim billing protocol",
+        "Export open and pending authorizations; confirm with each plan whether they carry over",
+        "Distribute the written rule for payments on pre-close patient balances",
+        "Brief providers and billing staff; hand out payer contacts for rejection triage",
+        "For 30 days confirm claim counts, denial rate and portal rejections every day"
+      ],
+      "owner_role": "Integration lead, plus one named person for daily monitoring",
+      "cadence": "Close date, then daily for 30 days"
+    },
+    {
+      "name": "System migration with parallel run",
+      "steps": [
+        "Decide before close whether to migrate, run in parallel or keep the legacy system",
+        "Scope data: active demographics and coverage, open receivables with history, fee schedules, open authorizations, payment history; leave older history read-only",
+        "Map and test the encounter-to-charge workflow with highest-volume codes",
+        "Test migrated data before go-live; never combine migration and go-live",
+        "Run old and new systems side by side for at least 30 days, reconciling claims, payments and denials daily",
+        "Correct every migration discrepancy before retiring the legacy system"
+      ],
+      "owner_role": "IT plus revenue-cycle lead",
+      "cadence": "Single-practice buyer: keep legacy 6-12 months; platform buyer: migrate 90-180 days after close; daily reconciliation during the parallel period"
+    },
+    {
+      "name": "90-day integration sprint",
+      "steps": [
+        "Days 1-30: monitor claims and denials daily; review portals, deposits and authorizations weekly; update enrollment status every two weeks",
+        "Days 31-60: compare 30-day KPIs with the pre-close baseline; close enrollment gaps; hold documented one-on-ones; fix the migration timeline; start denial root-cause analysis",
+        "Days 61-90: issue a 90-day report against baseline and benchmark; size the top three opportunities in dollars; start weekly and monthly management cadence; audit contracts and coding; brief leadership",
+        "After day 90: formal gap analysis, rate benchmarking and renegotiation, improvement targets"
+      ],
+      "owner_role": "Integration lead",
+      "cadence": "Daily, weekly and biweekly tasks inside three 30-day blocks; reports at day 30 and day 90"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Seven Domains at a Glance (table)",
+      "description": "One row per diligence domain: documents to request, critical questions and a risk rating (high, critical or moderate-high)."
+    },
+    {
+      "name": "RC performance level table",
+      "description": "Maps net collection rate tiers to points of gap and annual dollar impact on a fixed $4M collections example; a lookup, not a calculator."
+    },
+    {
+      "name": "AR quality adjustment schedule",
+      "description": "Collection-probability percentage for each of five age buckets, to be multiplied by face value and summed; unsourced, and silent on gross versus net balances."
+    },
+    {
+      "name": "RC Adjustment Framework (valuation tip)",
+      "description": "Four-step negotiation method: quantify gap, apply recovery timeline, subtract remediation cost, present as an adjustment; worked example does not reconcile."
+    },
+    {
+      "name": "Pre-Close Workstream Timeline (table)",
+      "description": "Seven workstreams with start day (T-90 to T-30), owner, milestone and the risk of delay."
+    },
+    {
+      "name": "Contract transition options list",
+      "description": "Four per-payer paths (assignment, novation, concurrent credentialing, gap contract or letter) with a paragraph on each; a decision aid without criteria."
+    },
+    {
+      "name": "Day 1 Checklist: Minimum Viable RC Continuity (callout)",
+      "description": "Nine verifications to complete before the first post-close claim is sent."
+    },
+    {
+      "name": "Data migration scope lists",
+      "description": "Two bullet lists: what must move to the new system and what can stay read-only in the legacy system."
+    },
+    {
+      "name": "Parallel-period reconciliation tip",
+      "description": "Minimum 30-day side-by-side run with three daily comparisons: claims submitted, payments posted, denial counts."
+    },
+    {
+      "name": "Retention bonus structure",
+      "description": "Payout split of 50% at close, 25% at 90 days, 25% at 180 days; 12-month horizon with performance component for the billing manager."
+    },
+    {
+      "name": "Day-one staff communication outline (callout)",
+      "description": "Talking points for acquired billing staff: what is changing, what is uncertain, what is not changing."
+    },
+    {
+      "name": "90-day sprint task lists",
+      "description": "Bulleted tasks for days 1-30, 31-60 and 61-90 with monitoring frequencies."
+    },
+    {
+      "name": "Integration Timeline and Milestones (table)",
+      "description": "Seven phases from T-120 to T+180 with key milestones and success criteria."
+    },
+    {
+      "name": "RC Due Diligence Document Request List",
+      "description": "24 items in six categories (financial, receivables, payer contracts, credentialing, billing operations, compliance)."
+    },
+    {
+      "name": "RC Performance Scorecard: Pre-Close Assessment",
+      "description": "Six KPIs with a pre-filled weak-practice column, a blank industry-median column and top-quartile targets; no scoring or weighting method."
+    },
+    {
+      "name": "Day-One RC Continuity Checklist (appendix)",
+      "description": "Nine checkbox items repeating the Section 4 callout."
+    },
+    {
+      "name": "90-Day Integration Sprint Checklist (appendix)",
+      "description": "Eleven checkbox items repeating Section 8 by 30-day block."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Net collection rate",
+      "definition": "",
+      "formula": "",
+      "target": "Top quartile 97-98%+ (scorecard: over 97%); 95-96% called above average; 92-94% called average",
+      "red_flag": "88-91% labeled below average; a good rate on declining revenue; 92-94% also appears in the scorecard's weak-practice column",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR",
+      "definition": "",
+      "formula": "",
+      "target": "Under 35 days (top quartile); within 5 days of pre-close level by day 60",
+      "red_flag": "45-50 days (weak-practice column)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate",
+      "definition": "",
+      "formula": "",
+      "target": "Over 96% (top quartile)",
+      "red_flag": "88-92% (weak-practice column)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate",
+      "definition": "",
+      "formula": "",
+      "target": "Under 5% (top quartile); within 1 point of pre-close level by day 60",
+      "red_flag": "8-10% (weak-practice column); any spike above 10% in days 1-30; any rise above baseline (Section 4); low denials paired with high write-offs",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 90 days",
+      "definition": "",
+      "formula": "",
+      "target": "Under 12% (top quartile)",
+      "red_flag": "18-22% (weak-practice column)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Submission lag",
+      "definition": "",
+      "formula": "",
+      "target": "Under 3 days (top quartile)",
+      "red_flag": "5-7 days (weak-practice column)",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 120 days by payer",
+      "definition": "Share of a single payer's receivable balance sitting in the 120-plus-day bucket",
+      "formula": "Payer balance over 120 days / payer total balance (implied)",
+      "target": "",
+      "red_flag": "More than 15% of that payer's balance: pull a claim sample",
+      "source_cited": "none"
+    },
+    {
+      "name": "Collectibility-adjusted AR value",
+      "definition": "Receivable balance restated for what is realistically collectible, by age bucket",
+      "formula": "Sum over buckets of face value x bucket collectibility (0-30: 95-98%; 31-60: 85-90%; 61-90: 70-80%; 91-120: 50-65%; 120+: 20-40%)",
+      "target": "",
+      "red_flag": "Seller's stated balance materially above the adjusted value",
+      "source_cited": "none"
+    },
+    {
+      "name": "RC gap",
+      "definition": "Difference between what the practice collects now and what it would collect at optimized performance",
+      "formula": "(Benchmark net collection rate - current rate) x annual collections, as the document computes it",
+      "target": "Close within 12 months in the example; 1-3 year recovery horizon in the adjustment framework",
+      "red_flag": "6-9 point gap to top quartile",
+      "source_cited": "none"
+    },
+    {
+      "name": "Write-off rate",
+      "definition": "",
+      "formula": "",
+      "target": "",
+      "red_flag": "High write-offs alongside a low denial rate (denials written off rather than worked)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Monthly collections trend by payer",
+      "definition": "24 months of monthly collections by payer, read for direction",
+      "formula": "",
+      "target": "Stable or improving",
+      "red_flag": "Deterioration heading into a sale",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR concentration by payer",
+      "definition": "Each payer's receivable balance as a share of total receivables",
+      "formula": "Payer AR / total AR",
+      "target": "",
+      "red_flag": "Concentration risk (no threshold given)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Post-close revenue disruption",
+      "definition": "Share of monthly collections lost or delayed after close",
+      "formula": "",
+      "target": "Under 5%, resolved within 30 days",
+      "red_flag": "15-25% for 60-90 days (claimed unmanaged average)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Daily claim submission volume",
+      "definition": "Daily count of claims submitted compared with the pre-close baseline",
+      "formula": "",
+      "target": "Consistent with pre-close baseline",
+      "red_flag": "Any unexplained shortfall in the first 30 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Rejection rate",
+      "definition": "",
+      "formula": "",
+      "target": "At pre-close baseline by day 30; no unresolved systematic rejections",
+      "red_flag": "Systematic rejections tied to tax ID, NPI or enrollment",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer enrollment completion",
+      "definition": "Share of payer enrollments finished under the new entity",
+      "formula": "",
+      "target": "Over 90% complete by day 30; credentialing complete by day 60",
+      "red_flag": "Payers still pending at the biweekly review",
+      "source_cited": "none"
+    },
+    {
+      "name": "Day-one systematic claim errors",
+      "definition": "Claims going out with wrong entity identifiers or routing on the first day",
+      "formula": "",
+      "target": "Zero",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Parallel-period reconciliation variance",
+      "definition": "Daily differences between new and legacy systems in claims submitted, payments posted and denial counts",
+      "formula": "",
+      "target": "All discrepancies corrected before the legacy system is retired",
+      "red_flag": "Legacy shutdown before the parallel period ends",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Practice acquisitions fail in the revenue cycle more often than anywhere else",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unmanaged acquisition transitions lose on average 15-25% of monthly collections for 60-90 days after close",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Structured pre-close planning and day-one protocols cut disruption to under 5%, resolved within 30 days",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A payer with more than 15% of its balance beyond 120 days warrants a claim sample",
+      "section": "Section 1, Domain 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In a $500,000 receivable balance the collectible versus uncollectible difference can easily be $150,000-$250,000",
+      "section": "Section 1, Domain 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unworked denials older than 180 days are worth nothing",
+      "section": "Section 1, red-flag box",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Collectibility by age bucket: 0-30 days 95-98%, 31-60 days 85-90%, 61-90 days 70-80%, 91-120 days 50-65%, 120+ days 20-40%",
+      "section": "Section 2 (also Section 1 red-flag box)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Credentialing under a new entity takes 60 to 120 days",
+      "section": "Section 1, Domain 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Net collection rate tiers: below average 88-91%, average 92-94%, above average 95-96%, top quartile 97-98%+",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 6-point net collection gap on $4M of collections is about $240,000 of recoverable annual revenue",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Gap table on $4M: below average $240K-$360K, average $120K-$200K, above average $40K-$80K per year",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The gap can be closed within 12 months (body example); recovery timeline of 1-3 years (adjustment framework)",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "$240K annual gap, 18-month recovery, $40K remediation cost and a 10% discount rate give a present value of about $195K",
+      "section": "Section 2, valuation tip",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare PECOS enrollment changes take 30 to 60 days from submission",
+      "section": "Section 3 and Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial payer credentialing takes 60 to 120 days",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare and Medicaid enrollment are the slowest processes",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Novation typically takes 60 to 120 days from request to effective date",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most large commercial payers will provide gap letters in acquisition situations",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The Medicare billing gap can run 30-90 days from close to approved enrollment",
+      "section": "Section 5, warning box",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Keeping the legacy system 6-12 months is often lowest risk for a single-practice deal; platform migrations should take 90-180 days after close",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Minimum 30-day parallel period; early legacy shutdown is the single most common cause of post-migration data loss",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Standard retention bonus pays 50% at close, 25% at 90 days and 25% at 180 days",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Staff competence and fit should be clear within 60 days after close",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A denial-rate spike above 10% in the first 30 days triggers investigation; disruptions addressed within 24-48 hours",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Post-close coding audit belongs within 90-120 days of close",
+      "section": "Sections 9 and 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most private-equity-backed physician practice acquisitions use an MSO structure",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Success criteria: enrollment over 90% complete by day 30; days in AR within 5 days and denial rate within 1 point of pre-close by day 60",
+      "section": "Integration Timeline",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Weak-practice profile: days in AR 45-50, clean claims 88-92%, denials 8-10%, net collection 92-94%, AR over 90 days 18-22%, submission lag 5-7 days",
+      "section": "RC Performance Scorecard",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Top quartile: days in AR under 35, clean claims over 96%, denials under 5%, net collection over 97%, AR over 90 days under 12%, submission lag under 3 days",
+      "section": "RC Performance Scorecard",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Compliance diligence should look back three years for payer audits, RAC audits and OIG investigations",
+      "section": "Section 1, Domain 6 and document request list",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Medicare participation does not transfer in an asset acquisition — the acquiring entity must enroll in Medicare under its own NPI and PTAN, and the acquired providers must be enrolled under the new entity's NPI and group in PECOS.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 5: Medicare and Medicaid - A Separate Process",
+      "why": "Decides whether a buyer files a new group enrollment plus reassignments (new tax ID) or only a 30-day ownership-change update (equity deal, same tax ID). The wrong route means unpayable claims or a reporting violation at a practice that is 55% Medicare."
+    },
+    {
+      "id": "C2",
+      "claim": "This process takes 30 to 60 days from completed application submission. During the Medicare enrollment gap, claims submitted to Medicare under the new entity will be rejected.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 5: Medicare and Medicaid - A Separate Process",
+      "why": "The text treats the gap as lost revenue to price into the deal or 'negotiate'. If 42 CFR 424.520(d) and 424.521(a) apply as understood (effective date equals filing date of an approved application, plus 30 days of retrospective billing), claims can simply be held and billed later, so the advice misprices deals and cash plans."
+    },
+    {
+      "id": "C3",
+      "claim": "The right path: begin PECOS enrollment 90+ days before close; target enrollment approval at or before close.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 5 warning box (also Section 3 timeline: applications submitted by T-75)",
+      "why": "CMS enrollment guidance lets a contractor return a physician or group application received more than 60 days before the effective date listed, with no appeal rights and loss of the filing date. Filing at 90 days could cause the gap the document is trying to prevent."
+    },
+    {
+      "id": "C4",
+      "claim": "NEVER attempt to bill Medicare under the acquired practice's legacy credentials after the ownership change has occurred — this creates False Claims Act exposure for the acquirer.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 5 warning box",
+      "why": "Sets the rule for interim billing. It fits a new-tax-ID asset deal, but in an equity deal the same enrollment lawfully continues with an ownership update. Getting it wrong means either false-claims exposure or needlessly frozen Medicare cash."
+    },
+    {
+      "id": "C5",
+      "claim": "Compliance issues from the pre-close period can become the acquirer's problem in an asset acquisition if not identified and addressed in the deal structure.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 1, Domain 6: Compliance History",
+      "why": "Successor liability turns on structure: equity buyers inherit everything, asset buyers generally do not unless they assume it or a successor doctrine or state Medicaid rule applies. The document never draws that line, which drives structure, indemnity, escrow and overpayment-refund duties."
+    },
+    {
+      "id": "C6",
+      "claim": "A standard AR quality adjustment applies collection probability by age bucket: 0–30 days 95–98 percent, 31–60 days 85–90 percent, 61–90 days 70–80 percent, 91–120 days 50–65 percent, 120-plus days 20–40 percent.",
+      "kind": "benchmark",
+      "stakes": "high",
+      "section": "Section 2: AR Quality Adjustment in Deal Pricing (also Section 1 red-flag box)",
+      "why": "These percentages set the price of purchased receivables and are called standard with no source. The 120-plus figure looks generous, and the text never says whether they apply to gross charges or expected net payment, which changes the result several-fold."
+    },
+    {
+      "id": "C7",
+      "claim": "Average revenue disruption in an unmanaged practice acquisition transition: 15–25% of monthly collections for 60–90 days post-close ... can be reduced to less than 5% and resolved within 30 days.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Introduction: The RC Integration Risk in Numbers",
+      "why": "This is the headline justification for the whole method and for integration spending. No source is given, and the end note's promise that such figures are labeled by origin is not kept. If invented, the return-on-effort case is unsupported."
+    },
+    {
+      "id": "C8",
+      "claim": "Most PE-backed physician practice acquisitions use a Management Services Organization (MSO) structure ... The physician entity remains the billing entity ... payer contracts are in the physician entity's name, and revenue belongs to the physician entity.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 10: The MSO Structure and Billing",
+      "why": "Describes the friendly-practice model as near-universal. State law varies: Florida is understood to allow lay ownership subject to clinic licensure and fee-splitting limits, and Medicare restricts percentage-paid billing agents that receive payments. This matters for a sale to an investor or for building a billing or optimization service."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.34,
+      "topics": [
+        "buy-side revenue-cycle due diligence",
+        "receivable valuation and price adjustment",
+        "representations and indemnity",
+        "post-acquisition integration timeline",
+        "exit diligence and key-person risk"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.2,
+      "topics": [
+        "contract assignment, novation and change of control",
+        "Medicare, Medicaid and commercial enrollment under a new entity",
+        "rate alignment at transition",
+        "post-close contract audit"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.14,
+      "topics": [
+        "receivable aging quality",
+        "claim continuity and identifier checks",
+        "rejection and denial monitoring",
+        "remittance and deposit routing",
+        "pre-close patient balance posting"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.09,
+      "topics": [
+        "practice-management and EHR migration decision",
+        "data migration scope",
+        "parallel-run reconciliation",
+        "standardized portfolio reporting"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.08,
+      "topics": [
+        "retention bonuses",
+        "retained-staff assessment",
+        "role and change communication",
+        "integration lead role"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.07,
+      "topics": [
+        "compliance history diligence",
+        "pre-close and post-close coding audits",
+        "billing under the wrong enrollment",
+        "MSO structure, corporate practice and kickback review",
+        "compliance hotline"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.04,
+      "topics": [
+        "acquiring practices",
+        "roll-up pace versus integration capacity"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.02,
+      "topics": [
+        "charge-capture mapping and testing during system change",
+        "coding audit for under-coding and exposure"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.02,
+      "topics": [
+        "open authorization inventory and transfer"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Use the seven diligence areas as an annual sale-readiness self-audit and keep the 24 requested documents current in a standing data room.",
+      "why": "A buyer will ask for exactly these items; clean, trended answers shorten diligence and defend price.",
+      "applies_to_practice": "yes",
+      "note": "Add what the document omits: six years of audit and overpayment history, Medicare Advantage and Medicaid plan agreements, medical-director contracts, and documentation of the AI billing controls."
+    },
+    {
+      "idea": "Keep a payer contract and enrollment register: contracting entity, tax ID and NPI linkage, effective and renewal dates, assignment and change-of-control terms, fee schedule, pay-to address.",
+      "why": "Contract and enrollment gaps are the main way revenue is interrupted in any ownership or entity change, and the register is also the base for rate analysis.",
+      "applies_to_practice": "yes",
+      "note": "Cover Medicare (First Coast), each Medicare Advantage plan, Florida Medicaid plans, VA Community Care and Tricare; confirm against PECOS and each plan's roster rather than memory."
+    },
+    {
+      "idea": "Value receivables at net realizable value by payer and age bucket using the practice's own liquidation history, never at face value.",
+      "why": "Aged balances overstate worth; a tested collectibility curve is both a deal tool and a monthly CFO control.",
+      "applies_to_practice": "yes",
+      "note": "Build the curve from AdvancedMD data on expected net payment, not gross charges, and ignore the document's generic percentages."
+    },
+    {
+      "idea": "In an asset deal, default to the seller keeping pre-close receivables so the buyer starts with a clean ledger.",
+      "why": "Removes collectibility disputes and sidesteps the problem that government-payer receivables cannot simply be redirected to a buyer.",
+      "applies_to_practice": "partly",
+      "note": "Relevant only at a sale or purchase; needs a written rule for misdirected payments and for who works the old claims."
+    },
+    {
+      "idea": "Apply the 'what breaks if this person leaves tomorrow' test and document every revenue-cycle workflow.",
+      "why": "Undocumented knowledge is a continuity risk and a valuation discount; buyers pay for process that runs without specific individuals.",
+      "applies_to_practice": "yes",
+      "note": "Here the dependency is the owner plus the AI agent stack: keep runbooks, an access and credential inventory, a vendor and BAA list, and evidence the process runs without the owner."
+    },
+    {
+      "idea": "Start enrollment and payer work well before any effective date, with one accountable lead, a tracker and dated milestones.",
+      "why": "Enrollment lead times, not the signing date, determine when cash starts to flow.",
+      "applies_to_practice": "partly",
+      "note": "Useful when adding a clinician, forming a new entity or merging. Follow actual Medicare filing windows (about 60 days ahead for physician and group applications) rather than the document's 90+ days."
+    },
+    {
+      "idea": "For any change of entity, tax ID, bank account, clearinghouse or system, use a written cutover checklist and verify identifiers on the first claim batch before it is sent.",
+      "why": "A wrong tax ID or NPI on claims is the classic silent failure; catching it on day one costs minutes instead of weeks of rejections.",
+      "applies_to_practice": "partly",
+      "note": "Extend the checklist with EDI, remittance and EFT enrollments, the Medicare EFT form, NPPES and CAQH updates, which the document leaves out."
+    },
+    {
+      "idea": "After any cutover, confirm every day for 30 days that claim counts, rejections and denials match the pre-change baseline, with one named owner.",
+      "why": "Active confirmation finds a stalled claim stream in a day rather than at month-end.",
+      "applies_to_practice": "yes",
+      "note": "Well suited to automated monitoring by the billing agents, and worth keeping as a standing control rather than a transition-only task."
+    },
+    {
+      "idea": "Never migrate and retire a system in one step: run old and new in parallel and reconcile claims, payments and denials daily until clean.",
+      "why": "Migration errors are cheap to fix while both systems run and expensive once the legacy record is gone.",
+      "applies_to_practice": "partly",
+      "note": "Applies if AdvancedMD or the agent platform is ever replaced; keep read-only access for the full record-retention period."
+    },
+    {
+      "idea": "Capture a KPI baseline before any change, then report at 30 and 90 days against baseline and benchmark, ending with the top three opportunities sized in dollars.",
+      "why": "Turns integration or improvement work into a documented trend, which is what exit buyers reward.",
+      "applies_to_practice": "yes",
+      "note": "A usable skeleton for an optimization-service engagement and for the practice's own quarterly review; pair it with an independent coding audit before going to market."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The practice is not in a transaction and is too small for most of the buy-side machinery, and the text assumes office-based billing staff, prior authorizations and point-of-service payments that barely exist in facility-based geriatrics run by AI agents. The value is indirect but real: (1) the seven diligence areas are what a buyer will ask of this practice, so they work as a sale-readiness audit; (2) the cutover discipline applies to any future entity, tax ID, bank, clearinghouse or system change and to absorbing another physician's facility panel; (3) the phased structure is a workable skeleton for an optimization service. The Medicare section, which matters most at about 55% fee-for-service, is the weakest part and should not be relied on.",
+    "sections_that_do_not_apply": [
+      "Section 10 private-equity and multi-site roll-up material (portfolio reporting, acquisition pace), except the exit-diligence note",
+      "Section 7 retention bonuses and buddy system for billing staff (billing is run by AI agents); only the knowledge-concentration idea carries over",
+      "Section 4 authorization-workflow continuity (facility-based evaluation and management work has little prior authorization)",
+      "Section 4 patient-balance handling at post-close visits (no front desk, almost no point-of-service collections)",
+      "Section 6 EHR-to-PMS charge-capture integration as written (facility rounding charge capture works differently) and multi-platform migration choices",
+      "Section 5 commercial master-contract novation and rate arbitrage (payer mix is Medicare, Medicare Advantage, Medicaid, VA and Tricare)",
+      "Section 2 worked examples sized for a $4M commercial-style practice"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Medicare gap is mischaracterized. The text says claims under the new entity are rejected for 30-90 days and suggests pricing that as lost revenue or 'negotiating a retroactive billing arrangement'. For physician groups, 42 CFR 424.520(d) sets the billing effective date at the later of the filing date of an application that is later approved or the date services began at the location, and 424.521(a) allows up to 30 days of retrospective billing. Claims are normally held and released after approval within the one-year filing limit. That is a cash-timing issue, not lost revenue, and there is nothing to negotiate with Medicare.",
+      "Advice to file PECOS 90+ days before close (timeline: applications in by T-75) collides with CMS enrollment processing rules: a contractor may return a CMS-855B or 855I received more than 60 days before the effective date listed (Program Integrity Manual; First Coast lists this among its top immediate-return reasons; the 180-day window is for 855A filers, surgery centers and portable x-ray). A returned application has no appeal rights and loses its filing date. Confirm against current 42 CFR 424.526, but as written the advice is risky.",
+      "Medicare section never separates an equity purchase (same tax ID and enrollment; ownership change reportable within 30 days under 42 CFR 424.516(d)) from an asset purchase with a new tax ID (new group enrollment, reassignments, new EFT authorization, new participation agreement). 'Enroll under its own NPI and PTAN' is loose: the contractor issues the PTAN as a result of enrollment. It also omits that a newly enrolled group must elect participating status or be paid at the lower non-participating rate.",
+      "The blanket ban on billing under the seller's credentials is right for a new-tax-ID asset deal but is stated without the equity-deal case, and the False Claims Act label is asserted without the underlying enrollment and reassignment rules.",
+      "Liability framing is incomplete. It says pre-close problems can become the buyer's in an asset deal but never says an equity buyer inherits all of them, nor that asset buyers are generally shielded unless they assume liabilities or a successor doctrine or state rule applies (Florida Medicaid's change-of-ownership provisions in s. 409.907 should be checked). The 60-day overpayment report-and-return duty that attaches once a buyer identifies an overpayment is never mentioned.",
+      "Three-year compliance lookback is too short: the Medicare overpayment lookback is six years and False Claims Act limitation periods run six to ten years.",
+      "Receivable collectibility percentages are called 'standard' with no source. The 120-plus range of 20-40% looks optimistic for a small practice, and the text never says whether the percentages apply to gross charges or expected net payment. Most practice-management systems carry receivables at gross charges, so applying 95-98% to a gross 0-30 bucket would overstate value several-fold.",
+      "Buying receivables: no mention that Medicare and Medicaid payments must go to the supplier that furnished the service (42 CFR 424.73 and 424.80), so purchased government receivables need a seller-collects-and-remits or lockbox arrangement.",
+      "Collection-rate gap arithmetic is wrong in form. The 6-point gap is multiplied by collections ($240K on $4M); scaling the collectible base gives $4M / 0.91 x 0.97 - $4M, about $264K. More important, it assumes the whole gap to 97% is recoverable regardless of payer mix and patient-responsibility share.",
+      "The present-value example ($240K gap, 18 months, $40K cost, 10% rate, about $195K) cannot be reproduced from its inputs by any straightforward method (18 months of gap discounted is roughly $330K; one year's gap discounted 18 months is roughly $208K). Calling a forward revenue gap a 'working capital adjustment' misuses a term that means truing up delivered working capital against a target. If price is a multiple of actual earnings, under-collection is already in the price; deducting it again double-counts.",
+      "'Novation' is misdefined. Legally it substitutes a new party into the existing contract by consent of all parties, with terms carried over. What the text describes (moving onto the buyer's contract and rates) is its own third option. It also says assignment transfers 'credentialing', which it does not; provider credentialing and tax-ID linkage are processed separately.",
+      "Claim that most large commercial payers will issue gap letters is unsupported and optimistic. 'Gap letter' and 'letter of authorization' are not standard payer instruments; payers often refuse consent, hold acquired sites on legacy rates, or reprice. The 'rate opportunity' advice ignores contract clauses that keep acquired practices on their old rates.",
+      "Remittance advice is confused with funds transfer throughout ('ERA deposits'). Bank changes are EFT enrollments, which for Medicare go through enrollment on the EFT authorization form, not a portal edit, and payer EFT changes often take weeks. A new tax ID needs new EDI, remittance and EFT enrollments per payer; the checklist treats this as a quick update.",
+      "Retention bonus called 'standard' pays half at close, before any retention has happened; typical agreements back-load payment. No source.",
+      "Pre-close steps ignore legal limits: payer contracts usually bar sharing rates with a prospective buyer, competitors exchanging rate data or directing the seller's workflow before close raises antitrust gun-jumping risk, and claim samples and system access require HIPAA-compliant handling. Only a generic disclaimer covers this.",
+      "All benchmarks (net collection 97%+ as top quartile, AR over 90 days under 12%, clean claims over 96%, days in AR under 35) carry no source, date or specialty adjustment.",
+      "MSO description fits corporate-practice-of-medicine states but is presented as near-universal; state rules vary and Medicare's conditions on billing agents that receive payments (42 CFR 424.73) are not mentioned."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Says Medicare and Medicaid enrollment are the slowest processes, yet gives Medicare 30-60 days and commercial 60-120 days in the same paragraph.",
+      "Medicare gap is 30-60 days in the body text and 30-90 days in the warning box a few lines later.",
+      "Payer portals are checked daily in Section 4 but weekly in Section 8; the denial trigger is any rise above baseline in Section 4 but 10% in Section 8, while its own example baseline is 8-10%.",
+      "A 92-94% net collection rate is 'average' in Section 2 but sits in the scorecard column the text calls a below-average operation.",
+      "Scorecard column headed 'Acquired Practice' is pre-filled with a hypothetical weak profile, and the 'Industry Median' column readers are told to plot against is entirely blank.",
+      "Novation (option 2) is described as joining the buyer's existing contract, which is option 3; the four 'paths' are not distinct.",
+      "Section 2 first says the lower-collection-rate practice with identical collections is worth less, then says it can justify a higher price; the first claim ignores that equal cash flow with more upside is not worth less.",
+      "Diligence runs to 45 days before close and ends in a go/no-go decision, yet enrollment applications are due 75 days out and all payers are to be notified by 45 days out, before the decision diligence is meant to inform.",
+      "Coding audit is complete by day 90 in Section 8, the timeline and the checklist, but scheduled for 90-120 days after close in Sections 9 and 10.",
+      "Day-one checklist says to notify all payers of the tax ID change, while Section 5 says Medicare cannot be handled by notification at all.",
+      "Headline is seven domains; the document request list has six categories, with technology folded into billing operations.",
+      "End note says figures are labeled as public benchmarks or vendor-observed patterns 'throughout'; not one figure carries either label, and the front disclaimer attributes the same numbers to general market experience.",
+      "Front matter addresses buyers and private-equity operators; the end note calls it guidance for independent practice teams."
+    ],
+    "time_sensitive_or_outdated": [
+      "Medicare enrollment mechanics (PECOS processing times, early-filing limits, forms such as reassignment now handled through the individual application) change often; nothing is dated or cited, so every timeline needs checking against current CMS and First Coast guidance.",
+      "State oversight of private-equity and MSO arrangements expanded in 2025-2026 (transaction-notice laws and limits on MSO control in states such as Oregon, California and Massachusetts); Section 10 offers only 'consult counsel'.",
+      "The Medicare 60-day overpayment rule was amended effective January 2025 (knowledge standard and investigation window); the document is silent on overpayments discovered in or after a deal.",
+      "Credentialing and novation lead times (60-120 days) and all KPI benchmarks are undated; payer processing times shift year to year.",
+      "Restrictive-covenant law moved in 2024-2025 (federal non-compete rule struck down; Florida's 2025 statute strengthening certain covenants); the document says nothing on covenants for sellers or retained clinicians."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, client example, citation, form number or regulation anywhere in 36 pages.",
+      "Stock rhetorical cadence: repeated 'not this, not that, but this' constructions and clipped triplets such as the closing lines about the timeline, checklists and work.",
+      "The same content is delivered three times (section prose, timeline table, appendix checklist); the day-one checklist appears twice almost word for word.",
+      "A table shipped with an entire column of dashes and a mislabeled column, template residue an expert editor would have caught.",
+      "Round, evenly spaced ranges that look invented (15-25%, 60-90 days, 95-98/85-90/70-80/50-65/20-40) and a worked example whose answer does not follow from its inputs.",
+      "Disclaimer asserts labeling conventions that do not exist in the body; two disclaimers describe the data's origin differently.",
+      "Cross-sells six other titles in place of content (the negotiation framework and performance-management system are 'see the other playbook').",
+      "Confident universal claims ('most large commercial payers will', acquisitions fail in the revenue cycle 'more often than anywhere else') with no evidence."
+    ],
+    "missing_for_real_use": [
+      "Medicare mechanics: group and individual enrollment applications, reassignment, EFT authorization, participation election, effective-date and retrospective-billing rules, 30-day ownership-change reporting, a claim-hold procedure, contractor-specific processing.",
+      "Medicaid specifics: state change-of-ownership notice and liability rules (for Florida, s. 409.907 and managed-care plan recredentialing).",
+      "Medicare Advantage, Tricare and VA Community Care transition steps; effects of a tax ID change on value-based contracts, ACO participant lists and MIPS.",
+      "Deal-structure basics: equity versus asset consequences for enrollment, contracts, liabilities and tax; purchase price allocation; escrow or holdback sizing; tail malpractice coverage.",
+      "Any actual template: payer notification letter, interim-coverage request, credentialing tracker, the promised two-to-three-page day-one protocol, retention agreement, representation and warranty language, migration test plan, baseline KPI report. Only lists are supplied.",
+      "Definitions and formulas for every KPI it relies on, and a real scoring method for the 'scorecard'.",
+      "Valuation mechanics despite the section title: earnings normalization, multiples, how revenue-cycle findings flow into quality of earnings, and any sell-side preparation guidance.",
+      "HIPAA handling of diligence data, payer-contract confidentiality, antitrust limits on pre-close coordination, records custody and retention periods, patient notification, restrictive covenants.",
+      "What to do when diligence or a post-close audit finds overpayments: the 60-day rule, self-disclosure options, and who refunds.",
+      "EDI, remittance and EFT enrollment lead times per payer under a new tax ID; NPPES and CAQH updates; facility privileges and medical-director contract assignment; CLIA and DEA where relevant.",
+      "Anything for small or facility-based deals: taking over a retiring physician's nursing-home panel, census transfer, care-management consents, physician versus nurse-practitioner billing.",
+      "Automation: nothing on AI or outsourced billing vendors, business associate agreements, credential and access transfer, or how to diligence an automated billing operation.",
+      "Budgets and staffing: no integration cost ranges, effort estimates or guidance on scaling the method down to a one- or two-clinician practice."
+    ]
+  }
+}

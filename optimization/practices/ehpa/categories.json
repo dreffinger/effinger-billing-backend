@@ -1,0 +1,1230 @@
+[
+ {
+  "category_slug": "sg-ownership-entity",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "One owner, a Florida professional association taxed as an S corporation. The structure suits the practice. The loose ends are the money the owner owes the corporation and the lack of a document saying who has authority if the owner cannot act.",
+  "evidence": [
+   "Files Form 1120-S",
+   "Shareholder loan receivable $162,121 at September 30, 2026 (it was $288,420 at the end of 2023)"
+  ],
+  "next_step": "Ask the accountant how to retire the shareholder loan, and confirm the annual report and governing documents are current."
+ },
+ {
+  "category_slug": "sg-strategy-plan",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Revenue fell 46% from 2023 to 2025 and is recovering in 2026. No written plan says which sites, services and clinicians carry the next three years, or when the owner intends to step back.",
+  "evidence": [
+   "Net revenue $1,727,834 (2023), $1,206,210 (2024), $924,915 (2025), $803,006 in nine months of 2026",
+   "Medical director stipends fell from $185,300 (2023) to $24,000 in nine months of 2026"
+  ],
+  "next_step": "Write a one-page plan with three numbers: revenue target, clinician count and exit horizon."
+ },
+ {
+  "category_slug": "sg-operating-rhythm",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Billing runs every 2 to 6 hours and a dashboard shows the results, which is ahead of most small practices. What is missing is a monthly owner review that puts billing, finance and compliance on one page and records decisions.",
+  "evidence": [
+   "Financial statements arrive quarterly",
+   "No budget to compare against"
+  ],
+  "next_step": "Hold a 45-minute review in the first half of every month using the scorecard page."
+ },
+ {
+  "category_slug": "sg-decision-rights",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The billing agents follow a written rulebook, so decisions are consistent and logged. Some rules carry audit risk and were written without a coder's or attorney's review: automatic write-offs, re-dating and resending care-management claims, and how visit levels reach the claim.",
+  "evidence": [
+   "$40,686 of balances over a year old written off on November 2, 2026 under a standing rule",
+   "A frequency denial on a care-management claim is re-dated to month end and resent"
+  ],
+  "next_step": "Have the outside coding auditor and the attorney read the high-risk rules before they run again."
+ },
+ {
+  "category_slug": "sg-key-relationships",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Revenue depends on a few relationships the practice does not own. One hospital is 37.8% of charges and the top three sites are 64.8%. Contracts and renewal dates are not in one place.",
+  "evidence": [
+   "Largest sites by charges: 37.8%, 17.6%, 9.4%",
+   "Two medical director stipends in 2026, five or more in 2023"
+  ],
+  "next_step": "Build a contract register and name an owner and a next contact date for each site."
+ },
+ {
+  "category_slug": "sg-continuity-succession",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The owner produces 76.8% of charges and holds the relationships, the finances and the billing rulebook. Nothing on file says who signs, who covers the patients and who runs billing if the owner is out for three months.",
+  "evidence": [
+   "Physician 76.8% of charges, nurse practitioner 23.2%"
+  ],
+  "next_step": "Write a two-page emergency plan: covering physician, account access, and who is authorized to act."
+ },
+ {
+  "category_slug": "sg-advisors",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "An accounting firm prepares the statements. The risk review calls for two advisors the practice does not appear to have engaged: a healthcare attorney and an independent certified coding auditor.",
+  "evidence": [
+   "Legal and accounting spend fell from $77,834 (2024) to $28,086 (2025)"
+  ],
+  "next_step": "Engage both this month. Have the attorney hire the auditor so the audit is privileged."
+ },
+ {
+  "category_slug": "fm-bookkeeping-close",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Books are cash basis, prepared quarterly by the accountant and not audited or reviewed. There is no monthly close, and the accounting software is not connected to the practice database.",
+  "evidence": [
+   "Statements labelled not audited, reviewed or compiled",
+   "QuickBooks connection needs to be re-authorized"
+  ],
+  "next_step": "Close the books by the 15th of each month and reconnect the accounting software."
+ },
+ {
+  "category_slug": "fm-statements-ratios",
+  "applicability": "core",
+  "status": "green",
+  "priority": 3,
+  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage, about $170,000 remains, a 17% margin.",
+  "evidence": [
+   "Operating margin before owner pay 55.3%",
+   "Net income $336,858 after recorded doctor pay of $217,296"
+  ],
+  "next_step": "Add the monthly income statement and balance sheet to the scorecard."
+ },
+ {
+  "category_slug": "fm-budget-forecast",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "There is no budget. Medicare's 2027 fee schedule cuts the conversion factor 2.31%, and one site is more than a third of charges, so a plan with scenarios is worth an afternoon.",
+  "evidence": [
+   "About $13,000 a year at stake from the 2027 conversion factor alone"
+  ],
+  "next_step": "Build a 2027 budget with three cases: steady, loss of the largest site, and a second nurse practitioner."
+ },
+ {
+  "category_slug": "fm-cash-treasury",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Cash covers about 48 days of spending. That is thin for a practice whose largest payer can pause payments during an audit.",
+  "evidence": [
+   "Cash $94,431 at September 30, 2026",
+   "Owner salary and distributions were $311,241 in nine months"
+  ],
+  "next_step": "Set a floor of 90 days of cash and keep a 13-week cash forecast."
+ },
+ {
+  "category_slug": "fm-debt-capital",
+  "applicability": "core",
+  "status": "red",
+  "priority": 2,
+  "assessment": "The practice carries $187,206 at 13.99%, which costs about $30,000 a year. Earnings cover the payments several times over, so this debt can be refinanced or paid down.",
+  "evidence": [
+   "Interest expense $29,799 in the last twelve months",
+   "Earlier merchant-cash-advance notes were paid off in 2024"
+  ],
+  "next_step": "Ask two banks for a term-loan quote. Each point of rate saved is about $1,900 a year."
+ },
+ {
+  "category_slug": "fm-owner-comp-tax",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The owner takes $180,000 a year in salary and more than that in distributions. Tax rules expect an owner who works full time in an S corporation to take reasonable pay as wages, and market pay for this work is roughly $300,000 to $340,000.",
+  "evidence": [
+   "Nine months of 2026: salary $135,000, distributions $176,241",
+   "Shareholder loan receivable $162,121"
+  ],
+  "next_step": "Review salary level, the shareholder loan and estimated taxes with the accountant before year end."
+ },
+ {
+  "category_slug": "fm-overhead-costs",
+  "applicability": "core",
+  "status": "green",
+  "priority": 3,
+  "assessment": "Operating cost is 44.7% of revenue, down from 56.7% in 2025, because staffing is lean and billing is automated. The one line moving the wrong way is billing software and services.",
+  "evidence": [
+   "Staff pay and benefits 23.3% of revenue, including the nurse practitioner",
+   "Billing cost 6.3% of collections over twelve months, 8.7% in the third quarter of 2026"
+  ],
+  "next_step": "Review each software subscription and usage charge once a quarter."
+ },
+ {
+  "category_slug": "fm-service-line-profit",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Revenue is not yet split by line of work. By charges, the hospital is 37.8%, nursing facilities 42.6% and assisted living 19.3%. Care management is nearly half of October's charges but is paid less than half the time.",
+  "evidence": [
+   "Care-management charges about $76,000 of October's $164,832",
+   "Median paid per visit: hospital follow-up $85, nursing facility follow-up $66"
+  ],
+  "next_step": "Report collections and clinician days by line each month, then decide what to grow."
+ },
+ {
+  "category_slug": "fm-internal-controls",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Software posts payments and writes off balances under standing rules, and one person approves everything. The last treasury check found deposits with no remittance and remittances with no deposit.",
+  "evidence": [
+   "$12,902 of Medicare deposits had no matching remittance",
+   "Remittances from one large plan arrived with no money landing"
+  ],
+  "next_step": "Have the accountant reconcile the bank each month, and sign off write-offs monthly."
+ },
+ {
+  "category_slug": "fe-encounter-source",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The census comes from the rounding tool and flows into the billing system automatically. No daily check yet proves that every patient seen at every site has a charge.",
+  "evidence": [
+   "775 encounters entered in October 2026 across 13 sites"
+  ],
+  "next_step": "Compare each day's visit count by site with the charges entered, and list the gaps."
+ },
+ {
+  "category_slug": "fe-registration",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Patient and policy details come from facility face sheets, which are often incomplete. Missing information is the most common first denial reason in the register.",
+  "evidence": [
+   "163 of 1,356 denied visits had missing information as the first reason"
+  ],
+  "next_step": "Refuse to release a claim until subscriber number, plan and date of birth pass an eligibility check."
+ },
+ {
+  "category_slug": "fe-eligibility",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "This is the largest fixable leak. Two thirds of coverage cards are unverified, one charge in nine has no payer when entered, and coverage problems are about 31% of denied visits.",
+  "evidence": [
+   "342 of 493 coverage cards still in work",
+   "11.2% of charges had no payer recorded",
+   "419 of 1,356 denied visits were coverage or payer-order problems"
+  ],
+  "next_step": "Finish the coverage refresh, then re-verify every active patient on the first of each month."
+ },
+ {
+  "category_slug": "fe-coverage-status",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "For nursing facility residents, three facts decide who pays and how much: whether the resident is in a Medicare Part A skilled stay, whether hospice has been elected, and whether a Medicare Advantage plan has started. None of the three is captured today.",
+  "evidence": [
+   "Every nursing facility visit is billed as a Part A skilled stay",
+   "31 hospice denials and 68 Medicare Advantage denials in the register"
+  ],
+  "next_step": "Get a weekly census from each facility showing payer and skilled-stay status, and store it with the patient."
+ },
+ {
+  "category_slug": "fe-authorization",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Visits rarely need prior authorization, but two groups do get denied for it: Veterans Affairs community care, which needs an authorization number, and HMO plans that reject hospital visits by a physician who is not the assigned primary care doctor.",
+  "evidence": [
+   "34 visits denied as not payable under a managed care contract, 36 as out of network or needing a referral"
+  ],
+  "next_step": "Write one rule per plan saying what it needs before a hospital or admission visit is billed."
+ },
+ {
+  "category_slug": "fe-financial-clearance",
+  "applicability": "minor",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Little applies. There are no scheduled self-pay services, and Advance Beneficiary Notices are rarely needed for visits."
+ },
+ {
+  "category_slug": "fe-pos-collections",
+  "applicability": "not_applicable",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Does not apply. There is no front desk, and most patients have Medicare with a secondary payer or Medicaid."
+ },
+ {
+  "category_slug": "cc-charge-capture",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Charges reach the billing system quickly. What is not known is how many billable services never become charges. No wellness visits or transitional care services appear at all.",
+  "evidence": [
+   "Missed-charge rate not measured",
+   "No annual wellness visit or transitional care codes in the feed"
+  ],
+  "next_step": "Start the daily census-to-charge reconciliation and review a week of gaps with both clinicians."
+ },
+ {
+  "category_slug": "cc-charge-lag",
+  "applicability": "core",
+  "status": "green",
+  "priority": 4,
+  "assessment": "Fast. Half of charges are entered within 3 days of the visit and nine in ten within 5 days.",
+  "evidence": [
+   "Median 3 days, 90th percentile 5 days",
+   "MGMA measured 7.75 days across practices in 2022"
+  ],
+  "next_step": "Keep it. Report the 90th percentile monthly so a slow week shows."
+ },
+ {
+  "category_slug": "cc-visit-leveling",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The practice bills the highest or second-highest level on nearly every visit. That may reflect very sick patients, but no auditor's software will accept it without charts, and nothing has been tested.",
+  "evidence": [
+   "Subsequent hospital care at the top level 73.7% of the time, national 37.2%",
+   "Initial hospital care 100% top level, national 59.5%",
+   "Subsequent nursing facility care 95.6% at the second-highest level, national 48.8%",
+   "In CMS data the physician's top-level share of hospital follow-ups was 64.5% in 2023 and 1.3% in 2024"
+  ],
+  "next_step": "Commission an outside audit of 10 notes per code family per clinician, through the attorney."
+ },
+ {
+  "category_slug": "cc-documentation",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 1,
+  "assessment": "Not tested. Whether the notes support the levels and the time-based services billed is the central open question for this practice.",
+  "evidence": [
+   "No chart audit on record"
+  ],
+  "next_step": "Answer it with the outside audit."
+ },
+ {
+  "category_slug": "cc-place-of-service",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and care management about a third less, so the practice has been underpaid on its long-term residents.",
+  "evidence": [
+   "Place of service 32 was never used",
+   "Care management paid $63 at the facility rate on 32 lines and $112 at the non-facility rate on 12 lines"
+  ],
+  "next_step": "Set the place of service per visit from each facility's skilled-stay census."
+ },
+ {
+  "category_slug": "cc-who-bills",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The nurse practitioner bills under her own number, which is correct. She also billed 10 of the 19 initial nursing facility visits. That is allowed for a medically necessary first evaluation, but in a skilled stay the physician must still personally do the required comprehensive visit within 30 days.",
+  "evidence": [
+   "CMS data: the nurse practitioner billed the top initial nursing facility code 37 times in 2023 and 129 times in 2024"
+  ],
+  "next_step": "For each skilled admission, record the date of the physician's own comprehensive visit."
+ },
+ {
+  "category_slug": "cc-modifiers-edits",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Edit denials are a small but steady drain: duplicates, monthly frequency limits, add-on codes not paid separately, and hospice patients billed without the hospice modifier.",
+  "evidence": [
+   "18 duplicate and 6 frequency denials among recent zero-paid lines",
+   "31 hospice denials in the register"
+  ],
+  "next_step": "Add scrubber rules for one care-management claim per patient per month and for the hospice modifiers."
+ },
+ {
+  "category_slug": "cc-diagnosis-coding",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Not reviewed. The patients are complex, with average risk scores above 2, so specific diagnoses matter for medical necessity and for any future value-based contract.",
+  "evidence": [
+   "Average risk score 2.10 to 2.27 in 2024 CMS data"
+  ],
+  "next_step": "Include diagnosis specificity in the outside audit."
+ },
+ {
+  "category_slug": "cc-time-based-codes",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Complex chronic care management is billed for 257 patients a month, usually with the add-on code. Each claim says the practice's own staff spent at least 60 minutes on that patient that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 staff hours a month.",
+  "evidence": [
+   "257 patients billed the complex code in October 2026, 213 with the add-on",
+   "42% of lines paid since June 2026",
+   "Nationally the complex code is about 8% of care-management claims"
+  ],
+  "next_step": "Pause automatic billing of the complex code until each claim is backed by consent, a care plan and a dated time log."
+ },
+ {
+  "category_slug": "cc-fee-schedule",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Charges for the main visit codes run about 1.3 to 1.8 times Medicare. For years the care-management charge was set at the Medicare allowed amount, which capped what any better-paying plan could pay.",
+  "evidence": [
+   "Care-management charge $135 against $130 allowed in 2022 and 2023, $206 now"
+  ],
+  "next_step": "Reset every charge above the highest contracted rate, commonly 150% to 200% of Medicare, each January."
+ },
+ {
+  "category_slug": "ar-claim-submission",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid on the first pass, against 86% to 88% reported by billing companies.",
+  "evidence": [
+   "218 of 311 primary lines paid, service since August 1, 2026",
+   "13,385 claims sent since July 2026, including mass re-sends of old claims"
+  ],
+  "next_step": "Track first-pass payment by payer every week and fix the top reason each month."
+ },
+ {
+  "category_slug": "ar-rejections",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Rejections are worked but not counted, so there is no trend. One enrollment rejection for electronic claims is open with a military plan.",
+  "evidence": [
+   "Claim inspector queue was 2 after the last run"
+  ],
+  "next_step": "Log each rejection with its reason so the rate can be reported."
+ },
+ {
+  "category_slug": "ar-payment-posting",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Posting is current. The weak spots are remittances that fail automatic posting, one plan that pays by paper check, and one plan whose electronic remittance enrollment was rejected.",
+  "evidence": [
+   "Unposted remittances $0 at the last run",
+   "Eight remittances, 188 lines, failed automatic posting in the month reviewed"
+  ],
+  "next_step": "Finish electronic remittance and deposit enrollment for every payer."
+ },
+ {
+  "category_slug": "ar-deposit-reconciliation",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Money and remittances do not fully match. In one month, Medicare deposits arrived with no remittance, a large plan's remittances arrived with no deposit, and six payers deposited nothing.",
+  "evidence": [
+   "$12,902 of Medicare deposits unmatched",
+   "Six payers with no deposits in the month"
+  ],
+  "next_step": "Match every deposit to a remittance weekly and call the payer on anything unmatched for 10 days."
+ },
+ {
+  "category_slug": "ar-followup",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Receivables are high and growing: $342,620 open, 35.4% of it older than 90 days, up about 25% in five weeks.",
+  "evidence": [
+   "Open receivables rose from $272,000 to $340,000 between October 5 and November 9, 2026",
+   "$65,431 was tagged correct-and-resend in October"
+  ],
+  "next_step": "Work the correct-and-resend list first, oldest filing deadline first."
+ },
+ {
+  "category_slug": "ar-denials",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Nearly three in ten recent primary lines paid nothing. The reasons are mostly upstream: coverage, payer order, missing information and services a plan will not pay this practice for.",
+  "evidence": [
+   "29.9% of primary lines paid zero, service since August 1, 2026",
+   "74 actionable denials worth $13,463 after the last run"
+  ],
+  "next_step": "Report denials by root cause and payer each month and assign one fix per month."
+ },
+ {
+  "category_slug": "ar-appeals",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Denials are corrected and resent, but formal appeals are not tracked, so nobody knows how often the practice wins or which plans to press.",
+  "evidence": [
+   "184 denied visits resubmitted, $42,557 still open"
+  ],
+  "next_step": "Log each appeal with its deadline and result, starting with Medicare Advantage hospital-visit denials."
+ },
+ {
+  "category_slug": "ar-underpayments",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Cannot be measured until contracted rates are loaded. One pattern is visible: care management paid at the lower facility rate on most lines.",
+  "evidence": [
+   "No fee schedules on file"
+  ],
+  "next_step": "Load the Medicare fee schedule and each plan's rates, then flag any payment below them."
+ },
+ {
+  "category_slug": "ar-secondary-crossover",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "About four in ten Medicare patients also have Medicaid. Much of that coinsurance is legally uncollectible, and the rest depends on Medicaid enrollment staying current.",
+  "evidence": [
+   "39 recent lines carried the prior-payer adjustment code",
+   "The physician's Medicaid provider agreement renewal is due December 1, 2026"
+  ],
+  "next_step": "Post uncollectible dual-eligible coinsurance as contractual, and renew Medicaid on time."
+ },
+ {
+  "category_slug": "ar-patient-billing",
+  "applicability": "minor",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Small. Few patients owe a balance the practice may collect. No statement process is on record.",
+  "evidence": [
+   "90 denied visits were tagged patient responsibility"
+  ],
+  "next_step": "Decide a small-balance policy and send statements quarterly."
+ },
+ {
+  "category_slug": "ar-credit-balances",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Not measured. Credits owed to Medicare must be returned within 60 days of being identified, so they need a monthly look.",
+  "next_step": "Run a credit balance report each month and refund within 30 days."
+ },
+ {
+  "category_slug": "ar-writeoffs-timely",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Write-offs are large and include avoidable ones. The net collection rate, the measure that would show how much collectible money is lost, cannot yet be calculated.",
+  "evidence": [
+   "100 denied visits had timely filing as the first reason",
+   "$40,686 written off in one batch on November 2, 2026"
+  ],
+  "next_step": "Pull payments, adjustments and write-offs by month of service from the billing system and compute the net collection rate."
+ },
+ {
+  "category_slug": "pc-payer-mix",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Medicare fee-for-service is 55.5% of charges, Medicare Advantage about 22% and Medicaid plans about 9%. Medicare pays fastest and most reliably. Its rates fall again in 2027.",
+  "evidence": [
+   "Lead payer shares by charges, October 2026"
+  ],
+  "next_step": "Report collections per visit by payer so the weak plans are visible."
+ },
+ {
+  "category_slug": "pc-contract-inventory",
+  "applicability": "core",
+  "status": "red",
+  "priority": 2,
+  "assessment": "No payer contract or fee schedule is stored where anyone can check a payment against it. One commercial plan terminated the practice in August 2026 after a missed recredentialing.",
+  "evidence": [
+   "A commercial plan's termination took effect August 31, 2026"
+  ],
+  "next_step": "Request a current contract and fee schedule from every plan and file them in one folder."
+ },
+ {
+  "category_slug": "pc-rate-negotiation",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Not yet possible to judge. Plan volumes are small, which limits bargaining power, but the local HMO and the largest Medicare Advantage plans are worth a request once rates are known.",
+  "next_step": "After the contracts are in, compare each plan's top ten codes with Medicare."
+ },
+ {
+  "category_slug": "pc-credentialing",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Enrollment problems are costing money now. At least nine are open across the two clinicians, and one deadline is three weeks away.",
+  "evidence": [
+   "Florida Medicaid provider agreement renewal due December 1, 2026",
+   "Nurse practitioner's Medicaid revalidation returned incomplete",
+   "Railroad Medicare claims are written off because the practice is not enrolled",
+   "108 denied visits tagged credentialing"
+  ],
+  "next_step": "File the Medicaid renewal this week, then clear the list in order of dollars affected."
+ },
+ {
+  "category_slug": "pc-medicare-ffs",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Medicare's 2027 rule cuts the conversion factor 2.31% and changes practice expense for visits to patients in a skilled stay. The 2026 rule already lowered payment for services in facility settings. Nobody has repriced the practice's top codes.",
+  "evidence": [
+   "2027 conversion factor $32.63",
+   "About $13,000 a year at stake from the conversion factor alone"
+  ],
+  "next_step": "Reprice the top 15 codes at 2027 rates by site of service before January."
+ },
+ {
+  "category_slug": "pc-medicare-advantage",
+  "applicability": "core",
+  "status": "red",
+  "priority": 2,
+  "assessment": "Plans deny hospital and admission visits as not payable under their contracts, and residents switch plans mid-year without notice. There is no dispute routine.",
+  "evidence": [
+   "34 visits denied as not payable under a managed care contract",
+   "68 visits denied because the patient was in a Medicare Advantage plan"
+  ],
+  "next_step": "For each plan, confirm network status and the rule for hospital visits, then dispute what was denied wrongly."
+ },
+ {
+  "category_slug": "pc-medicaid-duals",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Dual-eligible patients are a large share of the census. Florida Medicaid pays little or nothing on Medicare coinsurance, one long-term care plan pays by paper check, and care management is never billed to Medicaid.",
+  "evidence": [
+   "32% to 50% of the two clinicians' Medicare patients were dual eligible in 2024",
+   "$26,640 open with one Medicaid long-term care plan"
+  ],
+  "next_step": "Keep both clinicians' Medicaid enrollment current and move the paper-check plan to electronic payment."
+ },
+ {
+  "category_slug": "pc-policy-monitoring",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Rules reach the billing rulebook after a denial teaches them. No one reads the Medicare contractor's bulletins or the annual rule on a schedule.",
+  "evidence": [
+   "The 2027 final rule was published November 4, 2026"
+  ],
+  "next_step": "Add a monthly check of the contractor's updates and a yearly read of the fee schedule rule."
+ },
+ {
+  "category_slug": "pc-other-payers",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Small payers each have an open setup problem: Veterans Affairs portal registration, a military plan that has not credentialed the nurse practitioner, and Railroad Medicare.",
+  "evidence": [
+   "$6,024 open with Veterans Affairs community care",
+   "$3,764 of Railroad Medicare claims being written off"
+  ],
+  "next_step": "Enroll with Railroad Medicare and finish the other two, or stop seeing those patients under the unenrolled clinician."
+ },
+ {
+  "category_slug": "cr-program",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The practice has written billing rules and runs the monthly exclusion check, but nothing else of a compliance program is on record: no named contact, training log, audit schedule, reporting channel or record of corrective action.",
+  "evidence": [
+   "About 2 of 7 program elements evidenced"
+  ],
+  "next_step": "Adopt a short written program and start with the audit."
+ },
+ {
+  "category_slug": "cr-coding-audits",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "No outside audit is on record, while the codes this practice bills most have the highest error rates CMS measures.",
+  "evidence": [
+   "Medicare's 2025 review found errors in 12.7% of nursing facility visit claims, 25.5% for the top initial code, and 13.8% of subsequent hospital visits",
+   "The Inspector General reported in July 2026 that 42 of 60 sampled nursing home visits failed review"
+  ],
+  "next_step": "Baseline audit now, then 10 charts per clinician each quarter."
+ },
+ {
+  "category_slug": "cr-outlier-monitoring",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The practice is a statistical outlier in seven code families, and the comparison uses public data that any auditor, plan or buyer can pull.",
+  "evidence": [
+   "Seven code families above the national top-level share by 20 points or more",
+   "As billed, the physician's work units run near three times the family medicine median",
+   "Care management is on the Florida Medicare contractor's active review list",
+   "Care management is on the Florida Medicare contractor's active review list"
+  ],
+  "next_step": "Review the outlier table every quarter and keep the audit results that explain it."
+ },
+ {
+  "category_slug": "cr-overpayments",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "No review is open, yet four patterns could each point to money that must be returned if charts do not support the claims. The law starts a clock when a practice should have known.",
+  "evidence": [
+   "60 days to report and return once identified, with up to 180 days to investigate in good faith",
+   "Six-year lookback"
+  ],
+  "next_step": "Open a privileged review through the attorney and document when it began."
+ },
+ {
+  "category_slug": "cr-referral-laws",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 2,
+  "assessment": "The practice is paid as medical director by facilities whose residents it also treats. Those arrangements are lawful when written, signed, at fair market value and backed by time records. That paperwork has not been confirmed.",
+  "evidence": [
+   "Two medical director stipends in 2026"
+  ],
+  "next_step": "Collect both agreements and twelve months of time logs for the attorney to read."
+ },
+ {
+  "category_slug": "cr-hipaa",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Patient data sits in a HIPAA-enabled database, the AI vendor is under a business associate agreement, and a gate keeps patient details out of the code repository. The date of the last security risk analysis and the full vendor list are unknown.",
+  "evidence": [
+   "This application allows open sign-up with no email verification, although only approved addresses can read data"
+  ],
+  "next_step": "Do a security risk analysis, list every vendor that touches patient data with its agreement and where it stores the data, and close open sign-up."
+ },
+ {
+  "category_slug": "cr-exclusion-licensure",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement, hospital reappointment items and the nurse practitioner's national provider record.",
+  "evidence": [
+   "Medicaid renewal due December 1, 2026",
+   "Nurse practitioner's national provider record carries the wrong specialty code"
+  ],
+  "next_step": "Put every license, registration and enrollment expiry on one calendar with 90-day warnings."
+ },
+ {
+  "category_slug": "cr-patient-notices",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 1,
+  "assessment": "Care management requires each patient's consent, recorded before the first claim. Whether that record exists for the 257 patients billed in October has not been checked.",
+  "next_step": "Check consent in the first 30 charts sampled, then all of them."
+ },
+ {
+  "category_slug": "cr-audit-response",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 2,
+  "assessment": "With these billing patterns, record requests from Medicare's contractors are likely. No log shows who receives them, the deadline, or what was sent.",
+  "next_step": "Name one person to receive every record request and log the due date the day it arrives."
+ },
+ {
+  "category_slug": "cr-facility-rules",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 2,
+  "assessment": "Nursing facilities are cited when required physician visits are late or done by the wrong clinician. The practice does not track each resident's schedule against the admission date.",
+  "evidence": [
+   "Required: a visit every 30 days for the first 90 days, then every 60 days"
+  ],
+  "next_step": "Add a required-visit due date to each resident on the census."
+ },
+ {
+  "category_slug": "cr-insurance",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Coverage has not been reviewed against how the practice now works: two clinicians, software agents handling patient data, and billing patterns that may draw an audit.",
+  "next_step": "Ask the broker about cyber cover and regulatory or billing-audit defense cover."
+ },
+ {
+  "category_slug": "co-capacity-productivity",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. As billed, their work units are about twice the survey medians, which is the same pattern the risk review flags.",
+  "evidence": [
+   "About 25,000 work units a year as billed, against medians of 6,505 and 4,647"
+  ],
+  "next_step": "Recalculate work units after the audit, at the levels the charts support."
+ },
+ {
+  "category_slug": "co-census-panel",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "About 326 patients are seen in a month across 13 sites. Admissions, discharges and losses by site are not trended, so growth or decline at a facility shows up only in revenue.",
+  "evidence": [
+   "326 distinct patients with a charge in October 2026"
+  ],
+  "next_step": "Report census by site at each month end."
+ },
+ {
+  "category_slug": "co-visit-cadence",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 2,
+  "assessment": "No tracker shows which residents are due or overdue for a required or routine visit, and no wellness visits are being done.",
+  "evidence": [
+   "No annual wellness visit codes since 2023 in CMS data"
+  ],
+  "next_step": "Add next-visit-due to the census and work it weekly."
+ },
+ {
+  "category_slug": "co-team-based-care",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The team is one physician, one nurse practitioner and very little support staff. That keeps cost low. It also raises the question of who performs the care-management hours being billed.",
+  "evidence": [
+   "Staff pay about $206,000 a year including the nurse practitioner"
+  ],
+  "next_step": "List who does each care-management task and how many hours each person has."
+ },
+ {
+  "category_slug": "co-care-management",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Care management is being billed at large scale, but it is not yet visible as a program with enrolled patients, care plans, staff, and a monthly cycle of logged work.",
+  "evidence": [
+   "79% of patients seen in October were billed the complex code",
+   "Implied staff time 364 hours a month"
+  ],
+  "next_step": "Rebuild it as a program: eligibility list, consent, care plan, time log, and a monthly check of minutes against staff hours."
+ },
+ {
+  "category_slug": "co-access-scheduling",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Thirteen sites in two towns means real travel time. Patients seen per trip and travel hours are not measured.",
+  "next_step": "Group sites by day and measure patients per trip for a month."
+ },
+ {
+  "category_slug": "co-coverage-call",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "One physician covers a hospital service and a dozen facilities. No written backup arrangement is on record.",
+  "next_step": "Sign a mutual coverage agreement with another physician."
+ },
+ {
+  "category_slug": "co-transitions",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Following patients from hospital to nursing facility to assisted living is this practice's real strength, and facilities value it. It is not measured, and transitional care management is not billed for patients who go home or to assisted living.",
+  "evidence": [
+   "No transitional care management codes billed"
+  ],
+  "next_step": "Track 30-day readmissions for the nursing facility census, and bill transitional care where it applies."
+ },
+ {
+  "category_slug": "co-documentation-workflow",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "A 3-day charge lag suggests notes are finished promptly. Time spent charting and the tools used are not known.",
+  "next_step": "Ask both clinicians how many hours a week go to notes after hours."
+ },
+ {
+  "category_slug": "co-patient-experience",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Not measured. For this practice the customers who decide its future are facility administrators and directors of nursing, as well as families.",
+  "next_step": "Ask each facility's leaders three questions twice a year and record the answers."
+ },
+ {
+  "category_slug": "qv-mips",
+  "applicability": "core",
+  "status": "unknown",
+  "priority": 2,
+  "assessment": "Medicare's quality program can cut payments by up to 9% for clinicians who are required to report and do not. Both clinicians appear to exceed the low-volume exclusion, and their status is not known.",
+  "evidence": [
+   "Medicare paid the two clinicians about $350,000 in 2024, so up to about $31,000 a year is at stake"
+  ],
+  "next_step": "Look up both clinicians in the Quality Payment Program participation tool this week."
+ },
+ {
+  "category_slug": "qv-risk-adjustment",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 4,
+  "assessment": "The patients are about twice as complex as the Medicare average. That does not change fee-for-service payment, but it is what Medicare Advantage plans and accountable care organizations pay for.",
+  "evidence": [
+   "Average risk scores 2.10 and 2.27 in 2024"
+  ],
+  "next_step": "Document every active chronic condition once a year with its current status."
+ },
+ {
+  "category_slug": "qv-care-gaps",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Not tracked. Plans measure fall risk, high-risk medications, blood pressure control and advance care planning for this population.",
+  "next_step": "Pick three measures the plans already track and report them twice a year."
+ },
+ {
+  "category_slug": "qv-utilization",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "Hospital readmissions from nursing facilities are the number facilities and plans care about most, and the practice is positioned to lower it. It is not measured.",
+  "next_step": "Start with 30-day readmissions for one facility."
+ },
+ {
+  "category_slug": "qv-value-contracts",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 4,
+  "assessment": "All revenue is fee-for-service. Options for a practice like this include joining an accountable care organization, contracting with special needs plans for nursing home residents, and Medicare's new accountable care model starting in 2027.",
+  "evidence": [
+   "No value-based revenue"
+  ],
+  "next_step": "Talk to one accountable care organization and one institutional special needs plan in 2027."
+ },
+ {
+  "category_slug": "qv-clinical-standards",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "Not assessed here. Written protocols for falls, medication review and goals of care would also support the visit levels billed.",
+  "next_step": "Write three one-page protocols with the nurse practitioner."
+ },
+ {
+  "category_slug": "pp-org-roles",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "A very small team, with the owner holding most roles and software agents doing the billing. Roles are clear in practice but not written, and almost none has a backup.",
+  "next_step": "Write one page listing each function, who does it, and who could do it tomorrow."
+ },
+ {
+  "category_slug": "pp-hiring-onboarding",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Growth here means adding a clinician. Enrollment with Medicare and the plans takes two to four months, so hiring has to start well before the need.",
+  "evidence": [
+   "Medicare enrollment: most clean online applications are processed within 15 to 50 days"
+  ],
+  "next_step": "Define the census that would justify a second nurse practitioner."
+ },
+ {
+  "category_slug": "pp-clinician-compensation",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "The owner's pay is a mix of modest salary and distributions. The nurse practitioner's pay structure is not on file here. Neither is tied to measured work or quality.",
+  "evidence": [
+   "Market medians: family physician $342,411, primary care nurse practitioner $149,178 (AMGA, 2025)"
+  ],
+  "next_step": "Compare the nurse practitioner's pay and work units with the survey after the audit."
+ },
+ {
+  "category_slug": "pp-staff-compensation",
+  "applicability": "minor",
+  "status": "unknown",
+  "priority": 5,
+  "assessment": "Few staff. Not reviewed."
+ },
+ {
+  "category_slug": "pp-accountability",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "The billing agents log every run, which makes their work easy to check. The human side, approvals and follow-through on decisions, has no schedule.",
+  "evidence": [
+   "Approval cards and run logs are stored in the database"
+  ],
+  "next_step": "Clear the approval queue on fixed days each week."
+ },
+ {
+  "category_slug": "pp-training",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Both clinicians choose their own visit levels. Given the level patterns, a half-day of coding education on hospital and nursing facility visits is cheap insurance.",
+  "next_step": "Have the auditor teach from the audit's own findings."
+ },
+ {
+  "category_slug": "pp-retention-wellbeing",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Two clinicians carry everything. Losing the nurse practitioner would remove about a quarter of charges overnight, and the owner's workload is heavy.",
+  "evidence": [
+   "Nurse practitioner 23.2% of charges"
+  ],
+  "next_step": "Agree on a retention plan with the nurse practitioner and protect the owner's time off."
+ },
+ {
+  "category_slug": "pp-hr-compliance",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "The nurse practitioner's agreement and the collaborative protocol Florida requires have not been reviewed here.",
+  "next_step": "Have the attorney read both."
+ },
+ {
+  "category_slug": "pp-outsourcing",
+  "applicability": "relevant",
+  "status": "green",
+  "priority": 4,
+  "assessment": "Billing moved in-house to software agents and costs less than it did: 6.3% of collections over twelve months against 8.4% in 2025.",
+  "evidence": [
+   "Billing cost 7.0% (2023), 8.1% (2024), 8.4% (2025)"
+  ],
+  "next_step": "Keep one outside party, the coding auditor, to check what the agents and clinicians produce."
+ },
+ {
+  "category_slug": "td-core-systems",
+  "applicability": "core",
+  "status": "green",
+  "priority": 4,
+  "assessment": "The billing system, rounding and charge tool, and eligibility service fit a facility-based practice and work together.",
+  "next_step": "Review cost and usage of each once a year."
+ },
+ {
+  "category_slug": "td-integrations",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Most data moves without retyping. Exceptions are paper checks, one plan's portal-only eligibility, accounting software that is not connected, and facility records.",
+  "next_step": "Reconnect the accounting software and move the paper-check plan to electronic payment."
+ },
+ {
+  "category_slug": "td-analytics",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "A single database and dashboard already cover receivables, denials, charges, treasury and credentialing. Missing are the net collection rate, results by line of work and the financial statements.",
+  "next_step": "Load monthly billing-system transactions and the accounting data."
+ },
+ {
+  "category_slug": "td-automation-ai",
+  "applicability": "core",
+  "status": "green",
+  "priority": 3,
+  "assessment": "Software agents run eligibility, charge entry, posting and follow-up every few hours. That is a real cost and speed advantage. How often an automated action is later corrected is not measured.",
+  "evidence": [
+   "Billing routine every 2 to 6 hours"
+  ],
+  "next_step": "Measure the correction rate monthly."
+ },
+ {
+  "category_slug": "td-ai-governance",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Agents work from written rules and ask for approval on some actions. Missing are a monthly human sample of what they did and an outside review of the rules that carry audit risk.",
+  "evidence": [
+   "Automatic write-off and claim re-dating rules are in force"
+  ],
+  "next_step": "Sample 25 automated actions a month and record the result."
+ },
+ {
+  "category_slug": "td-cybersecurity",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Not inventoried. Known gaps: this application accepts sign-ups from anyone, and an access key was shared in a chat during this build.",
+  "next_step": "Turn off open sign-up, replace the shared key and require two-step sign-in everywhere."
+ },
+ {
+  "category_slug": "td-vendor-management",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "The practice depends on a handful of software vendors. Which have signed business associate agreements, and what each costs, is not in one list.",
+  "next_step": "Make the list, with agreement date and yearly cost."
+ },
+ {
+  "category_slug": "td-business-continuity",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Code and procedures are mirrored in three places and the database keeps its own history. No written plan says how billing continues if a key system or the one person who understands it is unavailable.",
+  "next_step": "Write a one-page downtime plan and test a restore."
+ },
+ {
+  "category_slug": "td-data-governance",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "A gate keeps patient details out of the repository. Record retention rules and a periodic check of who has access have not been written.",
+  "next_step": "Review user access every six months."
+ },
+ {
+  "category_slug": "gm-market-analysis",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "Revenue is growing again after two years of decline. There is no written view of the market: how many facilities and beds are in reach and what share the practice serves.",
+  "evidence": [
+   "Revenue up 19.9% in nine months of 2026"
+  ],
+  "next_step": "List every nursing and assisted living facility within 40 minutes, with beds and current physician coverage."
+ },
+ {
+  "category_slug": "gm-service-lines",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Several services the patients already qualify for are not being delivered or billed: annual wellness visits, transitional care for patients going home or to assisted living, and standard care management where the complex code is not supported.",
+  "evidence": [
+   "Wellness visits were billed through 2023"
+  ],
+  "next_step": "Restart wellness visits for long-term residents first."
+ },
+ {
+  "category_slug": "gm-referral-relationships",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Growth and survival both run through a few administrators, directors of nursing and hospital case managers. Those relationships are personal to the owner and unrecorded.",
+  "evidence": [
+   "Top three sites 64.8% of charges"
+  ],
+  "next_step": "Keep a simple record for each site: decision makers, last contact, what they want from the practice."
+ },
+ {
+  "category_slug": "gm-new-sites",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 4,
+  "assessment": "The practice already covers 13 sites. Adding more needs clinician time first.",
+  "next_step": "Add a site only with a named clinician and a minimum starting census."
+ },
+ {
+  "category_slug": "gm-clinician-growth",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 3,
+  "assessment": "A second nurse practitioner is the clearest path to more revenue and to lower dependence on the owner, once the census and the audit results support it.",
+  "evidence": [
+   "The current nurse practitioner generated $193,669 of Medicare allowed charges alone in 2024"
+  ],
+  "next_step": "Model the hire with a six-month ramp and a three-month enrollment delay."
+ },
+ {
+  "category_slug": "gm-marketing-reputation",
+  "applicability": "minor",
+  "status": "amber",
+  "priority": 4,
+  "assessment": "Marketing matters little for a referral-based facility practice, but directory records are wrong, which also causes claim problems.",
+  "next_step": "Correct the national provider record and plan directories."
+ },
+ {
+  "category_slug": "gm-partnerships",
+  "applicability": "relevant",
+  "status": "amber",
+  "priority": 4,
+  "assessment": "No partnerships today. Hospices, home health agencies, special needs plans and accountable care organizations all need a physician group that covers these facilities.",
+  "next_step": "Hold two exploratory conversations in 2027."
+ },
+ {
+  "category_slug": "gm-acquisitions",
+  "applicability": "minor",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Not a priority while the practice is fixing its own billing and depends on one physician."
+ },
+ {
+  "category_slug": "lv-valuation",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "Indicative enterprise value is about $650,000, within a range of $400,000 to $1,000,000. With cash and collectible receivables added and debt repaid, the owner would keep about $620,000 before tax and costs.",
+  "evidence": [
+   "Normalized earnings about $170,000",
+   "Small primary care practices sell for about 3 to 6 times such earnings"
+  ],
+  "next_step": "Refresh the estimate each year and get a formal appraisal before any negotiation."
+ },
+ {
+  "category_slug": "lv-normalized-earnings",
+  "applicability": "core",
+  "status": "amber",
+  "priority": 2,
+  "assessment": "The practice earns $585,057 before owner pay, but a buyer subtracts a market wage for the physician and any income that will not repeat. That leaves about $170,000.",
+  "evidence": [
+   "Market wage with taxes and benefits about $369,000",
+   "About $46,000 of 2026 collections estimated as one-time recovery"
+  ],
+  "next_step": "Separate recurring collections from recovered old receivables each month."
+ },
+ {
+  "category_slug": "lv-value-drivers",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The main detractors are a three-year revenue decline, dependence on one physician and a few sites, government fee-for-service payers, and untested billing patterns. The recovery in 2026 and the low cost structure are the strengths.",
+  "evidence": [
+   "Revenue down 16% a year from 2023 to the latest twelve months",
+   "Operating cost 44.7% of revenue"
+  ],
+  "next_step": "Work the three detractors in order: billing risk, key-person dependence, concentration."
+ },
+ {
+  "category_slug": "lv-key-person",
+  "applicability": "core",
+  "status": "red",
+  "priority": 1,
+  "assessment": "The owner bills 76.8% of charges and holds nearly every relationship and process. A buyer would treat most of the goodwill as personal and would pay for it only if the owner stays.",
+  "evidence": [
+   "Physician 76.8% of charges"
+  ],
+  "next_step": "Shift visits to a second clinician and write the processes down."
+ },
+ {
+  "category_slug": "lv-sale-readiness",
+  "applicability": "core",
+  "status": "red",
+  "priority": 2,
+  "assessment": "Not ready. A buyer's first requests would be monthly accrual statements, payer and facility contracts, and an independent coding audit. None exists yet.",
+  "evidence": [
+   "Cash-basis quarterly statements, unaudited",
+   "No contract file"
+  ],
+  "next_step": "Start a data room folder and fill it as each project finishes."
+ },
+ {
+  "category_slug": "lv-deal-structure",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 4,
+  "assessment": "No decision has been made about selling. Likely buyers are physician groups that staff nursing facilities, health systems, and another physician. Each values the practice differently.",
+  "next_step": "Read the learning module on sale value before any conversation with a buyer."
+ },
+ {
+  "category_slug": "lv-owner-exit-plan",
+  "applicability": "relevant",
+  "status": "unknown",
+  "priority": 3,
+  "assessment": "The owner's horizon is not written down. Most of what raises value takes two to three years, so the date matters now.",
+  "next_step": "Choose a target year and work back from it."
+ },
+ {
+  "category_slug": "lv-startup",
+  "applicability": "not_applicable",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Does not apply to an established practice."
+ },
+ {
+  "category_slug": "lv-integration",
+  "applicability": "not_applicable",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Does not apply unless the practice buys another."
+ },
+ {
+  "category_slug": "lv-wind-down",
+  "applicability": "not_applicable",
+  "status": "na",
+  "priority": 5,
+  "assessment": "Does not apply."
+ }
+]

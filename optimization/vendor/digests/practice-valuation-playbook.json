@@ -1,0 +1,946 @@
+{
+ "slug": "practice-valuation-playbook",
+ "title": "Practice Valuation and Revenue Cycle Readiness Playbook: What a Buyer Sees in Your Revenue Cycle Before You Do",
+ "doc_type": "playbook",
+ "pages": 41,
+ "audience": "Physician-owners preparing for a practice sale, private-equity transaction, hospital or health-system affiliation, merger or joint venture, ideally 12 to 24 months before going to market. The closing note also describes it as guidance for independent practice teams.",
+ "summary": "A seller-side guide to getting a practice's revenue cycle ready for buyer due diligence. Its core argument: price is adjusted EBITDA times a multiple, so every sustainable dollar of revenue-cycle improvement is capitalized, and every problem a buyer finds is priced through reductions, escrows or indemnities. The method is to run the buyer's billing diligence on yourself first (KPI baseline against target and red-flag ranges, E/M distribution screen, coding audit, AR aging and collectibility, payer-contract and change-of-control review, five-year compliance inventory), clean up AR, write a billing operations manual, resolve compliance exposure with counsel, and assemble a data room on a 12-month timeline. It adds a working-capital primer, an advisory-team guide and two checklists. Almost nothing is sourced, the operative protocols are deferred to nine other products from the same vendor, and several legal and deal-mechanics points are wrong or dangerously incomplete.",
+ "outline": [
+  {
+   "section": "Front-matter disclaimer",
+   "gist": "Not legal, financial or M&A advice; multiples are said to come from unnamed M&A advisory sources as of late 2025 and 2026."
+  },
+  {
+   "section": "Introduction: The Due Diligence Surprise",
+   "gist": "Problems found in diligence cost far more than problems fixed a year earlier; self-audit from the buyer's viewpoint, starting 12 to 24 months out."
+  },
+  {
+   "section": "Section 1: The EBITDA Connection",
+   "gist": "Value equals adjusted EBITDA times a specialty multiple; gives a multiples table, the multiple-amplification arithmetic, and key-person, ancillary-revenue and add-back factors."
+  },
+  {
+   "section": "Section 2: The Due Diligence Billing Audit Framework",
+   "gist": "What buyer diligence examines: quality-of-earnings revenue inputs, coding audit for up- and undercoding, payer contracts and change of control, compliance history, data room contents, timeline."
+  },
+  {
+   "section": "Section 3: Five Findings That Kill or Delay Transactions",
+   "gist": "Five deal-damaging findings: aged AR, outlier E/M coding, payer concentration, undocumented billing workflows dependent on one person, and unassessed compliance exposure."
+  },
+  {
+   "section": "Section 4: Your Pre-Transaction Readiness Assessment",
+   "gist": "Self-assessment: seven KPIs against target and red-flag ranges, E/M outlier screen, payer contract review, five-year compliance inventory, payer-mix trend, staff dependency review."
+  },
+  {
+   "section": "Section 5: AR Cleanup - Maximizing Collections Before Going to Market",
+   "gist": "Prioritize aged AR by recovery odds, run a resourced denial sprint, resolve patient balances, keep write-offs consistent, and separate one-time recoveries from sustainable improvement."
+  },
+  {
+   "section": "Section 5B: Working Capital - The Transaction Mechanic Most Physicians Miss",
+   "gist": "Explains the working-capital target and true-up, AR collectibility discounts by age bucket, who keeps pre-close AR by deal structure, and post-close billing transition risk."
+  },
+  {
+   "section": "Section 6: Documentation Standards - What Buyers Expect to See",
+   "gist": "Written billing operations manual, a library of monthly financial and revenue-cycle reports, and current signed physician employment agreements as evidence the operation is transferable."
+  },
+  {
+   "section": "Section 7: Compliance Exposure Identification and Remediation",
+   "gist": "Compliance review scope (coding, Stark and Anti-Kickback, enrollment gaps, ABNs, documentation), options for handling findings, False Claims Act basics, HIPAA diligence items."
+  },
+  {
+   "section": "Section 8: Coding Accuracy and E&M Distribution - The Audit Buyers Always Run",
+   "gist": "How buyers sample charts and extrapolate coding errors; objectives of an internal pre-sale audit; E/M distribution screen; procedure, modifier and global-period accuracy."
+  },
+  {
+   "section": "Section 9: The 12-Month Pre-Transaction Timeline",
+   "gist": "Month-by-month plan in five phases: baseline, priority remediation, execution, stabilization and documentation, pre-market packaging, with AR-over-90-day milestones."
+  },
+  {
+   "section": "Section 10: Working with Your Advisory Team",
+   "gist": "Roles and timing for M&A attorney, healthcare accountant, revenue-cycle consultant and investment banker; revenue-cycle traps in earnouts and escrow holdbacks."
+  },
+  {
+   "section": "Quick-Reference Checklists",
+   "gist": "Two checklists: a 33-item readiness self-check repeated at months 1, 6 and 12, and a 20-item data-room preparation list due four weeks before diligence."
+  },
+  {
+   "section": "Closing: The Buyer's Perspective",
+   "gist": "Restates that the work pays off with or without a sale, urges an 18-month head start, and points to sibling products."
+  },
+  {
+   "section": "Important Notes on This Playbook",
+   "gist": "Disclaimer: benchmarks are commonly cited ranges or vendor-observed patterns, rules change, and nothing here is legal, tax or accounting advice."
+  }
+ ],
+ "framework_elements": [
+  "Normalized EBITDA and documented add-backs",
+  "Valuation multiple drivers (scale, payer mix, ancillaries)",
+  "Key-person and owner-dependency risk, succession",
+  "Quality-of-earnings revenue inputs",
+  "Revenue-cycle KPI baseline and monthly trend reporting",
+  "E/M distribution benchmarking by provider",
+  "Internal coding audit for upcoding and undercoding, with remediation",
+  "Procedure, modifier and global-period accuracy review",
+  "AR aging analysis and collectibility valuation",
+  "AR cleanup prioritization by recovery probability",
+  "Denial management sprint",
+  "Patient balance resolution protocol",
+  "Write-off policy and timing discipline",
+  "Separating one-time recoveries from sustainable collections",
+  "Working-capital target and closing true-up",
+  "Pre-close AR ownership by deal structure",
+  "Post-close billing transition protections",
+  "Payer contract inventory and change-of-control review",
+  "Fee schedule age review and renegotiation",
+  "Payer mix and payer concentration analysis",
+  "Five-year compliance history inventory",
+  "Stark and Anti-Kickback arrangement review",
+  "Medicare and Medicaid enrollment currency check",
+  "ABN procedure for non-covered services",
+  "Overpayment remediation and self-disclosure decision",
+  "HIPAA diligence: BAAs, security risk analysis, breach log",
+  "Billing operations manual and documented workflows",
+  "Employment and compensation agreement documentation",
+  "Due diligence data room assembly and explanatory narrative",
+  "Advisory team, earnout and escrow terms"
+ ],
+ "processes": [
+  {
+   "name": "Pre-transaction readiness self-assessment (baseline)",
+   "steps": [
+    "Complete the vendor's nine-domain revenue-cycle assessment and record every finding",
+    "Pull the seven KPIs for the trailing 12 months and each of the two prior years",
+    "Compare each KPI with the target and red-flag ranges",
+    "Write a root cause and remediation plan for every red-flag metric",
+    "Run the E/M distribution screen for each provider",
+    "List payer contracts with fee schedule date, change-of-control clause and term",
+    "Inventory compliance events for the prior five years",
+    "Trend payer mix by revenue against the two prior years",
+    "Identify staff whose departure would disrupt billing and how their knowledge is preserved"
+   ],
+   "owner_role": "Not assigned in the document; in practice the physician-owner with the billing lead, or a revenue-cycle consultant",
+   "cadence": "Month 1 of the 12-month plan; repeat the checklist at Month 6 and Month 12"
+  },
+  {
+   "name": "E/M distribution screen",
+   "steps": [
+    "Pull count and percentage of visits at each E/M level by provider for the trailing 12 months",
+    "Compare with the CMS specialty distribution for each provider's specialty",
+    "Flag any provider whose Level 4 plus Level 5 share is more than 15 points above or below benchmark",
+    "Treat a flag as a trigger for chart review, not as proof of error",
+    "Track the distribution monthly after corrective action"
+   ],
+   "owner_role": "Not assigned; billing lead or coding consultant",
+   "cadence": "Month 1 baseline, then monthly during Months 4 to 12"
+  },
+  {
+   "name": "Internal pre-transaction coding audit and remediation",
+   "steps": [
+    "Commission a full chart-to-claim audit, using an outside coding consultant if in-house skill is lacking",
+    "Review sampled charts for documentation, medical necessity and supported E/M level",
+    "Quantify upcoding and undercoding variance",
+    "Educate providers and correct patterns",
+    "Re-audit until patterns are defensible against benchmarks",
+    "Write an audit report with remediation evidence for the data room",
+    "Take any potential overpayment to healthcare counsel"
+   ],
+   "owner_role": "Coding or revenue-cycle consultant, with healthcare counsel on findings",
+   "cadence": "Commission in Months 2-3 (ideally 18 months before a sale); corrective action Months 4-6; final review Months 10-12"
+  },
+  {
+   "name": "AR cleanup sprint",
+   "steps": [
+    "Categorize open AR by age, payer and recovery probability; estimate recoverable versus write-off amounts",
+    "Appeal commercial denials 30-120 days old first",
+    "Work Medicare denials 30-120 days old second",
+    "Work patient balances 60-180 days old with known contact information",
+    "Follow up 120-180 day claims by specific denial reason",
+    "Pursue claims over 180 days only when high value",
+    "Formally write off untouched claims over 360 days",
+    "Staff the sprint with dedicated temporary or contract billers",
+    "Track AR over 90 days against milestones: under 20% by Month 6, 15% by Month 9, 12% by Month 12"
+   ],
+   "owner_role": "Billing manager with dedicated contract billing staff",
+   "cadence": "Starts Months 2-3 and runs to Month 12"
+  },
+  {
+   "name": "Payer contract and change-of-control review",
+   "steps": [
+    "List every active payer contract",
+    "Record the current fee schedule and when it was last renegotiated",
+    "Check each contract for a change-of-control provision",
+    "Record term, renewal and termination provisions",
+    "Flag fee schedules untouched for three or more years",
+    "Open renegotiation on the two or three highest-impact contracts",
+    "Send change-of-control clauses to M&A counsel before any deal is announced",
+    "Secure signed amendments or new fee schedules"
+   ],
+   "owner_role": "Physician-owner or administrator, with healthcare M&A counsel",
+   "cadence": "Inventory in Month 1; renegotiation Months 2-9"
+  },
+  {
+   "name": "Compliance exposure review and remediation",
+   "steps": [
+    "List all audits, coding reviews, repayment agreements, corrective action plans, billing litigation and open investigations for five years",
+    "Review coding patterns, Stark and Anti-Kickback arrangements, enrollment gaps, ABN procedures, and order and signature completeness",
+    "Share the inventory with healthcare counsel in Month 1",
+    "Decide with counsel whether to remediate, disclose to the buyer, or self-disclose",
+    "Document a remediation plan for every open issue",
+    "Confirm HIPAA posture: BAA audit, security risk analysis, breach log"
+   ],
+   "owner_role": "Healthcare M&A attorney with the physician-owner; revenue-cycle consultant supplies findings",
+   "cadence": "Inventory Month 1; urgent items Months 2-3; remaining items Months 4-6; HIPAA check Months 7-9"
+  },
+  {
+   "name": "Billing operations manual and reporting library build",
+   "steps": [
+    "Assign one owner for the documentation project",
+    "Document claim submission, denial management, patient collections, payer-specific procedures, coding review, KPI reporting and vendor management",
+    "Finish a first draft by Month 3",
+    "Complete the documentation package by Months 7-9",
+    "Stand up monthly KPI reporting, fully trended by Month 6",
+    "Build monthly reports by provider, payer and procedure category, AR aging, denials by reason and payer, and provider productivity"
+   ],
+   "owner_role": "Assigned project owner, typically the billing manager",
+   "cadence": "Months 2-9; reporting library started 12 to 18 months before market"
+  },
+  {
+   "name": "Data room assembly and working-capital preparation",
+   "steps": [
+    "Set up the data room structure in Months 2-3",
+    "Load financial statements, KPI trends, AR aging, denial reports, coding audit, contract list, compliance inventory, employment agreements and BAAs",
+    "Write a narrative that separates one-time AR recoveries from sustainable improvement",
+    "Document every EBITDA add-back with support",
+    "Have the advisory team review the room before any buyer sees it",
+    "Finish at least four weeks before diligence starts",
+    "Use the cleaned AR profile to negotiate the working-capital target 60 to 90 days before closing",
+    "Negotiate transition assistance, billing performance standards or a longer true-up period to protect pre-close AR"
+   ],
+   "owner_role": "M&A advisor and healthcare CPA, supported by the revenue-cycle consultant",
+   "cadence": "Framework Months 2-3; build Months 7-12; working-capital negotiation 60 to 90 days before closing"
+  }
+ ],
+ "tools_templates": [
+  {
+   "name": "Checklist 1: Pre-Transaction Revenue Cycle Readiness Checklist",
+   "description": "33 yes/no items in six groups (KPIs, coding, AR, payer contracts, compliance, documentation) for use at Months 1, 6 and 12; no scoring or weighting."
+  },
+  {
+   "name": "Checklist 2: Due Diligence Preparation Checklist",
+   "description": "20 data-room items in four groups (financial, revenue cycle, contracts, compliance) to finish four weeks before diligence."
+  },
+  {
+   "name": "12-month pre-transaction timeline",
+   "description": "Five phases (Month 1, Months 2-3, 4-6, 7-9, 10-12) of task bullets with AR-over-90 milestones; the first 90 days work as a 30/60/90 plan. No owners, hours or budget."
+  },
+  {
+   "name": "KPI target and red-flag table",
+   "description": "Seven revenue-cycle metrics with a target range and a red-flag threshold; no formulas, definitions or sources."
+  },
+  {
+   "name": "Specialty EBITDA multiple table",
+   "description": "Eight practice categories with multiple ranges and one-line notes on value drivers."
+  },
+  {
+   "name": "AR aging priority framework",
+   "description": "Five recovery priorities by payer type and age, plus a rule to write off untouched claims older than 360 days."
+  },
+  {
+   "name": "AR collectibility discount table",
+   "description": "Percent of face value a buyer assigns to six AR age buckets when valuing working capital."
+  },
+  {
+   "name": "E/M outlier screening rule",
+   "description": "Flag any provider whose Level 4 plus 5 share is more than 15 percentage points above or below the specialty benchmark."
+  },
+  {
+   "name": "Quality-of-earnings revenue-cycle input list",
+   "description": "Seven data sets a buyer's QoE team requests (collections history, payer mix, charges and adjustments, AR aging, denials, days in AR, refunds)."
+  },
+  {
+   "name": "Data room revenue-cycle document list",
+   "description": "Eight document types with lookback periods of 24 to 36 months, plus an explanatory narrative from the financial advisors."
+  },
+  {
+   "name": "Billing operations manual outline",
+   "description": "Seven components the manual should cover, from claim submission through vendor management."
+  },
+  {
+   "name": "Payer contract three-point check",
+   "description": "For each contract: fee schedule and last renegotiation date, change-of-control clause, term and renewal or termination provisions."
+  },
+  {
+   "name": "Compliance history inventory scope",
+   "description": "Event types to list for the prior five years: audits, coding reviews, repayment agreements, corrective action plans, litigation, investigations."
+  },
+  {
+   "name": "Pre-transaction compliance review scope",
+   "description": "Five review areas: coding compliance, Stark and Anti-Kickback, enrollment currency, ABN procedures, documentation completeness."
+  },
+  {
+   "name": "Staff dependency question set",
+   "description": "Four questions on retention motive, retention agreements, knowledge documentation and succession for billing-critical staff."
+  },
+  {
+   "name": "Advisory team role table",
+   "description": "Four advisors (M&A attorney, healthcare CPA, revenue-cycle consultant, M&A advisor or banker), what each handles and when to engage."
+  }
+ ],
+ "metrics": [
+  {
+   "name": "Net Collection Rate",
+   "definition": "",
+   "formula": "",
+   "target": "96%+",
+   "red_flag": "Below 95%",
+   "source_cited": "none"
+  },
+  {
+   "name": "Clean Claim Rate",
+   "definition": "",
+   "formula": "",
+   "target": "95%+",
+   "red_flag": "Below 90%",
+   "source_cited": "none"
+  },
+  {
+   "name": "Average Days in AR",
+   "definition": "",
+   "formula": "",
+   "target": "30-40 days",
+   "red_flag": "Above 50 days",
+   "source_cited": "none"
+  },
+  {
+   "name": "AR Over 90 Days (%)",
+   "definition": "Share of total AR older than 90 days (implied by the checklist wording)",
+   "formula": "",
+   "target": "Below 15%; timeline milestones are below 20% by Month 6, 15% by Month 9 and 12% by Month 12; a Section 5B example uses 10%",
+   "red_flag": "Above 25%; Section 5B treats 30% as heavily discounted",
+   "source_cited": "none"
+  },
+  {
+   "name": "Overall Denial Rate",
+   "definition": "",
+   "formula": "",
+   "target": "Below 5%",
+   "red_flag": "Above 10%",
+   "source_cited": "none"
+  },
+  {
+   "name": "Denial Resolution Rate",
+   "definition": "",
+   "formula": "",
+   "target": "Above 75%",
+   "red_flag": "Below 50%",
+   "source_cited": "none"
+  },
+  {
+   "name": "A/R Write-Off Rate",
+   "definition": "",
+   "formula": "",
+   "target": "Below 3% (1.5% is described as strong)",
+   "red_flag": "Above 5% (7% is described as weak)",
+   "source_cited": "none"
+  },
+  {
+   "name": "AR over 120 days (%)",
+   "definition": "Share of outstanding balances older than 120 days",
+   "formula": "",
+   "target": "",
+   "red_flag": "30% or more",
+   "source_cited": "none"
+  },
+  {
+   "name": "E/M Level 4+5 utilization versus specialty benchmark",
+   "definition": "A provider's combined Level 4 and Level 5 share of E/M visits compared with the specialty distribution",
+   "formula": "Provider Level 4+5 share minus benchmark share, in percentage points (implied)",
+   "target": "Within 15 percentage points of benchmark in either direction",
+   "red_flag": "More than 15 points above (upcoding concern) or below (undercoding concern); elsewhere 20 to 40 points above is called an immediate flag",
+   "source_cited": "'Published CMS specialty benchmarks' (no dataset, year or link named)"
+  },
+  {
+   "name": "Single-payer revenue concentration",
+   "definition": "Share of revenue from one payer",
+   "formula": "",
+   "target": "",
+   "red_flag": "45% or more",
+   "source_cited": "none"
+  },
+  {
+   "name": "Payer mix by revenue",
+   "definition": "Trailing 12-month share of revenue from Medicare, Medicaid, commercial and self-pay, trended against the two prior years",
+   "formula": "",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Fee schedule age",
+   "definition": "Time since each payer fee schedule was last renegotiated",
+   "formula": "",
+   "target": "",
+   "red_flag": "Not renegotiated in three or more years",
+   "source_cited": "none"
+  },
+  {
+   "name": "Adjusted EBITDA",
+   "definition": "Earnings before interest, taxes, depreciation and amortization, adjusted for owner compensation and non-recurring items",
+   "formula": "",
+   "target": "",
+   "red_flag": "Add-backs without supporting documentation",
+   "source_cited": "none"
+  },
+  {
+   "name": "EBITDA multiple",
+   "definition": "Multiple applied to adjusted EBITDA to set practice value",
+   "formula": "Value = adjusted EBITDA x multiple (implied)",
+   "target": "Small or solo primary care 3-5x; scaled or platform primary care 6-10x+; dermatology 6-8x; orthopedics 7-10x; gastroenterology 7-10x; cardiology 8-12x; ophthalmology 6-15x; behavioral health 5-10x",
+   "red_flag": "",
+   "source_cited": "Unnamed 'reported transactions and M&A advisory benchmarks'; FOCUS Investment Banking and Sofer Advisors named in the preceding paragraph without title or date"
+  },
+  {
+   "name": "Realizable (collectibility-adjusted) AR",
+   "definition": "AR valued by age bucket at a discount to face value",
+   "formula": "Sum of each bucket balance x its percentage: 0-30 days about 100%; 31-60 90-95%; 61-90 75-85%; 91-120 50-70%; 121-180 25-50%; over 180 10-25% or excluded",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none ('common market practice')"
+  },
+  {
+   "name": "Working capital versus target",
+   "definition": "Current assets minus current liabilities at closing, compared with the target set in the purchase agreement",
+   "formula": "Delivered working capital minus target; excess goes to the seller, shortfall is deducted from the closing payment or taken from escrow",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Coding audit variance (upcoding or undercoding rate)",
+   "definition": "Dollar difference between billed and documentation-supported codes in a sample of 30 to 60 charts per physician, extrapolated to all claims",
+   "formula": "Sample error rate x annual E/M revenue (as used in the worked example)",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Open denial inventory",
+   "definition": "Unresolved denials outstanding",
+   "formula": "",
+   "target": "Minimum achievable by the time the data room is assembled",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Ancillary revenue share",
+   "definition": "Share of total revenue from ancillary services such as surgery center, imaging, pathology, laboratory and infusion",
+   "formula": "",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Physician productivity (RVUs, visit volume, revenue per provider by month)",
+   "definition": "",
+   "formula": "",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Post-correction clean coding period",
+   "definition": "Months of E/M data after corrective action with no outlier pattern",
+   "formula": "",
+   "target": "12 months in the body text and timeline; at least 6 months in Checklist 1",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "KPI trend history",
+   "definition": "Months of documented monthly KPI data available to a buyer",
+   "formula": "",
+   "target": "Three years",
+   "red_flag": "",
+   "source_cited": "none"
+  }
+ ],
+ "numeric_claims": [
+  {
+   "claim": "Private equity completed 79 physician practice deals in Q1 2025, concentrated in dermatology, cardiology, orthopedics and behavioral health.",
+   "section": "Section 1",
+   "source_cited": "FOCUS Investment Banking; Sofer Advisors (no report title, date or link)"
+  },
+  {
+   "claim": "The median healthcare services EV/EBITDA multiple fell to roughly 11.5x in 2025 from 14.5x in 2024.",
+   "section": "Section 1",
+   "source_cited": "none specific (follows the FOCUS/Sofer parenthetical)"
+  },
+  {
+   "claim": "Small or solo primary care practices typically trade at 3-5x EBITDA; scaled or platform primary care at 6-10x or more, with value-based outperformers in double digits.",
+   "section": "Section 1",
+   "source_cited": "Unnamed 'reported transactions and M&A advisory benchmarks'"
+  },
+  {
+   "claim": "Specialty multiples: dermatology 6-8x, orthopedics 7-10x, gastroenterology 7-10x, cardiology 8-12x, ophthalmology 6-15x, behavioral health 5-10x.",
+   "section": "Section 1",
+   "source_cited": "Unnamed 'reported transactions and M&A advisory benchmarks'"
+  },
+  {
+   "claim": "Ancillary revenue can add one to three multiple turns to the base specialty multiple.",
+   "section": "Section 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "At 7x, $100,000 of added annual EBITDA is worth $700,000 at closing, and $150,000 of annual leakage is a $1,050,000 problem.",
+   "section": "Section 1",
+   "source_cited": "none (illustration)"
+  },
+  {
+   "claim": "A problem costing $30,000 and 90 days to fix becomes a $200,000 valuation reduction when a buyer finds it three weeks before closing.",
+   "section": "Introduction",
+   "source_cited": "none (illustration)"
+  },
+  {
+   "claim": "A buyer's billing consultant examines three to five years of claims data.",
+   "section": "Introduction; Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Re-credentialing and re-contracting after a change of control takes 60 to 120 days.",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Due diligence typically lasts 45 to 90 days; revenue-cycle diligence falls in the first 30 to 45 days and the billing consultant reports within 30 days.",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A coding audit finding Level 5 utilization 30% above specialty benchmarks is a compliance exposure the buyer will price in.",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Buyers discount AR aggressively when 30% or more of balances are over 120 days.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "AR over 120 days collects at about 50 cents on the dollar, over 180 days at 20 to 30 cents, and over 360 days is essentially a write-off.",
+   "section": "Section 3",
+   "source_cited": "none ('industry standards')"
+  },
+  {
+   "claim": "$800,000 of AR with $280,000 over 120 days has $640,000 to $680,000 of realizable value.",
+   "section": "Section 3",
+   "source_cited": "none (illustration)"
+  },
+  {
+   "claim": "Level 4 and 5 utilization running 20 to 40 percentage points above benchmark is flagged immediately by a buyer's coding consultant.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "In one diligence case an ENT group's Level 5 utilization ran about 70% above national ENT benchmarks.",
+   "section": "Section 3",
+   "source_cited": "none (unattributed anecdote)"
+  },
+  {
+   "claim": "Deriving 45% or more of revenue from a single payer is concentrated revenue risk.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "KPI targets: net collection 96%+, clean claims 95%+, days in AR 30-40, AR over 90 days below 15%, denials below 5%, denial resolution above 75%, write-offs below 3%.",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Providers whose Level 4 plus 5 share is more than 15 percentage points above or below the specialty benchmark should be flagged.",
+   "section": "Section 4",
+   "source_cited": "none ('published CMS specialty benchmarks', dataset not named)"
+  },
+  {
+   "claim": "A 1.5% annual write-off rate signals disciplined collections; a 7% rate signals the opposite.",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "The working-capital target is negotiated 60 to 90 days before the anticipated closing date.",
+   "section": "Section 5B",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A 15% gap between target and actual closing AR on $800,000 moves $120,000.",
+   "section": "Section 5B",
+   "source_cited": "none (illustration)"
+  },
+  {
+   "claim": "Buyers value AR at about 100% (0-30 days), 90-95% (31-60), 75-85% (61-90), 50-70% (91-120), 25-50% (121-180) and 10-25% or nothing (over 180).",
+   "section": "Section 5B",
+   "source_cited": "none ('common market practice')"
+  },
+  {
+   "claim": "After a billing transition, claims due out in week 2 go out in week 6 and 30-day appeals pile up for 60 days.",
+   "section": "Section 5B",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Buyer coding audits typically sample 30 to 60 charts per physician.",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A 5% upcoding rate extrapolated to $3 million of annual E/M revenue is $150,000 a year, or $1.05 million of transaction impact at 7x.",
+   "section": "Section 8",
+   "source_cited": "none (illustration)"
+  },
+  {
+   "claim": "A provider with 99214 at 55% of E/M visits against a 38% specialty benchmark is at the high end and will draw attention.",
+   "section": "Section 8",
+   "source_cited": "none (illustration; benchmark not sourced)"
+  },
+  {
+   "claim": "AR over 90 days should fall below 20% by Month 6, 15% by Month 9 and 12% by Month 12.",
+   "section": "Section 9",
+   "source_cited": "none"
+  },
+  {
+   "claim": "An M&A advisor or investment banker is warranted for practices valued above roughly $2 million, engaged 6 to 12 months before going to market.",
+   "section": "Section 10",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Earnouts are typically tied to revenue or EBITDA over the 12 to 24 months after closing.",
+   "section": "Section 10",
+   "source_cited": "none"
+  }
+ ],
+ "checkable_claims": [
+  {
+   "id": "C1",
+   "claim": "E&M code distribution — the count and percentage of visits billed at each level (99211–99215 for established patients, 99201–99205 for new patients)",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 8: E&M Distribution Analysis",
+   "why": "CPT 99201 was deleted effective January 1, 2021, so the new-patient range should be 99202-99205. The error shows the material ignores the 2021 E/M overhaul, which undermines trust in its coding guidance; the office code family is also not the one this facility-based practice mainly bills."
+  },
+  {
+   "id": "C2",
+   "claim": "The False Claims Act creates civil liability for submitting false or fraudulent claims to government healthcare programs ... with treble damages and program exclusion as potential penalties.",
+   "kind": "penalty",
+   "stakes": "high",
+   "section": "Section 7: False Claims Act Awareness",
+   "why": "The statement omits the mandatory per-claim civil penalty, which dominates exposure for high-volume visit claims, and attributes exclusion to the FCA rather than to separate OIG authority. Understating exposure distorts decisions about repayment, escrow and indemnity."
+  },
+  {
+   "id": "C3",
+   "claim": "Voluntary self-disclosure to CMS or other agencies may be appropriate for significant Medicare overpayments — a legal decision requiring healthcare M&A counsel",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Section 7: Handling Identified Exposure",
+   "why": "Federal law requires reporting and returning an identified Medicare overpayment within 60 days, with a six-year lookback, and keeping it can become False Claims Act liability. The playbook frames repayment as optional and elsewhere says a clean audit plus 12 months of corrected coding 'has addressed the exposure'; an owner who follows that could retain money that must be refunded."
+  },
+  {
+   "id": "C4",
+   "claim": "in an asset sale, the seller typically retains the pre-close AR; in a stock sale, the AR stays with the entity.",
+   "kind": "legal",
+   "stakes": "high",
+   "section": "Section 5B: Revenue Recognition and the Closing Date",
+   "why": "Who owns pre-close receivables decides whether AR cleanup shows up in a working-capital true-up or in the seller's own later collections; the playbook claims both at once and also says sellers keep pre-close AR in most deals. Medicare limits on assigning claims further constrain this for a practice that is about 55% Medicare fee-for-service."
+  },
+  {
+   "id": "C5",
+   "claim": "Stark Law and Anti-Kickback: are all physician compensation arrangements, space and equipment leases, and referral relationships structured within applicable safe harbors?",
+   "kind": "legal",
+   "stakes": "medium",
+   "section": "Section 7 (also Section 6: 'Stark Law safe harbors')",
+   "why": "Stark is strict liability with mandatory exceptions: an arrangement that misses an exception makes the resulting Medicare claims non-payable. Safe harbors belong to the Anti-Kickback Statute and are voluntary. Blurring the two misstates the test that applies to medical-director stipends, leases and compensation arrangements."
+  },
+  {
+   "id": "C6",
+   "claim": "private equity completing 79 physician practice deals in Q1 2025 alone ... (FOCUS Investment Banking; Sofer Advisors) ... the median healthcare services EV/EBITDA multiple compressed to roughly 11.5x in 2025 from 14.5x in 2024",
+   "kind": "statistic",
+   "stakes": "medium",
+   "section": "Section 1: Current Valuation Multiples - Market Context",
+   "why": "These are the only sourced figures in the document and they frame its whole market picture. If the deal count is wrong, or the multiples describe large healthcare-services companies rather than physician practices, the owner gets a false read on buyer demand and pricing."
+  },
+  {
+   "id": "C7",
+   "claim": "Primary care — small/solo: typical EBITDA multiple 3–5x; primary care — scaled/platform: 6–10x+, with value-based care outperformers reaching double-digit multiples.",
+   "kind": "benchmark",
+   "stakes": "high",
+   "section": "Section 1: multiples table",
+   "why": "This is the number the owner would use to estimate sale value. For a one-physician practice, EBITDA after a market-rate physician salary may be close to zero and many small-practice sales are priced on assets plus modest goodwill, so applying 3-5x to owner earnings could overstate value several-fold. The value-based premium also reflects a market that has since repriced."
+  },
+  {
+   "id": "C8",
+   "claim": "Industry standards suggest that AR over 120 days is collectible at roughly 50 cents on the dollar; over 180 days, 20 to 30 cents; over 360 days, essentially a write-off.",
+   "kind": "statistic",
+   "stakes": "medium",
+   "section": "Section 3: Finding 1 (restated with different percentages in Section 5B)",
+   "why": "These discounts drive the playbook's AR valuation and working-capital arguments, yet no source is named and Section 5B gives different percentages. If the figures are folklore, the practice should value its receivables from its own collection history by payer and age instead."
+  }
+ ],
+ "domain_map": [
+  {
+   "domain": "lifecycle-value",
+   "weight": 0.34,
+   "topics": [
+    "adjusted EBITDA and multiples",
+    "multiple amplification of revenue-cycle gains",
+    "sale-readiness timeline",
+    "working-capital target and true-up",
+    "asset versus stock treatment of AR",
+    "earnouts and escrow holdbacks",
+    "key-person and owner-dependency discount",
+    "data room",
+    "advisory team"
+   ]
+  },
+  {
+   "domain": "rcm-claims-ar",
+   "weight": 0.18,
+   "topics": [
+    "AR aging and collectibility discounts",
+    "AR cleanup prioritization",
+    "denial management sprint",
+    "patient balance resolution",
+    "write-off discipline",
+    "KPI targets and red flags"
+   ]
+  },
+  {
+   "domain": "compliance-risk",
+   "weight": 0.15,
+   "topics": [
+    "compliance history inventory",
+    "False Claims Act exposure from coding",
+    "Stark and Anti-Kickback arrangements",
+    "overpayments and self-disclosure",
+    "enrollment lapses",
+    "ABN procedures",
+    "HIPAA BAAs and security risk analysis",
+    "exclusion screening documentation"
+   ]
+  },
+  {
+   "domain": "rcm-charge-coding",
+   "weight": 0.12,
+   "topics": [
+    "E/M distribution benchmarking",
+    "upcoding and undercoding",
+    "internal coding audit and provider education",
+    "unbundling, modifiers and global periods",
+    "documentation completeness"
+   ]
+  },
+  {
+   "domain": "payers-contracts",
+   "weight": 0.08,
+   "topics": [
+    "change-of-control provisions",
+    "fee schedule age and renegotiation",
+    "payer mix",
+    "payer concentration",
+    "re-credentialing after a transaction"
+   ]
+  },
+  {
+   "domain": "financial-management",
+   "weight": 0.07,
+   "topics": [
+    "quality-of-earnings inputs",
+    "add-back documentation",
+    "monthly reporting library",
+    "three to five years of financial statements",
+    "one-time versus recurring collections"
+   ]
+  },
+  {
+   "domain": "people-compensation",
+   "weight": 0.03,
+   "topics": [
+    "billing key-person dependency",
+    "retention agreements",
+    "physician employment agreements and non-competes",
+    "temporary staff for cleanup"
+   ]
+  },
+  {
+   "domain": "technology-data-ai",
+   "weight": 0.02,
+   "topics": [
+    "practice-management reporting capability",
+    "billing system transition risk",
+    "vendor list and contracts"
+   ]
+  },
+  {
+   "domain": "strategy-governance",
+   "weight": 0.01,
+   "topics": [
+    "succession planning",
+    "advisor relationships"
+   ]
+  }
+ ],
+ "adopt": [
+  {
+   "idea": "Run the buyer's diligence on your own practice once a year: KPI trends, code-distribution screen, AR aging and collectibility, contract inventory and compliance log.",
+   "why": "It turns sale readiness into a standing management review and surfaces problems while the owner still controls the timetable and the price is not on the table.",
+   "applies_to_practice": "yes",
+   "note": "Feed it from AdvancedMD reports and the AI billing agents' logs; swap the office E/M screen for hospital, nursing facility and home/residence code families."
+  },
+  {
+   "idea": "Keep a written billing operations manual so the revenue cycle is a documented system rather than something that lives in one head.",
+   "why": "Buyers discount key-person dependency, and the same document supports continuity, onboarding and audit defense.",
+   "applies_to_practice": "yes",
+   "note": "Here the dependency is the AI-agent stack plus the owner. Document agent workflows, rules, human review points, access controls, the business associate agreement and a manual fallback."
+  },
+  {
+   "idea": "Save a standing reporting library every month: collections by provider, payer and service line, AR aging snapshot, denials by reason and payer, productivity by provider.",
+   "why": "Diligence asks for 24 to 36 months of history, and point-in-time AR aging cannot be rebuilt reliably after the fact.",
+   "applies_to_practice": "yes",
+   "note": "Start archiving month-end AdvancedMD snapshots now; add cuts by facility and by service line (hospital, nursing facility, assisted living, care management, wellness visits, stipends)."
+  },
+  {
+   "idea": "Whenever results improve after a cleanup, show the one-time recovery separately from the sustainable run-rate, and keep support for every add-back.",
+   "why": "Quality-of-earnings reviewers strip out one-time items anyway; presenting the split first preserves credibility.",
+   "applies_to_practice": "yes",
+   "note": "Also the honest way to present the effect of moving billing to AI agents or of any legacy AR cleanup."
+  },
+  {
+   "idea": "Value receivables by age at a discount instead of face value, and work aged claims in a deliberate priority order.",
+   "why": "It shows what AR is really worth and points effort at money that can still be recovered.",
+   "applies_to_practice": "partly",
+   "note": "Do not use the playbook's unsourced percentages. Build the practice's own collection curve by payer and age from AdvancedMD history, and rank by filing and appeal deadlines (for Medicare, the 120-day redetermination window) rather than by age alone."
+  },
+  {
+   "idea": "Maintain a payer contract matrix: fee schedule date, last renegotiation, assignment and change-of-control terms, renewal and termination dates.",
+   "why": "It exposes stale rates and deal blockers long before a transaction forces the question.",
+   "applies_to_practice": "partly",
+   "note": "Medicare fee-for-service has nothing to negotiate. Apply it to the Medicare Advantage and Medicaid managed-care contracts, and add Medicare enrollment, reassignment and tax-ID consequences of a sale, which the playbook omits."
+  },
+  {
+   "idea": "Keep a five-year compliance event log and make sure every financial arrangement with a referral source or recipient is in a current, signed agreement.",
+   "why": "Buyers ask for it, and an organized log keeps forgotten events from surfacing first on the buyer's side.",
+   "applies_to_practice": "yes",
+   "note": "The medical-director stipends are the arrangements to paper carefully: written, signed, fair market value, with time logs, reviewed under both Stark exceptions and Anti-Kickback safe harbors by healthcare regulatory counsel."
+  },
+  {
+   "idea": "Benchmark each clinician's code-level distribution against peers as a cheap first screen for both overcoding risk and undercoding, then confirm with chart review.",
+   "why": "It is the same screen payers, Medicare contractors and buyers run, so the owner should see it first.",
+   "applies_to_practice": "partly",
+   "note": "Use CMS utilization data or First Coast comparative billing reports for nursing facility, hospital and home/residence visit codes, with separate peer groups for the physician and the nurse practitioner. The playbook covers office codes only and cites a deleted code."
+  },
+  {
+   "idea": "Measure concentration and owner-dependency in the revenue base and work to reduce both before a sale.",
+   "why": "For small practices these two factors drive more of the discount than any billing metric.",
+   "applies_to_practice": "partly",
+   "note": "The playbook measures concentration by payer. For this practice the meaningful measures are revenue share by facility and how much revenue would stay without the owner-physician; expanding nurse practitioner capacity or adding a clinician addresses it."
+  },
+  {
+   "idea": "Use the EBITDA-times-multiple lens to rank improvement projects, and learn working-capital, escrow and earnout mechanics before signing any letter of intent.",
+   "why": "It shows which fixes create capitalized value and which deal terms move cash after the headline price is agreed.",
+   "applies_to_practice": "partly",
+   "note": "Use a conservative multiple (the playbook's own small primary-care range is 3-5x, not its 7x example) and compute EBITDA after a market-rate physician salary. Post-sale compensation, goodwill, tax allocation and tail coverage matter more for a solo practice and are not covered."
+  }
+ ],
+ "practice_relevance": {
+  "score": 3,
+  "why": "The topic fits the owner's goals (think like a buyer, raise what the practice could sell for, build a readiness offering for other practices), and the self-diligence routine, data-room lists, documentation standard and deal vocabulary transfer directly. The specifics do not. The playbook assumes an office-based, multi-physician, commercially insured specialty group selling to private equity at about 7x. It has nothing on hospital and nursing facility visit codes, nurse practitioner billing, care management and wellness services, medical-director stipends, facility concentration, Medicare enrollment on a change of ownership, AI-run billing, or how a one-physician practice with about $1 million of revenue is actually priced.",
+  "sections_that_do_not_apply": [
+   "Section 1 multiples for dermatology, orthopedics, gastroenterology, cardiology, ophthalmology and behavioral health, and the ancillary-revenue premium (no surgery center, imaging, lab or infusion)",
+   "Section 1 and Section 8 worked examples at 7x and $3 million of collections (overstated for a solo primary-care practice)",
+   "Section 5 patient balance resolution (almost no patient-pay; many dual-eligible patients who cannot be billed for Medicare cost-sharing)",
+   "Section 8 office E/M distribution and surgical global-period, unbundling and modifier review as written (the practice bills hospital, nursing facility, home/residence, care management, advance care planning and wellness codes)",
+   "Section 3 Finding 4 and Section 4 staff-dependency material as framed around a long-tenured human billing manager (billing is run by AI agents)",
+   "Sections 2 and 4 commercial fee-schedule renegotiation as a main value lever (about 55% Medicare fee-for-service; the rest largely Medicare Advantage and Medicaid managed care)",
+   "Section 6 review of multiple physician employment agreements and non-competes (one owner-physician and one nurse practitioner)",
+   "Section 10 investment-banker auction process for practices valued above about $2 million"
+  ]
+ },
+ "quality": {
+  "score": 2,
+  "specificity": 3,
+  "accuracy_concerns": [
+   "Section 8 lists new-patient office codes as 99201-99205. CPT 99201 was deleted effective January 1, 2021; the range is 99202-99205.",
+   "'Stark Law safe harbors' appears twice (Sections 6 and 7). Stark is a strict-liability statute with mandatory exceptions; safe harbors are an Anti-Kickback Statute concept and are voluntary. The playbook treats two different legal tests as one.",
+   "False Claims Act exposure is described as treble damages plus exclusion. It omits the mandatory per-claim civil penalty (inflation-adjusted, roughly $14,000 to $28,000 per claim in recent years), which dominates exposure for visit-level claims; exclusion is a separate OIG authority, not an FCA penalty.",
+   "Overpayments: repayment is framed as an optional 'voluntary self-disclosure' for 'significant' amounts, and Section 7 says a clean audit, provider education and 12 months of corrected coding 'has addressed the exposure'. Federal law requires reporting and returning identified Medicare overpayments within 60 days, with a six-year lookback. Fixing coding going forward does not cure past claims, and knowingly keeping the money is itself a False Claims Act theory.",
+   "Advises putting the internal coding audit report in the data room with no discussion of attorney-client privilege or of the repayment duty an audit finding triggers, and routes self-disclosure decisions to 'healthcare M&A counsel' when the needed expertise is healthcare regulatory and fraud-and-abuse counsel.",
+   "The AR priority list ranks by age, not deadline. Medicare denials 30-120 days old are second priority and 120-180 day items are called still recoverable, yet a Medicare redetermination must be requested within 120 days of the initial determination and Medicare claims must be filed within one year of service. Commercial and Medicare Advantage dispute windows are never mentioned.",
+   "Extrapolating from 30-60 charts per physician 'selected to represent a cross-section' is presented as routine. Extrapolation is defensible only from a statistically valid random sample; a judgment sample supports a pricing argument, not a liability estimate.",
+   "The '$150,000 x 7 = $1.05 million' coding example blends two different exposures: overstated run-rate earnings (capitalized at the multiple) and repayment liability for prior years (handled through escrow or indemnity and driven by lookback years and penalties, not by the multiple).",
+   "Section 1 treats uncollected revenue discovered in diligence as a deduction from price at the multiple. Money never collected was never in historical cash-basis EBITDA; it is forgone upside, which is what Section 2 itself says about undercoding.",
+   "The working-capital section is garbled. It says a cleaner AR profile supports a 'higher working capital target' as though that helps the seller (a higher target is a higher bar to clear), and it never explains that collecting AR faster before closing lowers delivered working capital against a target set on historical averages.",
+   "It says AR cleanup 'pays twice' (better target plus seller-kept collections). The same receivables are either delivered to the buyer inside working capital or retained by the seller, not both. It also omits that Medicare limits on assigning claims are a main reason sellers keep government receivables in asset deals.",
+   "Every valuation multiple, deal count, AR discount percentage, audit sample size, timing norm and concentration threshold is unsourced apart from one parenthetical naming two firms with no title, date or link. The 11.5x and 14.5x 'healthcare services' medians, if real, most likely describe much larger companies than a small physician practice.",
+   "The 3-5x small-practice multiple is given without explaining that EBITDA is measured after paying the owner-physician a market-rate salary. For a solo practice that can leave little to multiply, and many such sales are priced on assets plus modest goodwill or are effectively an employment offer. The 7x worked examples overstate value for the playbook's own small-practice category.",
+   "'Medicare Advantage ACO' is a muddled term. Medicare's accountable care programs (Shared Savings Program, ACO REACH) apply to traditional fee-for-service Medicare, while Medicare Advantage value-based arrangements are contracts with plans. The same sentence then contrasts it with fee-for-service, which is where Medicare ACOs actually sit.",
+   "Change-of-control clauses are said to make payer contracts terminable on the deal. The usual issues are assignment, consent and notice terms, and an asset sale to a new tax ID raises re-contracting and Medicare enrollment questions regardless of any clause. The 60-120 day re-credentialing estimate is unsourced and optimistic for some payers.",
+   "Recommends a small-balance write-off policy with no warning that routinely waiving Medicare cost-sharing is prohibited absent documented hardship or reasonable collection effort, and no mention of billing protections for dual-eligible (QMB) patients.",
+   "KPI targets are stated as fact with no source, formula or definition. 'Denial resolution rate' and 'write-off rate' are undefined and could be computed several incompatible ways.",
+   "The payer-mix hierarchy (commercial best, Medicaid worst) and the 45% single-payer threshold are generalizations that do not fit senior-focused primary care, where Medicare concentration is the business model.",
+   "Calls quality of earnings 'forward-looking'; it is primarily a normalization of historical earnings used to judge sustainability."
+  ],
+  "generic_filler": "medium",
+  "internal_contradictions": [
+   "Clean-coding period: the text and the Months 10-12 step call for 12 months of clean post-correction data, Checklist 1 accepts 6 months, and the plan's own sequence (audit in Months 2-3, corrections in Months 4-6) can yield only 6 to 8 months by Month 12.",
+   "AR discounts differ by section: Section 3 values AR over 120 days at about 50% and over 180 days at 20-30%; the Section 5B table values 121-180 days at 25-50% and over 180 days at 10-25% or zero.",
+   "Section 5B says AR cleanup pays twice, once through the working-capital target and again through collections the seller keeps; the same receivables cannot be both delivered to the buyer and retained by the seller.",
+   "Section 5B defines the target as the level the seller must deliver, then presents a 'higher' target as putting more cash in the seller's pocket.",
+   "Section 1 prices revenue leakage as a purchase-price deduction at the multiple; Section 2 says buyers treat leakage and undercoding as their own upside and simply do not pay for it.",
+   "The model 'good' practice in Section 1 (94% clean claims, 5% denials) misses the document's own Section 4 targets (95%+ clean claims, denials below 5%).",
+   "E/M outlier thresholds shift between 15 percentage points (Section 4 and checklist), 20-40 percentage points (Section 3), and relative figures of 30% and 70% above benchmark (Sections 2 and 3), mixing points with relative percent.",
+   "The payer concentration threshold is 45% in one paragraph, and the cautionary examples in the next paragraph use 40%.",
+   "Lookback periods disagree: days in AR is trailing 36 months in Section 2 and 24 months in Checklist 2; AR aging is 24 months in Section 2 and 12 to 24 months in Section 6.",
+   "The AR-over-90 goal is below 15% in the KPI table and checklist, below 12% in the timeline, and 10% in the Section 5B example.",
+   "Write-offs: Section 5 says to write off stale claims now, then says the better approach is consistent write-off timing over the trailing three years, which cannot be created retroactively inside a 12-month plan.",
+   "The manual's first draft is 'completed' in Months 2-3 and then drafted again in Months 7-9.",
+   "The closing note says vendor-observed figures are labeled as such throughout; no figure in the body carries any such label.",
+   "The introduction promises to flag where analysis differs by transaction type; apart from one asset-versus-stock sentence it never does, and hospital deals bound by fair-market-value limits are not distinguished from private-equity deals."
+  ],
+  "time_sensitive_or_outdated": [
+   "CPT 99201 is listed as a live code; it was deleted January 1, 2021.",
+   "The deal count is from Q1 2025 and the multiples are 'as of late 2025 and 2026'. Both go stale within months and the deal count is already more than 18 months old at the reading date (November 2026).",
+   "The 'double-digit multiples' for value-based primary care reflect the 2021-2022 peak; that segment repriced sharply afterward and the claim needs rechecking.",
+   "No reference to the 2023 E/M guideline changes for hospital, nursing facility and home/residence visits, which govern coding audits for a facility-based practice.",
+   "The overpayment discussion ignores the 60-day report-and-return rule entirely, including the revised identification standard and investigation window that took effect January 1, 2025.",
+   "Non-competes are discussed with no federal or state-law context, an area that changed repeatedly during 2024-2026.",
+   "No mention of state health-care transaction notice and review laws or the heightened antitrust attention to private-equity practice roll-ups that grew during 2023-2026.",
+   "Checklist 1 treats a HIPAA security risk analysis within the past 12 months as the standard. The Security Rule requires a risk analysis; an annual cadence was proposed in the January 2025 rulemaking and its current status should be verified.",
+   "'RAC' is used as the stand-in for government audits; current exposure also runs through MAC targeted reviews, UPIC, SMRC, CERT and Medicare Advantage plan audits."
+  ],
+  "ai_generation_signals": [
+   "No author, credential, firm history or verifiable case; pattern claims such as 'across physician practice transactions' have nothing behind them.",
+   "One citation in 41 pages, given as two firm names with no title, date or link.",
+   "Round-number hypotheticals with tidy arithmetic recycled across sections: 7x appears four times, $800,000 of AR twice, a $3 million practice twice, $150,000 becoming $1.05 million twice.",
+   "An unattributed 'in one due diligence case' ENT anecdote.",
+   "Stock rhetorical cadence ('not X - it is Y', 'That is not luck. That is preparation.') and call-out boxes that restate the paragraph above them.",
+   "Three boilerplate disclaimers, one describing 'CCRx-observed' labels that do not exist anywhere in the text.",
+   "Seventeen references to nine sibling products standing in for the actual protocols.",
+   "Stale or muddled technical recall: 99201, 'Stark Law safe harbors', 'Medicare Advantage ACO', 'healthcare M&A counsel' for self-disclosure.",
+   "Padding: several pages carry fewer than 110 words (page 38 has 17, page 40 has 49, pages 30 and 32 about 80 each)."
+  ],
+  "missing_for_real_use": [
+   "Formulas and data definitions for every KPI (numerator, denominator, date basis), so targets can be applied consistently.",
+   "A worked EBITDA normalization: market-rate physician compensation, owner perquisites, cash-to-accrual conversion. This step decides whether a small practice has any EBITDA to multiply.",
+   "How small and solo practices are actually valued and sold: asset-plus-goodwill pricing, fair-market-value limits when a hospital buys, post-sale employment and compensation, rollover equity, management-company structures.",
+   "Tax: asset versus stock treatment, entity type, purchase price allocation, personal goodwill, ordinary-income treatment of cash-basis receivables.",
+   "The mandatory 60-day overpayment report-and-return duty, lookback period and refund mechanics, and how to run a coding audit under privilege before a report goes into a data room.",
+   "Medicare and Medicaid change-of-ownership and enrollment mechanics, reassignments, new tax ID consequences, Medicare limits on assigning receivables, and how billing continues through the transition.",
+   "Credit balances, unapplied payments and unclaimed property, a routine diligence item that is never mentioned.",
+   "Payer deadlines for timely filing and each appeal level, which should drive the AR work order.",
+   "The coding-audit protocol itself (sampling design, error-rate definition, extrapolation method), the denial sprint protocol and the fee-schedule analysis, all deferred to other products.",
+   "Benchmark sources: which CMS dataset, how to build a peer distribution, how to treat nurse practitioners and non-office code families.",
+   "Facility-based and geriatric specifics: hospital and nursing facility visit codes, nurse practitioner billing rules in facilities (direct billing, split or shared visits, physician-required nursing facility visits), care management, advance care planning, wellness visits, medical-director agreements, facility concentration.",
+   "Risk-adjustment (HCC) coding accuracy and Medicare Advantage audit exposure; quality, MIPS and value-based contract performance as value drivers.",
+   "State law: licensure when non-practitioners own a practice (in Florida, the Health Care Clinic Act should be checked), state self-referral and fee-splitting rules, non-compete enforceability, transaction notice laws.",
+   "Malpractice tail coverage, medical records custody, patient notification, employee and benefit plan matters, lease assignment.",
+   "AI and automation: how to document, govern and present an AI-run billing operation to a buyer.",
+   "Any working template: data-request list, manual template, KPI workbook, working-capital schedule, add-back schedule, compliance log, contract matrix.",
+   "Owners, hours, costs and decision criteria for the 12-month plan."
+  ]
+ }
+}

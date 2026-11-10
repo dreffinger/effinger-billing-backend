@@ -1,0 +1,510 @@
+{
+  "slug": "kpi-09-charge-lag",
+  "title": "KPI 09: Charge Lag - CleanClaimRx, The KPI Prescription Series (Part 9 of 10)",
+  "doc_type": "kpi_rx",
+  "pages": 26,
+  "audience": "Not stated. Implied readers are billing managers, practice administrators and owners of independent practices who need to change provider documentation behavior; examples skew to surgical and hospitalist groups. Positioned as a companion to the vendor's KPI Action Guide, Volume I, Chapter 10.",
+  "summary": "Ninth of ten single-metric guides. Defines charge lag as days from date of service to charge entry and argues it is a clinical-workflow metric that silently inflates days in A/R, compresses timely-filing windows and produces never-billed services ('invisible A/R'). Method is a fixed five-step template: read the number against threshold bands; diagnose with three data pulls (lag by provider and service type, a five-timestamp workflow trace, payer filing-window exposure) plus a census-or-schedule-to-charge reconciliation; apply eight interventions split among documentation lag, billing-entry lag and deadline backlog; run a 30-day sprint built on data-driven provider conversations; sustain with monthly provider-level reporting, onboarding standards and a technology business case. Examples are mostly surgical and hospitalist. No sources, payers or systems are named, and one intervention (bill before documentation is complete) is a compliance hazard.",
+  "outline": [
+    {"section": "Section 0: The Diagnostic Trigger", "gist": "Defines charge lag (service date to charge entry), gives threshold bands from 0-1 days to above 5, and says to split by service source."},
+    {"section": "Section 1: What the Number Is Actually Telling You", "gist": "Frames lag as a clinical-workflow metric with three consequences: understated days in A/R, compressed filing windows, lost charges; introduces unposted 'invisible A/R'."},
+    {"section": "Section 2: How to Diagnose Why It's Off", "gist": "Three data pulls (lag by provider and service type, five-timestamp trace, payer filing-window exposure) plus a monthly census-or-schedule-to-charge gap analysis."},
+    {"section": "Section 3: The Intervention Stack", "gist": "Eight interventions: documentation deadlines, point-of-care and daily charge capture, no paper forms, 24-hour entry SLA, auto-generated draft charges, daily schedule review, deadline-backlog rescue."},
+    {"section": "Section 4: Execution on the Floor", "gist": "Data-driven provider conversations, a 30-day sprint in four phases, lag on provider scorecards and weekly billing dashboards, and a three-part surgical protocol."},
+    {"section": "Section 5: Sustained vs. Temporarily Fixed", "gist": "Three hold signals (average within 2 days for three months, reconciliation discrepancies under 2%, few near-deadline claims), monthly provider report, onboarding habits, technology business case."}
+  ],
+  "framework_elements": [
+    "Charge lag measurement (service date to charge entry)",
+    "Charge lag segmentation by provider",
+    "Charge lag segmentation by service type and care setting",
+    "Charge lag threshold bands and escalation triggers",
+    "Effective days-in-A/R adjustment for lag",
+    "Invisible A/R (unposted services) estimation",
+    "Charge entry workflow trace (five timestamps)",
+    "Payer timely-filing reference table",
+    "Timely-filing exposure analysis (effective submission window)",
+    "Weekly near-deadline exposure report",
+    "Charge capture gap analysis (census, schedule or log versus charges)",
+    "Daily schedule-to-charge reconciliation",
+    "Documentation completion standards by service type",
+    "Daily charge submission rule for rounding providers",
+    "Point-of-care charge capture independent of the note",
+    "Electronic charge capture replacing paper encounter forms",
+    "Charge entry SLA (24 hours from documentation receipt)",
+    "Automated draft-charge generation from signed notes",
+    "Timely-filing backlog rescue protocol",
+    "Billing hold and escalation for late notes",
+    "Provider-specific data conversation",
+    "30-day charge lag improvement sprint",
+    "Charge lag on provider performance report",
+    "Weekly billing dashboard lag flag",
+    "Sustainment signals with three-month thresholds",
+    "Monthly charge lag report with per-provider flags",
+    "New-provider onboarding standards and 30-day lag check",
+    "Charge-capture technology business case (cost of lag versus solution cost)"
+  ],
+  "processes": [
+    {
+      "name": "Charge lag report by provider and service type (Pull 1)",
+      "steps": [
+        "Extract service date and charge entry date for the last 60 days",
+        "Compute average days between the two dates",
+        "Segment by provider and by service type or care setting",
+        "Look for concentration in one provider, service type or setting",
+        "Classify the pattern as provider-specific, setting-specific or a uniform entry bottleneck"
+      ],
+      "owner_role": "Billing manager or billing team (implied; not explicitly assigned)",
+      "cadence": "At diagnosis with a 60-day lookback, then monthly as a standing report"
+    },
+    {
+      "name": "Charge entry workflow trace (Pull 2)",
+      "steps": [
+        "Pick the highest-lag provider or service type",
+        "For sample charges record five timestamps: service rendered, documentation completed, documentation received by billing, charge entered, claim submitted",
+        "Measure each gap",
+        "Call the bottleneck clinical if the largest gap is before documentation completion, billing if it is after receipt",
+        "Fix the clinical gap first when both are large"
+      ],
+      "owner_role": "Billing manager (implied)",
+      "cadence": "Ad hoc during diagnosis; repeat after workflow changes"
+    },
+    {
+      "name": "Timely filing exposure analysis (Pull 3) and weekly exposure report",
+      "steps": [
+        "List each payer's filing deadline from the practice's payer reference document",
+        "Compute average charge lag for that payer's claims",
+        "Subtract lag from the deadline to get the effective submission window",
+        "Escalate any payer whose window falls below 60 days",
+        "Track weekly the count of claims within 30 days of their deadline, aiming for fewer than five"
+      ],
+      "owner_role": "Billing team (implied)",
+      "cadence": "At diagnosis, then weekly"
+    },
+    {
+      "name": "Charge capture gap analysis and daily reconciliation",
+      "steps": [
+        "Count services from the clinical source (hospital census, surgical schedule, procedure log)",
+        "Count charges entered in the practice management system for the same period",
+        "List every discrepancy",
+        "Investigate each one: pending documentation, scheduled entry or a genuinely missed charge",
+        "Enter missed charges and track the discrepancy rate"
+      ],
+      "owner_role": "Billing team",
+      "cadence": "Monthly for hospital or surgical components; prior-day schedule review every business day for high-volume surgical or procedural practices"
+    },
+    {
+      "name": "Daily charge submission for rounding providers",
+      "steps": [
+        "Record a charge for every patient seen that day",
+        "Submit charges to billing the same day, never weekly or at discharge",
+        "Billing processes current charges instead of catching up on batches"
+      ],
+      "owner_role": "Rendering provider (hospitalist or rounding clinician)",
+      "cadence": "Daily"
+    },
+    {
+      "name": "Documentation completion standard plus 24-hour charge entry SLA",
+      "steps": [
+        "Set completion deadlines by service type (office note same business day; hospital note, operative note and discharge summary within 24 hours)",
+        "Present them to providers as clinical standards with billing consequences",
+        "Require billing to enter charges within 24 hours of receiving documentation",
+        "Turn on automated draft-charge generation from signed notes where the system supports it",
+        "Flag on the weekly billing dashboard any day the 24-hour standard is missed"
+      ],
+      "owner_role": "Providers for documentation; billing team for entry",
+      "cadence": "Continuous; reviewed weekly"
+    },
+    {
+      "name": "Provider conversation and 30-day implementation sprint",
+      "steps": [
+        "Days 1-5: produce provider and service-type lag report, meet top-lag providers with their own numbers and dollar exposure, announce the documentation standard",
+        "Days 6-15: implement one highest-impact workflow change per high-lag service type",
+        "Days 16-25: audit the billing entry step, enable automated charge generation, formalize the 24-hour SLA",
+        "Days 26-30: re-pull the report, compare with baseline, record the new baseline and set a 90-day monitoring target"
+      ],
+      "owner_role": "Billing manager with practice leadership (implied)",
+      "cadence": "One-time 30-day sprint when average lag exceeds 3 days"
+    },
+    {
+      "name": "Sustainment: monthly provider-level report and new-provider onboarding",
+      "steps": [
+        "Publish a monthly table with one row per provider: current-month average, prior-month average, flag above 3 days",
+        "Hold a brief check-in with any flagged provider or their office manager",
+        "Show charge lag on the provider performance report beside RVUs and collections",
+        "Give new providers the charge entry and documentation standards for their service types",
+        "Review each new provider's lag at 30 days"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Monthly; onboarding check at 30 days"
+    }
+  ],
+  "tools_templates": [
+    "Charge lag interpretation table: six bands (0-1, 1-2, 2-3, 3-5, above 5 days, any provider above 4 days) with what each signals",
+    "Lag pattern guide: three typical patterns (outlier providers, hospital or surgical lag, uniform lag) mapped to likely cause and where the fix sits",
+    "Five-question charge entry workflow trace: checklist of timestamps from service to claim submission",
+    "Timely filing exposure formula: payer deadline minus average lag equals effective submission window, with a 60-day alert level",
+    "Charge capture gap analysis method: clinical-source service count versus posted charge count, described in prose only",
+    "Eight-item intervention stack: grouped as documentation lag, billing entry lag and filing-deadline backlog",
+    "Provider conversation script: sample wording built on a provider's own lag, dollar exposure and write-offs",
+    "30-day implementation sprint: four phases (days 1-5, 6-15, 16-25, 26-30) with tasks for each",
+    "Monthly charge lag report layout: per-provider row with current month, prior month and over-3-day flag (described; no actual template)",
+    "Weekly billing dashboard element: current versus prior week lag with a flag for days breaching the 24-hour standard (described only)",
+    "Surgical charge lag protocol: daily OR-schedule reconciliation, 24-hour operative note rule with billing hold, intraoperative charge capture form",
+    "Three-signal sustainment checklist: thresholds for average lag, reconciliation discrepancy rate and near-deadline claim count",
+    "New-provider onboarding content list: charge entry standards, documentation timelines, setting-specific workflow, 30-day check-in",
+    "Technology investment case formula: lag days times average daily charges times cost of float, plus lag-related filing write-offs, compared with solution cost",
+    "Note: no fillable form, spreadsheet, tracker or system report specification is actually included; every tool is narrative, and detailed methods are deferred to the separately sold KPI Action Guide."
+  ],
+  "metrics": [
+    {
+      "name": "Average charge lag",
+      "definition": "Days between the date a service is rendered and the date its charge is entered in the practice management system, averaged across charges",
+      "formula": "Average of (charge entry date minus date of service); pull the last 60 days and segment by provider and service type. Calendar versus business days is not specified.",
+      "target": "0-1 days best practice; 1-2 days acceptable; sustained fix means a practice average at or below 2 days for three consecutive months",
+      "red_flag": "2-3 days watch closely; 3-5 days action threshold; above 5 days significant problem",
+      "source_cited": "none"
+    },
+    {
+      "name": "Provider-level average charge lag",
+      "definition": "Average charge lag for one provider",
+      "formula": "Average charge lag filtered to a single provider",
+      "target": "No individual provider averaging above 3 days (Section 5)",
+      "red_flag": "Any provider averaging above 4 days is labelled a provider-specific crisis (Section 0); the monthly report flags above 3 days (Section 5)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge lag by service type or care setting",
+      "definition": "Average lag split among office visits, hospital rounds, surgical cases and procedural services",
+      "formula": "Average charge lag filtered by service type",
+      "target": "",
+      "red_flag": "One setting far above the rest (example: 4.6 days surgical versus 0.8 days office inside a 1.2-day overall average)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Effective days in A/R",
+      "definition": "Days in A/R measured from service date rather than from charge entry",
+      "formula": "Reported days in A/R plus average charge lag (example: 42 + 4 = 46)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Effective submission window",
+      "definition": "Time actually left to submit a claim to a payer once charge lag is deducted",
+      "formula": "Payer timely filing deadline minus average charge lag for that payer's claims",
+      "target": "",
+      "red_flag": "Below 60 days requires immediate attention",
+      "source_cited": "none"
+    },
+    {
+      "name": "Invisible A/R",
+      "definition": "Services rendered but not yet entered as charges, absent from every A/R report",
+      "formula": "True A/R including unentered charges minus reported A/R; illustrated as patients per day times days of batch delay (15 x 5 to 7 = 75 to 105 encounters). The calculation method is deferred to the companion guide.",
+      "target": "",
+      "red_flag": "Weekly batching by rounding providers; paper or transcription-based charge capture",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge capture gap (reconciliation discrepancy rate)",
+      "definition": "Share of services on the clinical record (hospital census, surgical schedule, procedure log) that have no corresponding charge",
+      "formula": "(Services documented minus charges entered) divided by services documented for the same period; stated for surgical cases with no charge by the next day",
+      "target": "Below 2%",
+      "red_flag": "Above 5%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Documentation completion time",
+      "definition": "Time from service to a completed, signed note, by service type",
+      "formula": "",
+      "target": "Office notes by end of the business day; hospital progress notes, operative notes and discharge summaries within 24 hours",
+      "red_flag": "Operative notes not done within 24 hours are escalated as a billing hold",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge entry turnaround (billing SLA)",
+      "definition": "Time from billing's receipt of documentation to charge entry",
+      "formula": "Charge entry time minus documentation receipt time",
+      "target": "24 hours",
+      "red_flag": "Any day on which the 24-hour standard is exceeded is flagged on the weekly billing dashboard",
+      "source_cited": "none"
+    },
+    {
+      "name": "Timely filing exposure count",
+      "definition": "Number of claims within 30 days of their payer filing deadline",
+      "formula": "Count of items whose filing deadline is 30 days away or less",
+      "target": "Fewer than five per week",
+      "red_flag": "A rising count, attributed to more lag or more volume from a short-window payer",
+      "source_cited": "none"
+    },
+    {
+      "name": "Timely filing write-offs attributable to documentation lag",
+      "definition": "Dollars written off for missed filing deadlines where late documentation was the cause",
+      "formula": "",
+      "target": "",
+      "red_flag": "Illustration only: $28,000 in a year on surgical cases, 60% attributed to documentation lag",
+      "source_cited": "none"
+    },
+    {
+      "name": "Annual cost of charge lag",
+      "definition": "Financial cost used to justify integrated charge-capture technology",
+      "formula": "(Charge lag days x average daily charges x cost of float) plus annual timely filing write-offs attributable to lag",
+      "target": "",
+      "red_flag": "Cost greater than the annual price of an integrated charge capture solution",
+      "source_cited": "none"
+    },
+    {
+      "name": "Week-over-week charge lag",
+      "definition": "Average charge lag for the current week compared with the prior week on the billing dashboard",
+      "formula": "",
+      "target": "",
+      "red_flag": "Upward drift; any day breaching the 24-hour standard",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claims in the '61-plus day timely filing risk range' (by provider)",
+      "definition": "Mentioned once as a figure to show providers; never defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "New-provider 30-day charge lag",
+      "definition": "A new provider's average charge lag at the 30-day onboarding check",
+      "formula": "",
+      "target": "Illustrated as 1.4 days in the first month",
+      "red_flag": "A 5-day habit left uncorrected for six months",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {"claim": "Charge entry the same or next day (0-1 days) is best practice", "section": "Section 0", "source_cited": "none"},
+    {"claim": "A 1-2 day average lag is acceptable and needs no immediate action", "section": "Section 0", "source_cited": "none"},
+    {"claim": "A 2-3 day lag adds 2-3 days to every claim's effective A/R age", "section": "Section 0", "source_cited": "none"},
+    {"claim": "3-5 days is the action threshold", "section": "Section 0", "source_cited": "none"},
+    {"claim": "Above 5 days is a significant problem; a 90-day filing window effectively becomes 85 days or less", "section": "Section 0", "source_cited": "none"},
+    {"claim": "Any provider averaging above 4 days is a provider-specific crisis; example of one provider at 7 days", "section": "Section 0", "source_cited": "none"},
+    {"claim": "A 1.2-day overall average can hide 0.8 days for office visits and 4.6 days for surgical cases", "section": "Section 0", "source_cited": "none"},
+    {"claim": "Unentered charges in surgical and high-volume practices can amount to hundreds of thousands of dollars of unreported A/R", "section": "Section 0", "source_cited": "none"},
+    {"claim": "With a 4-day lag, a reported 42 days in A/R is really 46 days from service date", "section": "Section 1", "source_cited": "none"},
+    {"claim": "Payer filing deadlines are typically 90 days, 180 days or one year from service date", "section": "Section 1", "source_cited": "none"},
+    {"claim": "A January 1 service under a 90-day limit must be submitted by April 1", "section": "Section 1", "source_cited": "none"},
+    {"claim": "Some Medicare Advantage plans require submission within 90 days and some commercial payers within 60 days", "section": "Section 1", "source_cited": "none"},
+    {"claim": "A hospitalist seeing 15 patients a day and batching weekly carries 5-7 days of unposted work, 75-105 encounters", "section": "Section 1", "source_cited": "none"},
+    {"claim": "The diagnostic report should cover the last 60 days of charges", "section": "Section 2", "source_cited": "none"},
+    {"claim": "Any payer with an effective submission window under 60 days needs immediate attention", "section": "Section 2", "source_cited": "none"},
+    {"claim": "Paper encounter forms add one to three days of lag by design", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Hospital progress notes, operative notes and discharge summaries should each be complete within 24 hours; office notes by end of the business day", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Billing should enter charges within 24 hours of receiving documentation; 24 hours is called the minimum standard rather than an aggressive one", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Services within 30 days of the filing deadline should be billed the same day regardless of documentation completeness; most payers are said to accept records for pending claims", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Sample script: a 4.8-day surgical lag means about $340,000 of surgical A/R starting its clock 5 days late and 11 cases a year at filing risk", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Sample script: $28,000 lost in a year to timely filing write-offs on surgical cases, 60% attributed to documentation lag", "section": "Section 4", "source_cited": "none"},
+    {"claim": "A 30-day sprint can typically bring a practice with average lag above 3 days into the target range", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Operative notes not completed within 24 hours are escalated as a billing hold", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Without ongoing accountability, providers revert to old habits within 60 to 90 days", "section": "Section 5", "source_cited": "none"},
+    {"claim": "A billing team at a 1.1-day average will drift back to 2.3 days within a quarter if measurement stops", "section": "Section 5", "source_cited": "none"},
+    {"claim": "The fix is holding when the practice average is at or below 2 days for three consecutive months and no provider exceeds 3 days", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Reconciliation discrepancy rate should be below 2%; above 5% means the capture workflow is failing", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Fewer than five claims per week should be within 30 days of their filing deadline", "section": "Section 5", "source_cited": "none"},
+    {"claim": "A 2-minute check-in at a 2.8-day average prevents a 30-minute conversation at 5.4 days; flag at a monthly average above 3 days", "section": "Section 5", "source_cited": "none"},
+    {"claim": "In most practices with significant surgical or hospital volume, the revenue impact of persistent lag exceeds the cost of charge-capture technology", "section": "Section 5", "source_cited": "none"}
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Every payer has a timely filing deadline - typically 90 days, 180 days, or one year from service date, depending on the payer.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 1 (timely filing window compression)",
+      "why": "The whole exposure analysis depends on the real limit for each payer and on which date the clock starts. Medicare fee-for-service allows about a year; contracted plans can be far shorter. A wrong table produces missed deadlines or wasted urgency."
+    },
+    {
+      "id": "C2",
+      "claim": "some Medicare Advantage plans require submission within 90 days, some commercial payers within 60 days",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 1 (timely filing window compression)",
+      "why": "The practice bills several Medicare Advantage plans plus Medicaid managed care, VA and Tricare. If actual contract limits differ, alert thresholds are wrong; a 90-day plan is where real write-off risk would sit."
+    },
+    {
+      "id": "C3",
+      "claim": "For any service within 30 days of its timely filing deadline: enter the charge immediately and submit the claim the same day, regardless of documentation completeness; most payers allow medical record submissions to support pending claims.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 3, Intervention 8",
+      "why": "If Medicare and other payers require the record to be complete and authenticated before a claim is filed, following this advice creates unsupported claims, overpayment liability and possible False Claims Act exposure."
+    },
+    {
+      "id": "C4",
+      "claim": "A claim that misses the timely filing deadline because someone was waiting for a complete note is not recoverable at any documentation quality level.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 3, Intervention 8",
+      "why": "This absolute statement is the justification for billing before documentation is finished. Medicare has defined exceptions and plans have good-cause reconsideration; the true rule sets the right risk trade-off."
+    },
+    {
+      "id": "C5",
+      "claim": "Same day or next day (0-1 days) is best practice; 1-2 days acceptable; 3-5 days is the action threshold; above 5 days is a significant problem.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 0 (threshold table)",
+      "why": "These bands would drive provider accountability and dashboards. They are unsourced and applied identically to office and hospital or facility work, where published norms may differ."
+    },
+    {
+      "id": "C6",
+      "claim": "A practice with a 4-day average charge lag has every claim starting its AR clock 4 days late. The practice reports 42 days in AR. The effective AR age - from service date to payment - is 46 days.",
+      "kind": "other",
+      "stakes": "medium",
+      "section": "Section 1 (days in AR inflation)",
+      "why": "Whether lag hides inside days in A/R depends on how the system ages receivables and how the ratio is computed. If AdvancedMD ages from date of service, adding lag double counts and misstates benchmark comparisons."
+    },
+    {
+      "id": "C7",
+      "claim": "hospital progress notes completed within 24 hours of the encounter, operative notes completed and dictated within 24 hours of the procedure, discharge summaries completed within 24 hours of discharge",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 3, Intervention 1",
+      "why": "Offered as the standard to impose on providers. Binding timing rules come from Medicare guidance, hospital conditions of participation, nursing-facility regulations and facility bylaws; a policy that is looser or mis-cited creates survey and audit exposure."
+    },
+    {
+      "id": "C8",
+      "claim": "The monthly surgical charge reconciliation shows a discrepancy rate below 2 percent... A reconciliation discrepancy rate above 5 percent means the intraoperative charge capture workflow is not functioning consistently.",
+      "kind": "benchmark",
+      "stakes": "low",
+      "section": "Section 5 (signal 2)",
+      "why": "It is the only numeric tolerance offered for missed charges. If no recognized benchmark supports it, a census-based rounding practice should set its own tolerance, arguably zero unexplained encounters."
+    }
+  ],
+  "domain_map": [
+    {"domain": "rcm-charge-coding", "weight": 0.55, "topics": ["charge lag measurement", "charge capture reconciliation", "documentation-to-charge workflow", "charge entry SLA", "daily charge submission for rounding"]},
+    {"domain": "clinical-operations", "weight": 0.15, "topics": ["rounding workflow", "provider documentation habits", "provider productivity reporting"]},
+    {"domain": "rcm-claims-ar", "weight": 0.10, "topics": ["timely filing exposure", "days in A/R distortion", "timely filing write-offs"]},
+    {"domain": "technology-data-ai", "weight": 0.08, "topics": ["automated charge generation from notes", "electronic charge capture", "dashboards", "charge-capture technology business case"]},
+    {"domain": "people-compensation", "weight": 0.06, "topics": ["provider accountability", "performance conversations", "new-provider onboarding"]},
+    {"domain": "compliance-risk", "weight": 0.06, "topics": ["documentation timeliness standards", "billing before documentation is complete (flagged risk)"]}
+  ],
+  "adopt": [
+    {
+      "idea": "Measure lag from service date to charge entry for every charge and report it by provider and by care setting (hospital, SNF, NF, ALF, care management), not as one practice average",
+      "why": "Averages hide the one provider or setting causing the problem; segmentation is what makes the metric actionable",
+      "applies_to_practice": "yes",
+      "note": "Add median, 90th percentile and percent of charges older than 7, 14 and 30 days, which the document omits. Define calendar days and how weekend visits and month-end care-management charges are counted."
+    },
+    {
+      "idea": "Same-day charge submission rule for all rounding work: every patient seen today has a charge submitted today",
+      "why": "Removes batch delay and the pool of unposted work that no report shows",
+      "applies_to_practice": "yes",
+      "note": "Fits the owner's and nurse practitioner's facility rounds directly. The control that matters is a daily completeness check, not just the rule."
+    },
+    {
+      "idea": "Reconcile an independent record of who was seen (facility census, rounding list, visit log, signed notes) against posted charges and investigate every mismatch",
+      "why": "It is the only control that catches services never billed, which is permanent revenue loss rather than delay",
+      "applies_to_practice": "yes",
+      "note": "Run daily for hospital work and at least weekly for SNF, NF and ALF visits; agents can match signed notes to charges in AdvancedMD. The document's 2% tolerance is unsourced; aim for zero unexplained items."
+    },
+    {
+      "idea": "Five-timestamp trace from service to claim submission to find whether delay sits with the clinician or with billing",
+      "why": "Stops the practice fixing the wrong side of the handoff",
+      "applies_to_practice": "yes",
+      "note": "Add a sixth timestamp for payer acceptance, since deadlines turn on receipt by the payer, not on charge entry."
+    },
+    {
+      "idea": "Two separate clocks: a documentation completion standard for clinicians and a 24-hour entry standard for billing once the note is signed",
+      "why": "Assigns each part of the delay to the party that controls it",
+      "applies_to_practice": "yes",
+      "note": "Billing agents can be held to hours. The clinician standard should cite the facility's own bylaws and Medicare's timing expectation rather than this document."
+    },
+    {
+      "idea": "Payer-by-payer filing-deadline table and a weekly list of unbilled or unresolved items approaching each deadline",
+      "why": "Turns an abstract lag number into a concrete, dated worklist",
+      "applies_to_practice": "yes",
+      "note": "Build it from contracts and payer manuals for Medicare fee-for-service, each Medicare Advantage plan, Medicaid managed care plans, VA and Tricare. Do not rely on the generic 90/180/365."
+    },
+    {
+      "idea": "Show charge lag on the provider scorecard next to RVUs and collections",
+      "why": "The person who controls the lag rarely sees billing reports",
+      "applies_to_practice": "yes",
+      "note": "With two providers this is a single monthly dashboard line for the owner and the nurse practitioner."
+    },
+    {
+      "idea": "Provider conversations built on the individual's own data and dollar exposure, with one specific workflow change requested",
+      "why": "Specific numbers and a concrete ask change behavior more than general reminders",
+      "applies_to_practice": "partly",
+      "note": "Useful for the nurse practitioner and future hires. Use real figures; the sample script's numbers are invented and its filing-loss logic is weak."
+    },
+    {
+      "idea": "Charge-entry expectations and a 30-day lag check in new-provider onboarding",
+      "why": "Cheaper to set the habit at the start than to correct it later",
+      "applies_to_practice": "yes",
+      "note": "Relevant to growth plans and to any practice the owner later advises or acquires."
+    },
+    {
+      "idea": "Estimate unposted work at each month-end as part of the close",
+      "why": "Gives a truer picture of receivables and earned revenue than the A/R report alone",
+      "applies_to_practice": "yes",
+      "note": "Useful for accrual-basis reporting and for a buyer's working-capital diligence. The document names the concept but gives no method."
+    }
+  ],
+  "practice_relevance": {
+    "score": 4,
+    "why": "Facility rounding is the practice's core business, and the rounding guidance here (same-day charge submission, census-to-charge reconciliation, visibility of unposted work) targets the main failure mode of hospital, SNF, NF and ALF visit billing. Payer-specific filing-window tracking matters for the Medicare Advantage, Medicaid managed care and VA share of the mix. Roughly a third of the text is surgical or office-based and does not apply, the billing-staff bottleneck material does not fit agent-run billing, and Medicare fee-for-service's one-year filing window makes the deadline urgency much smaller than the document implies for the majority of charges. Monthly care-management billing is not addressed at all.",
+    "sections_that_do_not_apply": [
+      "Section 3, Intervention 2 (intraoperative charge capture)",
+      "Section 3, Intervention 7 as written (prior-day surgical schedule review; the concept transfers to facility census)",
+      "Section 4, 'The Surgical Practice Specific Protocol'",
+      "Office-visit end-of-day note standard, paper encounter forms and dictation or transcription workflow",
+      "Billing-team staffing bottleneck discussion (charge entry is done by AI agents)",
+      "Section 3, Intervention 8 (submit without complete documentation) should not be applied in any practice"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Intervention 8 tells readers to submit claims near a filing deadline regardless of documentation completeness and asserts that most payers accept records afterward. Medicare expects documentation to be complete before a claim is filed; billing an undocumented or unsigned service risks unsupported or false claims. Hazardous as written.",
+      "Deadline risk from average lag is overstated. A 3-5 day average does not endanger a 90-day window, let alone Medicare fee-for-service's one-year window. Filing write-offs come from the tail (charges weeks late or never entered, rejected claims left unworked), which the document never measures. The sample script's link between a 4.8-day lag and $28,000 of filing write-offs is not credible.",
+      "Timely filing limits appear only as generic ranges with no payer, contract or source named. Medicare Advantage limits are contract-specific, and limits can run from dates other than the visit date (discharge, primary payer's determination).",
+      "The exposure formula subtracts only charge-entry lag and ignores entry-to-submission time, scrubber holds, rejections and how each payer defines receipt.",
+      "Days-in-A/R arithmetic assumes the A/R clock starts at charge entry. Many systems age from date of service; the adjustment then applies only to the ratio-based figure, and the assertion that external benchmarks assume prompt entry is unsupported.",
+      "The cost-of-lag formula multiplies by gross charges rather than expected collections and leaves 'cost of float' undefined, overstating the benefit for a Medicare-heavy practice whose charges far exceed allowed amounts.",
+      "Every threshold (0-1, 1-2, 3-5 days, 2%, 5%, five claims a week, 60-day window) is unsourced, and the same bands are applied to office, hospital and surgical work although the text says these differ.",
+      "Behavioral statistics (reversion within 60-90 days, drift from 1.1 to 2.3 days in a quarter) are stated as fact with no evidence."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Provider trigger differs: above 4 days is a 'crisis' in Section 0, but Section 5 sets a 3-day ceiling and a 3-day flag.",
+      "The 24-hour standard is called the bare minimum, yet the threshold table rates 1-2 days as acceptable with no action required.",
+      "Surgical reconciliation is daily in Sections 3 and 4 but called 'monthly' in Section 5 while described in next-day terms; the Section 2 gap analysis is monthly.",
+      "Section 4 imposes a billing hold when the operative note is late, while Intervention 8 says to submit claims regardless of documentation completeness.",
+      "The 60-day effective-window alert would flag every 60-day payer at any lag and never flag a 90-day payer until lag passes 30 days, which conflicts with calling 5 days significant.",
+      "Front matter promises every worked dollar example needed; the only dollar figures sit in an unexplained sample script.",
+      "The sprint aims for 'the target range' but no single target is defined (0-1 days, 24 hours, and at or below 2 days all appear).",
+      "A never-defined '61-plus day timely filing risk range' appears once."
+    ],
+    "time_sensitive_or_outdated": [
+      "No rule is tied to a date or source, so nothing can be confirmed current as of November 2026; payer filing limits change by contract and must be looked up.",
+      "Workflow assumptions (dictation, transcription, paper encounter forms) are dated; mobile rounding charge capture, ambient documentation and AI-assisted charge generation, common by 2026, are not discussed.",
+      "No treatment of monthly time-based services (chronic care management) or transitional care, where the billable date differs from visit dates."
+    ],
+    "ai_generation_signals": [
+      "Rigid five-step scaffold with 'SYSTEM STEP n OF 5' labels and section titles identical to the sibling document",
+      "Repeated 'See Also' boxes that point to another paid product instead of giving the method",
+      "Slogan-style pull quotes ('Enter the charge. Start the clock.') and repeated 'X, not Y' constructions",
+      "Invented-precision illustrative figures (0.8/4.6/1.2 days, 1.1 to 2.3 days, 2.8 versus 5.4 days, $340,000, 11 cases, $28,000, 60%) with no derivation",
+      "No author, credential, citation, named payer, named system or dataset anywhere",
+      "Undefined or garbled phrases ('61-plus day timely filing risk range'; a provider who improved 'will revert to those habits')",
+      "Front-matter boast of completeness that the content does not deliver"
+    ],
+    "missing_for_real_use": [
+      "Exact metric specification: calendar versus business days, mean versus median and percentiles, charge-level versus encounter-level, which system date fields to use",
+      "Tail measures: share of charges entered after 7, 14 and 30 days, and a list of encounters with no charge at all",
+      "A payer-by-payer filing-limit table with sources, including the date each clock runs from",
+      "Method for facility-based practices: reconciling SNF, NF and ALF visit lists and hospital census to charges, and handling monthly care-management billing",
+      "Compliance guardrails: no claim release before the note is complete and signed; how charge holds interact with the lag metric",
+      "Service-date-to-claim-submission and to-payer-acceptance lag, not just charge entry",
+      "Any actual template, report specification or system-specific instructions (nothing for AdvancedMD or any named platform)",
+      "A worked dollar example of the cost of lag using collections rather than gross charges",
+      "Guidance for small practices with no billing manager or with automated billing"
+    ]
+  }
+}

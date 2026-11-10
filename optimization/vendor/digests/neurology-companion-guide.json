@@ -1,0 +1,769 @@
+{
+ "slug": "neurology-companion-guide",
+ "title": "CleanClaimRx Specialty Companion Guide: Neurology",
+ "doc_type": "specialty",
+ "pages": 42,
+ "audience": "Independent neurology practices: physician-owners and their billing teams. The only explicit statement is that the reader is assumed to have read the vendor's 'Universal Specialty Billing Framework' first.",
+ "summary": "Eight-section specialty overlay arguing that neurology is underbilled rather than underpaid. It covers payer mix (Medicare-heavy, Medicare Advantage authorization burden, commercial step therapy for multiple sclerosis drugs), code tables for EEG, EMG/nerve conduction and infused or injected drugs, botulinum toxin unit documentation, prior-authorization categories, four documentation failures, four denial patterns and five revenue opportunities (visit-level coding, chronic care management, transitional care management, sleep-study interpretation, telehealth), then closes with five operating standards and five look-back audit actions. The central method is structured report headers and note templates that drive code selection, a pre-claim unit reconciliation for botulinum toxin, an authorization-expiry calendar, a care-management registry and quarterly visit-coding audits. No sources or finished templates are included, and the technical content is unreliable: most EEG descriptors, the EMG coding logic, several drug codes, the 99215 criteria and the headline revenue arithmetic are wrong.",
+ "outline": [
+  {
+   "section": "Section 1: The Reframe - Neurology Is Not an Underpaid Specialty. It Is an Underbilled One.",
+   "gist": "Argues the revenue gap is operational: default visit codes, one EEG code for every study, thin procedure notes and unbilled care management."
+  },
+  {
+   "section": "Section 2: The Payer Mix Reality in Neurology",
+   "gist": "Medicare-heavy mix, Medicare Advantage authorization delays, commercial step therapy for MS drugs; payer-dynamics table and eight questions to ask each payer."
+  },
+  {
+   "section": "Section 3: The Procedure Code Risk Profile in Neurology",
+   "gist": "Code tables for EEG, EMG/nerve conduction and infusion drugs plus botulinum toxin unit rules; many codes and descriptors are wrong."
+  },
+  {
+   "section": "Section 4: Prior Authorization in Neurology - Five Distinct Authorization Landscapes",
+   "gist": "Diagnostics, MS drug step-therapy exceptions, botulinum toxin and neuromodulation device authorizations; promises five categories but writes up four."
+  },
+  {
+   "section": "Section 5: The Documentation Failures Unique to Neurology",
+   "gist": "Notes lacking decision-making elements, EEG reports without duration or patient state, toxin notes without per-site units, infusion visits without clinical assessment."
+  },
+  {
+   "section": "Section 6: The Denial Patterns Unique to Neurology",
+   "gist": "EEG necessity denials, MS step-therapy denials with escalation steps, toxin unit mismatches and expired infusion authorizations."
+  },
+  {
+   "section": "Section 7: The Revenue Opportunities Most Neurology Practices Are Missing",
+   "gist": "Higher visit levels, chronic care management, transitional care, in-house sleep interpretation and telehealth, each with unsourced and sometimes miscalculated dollar projections."
+  },
+  {
+   "section": "Section 8: What Revenue Cycle Excellence Looks Like in Neurology",
+   "gist": "Five operating standards (quarterly coding audit, report templates, unit reconciliation, authorization calendar, care-management registry) and five look-back audit actions."
+  }
+ ],
+ "framework_elements": [
+  "Payer mix profiling by payer category",
+  "Per-payer intelligence question set",
+  "Diagnostic test code selection from documented duration, state and count",
+  "Structured report header for diagnostic studies",
+  "Code-distribution concentration screen (default-code detection)",
+  "Visit-level coding audit against decision-making criteria",
+  "Decision-making prompts built into the note template",
+  "Visit-level distribution tracking against a benchmark",
+  "Drug billing accuracy (code, units, NDC)",
+  "Pre-claim reconciliation of billed units to documented units",
+  "Per-site injection documentation standard",
+  "Buy-and-bill drug margin awareness",
+  "Prior-authorization workflow segmented by service category",
+  "Order templates that state the clinical question and indication",
+  "Step-therapy exception protocol",
+  "Peer-to-peer escalation on first denial",
+  "External escalation (regulator complaint, independent review)",
+  "Diagnosis-code-to-authorization matching",
+  "Authorization-expiry tracking calendar with renewal alert",
+  "Active-authorization confirmation before claim release",
+  "Lapsed-authorization exposure review",
+  "Denial rate tracking by payer and service",
+  "Denial patterns as evidence for payer contract renegotiation",
+  "Clinical assessment documentation at treatment visits",
+  "Chronic care management registry, consent, care plan and time log",
+  "Transitional care discharge-notification and contact workflow",
+  "Ancillary service-line addition (in-house study interpretation)",
+  "Telehealth program for access and panel expansion",
+  "Quarterly audit of operating standards",
+  "Financial counseling and drug-assistance programs for high-cost therapy"
+ ],
+ "processes": [
+  {
+   "name": "Quarterly visit-level (E/M) coding audit",
+   "steps": [
+    "Sample 25 to 30 established-patient visits",
+    "Score each note against the decision-making table",
+    "Compare the supported level with the billed level",
+    "Compute the share miscoded (the guide's trigger: more than 20% of 99214 notes supporting 99215)",
+    "Revise the note template and hold a provider education session",
+    "Track the level distribution against a benchmark"
+   ],
+   "owner_role": "Not assigned; billing or compliance lead implied",
+   "cadence": "Quarterly; first pass on the last 30 days"
+  },
+  {
+   "name": "Report-header-driven code selection for EEG and EMG",
+   "steps": [
+    "Add a structured header to every report: duration in minutes, patient state, recording type, number of studies",
+    "Technician records the facts",
+    "Physician report carries them forward",
+    "Biller selects the code only from header fields",
+    "Review the 90-day code distribution and sample ten reports when one code exceeds 80%"
+   ],
+   "owner_role": "Technician, interpreting physician and biller",
+   "cadence": "Every study; one-time 90-day look-back"
+  },
+  {
+   "name": "Botulinum toxin unit reconciliation",
+   "steps": [
+    "Document each injection site, side and units in a table",
+    "Sum the units",
+    "Compare the sum with the claim units before submission",
+    "Resolve any difference before the claim goes out",
+    "Audit the last 20 claims and correct mismatches",
+    "Track reconciliation as a quality measure"
+   ],
+   "owner_role": "Biller, with the injecting physician",
+   "cadence": "Every claim (about two minutes each); one-time 20-claim look-back"
+  },
+  {
+   "name": "Infusion authorization calendar",
+   "steps": [
+    "Record the expiry date for each patient and drug",
+    "Alert at least 30 days ahead (the action list says 60)",
+    "Start renewal at the alert",
+    "Confirm a live authorization before each infusion claim",
+    "For lapsed authorizations with paid claims, assess recoupment exposure"
+   ],
+   "owner_role": "Not assigned; billing or authorization staff implied",
+   "cadence": "Continuous"
+  },
+  {
+   "name": "Step-therapy exception and appeal for MS drugs",
+   "steps": [
+    "Cite guideline or trial support for the requested drug",
+    "Document disease-activity markers",
+    "Document why the required first-line agent is contraindicated",
+    "Request peer-to-peer on first denial, within 48 hours",
+    "File the written appeal in parallel",
+    "Log every contact in the patient file",
+    "If upheld, complain to the state regulator and tell the patient about external review",
+    "Track denial rates by payer"
+   ],
+   "owner_role": "Neurologist with authorization staff",
+   "cadence": "Per denial"
+  },
+  {
+   "name": "Indication-specific order template (EEG medical necessity)",
+   "steps": [
+    "Build order templates that prompt for the clinical question, relevant history and alternatives considered",
+    "Phrase the indication in the payer's coverage language",
+    "Use the order as the basis of the authorization request"
+   ],
+   "owner_role": "Ordering physician",
+   "cadence": "Every order"
+  },
+  {
+   "name": "Chronic care management registry start-up",
+   "steps": [
+    "Review the 50 most complex established patients for eligibility",
+    "Obtain consent",
+    "Create a care plan",
+    "Log clinical staff time each month",
+    "Bill monthly when minimum time is documented",
+    "Report care-management revenue as its own line",
+    "Start with 20 patients and expand"
+   ],
+   "owner_role": "Clinical staff and billing",
+   "cadence": "Monthly"
+  },
+  {
+   "name": "Transitional care discharge workflow",
+   "steps": [
+    "Receive discharge notifications",
+    "Flag qualifying patients",
+    "Contact the patient within two business days and document it",
+    "See the patient within 7 or 14 days according to complexity",
+    "Bill the transitional care code instead of a standard follow-up visit"
+   ],
+   "owner_role": "Not assigned; clinical staff implied",
+   "cadence": "Per discharge"
+  }
+ ],
+ "tools_templates": [
+  {
+   "name": "Payer category table",
+   "description": "Six rows pairing each payer category with its main neurology revenue-cycle issue; descriptive only."
+  },
+  {
+   "name": "Eight Payer Intelligence Questions for Neurology",
+   "description": "Question list to put to each payer on diagnostics authorization, MS step therapy, botulinum toxin, infused-drug payment method, MRI, devices, telehealth and EEG reader credentials."
+  },
+  {
+   "name": "EEG CPT table",
+   "description": "Fourteen codes with a billing note each; most descriptors do not match the code set."
+  },
+  {
+   "name": "EMG and nerve conduction CPT table",
+   "description": "Eighteen codes with billing notes; the add-on logic for same-day studies is misdescribed."
+  },
+  {
+   "name": "Infusion and injectable drug table",
+   "description": "Twelve rows of drug, HCPCS code, indication and billing note; at least five of the twelve codes are wrong."
+  },
+  {
+   "name": "Chronic migraine botulinum toxin documentation checklist",
+   "description": "Four bullets: diagnosis threshold, prior preventive failures, per-site units, total units."
+  },
+  {
+   "name": "MS step-therapy exception protocol",
+   "description": "Four steps: cite guideline, document disease activity, document contraindication, request peer-to-peer on first denial."
+  },
+  {
+   "name": "MS step-therapy appeal framework",
+   "description": "Four steps: written appeal with citations, peer-to-peer within 48 hours, documented escalation to regulator and external review, denial-rate tracking by payer."
+  },
+  {
+   "name": "Botulinum toxin authorization failure points",
+   "description": "Three bullets: headache-frequency evidence, preventive-failure history, diagnosis code match."
+  },
+  {
+   "name": "Neuromodulation common criteria",
+   "description": "Three bullets: failed conventional therapy, functional-impairment scales, multidisciplinary evaluation."
+  },
+  {
+   "name": "Weak EEG indication examples",
+   "description": "Three examples of order wording that fails necessity review."
+  },
+  {
+   "name": "Five Non-Negotiable Operational Standards",
+   "description": "Quarterly visit-coding audit, report template standard, toxin reconciliation, infusion authorization calendar, care-management registry."
+  },
+  {
+   "name": "Prioritized Five-Action Implementation List",
+   "description": "Five look-back audits (30 days of visits, 90 days of EEG codes, active infusion authorizations, 50 complex patients for care management, last 20 toxin claims); not a dated 30/60/90-day plan."
+  },
+  {
+   "name": "Revenue arithmetic examples",
+   "description": "Worked examples for visit levels, care management, transitional care and sleep interpretation; not calculators, and the visit-level example is miscalculated."
+  },
+  {
+   "name": "Templates described but NOT supplied",
+   "description": "Decision-making note section, EEG/EMG report header, per-site injection table, EEG order templates, authorization calendar, care-management registry and time log are all left for the reader to build."
+  }
+ ],
+ "metrics": [
+  {
+   "name": "Visit-level (E/M) distribution",
+   "definition": "Ratio of established-patient visits billed at 99213, 99214 and 99215",
+   "formula": "",
+   "target": "Compare with specialty benchmarks (none supplied)",
+   "red_flag": "99214 used as the default code",
+   "source_cited": "none"
+  },
+  {
+   "name": "Share of audited 99214 visits supporting 99215",
+   "definition": "Proportion of sampled 99214 notes that meet the guide's 99215 criteria",
+   "formula": "sampled 99214 notes supporting 99215 / sampled 99214 notes",
+   "target": "",
+   "red_flag": "Above 20% is labelled systematic under-coding",
+   "source_cited": "none"
+  },
+  {
+   "name": "Quarterly visit-coding audit sample",
+   "definition": "Number of established visits reviewed against decision-making criteria each quarter",
+   "formula": "",
+   "target": "30 visits per quarter (25 in the action list)",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "EEG code concentration",
+   "definition": "Share of EEG claims billed under a single CPT code over 90 days",
+   "formula": "claims on the most-used EEG code / all EEG claims",
+   "target": "",
+   "red_flag": "More than 80% on one code",
+   "source_cited": "none"
+  },
+  {
+   "name": "Botulinum toxin unit reconciliation",
+   "definition": "Billed J0585 units compared with the sum of per-site units in the procedure note, checked before submission and tracked as a quality measure",
+   "formula": "billed units minus documented units",
+   "target": "Zero difference on every claim",
+   "red_flag": "Any discrepancy",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization-expiration denials (infusions)",
+   "definition": "Infusion claims denied because the authorization had lapsed",
+   "formula": "",
+   "target": "Zero ('zero-tolerance standard')",
+   "red_flag": "Any occurrence",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization renewal lead time",
+   "definition": "Days before expiry at which the renewal alert fires",
+   "formula": "",
+   "target": "At least 30 days (the action list uses 60 days)",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "MS drug denial rate by payer",
+   "definition": "Step-therapy and authorization denials of MS drugs tracked per payer",
+   "formula": "",
+   "target": "",
+   "red_flag": "A pattern of overrides, treated as grounds to renegotiate the contract",
+   "source_cited": "none"
+  },
+  {
+   "name": "Peer-to-peer request time",
+   "definition": "Time from initial denial to peer-to-peer request",
+   "formula": "",
+   "target": "Within 48 hours",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Chronic care management enrolment and revenue",
+   "definition": "Patients enrolled with documented monthly minimum time; revenue reported as a separate category",
+   "formula": "patients billed x about $62 a month (example: 150 x $62 = $9,300 a month)",
+   "target": "Every qualifying patient billed every month",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Care-management staff time per patient",
+   "definition": "Clinical staff minutes logged per patient per calendar month",
+   "formula": "",
+   "target": "20 minutes or more",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Transitional care contact timeliness",
+   "definition": "Discharged patients contacted within two business days and seen within 7 or 14 days",
+   "formula": "",
+   "target": "Every qualifying discharge",
+   "red_flag": "",
+   "source_cited": "none"
+  }
+ ],
+ "numeric_claims": [
+  {
+   "claim": "95812 is EEG awake and drowsy up to 40 minutes, 95813 over 40 minutes, 95816 awake and asleep up to 40 minutes, 95819 awake and asleep over 40 minutes",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Billing 95819 for every EEG is the single most common EEG billing error in independent neurology",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Medicare Advantage prior authorization for neurology services has grown significantly over the past five years",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Ocrelizumab infusions are delayed 30 to 45 days while authorization is obtained",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Natalizumab 300 mg standard dose billed per mg (J2323); ocrelizumab 600 mg every six months (J3030)",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Chronic migraine means 15 or more headache days a month, 8 or more with migraine features, for at least 3 months",
+   "section": "Sections 3 and 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Payers require failure of at least two oral preventives before botulinum toxin; most require two to four",
+   "section": "Sections 3 and 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Standard chronic migraine dose is 155 units; protocol corrugator dose is 5 units",
+   "section": "Section 5",
+   "source_cited": "PREEMPT protocol (named, no citation)"
+  },
+  {
+   "claim": "99215 requires multiple chronic conditions with exacerbation risk, prescription drug management and independent interpretation or historian; virtually every active neurology patient qualifies",
+   "section": "Section 5",
+   "source_cited": "'2021 AMA MDM criteria' (named, misquoted)"
+  },
+  {
+   "claim": "A documented clinical assessment at an infusion visit supports 99213 or 99214, worth $75 to $100 more per visit",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Peer-to-peer resolves a higher share of MS step-therapy denials than written appeals",
+   "section": "Sections 4 and 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "AAN guidelines and landmark trials favour early high-efficacy MS therapy; TREAT-MS and DELIVER-MS are cited as published supporting evidence",
+   "section": "Sections 4 and 6",
+   "source_cited": "AAN, ECTRIMS, TREAT-MS, DELIVER-MS (named, no citations)"
+  },
+  {
+   "claim": "Under-coding leaves $30 to $80 per visit on the table across the panel",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "If 40% of 99214 visits support 99215 at about $50 more, 200 visits a week yields $10,000 a week, $520,000 a year",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Chronic care management is billable for any patient with two or more chronic conditions and needs 20 or more minutes of clinical staff time a month",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Chronic care management (99490) pays about $62 per patient per month",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "150 care-management patients produce $9,300 a month, $111,600 a year, for work already being done",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Most established neurology patients over 60 meet the two-condition threshold",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Transitional care: 99495 needs a visit within 14 days, 99496 within 7 days, both with contact within two business days of discharge",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A transitional care code pays $80 to $150 more than a standard follow-up visit",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A practice with 10 to 20 hospitalizations a month gains $800 to $3,000 a month from transitional care billing",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Sleep study interpretation pays $150 to $400 per study; ten a month yields $1,500 to $4,000",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Telehealth revenue is identical to an in-person visit for most payers",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Infused drug payment follows ASP plus 6% or a negotiated rate",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Authorization tracking becomes an operational necessity above ten infusion patients",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "More than 20 percent of 99214 visits supporting 99215 signals systematic under-coding",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "More than 80 percent of EEGs on one code signals a coding default",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Vagus nerve stimulation needs failure of at least two antiepileptic drugs; deep brain stimulation needs failed dopaminergic therapy",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Lecanemab is billed with unclassified J3490 or J3590 and needs REMS enrolment; amyloid PET is A9588",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Medicare typically represents an even higher share of revenue than of patient volume in neurology",
+   "section": "Section 2",
+   "source_cited": "none"
+  }
+ ],
+ "checkable_claims": [
+  {
+   "id": "C1",
+   "claim": "High-complexity MDM (99215) requires multiple chronic conditions with exacerbation risk or one condition with severe exacerbation risk; prescription drug management with risk of adverse effects; and independent interpretation of tests or independent historians. Virtually every active neurology patient qualifies.",
+   "kind": "code_rule",
+   "stakes": "high",
+   "section": "Section 5 (documentation failure 1); Section 7 (opportunity 1)",
+   "why": "The elements listed are the moderate (level 4) tier in the AMA table. If so, the guide's fix converts 99214 visits to 99215 without support. The same table sets levels for this practice's hospital, nursing-facility and home visits."
+  },
+  {
+   "id": "C2",
+   "claim": "CCM is billable for any patient with two or more chronic conditions; it requires 20 or more minutes of clinical staff time per calendar month; CCM pays approximately $62 per month per patient (99490).",
+   "kind": "program_rule",
+   "stakes": "high",
+   "section": "Section 7 (opportunity 2)",
+   "why": "Chronic care management is a core service line here. Eligibility is narrower than stated (duration, risk, consent, care plan, one billing practitioner per month, facility-resident limits) and the rate varies by year and locality."
+  },
+  {
+   "id": "C3",
+   "claim": "TCM: 99495 (moderate complexity, face-to-face within 14 days) or 99496 (high complexity, face-to-face within 7 days), both requiring documented patient contact within two business days of discharge; TCM pays $80 to $150 more than a standard follow-up visit.",
+   "kind": "program_rule",
+   "stakes": "medium",
+   "section": "Section 7 (opportunity 3)",
+   "why": "Applies to this practice's discharges to home or assisted living. Needs confirming together with conditions the guide omits: community discharge only, one biller per discharge, medication reconciliation by the visit date."
+  },
+  {
+   "id": "C4",
+   "claim": "95812 is EEG awake and drowsy up to 40 minutes (standard routine EEG); 95813 over 40 minutes; 95816 awake and asleep up to 40 minutes; 95819 awake and asleep over 40 minutes; 95827 all-night recording; 95830 ambulatory EEG.",
+   "kind": "code_rule",
+   "stakes": "high",
+   "section": "Section 3 (EEG table); Section 5 (documentation failure 2)",
+   "why": "If 95816 and 95819 are the routine codes and 95812 and 95813 the extended ones, the guide's central EEG advice is inverted and would move routine studies onto extended-monitoring codes."
+  },
+  {
+   "id": "C5",
+   "claim": "Drug codes: ocrelizumab J3030; ofatumumab J3031; methylprednisolone IV J1020-J1030; eculizumab J1300; lecanemab billed with unclassified J3490 or J3590, REMS enrollment required; amyloid PET scan A9588.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 3 (infusion drug table)",
+   "why": "Wrong or retired HCPCS codes on high-cost drug claims mean denials, misidentified drugs and payment delays; several of these look like codes for other products."
+  },
+  {
+   "id": "C6",
+   "claim": "For BOTOX (J0585), total billed units must equal the sum of documented per-site units; any difference between note and claim generates a denial or recoupment.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 3 (BOTOX billing); Section 6 (denial pattern 3); Section 8 (standard 3)",
+   "why": "Medicare pays for discarded drug from single-dose vials and requires JW or JZ modifiers; a rule that equates billed units with injected units ignores both."
+  },
+  {
+   "id": "C7",
+   "claim": "Needle EMG is billed by extremity count with 95860-95864 alongside nerve conduction codes 95907-95913; 95885 and 95886 are 'combined' codes for EMG with NCS, and 95885 is rarely preferred.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 3 (EMG/NCS table)",
+   "why": "CPT appears to require the add-on codes whenever EMG and nerve conduction are done the same day; billing the stand-alone EMG codes with nerve conduction codes would hit bundling edits."
+  },
+  {
+   "id": "C8",
+   "claim": "If the payer upholds an MS drug denial after peer-to-peer, file a complaint with the state insurance commissioner and notify the patient of the right to an independent external review.",
+   "kind": "legal",
+   "stakes": "medium",
+   "section": "Section 6 (denial pattern 2)",
+   "why": "Escalation routes differ by plan type: Medicare Advantage uses the federal appeal track and self-funded employer plans sit outside state regulators. Matters to a practice with heavy Medicare Advantage volume."
+  }
+ ],
+ "domain_map": [
+  {
+   "domain": "rcm-charge-coding",
+   "weight": 0.42,
+   "topics": [
+    "EEG and EMG code selection",
+    "visit-level coding and decision-making documentation",
+    "drug codes and units",
+    "report and procedure-note templates",
+    "unit reconciliation"
+   ]
+  },
+  {
+   "domain": "rcm-front-end",
+   "weight": 0.2,
+   "topics": [
+    "prior authorization by service category",
+    "step-therapy exceptions",
+    "authorization-expiry calendar",
+    "indication-specific order templates"
+   ]
+  },
+  {
+   "domain": "clinical-operations",
+   "weight": 0.1,
+   "topics": [
+    "chronic care management registry",
+    "transitional care workflow",
+    "telehealth",
+    "infusion visit workflow"
+   ]
+  },
+  {
+   "domain": "rcm-claims-ar",
+   "weight": 0.1,
+   "topics": [
+    "denial patterns",
+    "appeals and peer-to-peer",
+    "unit-mismatch denials",
+    "expired-authorization denials"
+   ]
+  },
+  {
+   "domain": "payers-contracts",
+   "weight": 0.08,
+   "topics": [
+    "payer mix",
+    "Medicare Advantage authorization burden",
+    "drug payment method",
+    "denial data as renegotiation evidence"
+   ]
+  },
+  {
+   "domain": "compliance-risk",
+   "weight": 0.05,
+   "topics": [
+    "audit exposure for diagnostics and botulinum toxin",
+    "quarterly internal audits",
+    "recoupment risk"
+   ]
+  },
+  {
+   "domain": "growth-market",
+   "weight": 0.05,
+   "topics": [
+    "sleep interpretation service line",
+    "telehealth panel expansion"
+   ]
+  }
+ ],
+ "adopt": [
+  {
+   "idea": "Put the facts that determine the code (duration, state, count, time) in a structured header and code only from those fields",
+   "why": "Removes guesswork and default coding and makes every claim reproducible from the record",
+   "applies_to_practice": "yes",
+   "note": "Analogues here: total time, place of service, admission and discharge dates, care-management minutes and advance-care-planning minutes as required fields the billing agents read."
+  },
+  {
+   "idea": "Screen code distributions for heavy concentration on one code as a sign of default coding, then sample the notes",
+   "why": "Cheap analytic that finds habit-driven coding",
+   "applies_to_practice": "yes",
+   "note": "Run on hospital subsequent-visit and nursing-facility visit levels by provider and compare with Medicare utilization data. Look for over-coding as well as under-coding."
+  },
+  {
+   "idea": "Quarterly sample audit of visit levels with results fed back into templates and provider education",
+   "why": "Keeps coding tied to documentation and creates a compliance record",
+   "applies_to_practice": "yes",
+   "note": "Must be two-directional, use the correct decision-making table and time rules, and preferably an independent coder. The guide's version only hunts for under-coding, against wrong criteria."
+  },
+  {
+   "idea": "Reconcile billed units to documented units before the claim is released",
+   "why": "Unit mismatches are a top audit finding and take minutes to prevent",
+   "applies_to_practice": "partly",
+   "note": "No drugs here, but the same check fits time-based services: care-management minutes, prolonged services, advance care planning."
+  },
+  {
+   "idea": "Expiry calendar with a lead-time alert and confirmation before each claim",
+   "why": "Expired-authorization denials are entirely preventable",
+   "applies_to_practice": "partly",
+   "note": "Few of the practice's services need authorization; reuse for referrals, credentialing and other dated obligations."
+  },
+  {
+   "idea": "Care-management registry with consent, care plan and monthly time log, with the revenue reported as its own line",
+   "why": "Makes a recurring monthly service auditable and visible in the financial statements",
+   "applies_to_practice": "yes",
+   "note": "The practice already bills complex care management; add registry discipline and a service-line profit view. Verify facility-resident eligibility and the one-practitioner rule, which the guide skips."
+  },
+  {
+   "idea": "Discharge-notification workflow that flags transitional-care candidates and tracks the two-business-day contact",
+   "why": "The service fails on timing, not on clinical work",
+   "applies_to_practice": "yes",
+   "note": "Fits patients leaving hospital or skilled nursing for home or assisted living under the practice's care; confirm who else may bill for the same discharge."
+  },
+  {
+   "idea": "Order and request templates that state the clinical question in the payer's coverage language",
+   "why": "Necessity denials usually reflect wording, not inappropriate care",
+   "applies_to_practice": "partly",
+   "note": "Relevant to orders the practice writes in facilities: imaging, equipment, home health, therapy."
+  },
+  {
+   "idea": "Request peer-to-peer on the first denial and keep denial rates by payer as evidence for contract discussions",
+   "why": "Faster reversal and a factual basis for negotiation",
+   "applies_to_practice": "yes",
+   "note": "Useful with Medicare Advantage plans, but pair it with the correct appeal route for each plan type."
+  },
+  {
+   "idea": "Test the 'we are underpaid' story with an internal audit and a dollar estimate before blaming payers",
+   "why": "Separates controllable leakage from true rate problems",
+   "applies_to_practice": "yes",
+   "note": "A sound chief-financial-officer habit. Do the arithmetic honestly: the guide's own example overstates by about 2.5 times."
+  }
+ ],
+ "practice_relevance": {
+  "score": 2,
+  "why": "Electrodiagnostics, infusions, botulinum toxin, MS drugs and neuromodulation are outside the practice's services. The visit-level, chronic care management, transitional care and telehealth passages touch core service lines for a geriatric practice with many dementia, Parkinson's and stroke patients, but they are thin and partly wrong, are written for office codes, and never address facility visits, complex care management or facility-resident eligibility.",
+  "sections_that_do_not_apply": [
+   "Section 2 (commercial MS formulary and infusion-suite material)",
+   "Section 3 (EEG, EMG/nerve conduction, infusion drug and botulinum toxin coding)",
+   "Section 4 (all authorization categories)",
+   "Section 5 documentation failures 2 to 4 (EEG reports, toxin notes, infusion visits)",
+   "Section 6 (all four denial patterns as written)",
+   "Section 7 opportunity 4 (sleep study interpretation)",
+   "Section 8 standards 2 to 4 and actions 2, 3 and 5"
+  ]
+ },
+ "quality": {
+  "score": 1,
+  "specificity": 3,
+  "accuracy_concerns": [
+   "The EEG table is largely wrong and the central EEG argument is inverted. 95816 (awake and drowsy) and 95819 (awake and asleep) are the routine 20-40 minute codes; 95812 and 95813 are the extended codes (41-60 and 61-119 minutes). The guide calls 95812 the standard routine study and 95819 an extended code, so a practice following it would bill routine studies as extended monitoring.",
+   "95830 is insertion of sphenoidal electrodes, not ambulatory EEG; 95836 is electrocorticography from an implanted brain stimulator, not multi-channel ambulatory EEG; 95827 (all-night EEG) was deleted from CPT in 2020; 95700 is the technologist set-up service, not a per-24-hour professional interpretation; 95726 is more than 84 hours with video, not 'greater than 36 hours without video'.",
+   "EMG guidance is wrong where it matters. When needle EMG is done the same day as nerve conduction studies, CPT requires the add-on codes 95885-95887 with 95907-95913; 95860-95864 and 95867-95870 are for EMG without same-day nerve conduction. The guide presents the stand-alone codes as the norm and calls the add-on codes 'combined' and 'rarely preferred'. It never defines a complete study (five or more muscles).",
+   "Wrong HCPCS codes: ocrelizumab is J2350 (J3030 is sumatriptan); J3031 is fremanezumab, not ofatumumab; J1020-J1040 are depot methylprednisolone acetate, not intravenous methylprednisolone; lecanemab has had its own code (J0174) since July 2023; A9588 is fluciclovine, a prostate imaging tracer, not an amyloid tracer. I believe eculizumab J1300 was replaced by J1299 in 2025 and the methylprednisolone codes were restructured in 2024 - verify.",
+   "Lecanemab 'REMS program enrollment required': I know of no REMS for lecanemab; Medicare's condition is registry participation under its national coverage determination. Meanwhile the REMS that does exist for natalizumab is not mentioned. The eculizumab row says document 'MuSK status'; the myasthenia indication is acetylcholine-receptor-antibody-positive disease.",
+   "99215 criteria are misstated. Prescription drug management and two or more chronic conditions with exacerbation are MODERATE (99214-level) elements. High complexity needs two of three: severe exacerbation or threat to life or function; extensive data; high-risk management such as drug therapy needing intensive toxicity monitoring or a hospitalization decision. 'Virtually every active neurology patient meets these criteria' is an invitation to upcode.",
+   "The visit-level section never mentions time-based coding, the G2211 complexity add-on or prolonged-service codes - the tools that actually help a cognitive specialty.",
+   "The $520,000 example is wrong on its own assumptions: 40% of 200 weekly visits at $50 is $4,000 a week, about $208,000 a year, not $10,000 a week. It also assumes 52 working weeks.",
+   "The botulinum toxin rule that billed units must equal injected units ignores billable discarded drug from single-dose vials and Medicare's mandatory JW/JZ modifiers. The injection procedure codes (64615, 64616, 64642-64647) and the infusion administration codes are never given.",
+   "Says every infusion visit is a billable visit on top of drug and administration and prices the 'loss' at $75-$100 per infusion day. A same-day visit needs a significant, separately identifiable service and modifier 25; routine pre-infusion assessment is part of the administration service. Blanket visit billing on infusion days is a known audit target.",
+   "Chronic care management section omits that only one practitioner may bill per patient per month (often the primary care clinician), that conditions must be expected to last 12 months and carry significant risk, the patient's coinsurance, the initiating visit and the access and continuity requirements. Principal care management (99424-99427), the better fit for a single-condition specialist, is never mentioned.",
+   "The $111,600 care-management projection assumes every eligible patient consents and reaches 20 minutes every month, and treats staff time as free.",
+   "Transitional care section omits the one-biller-per-discharge rule, the requirement that the patient go to a community setting, and medication reconciliation by the visit date; its hospitalization volumes are unsourced.",
+   "Sleep interpretation revenue of $150-$400 per study looks like global (technical plus professional) pricing; interpretation-only Medicare payment is far lower as I recall it.",
+   "Escalation advice (state insurance commissioner, external review) does not fit Medicare Advantage, which uses a federal appeal track, or self-funded employer plans. Medicare Advantage step therapy for physician-administered drugs has its own federal limits, which are not explained.",
+   "MS evidence is overstated: the AAN guideline supports high-efficacy drugs for highly active disease rather than a blanket early-treatment rule, and TREAT-MS and DELIVER-MS are trials designed to answer that open question, cited here as if settled supporting evidence.",
+   "'Medicare typically an even higher share of revenue' than of volume and 'significant buy-and-bill margin' are asserted without data and run against how Medicare pays (fee schedule below commercial rates; average sales price plus 6% before sequestration).",
+   "Deep brain stimulation is described as needing 'failed' dopaminergic therapy; candidates must respond to levodopa and have disabling complications despite optimized therapy. A neurology-plus-psychiatry evaluation is not a standard epilepsy stimulator requirement.",
+   "Telehealth 'revenue identical' glosses over Medicare place-of-service payment differences, the temporary statutory basis of home and geographic flexibilities, and state licensure limits on a wider catchment area."
+  ],
+  "generic_filler": "medium",
+  "internal_contradictions": [
+   "Section 4 announces five authorization categories including infusion drugs but writes up four; infusion authorization appears only later as a denial pattern.",
+   "Section 5 says billers default to the most conservative, lowest-paying code, then says they pick 95819 as the 'generic extended' code because it covers the broadest range.",
+   "The EEG table labels 95812 the 'most common' study and, three rows later, labels 95819 the 'most commonly billed' code.",
+   "Section 7 visit-level arithmetic contradicts its own 40% premise by applying $50 to all 200 weekly visits.",
+   "Standard 1 audits 30 visits a quarter; Action 1 says sample 25.",
+   "Standard 4 sets a 30-day renewal alert; Action 3 acts on anything expiring within 60 days.",
+   "Section 7 treats any two chronic conditions (epilepsy plus hypertension) as qualifying for care management; Standard 5 and Action 4 require two chronic neurological conditions.",
+   "Documentation Failure 1 is titled as an examination problem while its text says the level rests on decision-making.",
+   "Section 1 says care-management criteria are met by 'virtually every patient'; Section 7 says the majority of established patients over 60.",
+   "Section 8 says no fix needs more sophisticated software, yet the standards require tracked alert systems, registries and time logs.",
+   "Section 7 quotes $30-$80 per visit lost 'across every patient', then $50 on 40% of visits."
+  ],
+  "time_sensitive_or_outdated": [
+   "EEG coding reflects neither the current routine codes nor the 2020 long-term monitoring overhaul; it lists a code deleted in 2020.",
+   "Lecanemab is called 'new' with unclassified codes although a specific code has existed since mid-2023; donanemab (approved 2024) is absent; Medicare retired its amyloid PET national coverage determination in October 2023, so 'CMS coverage criteria specific' is stale.",
+   "Drug codes change quarterly; eculizumab and methylprednisolone codes were, I believe, restructured in 2024-2025, and biosimilars now exist for natalizumab and eculizumab.",
+   "No JW/JZ discarded-drug modifiers (mandatory since 2023), no G2211 (2024), no advanced primary care management codes (2025).",
+   "Evaluation and management guidance is frozen at '2021'; all other visit families moved to the same framework in 2023.",
+   "Care-management $62 roughly matches the 2023-2024 national rate; 2025 and 2026 fee schedules changed the conversion factor and practice-expense method, so re-price by year and locality.",
+   "Telehealth is treated as settled policy; Medicare's flexibilities have rested on repeated short-term extensions (I believe currently to the end of 2027 - verify).",
+   "Medicare Advantage content ignores the 2024 rule on coverage criteria and continuity of approvals and the 2026 prior-authorization decision deadlines.",
+   "Status of the TREAT-MS and DELIVER-MS trials needs checking before either is cited in an appeal."
+  ],
+  "ai_generation_signals": [
+   "No author, credential, date or citation; identical skeleton and near-identical sentences to the sibling ENT guide.",
+   "Invented-looking code descriptions that are internally tidy (neat 'up to 40 / over 40 minute' pairs) but do not match the code set, and drug codes that are near neighbours of the real ones.",
+   "Advocacy rhetoric in a billing guide: 'financial decisions dressed in clinical language'; 'Fight the step therapy. Document the fight.'",
+   "Wrong-context wording: an office injection pattern modified 'intraoperatively'.",
+   "Round-number scenarios whose arithmetic does not follow from the stated inputs.",
+   "Symmetric list counts (eight questions, five 'landscapes' with one missing, four failures, four denials, five opportunities, five standards, five actions) and duplicated numbering ('1. Standard 1:').",
+   "Vague quantifiers standing in for data: 'a substantial share', 'a meaningful share', 'a higher percentage'."
+  ],
+  "missing_for_real_use": [
+   "Correct, dated code tables with descriptors, professional and technical component rules, bundling edits and unit limits.",
+   "Injection and infusion administration codes, vial-size and discarded-drug logic, NDC and unit conversion, acquisition cost versus payment analysis, specialty-pharmacy versus buy-and-bill decision.",
+   "Time-based visit coding, G2211, prolonged services, and rules for nurse practitioner and physician assistant billing.",
+   "Full requirements for chronic, principal and transitional care management, plus cognitive assessment and care planning (99483) and advance care planning, which are natural neurology services.",
+   "Any actual template, form, letter or appeal text; any payer policy or local coverage determination reference.",
+   "Supervision, accreditation and credential requirements for diagnostic testing and sleep studies.",
+   "Guardrails: two-directional audits, refund obligations for past errors, and how to correct previously miscoded claims.",
+   "Owners, staffing, timelines, a KPI dashboard and any standard revenue-cycle benchmarks; none are given."
+  ]
+ }
+}

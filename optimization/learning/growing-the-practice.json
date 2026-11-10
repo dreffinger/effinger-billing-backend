@@ -1,0 +1,399 @@
+{
+ "slug": "growing-the-practice",
+ "ord": 3,
+ "title": "Growing the practice",
+ "audience": "The physician-owner",
+ "summary": "Where more revenue can come from in a facility-based practice, in order of safety: stop the leaks, bill what patients already qualify for, add clinician capacity, add sites, then add contracts. With the arithmetic for each.",
+ "minutes": 20,
+ "body": {
+  "sections": [
+   {
+    "heading": "The growth equation",
+    "blocks": [
+     {
+      "type": "lead",
+      "text": "Revenue in a visiting practice is arithmetic. Growth means changing one of the terms, and each term has a different cost and a different risk."
+     },
+     {
+      "type": "formula",
+      "label": "Revenue",
+      "expr": "(clinicians x working days x visits per day x collected per visit) + (patients in monthly programs x collected per patient-month) + stipends - leakage"
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Term",
+       "This practice, autumn 2026"
+      ],
+      "rows": [
+       [
+        "Clinicians",
+        "One physician, one nurse practitioner"
+       ],
+       [
+        "Visits per clinician day",
+        "About 16 and 13"
+       ],
+       [
+        "Face-to-face visits",
+        "About 520 a month"
+       ],
+       [
+        "Active patients",
+        "About 326 seen in a month, at 13 sites"
+       ],
+       [
+        "Collections per active patient",
+        "Roughly $258 a month ($1.01 million a year across 326 patients)"
+       ],
+       [
+        "Monthly programs",
+        "Care management billed for 257 patients, paid on 42% of lines"
+       ],
+       [
+        "Stipends",
+        "Two medical directorships, about $32,000 a year"
+       ],
+       [
+        "Leakage",
+        "30% of recent claim lines unpaid first time. 11% of charges with no payer"
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "Two rules of thumb fall out of those numbers. Every ten additional residents under care are worth about $31,000 a year at today's yield. And the cheapest growth available is the last line: money already earned and not collected."
+     }
+    ]
+   },
+   {
+    "heading": "Lever 1: stop the leaks",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Before adding a single patient, the practice can collect more from the patients it has. None of this needs a new clinician, a new site or a new contract."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Leak",
+       "Evidence",
+       "Rough yearly value"
+      ],
+      "rows": [
+       [
+        "Charges with no verified payer",
+        "11.2% of charges. 342 of 493 coverage cards unverified",
+        "$30,000 to $70,000"
+       ],
+       [
+        "Enrollment gaps",
+        "108 denied visits tagged credentialing. Medicaid renewal due December 1",
+        "$15,000 to $40,000"
+       ],
+       [
+        "Aged receivables",
+        "$65,431 tagged correct-and-resend",
+        "$20,000 to $35,000, one time"
+       ],
+       [
+        "Payments that never landed",
+        "$12,902 of unmatched deposits. Remittances with no money",
+        "$5,000 to $20,000"
+       ],
+       [
+        "Contracts unknown",
+        "No fee schedules to check payments against. Hospital visits denied by plans",
+        "$10,000 to $30,000"
+       ]
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "key",
+      "title": "Why this comes first",
+      "text": "Leak repair is nearly all margin and carries no compliance risk. It also makes every later lever worth more, because new volume poured into a leaky process leaks at the same rate."
+     }
+    ]
+   },
+   {
+    "heading": "Lever 2: services your patients already qualify for",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Medicare pays for several services that fit long-term residents and that this practice is not billing, or is billing in a way that needs repair."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Service",
+       "Who qualifies",
+       "What it requires",
+       "Status here"
+      ],
+      "rows": [
+       [
+        "Annual wellness visit",
+        "Any Medicare patient, once every 12 months",
+        "A health risk assessment and a written prevention plan. May be done by a nurse practitioner.",
+        "None billed since 2023"
+       ],
+       [
+        "Advance care planning",
+        "Any patient, when the conversation happens",
+        "At least 16 minutes of discussion, documented with time. No cost sharing when done with a wellness visit.",
+        "Billed on about 8% of visits. Add a time statement"
+       ],
+       [
+        "Transitional care management",
+        "Patients discharged to assisted living or home, not to a nursing facility",
+        "Contact within two business days and a visit within 7 or 14 days",
+        "None billed"
+       ],
+       [
+        "Standard chronic care management",
+        "Two or more serious chronic conditions, with consent",
+        "20 minutes a month of staff time, logged, and a care plan",
+        "Only the complex code is billed"
+       ],
+       [
+        "Advanced primary care management",
+        "Patients for whom you provide all primary care",
+        "No minute counting, but consent, round-the-clock access, an electronic care plan and quality reporting",
+        "Not used. Confirm with the Medicare contractor how it applies to facility residents"
+       ],
+       [
+        "Complex chronic care management",
+        "As for standard, with moderate or high complexity decisions",
+        "60 minutes a month of staff time, logged",
+        "257 patients a month. Under review"
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "The honest size of this lever is modest: about a dozen wellness visits a month and a few transitional care services, worth $25,000 to $50,000 a year. The larger number sitting in care management is real only to the extent the work is done and logged."
+     },
+     {
+      "type": "callout",
+      "tone": "risk",
+      "title": "Growth that destroys value",
+      "text": "A monthly program billed for most of the census at the highest code looks like growth on the income statement and like a repayment liability to an auditor or buyer. Build the program first: enrolled patients, consent, care plans, a time log, staff with the hours to do it. Then bill what the log supports. A smaller program that survives review is worth more than a large one that does not."
+     },
+     {
+      "type": "quiz",
+      "q": "A patient goes from the hospital to a skilled nursing facility. Can transitional care management be billed?",
+      "choices": [
+       "Yes, within 14 days",
+       "No. It applies to discharges to a community setting such as home or assisted living",
+       "Only by the physician"
+      ],
+      "answer": 1,
+      "why": "The service is for the return to a community setting. Your nursing facility visit is billed with nursing facility codes."
+     }
+    ]
+   },
+   {
+    "heading": "Lever 3: clinician capacity",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "With leaks fixed, clinician time is the limit. A nurse practitioner is the usual next hire in this kind of practice."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Item",
+       "Figure",
+       "Basis"
+      ],
+      "rows": [
+       [
+        "Median pay, primary care nurse practitioner",
+        "$149,178",
+        "AMGA, 2025 data"
+       ],
+       [
+        "Pay with payroll tax, benefits, malpractice and tools",
+        "About $190,000 to $200,000",
+        "Estimate"
+       ],
+       [
+        "Collected per visit, blended",
+        "About $80",
+        "This practice's 2026 remittances"
+       ],
+       [
+        "Working days",
+        "About 215 a year",
+        "Assumption"
+       ],
+       [
+        "Visits a day to cover cost",
+        "About 11.6",
+        "$200,000 / ($80 x 215)"
+       ],
+       [
+        "Contribution at 14 visits a day",
+        "About $40,000",
+        "Arithmetic"
+       ],
+       [
+        "Contribution at 17 visits a day",
+        "About $90,000",
+        "Arithmetic"
+       ]
+      ]
+     },
+     {
+      "type": "list",
+      "items": [
+       "Medicare pays a nurse practitioner 85% of the physician rate, and the figures above already reflect that.",
+       "Enrollment takes time. Medicare processes most clean online applications within 15 to 50 days, and each plan adds its own wait. Start the day the offer is signed, and budget three months before full billing.",
+       "In a skilled nursing facility the physician must still personally do the required comprehensive visit and alternate the required visits, so one physician can support only so many nurse practitioners.",
+       "Florida allows a nurse practitioner with 3,000 supervised hours to register for autonomous practice in primary care. That removes the supervision protocol, not the Medicare rules."
+      ]
+     },
+     {
+      "type": "p",
+      "text": "The hire also does something a spreadsheet does not show: it moves visits and relationships away from the owner, which is the main thing a buyer or a lender wants to see."
+     },
+     {
+      "type": "quiz",
+      "q": "A new nurse practitioner sees 9 patients a day for her first four months. What is happening to profit?",
+      "choices": [
+       "It rises immediately",
+       "It falls until she passes about 12 visits a day and her enrollments are active",
+       "Nothing"
+      ],
+      "answer": 1,
+      "why": "Below break-even volume, and before enrollments are active, a new clinician costs more than she collects. Plan cash for the ramp."
+     }
+    ]
+   },
+   {
+    "heading": "Lever 4: more sites",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "A new facility is worth adding when it brings enough residents to justify the trip. The questions are the same every time."
+     },
+     {
+      "type": "steps",
+      "items": [
+       "How many residents would be under the practice's care in the first three months, and at maturity?",
+       "Who decides physician coverage there, and why would they change?",
+       "Is it on an existing route, or does it add an hour of driving?",
+       "Which clinician will go, on which days, and what stops if they do?",
+       "What does the facility expect in return: response times, family meetings, a medical director?"
+      ]
+     },
+     {
+      "type": "p",
+      "text": "At roughly $258 a month per active patient, a facility needs about 65 residents under care to equal one nurse practitioner's cost, so a new site usually fills an existing clinician's day before it justifies a hire."
+     },
+     {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Concentration cuts both ways",
+      "text": "One hospital is 37.8% of this practice's charges. Hospital work pays well per visit but depends on a referral pattern the practice does not control. Growth that lowers the share of the largest site is worth more than the same dollars added to it."
+     }
+    ]
+   },
+   {
+    "heading": "Lever 5: contracts and partnerships",
+    "blocks": [
+     {
+      "type": "kv",
+      "items": [
+       [
+        "Medical directorships",
+        "Every nursing facility must have a physician medical director. The stipend must be fair market value for documented work, under a written agreement, and unrelated to referrals. Keep a time log. Stipends here fell from $185,300 in 2023 to about $32,000 a year."
+       ],
+       [
+        "Special needs plans for nursing home residents",
+        "These Medicare Advantage plans need clinicians on site and often pay for availability and outcomes as well as visits."
+       ],
+       [
+        "Accountable care organizations",
+        "Joining one can bring shared savings and satisfies some quality reporting. Medicare's new accountable care model starts in 2027."
+       ],
+       [
+        "Hospice and home health",
+        "They need attending physicians for facility patients. Any payment to you must be for real services at fair market value."
+       ],
+       [
+        "Payer rates",
+        "Small volumes limit bargaining power, but a local plan that needs coverage in nursing facilities may pay above Medicare. You cannot ask without knowing your current rates."
+       ]
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "risk",
+      "title": "The line you cannot cross",
+      "text": "Nothing of value may be given or received in exchange for referrals of Medicare or Medicaid patients. That covers stipends above fair market value, free services to a facility, and gifts to case managers. Have the attorney read any arrangement with an entity that sends you patients."
+     }
+    ]
+   },
+   {
+    "heading": "What growth costs",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "**Cash.** Medicare pays in about 18 days here, plans in 30 to 45. A new clinician or site is paid for by the practice for two to four months before it pays back. Cash on hand is 48 days.",
+       "**Oversight.** Every new clinician needs a chart audit in the first 90 days. Patterns set early are hard to change later.",
+       "**Enrollment and contracts.** Each clinician with each payer, tracked on one calendar.",
+       "**Your time.** Growth that needs more of the owner makes the key-person problem worse."
+      ]
+     }
+    ]
+   },
+   {
+    "heading": "A twelve-month sequence",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Quarter",
+       "Do",
+       "Because"
+      ],
+      "rows": [
+       [
+        "Now to January",
+        "Coverage, enrollment, aged receivables, deposits. Outside audit. Care management rebuilt as a program.",
+        "It is the cheapest money and it removes the risk under everything else"
+       ],
+       [
+        "January to March",
+        "Wellness visits and transitional care. 2027 budget and repricing. Contracts collected.",
+        "Low-risk revenue on existing patients"
+       ],
+       [
+        "April to June",
+        "Market list of facilities. Hiring case for a second nurse practitioner. Coverage agreement.",
+        "Capacity and resilience"
+       ],
+       [
+        "July to December",
+        "Hire if the case holds. Add one or two sites on existing routes. Talk to one accountable care organization and one special needs plan.",
+        "Growth on a clean base"
+       ]
+      ]
+     }
+    ]
+   }
+  ],
+  "takeaways": [
+   "Fix leakage first: it is nearly all margin and makes every other lever worth more.",
+   "Every ten additional residents under care are worth about $31,000 a year at today's yield.",
+   "A nurse practitioner covers her cost at about 12 visits a day. Profit starts above that, after a ramp of several months.",
+   "Monthly programs are worth only what the logged work supports.",
+   "Prefer growth that lowers dependence on the owner and on the largest site.",
+   "Never trade anything of value for referrals."
+  ]
+ },
+ "artifact_url": "https://claude.ai/artifact/AJvDtk4fX2thdKiu7d67ib"
+}

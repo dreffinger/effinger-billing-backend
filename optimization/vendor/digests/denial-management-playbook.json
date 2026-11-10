@@ -1,0 +1,913 @@
+{
+  "slug": "denial-management-playbook",
+  "title": "Denial Management Playbook: From Reactive Cleanup to Proactive Prevention (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "playbook",
+  "pages": 69,
+  "audience": "Billing teams, office managers and practice administrators in independent medical practices (stated on the cover). The content assumes an office-based practice with front-desk, authorization and coding staff, prior-authorized procedures and a meaningful commercial payer mix.",
+  "summary": "Vendor playbook arguing that denial work must run as two linked functions: recovery (work every denial quickly and completely) and prevention (treat denial data as evidence of an upstream process failure and fix the cause). It lays out a root-cause taxonomy, daily intake into a denial log, a tiered priority table with action deadlines, a 48-hour standard for administrative corrections, a four-part appeal structure, an appeal-deadline calendar, peer-to-peer preparation, an escalation ladder (second-level appeal, external review, regulator complaints, Medicare's five levels, a Medicare Advantage coverage-floor argument, mental health parity), monthly root cause analysis with feedback to front-end staff, pre-bill and scrubber controls, payer-specific protocols, a benchmarked metric set and an eight-step start list. The method is sound but generic: one vague source attribution, no dates, no denial-code detail, no usable templates, and several legal statements that are oversimplified or wrong for contracted providers.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe — Denial Management Is a Practice Intelligence Function",
+      "gist": "Frames denials as symptoms of upstream process failures; practices need both recovery and prevention, and success means a falling denial rate."
+    },
+    {
+      "section": "Section 2: Understanding Your Denial Landscape — The Denial Taxonomy",
+      "gist": "Five root-cause categories, segmentation by volume, dollars and trend, the denial-rate formula with benchmarks, and an unsourced table of typical category shares and resolution paths."
+    },
+    {
+      "section": "Section 3: The Denial Workflow — From Receipt to Resolution",
+      "gist": "Same-day identification, a denial log, a priority table with action deadlines, a 48-hour standard for administrative fixes, and timely-filing monitoring of unsent claims."
+    },
+    {
+      "section": "Section 4: Writing Appeals That Win — The Appeal Process",
+      "gist": "Four-part appeal structure, criteria-citing medical necessity language, short documented administrative appeals, and an appeal-deadline table by payer type to track from intake."
+    },
+    {
+      "section": "Section 5: The Peer-to-Peer Review — When to Request It, How to Win",
+      "gist": "When a physician-to-reviewer call is worth requesting, a one-page briefing staff prepare for the physician, and what to document and escalate if the denial stands."
+    },
+    {
+      "section": "Section 6: Escalation Pathways — When the Standard Appeal Is Not Enough",
+      "gist": "External independent review, state insurance department complaints, and the Medicare and Medicare Advantage appeal ladders as leverage after internal appeals fail."
+    },
+    {
+      "section": "Section 7: Root Cause Analysis — Turning Denial Data Into Process Intelligence",
+      "gist": "Monthly analysis of the top five categories by dollars using four questions, a dashboard, and a table routing each denial type to its upstream owner."
+    },
+    {
+      "section": "Section 8: Denial Prevention Architecture",
+      "gist": "Pre-bill checklist, a rule that no claim leaves with an unresolved scrubber edit, and documented prevention protocols for the top five denial-producing payers."
+    },
+    {
+      "section": "Section 9: Denial Management Metrics — Performance Standards and Benchmarks",
+      "gist": "Seven numbered metrics plus write-off rate, mostly unsourced benchmarks, a monthly 30–45 minute decision meeting, and a summary table of below-benchmark actions."
+    },
+    {
+      "section": "Section 10: Special Denial Categories — Medicare, MA, and Behavioral Health Parity",
+      "gist": "Medicare's five appeal levels, the argument that Medicare Advantage must cover what traditional Medicare covers (42 CFR 422.101), and mental health parity appeals and complaints."
+    },
+    {
+      "section": "Section 11: Closing — The Denial Management Implementation Priority List",
+      "gist": "Restates the recovery-plus-prevention thesis and lists eight actions in order, claiming measurable improvement within 90 days; ends with a link to a vendor diagnostic tool."
+    }
+  ],
+  "framework_elements": [
+    "Denial taxonomy by root cause (administrative, medical necessity, coding/billing, coverage, coordination of benefits, timely filing)",
+    "Denial segmentation by volume, dollar impact and trend",
+    "Denial-rate calculation segmented by payer, procedure code, provider and claim type",
+    "Same-day denial identification and daily denial worklist",
+    "Denial log (intake record with required fields)",
+    "Priority-tier triage with response-time standards",
+    "48-hour correction standard for administrative denials",
+    "Separate administrative and clinical denial worklists and roles",
+    "Payer timely-filing reference table",
+    "Unsent and held claim aging monitor",
+    "Appeal-deadline calculation at intake and deadline-sorted worklist",
+    "Four-part written appeal structure",
+    "Criteria-based medical necessity appeal (cite payer policy, LCD or guideline)",
+    "Documented administrative appeal / reprocessing request",
+    "Peer-to-peer request criteria",
+    "Peer-to-peer physician briefing sheet",
+    "Post-call documentation and second-level internal appeal",
+    "External independent review request",
+    "Regulator complaint and practice-level complaint log",
+    "Medicare five-level appeal ladder",
+    "Medicare Advantage coverage-floor appeal argument",
+    "Mental health parity appeal and complaint",
+    "Monthly root cause analysis (four questions, top categories by dollars)",
+    "Monthly denial dashboard",
+    "Front-end feedback loop (denial category to process owner)",
+    "Pre-bill review checklist",
+    "Claim scrubber hard-stop and documented override policy",
+    "Payer-specific denial prevention protocols (quarterly refresh)",
+    "Monthly denial management review meeting with assigned actions",
+    "Write-off tracking by category and triage of non-recoverable denials"
+  ],
+  "processes": [
+    {
+      "name": "Denial identification, intake and logging",
+      "steps": [
+        "Configure the practice-management system or clearinghouse to flag denials on receipt and produce a daily worklist (code, reason, payer, amount, date received)",
+        "Enter each denial in a denial log: claim number, patient, date of service, payer, denial code and reason, amount, date received",
+        "Assign a root-cause category at intake",
+        "Calculate and record the appeal or corrected-claim deadline",
+        "Assign an owner; later record the action taken and the outcome"
+      ],
+      "owner_role": "Billing staff (no single role named; billing manager oversees)",
+      "cadence": "Daily, the same day each denial arrives"
+    },
+    {
+      "name": "Tiered prioritization and working of denials",
+      "steps": [
+        "Work anything whose appeal or resubmission deadline is inside 30 days the same day, whatever its value",
+        "Correct and resubmit administrative denials over $500 within 48 hours",
+        "Start clinical appeals on medical-necessity denials over $500 within 5 business days",
+        "Correct coding and billing denials, with coder review, within 10 business days",
+        "Investigate coverage and coordination-of-benefits denials within 15 business days",
+        "Batch administrative denials under $100 weekly",
+        "Keep administrative and clinical worklists, and ideally the people working them, separate"
+      ],
+      "owner_role": "Billing staff, split between an administrative-correction role and a clinical-appeal role",
+      "cadence": "Daily worklist; weekly batch for low-value items; weekly check of 48-hour compliance"
+    },
+    {
+      "name": "Timely-filing and unsent-claim monitoring",
+      "steps": [
+        "Maintain a current filing-limit reference for every payer",
+        "Run a daily aging report of unsent or held claims",
+        "Review any claim still unsent 30 days after service; treat 60 days as an emergency",
+        "Keep proof of submission so wrongly applied timely-filing denials can be contested"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "Daily report; reference table kept current"
+    },
+    {
+      "name": "Written appeal using the four-part structure",
+      "steps": [
+        "Obtain the payer's clinical policy, coverage determination or contract provision that governs the denied service",
+        "Part 1: identify the claim, restate the payer's denial reason and state the grounds for appeal",
+        "Part 2: set out the clinical and administrative facts without arguing",
+        "Part 3: argue criterion by criterion, citing the policy language and the attached evidence",
+        "Part 4: request reversal and payment at the contracted rate and give notice of intended escalation",
+        "For administrative denials send a two-paragraph correction with source documents and a reprocessing request",
+        "File before the deadline recorded in the denial log"
+      ],
+      "owner_role": "Billing staff (clinical appeal writer) with provider or coder input where clinical or coding judgment is involved",
+      "cadence": "Per denial, inside the priority-tier timeframes"
+    },
+    {
+      "name": "Peer-to-peer review",
+      "steps": [
+        "Select cases: medical-necessity denials on high-value services with a strong record (suggested floor $500 to $1,000)",
+        "Staff prepare a one-page brief: payer's exact denial wording, payer criteria, chart evidence for each criterion, prior conservative treatment and results, supporting guidelines",
+        "Physician presents the evidence against each criterion on the call",
+        "Immediately record the date, reviewer name and credentials, arguments made and the reviewer's stated basis",
+        "If the denial stands and the record supports the service, file a second-level appeal attaching that record, then seek external review"
+      ],
+      "owner_role": "Billing or authorization staff prepare; treating physician conducts the call",
+      "cadence": "As needed"
+    },
+    {
+      "name": "Escalation beyond the first-level appeal",
+      "steps": [
+        "File the second-level internal appeal",
+        "Request independent external review for significant clinical denials upheld internally",
+        "File a state insurance department complaint for apparent policy or parity violations and keep a practice-level complaint log to show patterns",
+        "For Medicare move from redetermination to reconsideration and, where warranted, judge hearing, Appeals Council and federal court",
+        "For Medicare Advantage add the argument that the plan may not be more restrictive than traditional Medicare (42 CFR 422.101)",
+        "For behavioral health add a parity argument and a parallel regulator complaint"
+      ],
+      "owner_role": "Not specified; implicitly billing manager or practice administrator",
+      "cadence": "Per upheld denial that has merit and material value"
+    },
+    {
+      "name": "Monthly root cause analysis, dashboard and review meeting",
+      "steps": [
+        "Rank the month's denial categories by dollar impact",
+        "For each of the top five ask: what upstream process failed, is it a one-off or a pattern, who owns that process, what specific change would remove it",
+        "Update the dashboard: denial rate overall and by category, payer and top-20 procedure codes; appeal success; days to resolution; dollars recovered versus written off",
+        "Send front-end supervisors a monthly note on denial categories that originate in their processes",
+        "Hold a 30–45 minute decision meeting: pick the top three opportunities, assign action, owner and due date, and check last month's actions"
+      ],
+      "owner_role": "Billing manager with front-end supervisor and coding staff; practice owner or administrator at least quarterly",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Prevention controls before submission",
+      "steps": [
+        "Run a pre-bill checklist on every claim (demographics versus eligibility, payer order, authorization number, referring NPI, code validity and edits, modifiers, place of service, timeliness)",
+        "Hold any claim that fails a checklist item",
+        "Treat scrubber edits as a hard stop: fix each one or record a reasoned override",
+        "Write a prevention protocol for each of the top five denial-producing payers from the practice's own denial data",
+        "Refresh the payer protocols quarterly"
+      ],
+      "owner_role": "Billing staff; billing manager owns the payer protocols",
+      "cadence": "Every claim; payer protocols reviewed quarterly"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Denial category distribution and resolution pathway table",
+      "kind": "reference table",
+      "description": "Six denial categories with a 'typical' share of total denials (unsourced) and the usual way each is resolved."
+    },
+    {
+      "name": "Denial log field list",
+      "kind": "tracker specification (prose only)",
+      "description": "Names the fields a denial log should capture; no layout, field definitions or sample file supplied."
+    },
+    {
+      "name": "Denial prioritization table",
+      "kind": "scoring rubric / triage table",
+      "description": "Five numbered priority tiers plus a low-value batch tier, each with criteria and a response-time standard."
+    },
+    {
+      "name": "48-hour rule for administrative denials",
+      "kind": "service standard",
+      "description": "Standing rule that simple administrative corrections are fixed and resubmitted within two days."
+    },
+    {
+      "name": "Unsent-claim aging thresholds",
+      "kind": "monitoring rule",
+      "description": "Daily report of unsent or held claims with review at 30 days and emergency status at 60 days."
+    },
+    {
+      "name": "Four-part appeal structure",
+      "kind": "letter outline (no full letter)",
+      "description": "Identification block, factual record, specific argument, requested action with escalation notice."
+    },
+    {
+      "name": "Medical necessity appeal sentence",
+      "kind": "script snippet",
+      "description": "One fill-in sentence asserting that the patient meets each element of the plan's named clinical policy."
+    },
+    {
+      "name": "Administrative appeal guidance",
+      "kind": "content checklist (prose)",
+      "description": "What to include for authorization-related and demographic-related reprocessing requests."
+    },
+    {
+      "name": "Appeal deadline calendar by payer type",
+      "kind": "reference table",
+      "description": "First-level appeal windows for Medicare Part B (two levels), Medicare Advantage, Medicaid, commercial PPO and HMO, workers' compensation; mostly ranges with 'check the contract'."
+    },
+    {
+      "name": "Peer-to-peer request criteria",
+      "kind": "decision list",
+      "description": "Three situations that justify asking for a physician-to-physician call and when not to bother."
+    },
+    {
+      "name": "Peer-to-peer briefing document",
+      "kind": "form specification (prose only)",
+      "description": "Contents of a one-page brief staff prepare for the physician; no form supplied."
+    },
+    {
+      "name": "Sample peer-to-peer physician statement",
+      "kind": "script",
+      "description": "One orthopedic example of an evidence-specific opening statement contrasted with a vague one."
+    },
+    {
+      "name": "Root cause analysis four-question framework",
+      "kind": "analysis rubric",
+      "description": "Four questions applied monthly to each top denial category, ending in an assigned corrective action."
+    },
+    {
+      "name": "Monthly denial dashboard metric list",
+      "kind": "dashboard specification (prose only)",
+      "description": "Seven measures to report at practice, provider and payer level; no dashboard template supplied."
+    },
+    {
+      "name": "Denial category to root cause location to feedback recipient table",
+      "kind": "routing table",
+      "description": "Maps seven denial types to the upstream process at fault and the staff role that should receive the feedback."
+    },
+    {
+      "name": "Pre-bill review checklist",
+      "kind": "checklist",
+      "description": "Eight checks on claim completeness and consistency to run before submission."
+    },
+    {
+      "name": "Scrubber edit policy statement",
+      "kind": "policy",
+      "description": "No claim is transmitted with an unresolved scrubber edit unless a specific rationale for override is documented."
+    },
+    {
+      "name": "Payer-specific denial prevention protocol outline",
+      "kind": "protocol outline (prose)",
+      "description": "Topics a per-payer protocol should cover: authorization, documentation, format, covered diagnoses, filing limit."
+    },
+    {
+      "name": "Core metrics and Performance Standards Summary table",
+      "kind": "benchmark table",
+      "description": "Seven metrics with a benchmark and a prescribed action when below benchmark."
+    },
+    {
+      "name": "Monthly denial management review format",
+      "kind": "meeting agenda (prose)",
+      "description": "30–45 minute decision meeting: metrics versus benchmark, top three opportunities, action owners and dates."
+    },
+    {
+      "name": "Medicare five-level appeal table",
+      "kind": "reference table",
+      "description": "Names the five levels from contractor redetermination to federal district court; no forms, deadlines per level or dollar thresholds."
+    },
+    {
+      "name": "Medicare Advantage coverage-floor appeal paragraph",
+      "kind": "script",
+      "description": "Fill-in appeal language citing 42 CFR 422.101 to argue the plan must cover what traditional Medicare covers."
+    },
+    {
+      "name": "Mental health parity appeal argument",
+      "kind": "argument outline (prose)",
+      "description": "Identify the behavioral health service, a comparable medical service without the restriction, and cite federal and state parity law."
+    },
+    {
+      "name": "Denial Management Implementation Priority List",
+      "kind": "action plan",
+      "description": "Eight actions in sequence with a claim of measurable results in 90 days; not broken into 30/60/90-day phases."
+    },
+    {
+      "name": "Denial Root Cause Diagnostic (external)",
+      "kind": "vendor web tool, not included",
+      "description": "Referenced free interactive tool on the vendor's website; nothing from it is in the document."
+    },
+    {
+      "name": "Front-End Revenue Cycle Guide (external)",
+      "kind": "companion document, not included",
+      "description": "Cross-referenced sister publication for the front-end processes that denial feedback should reach."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Overall denial rate (first submission)",
+      "definition": "Share of submitted claims denied on first submission, calculated monthly; the trend is said to matter more than the level",
+      "formula": "Denied claims ÷ claims submitted in the period",
+      "target": "≤5% (called top quartile); 5–10% described as addressable opportunity; industry aggregate said to be about 8% with a typical range of 8–12%",
+      "red_flag": ">10% (called a systemic revenue-cycle problem); a rate flat for 12 months",
+      "source_cited": "MGMA DataDive and HFMA benchmarking data (named only; no report, year or table)"
+    },
+    {
+      "name": "Denial rate by root-cause category",
+      "definition": "Denial rate split by taxonomy category so the overall figure can be interpreted",
+      "formula": "",
+      "target": "",
+      "red_flag": "A category on the dashboard three consecutive months with no documented intervention",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administrative denial rate",
+      "definition": "Denials caused by administrative or front-end errors as a share of claims",
+      "formula": "",
+      "target": "≤2%",
+      "red_flag": "Above 2% triggers a front-end process audit",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medical necessity denial rate",
+      "definition": "Medical-necessity denials as a share of claims",
+      "formula": "",
+      "target": "≤2%",
+      "red_flag": "Above 2% triggers a documentation-standards and authorization-quality review",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate by payer",
+      "definition": "Denial rate for each payer, watched for change over time",
+      "formula": "",
+      "target": "",
+      "red_flag": "Illustration given: a payer rising from 4% to 9% within three months",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate by procedure code",
+      "definition": "Denial rate for each of the practice's top 20 codes",
+      "formula": "",
+      "target": "",
+      "red_flag": "Illustration given: 35% on one high-value code hidden inside a 4% overall rate",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate by provider and by claim type",
+      "definition": "Further cuts of the denial rate recommended in Section 2",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial category mix",
+      "definition": "Each category's share of total denials by count and by dollars, with month-over-month trend over three to six months",
+      "formula": "",
+      "target": "",
+      "red_flag": "A low-volume, high-value category that is trending upward",
+      "source_cited": "none (the table of 'typical' shares has no source)"
+    },
+    {
+      "name": "Appeal success rate, administrative",
+      "definition": "Share of appealed administrative denials that end in full or partial payment",
+      "formula": "",
+      "target": "≥65%",
+      "red_flag": "Below 65%: either legitimate denials are being appealed or appeal content is weak",
+      "source_cited": "none"
+    },
+    {
+      "name": "Appeal success rate, clinical (medical necessity)",
+      "definition": "Share of appealed medical-necessity denials that end in full or partial payment",
+      "formula": "",
+      "target": "≥50%",
+      "red_flag": "Below 50%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days to resolution",
+      "definition": "Average days from denial date to final resolution (payment, write-off, or escalation outside the practice's control)",
+      "formula": "",
+      "target": "≤30 days administrative; ≤60 days medical necessity",
+      "red_flag": "Above target points to assignment, prioritization or appeal-writing bottlenecks",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue recovery rate",
+      "definition": "Share of denied revenue eventually collected through correction or appeal rather than written off (the benchmark is worded differently, as the share of worked denials that are paid)",
+      "formula": "",
+      "target": "≥75%",
+      "red_flag": "<60% (too many unrecoverable denials being worked); 60–75% called a mixed portfolio",
+      "source_cited": "none"
+    },
+    {
+      "name": "Write-off rate by denial category",
+      "definition": "Share of each category's denials that end as write-offs; listed after the seven numbered metrics",
+      "formula": "",
+      "target": "",
+      "red_flag": "High write-offs in timely-filing or administrative categories (preventable loss)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue recovered through appeals versus written off",
+      "definition": "Dashboard comparison of dollars recovered with dollars written off, used to judge whether the function pays for itself",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administrative denial turnaround (48-hour rule)",
+      "definition": "Whether administrative denials are corrected and resubmitted within 48 hours of receipt; compliance measured weekly",
+      "formula": "",
+      "target": "Within 48 hours",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Time to first action by priority tier",
+      "definition": "Response-time standards from the priority table",
+      "formula": "",
+      "target": "Deadline inside 30 days: same day; administrative over $500: 48 hours; medical necessity over $500: 5 business days; coding/billing: 10 business days; coverage or coordination of benefits: 15 business days; administrative under $100: weekly batch",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Age of unsent or held claims",
+      "definition": "Days since date of service for claims not yet submitted, from a daily aging report",
+      "formula": "",
+      "target": "Submitted within 30 days of service (pre-bill checklist item)",
+      "red_flag": ">30 days: immediate review; >60 days: labeled a financial emergency",
+      "source_cited": "none"
+    },
+    {
+      "name": "Appeal deadline proximity",
+      "definition": "Days remaining to each denial's appeal or corrected-claim deadline, calculated at intake",
+      "formula": "",
+      "target": "No deadline missed",
+      "red_flag": "Deadline inside 30 days requires same-day action",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A denial rate at or below 5% is top-quartile performance",
+      "section": "Sections 2 and 9",
+      "source_cited": "MGMA DataDive and HFMA benchmarking data (named only; no report, year or table)"
+    },
+    {
+      "claim": "The industry aggregate denial rate runs about 8%, with a typical range of 8–12% across practices",
+      "section": "Sections 2 and 9",
+      "source_cited": "MGMA DataDive and HFMA benchmarking data (named only; no report, year or table)"
+    },
+    {
+      "claim": "A denial rate above 10% is a systemic revenue-cycle problem; 5–10% is addressable opportunity",
+      "section": "Sections 2 and 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Administrative/front-end errors are 37–38% of all denials",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medical necessity is 22–23% of all denials",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Coding and billing errors are 17–18% of all denials",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Coverage/non-covered service is 11–12%, coordination of benefits 6–8% and timely filing 4–5% of all denials",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Administrative denials are the largest category in most independent practices and are entirely preventable",
+      "section": "Sections 2 and 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare requires claim submission within one year of the date of service",
+      "section": "Sections 3 and 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most commercial payers require submission within 90 to 180 days, some as short as 60 days",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare allows 120 days (from date of denial) to request a redetermination",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare reconsideration (level 2) must be requested within 180 days of the redetermination decision",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "First-level appeal windows: Medicare Advantage typically 60–180 days; Medicaid typically 90–120 days; commercial PPO 60–180 days; commercial HMO 60–120 days; some payers as little as 30 days",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare has a five-level appeal process; the level-two reconsideration takes 60 days to resolve",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Level-two (QIC) reversal rates for well-supported clinical denials are materially higher than contractor redetermination reversal rates",
+      "section": "Sections 6 and 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage plans must cover everything traditional Medicare covers and cannot apply more restrictive criteria without a specific regulatory basis",
+      "section": "Sections 6 and 10",
+      "source_cited": "42 CFR 422.101 (cited in the appeal script only)"
+    },
+    {
+      "claim": "The ACA gives a right to independent external review for most commercial denials after internal appeal; review-organization decisions bind the payer in most states",
+      "section": "Sections 5 and 6",
+      "source_cited": "ACA named; no section or regulation cited"
+    },
+    {
+      "claim": "External review overturns payer decisions at a significantly higher rate than internal appeals, and payers reverse a significant share before the reviewer finishes",
+      "section": "Sections 5 and 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most states' external review requests take under 30 minutes to complete",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Five complaints against one payer in 12 months for similar denials is evidence of systematic payer behavior",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most denied claims in independent practice are never appealed",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A denied, appealed and reversed claim costs $25 to $118 in staff time and is collected 30 to 90 days later",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Benchmark appeal success: 65% or more for administrative appeals, 50% or more for medical-necessity appeals",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Benchmark days to resolution: 30 or fewer for administrative denials, 60 or fewer for medical-necessity denials",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Benchmark revenue recovery: 75% or more of worked denials paid; below 60% signals poor triage",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Benchmark administrative denial rate at or below 2% and medical-necessity denial rate at or below 2%",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "High-value threshold $500 and low-value threshold $100 for triage; peer-to-peer floor typically $500 to $1,000",
+      "section": "Sections 3 and 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unsent claims older than 30 days need immediate review; older than 60 days are a financial emergency",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Federal parity law requires the same coverage standards, authorization rules, treatment limits and reimbursement rates for behavioral health as for medical/surgical care, and is the most consistently violated federal healthcare law in commercial insurance",
+      "section": "Section 10",
+      "source_cited": "MHPAEA named; no section or regulation cited"
+    },
+    {
+      "claim": "The eight priority actions will produce a measurable fall in denial rate and gains in appeal success and recovery within 90 days",
+      "section": "Section 11",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Medicare requires submission within one year of the date of service; Medicare Part B redetermination: 120 days from date of denial; reconsideration (Level 2): 180 days from date of redetermination decision; QIC reconsideration 'takes 60 days to resolve.'",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 3 (timely filing); Section 4 (appeal deadline calendar); Section 10 (Medicare denials)",
+      "why": "These dates would seed the deadline tracker for about 55% of charges. To confirm: the redetermination clock runs from receipt of the initial determination rather than the denial date, the 60 days is the reviewer's decision deadline rather than a guarantee, and the filing limit has regulatory exceptions the document omits. Section 10 also says claims near one year need escalation whatever their appeal stage, which confuses filing and appeal clocks. A wrong date is permanently lost revenue."
+    },
+    {
+      "id": "C2",
+      "claim": "A Medicare Advantage plan 'is required by 42 CFR 422.101 to provide coverage at least as generous as traditional Medicare for all Part A and Part B services'; denying such a claim 'violates that requirement.'",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 10 (Medicare Advantage); also Section 6",
+      "why": "Offered as paste-in appeal language for the practice's second-largest payer group. If the citation or its scope is off (plans may still require authorization and network use, and may apply their own published criteria where Medicare's are not fully established), appeals built on it will misstate the law and fail."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare Advantage denials: the escalation pathway runs through the MA plan's internal appeal process first, then to an Independent Review Entity designated by CMS, [then] the same multi-level Medicare appeal system that applies to traditional Medicare.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 6 (CMS complaints for Medicare and Medicare Advantage)",
+      "why": "That route is believed to belong to enrollees and to non-contracted providers who waive patient liability. A practice contracted with UnitedHealthcare, Humana, Capital Health Plan or Florida Blue is normally limited to the dispute process in its contract, so relying on this could burn the real contractual deadline."
+    },
+    {
+      "id": "C4",
+      "claim": "QIC reversal rates for well-supported clinical denials are materially higher than MAC redetermination reversal rates.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 10 (Medicare denials); also Section 6",
+      "why": "Drives whether second-level Medicare appeals are worth the effort on low-dollar visit claims. No data are cited; CMS publishes fee-for-service appeal outcomes by level, and my recollection is that Part B overturn rates at reconsideration are not higher than at redetermination."
+    },
+    {
+      "id": "C5",
+      "claim": "The ACA established the right to independent external review for most commercial insurance denials that have exhausted the internal appeal process... IRO decisions are binding on the payer in most states.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 6 (external independent review); also Section 5",
+      "why": "The document treats external review as the practice's own remedy. The right is understood to belong to the enrollee (a provider acts only as authorized representative), to cover non-grandfathered plans and mainly medical-judgment denials, and not to reach contracted-provider payment disputes. If so, the escalation ladder is misdirected for any commercial work."
+    },
+    {
+      "id": "C6",
+      "claim": "[MHPAEA] requires that commercial health plans apply the same coverage standards, prior authorization requirements, treatment limitations, and reimbursement rates to [behavioral health] services as they apply to comparable medical and surgical services.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 10 (mental health parity); Section 11 action 8",
+      "why": "Appears to overstate the statute, which bars limits more restrictive than those on medical/surgical benefits but does not mandate identical standards or equal reimbursement rates. A behavioral-health client filing appeals and regulator complaints on this wording would assert a right that may not exist. Irrelevant to this practice's Medicare book but matters if the material is reused for other practices."
+    },
+    {
+      "id": "C7",
+      "claim": "A claim that is denied, appealed, and reversed costs an average of $25 to $118 in staff time to manage ... and is collected 30 to 90 days later",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 8 (payer-specific denial prevention protocols, closing callout)",
+      "why": "This is the unit-cost input for any appeal-or-write-off threshold and for the return on prevention. No source is given; the endpoints resemble an old MGMA rework figure and a 2017 hospital appeal-cost figure. With most of this practice's facility visit claims likely worth under $200, the number decides which denials are worth appealing."
+    },
+    {
+      "id": "C8",
+      "claim": "Typical % of total denials: Administrative / front-end errors 37–38%; Medical necessity 22–23%; Coding and billing errors 17–18%; Coverage / non-covered service 11–12%; Coordination of benefits 6–8%; Timely filing exceeded 4–5%.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 2 (denial category distribution table)",
+      "why": "Presented as the normal mix with no source and one-point-wide ranges; a medical-necessity share above 20% is well above what published denial-reason surveys report. Reused as a yardstick in the owner's framework or a client service, it would distort which categories a practice expects and prioritizes."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.62,
+      "topics": [
+        "denial taxonomy and segmentation",
+        "denial log and daily worklist",
+        "priority tiers and response times",
+        "appeal structure and deadlines",
+        "timely filing monitoring",
+        "escalation ladder",
+        "denial metrics and benchmarks",
+        "write-off tracking",
+        "monthly denial review"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.14,
+      "topics": [
+        "payer-specific prevention protocols",
+        "Medicare appeal levels",
+        "Medicare Advantage coverage-floor argument",
+        "payer denial-rate trend monitoring",
+        "regulator complaints and contract disputes",
+        "appeal windows by payer type"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.08,
+      "topics": [
+        "eligibility, registration, authorization and referral as denial sources",
+        "front-end feedback loop",
+        "prior-authorization peer-to-peer"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.07,
+      "topics": [
+        "coding and billing denial category",
+        "pre-bill checklist (codes, modifiers, place of service)",
+        "scrubber edit hard stop",
+        "coder review of corrections"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.04,
+      "topics": [
+        "external review and regulatory appeal rights",
+        "mental health parity",
+        "documentation supporting medical necessity",
+        "disclaimer on AI drafts and independent verification"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "practice-management and clearinghouse denial worklists",
+        "claim scrubbing automation",
+        "monthly dashboard"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.02,
+      "topics": [
+        "splitting administrative-correction and clinical-appeal roles",
+        "process-owner accountability for denial categories"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Label every denial with its upstream root cause and cut the data three ways at once (count, dollars, trend), then by payer, code and provider.",
+      "why": "A single blended denial rate hides the few code-and-payer combinations that drive most lost revenue; root-cause labels tell you which process to fix rather than which claim to rework.",
+      "applies_to_practice": "yes",
+      "note": "Build the category map from the remittance reason codes in AdvancedMD. Add facility and place of service as dimensions and swap the front-desk categories for the ones this practice actually has: coverage discovery (fee-for-service versus Medicare Advantage versus hospice), enrollment and credentialing, visit-frequency and duplicate edits."
+    },
+    {
+      "idea": "Keep one denial log in which the appeal or resubmission deadline is calculated at intake and the worklist sorts by that date.",
+      "why": "Deadlines expire silently; a computed date on every denial is the cheapest control against permanent loss.",
+      "applies_to_practice": "yes",
+      "note": "Well suited to AI agents: load each payer's regulatory and contract windows as rules, alert at set intervals, and store the rule source beside each date so it can be audited. Verify every window against the contract or regulation first; the document's ranges are not reliable enough."
+    },
+    {
+      "idea": "Rank work by deadline risk first and value second, with an explicit response-time standard for each tier.",
+      "why": "Stops low-dollar items aging out and turns the denial queue into a measurable service level.",
+      "applies_to_practice": "partly",
+      "note": "The $500 and $100 thresholds do not fit facility visit claims that are mostly well under $500. Rescale the tiers and rank by the aggregate dollars of a denial pattern, not single-claim value."
+    },
+    {
+      "idea": "Run a fast lane for simple corrections, separate from clinical appeals, with a two-day standard.",
+      "why": "Most denials need a data fix, not an argument; mixing the two queues slows both.",
+      "applies_to_practice": "yes",
+      "note": "For Medicare fee-for-service the fast lane should usually be a clerical error reopening or a corrected resubmission of a rejected claim, not a formal appeal. The document never makes that distinction."
+    },
+    {
+      "idea": "Daily aging report of unsent and held claims with escalation thresholds.",
+      "why": "Late filing usually comes from claims stuck in review or waiting on documentation, and it is the one denial type that is rarely recoverable.",
+      "applies_to_practice": "yes",
+      "note": "Tighten the 30/60-day thresholds to a few days. Facility charge-capture lag plus short Medicare Advantage filing limits leave little margin, and a 60-day trigger is already too late for a 60-day payer and leaves only 30 days on a 90-day one."
+    },
+    {
+      "idea": "Write medical-necessity appeals against the payer's own published criteria, mapping chart evidence to each criterion, inside a fixed four-part letter.",
+      "why": "Forces the reviewer to name the unmet criterion and gives a reusable structure whose quality can be checked.",
+      "applies_to_practice": "yes",
+      "note": "For Medicare cite the national or First Coast local coverage determination or the manual section. Drop the blanket threat of a state insurance complaint, which has no force with Medicare, Medicare Advantage coverage decisions or self-funded plans."
+    },
+    {
+      "idea": "In Medicare Advantage appeals, argue from Medicare's coverage rules as the floor.",
+      "why": "Plans must furnish Part A and Part B benefits and follow national and local coverage determinations, so a denial stricter than Medicare can be challenged on regulatory grounds rather than opinion.",
+      "applies_to_practice": "partly",
+      "note": "Verify the wording and cite the specific paragraphs, including the limits on plan-created criteria that took effect in 2024. It helps with coverage and medical-necessity denials only, not authorization, network or administrative denials, and a contracted provider must run it through the plan's contractual dispute process."
+    },
+    {
+      "idea": "Monthly root cause review of the top categories by dollars using four fixed questions (what failed upstream, one-off or pattern, who owns it, what change removes it), ending in assigned actions with dates.",
+      "why": "Converts the denial queue into a prevention program and leaves a record of management decisions. The rule that a category left three months without a documented fix is a management choice is a useful governance trigger.",
+      "applies_to_practice": "yes",
+      "note": "The owner, acting as CFO, should chair it; the agents can prepare the pack. Feedback goes to the two clinicians and the charge-capture and census process rather than to a front desk."
+    },
+    {
+      "idea": "Make scrubber edits a hard stop: no claim is transmitted with an unresolved edit unless a reasoned override is recorded.",
+      "why": "Turns an advisory tool into a control and produces evidence for audits and for a buyer's diligence.",
+      "applies_to_practice": "yes",
+      "note": "Directly usable as a governance rule for AI billing agents: every override logged with rationale, rule reference and reviewer."
+    },
+    {
+      "idea": "Maintain a written prevention protocol for each top denial-producing payer, built from the practice's own denial data and refreshed quarterly.",
+      "why": "Repeat payer-specific denials stop only when the payer's quirks are written down and enforced before submission.",
+      "applies_to_practice": "yes",
+      "note": "Candidates: First Coast, UnitedHealthcare, Humana, Capital Health Plan, Florida Blue, each Medicaid plan, VA community care and Tricare. Do not let lists of 'accepted' diagnoses drive code selection; diagnoses must come from the documentation."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The generic machinery (root-cause log, deadline tracking, triage tiers, monthly analysis, scrubber hard stop, payer protocols, metric set) transfers directly and is easy to automate. But the document is written for an office-based practice with front-desk staff, prior authorizations, high-dollar procedures and a commercial payer mix. This practice is facility-based with no front desk, low-dollar visit claims and a payer mix of Medicare fee-for-service, Medicare Advantage, Medicaid managed care, VA and Tricare. The Medicare content is only a high-level ladder: nothing on reopenings, rejected versus denied claims, remittance codes, place-of-service or visit-frequency edits, care-management, wellness-visit or advance-care-planning denials, crossover claims for dual-eligibles, or contractor documentation requests, and, beyond one table row of appeal windows for Medicaid, nothing on Medicaid, VA or Tricare. Its Medicare Advantage escalation advice does not match the rights of a contracted provider.",
+    "sections_that_do_not_apply": [
+      "Section 5 (peer-to-peer): built around prior-authorization denials for high-value procedures; the practice's visit services rarely need authorization and the orthopedic example is irrelevant",
+      "Section 6: ACA external review and state insurance department complaints (commercial insured plans only, negligible or absent in this payer mix)",
+      "Section 10: mental health parity, and action 8 of the Section 11 priority list",
+      "Section 7 feedback table rows aimed at front desk, registration, scheduling and referral staff (there is no front desk)",
+      "Section 4 appeal-window rows for commercial PPO, commercial HMO and workers' compensation",
+      "Section 3 dollar thresholds ($500 high value, $100 low value) and the Section 5 peer-to-peer floor of $500 to $1,000",
+      "Staffing advice (separate administrative and clinical appeal staff; meetings of billing manager and front-end supervisor) where billing is run by AI agents",
+      "Section 2 and Section 8 emphasis on authorization and referral denials"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Medicare Advantage escalation (Section 6) is described as plan appeal, then the CMS independent review entity, then the Medicare ladder. As I understand the rules, that route is for enrollees and for non-contracted providers who waive patient liability; contracted providers are confined to the dispute process in their contract. For an in-network practice this is misleading.",
+      "The Medicare Advantage 'floor' script (Section 10) is right in thrust but overbroad: plans may still require authorization, referrals and network use, and may apply their own published criteria where Medicare's are not fully established. Being a 'Medicare-participating provider' is not the test. The script does nothing for administrative or payment denials.",
+      "External review (Sections 5 and 6) is presented as the practice's remedy. Under the ACA it is the enrollee's right, exercised by the patient or an authorized representative, for non-grandfathered plans and chiefly medical-judgment denials. 'Under 30 minutes', overturn rates 'significantly higher' than internal appeals, and the notion that payers reverse early to avoid a binding 'precedent' are unsupported.",
+      "State insurance departments do not regulate self-funded employer plans, traditional Medicare or Medicare Advantage coverage decisions, and Medicaid plans answer to the state Medicaid agency. The document never says so, yet tells staff to put a commissioner-complaint notice in every appeal whatever the denial type.",
+      "Mental health parity is misstated: the law bars financial requirements and treatment limits that are more restrictive than those on medical/surgical benefits; it does not require identical standards or equal reimbursement rates, and it does not govern Medicare. Complaints about self-funded plans go to the Department of Labor, not the state.",
+      "Medicare timely filing (Section 10) is muddled: claims nearing one year 'without resolution' are said to need escalation wherever they sit in appeal. The one-year limit governs initial filing; appeals run on their own clocks. The real one-year risks, a rejected (unprocessable) claim that must be resubmitted and the one-year reopening window, are never mentioned.",
+      "'Correct and resubmit' is offered as the universal fix for administrative and coding denials. For Medicare Part B an adjudicated denial generally cannot simply be resubmitted (it denies again as a duplicate) and needs a reopening or redetermination, and many other payers require a flagged corrected claim. The document never says so.",
+      "The Medicare ladder omits the amount-in-controversy minimum for a judge hearing (a dollar threshold is mentioned only for court), the rule that evidence must be in by the reconsideration stage, good-cause late filing, and that the 120 days runs from receipt of the initial determination.",
+      "No evidence is given that level-two overturn rates exceed level-one rates; my recollection of CMS's published Part B appeal statistics is the reverse. Treat as unverified.",
+      "'No recovery' for timely-filing denials ignores Medicare's regulatory exceptions (contractor error, retroactive entitlement, retroactive Medicaid recoupment for dual-eligibles, retroactive Medicare Advantage disenrollment) and common commercial ones (retroactive eligibility, clock running from the primary payer's remittance).",
+      "The 'typical' denial mix table looks invented: no source, ranges one point wide, a medical-necessity share above 20% that the published denial-reason indices I know do not support, and a footnote explaining away totals of 97% and 104%.",
+      "Benchmarks for appeal success (65%/50%), recovery (75%), days to resolution (30/60) and category rates (2%/2%) carry no source. Denial-rate figures are attributed to 'MGMA DataDive and HFMA' with no report, year or table. The $25–$118 cost range is uncited and appears stitched together from old published figures.",
+      "The pre-bill checklist confuses code-pair edits (procedure-to-procedure and unit limits) with procedure-to-diagnosis coverage rules, and includes 'claim was submitted within 30 days', which cannot be checked before submission.",
+      "Peer-to-peer is treated as available for post-service claim denials. Many payers restrict it to pre-service or concurrent review, impose short request windows and close it once a formal appeal is filed; none of that is mentioned.",
+      "The statement that every commercial payer and Medicare Advantage plan publishes its clinical policies on a provider portal is an overstatement; licensed proprietary criteria sets are often not posted.",
+      "Section 8 suggests cataloguing the diagnosis codes each payer 'accepts' with no warning that diagnoses must follow the documentation; used carelessly that is coding to get paid.",
+      "Routing coverage denials to 'patient responsibility' ignores Medicare's advance beneficiary notice requirement for shifting liability on medical-necessity and frequency denials and the ban on billing qualified Medicare beneficiaries.",
+      "The joint-replacement example offers a WOMAC score of '28 out of 100' as support for surgery; the index is conventionally scored 0–96 with higher meaning worse, so the example is ambiguous at best.",
+      "Absolute statements are unsupported: administrative denials 'entirely preventable', missed deadlines with 'no recovery path', results 'within 90 days', parity as 'the most consistently violated federal healthcare law'."
+    ],
+    "generic_filler": "high",
+    "internal_contradictions": [
+      "The taxonomy has five root-cause categories with timely filing inside 'administrative'; the distribution table and the feedback table treat timely filing as a sixth, separate category.",
+      "The 48-hour rule is declared a standing standard for all administrative denials, but the priority table batches those under $100 weekly and assigns no tier at all to administrative denials between $100 and $500 or to medical-necessity denials under $500.",
+      "Denial rate is defined as denials on first submission, but the formula divides all denied claims by claims submitted in the period; claim versus line level, counts versus dollars and the treatment of rejections are never fixed.",
+      "Revenue recovery rate is defined on denied dollars but benchmarked as the share of worked denials that get paid.",
+      "Action 6 refers to 'seven core metrics'; Section 9 numbers seven, adds an unnumbered eighth (write-off rate), and its summary table lists a different seven; the Section 7 dashboard list differs again.",
+      "Root cause analysis covers the 'top five' categories each month in Section 7 (the taxonomy has only five or six) but the 'top three' in Section 11.",
+      "Unsent claims become an 'emergency' at 60 days although the same passage says some payers' filing limits are 60 days, by which point the claim is already lost.",
+      "Section 10 says appeals have their own timelines and then that the one-year filing mark requires escalation regardless of appeal stage.",
+      "The appeal-window table is titled as first-level but includes Medicare's second level.",
+      "Priority 1 is named 'timely filing risk' but its criteria are appeal and resubmission deadlines, which is a different thing from the timely-filing denial category; the table then labels that category both 'appeal with evidence' and 'prevention only'.",
+      "A heading promises 'CMS complaints' for Medicare and Medicare Advantage, but the text describes only the appeal ladder and gives no complaint mechanism."
+    ],
+    "time_sensitive_or_outdated": [
+      "Medicare Advantage content ignores the rule changes effective 2024 (limits on plan-created coverage criteria and on prior authorization, public posting of criteria, utilization-management committee review), now the strongest basis for the coverage-floor argument; only 42 CFR 422.101 is cited, generically.",
+      "No mention of the federal prior-authorization rule whose decision-time and denial-reason requirements began applying to Medicare Advantage, Medicaid managed care and exchange plans in 2026, nor of the 2026 limits on plans reopening approved inpatient admissions (both to be verified against current regulations).",
+      "Medicare Advantage appeal windows are given only as '60–180 days'; the reconsideration window for enrollees and non-contracted providers is set by regulation and, as I recall, moved to 65 days from 2025 (verify).",
+      "Parity is written as if settled; the 2024 federal parity rule's new requirements were placed under a non-enforcement policy in 2025, so the current position must be checked before any client relies on Section 10.",
+      "Medicare amount-in-controversy thresholds change every calendar year and are not stated at all.",
+      "Benchmarks carry no year. The cost-per-denial range appears to trace to figures from about 2017 or earlier; more recent published denial rates and rework costs differ.",
+      "No publication date, version or year appears anywhere in the text, so a reader cannot tell which rule year it reflects; its own disclaimer concedes it may not reflect current requirements.",
+      "Payer filing and appeal windows are generic ranges; actual contract terms for each plan must replace them before use."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, date, version, citation or footnote; the single source attribution names two organizations with no report or year.",
+      "The disclaimer talks about reviewing 'AI-generated drafts' although the document offers no drafting tool: boilerplate carried over from a template series.",
+      "A footnote rationalizing why the category percentages total 97% and 104% reads like the residue of an automated consistency check.",
+      "Aphoristic paired sentences and 'not X, it is Y' constructions throughout; pull quotes repeat body text nearly verbatim (the 'self-eliminating function' line three times, the 'data does not lie' line three times).",
+      "Near-duplicate passages: the denial-rate benchmark in Sections 2 and 9; the Medicare ladder and the Medicare Advantage argument in Sections 6 and 10; timely filing in Sections 3 and 10.",
+      "Suspiciously tidy numbers: one-point-wide ranges, round benchmarks, and a hyper-specific clinical example that does not hold up.",
+      "Logic slips an editor would catch: a pre-bill item about having already submitted; 'top five' of five categories; 'seven core metrics' that are eight; a complaints heading with no complaint process.",
+      "Table-of-contents subtitles differ from the headings in the body for Sections 2, 4, 9 and 11.",
+      "By my line-range count about 28% of the body text (roughly 2,900 of 10,500 words) is framing, pull quotes or repetition.",
+      "Cross-selling: references to a companion front-end guide and a free online diagnostic on the vendor's site."
+    ],
+    "missing_for_real_use": [
+      "A crosswalk from remittance codes (claim adjustment reason, remark and group codes) to category, owner and action; the document never names a single denial code.",
+      "The distinction between rejections (clearinghouse or payer front-end, including Medicare claims returned as unprocessable with no appeal rights) and adjudicated denials.",
+      "Medicare fee-for-service mechanics: clerical error reopening versus redetermination, contractor portal and forms, the evidence deadline at reconsideration, amount in controversy and aggregation, good-cause extensions, filing-limit exceptions, secondary-payer problems, documentation requests and targeted probe-and-educate reviews.",
+      "Medicare Advantage for contracted providers: each plan's contractual dispute steps and deadlines, the waiver route for non-contracted providers, and how to raise a plan's non-compliance with the CMS regional office.",
+      "Medicaid managed care and dual-eligible handling: plan dispute rules, state hearing or dispute-resolution programs, crossover claims, zero-pay crossovers that are not denials, and limits on billing beneficiaries.",
+      "VA community care and Tricare denial and appeal rules.",
+      "The limits of state regulators (self-funded plans, federal programs), patient consent and authorized-representative requirements for external review and complaints, state prompt-pay law and state provider dispute programs.",
+      "Partial denials, downcoding, bundling reductions, underpayments, recoupments and overpayment demands; corrected-claim mechanics (resubmission codes, payer portals).",
+      "Actual templates: no complete appeal letters, no denial-log layout with field definitions, no dashboard, no root-cause worksheet, no peer-to-peer brief form, no payer-protocol template. Everything is described in prose.",
+      "Metric definitions precise enough to compute: claim versus line level, counts versus dollars, initial versus final denial rate, denial write-offs as a share of net revenue, how rejections are counted.",
+      "Write-off authority and small-balance policy, adjustment-code governance, and an appeal-or-write-off rule based on expected value.",
+      "Compliance guardrails: corrections must be supported by the record, advance beneficiary notice rules, refunding overpayments discovered during denial review, and privacy handling of records sent to reviewers and regulators.",
+      "Setting and specialty specifics: nothing on facility-based visits (place of service, visit frequency, same-day duplicate edits, split or shared visits), care management, wellness visits or advance care planning.",
+      "Staffing and workload standards for a small practice, and any treatment of automated or AI-run denial workflows beyond a one-line disclaimer.",
+      "A source list and effective date for every rule and benchmark."
+    ]
+  }
+}

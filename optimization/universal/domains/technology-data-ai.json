@@ -1,0 +1,703 @@
+{
+ "domain": "technology-data-ai",
+ "categories": [
+  {
+   "slug": "td-core-systems",
+   "name": "Core systems: health record and practice management",
+   "summary": "The health record and billing system the practice runs on. The questions are fit, cost, and how much of what is already paid for is actually used.",
+   "good_looks_like": [
+    "The systems fit how the practice works: office schedule, hospital rounds, facility census or home visits.",
+    "The practice uses the eligibility, claim scrubbing, remittance posting and reporting features it already pays for.",
+    "Total yearly cost per clinician is known, including add-on modules and per-claim fees.",
+    "Data can be exported in full without the vendor's help."
+   ],
+   "failure_modes": [
+    "Staff work around a system built for a different kind of practice.",
+    "The practice pays for a second product to do what a switched-off feature of the first would do.",
+    "A system is replaced to fix a process problem, and the problem moves to the new system.",
+    "Nobody can produce a full export of charges, payments and adjustments."
+   ],
+   "key_questions": [
+    "What does each system cost per clinician per year, all in?",
+    "Which features we pay for are not turned on?",
+    "Can we export every transaction with its dates and codes?",
+    "When does each contract renew, and what notice is required?"
+   ],
+   "actions": [
+    {
+     "action": "List every system with cost and renewal date",
+     "detail": "Include per-claim, per-statement and add-on charges from a year of invoices.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Ask the vendor for a feature review",
+     "detail": "Most vendors will walk through unused features at no charge.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Test a full data export",
+     "detail": "Charges, payments, adjustments and patient balances, by service date.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Fix the process before replacing the system",
+     "detail": "Write down the failing step and try it with the current tools first.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Facility-based and home-visit practices should check that the system handles census-based charge capture, multiple places of service and mobile use, which office-oriented products often do poorly.",
+   "sources": [
+    "hci-mgma-it-2017",
+    "mgma-bok"
+   ],
+   "evidence_note": "Management practice. The only public cost figure found is from 2016 and is too old to use as a target.",
+   "metrics": [
+    {
+     "slug": "td-it-cost-per-clinician",
+     "name": "Technology cost per full-time clinician",
+     "definition": "Yearly spending on software, hosting, clearinghouse, devices and technology support, per full-time clinician.",
+     "formula": "Annual technology spending / full-time clinicians",
+     "unit": "dollars",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "MGMA reported $14,000 to $19,000 per full-time physician in 2016. No current public figure was found, so use your own trend and watch per-claim and usage-based charges.",
+     "confidence": "low",
+     "data_hint": "A year of vendor invoices from the accounting system.",
+     "sources": [
+      "hci-mgma-it-2017"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "td-integrations",
+   "name": "Integrations and data flow",
+   "summary": "How information moves between the health record, billing system, clearinghouse, payers, bank, accounting and outside facilities. Every place a person retypes data is a place for delay and error.",
+   "good_looks_like": [
+    "Eligibility, claims, claim status, remittances and deposits all move electronically for every payer that offers it.",
+    "Charges flow from the point of care to the billing system without retyping.",
+    "The practice has a simple diagram of what connects to what.",
+    "A failed transfer raises an alert the same day."
+   ],
+   "failure_modes": [
+    "Remittances arrive on paper for a payer that offers them electronically.",
+    "A census or schedule is typed from one system into another, and names or dates drift.",
+    "An interface stops and nobody notices until claims are missing.",
+    "Accounting gets monthly totals by hand, so books and billing never agree."
+   ],
+   "key_questions": [
+    "For which payers do we still receive paper remittances or checks?",
+    "Where does anyone type the same information twice?",
+    "How would we know today if a data feed had stopped?",
+    "Do deposits in accounting tie to payments posted in billing?"
+   ],
+   "actions": [
+    {
+     "action": "Enroll every payer for electronic remittance and deposit",
+     "detail": "Work down the payer list by dollars. Record enrollment dates.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Draw the data-flow diagram",
+     "detail": "Boxes for each system and arrows for each transfer, marked automatic or manual.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Remove one manual re-entry point each quarter",
+     "detail": "Start with the one that touches the most claims.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Add a daily feed check",
+     "detail": "A count of records received today against the usual number.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. Facility-based practices also depend on getting census, face sheets and status changes from hospitals and nursing homes, usually through portals or reports that need a routine.",
+   "sources": [
+    "caqh-2024"
+   ],
+   "evidence_note": "Cost and time savings from electronic transactions are measured each year by CAQH. Which connections to build first is judgment.",
+   "metrics": [
+    {
+     "slug": "td-manual-reentry-points",
+     "name": "Places where data is entered by hand a second time",
+     "definition": "Count of steps where a person retypes information that already exists in another system.",
+     "formula": "Count from the data-flow diagram",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No benchmark. The reason to count: CAQH found an electronic eligibility check cost $2.00 against $8.57 by hand, and claim status $3.64 against $13.80 (2023 data).",
+     "confidence": "low",
+     "data_hint": "The data-flow diagram, reviewed with the people who do the work.",
+     "sources": [
+      "caqh-2024"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "td-analytics",
+   "name": "Analytics, dashboards and the data model",
+   "summary": "One trusted place where the practice's numbers live, with agreed definitions, so that a measure means the same thing every month and can be traced back to the claims behind it.",
+   "good_looks_like": [
+    "Billing, bank and accounting data land in one store on a schedule.",
+    "Each measure has a written definition and formula.",
+    "The scorecard is produced automatically and shows the date of the data.",
+    "Any number can be opened to see the records behind it."
+   ],
+   "failure_modes": [
+    "The billing system, the accountant and the owner's spreadsheet give three different collection totals.",
+    "A measure changes because someone changed the report filter, not because performance changed.",
+    "Reports are built by hand each month, so they arrive late or not at all.",
+    "Dashboards show totals with no way to see which claims make them up."
+   ],
+   "key_questions": [
+    "Do our billing reports and our bank deposits agree for last month?",
+    "Is each scorecard measure defined in writing?",
+    "How many scorecard numbers are typed in by hand?",
+    "Can we list the claims behind any figure?"
+   ],
+   "actions": [
+    {
+     "action": "Write a definition for every measure",
+     "detail": "Name, formula, source table, and what is included and excluded.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Load source data on a schedule",
+     "detail": "Daily or more often for billing data, monthly for accounting.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Reconcile totals monthly",
+     "detail": "Payments posted against deposits against the income statement.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep drill-down to the record",
+     "detail": "Every summary should link to its rows.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice, at a scale that fits. A two-clinician practice may need only a monthly export and a spreadsheet with fixed definitions. A practice with automation can keep a small database.",
+   "sources": [
+    "hfma-map-keys",
+    "mgma-glossary"
+   ],
+   "evidence_note": "Standard definitions exist from HFMA and MGMA and should be adopted where they fit. No benchmark exists for analytics itself.",
+   "metrics": [
+    {
+     "slug": "td-kpi-automation",
+     "name": "Scorecard measures produced automatically",
+     "definition": "Share of the practice's scorecard measures that are calculated from source data without anyone typing a number.",
+     "formula": "Measures calculated automatically / measures on the scorecard",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Automation matters less than a fixed definition, so define first and automate second.",
+     "confidence": "none",
+     "data_hint": "The scorecard's own list of measures and sources."
+    },
+    {
+     "slug": "td-data-latency",
+     "name": "Hours from an event to its appearance in reports",
+     "definition": "Time between something happening, such as a payment posting, and that fact showing in the practice's reports.",
+     "formula": "Report refresh time - event time, typical case",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Daily refresh is enough for most management decisions. Work queues need same-day data.",
+     "confidence": "none",
+     "data_hint": "Load logs or the timestamp on each report."
+    }
+   ]
+  },
+  {
+   "slug": "td-automation-ai",
+   "name": "Automation and AI agents",
+   "summary": "Using rules engines, scheduled routines and artificial intelligence (AI) agents to do clerical revenue cycle work: checking coverage, entering charges, posting payments, following up claims and producing reports.",
+   "good_looks_like": [
+    "Automation is applied first to high-volume clerical steps with clear rules.",
+    "Each automated step has a written rule, a log of what it did, and a person who owns it.",
+    "Results are measured before and after: cost, speed and error rate.",
+    "Tasks that change what is billed stay with a qualified person."
+   ],
+   "failure_modes": [
+    "A tool is bought before the process is understood, and automates the confusion.",
+    "Automation quietly resubmits or writes off claims and nobody reviews the pattern.",
+    "Savings are claimed from a vendor's slide, never measured.",
+    "The one person who understood the automation leaves."
+   ],
+   "key_questions": [
+    "Which steps do we repeat hundreds of times a month by the same rule?",
+    "For each automated step, where is the rule written and where is the log?",
+    "What did automation change in cost to collect and days in receivables?",
+    "Who can turn it off, and who would notice if it stopped?"
+   ],
+   "actions": [
+    {
+     "action": "Rank tasks by volume and rule clarity",
+     "detail": "Eligibility checks, charge entry from a feed, remittance posting and claim status are the usual first candidates.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write the rule before automating it",
+     "detail": "A plain-language rule a new employee could follow, approved by the owner.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Log every automated action",
+     "detail": "What, when, on which claim, under which rule.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Measure before and after",
+     "detail": "Cost to collect, days to submit, first-pass payment and corrections, for three months each side.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with repetitive clerical volume. The smaller the staff, the larger the relative gain and the larger the dependence on whoever built it.",
+   "sources": [
+    "caqh-2024",
+    "nist-ai-rmf"
+   ],
+   "evidence_note": "Savings from electronic and automated transactions are measured by CAQH. Evidence on AI agents in billing is early and mostly from vendors, so measure your own results.",
+   "metrics": [
+    {
+     "slug": "td-automation-rate",
+     "name": "Routine transactions completed without human work",
+     "definition": "Share of a defined set of routine transactions, such as eligibility checks, charge entries or payment postings, completed by automation with no manual step.",
+     "formula": "Transactions completed automatically / transactions of that type",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Track it by transaction type. A high rate is only good if the correction rate stays low.",
+     "confidence": "none",
+     "data_hint": "Automation run logs and billing system user fields."
+    },
+    {
+     "slug": "td-automation-exception-rate",
+     "name": "Automated actions later corrected or reversed",
+     "definition": "Share of automated actions that a person or a payer later had to correct, reverse or redo.",
+     "formula": "Automated actions corrected or reversed / automated actions",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. This is the main safety measure for automated billing. Set an alert level from your own first three months.",
+     "confidence": "none",
+     "data_hint": "A monthly sample review plus reversal and void reports."
+    }
+   ]
+  },
+  {
+   "slug": "td-ai-governance",
+   "name": "Controls for automation and AI",
+   "summary": "The rules that keep automated billing safe: what software may do alone, what needs a person, how actions are logged and tested, and who answers for errors. The practice is responsible for every claim, however it was prepared.",
+   "good_looks_like": [
+    "A written policy lists which actions automation may take alone and which need approval.",
+    "Any change to a code, modifier, diagnosis, date, place of service or rendering clinician is approved by a qualified person and tied to the record.",
+    "A fixed sample of automated actions is reviewed against the charts every month.",
+    "New or changed rules are tested on a copy before they touch live claims."
+   ],
+   "failure_modes": [
+    "An agent changes a code or modifier to clear a payer edit and resubmits, with no one checking the note.",
+    "One wrong rule repeats across hundreds of claims before anyone looks.",
+    "Documentation drafted by an AI scribe is signed in bulk without being read.",
+    "Patient data is sent to a tool with no business associate agreement."
+   ],
+   "key_questions": [
+    "Which automated actions can change what is billed, and who approves each?",
+    "When did a person last sample automated actions against the charts?",
+    "Does every vendor or tool that sees patient data have a signed agreement?",
+    "Do clinicians read and sign AI-drafted notes individually?"
+   ],
+   "actions": [
+    {
+     "action": "Write the permitted-actions policy",
+     "detail": "Clerical fixes may run alone. Anything that changes what is billed needs logged human approval.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Sample automated actions monthly",
+     "detail": "A fixed number, chosen at random, compared with the source record. Record the result.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Test rule changes before release",
+     "detail": "Run on a copy or a small batch and review the output.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Have a coder review the rulebook yearly",
+     "detail": "An independent certified coder reads every rule that touches codes, dates or balances.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Require individual sign-off on AI-drafted notes",
+     "detail": "Medicare requires the practitioner to review and sign documentation captured by AI.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice using automation, AI scribes or AI agents in documentation or billing. The duty to supervise also applies when a vendor runs the automation.",
+   "sources": [
+    "usc-31-3729",
+    "doj-vohra-2025",
+    "cms-pim-ch3",
+    "nist-ai-rmf",
+    "fl-409-913"
+   ],
+   "evidence_note": "The legal standard is statute: reckless disregard is enough for false claims liability. Medicare's manual requires practitioner sign-off on AI-captured notes. No federal guidance specific to AI claim correction was found.",
+   "metrics": [
+    {
+     "slug": "td-human-review-coverage",
+     "name": "High-risk automated actions with documented human review",
+     "definition": "Share of automated actions that change what is billed, or write off a balance, that carry a logged approval by a qualified person.",
+     "formula": "High-risk automated actions with logged approval / high-risk automated actions",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100% for any change to code, modifier, diagnosis, date, place of service or clinician.",
+     "confidence": "none",
+     "data_hint": "The automation log joined to the approval record."
+    }
+   ]
+  },
+  {
+   "slug": "td-cybersecurity",
+   "name": "Cybersecurity",
+   "summary": "Protecting systems and patient data from loss, theft and ransomware. Small practices are frequent targets, and a single compromised password can stop billing for weeks.",
+   "good_looks_like": [
+    "Every account that can reach patient data or money uses multi-factor sign-in.",
+    "Each person has their own account with only the access the job needs.",
+    "Devices are encrypted, patched and able to be wiped if lost.",
+    "There is a written plan for a breach or ransomware event, and the cyber insurer's phone number is on it."
+   ],
+   "failure_modes": [
+    "A shared password for the billing system or the bank.",
+    "A former employee's or vendor's access is still active a year later.",
+    "An access key or password is pasted into an email or chat.",
+    "Backups exist but were never tested, or sit on the same network the attacker encrypted."
+   ],
+   "key_questions": [
+    "Is multi-factor sign-in on for email, billing, the bank and remote access?",
+    "Who has administrator rights, and do they need them?",
+    "When were accounts of departed staff and vendors removed?",
+    "Do we know what to do in the first hour of a ransomware attack?"
+   ],
+   "actions": [
+    {
+     "action": "Turn on multi-factor sign-in everywhere",
+     "detail": "Email, health record, billing, bank, payroll, cloud storage and remote access.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Remove unused accounts and rotate exposed keys",
+     "detail": "Review all users and access keys. Replace any key that was ever shared in a message.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Encrypt and patch devices",
+     "detail": "Automatic updates on, disk encryption on, remote wipe for phones and laptops.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write a one-page incident plan",
+     "detail": "Who to call, how to isolate systems, how to keep billing going, and the insurer's hotline.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. Those using cloud systems and software agents have fewer servers to protect but more accounts and access keys to control.",
+   "sources": [
+    "cfr-164-308",
+    "hhs-hipaa-security-nprm-2025"
+   ],
+   "evidence_note": "The HIPAA Security Rule requires risk analysis and safeguards but leaves most specifics to the practice. A proposed update with firmer requirements is not final.",
+   "metrics": [
+    {
+     "slug": "td-mfa-coverage",
+     "name": "Accounts protected by multi-factor sign-in",
+     "definition": "Share of user accounts with access to patient data or money that require a second factor to sign in.",
+     "formula": "Accounts with multi-factor sign-in enforced / accounts with such access",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%. Cyber insurers increasingly require it.",
+     "confidence": "none",
+     "data_hint": "The user list in each system's administration settings."
+    }
+   ]
+  },
+  {
+   "slug": "td-vendor-management",
+   "name": "Technology vendor selection and management",
+   "summary": "Choosing, contracting with and reviewing the companies whose software the practice depends on. The contract decides who owns the data, what happens when things fail, and how the practice can leave.",
+   "good_looks_like": [
+    "Needs are written down before any demonstration is watched.",
+    "References are called, and they are practices of similar size and type.",
+    "Contracts state price increases, service levels, data ownership, export on exit and a business associate agreement.",
+    "Each critical vendor gets a yearly review of cost, performance and security."
+   ],
+   "failure_modes": [
+    "A purchase follows an impressive demonstration of features the practice never uses.",
+    "The contract renews automatically for three years with a price increase.",
+    "On leaving, the vendor charges for the practice's own data or delivers it in an unusable form.",
+    "A vendor handles patient data with no signed agreement."
+   ],
+   "key_questions": [
+    "For each critical vendor, when does the contract renew and what notice is needed?",
+    "Does each contract say we own our data and can export it?",
+    "Which vendors that see patient data lack a signed business associate agreement?",
+    "Where does each vendor store our data?"
+   ],
+   "actions": [
+    {
+     "action": "Keep a vendor register",
+     "detail": "Name, purpose, yearly cost, renewal date, notice period, agreement on file, where data is stored.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write requirements before shopping",
+     "detail": "Ten things the system must do for this practice, ranked.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Negotiate exit terms up front",
+     "detail": "Data export format, cost and timing, in the contract.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review each critical vendor yearly",
+     "detail": "Cost against budget, outages, support quality, security attestations.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. State law can add requirements: Florida, for example, requires patient information stored offsite to be kept in the continental United States, its territories or Canada.",
+   "sources": [
+    "cfr-164-308",
+    "fl-408-051",
+    "oig-gcpg"
+   ],
+   "evidence_note": "The requirement for business associate agreements is federal regulation. Data-location rules are state law. Selection practice is professional guidance.",
+   "metrics": [
+    {
+     "slug": "td-vendor-reviews-current",
+     "name": "Critical vendors reviewed in the last 12 months",
+     "definition": "Share of vendors the practice could not operate without that have had a documented review of cost, performance, contract terms and security within a year.",
+     "formula": "Critical vendors reviewed in the last 12 months / critical vendors",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is all of them, once a year.",
+     "confidence": "none",
+     "data_hint": "The vendor register."
+    }
+   ]
+  },
+  {
+   "slug": "td-business-continuity",
+   "name": "Business continuity and disaster recovery",
+   "summary": "Keeping care and billing going when a system, a vendor, a building or a key person is unavailable. Clearinghouse and vendor outages have stopped claim flow across the country for weeks.",
+   "good_looks_like": [
+    "Backups of critical data are made automatically, stored separately, and restored in a test at least yearly.",
+    "A one-page downtime plan covers loss of the health record, the billing system, the clearinghouse and the office.",
+    "The practice has a second route for claims or a line of credit for an outage.",
+    "Written procedures let a second person run each critical task."
+   ],
+   "failure_modes": [
+    "The practice learns its backups are unusable on the day it needs them.",
+    "A clearinghouse outage stops all claims and there is no alternative route and no cash cushion.",
+    "Everything depends on one person's laptop or one person's memory.",
+    "A storm closes the office and nobody can reach schedules or phone lists."
+   ],
+   "key_questions": [
+    "When did we last restore a backup as a test?",
+    "If our clearinghouse were down for three weeks, how would we submit claims and meet payroll?",
+    "Could someone else run billing next week with the written procedures?",
+    "Where is the plan kept, and can we reach it without our own systems?"
+   ],
+   "actions": [
+    {
+     "action": "Test a restore",
+     "detail": "Restore a sample of records to a separate place and confirm they are readable.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write the downtime plan",
+     "detail": "For each critical system: how to work without it, who to call, and how to catch up.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Arrange a fallback for claims and cash",
+     "detail": "A second clearinghouse connection or payer portals, and an unused credit line.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Document critical procedures",
+     "detail": "Step-by-step notes for payroll, claim submission, payment posting and credentialing.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. Cloud systems reduce the risk of losing data but increase dependence on vendors and on internet access.",
+   "sources": [
+    "cfr-164-308",
+    "sba-prepare-emergencies"
+   ],
+   "evidence_note": "The HIPAA Security Rule requires a contingency plan with backup and recovery. How often to test is left to the practice.",
+   "metrics": [
+    {
+     "slug": "td-restore-test-age",
+     "name": "Months since a backup restore was tested",
+     "definition": "Time since the practice last restored data from backup as a test and confirmed it was usable.",
+     "formula": "Today - date of the last successful restore test, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A reasonable standard is at least once a year and after any change of backup method.",
+     "confidence": "none",
+     "data_hint": "The continuity plan's test log."
+    }
+   ]
+  },
+  {
+   "slug": "td-data-governance",
+   "name": "Data governance and records",
+   "summary": "Who may see and change which data, how long records are kept, and who is responsible for their accuracy. It covers medical records, billing records and the procedures that describe how the practice works.",
+   "good_looks_like": [
+    "A written retention schedule covers medical, billing and business records, using the longest period that applies.",
+    "User access is reviewed on a schedule and removed the day someone leaves.",
+    "One person is responsible for the accuracy of each key data set.",
+    "Patient details are kept out of systems that have no agreement to hold them."
+   ],
+   "failure_modes": [
+    "Records are destroyed too early for an audit, or kept forever with no plan.",
+    "Access accumulates: people keep rights from roles they left years ago.",
+    "Patient details end up in email, chat or a code repository.",
+    "Nobody owns the payer list or the fee schedule, so both drift."
+   ],
+   "key_questions": [
+    "How long do we keep medical records, billing records and remittances, and why?",
+    "When did we last review who has access to each system?",
+    "Where could patient details be sitting outside the health record and billing system?",
+    "Who owns the payer list, the fee schedule and the provider enrollment records?"
+   ],
+   "actions": [
+    {
+     "action": "Write a retention schedule",
+     "detail": "List record types with the governing rule. Medicare overpayments can be pursued for six years, and Medicare Advantage contracts often require ten.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review access twice a year",
+     "detail": "Print the user list for each system and confirm each person and role.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep patient details out of unapproved tools",
+     "detail": "Use an automatic check before files leave the billing environment.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Assign an owner to each key data set",
+     "detail": "Payer list, fee schedule, provider enrollments, facility list.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Retention periods come from state medical record law, Medicare rules and payer contracts, so the schedule differs by state and payer mix.",
+   "sources": [
+    "cfr-401-305",
+    "cfr-164-316",
+    "fl-456-057"
+   ],
+   "evidence_note": "Retention periods are set by state law, federal regulation and contracts. The six-year lookback for Medicare overpayments is regulation. Access review frequency is judgment.",
+   "metrics": [
+    {
+     "slug": "td-access-review-age",
+     "name": "Months since user access was reviewed",
+     "definition": "Time since the practice last reviewed the list of users and access rights for each system that holds patient data or money.",
+     "formula": "Today - date of the last documented access review, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A reasonable standard is every six months and whenever someone leaves.",
+     "confidence": "none",
+     "data_hint": "The access review log."
+    }
+   ]
+  }
+ ]
+}

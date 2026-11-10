@@ -1,0 +1,749 @@
+{
+  "slug": "rheumatology-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Rheumatology",
+  "doc_type": "specialty",
+  "pages": 40,
+  "audience": "Independent rheumatology practices, particularly those running an in-office biologic infusion suite on a buy-and-bill basis: physician-owners and their billing and authorization staff. The cover says the reader is assumed to have read the vendor's Universal Specialty Billing Framework first.",
+  "summary": "A specialty add-on arguing that independent rheumatology practices over-rely on infused biologics. It follows the series' eight-part template: payer behavior (site-of-care steering, biosimilar preference, Medicare Advantage authorization) with eight questions for each payer; code tables for infused drugs and joint and soft-tissue injections; ultrasound guidance; visit leveling; the evidence stack for biologic authorization and step therapy; four documentation failures; four denial patterns; five opportunities (ultrasound guidance, chronic care management, visits billed with infusions, aspiration, copay accumulator outreach); and five standards with five first actions. The method: make payer criteria required fields in the visit note, verify drug product against billing code before each claim, and run 90-day lookback audits. Nothing is cited. Several drug units and codes are wrong or retired, the ultrasound advice invites unbundling, and the infusion-visit and care-management revenue claims ignore governing rules.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Rheumatology's Revenue Problem Is Not the Biologics. It Is Everything Around Them.",
+      "gist": "Infusion revenue is a concentration risk exposed to biosimilars, site steering and authorization changes; resilience comes from procedures, visit coding and care management."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Rheumatology",
+      "gist": "Describes site-of-care steering, biosimilar margin pressure and Medicare Advantage authorization burden, with a payer-category table and eight questions to ask each payer."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in Rheumatology",
+      "gist": "Tables of drug codes and injection codes with billing notes, three conditions for billing ultrasound guidance, and an argument that visits are under-leveled."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Rheumatology",
+      "gist": "Five-part evidence stack for starting a biologic, the step-therapy ladder, viscosupplement criteria, and contract language against mid-therapy drug switching."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Rheumatology",
+      "gist": "Four gaps: unquantified disease activity, undocumented prior drug failure, guided injections without an imaging report, and infusion notes lacking a clinical assessment."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Rheumatology",
+      "gist": "Four patterns with fixes: missing activity score, wrong biosimilar code, viscosupplement request without radiograph, and denials after a payer formulary switch."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Rheumatology Practices Are Missing",
+      "gist": "Five plays with dollar examples: ultrasound guidance, chronic care management, visits billed at infusions, aspirations, and outreach to patients hit by accumulator programs."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Rheumatology",
+      "gist": "Five standing standards (activity score, ultrasound documentation, drug code reference, care management registry, accumulator list) and five first actions built on lookback audits."
+    }
+  ],
+  "framework_elements": [
+    "Revenue concentration and service-line diversification review",
+    "Per-payer intelligence profile (eight questions)",
+    "Contract review for site-of-care steering and mid-therapy switching language",
+    "Drug acquisition cost versus reimbursement margin check by product",
+    "Product-to-billing-code reference with pre-submission verification",
+    "Drug units, NDC and waste-modifier accuracy",
+    "Quarterly drug-dispensed-versus-code-billed audit",
+    "Biologic prior authorization evidence stack",
+    "Per-payer step therapy and biosimilar preference lookup before first request",
+    "Disease activity score as a required visit-template field",
+    "Treatment-failure documentation standard (drug, dose, duration, reason)",
+    "Retrospective reconstruction of undocumented treatment history",
+    "Reauthorization tracking for long-running therapies",
+    "Payer formulary change monitoring with affected-patient list",
+    "Escalation ladder: medical exception, peer-to-peer, managed transition",
+    "Viscosupplement pre-authorization checklist",
+    "Ultrasound guidance documentation workflow (stored images plus report)",
+    "Procedure charge trigger from the clinical note",
+    "Visit-level audit against medical decision making",
+    "Infusion-visit clinical assessment template",
+    "Care-management registry with consent, care plan and time log",
+    "Copay accumulator screening and patient-assistance outreach before the January reset",
+    "Financial counseling for specialty drugs",
+    "90-day lookback audits with corrected claims",
+    "Template completion-rate tracking"
+  ],
+  "processes": [
+    {
+      "name": "Biologic initiation and renewal authorization",
+      "steps": [
+        "Look up the payer's preferred agent, biosimilar and step requirements before the first request",
+        "Confirm the diagnosis with objective classification elements (joint counts, serology, inflammatory markers, duration)",
+        "Record a quantified disease activity score from the most recent visit",
+        "Document each conventional drug trial: drug, maximum dose, duration, reason for failure",
+        "Document infection screening and absence of contraindications",
+        "Confirm the prescriber meets the payer's specialty requirement",
+        "Submit only when every element is present: no score, no submission"
+      ],
+      "owner_role": "Authorization staff with the treating rheumatologist (implied)",
+      "cadence": "At every new start, switch and reauthorization"
+    },
+    {
+      "name": "Disease activity score documentation",
+      "steps": [
+        "Add a required score field to the visit template",
+        "Calculate DAS28, CDAI or SDAI at every visit for patients on biologics",
+        "Track the completion rate for 30 days",
+        "Classify each miss as a template gap or a clinician gap and fix it"
+      ],
+      "owner_role": "Physicians; practice manager tracks completion (implied)",
+      "cadence": "Every visit; 30-day completion check after rollout"
+    },
+    {
+      "name": "Drug-to-code audit",
+      "steps": [
+        "Pull every infusion drug claim for the past 90 days",
+        "Match the product in the dispensing record to the HCPCS code on the claim",
+        "Correct mismatches in either direction",
+        "Build a product-to-code reference and update it when a new product is stocked",
+        "Verify every drug claim against the reference before submission"
+      ],
+      "owner_role": "Billing lead with infusion or pharmacy staff (implied)",
+      "cadence": "Quarterly audit; per-claim verification"
+    },
+    {
+      "name": "Ultrasound guidance documentation and capture",
+      "steps": [
+        "Use real-time imaging during the injection",
+        "Store images permanently in the record",
+        "Complete a signed report with reason, findings and needle visualization",
+        "Bill a guidance code when all three exist (the guide lists 20604, 20606, 20611 or 76942)",
+        "Review 90 days of injection claims for guided procedures billed without guidance and correct those with complete documentation"
+      ],
+      "owner_role": "Performing physician; billing staff for the lookback (implied)",
+      "cadence": "Per procedure; one 90-day lookback"
+    },
+    {
+      "name": "Formulary change and non-medical switch response",
+      "steps": [
+        "Track formulary change notices from every contracted payer",
+        "List affected patients as soon as a notice arrives and start reauthorization",
+        "For stable patients submit a medical exception with clinical rationale",
+        "Request peer-to-peer review if the exception is denied",
+        "If the switch stands, document the transition, monitor response and update the authorization before the next infusion"
+      ],
+      "owner_role": "Authorization lead with the treating physician (implied)",
+      "cadence": "On each payer notice"
+    },
+    {
+      "name": "Care-management enrollment and billing",
+      "steps": [
+        "Select the 20 to 30 highest-complexity established patients",
+        "Check each against eligibility criteria",
+        "Obtain consent and build the care plan",
+        "Log clinical staff time every month",
+        "Submit claims monthly for patients with documented minimum time",
+        "Review the registry quarterly to add newly eligible patients"
+      ],
+      "owner_role": "Clinical staff with billing (implied)",
+      "cadence": "Monthly billing; first claims within 45 days; quarterly registry review"
+    },
+    {
+      "name": "Copay accumulator screening",
+      "steps": [
+        "List commercially insured patients on biologics",
+        "Identify payers running accumulator or maximizer programs",
+        "Contact manufacturer assistance or bridge programs before year end",
+        "Document the outreach",
+        "Track whether patients stay on therapy through the January benefit reset"
+      ],
+      "owner_role": "Financial counselor (implied)",
+      "cadence": "Annually, before and at the start of each calendar year"
+    },
+    {
+      "name": "Viscosupplement pre-authorization check",
+      "steps": [
+        "Confirm a knee radiograph report showing osteoarthritis is on file",
+        "Order the radiograph first if it is missing",
+        "Confirm failed conservative treatment is documented",
+        "Submit the request with the radiograph report attached"
+      ],
+      "owner_role": "Authorization staff (implied)",
+      "cadence": "Per request"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer category dynamics table",
+      "description": "Six rows (traditional Medicare, Medicare Advantage, two commercial segments, Medicaid, self-pay) with the main revenue-cycle issue for each."
+    },
+    {
+      "name": "Eight Payer Intelligence Questions",
+      "description": "Question list per payer: preferred biologics and step therapy, site-of-care program, authorization criteria, drug payment method, medical versus pharmacy benefit, injection rules, biosimilar switching, copay accumulators."
+    },
+    {
+      "name": "Biologic drug code table",
+      "description": "16 rows of infused or injected drugs with HCPCS code, indications and a billing note; several units and codes are wrong or retired."
+    },
+    {
+      "name": "Office procedure CPT table",
+      "description": "15 injection, aspiration and ultrasound codes with one-line notes; mislabels the guided-injection codes as separately billable or add-on."
+    },
+    {
+      "name": "Ultrasound guidance billing requirements",
+      "description": "Three-item list: real-time imaging, permanent image storage, written interpretation report."
+    },
+    {
+      "name": "Biologic initiation documentation stack",
+      "description": "Five evidence elements: diagnosis criteria, quantified activity score, conventional drug failure detail, contraindication screening, prescriber credential."
+    },
+    {
+      "name": "Step therapy ladder",
+      "description": "Three steps: conventional drug, preferred biologic class with biosimilar first, documented failure before a mechanism switch."
+    },
+    {
+      "name": "Viscosupplement authorization criteria and checklist",
+      "description": "Prose description: radiograph showing knee osteoarthritis, failed conservative care, no infection or severe deformity; no checklist form supplied."
+    },
+    {
+      "name": "Ultrasound report template specification",
+      "description": "Lists what a 90-second report should hold (reason, findings, needle visualization, image quality, signature); the template itself is not supplied."
+    },
+    {
+      "name": "Infusion visit note elements",
+      "description": "Interval symptoms, joint examination, current activity score, and rationale for continuing or changing treatment."
+    },
+    {
+      "name": "Non-medical switch management framework",
+      "description": "Four steps: track formulary notices, medical exception, peer-to-peer, managed transition."
+    },
+    {
+      "name": "Drug-to-code audit and product-to-code reference",
+      "description": "Narrative procedure for a quarterly 90-day audit against dispensing records and a reference sheet; neither is supplied."
+    },
+    {
+      "name": "Revenue arithmetic examples",
+      "description": "Three worked examples (ultrasound guidance, care management, visits at infusions) on unsourced and mutually inconsistent inputs."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Standing rules: activity score, ultrasound documentation, product-to-code reference, care-management registry, accumulator tracking list."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "First five tasks with 30-day, 45-day and 90-day windows; no owners and no 30/60/90-day plan."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Disease activity score completion rate",
+      "definition": "Share of visits by patients on biologics that carry a quantified DAS28, CDAI or SDAI",
+      "formula": "biologic-patient visits with a documented score / all biologic-patient visits, tracked for 30 days",
+      "target": "Every visit (100 percent implied); required template field",
+      "red_flag": "Any visit without a score; classify as template gap or clinician gap",
+      "source_cited": "none"
+    },
+    {
+      "name": "Biologic authorization denial rate",
+      "definition": "Denials of biologic initiation or renewal requests",
+      "formula": "",
+      "target": "Expected to fall within the first renewal cycle; no number given",
+      "red_flag": "Denial citing a missing disease activity score",
+      "source_cited": "none"
+    },
+    {
+      "name": "Viscosupplement first-submission denial rate",
+      "definition": "Hyaluronic acid knee injection requests denied on first submission",
+      "formula": "",
+      "target": "Near zero once the radiograph checklist is used",
+      "red_flag": "Denial citing missing radiographic documentation",
+      "source_cited": "none"
+    },
+    {
+      "name": "Drug product-to-code match",
+      "definition": "Infusion drug claims whose HCPCS code matches the product in the dispensing record",
+      "formula": "matching claims / infusion drug claims in the past 90 days",
+      "target": "Every drug claim verified before submission; audit quarterly",
+      "red_flag": "Reference product code on a biosimilar claim, or one biosimilar's code used for another",
+      "source_cited": "none"
+    },
+    {
+      "name": "Ultrasound guidance capture",
+      "definition": "Guided injections billed with a guidance code and backed by stored images and a signed report",
+      "formula": "guided injections billed with guidance / guided injections performed, 90-day lookback",
+      "target": "Every guided injection with complete documentation",
+      "red_flag": "Guided injection billed without the guidance code, or guidance billed without a report",
+      "source_cited": "none"
+    },
+    {
+      "name": "Infusion-visit E&M capture",
+      "definition": "Share of infusion visits billed with an office visit code",
+      "formula": "",
+      "target": "80 percent of infusion visits, described as conservative",
+      "red_flag": "Infusion notes holding only screening and administration details",
+      "source_cited": "none"
+    },
+    {
+      "name": "Care-management enrollment",
+      "definition": "Patients enrolled with consent, a care plan and logged monthly staff time",
+      "formula": "",
+      "target": "Top 20 to 30 highest-complexity patients; first claims within 45 days; quarterly registry review; the revenue example assumes 200",
+      "red_flag": "Month billed without documented minimum time",
+      "source_cited": "none"
+    },
+    {
+      "name": "Copay accumulator screening coverage",
+      "definition": "Commercially insured biologic patients screened for accumulator or maximizer programs each calendar year",
+      "formula": "",
+      "target": "Every such patient, before the January reset",
+      "red_flag": "Therapy stopped after the January benefit reset",
+      "source_cited": "none"
+    },
+    {
+      "name": "Treatment continuity through the January reset",
+      "definition": "Affected patients still on therapy after the benefit year turns over",
+      "formula": "",
+      "target": "",
+      "red_flag": "Adherence gaps caused by cost",
+      "source_cited": "none"
+    },
+    {
+      "name": "Drug acquisition margin",
+      "definition": "Group purchasing price compared with payer reimbursement for each product",
+      "formula": "reimbursement (stated as ASP+6% for traditional Medicare) minus acquisition cost",
+      "target": "Acquisition cost below reimbursement for every product",
+      "red_flag": "Negative margin on a biosimilar administration",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A single payer policy change on a preferred biologic can restructure a practice's revenue profile in one quarter.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Rheumatology has among the highest patient retention rates and per-patient lifetime revenue potential in outpatient medicine.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Traditional Medicare pays infused drugs at ASP+6%.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A biosimilar's group-purchasing price must be below ASP+6% to keep a positive margin.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage plans apply prior authorization to rheumatology infusion drugs at rates that rival oncology.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Billing units: infliximab J1745 per 10 mg; abatacept J0129 per 10 mg; tocilizumab J3262 per mg; belimumab J0490 per mg; rituximab J9312 per 100 mg.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Typical rituximab regimen for RA is 1000 mg x 2 doses every 6 months; belimumab is dosed at 10 mg/kg.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "20611 pays $60 to $100 more than 20610 per procedure at Medicare rates, with commercial rates often higher.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Under 2021 MDM criteria the majority of established rheumatology visits support 99214 or 99215.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most payers require failure of at least one, usually two, conventional DMARDs before a biologic.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Hyaluronic acid knee injections need authorization at the majority of commercial insurers and many Medicare Advantage plans.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "DAS28-CRP needs four inputs and takes two minutes to calculate.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A standard ultrasound report template can be completed in 90 seconds.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Missing ultrasound documentation costs $60 to $100 per guided injection in unbilled revenue.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A documented clinical assessment adds $75 to $120 of E&M revenue per infusion visit; 20 infusion patients a week equals $1,500 to $2,400 weekly.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A missing disease activity score is the most common prior authorization denial in rheumatology.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A missing score costs three weeks of delay through denial and appeal.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Drug-to-code audit covers the past 90 days and runs quarterly.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "With a radiograph checklist the viscosupplement denial rate 'drops to near zero'.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The majority of practices owning musculoskeletal ultrasound use it to guide injections and a 'significant percentage' do not bill guidance.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "30 guided injections a week is a conservative estimate for a two-physician practice; at $80 each that is $2,400 a week, $124,800 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "RA carries a 50 percent higher cardiovascular risk than the general population.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Every patient with RA, SLE, PsA or AS has at least two chronic conditions.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "99490 'standard rate' of $62 a month; 200 enrolled patients equals $12,400 a month, $148,800 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Enrolling the 30 highest-complexity patients in CCM pays back within the first billing month.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "15 infusion patients a week with 80 percent billed a 99213 or 99214 yields $900 to $1,200 a week, $46,800 to $62,400 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Enroll the top 20 to 30 highest-complexity patients in CCM and submit first claims within 45 days.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Track activity-score completion for 30 days; the biologic denial rate will drop within the first renewal cycle.",
+      "section": "Section 8",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "The ultrasound report 'is the document that supports the 76942 billing code' for a guided knee injection; the guidance code (20604, 20606, 20611, or 76942) is billed on every encounter where documentation is complete.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 5, Documentation Failure 3; Section 8, Standard 2; Section 3 table",
+      "why": "CPT bars reporting 76942 with 20604, 20606 or 20611 (and with 20600, 20605 or 20610) because the with-guidance codes already include it. A practice that adds 76942 to a joint injection, or files 'corrected claims' doing so as Action 2 suggests, is unbundling and owes the money back."
+    },
+    {
+      "id": "C2",
+      "claim": "The difference between 20610 (major joint injection, no imaging) and 20611 (with ultrasound guidance) is $60 to $100 per procedure at Medicare rates; 30 guided injections a week at $80 yields $124,800 a year.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 3; Section 7, Opportunity 1",
+      "why": "Secondary sources put the 2026 national non-facility amounts near $69 and $104, a gap of about $35. The guide's figure resembles the separate 76942 fee, so its payback math looks overstated by more than half."
+    },
+    {
+      "id": "C3",
+      "claim": "Rituximab (J9312): billed per 100mg. Belimumab IV, Benlysta (J0490): billed per mg.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, drug table",
+      "why": "Both HCPCS codes are defined per 10 mg. Following the table would report one-tenth of the rituximab units (a tenfold underpayment) and ten times the belimumab units (unit-edit denials, or an overpayment that must be refunded)."
+    },
+    {
+      "id": "C4",
+      "claim": "Methylprednisolone IV (J1020-J1040): dose-dependent J-code; document dose and indication.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, drug table",
+      "why": "J1020, J1030 and J1040 were methylprednisolone acetate (depot, not intravenous) codes and were deleted April 1, 2024 in favor of J1010 per 1 mg; the intravenous form moved to J2919. Claims using the listed codes reject. This touches any practice that injects depot steroid, including this one if it performs joint injections."
+    },
+    {
+      "id": "C5",
+      "claim": "Rheumatology infusion visits are billable E&M encounters in addition to the drug and administration codes; the assessment supports 99213 or 99214 at minimum for virtually every infusion patient, and 80 percent is a conservative estimate.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 5, Documentation Failure 4; Section 7, Opportunity 3",
+      "why": "CPT and Medicare pay a same-day visit with drug administration only when it is significant and separately identifiable, reported with modifier 25; routine pre-infusion assessment belongs to the infusion. Adding a visit to most infusions is a recognized audit pattern, and the same test governs any same-day visit plus procedure."
+    },
+    {
+      "id": "C6",
+      "claim": "The CCM revenue for a practice with 200 enrolled patients, billing at the standard 99490 rate of $62 per month: $12,400 per month, $148,800 per year.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 2",
+      "why": "The practice bills care management every month. Secondary sources put the national 99490 amount near $60.49 for 2025 and $66.13 for 2026, and it varies by locality. The projection also ignores patient coinsurance and months that fall short of 20 minutes."
+    },
+    {
+      "id": "C7",
+      "claim": "Every patient with RA, SLE, PsA, or AS has at minimum two chronic conditions when the cardiovascular comorbidity burden is considered, and that burden is universal; the panel qualifies overwhelmingly for CCM.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 2; Section 1",
+      "why": "Eligibility needs two or more diagnosed chronic conditions carrying significant risk, plus consent, a care plan and at least 20 minutes of staff time, and only one practitioner is paid per patient per month. Elevated risk is not a second condition; billing on that theory is improper."
+    },
+    {
+      "id": "C8",
+      "claim": "MDM elements that rheumatology visits routinely generate include independent interpretation of laboratory results (CBC, metabolic panel, anti-dsDNA, complement levels, drug levels); the majority of established visits support 99214 or 99215.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, E&M Coding",
+      "why": "Under the AMA guidelines, reading lab results counts as test review; independent interpretation is reserved for tests that carry a professional interpretation done by someone else. Treating lab review as interpretation inflates the data element and the visit level, a risk for any practice's leveling, including this one."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.3,
+      "topics": [
+        "drug HCPCS codes and billing units",
+        "biosimilar product-specific codes",
+        "joint and soft-tissue injection codes",
+        "ultrasound guidance",
+        "visit leveling by medical decision making",
+        "same-day visit with infusion or procedure",
+        "procedure charge triggers"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.2,
+      "topics": [
+        "biologic authorization evidence stack",
+        "step therapy and biosimilar-first rules",
+        "viscosupplement authorization",
+        "reauthorization tracking",
+        "financial counseling and patient assistance"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.15,
+      "topics": [
+        "site-of-care steering",
+        "non-medical switching contract language",
+        "formulary change monitoring",
+        "payer intelligence questions",
+        "drug reimbursement methodology"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.1,
+      "topics": [
+        "denial patterns and prevention",
+        "drug-to-code audit",
+        "corrected claims after lookback",
+        "medical exception and peer-to-peer"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.1,
+      "topics": [
+        "care-management registry",
+        "visit templates with required fields",
+        "infusion visit workflow",
+        "treatment transition protocols"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.07,
+      "topics": [
+        "medical necessity evidence for high-cost drugs",
+        "overpayment from wrong drug code",
+        "documentation that defends against post-payment audit"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.05,
+      "topics": [
+        "buy-and-bill margin",
+        "group purchasing price discipline",
+        "revenue concentration"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.03,
+      "topics": [
+        "service-line diversification"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Turn payer and audit criteria into required structured fields in the note template",
+      "why": "Evidence is created at the visit instead of reconstructed after a denial.",
+      "applies_to_practice": "partly",
+      "note": "The practice's analogues are care-management minutes, advance care planning minutes, medical-necessity statements for nursing facility visits and specificity for risk-adjusting diagnoses."
+    },
+    {
+      "idea": "Gate submissions: nothing leaves until every required element is present",
+      "why": "A complete first request is faster and cheaper than a denial and appeal.",
+      "applies_to_practice": "partly",
+      "note": "Useful for the few authorizations and referrals the practice handles, and as a release rule for the billing agents' claims."
+    },
+    {
+      "idea": "Record treatment failures with drug, dose, duration and reason, and rebuild missing history once",
+      "why": "Step-therapy evidence is requested years later, often after a plan change.",
+      "applies_to_practice": "partly",
+      "note": "Relevant when facility residents arrive on biologics or other step-therapy drugs and the practice must support continuation."
+    },
+    {
+      "idea": "Product-to-billing-code reference with pre-submission verification and a quarterly dispensed-versus-billed audit",
+      "why": "Catches overpayments and underpayments that never appear as denials.",
+      "applies_to_practice": "partly",
+      "note": "Scale it down to the injectables and vaccines the practice bills, with units per code and NDC format. Build it from the current HCPCS file, not the guide's table."
+    },
+    {
+      "idea": "Monitor payer policy and formulary notices and list affected patients the day a change is announced",
+      "why": "Converts a surprise denial into planned work.",
+      "applies_to_practice": "yes",
+      "note": "Generalize to payment-policy monitoring: First Coast coverage updates, Medicare Advantage plan bulletins and annual fee schedule changes."
+    },
+    {
+      "idea": "Fixed escalation ladder for adverse decisions: exception request, peer-to-peer, documented transition",
+      "why": "Staff know the next step, and each step leaves a record usable in a complaint or negotiation.",
+      "applies_to_practice": "partly",
+      "note": "Maps to Medicare Advantage denials of facility visits and level-of-care disputes."
+    },
+    {
+      "idea": "View revenue by concentration risk and name the service line whose loss would break the practice",
+      "why": "One payer or policy change can remove the main profit source.",
+      "applies_to_practice": "yes",
+      "note": "Here the concentrations are Medicare fee-for-service facility visits, one physician, and a handful of facility relationships and stipends. The same list drives sale value."
+    },
+    {
+      "idea": "Care-management registry built from the highest-complexity patients, with consent, care plan, monthly time log and quarterly review",
+      "why": "Registry discipline is what makes monthly billing defensible.",
+      "applies_to_practice": "yes",
+      "note": "The practice already bills complex care management. Keep the registry idea but apply the real eligibility and one-biller rules, which the guide gets wrong."
+    },
+    {
+      "idea": "Trace a recurring denial type back to contract language and ask for a change",
+      "why": "Some problems handled as authorization work are contract terms that can be fixed once.",
+      "applies_to_practice": "partly",
+      "note": "A two-clinician practice has little leverage with Medicare Advantage plans, but the habit of reading the contract before fighting each denial is sound."
+    },
+    {
+      "idea": "Before the benefit year turns over, contact patients whose coverage or cost exposure will change",
+      "why": "January resets cause dropped therapy and unpaid balances.",
+      "applies_to_practice": "partly",
+      "note": "For this practice the January task is re-verifying eligibility after Medicare Advantage open enrollment. Manufacturer copay cards cannot be used by Medicare patients."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice has no infusion suite, does not buy and bill biologics, and has no musculoskeletal ultrasound, so the core of the guide does not apply. Three things touch it. Care management: the practice bills complex CCM monthly, and the guide's CCM passage is its least compliant part. Joint and soft-tissue injections, if performed at facilities: the code table is usable only after correcting the steroid codes and the guidance rules. And the general method of turning payer criteria into required note fields and tracking payer policy notices. Manufacturer copay assistance is irrelevant to a mostly Medicare population.",
+    "sections_that_do_not_apply": [
+      "Section 2: site-of-care steering, biosimilar margin and commercial copay accumulator material",
+      "Section 3: biologic infusion drug table and ultrasound guidance",
+      "Section 4: biologic initiation, step therapy, viscosupplement and non-medical switching (relevant only when co-managing a resident's biologic)",
+      "Section 5: failures 1 to 4 as written (the structured-field principle transfers)",
+      "Section 6: all four denial patterns",
+      "Section 7: opportunities 1, 3 and 5; opportunity 4 only if aspirations are performed",
+      "Section 8: standards 1, 2, 3 and 5; actions 1, 2, 3 and 5"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Ultrasound guidance advice is wrong at its core. 20604, 20606 and 20611 already include the guidance, and CPT bars 76942 with them and with 20600, 20605 and 20610. The table calls guidance 'separately billable' and an 'add-on', the text says a separate report 'supports the 76942 billing code' for a knee injection, and Action 2 says to file corrected claims 'with the guidance code'. Read literally, that is unbundling.",
+      "The value of guidance is overstated. Secondary sources put the 2026 national non-facility amounts near $69 (20610) and $104 (20611), a gap of about $35, not $60 to $100. At 30 a week that is about $55,000 a year, not $124,800.",
+      "The demand for a separate ultrasound report document, including an 'image quality assessment', appears to go beyond CPT, which requires permanent recording and reporting; coding guidance generally accepts that documentation inside the procedure note.",
+      "Drug units wrong: rituximab J9312 is per 10 mg (the per-100 mg code ended in 2019) and belimumab J0490 is per 10 mg, not per mg.",
+      "Methylprednisolone row is wrong twice: J1020 to J1040 were acetate (depot) codes, not intravenous, and were deleted April 1, 2024 in favor of J1010 per mg; the intravenous succinate form is J2919 per 5 mg.",
+      "Ustekinumab: the intravenous code is J3358; J3357 is the subcutaneous code. Intravenous induction is for inflammatory bowel disease, not psoriatic arthritis.",
+      "Secukinumab row lists J3247, the code for the intravenous product, while describing the drug as subcutaneous and pharmacy-benefit only. It misses that intravenous secukinumab is itself a buy-and-bill option.",
+      "20600 is listed for 'finger, toe, wrist'; the wrist is an intermediate joint (20605), as the next row says. 27096 is said to use 'fluoroscopy or US guidance'; that code requires fluoroscopic or CT confirmation.",
+      "Site-of-care description is backwards on its main point. Payer site-of-care programs move infusions out of hospital outpatient departments toward offices, free-standing infusion centers and home. The real threats to an office suite are home-infusion redirection and payer specialty-pharmacy supply mandates ('white bagging'), which the guide never mentions. The idea that the office keeps a 'professional fee for oversight' when the patient is infused elsewhere is also wrong.",
+      "Infusion-visit E&M is presented as billable for 'virtually every' patient with no mention of modifier 25, the separately-identifiable test, who performs the visit, or Medicare's refusal to pay 99211 with drug administration. Calling 80 percent a conservative estimate is reckless.",
+      "Care management: elevated cardiovascular risk is treated as a second chronic condition so the panel 'qualifies universally'. The text omits consent, the 20-minute monthly minimum, coinsurance, the initiating visit, and the rule that only one practitioner is paid per patient per month, the main obstacle for a specialist.",
+      "Visit leveling: lab review is mislabeled 'independent interpretation', and 99215 is suggested as routine without the two-of-three test for high complexity.",
+      "Biosimilar economics omit the central Medicare rule: a biosimilar is paid its own average sales price plus a percentage of the reference product's price (6 percent, temporarily 8 percent for qualifying products), less sequestration. 'ASP+6%' is stated flat.",
+      "JW is mentioned for drug waste but not JZ, required since July 2023 on single-dose container claims with nothing discarded.",
+      "The aspiration 'opportunity' counts fluid analysis sent to a laboratory as practice revenue; a practice cannot bill a test an outside lab performs. Same-day aspiration with a visit needs modifier 25, which is never mentioned.",
+      "Trigger point injections are tied to fibromyalgia; Medicare contractor policies commonly limit them to myofascial pain with documented trigger points.",
+      "Non-medical switching is called unique to rheumatology and oncology; it is common in gastroenterology, dermatology and neurology too. The natalizumab JC-virus example has no place in a rheumatology guide.",
+      "Unsourced figures presented as fact: three-week delay, denial rate 'near zero', 30 guided injections a week as 'conservative', payback 'within the first billing month', $75 to $120 per visit.",
+      "Basis for this list: analyst knowledge of CPT, HCPCS and Medicare rules. Spot-checked on 2026-11-10 against secondary search results only: steroid code change (apma.org/about-apma/news/news-releases/2024/significant-changes-to-steroid-hcpcs-coding), the 76942 bundling rule (AMA CPT Assistant November 2015 as indexed at findacode.com and aapc.com), and 2026 amounts for 20610, 20611 and 99490 (payerprice.com, fastrvu.com, careroute.ai fee lookups). All of it awaits the separate primary-source verification."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Care-management scale: Opportunity 2 prices 200 enrolled patients ($148,800 a year) and says to start with 30; Standard 4 enrolls the top 20 to 30; Action 4 says 20. At 20 to 30 patients the same arithmetic gives about $15,000 to $22,000.",
+      "Infusion-visit revenue: Section 5 uses 20 patients a week at $75 to $120 with every visit billed; Section 7 uses 15 a week at 80 percent with an upper value of $100.",
+      "Ultrasound: the table defines 20604, 20606 and 20611 as injection-with-guidance codes, then calls guidance 'separately billable' and an 'add-on' and groups them with 76942 as 'the guidance code'. The '$60 to $100 difference between 20610 and 20611' later becomes '$80 for the guidance code'.",
+      "Wrist appears under both the small-joint code and the intermediate-joint code.",
+      "Site of care: Section 1 says insurers require infusion elsewhere; Section 2 describes voluntary cost-sharing incentives; question 2 then asks which it is.",
+      "Section 3 says most visits support 99214 or 99215 and that practices wrongly 'default to 99213 or 99214', so 99214 is both the error and the fix.",
+      "Ustekinumab row pairs the intravenous product with the subcutaneous code; secukinumab row pairs a subcutaneous description with the intravenous code.",
+      "Section 8 counts the infusion-visit E&M as a separate revenue leg that survives payer pressure on infusions, although it disappears with the infusion.",
+      "Traditional Medicare drug payment is called 'stable' in the Section 2 table, while Section 8 lists ASP compression among the forces threatening the practice."
+    ],
+    "time_sensitive_or_outdated": [
+      "J1020 to J1040 were retired April 1, 2024, more than two years before the file's September 2026 creation date.",
+      "'$62' for 99490 matches neither the 2025 (about $60.49) nor the 2026 (about $66.13) national amount reported by secondary sources; no year is given.",
+      "Avsola is called the 'newest biosimilar'. The table has no tocilizumab or ustekinumab biosimilars, no rituximab-arrx and no subcutaneous infliximab, all marketed before the guide was produced.",
+      "No JZ modifier (2023), no G2211 visit-complexity add-on (2024), no principal care management or advanced primary care management codes.",
+      "No Inflation Reduction Act: negotiated Medicare prices took effect for Enbrel and Stelara in Part D in 2026 and the law reaches Part B drugs in 2028, which directly changes buy-and-bill margin. The Part D out-of-pocket cap changes the patient-assistance picture for Medicare patients.",
+      "No mention of Medicare Advantage rules that limit Part B step therapy to new starts and protect an active course of treatment.",
+      "Copay accumulator section ignores state bans and the 2023 federal court ruling on the accumulator regulation.",
+      "Medicare dollar examples carry no fee schedule year or locality."
+    ],
+    "ai_generation_signals": [
+      "Same eight-section skeleton as the radiology and laboratory guide, including 'Eight Payer Intelligence Questions', four failures, four denial patterns, five opportunities, 'Five Non-Negotiable Operational Standards' and a 'Prioritized Five-Action Implementation List'.",
+      "The slogan about the biologic not being the business opens the guide and returns, reworded, as the closing box.",
+      "Precise-sounding figures with no source: $60 to $100, $80, $75 to $120, 90 seconds, two minutes, three weeks.",
+      "Numbers that disagree across sections (20 versus 15 infusion patients, 200 versus 20 to 30 care-management patients, $120 versus $100).",
+      "'Conservative estimate' attached to unsupported assumptions.",
+      "An out-of-place example (natalizumab and JC virus) and pointers to sibling guides ('exactly as in oncology and neurology').",
+      "Plausible-but-wrong code facts of the kind produced from memory: swapped intravenous and subcutaneous codes, unit sizes off by a factor of ten, retired codes.",
+      "No author, credential, citation or date in 40 pages; the disease activity score and the ultrasound report are each re-explained in four or five sections.",
+      "Constant 'it is not X, it is Y' sentence pattern."
+    ],
+    "missing_for_real_use": [
+      "Citations for every rule.",
+      "Infusion administration coding itself: which biologics take the chemotherapy-administration codes versus therapeutic infusion codes, hydration, sequential and concurrent rules. The guide prices the drug and the visit but never codes the infusion.",
+      "Modifier 25, JZ, worked unit-conversion examples and NDC reporting format.",
+      "Diagnostic musculoskeletal ultrasound codes (76881, 76882) and their documentation rules, despite a section on ultrasound revenue.",
+      "Hyaluronic acid product codes and current injected-steroid codes.",
+      "Buy-and-bill mechanics: the two-quarter lag in average sales price, sequestration, the biosimilar add-on, inventory and waste control, payer specialty-pharmacy supply mandates.",
+      "Supervision and incident-to rules for an office infusion suite and for nurse practitioners.",
+      "Real care-management requirements, and principal care management, the single-condition codes built for specialists.",
+      "Quality reporting: disease-activity measures and MIPS, which would reward the score documentation the guide demands.",
+      "Every tool it describes: contract language, appeal and exception letters, authorization checklists, the ultrasound report template, the product-to-code sheet.",
+      "Benchmarks or targets for any metric.",
+      "Fraud-and-abuse limits on patient-assistance activity."
+    ]
+  }
+}

@@ -1,0 +1,518 @@
+{
+ "domain": "quality-value",
+ "categories": [
+  {
+   "slug": "qv-mips",
+   "name": "Quality reporting and MIPS",
+   "summary": "Medicare's Merit-based Incentive Payment System (MIPS) raises or lowers Part B payments by up to 9% two years after each performance year. For a small practice the realistic goal is to avoid the penalty at the lowest cost.",
+   "good_looks_like": [
+    "Each clinician's eligibility status is checked on the Quality Payment Program site every January and again in December.",
+    "A reporting route is chosen in the first quarter: individual, group, a value pathway, or through an accountable care organization.",
+    "Measures are picked that fit the patients and can be collected from the record without extra visits.",
+    "Data are submitted before the March 31 deadline and the feedback report is read each summer."
+   ],
+   "failure_modes": [
+    "Nobody checks eligibility, so a clinician who must report does not, and receives the full 9% reduction two years later.",
+    "Measures are chosen at year end from whatever data exist, and half score near zero.",
+    "The practice assumes its billing company or record vendor is submitting, and neither is.",
+    "A hardship or small-practice exception was available and nobody applied."
+   ],
+   "key_questions": [
+    "Is each clinician eligible, exempt, or part of a group or accountable care organization this year?",
+    "What was last year's final score and what payment adjustment applies now?",
+    "Who submits the data, by what route, and by what date?",
+    "Which six quality measures are being tracked this year?"
+   ],
+   "actions": [
+    {
+     "action": "Look up every clinician's status",
+     "detail": "Use each national provider number in the participation lookup tool. Record eligibility, special status such as small practice or hospital-based, and any accountable care participation.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Choose the reporting route and measures by March",
+     "detail": "Small practices of 15 or fewer clinicians get bonus points and can report quality measures through claims. Pick measures the record already captures.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review performance each quarter",
+     "detail": "Run the measures from the health record or registry and fix data capture problems while there is time.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Submit by March 31 and keep proof",
+     "detail": "Save the submission confirmation and the final feedback report with the compliance files.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Apply for an exception when one fits",
+     "detail": "Hardship and extreme-circumstance applications reweight categories. Deadlines fall at the end of the performance year.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Clinicians who bill Medicare Part B above the low-volume threshold: more than $90,000 in allowed charges, more than 200 patients and more than 200 services in a year. Hospital-based clinicians may be scored on their hospital's results. Nursing facility clinicians usually report as individuals or a small group.",
+   "sources": [
+    "cms-qpp-2026",
+    "cms-qpp-experience-2023",
+    "ama-mips-2024"
+   ],
+   "evidence_note": "Program rules are regulation and are restated each year in the Medicare fee schedule rule. Score distributions are measured data published by CMS.",
+   "metrics": [
+    {
+     "slug": "qv-mips-score",
+     "name": "MIPS final score",
+     "definition": "The 0 to 100 score CMS assigns each eligible clinician or group for a performance year, combining quality, cost, improvement activities and interoperability.",
+     "formula": "Read from the CMS performance feedback report",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "85 or more",
+     "benchmark_typical": "about 80 for small practices that report",
+     "benchmark_red": "under 75, the penalty threshold",
+     "benchmark_note": "Threshold: CMS, 2026 program rules. Small practices that reported had a median of 80.33 in 2023 and those that did not report 22.24 (CMS experience report).",
+     "confidence": "high",
+     "data_hint": "Quality Payment Program website, performance feedback for each clinician.",
+     "sources": [
+      "cms-qpp-2026",
+      "cms-qpp-experience-2023"
+     ]
+    },
+    {
+     "slug": "qv-mips-adjustment",
+     "name": "MIPS payment adjustment",
+     "definition": "The percentage added to or taken from every Medicare Part B payment in the payment year, set by the final score from two years earlier.",
+     "formula": "Read from the CMS feedback report or the adjustment shown on remittances",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "zero or a small bonus",
+     "benchmark_typical": "0% to about 1%",
+     "benchmark_red": "any negative adjustment, up to -9%",
+     "benchmark_note": "In 2024, 87% of clinicians scored above the threshold, 7.6% were penalized and the largest bonus was 1.05% (AMA analysis of CMS data).",
+     "confidence": "high",
+     "data_hint": "Feedback report. On remittances the adjustment appears with its own adjustment code.",
+     "sources": [
+      "ama-mips-2024",
+      "cms-qpp-2026"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "qv-risk-adjustment",
+   "name": "Risk adjustment accuracy",
+   "summary": "Medicare Advantage plans and accountable care organizations are paid according to how sick their members are, as shown by diagnoses documented each year. Accurate, supported diagnoses are worth money to those partners and are a growing audit target.",
+   "good_looks_like": [
+    "Every active chronic condition is assessed and documented at least once a calendar year in a face-to-face visit.",
+    "Each diagnosis in the note has its own status and plan, so the record supports it.",
+    "Resolved conditions are coded as history, not as active disease.",
+    "Suggestions from plans or software to add diagnoses are accepted only when the clinician agrees and documents why."
+   ],
+   "failure_modes": [
+    "Problem lists are copied forward for years, so resolved or never-confirmed conditions keep being billed.",
+    "Acute codes, such as a new stroke, are used long after the event when a history or late-effect code applies.",
+    "Serious conditions are managed but never written in the assessment, so they do not count that year.",
+    "A plan pays for chart reviews that only add diagnoses and never remove unsupported ones."
+   ],
+   "key_questions": [
+    "Does each clinician know which conditions need to be documented again each year?",
+    "When did someone last compare billed diagnoses with the notes for a sample of patients?",
+    "Do diagnosis prompts from plans or software go through the clinician?",
+    "Is anyone paid per diagnosis added?"
+   ],
+   "actions": [
+    {
+     "action": "Build an annual condition list for each patient",
+     "detail": "List chronic conditions documented in the prior two years and review it at the first visit of the year.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Audit diagnoses in both directions",
+     "detail": "In each coding audit, check that billed diagnoses are supported and that documented serious conditions were billed.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Write status and plan for each diagnosis",
+     "detail": "One line per condition in the assessment: stable, worse or improved, and what is being done.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Refuse payment tied to diagnoses added",
+     "detail": "Incentives should reward complete and accurate documentation, never the number of codes.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice whose patients are in Medicare Advantage plans, accountable care organizations or other risk-based contracts. It does not change Medicare fee-for-service payment for a visit, but the same diagnoses support medical necessity.",
+   "sources": [
+    "cms-puf"
+   ],
+   "evidence_note": "The payment model is federal regulation. The once-a-year documentation practice follows from how the model counts diagnoses. No public benchmark for recapture exists.",
+   "metrics": [
+    {
+     "slug": "qv-condition-recapture",
+     "name": "Chronic conditions re-documented this year",
+     "definition": "Share of chronic conditions documented for the practice's patients last year that have been assessed and documented again in the current year.",
+     "formula": "Conditions documented this year that were also documented last year / conditions documented last year, for patients still under care",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Plans and accountable care organizations often share their own figure for your patients.",
+     "confidence": "none",
+     "data_hint": "Plan or accountable care organization reports, or a diagnosis report from the health record by year."
+    },
+    {
+     "slug": "qv-average-risk-score",
+     "name": "Average patient risk score",
+     "definition": "The mean Medicare risk score of the practice's patients. A score of 1.0 is the average Medicare beneficiary. Higher means sicker patients as documented.",
+     "formula": "Read from CMS public data by clinician, or from plan reports",
+     "unit": "ratio",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "Not a target. CMS publishes each clinician's average for fee-for-service patients. Use it to explain cost and visit complexity, and watch for unexplained jumps.",
+     "confidence": "high",
+     "data_hint": "CMS Medicare Physician and Other Practitioners file, by provider.",
+     "sources": [
+      "cms-puf"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "qv-care-gaps",
+   "name": "Care gaps and preventive services",
+   "summary": "A care gap is a recommended service a patient has not received. Plans are rated on closing them and pass lists to practices. Closing gaps is also how a practice shows results to plans and partners.",
+   "good_looks_like": [
+    "The practice has one list of open gaps per patient, combined from plan lists and its own record.",
+    "Three to five measures that fit the population are chosen and tracked.",
+    "Gaps are closed during visits already scheduled, using standing orders where allowed.",
+    "Services done elsewhere are recorded so they count."
+   ],
+   "failure_modes": [
+    "Each plan sends its own list in its own format and nobody combines them.",
+    "Measures designed for healthy adults are chased in frail patients for whom they do not apply.",
+    "A service was done but coded or documented in a way the plan cannot see.",
+    "Advance care planning happens but is never recorded as a structured item."
+   ],
+   "key_questions": [
+    "Which measures matter most for our patients, and what is our rate on each?",
+    "Who works the gap lists, and how often?",
+    "Can we exclude patients for whom a measure is not appropriate, and do we document that?",
+    "Do plans pay us anything for closing gaps?"
+   ],
+   "actions": [
+    {
+     "action": "Pick the measures that fit your patients",
+     "detail": "For older adults: blood pressure control, fall risk, high-risk medications, advance care planning, transitions of care.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Combine gap lists monthly",
+     "detail": "Merge plan lists with the health record into one work list by patient and site.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Close gaps at the visit",
+     "detail": "Put open gaps on the rounding or visit list so they are handled in a visit that is happening anyway.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Document exclusions",
+     "detail": "Record hospice, advanced illness or frailty where the measure allows it, so the patient leaves the denominator.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices with patients in Medicare Advantage or accountable care. Measure choice differs by population: screening measures matter in office primary care, while fall risk, medication safety and care planning matter for facility residents.",
+   "sources": [
+    "cms-star-2026"
+   ],
+   "evidence_note": "Star measures and cut points are published by CMS each year. They are plan-level thresholds, usable as practice targets but not designed as such.",
+   "metrics": [
+    {
+     "slug": "qv-gap-closure",
+     "name": "Open care gaps closed",
+     "definition": "Share of care gaps open at the start of a period that were closed, or validly excluded, by its end.",
+     "formula": "Gaps closed or excluded during the period / gaps open at the start",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "at or above the 4-star cut point for each measure",
+     "benchmark_typical": "varies by measure",
+     "benchmark_note": "2026 Medicare Star cut points for 4 stars include blood pressure control 80%, reducing fall risk 62% and transitions of care 69% (CMS, 2024 data). Plan-level figures.",
+     "confidence": "medium",
+     "data_hint": "Plan gap reports and the health record.",
+     "sources": [
+      "cms-star-2026"
+     ]
+    },
+    {
+     "slug": "qv-acp-documented",
+     "name": "Patients with a documented advance care plan",
+     "definition": "Share of patients with an advance directive or a documented discussion of goals of care in the record.",
+     "formula": "Patients with a documented plan or discussion / active patients",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For frail and facility populations, aim to offer the discussion to everyone and record refusals.",
+     "confidence": "none",
+     "data_hint": "A structured field in the health record, or the count of patients ever billed advance care planning."
+    }
+   ]
+  },
+  {
+   "slug": "qv-utilization",
+   "name": "Utilization and outcomes",
+   "summary": "Hospital admissions, readmissions and emergency visits are the outcomes plans, hospitals and nursing facilities care about most, because they drive cost and penalties. A practice that can show it lowers them has something to sell.",
+   "good_looks_like": [
+    "The practice knows its patients' admissions and 30-day readmissions by site each quarter.",
+    "Every unplanned transfer to the hospital is reviewed for whether earlier treatment in place was possible.",
+    "Patients are seen within days after discharge or facility admission.",
+    "Goals of care are known before a crisis, so unwanted hospital transfers are avoided."
+   ],
+   "failure_modes": [
+    "Nobody tracks admissions, so the practice cannot say whether its care changes them.",
+    "After-hours calls default to sending the patient to the emergency department.",
+    "A newly admitted facility resident waits a week or more for a first visit.",
+    "Hospice is offered in the last days of life, after several avoidable hospital stays."
+   ],
+   "key_questions": [
+    "How many of our patients were admitted last quarter, and how many returned within 30 days?",
+    "What share of transfers from our facilities happened after hours?",
+    "How soon after admission do we see a new facility resident?",
+    "What is the median time on hospice before death for our patients?"
+   ],
+   "actions": [
+    {
+     "action": "Count admissions and readmissions by site",
+     "detail": "Start with one facility or one panel. Use the facility's transfer log or plan data.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review each unplanned transfer",
+     "detail": "A short review: what changed, when the practice was called, what could have been done in place.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "See new and returning patients quickly",
+     "detail": "Set a standard, such as within 72 hours of facility admission or 7 days of discharge home.",
+     "cadence": "weekly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Share results with facilities and plans",
+     "detail": "A one-page quarterly summary builds the relationship and supports contract talks.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices that follow patients over time. It matters most for facility-based and post-acute practices, where hospitals and nursing facilities are themselves penalized for readmissions and look for physician partners who reduce them.",
+   "sources": [
+    "ihi-aims"
+   ],
+   "evidence_note": "The link between timely follow-up and fewer readmissions is well supported in the literature. No national benchmark exists at the level of a small practice.",
+   "metrics": [
+    {
+     "slug": "qv-readmission-rate",
+     "name": "30-day readmission rate",
+     "definition": "Share of hospital discharges among the practice's patients followed by another unplanned admission within 30 days.",
+     "formula": "Unplanned readmissions within 30 days / hospital discharges",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For nursing facility patients, compare with each facility's rehospitalization rate published on Medicare's Care Compare site.",
+     "confidence": "none",
+     "data_hint": "Facility transfer logs, hospital or plan reports."
+    },
+    {
+     "slug": "qv-hospitalization-rate",
+     "name": "Hospital admissions per 1,000 patients a year",
+     "definition": "Unplanned hospital admissions for the practice's patients, scaled to 1,000 patients over a year.",
+     "formula": "Admissions in the period / average active patients x 1,000, annualized",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Rates vary several-fold with age and frailty, so the practice's own trend by site is the useful comparison.",
+     "confidence": "none",
+     "data_hint": "Facility transfer logs, plan utilization reports."
+    }
+   ]
+  },
+  {
+   "slug": "qv-value-contracts",
+   "name": "Value-based contracts and accountable care",
+   "summary": "Arrangements that pay for results as well as visits: shared savings through an accountable care organization, plan quality bonuses, care-management fees, or a fixed monthly amount per patient.",
+   "good_looks_like": [
+    "The owner can list each arrangement, what it pays for, and what data the payer uses.",
+    "Contracts are read for how patients are assigned, the minimum number needed, and whether the practice can lose money.",
+    "Upside-only arrangements come first. Downside risk is taken only with reserves and data.",
+    "Value revenue is booked on its own line so it can be tracked."
+   ],
+   "failure_modes": [
+    "Joining an organization without reading how savings are shared, then receiving nothing.",
+    "Taking downside risk with too few patients, so one costly case decides the year.",
+    "Doing the extra work of care management with no contract that pays for it.",
+    "Ignoring these programs entirely while the local market moves to them."
+   ],
+   "key_questions": [
+    "What share of our revenue comes from anything other than fee-for-service?",
+    "Which accountable care organizations and plans operate in our market, and have we talked to them?",
+    "For each arrangement, how are patients assigned to us?",
+    "Could we lose money, and how much?"
+   ],
+   "actions": [
+    {
+     "action": "Map the options in your market",
+     "detail": "List accountable care organizations, Medicare Advantage plans with provider incentives, and special needs plans serving your sites.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Start with one upside-only arrangement",
+     "detail": "Shared savings without downside, or a plan quality bonus, tests your data and workflow at low risk.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Read attribution and minimum-size terms",
+     "detail": "Have counsel review how patients are assigned, how benchmarks are set, and what happens on exit.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track value revenue separately",
+     "detail": "A separate revenue line and a simple schedule of expected payments and dates.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Most relevant to primary care and to practices serving Medicare patients. Facility-based practices have their own routes: special needs plans for nursing home residents and accountable care models built for high-need patients.",
+   "sources": [
+    "cms-pfs-2027",
+    "cms-apcm"
+   ],
+   "evidence_note": "Program structures are set by CMS rule and model announcements, which change yearly. Whether an arrangement pays off for a small practice depends on contract terms. Treat projections from sponsors with caution.",
+   "metrics": [
+    {
+     "slug": "qv-value-revenue-share",
+     "name": "Share of revenue from value-based arrangements",
+     "definition": "Revenue from shared savings, quality bonuses, care-management fees paid outside fee-for-service and capitation, as a share of net revenue.",
+     "formula": "Value-based revenue / net revenue",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "Not a target. It shows how exposed the practice is to fee-for-service rate cuts and how far it has moved toward being paid for results.",
+     "confidence": "none",
+     "data_hint": "Accounting records, with value payments booked to their own account."
+    }
+   ]
+  },
+  {
+   "slug": "qv-clinical-standards",
+   "name": "Clinical standards and safety",
+   "summary": "Written clinical standards for the conditions and risks the practice sees most, with a way to learn from errors. They protect patients, support the visit levels billed, and are what partners ask for first.",
+   "good_looks_like": [
+    "A short written protocol exists for each of the practice's five most common high-risk situations.",
+    "Medication lists are reconciled at every transition and reviewed for drugs that are risky in older adults.",
+    "Adverse events and near misses are logged and discussed without blame.",
+    "Clinicians review a sample of each other's charts a few times a year."
+   ],
+   "failure_modes": [
+    "Each clinician handles the same problem differently and nobody has compared results.",
+    "High-risk drugs continue for years because nobody owns the medication review.",
+    "An adverse event is discussed in the hallway and never written down or learned from.",
+    "Protocols exist in a binder that no one has opened since it was written."
+   ],
+   "key_questions": [
+    "Do we have written protocols for falls, anticoagulation, infections, behavioral symptoms and goals of care?",
+    "When was the last time two clinicians reviewed each other's charts?",
+    "How many patients are on medications flagged as high risk for older adults?",
+    "Where do we record adverse events?"
+   ],
+   "actions": [
+    {
+     "action": "Write five one-page protocols",
+     "detail": "Choose the highest-risk, highest-volume situations. State what to assess, what to do, and when to escalate.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Review high-risk medications",
+     "detail": "Use a recognized list for older adults. Start with residents on the most drugs.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Hold a short case review",
+     "detail": "Thirty minutes a month on one adverse event or near miss, with one change agreed.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Exchange charts for peer review",
+     "detail": "Five charts per clinician, twice a year, with written feedback.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. The content depends on specialty. For geriatric and facility practices the core topics are falls, medication safety, infections, behavioral symptoms of dementia, and goals of care.",
+   "sources": [
+    "ihi-aims",
+    "ncqa-pcmh"
+   ],
+   "evidence_note": "Professional standards and quality frameworks support protocols, medication review and peer review. Specific targets are a matter of clinical judgment, not regulation.",
+   "metrics": [
+    {
+     "slug": "qv-high-risk-med-rate",
+     "name": "Older patients on high-risk medications",
+     "definition": "Share of patients aged 65 and over with an active prescription for a medication on a recognized list of drugs to avoid in older adults.",
+     "formula": "Patients 65 and over on at least one listed drug / patients 65 and over",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Medicare plans are measured on a related measure, so a plan may be able to supply your rate.",
+     "confidence": "none",
+     "data_hint": "Medication lists in the health record or facility pharmacy reports."
+    }
+   ]
+  }
+ ]
+}

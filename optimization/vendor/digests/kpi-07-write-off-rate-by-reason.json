@@ -1,0 +1,784 @@
+{
+  "slug": "kpi-07-write-off-rate-by-reason",
+  "title": "KPI 07: Write-Off Rate by Reason (CleanClaimRx, The KPI Prescription Series, Part 7 of 10)",
+  "doc_type": "kpi_rx",
+  "pages": 30,
+  "audience": "No audience statement. Written for independent physician practices and addressed to billing managers, billers, supervisors and practice administrators. It assumes an office-based practice with a front desk, a billing staff hierarchy, negotiated commercial contracts and meaningful patient self-pay.",
+  "summary": "Thirty-page guide arguing that a practice's total write-off rate is useless until every adjustment carries a specific reason code. It separates contractual allowances, patient bad debt, timely-filing losses, denials whose appeal window lapsed, financial assistance and small balances; sets alarm levels for each (all unsourced); and labels timely-filing and expired-appeal losses 'preventable'. It follows the series' five steps: trigger thresholds; root-cause pulls per category (date gaps by payer, sampling of denial write-offs, an authorization audit); nine interventions (payer deadline calendar with alerts, 24-hour charge entry, rejected-claim audit, appeal-deadline field, 30-day appeal filing rule, bad-debt timeline, fee-schedule audit); floor workflows (dollar approval tiers, quarterly look-back recovery, reason-code audits, quarterly review); and tests that improvement is holding, plus payer-level contractual trends for renegotiation and a write-off forecast. It gives no actual payer deadlines, citations, forms or Medicare-specific rules.",
+  "outline": [
+    {
+      "section": "Section 0: The Diagnostic Trigger",
+      "gist": "Total rate is uninformative; sets alarm levels for bad debt, timely filing and expired-appeal denials and requires a specific reason code on every write-off."
+    },
+    {
+      "section": "Section 1: What the Number Is Actually Telling You",
+      "gist": "Explains what each write-off category reveals and introduces the preventable share of total write-offs: under 5% good, over 10% poor, over 20% systemic."
+    },
+    {
+      "section": "Section 2: How to Diagnose Why It's Off",
+      "gist": "Category-specific pulls: timely-filing date gaps by payer, three-way classing of denial write-offs, bad-debt age, and a 30-account authorization audit with dollar approval tiers."
+    },
+    {
+      "section": "Section 3: The Intervention Stack",
+      "gist": "Nine fixes: deadline calendar with alerts, 24-hour charge entry, rejected-claim audit, appeal-deadline field, 30-day appeal filing, quarterly recovery, bad-debt timeline, fee-schedule audit."
+    },
+    {
+      "section": "Section 4: Execution on the Floor",
+      "gist": "Prospective prevention workflow, quarterly look-back recovery (claimed 10-15% recovery), sample audits of reason codes, and a quarterly review of the largest individual losses."
+    },
+    {
+      "section": "Section 5: Sustained vs. Temporarily Fixed",
+      "gist": "Three signs the fix is holding, annual specialty-adjusted benchmarking, payer-level effective write-off trend as negotiation evidence, and a quarterly write-off forecast."
+    }
+  ],
+  "framework_elements": [
+    "Write-off reason code taxonomy",
+    "Mandatory reason code at time of write-off",
+    "Category-specific write-off thresholds",
+    "Preventable versus non-preventable write-off classification",
+    "Preventable write-off ratio monitoring",
+    "Timely-filing root-cause segmentation (payer, charge-entry gap, submission gap)",
+    "Payer-specific filing deadline calendar",
+    "Filing-deadline approach alerts tiered by claim value",
+    "Charge entry turnaround standard",
+    "Aged rejected-claim resubmission audit",
+    "Appeal deadline tracking field",
+    "Deadline-sorted denial work queue",
+    "Appeal filing service level",
+    "Denial write-off classification (valid, preventable, deadline-missed)",
+    "Write-off authorization matrix by dollar tier",
+    "Write-off authorization sample audit",
+    "Write-off approval log",
+    "Reason-code accuracy audit",
+    "Bad-debt write-off timeline policy",
+    "Collection agency referral decision point",
+    "Financial assistance adjustment monitoring",
+    "Small-balance write-off policy",
+    "Contractual adjustment accuracy audit against fee schedules",
+    "Underpayment detection against contracted rates",
+    "Quarterly retrospective write-off recovery project",
+    "Quarterly write-off review meeting",
+    "Largest individual write-off account review",
+    "Annual specialty- and payer-mix-adjusted benchmark review",
+    "Effective write-off rate by payer for contract renegotiation",
+    "Write-off budget and forecast"
+  ],
+  "processes": [
+    {
+      "name": "Reason-coded write-off posting and approval",
+      "steps": [
+        "Define a fixed reason-code list (contractual, patient bad debt, insurance bad debt, timely filing, denial appeal expired, financial assistance, small balance, other)",
+        "Require a reason code at the moment any write-off is posted",
+        "Route write-offs above the first dollar tier to a supervisor and above the second tier to the billing manager",
+        "Record each approval in an authorization log"
+      ],
+      "owner_role": "Biller posts; supervisor or billing manager approves",
+      "cadence": "Every write-off"
+    },
+    {
+      "name": "Timely-filing prevention",
+      "steps": [
+        "Build a calendar of each payer's filing deadline",
+        "Set system alerts for unresolved claims 30 days before the deadline (under $500) or 45 days before (over $500)",
+        "Enforce charge entry within 24 hours and track it weekly",
+        "List rejected claims more than 30 days past service that were never resubmitted, then correct and resend them",
+        "Document an action on every flagged claim before its deadline"
+      ],
+      "owner_role": "Billers, overseen by the billing manager",
+      "cadence": "Continuous, with weekly tracking"
+    },
+    {
+      "name": "Timely-filing root-cause pull",
+      "steps": [
+        "Extract timely-filing write-offs for the last 90 days",
+        "Split by payer, by service-to-charge-entry gap and by service-to-first-submission gap",
+        "Assign each loss to late charge entry, a submission bottleneck (scrubber hold, missing information, unresubmitted rejection) or a short-deadline payer",
+        "Fix the matching workflow"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "When the category exceeds its threshold or grows"
+    },
+    {
+      "name": "Appeal-deadline tracking and denial queue",
+      "steps": [
+        "Record the payer's appeal deadline on each denial at intake, confirmed from the remittance or provider manual",
+        "Sort the denial queue by deadline rather than by receipt date or dollars",
+        "File an appeal on every appealable denial within 30 days of receipt",
+        "Work the denials nearest expiry first"
+      ],
+      "owner_role": "Denial or billing staff",
+      "cadence": "Daily"
+    },
+    {
+      "name": "Denial write-off classification review",
+      "steps": [
+        "Pull accounts that moved from denial to write-off in the last 90 days",
+        "Capture denial reason, appeal deadline, last action and days from denial to write-off",
+        "Class each account as valid, preventable or deadline-missed",
+        "Compute the preventable share and treat anything above 30% as a workflow failure"
+      ],
+      "owner_role": "Billing manager",
+      "cadence": "When triggered; repeat quarterly"
+    },
+    {
+      "name": "Write-off authorization and reason-code audits",
+      "steps": [
+        "Sample 30 write-offs from the last 60 days",
+        "Check code accuracy, appropriateness given account history, and approval at the right level",
+        "Each quarter sample 20 write-offs coded bad debt and confirm they are true patient collection failures",
+        "Reclassify miscoded items and feed findings back as data-quality corrections, not discipline"
+      ],
+      "owner_role": "Billing manager or practice administrator",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Quarterly retrospective recovery project",
+      "steps": [
+        "Pull write-offs coded timely filing or denial appeal expired from the prior two quarters",
+        "Check whether any recovery window is still open",
+        "Check whether a secondary payer was never billed",
+        "Check whether a patient-responsibility transfer was missed (the document's suggestion; see compliance concern)",
+        "Pursue recoverable accounts and record dollars recovered"
+      ],
+      "owner_role": "Billing staff under the billing manager",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Quarterly write-off review with annual benchmark and contract review",
+      "steps": [
+        "Report write-off rate by category and the change from the prior quarter",
+        "Show the three largest reason codes and the largest individual write-offs with their specific failure points",
+        "Annually compare category rates with specialty- and payer-mix-adjusted benchmarks",
+        "Compute each payer's effective contractual rate over three years for renewal talks",
+        "Project next quarter's expected write-offs by reason from current receivables"
+      ],
+      "owner_role": "Billing manager with the practice administrator",
+      "cadence": "Quarterly; benchmark and contract review annually"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Category threshold table (Section 0)",
+      "description": "Seven-row table of write-off categories with acceptable, warning and action levels."
+    },
+    {
+      "name": "Reason-code list",
+      "description": "Eight required codes: contractual, patient bad debt, insurance bad debt, timely filing, denial appeal expired, financial assistance, small balance, other."
+    },
+    {
+      "name": "Root-cause matrix (Section 2)",
+      "description": "Maps six write-off categories to the diagnostic data pull and the usual upstream cause."
+    },
+    {
+      "name": "Denial write-off classification rubric",
+      "description": "Three classes for sampled denial write-offs: valid, preventable, deadline-missed."
+    },
+    {
+      "name": "Write-off authorization audit",
+      "description": "Three test questions applied to 30 write-offs from the prior 60 days."
+    },
+    {
+      "name": "Approval tier rule",
+      "description": "Supervisor sign-off above $100-$250; billing manager sign-off above $500-$1,000."
+    },
+    {
+      "name": "Timely-filing alert rule",
+      "description": "Flag unresolved claims 30 or 45 days before the payer deadline depending on claim size."
+    },
+    {
+      "name": "Intervention stack",
+      "description": "Nine numbered fixes grouped by write-off category."
+    },
+    {
+      "name": "Prospective prevention workflow",
+      "description": "Three concurrent components: filing-deadline monitoring, appeal-deadline queue, authorization workflow."
+    },
+    {
+      "name": "Retrospective recovery checklist",
+      "description": "Three questions applied quarterly to preventable write-offs from the prior two quarters."
+    },
+    {
+      "name": "Bad-debt code sample audit",
+      "description": "Quarterly review of 20 write-offs coded bad debt to catch misclassification."
+    },
+    {
+      "name": "Quarterly write-off review agenda",
+      "description": "Four items: rate by category, change from prior quarter, top three reason codes, largest individual accounts."
+    },
+    {
+      "name": "Fix-is-holding checklist",
+      "description": "Three signals covering the timely-filing rate, the preventable ratio and the approval log."
+    },
+    {
+      "name": "Bad-debt timeline rule",
+      "description": "Refer or write off after 120 unresponsive days from first statement, within a further 30 days."
+    },
+    {
+      "name": "Write-off budget (concept only)",
+      "description": "Quarterly projection of expected write-offs by reason; described in a paragraph, no worksheet supplied."
+    },
+    {
+      "name": "Named but not supplied",
+      "description": "Payer deadline calendar, written write-off policy, approval log and audit worksheets are deferred to the separate Action Guide; no fillable forms, scripts or calculators are included."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Overall write-off rate",
+      "definition": "Share of billed charges removed from receivables without being collected, all reasons combined",
+      "formula": "Total write-offs and adjustments / billed charges (implied; never written out)",
+      "target": "",
+      "red_flag": "Document itself calls the blended figure nearly useless for management",
+      "source_cited": "none"
+    },
+    {
+      "name": "Contractual adjustment rate",
+      "definition": "Billed charge minus contracted rate, as a share of charges",
+      "formula": "",
+      "target": "Any level acceptable; judge on posting accuracy, not size",
+      "red_flag": "Adjustments that do not match the loaded fee schedule, or are not posted",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient bad-debt write-off rate",
+      "definition": "Patient balances written off as uncollectible after the collection process is exhausted",
+      "formula": "Patient bad-debt write-offs / net revenue (net revenue is not defined)",
+      "target": "Below 3% of net revenue",
+      "red_flag": "3% to 5% watch zone; above 5% action threshold",
+      "source_cited": "none"
+    },
+    {
+      "name": "Timely-filing write-off rate",
+      "definition": "Claims lost because they reached the payer after its filing limit",
+      "formula": "Timely-filing write-offs / gross charges",
+      "target": "Near zero; at or below 0.2% for three consecutive quarters counts as fixed",
+      "red_flag": "Above 0.5% of gross charges",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial write-off rate (appeal window expired)",
+      "definition": "Denied claims written off without an appeal having been filed in time",
+      "formula": "Expired-appeal denial write-offs / gross charges",
+      "target": "",
+      "red_flag": "Above 1% of gross charges",
+      "source_cited": "none"
+    },
+    {
+      "name": "Preventable write-off ratio",
+      "definition": "Timely-filing plus expired-appeal write-offs as a share of all write-offs",
+      "formula": "(timely filing + denial appeal expired) / total write-offs",
+      "target": "Below 5% and not rising",
+      "red_flag": "Above 10% (recurring surrender of revenue); above 20% (systemic failure)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Quarter-over-quarter change by category",
+      "definition": "Direction of each write-off category versus the prior quarter",
+      "formula": "",
+      "target": "Flat or falling",
+      "red_flag": "Any growth in any category, whatever its level (no materiality limit given)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Preventable share of denial write-offs",
+      "definition": "Sampled denial write-offs judged preventable or deadline-missed rather than valid",
+      "formula": "Preventable accounts / denial write-off accounts reviewed (worded loosely in the text as a ratio of preventable to valid)",
+      "target": "",
+      "red_flag": "Above 30% preventable",
+      "source_cited": "none"
+    },
+    {
+      "name": "Average age at patient bad-debt write-off",
+      "definition": "Days from date of service to the bad-debt write-off",
+      "formula": "Mean of (write-off date - service date)",
+      "target": "",
+      "red_flag": "Above 180 days from service",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge entry turnaround",
+      "definition": "Time from service to charge entry (developed in KPI 09)",
+      "formula": "",
+      "target": "Within 24 hours for all service types, tracked weekly",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Appeal filing timeliness",
+      "definition": "Days from receipt of an appealable denial to submission of the appeal",
+      "formula": "",
+      "target": "Filed within 30 days of receipt",
+      "red_flag": "Denial reaching its appeal deadline unworked",
+      "source_cited": "none"
+    },
+    {
+      "name": "Timely-filing alert lead time",
+      "definition": "How far ahead of the payer deadline an unresolved claim is flagged",
+      "formula": "",
+      "target": "30 days ahead for claims under $500; 45 days ahead for claims over $500",
+      "red_flag": "Claim first flagged after the deadline",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unapproved write-offs above threshold",
+      "definition": "Write-offs over the dollar limit that lack documented approval at the right level",
+      "formula": "Count from the authorization log, or from a 30-account sample over 60 days",
+      "target": "Zero; supervisor sign-off above $100-$250, billing manager above $500-$1,000",
+      "red_flag": "Any above-threshold write-off without approval",
+      "source_cited": "none"
+    },
+    {
+      "name": "Reason-code accuracy",
+      "definition": "Whether sampled write-offs carry the correct reason code",
+      "formula": "Correctly coded / sampled (30 for the authorization audit; 20 bad-debt write-offs each quarter)",
+      "target": "",
+      "red_flag": "Bad debt used as a catch-all for filing or appeal misses; unstable or implausible code mix",
+      "source_cited": "none"
+    },
+    {
+      "name": "Retrospective recovery rate",
+      "definition": "Dollars recovered from the quarterly look-back at preventable write-offs",
+      "formula": "Dollars recovered / dollars reviewed",
+      "target": "Stated as typically 10% to 15%",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Bad-debt decision timeline",
+      "definition": "Time from first statement to referral or write-off for unresponsive patients",
+      "formula": "",
+      "target": "Decide after 120 unresponsive days, then act within 30 days",
+      "red_flag": "Aged patient balances left sitting in active receivables",
+      "source_cited": "none"
+    },
+    {
+      "name": "Effective write-off rate by payer",
+      "definition": "Share of a payer's billed charges ultimately adjusted off as contractual",
+      "formula": "Contractual adjustments for the payer / charges billed to the payer, trended over three years",
+      "target": "",
+      "red_flag": "Rising trend (illustration: 52% to 61% in three years)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Financial assistance and small-balance write-offs",
+      "definition": "Policy-driven adjustments tracked for growth or volume",
+      "formula": "Application volume versus policy thresholds; average balance written off versus cost to collect",
+      "target": "",
+      "red_flag": "Growing assistance volume; high small-balance volume with no threshold policy",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Patient bad debt below 3% of net revenue is acceptable.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Patient bad debt of 3% to 5% of net revenue is a warning zone showing early structural strain.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Patient bad debt above 5% of net revenue means patient collection infrastructure is failing.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Timely-filing write-offs above 0.5% of gross charges are an alarm; the category should be near zero.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Any timely-filing write-off is a 100% preventable revenue loss.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Expired-appeal denial write-offs above 1% of gross charges are an action threshold.",
+      "section": "Section 0",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Write-off results reflect a 'test' the practice has been taking for 90 to 180 days.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A patient bad-debt rate above 3 to 5 percent of net revenue signals structural failures upstream.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In a well-managed practice preventable write-offs are less than 5 percent of total write-offs.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Preventable write-offs above 10 percent of total mean recoverable revenue is regularly surrendered by default.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Preventable write-offs above 20 percent of total mean a systemic process failure.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "More than 30 percent of denial write-offs being preventable means denial management is systematically failing.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An average age above 180 days from service at bad-debt write-off means patient balances are held too long.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The authorization audit samples 30 write-offs from the last 60 days.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Supervisor approval is 'typically' required for write-offs above $100 to $250.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Billing-manager approval is 'typically' required for write-offs above $500 to $1,000.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Alert 30 days before the filing deadline for claims under $500 and 45 days before for claims over $500.",
+      "section": "Section 3, Intervention 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 24-hour charge-entry standard eliminates the charge-lag share of timely-filing write-offs within 30 days of implementation.",
+      "section": "Section 3, Intervention 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A rejected claim left uncorrected for 60 days may have only 30 days left in its filing window (implies a 90-day limit).",
+      "section": "Section 3, Intervention 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Filing every appealable denial's appeal within 30 days of receipt eliminates deadline-missed write-offs for tracked denials.",
+      "section": "Section 3, Intervention 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Bad-debt write-offs improve 90 to 180 days after upstream patient-collection fixes take effect.",
+      "section": "Section 3, Intervention 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Patient balances unresponsive for 120 days from first statement should be referred or written off within 30 days.",
+      "section": "Section 3, Intervention 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Sorting the denial queue by appeal deadline prevents the majority of deadline-missed write-offs.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Retrospective reviews typically recover 10 to 15 percent of the dollars reviewed and pay for themselves within the first quarter.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The quarterly reason-code audit samples 20 write-offs coded bad debt.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a single $1,200 timely-filing write-off versus an overall timely-filing rate of 0.8 percent of gross charges.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A process improvement reduces write-offs from that failure 60 to 120 days later.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Timely-filing write-offs at or below 0.2 percent of gross charges for three consecutive quarters show the fix is holding.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: flat contracted rates for three years while operating costs rise 15 percent.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Illustration: a payer's effective write-off rate rising from 52 percent to 61 percent of charges over three years.",
+      "section": "Section 5",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "For write-offs coded 'denial appeal expired' or 'timely filing', the quarterly recovery review asks: 'Is there a balance transfer to patient responsibility that was never executed?'",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 3 (Intervention 6) and Section 4 (Retrospective Write-Off Recovery Project)",
+      "why": "Shifting provider-fault denials to patients is barred for Medicare (late filing leaves the provider liable), for QMB and Medicaid beneficiaries, and under most participation contracts. Acting on it risks improper beneficiary billing, refunds and program or contract sanctions."
+    },
+    {
+      "id": "C2",
+      "claim": "Rejected claims — claims returned before adjudication — restart their AR clock when resubmitted, but the original service date governs the timely filing deadline.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 3, Intervention 3",
+      "why": "This decides how urgently rejections are worked. For Medicare the one-year limit runs from the service date and unprocessable claims carry no appeal rights, so treating a rejection as a filed claim forfeits payment."
+    },
+    {
+      "id": "C3",
+      "claim": "Every denial that is categorized as appealable must have an appeal filed within 30 days of receipt ... A filed appeal stops the clock on the appeal deadline.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 3, Intervention 5",
+      "why": "Appeal windows differ by payer and by level (Medicare's first level allows 120 days; later levels and plan contracts have their own limits; some denials need a corrected claim or reopening instead). A blanket rule can misorder work or lose later-level rights."
+    },
+    {
+      "id": "C4",
+      "claim": "Accounts written off as 'denial appeal expired' may have a secondary recovery path, including 'a small claims or arbitration option for large amounts'.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 3, Intervention 6",
+      "why": "Whether any court or arbitration route survives a lapsed appeal depends on program law and contract dispute clauses. Medicare disputes are confined to the administrative appeal process, so pursuing this could waste money or breach a contract."
+    },
+    {
+      "id": "C5",
+      "claim": "Any timely filing write-off is a 100% preventable revenue loss — the claim was never denied for clinical or coverage reasons.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 0",
+      "why": "Medicare recognizes filing-limit exceptions (administrative error, retroactive entitlement, retroactive Medicaid involvement, retroactive Medicare Advantage disenrollment), and late-discovered coverage is common in facility work. Treating all cases as internal failure hides recoverable claims and misstates the cause."
+    },
+    {
+      "id": "C6",
+      "claim": "Bad debt (uncollected patient): below 3% of net revenue is acceptable; 3% to 5% is a warning zone; above 5% of net revenue is the action threshold.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 0",
+      "why": "No source is given and 'net revenue' is undefined. For a Medicare, Medigap and dual-eligible panel with little true self-pay the right level may be far lower, and unbillable dual-eligible cost-sharing would distort it. A wrong target hides or invents problems."
+    },
+    {
+      "id": "C7",
+      "claim": "Timely filing write-offs above 0.5% of gross charges and expired-appeal denial write-offs above 1% of gross charges are action thresholds; preventable write-offs should be less than 5 percent of total write-offs.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 0 and Section 1",
+      "why": "Unsourced; gross-charge ratios depend on how high the practice sets its fees, and the two tests disagree with each other. If the limits are arbitrary the practice could tolerate a material amount of avoidable loss while believing it is well managed."
+    },
+    {
+      "id": "C8",
+      "claim": "The recovery rate from these retrospective reviews is typically 10 to 15 percent of the dollar amount reviewed.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 4",
+      "why": "No source. The figure decides whether a quarterly look-back is worth the labor. Recovery on claims already past filing and appeal limits may be far lower unless an exception, reopening or unbilled secondary exists."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.58,
+      "topics": [
+        "write-off policy and reason codes",
+        "timely filing control",
+        "appeal deadline tracking",
+        "denial write-off review",
+        "patient bad-debt timeline",
+        "underpayment detection",
+        "retrospective recovery"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.12,
+      "topics": [
+        "approval limits on adjustments",
+        "internal control over write-offs",
+        "write-off forecast",
+        "quarterly loss reporting"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "fee schedule loading and accuracy",
+        "effective contractual rate by payer",
+        "renegotiation evidence",
+        "payer filing deadlines"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.08,
+      "topics": [
+        "adjustment audit sampling",
+        "write-offs concealing errors",
+        "patient balance write-off policy",
+        "financial assistance"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.07,
+      "topics": [
+        "charge entry turnaround",
+        "charge lag as filing-loss cause"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.05,
+      "topics": [
+        "point-of-service collection as bad-debt driver",
+        "coverage accuracy"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Require a specific reason code, from a fixed list, on every adjustment at the time it is posted.",
+      "why": "Without it the practice cannot separate normal contractual allowances from avoidable losses, and every later analysis fails.",
+      "applies_to_practice": "yes",
+      "note": "Expand the eight codes for this practice: wrong payer or coverage, missing authorization (Medicare Advantage), credentialing, bundling, medical necessity, hospice or facility-related denials, sequestration, Medicaid crossover and QMB cost-sharing, charge-entry corrections. Map remittance reason codes to these in AdvancedMD so agents post consistently."
+    },
+    {
+      "idea": "Report avoidable losses (late filing, lapsed appeals, unresubmitted rejections) as their own dollar line every month and quarter.",
+      "why": "These are the write-offs most fully within the practice's control, and they vanish inside a blended rate.",
+      "applies_to_practice": "yes",
+      "note": "Use allowed or expected revenue as the denominator instead of gross charges or total write-offs; the document's denominators are inconsistent."
+    },
+    {
+      "idea": "Keep a payer-by-payer table of filing limits and appeal windows and drive alerts and queue order from it.",
+      "why": "Deadlines differ by payer and the shortest ones cause the losses.",
+      "applies_to_practice": "yes",
+      "note": "Populate from contracts and provider manuals: Medicare fee-for-service (one calendar year from service), each Medicare Advantage plan, Florida Medicaid plans, VA community care and TRICARE. The document supplies none of these."
+    },
+    {
+      "idea": "Stamp every denial with its appeal deadline at intake and work the queue by days to expiry.",
+      "why": "Ordering by deadline rather than by age or dollars is a cheap change that stops silent expirations.",
+      "applies_to_practice": "yes",
+      "note": "Easy to encode as an agent rule. Also record the correct remedy (corrected claim, reopening, redetermination, plan dispute), because not every denial is an appeal."
+    },
+    {
+      "idea": "Audit aged rejected claims on a schedule, because a rejected claim has not been filed.",
+      "why": "Rejections sit outside adjudicated receivables and quietly run out the filing clock.",
+      "applies_to_practice": "yes",
+      "note": "Fits the existing rejected-claims work; add a count and dollar total of rejections older than 30 days to the regular report."
+    },
+    {
+      "idea": "Dollar-tiered approval and an approval log for every non-contractual write-off.",
+      "why": "Prevents premature write-offs and stops adjustments being used to hide posting errors.",
+      "applies_to_practice": "yes",
+      "note": "Recast for AI-run billing: agents may post contractual allowances that match the fee schedule; anything else above a small limit waits for owner approval, and the log is kept as an internal-control record."
+    },
+    {
+      "idea": "Quarterly sample audit of reason-code accuracy, especially items coded bad debt or other.",
+      "why": "The convenient code gets overused, which corrupts the measure.",
+      "applies_to_practice": "yes",
+      "note": "A second agent or the owner can re-adjudicate a random sample of 20 to 30 adjustments against the remittances."
+    },
+    {
+      "idea": "Quarterly look-back at avoidable write-offs for a remaining recovery path.",
+      "why": "Some written-off claims still have an unbilled secondary payer, a filing exception or a reopening available.",
+      "applies_to_practice": "partly",
+      "note": "Keep the unbilled-secondary and filing-exception checks. Do not move provider-fault denials to patient responsibility, and do not plan on the claimed 10-15% recovery."
+    },
+    {
+      "idea": "Verify payer-posted contractual adjustments against the loaded fee schedule instead of accepting the remittance.",
+      "why": "Underpayments and wrong adjustments hide inside the contractual category.",
+      "applies_to_practice": "yes",
+      "note": "Load the current Medicare fee schedule for the Florida locality and each plan's contracted rates; flag paid-below-expected lines for follow-up."
+    },
+    {
+      "idea": "Trend each payer's effective contractual rate over several years and forecast expected write-offs each quarter.",
+      "why": "Gives evidence for rate talks and a more honest cash forecast.",
+      "applies_to_practice": "partly",
+      "note": "Medicare fee-for-service rates cannot be negotiated; use the trend for Medicare Advantage and other contracts and for payer-mix decisions. The forecast is useful for the owner's cash planning."
+    }
+  ],
+  "practice_relevance": {
+    "score": 4,
+    "why": "The subject is directly relevant: billing is run in-house by AI agents, so a reason-code scheme, approval limits on adjustments and deadline-driven queues are core financial controls for an owner acting as CFO. The content, however, is built for an office practice with a front desk, billing staff and commercial contracts. Nothing addresses Medicare's one-year filing limit and its exceptions, the Medicare appeal ladder, dual-eligible cost-sharing that cannot be billed, statutory payment reductions, or coverage errors that originate in facility face sheets, which are this practice's likely loss sources. Roughly half is usable after adaptation. The measure is also blind to visits that were never billed, often the larger leak in rounding work.",
+    "sections_that_do_not_apply": [
+      "Patient bad-debt thresholds and the point-of-service and statement-cycle remedies (references to KPI 05 and KPI 06): no front desk and little true self-pay",
+      "Supervisor and billing-manager approval hierarchy as written: there is no billing staff, so it must be recast as agent-versus-owner approval",
+      "Financial-assistance growth driven by high-deductible commercial patients",
+      "Contract renegotiation lever for the roughly 55% Medicare fee-for-service share, where rates are set by fee schedule",
+      "Small-claims or arbitration recovery for Medicare and most plan denials",
+      "24-hour charge entry 'for all service types': monthly care-management services are billed once per calendar month, not per visit",
+      "The implied 90-day filing window in the rejected-claim example"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Recovery checklist suggests moving timely-filing or expired-appeal write-offs to patient responsibility. For Medicare a late filing is the provider's liability, QMB and Medicaid patients cannot be billed, and participating contracts generally forbid it. Followed literally this invites improper patient billing.",
+      "Calls every timely-filing write-off 100% preventable and a pure process failure. Ignores retroactive eligibility, wrong coverage supplied by a facility, payer retro-terminations, and Medicare's recognized filing exceptions (administrative error, retroactive entitlement, retroactive Medicaid involvement, retroactive disenrollment from a Medicare Advantage plan).",
+      "'A filed appeal stops the clock' is true only for that level; later levels carry their own limits. Medicare late-filing denials and unprocessable claims carry no appeal rights at all, and many denials are fixed by corrected claim or reopening, a distinction the document never makes.",
+      "The blanket 30-day appeal rule and the 30/45-day alerts imply short commercial-style windows (one example implies a 90-day filing limit). No real deadline is stated for any payer; Medicare's is one calendar year from service and its first appeal level allows 120 days.",
+      "Small-claims court or arbitration is offered as a fallback for large expired denials. No such route exists for Medicare fee-for-service, and elsewhere it depends entirely on contract dispute clauses.",
+      "Every threshold (3%/5% bad debt, 0.5% and 1% of gross charges, 5%/10%/20% preventable share, 30% preventable denials, 180 days, $100-$1,000 approval tiers, 10-15% recovery) is unsourced and reads like a round-number invention.",
+      "Denominators shift between gross charges, an undefined 'net revenue' and total write-offs. Gross-charge ratios depend on how high the fee schedule is set, so the limits are not comparable between practices.",
+      "Defines a contractual write-off as billed charge minus what the payer must pay; the correct basis is billed charge minus the allowed amount, which still includes patient cost-sharing.",
+      "Lists 'bad debt insurance' as a legitimate reason code. Unpaid insurance balances are denials with specific causes; the code invites exactly the catch-all behavior the document warns about.",
+      "Says a 24-hour charge-entry rule removes the charge-lag share of timely-filing write-offs within 30 days; claims already late keep maturing for months, so the measured effect cannot appear that quickly.",
+      "Guidance on writing off patient balances (small balance, financial assistance, bad debt) never mentions federal limits on routinely waiving Medicare cost-sharing or the need for documented hardship and reasonable collection effort."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "The 'four categories' are contractual, bad debt, timely filing and financial assistance in Section 0 but contractual, bad debt, timely filing and expired-appeal denials in Section 1, while the required code list has eight entries.",
+      "A practice sitting exactly at both Section 0 action thresholds (0.5% plus 1.0% of gross charges) would show a preventable ratio near 3% of total write-offs when contractual adjustments are about half of charges, which Sections 1 and 5 call well managed. The 5% line equals roughly 2.8% of gross charges, almost double the action thresholds.",
+      "Intervention 2 promises the charge-lag contribution disappears within 30 days; Section 5 says any process change takes 60 to 120 days to show, and Section 1 speaks of 90 to 180 days.",
+      "The bad-debt timeline (120 unresponsive days from first statement, plus up to 30 days) lands at or beyond the 180-days-from-service level that Section 2 treats as holding accounts too long.",
+      "Opening paragraph labels bad debt preventable and recoverable; the table beside it calls bad debt under 3% acceptable and partly unavoidable.",
+      "Section 0 says contractual adjustments are to be monitored for accuracy, not reduced; Section 5 urges reducing them through renegotiation.",
+      "The front matter says the taxonomy, benchmark table and every worked example are delivered here; the text repeatedly defers the taxonomy, audits and workflow design to a separate Action Guide and contains no sourced benchmark table.",
+      "Section 5 requires specialty- and payer-mix-adjusted benchmarks yet Section 0 applies single universal thresholds and no adjusted benchmarks or sources are supplied.",
+      "Read with KPI 08: if contractual adjustments are about half of charges, staying just inside every 'acceptable' limit here (about 1% plus 2% of collectible revenue for filing and denial losses, plus 3% bad debt) yields a net collection rate near 94%, which KPI 08 places in its action band."
+    ],
+    "time_sensitive_or_outdated": [
+      "No dates, years or data vintages appear anywhere, so none of the thresholds can be tied to a period or checked for currency.",
+      "Collections-referral advice does not reflect the changes in medical-debt collection and credit-reporting rules since 2023; confirm current federal and Florida requirements before referring any account.",
+      "Patient bad-debt framing rests on a high-deductible commercial population; it does not describe a 2026 Medicare, Medicare Advantage and dual-eligible panel.",
+      "Does not reflect the federal prior-authorization changes that took effect for Medicare Advantage and Medicaid plans in January 2026 (decision time limits and specific denial reasons), which alter how plan denials are worked."
+    ],
+    "ai_generation_signals": [
+      "Identical five-step template with 'SYSTEM STEP n OF 5' banners shared across the series.",
+      "Aphoristic pull quotes and rhetorical triads built on repeated negation.",
+      "Round-number ranges throughout with no source, author, credential or date.",
+      "List numbering runs on across sections (interventions 1-9, then workflow items 10-12, then signals 13-15), a formatting artifact.",
+      "A sentence in Section 4 interrupts its own example to note that 0.8% exceeds the 0.5% threshold, reading like an automated consistency patch.",
+      "Promises the taxonomy, benchmark table and every worked example, then defers each to another product.",
+      "About 5,100 words stretched over 30 pages; several pages hold a single paragraph or callout, and table headers repeat at page breaks.",
+      "The core category list changes between adjacent sections."
+    ],
+    "missing_for_real_use": [
+      "Actual filing limits and appeal windows by payer, and where to confirm them",
+      "Medicare mechanics: filing-limit exceptions, reopening versus redetermination, absence of appeal rights on late-filed and unprocessable claims, and proof-of-timely-filing evidence such as clearinghouse acceptance reports",
+      "A crosswalk from remittance codes (reason, remark and group codes) to internal write-off codes, with rules for automatic posting",
+      "A finer taxonomy: denial sub-reasons (authorization, eligibility or wrong payer, medical necessity, bundling, duplicate, credentialing), statutory reductions, Medicaid crossover and QMB cost-sharing, charge-entry reversals and credit-balance adjustments",
+      "The written write-off policy, approval form and log, deadline calendar template and audit worksheets it refers to",
+      "Compliance guardrails: routine waiver of Medicare cost-sharing, hardship documentation, uniform small-balance policy, refund of credit balances and overpayments, prohibitions on billing patients for provider-fault denials",
+      "System controls: who may post adjustments, separation of posting from approval, audit-trail reports, and the theft risk that write-offs can conceal",
+      "A wrong-payer or late-coverage segmentation for timely-filing losses, the dominant cause in facility-based work",
+      "Secondary and crossover billing workflow",
+      "A materiality rule so that quarter-to-quarter noise in a small practice does not trigger constant alarms",
+      "Any way to see services that were never billed (census-to-charge reconciliation); this KPI only sees what entered receivables",
+      "Benchmark sources, and a worked example of a reason-code distribution"
+    ]
+  }
+}

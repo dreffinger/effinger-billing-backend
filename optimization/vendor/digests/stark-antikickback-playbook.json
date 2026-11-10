@@ -1,0 +1,791 @@
+{
+  "slug": "stark-antikickback-playbook",
+  "title": "Stark Law and Anti-Kickback Awareness Playbook (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "compliance",
+  "pages": 81,
+  "audience": "Independent practice physician-owners and practice administrators, plus billing and compliance teams; the text calls itself educational and workflow material for billing teams and not legal advice.",
+  "summary": "An 81-page plain-language primer on the federal physician self-referral (Stark) law and the Anti-Kickback Statute for independent practices. It defines both laws, shows how a violation turns into denied or refundable Medicare claims, exclusion and False Claims Act exposure, and walks through six arrangement types: physician pay, in-office ancillary services, space and equipment leases, vendor relationships, hospital deals (recruitment, medical directorships) and turnkey vendor ventures. Its method is operational triage, not legal analysis: inventory every financial arrangement with a referral source, screen each on a short checklist (written, fair market value, matches services performed, no volume link), send anything flagged to a healthcare attorney before acting, and repeat annually under a named compliance officer. It closes with a 90-day rollout and two checklists. Only three statutes are cited, no regulations; several technical statements are wrong or outdated, and facility-based practice is not addressed.",
+  "outline": [
+    {
+      "section": "Front matter and disclaimer",
+      "gist": "Not legal advice; claims every example is de-identified or hypothetical; refers readers to counsel for any decision."
+    },
+    {
+      "section": "Introduction: The Law You Are Probably Not Thinking About",
+      "gist": "Everyday arrangements create strict-liability exposure; cites FY2024 False Claims Act totals and the 2025 takedown; goal is knowing when to call counsel."
+    },
+    {
+      "section": "How to Use This Playbook",
+      "gist": "Reading order, cross-references to sibling CleanClaimRx guides, and a boilerplate notice about reviewing AI-generated drafts."
+    },
+    {
+      "section": "Section 1: Stark Law and Anti-Kickback Statute - Plain Language Fundamentals",
+      "gist": "Defines both laws, the ten designated health service categories, a six-row comparison table, strict liability, and small-practice enforcement examples."
+    },
+    {
+      "section": "Section 2: The Revenue Cycle Connection",
+      "gist": "Violations become payment denials, refunds, 60-day overpayment duties, six-year look-back, exclusion risk, and whistleblower exposure through billing staff."
+    },
+    {
+      "section": "Section 3: The Most Common Independent Practice Exposure Points",
+      "gist": "Six arrangement categories: pay tied to referrals, in-office ancillaries, leases, vendors, hospital deals, turnkey ventures; plus code-list updates and state analogs."
+    },
+    {
+      "section": "Section 4: Compensation Arrangements",
+      "gist": "Employment exception, productivity bonuses, profit shares, a 75th-percentile flag, contractors, commercial reasonableness, and indirect compensation through hospitals."
+    },
+    {
+      "section": "Section 5: The In-Office Ancillary Services Exception",
+      "gist": "Supervision, location and billing tests, the group-practice definition with its 75% threshold, and a patient notice requirement."
+    },
+    {
+      "section": "Section 6: Space and Equipment Rental Arrangements",
+      "gist": "Six lease conditions, fair market value without referral influence, part-time space, per-click fees, below-market benefits, and annual rate review."
+    },
+    {
+      "section": "Section 7: Physician Recruitment Arrangements",
+      "gist": "Hospital recruitment exception terms, duties of the practice receiving a recruit, and medical director agreements under the personal services safe harbor."
+    },
+    {
+      "section": "Section 8: The False Claims Act Connection",
+      "gist": "Kickback-tainted claims as false claims, treble damages, per-claim penalties, whistleblowers, 2024-2025 enforcement figures, and self-disclosure as the alternative."
+    },
+    {
+      "section": "Section 9: Building a Basic Compliance Program",
+      "gist": "Seven program elements, annual arrangement review, documentation discipline, non-monetary compensation limit, value-based exceptions, and the CMS disclosure protocol."
+    },
+    {
+      "section": "Section 10: The 'When to Call a Lawyer' Decision Framework",
+      "gist": "Eight triggers requiring counsel before acting, what staff may do alone, how to pick a healthcare attorney, and an annual compliance calendar."
+    },
+    {
+      "section": "90-Day Implementation Plan",
+      "gist": "Month 1 inventory and screen; month 2 counsel review and remediation; month 3 compliance officer, register, calendar, and training."
+    },
+    {
+      "section": "Quick-Reference Checklists",
+      "gist": "A 24-item arrangement review checklist in five blocks and a 16-item annual compliance review checklist."
+    },
+    {
+      "section": "Closing: The Arrangement That Seemed Normal",
+      "gist": "Restates the three-step system (identify, checklist, call counsel) and points to two sibling playbooks."
+    }
+  ],
+  "framework_elements": [
+    "Financial arrangement inventory (register of all dealings with referral sources and recipients)",
+    "Arrangement screening checklist (written, fair market value, matches services, no volume link)",
+    "Written agreement standard (signed, current, parties, services, duration, pay)",
+    "Fair market value confirmation and independent appraisal",
+    "Commercial reasonableness documentation",
+    "Physician compensation plan design review (bonus and profit-share bases)",
+    "Compensation benchmarking and outlier justification",
+    "Independent contractor arrangement controls",
+    "Indirect (downstream) compensation review for hospital support",
+    "In-office ancillary services exception test (supervision, location, billing)",
+    "Group practice definition test",
+    "Patient notice for in-office imaging referrals",
+    "Annual designated health services code list check",
+    "Space and equipment lease controls (exclusive use, term, rent set in advance)",
+    "Part-time and shared space schedule control",
+    "Annual rental rate currency review",
+    "Hospital recruitment package controls",
+    "Medical director agreement controls",
+    "Vendor, drug and device company relationship controls",
+    "Non-monetary compensation tracking against the annual limit",
+    "Contractual joint venture and turnkey vendor screening",
+    "Value-based arrangement exception check",
+    "State self-referral and anti-kickback law review",
+    "Exclusion screening (OIG list and SAM) with log",
+    "Overpayment identification and 60-day report-and-return",
+    "Self-disclosure decision pathway (OIG protocol, CMS self-referral protocol)",
+    "Seven-element compliance program",
+    "Compliance officer designation and annual compliance calendar",
+    "Legal escalation triggers (when to call counsel; subpoena or civil investigative demand response)",
+    "Pre-transaction compliance review and staff awareness training"
+  ],
+  "processes": [
+    {
+      "name": "Financial arrangement inventory and first-pass screen",
+      "steps": [
+        "List every arrangement that moves money or benefits between the practice and any physician or entity it refers to or receives referrals from (leases, pay plans, vendor deals, hospital agreements, service contracts)",
+        "Record for each: parties, type, start date, whether a signed agreement exists, compensation, how fair market value was supported, date last reviewed",
+        "Mark every arrangement with no written agreement as top priority for legal review",
+        "Run each against the Section 10 call-counsel triggers and flag any hit",
+        "Check the current designated health services code list for services the practice orders or furnishes",
+        "Update the register whenever an arrangement is added or changed"
+      ],
+      "owner_role": "Compliance designee with the practice administrator (the physician-owner in a micro-practice)",
+      "cadence": "Initial build in month 1; updated at every new or modified arrangement"
+    },
+    {
+      "name": "Annual compliance review day",
+      "steps": [
+        "Fix one recurring date each year",
+        "Walk every registered arrangement through Checklist 1",
+        "Compare actual conduct and payments with the written terms to catch drift",
+        "Confirm fair-market-value support and pay benchmarking are within the stated age limits",
+        "Confirm the exclusion log, training records and compliance-officer designation are current",
+        "Check the year's code list and non-monetary compensation limit",
+        "Document the review and list the items going to counsel"
+      ],
+      "owner_role": "Compliance officer and practice administrator",
+      "cadence": "Annually on a fixed date; Checklist 1 also whenever an arrangement is new or changed"
+    },
+    {
+      "name": "Counsel review and remediation of flagged arrangements",
+      "steps": [
+        "Engage a healthcare attorney with physician-practice experience",
+        "Send flagged items in risk order: unwritten arrangements first, then pay plans with a possible referral-volume link",
+        "File counsel's confirmation for arrangements that pass and schedule re-review",
+        "Follow counsel on restructuring, ending or disclosing those that fail; take no unilateral action",
+        "Put informal arrangements into signed agreements",
+        "Get an independent appraisal where a referral relationship exists and the rate was set informally"
+      ],
+      "owner_role": "Physician-owner with outside healthcare counsel",
+      "cadence": "Month 2 of rollout; afterwards whenever the annual review or a trigger flags an item"
+    },
+    {
+      "name": "Exclusion screening",
+      "steps": [
+        "Check the OIG exclusion list and SAM.gov for each physician, contractor and key vendor before engaging them",
+        "Repeat the checks every month",
+        "Record each check and its result in a log",
+        "Keep the log current for the annual review"
+      ],
+      "owner_role": "Compliance officer",
+      "cadence": "Before engagement and monthly"
+    },
+    {
+      "name": "Physician compensation plan review",
+      "steps": [
+        "Confirm pay reflects fair market value for work actually done and has a business purpose independent of referrals",
+        "Remove from any bonus base the revenue for designated health services the physician ordered but did not personally perform",
+        "Check that any share of ancillary profit does not track each physician's own ordering",
+        "Benchmark pay against specialty data",
+        "Write up the justification where pay sits at or above the 75th percentile",
+        "Take any new or changed plan to counsel before adopting it"
+      ],
+      "owner_role": "Physician-owner or practice administrator, with counsel",
+      "cadence": "Benchmark at least every two years; review at each plan change and at the annual review"
+    },
+    {
+      "name": "In-office ancillary services exception check",
+      "steps": [
+        "Confirm the practice meets the group-practice definition as the document describes it (single entity, 75% test, compliant pay, unified operations)",
+        "Verify the Medicare-required supervision level was actually present for each service on each date",
+        "Verify services are furnished in a qualifying building",
+        "Verify billing is by the physician, the group or a wholly owned entity",
+        "Give written notice of alternative suppliers at the time of referral for the affected services",
+        "Have counsel do a formal review if none has been done in two years"
+      ],
+      "owner_role": "Compliance officer with supervising physicians",
+      "cadence": "Annual checklist; formal counsel review at least every two years"
+    },
+    {
+      "name": "Lease terms and rental-rate review",
+      "steps": [
+        "Confirm each space or equipment lease is written, signed, identifies what is leased and runs at least a year",
+        "Confirm the tenant has exclusive use during its periods and that part-time blocks are scheduled in advance in the lease",
+        "Confirm rent was set in advance at fair market value with no link to referrals",
+        "Use an independent appraiser where the other party is a referral source",
+        "Re-check rates against the market and amend, with the rate-setting documented, if conditions have moved materially",
+        "Give any per-use fee extra scrutiny"
+      ],
+      "owner_role": "Practice administrator with appraiser and counsel",
+      "cadence": "Annual rate review per Section 6 (Checklist 2 tolerates three years between fair-market-value confirmations)"
+    },
+    {
+      "name": "Response to a suspected violation or overpayment",
+      "steps": [
+        "Stop and call healthcare counsel before changing, ending or disclosing anything",
+        "Do not contact the government without representation",
+        "Size the affected claims across the look-back period (the document says up to six years)",
+        "Report and return identified overpayments within 60 days",
+        "Let counsel choose between the CMS self-referral disclosure protocol, the OIG protocol or another resolution",
+        "Document the investigation and corrective action"
+      ],
+      "owner_role": "Physician-owner and compliance officer, directed by counsel",
+      "cadence": "Event-driven"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Stark versus Anti-Kickback comparison table (Section 1)",
+      "description": "Six-row side-by-side: type of law, intent, programs covered, services covered, compliance mechanism, primary penalty."
+    },
+    {
+      "name": "Six exposure-point map (Section 3)",
+      "description": "List of the six arrangement categories the review is organized around."
+    },
+    {
+      "name": "Call-a-lawyer trigger list (Section 10)",
+      "description": "Eight situations requiring counsel before acting, with the rule that reviewing and flagging is operational and acting is legal."
+    },
+    {
+      "name": "Attorney selection criteria and sources (Section 10)",
+      "description": "Short list of qualifications to look for and where to find healthcare counsel (state bar health section, health lawyers association directory, peers, societies)."
+    },
+    {
+      "name": "Seven-element compliance program list (Section 9)",
+      "description": "Bullet summary of the OIG program elements scaled to a small practice; no policy text supplied."
+    },
+    {
+      "name": "Annual compliance calendar (Section 10)",
+      "description": "Described as one fixed review day a year; no calendar template is provided."
+    },
+    {
+      "name": "90-Day Implementation Plan",
+      "description": "Month 1 inventory and screen (6 tasks), month 2 counsel and remediation (5 tasks), month 3 ongoing system (5 tasks)."
+    },
+    {
+      "name": "Checklist 1: Arrangement Review Checklist",
+      "description": "24 tick-box items in five blocks: basic documentation, compensation arrangements, in-office ancillary services, space and equipment leases, hospital and vendor arrangements."
+    },
+    {
+      "name": "Checklist 2: Annual Compliance Review Checklist",
+      "description": "16 tick-box items in five blocks: arrangement inventory, fair market value, exclusion monitoring, legal review, training and documentation."
+    },
+    {
+      "name": "Financial arrangement inventory (described only)",
+      "description": "Field list given in the 90-day plan (parties, nature, start date, written agreement, compensation and fair-market-value support, last review); no form or spreadsheet is included."
+    },
+    {
+      "name": "Exclusion check log (referenced only)",
+      "description": "Named in Checklist 2 as something to keep current; no template is included."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Group practice 'substantially all' share",
+      "definition": "Share of physician members' patient care services delivered through the group and billed under the group's number",
+      "formula": "",
+      "target": "At least 75%",
+      "red_flag": "Below 75% the group-practice definition, and with it the in-office exception as the document frames it, is not met",
+      "source_cited": "Stark Law group practice definition (named, no regulation cited)"
+    },
+    {
+      "name": "Physician compensation percentile against specialty benchmarks",
+      "definition": "Where an employed or contracted physician's pay falls relative to specialty survey data",
+      "formula": "",
+      "target": "",
+      "red_flag": "At or above the 75th percentile without documented, referral-independent justification",
+      "source_cited": "CMS 2020 Stark final rule (named, no citation)"
+    },
+    {
+      "name": "Non-monetary compensation per physician per year",
+      "definition": "Annual total of gifts, meals, entertainment and other non-cash benefits a physician receives from an entity in a referral relationship",
+      "formula": "",
+      "target": "No more than $519 (2025) or $535 (2026)",
+      "red_flag": "Total above the current-year limit",
+      "source_cited": "CMS Physician Self-Referral CPI-U Updates page (named, no link)"
+    },
+    {
+      "name": "Exclusion screening recency",
+      "definition": "Time since OIG exclusion list and SAM.gov checks were run on physicians, contractors and key vendors",
+      "formula": "",
+      "target": "Before engagement and within the past month",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Overpayment report-and-return time",
+      "definition": "Days from identifying an overpayment to reporting and refunding it",
+      "formula": "",
+      "target": "60 days or less",
+      "red_flag": "Beyond 60 days is described as a separate False Claims Act exposure",
+      "source_cited": "False Claims Act 60-day rule (named, no citation)"
+    },
+    {
+      "name": "Overpayment look-back period",
+      "definition": "How far back refund liability reaches once a violation is found",
+      "formula": "",
+      "target": "Up to six years",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Age of lease fair-market-value confirmation",
+      "definition": "Time since space and equipment rental rates were last confirmed at fair market value",
+      "formula": "",
+      "target": "Within the past three years (Checklist 2); Section 6 separately calls for an annual rate review",
+      "red_flag": "Rate set informally or never independently appraised where a referral relationship exists",
+      "source_cited": "none"
+    },
+    {
+      "name": "Age of physician compensation benchmarking",
+      "definition": "Time since employed and contracted physician pay was last benchmarked",
+      "formula": "",
+      "target": "Within the past two years",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Age of in-office ancillary services compliance review",
+      "definition": "Time since a formal compliance review of in-office lab, imaging or therapy arrangements",
+      "formula": "",
+      "target": "Within the past two years",
+      "red_flag": "No formal review in two years is a trigger to call counsel",
+      "source_cited": "none"
+    },
+    {
+      "name": "Written agreement coverage",
+      "definition": "Whether every arrangement with a referral source has a current signed agreement that matches actual practice",
+      "formula": "",
+      "target": "Every arrangement",
+      "red_flag": "Any arrangement with no written agreement is the top priority for legal review",
+      "source_cited": "none"
+    },
+    {
+      "name": "Annual arrangement review completion",
+      "definition": "Whether every registered arrangement was run through Checklist 1",
+      "formula": "",
+      "target": "All arrangements once a year and at each new or changed arrangement",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Annual compliance training completion",
+      "definition": "Whether relevant staff received documented compliance training in the year",
+      "formula": "",
+      "target": "All relevant staff, every year, documented",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A Stark violation costs a practice $500,000 in repayment, penalties and legal fees (illustrative figure presented as typical)",
+      "section": "Introduction; Closing",
+      "source_cited": "none"
+    },
+    {
+      "claim": "DOJ resolved 558 False Claims Act settlements and judgments in FY2024, the second-highest count on record, totaling over $2.9 billion",
+      "section": "Introduction; Section 8",
+      "source_cited": "DOJ (named, no citation)"
+    },
+    {
+      "claim": "FY2023 set the record with 543 settlements totaling $2.68 billion",
+      "section": "Introduction; Section 8",
+      "source_cited": "DOJ (named, no citation)"
+    },
+    {
+      "claim": "DOJ's 2025 National Health Care Fraud Takedown charged 324 defendants over $14.6 billion in alleged fraud",
+      "section": "Introduction; Section 8",
+      "source_cited": "DOJ (named, no citation)"
+    },
+    {
+      "claim": "A Florida ophthalmology practice paid $1.3 million in November 2024 over a turnkey mobile transcranial doppler arrangement with volume-based payment",
+      "section": "Sections 1, 3, 5 and 8",
+      "source_cited": "DOJ settlement (practice unnamed, no citation)"
+    },
+    {
+      "claim": "CMS resolved 314 self-disclosure settlements in 2024, recovering over $24.7 million, nearly twice the prior year",
+      "section": "Section 1; Section 9",
+      "source_cited": "CMS (named, no citation)"
+    },
+    {
+      "claim": "Gilead Sciences paid $202 million in April 2025 to resolve kickback allegations over speaker fees and meals tied to HIV drugs",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "ChristianaCare settled for $42.5 million; the whistleblower was its former chief compliance officer",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "False Claims Act penalties run up to $28,619 per false claim, on top of treble damages",
+      "section": "Section 8",
+      "source_cited": "DOJ inflation-adjustment notice (named, no citation)"
+    },
+    {
+      "claim": "50 claims a week for three years is about 7,800 false claims",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "$200,000 a year of non-compliant ancillary revenue for three years is $600,000 of repayment exposure before penalties",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Overpayments must be reported and returned within 60 days of identification",
+      "section": "Section 2",
+      "source_cited": "False Claims Act 60-day rule (named, no citation)"
+    },
+    {
+      "claim": "Overpayment look-back reaches up to six years (discovery in April 2026 reaches back to April 2020)",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The OIG exclusion list is updated monthly and should be checked before engagement and monthly after",
+      "section": "Section 2",
+      "source_cited": "OIG exclusion list (named)"
+    },
+    {
+      "claim": "Stark covers ten designated health service categories",
+      "section": "Section 1",
+      "source_cited": "42 U.S.C. 1395nn"
+    },
+    {
+      "claim": "The 2024 CMS code-list update added certain definitive drug testing codes to designated health services",
+      "section": "Sections 1 and 3",
+      "source_cited": "CMS (named, no citation)"
+    },
+    {
+      "claim": "The 2020 Stark final rule took effect January 2021 and flagged plans above the 75th percentile for greater scrutiny",
+      "section": "Section 4",
+      "source_cited": "CMS 2020 final rule (named, no citation)"
+    },
+    {
+      "claim": "A group practice needs at least two physicians and at least 75% of members' patient care services delivered and billed through the group",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The Affordable Care Act added an in-office exception patient notice for MRI, CT, PET, physical therapy and radiation therapy",
+      "section": "Section 5",
+      "source_cited": "Affordable Care Act (named, no section)"
+    },
+    {
+      "claim": "Space and equipment leases must run at least one year",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The personal services safe harbor requires a term of at least one year",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The non-monetary compensation limit was $519 per physician for 2025 and $535 for 2026",
+      "section": "Section 9; Checklist 1",
+      "source_cited": "CMS Physician Self-Referral CPI-U Updates page (named, no link)"
+    },
+    {
+      "claim": "Value-based exceptions were added by the 2020 regulations effective January 2021",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS issued additional guidance in 2025 on value-based frameworks and indirect compensation",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The CMS self-referral disclosure protocol was most recently updated in January 2023",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "OIG guidance identifies seven core elements of a compliance program",
+      "section": "Section 9",
+      "source_cited": "OIG compliance guidance (named, no citation)"
+    },
+    {
+      "claim": "Six categories of arrangements create more independent-practice exposure than any others",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In-office ancillary services need a formal compliance review at least every two years",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Lease rates should be confirmed at fair market value within three years and physician pay benchmarked within two",
+      "section": "Checklist 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A Fourth Circuit opinion called Stark a booby trap rigged with strict liability and potentially ruinous exposure",
+      "section": "Section 1",
+      "source_cited": "Fourth Circuit (case unnamed)"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Once a provider has identified or should have identified an overpayment, it must be reported and returned within 60 days; 'identifies' means when the provider should have known through reasonable diligence; look-back extends up to six years.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 2",
+      "why": "CMS rewrote 42 CFR 401.305 effective 1 January 2025: identification now uses the False Claims Act knowledge standard and the deadline can pause up to 180 days during a good-faith investigation. A refund procedure for any billing error would be built on a superseded trigger. The rule is also not in the False Claims Act itself, and the six years run from receipt of the payment, not from a demand."
+    },
+    {
+      "id": "C2",
+      "claim": "A medical director arrangement must meet the AKS personal services safe harbor: written agreement signed by all parties; term of at least one year; compensation set in advance at fair market value; consistent with actual services; not reflecting referral volume.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 7",
+      "why": "The practice receives medical-director stipends, its most direct kickback exposure. Safe harbors are voluntary (the document says so itself in Section 1); the mandatory test, where the payer furnishes designated health services, is a Stark exception the section never names. The safe-harbor wording was also revised in the 2020 rules, so the element list needs checking against the current text."
+    },
+    {
+      "id": "C3",
+      "claim": "The Stark non-monetary compensation limit was $519 per physician for calendar year 2025 and $535 for calendar year 2026, covering gifts, meals, entertainment and other non-cash benefits.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 9; Checklist 1",
+      "why": "The physician can receive meals and gifts from hospitals, home health agencies, pharmacies and labs, so the tracking threshold has to be right, and the 2026 figure lapses on 31 December 2026. The checklist also applies the limit to drug and device vendors, which it does not govern."
+    },
+    {
+      "id": "C4",
+      "claim": "False Claims Act civil monetary penalties are up to $28,619 per false claim, the current inflation-adjusted maximum, on top of treble damages.",
+      "kind": "penalty",
+      "stakes": "medium",
+      "section": "Section 8",
+      "why": "This number drives any exposure estimate given to the owner. It matches the 2025 adjustment and may have been superseded for 2026; the per-claim minimum is not given at all."
+    },
+    {
+      "id": "C5",
+      "claim": "Before the in-office ancillary services exception can apply, the referring physician must be a member of a group practice with at least two physicians; the ACA patient notice covers MRI, CT, PET, physical therapy and radiation therapy.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 5; Checklist 1",
+      "why": "As I read 42 CFR 411.355(b), a solo physician can use the exception, and the notice duty reaches only MRI, CT and PET and requires a list of five alternative suppliers within 25 miles. A one-physician practice would misjudge its eligibility, and an imaging practice following this text would issue a deficient notice and lose the exception."
+    },
+    {
+      "id": "C6",
+      "claim": "Per-click or usage-based equipment rental fees paid to a referring physician can be structured to comply with the Stark rental exception if documented as consistent with fair market value.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 6",
+      "why": "Since October 2009 the space and equipment lease exceptions bar percentage-of-revenue rent outright and per-unit-of-service rent to the extent it reflects patients the lessor referred to the lessee. A practice relying on this sentence could sign a lease that cannot be protected, tainting every related Medicare claim."
+    },
+    {
+      "id": "C7",
+      "claim": "Under the Stark recruitment exception, remuneration must be paid directly to the recruited physician (or the physician's new employer), not through a pre-existing practice the physician is joining; any income guarantee must rest on a reasonable income estimate.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 7",
+      "why": "42 CFR 411.357(e)(4) expressly lets hospital recruitment money flow through the practice a recruit joins, subject to pass-through, incremental-cost and record-keeping conditions, and contains no 'reasonable estimate' test. A practice planning to grow with hospital recruitment support would be misdirected on what it may sign and keep."
+    },
+    {
+      "id": "C8",
+      "claim": "CMS's 2020 Stark final rule (effective January 2021) addressed physician compensation plans where productivity exceeds the 75th percentile relative to benchmarks, noting these could receive greater scrutiny.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4; Checklists 1 and 2",
+      "why": "In that rule's preamble CMS said it has no policy treating pay above the 75th percentile as suspect. A compliance flag and valuation narrative built on a CMS position that does not exist distorts fair-market-value work on pay plans, medical-director rates and sale diligence."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "compliance-risk",
+      "weight": 0.72,
+      "topics": [
+        "Stark self-referral law",
+        "Anti-Kickback Statute",
+        "False Claims Act exposure",
+        "60-day overpayment rule",
+        "exclusion screening",
+        "seven-element compliance program",
+        "self-disclosure protocols",
+        "state law analogs"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.08,
+      "topics": [
+        "physician bonus and profit-share design",
+        "compensation benchmarking",
+        "independent contractor pay",
+        "commercial reasonableness"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.07,
+      "topics": [
+        "key contracts register",
+        "leases and medical director agreements",
+        "hospital relationships",
+        "outside counsel relationship",
+        "annual compliance calendar"
+      ]
+    },
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.05,
+      "topics": [
+        "pre-transaction compliance review",
+        "due diligence exposure"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.04,
+      "topics": [
+        "hospital recruitment support",
+        "ancillary service lines",
+        "turnkey vendor partnerships",
+        "referral relationships"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.03,
+      "topics": [
+        "overpayment refunds",
+        "recoupment and payment denial",
+        "audit and demand letter response"
+      ]
+    },
+    {
+      "domain": "quality-value",
+      "weight": 0.01,
+      "topics": [
+        "value-based arrangement exceptions"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Keep a living register of every financial arrangement with any party the practice refers to or gets referrals from: parties, type, start date, signed-agreement status, pay terms, fair-market-value support, last review date.",
+      "why": "It is the precondition for every other control; unwritten and forgotten deals are where exposure hides, and buyers ask for exactly this list in diligence.",
+      "applies_to_practice": "yes",
+      "note": "Here the register is medical-director stipends, facility and hospital agreements, home health, hospice, pharmacy, lab and equipment-supplier touchpoints, and vendor contracts. The document gives the field list but no template; the billing agents can maintain it."
+    },
+    {
+      "idea": "Screen each arrangement on four plain questions (is it written, was pay set at fair market value, does pay match the work actually done, does anything move with referral volume) and keep flagging separate from acting.",
+      "why": "Gives non-lawyers a repeatable triage that surfaces the arrangements worth legal fees without pretending to reach legal conclusions.",
+      "applies_to_practice": "yes",
+      "note": "The rule that inventorying and flagging is operational while structuring, changing, ending or disclosing needs the practice's own counsel (never the hospital's) is the most useful single idea in the document."
+    },
+    {
+      "idea": "Hold medical-director arrangements to a signed agreement, real and needed duties, and pay that tracks hours actually worked at a market rate.",
+      "why": "Stipends for nominal duties paid to a referral source are a standard enforcement pattern, and stipends are this practice's most direct kickback exposure.",
+      "applies_to_practice": "yes",
+      "note": "The document covers only hospital-paid directorships and wrongly calls the safe harbor mandatory. Apply the discipline to nursing facility, assisted living and hospice stipends and add contemporaneous time logs, which the document does not supply."
+    },
+    {
+      "idea": "Check the OIG exclusion list and SAM.gov before engaging anyone and every month after, and keep a dated log.",
+      "why": "Cheap, automatable, and billing for services touched by an excluded person creates refund and penalty exposure.",
+      "applies_to_practice": "yes",
+      "note": "The document scopes checks to physicians, contractors and key vendors; extend them to every workforce member and subcontractor, including the entities behind the AI billing service."
+    },
+    {
+      "idea": "Log the non-cash benefits each physician receives from entities in a referral relationship and compare the yearly total with the CMS limit.",
+      "why": "Small gifts and meals from hospitals, home health agencies, pharmacies and labs are easy to overlook and are what a whistleblower remembers.",
+      "applies_to_practice": "yes",
+      "note": "The limit strictly governs benefits from entities that furnish designated health services; the document's checklist stretches it to all vendors. Verify the current-year figure before relying on it."
+    },
+    {
+      "idea": "Before signing any turnkey service deal where the vendor does nearly all the work, the practice bills, and fees or support move with order volume, treat it as a possible kickback structure and have it reviewed.",
+      "why": "This is the pattern behind the small-practice settlement the document keeps citing, and it is how many outsourced service lines are sold to practices.",
+      "applies_to_practice": "yes",
+      "note": "Directly relevant to outsourced chronic care management, remote monitoring, wellness-visit, mobile diagnostic or lab vendors priced per order or as a share of collections."
+    },
+    {
+      "idea": "Name one accountable compliance officer and fix one documented compliance review day a year covering arrangements, drift from written terms, code-list and limit updates, training and the exclusion log.",
+      "why": "A small program that is actually used is better evidence of good faith than a long manual nobody opens.",
+      "applies_to_practice": "yes",
+      "note": "In a two-clinician practice the owner is the compliance officer by default; keep the review record with the register."
+    },
+    {
+      "idea": "Run a self-initiated compliance review of all arrangements before any sale, merger or private-equity process.",
+      "why": "Diligence will find the same issues on the buyer's timetable and at the seller's cost in price, escrow or indemnity.",
+      "applies_to_practice": "yes",
+      "note": "Fits the owner's goal of maximizing sale value; a clean register with counsel sign-offs is a tangible diligence asset."
+    },
+    {
+      "idea": "Pay clinicians for work they personally perform, keep revenue from ordered ancillary services out of bonus formulas, benchmark pay periodically and write down why any outlier pay is justified.",
+      "why": "Links between pay and referral volume are the most common compensation defect and are easy to design out at the start.",
+      "applies_to_practice": "partly",
+      "note": "Little bite today (one owner, one nurse practitioner, no ancillary revenue) but it should govern the design when a second physician is hired. The claimed CMS 75th-percentile flag is not a CMS rule."
+    },
+    {
+      "idea": "When a possible violation or overpayment surfaces, stop, call counsel before touching the arrangement or the government, size the affected claims over the look-back period, and meet the refund deadline.",
+      "why": "Problems the practice finds and resolves itself cost far less than the same problem found by an auditor or whistleblower.",
+      "applies_to_practice": "yes",
+      "note": "Use the overpayment rule in force since January 2025, not the document's version, and give whoever runs billing, human or agent, an internal channel to raise anomalies."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The practice has real anti-kickback touchpoints that the document only partly reaches: medical-director stipends, facility and hospital relationships, referrals to home health, hospice, pharmacy, lab and equipment suppliers, vendor deals, exclusion screening and sale diligence. The inventory-screen-escalate routine, exclusion checks and compliance-program basics transfer directly. But most of the technical content (in-office ancillaries, group pay pools, office leases) assumes a multi-physician office practice with ancillary lines, and the document is silent on facility-based care, nurse practitioners, cost-sharing waivers on care-management codes, Medicare Advantage and Florida law.",
+    "sections_that_do_not_apply": [
+      "Section 5 (in-office ancillary services): no office and no ancillary service lines; the group-practice tests presume two or more physicians",
+      "Section 6 (space and equipment leases): no clinic space or equipment rented to or from referral sources, as far as the context shows",
+      "Most of Section 4 (physician bonus pools and profit shares of ancillary revenue): one owner and one nurse practitioner, no ancillary revenue to share",
+      "Section 7 recruitment material: applies only if a hospital subsidizes a future hire",
+      "Definitive drug testing code-list notes in Sections 1 and 3",
+      "Value-based exception discussion in Section 9, unless the practice joins an accountable care organization or similar arrangement"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "60-day overpayment rule is stated in its pre-2025 form. The 'should have identified through reasonable diligence' trigger came from CMS's 2016 regulation rather than from court rulings, and CMS replaced it effective 1 January 2025 with the False Claims Act knowledge standard plus a pause of up to 180 days for a good-faith investigation. The rule sits in the Affordable Care Act (42 U.S.C. 1320a-7k(d)), not in the False Claims Act, and the six-year look-back runs from receipt of the payment, not from 'the date of the demand'.",
+      "In-office ancillary services patient notice: the regulation (42 CFR 411.355(b)(7)) covers MRI, CT and PET only, not physical therapy or radiation therapy. The document also omits the required written list of five alternative suppliers within 25 miles and recommends a signed acknowledgment the rule does not require. The error is repeated in Checklist 1.",
+      "Says the in-office exception is available only to members of a qualifying group practice of two or more physicians. The exception is also open to a solo physician; only the centralized-building option is limited to groups. Material for a one-physician practice.",
+      "Claims a turnkey arrangement in which the practice bills fails the exception's billing test. Billing by the practice is what that test requires; turnkey deals fail on supervision, on who furnishes the service, and on kickback grounds. The Florida settlement offered as proof was, on the document's own description, a kickback case.",
+      "Says per-click or usage-based equipment rent paid to a referring physician can be made compliant with documentation. Since October 2009 the lease exceptions bar percentage-of-revenue rent outright and per-unit-of-service rent to the extent it reflects patients the lessor referred to the lessee, which is exactly the situation the section describes.",
+      "Recruitment exception: says hospital money may not pass through the practice the recruit joins. 42 CFR 411.357(e)(4) expressly allows it with conditions (practice signs, pass-through except actual recruiting costs, incremental-cost cap on income guarantees, records kept, no unreasonable practice restrictions). The 'reasonable estimate of likely income' condition is not in the regulation, and the relocation tests are not explained.",
+      "75th percentile: the 2020 final rule preamble says CMS has no policy that pay above the 75th percentile is suspect. The document presents the opposite as CMS guidance (while conceding there is no bright line) and garbles it as 'productivity' above the 75th percentile. The flag is an industry rule of thumb, not a regulatory one.",
+      "Medical directorships: says the arrangement 'must meet' the Anti-Kickback personal services safe harbor. Safe harbors are voluntary; the mandatory test, when the payer furnishes designated health services, is a Stark exception (personal service arrangements or fair market value) that the section never names. Only hospital-paid directorships are discussed.",
+      "Describes Stark as Medicare-only. The statute reaches Medicaid through 42 U.S.C. 1396b(s), and False Claims Act cases have been built on that.",
+      "Blends the bona fide employment exception with the separate group-practice rules on profit shares and productivity bonuses, and treats any bonus on total practice revenue as tainted, ignoring the permitted overall-profit-share methods and the pooling rule in force since 2022.",
+      "Lease guidance frames above-market rent as a Stark problem and below-market rent as a kickback problem; either direction fails the Stark exception and either can be a kickback. It presents market drift during a lease term as a compliance failure although fair market value is tested when the deal is made, renewed or amended. It omits the timeshare exception, the usual route for part-time specialist space.",
+      "Non-monetary compensation: says exceeding the limit 'constitutes a financial relationship' (the benefit is one at any amount; the exception only protects it up to the limit), omits the repayment cure, and the checklist applies the limit to drug and device vendors that do not furnish designated health services.",
+      "False Claims Act: says every claim tainted by a kickback is a false claim as a matter of law, with no mention of the appellate split on causation (but-for causation in the First, Sixth and Eighth Circuits) or of the knowledge requirement, and treats a missed 60-day refund as automatically a violation.",
+      "The refund example counts all ancillary revenue ($200,000 a year) as refundable; Stark reaches only federal program payments for designated health services.",
+      "Unsupported or unverifiable statements: the 2024 code-list addition of definitive drug testing codes; 'CMS issued additional guidance in 2025'; the state-law component of the Florida case; the $500,000 typical violation; that 2024 self-disclosure settlements 'include independent practices of every size and specialty'; that a practice with a working program 'is not a target'.",
+      "The Fourth Circuit quotation comes from a concurring opinion in the Tuomey litigation, not from the court's holding, and no case is named.",
+      "Exclusion: says an excluded person cannot be employed by any entity paid by Medicare or Medicaid, which overstates the rule (the bar is on federal program payment for anything that person furnishes), while the recommended screening scope leaves out ordinary employees."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Calls FY2024's 558 False Claims Act resolutions the second-highest count on record while stating the FY2023 record was 543. Both cannot be true; the text appears to splice two DOJ releases (DOJ seems to have restated the FY2023 count upward later).",
+      "Section 6 lists six lease requirements and says a lease may satisfy 'five of the six', then says 'the same five requirements apply' to equipment.",
+      "Section 6 prescribes an annual rental-rate review; Checklist 2 accepts fair-market-value confirmation any time in the past three years.",
+      "Section 7 says recruitment money may not go through the practice the recruit joins, yet allows payment to the 'new employer' in the same bullet and then describes money flowing through or to the practice and the practice's pass-through duties.",
+      "Section 1 explains that failing a safe harbor is not a violation; Section 7 says a medical director arrangement 'must meet' the personal services safe harbor.",
+      "The comparison table says Stark applies to Medicare only; Section 2 and Section 3 speak of Stark-tainted claims to 'Medicare or Medicaid'.",
+      "Section 9 says the non-monetary limit concerns benefits from designated-health-service entities and that drug and device meals are not directly subject to it; Checklist 1 then applies the CMS limit to 'non-monetary compensation from vendors'.",
+      "The front-matter disclaimer says every example is de-identified or hypothetical, but the text names real settlements (Gilead Sciences, ChristianaCare).",
+      "Section 5 presents a three-requirement test, then adds two more conditions (group-practice status, patient notice) that its own checklist treats as required.",
+      "Section 3 lists production bonuses that include designated-health-service procedures as a violation; Section 4 says bonuses for personally performed work are allowed, without reconciling the two."
+    ],
+    "time_sensitive_or_outdated": [
+      "Overpayment trigger ('should have identified through reasonable diligence') was superseded on 1 January 2025; a document generated in September 2026 still teaches it.",
+      "False Claims Act statistics stop at FY2024. FY2025 results were published in January 2026 (my recollection is a record total near $6.8 billion; verify) and are not reflected.",
+      "Fraud takedown data stops at mid-2025.",
+      "$28,619 per-claim penalty is the 2025 inflation adjustment; check for a 2026 adjustment.",
+      "Non-monetary compensation limit of $535 is the 2026 figure and lapses on 31 December 2026; the 2027 figure should be on the CMS page by now or shortly.",
+      "Self-disclosure settlement counts are for 2024; 2025 figures should now be available.",
+      "The '2024 code-list update' note is two annual updates old.",
+      "No reference to OIG's November 2023 General Compliance Program Guidance or its November 2024 nursing facility guidance, both more current and more relevant than the uncited seven-element summary.",
+      "No mention of the 2024 Middle District of Florida ruling (Zafirov) holding the whistleblower provisions unconstitutional, on appeal to the Eleventh Circuit when I last had information; relevant to a Florida reader and its status needs checking.",
+      "No mention of rule changes effective 2021-2022 that matter in practice: limited-remuneration exception, 90-day grace for writings and signatures, and the group-practice profit-share pooling rule."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, regulation citation, case name, docket or link anywhere; the main small-practice case is left unnamed, which blocks verification.",
+      "A boilerplate paragraph about reviewing 'AI-generated drafts' sits in a document that contains no prompts or drafts, evidently pasted across the product library.",
+      "The same facts recur nearly word for word: FY2024 statistics twice, the Florida case five times, the drug-testing code note twice, the self-disclosure figures twice, the disclaimer about eight times.",
+      "Stitched numbers that conflict (558 versus 543) and miscounted lists (six versus five lease conditions; three core requirements that become five).",
+      "Formulaic rhetoric: repeated 'not X - it is Y' constructions, slogans such as the law 'does not grade on a curve', and a refrain about arrangements that 'seemed normal'.",
+      "A vague, unsourced assertion that CMS 'issued additional guidance in 2025'.",
+      "Hedging phrases inserted mid-example ('typically warrants review by healthcare counsel'), consistent with an automated legal-risk softening pass.",
+      "Round illustrative figures presented as typical ($500,000 violation; $200,000 a year of ancillary revenue).",
+      "Cross-selling of four sibling playbooks and about a dozen pages holding a single orphaned sentence; 81 pages for roughly 13,700 words."
+    ],
+    "missing_for_real_use": [
+      "Regulatory citations (42 CFR 411.350-411.389 and 42 CFR 1001.952) or links, so no rule can be traced or checked.",
+      "Penalty amounts for Stark and the Anti-Kickback Statute (civil money penalties, felony fine and prison term), the False Claims Act per-claim minimum, and the whistleblower share range.",
+      "Usable templates: arrangement register, medical-director duty and time log, fair-market-value memo, alternative-supplier notice, exclusion log, compliance policy, training outline. Only two checklists and a task list are provided.",
+      "Any method for establishing fair market value or commercial reasonableness (data sources, how to rate a directorship hour, when an appraisal is needed).",
+      "The beneficiary inducement penalty and routine waiver of copays and deductibles, a live issue for monthly care-management billing with little patient collection.",
+      "Facility-based and house-call practice: nursing facility, assisted living and hospice directorships; referrals to home health, hospice, pharmacy, lab, portable imaging and equipment suppliers; the private-home rule for in-office services; free staff or services from facilities and vendors.",
+      "Nurse practitioners and other non-physician clinicians, the bona fide employee safe harbor, and the exception that lets a hospital subsidize a non-physician recruit.",
+      "EKRA (the all-payer lab and treatment-facility kickback law), marketing and referral-fee arrangements, swapping, percentage-based vendor fees, and OIG special fraud alerts on telehealth and Medicare Advantage marketing.",
+      "Practical cures: limited-remuneration exception, grace period for missing signatures or writings, temporary non-compliance rule, period-of-disallowance mechanics, timeshare exception, technology donation exceptions.",
+      "State specifics. For Florida: Patient Self-Referral Act (Fla. Stat. 456.053), anti-kickback statute (456.054), Patient Brokering Act (817.505) and fee-splitting rules, which apply regardless of payer.",
+      "Self-disclosure mechanics: OIG protocol minimums and multipliers, CMS protocol forms, how disclosure interacts with the 60-day clock; and the OIG and CMS advisory-opinion routes.",
+      "Roles sized for a micro-practice (the plan assumes a practice administrator, billing staff and a separate compliance designee) and any treatment of automation or AI agents doing the billing."
+    ]
+  }
+}

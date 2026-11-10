@@ -1,0 +1,862 @@
+{
+ "domain": "clinical-operations",
+ "categories": [
+  {
+   "slug": "co-capacity-productivity",
+   "name": "Clinician capacity and productivity",
+   "summary": "How many patients each clinician can see well, and how many they do see. Clinician time is the practice's scarcest resource, and the work relative value unit (wRVU) is the standard way to measure output across visit types.",
+   "good_looks_like": [
+    "Visits and work units are reported per clinician each month.",
+    "Each clinician has a sustainable daily number agreed in advance, by visit type and setting.",
+    "Time lost to travel, waiting and clerical tasks is known.",
+    "Unusually high output is examined as carefully as low output."
+   ],
+   "failure_modes": [
+    "Output is judged by collections, which mix in payer rates and billing errors.",
+    "A clinician carries far more visits than peers and nobody asks whether the notes support it.",
+    "Clinicians spend an hour a day on tasks a staff member could do.",
+    "Nobody knows how many more patients the practice could take."
+   ],
+   "key_questions": [
+    "How many visits and work units did each clinician produce last month?",
+    "How does that compare with survey medians for the specialty?",
+    "How much of a clinician's day is spent on travel or clerical work?",
+    "If output is well above the median, do audited notes support it?"
+   ],
+   "actions": [
+    {
+     "action": "Report visits and work units per clinician monthly",
+     "detail": "From the billing system by rendering clinician, using Medicare's work value for each code.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Agree a sustainable daily volume",
+     "detail": "Set by setting and visit type, and review when it is regularly exceeded.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Remove non-clinical tasks from clinicians",
+     "detail": "List what each clinician does that someone else could, and reassign one item a quarter.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Investigate outliers both ways",
+     "detail": "Work units far above a survey median call for a coding audit before they are celebrated.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice. Medians come mostly from office-based groups. Hospital and facility rounding produces different visit mixes, so compare a clinician first with their own history and with audited coding.",
+   "sources": [
+    "amga-2026",
+    "cms-puf"
+   ],
+   "evidence_note": "Work-unit medians are survey data from mostly large groups. CMS publishes every clinician's Medicare services by code, so productivity outliers are visible to auditors.",
+   "metrics": [
+    {
+     "slug": "co-encounters-per-clinician-day",
+     "name": "Face-to-face encounters per clinician day",
+     "definition": "Average number of patient visits a clinician performs on a day worked, not counting non-face-to-face services.",
+     "formula": "Face-to-face encounters / clinician days worked",
+     "unit": "count",
+     "direction": "range",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Sustainable volume depends on setting, visit type and travel, so set the range yourself.",
+     "confidence": "none",
+     "data_hint": "Billing system encounters by rendering clinician and date."
+    },
+    {
+     "slug": "co-wrvu-per-fte",
+     "name": "Work RVUs per full-time clinician",
+     "definition": "Total work relative value units of the services a clinician personally performed in a year, scaled to full time.",
+     "formula": "Sum of (services x Medicare work value per code) / full-time equivalents",
+     "unit": "count",
+     "direction": "range",
+     "cadence": "annual",
+     "benchmark_typical": "about 6,500 for family physicians and 4,600 for primary care nurse practitioners",
+     "benchmark_red": "far above the median without audit support",
+     "benchmark_note": "AMGA medians, 2025 data: family medicine 6,505, internal medicine 6,390, primary care nurse practitioner 4,647. Mostly large groups. The red flag is a judgment.",
+     "confidence": "medium",
+     "data_hint": "Services by code and rendering clinician, multiplied by the work value in the Medicare fee schedule.",
+     "sources": [
+      "amga-2026"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "co-census-panel",
+   "name": "Census or panel management",
+   "summary": "Knowing exactly which patients the practice is responsible for. In an office this is the panel. In facility and home-visit practice it is the census at each site, which changes daily with admissions, discharges, transfers and deaths.",
+   "good_looks_like": [
+    "A current list of active patients exists, by site and by responsible clinician.",
+    "Admissions and discharges are recorded the day they happen.",
+    "Census by site is counted at each month end and trended.",
+    "Patients not seen within their expected interval are listed."
+   ],
+   "failure_modes": [
+    "Patients drift off the list without anyone deciding they should.",
+    "A facility's census under the practice's care falls for months before revenue shows it.",
+    "Two clinicians each believe the other is following a patient.",
+    "The practice cannot say how many active patients it has."
+   ],
+   "key_questions": [
+    "How many active patients do we have today, by site and clinician?",
+    "How many did we gain and lose last month, and why?",
+    "Which patients have no assigned clinician?",
+    "Which sites are growing and which are shrinking?"
+   ],
+   "actions": [
+    {
+     "action": "Keep one active-patient list",
+     "detail": "Site, responsible clinician, start date, and the reason and date when a patient leaves.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Count census by site monthly",
+     "detail": "Opening count, admissions, discharges, deaths, closing count.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Assign every patient a responsible clinician",
+     "detail": "And a covering clinician.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review losses",
+     "detail": "Each month, look at why patients left: discharge home, death, transfer, or a change of physician.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice that follows patients over time. Office practices track panel size per clinician. Facility practices track census per site, where a change of facility leadership can move many patients at once.",
+   "sources": [
+    "ncqa-pcmh",
+    "mgma-bok"
+   ],
+   "evidence_note": "Panel and census management are core concepts in the medical-home model and practice management guidance. No benchmark applies across settings.",
+   "metrics": [
+    {
+     "slug": "co-active-census",
+     "name": "Active patients",
+     "definition": "Number of patients currently under the practice's care, by site or clinician.",
+     "formula": "Count of patients with an open episode or a visit within the practice's defined interval",
+     "unit": "count",
+     "direction": "info",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Define active once, for example seen within 90 days or currently resident, and keep the definition fixed.",
+     "confidence": "none",
+     "data_hint": "The active-patient list or distinct patients with a visit in the period."
+    },
+    {
+     "slug": "co-census-net-change",
+     "name": "Net change in active patients per month",
+     "definition": "Patients added minus patients lost during the month.",
+     "formula": "New active patients - patients who left",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
+     "confidence": "none",
+     "data_hint": "Month-end census counts by site."
+    }
+   ]
+  },
+  {
+   "slug": "co-visit-cadence",
+   "name": "Visit cadence: required, recurring and preventive visits",
+   "summary": "Each patient type has an interval at which it should be seen: set by regulation for nursing facility residents, by the care plan for chronic disease, and yearly for a Medicare wellness visit. Missing the interval is both a quality gap and lost revenue.",
+   "good_looks_like": [
+    "Each patient has a next-visit-due date.",
+    "A weekly list shows who is due and who is overdue, by site.",
+    "For nursing facility residents, required visits are scheduled from the admission date.",
+    "Medicare patients are offered a wellness visit once every 12 months."
+   ],
+   "failure_modes": [
+    "A nursing facility is cited because a required physician visit was late or done by a clinician not allowed to do it.",
+    "Visits follow the clinician's memory of who was seen recently.",
+    "Wellness visits are never offered, or are billed too soon after the last one.",
+    "Stable patients are seen far more often than their condition requires, which invites review."
+   ],
+   "key_questions": [
+    "Does every patient have a next-visit-due date?",
+    "How many patients are overdue today?",
+    "For nursing facility residents, do we track the 30-day and 60-day required visits?",
+    "What share of our Medicare patients had a wellness visit in the last year?"
+   ],
+   "actions": [
+    {
+     "action": "Add a next-visit-due date to every patient",
+     "detail": "Set by patient type and updated at each visit.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Work the due and overdue list weekly",
+     "detail": "By site, so that trips are planned around who is due.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Schedule regulatory visits from admission",
+     "detail": "Federal rules require a physician visit at least every 30 days for the first 90 days, then every 60 days.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Offer wellness visits yearly",
+     "detail": "Check the date of the last one in the eligibility answer before scheduling.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice with continuing patients. The nursing facility schedule is federal regulation, and in a skilled nursing facility the first comprehensive visit must be done by the physician personally.",
+   "sources": [
+    "cfr-483-30",
+    "cms-cpm-ch12",
+    "cms-cert-2025"
+   ],
+   "evidence_note": "The nursing facility visit schedule is federal regulation. Medicare's manual warns that an unreasonable number of visits may be reviewed. Wellness visit claims have a measured error rate of about 14%.",
+   "metrics": [
+    {
+     "slug": "co-visits-on-schedule",
+     "name": "Patients seen within their planned interval",
+     "definition": "Share of active patients whose most recent visit falls within the interval set for their patient type.",
+     "formula": "Active patients not overdue / active patients",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "weekly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For federally required nursing facility visits the standard is 100%.",
+     "confidence": "none",
+     "data_hint": "Next-visit-due dates compared with today's date."
+    },
+    {
+     "slug": "co-awv-rate",
+     "name": "Eligible patients with a wellness visit in the last 12 months",
+     "definition": "Share of Medicare patients under the practice's primary care who received an annual wellness visit within the past year.",
+     "formula": "Medicare patients with a wellness visit in the last 12 months / eligible Medicare patients",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Plans and accountable care organizations often set their own targets.",
+     "confidence": "none",
+     "data_hint": "Wellness visit codes by patient and date, against the active Medicare list."
+    }
+   ]
+  },
+  {
+   "slug": "co-team-based-care",
+   "name": "Team-based care and advanced practice clinicians",
+   "summary": "Dividing work so that each person does what their training and license allow and no more expensive person does it instead. It covers how physicians, nurse practitioners, physician assistants, nurses and assistants share patients and tasks.",
+   "good_looks_like": [
+    "Written roles say which visits and tasks each type of clinician and staff member handles.",
+    "Advanced practice clinicians see their own patients within state scope and are supervised as the state requires.",
+    "Visits that rules reserve for a physician are identified and scheduled for the physician.",
+    "Staff handle refills, forms, calls and care-management tasks under protocols."
+   ],
+   "failure_modes": [
+    "A physician does work a nurse or assistant could do, and capacity is lost.",
+    "A nurse practitioner performs a visit that regulation requires the physician to do personally.",
+    "A nurse practitioner's work is billed under the physician's number where the rules do not allow it.",
+    "Tasks are delegated with no protocol and no check."
+   ],
+   "key_questions": [
+    "What does each clinician do that someone else on the team could?",
+    "Which visits in our setting must a physician personally perform?",
+    "Is every service billed under the clinician who performed it?",
+    "Are state supervision or collaboration requirements documented and current?"
+   ],
+   "actions": [
+    {
+     "action": "Write a who-does-what table",
+     "detail": "Visit types and tasks down the side, roles across the top.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Mark physician-only visits",
+     "detail": "For example the first comprehensive visit in a skilled nursing facility.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Bill under the performing clinician",
+     "detail": "Medicare pays advanced practice clinicians 85% of the physician rate under their own number.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Create protocols for delegated tasks",
+     "detail": "Refills, forms, routine calls and care-management contacts, each with a written protocol.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with more than one type of clinician or with clinical staff. The billing rules differ by setting: billing a staff member's work under the physician is an office concept and does not apply in hospitals or skilled nursing facilities.",
+   "sources": [
+    "cfr-414-56",
+    "cfr-483-30",
+    "cms-cpm-ch12",
+    "mgma-app-2026"
+   ],
+   "evidence_note": "Payment and delegation rules are federal regulation and Medicare manual text. Staffing ratios are MGMA survey medians for office-based primary care.",
+   "metrics": [
+    {
+     "slug": "co-app-per-physician",
+     "name": "Advanced practice clinicians per physician",
+     "definition": "Full-time nurse practitioners and physician assistants per full-time physician.",
+     "formula": "Advanced practice clinician full-time equivalents / physician full-time equivalents",
+     "unit": "ratio",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_typical": "0.80 in primary care",
+     "benchmark_note": "MGMA median, 2025 data. Not a target. The right ratio depends on which visits must be done by a physician in the practice's setting.",
+     "confidence": "medium",
+     "data_hint": "Payroll.",
+     "sources": [
+      "mgma-app-2026"
+     ]
+    },
+    {
+     "slug": "co-support-staff-per-clinician",
+     "name": "Support staff per full-time clinician",
+     "definition": "Full-time support staff, clinical and administrative, per full-time physician or clinician.",
+     "formula": "Support staff full-time equivalents / clinician full-time equivalents",
+     "unit": "ratio",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_typical": "4.42 per physician in primary care",
+     "benchmark_note": "MGMA median per physician, 2025 data, for office-based primary care. Practices with no front desk or with automated billing run far lower. Use it as a reference, not a target.",
+     "confidence": "medium",
+     "data_hint": "Payroll.",
+     "sources": [
+      "mgma-app-2026"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "co-care-management",
+   "name": "Care-management programs",
+   "summary": "Running monthly care management as a real program: who is eligible, who has consented, what the care plan says, who does the work, how time is logged, and what it achieves. The billing rules are covered under charges and coding.",
+   "good_looks_like": [
+    "An enrollment list shows each patient's eligibility, consent date and care plan date.",
+    "Named staff do the work, with enough hours to cover the minutes billed.",
+    "Every contact is logged with date, person, minutes and what was done.",
+    "Each month the total minutes logged are compared with staff hours available."
+   ],
+   "failure_modes": [
+    "The whole census is enrolled and billed before staff, logs or consent exist.",
+    "Time by a facility's own nurses is counted as the practice's staff time.",
+    "Minutes are estimated at month end.",
+    "Billing continues for patients who died, moved, entered hospice or are managed by another practice."
+   ],
+   "key_questions": [
+    "How many patients are enrolled, and does each have documented consent and a care plan?",
+    "Who performs the monthly work, and how many hours do they have?",
+    "Do logged minutes add up to more staff hours than exist?",
+    "Which patients were dropped last month, and why?"
+   ],
+   "actions": [
+    {
+     "action": "Build the enrollment list",
+     "detail": "Eligible conditions, consent date, care plan date, assigned staff member.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Log time as the work happens",
+     "detail": "A tool that records date, person and minutes for each activity.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Run a monthly capacity check",
+     "detail": "Total minutes billed against hours each staff member actually worked on care management.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Remove patients who no longer qualify",
+     "detail": "Deaths, discharges, hospice elections and transfers of care, checked before each billing cycle.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Audit a sample each quarter",
+     "detail": "Ten patient-months compared against consent, plan and log.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Practices providing primary care to patients with chronic conditions, in offices, at home or in facilities. For facility residents the work must be done by the practice's own staff, and the place of service on the claim changes the payment.",
+   "sources": [
+    "cms-mln-ccm",
+    "cms-ccm-faq",
+    "cms-apcm",
+    "cms-cert-2025"
+   ],
+   "evidence_note": "Requirements are set out in CMS booklets and its 2022 question-and-answer document. Medicare's 2025 review found most standard care-management claims improper, chiefly for missing documentation, so the operational controls matter.",
+   "metrics": [
+    {
+     "slug": "co-care-mgmt-enrollment",
+     "name": "Eligible patients enrolled in care management",
+     "definition": "Share of patients who meet the eligibility conditions and have consented and been enrolled in a care-management program.",
+     "formula": "Enrolled patients with consent / eligible patients",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A very high share enrolled at the most intensive code is a reason to audit. Nationally the complex code is about 8% of care-management claims.",
+     "confidence": "low",
+     "data_hint": "The enrollment list against the active-patient list.",
+     "sources": [
+      "cms-puf"
+     ]
+    },
+    {
+     "slug": "co-care-mgmt-minutes",
+     "name": "Documented minutes per enrolled patient per month",
+     "definition": "Average minutes of logged care-management work per enrolled patient in a month, compared with the threshold of the code billed.",
+     "formula": "Total logged minutes / enrolled patients billed",
+     "unit": "count",
+     "direction": "range",
+     "cadence": "monthly",
+     "benchmark_best": "at or above the threshold of the code billed, for every patient",
+     "benchmark_note": "Thresholds from CMS: 20 minutes for standard care management, 60 for complex. A code billed without that many logged minutes is not supported.",
+     "confidence": "high",
+     "data_hint": "The time log, summed by patient and month.",
+     "sources": [
+      "cms-mln-ccm"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "co-access-scheduling",
+   "name": "Access, scheduling and rounding efficiency",
+   "summary": "For office practices: how soon a patient can be seen and how full the schedule is. For visiting practices: how sites are grouped into days, how much time goes to travel, and how many patients are seen per trip.",
+   "good_looks_like": [
+    "Office practices measure the wait for the third next available appointment and keep some same-day slots.",
+    "Visiting practices plan each day by site, around who is due.",
+    "Travel time and patients per trip are known.",
+    "Urgent requests from patients or facilities have a defined response time."
+   ],
+   "failure_modes": [
+    "New patients wait weeks while the schedule has unfilled slots.",
+    "A clinician drives to a facility for two patients when eight were due next week.",
+    "Urgent visits displace routine ones, which then fall overdue.",
+    "Nobody knows the practice's true capacity."
+   ],
+   "key_questions": [
+    "How long is the wait for a routine appointment, or for a new facility admission to be seen?",
+    "How many patients do we see per trip to each site?",
+    "How many hours a week do clinicians spend traveling?",
+    "How fast do we respond to an urgent request?"
+   ],
+   "actions": [
+    {
+     "action": "Measure access monthly",
+     "detail": "Third next available appointment for offices. Days from admission to first visit for facilities.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Group sites into fixed days",
+     "detail": "Assign each site set days and add visits that are due to the same trip.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Count patients per trip",
+     "detail": "By site, each month. Low counts are a scheduling or census signal.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Set a response standard for urgent requests",
+     "detail": "And record whether it was met.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Office practices use the appointment measures. Hospital, facility and home-visit practices have no appointment schedule, and the equivalent measures are time to first visit, patients per trip and travel time.",
+   "sources": [
+    "mgma-app-2026"
+   ],
+   "evidence_note": "Appointment access figures are MGMA medians for office-based primary care. No published benchmark exists for rounding efficiency.",
+   "metrics": [
+    {
+     "slug": "co-third-next-available",
+     "name": "Third next available appointment",
+     "definition": "Days until the third open routine appointment, a standard measure of how long patients wait that ignores chance cancellations.",
+     "formula": "Days from today to the third open routine slot, averaged across clinicians",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_typical": "8.0 days for established patients, 13.7 for new",
+     "benchmark_note": "MGMA primary care medians, 2025 data. Applies to scheduled office practices only.",
+     "confidence": "medium",
+     "data_hint": "The scheduling system.",
+     "sources": [
+      "mgma-app-2026"
+     ]
+    },
+    {
+     "slug": "co-patients-per-site-visit",
+     "name": "Patients seen per facility trip",
+     "definition": "Average number of patients a clinician sees on one visit to a site.",
+     "formula": "Encounters at the site / clinician trips to the site",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare sites with each other and with the number of patients due.",
+     "confidence": "none",
+     "data_hint": "Encounters by site and date."
+    }
+   ]
+  },
+  {
+   "slug": "co-coverage-call",
+   "name": "Call coverage and after-hours care",
+   "summary": "Who answers when a patient, family or facility needs a clinician outside working hours, and who covers when a clinician is away. Weak coverage sends patients to the emergency department and wears out clinicians.",
+   "good_looks_like": [
+    "A written schedule shows who is on call every night and weekend.",
+    "A covering clinician is named for each planned absence.",
+    "After-hours calls are logged with the reason and the outcome.",
+    "Callers know one number to reach the practice."
+   ],
+   "failure_modes": [
+    "The owner is on call every night of the year.",
+    "Facility nurses cannot reach anyone and send the resident to the hospital.",
+    "Calls are handled by memory, with no record of what was ordered.",
+    "A vacation leaves no one able to sign orders or see new admissions."
+   ],
+   "key_questions": [
+    "Who is on call tonight, and who covers when that person is away?",
+    "How many after-hours calls do we get in a week, and what are they about?",
+    "How many led to a hospital transfer?",
+    "Is there a written agreement with a covering clinician?"
+   ],
+   "actions": [
+    {
+     "action": "Publish a call schedule",
+     "detail": "Monthly, shared with every site and staff member.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Log after-hours calls",
+     "detail": "Time, site, reason, action and outcome.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Arrange cross-coverage in writing",
+     "detail": "With another clinician or practice, including access to records and how billing is handled.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review calls that ended in a transfer",
+     "detail": "Could a standing order or earlier visit have prevented it?",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice responsible for patients outside office hours. The burden is heaviest in small hospital and facility practices, where calls come from nursing staff at all hours.",
+   "sources": [
+    "ama-burnout-2026",
+    "ihi-aims"
+   ],
+   "evidence_note": "Professional guidance. The link between workload and burnout is measured. No benchmark for call volume exists.",
+   "metrics": [
+    {
+     "slug": "co-after-hours-contacts",
+     "name": "After-hours contacts per week",
+     "definition": "Number of calls or messages requiring a clinician's response outside working hours in a week.",
+     "formula": "Count of after-hours contacts in the week",
+     "unit": "count",
+     "direction": "info",
+     "cadence": "weekly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The useful view is by reason and site, to find calls that a protocol or daytime visit would prevent.",
+     "confidence": "none",
+     "data_hint": "The call log."
+    }
+   ]
+  },
+  {
+   "slug": "co-transitions",
+   "name": "Care transitions and communication",
+   "summary": "The handoffs when a patient moves between hospital, nursing facility, assisted living and home. Most medication errors and avoidable readmissions happen here, and Medicare pays for managing the transition back to the community.",
+   "good_looks_like": [
+    "The practice learns of every admission and discharge within a day.",
+    "Medications are reconciled at each move.",
+    "A patient discharged to home or assisted living is contacted within two business days and seen within 7 or 14 days.",
+    "The next setting receives a summary of what happened and what is planned."
+   ],
+   "failure_modes": [
+    "The practice learns a patient was hospitalized only when the patient returns.",
+    "A discharge medication list conflicts with the facility's orders and nobody reconciles them.",
+    "Transitional care is billed for a move from hospital to nursing facility, where it does not apply.",
+    "Hospice or home health is started with no one coordinating."
+   ],
+   "key_questions": [
+    "How do we find out that one of our patients was admitted or discharged?",
+    "Who reconciles medications after each move?",
+    "How many discharges to home or assisted living received transitional care last quarter?",
+    "How many of our patients were readmitted within 30 days?"
+   ],
+   "actions": [
+    {
+     "action": "Set up admission and discharge notices",
+     "detail": "From hospitals, facilities, health information exchanges or plan alerts.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Reconcile medications at every move",
+     "detail": "Compare the sending and receiving lists and document the decision on each difference.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Run a transitional care routine",
+     "detail": "Contact within two business days and a visit within 7 days for high-complexity or 14 days for moderate-complexity decisions.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Send a short handoff summary",
+     "detail": "Diagnoses, medication changes, pending results and goals of care.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice whose patients are hospitalized. Transitional care management is payable only when the patient returns to a community setting such as home or assisted living, and only one clinician may bill it.",
+   "sources": [
+    "cms-cert-2025",
+    "ihi-aims"
+   ],
+   "evidence_note": "The transitional care requirements are set by CMS. Evidence that timely follow-up lowers readmissions is well established. No benchmark for capture rate was found.",
+   "metrics": [
+    {
+     "slug": "co-tcm-capture",
+     "name": "Eligible discharges that received transitional care management",
+     "definition": "Share of discharges to a community setting for which the practice made contact within two business days and a visit within the required 7 or 14 days.",
+     "formula": "Discharges with timely contact and visit / discharges to a community setting",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
+     "confidence": "none",
+     "data_hint": "Discharge notices matched to contact logs and visit dates."
+    }
+   ]
+  },
+  {
+   "slug": "co-documentation-workflow",
+   "name": "Documentation workflow",
+   "summary": "How notes get written: templates, dictation, scribes and artificial intelligence tools, and how quickly notes are finished. Slow or copied notes delay billing, add after-hours work and weaken audit defense.",
+   "good_looks_like": [
+    "Notes are completed the day of the visit, or within 72 hours at most.",
+    "Templates prompt for what the code and the payer require without filling it in automatically.",
+    "Text drafted by a scribe or an AI tool is read and signed by the clinician, note by note.",
+    "Time spent charting after hours is known."
+   ],
+   "failure_modes": [
+    "Notes are finished days later from memory.",
+    "Copied-forward text makes every note identical, which auditors treat as unsupported.",
+    "AI-drafted notes are signed in bulk without reading.",
+    "Clinicians spend their evenings charting."
+   ],
+   "key_questions": [
+    "What share of notes are finished the same day?",
+    "How many unsigned notes are older than 72 hours right now?",
+    "Do clinicians individually review text drafted by a scribe or AI tool?",
+    "How many hours a week does each clinician chart after hours?"
+   ],
+   "actions": [
+    {
+     "action": "Set a same-day standard for notes",
+     "detail": "With a weekly list of unsigned notes by clinician.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Review templates yearly",
+     "detail": "Remove default text that asserts work not done. Add prompts for time and decision making.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Require individual sign-off on drafted notes",
+     "detail": "Medicare's manual requires the practitioner to review and sign documentation captured by a scribe or AI tool.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Ask about after-hours charting",
+     "detail": "Twice a year, and act on the answers.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Rounding practices document on the move, so mobile tools and same-day completion matter most there.",
+   "sources": [
+    "cms-pim-ch3",
+    "mgma-stat-ar-2026",
+    "ama-burnout-2026"
+   ],
+   "evidence_note": "The sign-off requirement is Medicare manual text. MGMA advises closing notes within 72 hours. Same-day completion is a practical standard, not a rule.",
+   "metrics": [
+    {
+     "slug": "co-same-day-note-rate",
+     "name": "Notes completed on the day of service",
+     "definition": "Share of visit notes signed on the date of the visit.",
+     "formula": "Notes signed on the date of service / notes",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No published benchmark. MGMA advises closing notes within 72 hours, so the share closed within that window is a second useful figure.",
+     "confidence": "low",
+     "data_hint": "Health record report of note signature time against visit date.",
+     "sources": [
+      "mgma-stat-ar-2026"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "co-patient-experience",
+   "name": "Experience of patients, families and facilities",
+   "summary": "How patients, their families and the facilities that host them experience the practice: access, communication, courtesy and follow-through. For facility-based practices the facility's leaders are customers too.",
+   "good_looks_like": [
+    "The practice asks for feedback on a schedule, in a way that fits its patients.",
+    "Complaints are logged, answered and reviewed for patterns.",
+    "Families of patients who cannot speak for themselves know how to reach a clinician.",
+    "Facility leaders are asked directly, at least twice a year, how the practice is doing."
+   ],
+   "failure_modes": [
+    "The first sign of dissatisfaction is a facility choosing another physician group.",
+    "Complaints are handled one at a time and nobody sees the pattern.",
+    "Families cannot get a call back.",
+    "Surveys are sent to patients who cannot complete them."
+   ],
+   "key_questions": [
+    "When did we last ask patients, families or facility leaders how we are doing?",
+    "How many complaints did we receive last year, and about what?",
+    "How quickly do we return a family's call?",
+    "What do facility administrators say they most want from us?"
+   ],
+   "actions": [
+    {
+     "action": "Ask three questions twice a year",
+     "detail": "Of facility leaders or a sample of patients and families. Record the answers.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Log every complaint",
+     "detail": "Date, source, issue, response and days to close.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Set a call-back standard for families",
+     "detail": "For example the same business day.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review feedback at the monthly meeting",
+     "detail": "Choose one change each quarter.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Every practice. Office practices can use standard surveys. Practices serving frail or cognitively impaired patients rely on families and facility staff for feedback.",
+   "sources": [
+    "ahrq-cgcahps",
+    "ihi-aims"
+   ],
+   "evidence_note": "The standard survey is a federal instrument. Its last national results are from 2019, since submissions were suspended in 2021. No newer national benchmark exists.",
+   "metrics": [
+    {
+     "slug": "co-experience-score",
+     "name": "Patient or family experience score",
+     "definition": "Share of respondents giving the top rating on the practice's chosen experience question, such as overall rating of the clinician.",
+     "formula": "Top-rating responses / responses",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_typical": "79% rated their clinician 9 or 10 out of 10",
+     "benchmark_note": "CAHPS Clinician and Group database, adult survey, 2019. Provider communication 85%, access 65%. Office-based practices only and now dated.",
+     "confidence": "low",
+     "data_hint": "A short survey or structured interviews.",
+     "sources": [
+      "ahrq-cgcahps"
+     ]
+    },
+    {
+     "slug": "co-complaints-rate",
+     "name": "Complaints per 1,000 encounters",
+     "definition": "Logged complaints from patients, families or facilities, scaled to 1,000 encounters.",
+     "formula": "Complaints logged / encounters x 1,000",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A rising count can also mean the practice has become easier to complain to, which is good.",
+     "confidence": "none",
+     "data_hint": "The complaint log and encounter counts."
+    }
+   ]
+  }
+ ]
+}

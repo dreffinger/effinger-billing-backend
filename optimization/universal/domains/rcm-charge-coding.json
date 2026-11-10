@@ -1,0 +1,1278 @@
+{
+ "domain": "rcm-charge-coding",
+ "categories": [
+  {
+   "slug": "cc-charge-capture",
+   "name": "Charge capture and reconciliation",
+   "summary": "Making sure every billable service becomes a charge. A missed charge leaves no denial and no report, so only a comparison of who was seen against what was charged will find it.",
+   "good_looks_like": [
+    "Each working day, a list of visits made (schedule, facility census, rounding list or signed notes) is matched to charges, and every unmatched visit has a written reason.",
+    "Hospital, nursing facility, assisted living, home and telehealth work are reconciled as separate streams, by clinician and by building.",
+    "Services billed by the month, such as care management, have their own trigger and are checked against the list of enrolled patients.",
+    "A named person owns the reconciliation, and the owner sees the count of unexplained visits every week.",
+    "A monthly sample of notes is checked for services that are easy to forget: advance care planning, prolonged time, discharge day work and wellness visits."
+   ],
+   "failure_modes": [
+    "Rounds are charged in weekly batches or at discharge, so visits are forgotten and no report shows them.",
+    "A new admission is seen but never added to the billing list. The facility census changed and nobody told billing.",
+    "Notes stay in the facility's record system and never reach billing, so documented visits produce no charge.",
+    "Care-management months are billed from memory. Eligible months are missed and months that do not qualify are billed.",
+    "A required nursing facility visit is missed. The practice loses the charge and the facility falls out of compliance with 42 CFR 483.30."
+   ],
+   "key_questions": [
+    "How many visits last month had no charge after reconciliation?",
+    "Is every visit list matched to charges at least weekly, and daily for hospital work?",
+    "Can you name the person who does the matching and show last week's exception list?",
+    "How many enrolled care-management patients had no claim last month, and is the reason written down for each?",
+    "For nursing facility residents, do you track the date each next required visit is due?"
+   ],
+   "actions": [
+    {
+     "action": "Match the list of patients seen to charges entered.",
+     "detail": "Use a list made independently of billing: schedule, facility census, rounding list or signed notes. Write a reason beside each visit with no charge. Aim for zero unexplained.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Record each charge on the day of the visit.",
+     "detail": "Use a phone or tablet charge tool, or a one-page rounding sheet handed in daily. Never hold charges until discharge or the end of the week.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a due-date list for required nursing facility visits.",
+     "detail": "42 CFR 483.30 requires a physician visit at least every 30 days for the first 90 days after admission and every 60 days after that. A visit up to 10 days late still counts as timely.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Run a monthly trigger for services billed by the month.",
+     "detail": "List every enrolled care-management patient, the minutes logged and whether a claim went out. Look into each enrolled patient with no claim.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Sample notes for services documented but never charged.",
+     "detail": "Each month read 10 to 20 notes per clinician. Look for add-on services, procedures and second services that never reached a claim.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Where there is no front desk (hospital rounds, nursing facilities, assisted living, home visits) the schedule cannot serve as the control list, so it must come from the facility census, a rounding list or signed notes, with a separate reconciliation for each building.",
+   "vendor_refs": [
+    {
+     "item": "charge-capture-audit-playbook",
+     "note": "Adds six failure points and a daily encounter-to-charge check. Its 1 to 5 percent loss estimate names no source document, and it wrongly calls polyp removal an add-on code."
+    },
+    {
+     "item": "kpi-09-charge-lag",
+     "note": "Sound census-to-charge reconciliation and same-day rule for rounding. Its 2 percent gap tolerance has no source. Aim for zero unexplained visits."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Daily list of encounters with no charge, with hospital work as its own stream. The 1 to 3 percent typical gap it quotes has no source."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Assumes an office with a front desk. Nothing on census or rounding-list reconciliation, the main control in facility work."
+    }
+   ],
+   "sources": [
+    "cfr-483-30",
+    "cms-cpm-ch12",
+    "hfma-map-keys"
+   ],
+   "evidence_note": "Reconciliation is a standard internal control, not a regulation. No public data measure how many charges practices miss. The nursing facility visit schedule is federal regulation (42 CFR 483.30).",
+   "metrics": [
+    {
+     "slug": "cc-missed-charge-rate",
+     "name": "Encounters with no charge after reconciliation",
+     "definition": "Share of visits on the control list (schedule, census, rounding list or signed notes) that still have no charge and no written reason once reconciliation is done.",
+     "formula": "Visits with no charge and no documented reason / all visits on the control list, for the same dates",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_note": "No public benchmark was found. The Healthcare Financial Management Association's MAP Keys (2023 edition) have no missed-charge measure. Set the target from first principles: zero unexplained visits. Track your own weekly count.",
+     "confidence": "none",
+     "sources": [
+      "hfma-map-keys"
+     ],
+     "data_hint": "Compare the day's schedule, facility census or rounding list with charges posted in the billing system for the same dates.",
+     "vendor_claim": "A gap under 1 to 2 percent of encounters, or an encounter-to-charge match of 99 percent or better. The library calls these its own targets.",
+     "vendor_verdict": "Unverifiable. The library itself says these are not industry benchmarks. A census-based practice should aim for zero unexplained visits."
+    }
+   ]
+  },
+  {
+   "slug": "cc-charge-lag",
+   "name": "Charge lag and note completion",
+   "summary": "The time from a visit to a signed note, a charge and a claim. Long delays slow cash, hide lost charges and can push claims past filing deadlines, while billing before the note is complete creates a compliance risk.",
+   "good_looks_like": [
+    "Notes are signed within 72 hours of the visit, and each clinician's count of older unsigned notes is known every week.",
+    "Charges are entered within 2 days of the signed note. Lag is reported by clinician and by setting, not as one practice average.",
+    "No claim is released until the note is complete and signed. Held claims are listed with their age.",
+    "A table of each payer's filing limit exists, and unbilled visits within 30 days of a limit are worked first.",
+    "Late changes to a note are added as dated, signed addenda, never by rewriting the original."
+   ],
+   "failure_modes": [
+    "Notes are finished days or weeks later from memory. Medicare expects documentation during the service or as soon as practicable after it.",
+    "Claims go out before the note is signed. If the note never supports the claim, the payment is an overpayment that must be returned.",
+    "An average lag of 3 days hides a tail of visits billed months late or never. The tail, not the average, causes filing write-offs.",
+    "A change of health plan is found late, the claim goes to the wrong payer, and the right payer's shorter filing window runs out.",
+    "Lag is measured only from charge entry to claim, so the delay between the visit and the note stays invisible."
+   ],
+   "key_questions": [
+    "What is the average number of days from visit to charge entry, by clinician and by setting?",
+    "What share of charges were entered more than 3 days after the visit last month?",
+    "How many notes are unsigned and older than 72 hours today?",
+    "Is any claim released before its note is signed?",
+    "Do you have each payer's filing limit in writing, from the contract or the payer manual?"
+   ],
+   "actions": [
+    {
+     "action": "Set two clocks: note signed in 72 hours, charge entered in 2 days.",
+     "detail": "These are standards suggested by the Medical Group Management Association (MGMA). Write them into clinician and billing expectations and report against them weekly.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Publish a weekly list of unsigned notes by clinician.",
+     "detail": "Show each clinician's count and oldest date. The owner reviews the list. An unsigned note holds its claim.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Block claim release until the note is signed.",
+     "detail": "Set the billing system, or a staff rule, so that an unsigned note holds the claim. Report held claims by age so that holds do not turn into lost charges.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Report the tail, not only the average.",
+     "detail": "Each month list charges entered more than 7, 14 and 30 days after the visit, and unbilled visits within 30 days of a payer's filing limit.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Build the payer filing-limit table from contracts.",
+     "detail": "Medicare fee-for-service allows 12 months (42 CFR 424.44). Medicare Advantage limits come from each contract. In Florida, claims to state-regulated insurers and health maintenance organizations are due within 6 months (sections 627.6131 and 641.3155).",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Hospital and nursing facility notes often live in the facility's record system, so a practice that works there needs its own copy or a log to know that a note is signed before it bills.",
+   "vendor_refs": [
+    {
+     "item": "kpi-09-charge-lag",
+     "note": "The five-timestamp trace separates clinician delay from billing delay. Do not follow its advice to bill near a deadline before documentation is complete."
+    },
+    {
+     "item": "charge-capture-audit-playbook",
+     "note": "Sets its own targets: 48 to 72 hours for office work, 5 business days for hospital. Calls filing denials final absent administrative error. Medicare lists more exceptions (42 CFR 424.44)."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Targets of 24 to 48 hours and under 5 percent late charges have no source. Calls slow hospital charge entry a credentialing problem, which it is not."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch12",
+    "cms-pim-ch3",
+    "hfma-map-keys",
+    "mgma-stat-ar-2026",
+    "mgma-ops-2023",
+    "cfr-424-44",
+    "cfr-401-305",
+    "fl-627-6131",
+    "fl-641-3155"
+   ],
+   "evidence_note": "Medicare manuals require documentation at or soon after the service but set no number of days. The 72-hour and 2-day standards are MGMA advice. The Healthcare Financial Management Association (HFMA) defines the measures without targets. Filing limits are regulation or contract.",
+   "metrics": [
+    {
+     "slug": "cc-charge-lag-days",
+     "name": "Charge lag",
+     "definition": "Average calendar days from the date of service to the date the charge is entered. Also track date of service to claim sent, which is what the published figures measure.",
+     "formula": "Sum of (charge entry date minus date of service) / number of charges entered in the period",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_best": "Note signed within 72 hours and charge posted within 2 days (MGMA advice)",
+     "benchmark_typical": "3 to 7 days, service to claim. Measured 7.75 days in 2022",
+     "benchmark_red": "Above 7 days, the top of MGMA's sector range",
+     "benchmark_note": "MGMA Stat (2026) gives the 72-hour and 2-day advice and a 3 to 7 day sector range. MGMA's 2023 report measured 3.8 days (2019) and 7.75 days (2022), service to claim. The red line is our reading of that range. HFMA sets no target.",
+     "confidence": "medium",
+     "sources": [
+      "mgma-stat-ar-2026",
+      "mgma-ops-2023",
+      "hfma-map-keys"
+     ],
+     "data_hint": "Billing system report of date of service against charge entry date and claim date, grouped by clinician and place of service.",
+     "vendor_claim": "Several targets: same or next day as best practice, 24 to 48 hours with a 72-hour ceiling, and 5 business days for hospital work.",
+     "vendor_verdict": "Partly supported. Close to MGMA's advice, but no source is given, the documents disagree with each other, and measured lag is far longer."
+    },
+    {
+     "slug": "cc-late-charge-rate",
+     "name": "Charges entered more than 3 days after service",
+     "definition": "Share of charges posted more than 3 days after the date of service. HFMA's version uses gross charge dollars. A count of charge lines is easier for a small practice.",
+     "formula": "Charges with entry date more than 3 days after date of service / all charges entered in the period (state whether dollars or lines)",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No target exists. HFMA's MAP Keys (2023 edition) define late charges as posted more than 3 days after service but publish no benchmark. Compare your own trend, setting by setting.",
+     "confidence": "none",
+     "sources": [
+      "hfma-map-keys"
+     ],
+     "data_hint": "Same report as charge lag. Count charges where entry date minus date of service is greater than 3.",
+     "vendor_claim": "Fewer than 5 percent of encounters with more than 3 days of lag, and over 10 percent as a sign of systematic failure.",
+     "vendor_verdict": "Unverifiable. No source is given. MGMA measured an average of 7.75 days from service to claim in 2022, so the target is far from typical."
+    },
+    {
+     "slug": "cc-open-notes",
+     "name": "Unsigned notes older than 72 hours",
+     "definition": "Count of visit notes still unsigned more than 72 hours after the visit, on the day of the report, by clinician.",
+     "formula": "Count of notes where today minus date of service is more than 3 days and the note is not signed",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_best": "Zero notes older than 72 hours (MGMA advice)",
+     "benchmark_note": "MGMA Stat (2026) advises closing encounters within 72 hours. Medicare says only that services should be documented during or as soon as practicable after the visit (Claims Processing Manual, chapter 12, section 30.6.1). No measured national figure was found.",
+     "confidence": "medium",
+     "sources": [
+      "mgma-stat-ar-2026",
+      "cms-cpm-ch12"
+     ],
+     "data_hint": "Open or unsigned encounter report from the health record. For facility notes, a practice log of visits against signed notes.",
+     "vendor_claim": "Office notes complete by the end of the business day, and hospital notes and discharge summaries within 24 hours.",
+     "vendor_verdict": "Unverifiable. Stricter than MGMA's 72 hours and offered without a source. Facility bylaws may set their own deadlines."
+    }
+   ]
+  },
+  {
+   "slug": "cc-visit-leveling",
+   "name": "Visit level selection and distribution",
+   "summary": "Choosing the right level for each evaluation and management (E/M) visit, by medical decision making or by time. Coding too low gives away earned revenue, and coding too high is an overpayment that must be refunded and can bring an audit.",
+   "good_looks_like": [
+    "Each clinician can say how a level is chosen: two of three decision-making elements (problems, data, risk), or total time on the date of the visit.",
+    "The level billed is no higher than the patient needed that day. Medicare treats medical necessity as the overarching test, not the volume of documentation.",
+    "Each clinician's level mix is compared with national Medicare shares for the same code family at least quarterly. Outliers in either direction lead to a note review.",
+    "A sample of each clinician's notes is audited at least once a year by someone who did not choose the codes.",
+    "Billing staff or software never change a level without the clinician's agreement."
+   ],
+   "failure_modes": [
+    "One level is used for nearly every visit out of habit. The pattern is visible in Medicare's public claims data, and Medicare contractors choose whom to review by data analysis.",
+    "Clinicians code low from fear of audit. Medicare's audits find underpayment too, for example 7.3% on the lowest subsequent hospital visit code.",
+    "Top-level codes are billed without the decision making or time to support them. Medicare audits found 11% to 26% of dollars on top-level visit codes paid in error.",
+    "Levels are chosen by rules retired years ago (counting history and exam elements), or by a vendor point system that is not in Current Procedural Terminology (CPT).",
+    "An audit finds overcoding and the practice only fixes future claims. Identified Medicare overpayments must be reported and returned within 60 days (42 CFR 401.305)."
+   ],
+   "key_questions": [
+    "For each clinician and code family, what share of visits is billed at the top level, and how far is that from the national share?",
+    "When was the last independent audit of each clinician's notes, and what share of visits was coded correctly?",
+    "How many audited visits were coded too high, and were the overpayments returned within 60 days?",
+    "Does any person or software change a visit level without the clinician's sign-off?",
+    "Does any clinician use a single level for nearly all visits in a code family?"
+   ],
+   "actions": [
+    {
+     "action": "Compare each clinician's level mix with national Medicare data.",
+     "detail": "Use the public claims file from the Centers for Medicare & Medicaid Services (CMS). In 2024 the top level was 7% of established office visits, 37% of subsequent hospital visits and 7% of subsequent nursing facility visits.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Audit a sample of notes for each clinician every year.",
+     "detail": "The Office of Inspector General's guidance for small practices suggests audits at least yearly and 5 to 10 records per physician as a basic guide. Review in both directions.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Teach the two ways to choose a level.",
+     "detail": "Decision making needs two of three elements at that level. Time means the clinician's total time that day, fully met and written in the note. Medicare does not round up.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Act on audit findings in both directions.",
+     "detail": "Return Medicare overpayments within 60 days of identifying them (42 CFR 401.305). For an underpaid claim, a reopening can be requested within one year of the first determination (42 CFR 405.980).",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Give feedback from the clinician's own notes.",
+     "detail": "Show the billed level beside the supported level for a few visits, explain why, and recheck a new sample after two or three months.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice that bills visits. Facility-based practices use hospital, nursing facility and home or residence code families, where Medicare's measured error rates are more than twice those of established office visits, so compare each family with its own national mix and never with office norms.",
+   "vendor_refs": [
+    {
+     "item": "coding-audit-playbook",
+     "note": "Usable audit steps and calendar. Its point-score rubric and time table do not match CPT and would mislabel correct level 4 visits as overcoded."
+    },
+    {
+     "item": "primarycare-companion-guide",
+     "note": "Says prescription drug management alone makes a visit moderate. CPT needs two of three elements. Its 30 and 45 percent level benchmark is unverified, as the guide itself admits."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Urges level 5 office codes for complex older patients. Its leveling advice covers office codes only, with nothing on choosing levels for nursing facility, hospital or home visits."
+    },
+    {
+     "item": "kpi-action-guide-vol2-specialty",
+     "note": "Comparing level mix by clinician is sound. Its 10 and 20 percent tolerance bands are invented, and its coding chapter never mentions medical necessity."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch12",
+    "cms-mln-em",
+    "ama-cpt-em-2023",
+    "cms-cert-2025",
+    "cms-puf",
+    "oig-physician-cpg-2000",
+    "oig-gcpg",
+    "cfr-401-305",
+    "cfr-405-980",
+    "fcso-tpe"
+   ],
+   "evidence_note": "Level rules come from CPT and the Medicare Claims Processing Manual. Error rates are CMS measurements on claims from July 2023 to June 2024. National level shares are computed from 2024 Medicare claims. No rule says how far from the national mix is too far.",
+   "metrics": [
+    {
+     "slug": "cc-top-level-share-gap",
+     "name": "Gap between the practice's top-level share and the national share, by code family",
+     "definition": "For each visit code family and clinician, the share of visits billed at the highest level minus the national Medicare share for that code. A screen for review, not a verdict.",
+     "formula": "(Top-level visits / all visits in the family, for the clinician) minus (national top-level services / national services in the family)",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "quarterly",
+     "benchmark_typical": "National 2024 top-level shares: 99215 7%, 99233 37%, 99310 7%, 99350 18%",
+     "benchmark_note": "Computed from the CMS Medicare Physician and Other Practitioners file, 2024 services, all specialties. Other families: 99205 12%, 99223 60%, 99306 49%, 99345 27%. No published rule sets an acceptable gap. Case mix can explain a gap, so follow outliers with a note review.",
+     "confidence": "high",
+     "sources": [
+      "cms-puf"
+     ],
+     "data_hint": "Count of each visit code by rendering clinician from the billing system. National counts from the CMS file by geography and service.",
+     "vendor_claim": "Each clinician's level mix within 10 percent of the specialty norm, review above 20 percent, and level 5 at 15 percent or less of visits.",
+     "vendor_verdict": "Unverifiable. No auditor or regulator publishes a tolerance band. A 15 percent level 5 share is more than twice the 2024 national share for established office visits."
+    },
+    {
+     "slug": "cc-coding-accuracy",
+     "name": "Coding accuracy on audit",
+     "definition": "Share of audited services where the billed code, level and modifiers match what the note supports. Count errors in both directions, and state whether you count records, codes or dollars.",
+     "formula": "Audited services coded correctly / all services audited",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_typical": "Medicare audits: about 90% of visit dollars paid correctly (fiscal 2025)",
+     "benchmark_note": "CMS error-rate testing, claims July 2023 to June 2024: 10.1% of visit dollars paid in error, half from incorrect coding. Nursing home visits 12.7%, subsequent hospital 13.8%, established office 5.3%. The common 95% target is a convention with no professional or government source.",
+     "confidence": "medium",
+     "sources": [
+      "cms-cert-2025"
+     ],
+     "data_hint": "Internal or outside audit worksheet: billed code beside supported code for each sampled note.",
+     "vendor_claim": "Coding accuracy above 95 percent on audit, with mandatory retraining below 90 percent. Undercoding under 5 percent and upcoding under 1 percent.",
+     "vendor_verdict": "Unverifiable. A common convention with no published standard. Medicare's audits show about 10 percent of visit dollars in error."
+    },
+    {
+     "slug": "cc-overcoding-rate",
+     "name": "Audited visits billed above the supported level",
+     "definition": "Share of audited visits, or of audited dollars, where the billed level was higher than the note supports. Each one is an overpayment and needs a refund decision.",
+     "formula": "Audited visits billed above the supported level / all visits audited (or overpaid dollars / audited dollars)",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_best": "Zero. Every overcoded claim is an overpayment to return",
+     "benchmark_typical": "Medicare audits, dollars lost to upcoding: office 3.1%, nursing home 5.5%, hospital 6.4%",
+     "benchmark_note": "CMS 2025 improper payment data (claims July 2023 to June 2024), Table K3: upcoding errors as a share of dollars paid. Established office 3.1%, nursing home 5.5%, subsequent hospital 6.4%, home visits 8.5%. Estimates from samples, with wide ranges for small code families.",
+     "confidence": "high",
+     "sources": [
+      "cms-cert-2025",
+      "cfr-401-305"
+     ],
+     "data_hint": "The coding audit worksheet, counting only visits billed higher than the note supports.",
+     "vendor_claim": "Upcoding rate under 1 percent, with any pattern sent to compliance review.",
+     "vendor_verdict": "Partly supported. Zero is the only defensible target, but the coding guides never mention the 60-day duty to refund what an audit finds."
+    }
+   ]
+  },
+  {
+   "slug": "cc-documentation",
+   "name": "Documentation that supports the code",
+   "summary": "The note must show why the service was needed and what was done, by whom and when. If the note does not support the claim, the payment can be taken back, however good the care was.",
+   "good_looks_like": [
+    "Each note states the reason for the visit, the assessment and the plan for that day, and reads as written for this patient on this date.",
+    "When time is used to pick a code, the note gives total minutes or start and stop times.",
+    "Every note is signed and dated by the clinician who did the work. Late additions are dated, signed addenda.",
+    "Text carried forward from an earlier note is reviewed and edited so that it is true today.",
+    "A clinician reads and signs every note drafted by a scribe or an artificial intelligence tool before the claim is sent."
+   ],
+   "failure_modes": [
+    "Notes are identical from visit to visit. They cannot show the specific problem that made today's service necessary, which Medicare requires for every billed service.",
+    "A time-based code is billed and the note has no minutes. Medicare's audits found about two thirds of chronic care management dollars paid in error, nearly all for documentation.",
+    "The note is unsigned, or signed by someone other than the person who did the work. One clinician may not sign for another.",
+    "A 2026 Inspector General audit found 24 of 60 sampled patient-months of nursing home visits not medically necessary: the notes showed no acute issue, order change or follow-up need.",
+    "A note is rewritten after a denial or a records request without marking the change. Reviewers refer suspected falsified entries for fraud investigation."
+   ],
+   "key_questions": [
+    "In your last audit, what share of notes fully supported the service billed?",
+    "Does every note that uses time to choose a code state the minutes?",
+    "How many notes billed last month were signed after the claim went out?",
+    "Do your templates carry forward old text without forcing a review?",
+    "Does a clinician review every note drafted by a scribe or by software before signing?"
+   ],
+   "actions": [
+    {
+     "action": "Audit a sample of notes against the claims they support.",
+     "detail": "For each sampled claim ask: is there a note, is it signed and dated, does it show why the service was needed, and does it support the code and any time billed?",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Add required fields for the facts that decide payment.",
+     "detail": "Examples: total time, who was present, where the patient was, consent for care management. Keep free-text space. The Centers for Medicare & Medicaid Services (CMS) discourages check-box templates with little room for detail.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Set a rule for copied text.",
+     "detail": "Carried-forward text must be reviewed and edited at each visit. Turn off automatic copying of the whole prior note if the record system allows.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Sign your own notes and correct errors with addenda.",
+     "detail": "A missing signature can be cured by a signed attestation from the author. A late change must show its date and author. Never backdate.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review every note drafted by a scribe or by software.",
+     "detail": "The Medicare Program Integrity Manual says the clinician's signature affirms that the note documents the care given, and applies the same rule to artificial intelligence transcription.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Facility-based clinicians often write in the hospital's or nursing facility's record, yet the practice needs its own access to those notes, because Medicare sends records requests to the billing practice and holds it responsible for producing them.",
+   "vendor_refs": [
+    {
+     "item": "universal-specialty-billing-framework",
+     "note": "Feedback to the clinician on a specific note within 48 hours is sound. It also recommends phrase libraries of payer language, with no warning about copied or untrue text."
+    },
+    {
+     "item": "coding-audit-playbook",
+     "note": "Its first audit step checks that each note is complete, dated and signed. It never mentions the 60-day duty to refund overpayments an audit finds."
+    },
+    {
+     "item": "telehealth-revenue-cycle-playbook",
+     "note": "Three telehealth note elements (how, where the patient was, why audio-only) are worth adopting. It presents the audio-only reason as a Medicare mandate with no citation."
+    },
+    {
+     "item": "primarycare-companion-guide",
+     "note": "Suggests note templates with prompts for each decision-making element. Useful only if the content is true for that patient on that day."
+    }
+   ],
+   "sources": [
+    "cms-mln-em",
+    "cms-cpm-ch12",
+    "cms-pim-ch3",
+    "cfr-424-5",
+    "cms-cert-2025",
+    "oig-nh-audit-2026"
+   ],
+   "evidence_note": "Signature, addendum, template and scribe rules are in the Medicare Program Integrity Manual, chapter 3. Error figures are CMS measurements. The nursing home audit covered one Medicare contractor's region in 2018 and 2019. Private payer rules vary by contract.",
+   "metrics": [
+    {
+     "slug": "cc-documentation-pass-rate",
+     "name": "Audited notes that support the billed service",
+     "definition": "Share of audited claims with a signed, dated note that shows medical necessity and supports the code, level, time and modifiers billed.",
+     "formula": "Audited claims fully supported by the note / all claims audited",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "100%. A service the note does not support is not payable",
+     "benchmark_typical": "Medicare audits: about 96% of visit dollars had adequate documentation (fiscal 2025)",
+     "benchmark_note": "CMS 2025 improper payment data (claims July 2023 to June 2024): 10.1% of visit dollars in error, of which 43.7% were missing or insufficient documentation. Our arithmetic gives 4.4% failing. For chronic care management code 99490 the error rate was 65.2%.",
+     "confidence": "high",
+     "sources": [
+      "cms-cert-2025",
+      "cms-mln-em"
+     ],
+     "data_hint": "Audit worksheet with one row per sampled claim and a yes or no for each documentation test.",
+     "vendor_claim": "At least 90 percent of audited records rated clean or low risk, with above 95 percent called well-performing.",
+     "vendor_verdict": "Unverifiable. The thresholds have no source, and the same playbook uses 70 percent elsewhere. The rule requires support for every claim."
+    }
+   ]
+  },
+  {
+   "slug": "cc-place-of-service",
+   "name": "Place of service and setting rules",
+   "summary": "The two-digit place-of-service code on each claim tells the payer where the patient was. It decides which codes may be used and whether Medicare pays the lower facility rate or the higher non-facility rate.",
+   "good_looks_like": [
+    "The place of service on each claim matches where the patient was and, for hospital and skilled nursing patients, their status that day.",
+    "For nursing facility visits, billing knows each day whether the resident is in a Medicare Part A skilled stay (code 31) or not (code 32).",
+    "Visit codes match the setting: nursing facility codes with codes 31 and 32, home or residence codes with home (12) and assisted living (13).",
+    "Telehealth claims carry code 10 when the patient is at home and code 02 otherwise, with modifier 93 for audio-only or 95 for video.",
+    "Monthly care-management claims use the place where the clinician would ordinarily see that patient face to face."
+   ],
+   "failure_modes": [
+    "Every nursing facility claim uses code 32. For residents in a Part A skilled stay Medicare overpays wherever the rates differ. A 2023 federal audit found $22.5 million of this.",
+    "Office (code 11) is used for a patient who is a registered hospital inpatient or outpatient. Medicare pays the facility rate for those patients wherever they are seen.",
+    "Office visit codes are billed for a visit in a nursing facility or assisted living. Medicare returns claims whose code and setting do not match.",
+    "A resident moves from a skilled stay to long-term care in the same bed, and the default in the billing system never changes.",
+    "A hospice patient living in a nursing home is billed with the wrong setting or without the hospice modifier, and the claim is denied."
+   ],
+   "key_questions": [
+    "How does billing learn, for each nursing facility visit, whether the resident was in a Part A skilled stay that day?",
+    "What share of last quarter's audited claims had a place of service that did not match the patient's status?",
+    "Does your billing system fill in the place of service from a default, or from the visit record?",
+    "Have you returned any place-of-service overpayments found in the last year?"
+   ],
+   "actions": [
+    {
+     "action": "Get skilled-stay status from each facility every week.",
+     "detail": "Ask the business office for the census with payer and Part A start and end dates. Use it to set code 31 or 32 on each visit before the claim goes out.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Capture place of service at the visit, not from a default.",
+     "detail": "Make the setting a required field on the charge, chosen by the clinician or taken from the building. Review any claim where the code family and the setting disagree.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Audit a sample of facility claims against facility records.",
+     "detail": "Each quarter compare 20 to 30 nursing facility claims with the facility's Part A dates. Correct errors and return overpayments within 60 days of identifying them (42 CFR 401.305).",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Keep one table of settings, codes and rates.",
+     "detail": "List each place the practice works, its two-digit code, the visit code family, and whether Medicare pays the facility or non-facility rate (Claims Processing Manual, chapter 26, section 10.5).",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Recheck setting rules every January.",
+     "detail": "Rates by setting change. In 2026 nursing facility visit codes paid 12% to 15% less under code 31 than under code 32. For 2027 Medicare set them equal. Home telehealth for most services runs only through December 31, 2027.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice, with the highest risk for clinicians who work in several settings. A practice with no office still needs a place of service for monthly care-management claims, which is the place where the clinician would ordinarily see the patient.",
+   "vendor_refs": [
+    {
+     "item": "telehealth-revenue-cycle-playbook",
+     "note": "Correct on place of service 02 versus 10 and the modifiers. Its 10 to 25 percent payment gap has no source, and it has no scenario for patients in facilities."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "One paragraph on nursing facility and home visit codes. It never explains place of service 31 versus 32, the choice auditors check in facility work."
+    },
+    {
+     "item": "fee-schedule-optimization-playbook",
+     "note": "Names only hospital outpatient departments and surgery centers as facility settings. Inpatient hospital, emergency room and Part A skilled stays also pay the facility rate."
+    },
+    {
+     "item": "radiologylab-companion-guide",
+     "note": "Says the professional and technical split depends only on equipment ownership. In a Part A skilled stay most services other than the physician's professional work are billed by the facility."
+    }
+   ],
+   "sources": [
+    "cms-cpm-ch12",
+    "cms-cpm-ch26",
+    "cms-pos-codes",
+    "oig-pos-2023",
+    "cms-ccm-faq",
+    "cms-telehealth-faq-2026",
+    "cms-cpm-ch11",
+    "cms-snf-cb",
+    "cms-pfs-2027",
+    "cfr-401-305",
+    "x12-carc",
+    "fr-pfs-2027-final",
+    "cms-pfs-rvu-2026"
+   ],
+   "evidence_note": "Code definitions and the facility or non-facility designation are in the Medicare Claims Processing Manual (chapter 12, section 30.6.13, and chapter 26, section 10.5). Dollar figures come from a 2023 Inspector General audit and Medicare's 2026 and 2027 fee schedules. Private payers may differ.",
+   "metrics": [
+    {
+     "slug": "cc-pos-error-rate",
+     "name": "Claims with a place of service that does not match the patient's status",
+     "definition": "Share of audited claims where the place-of-service code does not match where the patient was or, for hospital and skilled nursing patients, their status on that date.",
+     "formula": "Audited claims with a wrong place-of-service code / all claims audited",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No published error rate was found. The Office of Inspector General (2023) found 1.13 million claim lines in 2019 and 2020 billed with code 32 for patients in a Part A skilled stay, overpaid by $22.5 million. Target zero and track your own audits.",
+     "confidence": "none",
+     "sources": [
+      "oig-pos-2023"
+     ],
+     "data_hint": "Sample of claims compared with facility census, Part A dates and hospital status. Denials with reason code 5 or 58 show errors that payers caught."
+    }
+   ]
+  },
+  {
+   "slug": "cc-who-bills",
+   "name": "Who bills: physician, advanced practice clinician, shared visits",
+   "summary": "Rules for whose name goes on the claim when physicians work with nurse practitioners or physician assistants, whom Medicare pays 85% of the physician rate. Billing their work under a physician (incident-to, or a shared visit) outside the rules creates an overpayment.",
+   "good_looks_like": [
+    "Each claim names the clinician who personally did the visit, unless one of two rules lets the physician bill: incident-to in an office, or a shared visit in a facility.",
+    "The practice has a one-page rule sheet by setting: office, hospital, skilled nursing facility, nursing facility, home and assisted living.",
+    "Shared hospital and skilled nursing visits carry modifier FS, name both clinicians in the note, and are billed by the one who did the substantive portion.",
+    "Visits that only a physician may perform, such as the initial comprehensive visit in a skilled nursing facility, are scheduled with the physician.",
+    "No visit is billed under one clinician's number because another clinician's enrollment is still pending."
+   ],
+   "failure_modes": [
+    "A nurse practitioner's hospital or skilled nursing visits are billed incident-to under the physician. Medicare bars that, and its manual limits incident-to in nursing facilities to a designated physician office.",
+    "Office incident-to is billed before the physician has seen the patient and started the treatment, or with no supervising physician available. The nurse practitioner should have billed, at 85%.",
+    "A shared visit is billed by the physician after a brief greeting. The billing clinician must provide more than half the total time or the substantive part of decision making.",
+    "A nurse practitioner performs the initial comprehensive visit in a skilled nursing facility. The federal requirement is not met (42 CFR 483.30).",
+    "A new clinician's visits are billed under a colleague while enrollment is pending. The claim misstates who did the work, and the substitute physician rule does not cover it."
+   ],
+   "key_questions": [
+    "What share of nurse practitioner and physician assistant services is billed under their own numbers, by setting?",
+    "For each incident-to claim, can you show the physician's earlier visit, the plan of care and the supervision that day?",
+    "Do all split or shared visits carry modifier FS and a note that names both clinicians?",
+    "Who performs the initial comprehensive visit for each skilled nursing admission?",
+    "Is any clinician seeing patients before enrollment with the payer is effective?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page billing rule sheet by setting.",
+     "detail": "Office: own number, or incident-to when every condition is met. Hospital and skilled nursing stay: own number, or shared visit with modifier FS. Nursing facility floor: own number. Home and assisted living: own number unless every incident-to condition is documented.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Audit incident-to and shared-visit claims.",
+     "detail": "Each quarter pull 10 to 20 claims billed under a physician for work a nurse practitioner or physician assistant shared in. Check plan of care, supervision, substantive portion, modifier and signatures.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Schedule physician-only visits in advance.",
+     "detail": "List new skilled nursing admissions weekly and book the physician for the initial comprehensive visit. Delegate later required visits only as 42 CFR 483.30 allows.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Start payer enrollment before a new clinician sees patients.",
+     "detail": "Medicare billing privileges start on the later of the filing date or the first service date, with up to 30 days of back billing (42 CFR 424.520 and 424.521). File early. Never bill under a colleague.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Model the 85% rate before changing who sees whom.",
+     "detail": "Nurse practitioner and physician assistant services pay 85% of the physician fee schedule (42 CFR 414.56 and 414.52). Compare the lower payment with the cost of physician time.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with nurse practitioners, physician assistants or clinical nurse specialists: offices must manage incident-to, hospital and skilled nursing teams use split or shared visits, and on a nursing facility floor each clinician bills their own visits. State law sets scope of practice, for example Florida's section 464.0123 on autonomous practice in primary care.",
+   "vendor_refs": [
+    {
+     "item": "primarycare-companion-guide",
+     "note": "Lists incident-to conditions and a quarterly audit. Says the physician must be physically in the suite. Since 2026 real-time video presence counts for most services."
+    },
+    {
+     "item": "kpi-action-guide-vol2-specialty",
+     "note": "Mentions locum or supervising-physician billing during the enrollment gap without giving the rules. The substitute rule covers an absent physician, for up to 60 days."
+    },
+    {
+     "item": "telehealth-revenue-cycle-playbook",
+     "note": "Describes virtual direct supervision but omits its limits, and that incident-to is not paid in hospitals or covered skilled nursing stays."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Silent on nurse practitioner billing, shared visits and physician-only nursing facility visits, the core rules for a facility-based team."
+    }
+   ],
+   "sources": [
+    "cfr-414-56",
+    "cfr-414-52",
+    "cfr-410-26",
+    "cfr-415-140",
+    "cfr-483-30",
+    "cms-cpm-ch12",
+    "cms-bpm-ch15",
+    "cms-mln-em",
+    "cms-cpm-ch1",
+    "cms-pfs-2026",
+    "cms-telehealth-faq-2026",
+    "cfr-424-520",
+    "cfr-424-521",
+    "fl-464-0123",
+    "patel-2022"
+   ],
+   "evidence_note": "Federal regulation (42 CFR 410.26, 414.52, 414.56, 415.140 and 483.30) and Medicare manuals. The regulation bars incident-to only for hospital and skilled nursing patients. The nursing facility limit comes from the claims manual. Private payers and Medicaid set their own rules.",
+   "metrics": [
+    {
+     "slug": "cc-app-own-number-share",
+     "name": "Share of advanced practice clinician services billed under their own number",
+     "definition": "Of all services personally performed by nurse practitioners and physician assistants, the share billed under their own provider number, by setting.",
+     "formula": "Services performed by advanced practice clinicians and billed under their own number / all services they performed",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "quarterly",
+     "benchmark_note": "No target exists. The right share depends on setting: on a nursing facility floor it should be 100%. Patel and colleagues (Health Affairs, 2022) estimated that 30.6 million such office visits were billed under a physician in fee-for-service Medicare in 2018.",
+     "confidence": "none",
+     "sources": [
+      "patel-2022",
+      "cms-cpm-ch12"
+     ],
+     "data_hint": "Compare the clinician who signed each note with the clinician named on the claim (rendering provider), grouped by place of service."
+    }
+   ]
+  },
+  {
+   "slug": "cc-modifiers-edits",
+   "name": "Modifiers, code edits and bundling",
+   "summary": "Two-character modifiers and Medicare's code-pair edits decide whether services done on the same day are paid separately. The edits are public and change every quarter, so most of these denials can be prevented before the claim leaves.",
+   "good_looks_like": [
+    "Claims are checked against current National Correct Coding Initiative (NCCI) code-pair and unit edits before submission, and the edit files are refreshed every quarter.",
+    "A modifier is added only when the note shows the circumstance it describes, never just to get past an edit.",
+    "A written sheet covers the few modifiers the practice uses, for example 25, hospice modifiers GV and GW, FS for shared visits, and telehealth modifiers 93 and 95.",
+    "Only one visit per patient per day is billed by a clinician or a same-specialty group. In hospitals and nursing facilities that holds even when the problems are unrelated.",
+    "Denials for bundling, modifiers and frequency are counted separately each month and traced to a fixable cause."
+   ],
+   "failure_modes": [
+    "Modifier 25 is added by habit to every visit billed with a procedure. Medicare contractors may review high users and require records before paying.",
+    "The same clinician, or two of the same specialty in one group, bill two nursing facility visits for a patient on one day. Medicare pays one visit per day.",
+    "A hospice patient's visit is billed without GV or GW and is denied. When a Medicare Advantage member elects hospice, the claim belongs to Medicare fee-for-service.",
+    "Staff resubmit a bundled code with a modifier until it pays. Medicare's manual forbids adding a modifier only to bypass an edit.",
+    "Rule changes are missed. From 2027, when an office visit and a minor procedure (zero-day global period) are billed the same day, Medicare pays the lower-priced one at 80%."
+   ],
+   "key_questions": [
+    "What share of last month's denials were for bundling, a modifier or a frequency limit?",
+    "When were your claim-edit files last updated?",
+    "Which three modifiers does the practice use most, and is there a written rule for each?",
+    "On what share of procedure-day visits is modifier 25 used, by clinician?",
+    "Do hospice patients' claims carry GV or GW every time?"
+   ],
+   "actions": [
+    {
+     "action": "Check every claim against current edits before it is sent.",
+     "detail": "Ask your billing system or clearinghouse vendor whether it applies Medicare's edit files and loads each quarterly update. The files are free on the Centers for Medicare & Medicaid Services (CMS) website for looking up a code pair.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write a one-page modifier rule sheet.",
+     "detail": "For each modifier: what must be true, what the note must show, and an example. Modifier 25 needs a significant, separately identifiable visit. A different diagnosis is not required.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Sort edit-related denials by reason code every month.",
+     "detail": "Group reason codes 97, 236, 4, 151 and 119 by payer and code pair. For each pattern decide: fix the claim logic, correct and resubmit, or accept as correctly denied.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Flag hospice status before billing.",
+     "detail": "Check hospice election in the monthly eligibility check. For hospice patients add GV if you are the attending physician and not employed by the hospice, or GW for care unrelated to the terminal condition.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Read the fee schedule final rule each November.",
+     "detail": "For 2027 complexity add-on G2211 becomes modifier B1, an office visit billed with a zero-day global procedure is paid at 100% and 80%, and modifiers BB and BC start for platform-based and incident-to telehealth. Update claim rules by January 1.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Procedural practices face many code-pair edits, while visit-based and facility-based practices face a short list: one visit per day, a visit with a wellness visit or procedure on the same day, hospice modifiers, and shared-visit and telehealth modifiers.",
+   "vendor_refs": [
+    {
+     "item": "universal-specialty-billing-framework",
+     "note": "States the edit indicator rule correctly (1 can be bypassed, 0 cannot). Wrongly says modifier 25 needs an unrelated problem. Medicare does not require a different diagnosis."
+    },
+    {
+     "item": "pediatrics-companion-guide",
+     "note": "Calls modifier 33 an after-hours modifier (it marks preventive services) and counts vaccine add-on units per component for codes billed per vaccine."
+    },
+    {
+     "item": "orthopedics-companion-guide",
+     "note": "Tells practices to bill ultrasound guidance code 76942 with injection codes that already include guidance, and says modifier 59 can override edits within one joint. Both risk unbundling."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Says chronic care management and transitional care management cannot be billed in the same month. Medicare's current booklets say they can."
+    }
+   ],
+   "sources": [
+    "cms-ncci-manual-2026",
+    "cms-ncci-ptp",
+    "cms-cpm-ch12",
+    "cms-cpm-ch11",
+    "cms-mln-em",
+    "cms-mln-ccm",
+    "cms-pfs-2027",
+    "x12-carc",
+    "mgma-stat-ar-2026",
+    "fr-pfs-2027-final",
+    "cms-telehealth-faq-2026",
+    "cms-cpm-ch26"
+   ],
+   "evidence_note": "Edits and modifier rules are published by CMS in the National Correct Coding Initiative policy manual (2026) and the Medicare Claims Processing Manual. Private payers may use different edits. No public data report how often practices are denied for these reasons.",
+   "metrics": [
+    {
+     "slug": "cc-edit-denial-rate",
+     "name": "Denials for bundling, modifier or frequency edits",
+     "definition": "Share of claim lines denied for a code-pair edit, a modifier problem, or a frequency or unit limit, by payer.",
+     "formula": "Claim lines denied with reason codes 97, 236, 4, 151 or 119 (and payer equivalents) / claim lines the payer processed",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. Published denial figures (Medical Group Management Association, 7% to 8% of claims on first submission) are not split by reason. Because Medicare's edits are public, the practical target is close to zero. Track your own monthly trend by payer.",
+     "confidence": "none",
+     "sources": [
+      "mgma-stat-ar-2026",
+      "x12-carc"
+     ],
+     "data_hint": "Payer payment reports (remittances) grouped by claim adjustment reason code. The denial report in the billing system usually shows these codes.",
+     "vendor_claim": "Modifier accuracy above 97 percent on audit, with focused training below 93 percent.",
+     "vendor_verdict": "Unverifiable. No source is given, and it measures audit accuracy, not denials. No published benchmark exists for either."
+    }
+   ]
+  },
+  {
+   "slug": "cc-diagnosis-coding",
+   "name": "Diagnosis coding and specificity",
+   "summary": "Diagnosis codes tell the payer why each service was needed, and they must match what the note documents as specifically as the note allows. In Medicare Advantage they also feed the plan's payment and are audited against the record.",
+   "good_looks_like": [
+    "The first diagnosis on each claim line is the condition chiefly responsible for that service, and it is documented in that day's note.",
+    "Codes are as specific as the record supports (type, stage, side, complication). Unspecified codes are used only when the detail is truly not known.",
+    "Every coexisting condition that is coded was assessed or affected care at that visit. Conditions that have resolved are not coded as current.",
+    "The diagnosis lists in the health record and the billing system are updated every October 1.",
+    "For services with coverage rules, the documented diagnosis is checked against the national or local coverage policy before the claim is sent."
+   ],
+   "failure_modes": [
+    "A favorite unspecified code (for example heart failure, unspecified) is used for years although the chart holds the detail. Claims may pay, but severity is understated.",
+    "A probable or rule-out diagnosis is coded as confirmed. Outpatient coding rules say to code the symptom or sign instead.",
+    "Codes are chosen from a list of covered diagnoses to get a test paid, not from the note. The claim then misstates why the service was done.",
+    "Diagnoses are added to raise a Medicare Advantage risk score without support in the note. Plans must give records to federal auditors, and unsupported payments are taken back.",
+    "Codes deleted on October 1 stay in templates and favorites lists, and claims reject until someone notices."
+   ],
+   "key_questions": [
+    "What share of claims last quarter had an unspecified code as the first diagnosis?",
+    "Were the code set and the favorites lists updated on October 1?",
+    "In your last audit, how many coded diagnoses had no support in the note?",
+    "How many denials last quarter cited the diagnosis (reason codes 11, 167 or 50)?",
+    "Does anyone other than the treating clinician add diagnoses to a claim?"
+   ],
+   "actions": [
+    {
+     "action": "List the ten most used unspecified codes and review them.",
+     "detail": "For each, ask whether the chart usually holds the detail for a specific code. If yes, fix the template or favorites list. If no, the unspecified code is correct.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Update codes and favorites lists every October 1.",
+     "detail": "The diagnosis code set changes each October 1, with some changes on April 1. Remove deleted codes from templates and favorites, and read the list of new codes for your specialty.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Test diagnoses both ways in every coding audit.",
+     "detail": "Look for conditions managed but not coded, and for codes on the claim that the note does not support. Remove unsupported codes and correct the affected claims.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Reassess chronic conditions at least once a year.",
+     "detail": "At the wellness visit or another comprehensive visit, document the status and plan for each active chronic condition. Medicare Advantage payment for a year uses diagnoses from services in the 12 months before it (42 CFR 422.310).",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Check coverage policies before billing services that have them.",
+     "detail": "For tests and procedures with a national or local coverage policy, confirm the documented diagnosis meets it. If it does not, never change the diagnosis to fit.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Visit-only practices, including most facility-based ones, seldom see diagnosis denials, so their work is accuracy and specificity, while practices that order tests, give drugs, do procedures or have many Medicare Advantage patients face coverage policies and record audits tied to each coded diagnosis.",
+   "vendor_refs": [
+    {
+     "item": "coding-audit-playbook",
+     "note": "Tests diagnoses in both directions, which is right. Its tip to prefer codes that map to risk scores invites payment-driven coding, and codes ending in 9 are not all unspecified."
+    },
+    {
+     "item": "value-based-care-revenue-cycle-implications-playbook",
+     "note": "Sound habit: reassess and document each chronic condition yearly. It presents an industry memory aid (MEAT) as the standard Medicare auditors apply."
+    },
+    {
+     "item": "radiologylab-companion-guide",
+     "note": "Advises building covered-diagnosis lists into test ordering, which invites coding to the list. One example code does not mean what the guide says."
+    },
+    {
+     "item": "obgyn-companion-guide",
+     "note": "Offers N80.0 and N80.1 as models of specific coding. Both are category headers that are not valid on a claim in the fiscal 2027 code set."
+    }
+   ],
+   "sources": [
+    "icd10cm-guidelines-fy2027",
+    "cms-mln-em",
+    "cfr-422-310",
+    "x12-carc"
+   ],
+   "evidence_note": "The Official Guidelines for the diagnosis code set (ICD-10-CM, fiscal 2027) are required under the Health Insurance Portability and Accountability Act. Medicare Advantage record validation is in 42 CFR 422.310. No public benchmark exists for unspecified codes.",
+   "metrics": [
+    {
+     "slug": "cc-unspecified-dx-rate",
+     "name": "Claims with an unspecified primary diagnosis",
+     "definition": "Share of claim lines whose first-listed diagnosis is a code described as unspecified in the code set, by clinician and by code.",
+     "formula": "Claim lines with an unspecified first-listed diagnosis code / all claim lines",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No public benchmark was found. The fiscal 2027 Official Guidelines say unspecified codes are correct when the detail is not known, so zero is not the goal. Compare clinicians with each other, watch the trend, and review the ten most used codes.",
+     "confidence": "none",
+     "sources": [
+      "icd10cm-guidelines-fy2027"
+     ],
+     "data_hint": "Billing system report of first-listed diagnosis codes by frequency. Flag codes whose description contains the word unspecified."
+    }
+   ]
+  },
+  {
+   "slug": "cc-time-based-codes",
+   "name": "Time-based and care-management codes",
+   "summary": "Services paid by the minute or by the month: chronic, principal and advanced primary care management, transitional care, advance care planning, prolonged visits and wellness visits. They pay for work between visits but fail Medicare audits far more often than ordinary visits.",
+   "good_looks_like": [
+    "Each chronic care management (CCM) patient has documented consent, a comprehensive care plan, round-the-clock access to the practice, and a log of minutes with dates and names.",
+    "A claim goes out only when logged minutes meet the code: 20 for 99490, 30 by the practitioner for 99491, 60 plus moderate or high complexity decisions for 99487.",
+    "Only one practitioner bills care management for a patient in a month, and time counted for one code is never counted for another.",
+    "Transitional care management has a log for every discharge: discharge date, contact within 2 business days, and a visit within 7 or 14 days.",
+    "Advance care planning notes state that the talk was voluntary, who was present, what was discussed and the minutes (at least 16 for the first code)."
+   ],
+   "failure_modes": [
+    "Minutes are estimated at month end or not logged. Medicare's audits found 65% of dollars paid for code 99490 in error, and Florida's Medicare contractor has it under targeted review.",
+    "Only the complex code is billed for every patient. Nationally it is about 8% of monthly chronic care management claims, so the pattern stands out.",
+    "Care management is billed twice for one month, or with an overlapping care-management code. An Office of Inspector General audit found 50,192 such claims in 2017 and 2018.",
+    "Transitional care management is billed after discharge to a nursing facility, or with a late visit. Medicare requires return to a community setting such as home or assisted living.",
+    "A wellness visit is billed as a routine physical, or twice within 12 months. Medicare does not cover routine physicals and pays the wellness visit once every 12 months."
+   ],
+   "key_questions": [
+    "For each care-management claim last month, do the logged minutes meet the code's threshold?",
+    "What share of your monthly chronic care management claims use the complex code?",
+    "Is consent documented for every enrolled patient, and is there a current care plan?",
+    "How many discharges to home or assisted living last month had contact within 2 business days and a visit in time?",
+    "What share of care-management lines was paid on first submission?"
+   ],
+   "actions": [
+    {
+     "action": "Log minutes as the work happens.",
+     "detail": "Record date, staff name, minutes and what was done for each care-management task. Total by patient at month end, and bill only the code the total supports.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Run a pre-bill checklist for each patient every month.",
+     "detail": "Consent on file, care plan current, minutes meet the code, no other practitioner billing, no home health or hospice supervision claim that month, and the right place of service.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Choose between minute-based codes and the monthly bundle.",
+     "detail": "Advanced primary care management (G0556 to G0558) is billed monthly with no minute count. It requires being the patient's primary care focal point and reporting quality measures. The same practitioner cannot bill chronic, principal or transitional care management that month.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Track every discharge for transitional care.",
+     "detail": "Get discharge notices from hospitals and facilities. Log contact attempts and the visit date. Bill 99495 or 99496 only when the patient returned to a community setting, such as home or assisted living, and both windows were met.",
+     "cadence": "weekly",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Learn Medicare's prolonged-service codes and the 2027 advance care planning change.",
+     "detail": "Medicare pays a clinician's prolonged visit time only through its own codes: G2212 office, G0316 hospital, G0317 nursing facility, G0318 home. From 2027, 99497 and 99498 count only the practitioner's own planning time. Staff time moves to G0572 and G0573.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices that manage chronic illness over time, mostly primary care and geriatrics. Residents of nursing facilities and assisted living qualify for chronic care management, billed with the place where the practitioner would ordinarily see them, and in 2026 its main code, 99490, pays about a third less at the facility rate.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Good inventory of care-management codes for older patients. Says 99483 can be billed with an office visit and advance care planning on one day. Medicare says it cannot."
+    },
+    {
+     "item": "oncology-companion-guide",
+     "note": "Says complex chronic care management needs 20 minutes of staff time. Medicare requires 60 minutes plus moderate or high complexity decision making."
+    },
+    {
+     "item": "primarycare-companion-guide",
+     "note": "Useful monthly checklist idea. Says advance care planning is billed once per calendar year. Medicare sets no limit. Revenue figures assume every eligible patient enrolls every month."
+    },
+    {
+     "item": "neurology-companion-guide",
+     "note": "Omits that only one practitioner may bill chronic care management each month, and never mentions principal care management for patients with one serious condition."
+    }
+   ],
+   "sources": [
+    "cms-mln-ccm",
+    "cms-ccm-faq",
+    "cms-apcm",
+    "cms-apcm-faq",
+    "cms-tcm",
+    "cms-mln-acp",
+    "cms-cognitive-assessment",
+    "cms-wellness-visits",
+    "cms-cpm-ch12",
+    "cms-cert-2025",
+    "oig-acp-2022",
+    "oig-ccm-audit-2021",
+    "fcso-tpe",
+    "cms-puf",
+    "cms-pfs-2027",
+    "fr-pfs-2025-final",
+    "fr-pfs-2027-final",
+    "cms-pfs-rvu-2026"
+   ],
+   "evidence_note": "Requirements come from Centers for Medicare & Medicaid Services (CMS) booklets and pages current in 2026 and from the 2027 fee schedule final rule. Error rates are CMS and Office of Inspector General measurements. Medicare Advantage and Medicaid plans may cover these codes differently.",
+   "metrics": [
+    {
+     "slug": "cc-time-documented-rate",
+     "name": "Time-based claims with documented time that meets the code threshold",
+     "definition": "Share of audited time-based claims (care management, advance care planning, prolonged services, visits leveled by time) whose note or log shows minutes at or above the code's requirement.",
+     "formula": "Audited time-based claims with documented time meeting the threshold / all time-based claims audited",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "100%. Time below the threshold means the code is not payable",
+     "benchmark_typical": "Medicare audits: 65% of 99490 dollars and 30% of 99497 dollars paid in error",
+     "benchmark_note": "CMS 2025 improper payment data (claims July 2023 to June 2024): error rates of 65.2% for 99490, 75.4% for 99491 and 29.8% for 99497, nearly all documentation. An Office of Inspector General audit (2022) found 466 of 691 office advance care planning services noncompliant.",
+     "confidence": "high",
+     "sources": [
+      "cms-cert-2025",
+      "oig-acp-2022",
+      "cms-mln-ccm",
+      "cms-mln-acp"
+     ],
+     "data_hint": "Care-management time log and visit notes for a sample of claims, compared with the minutes each billed code requires.",
+     "vendor_claim": "At least 20 minutes of staff time a month for chronic care management. One guide applies the same 20 minutes to complex care management.",
+     "vendor_verdict": "Partly supported. Twenty minutes is right for 99490. Complex care management (99487) needs 60 minutes plus moderate or high complexity decision making."
+    },
+    {
+     "slug": "cc-care-mgmt-paid-rate",
+     "name": "Care-management lines paid on first submission",
+     "definition": "Share of care-management claim lines (chronic, principal, advanced primary and transitional care management) paid in full on the first submission, by payer.",
+     "formula": "Care-management lines paid on first submission / care-management lines submitted",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No benchmark specific to care management was found. For all claim types, billing companies reported 86% to 88% paid on first submission (Healthcare Business Management Association survey, 2024). Use that as a rough comparison and track your own rate by payer.",
+     "confidence": "none",
+     "sources": [
+      "hbma-2024"
+     ],
+     "data_hint": "Payer payment reports (remittances) filtered to care-management codes, first payer decision only, grouped by payer and denial reason."
+    },
+    {
+     "slug": "cc-complex-ccm-share",
+     "name": "Complex code share of chronic care management claims",
+     "definition": "Complex chronic care management claims (99487) as a share of all base chronic care management claims (99490, 99491 and 99487), for the practice and by clinician.",
+     "formula": "Claims for 99487 / claims for 99490, 99491 and 99487 combined",
+     "unit": "percent",
+     "direction": "range",
+     "cadence": "quarterly",
+     "benchmark_typical": "About 8% nationally in Medicare fee-for-service (2024)",
+     "benchmark_note": "Computed from the CMS Medicare Physician and Other Practitioners file: 99487 was 8.1% of base chronic care management services in 2024 and 7.3% in 2023. A sicker panel can justify more. A practice far above this should expect review.",
+     "confidence": "high",
+     "sources": [
+      "cms-puf",
+      "cms-mln-ccm"
+     ],
+     "data_hint": "Count of each care-management code billed per month, from the billing system."
+    }
+   ]
+  },
+  {
+   "slug": "cc-fee-schedule",
+   "name": "Fee schedule (charge master) upkeep",
+   "summary": "The practice's own price list, which must keep up with yearly code and rate changes. Payers pay the lower of your charge and their allowed amount, so a charge set too low loses money on every claim.",
+   "good_looks_like": [
+    "Every code the practice bills has a charge above the highest amount any payer allows for it, in both facility and non-facility settings.",
+    "The list is reviewed every year after the Medicare final rule in November and before new codes take effect on January 1.",
+    "New, changed and deleted procedure codes are loaded by January 1, and quarterly code updates are checked.",
+    "One charge per code applies to all payers. Discounts for self-pay or hardship follow a written policy.",
+    "A named person owns the fee schedule and keeps a dated record of each review and change."
+   ],
+   "failure_modes": [
+    "A code's charge sits below a payer's allowed amount. The payer pays the charge, the payment report shows no adjustment, and nobody notices the loss.",
+    "A code added during the year is loaded at a default or zero charge.",
+    "A deleted code stays active and claims reject in January. For 2027 the visit complexity add-on G2211 is replaced by a modifier.",
+    "Charges to Medicare are far above what other patients are actually charged. The Office of Inspector General may exclude a provider for that (42 CFR 1001.701).",
+    "A non-participating physician charges Medicare patients more than the limiting charge, 115% of the non-participating fee schedule amount (42 CFR 414.48)."
+   ],
+   "key_questions": [
+    "When was the fee schedule last reviewed, and by whom?",
+    "For how many codes is the charge at or below the highest allowed amount you were paid last year?",
+    "On how many paid lines last quarter did the allowed amount equal your charge?",
+    "Were the January code changes loaded before the first January claims went out?",
+    "Do you have a written self-pay and hardship discount policy?"
+   ],
+   "actions": [
+    {
+     "action": "Compare each charge with the highest allowed amount.",
+     "detail": "From 12 months of payer payment reports, list the highest allowed amount per code across payers and settings. Raise any charge that is not clearly above it.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Flag paid lines where the allowed amount equals the charge.",
+     "detail": "A paid line with no payer write-down (contractual adjustment) means the charge may be the cap. Test the allowed amount, not the paid amount, which is reduced by patient cost sharing.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Run the yearly update between November and January.",
+     "detail": "Read the Medicare final rule summary, load new and deleted codes, reset charges, and check the first real January claims. Never send a test claim for a service that was not provided.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Set charges with one simple, written method.",
+     "detail": "A single multiple of the local Medicare amount is common. In 2024 the national average charge for visit codes was about 2 to 3.5 times the Medicare allowed amount. Then check high-volume codes against contracts.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write the self-pay discount and estimate policy.",
+     "detail": "Uninsured and self-pay patients must get a good faith estimate of expected charges when they schedule or ask (45 CFR 149.610). Apply discounts by written policy, not case by case.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "low"
+    }
+   ],
+   "applies_when": "Every practice that bills insurance. The dollar risk is small where charges already sit well above Medicare rates and larger for new practices, new codes and contracts that pay above Medicare, and practices working in several settings must clear the higher non-facility amount for each code.",
+   "vendor_refs": [
+    {
+     "item": "fee-schedule-optimization-playbook",
+     "note": "Sound core idea and yearly cycle. Ignores the limiting charge for non-participating physicians, tells readers to send a test claim, and wrongly ties low charges to net collection rate."
+    },
+    {
+     "item": "charge-capture-audit-playbook",
+     "note": "Its annual charge master checklist (active services, current codes, fees above contract allowables) is usable as written."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Repeats 200 to 250 percent of Medicare as a floor without a source."
+    },
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "Says commercial rates typically run 110 to 160 percent of Medicare, with no source. A 2020 KFF literature review found 143 percent on average, from 118 to 179 percent."
+    }
+   ],
+   "sources": [
+    "cfr-414-21",
+    "cfr-414-48",
+    "cfr-1001-701",
+    "cfr-45-149-610",
+    "cms-pfs-2026",
+    "cms-pfs-2027",
+    "cms-puf",
+    "kff-private-vs-medicare-2020",
+    "cms-hcpcs-quarterly",
+    "cms-ncci-manual-2026"
+   ],
+   "evidence_note": "The lesser-of rule and the limiting charge are federal regulation (42 CFR 414.21 and 414.48). Charge levels are measured from 2024 claims published by the Centers for Medicare & Medicaid Services (CMS). How far above allowed amounts to set charges is convention.",
+   "metrics": [
+    {
+     "slug": "cc-charge-to-allowed-ratio",
+     "name": "Charge as a multiple of the highest allowed amount, by code",
+     "definition": "For each code, the practice's charge divided by the highest amount any payer allowed for that code in the last 12 months, in any setting.",
+     "formula": "Charge for the code / highest allowed amount for the code across payers and settings",
+     "unit": "ratio",
+     "direction": "range",
+     "cadence": "annual",
+     "benchmark_typical": "National average charge is about 2 to 3.5 times the Medicare allowed amount (2024)",
+     "benchmark_red": "1.0 or lower for any code: the payer is paying your charge",
+     "benchmark_note": "Computed from the CMS Medicare Physician and Other Practitioners file, 2024: average charge was 2.0 to 2.7 times the average allowed amount for office, nursing facility and home visits, and 2.6 to 3.5 times for hospital visits. No published target exists.",
+     "confidence": "medium",
+     "sources": [
+      "cms-puf",
+      "cfr-414-21",
+      "kff-private-vs-medicare-2020"
+     ],
+     "data_hint": "Fee schedule export from the billing system, and the highest allowed amount per code from 12 months of payer payment reports.",
+     "vendor_claim": "Set charges at 200 to 250 percent of Medicare as a starting range, higher for procedural specialties, and always above the highest contracted rate.",
+     "vendor_verdict": "Partly supported. Close to the 2024 national average charge level, but the specialty ranges have no source. Test against your own highest allowed amounts."
+    },
+    {
+     "slug": "cc-fee-schedule-age",
+     "name": "Months since the fee schedule was updated",
+     "definition": "Months since the last documented review of every charge against current payer allowed amounts and the current code set.",
+     "formula": "Today's date minus the date of the last documented full fee schedule review, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published benchmark was found. Set the target from first principles: 12 months or less, because Medicare rates and procedure codes change every January 1 and other billing codes are updated quarterly. The 2027 Medicare conversion factor (its dollar multiplier) is $32.63, down from $33.40.",
+     "confidence": "none",
+     "sources": [
+      "cms-pfs-2027",
+      "cms-hcpcs-quarterly"
+     ],
+     "data_hint": "The dated log of fee schedule reviews, or the last-modified date of the fee schedule in the billing system.",
+     "vendor_claim": "Review the fee schedule at least once a year, on a cycle tied to the Medicare rule calendar from July to February.",
+     "vendor_verdict": "Supported as a convention. The library's warning that old schedules fall behind rising Medicare rates does not hold for 2027, when the conversion factor falls 2.3%."
+    }
+   ]
+  }
+ ]
+}

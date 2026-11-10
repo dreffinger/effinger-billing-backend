@@ -1,0 +1,364 @@
+[
+ {
+  "id": "ehpa-rec-01",
+  "ord": 1,
+  "kind": "risk",
+  "category_slug": "cc-time-based-codes",
+  "title": "Hold complex care-management billing until records support each claim",
+  "why": "257 patients a month are billed a code that asserts 60 minutes of staff time each. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
+  "what": [
+   "Hold the November batch and read 30 patient-months",
+   "Bill only from a time log, at the code the minutes support",
+   "Have the attorney direct the look-back"
+  ],
+  "impact_basis": "Protects up to about $160,000 a year of billing and limits repayment of past claims.",
+  "effort": "medium",
+  "horizon": "this month",
+  "owner": "william",
+  "project_slug": "ccm-footing",
+  "confidence": "high that review is needed; the outcome is unknown"
+ },
+ {
+  "id": "ehpa-rec-02",
+  "ord": 2,
+  "kind": "risk",
+  "category_slug": "cr-coding-audits",
+  "title": "Commission an independent audit of visit levels",
+  "why": "Seven code families sit far above national patterns, and the codes involved have the highest error rates Medicare measures. The practice has never tested its own notes.",
+  "what": [
+   "Attorney engages a certified auditor",
+   "10 random notes per code family per clinician",
+   "Act on the result, then audit quarterly"
+  ],
+  "impact_basis": "Protects about $600,000 a year of visit revenue for a few thousand dollars.",
+  "effort": "low",
+  "horizon": "this month",
+  "owner": "william",
+  "project_slug": "coding-audit",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-03",
+  "ord": 3,
+  "kind": "revenue",
+  "category_slug": "fe-eligibility",
+  "title": "Finish the coverage refresh and verify every patient monthly",
+  "why": "One charge in nine has no payer, two thirds of coverage cards are unverified, and coverage problems are about 31% of denied visits.",
+  "what": [
+   "Clear the 342 cards in work",
+   "Re-verify on the first of each month",
+   "Hold claims with no verified payer"
+  ],
+  "impact_basis": "Estimated from 11.2% of charges with no payer, collected at the practice's usual rate.",
+  "effort": "medium",
+  "horizon": "this month",
+  "owner": "claude",
+  "project_slug": "coverage-cleanup",
+  "confidence": "medium",
+  "impact_low": 30000,
+  "impact_high": 70000
+ },
+ {
+  "id": "ehpa-rec-04",
+  "ord": 4,
+  "kind": "revenue",
+  "category_slug": "fe-coverage-status",
+  "title": "Get skilled-stay, hospice and plan status from each facility every week",
+  "why": "That status decides the payer, the place of service and the rate. Today every nursing facility claim says the patient is in a skilled stay.",
+  "what": [
+   "Weekly census from each facility",
+   "Place of service set from it",
+   "Hospice modifiers applied automatically"
+  ],
+  "impact_basis": "2026 visits to long-term residents repaid at the correct rate (about $10,000 to $25,000), care management paid at the right rate, and fewer wrong-payer denials.",
+  "effort": "medium",
+  "horizon": "this month",
+  "owner": "claude",
+  "project_slug": "census-status",
+  "confidence": "low",
+  "impact_low": 15000,
+  "impact_high": 60000
+ },
+ {
+  "id": "ehpa-rec-05",
+  "ord": 5,
+  "kind": "risk",
+  "category_slug": "pc-credentialing",
+  "title": "File the Medicaid renewal now and clear the enrollment list",
+  "why": "The physician's Medicaid provider agreement is due December 1. Without it, secondary payments on dual-eligible patients stop.",
+  "what": [
+   "File and confirm the renewal",
+   "Fix the nurse practitioner's revalidation and national record",
+   "Enroll with Railroad Medicare"
+  ],
+  "impact_basis": "Secondary payments kept and credentialing denials avoided.",
+  "effort": "medium",
+  "horizon": "this month",
+  "owner": "william",
+  "project_slug": "enrollment-fix",
+  "confidence": "medium",
+  "impact_low": 15000,
+  "impact_high": 40000
+ },
+ {
+  "id": "ehpa-rec-06",
+  "ord": 6,
+  "kind": "revenue",
+  "category_slug": "ar-followup",
+  "title": "Work the aged receivables before filing deadlines pass",
+  "why": "$342,620 is open and 35.4% is older than 90 days. $65,431 is already tagged as fixable.",
+  "what": [
+   "Sort by filing deadline",
+   "Fix and resend, appeal where needed",
+   "Report weekly"
+  ],
+  "impact_basis": "One-time cash, at about 40% of billed charges on the items worked.",
+  "effort": "medium",
+  "horizon": "30 days",
+  "owner": "claude",
+  "project_slug": "ar-recovery",
+  "confidence": "medium",
+  "impact_low": 20000,
+  "impact_high": 35000
+ },
+ {
+  "id": "ehpa-rec-07",
+  "ord": 7,
+  "kind": "risk",
+  "category_slug": "cr-overpayments",
+  "title": "Bring in a healthcare attorney before the reviews begin",
+  "why": "Once a review shows an overpayment, a 60-day clock starts. Reviews directed by an attorney are privileged and their timing is documented.",
+  "what": [
+   "Engage the attorney",
+   "Have the attorney hire the auditor",
+   "Record the date each review starts"
+  ],
+  "impact_basis": "Keeps a billing problem a refund and not a penalty.",
+  "effort": "low",
+  "horizon": "this month",
+  "owner": "william",
+  "project_slug": "ccm-footing",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-08",
+  "ord": 8,
+  "kind": "revenue",
+  "category_slug": "ar-deposit-reconciliation",
+  "title": "Match every deposit to a remittance each week",
+  "why": "Deposits arrived with no remittance and remittances with no money. Nobody outside the posting process checks the bank.",
+  "what": [
+   "Explain the unmatched items",
+   "Finish electronic payment enrollment",
+   "Accountant reconciles monthly"
+  ],
+  "impact_basis": "Missing payments recovered, then a standing control.",
+  "effort": "low",
+  "horizon": "60 days",
+  "owner": "claude",
+  "project_slug": "treasury",
+  "confidence": "medium",
+  "impact_low": 5000,
+  "impact_high": 20000
+ },
+ {
+  "id": "ehpa-rec-09",
+  "ord": 9,
+  "kind": "capability",
+  "category_slug": "sg-operating-rhythm",
+  "title": "Close the books monthly and hold a monthly owner review",
+  "why": "Statements arrive quarterly, there is no budget, and no meeting ties billing, finance and compliance together.",
+  "what": [
+   "Monthly close by the 15th",
+   "2027 budget with three scenarios",
+   "A 45-minute review with decisions logged"
+  ],
+  "impact_basis": "No direct dollar value. It keeps the other gains.",
+  "effort": "low",
+  "horizon": "60 days",
+  "owner": "william",
+  "project_slug": "operating-rhythm",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-10",
+  "ord": 10,
+  "kind": "risk",
+  "category_slug": "cr-program",
+  "title": "Adopt a short written compliance program",
+  "why": "A working program is what lets a practice show an error was caught in good faith.",
+  "what": [
+   "Write it with the attorney",
+   "Review the medical director agreements and time logs",
+   "Security risk analysis and vendor list"
+  ],
+  "impact_basis": "Changes how any future billing problem is treated.",
+  "effort": "medium",
+  "horizon": "90 days",
+  "owner": "william",
+  "project_slug": "compliance-program",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-11",
+  "ord": 11,
+  "kind": "risk",
+  "category_slug": "qv-mips",
+  "title": "Check both clinicians' status in Medicare's quality program",
+  "why": "A clinician who must report and does not is paid 9% less two years later.",
+  "what": [
+   "Look up status",
+   "Read past feedback",
+   "Report or seek an exception for 2026"
+  ],
+  "impact_basis": "Penalty avoided, if either clinician is required to report.",
+  "effort": "low",
+  "horizon": "60 days",
+  "owner": "william",
+  "project_slug": "quality-mips",
+  "confidence": "medium",
+  "impact_low": 0,
+  "impact_high": 31000
+ },
+ {
+  "id": "ehpa-rec-12",
+  "ord": 12,
+  "kind": "revenue",
+  "category_slug": "gm-service-lines",
+  "title": "Restart wellness visits and add transitional care",
+  "why": "Long-term residents qualify for a yearly wellness visit, and patients discharged home or to assisted living qualify for transitional care. Neither is being billed.",
+  "what": [
+   "About a dozen wellness visits a month",
+   "Transitional care routine for discharges",
+   "Time statement in advance care planning notes"
+  ],
+  "impact_basis": "About 150 wellness visits and 50 transitional care services a year at Medicare rates.",
+  "effort": "medium",
+  "horizon": "90 days",
+  "owner": "pam",
+  "project_slug": "service-lines",
+  "confidence": "medium",
+  "impact_low": 25000,
+  "impact_high": 50000
+ },
+ {
+  "id": "ehpa-rec-13",
+  "ord": 13,
+  "kind": "revenue",
+  "category_slug": "pc-contract-inventory",
+  "title": "Collect every payer contract and reprice for 2027",
+  "why": "No contract is on file, so no payment can be checked. Medicare's 2027 rule cuts the conversion factor 2.31% and changes facility payments.",
+  "what": [
+   "Request contracts and fee schedules",
+   "Reprice the top 15 codes for 2027",
+   "Flag underpayments automatically"
+  ],
+  "impact_basis": "Underpayments recovered and wrongly denied hospital visits disputed.",
+  "effort": "medium",
+  "horizon": "90 days",
+  "owner": "claude",
+  "project_slug": "payer-contracts",
+  "confidence": "low",
+  "impact_low": 10000,
+  "impact_high": 30000
+ },
+ {
+  "id": "ehpa-rec-14",
+  "ord": 14,
+  "kind": "cost",
+  "category_slug": "fm-debt-capital",
+  "title": "Refinance the 13.99% note and clear the owner's loan",
+  "why": "The note costs about $30,000 a year in interest, and earnings cover it many times over. The amount the owner owes the corporation has to be dealt with before any sale.",
+  "what": [
+   "Two refinance quotes",
+   "A plan for the shareholder loan",
+   "Salary review with the accountant"
+  ],
+  "impact_basis": "Each point of rate saved is about $1,900 a year on this balance.",
+  "effort": "low",
+  "horizon": "90 days",
+  "owner": "cpa",
+  "project_slug": "finance-cleanup",
+  "confidence": "medium",
+  "impact_low": 6000,
+  "impact_high": 12000
+ },
+ {
+  "id": "ehpa-rec-15",
+  "ord": 15,
+  "kind": "capability",
+  "category_slug": "td-ai-governance",
+  "title": "Put guard rails on the billing agents",
+  "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates or balances need a second pair of eyes.",
+  "what": [
+   "Close open sign-up and replace the shared key",
+   "Approval for claim-changing rules",
+   "Monthly sample of 25 actions"
+  ],
+  "impact_basis": "Lower chance of a systematic error.",
+  "effort": "low",
+  "horizon": "60 days",
+  "owner": "claude",
+  "project_slug": "automation-controls",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-16",
+  "ord": 16,
+  "kind": "value",
+  "category_slug": "lv-key-person",
+  "title": "Reduce dependence on the owner",
+  "why": "76.8% of charges and nearly every relationship sit with one person. It is the main risk to revenue and the main discount on price.",
+  "what": [
+   "Emergency plan and covering physician",
+   "Second clinician introduced at each site",
+   "Relationship records and written agreements"
+  ],
+  "impact_basis": "Moving a buyer from 3 to 4 times earnings is worth about $170,000 at today's earnings.",
+  "effort": "high",
+  "horizon": "6 months",
+  "owner": "william",
+  "project_slug": "key-person",
+  "confidence": "medium"
+ },
+ {
+  "id": "ehpa-rec-17",
+  "ord": 17,
+  "kind": "revenue",
+  "category_slug": "gm-clinician-growth",
+  "title": "Add a second nurse practitioner once the audit is done",
+  "why": "Clinician time limits growth. The current nurse practitioner generated $193,669 of Medicare allowed charges alone in 2024.",
+  "what": [
+   "Map the facilities in reach",
+   "Build the case with ramp and enrollment delay",
+   "Start enrollment the day the offer is signed"
+  ],
+  "impact_basis": "Contribution after pay and benefits once fully busy.",
+  "effort": "high",
+  "horizon": "6 to 9 months",
+  "owner": "william",
+  "project_slug": "growth-clinician",
+  "confidence": "low",
+  "impact_low": 40000,
+  "impact_high": 110000
+ },
+ {
+  "id": "ehpa-rec-18",
+  "ord": 18,
+  "kind": "value",
+  "category_slug": "lv-sale-readiness",
+  "title": "Build the file a buyer would ask for",
+  "why": "A buyer pays for earnings it can verify. Monthly statements, contracts and a clean audit turn claimed earnings into proven ones.",
+  "what": [
+   "Data room folder",
+   "Recurring collections separated from one-time recovery",
+   "Yearly valuation refresh"
+  ],
+  "impact_basis": "Each $100,000 of proven earnings is worth about $300,000 of price.",
+  "effort": "medium",
+  "horizon": "12 months",
+  "owner": "william",
+  "project_slug": "sale-readiness",
+  "confidence": "medium"
+ }
+]

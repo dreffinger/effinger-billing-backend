@@ -1,0 +1,943 @@
+{
+  "slug": "rcm-outsourcing-evaluation-playbook",
+  "title": "RCM Outsourcing Evaluation Playbook: Before You Hand Over the Keys to Your Revenue Cycle",
+  "doc_type": "playbook",
+  "pages": 38,
+  "audience": "Independent physician practices, from solo to large group, that are evaluating, negotiating, monitoring or leaving an outsourced billing arrangement; described as written for 'independent practice teams'. Practices that already outsource are told to start at Section 5.",
+  "summary": "Buyer-side guide for independent practices that outsource billing or are thinking about it. It covers the delivery-model choice (in-house, full outsource, hybrid), four vendor types and five fee models, a four-part due-diligence routine, six contract clauses to renegotiate, eight contractual KPI floors, a monthly and quarterly oversight routine, six warning signs, a three-level written escalation ladder, four stress events (new provider, acquisition, payer audit, fast growth) and a 90-day exit plan. Central method: put measurable standards and consequences in the contract, keep direct access to the billing system, recompute the vendor's numbers independently each month, convert every shortfall into dollars, and escalate on a documented timetable. Tools: a 16-criterion selection scorecard, a monthly monitoring form, a 90-day rollout plan and two checklists. No source is cited for any number, and the law governing billing agents is not addressed.",
+  "outline": [
+    {
+      "section": "Introduction: The Outsourcing Trap",
+      "gist": "Practices vet a vendor once at signing and then stop measuring, so underperformance hides behind steady deposits; opens with an unsourced market-size figure."
+    },
+    {
+      "section": "Section 1: The Build vs. Buy vs. Outsource Decision",
+      "gist": "Describes in-house, full-outsource and hybrid models with cost ranges, plus a table matching practice size, denial rate and AR days to a model."
+    },
+    {
+      "section": "Section 2: The RCM Vendor Landscape",
+      "gist": "Four vendor types and five fee models with price ranges; tells the reader to compute an all-in effective rate that includes ancillary fees."
+    },
+    {
+      "section": "Section 3: The Vendor Evaluation Framework",
+      "gist": "Due diligence in four areas: written performance evidence, operations and staffing, reporting transparency, and pointed reference checks; warns about self-serving KPI definitions."
+    },
+    {
+      "section": "Section 4: The Contract Anatomy",
+      "gist": "Six clauses to renegotiate: term and auto-renewal, termination fees, data ownership, performance standards, fee-base definition, and the business associate agreement."
+    },
+    {
+      "section": "Section 5: Performance Standards - The KPIs Your Contract Must Require",
+      "gist": "Defines six KPIs plus two aging limits with contractual floors, then shows three ways to turn a shortfall into dollars."
+    },
+    {
+      "section": "Section 6: The Monthly Monitoring Workflow",
+      "gist": "Seven-item monthly review agenda, insistence on direct system access and independent recalculation, and a quarterly payer- and provider-level deep dive."
+    },
+    {
+      "section": "Section 7: Red Flags - Signs Your Vendor Is Underperforming",
+      "gist": "Six warning signs: self-defined KPIs, unexplained aging, administrative write-offs, shifting report formats, vendor staff turnover and slow responses."
+    },
+    {
+      "section": "Section 8: The Escalation and Remediation Protocol",
+      "gist": "Three written levels: notification with root-cause and corrective-plan deadlines, formal remediation with vendor leadership, then performance-based termination."
+    },
+    {
+      "section": "Section 9: Special Situations That Change Your Vendor Relationship",
+      "gist": "Guidance for adding a provider (credentialing lead times), acquiring a practice, responding to payer audits and outgrowing vendor capacity."
+    },
+    {
+      "section": "Section 10: When to Bring It Back In-House",
+      "gist": "Five exit triggers and a three-phase 90-day transition: preparation and data extract, parallel operations, then AR hand-off and reconciliation."
+    },
+    {
+      "section": "Section 11: The Vendor Performance Scorecard",
+      "gist": "Part A scores candidates on 16 criteria from 1 to 5; Part B is a monthly form comparing nine KPIs with contract thresholds."
+    },
+    {
+      "section": "90-Day RCM Outsourcing Implementation Plan",
+      "gist": "Month-by-month rollout: assess and recompute KPIs, negotiate and build the monitoring routine, then run the first review and calibrate."
+    },
+    {
+      "section": "Quick-Reference Checklists",
+      "gist": "An 18-item pre-signing checklist and a 17-item monthly review checklist covering preparation, the meeting and follow-up."
+    },
+    {
+      "section": "Closing",
+      "gist": "Restates that results depend on oversight after signing and promotes three other products from the same vendor."
+    },
+    {
+      "section": "Front and back disclaimers (pages 4 and 38)",
+      "gist": "Disclaimers: figures are 'commonly cited' ranges or vendor-observed patterns supposedly labeled as such; no figure in the text is actually labeled or sourced."
+    }
+  ],
+  "framework_elements": [
+    "Billing delivery-model decision (in-house, outsource, hybrid)",
+    "All-in vendor cost and effective-rate calculation",
+    "Vendor type and fee-model taxonomy",
+    "Vendor due diligence on written performance evidence",
+    "Vendor operations review (credentials, turnover, accounts per biller)",
+    "Reporting transparency and KPI-definition alignment",
+    "Reference-check protocol with operational questions",
+    "Vendor selection scorecard",
+    "Contract term and auto-renewal control",
+    "Performance-based termination right",
+    "Data ownership and portability clause",
+    "Contractual KPI and service-level addendum",
+    "Fee-base definition matched to the NCR definition",
+    "Business associate agreement",
+    "Retained direct access to billing system and data",
+    "Independent KPI recalculation versus vendor-reported figures",
+    "Monthly vendor performance review",
+    "Quarterly deep-dive by payer and provider",
+    "AR aging trend monitoring",
+    "Denial reason analysis and aged-denial tracking",
+    "Write-off review (contractual versus administrative)",
+    "Charge lag and claim submission lag monitoring",
+    "Dollar valuation of KPI shortfalls",
+    "Red-flag surveillance (report changes, turnover, responsiveness)",
+    "Three-level escalation with written documentation trail",
+    "New-provider credentialing lead-time planning",
+    "Revenue-cycle and vendor diligence on an acquired practice",
+    "Payer audit response coordination with the vendor",
+    "Vendor capacity reassessment during rapid growth",
+    "Exit triggers and 90-day billing transition with AR hand-off"
+  ],
+  "processes": [
+    {
+      "name": "Delivery-model decision and all-in cost comparison",
+      "steps": [
+        "Total the fully loaded in-house cost: staff pay and benefits, software, clearinghouse, training, management time",
+        "Request itemized vendor proposals covering the base rate and every recurring or one-time fee",
+        "Divide each vendor's projected monthly cost by actual monthly net collections to get an effective rate",
+        "Compare both sides at the practice's real volume and against the size-based table",
+        "Choose in-house, full outsource or hybrid and record the reasoning",
+        "Revisit the choice in the annual operating review"
+      ],
+      "owner_role": "Physician-owner or practice administrator",
+      "cadence": "At the decision point, then annually"
+    },
+    {
+      "name": "Vendor due diligence and scoring",
+      "steps": [
+        "Ask each candidate for written 12-month averages for comparable clients: NCR, first-pass acceptance, days in AR, denial rate by reason, reversal rate",
+        "Confirm which KPI definitions the vendor uses",
+        "Review staffing: certifications, turnover, accounts per biller, days from charge to claim, denial workflow, platform and security",
+        "Establish which reports are standard, how often they arrive, and whether the practice keeps system access",
+        "Call same-specialty references, ask for before-and-after numbers and a sample monthly report",
+        "Score every candidate on the same 16 criteria and select on verifiable evidence"
+      ],
+      "owner_role": "Physician-owner or practice administrator",
+      "cadence": "Per vendor search"
+    },
+    {
+      "name": "Contract negotiation",
+      "steps": [
+        "Limit the first term to 12 months with annual renewal and a non-renewal notice window of 30 days or less",
+        "Add a right to leave without penalty after two straight months below a contracted KPI",
+        "State that the practice owns all billing data and that a complete standard-format extract is due within 30 days of notice at no charge",
+        "Attach a performance addendum with thresholds, measurement periods and consequences",
+        "Define net collections for the fee the same way it is defined for the NCR",
+        "Sign a separate business associate agreement",
+        "Set a turnaround time for producing audit documentation"
+      ],
+      "owner_role": "Physician-owner with healthcare counsel",
+      "cadence": "Before signing and at each renewal"
+    },
+    {
+      "name": "Monthly vendor performance review",
+      "steps": [
+        "Pull data directly from the practice's own system and recompute the KPIs",
+        "Compare with the vendor's reported figures and note every gap",
+        "Review AR by aging bucket and flag buckets rising two months running",
+        "List the top five denial reasons by count and dollars and confirm the action on each",
+        "Demand an explanation for any denial unresolved after 60 days",
+        "Check charge lag and submission lag against thresholds",
+        "Review all write-offs, separating contractual from administrative",
+        "Put a dollar value on any KPI shortfall",
+        "Send written notes with commitments and dates; log breaches and issue a Level 1 notice if needed"
+      ],
+      "owner_role": "Practice-side owner of the vendor relationship (physician-owner, administrator or in-house billing manager)",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Quarterly deep-dive",
+      "steps": [
+        "Trend 90 days of KPIs against contract thresholds",
+        "Break denials and performance down by payer and by provider",
+        "Confirm the vendor applied payer policy and coding updates",
+        "If visit volume is growing more than 20% a year, ask whether staffing on the account has scaled",
+        "Start the renewal or escalation decision well before the auto-renewal date"
+      ],
+      "owner_role": "Physician-owner or practice administrator",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Three-level escalation and remediation",
+      "steps": [
+        "Level 1, first breach: send written notice stating measured value versus threshold",
+        "Require a root-cause analysis within 10 business days and a corrective plan within 20",
+        "Level 2, second consecutive month or weak plan: send formal notice to vendor leadership citing the contract",
+        "Hold a remediation meeting with leadership; agree weekly checkpoints and a recovery date in writing",
+        "Level 3, no recovery: issue termination notice under the performance clause and start the transition",
+        "Keep a dated written record of every step"
+      ],
+      "owner_role": "Physician-owner or practice administrator",
+      "cadence": "Event-driven: month one, month two, then sustained breach"
+    },
+    {
+      "name": "Vendor exit and 90-day billing transition",
+      "steps": [
+        "Confirm that a documented exit trigger has been met",
+        "Days 1-30: give notice, obtain the full data extract, set up the new system or vendor and clearinghouse links, map open AR by bucket and owner",
+        "Days 31-60: new operation bills new dates of service while the old vendor works legacy AR; meet weekly with both",
+        "Agree when and how open claims transfer",
+        "Days 61-90: transfer unresolved claims with history and reconcile counts, payments and balances to the practice's system",
+        "Track the first 30 days of KPIs and hold a lessons-learned review"
+      ],
+      "owner_role": "Physician-owner or administrator with the incoming billing lead",
+      "cadence": "Event-driven"
+    },
+    {
+      "name": "Payer audit response with a billing vendor",
+      "steps": [
+        "Log the letter on receipt: payer, date, scope, deadline",
+        "Have the vendor produce claim files and payment history within the contracted turnaround",
+        "Compare documentation with each audited claim before anything is sent",
+        "Involve the vendor's compliance contact and note how responsive they are",
+        "Bring in counsel or a consultant when the audit is large (document's cut-offs: more than 20 claims or $10,000)",
+        "Respond by the deadline every time"
+      ],
+      "owner_role": "Physician-owner acting as compliance lead",
+      "cadence": "Event-driven"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Size-based model table (Section 1)",
+      "description": "Six practice profiles (four size bands, high denial rate, high AR days) mapped to the delivery model 'worth evaluating'; rules of thumb, unsourced."
+    },
+    {
+      "name": "Pricing model comparison table (Section 2)",
+      "description": "Five fee structures (percentage, per claim, flat monthly, hybrid, hourly) with price ranges and the incentive problem of each."
+    },
+    {
+      "name": "True cost / effective rate calculation (Section 2)",
+      "description": "Described procedure, not a worksheet: add every fee line and divide by monthly net collections."
+    },
+    {
+      "name": "Vendor evaluation question set (Section 3)",
+      "description": "Bulleted requests in four categories: performance evidence, infrastructure, reporting and transparency, references."
+    },
+    {
+      "name": "Reference-check protocol (Section 3)",
+      "description": "Four questions for vendor-supplied references, including before-and-after NCR and a sample monthly report."
+    },
+    {
+      "name": "Contract clause guide (Section 4)",
+      "description": "Six clauses, each with what the standard form does and a position to negotiate; no sample wording."
+    },
+    {
+      "name": "Minimum contractual KPI table (Section 5)",
+      "description": "Eight rows of floors and ceilings: NCR, clean claim, days in AR, denial, reversal, submission lag, AR over 90 and over 120 days."
+    },
+    {
+      "name": "KPI gap cost calculations (Section 5)",
+      "description": "Three worked methods: NCR gap times adjusted charges, excess denials times unrecovered share times claim value, and probability-weighted aging."
+    },
+    {
+      "name": "Monthly review agenda (Section 6)",
+      "description": "Seven standing items: KPI dashboard, aging, top denial reasons, unresolved denials, charge lag, write-offs, prior open items."
+    },
+    {
+      "name": "Quarterly deep-dive outline (Section 6)",
+      "description": "Five analyses: 90-day trend, threshold comparison, payer level, provider level, payer-policy and coding updates."
+    },
+    {
+      "name": "Red-flag list (Section 7)",
+      "description": "Six early-warning signs of vendor underperformance with a short explanation of each."
+    },
+    {
+      "name": "Three-level escalation protocol (Section 8)",
+      "description": "Notification, formal remediation, termination; with 10- and 20-business-day deadlines at Level 1. Letter templates are not supplied."
+    },
+    {
+      "name": "Credentialing timeline list (Section 9)",
+      "description": "Typical lead times for Medicare, Medicaid, commercial plans and hospital privileges; unsourced."
+    },
+    {
+      "name": "Acquisition revenue-cycle checklist (Section 9)",
+      "description": "Five diligence steps for an acquired practice and its billing vendor."
+    },
+    {
+      "name": "Audit response steps (Section 9)",
+      "description": "Six actions on receiving a payer audit letter, including when to call counsel."
+    },
+    {
+      "name": "Exit trigger criteria (Section 10)",
+      "description": "Five documented conditions that justify ending the vendor relationship."
+    },
+    {
+      "name": "90-day transition plan (Section 10)",
+      "description": "Three 30-day phases with four tasks each: preparation, parallel operations, hand-off and stabilization."
+    },
+    {
+      "name": "Vendor Selection Scorecard, Part A (Section 11)",
+      "description": "Sixteen criteria scored 1-5 with a notes column; says to weight evidence and infrastructure most but gives no weights or pass mark."
+    },
+    {
+      "name": "Monthly Performance Monitoring Summary, Part B (Section 11)",
+      "description": "Nine KPIs against contracted thresholds plus fields for breaches, root cause, corrective action, follow-up date and escalation level."
+    },
+    {
+      "name": "90-Day Implementation Plan",
+      "description": "Three months of tasks (seven, six, six) for a practice selecting a vendor or installing monitoring on an existing one."
+    },
+    {
+      "name": "Quick-Reference Checklist 1: Vendor Evaluation",
+      "description": "Eighteen pre-signing checks in three groups: performance evidence, contract terms, operational setup."
+    },
+    {
+      "name": "Quick-Reference Checklist 2: Monthly Vendor Performance Review",
+      "description": "Seventeen checks in three groups: data preparation, during the meeting, after the meeting."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Net collection rate (NCR)",
+      "definition": "Share of collectible revenue (charges after contractual adjustments) that is actually collected; called the master measure of billing performance.",
+      "formula": "Total payments ÷ (total charges − contractual write-offs); reported monthly as a rolling 90-day average",
+      "target": "95-98% described as industry standard; contract floor 94% (one worked example treats 96% as the contract standard)",
+      "red_flag": "Below 94%: corrective plan due in 30 days; exit without penalty if still below after 60 consecutive days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate (first-pass acceptance)",
+      "definition": "Share of claims accepted on first submission with no rejection or denial.",
+      "formula": "Implied only: claims accepted first time ÷ claims submitted, monthly",
+      "target": "95-98% industry standard; contract floor 95%",
+      "red_flag": "Consistently below 90%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR",
+      "definition": "Average days from date of service to receipt of payment (the document's wording; not the conventional AR-balance-over-daily-charges calculation).",
+      "formula": "",
+      "target": "30-40 days; contract ceiling 45 days",
+      "red_flag": "Above 50 days (also used in Section 1 as a signal to outsource)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate",
+      "definition": "Share of submitted claims denied by payers, reported in total and by reason category (medical necessity, eligibility, timely filing, authorization, coding).",
+      "formula": "Implied only: denied claims ÷ claims submitted",
+      "target": "Under 5% strong; 5-10% acceptable; contract ceiling 8%",
+      "red_flag": "Above 10% (Section 1 uses a chronic rate above 12% as a signal to outsource)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial reversal rate",
+      "definition": "Share of denied claims that are appealed or corrected and then paid.",
+      "formula": "Implied only: denials overturned and paid ÷ appealable denials, rolling 90 days ('appealable' is not defined)",
+      "target": "Contract floor 65%",
+      "red_flag": "Below 50%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claim submission lag",
+      "definition": "Average days from date of service (or from charge entry; the document uses both) to first claim submission.",
+      "formula": "",
+      "target": "3 business days from charge entry; contract ceiling 5 business days",
+      "red_flag": "Any claim sent more than 14 days after service is to be reported as an outlier",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 90 days",
+      "definition": "Share of the total AR balance older than 90 days (aging basis not stated).",
+      "formula": "Implied only: AR balance over 90 days ÷ total AR balance",
+      "target": "15% or less",
+      "red_flag": "Share rising for two or more consecutive months",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 120 days",
+      "definition": "Share of the total AR balance older than 120 days (aging basis not stated).",
+      "formula": "Implied only: AR balance over 120 days ÷ total AR balance",
+      "target": "10% or less",
+      "red_flag": "Share rising for two or more consecutive months",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administrative write-off rate",
+      "definition": "Write-offs for late filing, missing authorization, missing documentation or medical-necessity failure, as a share of collections.",
+      "formula": "Implied only: administrative write-offs ÷ collections",
+      "target": "2% or less (monthly monitoring form)",
+      "red_flag": "Above 1-2% (Section 7); above 1% (monthly checklist)",
+      "source_cited": "none"
+    },
+    {
+      "name": "All-in effective vendor rate",
+      "definition": "Everything the vendor charges, expressed as a share of net collections.",
+      "formula": "(base fee + clearinghouse, per-claim, per-statement, portal, integration, onboarding and other recurring charges for the month) ÷ monthly net collections",
+      "target": "5.5-7.5% for full service in 2025-2026",
+      "red_flag": "Below 4.5% (scope or service doubt) or above 8% for ordinary primary care",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge lag",
+      "definition": "Days from service to charge entry, reviewed monthly alongside submission lag.",
+      "formula": "",
+      "target": "Within contracted thresholds (none stated)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Aged unresolved denials",
+      "definition": "Denials open more than 60 days without resolution.",
+      "formula": "",
+      "target": "None past 60 days without documented action",
+      "red_flag": "Any unexplained denial older than 60 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Accounts per biller (staff-to-practice ratio)",
+      "definition": "Number of client practices each biller or account manager handles.",
+      "formula": "",
+      "target": "",
+      "red_flag": "More than 20 practices per biller",
+      "source_cited": "none"
+    },
+    {
+      "name": "Account manager turnover",
+      "definition": "Changes of account manager or primary biller on the practice's account.",
+      "formula": "",
+      "target": "",
+      "red_flag": "More than one change within 12 months",
+      "source_cited": "none"
+    },
+    {
+      "name": "Visit volume growth",
+      "definition": "Annual growth in visits, used as the trigger to re-check vendor capacity.",
+      "formula": "",
+      "target": "",
+      "red_flag": "Above 20% a year",
+      "source_cited": "none"
+    },
+    {
+      "name": "Vendor-reported versus independently calculated KPI variance",
+      "definition": "Difference between the vendor's figures and the practice's own calculation from its system.",
+      "formula": "",
+      "target": "No unexplained difference",
+      "red_flag": "Any gap; written explanation required",
+      "source_cited": "none"
+    },
+    {
+      "name": "NCR gap in dollars",
+      "definition": "Annual revenue attributed to an NCR shortfall.",
+      "formula": "Annual adjusted charges × (contract NCR − actual NCR)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Excess denial cost",
+      "definition": "Annual revenue attributed to denials above the contract ceiling that are never recovered.",
+      "formula": "(actual denial rate − ceiling) × monthly claims × (1 − reversal rate) × average claim value × 12",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Probability-weighted AR value",
+      "definition": "AR balance discounted by an assumed collectability factor per aging bucket, compared with its value at the current-bucket factor.",
+      "formula": "Sum of bucket balance × factor (90% current, 70% 30-60 days, 55% 61-90, 40% 91-120, 20% over 120)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Vendor selection score",
+      "definition": "Sum of 1-5 ratings across 16 selection criteria.",
+      "formula": "Sum of ratings (maximum 80); heavier weighting of evidence and infrastructure is suggested but no weights are given",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Top five denial reasons",
+      "definition": "Monthly ranking of denial reason codes by count and by dollar amount.",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Vendor response time",
+      "definition": "How long the vendor takes to answer practice questions and close review items.",
+      "formula": "",
+      "target": "",
+      "red_flag": "Answers that take days, missing follow-up, incomplete replies",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "The RCM outsourcing market generated approximately $32 billion in 2024 and is projected to exceed $100 billion by the early 2030s",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In-house billing staff cost $45,000-$70,000 per biller annually in salary and benefits",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Full in-house billing makes most sense typically above $3-$4 million in annual collections",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Full-outsource fee typically 4-9% of net collections; current market average 5.5-7.2% for full-service billing",
+      "section": "Sections 1 and 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Full outsource is most appropriate for solo and small group practices, typically under $2 million in annual collections",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Size table: solo under $1M full outsource; 2-4 providers $1-3M outsource or hybrid; 5-10 providers $3-7M hybrid or in-house; 10+ providers over $7M in-house",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A chronic denial rate above 12% or AR above 50 days signals outsourcing or a hybrid with a cleanup mandate",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Full-service national RCM companies are typically priced at 5-8% of net collections",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Specialty-specific billing companies charge 6-9% for complex specialties",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Small local or regional billing services often fall in the 4-7% range",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Clearinghouse, statement, claim, software and onboarding fees can add 1-2 points above the stated rate",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Per-claim flat rates typically run $3-$10 per claim",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Hourly billing work ranges $25-$65 per hour",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Full-service RCM should cost 5.5-7.5% of net collections all-in in 2025-2026; below 4.5% warrants scrutiny; above 8% is above market for standard primary care",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "More than 20 client practices per biller is a red flag",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most standard RCM contracts run one to three years with auto-renewal; non-renewal notice is typically due 60-90 days before renewal",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Early termination fees are often three to six months of average vendor fees; a practice 18 months into a three-year contract may face $30,000-$60,000",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Net collection rate industry standard for a well-managed independent practice is 95-98%; contract minimum 94%",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Clean claim rate industry standard is 95-98% first-pass acceptance; below 90% indicates systematic preparation errors",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Days in AR industry standard is 30-40 days; above 50 days indicates systematic delays",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Denial rate below 5% is strong, 5-10% acceptable, above 10% indicates systemic problems",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Minimum 65% reversal on appealable denials; a reversal rate below 50% means collectible revenue is being written off",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Industry standard is claim submission within 3 business days of charge entry; contract maximum 5 business days",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "AR over 90 days should be no more than 15% of total AR; AR over 120 days no more than 10%",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "AR past 120 days collects below 40% for commercial payers and below 20% for some government payers; bucket factors roughly 90%, 70%, 55%, 40%, 20%",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Administrative write-offs above 1-2% of collections warrant detailed investigation",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An unmeasured 3-5% NCR gap on $2 million of annual collections is $60,000-$100,000 a year, $180,000-$300,000 over a three-year contract",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Credentialing takes 60-90 days for Medicare, 60-120 for Medicaid, 30-90 for commercial payers and 90-180 for hospital-based credentialing; start at least 90 days before the first patient",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Engage an attorney or consultant if an audit involves more than 20 claims or potential recoupment above $10,000",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A billing transition needs at least 90 days; a well-run new operation reaches full performance within 60-90 days; growth above 20% a year in visits calls for a capacity reassessment",
+      "section": "Sections 9 and 10",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "During the credentialing period, claims can often be submitted under a supervising provider's NPI, but this requires explicit verification with each payer [and documented supervision].",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 9: Adding a New Provider",
+      "why": "For Medicare this is allowed only under narrow incident-to or substitute-physician rules and never for hospital or skilled nursing facility visits. A facility-based practice that follows it when adding a clinician would be filing false claims and owe repayment."
+    },
+    {
+      "id": "C2",
+      "claim": "Until a provider is fully credentialed with every relevant payer, their claims cannot be submitted under their NPI.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 9: Adding a New Provider",
+      "why": "Medicare ties the billing effective date to the application filing date and allows limited retrospective billing, so early visits are held, not lost. Believing otherwise forfeits revenue or pushes the practice toward the risky NPI workaround."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare: 60–90 days from complete application submission ... The credentialing process must begin at least 90 days before a new provider sees their first patient.",
+      "kind": "deadline",
+      "stakes": "medium",
+      "section": "Section 9: Adding a New Provider",
+      "why": "Hiring and start dates depend on real contractor processing times and on how early an enrollment application may be filed; a wrong lead time delays cash or gets the application returned."
+    },
+    {
+      "id": "C4",
+      "claim": "Never ignore an audit letter. Non-response is treated as an admission and triggers automatic recoupment.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 9: A Payer or RAC Audit",
+      "why": "The real consequence of a missed records deadline (denial for no documentation, overpayment demand, appeal rights, limits on recoupment during appeal) shapes the response; calling it an admission misstates the practice's rights."
+    },
+    {
+      "id": "C5",
+      "claim": "An RCM vendor without a current BAA is not HIPAA-compliant, and using them exposes the practice to HIPAA liability. It should be a standalone agreement, not embedded in the service contract.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4: HIPAA and Business Associate Agreement",
+      "why": "The practice runs billing through AI agents under a business associate agreement and would itself become a business associate if it sold services; it needs the actual HIPAA contract requirements, not a drafting preference stated as a rule."
+    },
+    {
+      "id": "C6",
+      "claim": "The vendor's fee typically ranges from 4–9% of net collections ... with the current market average tracking between 5.5% and 7.2% for full-service billing across practice types.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 1 (Option 2) and Section 2 pricing table",
+      "why": "This is the outside-market comparator for the practice's own cost to collect and the price anchor for any service the owner might sell; an invented range would distort both decisions."
+    },
+    {
+      "id": "C7",
+      "claim": "AR that ages past 120 days has collection probability below 40% for commercial payers and below 20% for some government payers.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 5: Calculating the Cost of a KPI Gap (AR Aging Cost)",
+      "why": "Collectability factors drive AR valuation in monthly reporting and in a sale. Medicare claims stay payable inside the one-year filing limit, so unsupported decay factors could misprice receivables or excuse early write-offs."
+    },
+    {
+      "id": "C8",
+      "claim": "Medicaid: 60–120 days, with significant state variation; Commercial payers: 30–90 days, depending on payer and network status; Hospital-based credentialing: 90–180 days.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 9: Adding a New Provider",
+      "why": "Medicare Advantage, Florida Medicaid plan and hospital privileging lead times decide when a new clinician produces collectible revenue; a 30-day commercial assumption would understate the cash gap when the practice hires."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.26,
+      "topics": [
+        "contractual KPI floors for collections, first-pass acceptance, days in AR, denials, reversals, lag and aging",
+        "monthly AR aging and denial-reason review",
+        "write-off review",
+        "dollar valuation of KPI gaps",
+        "AR hand-off during a billing transition"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.22,
+      "topics": [
+        "vendor management lifecycle",
+        "data ownership and portability",
+        "retained system access",
+        "independent analytics versus vendor reports",
+        "lock-in with EHR-integrated billing",
+        "transition continuity"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.18,
+      "topics": [
+        "outsourcing versus in-house decision",
+        "in-house biller cost",
+        "vendor staffing ratios and credentials",
+        "vendor capacity as volume grows"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.12,
+      "topics": [
+        "key contract terms: term, renewal, termination",
+        "monthly and quarterly operating rhythm",
+        "escalation governance",
+        "annual review of the delivery model"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.07,
+      "topics": [
+        "business associate agreement",
+        "payer audit response",
+        "documentation trail for enforcement"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.06,
+      "topics": [
+        "all-in cost to collect",
+        "fee-base definition",
+        "in-house versus vendor cost comparison",
+        "AR valuation by aging bucket"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.04,
+      "topics": [
+        "credentialing and enrollment lead times for new providers"
+      ]
+    },
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.03,
+      "topics": [
+        "revenue-cycle diligence on an acquired practice",
+        "inherited vendor contracts",
+        "post-acquisition integration"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.02,
+      "topics": [
+        "adding providers and locations",
+        "growth-triggered capacity checks"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Recompute billing KPIs every month from raw practice-management data under written definitions, by someone other than whoever does the billing, and reconcile the result to the operator's own report.",
+      "why": "Self-reported performance is the weak point of any delegated billing function, whether the operator is a vendor, an employee or software.",
+      "applies_to_practice": "yes",
+      "note": "Run an independent check on the AI agents' output straight from AdvancedMD reports; the agents should not grade their own work."
+    },
+    {
+      "idea": "Write a one-page billing performance standard: each KPI with an exact formula, data source, measurement window, floor and the action a breach triggers.",
+      "why": "Thresholds only bind when the definition is fixed; undefined metrics can be made to look good.",
+      "applies_to_practice": "yes",
+      "note": "Replace the document's loose definitions and recalibrate for a Medicare fee-for-service, facility-based mix; the days-in-AR and lag ceilings probably should be tighter than 45 days and 5 business days."
+    },
+    {
+      "idea": "Hold a fixed-agenda monthly billing review (KPIs, aging, top denial reasons, aged denials, lag, write-offs, open items) and a quarterly deep dive by payer and provider.",
+      "why": "A standing agenda turns billing oversight into an operating rhythm and builds a KPI history.",
+      "applies_to_practice": "yes",
+      "note": "Fits the owner-as-CFO role; cut payer views by Medicare, each Medicare Advantage plan, Medicaid plans, VA and Tricare, and by physician versus nurse practitioner."
+    },
+    {
+      "idea": "Review all write-offs monthly, splitting contractual adjustments from avoidable ones (late filing, missing authorization or documentation) and requiring a reason and sign-off for the avoidable kind.",
+      "why": "Avoidable write-offs are where lost revenue hides, and miscoded adjustments can inflate the net collection rate.",
+      "applies_to_practice": "yes",
+      "note": "Set an owner-approval rule for avoidable write-offs proposed by AI agents and track timely-filing losses in dollars."
+    },
+    {
+      "idea": "Translate every KPI shortfall into monthly and annual dollars before acting on it.",
+      "why": "Dollar figures set priorities and make the business case; percentages do not.",
+      "applies_to_practice": "yes",
+      "note": "At roughly $1.0-1.1 million of net revenue each NCR point is about $10,000-11,000 a year. Use allowed amounts rather than billed charges and treat the result as an estimate. Calibrate any aging discount factors from the practice's own payment history by payer, not the document's."
+    },
+    {
+      "idea": "Keep ownership of the billing system licence, the data, and the clearinghouse and payer-portal credentials, and require a documented export and exit path from every vendor.",
+      "why": "Whoever controls system access and data controls the practice's cash flow and its ability to switch.",
+      "applies_to_practice": "yes",
+      "note": "Already true for the practice's AdvancedMD instance; apply the same test to the AI vendor, the clearinghouse and any future billing partner."
+    },
+    {
+      "idea": "Compute the practice's own all-in cost to collect and compare it with what an outsourced vendor would charge at the same volume.",
+      "why": "It tests whether the in-house model is earning its keep and gives a normalized billing cost for a valuation.",
+      "applies_to_practice": "yes",
+      "note": "If the document's unverified 5.5-7.5% range holds, the outside comparator is roughly $55,000-83,000 a year at this revenue. Count AI subscriptions, software, clearinghouse and owner time on the in-house side."
+    },
+    {
+      "idea": "Use a time-boxed escalation ladder: written notice, root cause in 10 business days, corrective plan in 20, leadership-level remediation in month two, exit if not fixed, with everything documented.",
+      "why": "Deadlines and a paper trail stop performance problems from drifting and support enforcement.",
+      "applies_to_practice": "partly",
+      "note": "There is no billing vendor to escalate to, but the same ladder works for AI-agent error incidents and for the software, clearinghouse and credentialing vendors."
+    },
+    {
+      "idea": "Before buying a practice, pull 12 months of its AR aging, check for open audits or payer investigations, benchmark its collection and denial rates, verify clinician enrollment status, and decide deliberately what happens to its billing arrangement.",
+      "why": "Billing defects and vendor contracts transfer with the deal and affect price and working capital.",
+      "applies_to_practice": "partly",
+      "note": "Relevant to a growth-by-acquisition path and, in mirror image, to what a buyer will ask of this practice."
+    },
+    {
+      "idea": "Treat this playbook as the buyer's requirements list when designing a billing or optimization service: 12-month terms, measurable service levels, client-owned data with a 30-day export, performance-based exit and all-in pricing.",
+      "why": "Informed clients will ask for these terms; offering them up front differentiates a new entrant.",
+      "applies_to_practice": "partly",
+      "note": "Only relevant if the owner launches a service for other practices. Counsel must add the billing-agent, percentage-fee and business-associate rules the document leaves out."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The practice does not outsource billing; AI agents run it in-house on the practice's own AdvancedMD system under a business associate agreement. Vendor selection, termination-fee negotiation and the bring-it-back-in-house plan therefore have no immediate use. What transfers is the control method: written KPI definitions and floors, monthly independent recalculation, write-off review, dollar-valued gaps and a documented escalation path apply directly to governing AI billing agents. The pricing section supplies the outside-market comparator for cost to collect (unverified). The acquisition checklist and credentialing lead times matter for growth, and the whole document reads as the buyer's requirements list if the owner builds a service for other practices. Nothing is tailored to Medicare fee-for-service, facility-based work, crossover claims or a practice with almost no patient collections; Medicare is mentioned once.",
+    "sections_that_do_not_apply": [
+      "Section 1 size-based table: no row for software- or AI-run in-house billing, which is how the practice operates",
+      "Section 2 vendor types and fee models: no procurement under way; useful only as a price benchmark",
+      "Section 3 vendor selection and reference checks",
+      "Section 4 auto-renewal and early-termination-fee negotiation (transferable only by analogy to software and AI vendor contracts)",
+      "Section 8 Levels 2 and 3 (vendor leadership remediation and termination)",
+      "Section 10 transition from a vendor back in-house",
+      "Section 9 supervising-NPI workaround: not usable for Medicare hospital and skilled nursing facility visits",
+      "Section 5 thresholds as written: 45-day AR and 8% denial ceilings are not calibrated to a Medicare-heavy, facility-based payer mix",
+      "Per-statement and patient-portal fee items: the practice has almost no patient-pay volume"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Section 9 presents billing a not-yet-credentialed clinician under a 'supervising' provider's NPI as a workaround that 'can often' be used. For Medicare that is lawful only inside narrow incident-to rules (non-institutional setting, direct supervision, physician-established plan of care) or substitute-physician arrangements; incident-to does not exist for hospital or skilled nursing facility visits, and many Medicare Advantage and commercial plans forbid the practice outright. Treating it as routine is a false-claims risk that the hedge about checking with each payer does not cure.",
+      "The same section says claims cannot go out until the clinician is credentialed with every payer and stops there. It omits that Medicare sets the billing effective date at the later of the application filing date or first service date and permits up to 30 days of retrospective billing (42 CFR 424.520(d), 424.521(a)), so services are held and billed after approval rather than lost. Payer-by-payer retroactivity is not discussed.",
+      "Medicare enrollment in '60-90 days' is a folk number, not a rule, and nothing is cited. The instruction to start at least 90 days ahead does not account for the contractor practice (in CMS transmittals and on First Coast's enrollment pages) of returning individual-practitioner applications filed more than 60 days before the requested effective date; preparation can start early, the Medicare filing cannot.",
+      "'Non-response is treated as an admission and triggers automatic recoupment' is wrong in form. Ignoring a records request leads to denial of the sampled claims for lack of documentation and an overpayment demand; the practice keeps its appeal rights and Medicare recoupment is limited while timely first- and second-level appeals are pending. The advice to always respond is right; the stated reason is not.",
+      "Days in AR is defined as the average time from service to payment, with no formula. The conventional measure is AR balance divided by average daily charges. A document that warns about vendors using non-standard definitions writes one into its own model contract.",
+      "Clean claim rate is defined as acceptance with no rejection or denial, which is first-pass payment rather than the usual front-end acceptance measure, and that makes the 95% floor arithmetically incompatible with the 8% denial ceiling in the same table.",
+      "NCR is to be measured on a rolling 90-day window with no instruction to match payments to the charges that produced them, so the figure will swing with volume changes and cannot support a 60-day termination clock.",
+      "Every threshold is blind to payer mix and specialty. For a mostly Medicare fee-for-service practice (clean electronic claims payable from day 14) a 45-day AR ceiling and a 5-business-day submission allowance are lax; elsewhere they may be tight. No adjustment method is offered.",
+      "The aging-bucket collectability factors (90/70/55/40/20%) and the statement about balances over 120 days have no source and look invented. Medicare claims do not lose value on that curve inside the one-year filing limit.",
+      "All price points (4-9%, 5.5-7.2%, 5.5-7.5% all-in, $3-10 per claim, $25-65 per hour, $45,000-70,000 per biller) are unsourced. The 5.5-7.2% figure could not be traced in a quick search; public commentary, mostly vendor marketing, clusters around 4-10% with 5-8% typical.",
+      "The $32 billion market figure matches one market-research publisher's global 2024 estimate (IMARC, about $109 billion forecast for 2033); the document does not name it and other publishers give different bases.",
+      "'Flat monthly fee ... common in government/Medicaid contracting' is an unexplained assertion with no evident basis for physician-practice billing.",
+      "A standalone business associate agreement is presented as the correct form. HIPAA requires the business-associate terms but not a separate document; this is a drafting preference stated like a rule.",
+      "The NCR-gap figure is called arithmetic rather than an estimate. It is an estimate: it assumes the whole gap is recoverable and attributable to the vendor. The denial example uses an undefined 'average claim value' (billed or allowed?) and a 50% reversal rate that is below the document's own 65% floor.",
+      "Vendor risk is framed only as under-collection. A percentage-of-collections fee also rewards over-billing, and the practice, not the vendor, answers for claims filed under its name. The proposed contract has no coding-accuracy standard, audit right or compliance duty.",
+      "The cut-offs for calling a lawyer in an audit (more than 20 claims or $10,000) are arbitrary, ignore extrapolation from small samples, and treat a consultant as interchangeable with counsel, which gives up privilege.",
+      "'Most standard RCM contracts contain no enforceable performance standards' and 'above 20 practices per biller is a red flag' are generalizations with no data behind them.",
+      "Reviewer note on the basis for these concerns: regulation pages could not be opened directly in this session (www.ecfr.gov and www.law.cornell.edu are outside the allowed network), so the citations above rest on search-result excerpts and prior knowledge and should be confirmed in the verification track."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "NCR contract floor is 94% in the KPI list, the summary table and the scorecard, but the worked example in the same section calls 96% 'the contractual standard'.",
+      "Clean claim rate must be at least 95% with no rejection or denial, while the same table tolerates a denial rate of up to 8%; both cannot be met.",
+      "Text, checklist and 90-day plan speak of 'six KPIs'; the Section 5 table has eight rows and the Part B form has nine, including an administrative write-off 'contracted threshold' that Section 5 never defines.",
+      "Administrative write-off trigger is stated three ways: above 1-2% (Section 7), 2% or less (Part B), over 1% (Checklist 2).",
+      "The closing disclaimer says figures are labeled as industry benchmark or 'CCRx-observed' throughout; no figure in the text carries either label and the term appears only in the disclaimer.",
+      "The denial-cost example says the Red Flags section applies 'the same arithmetic'; that section actually uses an NCR-gap calculation.",
+      "Section 1 is titled 'Build vs. Buy vs. Outsource' but describes in-house, full outsource and hybrid; no 'buy' option exists.",
+      "Full outsourcing is said to suit practices under $2 million, yet the table splits at $1 million and $3 million; a rate below 4.5% 'warrants scrutiny' although the document's own range for small local vendors starts at 4%.",
+      "Headline market average is given as 5.5-7.2% and hidden fees are said to add 1-2 points, yet the all-in market reference is only 5.5-7.5%.",
+      "Early termination fees are described in one sentence as a multiple of average monthly collections and as months of average vendor fees, which differ by more than tenfold.",
+      "The 90-day plan refers to a 'Section 4 checklist'; Section 4 has none.",
+      "Exit timing differs by section: two consecutive months of breach (Section 4), 60 days below threshold after a 30-day plan (Section 5), or only after a Level 2 remediation plan begun in month two has run (Section 8).",
+      "Balances past 120 days are said to collect below 40% for commercial payers, but the factor list gives 40% for 91-120 days and 20% beyond 120.",
+      "A non-renewal window of 30 days or less is recommended alongside a transition said to need at least 90 days, with no transition-services clause to bridge the gap."
+    ],
+    "time_sensitive_or_outdated": [
+      "Fee ranges are labeled as 2025-2026 market conditions and will drift; none has a source to refresh against.",
+      "The market-size figure is a 2024 estimate with a forecast; marketing colour, not a planning input.",
+      "Credentialing lead times are undated generalities; Medicare contractor processing and plan timelines change and differ by payer and state.",
+      "The audit discussion centres on Recovery Audit Contractors. For a Part B physician practice in 2026 the likelier contacts are the Medicare contractor's targeted probe-and-educate reviews, program-integrity contractors and Medicare Advantage plan record requests, none of which is named.",
+      "A product generated in September 2026 offers only staff-run in-house billing, full outsourcing or a hybrid; software- or AI-agent-run billing is absent.",
+      "Nothing reflects the 2024 national clearinghouse outage (vendor and clearinghouse continuity, backup submission routes) or current expectations for verifying a business associate's security.",
+      "Silent on the overpayment report-and-return duty, whose standard was revised effective 2025.",
+      "The biller cost range carries no year or locality."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, client or data source anywhere; 'operational experience across independent practices' is asserted only in a disclaimer.",
+      "Disclaimer promises labels ('CCRx-observed') that the text never uses.",
+      "Formulaic contrast sentences repeated throughout ('not a threat, it is...', 'not bureaucracy, it is...', 'not a luxury, it is...') and roughly 207 em dashes in 38 pages.",
+      "Broken internal references: a 'Section 4 checklist' that does not exist, a cross-reference to arithmetic Section 7 does not contain, and a 'buy' option in a title with no content.",
+      "Counts that do not match their own lists (six KPIs versus eight and nine rows).",
+      "Oddly precise unsourced ranges (5.5-7.2%) beside round rules of thumb (20 practices per biller, 20 claims, $10,000, 20% growth).",
+      "Identical callout-box pattern in every section; tagline and web address repeated four times.",
+      "Seven cross-references to four other products in the same catalogue stand in for missing detail (KPI formulas, staffing costs, technology selection).",
+      "Marketing hook ('the framework the vendor does not want you to have') wrapped around standard procurement advice.",
+      "Medicare appears once in the entire text, in a credentialing bullet; no regulation, form or agency is named."
+    ],
+    "missing_for_real_use": [
+      "Exact KPI formulas and data rules: days in AR, service-date-matched NCR, denial rate basis (claims or lines, count or dollars, rejections in or out), aging basis, and what counts as 'appealable'.",
+      "The documents it tells the reader to create: performance addendum wording, model contract clauses, Level 1-3 notice letters, a KPI tracking workbook and an in-house versus vendor cost worksheet. The scorecard has no weights or pass mark.",
+      "Billing-agent law: Medicare's payment-to-agent conditions (42 CFR 424.73 and 424.80) and the Medicaid counterpart (42 CFR 447.10), which restrict paying program money to an agent whose fee is a percentage of billings or collections, so deposits must land in an account the practice controls; bank, lockbox and deposit controls; state fee-splitting and billing-company rules. Confirm details with counsel.",
+      "Any statement that the practice remains liable for what the vendor submits, together with coding-accuracy standards, audit rights, who may change codes or modifiers, exclusion-list screening of vendor staff, and the federal compliance guidance for third-party billing companies.",
+      "Overpayment handling: credit balances, refund timeliness and the 60-day report-and-return duty when a vendor error is found.",
+      "Security and continuity terms: breach-notice timing, subcontractor flow-down, security attestations, cyber and errors-and-omissions insurance, indemnity and liability caps, clearinghouse-outage contingency and return of data. It also misses that federal HIPAA guidance (OCR FAQ 2074) treats a business associate blocking a practice's access to its data over a fee dispute as an impermissible use.",
+      "Offshore work and data location, including Florida's 2023 rule (s. 408.051) that patient information held by providers using certified record systems be stored in the United States, its territories or Canada, and Medicare Advantage plans' offshore-subcontractor disclosure requirements.",
+      "Shared-accountability carve-outs every vendor will demand (denials caused by the practice's documentation, eligibility or enrollment lapses), a baseline period, and payer-mix adjustment of thresholds.",
+      "Exit mechanics: the fee owed on legacy AR collected after termination, lead times to re-enroll electronic claims, remittances and funds transfer under a new submitter, and ownership of clearinghouse and portal credentials.",
+      "KPIs it never mentions: payment-posting lag and accuracy, unapplied cash, credit-balance aging, rejection turnaround, underpayment detection against fee schedules, secondary and crossover billing, timely-filing write-offs in dollars, charge-capture completeness.",
+      "Actual filing and appeal deadlines by payer, and Medicare audit types, response windows, appeal levels and recoupment limits.",
+      "Any treatment of software- or AI-run billing, or of how to oversee automated billing agents."
+    ]
+  }
+}

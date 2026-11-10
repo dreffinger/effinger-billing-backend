@@ -1,0 +1,150 @@
+[
+ {
+  "as_of": "2026-11-10",
+  "method": "summary",
+  "low": 400000,
+  "base": 650000,
+  "high": 1000000,
+  "inputs": [
+   [
+    "Revenue, last twelve months to September 30, 2026",
+    1058153
+   ],
+   [
+    "Less estimated one-time recovery of old receivables",
+    -46000
+   ],
+   [
+    "Operating expenses (staff, nurse practitioner, billing, rent, other)",
+    -473096
+   ],
+   [
+    "Earnings before any owner pay (seller's discretionary earnings)",
+    539057
+   ],
+   [
+    "Less a market wage for the physician's clinical work, with payroll tax and benefits",
+    -369000
+   ],
+   [
+    "Normalized EBITDA",
+    170057
+   ],
+   [
+    "Normalized EBITDA, low to high case",
+    "$123,057 to $239,057"
+   ],
+   [
+    "Market wage used",
+    "$325,000 base. Published 2025 figures: family medicine median $342,411 (AMGA), geriatrics average $304,411 (Doximity), primary care $314,404 to $345,852 (MGMA)."
+   ],
+   [
+    "How the conclusion is weighted",
+    "Half on the EBITDA method (what a group or platform buyer pays), a quarter on the revenue cross-check, a quarter on the owner-operator method. The weighted figure is $647,750, rounded to $650,000."
+   ],
+   [
+    "Books",
+    "Cash basis and unaudited. No receivables or payables are on the balance sheet, so receivables are added separately below."
+   ]
+  ],
+  "bridge": [
+   {
+    "label": "Enterprise value, most likely",
+    "amount": 650000,
+    "note": "What a buyer would pay for the practice as a going concern, with no cash and no debt."
+   },
+   {
+    "label": "Plus cash in the bank",
+    "amount": 94431,
+    "note": "The seller keeps cash in nearly every small-practice sale. Balance at September 30, 2026."
+   },
+   {
+    "label": "Plus receivables the seller collects",
+    "amount": 90000,
+    "note": "$342,620 is open at billed charges. After contractual discounts and aging, about $70,000 to $110,000 should turn into cash. In an asset sale the seller normally keeps receivables."
+   },
+   {
+    "label": "Less debt paid off at closing",
+    "amount": -212206,
+    "note": "Equipment and working-capital note $187,206 at 13.99% and a family trust loan of $25,000."
+   },
+   {
+    "label": "Indicative proceeds to the owner, before tax and deal costs",
+    "amount": 622225,
+    "kind": "total",
+    "note": "Legal and broker costs commonly run 5% to 10% of price. The $162,121 the owner owes the corporation does not change this total, but it must be cleared before a sale and clearing it has a tax cost. Ask the accountant now."
+   }
+  ],
+  "notes": "**Three things hold the number down, and all three can be changed.** First, earnings after a market wage are thin: buyers pay for what is left after someone else is paid to do the owner's work, and that is about $170,000, not $585,000. Second, the owner personally produces 76.8% of charges and holds the facility relationships, so most of the goodwill would leave with the owner unless the owner stays on under contract. Third, the billing patterns in the risk review (complex care management volume, visit levels, place of service) would be found in any buyer's diligence and would be priced as a discount, an escrow or a reason to walk away. **What moves it up:** every additional $100,000 of sustainable earnings is worth roughly $300,000 at this multiple. A clean outside coding audit, a second and third clinician carrying the census, written facility agreements, monthly accrual-basis statements and two years of growth are what move a buyer from 3 times earnings toward 4 or 5. As an illustration only: revenue of $1.4 million with $330,000 of normalized earnings at 4 to 5 times would be worth about $1.3 to $1.6 million. **What moves it down:** if care-management billing cannot be supported and stops, earnings fall by up to the amount it collects and past payments may have to be returned. That is the low case."
+ },
+ {
+  "as_of": "2026-11-10",
+  "method": "Normalized EBITDA multiple",
+  "low": 340000.0,
+  "base": 510000.0,
+  "high": 680000.0,
+  "inputs": [
+   [
+    "Normalized EBITDA",
+    170057
+   ],
+   [
+    "Multiple applied",
+    "2 to 4 times, most likely 3"
+   ],
+   [
+    "Evidence",
+    "Reported sales of small primary care practices (revenue under $5 million): 3 to 6 times EBITDA (Scope Research, 2025). Taken down one turn for a single physician, government fee-for-service payers and facility relationships the practice does not own."
+   ],
+   [
+    "Stretch case",
+    "5 to 6 times (about $850,000 to $1,020,000) needs a strategic buyer in post-acute or senior care, the owner staying for several years, and documented, transferable relationships."
+   ]
+  ],
+  "notes": "The method a medical group, health system or investor-backed platform would use. It pays for earnings that remain after every clinician, including the owner, is paid a market wage."
+ },
+ {
+  "as_of": "2026-11-10",
+  "method": "Owner-operator earnings multiple",
+  "low": 787000.0,
+  "base": 943000.0,
+  "high": 1105000.0,
+  "inputs": [
+   [
+    "Earnings before any owner pay",
+    539057
+   ],
+   [
+    "Multiple applied",
+    "1.46 to 2.05 times, most likely 1.75"
+   ],
+   [
+    "Evidence",
+    "Medical practices sold through a national business marketplace, 2021 to 2025: median 2.05 times owner earnings, middle half 1.46 to 2.94 (BizBuySell data quoted by Iconic, 2026). The lower half of that range is used because one physician produces most of the earnings."
+   ]
+  ],
+  "notes": "The method an individual physician buying the practice to run it would use. It gives the highest answer because the buyer is also buying a job. Few physicians buy facility-based practices this way, so it carries a quarter of the weight."
+ },
+ {
+  "as_of": "2026-11-10",
+  "method": "Revenue multiple (cross-check)",
+  "low": 425000.0,
+  "base": 628000.0,
+  "high": 921000.0,
+  "inputs": [
+   [
+    "Sustainable revenue",
+    1012153
+   ],
+   [
+    "Multiple applied",
+    "0.42 to 0.91 times, most likely 0.62"
+   ],
+   [
+    "Evidence",
+    "Sold medical practices, 2021 to 2025: median 0.62 times revenue, middle half 0.42 to 0.91 (same marketplace data). Small primary care listings ask 0.7 to 1.15 times (Scope Research, 2025; asking prices, not sales)."
+   ]
+  ],
+  "notes": "A rough check only. Revenue multiples ignore margin, and this practice's margin before owner pay is unusually high."
+ }
+]

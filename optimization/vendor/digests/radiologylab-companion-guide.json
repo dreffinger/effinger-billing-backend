@@ -1,0 +1,738 @@
+{
+  "slug": "radiologylab-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Radiology & Laboratory",
+  "doc_type": "specialty",
+  "pages": 50,
+  "audience": "Independent practices that furnish imaging or laboratory services: radiology and pathology groups, free-standing imaging centers, teleradiology groups, independent and physician-office laboratories, and multispecialty or primary care practices with in-house imaging or lab. The cover says the reader is assumed to have read the vendor's Universal Specialty Billing Framework first.",
+  "summary": "A specialty add-on to the vendor's universal billing framework. Its thesis: imaging and laboratory revenue is lost through quiet underpayment and unbilled work, not visible denials. It follows the series' eight-part template: a reframe; payer behavior by service type with eight questions for each payer; code tables for CT, MRI, ultrasound, PET, lab panels, point-of-care tests, molecular tests and surgical pathology; a modifier matrix for global, professional and technical billing; imaging prior authorization; coverage-policy and ABN handling for lab tests; four documentation failures; four denial patterns; five revenue opportunities; and five standards with five first actions. The method: put each rule where work is documented or ordered (required report field, diagnosis prompt at ordering, automatic charge trigger), scrub before submission, and audit a small sample quarterly. Nothing is cited, no forms are included, and several code descriptions and Medicare statements are wrong or outdated.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Radiology and Lab Don't Have Billing Problems. They Have Leakage Problems.",
+      "gist": "Losses come from silent underpayments and unbilled work spread over thousands of small claims, not from denials; nobody sees them until an audit."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Radiology and Laboratory",
+      "gist": "Separates imaging and lab business models; covers the professional/technical split, CLIA limits, three Medicare claim rules, a payer table and eight payer questions."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in Radiology and Laboratory",
+      "gist": "Code tables for imaging, lab and pathology; the contrast coding rule; a global/26/TC modifier matrix; a diagnosis coverage rule for lab tests."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Radiology and Laboratory",
+      "gist": "Imaging authorization by modality, the rescinded appropriate-use program, indication wording, ABN use for uncovered lab tests, and three documentation elements for genomic panels."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Radiology and Laboratory",
+      "gist": "Four gaps: unstated contrast status, late-signed reports, lab orders lacking a covered diagnosis, and pathology reports that do not back the level billed."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Radiology and Laboratory",
+      "gist": "Four patterns with fixes: imaging medical necessity, coverage diagnosis mismatch, contrast down-coding paid as an underpayment, and uncovered tests run without an ABN."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Radiology and Laboratory Practices Are Missing",
+      "gist": "Five plays: bill globally on owned equipment, get accredited, bill every waived test performed, report panels correctly, and bill pathology at the correct level."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Radiology and Laboratory",
+      "gist": "Five standing standards (contrast field, modifier map, coverage scrub, 24-hour report signing, quarterly 60-claim audit) and a five-step starting list."
+    }
+  ],
+  "framework_elements": [
+    "Underpayment (leakage) detection as a control separate from denial management",
+    "Professional/technical component billing map tied to equipment ownership and reader arrangement",
+    "Contrast-status documentation field in report templates",
+    "Report finalization (signature) deadline before professional billing",
+    "CLIA certificate scope check against the test menu",
+    "Automatic charge trigger from test-result entry",
+    "Documented-versus-billed reconciliation for in-office tests",
+    "Ordering-provider identification and eligibility on lab and imaging claims",
+    "Rendering provider equals interpreting physician rule",
+    "Anti-markup check for purchased diagnostic services",
+    "Per-payer intelligence profile (eight questions)",
+    "Imaging prior authorization with indication-specific order templates",
+    "Pre-service verification of authorization and indication",
+    "Coverage-policy reference for highest-volume tests",
+    "Covered-diagnosis prompt at order entry",
+    "Pre-claim coverage scrub (test code against diagnosis code)",
+    "ABN workflow (real-time or next-day batch)",
+    "Molecular and genomic test authorization documentation",
+    "Panel versus component code rules",
+    "Surgical pathology level verification against specimen lists",
+    "Denial categorization by modality and payer",
+    "Accreditation status tracking for advanced imaging",
+    "Global billing eligibility review",
+    "Quarterly claim-to-source-document audit",
+    "Corrected-claim sweep inside timely filing",
+    "Template and billing-rule updates driven by audit findings"
+  ],
+  "processes": [
+    {
+      "name": "Contrast documentation and code reconciliation",
+      "steps": [
+        "List every report template for CT, MRI and other contrast-capable studies",
+        "Add a mandatory technique field stating contrast given (with agent) or not given",
+        "Pull 30 days of CT and MRI claims and compare billed code with documented contrast status",
+        "Count mismatches and price the down-coding",
+        "Hold claims whose report lacks a contrast statement until the radiologist adds an addendum",
+        "Correct open claims still inside timely filing"
+      ],
+      "owner_role": "Interpreting radiologists for templates and addenda; billing or coding lead for the claim comparison (roles implied, never assigned)",
+      "cadence": "One-time template fix; per-claim check before submission; re-audited quarterly"
+    },
+    {
+      "name": "Professional/technical component billing map",
+      "steps": [
+        "List each imaging service the practice performs",
+        "Record who owns the equipment and who employs or contracts the interpreting physician",
+        "Assign global, modifier 26 or modifier TC to each service",
+        "Check every radiology claim against the map before submission",
+        "Audit the last 90 days of claims for systematic modifier errors and correct open claims",
+        "Re-review the map whenever ownership or the reading arrangement changes"
+      ],
+      "owner_role": "Billing manager (implied)",
+      "cadence": "Per claim; on any structural change; 90-day lookback at the start"
+    },
+    {
+      "name": "CLIA scope check and office-lab charge capture audit",
+      "steps": [
+        "Pull the CLIA certificate and compare its level with the tests actually performed",
+        "Stop, or obtain the right certificate for, any test outside the certificate",
+        "Pull 30 days of encounter notes and list every in-office test documented",
+        "Compare with the claim for each encounter and price the unbilled tests",
+        "Configure the EHR so that entering a test result creates the charge automatically"
+      ],
+      "owner_role": "Practice manager or lab lead with billing staff (implied)",
+      "cadence": "One-time baseline; repeat inside the quarterly audit"
+    },
+    {
+      "name": "Coverage-policy check at order entry and before the claim",
+      "steps": [
+        "Build a reference of covered diagnosis codes for the 20 highest-volume Medicare lab tests",
+        "Add a diagnosis prompt to order entry for those tests",
+        "Train ordering clinicians on the 10 tests that generate the most coverage denials",
+        "Scrub test code against diagnosis code before submission",
+        "Route non-covered pairs to ABN review or back to the clinician for a clinically supported diagnosis correction",
+        "Report the coverage denial rate monthly against the pre-change baseline"
+      ],
+      "owner_role": "Billing lead and ordering clinicians (implied)",
+      "cadence": "Per order and per claim; monthly denial report"
+    },
+    {
+      "name": "ABN workflow for tests likely to be denied",
+      "steps": [
+        "Find test and diagnosis pairs that fail the coverage check, in real time at order entry or in an end-of-day batch for next-day orders",
+        "Tell the patient the test may not be covered and give a cost estimate",
+        "Obtain the signed notice before the specimen is collected",
+        "Keep the notice on file and bill the patient if Medicare denies",
+        "Write off the test when no valid notice exists"
+      ],
+      "owner_role": "Front-office or specimen-collection staff (implied)",
+      "cadence": "Per order; daily batch for scheduled testing"
+    },
+    {
+      "name": "Imaging medical-necessity denial management",
+      "steps": [
+        "Sort every imaging necessity denial by modality and by payer",
+        "For the top three categories compare the ordering chart with the payer's criteria",
+        "Identify clinical facts that existed but were not sent with the request or claim",
+        "Build order templates that ask for symptom duration, prior treatment, prior imaging and severity",
+        "Verify authorization and indication before the study and hold studies that fail"
+      ],
+      "owner_role": "Denial or billing lead with ordering physicians (implied)",
+      "cadence": "Ongoing; no interval stated"
+    },
+    {
+      "name": "Report finalization before professional billing",
+      "steps": [
+        "Connect the signing queue to report generation so dictated reports do not sit unsigned",
+        "Sign routine reports within 24 hours and urgent reads the same business day",
+        "Block professional component claims until the report is final"
+      ],
+      "owner_role": "Interpreting radiologists; billing staff enforce the hold",
+      "cadence": "Per study"
+    },
+    {
+      "name": "Quarterly billing audit",
+      "steps": [
+        "Pull 30 radiology claims and 30 laboratory claims",
+        "Compare each with its source document: report for contrast and modifier, order for diagnosis coverage, pathology report for level",
+        "Record findings and correct the claims",
+        "Update templates and billing rules from the findings"
+      ],
+      "owner_role": "Billing or compliance lead (implied)",
+      "cadence": "Quarterly"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer and service-type dynamics table",
+      "description": "Eight rows pairing Medicare, Medicare Advantage, commercial and Medicaid with radiology or laboratory and a one-line list of the main revenue-cycle issues for each."
+    },
+    {
+      "name": "Eight Payer Intelligence Questions",
+      "description": "Question list to ask of each payer: imaging authorization, accreditation, global versus split billing, lab coverage policy, reflex testing, anti-markup, ABN and molecular testing."
+    },
+    {
+      "name": "Imaging CPT code table",
+      "description": "25 CT, MRI, ultrasound, mammography and PET codes with a one-line billing note each; contains descriptor errors (78816, 76817, 71275)."
+    },
+    {
+      "name": "Professional/Technical Component Modifier Matrix",
+      "description": "Seven ownership and reading scenarios mapped to global, modifier 26 or modifier TC; ignores place of service."
+    },
+    {
+      "name": "Laboratory and pathology CPT code table",
+      "description": "24 panel, infectious disease, point-of-care, chemistry, molecular and surgical pathology codes with one-line billing notes."
+    },
+    {
+      "name": "Contrast-status report sentences",
+      "description": "Two model sentences for the technique section of a report: contrast given, or no contrast given."
+    },
+    {
+      "name": "MRI indication wording example",
+      "description": "Side-by-side example of an inadequate indication ('back pain') and an approvable one with duration, failed treatment and new findings."
+    },
+    {
+      "name": "Genomic panel authorization elements",
+      "description": "Three required elements: clinical indication, clinical utility, and prior testing already performed."
+    },
+    {
+      "name": "Imaging medical-necessity denial framework",
+      "description": "Four steps: categorize, compare chart to criteria, build indication-specific order templates, add pre-service review."
+    },
+    {
+      "name": "Ordering-end fixes for coverage denials",
+      "description": "Three interventions: covered-diagnosis lists in order entry, clinician training on the top 10 tests, and a pre-claim scrub."
+    },
+    {
+      "name": "Two ABN workflow designs",
+      "description": "Real-time coverage check at order entry, or end-of-day batch check of the next day's orders."
+    },
+    {
+      "name": "Office-lab charge capture audit",
+      "description": "Narrative procedure: 30 days of notes compared with claims, gap priced, then an EHR charge trigger."
+    },
+    {
+      "name": "Panel and pathology audit procedures",
+      "description": "Narrative procedures: sample claims per panel against orders and results; 90 days of pathology claims against specimen lists."
+    },
+    {
+      "name": "Revenue arithmetic examples",
+      "description": "Two worked examples (MRI technical component, pathology level correction) built on unsourced inputs."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Standing rules: contrast field, billing map, pre-claim coverage scrub, report signing deadline, quarterly audit."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "First five tasks with lookback periods; no dates, owners or 30/60/90-day plan."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Report finalization turnaround",
+      "definition": "Time from study completion to the interpreting physician's signature on the final report",
+      "formula": "signature time minus study completion time",
+      "target": "Within 24 hours for routine studies; same business day for emergency or STAT reads; no professional claim without a final report",
+      "red_flag": "Reports dictated promptly but signed days later; professional claims sent on unsigned or preliminary reports",
+      "source_cited": "none"
+    },
+    {
+      "name": "Quarterly billing audit sample",
+      "definition": "Claims compared with source documentation each quarter",
+      "formula": "30 radiology claims + 30 laboratory claims per quarter",
+      "target": "60 claims every quarter",
+      "red_flag": "Findings on contrast status, modifier accuracy, diagnosis coverage or pathology level",
+      "source_cited": "none"
+    },
+    {
+      "name": "Coverage-policy (LCD) denial rate",
+      "definition": "Share of lab claims denied because the diagnosis is not on the covered list for the test",
+      "formula": "",
+      "target": "Lower than the pre-implementation baseline; no number given",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Contrast down-coding frequency",
+      "definition": "CT and MRI claims where the billed contrast code does not match, or was paid below, the documented contrast status",
+      "formula": "mismatched claims / CT and MRI claims in a 30-day sample, with the revenue impact priced",
+      "target": "",
+      "red_flag": "Any advanced imaging report without an explicit contrast statement",
+      "source_cited": "none"
+    },
+    {
+      "name": "Documented-versus-billed test gap",
+      "definition": "In-office tests recorded in the clinical note but missing from the claim",
+      "formula": "tests documented but not billed / tests documented, over 30 days",
+      "target": "None stated (zero implied once charge triggers are automated)",
+      "red_flag": "The guide asserts 15 to 25 percent is typical",
+      "source_cited": "none"
+    },
+    {
+      "name": "Imaging medical-necessity denials by modality and payer",
+      "definition": "Necessity denials grouped by modality and payer to find the three largest categories",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Modifier accuracy",
+      "definition": "Radiology claims whose global, 26 or TC status matches the billing map",
+      "formula": "claims matching the map / radiology claims in the last 90 days",
+      "target": "Every claim verified against the map before submission",
+      "red_flag": "Professional-only billing on services eligible for global billing, or global billing on split arrangements",
+      "source_cited": "none"
+    },
+    {
+      "name": "Surgical pathology level accuracy",
+      "definition": "Specimens billed at the level their specimen type warrants",
+      "formula": "90-day claim review against the specimen list for each level",
+      "target": "",
+      "red_flag": "Defaulting to Level IV when the specimen type is Level V or VI",
+      "source_cited": "none"
+    },
+    {
+      "name": "Panel coding accuracy",
+      "definition": "Complete panels billed as panels and partial panels billed as components",
+      "formula": "sample of claims per panel compared with what was ordered and resulted",
+      "target": "",
+      "red_flag": "Complete panel billed as components, or partial panel billed as a panel",
+      "source_cited": "none"
+    },
+    {
+      "name": "Non-covered tests performed without an ABN",
+      "definition": "Denied non-covered Medicare lab tests with no valid advance notice on file",
+      "formula": "",
+      "target": "None: no such claim leaves without a notice or a clinically supported covered diagnosis",
+      "red_flag": "Write-offs of denied tests",
+      "source_cited": "none"
+    },
+    {
+      "name": "Technical component revenue at stake",
+      "definition": "Technical payments that global billing or accreditation would add",
+      "formula": "studies per week x technical rate per study x 52",
+      "target": "",
+      "red_flag": "Owned equipment billed with modifier 26 only",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "An independent practice with imaging or lab services is 'almost certainly' leaking revenue in at least three of the guide's patterns.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Incorrect bilateral modifier use on imaging produces a 50 percent reduction instead of full bilateral payment.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Panel sizes: basic metabolic panel 80048 has 8 tests, comprehensive metabolic panel 80053 has 14, hepatic function panel 80076 has 7, acute hepatitis panel 80074 has 4 serologies.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS paused appropriate-use-criteria enforcement effective January 1, 2024 and later rescinded the regulations.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Prior authorization is required for most non-emergent CT by the majority of commercial payers and most Medicare Advantage plans.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most commercial payers and virtually all Medicare Advantage plans require prior authorization for outpatient MRI.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An approvable MRI indication example cites failure of 6 weeks of conservative treatment.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "FoundationOne CDx has Medicare coverage for solid tumors; germline panels are covered for specific hereditary cancer indications.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A genomic test ordered for information only, with no documented management decision, will be denied at most payers.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Reports should be signed within 24 hours of study completion for routine studies.",
+      "section": "Sections 5 and 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Reports lacking explicit contrast documentation are 'routinely' down-coded by auditors to the non-contrast code.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The coverage (LCD) denial is the most common laboratory denial.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Imaging medical-necessity denials are the highest-volume payer denial type in outpatient radiology.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An uncovered Medicare lab test may cost the patient about $30; without an ABN the same $30 is written off.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Recovered revenue typically pays for an ABN workflow within the first quarter.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The technical component is 50 to 60 percent of total Medicare payment for an outpatient MRI.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare technical component rate of $350 per MRI study; 50 studies a week equals $910,000 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Accreditation is required by most commercial payers and many Medicare Advantage plans to bill the technical component of advanced imaging.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Accreditation typically pays back within the first year for practices with meaningful imaging volume.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In most practices with active office labs the gap between tests documented and tests billed is 15 to 25 percent.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An automatic charge trigger is an EHR configuration change that costs an afternoon.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Correcting a surgical pathology level is worth $30 to $150 per case at Medicare rates.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "500 pathology specimens a month with a 10 percent level correction (600 a year) yields $18,000 to $90,000 annually.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Quarterly audit sample of 30 radiology claims and 30 laboratory claims.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Build the coverage reference for the top 20 highest-volume lab tests; train ordering providers on the top 10 denial-prone tests.",
+      "section": "Sections 5 and 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Lookback windows: 30 days of CT/MRI claims and office-lab encounters; 90 days of radiology modifier use and pathology claims.",
+      "section": "Sections 7 and 8",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Every laboratory claim for Medicare and Medicare Advantage patients is checked against the relevant LCD; no claim with a non-covered diagnosis goes out without an ABN on file or a clinically supported covered-diagnosis substitution.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 8, Standard 3 (also Section 2 question 7 and Section 4)",
+      "why": "The ABN (form CMS-R-131) is an Original Medicare notice. It does not shift liability for a Medicare Advantage member, where the plan's own pre-service determination applies. Used for MA patients, it leaves the practice unable to bill the patient. About 45 percent of this practice's charges are outside Original Medicare."
+    },
+    {
+      "id": "C2",
+      "claim": "Independent practices that purchase interpretations from a radiologist or laboratory and bill the purchased service to Medicare at a marked-up rate violate the anti-markup rule; the practice may only bill at its actual purchase cost.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 2",
+      "why": "The federal rule (42 CFR 414.50) caps payment at the lowest of three amounts and applies only when the performing physician does not share a practice with the biller; clinical lab tests on the lab fee schedule fall under separate direct-billing rules. A wrong reading produces improper claims in either direction."
+    },
+    {
+      "id": "C3",
+      "claim": "HbA1c (83036) billed for a patient without a diabetes diagnosis: the covered indications are established diabetes monitoring, not pre-diabetes screening, at most MACs.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 6, Denial Pattern 2",
+      "why": "Medicare added HbA1c as a covered diabetes screening test from January 1, 2024, and HbA1c monitoring is governed by a national determination, not contractor by contractor. If the guide is stale, a primary care practice would issue needless ABNs or skip a covered screening."
+    },
+    {
+      "id": "C4",
+      "claim": "Lipid panel (80061) billed with 'family history of hyperlipidemia' (Z82.49) rather than the patient's own hyperlipidemia diagnosis (E78.5): family history alone does not establish coverage for a lipid panel at most MACs.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 6, Denial Pattern 2",
+      "why": "Z82.49 is family history of ischemic heart and other circulatory disease, not of a lipid disorder (Z83.438 or Z83.42), and lipid testing is governed by a national determination with its own code list. A scrub rule or training sheet built from this example would be wrong."
+    },
+    {
+      "id": "C5",
+      "claim": "CMS paused the AUC program's claims-based enforcement effective January 1, 2024, and later rescinded the AUC regulations; AUC non-compliance 'currently carries no direct claim denial risk'.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4",
+      "why": "The paragraphs around it still say consultation is required and must be verified before billing. Anyone ordering or performing advanced imaging needs the current status so they neither waste effort on a dead requirement nor miss a reinstated one."
+    },
+    {
+      "id": "C6",
+      "claim": "ACR accreditation, or equivalent accreditation from the Intersocietal Accreditation Commission, is required by most commercial payers and many Medicare Advantage plans as a condition for billing the technical component of advanced imaging.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 2",
+      "why": "Traditional Medicare itself has required accreditation by a CMS-designated organization for suppliers billing the technical component of MRI, CT and nuclear or PET imaging under the physician fee schedule since 2012. Leaving out the federal mandate understates the consequence of billing without accreditation."
+    },
+    {
+      "id": "C7",
+      "claim": "The technical component of an outpatient MRI represents 50 to 60 percent of total Medicare reimbursement; 50 MRI studies per week at a Medicare technical component rate of $350 per study yields $910,000 a year.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 1",
+      "why": "This is the guide's headline dollar figure. Medicare technical-component amounts for common MRI codes appear to be well below $350, so a business case built on it could overstate revenue from owning or converting equipment by a wide margin."
+    },
+    {
+      "id": "C8",
+      "claim": "A Level V (88307) pathology code requires that the specimen type appear in the 88307 specimen list (colon segment, kidney, lung lobe, thyroid gland, and others); the worked example is a colon resection for adenocarcinoma.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 5, Documentation Failure 4",
+      "why": "In the CPT specimen lists a lung lobe resection and a colon segmental resection for tumor are Level VI (88309). Teaching them as Level V causes under-coding, and the guide's own 90-day audit step depends on these lists being right."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.35,
+      "topics": [
+        "contrast-status code selection",
+        "global versus 26 versus TC modifiers",
+        "panel versus component coding",
+        "surgical pathology levels",
+        "charge triggers for in-office tests",
+        "documented-versus-billed reconciliation"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.2,
+      "topics": [
+        "ABN workflow",
+        "CLIA certificate scope",
+        "anti-markup rule",
+        "unbundling of panels",
+        "ordering and rendering provider identification",
+        "quarterly claim audit",
+        "diagnosis-code steering risk"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.15,
+      "topics": [
+        "imaging prior authorization",
+        "indication-specific order templates",
+        "coverage check at order entry",
+        "pre-service notice to patient"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.15,
+      "topics": [
+        "underpayment detection",
+        "denial categorization by modality and payer",
+        "pre-claim coverage scrub",
+        "corrected claims inside timely filing"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "payer intelligence questions",
+        "accreditation requirements by payer",
+        "global versus split billing policy",
+        "coverage policy monitoring"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.03,
+      "topics": [
+        "global billing conversion",
+        "accreditation as a revenue enabler"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.02,
+      "topics": [
+        "order-entry prompts",
+        "automatic charge rules",
+        "report template required fields"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Run underpayment detection as its own control, separate from denial work",
+      "why": "A claim that pays short creates no denial and no work item, so the loss repeats until someone compares paid against expected.",
+      "applies_to_practice": "yes",
+      "note": "Load Medicare and each Medicare Advantage contract rate into AdvancedMD or the agents' database and report paid-versus-expected variance by code and payer."
+    },
+    {
+      "idea": "Reconcile documented work to billed work on a sample",
+      "why": "It measures charge-capture loss directly instead of assuming the charge feed is complete.",
+      "applies_to_practice": "yes",
+      "note": "For a facility-based practice the comparison is census and signed notes versus charges, plus care-management time logs and advance care planning notes versus claims."
+    },
+    {
+      "idea": "Create charges from documentation events instead of from memory",
+      "why": "Removes the hand-off where small charges disappear.",
+      "applies_to_practice": "partly",
+      "note": "The billing agents can raise a charge candidate whenever a signed note, a care-management time threshold or a procedure note appears. The lab-specific version matters only if point-of-care testing is added."
+    },
+    {
+      "idea": "Keep a one-page profile per payer answering a fixed question list",
+      "why": "Forces payer rules to be written down once and reused, and exposes what nobody knows.",
+      "applies_to_practice": "yes",
+      "note": "Rewrite the eight questions for this practice: nursing facility visit frequency edits, care management, advance care planning, wellness visits, telehealth, and authorization or referral rules for each plan."
+    },
+    {
+      "idea": "Apply coverage rules when the service is ordered or scheduled, and again before the claim leaves",
+      "why": "A denial after the service cannot be repaired, and for Original Medicare the patient cannot be billed without prior notice.",
+      "applies_to_practice": "partly",
+      "note": "Use for the practice's own frequency-limited or diagnosis-limited services, and to put specific diagnoses on lab and imaging orders so facility partners are not denied. Cite national and First Coast policies by number; do not rely on the guide's examples."
+    },
+    {
+      "idea": "Give the ABN a short written workflow for Original Medicare patients",
+      "why": "It is the only way to preserve the right to bill the patient for a service likely to be denied.",
+      "applies_to_practice": "partly",
+      "note": "Rarely needed for visits; relevant for frequency-limited services. Never use it for Medicare Advantage members; use the plan's pre-service determination."
+    },
+    {
+      "idea": "Quarterly small-sample audit of claims against source documents, with findings changing templates and rules",
+      "why": "Cheap, repeatable evidence that coding matches documentation, and a core part of any compliance program.",
+      "applies_to_practice": "yes",
+      "note": "Set the sample by clinician and service type (hospital, nursing facility, assisted living, care management), not a flat 30."
+    },
+    {
+      "idea": "Maintain a billing map tied to structural facts and re-check it when the facts change",
+      "why": "Systematic errors begin when an arrangement changes and the billing setup does not.",
+      "applies_to_practice": "partly",
+      "note": "The practice's equivalent is a map of place of service, facility status (Part A skilled stay versus long-term care), enrolled locations and clinician enrollment by payer."
+    },
+    {
+      "idea": "Write authorization requests with the specific clinical question, duration, failed treatment and prior results",
+      "why": "The facts are usually in the chart; denials come from not transmitting them.",
+      "applies_to_practice": "partly",
+      "note": "Applies when the practice orders advanced imaging for Medicare Advantage patients."
+    },
+    {
+      "idea": "After any audit finding, sweep still-correctable claims inside the timely filing window",
+      "why": "Turns an audit from a report into corrected money, in both directions.",
+      "applies_to_practice": "yes",
+      "note": "Corrections must include overpayments found, refunded under the 60-day overpayment rule."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice owns no imaging equipment and the context shows no in-house laboratory, so the core of the guide (modifier matrix, contrast coding, accreditation, pathology, molecular testing) gives it nothing to act on. What transfers is narrow. As the ordering clinician, its diagnosis coding and indication wording drive the denials of facility lab and imaging partners and Medicare Advantage authorizations. The ABN material applies to its Original Medicare patients only, and the guide gets the Medicare Advantage point wrong. The operating habits (audit paid claims for underpayment, reconcile documented work to billed work, quarterly source-document audit) fit a facility-based practice. The CLIA scope check becomes relevant only if point-of-care testing is added.",
+    "sections_that_do_not_apply": [
+      "Section 2: professional/technical split, anti-markup and CLIA certificate material",
+      "Section 3: imaging, molecular and surgical pathology code tables and the modifier matrix",
+      "Section 4: molecular and genomic authorization; imaging authorization applies only from the ordering side",
+      "Section 5: failures 1, 2 and 4 (contrast status, report signing, pathology level)",
+      "Section 6: pattern 3 (contrast down-coding)",
+      "Section 7: opportunities 1, 2, 4 and 5 (global billing, accreditation, panel codes, pathology levels); opportunity 3 only if in-office testing is added",
+      "Section 8: standards 1, 2 and 4; actions 1, 4 and 5"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "ABN is treated as a tool for Medicare Advantage and for 'this payer' generally (Section 2 question 7; Section 8 Standard 3). It is an Original Medicare form and does not transfer liability for Medicare Advantage members.",
+      "Lab coverage rules are called LCDs issued by contractors throughout, and the text says every Medicare lab test needs a diagnosis listed in an LCD. Most lab tests have no coverage policy, and the lipid, HbA1c and thyroid examples are governed by national coverage determinations (190.23, 190.21, 190.22), not 'most MACs'.",
+      "HbA1c statement is outdated: Medicare has covered HbA1c as a diabetes screening test (diagnosis Z13.1) since January 1, 2024 under the CY2024 fee schedule rule.",
+      "Wrong ICD-10 code: Z82.49 is family history of ischemic heart disease and other circulatory disease. Family history of a lipid disorder is Z83.438 (or Z83.42 for familial hypercholesterolemia). Checked against the FY2027 code set.",
+      "Thyroid example is doubtful for Medicare: the national thyroid-testing policy's covered-code list has long included fatigue and abnormal weight change, the very symptoms the guide says trigger denial.",
+      "Anti-markup rule is oversimplified and partly wrong. 42 CFR 414.50 limits payment to the lowest of the performing supplier's net charge, the biller's charge and the fee schedule amount, and only when the performing physician does not share a practice with the biller. Clinical lab tests on the lab fee schedule are outside that rule and generally may be billed only by the lab that ran them. The guide also treats anti-markup as something each payer has.",
+      "Imaging table descriptor errors: 78816 is whole-body PET/CT (skull base to mid-thigh PET/CT is 78815); 76817 is transvaginal obstetric ultrasound (first-trimester transabdominal is 76801); 71275 is CT angiography of the chest, not specifically the thoracic aorta.",
+      "Surgical pathology examples are wrong: lung lobe resection and colon segmental resection for tumor are Level VI (88309), not Level V (88307).",
+      "Lipid panel 80061 is listed as including LDL. The panel is total cholesterol, HDL and triglycerides; a measured LDL is a separate code.",
+      "The 'absolute' contrast rule ignores the CPT convention that oral or rectal contrast alone does not make a CT or MRI a with-contrast study.",
+      "The modifier matrix says the modifier depends 'entirely' on equipment ownership and who employs the reader. Place of service decides first: in a hospital or a Part A skilled nursing stay the physician bills only the professional component whoever owns the machine. The stress-test example fits poorly; those services use separate component codes (93015 to 93018) instead of 26 and TC.",
+      "Accreditation section omits that traditional Medicare has required accreditation for the technical component of advanced imaging billed under the physician fee schedule since January 1, 2012, and names only two of the four CMS-designated accrediting organizations.",
+      "MRI arithmetic looks inflated. From memory, Medicare technical-component payments for common brain, spine and joint MRI codes run roughly $120 to $250, not $350. The scenario (an MRI owner billing only modifier 26 and forfeiting $910,000) is contrived.",
+      "I know of no Medicare rule setting a 'payer's required interpretation window' after which the professional component cannot be billed, and payers do not track teleradiology turnaround. The claim that an 'automated audit system' reads reports and down-codes contrast studies at payment is not how claims adjudicate; that kind of down-coding needs record review.",
+      "81001 (urinalysis with microscopy) is promoted for extra payment over 81003 with no warning that it is not a waived test, in a guide that warns against testing beyond the CLIA certificate.",
+      "Compliance hazard: telling staff to build covered-diagnosis lists into ordering, train clinicians on 'the specific diagnosis codes that establish coverage', and make 'covered diagnosis substitutions' is close to the cheat-sheet and code-insertion practices the OIG laboratory compliance guidance warns against. The only safeguard offered is the phrase 'if clinically supported'.",
+      "Unsourced statistics presented as fact: 15 to 25 percent of in-office tests unbilled, ABN workflow paying for itself in a quarter, accreditation paying back within a year, $30 to $150 per pathology case.",
+      "Basis for this list: analyst knowledge of Medicare and CPT rules. The ICD-10 codes were checked against the FY2027 code set, and the HbA1c change against search results citing CMS MM13487 (hhs.gov/guidance/document/mm13487-diabetes-screening-definitions-update-cy-2024-physician-fee-schedule-final-rule) and 88 FR 78818, on 2026-11-10. Everything else awaits the separate primary-source verification."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 4 body text says appropriate-use consultation is required by CMS and must be verified before billing; the boxed note on the same page says the regulations were rescinded and there is no denial risk.",
+      "Section 1 counts billing components instead of a higher-paying panel as lost revenue, and Section 3 says code choice requires knowing the payer's panel payment policy. Section 7 says code selection must never follow the payment difference. Section 8 still lists 'panel code analysis' as an optimization.",
+      "Section 3 says a report describing 'post-contrast images' supports the with-contrast code; Section 5 says an auditor will not accept an implied reference such as 'post-contrast enhancement'.",
+      "Section 5 says pathology level is fixed by specimen type, then says the report's level of detail must support the level billed. Section 7 repeats both positions.",
+      "Section 1 says radiology and lab failures 'are not denials'; Section 6 is four denial patterns and Section 5 names the coverage denial as the most common lab denial.",
+      "Section 8 says physician behavior change is not the primary intervention, while Sections 5 and 6 depend on retraining ordering physicians and changing how radiologists dictate and sign.",
+      "Section 5 asks for signing within 24 hours and within 'the payer's required window'; Standard 4 sets same business day for STAT reads, a different and slower rule than normal STAT practice."
+    ],
+    "time_sensitive_or_outdated": [
+      "HbA1c screening coverage changed January 1, 2024; the guide states the old rule.",
+      "Appropriate-use-criteria passages are written as if the program were live and then patched with a note.",
+      "No mention of the federal prior-authorization rule (CMS-0057-F) whose decision time limits began in 2026 for Medicare Advantage and Medicaid managed care plans.",
+      "No mention of the No Surprises Act, which singles out radiology, pathology and laboratory as ancillary services at in-network facilities.",
+      "No mention of the lab fee schedule (PAMA) rate-setting and reporting cycle, which changes lab revenue year to year.",
+      "Statements about how many plans require authorization for CT and MRI are undated; large insurers publicly pledged in 2025 to trim authorization lists.",
+      "Every dollar figure is undated and tied to no fee schedule year."
+    ],
+    "ai_generation_signals": [
+      "Same eight-section skeleton as the rheumatology guide, down to 'Eight Payer Intelligence Questions', four failures, four denial patterns, five opportunities, 'Five Non-Negotiable Operational Standards' and a 'Prioritized Five-Action Implementation List'.",
+      "Constant 'it is not X, it is Y' constructions, slogan call-out boxes, and a closing paragraph that restates the opening.",
+      "Round-number hypotheticals labeled 'revenue arithmetic' with no source or year.",
+      "No author, credential, citation, regulation number, policy number or date in 50 pages.",
+      "A corrective note about appropriate-use criteria bolted onto text that still says the opposite.",
+      "Confident but wrong code descriptors and specimen lists of the kind produced from memory instead of a code book.",
+      "Cross-references to a 'cardiology guide' and a 'Universal Specialty Billing Framework' in place of content.",
+      "The same four topics (contrast statement, coverage diagnosis, ABN, modifier) are re-explained in Sections 3, 5, 6 and 8.",
+      "About 8,400 words spread over 50 pages; many pages hold a table fragment or a few lines."
+    ],
+    "missing_for_real_use": [
+      "Citations: no CFR sections, manual chapters, national or local coverage policy numbers, or payer policy references.",
+      "Modifier rules beyond 26 and TC: QW for waived tests, 59 and the X modifiers, 76/77, 91, 90, the GA/GX/GY/GZ modifiers that go with an ABN, and the CLIA number on claims.",
+      "The multiple procedure payment reduction for imaging and the equipment-related payment cuts.",
+      "Stark in-office ancillary services exception, independent diagnostic testing facility standards, and physician supervision levels for diagnostic tests.",
+      "Skilled nursing consolidated billing, hospital bundling and the lab date-of-service rule, which decide who may bill for a facility patient's imaging and labs.",
+      "Specimen collection and travel codes.",
+      "Any actual template: no ABN procedure, report template, order-entry prompt list, audit worksheet or billing map form.",
+      "Benchmarks: no denial-rate, underpayment or turnaround target beyond its own 24-hour signing rule.",
+      "How to find underpayments in practice: loading contract rates, expected-versus-paid variance reports, remittance code analysis.",
+      "ABN mechanics: who issues it, the ban on routine blanket notices, the current form version, retention.",
+      "The Medicare Advantage and commercial equivalents of the ABN."
+    ]
+  }
+}
