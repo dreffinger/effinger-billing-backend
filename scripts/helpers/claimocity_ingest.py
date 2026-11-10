@@ -101,7 +101,7 @@ if missing:
 # 11/10/2026: the place-of-service rule lives in claimocity_import.py (marker = its POS_RULE_VERSION line, the one mirror.py protects). A workspace
 # copy without it is an OLD copy (a state bundle or a Drive download with a fresh date): the repository copy replaces it; when there is no
 # repository copy the import still runs (charges are never held for this) and the RESULT line says so.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"; pos_warn = ""
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.3"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"; pos_warn = ""
 def _has_rule(p):
     try: return POS_RULE in open(p, errors="replace").read()
     except OSError: return False
