@@ -74,7 +74,7 @@
    "Ask each facility for the census",
    "Store status with the patient by date",
    "Set place of service from it",
-   "Measure three months of past claims"
+   "Measure the past year of claims"
   ]
  },
  {

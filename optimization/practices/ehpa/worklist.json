@@ -264,8 +264,8 @@
   "id": "ehpa-census-status-06",
   "project_slug": "census-status",
   "ord": 30,
-  "title": "Ask each nursing facility for every resident's skilled-stay start and end dates since January 1, 2026",
-  "detail": "The weekly census shows today only. Past dates are needed to tell which 2026 visits carried the wrong setting.",
+  "title": "Ask each nursing facility for every resident's skilled-stay start and end dates since November 1, 2025",
+  "detail": "The weekly census shows today only. Past dates are needed to tell which of the past year's claims carried the wrong setting, on visits and on care management.",
   "owner": "william",
   "due": "2026-11-19"
  },

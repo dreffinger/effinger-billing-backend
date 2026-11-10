@@ -770,7 +770,7 @@
   "status": "red",
   "basis": "estimated",
   "value": 12600,
-  "note": "As billed, about 25,000 work units a year for two clinicians: roughly 19,000 for the physician and 6,300 for the nurse practitioner. Medians are 6,505 for family physicians and 4,647 for primary care nurse practitioners (American Medical Group Association, 2025). About 8,100 of the physician's units are care management. Before care management, his visits alone carry 1.25 to 1.7 times the median, and code levels drive that gap.",
+  "note": "As billed, about 25,000 work units a year for two clinicians: roughly 19,000 for the physician and 6,300 for the nurse practitioner. Medians are 6,505 for family physicians and 4,647 for primary care nurse practitioners (American Medical Group Association, 2025). About 8,100 of the physician's units are care management. Before care management, his visits alone carry 1.25 to 1.7 times the median, and code levels drive that gap. The red rating rests on the visits alone, which run above the median with no audit yet to support the levels billed.",
   "source": "ehpa-neon"
  },
  {
@@ -824,7 +824,7 @@
   "status": "na",
   "basis": "measured",
   "value": 79,
-  "note": "257 of the 326 patients seen in October 2026 were billed complex care management, 213 of them with the add-on code. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. This is a count for reference with no rating, because the framework has no benchmark for it.",
+  "note": "257 of the 326 patients seen in October 2026 were billed complex care management, 213 of them with the add-on code. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. The share is shown for reference with no rating, because the framework has no benchmark for it.",
   "source": "ehpa-neon"
  },
  {
