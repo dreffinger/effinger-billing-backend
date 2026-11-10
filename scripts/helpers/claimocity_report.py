@@ -34,6 +34,18 @@ L("")
 L("## Import")
 L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; 0 faults." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]), format(fees, ",.2f"), len(reg["skipped"])))
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
+# place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
+_ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}
+for x in reg["created"]:
+    if x.get("pos_err"): _ps["err"] += 1; continue
+    if x.get("pos_feed") != "31" or not x.get("fac") or not x.get("pos_lines"): continue
+    for _c, _p in zip(x.get("cpts") or [], x.get("pos_lines") or []):
+        if _c in ("99487", "99489"): _ps["ccm" + _p] += 1
+        elif _c in _NFV: _ps["nf" + _p] += 1
+if _ps:
+    L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly, long-term): %d; nursing visits 31 (seen weekly or more, initial or first visit): %d%s." % (
+        _ps["ccm32"], (" (and %d left at 31 - check)" % _ps["ccm31"]) if _ps["ccm31"] else "", _ps["nf32"], _ps["nf31"],
+        ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's 31, see rules.md 11/10/2026" % _ps["err"]) if _ps["err"] else ""))
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))
 L("")
 L("## Cascade insurance check (AMD 271 per plan + deceased guard + Stedi discovery when nothing active)")

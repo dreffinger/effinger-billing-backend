@@ -30,6 +30,21 @@ CLAIMOCITY FEED INGEST (step `feed`, part of `all`; William 10/28/2026: the prac
 Duplicates: should Gregg's pickup ever post the same files, `FEED_STAMP=<batch> python3 claimocity_dupe_void.py --live` voids the integration's later copy of every visit that batch created (skips anything paid) - William 10/28: accept duplicates and void them.
 ---
 
+## Place of service in the nursing buildings (William 11/10/2026 - practices/ehpa/rules.md)
+Claimocity can only send POS 31 for the five nursing buildings (Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes
+Southwood), so step 5 (claimocity_import.py) sets the real place of service per charge line when it enters the charge:
+- CCM 99487 / 99489 in one of those buildings -> POS 32 (long-term residents who are not being actively skilled). ALF / home CCM stays 13.
+- A nursing facility visit (99304-99310, 99315-99316) -> POS 31 when the resident is seen once or twice a week (the previous nursing visit
+  on the chart or in the batch was no more than 14 days earlier), when it is an initial visit 99304-99306, or when it is the first nursing
+  visit on the chart; POS 32 for the monthly visit (previous nursing visit more than 14 days earlier). 99497 / 99498 follow their visit.
+- Hospital (21), HCA REHAB (fac67, 31), ALF / home (13) and unknown-building lines are entered exactly as before.
+What the run does with it: nothing by hand. The import log's DONE line counts `POS 32 CCM (nursing building)`, `POS 32 nursing visit
+(long-term)` and `POS 31 nursing visit (skilled)`; registers/feed_import_<stamp>.json carries pos_feed / pos_lines / pos_why per visit; the
+digest has one line, "Place of service in the nursing buildings (11/10/2026 rule)" - copy it into the report after the feed line. Never
+move a 32 back to 31 in Charge Review or the Claim Inspector, never change the place of service of a claim that was already submitted,
+and if the log prints `POS RULE NOT APPLIED` say so at the top of the report (those visits went in at the feed's 31; they are not held).
+Offline proof: `python3 tools/selftest/test_pos_rule.py` (no AMD, no network).
+
 ## Why it is safe to run every routine
 - Idempotent at three levels: the file register (sha256), every earlier batch's import register (feed patient id + DOS + CPT set,
   including the feed DOS of a visit that was re-dated afterwards), and the chart's live charges (CPT + DOS).
