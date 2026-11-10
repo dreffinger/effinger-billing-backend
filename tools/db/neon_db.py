@@ -16,11 +16,20 @@
 #   one is importable and the port is open, else Neon's HTTPS SQL endpoint on port 443 (POST https://<endpoint>/sql with the
 #   Neon-Connection-String header) - the same database, so a container whose egress policy blocks 5432 still writes. The PostgREST
 #   "Data API" is NOT used (Neon excludes it from its HIPAA coverage).
+# How init applies tools/db/neon_schema.sql (11/10/2026): the wire protocol takes the file whole. The HTTPS route takes ONE command per
+#   request, so sql_statements() cuts the file into its statements: a statement ends at the semicolon that closes it - never at one inside
+#   a comment, a quoted string, a "quoted name", a $$ body $$ or parentheses - and the comment lines above it are left out (comments
+#   inside it stay). Until 11/10 a statement that had a `--` comment line above it was dropped together with the comment: 12 of the
+#   file's 32 statements never ran over HTTPS (what they create existed only because it had been created another way, so a later edit
+#   to one of them was silently not applied) and the line still said "applied". The count printed is now the number of statements on
+#   both routes (over the wire it used to be the number of semicolons, the ones in comments included: 35 for 32).
+#   Self-test: python3 tools/selftest/test_neon_schema_split.py
 # PHI rule: this database is the HIPAA store (BAA with Databricks on the Scale plan, hipaa=true on the project). Until the marker row
 #   ops.settings('hipaa_enabled' = 'true') exists, every load command refuses to run unless --no-phi-check is given, so nothing with a
 #   chart id in it lands in a project that is not yet flagged. Patient data never goes into table names, comments or this script's output.
 # Usage (one plain command each; every one prints ONE line and exits 0, non-zero only on a real failure):
 #   python3 tools/db/neon_db.py init                                   create the raw/ops/ehpa schemas and tables (idempotent) and apply tools/db/neon_schema.sql when present
+#   python3 tools/db/neon_db.py init --dry                             count what init would send (the base statements + the schema file's statements); connects to nothing, sends nothing
 #   python3 tools/db/neon_db.py egress-test                            which paths reach the database from here: TCP 5432, TLS 443, Postgres wire, HTTPS SQL (exit 3 = none)
 #   python3 tools/db/neon_db.py load-writes --out <dir>                every writes_*.json tools/db/practice_db.py built (op/collection/doc_id/file_path) -> raw.documents source=practice_db
 #   python3 tools/db/neon_db.py load-docs --src <dir> --source <slug>  every <collection>/<doc_id>.json an ArtifactData list wrote with out_dir -> raw.documents (the artifact's own database, by slug)
@@ -145,6 +154,47 @@ on conflict (source, collection, doc_id) do update set body = excluded.body, bod
 where raw.documents.body_sha256 <> excluded.body_sha256
 returning (xmax = 0) as inserted"""
 
+def sql_statements(sqltext):
+    """The statements of a SQL file, in order, one string each - for the HTTPS route, which takes ONE command per request.
+    A statement starts at its first SQL word and ends at the semicolon that closes it. Comment lines and blank lines in front of it are
+    left out; comments inside it stay. A semicolon inside a -- or /* */ comment, a 'quoted string', a "quoted name", a $$ dollar-quoted
+    body $$ or parentheses closes nothing, and a stretch that holds only comments or blank lines is not a statement.
+    Not read: a function body written BEGIN ATOMIC ... END (its inner semicolons would cut it) - write such a body as $$ ... $$ instead."""
+    out = []; i = 0; n = len(sqltext); start = None; depth = 0      # start: where the statement being read began (None = only comments / blanks so far); depth: open parentheses
+    while i < n:
+        c = sqltext[i]; two = sqltext[i:i + 2]
+        if two == "--": i = (sqltext.find("\n", i) + 1) or n        # a comment to the end of its line
+        elif two == "/*":                                           # a block comment; Postgres lets them nest
+            level = 1; i += 2
+            while i < n and level:
+                two = sqltext[i:i + 2]
+                if two == "/*": level += 1; i += 2
+                elif two == "*/": level -= 1; i += 2
+                else: i += 1
+        elif c == ";" and not depth:                                # the semicolon that closes a statement
+            if start is not None: out.append(sqltext[start:i].rstrip()); start = None
+            i += 1
+        elif c.isspace(): i += 1
+        else:
+            if start is None: start = i
+            if c in "'\"":                                          # a quoted string or a "quoted name": on to its closing quote
+                esc = c == "'" and re.search(r"(?<![\w$])[eE]$", sqltext[max(0, i - 2):i]) is not None   # E'...': a backslash takes the next character with it
+                i += 1
+                while i < n:
+                    if esc and sqltext[i] == "\\": i += 2
+                    elif sqltext[i] != c: i += 1
+                    elif sqltext[i + 1:i + 2] == c: i += 2          # '' or "" is a quote mark inside the quotes
+                    else: i += 1; break
+            else:
+                tag = re.compile(r"\$(?:[^\W\d]\w*)?\$").match(sqltext, i) if c == "$" and not re.match(r"[\w$]", sqltext[i - 1:i]) else None
+                if tag: j = sqltext.find(tag.group(0), tag.end()); i = n if j < 0 else j + len(tag.group(0))   # $$ or $tag$: a dollar-quoted body, on to the same tag again
+                else:
+                    if c == "(": depth += 1
+                    elif c == ")" and depth: depth -= 1
+                    i += 1
+    if start is not None: out.append(sqltext[start:].rstrip())
+    return out
+
 def hipaa_ok(db):
     if "--no-phi-check" in a: return True
     try: rows = db.execute("select value from ops.settings where key = 'hipaa_enabled'")
@@ -201,6 +251,13 @@ if CMD == "egress-test":
     print("neon egress-test %s: %s" % ("OK" if ok else "BLOCKED", json.dumps(out, separators=(",", ":"))))
     sys.exit(0 if ok else 3)
 
+if CMD == "init" and DRY:                                           # count only: reads the schema file, connects to nothing, sends nothing
+    extra = os.path.join(REPO, "tools", "db", "neon_schema.sql")
+    n = len(sql_statements(open(extra, encoding="utf-8").read())) if os.path.isfile(extra) else None
+    print("neon init [dry]: nothing sent, no connection made; would run %d base statements for the raw/ops/ehpa schemas and tables; %s" % (len(sql_statements(DDL)),
+          "no neon_schema.sql at %s" % extra if n is None else "neon_schema.sql would be applied (%d statement%s)" % (n, "" if n == 1 else "s")))
+    sys.exit(0)
+
 db = connect()
 if CMD == "init":
     for stmt in [s.strip() for s in DDL.split(";\n") if s.strip()]: db.execute(stmt)
@@ -208,8 +265,8 @@ if CMD == "init":
     if os.path.isfile(extra):
         sqltext = open(extra, encoding="utf-8").read(); n = 0
         if db.kind == "http":
-            for stmt in [s for s in re.split(r";\s*\n(?=\S)", sqltext) if s.strip() and not s.strip().startswith("--")]: db.execute(stmt); n += 1
-        else: db.execute(sqltext); n = sqltext.count(";")
+            for stmt in sql_statements(sqltext): db.execute(stmt); n += 1          # one statement per request; n counts what was sent
+        else: db.execute(sqltext); n = len(sql_statements(sqltext))                # the file goes whole, as before; only the count changed (it was the semicolons, the ones in comments too)
         applied = "neon_schema.sql applied (%d statement%s)" % (n, "" if n == 1 else "s")
     hip = hipaa_ok(db)
     print("neon init via %s: raw/ops/ehpa schemas and tables ready; %s; hipaa marker %s" % (db.kind, applied, "set" if hip else "NOT set (loads of chart-level data refuse until `set --key hipaa_enabled --value true`)"))
