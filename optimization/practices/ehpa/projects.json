@@ -13,7 +13,7 @@
   "start_by": "2026-11-11",
   "target_date": "2026-12-15",
   "success_measures": [
-   "Every care-management claim sent after December 1 traces to a consent, a care plan and a time log",
+   "No care-management claim is sent for November 2026 or any later month unless it traces to a consent, a care plan and a time log",
    "Total minutes billed in a month do not exceed staff hours available",
    "The attorney has given written advice on past claims"
   ],
@@ -35,7 +35,7 @@
   "priority": "now",
   "impact_low": null,
   "impact_high": null,
-  "impact_note": "Protects about $600,000 a year of visit revenue. An audit of 60 to 80 notes typically costs a few thousand dollars.",
+  "impact_note": "Protects about $600,000 a year of visit revenue. An audit of 80 to 100 notes typically costs a few thousand dollars.",
   "owner": "william",
   "start_by": "2026-11-17",
   "target_date": "2027-01-15",
@@ -62,7 +62,7 @@
   "priority": "now",
   "impact_low": 10000,
   "impact_high": 25000,
-  "impact_note": "Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are not counted until the care-management review is done.",
+  "impact_note": "One time, for 2026 visits. Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are not counted until the care-management review is done.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-10",
@@ -90,7 +90,7 @@
   "impact_note": "11.2% of charges had no payer when entered. Coverage and wrong-payer problems are about a quarter of denied visits.",
   "owner": "claude",
   "start_by": "2026-11-11",
-  "target_date": "2026-12-05",
+  "target_date": "2026-12-04",
   "success_measures": [
    "All 493 coverage cards verified or marked self-pay",
    "Charges with no payer under 2%",
@@ -117,7 +117,7 @@
   "target_date": "2026-12-15",
   "success_measures": [
    "Correct-and-resend list at zero",
-   "Receivables older than 90 days under 25%",
+   "Dollars collected on balances older than 90 days, reported each week beside dollars written off",
    "No claim lost to a filing deadline in December"
   ],
   "steps": [
@@ -139,7 +139,7 @@
   "impact_note": "Keeps Medicaid and Medicaid plan payments and stops avoidable denials. 108 denied visits are tagged credentialing.",
   "owner": "william",
   "start_by": "2026-11-11",
-  "target_date": "2027-01-31",
+  "target_date": "2027-01-29",
   "success_measures": [
    "Medicaid renewal filed before December 1 and confirmed",
    "No open item on the credentialing board older than 60 days",
@@ -159,12 +159,12 @@
   "title": "Match every deposit to a remittance",
   "objective": "Know that every dollar paid reached the bank and every deposit was posted.",
   "category_slug": "ar-deposit-reconciliation",
-  "priority": "next",
+  "priority": "now",
   "impact_low": 5000,
   "impact_high": 20000,
-  "impact_note": "The $12,902 of unmatched Medicare deposits is cash already received. Remittances with no deposit have not been totaled, so the range is a placeholder.",
+  "impact_note": "One time. The $12,902 of unmatched Medicare deposits is cash already received. Remittances with no deposit have not been totaled, so the range is a placeholder.",
   "owner": "claude",
-  "start_by": "2026-12-01",
+  "start_by": "2026-11-11",
   "target_date": "2027-01-15",
   "success_measures": [
    "A weekly match with nothing unexplained older than 10 days",
@@ -189,11 +189,11 @@
   "impact_note": "No direct dollar value. It is how every other project stays done.",
   "owner": "william",
   "start_by": "2026-12-01",
-  "target_date": "2027-01-31",
+  "target_date": "2027-01-29",
   "success_measures": [
    "Books closed by the 15th of each month",
    "A 45-minute review held and decisions logged, three months running",
-   "A 2027 budget with three scenarios"
+   "A 2027 budget with four scenarios"
   ],
   "steps": [
    "Reconnect accounting software",
@@ -214,7 +214,7 @@
   "impact_note": "Changes how any future billing problem is treated.",
   "owner": "william",
   "start_by": "2026-12-15",
-  "target_date": "2027-02-28",
+  "target_date": "2027-02-26",
   "success_measures": [
    "A written program adopted and dated",
    "Training done and recorded for both clinicians",
@@ -235,7 +235,7 @@
   "title": "Tighten controls on automation and access",
   "objective": "Keep the speed of agent-run billing while proving it is doing the right thing.",
   "category_slug": "td-ai-governance",
-  "priority": "next",
+  "priority": "now",
   "impact_low": null,
   "impact_high": null,
   "impact_note": "Reduces the chance that one wrong rule repeats across hundreds of claims.",
@@ -266,7 +266,7 @@
   "impact_note": "Penalty avoided, if either clinician is required to report.",
   "owner": "william",
   "start_by": "2026-11-17",
-  "target_date": "2027-01-31",
+  "target_date": "2027-01-29",
   "success_measures": [
    "Status known for both clinicians",
    "A reporting plan for the 2026 performance year, decided by early December 2026"
@@ -314,7 +314,7 @@
   "impact_note": "Underpayments found, denials disputed with the contract in hand, and no surprise from the 2027 Medicare changes.",
   "owner": "claude",
   "start_by": "2026-12-01",
-  "target_date": "2027-02-28",
+  "target_date": "2027-02-26",
   "success_measures": [
    "A contract and fee schedule on file for every plan",
    "The top 15 codes repriced for 2027 by site of service",
@@ -339,7 +339,7 @@
   "impact_note": "Interest saved by refinancing. The larger value is a clean balance sheet before any sale.",
   "owner": "cpa",
   "start_by": "2026-12-01",
-  "target_date": "2027-02-28",
+  "target_date": "2027-02-26",
   "success_measures": [
    "A refinancing decision on the 13.99% note",
    "A written plan for the shareholder loan",
@@ -359,12 +359,12 @@
   "title": "Reduce dependence on the owner and on a few sites",
   "objective": "Make the revenue and the know-how survive the owner's absence.",
   "category_slug": "lv-key-person",
-  "priority": "later",
+  "priority": "next",
   "impact_low": null,
   "impact_high": null,
   "impact_note": "Protects revenue and is the main lever on sale value.",
   "owner": "william",
-  "start_by": "2027-02-01",
+  "start_by": "2026-12-01",
   "target_date": "2027-06-30",
   "success_measures": [
    "A written emergency plan and a covering physician",
@@ -385,9 +385,9 @@
   "objective": "Grow revenue and spread the census across more clinicians.",
   "category_slug": "gm-clinician-growth",
   "priority": "later",
-  "impact_low": 40000,
-  "impact_high": 110000,
-  "impact_note": "Contribution after cost, once the new clinician is fully busy.",
+  "impact_low": 0,
+  "impact_high": 90000,
+  "impact_note": "Contribution after cost once the new clinician is fully busy: about $30,000 at 13.4 visits a day and about $90,000 at 17. A loss below about 12 a day.",
   "owner": "william",
   "start_by": "2027-03-01",
   "target_date": "2027-06-30",

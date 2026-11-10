@@ -19,8 +19,27 @@
   "confidence": "high that review is needed; the outcome is unknown"
  },
  {
-  "id": "ehpa-rec-02",
+  "id": "ehpa-rec-07",
   "ord": 2,
+  "kind": "risk",
+  "category_slug": "cr-overpayments",
+  "title": "Bring in a healthcare attorney before the reviews begin",
+  "why": "Once a review shows an overpayment, a 60-day clock starts. A review directed by an attorney can be privileged if its results stay with the attorney, and its timing is documented.",
+  "what": [
+   "Engage the attorney",
+   "Have the attorney hire the auditor",
+   "Record the date each review starts and the date any overpayment is identified"
+  ],
+  "impact_basis": "Keeps a billing problem a refund and not a penalty.",
+  "effort": "low",
+  "horizon": "this month",
+  "owner": "william",
+  "project_slug": "ccm-footing",
+  "confidence": "high"
+ },
+ {
+  "id": "ehpa-rec-02",
+  "ord": 3,
   "kind": "risk",
   "category_slug": "cr-coding-audits",
   "title": "Commission an independent audit of visit levels",
@@ -32,14 +51,14 @@
   ],
   "impact_basis": "Protects about $600,000 a year of visit revenue for a few thousand dollars.",
   "effort": "low",
-  "horizon": "this month",
+  "horizon": "report by mid-January",
   "owner": "william",
   "project_slug": "coding-audit",
   "confidence": "high"
  },
  {
   "id": "ehpa-rec-03",
-  "ord": 3,
+  "ord": 4,
   "kind": "revenue",
   "category_slug": "fe-eligibility",
   "title": "Finish the coverage refresh and verify every patient monthly",
@@ -54,13 +73,13 @@
   "horizon": "this month",
   "owner": "claude",
   "project_slug": "coverage-cleanup",
-  "confidence": "medium",
+  "confidence": "low",
   "impact_low": 30000,
   "impact_high": 70000
  },
  {
   "id": "ehpa-rec-04",
-  "ord": 4,
+  "ord": 5,
   "kind": "revenue",
   "category_slug": "fe-coverage-status",
   "title": "Get skilled-stay, hospice and plan status from each facility every week",
@@ -81,7 +100,7 @@
  },
  {
   "id": "ehpa-rec-05",
-  "ord": 5,
+  "ord": 6,
   "kind": "risk",
   "category_slug": "pc-credentialing",
   "title": "File the Medicaid renewal now and clear the enrollment list",
@@ -93,7 +112,7 @@
   ],
   "impact_basis": "Medicaid and Medicaid-plan payments kept and credentialing denials avoided.",
   "effort": "medium",
-  "horizon": "this month",
+  "horizon": "Medicaid by December 1, the rest by January 31",
   "owner": "william",
   "project_slug": "enrollment-fix",
   "confidence": "medium",
@@ -102,11 +121,11 @@
  },
  {
   "id": "ehpa-rec-06",
-  "ord": 6,
+  "ord": 7,
   "kind": "revenue",
   "category_slug": "ar-followup",
   "title": "Work the aged receivables before filing deadlines pass",
-  "why": "$342,620 is open and 35.4% is older than 90 days. $65,431 is already tagged as fixable.",
+  "why": "$342,620 is open and 35.4% is older than 90 days. $65,431 was tagged as fixable on October 16. Refresh that figure before starting.",
   "what": [
    "Sort by filing deadline",
    "Fix and resend, appeal where needed",
@@ -122,25 +141,6 @@
   "impact_high": 35000
  },
  {
-  "id": "ehpa-rec-07",
-  "ord": 7,
-  "kind": "risk",
-  "category_slug": "cr-overpayments",
-  "title": "Bring in a healthcare attorney before the reviews begin",
-  "why": "Once a review shows an overpayment, a 60-day clock starts. A review directed by an attorney can be privileged if its results stay with the attorney, and its timing is documented.",
-  "what": [
-   "Engage the attorney",
-   "Have the attorney hire the auditor",
-   "Record the date each review starts and the date any overpayment is identified"
-  ],
-  "impact_basis": "Keeps a billing problem a refund and not a penalty.",
-  "effort": "low",
-  "horizon": "this month",
-  "owner": "william",
-  "project_slug": "ccm-footing",
-  "confidence": "high"
- },
- {
   "id": "ehpa-rec-08",
   "ord": 8,
   "kind": "revenue",
@@ -152,7 +152,7 @@
    "Finish electronic payment enrollment",
    "Accountant reconciles monthly"
   ],
-  "impact_basis": "The $12,902 of unmatched Medicare deposits is cash already received that could not be posted. The amount on remittances with no deposit has not been totaled, so the range is a placeholder.",
+  "impact_basis": "One time. The $12,902 of unmatched Medicare deposits is cash already received that could not be posted. The amount on remittances with no deposit has not been totaled, so the range is a placeholder.",
   "effort": "low",
   "horizon": "60 days",
   "owner": "claude",
@@ -170,7 +170,7 @@
   "why": "Statements arrive quarterly, there is no budget, and no meeting ties billing, finance and compliance together.",
   "what": [
    "Monthly close by the 15th",
-   "2027 budget with three scenarios",
+   "2027 budget with four scenarios",
    "A 45-minute review with decisions logged"
   ],
   "impact_basis": "No direct dollar value. It keeps the other gains.",
@@ -213,7 +213,7 @@
   ],
   "impact_basis": "Penalty avoided, if either clinician is required to report.",
   "effort": "low",
-  "horizon": "60 days",
+  "horizon": "this month, then March 31, 2027",
   "owner": "william",
   "project_slug": "quality-mips",
   "confidence": "medium",
@@ -234,7 +234,7 @@
   ],
   "impact_basis": "About 150 wellness visits ($137 each, $174 for a first one) and 50 transitional care services ($218 or $295) a year at 2026 Florida Medicare amounts, 15% less when the nurse practitioner bills. A transitional care service includes its follow-up visit, so it replaces a visit worth about $133 where one would have been billed. 2027 amounts are 2% to 5% lower.",
   "effort": "medium",
-  "horizon": "90 days",
+  "horizon": "by March 31, 2027",
   "owner": "pam",
   "project_slug": "service-lines",
   "confidence": "medium",
@@ -289,7 +289,7 @@
   "kind": "capability",
   "category_slug": "td-ai-governance",
   "title": "Put guard rails on the billing agents",
-  "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates or balances need a second pair of eyes.",
+  "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates, modifiers, diagnoses, places of service or balances need a second pair of eyes.",
   "what": [
    "Close open sign-up and replace the shared key",
    "Approval for claim-changing rules",
@@ -314,7 +314,7 @@
    "Second clinician introduced at each site",
    "Relationship records and written agreements"
   ],
-  "impact_basis": "One more turn of the multiple is worth one year of earnings after a market wage: about $88,000 on the wage used in the valuation, and up to about $170,000 if a buyer assumes a lower wage.",
+  "impact_basis": "One more point of the multiple, for example from 3 times earnings to 4, is worth one year of earnings after a market wage: about $88,000 on the wage used in the valuation, and up to about $170,000 if a buyer assumes a lower wage.",
   "effort": "high",
   "horizon": "6 months",
   "owner": "william",
@@ -333,14 +333,14 @@
    "Build the case with ramp and enrollment delay",
    "Start enrollment the day the offer is signed"
   ],
-  "impact_basis": "Contribution after pay and benefits once fully busy.",
+  "impact_basis": "After about $200,000 a year of pay, benefits and costs, at $80 collected per visit and 215 working days: about $30,000 at the current nurse practitioner's pace of 13.4 visits a day, about $90,000 at 17 a day, and a loss below about 12 a day or during the first months. Check the $80 against her actual collections before deciding.",
   "effort": "high",
   "horizon": "6 to 9 months",
   "owner": "william",
   "project_slug": "growth-clinician",
   "confidence": "low",
-  "impact_low": 40000,
-  "impact_high": 110000
+  "impact_low": 0,
+  "impact_high": 90000
  },
  {
   "id": "ehpa-rec-18",

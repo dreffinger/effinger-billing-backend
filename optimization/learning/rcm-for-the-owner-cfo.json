@@ -271,7 +271,7 @@
       "type": "formula",
       "label": "Days in receivables",
       "expr": "Open receivables / (charges for the last 3 months / days in those months)",
-      "example": "This practice: $342,620 / ($164,832 / 31) = about 64 days. Use gross charges on both sides or net on both sides, never one of each."
+      "example": "This practice, October only: $342,620 / ($164,832 / 31) = about 64 days. A three-month figure will differ. Use gross charges on both sides or net on both sides, never one of each."
      },
      {
       "type": "formula",

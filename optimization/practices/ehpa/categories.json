@@ -16,7 +16,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Revenue fell 46% from 2023 to 2025 and is recovering in 2026. No written plan says which sites, services and clinicians carry the next three years, or when the owner intends to step back.",
+  "assessment": "Revenue fell 46% from 2023 to 2025 and is recovering in 2026. No written plan says which sites, services and clinicians carry the next three years, or when the owner intends to step back. The cause of the decline is not written down. Leads in the data: staff pay fell by half, medical director stipends fell, a second hospital named in older notes is not in the current charge feed, and public Medicare data show complex care management going from 1,331 services in 2022 to none in 2024.",
   "evidence": [
    "Net revenue $1,727,834 (2023), $1,206,210 (2024), $924,915 (2025), $803,006 in nine months of 2026",
    "Medical director stipends fell from $185,300 (2023) to $24,000 in nine months of 2026"
@@ -45,7 +45,7 @@
    "$40,686 of balances over a year old written off on November 2, 2026 under a standing rule",
    "A frequency denial on a care-management claim is re-dated to month end and resent"
   ],
-  "next_step": "Have the outside coding auditor and the attorney read the high-risk rules before they run again."
+  "next_step": "Switch off the re-dating, resending and automatic write-off rules now. Have the outside coding auditor and the attorney read every high-risk rule before it runs again."
  },
  {
   "category_slug": "sg-key-relationships",
@@ -79,7 +79,7 @@
   "evidence": [
    "Legal and accounting spend fell from $77,834 (2024) to $28,086 (2025)"
   ],
-  "next_step": "Engage both this month. Have the attorney hire the auditor so the audit is privileged."
+  "next_step": "Engage both this month. Have the attorney hire the auditor, so the audit is legal work the attorney directs."
  },
  {
   "category_slug": "fm-bookkeeping-close",
@@ -96,9 +96,9 @@
  {
   "category_slug": "fm-statements-ratios",
   "applicability": "core",
-  "status": "green",
+  "status": "amber",
   "priority": 3,
-  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage of about $435,000 and removing about $46,000 of one-time collections and $16,000 of stipends no longer received, about $88,000 remains, a 9% margin on the remaining revenue.",
+  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage of about $435,000 and removing about $46,000 of one-time collections and $16,000 of stipends no longer received, about $88,000 remains, a 9% margin on the remaining revenue. The statements behind these figures are cash basis, come quarterly from the accountant without an audit or review, and there is no budget to compare them with.",
   "evidence": [
    "Operating margin before owner pay 55.3%",
    "Net income $336,858 after recorded doctor pay of $217,296"
@@ -112,9 +112,9 @@
   "priority": 2,
   "assessment": "There is no budget. Medicare's 2027 fee schedule cuts the conversion factor 2.31%, and one site is more than a third of charges, so a plan with scenarios is worth an afternoon.",
   "evidence": [
-   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down and nursing facility visits up"
+   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down 3% to 5% and nursing facility visits billed as a skilled stay up 10% to 12%"
   ],
-  "next_step": "Build a 2027 budget with three cases: steady, loss of the largest site, and a second nurse practitioner."
+  "next_step": "Build a 2027 budget with four cases: steady, loss of the largest site, a second nurse practitioner, and care management cut by half or stopped."
  },
  {
   "category_slug": "fm-cash-treasury",
@@ -133,7 +133,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 2,
-  "assessment": "The practice carries $187,206 at 13.99%, which costs about $30,000 a year. Earnings cover the payments several times over, so this debt can be refinanced or paid down.",
+  "assessment": "The practice carries $187,206 at 13.99%, which costs about $30,000 a year. Earnings before owner pay cover the yearly loan payments more than seven times. After a market wage for the owner they cover them about 1.1 times, so a lender may see less room than the owner does.",
   "evidence": [
    "Interest expense $29,799 in the last twelve months",
    "Earlier merchant-cash-advance notes were paid off in 2024"
@@ -219,7 +219,7 @@
   "evidence": [
    "342 of 493 coverage cards still in work",
    "11.2% of charges had no payer recorded",
-   "350 of 1,356 denied visits were coverage or wrong-payer problems"
+   "350 of 1,356 denied visits were coverage or wrong-payer problems. Another 100 carry code 23, which only records what an earlier payer paid"
   ],
   "next_step": "Finish the coverage refresh, then re-verify every active patient on the first of each month."
  },
@@ -251,7 +251,7 @@
   "applicability": "minor",
   "status": "na",
   "priority": 5,
-  "assessment": "Little applies. There are no scheduled self-pay services, and Advance Beneficiary Notices are rarely needed for visits."
+  "assessment": "Little applies. There are no scheduled self-pay services. One notice will matter when wellness visits restart: Medicare denies a wellness visit repeated within 12 months, so give the patient a written Advance Beneficiary Notice when the date of the last one is uncertain."
  },
  {
   "category_slug": "fe-pos-collections",
@@ -275,9 +275,9 @@
  {
   "category_slug": "cc-charge-lag",
   "applicability": "core",
-  "status": "green",
+  "status": "amber",
   "priority": 4,
-  "assessment": "Fast. Half of charges are entered within 3 days of the visit and nine in ten within 5 days.",
+  "assessment": "Fast. Half of charges are entered within 3 days of the visit and nine in ten within 5 days. Whether each note was finished and signed before its claim went out is not known.",
   "evidence": [
    "Median 3 days, 90th percentile 5 days",
    "MGMA measured 7.75 days across practices in 2022"
@@ -342,7 +342,7 @@
    "18 duplicate denials among recent zero-paid lines and 6 frequency denials on care-management lines since June",
    "31 hospice denials in the register"
   ],
-  "next_step": "Add scrubber rules for one care-management claim per patient per month, and hold a hospice patient's claim until the clinician chooses the modifier."
+  "next_step": "Add automatic checks that run before a claim is sent: one care-management claim per patient per month, and a hold on any hospice patient's claim until the clinician chooses the modifier."
  },
  {
   "category_slug": "cc-diagnosis-coding",
@@ -520,7 +520,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 3,
-  "assessment": "Medicare fee-for-service is 55.5% of charges, Medicare Advantage about 25% and Medicaid plans about 6%. Medicare pays fastest and most reliably. In 2027 its hospital visit rates fall 3% to 5% and its rates for nursing facility visits billed as a skilled stay rise 10% to 12%.",
+  "assessment": "Medicare fee-for-service is 55.5% of charges. Insurers that sell Medicare Advantage plans are about 25%, and the data does not yet split their Medicare Advantage patients from commercial ones. Medicaid plans are about 6%, and 11.2% of charges had no payer recorded. Medicare pays fastest and most reliably. In 2027 its hospital visit rates fall 3% to 5% and its rates for nursing facility visits billed as a skilled stay rise 10% to 12%.",
   "evidence": [
    "Lead payer shares by charges, October 2026"
   ],
@@ -567,7 +567,7 @@
   "assessment": "Medicare's 2027 rule cuts the conversion factor 2.31%. It also pays nursing facility visits billed as a skilled stay at the same rate as long-term visits, which raises them 10% to 12% here. Florida loses a 2.3% floor on the work part of each fee unless Congress acts. Hospital visits fall 3% to 5%. Nobody has repriced the practice's top codes.",
   "evidence": [
    "2027 conversion factor $32.63",
-   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down and nursing facility visits up"
+   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down 3% to 5% and nursing facility visits billed as a skilled stay up 10% to 12%"
   ],
   "next_step": "Reprice the top 15 codes at 2027 rates by site of service before January."
  },
@@ -664,7 +664,7 @@
    "60 days to report and return once identified, with up to 180 days to investigate in good faith",
    "Six-year lookback"
   ],
-  "next_step": "Open a privileged review through the attorney and document when it began."
+  "next_step": "Have the attorney open and direct the review, and write down when it began."
  },
  {
   "category_slug": "cr-referral-laws",
@@ -719,11 +719,13 @@
  {
   "category_slug": "cr-facility-rules",
   "applicability": "core",
-  "status": "unknown",
+  "status": "amber",
   "priority": 2,
   "assessment": "Nursing facilities are cited when required physician visits are late or done by the wrong clinician. The practice does not track each resident's schedule against the admission date.",
   "evidence": [
-   "Required: a visit every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. In a Part A skilled stay the physician must make the first visit and at least every other one"
+   "Required: a visit every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. In a Part A skilled stay the physician must make the first visit and at least every other one",
+   "Hospital reappointment has open items",
+   "10 of 19 initial nursing facility visits were billed under the nurse practitioner"
   ],
   "next_step": "Add a required-visit due date to each resident on the census."
  },
@@ -740,7 +742,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. As billed, the physician's work units are nearly three times the family medicine median (about 19,000 against 6,505) and the nurse practitioner's are about a third above hers (6,300 against 4,647). Care management accounts for about 8,100 of the physician's units. It is the same pattern the risk review flags.",
+  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. Medicare gives each service a number of work units that measure clinician effort. As billed, the physician's work units are nearly three times the family medicine median (about 19,000 against 6,505) and the nurse practitioner's are about a third above hers (6,300 against 4,647). Care management accounts for about 8,100 of the physician's units. It is the same pattern the risk review flags.",
   "evidence": [
    "About 25,000 work units a year as billed, against medians of 6,505 and 4,647"
   ],
@@ -760,7 +762,7 @@
  {
   "category_slug": "co-visit-cadence",
   "applicability": "core",
-  "status": "unknown",
+  "status": "amber",
   "priority": 2,
   "assessment": "No tracker shows which residents are due or overdue for a required or routine visit, and no wellness visits are being done.",
   "evidence": [
@@ -839,7 +841,7 @@
   "applicability": "core",
   "status": "unknown",
   "priority": 2,
-  "assessment": "Medicare's quality program can cut payments by up to 9% for clinicians who are required to report and do not. Both clinicians appear to exceed the low-volume exclusion, and their status is not known.",
+  "assessment": "Medicare's quality program can cut payments by up to 9% for clinicians who are required to report and do not. Both clinicians appear to bill Medicare more than the program's minimums ($90,000 billed, 200 patients and 200 services a year), so it likely applies to them. Their status is not known.",
   "evidence": [
    "Medicare paid the two clinicians about $350,000 in 2024, so up to about $31,000 a year is at stake"
   ],
@@ -923,10 +925,11 @@
  },
  {
   "category_slug": "pp-staff-compensation",
-  "applicability": "minor",
+  "applicability": "relevant",
   "status": "unknown",
   "priority": 5,
-  "assessment": "Few staff. Not reviewed."
+  "assessment": "Few staff. Pay and hours by person are not in the data. They matter here because care-management claims assert about 364 staff hours a month.",
+  "next_step": "Get pay and hours by person for October."
  },
  {
   "category_slug": "pp-accountability",
@@ -969,21 +972,21 @@
  {
   "category_slug": "pp-outsourcing",
   "applicability": "relevant",
-  "status": "green",
+  "status": "amber",
   "priority": 4,
-  "assessment": "Billing moved in-house to software agents and costs less than it did: 6.3% of collections over twelve months against 8.4% in 2025.",
+  "assessment": "Billing moved in-house to software agents in the third quarter of 2026. It is too early to say it costs less. Billing services and software were 4.7% of collections in the first half of 2026 and 8.7% in the third quarter, $26,790 in three months. The twelve-month figure of 6.3% mixes both periods.",
   "evidence": [
    "Billing cost 7.0% (2023), 8.1% (2024), 8.4% (2025)"
   ],
-  "next_step": "Keep one outside party, the coding auditor, to check what the agents and clinicians produce."
+  "next_step": "List what makes up the $26,790, and compare cost, speed and error rate before and after the change. Keep one outside party, the coding auditor, to check what the agents and clinicians produce."
  },
  {
   "category_slug": "td-core-systems",
   "applicability": "core",
-  "status": "green",
+  "status": "amber",
   "priority": 4,
-  "assessment": "The billing system, rounding and charge tool, and eligibility service fit a facility-based practice and work together.",
-  "next_step": "Review cost and usage of each once a year."
+  "assessment": "The billing system, the rounding and charge tool and the eligibility service fit a facility-based practice and work together for charges. The data names no health record system. It is not known where the practice's own notes, care plans, consents and care-management time logs are kept, or whether the practice can produce them without a facility's help.",
+  "next_step": "Write down where each kind of record is kept. Review the cost and use of each system once a year."
  },
  {
   "category_slug": "td-integrations",
@@ -1004,9 +1007,9 @@
  {
   "category_slug": "td-automation-ai",
   "applicability": "core",
-  "status": "green",
+  "status": "amber",
   "priority": 3,
-  "assessment": "Software agents run eligibility, charge entry, posting and follow-up every few hours. That is a real cost and speed advantage. How often an automated action is later corrected is not measured.",
+  "assessment": "Software agents run eligibility, charge entry, posting and follow-up every few hours. That is a real speed advantage. A cost advantage is not shown yet. How often an automated action is later corrected is not measured.",
   "evidence": [
    "Billing routine every 2 to 6 hours"
   ],
@@ -1159,7 +1162,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "The main detractors are a three-year revenue decline, dependence on one physician and a few sites, government fee-for-service payers, and untested billing patterns. The recovery in 2026 and the low cost structure are the strengths.",
+  "assessment": "The main detractors are a two-year revenue decline, in 2024 and 2025, dependence on one physician and a few sites, government fee-for-service payers, and untested billing patterns. The recovery in 2026 and the low cost structure are the strengths.",
   "evidence": [
    "Revenue down 16% a year from 2023 to the latest twelve months",
    "Operating cost 44.7% of revenue"

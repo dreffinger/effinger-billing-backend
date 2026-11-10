@@ -4112,5 +4112,59 @@
   "url": "https://www.cms.gov/files/zip/cy-2027-pfs-final-rule-addenda-updated-11-05-2026.zip",
   "kind": "primary",
   "note": "Addendum B gives the 2027 relative values by code: nursing facility visit 99309 has practice expense 1.30 in both settings, and complex care management 99487 has 2.38 non-facility and 0.42 facility. Addendum E gives the geographic indices: Rest of Florida work 0.977, practice expense 0.971, malpractice 1.54. Its note says the 1.0 floor on the work index was extended through January 1, 2027, so the 2027 work indices do not reflect it. Used with the 2027 conversion factor of 32.6286 to price the practice's codes for 2027. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "ahca-smmc-claims-snapshot",
+  "title": "Statewide Medicaid Managed Care Program Snapshot: Health Plan Processes for Provider Credentialing and Claims",
+  "publisher": "Florida Agency for Health Care Administration",
+  "year": "2025",
+  "url": "https://ahca.myflorida.com/content/download/25697/file/Provider%20Claims%20and%20Credentialing%20Program%20Highlight.pdf",
+  "kind": "primary",
+  "note": "The state agency's summary of what its contracts with Medicaid health plans require, dated January 15, 2025, for the contracts that began February 1, 2025. A provider must send a claim to the plan within six months of the date of service. When the plan pays second and the first payer is not Medicare, the limit is 90 days after the first payer's final decision. When the first payer is Medicare, the limit is three years from the date of service. It is a summary, not the contract itself. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "fl-rule-59g-1-052",
+  "title": "Florida Administrative Code 59G-1.052: Third-Party Liability Requirements (Medicaid)",
+  "publisher": "Florida Department of State (Agency for Health Care Administration rule)",
+  "year": "2018",
+  "url": "https://www.flrules.org/gateway/ruleNo.asp?id=59G-1.052",
+  "kind": "primary",
+  "note": "Effective August 14, 2018. Paragraph (15): when Florida Medicaid pays after Medicare, a provider may send the claim within 12 months of the date of service or within 6 months after notice of what Medicare decided, whichever is later. This is the rule for Florida Medicaid itself, not for the Medicaid health plans. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "fcso-cer-self-service",
+  "title": "Mandatory self-service clerical error reopening requests",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/appeals/mandatory-self-service-clerical-error-reopening-requests",
+  "kind": "primary",
+  "note": "Notice dated September 1, 2026. From October 1, 2026, in Florida, Puerto Rico and the U.S. Virgin Islands, a request to reopen a Part B claim for a minor correction must come through one of three electronic tools: the SPOT portal (Secure Provider Online Tool), the telephone response system or the Reopening Gateway. Requests by fax or mail are returned, with a few listed exceptions. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-deadlines",
+  "title": "Timeline and Important Deadlines (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/about/deadlines",
+  "kind": "primary",
+  "note": "Dates for the 2026 performance year: the exception application window closes December 31, 2026, and the submission window opens January 4, 2027 and closes March 31, 2027. Payment adjustments based on 2025 take effect January 1, 2027. A request for review of a 2025 score closes 30 days after the payment adjustment information is released. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "cms-ccm-faq-2016",
+  "title": "Frequently Asked Questions about Billing Medicare for Chronic Care Management Services (March 17, 2016)",
+  "publisher": "CMS",
+  "year": "2016",
+  "url": "https://www.cms.gov/medicare/medicare-fee-for-service-payment/hospitaloutpatientpps/downloads/payment-chronic-care-management-services-faqs.pdf",
+  "kind": "primary",
+  "note": "An earlier question-and-answer sheet. It says the standard care-management code (99490) cannot be billed for a patient who is an inpatient of a skilled nursing facility or a hospital in a Medicare Part A covered stay, because the facility is already paid for care planning. Time spent while the patient is not an inpatient can count toward the month. The current sheet, last updated in 2022, neither repeats nor withdraws this. Read from the copy the reviewers saved on November 10, 2026."
+ },
+ {
+  "slug": "cms-snp-page",
+  "title": "Special Needs Plans (CMS website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/enrollment-renewal/special-needs-plans",
+  "kind": "primary",
+  "note": "A special needs plan is a Medicare Advantage plan that limits enrollment to one group of people. One kind, the dual eligible special needs plan, enrolls people who have both Medicare and Medicaid. So an insurer's plan for people with both programs is counted with Medicare Advantage, not with the Medicaid plans. Read from the copy the reviewers saved on November 10, 2026."
  }
 ]
