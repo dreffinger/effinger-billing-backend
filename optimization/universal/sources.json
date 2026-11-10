@@ -1039,6 +1039,321 @@
   "note": "General steps: get a valuation before selling, prepare a sales agreement, file dissolution documents and settle final tax obligations when closing."
  },
  {
+  "slug": "pp-outsourcing-2010",
+  "title": "Outsourcing your billing",
+  "publisher": "Physicians Practice",
+  "year": "2010",
+  "url": "https://www.physicianspractice.com/view/outsourcing-your-billing",
+  "kind": "secondary",
+  "note": "Old but the only traceable public figures for billing-company fees: 4% to 5% of collections for high-payment specialties, 8% to 10% for primary care."
+ },
+ {
+  "slug": "mgma-staff-comp-2026",
+  "title": "2026 Management and Staff Compensation Data Report",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://pages.mgma.com/rs/144-AMJ-639/images/MGMA%202026%20Management%20and%20Staff%20Comp%20Data%20Report?version=0",
+  "kind": "secondary",
+  "note": "Five-year pay growth to 2025: medical receptionists 22.0%, medical assistants 20.6%."
+ },
+ {
+  "slug": "cms-qpp-experience-2023",
+  "title": "2023 Quality Payment Program Experience Report",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://vascular.org/sites/default/files/2025-08/2023-QPP-Experience-Report%20%281%29.pdf",
+  "kind": "primary",
+  "note": "CMS report, read from a copy hosted by a specialty society. Final scores by practice size."
+ },
+ {
+  "slug": "ama-mips-2024",
+  "title": "Analysis of the 2024 MIPS Program",
+  "publisher": "American Medical Association",
+  "year": "2026",
+  "url": "https://www.ama-assn.org/system/files/2024-mips-analysis.pdf",
+  "kind": "secondary",
+  "note": "Share of clinicians above the threshold, share penalized and the size of the largest bonus."
+ },
+ {
+  "slug": "cms-mln-em",
+  "title": "Evaluation and Management Services (MLN006764, May 2026)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/mln006764-evaluation-management-services.pdf",
+  "kind": "primary",
+  "note": "Visit level by decision making or time, split or shared visits, prolonged service codes and thresholds, home and nursing facility code families, general documentation principles."
+ },
+ {
+  "slug": "cms-cpm-ch26",
+  "title": "Medicare Claims Processing Manual, Chapter 26: Completing and Processing Form CMS-1500 Data Set (Rev. 14466)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c26.pdf",
+  "kind": "primary",
+  "note": "Sections 10.5 and 10.6: place of service codes, facility or non-facility payment designation, special rules for hospital patients, hospice and telehealth, handling of invalid codes."
+ },
+ {
+  "slug": "cms-pos-codes",
+  "title": "Place of Service Code Set",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/medicare/coding-billing/place-of-service-codes/code-sets",
+  "kind": "primary",
+  "note": "Definitions of each two-digit code. Database updated May 2, 2024. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-bpm-ch15",
+  "title": "Medicare Benefit Policy Manual, Chapter 15: Covered Medical and Other Health Services (Rev. 13889)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/bp102c15.pdf",
+  "kind": "primary",
+  "note": "Sections 60.1 and 60.2: incident-to conditions, the physician's initial service and continuing involvement, direct supervision, settings."
+ },
+ {
+  "slug": "cms-ncci-manual-2026",
+  "title": "National Correct Coding Initiative Policy Manual for Medicare Services, 2026: Chapter 1 (General Correct Coding Policies) and Chapter 11",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/01-chapter1-ncci-medicare-policy-manual-2026-final.pdf",
+  "kind": "primary",
+  "note": "Code-pair edits, modifier indicators 0, 1 and 9, modifiers 25 and 59, unit edits, yearly CPT and rolling HCPCS updates. Chapter 11, section U (one per-day visit per date) read at https://www.cms.gov/files/document/11-chapter11a-ncci-medicare-policy-manual-2026-final.pdf"
+ },
+ {
+  "slug": "cms-ncci-ptp",
+  "title": "Medicare NCCI Procedure to Procedure (PTP) Edits",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/coding-billing/national-correct-coding-initiative-ncci-edits/medicare-ncci-procedure-procedure-ptp-edits",
+  "kind": "primary",
+  "note": "Edit files are posted every quarter. The version effective October 1, 2026 was listed when read on November 10, 2026."
+ },
+ {
+  "slug": "icd10cm-guidelines-fy2027",
+  "title": "ICD-10-CM Official Guidelines for Coding and Reporting, FY 2027",
+  "publisher": "CMS and National Center for Health Statistics",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/fy-2027-icd-10-cm-coding-guidelines.pdf",
+  "kind": "primary",
+  "note": "Effective October 1, 2026 to September 30, 2027. Sections I.B.2 (level of detail), I.B.18 (unspecified codes) and IV.G to IV.J (outpatient rules)."
+ },
+ {
+  "slug": "cms-tcm",
+  "title": "Transitional Care Management Services",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/care-management/transitional-care-management-services",
+  "kind": "primary",
+  "note": "Web page that the former booklet MLN908628 now redirects to. Last modified October 29, 2026."
+ },
+ {
+  "slug": "cms-mln-acp",
+  "title": "Advance Care Planning (MLN909289, March 2026)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/mln-advanced-care-planning.pdf",
+  "kind": "primary",
+  "note": "Documentation list, minute table (16 to 45 minutes for 99497), no frequency limit, cost sharing waived with the wellness visit."
+ },
+ {
+  "slug": "cms-cognitive-assessment",
+  "title": "Cognitive Assessment & Care Plan Services",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/cognitive-assessment",
+  "kind": "primary",
+  "note": "Code 99483 requirements and the codes that cannot be billed on the same day. Last modified October 7, 2026."
+ },
+ {
+  "slug": "cms-wellness-visits",
+  "title": "Medicare Wellness Visits",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/coverage/preventive-services/medicare-wellness-visits",
+  "kind": "primary",
+  "note": "Annual wellness visit once every 12 months with no patient cost sharing. Routine physical not covered. Last modified April 8, 2026."
+ },
+ {
+  "slug": "cms-telehealth-faq-2026",
+  "title": "Telehealth FAQ, updated October 2026",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/telehealth-faq-updated-10-09-2026.pdf",
+  "kind": "primary",
+  "note": "Home and geographic flexibilities through December 31, 2027, place of service 02 and 10, no frequency limits on subsequent hospital and nursing facility telehealth visits from 2026, virtual direct supervision."
+ },
+ {
+  "slug": "cms-apcm-faq",
+  "title": "Advanced Primary Care Management (APCM) Services FAQ",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/files/document/advanced-primary-care-management-apcm-services-faq.pdf",
+  "kind": "primary",
+  "note": "Undated document linked from the CMS page. Read November 10, 2026. Place of service, initiating visit and eligibility answers."
+ },
+ {
+  "slug": "cms-snf-cb",
+  "title": "SNF Consolidated Billing",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/coding-billing/skilled-nursing-facility-snf-consolidated-billing",
+  "kind": "primary",
+  "note": "Physician professional services are excluded from consolidated billing in a Part A stay. Last modified March 3, 2026."
+ },
+ {
+  "slug": "cms-hcpcs-quarterly",
+  "title": "HCPCS Quarterly Update",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system/quarterly-update",
+  "kind": "primary",
+  "note": "Files posted for January, April, July and October of each year."
+ },
+ {
+  "slug": "oig-acp-2022",
+  "title": "Medicare Providers Did Not Always Comply With Federal Requirements When Billing for Advance Care Planning (A-06-20-04008)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2022",
+  "url": "https://oig.hhs.gov/reports/all/2022/medicare-providers-did-not-always-comply-with-federal-requirements-when-billing-for-advance-care-planning/",
+  "kind": "primary",
+  "note": "Office-setting services in 2019: 466 of 691 sampled services did not comply, an estimated $42.3 million. Summary page read, not the full report."
+ },
+ {
+  "slug": "oig-pos-2023",
+  "title": "Medicare Paid Millions More for Physician Services at Higher Nonfacility Rates Rather Than at Lower Facility Rates While Enrollees Were Inpatients of Facilities (A-04-21-04084)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2023",
+  "url": "https://oig.hhs.gov/reports/all/2023/medicare-paid-millions-more-for-physician-services-at-higher-nonfacility-rates-rather-than-at-lower-facility-rates-while-enrollees-were-inpatients-of-facilities/",
+  "kind": "primary",
+  "note": "2019 and 2020: $22.5 million overpaid on 1.13 million claim lines coded place of service 32 for Part A skilled nursing inpatients. Summary page read, not the full report."
+ },
+ {
+  "slug": "cfr-410-26",
+  "title": "42 CFR 410.26: Services and supplies incident to a physician's professional services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-410.26",
+  "kind": "primary",
+  "note": "Read through the eCFR API, text in effect November 6, 2026. Not payable for hospital or skilled nursing facility patients. Direct supervision may be by real-time audio and video."
+ },
+ {
+  "slug": "cfr-415-140",
+  "title": "42 CFR 415.140: Conditions for payment, split (or shared) visits",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-415.140",
+  "kind": "primary",
+  "note": "Read through the eCFR API, text in effect November 6, 2026. Facility setting only, substantive portion, documentation and modifier."
+ },
+ {
+  "slug": "cfr-414-21",
+  "title": "42 CFR 414.21: Medicare payment basis",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.21",
+  "kind": "primary",
+  "note": "Payment is the lesser of the actual charge or the fee schedule amount. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-414-48",
+  "title": "42 CFR 414.48: Limits on actual charges of nonparticipating suppliers",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.48",
+  "kind": "primary",
+  "note": "Limiting charge of 115 percent of the nonparticipating fee schedule amount. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-414-52",
+  "title": "42 CFR 414.52: Payment for physician assistants' services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.52",
+  "kind": "primary",
+  "note": "85 percent of the physician fee schedule amount. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-1001-701",
+  "title": "42 CFR 1001.701: Excessive claims or furnishing of unnecessary or substandard items and services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-1001.701",
+  "kind": "primary",
+  "note": "Permissive exclusion for charges to Medicare substantially in excess of usual charges. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-45-149-610",
+  "title": "45 CFR 149.610: Good faith estimates of expected charges for uninsured (or self-pay) individuals",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.610",
+  "kind": "primary",
+  "note": "Read through the eCFR API, text in effect November 5, 2026."
+ },
+ {
+  "slug": "cfr-422-310",
+  "title": "42 CFR 422.310: Risk adjustment data",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.310",
+  "kind": "primary",
+  "note": "Paragraph (e): plans and their providers must supply medical records to validate risk adjustment data, and improper payments are remitted. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-405-980",
+  "title": "42 CFR 405.980: Reopening of initial determinations",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.980",
+  "kind": "primary",
+  "note": "A party may request reopening within 1 year for any reason and within 4 years for good cause. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-424-5",
+  "title": "42 CFR 424.5: Basic conditions for Medicare payment",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.5",
+  "kind": "primary",
+  "note": "Paragraph (a)(6): the provider must furnish sufficient information to determine whether payment is due. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "ama-cpt-em-2023",
+  "title": "CPT Evaluation and Management (E/M) Code and Guideline Changes, effective January 1, 2023",
+  "publisher": "American Medical Association",
+  "year": "2022",
+  "url": "https://www.ama-assn.org/system/files/2023-e-m-descriptors-guidelines.pdf",
+  "kind": "primary",
+  "note": "Two of three decision-making elements must be met or exceeded. Rules extended to hospital, nursing facility and home or residence visits. Minimum times shown here differ from later code descriptors for some codes, so check the current code book."
+ },
+ {
+  "slug": "kff-private-vs-medicare-2020",
+  "title": "How Much More Than Medicare Do Private Insurers Pay? A Review of the Literature",
+  "publisher": "KFF",
+  "year": "2020",
+  "url": "https://www.kff.org/medicare/how-much-more-than-medicare-do-private-insurers-pay-a-review-of-the-literature/",
+  "kind": "secondary",
+  "note": "Physician services: private rates averaged 143 percent of Medicare across eight studies, range 118 to 179 percent."
+ },
+ {
+  "slug": "patel-2022",
+  "title": "Patel, Huskamp, Frakt, et al. Frequency of indirect billing to Medicare for nurse practitioner and physician assistant office visits. Health Affairs 41(6):805-813",
+  "publisher": "Health Affairs",
+  "year": "2022",
+  "url": "https://doi.org/10.1377/hlthaff.2021.01968",
+  "kind": "secondary",
+  "note": "Read as the PubMed abstract, PMID 35666969. Estimated 10.9 million indirectly billed visits in 2010 and 30.6 million in 2018."
+ },
+ {
+  "slug": "x12-carc",
+  "title": "Claim Adjustment Reason Codes",
+  "publisher": "X12",
+  "year": "2026",
+  "url": "https://x12.org/codes/claim-adjustment-reason-codes",
+  "kind": "primary",
+  "note": "Definitions of reason codes 4, 5, 11, 50, 58, 97, 119, 151, 167 and 236. Read November 10, 2026."
+ },
+ {
   "slug": "cfr-424-502",
   "title": "42 CFR 424.502: Definitions (Medicare enrollment)",
   "publisher": "eCFR",
@@ -1253,5 +1568,14 @@
   "url": "https://www.mgma.com/mgma-stat/only-19-of-practice-leaders-are-very-confident-they-could-recover-quickly-from-a-cyberattack",
   "kind": "secondary",
   "note": "Poll of October 6, 2026, 238 applicable responses: 19% very confident, 61% somewhat, 21% not confident. Recommends a tabletop exercise twice a year. Notes 82% had a downtime plan in a July 2021 poll."
+ },
+ {
+  "slug": "hci-mgma-it-2017",
+  "title": "Survey: IT expenses per physician continue to rise to nearly $19,000",
+  "publisher": "Healthcare Innovation, reporting MGMA data",
+  "year": "2017",
+  "url": "https://www.hcinnovationgroup.com/finance-revenue-cycle/news/13028929/survey-it-expenses-per-physician-continue-to-rise-to-nearly-19000",
+  "kind": "secondary",
+  "note": "The most recent public MGMA figure found: $14,000 to $19,000 of technology operating expense per full-time physician in 2016."
  }
 ]

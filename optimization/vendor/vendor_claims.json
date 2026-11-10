@@ -2013,7 +2013,12 @@
   "claim": "Redetermination: the MA plan itself, 60 days to file, plan has 60 days to decide. Reconsideration: Independent Review Entity, 60 days to file after redetermination. ALJ hearing: $190+ claim threshold (2025). Federal Court: $1,900+ threshold (2025).",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Part C level 1 is a plan 'reconsideration': file within 65 days of the denial notice; the plan decides in 30 days (pre-service) or 60 days (payment). Adverse decisions go to the IRE automatically. ALJ threshold is $200 for 2026 and 2027; federal court $1,960 for 2026, $2,000 for 2027. Contracted-provider payment disputes follow the contract instead.",
+  "source_title": "CMS Managed Care Appeals pages (plan reconsideration, IRE, ALJ hearing, federal court; updated 11/03/2026); 42 CFR 422.582, 422.590, 422.600, 422.612; 91 FR 58681 (Sept. 16, 2026); CMS Parts C & D Appeals Guidance (eff. July 6, 2026)",
+  "source_url": "https://www.cms.gov/medicare/appeals-grievances/managed-care/hearing-administration-law-judge",
+  "confidence": "high",
+  "practice_impact": "A contracted practice cannot take an MA payment denial to the IRE or an ALJ; it must use the contract's dispute process, and enrollee-side appeals now have a 65-day window."
  },
  {
   "id": "medicare-advantage-operational-playbook:C2",
@@ -2021,7 +2026,12 @@
   "claim": "Common codes like hypertension (I10) carry HCC weight; elevated blood pressure (R03.0) does not.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Essential hypertension (I10) maps to no CMS-HCC payment category in V22, V24 or V28, so it adds nothing to the Part C risk score; it maps only to RxHCC 187 in the Part D drug model. R03.0 maps to no model. Only hypertensive heart-failure or stage 5 CKD combination codes (such as I11.0, I12.0) map to V28 HCCs.",
+  "source_title": "CMS 2026 Midyear/Final ICD-10-CM Mappings (2026 Model Software/ICD-10 Mappings); identical in 2027 Initial Mappings; 2025 Midyear/Final Mappings for the V24 column",
+  "source_url": "https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment/2026-model-software-icd-10-mappings",
+  "confidence": "high",
+  "practice_impact": "Recapturing I10 on nursing-facility visits will not raise the Part C risk score (only a small Part D RxHCC weight); treating it as an HCC gap misdirects coding audits and shared-savings forecasts."
  },
  {
   "id": "medicare-advantage-operational-playbook:C3",
@@ -2029,7 +2039,12 @@
   "claim": "Type 2 diabetes with diabetic chronic kidney disease (E11.65) has a much higher RAF impact than Type 2 diabetes uncomplicated (E11.9).",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "E11.65 is type 2 diabetes with hyperglycemia; diabetic CKD is E11.22. Under the V28 model used for all 2026 and 2027 payment, E11.9 and E11.65 both map to HCC 38, and HCCs 36, 37 and 38 share one coefficient (0.166 community non-dual aged, 0.280 institutional). Extra weight requires separately coding the CKD stage (N18.30 to N18.6).",
+  "source_title": "CMS 2026 Midyear/Final ICD-10-CM Mappings and CMS-HCC V28 model software (relative factors); CY 2026 and CY 2027 Rate Announcements",
+  "source_url": "https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment/2026-model-software-icd-10-mappings",
+  "confidence": "high",
+  "practice_impact": "Diabetes complication specificity alone no longer moves RAF; for long-stay residents the documentable gain is the CKD stage, heart-failure and other separately mapped conditions."
  },
  {
   "id": "medicare-advantage-operational-playbook:C4",
@@ -2037,7 +2052,12 @@
   "claim": "MA plans ... may approve and pay a claim, then months later audit the medical record and recoup payment if the documentation does not support medical necessity - even if the authorization was obtained prospectively.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Since 2024, 42 CFR 422.138(c) bars an MA coordinated care plan that approved a service by prior authorization, pre-service or concurrent determination from later denying coverage for lack of medical necessity. It may reopen only for good cause or reliable evidence of fraud or similar fault; for approved inpatient admissions, later-gathered clinical information cannot supply good cause.",
+  "source_title": "42 CFR 422.138(c) Prior authorization and 42 CFR 422.616(e) (eCFR, current to 11/06/2026; 88 FR 22331, amended 90 FR 15910)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.138",
+  "confidence": "high",
+  "practice_impact": "Matters only where the practice's services need plan authorization: a later medical-necessity clawback of an authorized service can be disputed under 422.138(c); documentation still matters for coding and fraud audits."
  },
  {
   "id": "medicare-advantage-operational-playbook:C5",
@@ -2045,7 +2065,12 @@
   "claim": "MA plans deny claims on medical necessity grounds ... using proprietary clinical criteria that may differ from CMS national coverage determinations ... the InterQual criteria, the MCG guidelines, or the plan's own proprietary policy.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Plans do cite InterQual, MCG or their own policies, but since 2024 42 CFR 422.101(b)-(c) binds them to NCDs, LCDs and Traditional Medicare coverage rules. Internal criteria are allowed only where Medicare criteria are not fully established, must rest on published evidence and be publicly posted, and may not otherwise be used to deny basic benefits.",
+  "source_title": "42 CFR 422.101(b)(6) and (c)(1) (eCFR, current to 11/06/2026); KFF, Medicare Advantage Insurers Made Nearly 53 Million Prior Authorization Determinations in 2024 (Jan. 28, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.101",
+  "confidence": "high",
+  "practice_impact": "Appeals should argue the service meets the NCD, LCD or Medicare rule and that proprietary criteria cannot override it, rather than only rebutting InterQual or MCG point by point."
  },
  {
   "id": "medicare-advantage-operational-playbook:C6",
@@ -2053,7 +2078,12 @@
   "claim": "HCC diagnoses must be submitted at least once per calendar year for each patient to be included in that year's risk score calculation ... based on the ICD-10 diagnosis codes submitted on claims from all providers.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Annual recapture is real, but timing and scope are misstated. The model is prospective: diagnoses from 2026 dates of service set 2027 payment. Only diagnoses from face-to-face (or audio-video) encounters with physicians and other accepted practitioners, hospital inpatient or hospital outpatient providers count; for 2027 payment CMS also excludes audio-only visits and unlinked chart reviews.",
+  "source_title": "CMS, Announcement of CY 2027 Medicare Advantage Capitation Rates and Part C and Part D Payment Policies (April 6, 2026); Medicare Managed Care Manual ch. 7; CY2026 Risk Adjustment Eligible CPT/HCPCS list",
+  "source_url": "https://www.cms.gov/files/document/2027-announcement.pdf",
+  "confidence": "high",
+  "practice_impact": "Your own nursing-facility visit claims (99304-99310 are risk-adjustment eligible) carry diagnoses into next year's payment; SNF facility claims, audio-only visits and plan chart reviews do not."
  },
  {
   "id": "medicare-advantage-operational-playbook:C7",
@@ -2061,7 +2091,12 @@
   "claim": "Price transparency MRF data includes MA contracted rates alongside commercial rates.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Only hospital machine-readable files must list rates negotiated with Medicare Advantage plans. Payer Transparency in Coverage files, the ones holding physician-practice rates, cover non-grandfathered group and individual commercial coverage; the October 2026 final rule says MA is beyond its scope. A practice cannot benchmark its MA professional rates from payer files.",
+  "source_title": "Transparency in Coverage final rule, 91 FR 63748 (Oct. 6, 2026); 45 CFR 147.212; CMS Hospital Price Transparency FAQs (current as of June 26, 2026)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-06/pdf/2026-20447.pdf",
+  "confidence": "high",
+  "practice_impact": "Payer files will not show what MA plans pay other physician groups for facility visits; only hospital files (hospital-employed clinicians) carry MA rates, so benchmark against the Medicare fee schedule."
  },
  {
   "id": "medicare-advantage-operational-playbook:C8",
@@ -2069,7 +2104,12 @@
   "claim": "HEDIS measures most relevant to physician practices include Transitions of Care (follow-up within 7/30 days post-discharge), Annual Wellness Visit (AWV completed in calendar year) and Medication Adherence (PDC > 80%).",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Of the three, only Transitions of Care is a HEDIS measure, and its windows are 2 days for admission and discharge notices and 30 days for patient engagement and medication reconciliation, not 7/30. Medication adherence is a PQA Part D Star measure (PDC of 80% or higher). The Annual Wellness Visit is neither a HEDIS nor a Star Ratings measure.",
+  "source_title": "CMS Medicare 2027 Part C & D Star Ratings Technical Notes (updated 11/04/2026); NCQA, Transitions of Care (TRC)",
+  "source_url": "https://www.cms.gov/files/document/2027-star-ratings-technical-notes.pdf",
+  "confidence": "high",
+  "practice_impact": "AWV bonuses are plan-contract incentives, not HEDIS; most HEDIS screening and diabetes measures exclude members 66+ in I-SNPs or long-term institutional care, so TRC and readmissions matter more."
  },
  {
   "id": "payer-rate-negotiation-playbook:C1",
@@ -2309,7 +2349,12 @@
   "claim": "Stark exceptions require that compensation arrangements be set in advance, in writing, for a period of at least one year. They must be signed by all parties. Oral arrangements do not qualify.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Only some Stark exceptions require this. Personal service arrangements and office or equipment leases must be written, signed and last at least one year. Bona fide employment (42 CFR 411.357(c)) and group-practice pay need no writing, signature or term; the fair-market-value exception has no minimum term; limited remuneration (up to $6,237 in 2026) needs no writing.",
+  "source_title": "42 CFR 411.357(c), (d), (l), (z) and 411.354(e) (eCFR, current to Nov. 6, 2026; last amended 2023); CMS Phase II interim final rule, 69 FR 16054, 16067-68 (Mar. 26, 2004); CMS Physician Self-Referral CPI-U Updates page (CY 2026 limited remuneration limit $6,237)",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-411/subpart-J/section-411.357",
+  "confidence": "high",
+  "practice_impact": "Employed physicians need no one-year written Stark contract (written agreements remain prudent); the writing, signature and one-year rules bite on independent-contractor and medical-director agreements with SNFs, hospices, home health agencies, hospitals and labs."
  },
  {
   "id": "provider-compensation-design-playbook:C2",
@@ -2317,7 +2362,12 @@
   "claim": "Arrangements that have lapsed, where the written agreement has expired but the arrangement continues, lose their Stark exception protection until a new agreement is executed.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "outdated",
+  "correct_statement": "Since Jan. 1, 2016, an expired lease or personal service agreement of at least one year stays protected indefinitely as a holdover if it continues on the same terms and still meets every exception requirement, including fair market value. Protection is lost only if terms change or a requirement fails. Employment arrangements never needed a writing.",
+  "source_title": "42 CFR 411.357(a)(7), (b)(6), (d)(1)(vii), (l)(2) (eCFR, current to Nov. 6, 2026); CY 2016 Physician Fee Schedule final rule, 80 FR 70886, 71318-71320 (Nov. 16, 2015), effective Jan. 1, 2016 (govinfo.gov/content/pkg/FR-2015-11-16/html/2015-28005.htm)",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-411/subpart-J/section-411.357",
+  "confidence": "high",
+  "practice_impact": "Medical-director or contractor agreements with SNFs, hospices or home health agencies that expired but continued unchanged are likely still protected if records show identical terms; do not refund or self-disclose on the vendor's reading without counsel, and re-paper before changing pay or duties."
  },
  {
   "id": "provider-compensation-design-playbook:C3",
@@ -2325,7 +2375,12 @@
   "claim": "Compensation under a Stark exception cannot be determined in a manner that takes into account the volume or value of referrals. This prohibition is absolute. A productivity bonus based partly on referral volume, even indirectly, violates Stark.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Most compensation exceptions bar pay that takes referral volume or value into account, but not absolutely. Since 2021 the test is met only if referrals are a variable in the formula. Group practices may pay profit shares indirectly reflecting designated health services and bonuses on personally performed and incident-to services; value-based and physician-incentive-plan exceptions carry no such bar.",
+  "source_title": "42 CFR 411.354(d)(5), 411.352(g) and (i), 411.357(c)(4), (d)(2), (aa) (eCFR, current to Nov. 6, 2026); Modernizing and Clarifying the Physician Self-Referral Regulations, final rule, 85 FR 77492, 77537-38 and 77559 (Dec. 2, 2020)",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-411/subpart-J/section-411.354",
+  "confidence": "high",
+  "practice_impact": "wRVU bonuses on personally performed facility visits are expressly permitted; never put home health, lab, therapy, DME or hospital referrals into a pay formula. Florida's all-payer kickback and patient-brokering laws (ss. 456.054, 817.505) also reach referral-based pay."
  },
  {
   "id": "provider-compensation-design-playbook:C4",
@@ -2333,7 +2388,12 @@
   "claim": "A physician-owner earning $600,000 per year in a market where the FMV for their specialty and productivity is $350,000 has a $250,000 annual exposure that does not disappear because the physician holds an ownership stake.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Stark imposes no fair-market-value test on what a physician-owned group practice pays its owners. Their in-practice referrals rest on the in-office ancillary services exception and group-practice rules, which bar only pay tied directly to referral volume or value. Stark liability is refund of tainted designated-health-service claims plus penalties up to $31,670 per service, not the pay gap.",
+  "source_title": "CMS Phase II interim final rule, 69 FR 16054, 16067-68 (Mar. 26, 2004); 42 CFR 411.351, 411.352, 411.353, 411.355(a)-(b) (eCFR, current to Nov. 6, 2026); 45 CFR 102.3 (as amended at 91 FR 3666, Jan. 28, 2026); IRS, S corporation compensation and medical insurance issues (reviewed Mar. 3, 2026)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-2004-03-26/html/04-6668.htm",
+  "confidence": "high",
+  "practice_impact": "A practice billing only visits and care management (no lab, imaging, therapy, DME) furnishes no designated health services, so Stark does not police owner pay, and Florida s. 817.505(3)(b) likewise exempts payments within a group practice; owner pay is a tax, anti-kickback and buyer-diligence question."
  },
  {
   "id": "provider-compensation-design-playbook:C5",
@@ -2341,7 +2401,12 @@
   "claim": "The FMV standard is met when compensation falls within the range supported by objective, commercially reasonable evidence, typically benchmark survey data from recognized sources such as MGMA or AMGA.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Stark defines fair market value as the value in an arm's-length transaction consistent with general market value: what well-informed parties not positioned to generate business for each other would pay. CMS calls salary surveys an appropriate starting point, sometimes sufficient, but rejects any percentile safe harbor. Commercial reasonableness is a separate requirement, not the evidentiary standard for FMV.",
+  "source_title": "Modernizing and Clarifying the Physician Self-Referral Regulations, final rule, 85 FR 77492, 77555-58 (Dec. 2, 2020); 42 CFR 411.351 definitions of fair market value, general market value and commercially reasonable (eCFR, current to Nov. 6, 2026)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-2020-12-02/html/2020-26140.htm",
+  "confidence": "high",
+  "practice_impact": "Matching an MGMA or AMGA percentile is not a safe harbor; medical-director stipends and facility-based geriatric pay need documented duties, hours and local market facts, using geriatrics-specific survey cuts rather than generic primary care medians."
  },
  {
   "id": "provider-compensation-design-playbook:C6",
@@ -2349,7 +2414,12 @@
   "claim": "Nationally, conversion factors generally range from approximately $45 to $65 per wRVU... A primary care physician may have a conversion factor in the $45 to $55 range. A proceduralist may command $55 to $65 or higher.",
   "kind": "benchmark",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The $45-$65 national band has no cited source. AMGA's 2026 survey (2025 data) reports median compensation-per-wRVU ratios of $50.52-$55.62 in primary care (family medicine $52.61), consistent with the claim, but $68.79 cardiology, $72.28 gastroenterology, $74.48 general surgery and $78.94 orthopedics, above the stated range. These are all-in pay ratios, not contract rates.",
+  "source_title": "AMGA 2026 Medical Group Compensation and Productivity Survey: Selected Data (June 2026; 2025 data from 451 groups, about 188,000 providers). Practice-impact figures computed from CMS RVU26D relative value and GPCI files (released Aug. 26, 2026) and Medicare Claims Processing Manual ch. 12, sec. 20.4.2",
+  "source_url": "https://www.amga.org/getmedia/6b7fc588-0aa3-4d42-a80c-5919fb7cbbbb/2026-comp-survey-charts-doc-final.pdf",
+  "confidence": "medium",
+  "practice_impact": "Medicare's 2026 Florida allowed amount is only about $51-$56 per wRVU for SNF visits 99308-99310 (POS 31) and $59-$65 in POS 32, before sequestration and overhead; a $45-$55 conversion factor could consume nearly all visit revenue."
  },
  {
   "id": "provider-compensation-design-playbook:C7",
@@ -2357,7 +2427,12 @@
   "claim": "Typical primary care (illustrative): 25th percentile ~3,500 wRVUs/year and ~$157,500; median ~4,500 and ~$220,500; 75th ~5,500 and ~$286,000; 90th ~6,500 and ~$357,500 total comp.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "The table is not survey data: each pay figure is wRVUs times an assumed $45-$55, and it sits far below current benchmarks. AMGA's 2026 survey (2025 data) reports medians of 6,505 wRVUs and $342,411 for family medicine and 6,390 and $361,426 for internal medicine. MedPAC reports $308,000 median primary care compensation for 2024. Percentile tables are paywalled.",
+  "source_title": "AMGA 2026 Medical Group Compensation and Productivity Survey: Selected Data (June 2026); MedPAC, March 2026 Report to the Congress, ch. 4, pp. 128-129 (SullivanCotter 2025 survey, 2024 pay; medpac.gov/wp-content/uploads/2026/03/Mar26_Ch4_MedPAC_Report_To_Congress_SEC.pdf); MGMA, Key Insights: 2025 Provider Compensation and Productivity Trends and Benchmarks (mgma.com/2025-provider-compensation)",
+  "source_url": "https://www.amga.org/getmedia/6b7fc588-0aa3-4d42-a80c-5919fb7cbbbb/2026-comp-survey-charts-doc-final.pdf",
+  "confidence": "high",
+  "practice_impact": "Benchmarking against this table would understate market pay by roughly a third and label a median producer as 90th percentile; buy geriatrics-specific MGMA or AMGA cuts, since public medians reflect general primary care, not nursing-facility practice."
  },
  {
   "id": "provider-compensation-design-playbook:C8",
@@ -2365,7 +2440,12 @@
   "claim": "wRVUs do not reflect administrative work, care coordination, supervision of mid-levels, teaching, committee participation, or any non-clinical contribution a physician makes to the practice.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Unbilled administrative, committee and teaching time earns no wRVUs, but care coordination does when billed: in 2026 Medicare assigns 1.00 wRVU to chronic care management (99490), 2.78-3.79 to transitional care management, 1.50 to advance care planning and 1.73 to care plan oversight. Incident-to and split/shared services by nurse practitioners can also bill under the physician.",
+  "source_title": "CMS, 2026 National Physician Fee Schedule Relative Value File, October release (RVU26D, released Aug. 26, 2026); CMS, Frequently Asked Questions About Practitioner Billing for Chronic Care Management Services (updated Aug. 16, 2022); 42 CFR 410.26 and 415.140 (eCFR, current to Nov. 6, 2026)",
+  "source_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+  "confidence": "high",
+  "practice_impact": "Care management, transitional care, advance care planning and cognitive assessment are core geriatrics revenue, and CMS says CCM is billable for SNF, nursing facility and assisted living patients; the comp plan must state who gets that wRVU credit."
  },
  {
   "id": "rcm-technology-buyers-playbook:C1",
@@ -2882,8 +2962,8 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C1",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "Consolidated Appropriations Act, 2026, signed February 3, 2026, extends most Medicare telehealth flexibilities through December 31, 2027; the in-person visit requirement for behavioral health telehealth is currently waived through January 1, 2028.",
-  "kind": "deadline",
+  "claim": "CY 2026 Physician Fee Schedule permanently removed telehealth frequency limits for subsequent inpatient visits, subsequent nursing facility visits, and critical care consultation services; no maximum number of telehealth encounters per episode or time period.",
+  "kind": "regulatory",
   "stakes": "high",
   "verdict": "supported",
   "correct_statement": "H.R. 7148 became P.L. 119-75 on February 3, 2026. Section 6209 extends Medicare telehealth flexibilities (home and any geography, practitioner list, audio-only, FQHC/RHC) through December 31, 2027. The tele-mental-health in-person requirement applies to services on or after January 1, 2028, so the waiver ends December 31, 2027, one day earlier than the vendor's wording.",
@@ -2895,8 +2975,8 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C2",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "The CY 2026 Physician Fee Schedule permanently removed frequency limitations on certain telehealth services: subsequent inpatient visits, subsequent nursing facility visits, and critical care consultation services.",
-  "kind": "regulatory",
+  "claim": "Consolidated Appropriations Act, 2026, signed February 3, 2026, extends most Medicare telehealth flexibilities through December 31, 2027; the next potential cliff date is January 1, 2028 unless Congress acts again.",
+  "kind": "deadline",
   "stakes": "high",
   "verdict": "supported",
   "correct_statement": "Correct. The CY 2026 PFS final rule (CMS-1832-F), effective January 1, 2026, permanently removed Medicare telehealth frequency limits for subsequent inpatient visits (99231-99233), subsequent nursing facility visits (99307-99310) and critical care consultations (G0508, G0509). Earlier caps were one visit every 3 days, one every 14 days and one per day.",
@@ -2908,7 +2988,7 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C3",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "Effective January 1, 2026, CMS made permanent the flexibility allowing direct supervision of incident-to services via real-time, two-way audio-video technology; the supervising physician can be in a different physical location.",
+  "claim": "Effective January 1, 2026, CMS made permanent direct supervision of incident-to services via real-time, two-way audio-video technology under the CY 2026 PFS final rule; the supervising physician need not be physically present in the office suite.",
   "kind": "regulatory",
   "stakes": "high",
   "verdict": "supported",
@@ -2921,8 +3001,8 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C4",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "Codes 99441, 99442, and 99443 were eliminated from the CPT code set effective January 1, 2025; Medicare audio-only E&M uses 99202, 99215 with modifier 93; the 98000-series codes are NOT accepted by Medicare.",
-  "kind": "code_rule",
+  "claim": "POS 10 (patient at home) is paid at the non-facility rate and POS 02 (patient not at home) at the facility rate; the difference for the same service runs roughly 10 to 25 percent depending on code and locality.",
+  "kind": "payment_rate",
   "stakes": "medium",
   "verdict": "supported",
   "correct_statement": "Correct in context. CPT deleted 99441-99443 for 2025; Medicare audio-only E/M uses 99202-99215 with modifier 93, only for patients at home. CMS gave 98000-98015 status indicator I (not valid for Medicare). The playbook omits that 98016, the brief virtual check-in that replaced G2012, is payable by Medicare.",
@@ -2934,9 +3014,9 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C5",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "POS 10 is paid at the non-facility rate and POS 02 at the facility rate; the reimbursement difference for the same service runs roughly 10 to 25 percent depending on the code and locality.",
-  "kind": "payment_rate",
-  "stakes": "medium",
+  "claim": "Codes 99441, 99442 and 99443 were eliminated from the CPT code set effective January 1, 2025; Medicare audio-only E&M uses 99202-99215 with modifier 93; the 98000-series codes are NOT accepted by Medicare.",
+  "kind": "code_rule",
+  "stakes": "high",
   "verdict": "partly",
   "correct_statement": "POS 10 pays the non-facility rate and POS 02 the facility rate. In 2026 the gap for office visits is about 35-40% (99213: 2.85 vs 1.72 total RVUs; 99214: $135.61 vs $84.50) after CMS halved facility indirect practice expense; nursing facility codes differ about 12-14%.",
   "source_title": "CMS Transmittal 12671, CR 13582 (Medicare Claims Processing Manual ch. 26 sec. 10.5); 2026 PFS amounts via third-party fee-schedule lookups; AMA 2026 final rule summary",
@@ -2947,7 +3027,7 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C6",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "Medicare audio-only for non-behavioral services is authorized through December 31, 2027; the patient must be at home, the provider video-capable, and the patient unable or unwilling to use video; the clinical note must document that limitation or refusal.",
+  "claim": "The clinical record for every audio-only claim must document audio-only delivery and the reason (patient lacked video capability or declined video); service must be to a patient at home; missing rationale leaves a paid claim vulnerable to recoupment.",
   "kind": "regulatory",
   "stakes": "high",
   "verdict": "partly",
@@ -2960,7 +3040,7 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C7",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "CCM and RPM are not telehealth services in the technical Medicare definition; they do not require POS 02/10 or telehealth modifiers. CCM is billed using 99490/99491/99487/99489; RPM uses 99453/99454/99457/99458.",
+  "claim": "CCM (99490/99491/99487/99489) and RPM (99453/99454/99457/99458) are not telehealth services in the Medicare definition; they cannot be billed using telehealth POS codes or modifiers, and doing so is incorrect coding.",
   "kind": "code_rule",
   "stakes": "high",
   "verdict": "partly",
@@ -2973,8 +3053,8 @@
  {
   "id": "telehealth-revenue-cycle-playbook:C8",
   "item_slug": "telehealth-revenue-cycle-playbook",
-  "claim": "Most Medicare Advantage plans require modifier 95 for video telehealth, unlike Original Medicare.",
-  "kind": "program_rule",
+  "claim": "Telehealth payment parity for fully insured commercial plans is governed by state law; more than 40 states (44 states plus D.C. as of 2026) have some form of telehealth parity law.",
+  "kind": "statistic",
   "stakes": "medium",
   "verdict": "unverifiable",
   "correct_statement": "No traceable source shows that most Medicare Advantage plans require modifier 95; rules vary by plan. UnitedHealthcare MA and Humana key telehealth to POS 02/10; Florida Blue MA wants modifier 93 or 95 plus POS 02/10. CMS's claims manual itself pairs POS 02/10 with modifier 93 or 95 for Original Medicare.",

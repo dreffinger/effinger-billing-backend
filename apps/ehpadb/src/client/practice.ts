@@ -10,7 +10,7 @@ type Risk = { id: string; ord: number; title: string; severity?: string; likelih
 type Rec = { id: string; ord: number; kind?: string; category_slug?: string; category?: string; title: string; why?: string; what?: unknown; impact_low?: number; impact_high?: number; impact_basis?: string; effort?: string; horizon?: string; owner?: string; project_slug?: string; confidence?: string };
 type Project = { slug: string; ord: number; title: string; objective?: string; category_slug?: string; priority?: string; status?: string; impact_low?: number; impact_high?: number; impact_note?: string; owner?: string; start_by?: string; target_date?: string; success_measures?: unknown; steps?: unknown; items: number; items_done: number };
 type Work = { id: string; project_slug?: string; ord: number; title: string; detail?: string; owner?: string; due?: string; status: string; note?: string; updated_at?: string; updated_by?: string };
-type Valuation = { as_of: string; method: string; low?: number; base?: number; high?: number; inputs?: Record<string, unknown>; bridge?: { label: string; amount?: number; note?: string; kind?: string }[]; notes?: string };
+type Valuation = { as_of: string; method: string; low?: number; base?: number; high?: number; inputs?: Record<string, unknown> | [string, unknown][]; bridge?: { label: string; amount?: number; note?: string; kind?: string }[]; notes?: string };
 type Bundle = { practice: { code: string; name: string; specialty?: string; setting?: string; profile?: Record<string, any>; updated_at?: string } | null; categories: PCat[]; metrics: PMetric[]; risks: Risk[]; recommendations: Rec[]; projects: Project[]; worklist: Work[]; valuations: Valuation[]; meta: Record<string, any> };
 
 const PATH = "/api/upo/practice/" + PRACTICE;
@@ -144,18 +144,21 @@ async function pageWorklist(): Promise<string> {
 async function pageValuation(): Promise<string> {
   const b = await bundle(); const s = b.valuations.find((v) => v.method === "summary");
   if (!s) return `<h1>Valuation</h1>${empty("No valuation has been loaded yet.")}`;
-  const others = b.valuations.filter((v) => v.method !== "summary"); const inputs = s.inputs || {};
+  const others = b.valuations.filter((v) => v.method !== "summary");
+  // inputs are stored as ordered [label, value] pairs (a plain object is still accepted, but the database does not keep its order)
+  const pairsOf = (x: unknown): [string, unknown][] => (Array.isArray(x) ? (x as unknown[]).filter((r) => Array.isArray(r)).map((r) => [String((r as unknown[])[0]), (r as unknown[])[1]] as [string, unknown]) : Object.entries((x as Record<string, unknown>) || {}));
+  const inputPairs = pairsOf(s.inputs); const inputs: Record<string, unknown> = Object.fromEntries(inputPairs);
   const lo = Number(s.low) || 0, hi = Number(s.high) || 0, base = Number(s.base) || 0;
   const top = Math.max(hi, ...others.map((v) => Number(v.high) || 0)) * 1.08 || 1;
   const bar = (v: Valuation, label: string, strong = false) => { const l = (100 * (Number(v.low) || 0)) / top, w = Math.max(0.6, (100 * ((Number(v.high) || 0) - (Number(v.low) || 0))) / top), m = (100 * (Number(v.base) || 0)) / top;
     return `<div class="vrow${strong ? " strong" : ""}"><div class="vlabel">${esc(label)}</div><div class="vtrack" role="img" aria-label="${esc(label)}: ${esc(range(v.low, v.high))}, most likely ${esc(usdK(v.base))}"><span class="vband" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%"></span><span class="vdot" style="left:${m.toFixed(2)}%"></span></div><div class="vnum">${esc(usdK(v.base))}<span class="note"> ${esc(range(v.low, v.high))}</span></div></div>`; };
-  const kv = (obj: Record<string, unknown>) => `<dl class="kv wide">${Object.entries(obj).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${typeof v === "number" ? esc(Math.abs(v) >= 1000 ? usd(v) : String(v)) : rich(Array.isArray(v) ? v.join("; ") : v)}</dd></div>`).join("")}</dl>`;
+  const kv = (rows: [string, unknown][]) => `<dl class="kv wide">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${typeof v === "number" ? esc(Math.abs(v) >= 1000 ? usd(v) : String(v)) : rich(Array.isArray(v) ? v.join("; ") : v)}</dd></div>`).join("")}</dl>`;
   return `<h1>Valuation</h1><p class="lead">An indicative estimate of what the practice would sell for today, built from its own financial statements and published market evidence. It is a planning number, not an appraisal.</p>
     <div class="tiles">${tile("Most likely enterprise value", usdK(base), "as of " + day(s.as_of), "accent")}${tile("Low case", usdK(lo))}${tile("High case", usdK(hi))}${inputs["Normalized EBITDA"] !== undefined ? tile("Normalized EBITDA", typeof inputs["Normalized EBITDA"] === "number" ? usdK(inputs["Normalized EBITDA"]) : String(inputs["Normalized EBITDA"]), "after paying a physician a market wage") : ""}</div>
     ${block("The range by method", `<div class="vchart">${bar(s, "Conclusion", true)}${others.map((v) => bar(v, v.method)).join("")}</div><p class="note">The band is the low-to-high range; the dot is the most likely figure. Dollar axis starts at zero.</p>`)}
     ${Array.isArray(s.bridge) && s.bridge.length ? block("From earnings to what the owner keeps", table([{ h: "Step" }, { h: "Amount", num: true, w: "18%" }, { h: "Why" }], s.bridge.map((r) => [r.kind === "total" ? `<strong>${esc(r.label)}</strong>` : esc(r.label), r.amount === undefined || r.amount === null ? "" : r.kind === "total" ? `<strong>${esc(usd(r.amount))}</strong>` : esc(usd(r.amount)), rich(r.note || "")]))) : ""}
-    ${Object.keys(inputs).length ? block("Inputs and assumptions", kv(inputs)) : ""}
-    ${others.map((v) => block(v.method, `${v.notes ? `<p>${rich(v.notes)}</p>` : ""}${v.inputs && Object.keys(v.inputs).length ? kv(v.inputs) : ""}`, range(v.low, v.high))).join("")}
+    ${inputPairs.length ? block("Inputs and assumptions", kv(inputPairs)) : ""}
+    ${others.map((v) => block(v.method, `${v.notes ? `<p>${rich(v.notes)}</p>` : ""}${pairsOf(v.inputs).length ? kv(pairsOf(v.inputs)) : ""}`, range(v.low, v.high))).join("")}
     ${s.notes ? block("What moves the number", `<p>${rich(s.notes)}</p>`) : ""}
     <p class="foot">Not an appraisal, and not tax or legal advice. A sale to a hospital or health system must be at fair market value set by an independent appraiser. See the learning module on maximizing sale value for how buyers think.</p>`;
 }

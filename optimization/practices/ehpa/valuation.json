@@ -5,18 +5,48 @@
   "low": 400000,
   "base": 650000,
   "high": 1000000,
-  "inputs": {
-   "Revenue, last twelve months to September 30, 2026": 1058153,
-   "Less estimated one-time recovery of old receivables": -46000,
-   "Operating expenses (staff, nurse practitioner, billing, rent, other)": -473096,
-   "Earnings before any owner pay (seller's discretionary earnings)": 539057,
-   "Less a market wage for the physician's clinical work, with payroll tax and benefits": -369000,
-   "Normalized EBITDA": 170057,
-   "Normalized EBITDA, low to high case": "$123,057 to $239,057",
-   "Market wage used": "$325,000 base. Published 2025 figures: family medicine median $342,411 (AMGA), geriatrics average $304,411 (Doximity), primary care $314,404 to $345,852 (MGMA).",
-   "How the conclusion is weighted": "Half on the EBITDA method (what a group or platform buyer pays), a quarter on the revenue cross-check, a quarter on the owner-operator method. The weighted figure is $647,750, rounded to $650,000.",
-   "Books": "Cash basis and unaudited. No receivables or payables are on the balance sheet, so receivables are added separately below."
-  },
+  "inputs": [
+   [
+    "Revenue, last twelve months to September 30, 2026",
+    1058153
+   ],
+   [
+    "Less estimated one-time recovery of old receivables",
+    -46000
+   ],
+   [
+    "Operating expenses (staff, nurse practitioner, billing, rent, other)",
+    -473096
+   ],
+   [
+    "Earnings before any owner pay (seller's discretionary earnings)",
+    539057
+   ],
+   [
+    "Less a market wage for the physician's clinical work, with payroll tax and benefits",
+    -369000
+   ],
+   [
+    "Normalized EBITDA",
+    170057
+   ],
+   [
+    "Normalized EBITDA, low to high case",
+    "$123,057 to $239,057"
+   ],
+   [
+    "Market wage used",
+    "$325,000 base. Published 2025 figures: family medicine median $342,411 (AMGA), geriatrics average $304,411 (Doximity), primary care $314,404 to $345,852 (MGMA)."
+   ],
+   [
+    "How the conclusion is weighted",
+    "Half on the EBITDA method (what a group or platform buyer pays), a quarter on the revenue cross-check, a quarter on the owner-operator method. The weighted figure is $647,750, rounded to $650,000."
+   ],
+   [
+    "Books",
+    "Cash basis and unaudited. No receivables or payables are on the balance sheet, so receivables are added separately below."
+   ]
+  ],
   "bridge": [
    {
     "label": "Enterprise value, most likely",
@@ -53,12 +83,24 @@
   "low": 340000.0,
   "base": 510000.0,
   "high": 680000.0,
-  "inputs": {
-   "Normalized EBITDA": 170057,
-   "Multiple applied": "2 to 4 times, most likely 3",
-   "Evidence": "Reported sales of small primary care practices (revenue under $5 million): 3 to 6 times EBITDA (Scope Research, 2025). Taken down one turn for a single physician, government fee-for-service payers and facility relationships the practice does not own.",
-   "Stretch case": "5 to 6 times (about $850,000 to $1,020,000) needs a strategic buyer in post-acute or senior care, the owner staying for several years, and documented, transferable relationships."
-  },
+  "inputs": [
+   [
+    "Normalized EBITDA",
+    170057
+   ],
+   [
+    "Multiple applied",
+    "2 to 4 times, most likely 3"
+   ],
+   [
+    "Evidence",
+    "Reported sales of small primary care practices (revenue under $5 million): 3 to 6 times EBITDA (Scope Research, 2025). Taken down one turn for a single physician, government fee-for-service payers and facility relationships the practice does not own."
+   ],
+   [
+    "Stretch case",
+    "5 to 6 times (about $850,000 to $1,020,000) needs a strategic buyer in post-acute or senior care, the owner staying for several years, and documented, transferable relationships."
+   ]
+  ],
   "notes": "The method a medical group, health system or investor-backed platform would use. It pays for earnings that remain after every clinician, including the owner, is paid a market wage."
  },
  {
@@ -67,11 +109,20 @@
   "low": 787000.0,
   "base": 943000.0,
   "high": 1105000.0,
-  "inputs": {
-   "Earnings before any owner pay": 539057,
-   "Multiple applied": "1.46 to 2.05 times, most likely 1.75",
-   "Evidence": "Medical practices sold through a national business marketplace, 2021 to 2025: median 2.05 times owner earnings, middle half 1.46 to 2.94 (BizBuySell data quoted by Iconic, 2026). The lower half of that range is used because one physician produces most of the earnings."
-  },
+  "inputs": [
+   [
+    "Earnings before any owner pay",
+    539057
+   ],
+   [
+    "Multiple applied",
+    "1.46 to 2.05 times, most likely 1.75"
+   ],
+   [
+    "Evidence",
+    "Medical practices sold through a national business marketplace, 2021 to 2025: median 2.05 times owner earnings, middle half 1.46 to 2.94 (BizBuySell data quoted by Iconic, 2026). The lower half of that range is used because one physician produces most of the earnings."
+   ]
+  ],
   "notes": "The method an individual physician buying the practice to run it would use. It gives the highest answer because the buyer is also buying a job. Few physicians buy facility-based practices this way, so it carries a quarter of the weight."
  },
  {
@@ -80,11 +131,20 @@
   "low": 425000.0,
   "base": 628000.0,
   "high": 921000.0,
-  "inputs": {
-   "Sustainable revenue": 1012153,
-   "Multiple applied": "0.42 to 0.91 times, most likely 0.62",
-   "Evidence": "Sold medical practices, 2021 to 2025: median 0.62 times revenue, middle half 0.42 to 0.91 (same marketplace data). Small primary care listings ask 0.7 to 1.15 times (Scope Research, 2025; asking prices, not sales)."
-  },
+  "inputs": [
+   [
+    "Sustainable revenue",
+    1012153
+   ],
+   [
+    "Multiple applied",
+    "0.42 to 0.91 times, most likely 0.62"
+   ],
+   [
+    "Evidence",
+    "Sold medical practices, 2021 to 2025: median 0.62 times revenue, middle half 0.42 to 0.91 (same marketplace data). Small primary care listings ask 0.7 to 1.15 times (Scope Research, 2025; asking prices, not sales)."
+   ]
+  ],
   "notes": "A rough check only. Revenue multiples ignore margin, and this practice's margin before owner pay is unusually high."
  }
 ]

@@ -1519,10 +1519,10 @@
    "technology-data-ai"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 3,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -1693,11 +1693,11 @@
    "growth-market"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 2,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -2072,23 +2072,23 @@
   "quality_score": 3,
   "specificity_score": 3,
   "practice_relevance_score": 2,
-  "summary": "Vendor playbook on Medicare-centred telehealth billing after the COVID emergency: permanent versus temporary rules (sunset 31 December 2027), POS 02/10, modifiers 95/93, deleted telephone codes, audio-only conditions, payer variation, a six-step claims audit, recovery triage, 90-day plan and two checklists. Broadly current but uncited, with several errors and little that fits a facility-based geriatrics practice.",
+  "summary": "Medicare-centric telehealth billing playbook: sorts rules into permanent, temporary (through 31 Dec 2027) and expired; covers POS 02/10, modifiers, audio-only, payer-type differences; then a six-step lookback audit and 90-day fix plan. Largely current on 2026 law but unsourced, with coding and history errors, a hollow payer section, and no overpayment guidance. Marginal for a facility-based practice.",
   "top_ideas": [
-   "Keep a dated rules register: each telehealth rule tagged permanent, temporary or expired, plus a payer-by-payer table (POS, modifier, audio-only, code set) with last-verified dates and re-verification triggers.",
-   "Capture patient location and modality as structured encounter data so POS and modifiers are rule-derived; block telehealth POS and modifiers on care-management codes.",
-   "Baseline before changing workflow: twelve-month claim pull, sampled POS check, audio-only documentation rate, denial mix; triage recoverable errors and never add documentation afterward.",
-   "Consider video follow-ups for hospital and nursing-facility patients now that telehealth frequency limits are reportedly removed; verify the rule, facility-rate payment and in-person visit mandates first."
+   "Keep a rule-status register tagging each billing rule permanent, temporary with expiry date, or expired, and calendar every sunset date.",
+   "Maintain a payer-by-payer rules matrix (codes, POS, modifiers, audio-only, prior auth, last-verified date) and drive claim logic from it rather than one system default.",
+   "Audit a baseline before changing workflow, then re-measure the same error and denial rates; triage errors into correctable and not, never backfilling documentation.",
+   "Keep care-management codes (CCM, RPM) outside telehealth POS/modifier logic; chart patient location and modality in every telehealth note."
   ],
   "red_flags": [
-   "No citations anywhere; its own example codes a 30-minute, low-complexity new-patient visit as 99202 when that description supports 99203.",
-   "\"Recovery\" covers only money owed to the practice; silent on the duty to report and refund overpayments the audit will find, and on Medicare reopening/redetermination mechanics.",
-   "History errors: POS 11 accommodation said to end May 2023 (Medicare: end of 2023); GT called a PHE modifier; 99441-99443 called PHE-era; parity-law count conflates coverage with payment.",
-   "Nothing on facility-located patients, the telehealth services list, wellness or advance-care-planning visits, or named payer policies; CCM/RPM code lists incomplete (no 99439, 99437, 2026 RPM codes, APCM)."
+   "Worked example miscodes a new patient with 30 minutes and low MDM as 99202 (should be 99203); tables pair modifier 93 with POS 02, contradicting the home-only audio rule.",
+   "'44 states plus D.C.' parity figure conflates coverage laws with payment parity; the 10-25% POS differential is unsourced and looks understated; no citations anywhere.",
+   "Audit covers only errors that underpay; silent on overpayment-direction errors and the 60-day report-and-return duty; conflates timely filing with Medicare reopening.",
+   "History wrong for Medicare (POS 11 'ended May 2023', GT 'used during PHE', 99441-99443 a 'PHE construct'); RPM/CCM code lists incomplete for 2026; predates CY 2027 fee-schedule rule."
   ],
   "domains": [
    "rcm-charge-coding",
-   "compliance-risk",
    "payers-contracts",
+   "compliance-risk",
    "rcm-claims-ar",
    "rcm-front-end",
    "technology-data-ai",
