@@ -430,7 +430,8 @@
     "A service is done on the assumption that the plan follows Medicare, and the claim is denied for no authorization.",
     "An authorization was obtained but the number never reached the claim.",
     "Visits continue after the approved dates or units ran out.",
-    "Denied requests are accepted without appeal, although most appealed denials are overturned."
+    "Denied requests are accepted without appeal. In Medicare Advantage in 2024, only 11.5% of denials were appealed, and 80.7% of appeals were overturned.",
+    "Staff assume Original Medicare never needs authorization. It does for some hospital outpatient procedures, equipment and ambulance trips, and since 2026 for selected services in a six-state pilot."
    ],
    "key_questions": [
     "Which of our services need authorization or a referral, for which plans?",
@@ -440,8 +441,8 @@
    ],
    "actions": [
     {
-     "action": "Build a payer-by-service authorization list",
-     "detail": "Start from last year's authorization and referral denials and each plan's published list.",
+     "action": "List which services need approval, by payer",
+     "detail": "Start from last year's authorization and referral denials and each plan's published list. Note the source and the date last checked.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
@@ -462,18 +463,52 @@
     },
     {
      "action": "Appeal denials that meet criteria",
-     "detail": "Send the clinical record that answers the plan's stated criteria point by point.",
+     "detail": "Send the clinical record that answers the plan's stated criteria point by point. Medicare Advantage plans must follow Medicare coverage rules and must give a specific reason for a denial.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "medium"
+    },
+    {
+     "action": "Cite the approval when a plan takes money back",
+     "detail": "A Medicare Advantage plan may not later deny a service it approved in advance for lack of medical necessity, except for good cause or fraud (42 CFR 422.138).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
     }
    ],
-   "applies_when": "Practices with Medicare Advantage, Medicaid managed care, Veterans Affairs community care or commercial patients. Hospital and nursing facility visits seldom need authorization, but HMO plans may require a referral from the assigned primary care physician.",
+   "applies_when": "Practices with Medicare Advantage, Medicaid managed care, commercial or Veterans Affairs community care patients. Veterans Affairs must approve care in advance unless it is urgent or an emergency. Visits in hospitals and nursing facilities seldom need their own authorization, but HMO (health maintenance organization) plans may require a referral from the assigned primary care physician.",
+   "vendor_refs": [
+    {
+     "item": "prior-authorization-management-playbook",
+     "note": "Sound register design: one record per request with owner, expiry date and outcome. Its 14-day turnaround assumptions predate the 2026 seven-day federal deadline. Its targets are unsourced."
+    },
+    {
+     "item": "prior-authorization-control-kit-workbook",
+     "note": "Tracks approval number, approved code, dates and a match check, with no field for approved units. Its risk flag keeps finished cases flagged. The expiration list is filled by hand."
+    },
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "Warns that a plan may take money back for medical necessity after approving a service. Federal rule bars that except for good cause or fraud (42 CFR 422.138)."
+    },
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Its authorization list covers the top ten payers and twenty codes. Its claim that 50% to 65% of authorization denials are administrative has no source."
+    }
+   ],
    "sources": [
     "kff-ma-pa",
-    "hfma-map-keys"
+    "cms-0057-fact-sheet",
+    "cfr-422-568",
+    "cfr-422-572",
+    "cfr-422-138",
+    "cfr-422-101",
+    "cms-ffs-prior-auth",
+    "va-community-care-claims",
+    "medicare-gov-hmo",
+    "hfma-map-keys",
+    "x12-carc"
    ],
-   "evidence_note": "Denial and overturn rates for Medicare Advantage are measured by KFF from plan data. Since January 2026 a federal rule requires plans to decide standard requests within seven days and urgent ones within 72 hours.",
+   "evidence_note": "KFF measured Medicare Advantage denial and appeal rates from 2024 plan reports. From 2026, Medicare Advantage and Medicaid plans must decide standard requests in seven calendar days and urgent ones in 72 hours (CMS-0057-F; 42 CFR 422.568, 422.572). Drugs, marketplace and employer plans are excluded.",
    "metrics": [
     {
      "slug": "fe-auth-obtained-rate",
@@ -483,12 +518,14 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "HFMA defines the measure and publishes no target. From first principles the aim is every such service.",
-     "confidence": "low",
-     "data_hint": "Authorization log matched to encounters by payer and service.",
+     "benchmark_note": "The Healthcare Financial Management Association (HFMA) defines a similar measure with no target. HFMA also counts approvals obtained after the service but before the claim is sent. From first principles, aim for every such service.",
+     "confidence": "none",
      "sources": [
       "hfma-map-keys"
-     ]
+     ],
+     "data_hint": "Authorization log matched to encounters. If the full list is unknown, count authorized encounters plus those denied for lack of authorization, as HFMA does.",
+     "vendor_claim": "A staffing playbook in the purchased library sets a target of 98% or more for identifying required authorizations.",
+     "vendor_verdict": "Unverifiable. No source is given, and HFMA publishes no target."
     },
     {
      "slug": "fe-auth-denial-rate",
@@ -498,12 +535,15 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No practice-level benchmark was found. For context, Medicare Advantage plans denied 7.7% of authorization requests in 2024 and 80.7% of appealed denials were overturned (KFF).",
-     "confidence": "low",
-     "data_hint": "Remittance reason codes for authorization or referral absent.",
+     "benchmark_note": "No practice-level benchmark was found. For context, Medicare Advantage plans denied 7.7% of authorization requests in 2024. Only 11.5% of denials were appealed, and 80.7% of appeals succeeded (KFF, a health policy research group, from plan reports).",
+     "confidence": "none",
      "sources": [
-      "kff-ma-pa"
-     ]
+      "kff-ma-pa",
+      "x12-carc"
+     ],
+     "data_hint": "Remittance reason codes 197 (authorization absent), 198 (authorization exceeded), 284 and 296 (authorization does not match service or provider) and 288 (referral absent).",
+     "vendor_claim": "The purchased front-end playbook sets authorization denials under 3% of all claims and flags over 5%. The Medicare Advantage playbook says under 5%.",
+     "vendor_verdict": "Unverifiable. No source, and a share of all claims is not comparable between practices that need few authorizations and those that need many."
     }
    ]
   },
