@@ -2069,5 +2069,563 @@
   "url": "https://www.hcinnovationgroup.com/finance-revenue-cycle/news/13028929/survey-it-expenses-per-physician-continue-to-rise-to-nearly-19000",
   "kind": "secondary",
   "note": "The most recent public MGMA figure found: $14,000 to $19,000 of technology operating expense per full-time physician in 2016."
+ },
+ {
+  "slug": "oig-exclusion-bulletin-2013",
+  "title": "Updated Special Advisory Bulletin on the Effect of Exclusion from Participation in Federal Health Care Programs",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2013",
+  "url": "https://oig.hhs.gov/documents/special-advisory-bulletins/881/sab-05092013.pdf",
+  "kind": "primary",
+  "note": "Issued May 8, 2013. No statute or regulation sets a screening frequency. The exclusion list is updated monthly, so screening employees and contractors each month best limits overpayment and penalty liability. Names billing and coding contractors and staffing agencies."
+ },
+ {
+  "slug": "oig-sdp-2026",
+  "title": "Health Care Fraud Self-Disclosure Protocol (updated October 15, 2026)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/documents/self-disclosure-info/11951/hhs-oig-self-disclosure-protocol.pdf",
+  "kind": "primary",
+  "note": "Not available for matters that involve only overpayments or errors, which go to the payer's voluntary refund process. Self-referral-only matters go to the CMS protocol. General practice: at least 1.5 times single damages. Minimum settlements of $20,000, or $100,000 for kickback matters. Samples of at least 100 items. Investigation findings due 90 days after the initial submission."
+ },
+ {
+  "slug": "oig-sdp-page-2026",
+  "title": "Health Care Fraud Self-Disclosure Protocol (web page with frequently asked questions)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/compliance/self-disclosure-info/self-disclosure-protocol/",
+  "kind": "primary",
+  "note": "Explains the four disclosure channels available in 2026 and states that items and services provided by unlicensed individuals are not payable by federal health care programs."
+ },
+ {
+  "slug": "doj-fca-sdpp-2026",
+  "title": "Justice Department's Civil Division and the Department of Health & Human Services Announce Anti-Fraud Healthcare Self-Disclosure Pilot Program",
+  "publisher": "U.S. Department of Justice",
+  "year": "2026",
+  "url": "https://www.justice.gov/opa/pr/justice-departments-civil-division-and-department-health-human-services-announce-anti-fraud",
+  "kind": "primary",
+  "note": "Press release of October 22, 2026. Six-month pilot for self-disclosing potential False Claims Act violations. Repayment with a 1.25 to 1.6 multiplier. Submissions accepted through April 22, 2027."
+ },
+ {
+  "slug": "oig-cia-faq",
+  "title": "Corporate Integrity Agreement FAQ",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/faqs/corporate-integrity-agreement-faq/",
+  "kind": "primary",
+  "note": "Older agreements used a discovery sample of 50 paid claims, with a full sample and systems review if the net financial error rate reached 5 percent. Recent agreements review 100 claims with no threshold and require repayment of every overpayment found. Error rate is net overpayment divided by total dollars in the sample. Undated page, read November 10, 2026."
+ },
+ {
+  "slug": "cms-tpe",
+  "title": "Targeted Probe and Educate",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/data-research/monitoring-programs/medicare-fee-service-compliance-programs/medical-review-and-education/targeted-probe-and-educate-tpe",
+  "kind": "primary",
+  "note": "Contractors use data analysis to pick providers with high error rates or unusual billing, and services with high national error rates. Generally 20 to 40 claims a round, up to 3 rounds, then referral to CMS for possible 100 percent prepay review, extrapolation or referral to a recovery auditor. A low-volume version reviews fewer than 20 claims a round. Page last modified March 4, 2026."
+ },
+ {
+  "slug": "cms-adr",
+  "title": "Additional Documentation Request",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/data-research/monitoring-programs/medicare-fee-service-compliance-programs/medical-review-education/additional-documentation-request",
+  "kind": "primary",
+  "note": "Requests go to the practice address on file with Medicare, so the medical review correspondence address must be kept current. Best practice is to put the request letter on top of the response. Lists who reviews: Medicare Administrative Contractors, the Supplemental Medical Review Contractor, Recovery Audit Contractors and Unified Program Integrity Contractors. Page last modified March 4, 2026."
+ },
+ {
+  "slug": "cfr-405-903",
+  "title": "42 CFR 405.903, 405.929 and 405.930: Prepayment review, post-payment review and failure to respond to an additional documentation request",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.903",
+  "kind": "primary",
+  "note": "45 calendar days to answer a Medicare contractor and 30 to answer a Unified Program Integrity Contractor, with later acceptance for good cause. If the provider does not answer in time the contractor may deny the claim. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cms-ffs-compliance",
+  "title": "Medicare Fee-for-Service Compliance Programs",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/data-research/monitoring-programs/medicare-fee-service-compliance-programs",
+  "kind": "primary",
+  "note": "Describes medical review, recovery auditing and the Comparative Billing Report, which compares a provider's billing with peers in the state and nation. On November 2, 2026 the page said the reports were in development with release expected in late 2026 or early 2027."
+ },
+ {
+  "slug": "fcso-cbr-guide",
+  "title": "CBR Guide - Part B",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/user-guides-instructions/cbr-guide-part-b",
+  "kind": "primary",
+  "note": "The Florida Medicare contractor's provider-specific comparative billing report is requested through its portal, and evaluation and management distribution reports are available on request. Peer comparison assumes each provider's specialty is reported accurately. Dated February 18, 2026."
+ },
+ {
+  "slug": "oig-em-trends-2012",
+  "title": "Coding Trends of Medicare Evaluation and Management Services (OEI-04-10-00180)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2012",
+  "url": "https://oig.hhs.gov/oei/reports/oei-04-10-00180.pdf",
+  "kind": "primary",
+  "note": "From 2010 claims, flagged 1,669 physicians whose average visit level was in the top 1 percent of their specialty and who billed the two highest codes in a visit type at least 95 percent of the time."
+ },
+ {
+  "slug": "oig-cmp-excluded-2025",
+  "title": "Enforcement action: settlement of $41,739.66 for employing an excluded individual (Florida, January 6, 2025)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2025",
+  "url": "https://oig.hhs.gov/fraud/enforcement/adriana-strimbu-dpm-agreed-to-pay-41000-for-allegedly-violating-the-civil-monetary-penalties-law-by-employing-an-excluded-individual/",
+  "kind": "primary",
+  "note": "A solo practitioner settled after an excluded receptionist provided items or services that were billed to federal health care programs."
+ },
+ {
+  "slug": "cfr-411-353",
+  "title": "42 CFR 411.353: Prohibition on certain referrals by physicians and limitations on billing",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.353",
+  "kind": "primary",
+  "note": "No Medicare payment for a designated health service furnished under a prohibited referral, and amounts collected must be refunded. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-411-354",
+  "title": "42 CFR 411.354: Financial relationship, compensation, and ownership or investment interest",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.354",
+  "kind": "primary",
+  "note": "Paragraph (e): a required writing may be a collection of documents, and a missing writing or signature can be obtained within 90 consecutive calendar days if the arrangement otherwise meets an exception. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cms-stark-cpiu",
+  "title": "CPI-U Updates: annual limits for physician self-referral exceptions",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/regulations-guidance/physician-self-referral/cpi-u-updates",
+  "kind": "primary",
+  "note": "For calendar year 2026 the nonmonetary compensation limit is $535 and the limit on limited remuneration to a physician is $6,237. Both are adjusted each calendar year. Page last modified February 19, 2026."
+ },
+ {
+  "slug": "usc-42-1320a-7b",
+  "title": "42 U.S.C. 1320a-7b: Criminal penalties for acts involving Federal health care programs (Anti-Kickback Statute)",
+  "publisher": "U.S. Code",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/link/uscode/42/1320a-7b?type=usc&year=mostrecent&link-type=html",
+  "kind": "primary",
+  "note": "Subsection (b): knowingly and willfully paying or receiving any remuneration, in cash or in kind, to induce or reward referrals of federal program business is a felony. Bona fide employees are excepted. Subsection (g): a claim resulting from a violation is a false claim. Subsection (h): actual knowledge of the statute is not required."
+ },
+ {
+  "slug": "fl-456-054",
+  "title": "Florida Statutes 456.054: Kickbacks prohibited",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0456/Sections/0456.054.html",
+  "kind": "primary",
+  "note": "Unlawful for any health care provider to offer, pay, solicit or receive a kickback for referring or soliciting patients. Not limited to government payers."
+ },
+ {
+  "slug": "fl-817-505",
+  "title": "Florida Statutes 817.505: Patient brokering prohibited",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0800-0899/0817/Sections/0817.505.html",
+  "kind": "primary",
+  "note": "Unlawful for any person to pay or receive any commission, bonus, rebate, kickback or bribe to induce patient referrals to or from a health care provider or facility."
+ },
+ {
+  "slug": "cfr-164-404",
+  "title": "45 CFR 164.404 to 164.410: Breach notification to individuals, the media and the Secretary, and by a business associate",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/part-164/subpart-D",
+  "kind": "primary",
+  "note": "Notify individuals without unreasonable delay and within 60 calendar days of discovery. A breach known to a workforce member or agent is treated as known to the practice. Breaches of 500 or more: notify the Secretary at the same time and the media. Smaller breaches: log and report within 60 days after year end. Business associates must notify within 60 days. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-164-524",
+  "title": "45 CFR 164.524: Access of individuals to protected health information",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.524",
+  "kind": "primary",
+  "note": "Act on a request within 30 days. One extension of up to 30 days with a written statement of the reason. Fees limited to copying labor, supplies, postage and an agreed summary. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-164-520",
+  "title": "45 CFR 164.520: Notice of privacy practices for protected health information",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.520",
+  "kind": "primary",
+  "note": "A provider with a direct treatment relationship gives the notice no later than the first service, makes a good faith effort to get written acknowledgment, and posts it only if it has a physical service delivery site. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-164-530",
+  "title": "45 CFR 164.530: Administrative requirements (privacy training and documentation)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.530",
+  "kind": "primary",
+  "note": "Train each new workforce member within a reasonable time and anyone affected by a material policy change, and document the training. No annual interval is stated. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-164-504",
+  "title": "45 CFR 164.504 and 164.314: Business associate contracts",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.504",
+  "kind": "primary",
+  "note": "Required contract terms: report unauthorized uses, security incidents and breaches, bind subcontractors to the same terms, support patient access, return or destroy data at termination where feasible, and allow termination for a material violation. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-164-312",
+  "title": "45 CFR 164.312: Technical safeguards (HIPAA Security Rule)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.312",
+  "kind": "primary",
+  "note": "Unique user identification is required. Audit controls are a standard. Automatic logoff and encryption are addressable. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-414-1375",
+  "title": "42 CFR 414.1375: Promoting Interoperability performance category (Merit-based Incentive Payment System)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.1375",
+  "kind": "primary",
+  "note": "To score in this category a clinician must report completing the Security Risk Analysis measure during the year in which the performance period occurs. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "reginfo-hipaa-security-2026",
+  "title": "Unified Agenda entry, RIN 0945-AA22: HIPAA Security Rule to Strengthen the Cybersecurity of Electronic Protected Health Information",
+  "publisher": "Office of Information and Regulatory Affairs",
+  "year": "2026",
+  "url": "https://www.reginfo.gov/public/do/eAgendaViewRule?pubId=202510&RIN=0945-AA22",
+  "kind": "primary",
+  "note": "The 2026 agenda lists the rule under Long-Term Actions. The only completed step is the proposed rule of January 6, 2025. Read November 10, 2026."
+ },
+ {
+  "slug": "onc-sra-tool",
+  "title": "Security Risk Assessment Tool",
+  "publisher": "Office of the National Coordinator for Health IT",
+  "year": "2026",
+  "url": "https://healthit.gov/privacy-security/security-risk-assessment-tool/",
+  "kind": "primary",
+  "note": "Free downloadable tool (version 3.7) built with the HHS Office for Civil Rights for small and medium providers. Using it is neither required by nor a guarantee of compliance."
+ },
+ {
+  "slug": "fl-501-171",
+  "title": "Florida Statutes 501.171: Security of confidential personal information",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.171.html",
+  "kind": "primary",
+  "note": "Notice to affected individuals no later than 30 days after determining a breach. Notice to the Department of Legal Affairs when 500 or more people in Florida are affected. A third-party agent must notify the covered entity within 10 days."
+ },
+ {
+  "slug": "cfr-1001-1901",
+  "title": "42 CFR 1001.1901: Scope and effect of exclusion",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-1001.1901",
+  "kind": "primary",
+  "note": "No federal health care program payment for any item or service furnished by an excluded individual or entity, or at the direction or on the prescription of an excluded physician. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-1003-200",
+  "title": "42 CFR 1003.200: Basis for civil money penalties, assessments, and exclusions",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-1003.200",
+  "kind": "primary",
+  "note": "Penalties may be imposed for arranging or contracting with a person the provider knows or should know is excluded, for knowing of an overpayment and not returning it, and for making a false record material to a claim. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-1301-13",
+  "title": "21 CFR 1301.13: Application for registration, time for application and expiration date (Drug Enforcement Administration)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-21/section-1301.13",
+  "kind": "primary",
+  "note": "Practitioner registration runs 3 years. Renewal may be filed no more than 60 days before expiration, and the agency emails a notice about 60 days ahead. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-410-75",
+  "title": "42 CFR 410.75: Nurse practitioners' services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-410.75",
+  "kind": "primary",
+  "note": "Medicare covers the services when the nurse practitioner works in collaboration with a physician as state law defines it, or under documented arrangements where state law is silent. The physician need not be present. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "fl-464-012",
+  "title": "Florida Statutes 464.012: Licensure of advanced practice registered nurses; protocols",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0464/Sections/0464.012.html",
+  "kind": "primary",
+  "note": "An advanced practice registered nurse works within an established protocol kept on site where the nurse practices, unless registered for autonomous practice under section 464.0123."
+ },
+ {
+  "slug": "fl-458-348",
+  "title": "Florida Statutes 458.348 and 459.025: Formal supervisory relationships, standing orders, and established protocols; notice",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0458/Sections/0458.348.html",
+  "kind": "primary",
+  "note": "A physician or osteopathic physician who enters a protocol with an advanced practice registered nurse must notify the board within 30 days, and again within 30 days of ending it. Both sections were read."
+ },
+ {
+  "slug": "fl-458-319",
+  "title": "Florida Statutes 458.319, 459.008 and 464.013: Renewal of license",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0458/Sections/0458.319.html",
+  "kind": "primary",
+  "note": "Medical, osteopathic and nursing licenses renew every two years. All three sections were read."
+ },
+ {
+  "slug": "cfr-493-37",
+  "title": "42 CFR 493.37: Requirements for a certificate of waiver (clinical laboratory)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-493.37",
+  "kind": "primary",
+  "note": "A certificate of waiver is valid for no more than 2 years. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cms-abn-instructions",
+  "title": "Form Instructions: Advance Beneficiary Notice of Non-coverage (ABN), Form CMS-R-131",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/medicare-general-information/bni/downloads/abn-form-instructions.pdf",
+  "kind": "primary",
+  "note": "Deliver before the service with time to decide. The identification number field is optional and Medicare numbers and Social Security numbers should not appear on the notice. The patient must choose one option. The provider cannot bill a dual-eligible patient when the notice is delivered."
+ },
+ {
+  "slug": "cms-abn",
+  "title": "FFS ABN (Advance Beneficiary Notice of Noncoverage)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/forms-notices/beneficiary-notices-initiative/ffs-abn",
+  "kind": "primary",
+  "note": "Issued to Original Medicare beneficiaries when payment is expected to be denied. Skilled nursing facilities use it for Part B services only. Page last modified July 17, 2026."
+ },
+ {
+  "slug": "cchp-telehealth-consent-2026",
+  "title": "States with Telehealth Consent Requirements",
+  "publisher": "Center for Connected Health Policy",
+  "year": "2026",
+  "url": "https://www.cchpca.org/topic/consent-requirements-medicaid-medicare/",
+  "kind": "secondary",
+  "note": "Says most states have some telehealth-specific consent requirement in statute, rule or Medicaid policy, and that in Medicare the requirement is limited to communication technology-based service codes. Lists no reference for Florida. Entries updated through August 2026."
+ },
+ {
+  "slug": "fl-456-47",
+  "title": "Florida Statutes 456.47: Use of telehealth to provide services",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0456/Sections/0456.47.html",
+  "kind": "primary",
+  "note": "Telehealth services must be documented to the same standard as in-person services. The section contains no separate consent requirement."
+ },
+ {
+  "slug": "cfr-482-22",
+  "title": "42 CFR 482.22: Condition of participation: Medical staff",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-482.22",
+  "kind": "primary",
+  "note": "The medical staff operates under bylaws, appraises its members periodically, and requires a history and physical no more than 30 days before or 24 hours after admission. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-482-24",
+  "title": "42 CFR 482.24: Condition of participation: Medical record services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-482.24",
+  "kind": "primary",
+  "note": "Entries must be dated, timed and authenticated. Orders must be authenticated promptly. Records must be completed within 30 days following discharge. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-483-45",
+  "title": "42 CFR 483.45: Pharmacy services (long-term care facilities)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.45",
+  "kind": "primary",
+  "note": "Monthly drug regimen review. The attending physician must document review of each reported irregularity and the action taken. As-needed psychotropic orders are limited to 14 days unless the prescriber documents a rationale, and as-needed antipsychotic orders cannot be renewed without evaluating the resident. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-483-75",
+  "title": "42 CFR 483.75: Quality assurance and performance improvement (long-term care facilities)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.75",
+  "kind": "primary",
+  "note": "The quality assessment and assurance committee includes the medical director or a designee and meets at least quarterly. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-424-20",
+  "title": "42 CFR 424.20: Requirements for posthospital SNF care (certification and recertification)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.20",
+  "kind": "primary",
+  "note": "Certification at admission or as soon after as practicable. First recertification by day 14, then at least every 30 days. Signed by a physician, or by a nurse practitioner, clinical nurse specialist or physician assistant with no direct or indirect employment relationship with the facility. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "fl-429-26",
+  "title": "Florida Statutes 429.26: Appropriateness of placements; examinations of residents (assisted living)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0429/Sections/0429.26.html",
+  "kind": "primary",
+  "note": "Each resident must be examined by a physician, physician assistant or advanced practice registered nurse within 60 days before or 30 days after admission."
+ },
+ {
+  "slug": "fl-458-320",
+  "title": "Florida Statutes 458.320 and 459.0085: Financial responsibility",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0458/Sections/0458.320.html",
+  "kind": "primary",
+  "note": "Minimum professional liability coverage of $100,000 per claim and $300,000 aggregate, or $250,000 and $750,000 for physicians with hospital staff privileges, or an escrow account or letter of credit. A physician may go without under stated conditions and must then tell patients by sign or written statement. Both sections were read."
+ },
+ {
+  "slug": "mms-insurance-2026",
+  "title": "Is Your Insurance Keeping Pace with Your Practice? (Vital Signs)",
+  "publisher": "Massachusetts Medical Society",
+  "year": "2026",
+  "url": "https://www.massmed.org/Publications/Vital-Signs---MMS-Publication/Is-Your-Insurance-Keeping-Pace-with-Your-Practice-/",
+  "kind": "secondary",
+  "note": "Recommends regular insurance reviews and an annual conversation with an advisor as practices add staff, technology and risks. Written to promote the society's own insurance agency, so it is opinion, not data."
+ },
+ {
+  "slug": "cfr-29-2580",
+  "title": "29 CFR 2580.412-11: Amount of the fidelity bond for employee benefit plans",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-29/section-2580.412-11",
+  "kind": "primary",
+  "note": "The bond must be at least 10 percent of the plan funds handled, with a minimum of $1,000, and need not exceed $500,000. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "fl-440-02",
+  "title": "Florida Statutes 440.02: Definitions (workers' compensation)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0440/Sections/0440.02.html",
+  "kind": "primary",
+  "note": "Covered employment includes all private employments with four or more employees, or one or more in the construction industry."
+ },
+ {
+  "slug": "cfr-422-311",
+  "title": "42 CFR 422.311: RADV audit dispute and appeal processes (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.311",
+  "kind": "primary",
+  "note": "CMS audits the diagnoses that plans submit for risk-adjusted payment and may extrapolate results for payment year 2018 and later. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-424-535",
+  "title": "42 CFR 424.535: Revocation of enrollment in the Medicare program",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.535",
+  "kind": "primary",
+  "note": "Grounds include a pattern or practice of claims that fail Medicare requirements, failure to report changes or adverse actions on time, and failure to document or give access to documentation. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-405-378",
+  "title": "42 CFR 405.378: Interest charges on overpayment and underpayments to providers, suppliers, and other entities",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.378",
+  "kind": "primary",
+  "note": "Interest accrues from the final determination for each full 30-day period that payment is delayed, and is waived if the overpayment is repaid within 30 days. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-411-355",
+  "title": "42 CFR 411.355: General exceptions to the referral prohibition related to both ownership/investment and compensation (in-office ancillary services)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.355",
+  "kind": "primary",
+  "note": "Paragraph (b): in-office ancillary services may be furnished personally by the referring physician, a member of the same group practice, or a supervised individual, so a solo physician can use the exception. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-411-352",
+  "title": "42 CFR 411.352: Group practice (physician self-referral)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.352",
+  "kind": "primary",
+  "note": "Paragraph (g): no group member is paid on the volume or value of his or her referrals. Paragraph (i): profit shares and productivity bonuses on personally performed work, including RVUs, are allowed. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-29-1910-1030",
+  "title": "29 CFR 1910.1030: Bloodborne pathogens",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-29/section-1910.1030",
+  "kind": "primary",
+  "note": "Written exposure control plan reviewed at least annually (paragraph (c)(1)). Training at initial assignment and at least annually (paragraph (g)(2)). Training records kept 3 years (paragraph (h)(2)). Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-29-778-211",
+  "title": "29 CFR 778.211: Discretionary bonuses (overtime regular rate), read with 29 CFR 778.208",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-29/section-778.211",
+  "kind": "primary",
+  "note": "Bonuses promised in advance, including bonuses for quality and accuracy of work, production, attendance or staying employed, must be included in the regular rate used for overtime. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-29-541-600",
+  "title": "29 CFR 541.600: Amount of salary required (overtime exemption)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-29/section-541.600",
+  "kind": "primary",
+  "note": "Exempt executive, administrative and professional employees must be paid on a salary basis at or above a federal weekly threshold ($684 a week in the text in effect November 6, 2026). The salary test does not apply to practicing physicians. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "irs-worker-classification",
+  "title": "Independent contractor (self-employed) or employee?",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/independent-contractor-self-employed-or-employee",
+  "kind": "primary",
+  "note": "Common-law test in three groups: behavioral control, financial control and type of relationship. An employer with no reasonable basis for contractor treatment may be liable for employment taxes. Page last reviewed May 19, 2026."
+ },
+ {
+  "slug": "aappr-2024",
+  "title": "Physician Demand Stabilizes Amid Rising Turnover for Recruitment Professionals, According to AAPPR Report",
+  "publisher": "Association for Advancing Physician and Provider Recruitment, via PR Newswire",
+  "year": "2024",
+  "url": "https://www.prnewswire.com/news-releases/physician-demand-stabilizes-amid-rising-turnover-for-recruitment-professionals-according-to-aappr-report-302290082.html",
+  "kind": "secondary",
+  "note": "2023 data from nearly 150 health organizations and more than 17,000 searches: median time from search launch to signed contract for physicians ranged from 77 to 228 days by specialty. The full report is paywalled."
+ },
+ {
+  "slug": "tseng-2018",
+  "title": "Tseng, Kaplan, Richman, Shah, Schulman. Administrative costs associated with physician billing and insurance-related activities at an academic health care system. JAMA 319(7):691-697",
+  "publisher": "JAMA",
+  "year": "2018",
+  "url": "https://doi.org/10.1001/jama.2017.19148",
+  "kind": "secondary",
+  "note": "Read as the PubMed abstract, PMID 29466590. Billing and insurance-related costs were 14.5% of professional revenue for primary care visits ($20.49 and 13 minutes a visit, including physician time), from 2016 to 2017 interviews at one academic system."
+ },
+ {
+  "slug": "cfr-45-149-420",
+  "title": "45 CFR 149.420: Balance billing in cases of non-emergency services performed by nonparticipating providers at certain participating health care facilities",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.420",
+  "kind": "primary",
+  "note": "An out-of-network clinician at an in-network facility may not bill a commercially insured patient more than in-network cost sharing, unless the notice and consent rules are met."
  }
 ]

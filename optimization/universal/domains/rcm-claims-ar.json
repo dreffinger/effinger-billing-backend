@@ -4,11 +4,11 @@
   {
    "slug": "ar-claim-submission",
    "name": "Claim scrubbing and submission",
-   "summary": "Turning finished charges into claims a payer accepts: automated checks before sending, a daily batch, a short and dated list of held claims, and saved proof of acceptance. A claim that is late, rejected or never accepted earns nothing.",
+   "summary": "Turning finished charges into claims a payer accepts. Software called a scrubber checks each claim, a batch goes out daily, held claims sit on a short dated list, and proof of acceptance is saved. A late, rejected or unaccepted claim earns nothing.",
    "good_looks_like": [
     "Completed charges go out in a batch every business day. Each held claim is listed with a reason, an owner and its age, and the list is short.",
     "A claim with an open scrubber edit does not leave. It is fixed, or released with a recorded reason and the name of the person who released it.",
-    "Each batch is matched to the clearinghouse and payer acceptance reports. Within two business days every claim is known to be accepted, rejected or missing.",
+    "Each batch is matched to acceptance reports from the clearinghouse, the service that relays claims, and from payers. Every claim is known to be accepted, rejected or missing.",
     "Reports showing the date the payer received and accepted each claim are saved where staff can find them, as proof of timely filing.",
     "When a denial exposes a rule the scrubber missed, a new edit is added, tested and logged with the date and the reason."
    ],
@@ -130,7 +130,7 @@
       "hbma-2024"
      ],
      "data_hint": "Remittance data matched to first submissions, by payer.",
-     "vendor_claim": "First-pass acceptance above 97%, with below 95% a sign of systematic coding problems.",
+     "vendor_claim": "First-pass acceptance above 97%, with below 95% a sign of systematic coding problems. The vendor's free guide sets first-pass resolution at 90% or more.",
      "vendor_verdict": "Unverifiable. No source is given, and billing companies report 86% to 88% of claims paid on first submission."
     },
     {
@@ -158,7 +158,7 @@
   {
    "slug": "ar-rejections",
    "name": "Clearinghouse and payer rejections",
-   "summary": "A rejection is a claim turned back before the payer decides it, usually for a wrong identifier, payer or enrollment detail. Most rejections never appear on a remittance, so they are easy to miss, and a rejected claim does not count as filed.",
+   "summary": "A rejection is a claim turned back by the clearinghouse (the service that relays claims) or the payer before it is decided, usually for a wrong identifier, payer or enrollment. Most never appear on a remittance, and a rejected claim does not count as filed.",
    "good_looks_like": [
     "Clearinghouse and payer rejection reports are opened every business day. Each rejected claim is corrected and resent within a set standard, such as two business days.",
     "Rejections are counted apart from denials and grouped by cause: patient identifier, wrong payer, clinician enrollment, missing or invalid data.",
@@ -174,7 +174,7 @@
    ],
    "key_questions": [
     "How many rejected claims are waiting for correction right now, and how old is the oldest?",
-    "What share of claims was rejected before adjudication last month?",
+    "What share of claims sent last month was rejected before the payer processed it?",
     "Does each of our top three rejection reasons have a named owner for its fix, yes or no?",
     "Are clearinghouse rejections and payer rejections both reviewed every business day, yes or no?"
    ],
@@ -236,13 +236,13 @@
     "x12-claim-status",
     "x12-rarc"
    ],
-   "evidence_note": "That an unprocessable claim is not a filed claim and has no appeal rights comes from 42 CFR 405.926 and the Medicare Claims Processing Manual, chapter 1, sections 70 and 80.3. The rejection rate is inferred from one small survey.",
+   "evidence_note": "An unprocessable claim is not a filed claim and has no appeal rights. The rule is in 42 CFR 405.926 and the Medicare Claims Processing Manual, chapter 1, sections 70 and 80.3. The rejection rate is inferred from one small survey.",
    "metrics": [
     {
      "slug": "ar-rejection-rate",
      "name": "Claim rejection rate",
-     "definition": "Share of submitted claims turned back by the clearinghouse or by the payer's front-end edits before adjudication.",
-     "formula": "Claims rejected before adjudication / claims submitted",
+     "definition": "Share of submitted claims turned back by the clearinghouse or by the payer's entry checks before the payer processes them.",
+     "formula": "Claims rejected before payer processing / claims submitted",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -276,7 +276,7 @@
   {
    "slug": "ar-payment-posting",
    "name": "Payment posting and remittances",
-   "summary": "Recording what each payer paid, adjusted and denied, line by line. Posting drives patient balances, secondary claims, denial work and every collection measure. Wrong adjustment codes at this step hide lost revenue.",
+   "summary": "Recording what each payer paid, adjusted and denied, line by line, from the remittance (the payer's statement explaining each payment). Posting drives patient balances, secondary claims, denial work and every collection measure. Wrong adjustment codes here hide lost revenue.",
    "good_looks_like": [
     "Every payer sends an electronic remittance and pays by electronic funds transfer. Paper checks and virtual credit cards are rare, known exceptions.",
     "Remittances post within a set standard, such as two business days. Zero-payment remittances post with the rest, so denials reach the work queue at once.",
@@ -287,7 +287,7 @@
    "failure_modes": [
     "Zero-payment remittances are skipped because no money arrived. The denials on them are never seen and their appeal deadlines pass.",
     "The system posts every amount the payer labels a contractual obligation as contractual. Late-filing and no-authorization losses vanish, and the net collection rate looks perfect.",
-    "A plan pays by virtual credit card because the practice never enrolled in bank transfer. The practice pays a card fee on each payment and keys numbers by hand.",
+    "A plan pays by virtual credit card, a one-time card number, because the practice never enrolled in bank transfer. Each payment costs a card fee and is keyed by hand.",
     "A payment posts to the wrong patient or line. One account shows a false credit and another patient is billed for a paid service.",
     "Remittances pile up unposted while a staff member is out. Secondary claims and statements stall, and receivables are overstated."
    ],
@@ -400,7 +400,7 @@
     {
      "slug": "ar-days-to-payment",
      "name": "Days from claim receipt to payment",
-     "definition": "Average days from the day the payer received a clean claim to the payment date, by payer. Shows which payers pay later than their legal or contract deadline.",
+     "definition": "Average days from the day the payer received a clean (complete, error-free) claim to the payment date, by payer. Shows which payers pay later than their legal or contract deadline.",
      "formula": "Sum of (payment date minus payer receipt date) / number of paid claims, by payer",
      "unit": "days",
      "direction": "lower",
@@ -426,7 +426,7 @@
    "name": "Reconciling payments to the bank",
    "summary": "Proving that every dollar a payer or patient says it paid reached the practice's bank account, and that every deposit is explained by a posted payment. It is the main control against lost payments, posting errors and theft.",
    "good_looks_like": [
-    "Each bank deposit is matched to a remittance or a patient payment batch. Electronic payments are paired by the trace number that also appears on the remittance.",
+    "Each bank deposit is matched to a remittance (the payer's payment statement) or a patient payment batch. Electronic payments are paired by the trace number shown on both.",
     "Each posted remittance is matched to a deposit. Remittances with no money, and money with no remittance, are listed and chased.",
     "At month end, payments posted in the billing system equal deposits on the bank statement, and every difference is explained in writing.",
     "The person who reconciles the bank account does not post payments or adjustments. In a very small practice the owner does this review.",
@@ -436,7 +436,8 @@
     "A remittance shows a payment, but the money went to an old bank account or sits on an unredeemed virtual card. Automatic posting hides the gap.",
     "One trusted person opens mail, posts payments, writes off balances and reconciles the bank. A theft can stay hidden behind an adjustment for years.",
     "Deposits arrive with no remittance and sit unapplied. Patient balances stay open and patients are billed for amounts already paid.",
-    "Collections in the billing system and in the accounting books differ at month end and nobody can say why. Financial statements and collection rates cannot be trusted."
+    "Collections in the billing system and in the accounting books differ at month end and nobody can say why. Financial statements and collection rates cannot be trusted.",
+    "A payer recovers an old overpayment by reducing a new payment. The deposit is smaller than the claim lines posted, and the offset is never recorded."
    ],
    "key_questions": [
     "Did posted payments equal bank deposits last month, with every difference explained, yes or no?",
@@ -476,7 +477,7 @@
     },
     {
      "action": "Log and deposit paper checks promptly",
-     "detail": "Record payer, amount and check number when mail is opened, with two people present where possible. Deposit by the next business day. Consider a bank lockbox if check volume is high.",
+     "detail": "Record payer, amount and check number when mail is opened, with two people present if possible. Deposit by the next business day. Consider a bank lockbox, where the bank opens the mail and deposits checks, if check volume is high.",
      "cadence": "daily",
      "effort": "low",
      "impact": "medium"
@@ -492,6 +493,7 @@
    "sources": [
     "cfr-162-1602",
     "cms-vcc-eft-2022",
+    "cms-cpm-ch22",
     "mgma-embezzlement-2026"
    ],
    "evidence_note": "The trace number that links a payment to its remittance is part of the federal standard (45 CFR 162.1602). Separation of duties is standard internal control advice, repeated by MGMA in 2026. No benchmark data exist for reconciliation.",
@@ -513,9 +515,9 @@
   {
    "slug": "ar-followup",
    "name": "Insurance receivables follow-up",
-   "summary": "Chasing claims a payer has accepted but has not yet paid or denied. Most claims pay on their own. Follow-up finds the ones that stalled and acts before filing and appeal deadlines close.",
+   "summary": "Receivables are money the practice is owed. Follow-up means chasing claims a payer has accepted but has not yet paid or denied. Most claims pay on their own. Follow-up finds the ones that stalled and acts before filing and appeal deadlines close.",
    "good_looks_like": [
-    "The aging report is read by payer, not only in total, and balances are aged from the date of service.",
+    "The aging report, which lists unpaid balances by age, is read by payer, not only in total, and balances are aged from the date of service.",
     "Each payer has its own follow-up trigger, set just past its normal payment time, for example about 30 days after receipt for Medicare.",
     "Every open claim past its trigger has a status, a last action and a next action date. Work is ordered by deadline first and dollars second.",
     "Claim status is checked electronically in batches. Phone calls are kept for claims the electronic answer does not explain.",
@@ -545,7 +547,7 @@
     },
     {
      "action": "Set a follow-up trigger for each payer",
-     "detail": "Use the payer's rule or contract. Medicare pays clean electronic claims between day 14 and day 30. Medicare Advantage timing comes from the contract (42 CFR 422.520). In Florida, insurers must pay, deny or contest within 20 days.",
+     "detail": "Use the payer's rule or contract. Medicare pays clean electronic claims between day 14 and day 30. Medicare Advantage timing comes from the contract (42 CFR 422.520). In Florida, insurers must pay, deny or contest electronic claims within 20 days.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -684,7 +686,9 @@
      "cadence": "weekly",
      "benchmark_note": "No public benchmark was found. The target from first principles is zero. This number shows whether follow-up is actually happening, which aging percentages cannot show.",
      "confidence": "none",
-     "data_hint": "Open claim list with last action date from the billing system's notes or work queue."
+     "data_hint": "Open claim list with last action date from the billing system's notes or work queue.",
+     "vendor_claim": "More than 40% of balances over 60 days with no action in the last 14 days means follow-up capacity is too small.",
+     "vendor_verdict": "Unverifiable. No source is given. The 14-day window is a usable house rule."
     }
    ]
   },
@@ -697,17 +701,17 @@
     "Denials are grouped into a fixed set of causes. Each cause has a named owner at the step where it starts: coverage, authorization, coding, enrollment or documentation.",
     "The denial rate is reported for each payer, and denials the practice could have prevented are shown apart from payer-driven ones.",
     "A monthly review ranks causes by dollars and ends with at most three fixes, each with an owner and a date. Last month's fixes are rechecked.",
-    "Denials are counted the same way every month: by claim, on first adjudication, leaving out amounts that are the patient's share."
+    "Denials are counted the same way every month: by claim, on the payer's first decision, leaving out amounts that are the patient's share."
    ],
    "failure_modes": [
     "Denials are reworked one claim at a time. The same cause produces the same denial next month and rework becomes a permanent job.",
     "A single blended denial rate looks acceptable while one plan denies a fifth of the practice's claims.",
     "Denied lines are adjusted off as contractual when the remittance posts. The denial rate looks low and the loss is invisible.",
     "Staff treat every denial as an appeal. Many need a corrected claim or a reopening, and the wrong remedy uses up the deadline.",
-    "A denial the practice caused is moved to the patient's balance. Medicare remittances warn of penalties for billing amounts not marked as patient responsibility."
+    "A denial the practice caused is moved to the patient's balance. Remark code MA13 on remittances warns of penalties for billing amounts not marked as patient responsibility."
    ],
    "key_questions": [
-    "What share of claims was denied on first adjudication last quarter, for each major payer?",
+    "What share of claims was denied on the payer's first decision last quarter, for each major payer?",
     "Does each of our top five denial causes by dollars have a named owner, yes or no?",
     "How many denials are open today, and how many are within 30 days of a deadline?",
     "How many dollars of denials did we write off last quarter?",
@@ -788,8 +792,8 @@
     {
      "slug": "ar-initial-denial-rate",
      "name": "Initial denial rate",
-     "definition": "Share of claims denied on first adjudication. Count claims, not lines. Leave out rejections, duplicates and amounts that are the patient's share. Report it by payer.",
-     "formula": "Claims with an actionable denial on first adjudication / claims adjudicated",
+     "definition": "Share of claims denied on the payer's first decision. Count claims, not lines. Leave out rejections, duplicates and amounts that are the patient's share. Report it by payer.",
+     "formula": "Claims with an actionable denial on the payer's first decision / claims the payer decided",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -806,7 +810,7 @@
       "vabson-2025",
       "hfma-map-keys"
      ],
-     "data_hint": "Remittance data: claims carrying a denial reason code on first adjudication, by payer.",
+     "data_hint": "Remittance data: claims carrying a denial reason code on the payer's first decision, by payer.",
      "vendor_claim": "Under 5% is healthy, 8% to 12% calls for action, and above 12% is a crisis, for any payer.",
      "vendor_verdict": "Supported as convention only. Measured practice rates are 7% to 8%, and Medicare Advantage plans denied 17% of initial claims."
     },
@@ -839,7 +843,7 @@
    "summary": "The formal routes for challenging a denial or a payment: Medicare's appeal levels, each plan's dispute process and state programs. Each route has its own deadline, and using the wrong one can forfeit the claim.",
    "good_looks_like": [
     "A one-page table lists each payer's remedies, deadlines and submission address or portal, with the source of each rule and the date it was last checked.",
-    "Before appealing, staff choose the remedy: corrected claim, reopening or formal appeal. Clerical errors on Medicare claims go to reopening, not appeal.",
+    "Before appealing, staff choose the remedy: corrected claim, reopening or formal appeal. Clerical errors on Medicare claims go to reopening, a simpler correction request, not appeal.",
     "Appeal letters answer the payer's stated reason point by point, cite the payer's own policy and attach every supporting document the first time.",
     "Results are tracked by payer and denial reason: appeals filed, overturned, dollars recovered and days to decision. Lost appeals are read for lessons.",
     "Medicare Advantage payment disputes from a contracted practice follow the dispute process in the contract or provider manual."
@@ -847,7 +851,7 @@
    "failure_modes": [
     "Staff file a formal Medicare appeal for a wrong modifier or date. A clerical error reopening would have corrected it sooner.",
     "A contracted practice sends a Medicare Advantage payment dispute down the federal enrollee appeal route. That route is closed to contract providers, and the contract deadline passes.",
-    "Evidence is held back for a later level. For Medicare, evidence not submitted before the reconsideration decision is generally not considered afterward.",
+    "Evidence is held back for a later level. For Medicare, evidence not submitted before the second-level decision is generally not considered afterward.",
     "The practice files a state insurance complaint about a Medicare Advantage claim. Federal rules, not state law, govern those plans, and weeks are lost.",
     "Only large claims are appealed. Small visit claims denied for one repeated reason add up to more, and nobody appeals them together."
    ],
@@ -861,7 +865,7 @@
    "actions": [
     {
      "action": "Build a remedy and deadline table by payer",
-     "detail": "Record each deadline from the regulation, contract or manual. Medicare: redetermination within 120 days of receiving the decision, reconsideration within 180 days (42 CFR 405.942 and 405.962). Recheck the table every year.",
+     "detail": "Record each deadline from the regulation, contract or manual. Medicare: first-level appeal (redetermination) within 120 days of receiving the decision, second level (reconsideration) within 180 days (42 CFR 405.942 and 405.962). Recheck the table every year.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
@@ -875,7 +879,7 @@
     },
     {
      "action": "Send complete evidence at the first level",
-     "detail": "Attach the note, orders and the payer's policy with a short letter. Medicare generally bars evidence first offered after the reconsideration decision (42 CFR 405.966), and first-level appeals succeed more often than second-level ones.",
+     "detail": "Attach the note, orders and the payer's policy with a short letter. Medicare generally bars evidence first offered after the second-level decision (42 CFR 405.966), and first-level appeals succeed more often than second-level ones.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -972,7 +976,9 @@
       "cms-ffs-appeals-data-2025",
       "kff-ma-pa"
      ],
-     "data_hint": "Denial log: denials flagged appealable, with the date an appeal or reopening was filed."
+     "data_hint": "Denial log: denials flagged appealable, with the date an appeal or reopening was filed.",
+     "vendor_claim": "Every denial classed as appealable must have an appeal filed within 30 days of receipt.",
+     "vendor_verdict": "Unverifiable as a benchmark. A sound house rule, but deadlines differ by payer, and Medicare's first level allows 120 days."
     },
     {
      "slug": "ar-appeal-deadlines-missed",
@@ -984,7 +990,9 @@
      "cadence": "monthly",
      "benchmark_note": "No public benchmark was found. The target is zero. Review each case for its cause: a denial nobody saw, a zero-payment remittance not posted, or a deadline taken from the wrong payer rule.",
      "confidence": "none",
-     "data_hint": "Adjustment report filtered to the lapsed-appeal reason code, checked against the denial log."
+     "data_hint": "Adjustment report filtered to the lapsed-appeal reason code, checked against the denial log.",
+     "vendor_claim": "No appeal deadline should be missed.",
+     "vendor_verdict": "Supported as a first-principles target. The library offers no data, and none is needed."
     }
    ]
   },
@@ -1104,18 +1112,18 @@
   {
    "slug": "ar-secondary-crossover",
    "name": "Secondary billing and crossovers",
-   "summary": "After the first payer pays, a second payer often owes part of the rest: a Medigap policy, a retiree plan or Medicaid. Much of this moves automatically from Medicare. The rest needs prompt billing, and some balances may never be billed to the patient.",
+   "summary": "After the first payer pays, a second payer owes part of the balance: a Medigap (Medicare supplement) policy, a retiree plan or Medicaid. Medicare forwards many claims automatically, called a crossover. Others need prompt billing, and some balances may never be billed to the patient.",
    "good_looks_like": [
     "Staff can read on each Medicare remittance whether the claim was forwarded to a second insurer, and to which one.",
     "Claims that Medicare forwarded are not billed again. Claims it did not forward go to the second payer within days of the first payer's remittance.",
     "Balances waiting on a second payer are tracked as their own group, aged from the date of service, with a follow-up trigger.",
-    "Qualified Medicare Beneficiary status is checked at eligibility and on remittances. Those patients get no bill for Medicare deductibles or coinsurance.",
+    "Qualified Medicare Beneficiary status, a Medicaid category for low-income Medicare patients, is checked at eligibility and on remittances. Those patients get no bill for Medicare deductibles or coinsurance.",
     "What Medicaid does not pay on a crossover claim posts as a contractual adjustment, not as a patient balance or bad debt."
    ],
    "failure_modes": [
     "Staff send a secondary claim for a claim Medicare already forwarded. The second insurer denies it as a duplicate and the account stalls.",
     "Medicare did not forward the claim because the supplemental insurer's details were wrong. Nobody reads the remark code and the balance ages unbilled.",
-    "A dual-eligible patient gets a statement for coinsurance. Federal law bars billing a Qualified Medicare Beneficiary for it, even when Medicaid pays nothing. This holds in Medicare Advantage too.",
+    "A patient with Medicare and Medicaid gets a statement for coinsurance. Federal law bars billing a Qualified Medicare Beneficiary for it, even when Medicaid pays nothing, in Medicare Advantage too.",
     "Another insurer was primary and Medicare was billed first. Medicare denies or later takes its payment back, and the primary payer's filing limit has passed.",
     "The secondary filing limit runs out while staff wait. In Florida, a secondary claim is due within 90 days of the primary insurer's final decision."
    ],
@@ -1163,11 +1171,11 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Practices with Medicare patients, most of all those with many dual-eligible or nursing facility patients, where the second payer is often Medicaid and pays little. Practices with mainly commercial patients meet this as coordination of benefits between two employer plans.",
+   "applies_when": "Practices with Medicare patients, most of all those with many nursing facility patients or patients on both Medicare and Medicaid, where Medicaid often pays little. Practices with mainly commercial patients meet this as coordination of benefits, deciding which of two plans pays first.",
    "vendor_refs": [
     {
      "item": "geriatrics-companion-guide",
-     "note": "Correctly says to bill Medicare first and never bill the patient the dual-eligible balance. Never names the Qualified Medicare Beneficiary rule or explains how automatic crossover works."
+     "note": "Correctly says to bill Medicare first and never bill the balance to a patient who also has Medicaid. Never names the Qualified Medicare Beneficiary rule or explains automatic crossover."
     },
     {
      "item": "medicare-advantage-operational-playbook",
@@ -1197,7 +1205,7 @@
      "slug": "ar-secondary-ar-share",
      "name": "Share of receivables waiting on a secondary payer",
      "definition": "Insurance receivable dollars whose primary payer has paid and whose balance now sits with a second or third payer, as a share of insurance receivables.",
-     "formula": "Receivables with secondary or tertiary payer responsibility / total insurance receivables",
+     "formula": "Receivables now owed by a second or third payer / total insurance receivables",
      "unit": "percent",
      "direction": "info",
      "cadence": "monthly",
@@ -1210,7 +1218,7 @@
   {
    "slug": "ar-patient-billing",
    "name": "Patient statements and collections",
-   "summary": "Billing patients for what they owe after insurance. It takes a prompt, clear statement, easy ways to pay, a written policy for small balances and hardship, and care not to bill people the law says may not be billed.",
+   "summary": "Billing patients for what they owe after insurance. It takes a prompt, clear statement, easy ways to pay and a written policy for small balances and hardship. It also takes care not to bill people the law says may not be billed.",
    "good_looks_like": [
     "The first statement goes out within days of the insurer's payment posting. It shows the service, what insurance paid, what is owed and how to pay.",
     "A written policy sets the statement cycle, payment plans, the small-balance threshold, hardship review and agency referral. It is applied the same way to everyone.",
@@ -1249,7 +1257,7 @@
     },
     {
      "action": "Block statements where billing is barred",
-     "detail": "Flag Qualified Medicare Beneficiaries, Medicaid balances beyond permitted copayments, and lines adjusted under group code CO (contractual obligation). A Medicare medical necessity denial is billable only with a signed advance notice (Claims Processing Manual, chapter 30, section 50).",
+     "detail": "Flag Qualified Medicare Beneficiaries, Medicaid balances beyond permitted copayments, and lines adjusted under group code CO (contractual obligation). Also flag Medicare medical necessity denials with no advance notice, and out-of-network balances under the No Surprises Act (45 CFR 149.420).",
      "cadence": "monthly",
      "effort": "medium",
      "impact": "high"
@@ -1294,6 +1302,7 @@
     "cms-cpm-ch22",
     "cms-cpm-ch30",
     "cfr-447-15",
+    "cfr-45-149-420",
     "cfr-45-149-610",
     "cfr-45-149-620",
     "cfr-164-501",
@@ -1309,7 +1318,7 @@
     "pwc-hfma-2021",
     "x12-rarc"
    ],
-   "evidence_note": "Who may not be billed is set by federal law, the Medicare manual and state statute. The waiver rule comes from a federal Office of Inspector General fraud alert republished in 1994. Collection rates are measured, but definitions differ. Statement timing advice is convention.",
+   "evidence_note": "Who may not be billed is set by federal law, the Medicare Claims Processing Manual (chapters 22 and 30) and state statute. The waiver rule comes from an Office of Inspector General fraud alert republished in 1994. Collection rates are measured, but definitions differ.",
    "metrics": [
     {
      "slug": "ar-patient-collection-rate",
@@ -1464,7 +1473,7 @@
   {
    "slug": "ar-writeoffs-timely",
    "name": "Write-offs, adjustments and timely filing",
-   "summary": "Every dollar charged ends as a payment, a contractual adjustment or a write-off. Reason codes decide whether lost money is visible. Filing deadlines by payer decide whether a late claim can be paid at all.",
+   "summary": "Every dollar charged ends as a payment, a contractual adjustment (the discount agreed with the payer) or a write-off. Reason codes decide whether lost money is visible. Filing deadlines by payer decide whether a late claim can be paid at all.",
    "good_looks_like": [
     "Every adjustment carries a reason from a fixed list that separates contractual reductions from avoidable losses such as late filing, missed appeals and missing authorization.",
     "Write-offs above a set dollar amount need approval from someone who does not post payments. The owner reviews a monthly list by reason.",
@@ -1523,7 +1532,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices, most of all facility-based ones, whose patients move between Medicare, Medicare Advantage, hospice and Medicaid during a stay. They should age wrong-payer claims weekly and post unpaid crossover coinsurance for dual-eligible patients as a contractual adjustment.",
+   "applies_when": "All practices, most of all facility-based ones, whose patients move between Medicare, Medicare Advantage, hospice and Medicaid during a stay. They should age wrong-payer claims weekly and post unpaid crossover coinsurance for patients with Medicare and Medicaid as a contractual adjustment.",
    "vendor_refs": [
     {
      "item": "kpi-07-write-off-rate-by-reason",

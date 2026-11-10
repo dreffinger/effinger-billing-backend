@@ -671,11 +671,11 @@
    "growth-market"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_partly": 1,
+  "claims_contradicted": 5,
+  "claims_outdated": 2,
   "claims_unverifiable": 0
  },
  {
@@ -924,11 +924,11 @@
    "growth-market"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 2,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {

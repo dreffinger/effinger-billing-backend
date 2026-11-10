@@ -13,7 +13,7 @@
    ],
    "failure_modes": [
     "Only one person knows how payroll, credentialing or the billing system works, and that person leaves.",
-    "The owner does tasks a staff member could do, at ten times the cost.",
+    "The owner spends hours on tasks a staff member could do at a fraction of the cost.",
     "Two people each assume the other is following up denials or renewals.",
     "A vendor's work is never checked because nobody owns the relationship."
    ],
@@ -26,7 +26,7 @@
    "actions": [
     {
      "action": "Write the function chart",
-     "detail": "List functions down the page: clinical, scheduling or census, billing, credentialing, finance, compliance, technology. Add owner and backup.",
+     "detail": "List functions down the page: clinical work, scheduling or census, billing, credentialing, payroll and finance, compliance, technology. Add an owner and a backup for each.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -53,12 +53,22 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. In practices with fewer than five people the chart is mostly about backups. Where billing is run by a vendor or by software agents, the role that matters is the person who oversees them.",
+   "applies_when": "Every practice, and in those with fewer than five people the chart is mostly about backups. Practices with no front desk (hospital rounds, nursing facilities, home visits) still need a named owner for census tracking and charge capture, and any practice using a billing vendor or software agents needs a named person who oversees them.",
+   "vendor_refs": [
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Defines the billing roles and suggests team structures by practice size. Useful as a function list. Team sizes have no source, and it assumes human staff or vendors only."
+    },
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Lists the functions a billing team must own and staff counts by number of clinicians. The staff counts have no source."
+    }
+   ],
    "sources": [
     "mgma-bok",
     "baldrige"
    ],
-   "evidence_note": "Standard management practice, reflected in the MGMA body of knowledge and the Baldrige workforce criteria. No measured benchmark applies.",
+   "evidence_note": "Standard management practice, reflected in the Medical Group Management Association (MGMA) body of knowledge and the Baldrige workforce criteria from the National Institute of Standards and Technology. No measured benchmark applies.",
    "metrics": [
     {
      "slug": "pp-roles-with-backup",
@@ -68,7 +78,7 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100% for payroll, billing submission, credentialing and bank access.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100% for payroll, claim submission, credentialing and bank access.",
      "confidence": "none",
      "data_hint": "The function chart, reviewed each quarter."
     }
@@ -77,15 +87,16 @@
   {
    "slug": "pp-hiring-onboarding",
    "name": "Hiring and onboarding",
-   "summary": "Finding, choosing and starting clinicians and staff. For clinicians the hidden constraint is time: payer enrollment takes months, and a new clinician produces little revenue until it is done.",
+   "summary": "Finding, choosing and starting clinicians and staff. For clinicians the hidden constraint is time: payer enrollment takes weeks to months, and visits may go unpaid until it is done.",
    "good_looks_like": [
     "Each opening has a written role, pay range and the three things the person must be able to do.",
-    "Clinician enrollment with Medicare, Medicaid and the main plans starts the day the offer is signed.",
+    "Enrollment paperwork starts at offer signing. The Medicare application is filed no more than 60 days before the start date, since earlier ones may be returned (42 CFR 424.526).",
     "New hires get a written first-90-day plan and a named person to ask.",
-    "A new clinician's first 20 charts are reviewed for coding and documentation."
+    "At least ten of a new clinician's first notes are reviewed for coding and documentation."
    ],
    "failure_modes": [
-    "A clinician starts seeing patients before enrollment is effective, and those visits cannot be billed.",
+    "A clinician sees Medicare patients more than 30 days before the application is filed, and those visits can never be billed (42 CFR 424.520, 424.521).",
+    "A health plan's effective date turns out later than assumed, and the plan pays nothing for visits before it.",
     "Hiring happens only after someone quits, so the practice runs short for months.",
     "A new biller learns from the last biller's habits, including the wrong ones.",
     "References and license or exclusion checks are skipped for a familiar candidate."
@@ -93,20 +104,20 @@
    "key_questions": [
     "How long did our last hire take from posting to start, and from start to full productivity?",
     "For our last clinician, how many days passed between start date and the first payable visit for each payer?",
-    "Do we check licenses, references and exclusion lists before every offer?",
+    "Do we check the license, references and the federal exclusion list before every offer?",
     "Is there a written plan for a new person's first 90 days?"
    ],
    "actions": [
     {
-     "action": "Start enrollment at offer acceptance",
-     "detail": "Collect the documents with the signed offer. File Medicare, Medicaid and plan applications that week, and track each one weekly.",
+     "action": "Start enrollment work at offer acceptance",
+     "detail": "Collect documents with the signed offer and start health plan and Medicaid applications at once. File Medicare no more than 60 days before the start date and before the first visit. Track each application weekly.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Screen before every offer",
-     "detail": "Verify license and board status, check federal and state exclusion lists, and call references.",
+     "detail": "Verify the license with the state board, search the federal exclusion list (people barred from Medicare and Medicaid) and any state Medicaid list, and call references. Recheck the lists periodically, as the Office of Inspector General (OIG) advises.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
@@ -119,19 +130,38 @@
      "impact": "medium"
     },
     {
-     "action": "Audit a new clinician's first charts",
-     "detail": "Review 20 notes in the first month for level, documentation and place of service.",
+     "action": "Audit a new clinician's first notes",
+     "detail": "Review at least 10 notes in the first month for visit level, documentation and place of service. The OIG's guide for a routine audit is five to ten records per physician.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice that hires. Enrollment lead time is the main issue for clinicians. Medicare processes most clean online applications within 15 to 50 days, and each health plan adds its own timeline.",
+   "applies_when": "Any practice that hires: First Coast, Florida's Medicare contractor, lists standards of 15 days for 95% of complete online applications and 50 days for 95% of those needing follow-up, and each health plan sets its own timeline. Clinicians who work in hospitals or other facilities need privileges or the facility's own credentialing before the first visit (hospitals: 42 CFR 482.22).",
+   "vendor_refs": [
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Interview and reference-check questions that test billing habits. Useful. It says nothing about license, background or exclusion screening."
+    },
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Pre-hire skills test and an onboarding plan with full review of early work, then spot checks. Sensible. The review percentages are the vendor's own."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Advises starting credentialing 90 days ahead and billing under a supervising clinician's number meanwhile. Risky: Medicare permits that only for supervised office care, never in hospitals or skilled nursing facilities."
+    }
+   ],
    "sources": [
     "fcso-enroll",
-    "mgma-app-2026"
+    "cfr-424-520",
+    "cfr-424-521",
+    "cfr-424-526",
+    "cfr-482-22",
+    "oig-gcpg",
+    "oig-physician-cpg-2000"
    ],
-   "evidence_note": "Medicare processing times are published by the contractor. Plan credentialing timelines vary by contract and are not published. Hiring practices are professional guidance.",
+   "evidence_note": "Medicare's filing and effective-date rules are federal regulation. Processing standards are published by the Medicare contractor. Health plan timelines vary by contract and are not published. Screening follows Office of Inspector General guidance. Other hiring practices are professional judgment.",
    "metrics": [
     {
      "slug": "pp-time-to-fill",
@@ -141,8 +171,11 @@
      "unit": "days",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For clinicians, track days from start date to the first payable visit for each payer as well.",
+     "benchmark_note": "No benchmark for staff or small practices was found. The Association for Advancing Physician and Provider Recruitment reported 2023 physician medians of 77 to 228 days by specialty from search start to signed contract, in about 150 health organizations. Track your own trend.",
      "confidence": "none",
+     "sources": [
+      "aappr-2024"
+     ],
      "data_hint": "A simple hiring log."
     },
     {
@@ -162,24 +195,27 @@
   {
    "slug": "pp-clinician-compensation",
    "name": "Clinician compensation design",
-   "summary": "How physicians and advanced practice clinicians are paid: salary, productivity, quality incentives, and pay for call or directorships. The plan should be affordable, legal, and reward what the practice needs.",
+   "summary": "How physicians and advanced practice clinicians (nurse practitioners and physician assistants) are paid: salary, productivity, quality incentives, and pay for call or directorships. The plan should be affordable, legal, and reward what the practice needs.",
    "good_looks_like": [
     "The plan fits on one page and each clinician can calculate their own pay.",
     "Total pay is compared each year with a named survey for the specialty.",
-    "Productivity is measured in work relative value units, which do not change with payer mix.",
-    "Any incentive is tied to personally performed work or to quality, never to referrals for services the practice profits from."
+    "Productivity is measured in work relative value units (RVUs), Medicare's score for the clinician's work in each service, which does not change with payer mix.",
+    "Incentives reward personally performed work or quality, never the volume or value of a clinician's referrals for tests, therapy or other billed services.",
+    "The plan states which year's Medicare work values it counts and who gets credit for care management and shared visits."
    ],
    "failure_modes": [
     "Pay tied to collections punishes clinicians for the payer mix and for billing office errors.",
     "A productivity plan with no audit rewards higher visit levels, and levels drift upward.",
     "Guaranteed salaries exceed what the clinician's work brings in, and nobody has done the arithmetic.",
-    "Bonuses that vary with ancillary or facility referrals create exposure under the self-referral law."
+    "A bonus that rises with a physician's referrals for lab, imaging or therapy services can break the federal self-referral law (42 CFR 411.352 and 411.357).",
+    "A nursing facility pays a clinician as medical director with no written agreement or time log, so the pay can look like payment for referrals."
    ],
    "key_questions": [
     "What does each clinician cost in total, and what do they collect?",
     "How does each clinician's pay per work unit compare with the survey median?",
     "Does any part of pay depend on referrals or on services the clinician does not personally perform?",
-    "Is every clinician's level mix audited at least yearly?"
+    "Is every clinician's level mix audited at least yearly?",
+    "Is any clinician paid by a facility or vendor that also sends us patients or receives our referrals?"
    ],
    "actions": [
     {
@@ -191,7 +227,7 @@
     },
     {
      "action": "Benchmark pay and work units",
-     "detail": "Compare with a named survey median for specialty and region, and record the source.",
+     "detail": "Compare with a named survey median for the specialty and record the source. Note which year's Medicare work values you used: in 2026 Medicare cut the work values of most non-time-based services, such as procedures, by 2.5%.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -204,61 +240,84 @@
      "impact": "high"
     },
     {
-     "action": "Have counsel review incentive terms",
-     "detail": "Bonuses and directorship pay must fit the self-referral and kickback rules.",
+     "action": "Have counsel review incentive and director terms",
+     "detail": "Bonuses and medical director pay must fit the self-referral and kickback rules. A directorship should have a written agreement, fair market pay set in advance and a log of hours worked.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with more than one clinician, and solo owners deciding their own salary. Nurse practitioners and physician assistants are paid by Medicare at 85% of the physician rate, which changes their break-even volume.",
+   "applies_when": "Any practice with more than one clinician, and solo owners setting their own salary. Medicare pays nurse practitioners and physician assistants 85% of the physician rate (42 CFR 414.56, 414.52), and its facility rate for most services is lower than its office rate, so facility-based practices should test survey pay rates against what their own visits collect.",
+   "vendor_refs": [
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Explains four pay models and how each fails. Its benchmark table is constructed, far below survey medians, and it overstates the self-referral rules, including a supposed cap on owner pay."
+    },
+    {
+     "item": "physician-compensation-negotiation-guide",
+     "note": "Written for a physician weighing a job offer. Useful as the list of questions a hire will ask. Its pay-per-work-unit range has no source, and it omits nurse practitioner pay."
+    }
+   ],
    "sources": [
     "amga-2026",
+    "doximity-2026",
     "cfr-411-357",
+    "cfr-411-352",
     "cfr-414-56",
-    "doximity-2026"
+    "cfr-414-52",
+    "cfr-1001-952",
+    "oig-nf-icpg-2024",
+    "cms-pfs-2026"
    ],
-   "evidence_note": "Survey medians are measured but come mostly from large groups. The self-referral limits on compensation are federal regulation. Plan design itself is judgment.",
+   "evidence_note": "Survey medians are measured but come mostly from large groups, and free surveys such as Doximity's report self-reported averages. The self-referral and kickback limits on pay are federal regulation. Plan design itself is judgment.",
    "metrics": [
     {
      "slug": "pp-comp-per-wrvu",
      "name": "Compensation per work RVU",
-     "definition": "Total cash compensation for a clinician divided by the work relative value units of the services that clinician personally performed.",
+     "definition": "Total cash compensation for a clinician divided by the work relative value units (RVUs) of the services that clinician personally performed.",
      "formula": "Total compensation / work RVUs personally performed",
      "unit": "dollars",
      "direction": "range",
      "cadence": "annual",
      "benchmark_typical": "about $53 family medicine, $56 internal medicine, $34 primary care nurse practitioner",
-     "benchmark_note": "AMGA medians, 2025 data, from 451 mostly large groups. Use as a reference point, not a target. A figure far below the median can mean unusually high billed work units.",
+     "benchmark_note": "AMGA (American Medical Group Association) 2026 survey medians, 2025 data, from 451 medical groups and health systems, mostly large. A reference point, not a target. A figure far below the median can mean unusually high billed work units, so check the coding.",
      "confidence": "medium",
-     "data_hint": "Payroll for pay. The billing system for services by rendering clinician, multiplied by the Medicare work value of each code.",
      "sources": [
       "amga-2026"
-     ]
+     ],
+     "data_hint": "Payroll for pay. The billing system for services by rendering clinician, multiplied by the Medicare work value of each code.",
+     "vendor_claim": "Pay per work RVU runs $45 to $55 in primary care and $45 to $65 nationally, and each clinician's effective rate should sit within 15% of the benchmark.",
+     "vendor_verdict": "Partly supported. AMGA's 2025 primary care medians ($52.61, $55.62) sit near the top of that range, surgical specialties run higher, and the 15% rule has no source."
     },
     {
      "slug": "pp-clinician-comp-share",
      "name": "Clinician compensation as a share of collections",
      "definition": "Total pay and benefits of all clinicians, including a market wage for owners, as a share of professional collections.",
-     "formula": "Clinician pay, taxes and benefits / professional collections",
+     "formula": "(Clinician pay, payroll taxes and benefits, with a market wage for owners) / professional collections",
      "unit": "percent",
      "direction": "range",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The useful comparison is with what is left: support cost plus clinician cost should leave a margin.",
+     "benchmark_note": "No reliable public benchmark was found. For context, the Medical Group Management Association (MGMA) reports support staff cost at roughly 30% to 34% of revenue at the median (2025 data). Compare with your own trend: clinician cost plus all other costs must leave a margin.",
      "confidence": "none",
-     "data_hint": "Payroll and the income statement."
+     "sources": [
+      "mgma-app-2026"
+     ],
+     "data_hint": "Payroll and the income statement.",
+     "vendor_claim": "Provider pay should run 45% to 55% of net revenue, with over 60% a warning sign.",
+     "vendor_verdict": "Unverifiable. The library names no source, year or definition of whose pay counts, and the association's cost tables are paywalled."
     }
    ]
   },
   {
    "slug": "pp-staff-compensation",
    "name": "Staff pay and incentives",
-   "summary": "Pay, raises, benefits and bonuses for non-clinician staff. Wages for front office and clinical support roles have risen faster than physician payment, so pay must be checked against the local market each year.",
+   "summary": "Pay, raises, benefits and bonuses for non-clinician staff. Medical receptionist and medical assistant pay rose more than 20% in the five years to 2025, so pay ranges must be checked against the local market each year.",
    "good_looks_like": [
     "Each role has a pay range based on local market data, reviewed yearly.",
     "Raises follow a stated rule tied to performance and market movement.",
-    "Any bonus rewards accurate, complete work, such as clean claims or days in receivables, not raw billing volume.",
-    "Benefits are priced and communicated as part of total pay."
+    "Any bonus rewards accurate, complete work, such as claims paid on first submission, not dollars billed or collected.",
+    "Benefits are priced and communicated as part of total pay.",
+    "Bonuses promised in advance are counted in the overtime rate of hourly staff (29 CFR 778.211)."
    ],
    "failure_modes": [
     "The best employee leaves for two dollars an hour more because nobody checked the market.",
@@ -275,14 +334,14 @@
    "actions": [
     {
      "action": "Check pay against the market yearly",
-     "detail": "Use a published survey or local job postings for each role, and record what you found.",
+     "detail": "Use a published survey or current local job postings for each role, and record what you found.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     },
     {
      "action": "Tie incentives to quality of work",
-     "detail": "Use accuracy and timeliness measures. Never pay billing staff a share of charges.",
+     "detail": "Use accuracy and timeliness measures. Never pay billing staff a share of charges. Put the bonus rule in writing and include promised bonuses when calculating overtime.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -295,12 +354,18 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Practices with employed staff. Practices that outsource billing or use automation have fewer roles but depend more on each one.",
+   "applies_when": "Practices with employed staff, including remote billing or care coordination staff where there is no front desk. Practices that outsource billing or use automation have fewer roles but depend more on each one.",
+   "vendor_refs": [
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Pay bands for billing roles with location and certification adjustments, plus bonus designs to avoid. The pay figures have no source, two tables disagree, and overtime rules are missing."
+    }
+   ],
    "sources": [
     "mgma-staff-comp-2026",
-    "mgma-app-2026"
+    "cfr-29-778-211"
    ],
-   "evidence_note": "MGMA publishes staff pay data, mostly behind a paywall. The figures cited are from its free reports. Incentive design is professional guidance.",
+   "evidence_note": "The Medical Group Management Association (MGMA) publishes staff pay data, mostly behind a paywall, and the figures cited are from its free reports. The overtime rule for bonuses is federal regulation. Incentive design is professional guidance.",
    "metrics": [
     {
      "slug": "pp-staff-pay-vs-market",
@@ -310,13 +375,14 @@
      "unit": "percent",
      "direction": "range",
      "cadence": "annual",
-     "benchmark_typical": "95% to 110% of the local median",
-     "benchmark_note": "A reasonable band, not a published standard. MGMA reports five-year pay growth to 2025 of 22.0% for medical receptionists and 20.6% for medical assistants, so old pay ranges are likely stale.",
-     "confidence": "low",
-     "data_hint": "Payroll, compared with a wage survey or current local postings.",
+     "benchmark_note": "No published standard for where pay should sit against the market was found. Compare each role with the local median yearly. MGMA reports five-year pay growth to 2025 of 22.0% for medical receptionists and 20.6% for medical assistants, so old ranges are likely stale.",
+     "confidence": "none",
      "sources": [
       "mgma-staff-comp-2026"
-     ]
+     ],
+     "data_hint": "Payroll, compared with a wage survey or current local postings.",
+     "vendor_claim": "Flag any role paid more than 10% below the market median, after adjusting for location and specialty, as a retention risk.",
+     "vendor_verdict": "Unverifiable. No source is given for the 10% line, and the library's own pay tables are unsourced."
     }
    ]
   },
@@ -372,12 +438,26 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. With in-house billing staff the measures are per person. With a billing company, they become contract service levels. With software agents, they are run logs and a sampled review.",
+   "applies_when": "Every practice: with in-house billing staff the measures are per person, with a billing company they become contract service levels, and with software agents they are run logs and a sampled review. For clinicians who round in facilities or visit homes, the key standard is every visit documented and its charge entered within a set number of days.",
+   "vendor_refs": [
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Written standards per role, a weekly metrics meeting and documented coaching. A usable routine. Its targets and the medians it attributes to two trade associations have no traceable source."
+    },
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Role scorecard with targets and intervention levels, and weekly, monthly and quarterly reviews. Targets are unsourced, and its charge-entry standard shifts between 24 and 48 hours."
+    },
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Uses claims per full-time person and the share of staff time spent on rework as diagnostics. A good idea, but its 750 to 1,200 claims benchmark has no source."
+    }
+   ],
    "sources": [
     "mgma-ops-2023",
     "hfma-map-keys"
    ],
-   "evidence_note": "Management practice. The few measured productivity figures, such as coding encounters per day, come from MGMA and vary widely with role definitions.",
+   "evidence_note": "Management practice. The few measured productivity figures come from the Medical Group Management Association (MGMA) and vary with role definitions. The Healthcare Financial Management Association (HFMA) defines revenue cycle measures but publishes no targets.",
    "metrics": [
     {
      "slug": "pp-reviews-current",
@@ -399,23 +479,26 @@
      "unit": "count",
      "direction": "info",
      "cadence": "monthly",
-     "benchmark_note": "MGMA reported coding staff handling 41 encounters a day in 2022, down from 75 in 2019. Definitions differ so much that only your own trend is comparable.",
+     "benchmark_note": "MGMA's 2023 report (2022 data, single-specialty practices): coding staff processed 41 encounters a day, down from 75 in 2019. No public figure for claims per biller was found. Definitions differ, so compare with your own trend.",
      "confidence": "low",
-     "data_hint": "Billing system productivity reports by user.",
      "sources": [
       "mgma-ops-2023"
-     ]
+     ],
+     "data_hint": "Billing system productivity reports by user.",
+     "vendor_claim": "An outpatient billing team should process 750 to 1,200 claims per full-time person a month, and 400 signals a problem.",
+     "vendor_verdict": "Unverifiable. No source is named. The only public figure found is in another unit: 41 encounters coded per coder per day in 2022 (MGMA)."
     }
    ]
   },
   {
    "slug": "pp-training",
    "name": "Training and competency",
-   "summary": "What each person must know to do the job correctly, taught at hire and refreshed every year. Coding and payer rules change annually, and clinicians choose most codes themselves.",
+   "summary": "What each person must know to do the job correctly, taught at hire and refreshed every year. Coding rules change annually, clinicians choose most codes themselves, and Medicare's 2025 review found improper payment rates of 5% to 14% for common visit types.",
    "good_looks_like": [
     "New staff and clinicians are trained on the systems, privacy rules and the practice's billing rules before working alone.",
     "Clinicians receive coding education each year, built from their own audit results.",
-    "Annual code and fee schedule changes are reviewed every December.",
+    "Procedure code and Medicare fee changes are reviewed each December and diagnosis code changes each September, before they take effect.",
+    "Staff exposed to blood or body fluids get bloodborne pathogen training at assignment and every year (29 CFR 1910.1030).",
     "Training is recorded: who, what, when."
    ],
    "failure_modes": [
@@ -439,33 +522,44 @@
      "impact": "high"
     },
     {
-     "action": "Review annual changes each December",
-     "detail": "New, deleted and revised codes and the Medicare final rule, turned into a one-page summary.",
+     "action": "Review code and fee changes before they start",
+     "detail": "Each December, summarize new, deleted and revised procedure codes and the Medicare final rule on one page. Each September, do the same for diagnosis codes, which change October 1.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Keep a training log",
-     "detail": "Date, topic, attendees and materials, kept with the compliance files.",
+     "detail": "Date, topic, attendees and materials, kept with the compliance files. Privacy training must be documented (45 CFR 164.530).",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     },
     {
      "action": "Cross-train on critical tasks",
-     "detail": "Each backup performs the task quarterly.",
+     "detail": "Each backup performs the task once a quarter, following the written procedure.",
      "cadence": "quarterly",
      "effort": "medium",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Where billing is outsourced or automated, the clinicians still choose the codes and need the training, and someone inside the practice must understand enough to supervise.",
+   "applies_when": "Every practice: where billing is outsourced or automated, clinicians still choose the codes and need the training, and someone inside must understand enough to supervise. For clinicians who work in hospitals, nursing facilities or homes, training covers place of service, facility visit codes and required visit schedules instead of front-desk topics.",
+   "vendor_refs": [
+    {
+     "item": "billing-department-performance-management-playbook",
+     "note": "Calls for yearly coding-update training for all billing staff and support for coder certification. Sound. Its claim that certification measurably improves first-pass claim results has no source."
+    }
+   ],
    "sources": [
     "oig-gcpg",
-    "cms-cert-2025"
+    "oig-physician-cpg-2000",
+    "cms-cert-2025",
+    "cfr-164-530",
+    "cfr-164-308",
+    "cfr-29-1910-1030",
+    "icd10cm-guidelines-fy2027"
    ],
-   "evidence_note": "Federal compliance guidance lists training as one of seven program elements and expects it at hire and periodically. Hours and content are left to the practice.",
+   "evidence_note": "Office of Inspector General (OIG) guidance lists training among seven compliance program elements and expects it at hire and at least yearly. Privacy training (45 CFR 164.530) and bloodborne pathogen training (29 CFR 1910.1030) are federal rules. Other content is the practice's choice.",
    "metrics": [
     {
      "slug": "pp-training-hours",
@@ -475,8 +569,12 @@
      "unit": "count",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A practical floor is one hour of compliance and privacy training and one coding session for every clinician each year.",
-     "confidence": "none",
+     "benchmark_red": "under 1 hour a year per person",
+     "benchmark_note": "A floor, not a target. OIG's 2000 guidance for small practices says its settlement agreements usually require at least one hour a year of basic compliance training, and it recommends yearly coding and billing training. No benchmark for total hours was found.",
+     "confidence": "low",
+     "sources": [
+      "oig-physician-cpg-2000"
+     ],
      "data_hint": "The training log."
     }
    ]
@@ -484,10 +582,10 @@
   {
    "slug": "pp-retention-wellbeing",
    "name": "Retention, culture and well-being",
-   "summary": "Keeping the people the practice depends on, and noticing overload before it becomes a resignation. Replacing a clinician costs months of lost revenue, and burnout is common among physicians.",
+   "summary": "Keeping the people the practice depends on, and noticing overload before it becomes a resignation. Replacing a clinician can mean months of lost revenue, and about four in ten physicians report a symptom of burnout.",
    "good_looks_like": [
     "Turnover is counted each year by role, and every departure has an exit conversation.",
-    "Workload is looked at directly: visits per day, after-hours charting, calls.",
+    "Workload is looked at directly: visits per day, after-hours charting, calls and, for clinicians who visit facilities or homes, travel time.",
     "Clinicians have protected time off with real coverage.",
     "The owner's own workload and health are treated as a business risk."
    ],
@@ -512,8 +610,8 @@
      "impact": "medium"
     },
     {
-     "action": "Ask about workload twice a year",
-     "detail": "A short private conversation or survey on workload, after-hours work and obstacles.",
+     "action": "Ask about workload every quarter",
+     "detail": "A short private conversation or survey on workload, after-hours work and obstacles, including the owner's own.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "medium"
@@ -533,13 +631,20 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. In very small practices each departure is a crisis, so retention of one or two key people matters more than a turnover percentage.",
+   "applies_when": "Every practice, and in very small ones each departure is a crisis, so keeping one or two key people matters more than a turnover percentage. For clinicians who travel between facilities or homes, drive time and after-hours calls from facility staff count as workload.",
+   "vendor_refs": [
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Retention levers and a knowledge audit to run before anyone leaves. Useful. Its figure that replacing a biller costs 50% to 100% of salary has no source."
+    }
+   ],
    "sources": [
     "mgma-app-2026",
+    "mgma-ops-2023",
     "ama-burnout-2026",
-    "mgma-ops-2023"
+    "aappr-2024"
    ],
-   "evidence_note": "Turnover medians are measured by MGMA and burnout rates by the AMA. Both come from samples dominated by larger organizations.",
+   "evidence_note": "Turnover medians are measured by the Medical Group Management Association (MGMA) and burnout rates by the American Medical Association (AMA). Both samples are dominated by larger organizations.",
    "metrics": [
     {
      "slug": "pp-turnover-rate",
@@ -550,14 +655,16 @@
      "direction": "lower",
      "cadence": "annual",
      "benchmark_typical": "about 11% front office, 15% clinical support",
-     "benchmark_red": "over 30% in any role group",
-     "benchmark_note": "MGMA single-specialty medians, 2025 data. The 2022 peak was 40% for front office staff. The red flag is a judgment, not a published threshold.",
+     "benchmark_red": "at or above the 2022 peak: 40% front office, 33% clinical support",
+     "benchmark_note": "MGMA single-specialty medians, 2025 data. The red line is the 2022 level, which MGMA called exceptionally high. It is our reading, not a published threshold. In a small practice one departure moves the rate a lot, so count people.",
      "confidence": "medium",
-     "data_hint": "Payroll records.",
      "sources": [
       "mgma-app-2026",
       "mgma-ops-2023"
-     ]
+     ],
+     "data_hint": "Payroll records.",
+     "vendor_claim": "Keep yearly staff retention on a billing team above 80%, with under 70% as the level that needs action.",
+     "vendor_verdict": "Unverifiable. No source is given. MGMA's 2025 median turnover for business office staff was 0%, so a typical practice already beats the 80% goal."
     },
     {
      "slug": "pp-burnout-rate",
@@ -567,31 +674,33 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_typical": "42% of physicians nationally",
-     "benchmark_note": "AMA, 2025 data, from a health-system sample: 41.9%, and 45% in family medicine. In a practice of a few clinicians, ask each one directly.",
+     "benchmark_typical": "about 42% of physicians in a 2025 health-system sample",
+     "benchmark_note": "AMA Organizational Biopsy, 2025 data: 41.9% of nearly 19,000 physicians at 106 health systems reported at least one symptom, and 45% in family medicine. No small-practice figure was found. In a practice of a few clinicians, ask each one directly.",
      "confidence": "medium",
-     "data_hint": "A one-question annual survey or a direct conversation.",
      "sources": [
       "ama-burnout-2026"
-     ]
+     ],
+     "data_hint": "A one-question annual survey or a direct conversation."
     }
    ]
   },
   {
    "slug": "pp-hr-compliance",
    "name": "Employment agreements and HR compliance",
-   "summary": "The contracts and employment rules that apply to clinicians and staff: written agreements, restrictive covenants, wage and hour law, employee or contractor status, personnel files and workplace safety.",
+   "summary": "The contracts and employment rules that apply to clinicians and staff: written agreements, restrictive covenants such as non-competes, wage and hour law, employee or contractor status, personnel files and workplace safety.",
    "good_looks_like": [
     "Every clinician has a signed, current agreement covering pay, duties, term, termination and malpractice tail.",
     "Advanced practice clinicians have whatever supervision or collaboration document the state requires.",
-    "Staff are correctly classed for overtime, and contractors truly are contractors.",
-    "Personnel files hold license checks, training records and required forms."
+    "Staff are correctly classed for overtime, and contractors truly are contractors under the tax tests.",
+    "Personnel files hold license checks, training records and required forms.",
+    "Where staff handle blood or sharps, a written exposure control plan exists and is reviewed yearly (29 CFR 1910.1030)."
    ],
    "failure_modes": [
     "A clinician works for years on an expired or unsigned agreement.",
     "A non-compete is unenforceable as written, or enforceable against the owner in a way nobody intended.",
-    "A long-time contractor is really an employee, with back taxes and penalties.",
-    "Nobody knows who pays for malpractice tail coverage when a clinician leaves."
+    "A long-time contractor is really an employee under the tax tests, and the practice owes back employment taxes.",
+    "Nobody knows who pays for malpractice tail coverage when a clinician leaves.",
+    "A salaried employee who does not meet the federal exemption tests is owed back overtime."
    ],
    "key_questions": [
     "Does every clinician have a signed agreement that matches how they are actually paid?",
@@ -609,7 +718,7 @@
     },
     {
      "action": "Keep state-required protocols current",
-     "detail": "Supervision or collaboration agreements, filed where the state requires.",
+     "detail": "Supervision or collaboration agreements, signed, kept where the state requires and updated when clinicians or sites change.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -623,19 +732,41 @@
     },
     {
      "action": "Check worker classification",
-     "detail": "Review each contractor against the tax and labor tests.",
+     "detail": "Review each contractor against the Internal Revenue Service tests: who controls the work, who bears the business costs, and how the relationship is set up. Document the reasoning.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Check overtime status of salaried staff",
+     "detail": "A salaried employee is exempt from overtime only if the job duties qualify and the salary is at or above the federal threshold (29 CFR 541.600). State law may be stricter.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice with clinicians or staff other than the owner. State law varies widely. In Florida, for example, an employee covenant of six months or less is presumed reasonable and one over two years presumed unreasonable.",
+   "applies_when": "Every practice with clinicians or staff other than the owner, under state law that varies widely. In Florida, for example, a covenant against a former employee is presumed reasonable at six months or less and unreasonable over two years (section 542.335), and a nurse practitioner needs a written physician protocol unless registered for autonomous primary care practice (sections 464.012, 464.0123).",
+   "vendor_refs": [
+    {
+     "item": "physician-compensation-negotiation-guide",
+     "note": "Lists the contract terms a clinician will question: covenant radius and length, tail coverage, bonus repayment. It says courts read vague non-competes against the employer, which Florida's statute forbids."
+    },
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Stresses written, signed, current agreements. Sound practice, but it wrongly says every arrangement needs a one-year written contract and that an expired agreement loses protection."
+    }
+   ],
    "sources": [
     "fl-542-335",
+    "fl-464-012",
     "fl-464-0123",
-    "ftc-noncompete-removal-2026"
+    "ftc-noncompete-removal-2026",
+    "irs-worker-classification",
+    "cfr-29-541-600",
+    "cfr-29-1910-1030",
+    "cfr-411-357"
    ],
-   "evidence_note": "Covenant rules are state statute. The federal rule that would have banned most non-competes was struck down and removed in 2026. Classification and wage rules are federal and state law.",
+   "evidence_note": "Covenant rules are state statute. A federal court set aside the rule that would have banned most non-competes in 2024, and it was removed from the federal regulations in February 2026. Worker classification, overtime and workplace safety rules are federal and state law.",
    "metrics": [
     {
      "slug": "pp-agreements-current",
@@ -647,7 +778,9 @@
      "cadence": "annual",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
      "confidence": "none",
-     "data_hint": "The contract file."
+     "data_hint": "The contract file.",
+     "vendor_claim": "Every compensation arrangement should sit in a written, signed, unexpired agreement.",
+     "vendor_verdict": "Supported as good practice. The library overstates the law: the federal self-referral rules require a writing for contractor arrangements, not for employees."
     }
    ]
   },
@@ -665,7 +798,8 @@
     "A percentage-of-collections vendor works the easy claims and lets the hard ones age.",
     "The practice cannot get its own data back when it wants to leave.",
     "Work is brought in-house or automated to save money, and nobody is left who can check it.",
-    "The owner believes responsibility for claims moved to the vendor. It did not."
+    "The owner believes responsibility for claims moved to the vendor. It did not.",
+    "A billing company paid a percentage of collections receives Medicare payments in its own account, which federal rules forbid (42 CFR 424.73, 424.80)."
    ],
    "key_questions": [
     "What does each function cost us now, as a share of collections?",
@@ -683,7 +817,7 @@
     },
     {
      "action": "Put service levels in the contract",
-     "detail": "Days to submit, denial follow-up time, reporting, data return on exit.",
+     "detail": "Days to submit, denial follow-up time, monthly reports, data return on exit, and the business associate agreement the privacy rule requires (45 CFR 164.502). Medicare payments go to an account the practice controls.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -697,19 +831,37 @@
     },
     {
      "action": "Measure before and after any change",
-     "detail": "Net collection rate, days in receivables and denial rate for six months each side.",
+     "detail": "Net collection rate, days in receivables and denial rate for six months each side. For scale, billing companies reported mean net collection of 85% for office practices in a 2024 trade survey.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice makes this choice for billing and usually for bookkeeping, payroll and technology. Very small practices often outsource. Practices that automate with software agents face the same questions with a different vendor.",
+   "applies_when": "Every practice makes this choice for billing and usually for bookkeeping, payroll and technology. Practices that automate with software agents face the same questions with a different vendor, and facility-based practices should confirm that a vendor knows facility visit and place-of-service rules.",
+   "vendor_refs": [
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Fee models, contract clauses to negotiate, a monthly monitoring form and an exit plan. Useful. Fee ranges and contract floors are unsourced, and Medicare's billing agent rule is missing."
+    },
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Defines cost to collect and compares in-house with vendor cost alongside net collection rate. A sound method. Its 4% to 6% target band has no source."
+    },
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Advises deciding build, buy or outsource one function at a time. Gives no costs for any option and no option to automate."
+    }
+   ],
    "sources": [
     "pp-outsourcing-2010",
     "hbma-2024",
-    "oig-gcpg"
+    "oig-physician-cpg-2000",
+    "oig-gcpg",
+    "cfr-424-80",
+    "cfr-164-502",
+    "tseng-2018"
    ],
-   "evidence_note": "Fee ranges come from an old trade article and are widely repeated without newer data. Federal compliance guidance is clear that a practice remains responsible for claims a vendor submits.",
+   "evidence_note": "Fee ranges come from a 2010 trade article and are repeated without newer data. Office of Inspector General (OIG) guidance from 2000 says physicians remain responsible for claims a billing service sends in their name. The billing agent payment rule is federal regulation.",
    "metrics": [
     {
      "slug": "pp-outsourced-fee-rate",
@@ -717,15 +869,18 @@
      "definition": "What the practice pays a billing company, as a percentage of the collections that company handles.",
      "formula": "Billing vendor fees / collections handled by the vendor",
      "unit": "percent",
-     "direction": "lower",
+     "direction": "range",
      "cadence": "annual",
-     "benchmark_typical": "4% to 10% depending on specialty",
-     "benchmark_note": "Physicians Practice, 2010: 4% to 5% for high-payment specialties, 8% to 10% for primary care. No current measured benchmark was found. Compare with your own full in-house cost.",
+     "benchmark_typical": "4% to 5% high-payment specialties, 8% to 10% primary care (2010 figures)",
+     "benchmark_note": "Physicians Practice, 2010, the only traceable public figures. No current benchmark was found. Judge the fee together with net collection rate. For scale, one academic system measured all billing work, including physician time, at 14.5% of primary care professional revenue (JAMA, 2018).",
      "confidence": "low",
-     "data_hint": "Vendor invoices and the income statement.",
      "sources": [
-      "pp-outsourcing-2010"
-     ]
+      "pp-outsourcing-2010",
+      "tseng-2018"
+     ],
+     "data_hint": "Vendor invoices and the income statement.",
+     "vendor_claim": "Full-service billing should cost 5.5% to 7.5% of net collections all-in. Below 4.5% deserves scrutiny and above 8% is above market for primary care.",
+     "vendor_verdict": "Unverifiable. The library cites no source. The only traceable public range (Physicians Practice, 2010) is wider: 4% to 10% by specialty."
     }
    ]
   }

@@ -733,7 +733,12 @@
   "claim": "99483: 'Billable separately from E&M on same day.' Combining 99483, advance care planning (99497) and a 99215 visit in a single appointment can generate approximately $540 to $580 in Medicare revenue; 'This is not upcoding.'",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "99483 cannot be billed on the same day as office/outpatient E/M (99202-99215), home visits (99341-99350) or advance care planning (99497/99498); the NCCI edits carry modifier indicator 0, so no modifier bypasses them. The appointment pays 99483 alone: $292.93 national non-facility in 2026 ($290.61 Rest of Florida; about $170-$185 facility). Billing all three is unbundling.",
+  "source_title": "CMS, Cognitive Assessment & Care Plan Services (page last modified 10/07/2026); NCCI Practitioner PTP Edits v323r0 (effective Oct. 1, 2026); CMS PFS Relative Value File RVU26D and 2026 GPCIs (released 08/26/2026); NCCI Policy Manual for Medicare Services 2026, Ch. I",
+  "source_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/cognitive-assessment",
+  "confidence": "high",
+  "practice_impact": "Following the guide overstates revenue by about $280 per combined visit: 99215 and 99497 deny under NCCI, and splitting or re-dating them to get paid would be false-claims exposure; in a facility place of service 99483 pays only about $173-$185 in Florida, and its use for nursing-facility residents should be confirmed with First Coast."
  },
  {
   "id": "geriatrics-companion-guide:C2",
@@ -741,7 +746,12 @@
   "claim": "An Advance Beneficiary Notice (ABN) 'must be issued to the patient before the service is provided' whenever 'a service may not be covered by Medicare or an MA plan'.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "The ABN (Form CMS-R-131; current version expires 03/31/2029) is for Original Medicare only. CMS bars its use by MA plans or contracted providers; for MA enrollees the provider or patient must request a plan organization determination. In Original Medicare it is mandatory only for specific expected denials (medical necessity, frequency limits, custodial care), optional for statutorily excluded services.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) Ch. 30 §§50.1-50.2.1; CMS FFS ABN page (last modified 07/17/2026) and Form CMS-R-131 (Exp. 03/31/2029); CMS Parts C & D Enrollee Grievances, Organization/Coverage Determinations, and Appeals Guidance §40.12.1 (effective July 6, 2026)",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
+  "confidence": "high",
+  "practice_impact": "For Medicare Advantage patients an ABN does not shift liability: absent a plan denial notice or a clear Evidence of Coverage exclusion the enrollee owes a contracted provider nothing, so staff trained on this page would collect money that must be refunded or written off."
  },
  {
   "id": "geriatrics-companion-guide:C3",
@@ -749,7 +759,12 @@
   "claim": "Denial pattern: CCM (99490/99491) billed in the same month as TCM (99495/99496) for one patient; because TCM includes care management, 'the two cannot be billed in the same calendar month'.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "outdated",
+  "correct_statement": "Since January 1, 2020 Medicare allows CCM (99487, 99489, 99490, 99491, 99439) to be billed for the same patient during the 30-day TCM period (99495/99496) when medically necessary, provided the same time is not counted twice. The prohibition applied only through 2019; the NCCI edits were deleted effective 12/31/2019. CCM still cannot overlap with care plan oversight G0181/G0182.",
+  "source_title": "CMS MLN Booklet, Chronic Care Management Services (MLN909188, June 2025); CY 2020 PFS final rule, 84 FR 62568, 62685-62687 (Nov. 15, 2019); CMS Transitional Care Management Services page (last modified 10/29/2026); CMS CCM FAQ (8/16/2022); NCCI PTP Edits v323r0",
+  "source_url": "https://www.cms.gov/files/document/chroniccaremanagement.pdf",
+  "confidence": "high",
+  "practice_impact": "Suppressing CCM in every TCM month forfeits about $66 per patient-month for 99490 (about $44 in a facility setting) on the post-discharge patients who most need care management; verify each MA plan's own edits before assuming it follows Medicare."
  },
  {
   "id": "geriatrics-companion-guide:C4",
@@ -757,7 +772,12 @@
   "claim": "Medicare is always primary. Medicaid is the payer of last resort. Never bill the patient for the balance on a dual-eligible claim; Medicaid's payment (often $0) is the final settlement.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Medicare pays before Medicaid, but not always first: employer group plans, workers' compensation, no-fault and liability insurers can be primary under Medicare Secondary Payer rules. Federal law bars billing QMBs for Medicare cost-sharing even when Medicaid pays $0, but SLMB-only, QI and QDWI patients still owe coinsurance and deductibles. States may charge QMBs nominal copays. Verify QMB status each visit.",
+  "source_title": "CMS, Provider Enrollment and Third Party Liability FAQs for Dually Eligible Individuals (version 01/14/2025); CMS MLN006977, Beneficiaries Dually Eligible for Medicare & Medicaid (June 2024); CMS QMB Program page (last modified 03/16/2026); CMS Medicare Secondary Payer overview; 42 CFR 422.504(g)(1)(iii); MLN Connects (Oct. 22, 2026); Fla. Stat. §§409.908(13), 409.907(3)(j) (2026)",
+  "source_url": "https://www.cms.gov/files/document/dualeligiblesproviderenrollmenttplfaqs.pdf",
+  "confidence": "high",
+  "practice_impact": "Facility panels are heavily dual: billing a QMB invites sanctions, but blanket write-offs forgo collectible coinsurance from SLMB-only/QI patients, and CMS warned on 10/22/2026 that people who lose Medicaid or QMB status lose the protection, so eligibility and other primary coverage must be checked at each date of service."
  },
  {
   "id": "geriatrics-companion-guide:C5",
@@ -765,7 +785,12 @@
   "claim": "A geriatric practice with heavy Medicare Advantage volume operates in a multi-payer commercial environment where every plan has its own rules and none of them are required to follow Medicare's.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "MA plans set their own networks, prior authorization lists and contracted rates, but 42 CFR 422.101 requires them to cover all Part A and B services and comply with NCDs, applicable LCDs and Traditional Medicare coverage rules; internal criteria are allowed only where Medicare's are not fully established. Non-contract providers must accept Original Medicare amounts as payment in full.",
+  "source_title": "42 CFR 422.101 (eCFR current through 11/06/2026); 42 CFR 422.138, 422.214, 422.520, 422.568; CY 2024 MA final rule CMS-4201-F, 88 FR 22120 (Apr. 12, 2023)",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-C/section-422.101",
+  "confidence": "high",
+  "practice_impact": "Treating MA plans as unbound by Medicare rules means not appealing medical-necessity denials of 99483, CCM, TCM or skilled nursing care that meet Medicare criteria; 42 CFR 422.101 is the practice's strongest appeal citation, while payment terms still come from each contract."
  },
  {
   "id": "geriatrics-companion-guide:C6",
@@ -773,7 +798,12 @@
   "claim": "CCM requires written patient consent, obtained and documented before CCM services begin; this consent must be renewed if the patient changes providers.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "outdated",
+  "correct_statement": "Written consent has not been required since January 1, 2017. CMS accepts verbal or written consent, documented in the medical record with the required disclosures (availability of CCM, cost-sharing, one billing practitioner per month, right to stop). Consent is obtained once, before CCM starts, and again only if the patient switches to a different billing practitioner.",
+  "source_title": "CMS MLN Booklet, Chronic Care Management Services (MLN909188, June 2025); CMS FAQ on Practitioner Billing for Chronic Care Management Services (last updated 8/16/2022); CY 2017 PFS final rule, 81 FR 80170, 80250",
+  "source_url": "https://www.cms.gov/files/document/chroniccaremanagement.pdf",
+  "confidence": "high",
+  "practice_impact": "Requiring a signed form is stricter than Medicare and stalls CCM enrollment of facility residents who cannot easily sign; documented verbal consent is enough, and CMS confirms CCM is billable for patients in skilled nursing, nursing facility and assisted-living settings."
  },
  {
   "id": "geriatrics-companion-guide:C7",
@@ -781,7 +811,12 @@
   "claim": "Core CPT Code Reference lists as current Medicare-paid codes: G0505 cognitive assessment ($232-$250), 99358 prolonged non-face-to-face service ($110-$118), and 99339/99340 'Care plan oversight - home health/hospice' ($55-$104).",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "None of the three is payable by Medicare in 2026. G0505 existed only for 2017 and was replaced by 99483 on January 1, 2018 (same service). 99358 has had status I, not valid for Medicare, since 2023. 99339/99340 were domiciliary/home supervision codes, always bundled, deleted in 2023. Medicare's home health and hospice oversight codes are G0181/G0182, about $110.",
+  "source_title": "CMS PFS Relative Value File RVU26D (October 2026 release) and RVU22A/RVU23A; CY 2018 PFS final rule, 82 FR 52976, 53077 (Nov. 15, 2017); CY 2023 PFS final rule, 87 FR 69404, 69440 and 69610 (Nov. 18, 2022)",
+  "source_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+  "confidence": "high",
+  "practice_impact": "Charge masters or projections built on these rows produce rejected or zero-paid claims; bill care plan oversight with G0181/G0182 and non-face-to-face work through care management codes (CMS's TCM page still mentions 99358/99359, but the fee schedule marks them not payable)."
  },
  {
   "id": "geriatrics-companion-guide:C8",
@@ -789,7 +824,12 @@
   "claim": "TCM requires medication reconciliation within two business days of discharge, documented as a completed activity, not an intention.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Only the interactive contact with the patient or caregiver has a two-business-day deadline. Medication reconciliation and management must be furnished on or before the date of the face-to-face visit, which falls within 7 calendar days (99496) or 14 calendar days (99495) of discharge. It must be documented as performed.",
+  "source_title": "CMS, Transitional Care Management Services (web page that replaced MLN908628; last modified 10/29/2026); First Coast Service Options, Checklist: Transitional care management (TCM) (April 30, 2026)",
+  "source_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/care-management/transitional-care-management-services",
+  "confidence": "high",
+  "practice_impact": "A 2-day reconciliation rule makes staff drop valid TCM claims (99495 pays about $220 and 99496 about $299 nationally, non-facility, in 2026) when reconciliation was done at the visit; TCM applies only after discharge to a community setting (home, rest home, assisted living), not to a patient still in a skilled nursing facility."
  },
  {
   "id": "neurology-companion-guide:C1",
@@ -1237,7 +1277,12 @@
   "claim": "A TCM claim cannot be submitted until after the face-to-face visit, but must be submitted with the date of discharge as the service date.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "CMS requires the TCM claim (99495/99496) to carry the date of the required face-to-face visit, not the discharge date. The claim may be submitted once that visit is furnished and need not be held to day 30. The 30-day service period starts on the day of discharge; interactive contact is due within two business days.",
+  "source_title": "CMS, Frequently Asked Questions about Billing the Medicare Physician Fee Schedule for Transitional Care Management Services (March 17, 2016); CY 2016 PFS final rule, 80 FR 70921; CMS MLN Transitional Care Management Services page (modified 10/29/2026)",
+  "source_url": "https://www.cms.gov/files/document/billing-faqs-transitional-care-management-2016.pdf",
+  "confidence": "high",
+  "practice_impact": "Dating TCM to the discharge day mis-reports every claim and invites denials or overlap with discharge-day and facility billing; TCM also applies only when the patient returns to a community setting (home, assisted living), not on hospital-to-SNF or nursing facility transfers."
  },
  {
   "id": "primarycare-companion-guide:C2",
@@ -1245,7 +1290,12 @@
   "claim": "A physician managing a patient on prescription drug management, which includes virtually every chronic disease patient on any medication, is performing moderate MDM by definition; an established chronic illness is at minimum moderate MDM, supporting 99214.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Prescription drug management is only an example of moderate risk, one of three MDM elements; two of three must be met. One stable chronic illness is low complexity. Moderate MDM (99214, or 99309 in nursing facilities) also needs moderate problems or data, for example two or more stable chronic illnesses or one with exacerbation, and a documented drug decision.",
+  "source_title": "First Coast Service Options, Medical Decision Making and the Impact of Prescription Drug Management (September 23, 2026); AMA, CPT E/M Code and Guideline Changes, Table 1 Levels of Medical Decision Making (effective January 1, 2023)",
+  "source_url": "https://medicare.fcso.com/evaluation-and-management/medical-decision-making-and-impact-prescription-drug-management",
+  "confidence": "high",
+  "practice_impact": "Following this would upcode stable, single-problem refill visits (true level 99308 or 99213) to 99309 or 99214 across the panel: overpayment refunds, First Coast medical review and False Claims Act exposure. The same MDM table governs nursing facility and home visit codes."
  },
  {
   "id": "primarycare-companion-guide:C3",
@@ -1253,7 +1303,12 @@
   "claim": "The first 30 minutes of ACP conversation in a calendar year bills at 99497. Additional 30-minute increments bill at 99498. The revenue is $50 to $80 per encounter under Medicare.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "99497 is the first 30 minutes of each ACP encounter (16-45 minutes) and 99498 each additional 30 (from 46 minutes). There is no calendar-year rule and no frequency limit; only the cost-sharing waiver is tied to the annual wellness visit. 2026 allowed amounts: $86.84 non-facility, $65.80 facility nationally; Florida $86.87-$92.82 and $66.75-$70.92.",
+  "source_title": "CMS MLN909289 Advance Care Planning fact sheet (March 2026); CMS PFS Relative Value File RVU26D and CY 2026 Florida carrier file (MAC 09102); CMS ACP billing FAQ (July 14, 2016); CY 2027 PFS final rule, 91 FR 71186-71190",
+  "source_url": "https://www.cms.gov/files/document/mln-advanced-care-planning.pdf",
+  "confidence": "high",
+  "practice_impact": "ACP is billable in nursing homes and assisted living and can be repeated when health status or wishes change, so a once-a-year habit forfeits revenue; at SNF place of service 31 expect about $67-$71 in Florida. From January 1, 2027 clinical-staff ACP time moves to G0572/G0573."
  },
  {
   "id": "primarycare-companion-guide:C4",
@@ -1261,7 +1316,12 @@
   "claim": "Incident-to billing pays 100% of the physician fee schedule versus 85% under the NPP's own NPI, and requires that the physician is physically present in the office suite during the NPP's service and established the plan of care.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "outdated",
+  "correct_statement": "The payment split is right: incident-to pays 100%, NP/PA direct billing 85%, and the physician must initiate the course of treatment and stay involved. But since January 1, 2026 direct supervision may be virtual, through real-time audio/video (not audio-only), except for 010/090-day global services. Incident-to is unavailable for hospital or SNF patients.",
+  "source_title": "42 CFR 410.26 and 410.32(b)(3)(ii) (eCFR current to November 6, 2026); CMS CY 2026 PFS final rule fact sheet (CMS-1832-F); First Coast, Incident-to service guidelines (March 9, 2026); Medicare Claims Processing Manual ch. 12 sec. 30.6.13.E; 42 CFR 414.52 and 414.56",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-410/subpart-B/section-410.26",
+  "confidence": "high",
+  "practice_impact": "Largely unusable in facility work: incident-to E/M visits in SNF or nursing facility settings are not payable, so NP/PA facility visits bill under their own NPI at 85%. Billing them at 100% under the physician is an overpayment and False Claims Act risk."
  },
  {
   "id": "primarycare-companion-guide:C5",
@@ -1269,7 +1329,12 @@
   "claim": "CCM requires documented monthly contact totaling at least 20 minutes, a current comprehensive care plan, patient consent on file, and billing that submits the service in the calendar month it was performed.",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "99490 requires at least 20 minutes of clinical staff care-management time per calendar month (not patient contact), two or more qualifying chronic conditions, a comprehensive care plan, consent documented once, an initiating visit for new or unseen-in-a-year patients, certified EHR and 24/7 access. Claims are billed once per month and need not be submitted within the service month.",
+  "source_title": "CMS, Frequently Asked Questions About Practitioner Billing for Chronic Care Management Services (last updated August 16, 2022; still posted on CMS's care management page, modified November 3, 2026); CMS MLN909188 Chronic Care Management Services booklet (June 2025)",
+  "source_url": "https://www.cms.gov/files/document/chronic-care-management-faqs.pdf",
+  "confidence": "high",
+  "practice_impact": "CMS allows CCM for SNF, nursing facility and assisted living residents, billed at the place of service where the practitioner ordinarily sees them; counted minutes must come from the practice's own or contracted clinical staff, and the vendor's checklist omits the initiating visit and 24/7 access."
  },
  {
   "id": "primarycare-companion-guide:C6",
@@ -1277,7 +1342,12 @@
   "claim": "AWV required components: health risk assessment, review of medical and family history, list of current providers and medications, measurement of cognitive function, detection of depression risk factors, and a written personalized prevention plan.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Listed items are real but incomplete. The first AWV (G0438) also requires height, weight, BMI and blood pressure, a functional ability and safety review, a written 5-10-year screening schedule, a risk-factor list, personalized advice and referrals, review of current opioid prescriptions, substance-use screening, and ACP if the patient wishes. Cognition is assessed by observation; no test is mandated.",
+  "source_title": "42 CFR 410.15 (eCFR current to November 6, 2026; last amended 90 FR 50007, November 5, 2025); CMS Annual Wellness Visit provider page (modified April 9, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-410/subpart-B/section-410.15",
+  "confidence": "high",
+  "practice_impact": "AWVs can be furnished to facility residents (G0439 about $137-$147 in Florida in 2026), but a template built on the vendor's six items would fail review for missing measurements, functional and safety, opioid and substance-use elements."
  },
  {
   "id": "primarycare-companion-guide:C7",
@@ -1285,7 +1355,12 @@
   "claim": "The national benchmark for primary care is approximately 30% of established patient visits at 99213 and 45% at 99214, per the CMS Medicare Physician and Other Supplier Public Use File; 60% or more at 99213 signals systematic undercoding.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "CMS's CY 2025 Part B E/M-by-specialty data put family practice at 28.5% 99213 and 63.9% 99214; internal medicine 26.8% and 62.7%; geriatric medicine 16.9%, 57.7% and 22.1% at 99215. The vendor's 45% understates 99214 by about 18 points. A 60% 99213 share is an outlier, but only documentation proves undercoding.",
+  "source_title": "CMS, CY 2025 Evaluation & Management (E&M) Codes by Specialty, Medicare Part B Physician/Supplier National Data (CY 2025 claims; page modified August 28, 2026); CY 2024 and CY 2019 editions for trend",
+  "source_url": "https://www.cms.gov/data-research/statistics-trends-reports/medicare-fee-service-parts-b-utilization-reports/medicare-utilization-part-b/evaluation-management-em-codes-specialty-reports",
+  "confidence": "high",
+  "practice_impact": "Office codes are the wrong yardstick for facility work. CMS 2025 subsequent nursing facility visits, geriatric medicine: 99307 6.3%, 99308 26.9%, 99309 54.5%, 99310 12.4%; nurse practitioners 3.0%, 32.7%, 56.1%, 8.1%. Benchmark against those, with documentation, not against 99214."
  },
  {
   "id": "primarycare-companion-guide:C8",
@@ -1293,7 +1368,12 @@
   "claim": "A practice with 300 CCM-eligible Medicare patients, billing 99490 at the current Medicare rate, generates approximately $150,000 to $230,000 per year in additional revenue.",
   "kind": "payment_rate",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 2026 national 99490 rate is $66.13 non-facility and $43.76 facility (Florida $65.97-$70.95 and $44.58-$47.66). Billing all 300 patients every month gives at most about $238,000 allowed, $157,500 at the facility rate, including 20% coinsurance and before staff cost. The vendor's range assumes 63-97% monthly capture; real-world uptake is far lower.",
+  "source_title": "CMS PFS Relative Value File RVU26D (October 2026) and CY 2026 carrier file for Florida (MAC 09102); ASPE/NORC, Analysis of 2019 Medicare FFS Claims for CCM and TCM Services (March 2022); CY 2027 PFS final rule, 91 FR 71174-71175",
+  "source_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+  "confidence": "high",
+  "practice_impact": "For 300 residents at SNF place of service 31 the Florida ceiling is about $160,000-$172,000 a year, not $230,000; at the 30.7% reach of practices that actually bill CCM it is roughly $50,000-$78,000 gross, before care-manager payroll and uncollected coinsurance."
  },
  {
   "id": "radiologylab-companion-guide:C1",

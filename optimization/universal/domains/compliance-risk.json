@@ -1,0 +1,1423 @@
+{
+ "domain": "compliance-risk",
+ "categories": [
+  {
+   "slug": "cr-program",
+   "name": "Compliance program",
+   "summary": "The habits that show a practice tries to bill correctly: written rules, a named contact, training, a safe way to raise concerns, a yearly audit, consequences and a response when something is wrong. Auditors and buyers both look for it.",
+   "good_looks_like": [
+    "A short written manual covers coding, billing, refunds, privacy and conduct. Each policy shows an owner and a review date in the last 12 months.",
+    "One named compliance contact reports to the owner at least quarterly, with dated notes. Where possible this person does not code or submit claims.",
+    "A one-page risk assessment and at least one audit are done every year, and each finding has a dated corrective action.",
+    "Staff and the billing vendor can raise a concern without retaliation, and the Office of Inspector General (OIG) hotline is posted where staff will see it.",
+    "One log shows each problem found, who reviewed it, what was repaid or changed, and when."
+   ],
+   "failure_modes": [
+    "A purchased policy binder nobody has read. Ignoring your own written rules can look like reckless disregard, which is enough for liability under the False Claims Act.",
+    "The person who codes and bills is also the only compliance check, so the same error repeats for years unseen.",
+    "Problems are fixed going forward but past claims are never reviewed. The money stays on the books past the 60-day return deadline in 42 CFR 401.305.",
+    "Billing is outsourced or automated and the owner assumes compliance went with it. The physician still answers for every claim sent under the physician's name.",
+    "Training, audits and decisions happen but nothing is written down, so the practice cannot prove them to an investigator or a buyer."
+   ],
+   "key_questions": [
+    "How many of the seven compliance program elements can you show with a dated document?",
+    "Who is your compliance contact, and when did that person last report to you in writing?",
+    "When were your last compliance risk assessment and your last audit?",
+    "What percent of clinicians, staff and key contractors had compliance training in the last 12 months?",
+    "Does your billing company or software vendor have a named compliance contact who talks to yours?"
+   ],
+   "actions": [
+    {
+     "action": "Name a compliance contact and hold a quarterly report",
+     "detail": "Choose someone who does not code or submit claims if you can. In a one- or two-clinician practice the owner holds the role and an outside reviewer supplies independence. Keep dated notes of each report.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write a short compliance manual and review it yearly",
+     "detail": "Cover coding and documentation, billing, refunds, privacy, exclusion checks, referral arrangements and how to report a concern. Rewrite any template to match what the practice really does. Date each review.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Do a one-page compliance risk assessment each year",
+     "detail": "List top services by revenue, denial patterns, audit letters, the OIG work plan and your Medicare contractor's review topics. Rank the risks. Pick what to audit and what to monitor.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Train everyone at hire and yearly, and keep the log",
+     "detail": "Include clinicians, staff and contractors who touch claims or patient data. Cover false claims, kickbacks, privacy and how to report. Free OIG training videos can serve as material. Keep a dated sign-in sheet or quiz record.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Keep one log of problems and what was done",
+     "detail": "For each issue record the date found, who reviewed it, the decision, money returned, the process change and any retraining. The log is the proof that the program works.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice that bills Medicare, Medicaid or other federal programs, although the federal guidance is voluntary and scales down. With one or two clinicians and no office staff, the owner is the contact and an outside coder, attorney or peer supplies the independent look.",
+   "vendor_refs": [
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Gives a usable routine: one accountable person, a yearly review day and a compliance calendar. States the overpayment rule in its pre-2025 form."
+    },
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Adds a calendar of annual, quarterly and event-driven tasks with one owner. Treats annual, role-specific training as required, but the privacy rules set no annual interval."
+    },
+    {
+     "item": "coding-audit-playbook",
+     "note": "Lists six headings for a written coding policy with no policy text. Never mentions the 60-day deadline for returning overpayments that an audit finds."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Recommends a yearly risk assessment and a training log, which matches federal guidance. Its penalty table uses outdated dollar amounts."
+    }
+   ],
+   "sources": [
+    "oig-gcpg",
+    "oig-physician-cpg-2000",
+    "usc-31-3729",
+    "cfr-401-305",
+    "cfr-164-530"
+   ],
+   "evidence_note": "Based on Office of Inspector General guidance for small entities (2023) and small physician practices (2000). Both are voluntary guidance, not regulation. No survey was found of how many small practices have a working program.",
+   "metrics": [
+    {
+     "slug": "cr-program-elements",
+     "name": "Compliance program elements in place (of seven)",
+     "definition": "Number of the seven elements the practice can show with a dated document: written standards, a compliance contact, training, open reporting, risk assessment and audit, enforcement, and response to problems.",
+     "formula": "Count of elements with dated evidence from the last 12 months, from 0 to 7",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "7 of 7, each with dated evidence",
+     "benchmark_red": "no named contact, or no audit and risk assessment in 12 months",
+     "benchmark_note": "From the Office of Inspector General's General Compliance Program Guidance (November 2023), which expects all seven, scaled down, in small entities. This is guidance, not measurement. No survey of small practices was found.",
+     "confidence": "medium",
+     "sources": [
+      "oig-gcpg"
+     ],
+     "data_hint": "The compliance folder: policy index, quarterly report notes, training log, audit reports and the problem log.",
+     "vendor_claim": "The purchased playbook on the self-referral and kickback laws says a practice needs all seven elements, a named compliance officer and one documented review day a year.",
+     "vendor_verdict": "Supported for the seven elements and the yearly review. A formal officer is not expected of a small practice. A compliance contact is enough."
+    },
+    {
+     "slug": "cr-training-completion",
+     "name": "Workforce with compliance training in the last 12 months",
+     "definition": "Share of clinicians, staff and contractors who touch claims or patient data with documented compliance and privacy training in the last 12 months.",
+     "formula": "People with a dated training record in the last 12 months / all workforce members and in-scope contractors x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "100%",
+     "benchmark_red": "anyone with system access and no training record",
+     "benchmark_note": "The Office of Inspector General (2023) says everyone should be trained at least annually, and small entities at hire and periodically. The privacy rule (45 CFR 164.530) requires documented training but sets no yearly interval. No measured rates were found.",
+     "confidence": "medium",
+     "sources": [
+      "oig-gcpg",
+      "cfr-164-530",
+      "cfr-164-308"
+     ],
+     "data_hint": "Training log or learning system export, matched against the current roster of staff, clinicians and contractors.",
+     "vendor_claim": "The purchased playbook on the federal privacy rules says all staff need role-specific training every 12 months and that generic annual training fails the rule.",
+     "vendor_verdict": "Partly supported. Annual training is federal compliance guidance. The privacy and security rules require training fitted to the job but set no annual interval."
+    }
+   ]
+  },
+  {
+   "slug": "cr-coding-audits",
+   "name": "Coding and billing audits",
+   "summary": "Checking a sample of each clinician's notes against the claims that were sent, in both directions: billed too high and billed too low. It is the only way to learn whether coding is right before a payer decides for you.",
+   "good_looks_like": [
+    "Every billing clinician has charts reviewed at least once a year, with extra reviews for new clinicians and for any service that failed last time.",
+    "The sample covers every setting and service billed: office, hospital, nursing facility, home, care management and other time-based codes.",
+    "The reviewer did not code or bill the sampled claims and uses the current coding rules for each setting.",
+    "The report shows dollars over and under by clinician and error type, and each finding has a dated action: refund, corrected claim, education or a rule change.",
+    "Overpayments found are returned to the payer, and the practice checks whether the same error reaches earlier claims."
+   ],
+   "failure_modes": [
+    "Audits look only for missed revenue. Overcoded and unsupported claims are never tested, so the liability grows unseen.",
+    "The auditor applies office visit rules to hospital or nursing facility notes, so the findings are wrong in both directions.",
+    "The audit finds overpayments and nothing is refunded. The practice now knows, and the 60-day clock in 42 CFR 401.305 is running.",
+    "A sample chosen for risk is multiplied across all claims as if it were random, giving a refund or revenue figure nobody can defend.",
+    "Results are filed and never discussed with the clinician, so the same pattern returns next year."
+   ],
+   "key_questions": [
+    "How many charts per clinician were audited in the last 12 months, and by whom?",
+    "What was the net dollar error rate, and how much of it was overcoding versus undercoding?",
+    "Did the sample include every setting and every care-management or time-based service you bill?",
+    "For each overpayment the audit found, was the money returned, and on what date?",
+    "Has every clinician seen their own results with the charts in hand?"
+   ],
+   "actions": [
+    {
+     "action": "Run a baseline audit, then audit every clinician yearly",
+     "detail": "The Office of Inspector General (OIG) basic guide is 5 to 10 records per physician, or 5 or more per federal payer, at least once a year. Pull them at random within each setting.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Use a reviewer who did not code the claims",
+     "detail": "A certified outside coder once a year is the usual answer for a small practice. Clinicians can review each other in between. Whoever billed a claim should not grade it.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Score dollars in both directions",
+     "detail": "For each chart record the amount paid and the amount the note supports. Report overpaid dollars, underpaid dollars and the net, each divided by total dollars paid for the sample.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Refund what the audit finds and look backward",
+     "detail": "Return each overpayment to the payer. If the error has a repeating cause, test earlier claims. Federal rules pause the 60-day deadline for up to 180 days while that review is done in good faith.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Give each clinician their results chart by chart",
+     "detail": "Show the billed code, the supported code, the reason and the dollar effect. Agree on one documentation change. Re-audit the same service within three months.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, with a solo clinician needing an outside reviewer. Facility-based practices should weight the sample toward hospital and nursing facility visits and care-management codes, where Medicare's measured error rates run from about twice to twelve times the rate for established office visits.",
+   "vendor_refs": [
+    {
+     "item": "coding-audit-playbook",
+     "note": "Sound routine: yearly audit of every clinician, five review passes per chart, findings split by direction. Its scoring rubric and time table contradict current coding rules."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Right to audit before a sale. Treats repayment as optional and extrapolates from a hand-picked sample, which is not a valid estimate."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Recommends a final audit before closing. Wrongly offers accepting the risk as a choice when the audit finds overpayments."
+    }
+   ],
+   "sources": [
+    "oig-physician-cpg-2000",
+    "oig-gcpg",
+    "cms-cert-2025",
+    "oig-cia-faq",
+    "cfr-401-305",
+    "oig-sdp-2026"
+   ],
+   "evidence_note": "Audit frequency and sample size come from Office of Inspector General guidance (2000 and 2023), which is voluntary. Error rates are measured by Medicare's claim sampling program (2025 report). The 5% trigger is a convention from older integrity agreements.",
+   "metrics": [
+    {
+     "slug": "cr-audit-coverage",
+     "name": "Charts audited per clinician per year",
+     "definition": "Number of encounters whose note and claim were reviewed by someone other than the coder, per billing clinician, in the last 12 months.",
+     "formula": "Encounters audited in the last 12 months / number of billing clinicians. Also show the count for each clinician",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "10 or more per clinician, covering every setting billed",
+     "benchmark_typical": "5 to 10 per clinician, once a year",
+     "benchmark_red": "no audit in the last 12 months",
+     "benchmark_note": "Office of Inspector General guidance for small physician practices (2000): at least once a year, 5 to 10 records per physician or 5 or more per federal payer. Guidance, not data. A sample this small shows patterns but cannot be extrapolated.",
+     "confidence": "medium",
+     "sources": [
+      "oig-physician-cpg-2000",
+      "oig-gcpg"
+     ],
+     "data_hint": "Audit reports or the auditor's worksheet, counted by clinician and by setting.",
+     "vendor_claim": "The purchased coding audit playbook calls for 25 to 30 records per provider and attributes a minimum of 5 to 10 records per payer to OIG.",
+     "vendor_verdict": "Partly supported. The OIG guide is 5 or more per federal payer or 5 to 10 per physician. The 25 to 30 figure is the vendor's own."
+    },
+    {
+     "slug": "cr-audit-error-rate",
+     "name": "Financial error rate in the audit sample",
+     "definition": "Dollars paid in error in the audited sample as a share of all dollars paid for the sample. Overpaid and underpaid dollars are also reported separately.",
+     "formula": "(Overpaid dollars - underpaid dollars) / total dollars paid for the sampled claims x 100",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_best": "under 5% net",
+     "benchmark_typical": "about 10% on visit codes in Medicare's own sampling",
+     "benchmark_red": "5% or more net: widen the sample and find the cause",
+     "benchmark_note": "5% net was the trigger in older Office of Inspector General integrity agreements. The Centers for Medicare & Medicaid Services found 10.1% of evaluation and management dollars improper, over- and underpayments combined (2025 report, claims July 2023 to June 2024). Refund any overpayment found.",
+     "confidence": "medium",
+     "sources": [
+      "oig-cia-faq",
+      "cms-cert-2025",
+      "cfr-401-305"
+     ],
+     "data_hint": "The audit worksheet: amount paid and amount supported for each sampled claim.",
+     "vendor_claim": "The purchased coding audit playbook sets a target of 90% or more of audited records rated clean or low risk, and calls 95% well-performing.",
+     "vendor_verdict": "Unverifiable. No source is given, it counts records instead of dollars, and its scoring rubric conflicts with current coding rules."
+    }
+   ]
+  },
+  {
+   "slug": "cr-outlier-monitoring",
+   "name": "High-risk services and outlier monitoring",
+   "summary": "Knowing which of your services auditors are examining and whether your billing pattern stands out from peers. Medicare contractors choose review targets from claims data, so the practice should look at the same data first.",
+   "good_looks_like": [
+    "A one-page watch list names the services under review by the Medicare contractor, the Office of Inspector General (OIG) and recovery auditors, updated each quarter.",
+    "Each clinician's code mix is compared once a year with peers of the same specialty and setting, using Medicare's public data or a contractor's comparative report.",
+    "Every pattern that stands out has a written explanation tied to the patient population, or an audit that tested it.",
+    "The share of revenue from services on the watch list is known, and audit effort is weighted toward those services."
+   ],
+   "failure_modes": [
+    "The practice bills mostly the top code in a family, or only the complex version of a care-management code, and first learns it is an outlier from a review letter.",
+    "A clinician is enrolled under the wrong specialty, so the contractor's peer comparison makes ordinary billing look extreme.",
+    "A new service is added on a vendor's word that it is compliant. It is on the contractor's review list and nobody checked.",
+    "Code use shifts suddenly after new software, templates or an artificial intelligence (AI) scribe, and nobody notices for a year.",
+    "Peer data is used to push visit levels toward the average instead of toward what each note supports."
+   ],
+   "key_questions": [
+    "Which of your top ten services by revenue are on your Medicare contractor's review list or in the OIG work plan?",
+    "In how many code families is any clinician far above same-specialty peers with no written explanation?",
+    "What percent of revenue comes from services under active federal review?",
+    "Is each clinician's Medicare specialty designation correct?",
+    "When did you last compare your code mix with public Medicare data?"
+   ],
+   "actions": [
+    {
+     "action": "Keep a watch list of services under review",
+     "detail": "Each quarter read your Medicare contractor's targeted review topics, the approved recovery audit topics, the OIG work plan and Medicare's yearly improper payment report. Mark the ones you bill.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Compare each clinician's code mix with peers yearly",
+     "detail": "Use Medicare's public file of services by clinician, filtered to the same specialty, state and place of service. Ask your Medicare contractor for its comparative billing report where one is offered, as Florida's does through its portal.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Explain or audit every outlier",
+     "detail": "For each code family far from peers, write down why the patient mix justifies it, or pull ten charts and test it. Keep the memo. Never change levels just to look average.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Watch monthly for sudden shifts in code use",
+     "detail": "Chart the level distribution for each clinician every month. A jump after a template, software or staffing change needs a chart review that same month.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Check new services against the watch list before launch",
+     "detail": "Before adding a care-management, monitoring, testing or wound-care service, read the coverage rules and see whether it is under review. Audit ten charts after the first month.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice that bills Medicare, including small ones, since Medicare runs a low-volume version of its probe program. Facility-based practices carry more exposure: Medicare's 2025 sampling found 25% of payments improper for the top nursing facility visit code, 23% for the top hospital follow-up code and 65% for basic chronic care management.",
+   "vendor_refs": [
+    {
+     "item": "universal-specialty-billing-framework",
+     "note": "Suggests rating top procedure codes for audit risk and watching the OIG work plan and recovery audit topics. Names no data source for comparing with peers."
+    },
+    {
+     "item": "coding-audit-playbook",
+     "note": "Proposes screening each provider's visit-level distribution before opening charts. Its limits, within 10% of the norm and level 5 at 15% or less, have no source."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Notes that buyers compare each clinician's code distribution with benchmarks. A useful reminder, but it names no benchmark source."
+    }
+   ],
+   "sources": [
+    "cms-tpe",
+    "fcso-tpe",
+    "cms-cert-2025",
+    "oig-nh-workplan",
+    "oig-nh-audit-2026",
+    "cms-puf",
+    "cms-ffs-compliance",
+    "fcso-cbr-guide",
+    "oig-em-trends-2012",
+    "cfr-424-535"
+   ],
+   "evidence_note": "The Centers for Medicare & Medicaid Services states how contractors choose review targets, and error rates by service are measured (2025 report). No agency publishes the statistical threshold that triggers a review, so any outlier cutoff is the practice's own choice.",
+   "metrics": [
+    {
+     "slug": "cr-outlier-code-families",
+     "name": "Code families where the practice is a statistical outlier",
+     "definition": "Number of code families in which any clinician's share of top-level codes, or use of a service, is far outside same-specialty peers in the same setting with no written explanation on file.",
+     "formula": "Count of code families where a clinician exceeds the practice's written cutoff against same-specialty peers (for example the 90th percentile) with no explanation memo on file",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No public benchmark exists, because contractors do not publish thresholds. In a 2012 study the Office of Inspector General flagged physicians in the top 1% of their specialty who billed the two highest levels at least 95% of the time. Aim for zero unexplained.",
+     "confidence": "none",
+     "sources": [
+      "oig-em-trends-2012",
+      "cms-puf"
+     ],
+     "data_hint": "Twelve months of claims by clinician and code, set beside Medicare's public file for the same specialty and state.",
+     "vendor_claim": "The purchased coding audit playbook says each provider's level distribution should sit within 10% of the specialty norm, with level 5 visits at 15% or less.",
+     "vendor_verdict": "Unverifiable. No source or data is named for either limit, and no agency publishes such a threshold."
+    },
+    {
+     "slug": "cr-high-scrutiny-revenue-share",
+     "name": "Share of revenue from services under active federal scrutiny",
+     "definition": "Percent of collected revenue from services on the Medicare contractor's review list, in the Inspector General's work plan, on the approved recovery audit list, or with a measured improper payment rate above 10%.",
+     "formula": "Payments for services on the watch list in the last 12 months / total payments x 100",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "quarterly",
+     "benchmark_note": "No benchmark exists, and a high share is not wrong. The number measures exposure. Compare it with your own trend and size the audit sample to it. The watch list comes from contractor review topics, the work plan and Medicare's yearly improper payment report.",
+     "confidence": "none",
+     "sources": [
+      "cms-cert-2025",
+      "fcso-tpe",
+      "oig-nh-workplan"
+     ],
+     "data_hint": "Payments by procedure code for 12 months, tagged against the practice's watch list."
+    }
+   ]
+  },
+  {
+   "slug": "cr-overpayments",
+   "name": "Overpayments and self-disclosure",
+   "summary": "Money a payer paid that the practice was not entitled to keep. Federal law requires a Medicare or Medicaid overpayment to be reported and returned within 60 days of identifying it. Keeping it can turn a billing error into False Claims Act liability.",
+   "good_looks_like": [
+    "A written procedure says who decides whether an overpayment exists, how it is measured, and when the attorney is called.",
+    "Every possible overpayment gets a log entry the day it surfaces, with the date identified, the claims involved and the refund date.",
+    "Refunds reach the payer within 60 days of identification, or the file shows a good-faith review of related claims still inside the 180 days the rule allows.",
+    "When an error has a repeating cause, the review reaches back through earlier claims, up to the six-year lookback in 42 CFR 401.305.",
+    "Software and billing staff may flag credits and suspected overpayments, but a named person decides and signs off each one."
+   ],
+   "failure_modes": [
+    "An audit, a denial pattern or a staff concern shows an error and nobody starts the clock. Since 2025 the test is knowing receipt or retention, including reckless disregard.",
+    "Coding is corrected going forward and past claims are left alone. Money kept past the deadline becomes an obligation under the False Claims Act.",
+    "A simple billing error is sent to the Office of Inspector General (OIG) fraud disclosure protocol, where settlements start at $20,000. Routine refunds go to the payer instead.",
+    "The owner calls the payer or edits records before talking to a healthcare attorney, and a manageable refund becomes an investigation.",
+    "Automated rules offset or write off credit balances, so money owed back to a payer is never reviewed."
+   ],
+   "key_questions": [
+    "How many possible overpayment reviews are open today, and how old is the oldest?",
+    "For the last three overpayments found, how many days passed from identification to refund?",
+    "Is there a written rule for when to call a healthcare attorney?",
+    "Did your last audit findings lead to a review of earlier claims with the same cause?",
+    "Who reviews credit balances owed to payers, and how often?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page overpayment procedure",
+     "detail": "State who logs a concern, who decides, how the amount is measured, when counsel is called and which refund channel each payer uses. Include the 60-day and 180-day limits from 42 CFR 401.305.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Log every possible overpayment the day it surfaces",
+     "detail": "Record the source, date, claims, payer, amount, decision and refund date. Review open items every month. The log is the proof that the practice acted in time.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Choose the right channel before sending money",
+     "detail": "Simple errors go to the payer's refund or claim adjustment process. Possible kickback, false claim or excluded-person problems go to counsel, who can choose among the federal disclosure routes, including a Justice Department pilot open through April 22, 2027.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Call a healthcare attorney when a pattern appears",
+     "detail": "Call before contacting the government, changing records or questioning staff whenever the error repeats, involves a referral arrangement or could be seen as knowing. Counsel can direct the review. The OIG protocol generally requires at least 1.5 times the loss.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Measure the amount with a method you can explain",
+     "detail": "Review every affected claim when the number is small. If you sample, draw it at random and describe the method in the refund report, as 42 CFR 401.305 requires. The OIG protocol requires at least 100 items.",
+     "cadence": "per event",
+     "effort": "high",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice paid by Medicare or Medicaid. Medicare Advantage and commercial refunds follow the contract and state law (in Florida an insurer's overpayment demand is limited to 12 months), and facility-based practices should look first at stale skilled-stay or hospice status and visits billed under the wrong clinician.",
+   "vendor_refs": [
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Right that refunds are due in 60 days with a six-year lookback. Uses the pre-2025 trigger and wrongly places the rule in the False Claims Act."
+    },
+    {
+     "item": "coding-audit-playbook",
+     "note": "Describes the OIG disclosure protocol as the general way to repay. The protocol itself excludes matters that are only overpayments or errors."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Sends coding overpayments to Medicare's self-referral disclosure protocol, which handles only self-referral violations, and treats keeping the money as a choice."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Frames repayment as voluntary for significant amounts. Federal law makes it mandatory for any identified Medicare overpayment."
+    }
+   ],
+   "sources": [
+    "cfr-401-305",
+    "usc-42-1320a-7k",
+    "oig-sdp-2026",
+    "doj-fca-sdpp-2026",
+    "usc-31-3729",
+    "cfr-1003-200",
+    "fl-627-6131",
+    "fl-409-913"
+   ],
+   "evidence_note": "The 60-day duty, the knowledge standard, the 180-day investigation window and the six-year lookback are federal regulation (42 CFR 401.305, amended effective 2025). Protocol terms are from the October 2026 update. When to involve counsel is professional judgment.",
+   "metrics": [
+    {
+     "slug": "cr-open-overpayment-reviews",
+     "name": "Open potential overpayment reviews and their age",
+     "definition": "Number of logged potential overpayments not yet resolved by a refund or a documented finding of no overpayment, reported with the age in days of the oldest.",
+     "formula": "Count of open log entries. Age of the oldest = today's date - date first identified",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_best": "none older than 60 days",
+     "benchmark_red": "any open more than 180 days after first identified",
+     "benchmark_note": "From 42 CFR 401.305 (as amended, effective January 2025): return within 60 days of identifying, with the deadline suspended for at most 180 days during a timely, good-faith review of related claims. A legal limit, not a measured norm.",
+     "confidence": "high",
+     "sources": [
+      "cfr-401-305"
+     ],
+     "data_hint": "The overpayment log, plus the credit balance report for credits owed to payers."
+    },
+    {
+     "slug": "cr-refund-days",
+     "name": "Days from identifying an overpayment to refund",
+     "definition": "Days between the date an overpayment was identified and the date it was reported and returned to the payer, for each overpayment resolved in the period.",
+     "formula": "Refund date - identification date, for each overpayment. Report the longest and the median",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_best": "60 days or fewer, every time",
+     "benchmark_red": "over 60 days with no documented investigation or disclosure filing",
+     "benchmark_note": "42 CFR 401.305 sets 60 days for Medicare. The clock pauses during a good-faith investigation of related overpayments (at most 180 days) or after a filed self-disclosure. Regulation, not survey data. Other payers follow contract and state law.",
+     "confidence": "high",
+     "sources": [
+      "cfr-401-305"
+     ],
+     "data_hint": "Overpayment log dates matched to refund checks, claim adjustments or remittance offsets.",
+     "vendor_claim": "The purchased playbook on the self-referral and kickback laws sets 60 days or less from when the provider identified, or should have identified, the overpayment through reasonable diligence.",
+     "vendor_verdict": "Partly supported. Sixty days is right. The reasonable diligence trigger was replaced on January 1, 2025 by the False Claims Act knowledge standard."
+    }
+   ]
+  },
+  {
+   "slug": "cr-referral-laws",
+   "name": "Referral laws: Stark and Anti-Kickback",
+   "summary": "Two federal laws govern money and favors between a practice and anyone it sends patients to or receives them from: the physician self-referral law, known as Stark, and the Anti-Kickback Statute. Medical director pay is a common exposure for facility-based physicians.",
+   "good_looks_like": [
+    "A register lists every arrangement with a party the practice refers to or receives patients from: who, what for, pay terms, signed date, end date and last review.",
+    "Each paid role, such as a medical directorship, has a signed agreement, duties the facility really needs, pay set in advance at fair market value and a monthly time log.",
+    "Pay never moves with census, admissions, orders or referrals, in either direction.",
+    "Gifts and meals from hospitals, home health agencies, laboratories and similar entities are logged against the federal limit on non-cash items, $535 for 2026 and adjusted yearly.",
+    "A healthcare attorney reviewed each arrangement before it was signed or changed, and the review is on file."
+   ],
+   "failure_modes": [
+    "A medical director stipend is paid with no time records, or to more directors than the facility needs. Office of Inspector General (OIG) guidance tells nursing facilities to check both.",
+    "The agreement expired and the pay or duties then changed informally, so the arrangement no longer matches any written terms.",
+    "A facility, hospice or agency gives free staff, space, meals or equipment to a physician who sends it patients, or the physician gives free services to win referrals.",
+    "A vendor runs a service for the practice and is paid per patient or per order. The structure can reward volume and needs legal review before signing.",
+    "Medicare copays are waived as routine to win or keep patients. An OIG fraud alert says this can create false claims and kickback liability."
+   ],
+   "key_questions": [
+    "How many arrangements do you have with parties you refer to or receive patients from, and what percent are written, signed and current?",
+    "For each paid directorship, can you show last month's time log and how the rate was set?",
+    "Does any payment, discount or free service change with the number of patients referred or orders written?",
+    "What non-cash items did each physician receive this year from hospitals, agencies or laboratories, and what do they total?",
+    "When did a healthcare attorney last review these arrangements?"
+   ],
+   "actions": [
+    {
+     "action": "Build a register of every arrangement with a referral source",
+     "detail": "List directorships, call coverage, leases, loans, shared staff, vendor deals, free items and marketing pay. For each: parties, services, pay, signed agreement, end date, support for the rate and last review.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a signed time log for every paid role",
+     "detail": "Record date, hours and task each month and turn it in before payment. OIG guidance for nursing facilities asks for records made at the time, such as time logs.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Document how each rate was set",
+     "detail": "Keep the survey data, quotes or appraisal that support fair market value for the hours and duties. Add one paragraph on why the role is needed.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Review the register and renew agreements yearly",
+     "detail": "Check that each agreement is signed, still matches what is done and paid, and has not lapsed. Fix a missing signature fast: the self-referral rules allow 90 days (42 CFR 411.354).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Send new or changed arrangements to a healthcare attorney first",
+     "detail": "Do this before signing a directorship, a lease, a vendor deal paid by volume or anything with a hospital, facility, agency or laboratory. Use the practice's own counsel, not the other party's.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice with a financial tie to a party it refers to or receives patients from. Stark applies when that party bills Medicare for designated services such as hospital, home health, laboratory, imaging or therapy services, while the kickback law covers any federal program business and state laws such as Florida's reach all payers.",
+   "vendor_refs": [
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Best idea: a living register and a four-question screen before calling counsel. Wrong on per-use equipment leases, recruitment payments and who may use the in-office exception."
+    },
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Right to keep referral-source deals in signed agreements with fair market value support. Wrong that an owner's pay above survey levels is a Stark violation."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Lists referral arrangements as a buyer's diligence item. Speaks of Stark safe harbors, but safe harbors belong to the kickback law and Stark has mandatory exceptions."
+    },
+    {
+     "item": "physician-compensation-negotiation-guide",
+     "note": "Its glossary calls one pay survey the main reference for fair market value. The regulation defines it by arm's-length terms, not by any survey."
+    }
+   ],
+   "sources": [
+    "cfr-411-353",
+    "cfr-411-354",
+    "cfr-411-355",
+    "cfr-411-357",
+    "cfr-411-351",
+    "cfr-1001-952",
+    "usc-42-1320a-7b",
+    "oig-nf-icpg-2024",
+    "cms-stark-cpiu",
+    "oig-waiver-1994",
+    "fl-456-054",
+    "fl-817-505"
+   ],
+   "evidence_note": "Stark exceptions (42 CFR 411.357) are mandatory conditions for Medicare payment. Kickback safe harbors (42 CFR 1001.952) are optional protection under a criminal statute (42 U.S.C. 1320a-7b). Whether a given arrangement fits them is a legal judgment for counsel.",
+   "metrics": [
+    {
+     "slug": "cr-arrangements-documented",
+     "name": "Arrangements with referral sources that are written, current and supported",
+     "definition": "Share of arrangements with parties the practice refers to or receives patients from that have a signed agreement, terms matching actual practice, fair market value support and, for paid roles, time records.",
+     "formula": "Arrangements meeting all four tests / all arrangements on the register x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "100%",
+     "benchmark_red": "any paid arrangement unsigned after 90 days or lacking time records",
+     "benchmark_note": "The tests are conditions of the personal services exception (42 CFR 411.357) and safe harbor (42 CFR 1001.952), plus Office of Inspector General guidance (2024) on time logs. Legal conditions, not survey data. A missing writing can be cured within 90 days.",
+     "confidence": "high",
+     "sources": [
+      "cfr-411-357",
+      "cfr-1001-952",
+      "cfr-411-354",
+      "oig-nf-icpg-2024"
+     ],
+     "data_hint": "The arrangement register, the signed agreements and the monthly time logs.",
+     "vendor_claim": "The purchased playbook on these two laws wants every arrangement in a current signed agreement, lease rates rechecked within three years and physician pay benchmarked within two.",
+     "vendor_verdict": "Partly supported. Written, signed terms and fair market value are regulatory conditions. The two- and three-year recheck intervals are the vendor's own."
+    }
+   ]
+  },
+  {
+   "slug": "cr-hipaa",
+   "name": "Privacy and security of health information",
+   "summary": "The federal privacy, security and breach rules for patient information under the Health Insurance Portability and Accountability Act (HIPAA). For a small practice the work is concrete: a written risk analysis, signed vendor agreements, limited access, prompt answers to record requests and a breach plan.",
+   "good_looks_like": [
+    "A written security risk analysis lists where electronic patient information lives, the threats to it and the fixes chosen, and was updated in the last 12 months.",
+    "A vendor list shows every outside party that creates, receives, stores or sends patient data, each with a signed business associate agreement on file.",
+    "Each person and each software agent has its own login with only the access the role needs (the minimum necessary rule), and access ends the day someone leaves.",
+    "Record requests from patients and their representatives are logged and answered within 30 days.",
+    "A written breach plan names who assesses an incident, who notifies patients and regulators, and the deadlines."
+   ],
+   "failure_modes": [
+    "There is no risk analysis, or only one from the year the record system was installed. The Security Rule requires one that is accurate and thorough (45 CFR 164.308).",
+    "Patient data is pasted into an artificial intelligence (AI) tool, a texting app or a cloud drive whose vendor never signed a business associate agreement.",
+    "A statement, fax or email goes to the wrong person and is handled as a service problem. Nobody assesses whether it is a reportable breach.",
+    "A billing vendor is breached and the practice learns weeks later. If the vendor acts as its agent, the 60-day notice clock may have started when the vendor knew.",
+    "A family member or legal representative waits months for records. The rule allows 30 days, plus one 30-day extension if the reason is given in writing."
+   ],
+   "key_questions": [
+    "How many months since your written security risk analysis was last done or updated?",
+    "What percent of vendors that handle patient data have a signed business associate agreement on file?",
+    "Is any login shared by two people, or by a person and a software agent?",
+    "How many record requests did you receive last year, and how many were answered within 30 days?",
+    "If a vendor told you today that it was breached, who does what in the first week?"
+   ],
+   "actions": [
+    {
+     "action": "Do or update the security risk analysis every year",
+     "detail": "The free federal Security Risk Assessment Tool is built for small and medium practices. List systems, devices, vendors and AI tools. Write down each risk and the decision taken. Redo it after any system change.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "List every vendor that touches patient data",
+     "detail": "Include billing and clearinghouse, record system, cloud storage, email, texting, e-signature, transcription and AI vendors. No signed business associate agreement, no data. Florida also requires offsite patient data to stay in the continental United States, its territories or Canada.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Give every user and software agent its own login",
+     "detail": "The Security Rule requires unique user identification (45 CFR 164.312). Remove access the day a person or vendor leaves. Review the full user list every quarter.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Log record requests and answer within 30 days",
+     "detail": "Record the date received, who asked and their authority, and the date delivered. Fees may cover only copying labor, supplies and postage. Send a written notice if you need the one 30-day extension.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write a breach plan and rehearse it once",
+     "detail": "Name who assesses an incident, the 60-day federal deadline to notify patients and your state's deadline, which may be shorter (30 days in Florida). Require vendors by contract to tell you within days.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice that bills electronically. Facility-based practices hold little paper but carry phones, laptops and remote logins into many buildings and rely on vendors, so device and vendor controls matter most, and sharing records with a facility for treatment needs no business associate agreement.",
+   "vendor_refs": [
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Useful six-part self-audit and vendor inventory. Wrong that agreements signed before 2013 are automatically void and that a risk analysis is already required every year."
+    },
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Its method for choosing billing technology never mentions business associate agreements or security terms. Add both to any contract review."
+    },
+    {
+     "item": "telehealth-revenue-cycle-playbook",
+     "note": "Mentions a compliant video platform and a business associate agreement for telehealth vendors, with no detail on what the agreement must say."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Says claim records must be kept six years under 45 CFR 164.316. That section covers security policies and documentation, not medical records."
+    }
+   ],
+   "sources": [
+    "cfr-164-308",
+    "cfr-164-312",
+    "cfr-164-316",
+    "cfr-164-502",
+    "cfr-164-504",
+    "cfr-160-103",
+    "cfr-164-404",
+    "cfr-164-524",
+    "cfr-164-530",
+    "hhs-hipaa-security-nprm-2025",
+    "reginfo-hipaa-security-2026",
+    "cfr-414-1375",
+    "onc-sra-tool",
+    "fl-501-171",
+    "fl-408-051"
+   ],
+   "evidence_note": "The duties are federal regulation (45 CFR parts 160 and 164). A 12-month risk analysis interval is not in the current rule. It comes from a 2025 proposal still pending in November 2026 and from Medicare's quality program. State breach deadlines vary.",
+   "metrics": [
+    {
+     "slug": "cr-risk-analysis-age",
+     "name": "Months since the last security risk analysis",
+     "definition": "Months since the practice last completed or updated a written analysis of risks to electronic patient information, covering all systems, devices and vendors.",
+     "formula": "Today's date - date of the last completed or updated written risk analysis, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_best": "12 months or less",
+     "benchmark_red": "never done, or not updated after a system change",
+     "benchmark_note": "45 CFR 164.308 requires the analysis but sets no interval. Clinicians reporting Medicare's Promoting Interoperability category must do it each calendar year (42 CFR 414.1375). A January 2025 federal proposal for a 12-month rule was still pending in November 2026.",
+     "confidence": "medium",
+     "sources": [
+      "cfr-164-308",
+      "cfr-414-1375",
+      "hhs-hipaa-security-nprm-2025",
+      "reginfo-hipaa-security-2026"
+     ],
+     "data_hint": "The dated risk analysis document and the list of decisions that came out of it.",
+     "vendor_claim": "The purchased privacy playbook says current federal guidance already requires a risk analysis at least annually and before any new billing system.",
+     "vendor_verdict": "Partly supported. The rule requires an analysis, kept current. A fixed 12-month interval exists only in the 2025 proposal and in Medicare's quality program."
+    },
+    {
+     "slug": "cr-baa-coverage",
+     "name": "Vendors handling patient data with a signed business associate agreement",
+     "definition": "Share of outside vendors that create, receive, store or transmit patient information for the practice that have a signed business associate agreement on file.",
+     "formula": "Vendors with a signed agreement on file / all vendors handling patient information x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "100%",
+     "benchmark_red": "any vendor holding patient data with no signed agreement",
+     "benchmark_note": "Required by 45 CFR 164.502 and 164.308. A provider that receives records for treatment is not a business associate (45 CFR 160.103). This is a legal requirement, not a measured norm.",
+     "confidence": "high",
+     "sources": [
+      "cfr-164-502",
+      "cfr-164-308",
+      "cfr-164-504",
+      "cfr-160-103"
+     ],
+     "data_hint": "The vendor inventory matched to signed agreements in the contract folder.",
+     "vendor_claim": "The purchased privacy playbook sets a target of all vendors and says any agreement signed before January 25, 2013 is non-compliant.",
+     "vendor_verdict": "Partly supported. Full coverage is the rule. Whether an agreement complies depends on what it says, not on the date it was signed."
+    },
+    {
+     "slug": "cr-access-request-days",
+     "name": "Days to fulfill a patient record request",
+     "definition": "Days from receiving a request for records from a patient or personal representative to providing the records or a written denial.",
+     "formula": "Date fulfilled - date received, for each request. Report the longest and the share within 30 days",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_best": "30 days or fewer for every request",
+     "benchmark_red": "any request past 30 days without a written extension notice",
+     "benchmark_note": "45 CFR 164.524 allows 30 days, plus one 30-day extension with written notice of the reason. State law can be stricter: Florida requires copies in a timely manner without delays for legal review. Regulation, not survey data.",
+     "confidence": "high",
+     "sources": [
+      "cfr-164-524",
+      "fl-456-057"
+     ],
+     "data_hint": "The record request log.",
+     "vendor_claim": "The purchased privacy playbook gives 30 days, or 60 with one written extension notice sent inside the first 30.",
+     "vendor_verdict": "Supported by 45 CFR 164.524."
+    }
+   ]
+  },
+  {
+   "slug": "cr-exclusion-licensure",
+   "name": "Exclusion screening, licensure and supervision",
+   "summary": "Proof that everyone who works for the practice may lawfully do so: nobody is excluded from federal health programs, every license and registration is current, and advanced practice clinicians work under the supervision or collaboration terms their state requires.",
+   "good_looks_like": [
+    "Every employee, clinician, contractor and key vendor is checked against the federal exclusion list each month, and a dated result is kept.",
+    "One calendar holds every expiration date: state licenses, Drug Enforcement Administration (DEA) registration, board certification, malpractice policy, Medicare revalidation and facility privileges.",
+    "Renewals are filed at least 30 days before expiration, and the new document is saved the day it arrives.",
+    "Each nurse practitioner or physician assistant has the written protocol or collaboration agreement the state requires, signed, current and kept where the state says.",
+    "Medicare and health plans are told of a license action or other adverse action within their deadlines."
+   ],
+   "failure_modes": [
+    "Exclusion is checked only at hire. In 2025 a solo Florida practitioner paid about $41,700 to settle with the Office of Inspector General (OIG) over an excluded receptionist.",
+    "Billing, coding or staffing vendors are never screened, and the practice has no proof that the vendor screens its own staff.",
+    "A license or DEA registration lapses for a few weeks. Federal programs do not pay for services provided by an unlicensed person, so claims in the gap are at risk.",
+    "A nurse practitioner works without the signed protocol the state requires, or the physician never filed the required notice with the licensing board.",
+    "Medicare is not told of a license restriction or other adverse action within 30 days, which is itself a ground for revoking enrollment (42 CFR 424.535)."
+   ],
+   "key_questions": [
+    "In how many of the last 12 months was a documented exclusion check done for everyone?",
+    "Does the check include contractors, billing and coding vendors and temporary staff?",
+    "How many days until the next license, registration or certification expires, and is the renewal filed?",
+    "Does every advanced practice clinician have a current signed protocol or collaboration agreement on file?",
+    "Who gets the alert when a license is about to expire?"
+   ],
+   "actions": [
+    {
+     "action": "Screen everyone against the exclusion list monthly",
+     "detail": "Search the OIG exclusion list, which is updated monthly, for every employee, clinician and contractor. Add your state Medicaid list. Save a dated screenshot or report each time.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Get proof that vendors screen their own people",
+     "detail": "Ask billing, coding and staffing vendors for written confirmation of monthly screening, or screen their assigned staff yourself. OIG recommends checking that a contractor really does it.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Put every expiration date on one calendar",
+     "detail": "Licenses, DEA registration (three-year term), board certification, laboratory waiver certificate (two years), malpractice policy, Medicare revalidation, plan credentialing and privileges. Set alerts at 90, 60 and 30 days.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Check supervision paperwork for each advanced practice clinician",
+     "detail": "Confirm each protocol or collaboration agreement is signed, current and meets state law. Medicare covers nurse practitioner services only when collaboration with a physician meets state law (42 CFR 410.75). Florida physicians must notify their board within 30 days.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Report adverse actions and changes on time",
+     "detail": "Medicare requires notice within 30 days of an adverse legal action or a change of practice location, and within 90 days for other changes (42 CFR 424.516). Check each plan contract too.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. No federal rule sets a screening frequency, but monthly is the Inspector General's recommendation, and supervision of nurse practitioners and physician assistants is state law (Florida requires a written protocol unless the nurse practitioner is registered for autonomous practice), with each hospital and facility adding its own credentialing.",
+   "vendor_refs": [
+    {
+     "item": "credentialing-and-re-credentialing-management-playbook",
+     "note": "Good single calendar for license, DEA, malpractice and certification dates, with monthly exclusion checks and a dated log. Limits screening to providers and says renewal changes the license number."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Recommends checks before engagement and monthly after. Overstates the rule as a ban on employment and leaves ordinary employees out of the screening."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Lists exclusion screening records among the documents a buyer will ask for. Gives no method."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Suggests billing a new clinician under a supervising provider's number while enrollment is pending. Medicare allows that only in narrow cases, and incident-to billing does not exist in facilities."
+    }
+   ],
+   "sources": [
+    "oig-exclusion-bulletin-2013",
+    "cfr-1001-1901",
+    "cfr-1003-200",
+    "oig-gcpg",
+    "oig-cmp-excluded-2025",
+    "oig-sdp-page-2026",
+    "cfr-1301-13",
+    "cfr-493-37",
+    "cfr-410-75",
+    "cfr-424-516",
+    "cfr-424-535",
+    "fl-464-012",
+    "fl-458-348",
+    "fl-464-0123",
+    "fl-458-319"
+   ],
+   "evidence_note": "The effect of exclusion is federal regulation (42 CFR 1001.1901). Monthly screening is an Inspector General recommendation (2013), not a federal mandate. License terms and supervision rules are state law. The Florida examples were read in the 2026 statutes.",
+   "metrics": [
+    {
+     "slug": "cr-exclusion-screens-done",
+     "name": "Months in the last 12 with a documented exclusion screen",
+     "definition": "Number of the last 12 months in which every employee, clinician and in-scope contractor was checked against the federal exclusion list, with a dated record kept.",
+     "formula": "Count of months, out of the last 12, with a dated screening record covering the full roster",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "12 of 12",
+     "benchmark_red": "checked only at hire, or no dated record",
+     "benchmark_note": "The Office of Inspector General's 2013 bulletin says monthly screening best limits overpayment and penalty liability, because the list is updated monthly. It also says no statute or regulation sets a frequency. A recommendation, not a measured norm.",
+     "confidence": "medium",
+     "sources": [
+      "oig-exclusion-bulletin-2013",
+      "oig-gcpg"
+     ],
+     "data_hint": "Saved search results from the exclusion database, or a screening vendor's monthly report, matched to the roster.",
+     "vendor_claim": "The purchased credentialing playbook says monthly exclusion screening of every provider is not optional.",
+     "vendor_verdict": "Partly supported. Monthly is the federal recommendation, not a mandate, and it should cover all staff and contractors, not only providers."
+    },
+    {
+     "slug": "cr-days-to-next-expiration",
+     "name": "Days to the nearest license or registration expiration with no renewal filed",
+     "definition": "Days until the earliest expiration among all licenses, registrations, certifications and required policies for which a renewal has not yet been filed.",
+     "formula": "Earliest expiration date among items with no renewal filed - today's date",
+     "unit": "days",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No public benchmark was found. Set a floor from first principles: file every renewal at least 30 days ahead. The Drug Enforcement Administration accepts renewals up to 60 days before expiration (21 CFR 1301.13). Zero or less means a lapsed credential.",
+     "confidence": "none",
+     "sources": [
+      "cfr-1301-13"
+     ],
+     "data_hint": "The expiration calendar or credentialing tracker."
+    }
+   ]
+  },
+  {
+   "slug": "cr-patient-notices",
+   "name": "Patient consent and required notices",
+   "summary": "The consents and notices that must exist before certain services are billed or certain patients are charged: consent for care-management programs, Medicare's notice of likely non-coverage, cost estimates for self-pay patients, the privacy notice and, in many states, consent for telehealth.",
+   "good_looks_like": [
+    "Every patient in a care-management program has consent documented before the first claim, showing what was explained and that the patient agreed.",
+    "Medicare's Advance Beneficiary Notice is used only for Original Medicare patients, before the service, for a specific service expected to be denied.",
+    "Uninsured and self-pay patients are told they can have a written cost estimate, and scheduled patients receive one within the federal deadlines.",
+    "Each new patient is given the privacy notice at the first visit, and the signed acknowledgment, or the reason it was not obtained, is on file.",
+    "When a patient cannot decide, consent comes from the person with legal authority, and the record names that person."
+   ],
+   "failure_modes": [
+    "Care management is billed with no consent or time record. Medicare's sampling found 65% of payments for the basic chronic care management code improper, all for missing or insufficient documentation.",
+    "The Advance Beneficiary Notice is handed out as routine paperwork, which Medicare treats as invalid, or is given to Medicare Advantage members, where it does not apply.",
+    "A patient with both Medicare and Medicaid signs the notice and is billed before both programs have processed the claim, which the form instructions forbid.",
+    "Consent is recorded for a facility resident who cannot make decisions, with no note of which representative agreed.",
+    "Telehealth visits carry no consent note in a state that requires one. Most states have some telehealth consent rule, though Florida's telehealth statute has none."
+   ],
+   "key_questions": [
+    "What percent of patients enrolled in care management have documented consent dated before the first billed month?",
+    "How many Advance Beneficiary Notices were issued last year, and were any given to Medicare Advantage or dual-eligible patients?",
+    "Do self-pay patients receive a written estimate within one to three business days of scheduling?",
+    "Is the privacy notice given at the first visit, with the acknowledgment on file?",
+    "Does your consent template record who consented and under what authority?"
+   ],
+   "actions": [
+    {
+     "action": "Use one consent script for care management",
+     "detail": "Tell the patient the service exists, that cost sharing may apply, that only one practitioner can bill it each month and that they can stop at any time. Verbal consent counts if the note records it.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Check consent before each month's care-management claims",
+     "detail": "Run the list of enrolled patients against documented consent before billing. Hold any claim without it. Get new consent when a patient changes care-management practitioner.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write a one-page rule for the Medicare non-coverage notice",
+     "detail": "Original Medicare only. Before the service, never in an emergency. A specific service and reason. The patient picks the option. No Medicare number on the form. Keep the signed copy five years.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Offer and deliver good-faith estimates to self-pay patients",
+     "detail": "Federal deadlines: 1 business day when scheduled at least 3 business days ahead, 3 business days when scheduled at least 10 ahead or on request. A bill $400 or more over the estimate can be disputed.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review all notice and consent forms once a year",
+     "detail": "Check the expiration date printed on the Medicare form, the privacy notice against current rules, your state's telehealth consent rule and the care-management script against Medicare's current booklet.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Care-management consent applies to any practice billing those codes, while the Medicare notice and self-pay estimates matter most in office and procedural practices (Medicare and Medicaid patients are not self-pay for the estimate rule). With no front desk, the clinician or care manager gives the privacy notice and takes consent at the bedside or by phone, often from a representative.",
+   "vendor_refs": [
+    {
+     "item": "medicare-abn-compliance-playbook",
+     "note": "Useful idea: build a trigger list from your own denials. Wrong to print the Medicare number on the form and to say one notice cannot cover a course of treatment."
+    },
+    {
+     "item": "no-surprises-act-playbook",
+     "note": "Its timing table for estimates matches the rule. Its penalty tables multiply the statutory maximum by every self-pay patient, which is a scare figure, not enforcement data."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Says care-management consent must be written. Medicare accepts verbal consent documented in the record. Right that new consent is needed after a change of practitioner."
+    },
+    {
+     "item": "radiologylab-companion-guide",
+     "note": "Tells staff to use the Medicare notice for Medicare Advantage patients as well. The notice applies to Original Medicare only."
+    }
+   ],
+   "sources": [
+    "cms-mln-ccm",
+    "cms-cert-2025",
+    "cms-cpm-ch30",
+    "cms-abn-instructions",
+    "cms-abn",
+    "cfr-149-610",
+    "cfr-45-149-620",
+    "cfr-164-520",
+    "cchp-telehealth-consent-2026",
+    "fl-456-47"
+   ],
+   "evidence_note": "Consent elements come from Medicare's care-management booklet (June 2025). Notice rules come from the Medicare claims manual, chapter 30, and the form instructions. Estimate deadlines are federal regulation (45 CFR 149.610). Telehealth consent is state law and varies.",
+   "metrics": [
+    {
+     "slug": "cr-consent-on-file-rate",
+     "name": "Enrolled care-management patients with documented consent",
+     "definition": "Share of patients billed for chronic care management or a similar monthly program whose record shows consent, with the required explanations, dated before the first billed month.",
+     "formula": "Patients with documented consent dated before first billing / all patients billed for care management in the period x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "100%",
+     "benchmark_red": "any billed month without consent on file",
+     "benchmark_note": "Required by Medicare (booklet MLN909188, June 2025). Measured reality is poor: the Centers for Medicare & Medicaid Services found 65.2% of payments for code 99490 improper in its 2025 report, mostly for insufficient documentation of every kind, not consent alone.",
+     "confidence": "high",
+     "sources": [
+      "cms-mln-ccm",
+      "cms-cert-2025"
+     ],
+     "data_hint": "Care-management enrollment list matched to a consent field or note in the record.",
+     "vendor_claim": "The purchased geriatrics guide says written consent must be on file before chronic care management starts.",
+     "vendor_verdict": "Partly supported. Consent before billing is required. It may be verbal if documented, so written consent is not required."
+    }
+   ]
+  },
+  {
+   "slug": "cr-audit-response",
+   "name": "Payer audits and record requests",
+   "summary": "What happens when a payer or its contractor asks for records: who may ask, how long the practice has, what a missed deadline costs and how to appeal. A late or incomplete response is treated the same as a wrong claim.",
+   "good_looks_like": [
+    "Every record request is logged the day it arrives, with the sender, the claims, the due date and the person responsible.",
+    "Medicare's mailing address for medical review letters is current, and someone opens mail and portal messages every business day.",
+    "Each response goes out before the deadline with the request letter on top, the signed note, orders, time records, consent and anything else the claim relies on.",
+    "A calendar holds the appeal deadline for every denial or repayment demand that follows a review.",
+    "Records are kept at least as long as payers can look back: six years for Medicare overpayments, seven for orders and certifications, ten for Medicare Advantage."
+   ],
+   "failure_modes": [
+    "The letter goes to an old address or sits unopened. Medicare may deny the claim for no response (42 CFR 405.930), and missing records count as errors in federal sampling.",
+    "Records are sent without the signature, time statement or order that supports the code. Insufficient documentation is the largest error category in Medicare's sampling.",
+    "Notes are rewritten or completed after the request arrives, which can turn a payment question into a fraud referral.",
+    "A targeted review fails three rounds. The Centers for Medicare & Medicaid Services (CMS) says next steps can include review of every claim before payment, extrapolation or a recovery auditor.",
+    "The appeal deadline passes while the practice argues by phone. Medicare can begin taking the money back 41 days after the demand letter (42 CFR 405.379)."
+   ],
+   "key_questions": [
+    "How many record requests arrived in the last 12 months, and what percent were answered before the deadline?",
+    "Who receives review letters, and is the Medicare correspondence address current?",
+    "What percent of reviewed claims were denied or reduced?",
+    "Do you know the appeal deadline for each open denial or repayment demand?",
+    "Which Medicare Advantage and commercial contracts set audit lookback and response times, and what are they?"
+   ],
+   "actions": [
+    {
+     "action": "Log every record request with its due date",
+     "detail": "Medicare contractors allow 45 calendar days. Program integrity contractors allow 30 (42 CFR 405.903 and 405.929). Plan requests follow the contract. Work to an internal date one week earlier.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Send a complete, indexed packet",
+     "detail": "Put the request letter first. Include the signed and dated note, orders, time logs, consent, care plan and any earlier notes the visit relies on. Use a tracked method and keep a copy.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Never rewrite a note after a request arrives",
+     "detail": "If something is missing, add a late entry that is clearly marked, dated and signed, or explain in a cover letter. Medicare's review manual expects the date and author of any amendment to be identifiable.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Appeal on the calendar, not by phone",
+     "detail": "Medicare allows 120 days to request redetermination and 180 for the next level. A valid request received before day 41 after a demand letter stops recoupment while it is decided. Interest still runs.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Debrief every audit and fix the cause",
+     "detail": "Record the outcome by error type. Change the template, rule or training that caused it. Ask whether similar claims outside the sample were overpaid and need a refund.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice, with volume set by payer mix: Medicare contractors, recovery auditors and program integrity contractors for fee-for-service, and plan audits for Medicare Advantage, where contracts must allow federal access to records for 10 years. Facility-based practices must be able to obtain the facility's own records, such as orders and census, to support their notes.",
+   "vendor_refs": [
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Sound basics: log the letter the day it arrives and make the billing vendor's turnaround a contract term. Gives no federal deadlines or appeal rights."
+    },
+    {
+     "item": "orthopedics-companion-guide",
+     "note": "Offers a readiness routine: a named response team, deadlines and a lawyer identified in advance. Its coding examples contain errors, so use the routine only."
+    },
+    {
+     "item": "coding-audit-playbook",
+     "note": "Names recovery auditors and commercial reviews but leaves out targeted probe and educate, program integrity contractors and Medicare's error-rate sampling."
+    },
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "Warns that plans audit after paying. Omits the federal rule that a prior-authorized service cannot later be denied for medical necessity without good cause or fraud."
+    }
+   ],
+   "sources": [
+    "cms-adr",
+    "cfr-405-903",
+    "cms-tpe",
+    "cfr-405-942",
+    "cfr-405-962",
+    "cfr-405-379",
+    "cfr-405-378",
+    "cms-cert-2025",
+    "cms-pim-ch3",
+    "cfr-401-305",
+    "cfr-424-516",
+    "cfr-422-504",
+    "cfr-422-138",
+    "cfr-422-311",
+    "cfr-1003-200"
+   ],
+   "evidence_note": "Response times, denial for no response, appeal deadlines and the limit on recoupment are federal regulation (42 CFR part 405). The probe program's rounds are described by CMS (2026). Medicare Advantage and commercial audit terms come from each contract.",
+   "metrics": [
+    {
+     "slug": "cr-record-requests-on-time",
+     "name": "Record requests answered before the deadline",
+     "definition": "Share of payer and contractor requests for records due in the period that were answered completely on or before the due date.",
+     "formula": "Requests answered on or before the due date / all requests due in the period x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_best": "100%",
+     "benchmark_red": "any request missed",
+     "benchmark_note": "The deadlines are regulation: 45 calendar days for Medicare contractors and 30 for program integrity contractors (42 CFR 405.903 and 405.929), after which the claim may be denied (405.930). No survey of practice response rates was found.",
+     "confidence": "high",
+     "sources": [
+      "cfr-405-903",
+      "cms-adr"
+     ],
+     "data_hint": "The record request log: date received, due date and date sent."
+    },
+    {
+     "slug": "cr-review-denial-rate",
+     "name": "Claims denied or reduced on payer review",
+     "definition": "Share of claims pulled for prepayment or post-payment medical review in the period that the reviewer denied or reduced, counted before appeals.",
+     "formula": "Reviewed claims denied or reduced / all claims with a completed review in the period x 100",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No public pass mark was found. The page on targeted review from the Centers for Medicare & Medicaid Services states no error rate that ends a round, so ask your contractor. Its national sampling found 10.1% improper payments on visit codes (2025 report).",
+     "confidence": "none",
+     "sources": [
+      "cms-tpe",
+      "cms-cert-2025"
+     ],
+     "data_hint": "Review result letters and the record request log, totaled by reviewer and by error type."
+    }
+   ]
+  },
+  {
+   "slug": "cr-facility-rules",
+   "name": "Setting-specific rules for facility-based care",
+   "summary": "Nursing homes and hospitals work under federal rules that bind the facility but depend on the physician: required visits, who may make them, orders, certifications and timely records. A practice that misses them risks the facility's survey results and its own place there.",
+   "good_looks_like": [
+    "Every nursing home resident on the panel has a due date for the next required visit, and the list is reviewed every week.",
+    "In a skilled nursing facility the physician personally does the first comprehensive visit. Later required visits alternate with a nurse practitioner only as the rule allows.",
+    "Notes for required visits review the whole program of care and are signed and dated, orders are signed, and pharmacist reports of drug irregularities are answered in the record.",
+    "For hospital work, privileges are current and the bylaw deadlines for histories, order signatures and record completion are known and met.",
+    "A paid medical director has a signed agreement, a monthly time log and a seat on the facility's quality committee."
+   ],
+   "failure_modes": [
+    "A required visit is more than 10 days late, or is done by a nurse practitioner when the rule requires the physician. That is a deficiency for the facility.",
+    "A nurse practitioner employed by the facility does required visits in a nursing facility. The state option covers only practitioners who are not facility employees.",
+    "A required visit is done by video. Medicare's claims manual says federally required nursing facility visits may not be furnished by telehealth.",
+    "Stable residents are seen by habit. Medicare does not pay for visits made for facility or administrative purposes, and a 2026 federal audit found 24 of 60 sampled visits unnecessary.",
+    "Hospital records are finished late. Federal rules require a history and physical within 24 hours of admission and completed records within 30 days of discharge."
+   ],
+   "key_questions": [
+    "What percent of required nursing home visits last quarter were done within the allowed window by a clinician allowed to do them?",
+    "For each skilled nursing admission, did the physician personally do the first comprehensive visit?",
+    "Does your state let nurse practitioners who are not facility employees do required visits in nursing facilities, and do you have that in writing?",
+    "How many pharmacist recommendations or record deficiencies are waiting for a physician response today?",
+    "For each medical directorship, is there a signed agreement and a time log for last month?"
+   ],
+   "actions": [
+    {
+     "action": "Track required visit due dates for every resident",
+     "detail": "Count from the admission date: a physician visit at least every 30 days for the first 90 days, then at least every 60 (42 CFR 483.30). A visit is on time up to 10 days after it was due.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Mark each resident as skilled stay or long-term stay",
+     "detail": "The delegation rules and the place of service code both depend on it. Recheck whenever a Medicare Part A stay starts or ends. Keep a current census feed from each facility.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write down who may do which visit in each state",
+     "detail": "Skilled nursing facility: the physician does the initial comprehensive visit, then may alternate. Nursing facility: nurse practitioners not employed by the facility may do required visits only if the state allows. Confirm with the state survey agency.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Clear facility paperwork on every visit day",
+     "detail": "Sign orders, answer pharmacist reviews, complete skilled-care certifications (first recertification by day 14, then every 30 days) and re-evaluate as-needed psychotropic orders before their 14 days run out.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Keep a duties list and time log for each directorship",
+     "detail": "Federal rules make the medical director responsible for resident care policies and for coordinating medical care (42 CFR 483.70). Log meetings, policy reviews and quality committee work every month.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Practices that see patients in nursing homes, skilled nursing units, hospitals, assisted living or at home, while office-only practices can skip most of it. Assisted living has no federal visit schedule, but states set their own rules: Florida requires a medical examination within 60 days before or 30 days after admission.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Covers nursing facility code families and a quarterly place-of-service check. Says nothing about the required visit schedule, delegation limits or medical director duties."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Discusses medical director agreements only for hospitals and calls the safe harbor mandatory. Useful for its written-agreement checklist, not for facility duties."
+    },
+    {
+     "item": "telehealth-revenue-cycle-playbook",
+     "note": "Says frequency limits on telehealth nursing facility follow-up visits ended in 2026. Does not say that federally required visits must still be in person."
+    }
+   ],
+   "sources": [
+    "cfr-483-30",
+    "cms-cpm-ch12",
+    "cfr-483-70",
+    "cfr-483-75",
+    "cfr-483-45",
+    "cfr-424-20",
+    "cfr-482-22",
+    "cfr-482-24",
+    "oig-nf-icpg-2024",
+    "oig-nh-audit-2026",
+    "fl-429-26"
+   ],
+   "evidence_note": "The visit schedule, delegation limits, drug review and certification timing are federal regulation (42 CFR parts 424, 482 and 483) and the Medicare claims manual, chapter 12. State choices on nurse practitioner visits vary and must be checked state by state.",
+   "metrics": [
+    {
+     "slug": "cr-required-visits-on-time",
+     "name": "Required facility visits done on time by an allowed clinician",
+     "definition": "Share of federally required nursing home visits due in the period that were done within 10 days of the due date by a clinician the rule allows for that visit.",
+     "formula": "Required visits done on time by an allowed clinician / required visits due in the period x 100",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "100%",
+     "benchmark_red": "any visit over 10 days late or by the wrong clinician",
+     "benchmark_note": "42 CFR 483.30: every 30 days for the first 90 days after admission, then every 60. A visit is timely up to 10 days after it was due. It is a federal requirement on the facility. No national rate of missed visits was found.",
+     "confidence": "high",
+     "sources": [
+      "cfr-483-30",
+      "cms-cpm-ch12"
+     ],
+     "data_hint": "Facility census with admission dates, matched to visit dates and the clinician on each note."
+    }
+   ]
+  },
+  {
+   "slug": "cr-insurance",
+   "name": "Malpractice and business insurance",
+   "summary": "The policies that keep one bad event from ending the practice: professional liability with the right limits and tail coverage, cyber, general liability and property, workers' compensation, employment practices, defense of billing audits, and cover for the owner's death or disability.",
+   "good_looks_like": [
+    "One schedule lists every policy with carrier, limits, deductible, premium, renewal date and whether it is claims-made or occurrence.",
+    "The owner knows the retroactive date of each claims-made malpractice policy, who pays for tail coverage when a clinician leaves and when the carrier waives it.",
+    "Malpractice limits meet the highest requirement among state law, hospital bylaws, facility contracts and health plan contracts.",
+    "Cyber coverage is in place, and the security conditions stated in the application are actually met.",
+    "The whole program is reviewed with a broker once a year and whenever the practice adds a clinician, site, service or major vendor."
+   ],
+   "failure_modes": [
+    "A claims-made policy is cancelled or the carrier is changed with no tail or prior-acts coverage, leaving past care uninsured.",
+    "A nurse practitioner or a new service is never added to the policy, and the gap is found only when a claim arrives.",
+    "No cyber coverage and no tested recovery plan. In a 2026 Medical Group Management Association poll, only 19% of practice leaders were very confident of recovering quickly from a cyberattack.",
+    "Nobody has checked whether any policy pays legal costs for a billing audit, a licensing complaint or a privacy investigation, until the letter arrives.",
+    "The owner cannot work for six months, and there is no disability, overhead or key-person cover to pay staff and rent."
+   ],
+   "key_questions": [
+    "How many months since all policies were reviewed together with a broker?",
+    "Is each malpractice policy claims-made or occurrence, and what would tail coverage cost today?",
+    "Do your limits meet every hospital, facility and plan contract requirement?",
+    "Which policy, if any, pays legal costs for a billing audit, a licensing complaint or a privacy breach?",
+    "If the owner could not work for 90 days, what would pay the fixed costs?"
+   ],
+   "actions": [
+    {
+     "action": "Build a one-page insurance schedule",
+     "detail": "List every policy: type, carrier, limits, deductible, premium, renewal date, who is covered and claims-made or occurrence. Put the requirements from hospitals, facilities and plans beside the limits.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Review the whole program with a broker yearly",
+     "detail": "Cover new clinicians, sites, services and vendors, and ask what is excluded. Prices vary: Florida's 2025 report shows filed family physician rates at $1 million limits from about $19,300 to $53,000 by carrier and territory.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Get the tail terms in writing",
+     "detail": "Ask each malpractice carrier for the retroactive date, today's tail price, and when tail is waived for death, disability or retirement. The retirement waiver often requires a minimum age and years insured.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Ask what covers audits, breaches and employment claims",
+     "detail": "Request written answers on billing audit and regulatory defense, cyber and breach response, employment practices and employee theft. Buy or decline each on purpose, not by default.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Check the coverage the law requires",
+     "detail": "Workers' compensation is state law: Florida requires it for non-construction employers with four or more employees. A retirement plan needs a fidelity bond of at least 10% of plan funds handled (29 CFR 2580.412-11).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice, scaled to size. Facility-based practices need little property cover but must meet each hospital's and facility's malpractice requirements, and state law sets the floor: Florida requires $100,000 per claim, or $250,000 with hospital privileges, or an approved alternative.",
+   "vendor_refs": [
+    {
+     "item": "physician-compensation-negotiation-guide",
+     "note": "Suggests a table of who pays for tail coverage under each way a clinician can leave. Its tail price ranges have no source, and it never mentions prior-acts coverage."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Tells owners to price tail coverage early. Its account of how a claims-made policy responds is muddled, and its cost range has no source."
+    },
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Covers breach response but never mentions cyber insurance. Nothing in the purchased library covers cyber, workers' compensation or employment practices coverage for the practice itself."
+    }
+   ],
+   "sources": [
+    "aaa-ddr-2012",
+    "floir-medmal-2025",
+    "fl-458-320",
+    "fl-440-02",
+    "cfr-29-2580",
+    "mgma-stat-cyber-2026",
+    "mms-insurance-2026"
+   ],
+   "evidence_note": "Policy mechanics come from an American Academy of Actuaries fact sheet (2012). Florida limits and prices come from statute and the state's 2025 rate report. A yearly review is convention and one medical society's advice, not a measured standard.",
+   "metrics": [
+    {
+     "slug": "cr-insurance-review-age",
+     "name": "Months since the insurance program was reviewed",
+     "definition": "Months since all of the practice's policies were last reviewed together against current clinicians, sites, services, contracts and risks, with the result written down.",
+     "formula": "Today's date - date of the last documented review of all policies, in months",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_best": "12 months or less",
+     "benchmark_red": "no review since the practice last added a clinician, site or service",
+     "benchmark_note": "No measured benchmark was found. Yearly review is convention: the Massachusetts Medical Society (2026) advises an annual conversation with an insurance advisor, in an article that also promotes its own agency. Treat 12 months as a sensible target, not a standard.",
+     "confidence": "low",
+     "sources": [
+      "mms-insurance-2026"
+     ],
+     "data_hint": "The insurance schedule and the dated notes or email from the last broker review."
+    }
+   ]
+  }
+ ]
+}
