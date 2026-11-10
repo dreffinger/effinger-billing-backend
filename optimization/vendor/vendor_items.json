@@ -1158,12 +1158,12 @@
    "people-compensation"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 2,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "kpi-04-ar-aging-buckets",
@@ -1199,12 +1199,12 @@
    "compliance-risk"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 2,
+  "claims_contradicted": 2,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "kpi-05-pos-collection-rate",
@@ -1240,12 +1240,12 @@
    "clinical-operations"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 4,
+  "claims_contradicted": 2,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "kpi-06-patient-collection-rate",
@@ -1282,12 +1282,12 @@
    "clinical-operations"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "kpi-07-write-off-rate-by-reason",
@@ -1492,12 +1492,12 @@
    "strategy-governance"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_partly": 4,
+  "claims_contradicted": 2,
+  "claims_outdated": 1,
+  "claims_unverifiable": 1
  },
  {
   "slug": "billing-department-performance-management-playbook",
@@ -1574,10 +1574,10 @@
    "people-compensation"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 6,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -2556,12 +2556,12 @@
    "rcm-charge-coding"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 0,
+  "claims_checked": 5,
   "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "news-insider-02",
@@ -2594,12 +2594,12 @@
    "strategy-governance"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 5,
   "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "news-insider-03",
@@ -2632,12 +2632,12 @@
    "people-compensation"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 5,
   "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_partly": 3,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "news-insider-04",
@@ -2670,9 +2670,9 @@
    "rcm-claims-ar"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 2,
+  "claims_partly": 3,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -2708,11 +2708,11 @@
    "compliance-risk"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_checked": 5,
+  "claims_supported": 1,
+  "claims_partly": 1,
+  "claims_contradicted": 1,
+  "claims_outdated": 2,
   "claims_unverifiable": 0
  },
  {
@@ -2747,10 +2747,10 @@
    "technology-data-ai"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 5,
+  "claims_supported": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -2883,18 +2883,18 @@
   "quality_score": 3,
   "specificity_score": 3,
   "practice_relevance_score": 4,
-  "summary": "A how-to issue, not a news issue. It separates a contractual adjustment (charge minus contracted rate) from an underpayment (payer pays less than the contracted rate) and argues that underpayments vanish because posting zeroes the balance in one step. The method: hold each payer's contracted fee schedule in the practice-management system, compare payments with the contracted rate by code, payer...",
+  "summary": "How-to issue on finding payer underpayments hidden inside contractual write-offs: load contract fee schedules, compare paid claims with contracted rates, sample 25-30 claims monthly, flag variances over $5, separate random from systematic errors and file payment disputes. Contains no news, no sources, and compares payment rather than allowed amount.",
   "top_ideas": [
-   "Run underpayments as their own work queue, separate from denials and from contractual write-offs, by testing each remittance line against the expected allowable.",
-   "Keep a dated rate table for every payer inside the billing system or the agents' own database, and refresh it whenever a contract or the Medicare schedule changes.",
-   "Check every paid line automatically instead of a 25 to 30 claim sample, and keep a small human-reviewed sample as a control test of the automation.",
-   "Sort shortfalls into one-off errors and repeating patterns, and send each repeating pattern to the payer once as a project listing all affected claims and total dollars."
+   "Hold every payer's expected allowable in the billing system by code, date, place of service and provider type, and test every remittance line against it automatically.",
+   "Separate one-off shortfalls from repeating same-payer, same-code patterns and send each pattern to the payer once, with the affected claims and total dollars.",
+   "After each annual rate change, confirm Medicare-linked plans loaded the new rates and read the contract on whether late loading must be corrected retroactively.",
+   "Keep a dispute register: governing deadline and its source for each payer, dollars at stake, date filed, outcome and dollars recovered."
   ],
   "red_flags": [
-   "The audit compares the payment received with the contracted rate. The valid comparison is the payer's allowed amount against the contracted allowable: payment is net of deductible, coinsurance and copay,...",
-   "The '3 to 7 percent leakage' figure has no source and is written as if introduced earlier ('the 3 to 7 percent'); it appears nowhere else in the saved text.",
-   "A 25 to 30 claim sample is called statistically meaningful with no basis. Spread over several payers and codes it gives a handful of claims per payer-code pair and cannot...",
-   "The modifier list mixes unlike things. Modifiers 59 and 91 do not themselves carry a payment reduction, and where a plan halves a modifier-25 visit it is usually a published..."
+   "Compares payment with the contract rate; the valid test is the payer's allowed amount, since payment is net of cost-sharing, sequestration, provider-type and site-of-service differences.",
+   "The 3 to 7 percent leakage figure has no source and is referred to as if introduced earlier in the issue; it never is.",
+   "Dispute window given as typically 90 to 180 days with no rule cited, and it conflicts with the claim that systematic errors are recoverable back to their start.",
+   "No dated news despite the August 2026 date; anesthesia and capitation examples do not fit the stated audience; the working templates sit behind a sales link."
   ],
   "domains": [
    "rcm-claims-ar",
@@ -2903,6 +2903,445 @@
    "technology-data-ai"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-11",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 11: PA Denial Appeals: The Step Most Practices Skip Entirely",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1210,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 2,
+  "summary": "How-to issue on appealing prior authorization denials: read the denial criterion, assemble a four-part packet (physician letter, chart excerpts, literature, peer-to-peer call), track payer filing windows and follow a seven-step workflow starting with same-day logging. No news, no regulation cited, unsourced win-rate statistics and one arithmetic error.",
+  "top_ideas": [
+   "Log each authorization or coverage denial the day it arrives with the payer's stated reason and a computed appeal deadline.",
+   "Keep a one-page rule sheet per payer: appeal window and its source, peer-to-peer availability and window, submission channel, decision deadline.",
+   "Try the physician-to-medical-director call first, and write any appeal against the exact criterion quoted in the denial, with chart pages proving each point.",
+   "Track appeal outcomes by payer and reason so the overturn rate is the practice's own measured number."
+  ],
+  "red_flags": [
+   "Win rates (40-70% on appeal, over 60% on peer-to-peer) have no source and match no public dataset I know of.",
+   "Arithmetic error: a 60-day window less four weeks of delay leaves 32 days, not the 16 stated.",
+   "Says payers are required to offer peer-to-peer and that contracts set appeal windows; pre-service appeal windows are mainly regulatory and peer-to-peer is not a general legal mandate.",
+   "No 2026 content: nothing on the federal prior authorization rule, expedited appeals, good-cause late filing or Medicare Advantage criteria limits; conflates pre-service denials with unpaid claims."
+  ],
+  "domains": [
+   "rcm-front-end",
+   "rcm-claims-ar",
+   "payers-contracts",
+   "clinical-operations"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-12",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 12: October 1 Is Days Away. Are Your Codes Ready?",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 781,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 2,
+  "practice_relevance_score": 3,
+  "summary": "Reminder issue about the fiscal 2027 ICD-10 code update effective October 1, 2026, with four steps and a seven-item checklist: refresh diagnosis lists, confirm vendor update, review the NCD coding transmittal and payer policy changes. Gives no detail of what changed and contains several errors (submission-date rule, CO-4, commercial 'LCDs'). Now past its date.",
+  "top_ideas": [
+   "Keep a code-change calendar with a named owner: diagnosis updates October 1 and April 1, procedure codes and fee schedule January 1.",
+   "Before each update, compare every diagnosis code billed in the past year with the official added, deleted and revised list, not only the top 25.",
+   "Get written vendor confirmation that the new code set is loaded and applied by date of service; refresh clinician pick-lists and templates.",
+   "After each update, watch rejections and denials by reason code as one pattern and correct the source list instead of reworking claims singly."
+  ],
+  "red_flags": [
+   "Ties code validity to claim submission date; the rule is date of service or discharge, as Step 3 of the same issue implies.",
+   "Mislabels CO-4, which concerns procedure-modifier mismatch; invalid-diagnosis claims are usually rejected up front or returned unprocessable, not denied.",
+   "Attributes Local Coverage Determinations to commercial payers and applies hospital terms (charge master, CDI, HIM, ICD-10-PCS) to physician practices.",
+   "News issue without the news: no counts or examples of changed codes, no transmittal number; the October 1, 2026 date has already passed."
+  ],
+  "domains": [
+   "rcm-charge-coding",
+   "rcm-claims-ar",
+   "payers-contracts",
+   "technology-data-ai"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-13",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 13: Go Get Your Money: The Q4 Revenue Sprint",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 728,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 2,
+  "practice_relevance_score": 3,
+  "summary": "Year-end checklist with no news: sweep receivables over 90 days by filing limit and dollar value, fix the top three denial codes, bill recent patient balances before the January deductible restart, and check CAQH attestation and Medicare/Medicaid revalidation dates. Basic facts are right, but it confuses filing limits with appeal deadlines and invents a December 31 cutoff.",
+  "top_ideas": [
+   "Scheduled sweep of receivables aged 90+ days that forces each claim into denied, underpaid or never-acknowledged status, ranked by deadline risk first, then dollars.",
+   "Chase claims with no remittance: get a payer reference number and resubmit with clearinghouse proof of the original timely submission.",
+   "Quarterly ranking of denials by reason and remark code, with a root-cause fix for the top three.",
+   "Provider expirables calendar covering CAQH attestation (120 days) and Medicare/Medicaid revalidation, extended to licence, DEA, malpractice and plan recredentialing."
+  ],
+  "red_flags": [
+   "Presents December 31 as a hard cutoff for recovering revenue; filing and appeal deadlines actually run from the service or denial date.",
+   "Confuses initial filing limits with appeal and corrected-claim deadlines, which govern aged claims already filed; appeal deadlines are never mentioned.",
+   "Patient statement push has no carve-out for Qualified Medicare Beneficiaries, who cannot be billed Medicare cost-sharing; risky for a dual-eligible population.",
+   "Contradictory triage rule (inside filing window first versus dollar value, not date); unsourced 60-90 and 90-120 day credentialing lead times; no author beyond 'Lex'."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "payers-contracts",
+   "rcm-front-end",
+   "compliance-risk",
+   "financial-management"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-14",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 14: Payers Are Using AI on Your Claims. Is Your Denial Rate Telling You the Truth?",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 667,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 4,
+  "summary": "Argues a low denial rate can hide underbilling and unworked write-offs now that payers adjudicate with automation. Recommends reporting initial denial rate, appeal overturn rate and days-to-resolve together, a monthly spike check by payer, reason code and modifier, a recalculated small-denial threshold, and a named human owner for each automated workflow. Its hospital-vendor news is unverified.",
+  "top_ideas": [
+   "Report initial denial rate, appeal overturn rate and days-to-resolve together by payer, adding share of denials appealed and denial write-offs.",
+   "Automated spike detection on denials by payer, reason code and modifier, period over period, with a minimum-volume floor and a claim hold on flagged combinations.",
+   "Name an owner, an output reviewer and an escalation route for every AI or automated billing workflow.",
+   "Reset the small-denial write-off threshold from measured cost-to-work, since agent-run billing makes low-dollar appeals worth pursuing."
+  ],
+  "red_flags": [
+   "All news items (Becker's panel, Oracle Health tools, Ensemble and 'Penelope Health', quoted Stanford executive) post-date what I can confirm and are unverified.",
+   "Says monthly reports miss automated denial waves, then prescribes monthly reporting and a once-a-month check; '10 minutes' is not credible.",
+   "No formulas, denominators, targets or volume floor; scorecard omits appeal rate and denial write-offs, the very problems it warns about.",
+   "Treats a high overturn rate as proof of payer error; it can equally reflect the practice's own missing documentation."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "technology-data-ai",
+   "compliance-risk",
+   "payers-contracts",
+   "rcm-charge-coding"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-01",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 01: Three Things Reshaping Independent Practice Revenue Cycles Right Now: ABN Deadline May 2026, Medicaid Coverage Changes and Medicare ",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 894,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "Three May 2026 stories: an ABN form renewal with a May 12 switch deadline, Medicaid coverage losses from the One Big Beautiful Bill Act, and Medicare Advantage plan stress after UnitedHealthcare's 2025 losses. Usable actions are ABN version control, quarterly network checks and 90-day denial trending. The Medicaid story wrongly treats a 2025 law as pending; nothing is sourced.",
+  "top_ideas": [
+   "Quarterly confirmation of in-network status with every Medicare Advantage plan, by product, clinician and location, repeated at each January 1 plan year.",
+   "Rolling 90-day trend of Medicare Advantage denials by plan and reason code, flagging codes that previously paid.",
+   "Expected-versus-paid comparison against each plan's contract rates to catch out-of-network repricing and underpayments.",
+   "Version control for mandated patient notices: log each ABN template's printed expiration date and every location where a copy lives."
+  ],
+  "red_flags": [
+   "Calls the One Big Beautiful Bill Act pending in May 2026; to my knowledge it became law July 4, 2025. No enacted effective dates are given.",
+   "'11.8 to 17 million losing Medicaid' appears to relabel estimates of total uninsured increases as Medicaid losses; attributed to CBO without citation.",
+   "Unsourced '40 to 60 percent' out-of-network gap conflicts with the rule that Medicare Advantage plans pay non-contracted providers Original Medicare amounts for covered services.",
+   "ABN dates (March 13, May 12, 2026) unverified and consequences overstated; deadline passed six months ago; UnitedHealthcare facts are stale 2025 items."
+  ],
+  "domains": [
+   "payers-contracts",
+   "compliance-risk",
+   "rcm-front-end",
+   "rcm-claims-ar"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-02",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 02: (June 2026): CMS Just Handed Your Chronic Care Patients to a Tech Platform. Here's What Happens Next.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1275,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "June 2026 three-story brief: the CMS ACCESS model starting July 5, 2026 and its possible pull on chronic care management revenue; Medicare Advantage 2027 filings as a predictor of plan exits; and electronic prior authorization. Watch-list advice only, no sources. The ACCESS participant description and the prior-authorization legal basis look wrong.",
+  "top_ideas": [
+   "Keep a current roster of CCM-enrolled patients and trend monthly billed CCM volume, so engagement lost to outside programs shows up within a month or two.",
+   "Trend trailing-90-day denial rate separately for each Medicare Advantage payer as an early signal of a plan tightening before exits or benefit cuts are announced.",
+   "Verify network participation with every MA plan quarterly and keep a written contingency plan for each payer's exit, sized by its share of charges.",
+   "Schedule payer reviews on the yearly Medicare Advantage cycle: June filings, fall plan landscape, October Star Ratings, year-end enrollment."
+  ],
+  "red_flags": [
+   "Credits an unenacted bill (Improving Seniors' Timely Access to Care Act) for the January 1, 2026 rule; timeframes come from CMS-0057-F, whose electronic API deadline is January 1, 2027. Verify.",
+   "Says ACCESS participants are not physician groups; Part B-enrolled practices appear eligible, and the issue omits the co-management payment for primary care clinicians. Verify.",
+   "Claims Star Ratings will report prior-authorization compliance from 2027 and that plans under 3.5 stars face penalties; no such measure known, and the bonus cut-off is 4 stars.",
+   "No author, citation or link; hyperbole ('UnitedHealthcare financial collapse', CMS 'handed' patients to tech platforms); no formulas, thresholds, payment amounts or templates."
+  ],
+  "domains": [
+   "payers-contracts",
+   "clinical-operations",
+   "rcm-front-end",
+   "quality-value",
+   "rcm-claims-ar",
+   "growth-market"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-03",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 03: (July 2026): The Compliance Deadline Passed. The Problem Didn't.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1577,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 2,
+  "summary": "July 2026 brief: repeats the electronic prior-authorization story, argues Medicaid unwinding left uncollectable patient balances to review for write-off, and lists audit triggers with a three-step self-check. Useful residue is an aged-AR cleanup plus E/M distribution and chart audits; the legal basis, dates, thresholds and audit claims are unreliable and unsourced.",
+  "top_ideas": [
+   "Benchmark each provider's trailing-12-month E/M level distribution against Medicare specialty peer data, using the code families the practice actually bills.",
+   "Run a recurring random chart sample per provider testing whether documented problems, data and risk support the billed level; fix templates and handle any overpayments found.",
+   "Review aged Medicaid and self-pay balances against coverage dates once, checking retroactive eligibility before write-off, and classify write-offs correctly under a written policy.",
+   "Re-verify coverage on a fixed recurring schedule for ongoing patients, and keep timestamped payer portal records as evidence for appeals."
+  ],
+  "red_flags": [
+   "Lead story repeats the wrong legal basis (an unenacted bill) for a January 1, 2026 electronic prior-authorization mandate, adds a real-time decision duty not in force, and cites no data.",
+   "Dates the MDM shift for 99214/99215 to 2023; office-visit rules changed in 2021. The 15-20-point 99215 threshold is unsourced and far too loose to detect an outlier.",
+   "Calls post-disenrollment Medicaid balances almost certainly uncollectable, ignoring retroactive eligibility, reinstatements and dual-eligible protections; silent on the 2025 law's Medicaid redetermination changes.",
+   "Claims commercial payers audit practices whose Medicaid share fell, which a single payer cannot observe; 'audits rose measurably' has no figure or source."
+  ],
+  "domains": [
+   "compliance-risk",
+   "rcm-claims-ar",
+   "rcm-front-end",
+   "rcm-charge-coding",
+   "payers-contracts",
+   "financial-management"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-04",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 04: Q4 Is Coming. The Practices That Prepare in August Win in November.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1606,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "August 2026 issue with no actual news: three seasonal essays urging August rate-renegotiation requests for January 1, quarterly write-off review with a 20-claim underpayment test, and early eligibility, deductible and Medicare plan-landscape checks before year-end. Unsourced; premises such as contracts renewing January 1 are wrong, and figures like 5-10% rate gains look invented.",
+  "top_ideas": [
+   "Compare the allowed amount on every remittance line with the expected contract amount, net of legitimate reductions, instead of the issue's 20-claim sample; send variances to a dispute queue.",
+   "Review write-offs and adjustments by reason code quarterly or monthly; treat every timely-filing write-off as a defect traced from service date to first submission.",
+   "Keep a contract register with each agreement's true renewal date, notice periods and rates as a percent of Medicare for the 20 highest-revenue codes.",
+   "Each autumn read the CMS landscape files for the service-area counties, then re-verify eligibility for the whole census in early January and monthly for facility residents."
+  ],
+  "red_flags": [
+   "No news at all: no rule, agency action or payer event is reported; three evergreen essays with manufactured August urgency and zero citations.",
+   "Says payer contracts renew January 1 and need 90-180 days' modification notice; provider agreements usually renew on their own anniversary dates and notice terms are contract-specific.",
+   "Unsupported numbers: 5-10% rate gains, two to three hours of preparation, 85% versus 60% patient collections, a 20% trigger on a 20-claim sample.",
+   "Deductible logic is backwards; 'open enrollment October through December' blurs Medicare's October 15-December 7 period; CMS landscape files have recently been released in late September, not October."
+  ],
+  "domains": [
+   "payers-contracts",
+   "rcm-claims-ar",
+   "rcm-front-end",
+   "financial-management"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-05",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 05: Your Q4 Credentialing Window Is Closing",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 2180,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "September 2026 issue, again without news: a credentialing piece framed as a closing 'Q4 window'. It covers new-hire payer enrollment, location changes, CAQH re-attestation, licence and DEA expirations, group-versus-individual enrollment mismatch and a four-step checklist ending in a master calendar. Useful hygiene, but the Medicare Advantage 'October deadline' looks invented, traditional Medicare is ignored and the date arithmetic fails.",
+  "top_ideas": [
+   "Keep one master credentialing calendar per clinician covering licences, DEA, certification, CAQH attestation, Medicare revalidation and payer enrollment status, reviewed monthly by a named owner.",
+   "Confirm in writing with every payer that each clinician is linked to the group's tax ID and NPI, and that Medicare reassignment is on file.",
+   "Start payer enrollment at offer acceptance; track submission date, confirmation number and status by payer; escalate to the enrollment unit after three weeks of silence.",
+   "Re-attest CAQH ahead of the 120-day cycle with 30- and 15-day alerts, and reconcile addresses across NPPES, PECOS, CAQH, payers and the billing system."
+  ],
+  "red_flags": [
+   "Central premise looks invented: no general 'October enrollment deadline' locks clinicians out of Medicare Advantage networks; credentialing is rolling and not tied to quarters.",
+   "Date arithmetic fails: 90 days from July 15 is mid-October, not before October 1; an October 1 application at 60-90 days does finish within the fourth quarter.",
+   "Overstates CAQH: a lapsed attestation stalls credentialing, but 'automatic suspension' of participating clinicians is not a rule I recognise; the portal name used is outdated.",
+   "Never mentions traditional Medicare enrollment (filing-date effective date, 30-day retroactive billing, 30-day location reporting), so 'revenue not recoverable' is wrong for a Medicare fee-for-service practice."
+  ],
+  "domains": [
+   "payers-contracts",
+   "compliance-risk",
+   "rcm-claims-ar",
+   "people-compensation",
+   "growth-market"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-06",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 06: (October 2026): The Denial Code That's Quietly Draining Your AR",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1613,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 4,
+  "practice_relevance_score": 3,
+  "summary": "October 2026 issue explaining three remittance adjustment codes (CO-4 modifiers, CO-16 missing data, CO-97 bundling), reporting the October 1 quarterly Medicare correct-coding edit update (Version 32.3), and giving a five-step loop: log denials by reason and remark code, assign owners, fix claim then rule, send MA130 claims to correction, review weekly. One real news item; the rest is evergreen.",
+  "top_ideas": [
+   "Log every denial by reason code plus remark code (adding payer, CPT and dollars) and review the top three combinations weekly for 15 minutes.",
+   "Hard-code the Medicare rule: claims returned unprocessable with remark code MA130 are corrected and resubmitted as new claims, never sent to redetermination.",
+   "Fix each recurring denial twice: on the claim, then in the charge rule, scrubber edit or agent instruction that produced it, with a named owner.",
+   "After every quarterly edit update (next: January 1, 2027), confirm the scrubber's edit version and compare denial patterns before and after."
+  ],
+  "red_flags": [
+   "Ties correct-coding edit denials only to CO-97 and CO-4; Medicare contractors generally use reason code 236 (151 for unit edits), never mentioned. Verify on First Coast remittances.",
+   "Says unsupported modifier 59 use is where CO-4 comes from; code 4 is a code-modifier validity edit, and unsupported overrides usually pay, then surface in audits.",
+   "Only one dated news item, and its action window (first two weeks of October 2026) has passed; Version 32.3 and Change Request 14516 are unverified.",
+   "Headline promises one AR-draining code and delivers none; Experian's 90% human-review figure is unconfirmed; no source links; the denial log is described, not supplied."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "rcm-charge-coding",
+   "compliance-risk",
+   "technology-data-ai",
+   "rcm-front-end"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-pulse-07",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider Pulse 07: (November 2026): Prior Auth Is Shrinking on Paper. Here's What Actually Changes for Your Claims.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1549,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 4,
+  "practice_relevance_score": 2,
+  "summary": "November 2026 prior authorization news brief: UnitedHealthcare dropped about 1,700 codes October 1 (about 120 in Medicare Advantage); federal rule duties live since January 2026 with a payer API due January 1, 2027; a West Virginia law and a Texas investigation. Advises reconciling payer lists to own codes, logging turnaround by plan, and questioning the EHR vendor.",
+  "top_ideas": [
+   "Split every payer announcement by plan type and match it to your own codes before changing workflow; only about 120 removed codes touch Medicare Advantage.",
+   "Keep a dated request log by plan with alerts at 72 hours (urgent) and seven days (standard) for Medicare Advantage and Medicaid managed care.",
+   "Maintain a payer rule matrix refreshed monthly; when an authorization requirement is removed, re-check documentation against medical policy because review moves to after the service.",
+   "Ask system vendors in writing what will be live on January 1, 2027, for which payers, with what fallback; watch for CMS enforcement discretion."
+  ],
+  "red_flags": [
+   "Post-June-2026 events (UnitedHealthcare's 1,700 codes, AMA letter, Texas investigation) rest on trade-press bylines without links; none can be confirmed from my own knowledge.",
+   "KFF figures (12% Medicare Advantage denials, two-thirds overturned) differ from KFF's earlier analyses (about 6-8% and 80%); KFF is absent from the sources line.",
+   "Treats 2026 rule duties as uniform from January 1; omits that drugs are excluded, managed-care dates vary and extensions exist; names no complaint channel for the promised leverage.",
+   "Silently reverses Issues 02-03, which blamed a January 2026 electronic deadline on a different statute; gold card described as covering most procedures, likely overstated."
+  ],
+  "domains": [
+   "rcm-front-end",
+   "payers-contracts",
+   "compliance-risk",
+   "technology-data-ai",
+   "quality-value",
+   "rcm-claims-ar"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,

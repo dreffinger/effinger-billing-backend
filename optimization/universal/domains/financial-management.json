@@ -53,7 +53,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Cash-basis books are common, and the Internal Revenue Service allows them for most small practices (Publication 538), but they leave out receivables and unpaid bills, so read a receivables report beside them. Practices with no front desk handle little cash but still must tie electronic deposits to posted payments.",
+   "applies_when": "Every practice, including those with no front desk, which handle little cash but still must tie electronic deposits to posted payments. Cash-basis books, which the Internal Revenue Service allows for most small practices (Publication 538), leave out receivables and unpaid bills, so read a receivables report beside them.",
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
@@ -150,7 +150,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. For owner-operated practices the split between the owner's wage and the business's profit is the most important adjustment, because it decides what the practice is worth and what a lender will finance. Practices with no office carry little overhead, so published office-practice margins will look low beside theirs.",
+   "applies_when": "Every practice, and for owner-operated ones the split between the owner's wage and the business's profit is the most important adjustment, because it decides what the practice is worth and what a lender will finance. Practices with no office carry little overhead, so published office-practice margins will look low beside theirs.",
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
@@ -270,13 +270,13 @@
    ],
    "key_questions": [
     "Do we have a written budget for this year, by month?",
-    "How far is revenue and spending from budget so far?",
+    "How far are revenue and spending from budget so far this year?",
     "What would a 2% to 3% cut in Medicare rates, like the 2.31% cut for 2027, do to earnings?",
     "What happens to cash if our largest source of patients stops?"
    ],
    "actions": [
     {
-     "action": "Build the budget from drivers",
+     "action": "Build the budget from volume and rates",
      "detail": "Visits by type times expected payment, plus program and other revenue. Costs by line with known changes.",
      "cadence": "annual",
      "effort": "medium",
@@ -284,7 +284,7 @@
     },
     {
      "action": "Compare actual with budget monthly",
-     "detail": "A one-page variance report at the monthly review.",
+     "detail": "A one-page report of differences from budget (a variance report) at the monthly review.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "medium"
@@ -304,7 +304,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. Practices that depend on Medicare should rebuild the revenue side each November, when the next year's fee schedule becomes final. Facility-based practices should model facility-rate changes separately, such as the 2027 change for visits to patients in a Medicare Part A skilled nursing stay.",
+   "applies_when": "Every practice, and those that depend on Medicare should rebuild the revenue side each November, when the next year's fee schedule becomes final. Facility-based practices should model facility-rate changes separately, such as the 2027 change for visits to patients in a Medicare Part A skilled nursing stay.",
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
@@ -317,7 +317,7 @@
     "cms-pfs-2027",
     "aafp-vital-signs"
    ],
-   "evidence_note": "General business practice, not measured data. The yearly Medicare fee schedule rule is the one outside input every Medicare practice can model. The 2027 rule, issued November 2026, cuts the base payment rate (the conversion factor) by 2.31%, to $32.63.",
+   "evidence_note": "General business practice, not measured data. The yearly Medicare fee schedule rule is the one outside input every Medicare practice can model. The 2027 rule, issued November 2026, cuts the base payment rate (the conversion factor) by 2.31% for most clinicians, to $32.63.",
    "metrics": [
     {
      "slug": "fm-budget-variance",
@@ -341,7 +341,8 @@
     "The owner knows the bank balance and the next two payrolls every week.",
     "A rolling forecast shows expected cash for the next 13 weeks.",
     "A reserve target is set in months of operating cost, and distributions wait until it is met.",
-    "An unused line of credit exists for emergencies."
+    "An unused line of credit exists for emergencies.",
+    "Cash beyond the next few weeks' needs earns interest, and balances above the $250,000 federal deposit insurance limit are spread across banks."
    ],
    "failure_modes": [
     "All spare cash is distributed to the owner, and one slow month means borrowing at a high rate.",
@@ -385,7 +386,7 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Every practice. One-payer practices need a larger cushion: Medicare may suspend payments for up to 180 days, and longer in fraud cases, when it has reliable information of an overpayment or a credible allegation of fraud (42 CFR 405.371 and 405.372). Practices with no front desk collect little at the visit, so nearly all cash waits on payers.",
+   "applies_when": "Every practice, and more so with no front desk, where little is collected at the visit and nearly all cash waits on payers. One-payer practices need a larger cushion: Medicare may suspend payments for up to 180 days, and longer in fraud cases, on reliable information of an overpayment or a credible allegation of fraud (42 CFR 405.371 and 405.372).",
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
@@ -404,7 +405,8 @@
     "cms-vcc-eft-2022",
     "ama-new-practice-finance",
     "sba-bank-account",
-    "sba-finances"
+    "sba-finances",
+    "fdic-deposit-insurance"
    ],
    "evidence_note": "No cash standard for practices was found. The three-to-six-month figure is expert advice from 2011. Measured small-business cash is far lower: a median of 30 days in health care (2015). After the 2024 clearinghouse outage, 55% of respondents to an informal survey used personal funds.",
    "metrics": [
@@ -426,7 +428,7 @@
       "jpmci-cash-buffer-2016"
      ],
      "data_hint": "Bank balances and the income statement.",
-     "vendor_claim": "At least 30 days of operating expenses in cash or available credit, 45 to 60 days to be conservative, 60 to 90 days ideally.",
+     "vendor_claim": "A reserve worth at least 30 days of running costs, held as cash or unused credit, with 45 to 60 days as the cautious level and 60 to 90 days as the ideal.",
      "vendor_verdict": "Unverifiable: no source. Its 60 to 90 day ideal sits below the three to six months experts advised in 2011. Its 30-day floor matches the measured small-business median."
     },
     {
@@ -497,7 +499,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Any practice with loans, leases or a credit line. Start-ups and practices that have been through a downturn are the likeliest to carry expensive short-term debt worth refinancing. A practice with no office and little equipment may owe almost nothing, and then this is a short yearly check.",
+   "applies_when": "Any practice with loans, leases or a credit line, above all start-ups and practices that have been through a downturn, which are the likeliest to carry expensive short-term debt worth refinancing. A practice with no office and little equipment may owe almost nothing, and then this is a short yearly check.",
    "vendor_refs": [],
    "sources": [
     "sba-sop-50-10",
@@ -519,7 +521,7 @@
      "unit": "ratio",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_typical": "1.2 or more is what lenders look for",
+     "benchmark_typical": "above 1.2, the level one physician lender looks for by year two",
      "benchmark_red": "under 1.15, the SBA minimum for standard loans",
      "benchmark_note": "The SBA requires at least 1.15 for its standard guaranteed loans and 1.10 for loans of $350,000 or less (SOP 50 10 8.1, October 2026). A physician lender quoted by the American Medical Association (2026) looks for above 1.2 by a new practice's second year.",
      "confidence": "medium",
@@ -549,7 +551,7 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_note": "No benchmark exists. Compare with a current bank quote. For reference, federal rules cap variable SBA loan rates at the prime rate plus 3 to 6.5 points, by loan size (13 CFR 120.214). Prime was 7.00% in early November 2026.",
+     "benchmark_note": "No benchmark exists. Compare with a current bank quote. Federal rules cap variable rates on SBA 7(a) loans at the prime rate, or SBA's peg rate, plus 3 to 6.5 points by loan size (13 CFR 120.214). Prime was 7.00% in early November 2026.",
      "confidence": "none",
      "sources": [
       "cfr-13-120-214",
@@ -574,7 +576,7 @@
     "Draws exceed profit and show up as a growing loan from the practice to the owner.",
     "Personal expenses are paid by the practice with no record.",
     "Retirement plan options that would save tax go unused.",
-    "Payroll taxes withheld from staff are spent to cover a cash gap, and the owner becomes personally liable for the unpaid amount."
+    "Payroll taxes withheld from staff are spent to cover a cash gap, and the owner can be held personally liable for the unpaid amount."
    ],
    "key_questions": [
     "How much did the owner take last year in salary, distributions and benefits?",
@@ -612,7 +614,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Owner-operated practices. The low-salary risk applies to S corporations. In a C corporation the risk runs the other way: pay above a reasonable amount can be treated as a dividend (26 CFR 1.162-7). Partners are not employees and take no wages. Each entity type needs an accountant who knows it.",
+   "applies_when": "Owner-operated practices, with rules that differ by entity, so use an accountant who knows yours. The low-salary risk applies to S corporations, while in a C corporation pay above a reasonable amount can be treated as a dividend (26 CFR 1.162-7), and partners are not employees and take no wages.",
    "vendor_refs": [],
    "sources": [
     "irs-s-corp-compensation",
@@ -678,7 +680,7 @@
    "good_looks_like": [
     "Costs are reported by category as a share of revenue, monthly and against the prior year.",
     "The three largest categories are reviewed in detail each year.",
-    "Every recurring contract and subscription has an owner and a renewal date.",
+    "Every recurring contract and subscription has a named person responsible for it and a renewal date.",
     "The full cost of billing is known."
    ],
    "failure_modes": [
@@ -723,7 +725,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Published ratios describe office-based practices with a front desk and clinical support. Practices with no office or with automated billing should expect much lower ratios and judge themselves by trend.",
+   "applies_when": "Every practice, but published ratios describe office-based practices with a front desk and clinical support. Practices with no office or with automated billing should expect much lower ratios and judge themselves by trend.",
    "vendor_refs": [
     {
      "item": "kpi-10-cost-to-collect",
@@ -816,7 +818,7 @@
    "summary": "Knowing which parts of the practice make money: each service line (a kind of work, such as visits, procedures or care management), site, payer and clinician. Totals hide the fact that one line may be carrying another.",
    "good_looks_like": [
     "Revenue is reported by service line, site and clinician.",
-    "Direct costs, mainly clinician time and travel, are assigned to each.",
+    "Direct costs, such as clinician time, staff time, supplies and travel, are assigned to each.",
     "The practice knows each line's contribution: what it brings in less its own direct costs.",
     "Decisions to grow, fix or stop a line are made from these numbers."
    ],
@@ -862,11 +864,11 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with more than one site, service line or clinician. Practices that travel to facilities or homes should count travel time as a cost of each site, and compare payment per visit within one setting, because Medicare pays the same service less in a facility.",
+   "applies_when": "Any practice with more than one site, service line or clinician. Practices that travel to facilities or homes should count travel time as a cost of each site, and compare payment per visit within one setting, because Medicare pays most services less in a facility than in an office.",
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
-     "note": "Has a service-line table and an invest, optimize, monitor or exit rule. Assumes an office practice: direct costs are staff, supplies and space, with no clinician time or travel."
+     "note": "Has a service-line table and a rule to invest in, fix, watch or exit each line. Its direct costs are staff, supplies and space, with no clinician time or travel."
     }
    ],
    "sources": [
@@ -874,7 +876,7 @@
     "sba-business-plan",
     "mgma-app-2026",
     "cms-pfs-2026",
-    "mgma-bok"
+    "cms-puf"
    ],
    "evidence_note": "Standard managerial accounting. Costing each service by the staff and clinician time it uses was set out for health care by Kaplan and Porter (Harvard Business Review, 2011). No benchmark applies, because lines and costs differ by practice.",
    "metrics": [
@@ -900,10 +902,11 @@
      "unit": "dollars",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. It moves with code mix, payer mix, denials and setting: Medicare pays the same service less when it is done in a facility. Compare within one payer and setting, against your own trend.",
+     "benchmark_note": "No reliable public benchmark was found. It moves with code mix, payer mix, denials and setting: Medicare pays most services less in a facility, about a third less for care management (2024). Compare within one payer and setting.",
      "confidence": "none",
      "sources": [
-      "cms-pfs-2026"
+      "cms-pfs-2026",
+      "cms-puf"
      ],
      "data_hint": "Billing system collections and encounter counts."
     }
@@ -968,7 +971,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. The smaller the staff, the harder it is to separate duties and the more the owner's own monthly review matters. The same logic applies to vendors and to automated billing. Practices with no front desk handle little cash, so the exposure moves to adjustments, refunds, vendor payments and payroll.",
+   "applies_when": "Every practice, including its vendors and automated billing, and the smaller the staff, the harder it is to separate duties and the more the owner's own monthly review matters. Practices with no front desk handle little cash, so the exposure moves to adjustments, refunds, vendor payments and payroll.",
    "vendor_refs": [
     {
      "item": "kpi-07-write-off-rate-by-reason",
@@ -987,12 +990,12 @@
     {
      "slug": "fm-adjustments-reviewed",
      "name": "Share of write-offs above the approval limit reviewed by the owner",
-     "definition": "Portion of write-offs, refunds and manual adjustments above the practice's approval limit that the owner reviewed and signed off.",
-     "formula": "Adjustments above the limit with owner sign-off / adjustments above the limit",
+     "definition": "Portion of write-offs, refunds and manual adjustments above the practice's approval limit that the owner, or another person who did not post them, reviewed and signed off.",
+     "formula": "Adjustments above the limit with an independent sign-off / all adjustments above the limit",
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No public benchmark was found. The target from first principles is 100%: every write-off, refund or manual adjustment above the limit carries the sign-off of someone who did not post it.",
+     "benchmark_note": "No public benchmark was found. The target from first principles is 100%: every write-off, refund or manual adjustment above the limit is signed off by the owner or another person who did not post it.",
      "confidence": "none",
      "data_hint": "The billing system's adjustment report for the month.",
      "vendor_claim": "No write-off above the dollar limit without documented approval: supervisor sign-off above $100 to $250, billing manager sign-off above $500 to $1,000.",

@@ -934,8 +934,8 @@
   "slug": "fl-400-9905",
   "title": "Florida Statutes 400.9905: Definitions (Health Care Clinic Act)",
   "publisher": "Florida Senate",
-  "year": "2025",
-  "url": "https://www.flsenate.gov/Laws/Statutes/2025/400.9905",
+  "year": "2026",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2026/400.9905",
   "kind": "primary",
   "note": "Subsection (4)(g) exempts from clinic licensure an entity wholly owned by licensed health care practitioners, or by them and close family, when a practitioner-owner supervises the business."
  },
@@ -943,8 +943,8 @@
   "slug": "fl-456-057",
   "title": "Florida Statutes 456.057: Ownership and control of patient records",
   "publisher": "Florida Senate",
-  "year": "2025",
-  "url": "https://www.flsenate.gov/Laws/Statutes/2025/456.057",
+  "year": "2026",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2026/456.057",
   "kind": "primary",
   "note": "Subsections (12) and (13): a records owner who terminates practice, retires or relocates must advertise or notify patients in writing and tell the board who holds the records and where."
  },
@@ -1830,9 +1830,9 @@
  },
  {
   "slug": "cms-cpm-ch30",
-  "title": "Medicare Claims Processing Manual, Chapter 30: Financial Liability Protections",
+  "title": "Medicare Claims Processing Manual, Chapter 30: Financial Liability Protections (Rev. 12934)",
   "publisher": "CMS",
-  "year": "2026",
+  "year": "2024",
   "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
   "kind": "primary",
   "note": "Advance Beneficiary Notice rules. The notice is for Original Medicare and is not used for Medicare Advantage."
@@ -1894,8 +1894,8 @@
   "slug": "fl-621",
   "title": "Florida Statutes chapter 621: Professional service corporations and limited liability companies (sections 621.03, 621.09, 621.10, 621.11)",
   "publisher": "Florida Senate",
-  "year": "2025",
-  "url": "https://www.flsenate.gov/Laws/Statutes/2025/621.09",
+  "year": "2026",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2026/621.09",
   "kind": "primary",
   "note": "Shares may be issued or transferred only to licensed professionals or their professional entities. A disqualified owner must sever employment and financial interests forthwith."
  },
@@ -3203,5 +3203,761 @@
   "url": "https://www.cms.gov/files/document/fact-sheet-what-is-considered-health-insurance.pdf",
   "kind": "primary",
   "note": "File dated December 2024. No estimate is required for services scheduled fewer than 3 business days ahead. People covered by Medicare, Medicaid or another federal program are not entitled to an estimate, even for services the program does not cover."
+ },
+ {
+  "slug": "irs-p538",
+  "title": "Publication 538 (rev. January 2022), Accounting Periods and Methods",
+  "publisher": "IRS",
+  "year": "2022",
+  "url": "https://www.irs.gov/publications/p538",
+  "kind": "primary",
+  "note": "Who may use the cash method: S corporations and sole proprietors may. C corporations may if they meet the gross receipts test ($26 million, indexed for inflation) or are qualified personal service corporations, which include health services."
+ },
+ {
+  "slug": "sba-bank-account",
+  "title": "Open a business bank account",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/business-guide/launch-your-business/open-business-bank-account",
+  "kind": "secondary",
+  "note": "Business banking keeps business funds separate from personal funds and offers limited personal liability protection. A business account usually comes with the option of a line of credit."
+ },
+ {
+  "slug": "cfo-apqc-close-2018",
+  "title": "Metric of the Month: Cycle Time for Monthly Close",
+  "publisher": "CFO.com, reporting APQC benchmarking data",
+  "year": "2018",
+  "url": "https://www.cfo.com/news/metric-of-the-month-cycle-time-for-monthly-close/659297/",
+  "kind": "secondary",
+  "note": "APQC General Accounting Open Standards Benchmarking: of 2,300 organizations, median 6.4 calendar days from running the trial balance to finished consolidated statements. Top quarter 4.8 days or less, bottom quarter 10 or more. Not specific to medical practices."
+ },
+ {
+  "slug": "aafp-balance-sheet-2001",
+  "title": "Making Your Balance Sheet Work for You (Family Practice Management, June 2001)",
+  "publisher": "American Academy of Family Physicians",
+  "year": "2001",
+  "url": "https://www.aafp.org/pubs/fpm/issues/2001/0600/p27.pdf",
+  "kind": "secondary",
+  "note": "Current ratio equals current assets over current liabilities. Banks consider about 2 to 1 the gold standard. Cash-basis balance sheets list no receivables. Banks treat loans from owners as equity, not liabilities."
+ },
+ {
+  "slug": "medecon-five-ratios-2021",
+  "title": "Five financial ratios that track your practice's financial health",
+  "publisher": "Medical Economics",
+  "year": "2021",
+  "url": "https://www.medicaleconomics.com/view/five-financial-ratios-that-track-your-practice-s-financial-health",
+  "kind": "secondary",
+  "note": "Current ratio, days in receivables, operating margin, working capital and days in payables. A current ratio under 1 means more is due within a year than the practice can turn into cash. One physician's guidance, no data."
+ },
+ {
+  "slug": "healio-data-points-2024",
+  "title": "Physician practice owners need to review key financial data points regularly",
+  "publisher": "Healio",
+  "year": "2024",
+  "url": "https://www.healio.com/news/hematology-oncology/20240510/physician-practice-owners-need-to-review-key-financial-data-points-regularly",
+  "kind": "secondary",
+  "note": "Owners should read the income statement, balance sheet and cash flow statement together. A current ratio above 1 shows the ability to pay debts due within a year. Written by a CPA and an attorney, no data."
+ },
+ {
+  "slug": "jpmci-cash-buffer-2016",
+  "title": "Cash is King: Flows, Balances, and Buffer Days. Evidence from 600,000 Small Businesses",
+  "publisher": "JPMorgan Chase Institute",
+  "year": "2016",
+  "url": "https://www.jpmorganchase.com/institute/all-topics/business-growth-and-entrepreneurship/report-cash-flows-balances-and-buffer-days",
+  "kind": "primary",
+  "note": "597,000 small businesses with Chase accounts, February to October 2015. Median cash buffer 27 days of outflows (25th percentile 13, 75th percentile 62). Health care services median 30 days. Not limited to physician practices."
+ },
+ {
+  "slug": "ama-change-survey-2024",
+  "title": "Physicians struggle to keep practices afloat after Change cyberattack (press release and survey summary)",
+  "publisher": "American Medical Association",
+  "year": "2024",
+  "url": "https://www.ama-assn.org/press-center/ama-press-releases/physicians-struggle-keep-practices-afloat-after-change-cyberattack",
+  "kind": "primary",
+  "note": "Informal convenience survey, March 26 to April 3, 2024, more than 1,400 respondents, 78% from practices of 10 or fewer physicians. 80% lost revenue from unpaid claims, 55% used personal funds, 31% could not make payroll."
+ },
+ {
+  "slug": "cfr-405-371",
+  "title": "42 CFR 405.371 and 405.372: Suspension, offset, and recoupment of Medicare payments; proceeding for suspension of payment",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.371",
+  "kind": "primary",
+  "note": "Medicare may suspend payments in whole or in part on reliable information that an overpayment exists or payments may not be correct, or on a credible allegation of fraud. Suspension is limited to 180 days with one extension of up to 180 days. The limits do not apply in fraud cases."
+ },
+ {
+  "slug": "cfr-13-120-160",
+  "title": "13 CFR 120.160: Loan conditions (personal guarantees)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-13/section-120.160",
+  "kind": "primary",
+  "note": "Holders of at least a 20 percent ownership interest generally must guarantee an SBA business loan. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-13-120-214",
+  "title": "13 CFR 120.214: What conditions apply for variable interest rates?",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-13/section-120.214",
+  "kind": "primary",
+  "note": "Maximum variable rates on 7(a) loans over the base rate (prime or the optional peg rate): 6.5 points for $50,000 or less, 6.0 up to $250,000, 4.5 up to $350,000, 3.0 above $350,000. No balloon payments."
+ },
+ {
+  "slug": "fed-h15-2026",
+  "title": "H.15 Selected Interest Rates (Daily), release of November 9, 2026",
+  "publisher": "Board of Governors of the Federal Reserve System",
+  "year": "2026",
+  "url": "https://www.federalreserve.gov/releases/h15/",
+  "kind": "primary",
+  "note": "Bank prime loan rate 7.00% for November 2 to 6, 2026. The rate changes, so read the current release."
+ },
+ {
+  "slug": "irs-paying-yourself",
+  "title": "Paying yourself",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/paying-yourself",
+  "kind": "primary",
+  "note": "A loan from a corporation to an officer should have a contract with a stated interest rate, a repayment period and a consequence for failure to repay. Below-market loans may be treated as wages or dividends. Partners are not employees. Page reviewed May 8, 2026."
+ },
+ {
+  "slug": "cfr-26-1-162-7",
+  "title": "26 CFR 1.162-7: Compensation for personal services",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-26/section-1.162-7",
+  "kind": "primary",
+  "note": "Compensation is deductible only if reasonable and paid purely for services. An ostensible salary paid by a corporation with few shareholders may be a distribution of a dividend."
+ },
+ {
+  "slug": "irs-estimated-taxes",
+  "title": "Estimated taxes",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estimated-taxes",
+  "kind": "primary",
+  "note": "Sole proprietors, partners and S corporation shareholders generally must pay estimated tax if they expect to owe $1,000 or more. Four payment periods a year. A penalty can apply to a late or short payment. Page reviewed September 25, 2026."
+ },
+ {
+  "slug": "irs-tfrp",
+  "title": "Employment taxes and the Trust Fund Recovery Penalty (TFRP)",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/employment-taxes-and-the-trust-fund-recovery-penalty-tfrp",
+  "kind": "primary",
+  "note": "A responsible person who willfully fails to pay withheld taxes is personally liable for the unpaid balance. Paying other creditors instead is an indication of willfulness. Page reviewed October 11, 2026."
+ },
+ {
+  "slug": "aafp-overhead-2010",
+  "title": "The 12-Step Way To Reduce Practice Expenses: Part 1, Staffing Efficiencies (Family Practice Management, March/April 2010)",
+  "publisher": "American Academy of Family Physicians",
+  "year": "2010",
+  "url": "https://www.aafp.org/pubs/fpm/issues/2010/0300/p38.html",
+  "kind": "secondary",
+  "note": "Reprints MGMA Cost Survey for Single-Specialty Practices (2008 data): median operating expenses of family medicine practices not owned by hospitals were 59.74% of revenue, with support staff salaries 26.28% and benefits 5.52%. Excludes nonphysician provider pay (3.81%)."
+ },
+ {
+  "slug": "pp-overhead-2026",
+  "title": "9 ways to trim practice overhead without cutting patient care",
+  "publisher": "Physicians Practice",
+  "year": "2026",
+  "url": "https://www.physicianspractice.com/view/9-ways-to-trim-practice-overhead-without-cutting-patient-care",
+  "kind": "secondary",
+  "note": "States that MGMA puts total overhead at roughly 60% of practice revenue in a typical year. Trade press attribution, no table or data year given."
+ },
+ {
+  "slug": "kaplan-porter-2011",
+  "title": "Kaplan RS, Porter ME. How to solve the cost crisis in health care. Harvard Business Review 2011;89(9):46-52",
+  "publisher": "Harvard Business Review",
+  "year": "2011",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/21939127/",
+  "kind": "secondary",
+  "note": "Argues that providers rarely know what care costs and sets out time-driven activity-based costing: cost each service by the time of the people and resources it uses. Abstract read through PubMed (PMID 21939127)."
+ },
+ {
+  "slug": "acfe-rttn-2026",
+  "title": "Occupational Fraud 2026: A Report to the Nations",
+  "publisher": "Association of Certified Fraud Examiners",
+  "year": "2026",
+  "url": "https://www.acfe.com/-/media/files/acfe/pdfs/rttn/2026/2026-report-to-the-nations.pdf",
+  "kind": "primary",
+  "note": "2,402 cases from 143 countries investigated since January 2024. Median loss $104,000 and 12 months to detection. 43% detected by tips. Primary weakness: lack of internal controls 33%, override 19%, lack of management review 18%. Health care: 140 cases, median loss $100,000. Not specific to medical practices."
+ },
+ {
+  "slug": "fdic-deposit-insurance",
+  "title": "Understanding Deposit Insurance",
+  "publisher": "Federal Deposit Insurance Corporation",
+  "year": "2026",
+  "url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+  "kind": "primary",
+  "note": "Deposit insurance covers $250,000 per depositor, per insured bank, for each account ownership category. Corporation and partnership accounts are one category."
+ },
+ {
+  "slug": "mgma-stat-revenue-2026",
+  "title": "Revenue growth narrows as costs climb: the 2026 squeeze on medical practices (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://www.mgma.com/mgma-stat/revenue-growth-narrows-as-costs-climb-2026-squeeze",
+  "kind": "secondary",
+  "note": "Poll of June 30, 2026, 221 applicable responses: 47% of medical groups reported year-to-date revenue higher than the same period of 2025, 14% about the same, 36% lower, 2% unsure. A poll the week before found 84% with higher year-to-date costs. June 2025: 56% higher, 30% lower. Open poll, not a random sample."
+ },
+ {
+  "slug": "cms-855b-form",
+  "title": "Form CMS-855B: Medicare Enrollment Application, Clinics/Group Practices and Other Suppliers (version 12/2025)",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms855b.pdf",
+  "kind": "primary",
+  "note": "Section 4A: report each practice location where services are rendered, including hospitals, retirement or assisted living communities and other health care facilities. Section 4D: areas served by home visits. Locations in another contractor's jurisdiction need a separate application. Form CMS-855I (05/23), section 4B, says the same for individual clinicians. Read November 10, 2026."
+ },
+ {
+  "slug": "mgma-stat-cred-2021",
+  "title": "More than half of practices report credentialing-related denials on the rise in 2021 (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2021",
+  "url": "https://www.mgma.com/mgma-stat/more-than-half-of-practices-report-credentialing-related-denials-on-the-rise-in-2021",
+  "kind": "secondary",
+  "note": "Poll of August 24, 2021, 425 responses: 54% saw credentialing denials rise. Some payers took as much as 100 days to give an effective date and allowed no retroactive claims."
+ },
+ {
+  "slug": "cfr-164-508",
+  "title": "45 CFR 164.508: Uses and disclosures for which an authorization is required",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.508",
+  "kind": "primary",
+  "note": "Paragraph (a)(3): a covered entity must obtain an authorization for any use or disclosure of protected health information for marketing, except a face-to-face communication or a promotional gift of nominal value. Text read through the eCFR API, version dated 2026-11-05."
+ },
+ {
+  "slug": "cfr-1003-110",
+  "title": "42 CFR 1003.110 and 1003.1000: Civil money penalties, definition of remuneration and beneficiary inducement",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-1003.110",
+  "kind": "primary",
+  "note": "Remuneration includes waiver of coinsurance and deductibles unless the waiver is not advertised, not routine, and follows a good-faith finding of financial need or a failure to collect after reasonable collection efforts. Section 1003.1000(a) sets the penalty for inducing beneficiaries. Read in the eCFR version of November 6, 2026."
+ },
+ {
+  "slug": "usc-42-300gg-115",
+  "title": "42 U.S.C. 300gg-115: Protecting patients and improving the accuracy of provider directory information",
+  "publisher": "U.S. Code",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/link/uscode/42/300gg-115?type=usc&year=mostrecent&link-type=html",
+  "kind": "primary",
+  "note": "Subsection (a)(2): group health plans and insurers must verify and update provider directory information at least every 90 days, set a procedure to remove providers they cannot verify, and post updates within 2 business days of receiving them."
+ },
+ {
+  "slug": "usc-42-300gg-139",
+  "title": "42 U.S.C. 300gg-139: Provider requirements to protect patients and improve the accuracy of provider directory information",
+  "publisher": "U.S. Code",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/link/uscode/42/300gg-139?type=usc&year=mostrecent&link-type=html",
+  "kind": "primary",
+  "note": "Since January 1, 2022 each provider must have business processes to send plans directory information when a network agreement starts or ends, when the information materially changes, and on request."
+ },
+ {
+  "slug": "cms-ma-directory-review-2018",
+  "title": "Online Provider Directory Review Report (third round, November 2017 to July 2018)",
+  "publisher": "CMS",
+  "year": "2018",
+  "url": "https://www.cms.gov/Medicare/Health-Plans/ManagedCareMarketing/Downloads/Provider_Directory_Review_Industry_Report_Round_3_11-28-2018.pdf",
+  "kind": "primary",
+  "note": "Of 10,504 locations listed in 52 Medicare Advantage organizations' online directories, 48.74% had at least one inaccuracy. Earlier rounds: 45.10% (2016) and 55.07% (2016 to 2017). Methods changed slightly between rounds."
+ },
+ {
+  "slug": "fl-458-331",
+  "title": "Florida Statutes 458.331: Grounds for disciplinary action; action by the board and department",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0458/Sections/0458.331.html",
+  "kind": "primary",
+  "note": "Subsection (1)(d): false, deceptive, or misleading advertising is a ground for discipline of a physician."
+ },
+ {
+  "slug": "oig-nominal-gifts-2016",
+  "title": "Office of Inspector General Policy Statement Regarding Gifts of Nominal Value To Medicare and Medicaid Beneficiaries",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2016",
+  "url": "https://oig.hhs.gov/documents/special-advisory-bulletins/887/OIG-Policy-Statement-Gifts-of-Nominal-Value.pdf",
+  "kind": "primary",
+  "note": "December 7, 2016: nominal value means a retail value of no more than $15 per item or $75 in total per patient a year, never cash or cash equivalents. Gifts at or below these limits need not fit an exception to the beneficiary inducement penalty. Raised from $10 and $50 set in 2000."
+ },
+ {
+  "slug": "cfr-425-306",
+  "title": "42 CFR 425.306: Participant agreement and exclusivity of ACO participants",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-425.306",
+  "kind": "primary",
+  "note": "Paragraph (b)(2): each participant (a billing tax identification number) that submits claims for services used to assign patients must be exclusive to one Shared Savings Program accountable care organization. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cms-ssp-py2024-results",
+  "title": "Medicare Shared Savings Program Accountable Care Organizations: Updated Performance Year 2024 Financial and Quality Results (fact sheet)",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/files/document/fact-sheet-ssp-py24-financial-quality-results.pdf",
+  "kind": "primary",
+  "note": "September 29, 2025. Of 476 organizations, 75% earned performance payments totaling $4.1 billion and Medicare saved $2.5 billion. Low revenue organizations, typically physician-led, saved $319 per person net against $180 for high revenue, typically hospital-led, ones. 16 owed shared losses totaling $20.0 million."
+ },
+ {
+  "slug": "pya-checklist-2010",
+  "title": "Financial buyer's side due diligence checklist: hospital acquisitions of physician practices",
+  "publisher": "PYA",
+  "year": "2010",
+  "url": "https://www.pyapc.com/wp-content/uploads/2021/03/Buyers-Side-Due-Diligence-Checklist-%E2%80%93-Hospital-Acquisitions-of-Physician-Practices.pdf",
+  "kind": "secondary",
+  "note": "Four-page checklist: 47 checkbox items in 14 topics (10 on assets and liabilities, 4 on operations). The document is undated; PDF metadata shows it was created January 29, 2010, and the URL shows it was posted to the site in March 2021. The shared sources file lists it under slug pya-checklist with year 2021."
+ },
+ {
+  "slug": "vmg-fundamentals-2012",
+  "title": "5 Fundamentals for a Physician Practice Valuation",
+  "publisher": "VMG Health (published by Becker's Hospital Review)",
+  "year": "2012",
+  "url": "https://vmghealth.com/articles/5-fundamentals-for-a-physician-practice-valuation",
+  "kind": "secondary",
+  "note": "Names the three accepted approaches: income, market and cost. Page metadata gives the publication date as May 9, 2012 (last modified 2024). The shared sources file lists the same page under slug vmg-fundamentals with year 2024."
+ },
+ {
+  "slug": "parsons-state-notice-2025",
+  "title": "Healthcare Bulletin: State-Level Healthcare Transaction Notice Requirements and Their Impact on Practice Sales",
+  "publisher": "Parsons Behle & Latimer",
+  "year": "2025",
+  "url": "https://parsonsbehle.com/insights/healthcare-bulletin-state-level-healthcare-transaction-notice-requirements-and-their-impact-on-practice-sales",
+  "kind": "secondary",
+  "note": "Law firm bulletin dated July 1, 2025. Lists 18 states that require advance notice of health care transactions to state authorities, covering asset and equity sales of practices. Filing is due 30 to 180 days before closing. Most laws apply only above a revenue or price threshold. Florida is not on the list."
+ },
+ {
+  "slug": "hlc-state-transaction-2026",
+  "title": "State health care transaction legislation in 2026: What passed, failed, and comes next",
+  "publisher": "Hogan Lovells Cadwalader",
+  "year": "2026",
+  "url": "https://hlc.com/en/publications/state-health-care-transaction-legislation-in-2026",
+  "kind": "secondary",
+  "note": "Law firm review dated October 24, 2026. California, Illinois, Maine, Washington, Connecticut and Vermont enacted or expanded transaction notice, review or ownership rules in 2026. Proposals in Colorado, Maryland, Hawaii, Rhode Island, New Hampshire, New York, Pennsylvania and Indiana were not enacted."
+ },
+ {
+  "slug": "gottlieb-2018",
+  "title": "Gottlieb, Shapiro, Dunn. The Complexity Of Billing And Paying For Physician Care. Health Affairs 37(4):619-626 (PubMed abstract, PMID 29608348)",
+  "publisher": "Health Affairs",
+  "year": "2018",
+  "url": "https://doi.org/10.1377/hlthaff.2017.1325",
+  "kind": "secondary",
+  "note": "Remittance data 2013 to 2015: fee-for-service Medicaid's claim denial rate was 17.8 percentage points above fee-for-service Medicare's, Medicaid managed care 6 points above, private insurance similar to Medicare Advantage."
+ },
+ {
+  "slug": "kff-ma-2026",
+  "title": "Medicare Advantage in 2026: Enrollment Update and Key Trends",
+  "publisher": "KFF",
+  "year": "2026",
+  "url": "https://www.kff.org/medicare/medicare-advantage-enrollment-update-and-key-trends/",
+  "kind": "secondary",
+  "note": "55% of eligible beneficiaries (35.2 of 64.2 million) were in Medicare Advantage in 2026. Special needs plans hold 23% of that enrollment. Published June 5, 2026, updated July 1, 2026."
+ },
+ {
+  "slug": "ama-patient-mix-2017",
+  "title": "Physicians' Patient Mix: A Snapshot from the 2016 Benchmark Survey (Policy Research Perspectives)",
+  "publisher": "American Medical Association",
+  "year": "2017",
+  "url": "https://wire.ama-assn.org/sites/ama-assn.org/files/corp/media-browser/public/health-policy/PRP-2017-physician-benchmark-survey-patient-mix.pdf",
+  "kind": "secondary",
+  "note": "Average patient shares in 2016: commercial 43.4%, Medicare 29.3%, Medicaid 16.9%, uninsured 6.1%. Shares of patients, not of revenue."
+ },
+ {
+  "slug": "fl-641-315",
+  "title": "Florida Statutes 641.315: Provider contracts (health maintenance organizations)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0641/Sections/0641.315.html",
+  "kind": "primary",
+  "note": "60 days' written notice to cancel, by either side. The organization must disclose its complete schedule of reimbursements and give 30 calendar days' written notice of changes. It may not require a practitioner to accept its other products."
+ },
+ {
+  "slug": "ama-payor-contracting",
+  "title": "Private Practice Toolkit: Payor Contracting 101",
+  "publisher": "American Medical Association",
+  "year": "2021",
+  "url": "https://www.ama-assn.org/system/files/payor-contracting-toolkit.pdf",
+  "kind": "secondary",
+  "note": "Payer types, what to weigh before joining a network, and contract basics. Notes that employer self-funded (ERISA) plans are usually exempt from state insurance laws such as prompt-pay laws."
+ },
+ {
+  "slug": "ama-contract-checklist",
+  "title": "Private Practice Toolkit: Payor Contract Review Checklist",
+  "publisher": "American Medical Association",
+  "year": "2021",
+  "url": "https://www.ama-assn.org/system/files/payor-contracting-toolkit-checklist.pdf",
+  "kind": "secondary",
+  "note": "Questions to ask of each clause: products, rates and their Medicare basis, payment deadlines, offsets, amendments, automatic renewal, termination without cause (for example 30 to 90 days' written notice)."
+ },
+ {
+  "slug": "medpac-mar26-ch4",
+  "title": "Report to the Congress: Medicare Payment Policy, March 2026, Chapter 4: Physician and other health professional services",
+  "publisher": "Medicare Payment Advisory Commission (MedPAC)",
+  "year": "2026",
+  "url": "https://www.medpac.gov/wp-content/uploads/2026/03/Mar26_Ch4_MedPAC_Report_To_Congress_SEC.pdf",
+  "kind": "primary",
+  "note": "Preferred provider organization rates of one large national insurer averaged 147% of fee-for-service Medicare for clinician services in 2024 (140% in 2023, 122% in 2011): 124% for care management and coordination visits, 213% for CT scans."
+ },
+ {
+  "slug": "trish-2017",
+  "title": "Trish, Ginsburg, Gascue, Joyce. Physician Reimbursement in Medicare Advantage Compared With Traditional Medicare and Commercial Health Insurance. JAMA Intern Med 177(9):1287-1295 (PubMed abstract, PMID 28692718)",
+  "publisher": "JAMA Internal Medicine",
+  "year": "2017",
+  "url": "https://doi.org/10.1001/jamainternmed.2017.2679",
+  "kind": "secondary",
+  "note": "Claims of one large national insurer, 2007 to 2012: Medicare Advantage paid 96.9% of traditional Medicare for office visit 99213, and 91.3% to 102.3% across common physician services."
+ },
+ {
+  "slug": "roberts-2017",
+  "title": "Roberts, Chernew, McWilliams. Market Share Matters: Evidence Of Insurer And Provider Bargaining Over Prices. Health Affairs 36(1):141-148 (PubMed abstract, PMID 28069857)",
+  "publisher": "Health Affairs",
+  "year": "2017",
+  "url": "https://doi.org/10.1377/hlthaff.2016.0479",
+  "kind": "secondary",
+  "note": "Office visit prices for small practices were $88, $72 and $70 as insurer market share rose, against $97, $86 and $76 for large provider groups."
+ },
+ {
+  "slug": "kff-medicaid-fee-index",
+  "title": "Medicaid-to-Medicare Fee Index (State Health Facts)",
+  "publisher": "KFF, from Urban Institute survey data",
+  "year": "2026",
+  "url": "https://www.kff.org/medicaid/state-indicator/medicaid-to-medicare-fee-index/",
+  "kind": "secondary",
+  "note": "2024: United States 0.75 for all services and 0.66 for primary care. Florida 0.64 and 0.56. Fee-for-service Medicaid physician fees only. 2019 figures were 0.72 and 0.67."
+ },
+ {
+  "slug": "cfr-45-147-212",
+  "title": "45 CFR 147.212: Transparency in coverage, requirements for public disclosure",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-147.212",
+  "kind": "primary",
+  "note": "Group health plans and insurers in the individual and group markets must publish in-network rates in machine-readable files, for plan years beginning on or after January 1, 2022. Grandfathered plans are exempt."
+ },
+ {
+  "slug": "maricopa-1982",
+  "title": "Arizona v. Maricopa County Medical Society, 457 U.S. 332 (1982)",
+  "publisher": "U.S. Supreme Court, text at Legal Information Institute, Cornell Law School",
+  "year": "1982",
+  "url": "https://www.law.cornell.edu/supremecourt/text/457/332",
+  "kind": "primary",
+  "note": "Fee agreements among competing physicians are price fixing, unlawful in itself under section 1 of the Sherman Act. Joint ventures that pool capital and share risk are treated as a single firm."
+ },
+ {
+  "slug": "cfr-424-515",
+  "title": "42 CFR 424.515: Requirements for reporting changes and updates to, and the periodic revalidation of, Medicare enrollment information",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.515",
+  "kind": "primary",
+  "note": "Revalidate every 5 years. Submit the application within 60 calendar days of the notice."
+ },
+ {
+  "slug": "cms-revalidation",
+  "title": "Revalidations (Renewing Your Enrollment)",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/revalidations",
+  "kind": "primary",
+  "note": "Due dates are posted seven months ahead on the Medicare Revalidation List. Notices go out about three to four months before the due date. No extensions. No payment for services while deactivated. Page last modified July 29, 2025."
+ },
+ {
+  "slug": "cms-855i-form",
+  "title": "Form CMS-855I: Medicare Enrollment Application, Physicians and Non-Physician Practitioners (05/23)",
+  "publisher": "CMS",
+  "year": "2023",
+  "url": "https://www.cms.gov/medicare/cms-forms/cms-forms/downloads/cms855i.pdf",
+  "kind": "primary",
+  "note": "Section 4: the practice location is where services are rendered. Clinicians who work in a hospital, retirement or assisted living community or other facility list those facilities. House-call-only clinicians may give a home address for administration. Reassignment is reported on this form."
+ },
+ {
+  "slug": "cfr-422-204",
+  "title": "42 CFR 422.204: Provider selection and credentialing (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.204",
+  "kind": "primary",
+  "note": "Paragraph (b)(2)(ii): recredentialing at least every 3 years."
+ },
+ {
+  "slug": "cfr-455-414",
+  "title": "42 CFR 455.414: Revalidation of enrollment (Medicaid)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-455.414",
+  "kind": "primary",
+  "note": "The state Medicaid agency must revalidate every provider's enrollment at least every 5 years."
+ },
+ {
+  "slug": "cfr-422-214",
+  "title": "42 CFR 422.214: Special rules for services furnished by noncontract providers (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.214",
+  "kind": "primary",
+  "note": "A clinician with no contract must accept, as payment in full, what could be collected if the patient were in original Medicare."
+ },
+ {
+  "slug": "cms-participation",
+  "title": "Annual Medicare Participation Announcement",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare-participation",
+  "kind": "primary",
+  "note": "Participation decisions run from mid-November through December 31. Medicare pays non-participating clinicians 5% less, and they may charge no more than 115% of the non-participating fee schedule amount."
+ },
+ {
+  "slug": "cms-dual-sep",
+  "title": "New Special Enrollment Periods for Dually Eligible and Extra Help-eligible Individuals (job aid)",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/files/document/duals-lissepsjobaid01012025.pdf",
+  "kind": "primary",
+  "note": "From January 1, 2025: a once-per-month election into Original Medicare with a stand-alone drug plan, and a once-per-month election into an integrated dual-eligible plan. Replaces the quarterly period."
+ },
+ {
+  "slug": "cms-ma-noncontract",
+  "title": "Provider Payment Dispute Resolution for Non-Contracted Providers",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/medicare/enrollment-renewal/health-plans/dispute-resolution",
+  "kind": "primary",
+  "note": "Plans must pay non-contract providers no less than Original Medicare would pay, and those providers must accept it as payment in full. Page last modified September 10, 2024."
+ },
+ {
+  "slug": "duals-databook-2025",
+  "title": "Data Book: Beneficiaries Dually Eligible for Medicare and Medicaid (December 2025)",
+  "publisher": "MedPAC and MACPAC",
+  "year": "2025",
+  "url": "https://www.macpac.gov/wp-content/uploads/2026/10/Dec25_MedPAC_MACPAC_DualsDataBook-WEB508-FINAL.pdf",
+  "kind": "primary",
+  "note": "Calendar 2022: 13.6 million dually eligible people, 20% of the Medicare population and 36% of Medicare spending. 11% lived in an institution, against 2% of other Medicare beneficiaries."
+ },
+ {
+  "slug": "fl-409-967",
+  "title": "Florida Statutes 409.967: Managed care plan accountability (Medicaid)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0409/Sections/0409.967.html",
+  "kind": "primary",
+  "note": "Paragraph (2)(j): Medicaid managed care plans must comply with sections 641.315, 641.3155 and 641.513, the HMO contract and prompt-payment laws."
+ },
+ {
+  "slug": "fl-409-978",
+  "title": "Florida Statutes 409.978: Long-term care managed care program",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0409/Sections/0409.978.html",
+  "kind": "primary",
+  "note": "The state pays for Medicaid long-term care, including home and community-based services, through a managed care model."
+ },
+ {
+  "slug": "cms-pim-ch13",
+  "title": "Medicare Program Integrity Manual, Chapter 13: Local Coverage Determinations (Rev. 863)",
+  "publisher": "CMS",
+  "year": "2019",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/pim83c13.pdf",
+  "kind": "primary",
+  "note": "Under section 1862(l)(5)(D) of the Social Security Act a contractor must post a final local coverage determination at least 45 days before it takes effect, after a proposed version and public comment."
+ },
+ {
+  "slug": "cms-mln-connects",
+  "title": "MLN Connects Newsletter",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2026",
+  "url": "https://www.cms.gov/training-education/medicare-learning-network/newsletter",
+  "kind": "primary",
+  "note": "Weekly national fee-for-service news for providers, suppliers, billers and coders, with an archive."
+ },
+ {
+  "slug": "cms-icd10",
+  "title": "ICD-10 codes",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/coding-billing/icd-10-codes",
+  "kind": "primary",
+  "note": "New diagnosis codes take effect each October 1, with a further update each April 1. The October 1, 2026 files were posted when read."
+ },
+ {
+  "slug": "va-claims",
+  "title": "File a Claim for Veteran Care (information for providers)",
+  "publisher": "U.S. Department of Veterans Affairs",
+  "year": "2026",
+  "url": "https://www.va.gov/COMMUNITYCARE/revenue-ops/Veteran-Care-Claims.asp",
+  "kind": "primary",
+  "note": "All non-urgent and non-emergency care needs authorization from the department in advance. The referral (VA Form 10-7080) says where to send the claim: Optum for regions 1 to 3, TriWest for regions 4 and 5."
+ },
+ {
+  "slug": "usc-38-1703d",
+  "title": "38 U.S.C. 1703D: Prompt payment standard (Veterans Affairs community care)",
+  "publisher": "U.S. Code, text at Legal Information Institute, Cornell Law School",
+  "year": "2026",
+  "url": "https://www.law.cornell.edu/uscode/text/38/1703D",
+  "kind": "primary",
+  "note": "Subsection (b): claims must be submitted within 180 days of the service. Subsection (a): clean electronic claims paid within 30 calendar days, paper within 45."
+ },
+ {
+  "slug": "cfr-38-17-4035",
+  "title": "38 CFR 17.4035: Payment rates (Veterans Community Care Program)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-38/section-17.4035",
+  "kind": "primary",
+  "note": "Except as the section provides, payment rates will not exceed the applicable Medicare rate."
+ },
+ {
+  "slug": "cfr-32-199-7",
+  "title": "32 CFR 199.7: Claims submission, review, and payment (TRICARE)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-32/section-199.7",
+  "kind": "primary",
+  "note": "Paragraph (d): claims must be filed no later than one year after the services are provided."
+ },
+ {
+  "slug": "cfr-32-199-8",
+  "title": "32 CFR 199.8: Double coverage (TRICARE)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-32/section-199.8",
+  "kind": "primary",
+  "note": "Paragraph (d)(1): for a beneficiary eligible for both, Medicare is always the primary payer, except after a retroactive disability determination."
+ },
+ {
+  "slug": "cfr-45-149-30",
+  "title": "45 CFR 149.30: Definitions (surprise billing rules)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.30",
+  "kind": "primary",
+  "note": "For non-emergency services a health care facility is a hospital, a hospital outpatient department, a critical access hospital or an ambulatory surgical center."
+ },
+ {
+  "slug": "fl-627-64194",
+  "title": "Florida Statutes 627.64194: Coverage requirements for services provided by nonparticipating providers; payment collection limitations",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.64194.html",
+  "kind": "primary",
+  "note": "Under state-regulated preferred and exclusive provider policies the insured owes a nonparticipating provider only cost sharing for emergency care, and for non-emergency care in a contracted facility when no participating provider could be chosen."
+ },
+ {
+  "slug": "mgma-cost-survey-2017-questions",
+  "title": "MGMA 2017 Cost and Revenue Survey (survey questions)",
+  "publisher": "MGMA, copy hosted by the American College of Allergy, Asthma and Immunology",
+  "year": "2017",
+  "url": "https://college.acaai.org/sites/default/files/Resources/cost_survey_2017_survey_questions.pdf",
+  "kind": "secondary",
+  "note": "Questionnaire only, no results. Operating cost lines include Legal Fees, Consulting Fees and Outside professional fees, so MGMA's paid cost survey holds a benchmark for these. Read November 10, 2026."
+ },
+ {
+  "slug": "mgma-stat-hit-costs-2023",
+  "title": "Measuring the rising costs of health IT compliance in medical groups (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2023",
+  "url": "https://www.mgma.com/mgma-stats/measuring-the-rising-costs-of-health-it-compliance-in-medical-groups",
+  "kind": "secondary",
+  "note": "March 16, 2023. Median technology cost per total relative value unit in the 2022 DataDive Cost and Revenue report: $0.57 for technology staff and $1.47 for technology operating cost, about 6% of the Medicare conversion factor. Also: $32,500 per physician in 2015 in physician-owned multispecialty groups, including equipment, staff and maintenance."
+ },
+ {
+  "slug": "cfr-170-315-b10",
+  "title": "45 CFR 170.315(b)(10): Electronic health information export (certification criterion for health IT)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-170.315",
+  "kind": "primary",
+  "note": "A certified product must let a user export all of one patient's stored electronic health information at any time without developer assistance, and must support an export of the whole patient population, in a computable format. Read through the eCFR API on November 10, 2026. Left in place by the final rule of October 28, 2026 (91 FR 67916)."
+ },
+ {
+  "slug": "caqh-2025",
+  "title": "2025 CAQH Index: Executive Report",
+  "publisher": "CAQH",
+  "year": "2026",
+  "url": "https://index.caqh.org/hubfs/Index/CAQH_IndexReport_2025_Executive%20Report_v6.pdf",
+  "kind": "secondary",
+  "note": "Free summary of the 2025 Index, which covers the year of the Change Healthcare attack. Medical provider average cost per transaction: $8.03 manual against $2.65 electronic ($7.93 and $3.39 in the 2024 Index). Transaction-level detail moved to a paid product. About one-quarter of providers reported using AI, mainly for administrative tasks."
+ },
+ {
+  "slug": "cfr-422-122",
+  "title": "42 CFR 422.121 and 422.122: Provider access and prior authorization interfaces (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.122",
+  "kind": "primary",
+  "note": "Beginning January 1, 2027, a Medicare Advantage organization must maintain a Prior Authorization interface (422.122(b)) and a Provider Access interface (422.121(a)). Drugs are excluded. Read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cms-cpm-ch24",
+  "title": "Medicare Claims Processing Manual, Chapter 24: General EDI and EDI Support Requirements, Electronic Claims, and Mandatory Electronic Filing of Medicare Claims (Rev. 13954)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c24.pdf",
+  "kind": "primary",
+  "note": "Section 30.2, the electronic billing enrollment agreement. The provider agrees to be responsible for all Medicare claims submitted by itself, its employees or its agents, to tie every electronic entry to an original source document, to submit accurate claims, and to keep source documents and medical records at least 6 years and 3 months after the bill is paid."
+ },
+ {
+  "slug": "hhs-cpg-2024",
+  "title": "Healthcare and Public Health Cybersecurity Performance Goals",
+  "publisher": "U.S. Department of Health and Human Services",
+  "year": "2024",
+  "url": "https://hhscyber.hhs.gov/cybersecurity-performance-goals.html",
+  "kind": "primary",
+  "note": "Voluntary goals. The ten essential goals include email security, multifactor authentication, basic cybersecurity training, strong encryption, revoking credentials of departing workforce members, basic incident planning, unique credentials, separate user and privileged accounts, and vendor cybersecurity requirements. Read November 10, 2026."
+ },
+ {
+  "slug": "hhs-hicp-tv1-2023",
+  "title": "Health Industry Cybersecurity Practices, Technical Volume 1: Cybersecurity Practices for Small Healthcare Organizations (2023 edition)",
+  "publisher": "U.S. Department of Health and Human Services, 405(d) Program",
+  "year": "2023",
+  "url": "https://hhscyber.hhs.gov/Documents/HICP/tech-vol1-508.pdf",
+  "kind": "primary",
+  "note": "Says smaller ambulatory practices are also targeted and can suffer greater proportional damage. Recommends unique accounts, role-based access, ending access as soon as a user leaves, and contract terms on return or destruction of patient data by technology vendors. Voluntary guidance."
+ },
+ {
+  "slug": "witty-senate-2024",
+  "title": "Testimony of the chief executive of UnitedHealth Group before the Senate Committee on Finance on the Change Healthcare cyberattack",
+  "publisher": "U.S. Senate Committee on Finance",
+  "year": "2024",
+  "url": "https://www.finance.senate.gov/imo/media/doc/0501_witty_testimony.pdf",
+  "kind": "primary",
+  "note": "May 1, 2024. On February 12, 2024 criminals used compromised credentials to reach a remote-access portal that did not have multi-factor authentication. Ransomware was deployed nine days later."
+ },
+ {
+  "slug": "cfr-171-302",
+  "title": "45 CFR 171.302: Fees exception (information blocking)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-171.302",
+  "kind": "primary",
+  "note": "The fees exception does not cover a fee to run the certified export of electronic health information for switching systems or giving patients their data, or a fee to export or convert data from health record technology that was not agreed in writing when the technology was acquired. Read through the eCFR API on November 10, 2026. Not changed by the final rule of October 28, 2026. Proposals of December 29, 2025 (90 FR 60970) to change other information blocking exceptions were still pending."
+ },
+ {
+  "slug": "ama-chc-survey-2024",
+  "title": "Change Healthcare cyberattack impact: key takeaways from informal AMA follow-up survey",
+  "publisher": "American Medical Association",
+  "year": "2024",
+  "url": "https://www.ama-assn.org/system/files/change-healthcare-follow-up-survey-results.pdf",
+  "kind": "secondary",
+  "note": "Published April 29, 2024. Informal survey of April 19 to 24, 2024, 593 respondents, most from practices with fewer than 10 physicians. 75% still faced barriers with claim submission, 90% were losing revenue from unpaid claims, 62% were using personal funds and 34% could not make payroll. Of those who had not switched clearinghouse, 32% said their system did not support a switch."
+ },
+ {
+  "slug": "cms-chopd-2024",
+  "title": "Change Healthcare/Optum Payment Disruption (CHOPD) accelerated payments to Part A providers and advance payments to Part B suppliers (fact sheet)",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/change-healthcare/optum-payment-disruption-chopd-accelerated-payments-part-providers-and-advance",
+  "kind": "primary",
+  "note": "March 9, 2024. Advance payments of up to 30 days of average Medicare claims payments, repaid by automatic recoupment from claims over 90 days, with a demand for any balance on day 91. A one-time program for that incident."
+ },
+ {
+  "slug": "doj-hhs-fca-wg-2025",
+  "title": "DOJ-HHS False Claims Act Working Group (press release 25-690)",
+  "publisher": "U.S. Department of Justice",
+  "year": "2025",
+  "url": "https://www.justice.gov/opa/pr/doj-hhs-false-claims-act-working-group",
+  "kind": "primary",
+  "note": "July 2, 2025. Lists priority enforcement areas, including manipulation of electronic health record systems to drive inappropriate use of Medicare-covered products and services, and Medicare Advantage."
  }
 ]

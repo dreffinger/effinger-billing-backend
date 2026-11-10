@@ -61,7 +61,7 @@
     "mgma-stat-revenue-2026",
     "cfr-483-10"
    ],
-   "evidence_note": "Planning practice from general business guidance (SBA) and the MGMA body of knowledge, not from measured outcomes. No growth benchmark applies across practices. MGMA polls show how many groups grew in a year, which is context and not a target.",
+   "evidence_note": "Planning practice from business guidance (Small Business Administration) and the Medical Group Management Association (MGMA) body of knowledge, not from measured outcomes. No growth benchmark applies across practices. MGMA polls show how many groups grew in a year, which is context and not a target.",
    "metrics": [
     {
      "slug": "gm-revenue-growth",
@@ -71,7 +71,7 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable benchmark exists. Context: in MGMA polls of June 2026, 47% of 221 groups reported year-to-date revenue above 2025 and 36% below, while 84% reported higher costs. The practical test is revenue growing faster than operating cost.",
+     "benchmark_note": "No reliable benchmark exists. Context: in a June 2026 Medical Group Management Association poll, 47% of 221 groups reported year-to-date revenue above 2025 and 36% below. A poll a week earlier found 84% with higher costs. The practical test is revenue outgrowing operating cost.",
      "confidence": "none",
      "data_hint": "The income statement, with a note of any one-time collections.",
      "sources": [
@@ -148,13 +148,13 @@
     },
     {
      "action": "Check self-referral rules before adding tests, imaging, therapy or equipment",
-     "detail": "Laboratory, imaging, therapy and equipment are designated health services under the physician self-referral law. The in-office exception (42 CFR 411.355(b)) sets who performs the service, where and who bills. Have counsel review vendor-run programs.",
+     "detail": "Laboratory, imaging, therapy and equipment are designated health services under the physician self-referral law. The in-office exception (42 CFR 411.355(b)) sets who performs the service, where and who bills, and excludes most equipment. Have counsel review vendor-run programs.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with an established patient base. Setting matters: transitional care needs a discharge to home, a domiciliary, a rest home or assisted living, and care management, billable for facility residents, pays roughly a third less where the facility rate applies, such as a hospital or Part A skilled stay.",
+   "applies_when": "Any practice with an established patient base. Setting matters: transitional care needs a discharge to home, a domiciliary, a rest home or assisted living, and care management, billable for facility residents, pays roughly a third less where the facility rate applies, such as a hospital or a Medicare Part A skilled nursing stay.",
    "sources": [
     "cms-mln-ccm",
     "cms-ccm-faq",
@@ -167,7 +167,7 @@
     "cfr-411-351",
     "cms-cognitive-assessment"
    ],
-   "evidence_note": "Coverage rules come from CMS booklets and web pages. CMS's 2025 improper payment data show error rates of 65% for basic chronic care management (99490) and 30% for advance care planning (99497), about nine-tenths from insufficient documentation, so workflow first is well supported.",
+   "evidence_note": "Coverage rules come from Medicare's own booklets and web pages. Medicare's 2025 improper payment report shows error rates of 65% for basic chronic care management (99490) and 30% for advance care planning (99497), about nine-tenths from insufficient documentation, so workflow first is well supported.",
    "metrics": [
     {
      "slug": "gm-new-service-revenue-share",
@@ -188,19 +188,15 @@
      "note": "Sizes care-management, wellness and cognitive-assessment revenue by volume times rate. Wrong that 99483 can be billed with a same-day office visit or advance care planning, and lists retired code G0505."
     },
     {
-     "item": "practice-financial-intelligence-playbook",
-     "note": "Section 11 has a sound six-question costing checklist for a new service: start-up cost, ramp, real payer rates, staffing, break-even. Silent on coverage rules, documentation and audits."
-    },
-    {
      "item": "stark-antikickback-playbook",
-     "note": "Explains self-referral limits on in-office laboratory, imaging and therapy and on vendor turnkey programs. Wrong that the in-office exception needs a group practice: a solo physician qualifies."
+     "note": "Explains self-referral limits on in-office laboratory, imaging and therapy and on vendor-run programs. Wrong that the in-office exception needs a group practice: a solo physician qualifies."
     }
    ]
   },
   {
    "slug": "gm-referral-relationships",
    "name": "Referral and facility relationships",
-   "summary": "Most practices depend on a small number of people who send or assign patients: referring physicians, hospital case managers, facility administrators and directors of nursing. Those relationships are an asset that needs deliberate upkeep.",
+   "summary": "Many practices depend on a small number of people who send or assign patients: referring physicians, hospital case managers, facility administrators and directors of nursing. Those relationships are an asset that needs deliberate upkeep.",
    "good_looks_like": [
     "The practice knows where each new patient came from.",
     "Each important source has a named contact in the practice and a record of recent contact.",
@@ -244,7 +240,7 @@
     },
     {
      "action": "Have counsel review anything of value exchanged with a referral source",
-     "detail": "Meals, gifts, free staff time and directorship pay fall under the kickback and self-referral rules. Safe harbors (42 CFR 1001.952) expect written terms, fair market value and no link to referral volume.",
+     "detail": "Meals, gifts, free staff time and directorship pay fall under the kickback and self-referral rules. Protected arrangements, called safe harbors (42 CFR 1001.952), expect written terms, fair market value and no link to referral volume.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
@@ -323,14 +319,14 @@
    "actions": [
     {
      "action": "Write a one-page case for each site",
-     "detail": "Volume, revenue at current yield, clinician days, travel time, start-up cost, break-even month.",
+     "detail": "Volume, revenue at current collections per visit, clinician days, travel time, start-up cost, break-even month.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
-     "action": "Set a minimum starting volume",
-     "detail": "Agree with the facility or referrers on the initial census before committing.",
+     "action": "Confirm a minimum starting volume",
+     "detail": "Ask how many patients need a physician now, before committing. Never trade anything of value for a promised number of patients, and remember residents choose their own physician (42 CFR 483.10(d)).",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -355,9 +351,11 @@
     "cfr-424-516",
     "cfr-424-526",
     "cfr-424-535",
-    "cms-855b-form"
+    "cms-855b-form",
+    "cfr-483-10",
+    "usc-42-1320a-7b"
    ],
-   "evidence_note": "Enrollment reporting duties are federal regulation and the instructions on Medicare's enrollment forms. Site economics are arithmetic from the practice's own yield and costs, with no published benchmark.",
+   "evidence_note": "Enrollment reporting duties are federal regulation and the instructions on Medicare's enrollment forms. Site economics are arithmetic from the practice's own collections per visit and costs, with no published benchmark.",
    "metrics": [
     {
      "slug": "gm-months-to-breakeven-site",
@@ -387,8 +385,8 @@
    "summary": "Hiring a physician, nurse practitioner or physician assistant to grow. The decision rests on demand that exists now, the months before payers pay for the new clinician's work, and what the hire does to quality and oversight.",
    "good_looks_like": [
     "Unmet demand is measured, such as waiting patients, turned-away facilities, or clinicians above a sustainable visit count.",
-    "A hiring case shows cost, expected visits, collections per visit, and the ramp month by month.",
-    "Health plan credentialing starts at offer acceptance, the Medicare application is filed within 60 days of the start date, and cash is set aside for the ramp.",
+    "A hiring case shows cost, expected visits, collections per visit, and the build-up month by month.",
+    "Health plan credentialing starts at offer acceptance, the Medicare application is filed within 60 days of the start date, and cash is set aside for the build-up months.",
     "The new clinician's charts are audited in the first 90 days."
    ],
    "failure_modes": [
@@ -406,13 +404,13 @@
    "actions": [
     {
      "action": "Calculate break-even visits a day",
-     "detail": "Full yearly cost (pay, payroll taxes, benefits, malpractice cover) divided by collections per visit, then by working days. AMGA 2025 medians for pay alone: family physician $342,411, primary care nurse practitioner $149,178.",
+     "detail": "Full yearly cost (pay, payroll taxes, benefits, malpractice cover) divided by collections per visit, then by working days. American Medical Group Association (AMGA) 2025 medians for pay alone: family physician $342,411, primary care nurse practitioner $149,178.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
-     "action": "Model the ramp and the cash need",
+     "action": "Model the build-up period and the cash need",
      "detail": "Assume low volume and slow payment for the first three to six months, a planning assumption. Medicare's standard for online applications is 15 to 85 days. Some plans have taken 100 days and allowed no back-billing.",
      "cadence": "per event",
      "effort": "low",
@@ -427,7 +425,7 @@
     },
     {
      "action": "Audit early",
-     "detail": "Review at least ten of the new clinician's charts in the first month and again at 90 days. OIG's guide for small practices suggests five to ten records per physician as a basic sample.",
+     "detail": "Review at least ten of the new clinician's charts in the first month and again at 90 days. The federal Office of Inspector General's guide for small practices suggests five to ten records per physician as a basic sample.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -467,7 +465,7 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Plan for the enrollment period plus the payment lag. Medicare's contractor standard for online applications is 15 to 85 days (First Coast, 2026). MGMA members reported plans taking up to 100 days (2021 poll).",
+     "benchmark_note": "No reliable public benchmark was found. Plan for the enrollment period plus the payment lag. Medicare's contractor standard for online applications is 15 to 85 days (First Coast, 2026). A 2021 Medical Group Management Association poll reported plans taking up to 100 days.",
      "confidence": "none",
      "data_hint": "Collections by rendering clinician and payroll.",
      "sources": [
@@ -475,7 +473,7 @@
       "mgma-stat-cred-2021"
      ],
      "vendor_claim": "A new clinician covers their cost after roughly three to nine months, and an experienced nurse practitioner or physician assistant usually within six.",
-     "vendor_verdict": "Unverifiable. No source is cited, and the document says it widened its ramp figures to make them agree. Use the practice's own model."
+     "vendor_verdict": "Unverifiable. No source is cited, and the document says it widened its build-up figures to make them agree. Use the practice's own model."
     },
     {
      "slug": "gm-capacity-utilization",
@@ -498,15 +496,11 @@
    "vendor_refs": [
     {
      "item": "practice-financial-intelligence-playbook",
-     "note": "Section 11 models a new clinician's ramp and monthly cash drain. Its ramp lengths and dollar ranges are unsourced, and a note admits one was widened to reconcile with others."
+     "note": "Section 11 models a new clinician's build-up and monthly cash drain. Its time and dollar ranges are unsourced, and a note admits one was widened to reconcile with others."
     },
     {
      "item": "credentialing-and-re-credentialing-management-playbook",
      "note": "Backward-planned timeline for enrolling a new clinician with each payer. Says to file Medicare 90 or more days ahead, but applications received over 60 days early may be returned."
-    },
-    {
-     "item": "kpi-action-guide-vol2-specialty",
-     "note": "Chapter 13 tracks days from start date to first accepted claim, by payer. Its under-60-day target for plans is labelled aspirational, with 90 to 150 days called typical. Both unsourced."
     }
    ]
   },
@@ -566,7 +560,7 @@
     },
     {
      "action": "Screen every promotion against the patient-inducement and kickback rules",
-     "detail": "No routine copayment waivers or gifts above the Inspector General's nominal limit ($15 an item, $75 a year, never cash) to attract Medicare or Medicaid patients (42 CFR 1003.1000). No per-patient pay to outside marketers: no safe harbor covers it.",
+     "detail": "No routine copayment waivers or gifts above the Inspector General's nominal limit ($15 an item, $75 a year, never cash) to attract Medicare or Medicaid patients (42 CFR 1003.1000). No per-patient pay to outside marketers: no kickback exception covers it.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
@@ -598,7 +592,7 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No benchmark exists for a practice's own listings, so 100% is a first-principles target. CMS reviews of Medicare Advantage directories in 2016 to 2018 found errors at 45% to 55% of listed locations. Old data, and it measures plans, not practices.",
+     "benchmark_note": "No benchmark exists for a practice's own listings, so 100% is a first-principles target. Medicare's reviews of Medicare Advantage directories in 2016 to 2018 found errors at 45% to 55% of listed locations. Old data, and it measures plans, not practices.",
      "confidence": "medium",
      "data_hint": "A quarterly check of the national provider registry, each payer directory and main listings.",
      "benchmark_best": "100% (target from first principles)",
@@ -637,7 +631,7 @@
    "actions": [
     {
      "action": "Map potential partners",
-     "detail": "Plans (including special needs plans for facility residents), accountable care organizations, hospitals, hospices and home health agencies that serve the same patients. From 2027 Medicare's LEAD model is aimed at small practices and high-needs patients.",
+     "detail": "Plans (including special needs plans for facility residents), accountable care organizations, hospitals, hospices and home health agencies that serve the same patients. From 2027 Medicare's LEAD accountable care model is aimed at small practices and high-needs patients.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -665,17 +659,18 @@
     },
     {
      "action": "Price accountable care membership in dollars",
-     "detail": "From 2027, clinicians in a Shared Savings Program or LEAD organization may bill modifier B2, adding 32% to eligible visits, against 16% for the general modifier. Compare that and any shared savings with the fees and duties.",
+     "detail": "From 2027, clinicians in a Shared Savings Program or LEAD organization may bill modifier B2, adding 32% to office, outpatient and home or residence visits, against 16% for the general modifier. Weigh that plus shared savings against fees and duties.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
     }
    ],
-   "applies_when": "Practices of any size: small practices use partnerships to reach contracts that reward quality and lower cost, and data they could not obtain alone. Facility-based practices suit plans and organizations responsible for nursing home residents, such as institutional special needs plans, but should confirm the 2027 visit modifier covers their codes, since the add-on it replaces was an office-visit code.",
+   "applies_when": "Practices of any size: an accountable care organization needs at least 5,000 assigned Medicare patients (42 CFR 425.110), so small practices join one rather than form one. Facility-based practices suit institutional special needs plans, which enroll long-stay residents, but the 2027 visit modifiers cover only office, outpatient and home or residence visits, not nursing facility visits (91 FR 71103).",
    "sources": [
     "cfr-1001-952",
     "cfr-411-357",
     "cms-pfs-2027",
+    "fr-pfs-2027-final",
     "cfr-425-306",
     "cfr-425-110",
     "cms-ssp-py2024-results",
@@ -684,7 +679,7 @@
     "cfr-422-202",
     "fl-458-331"
    ],
-   "evidence_note": "Referral law limits are federal regulation. In Medicare's Shared Savings Program, 75% of 476 organizations earned payments for 2024 and physician-led ones saved more per patient than hospital-led ones (CMS, 2025). What reaches a member practice depends on its contract.",
+   "evidence_note": "Referral law limits are federal regulation. In Medicare's Shared Savings Program, 75% of 476 organizations earned payments for 2024 and physician-led ones saved more per patient than hospital-led ones (Medicare fact sheet, 2025). What reaches a member practice depends on its contract.",
    "metrics": [
     {
      "slug": "gm-partner-revenue-share",
@@ -716,7 +711,7 @@
    "summary": "Growing by buying another practice, taking over a retiring physician's patients, or absorbing a facility contract. It is faster than organic growth and carries the seller's problems with it.",
    "good_looks_like": [
     "The buyer values the target on earnings after a market wage for clinicians, not on revenue.",
-    "Diligence covers coding patterns, receivables, payer contracts, enrollment and compliance history.",
+    "The buyer's checks before signing (due diligence) cover coding patterns, receivables, payer contracts, enrollment and compliance history.",
     "The deal is structured so the buyer does not inherit past billing liabilities.",
     "A plan exists for keeping the seller's patients, staff and referral sources.",
     "The price is fair market value for the practice itself, with nothing added for referrals the seller may send afterward."
