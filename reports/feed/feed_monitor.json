@@ -1,7 +1,7 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-09T18:52:52Z",
- "as_of": "2026-11-09",
+ "generated": "2026-11-10T06:49:30Z",
+ "as_of": "2026-11-10",
  "coverage": {
   "files": [
    {
@@ -232,13 +232,13 @@
  },
  "windows": {
   "week": {
-   "from": "2026-11-03",
-   "to": "2026-11-09",
-   "visits": 195,
-   "lines": 207,
-   "dollars": 35290.0,
-   "patients": 114,
-   "entered": 195,
+   "from": "2026-11-04",
+   "to": "2026-11-10",
+   "visits": 158,
+   "lines": 166,
+   "dollars": 26031.0,
+   "patients": 97,
+   "entered": 158,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -252,21 +252,15 @@
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 18,
-     "visits": 18,
-     "dollars": 5580.0
+     "lines": 12,
+     "visits": 12,
+     "dollars": 3720.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 101,
-     "visits": 101,
-     "dollars": 14445.0
-    },
-    {
-     "name": "Hospital discharge",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 163.0
+     "lines": 86,
+     "visits": 86,
+     "dollars": 12241.0
     },
     {
      "name": "SNF admission",
@@ -288,23 +282,23 @@
     },
     {
      "name": "Home / ALF visit",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 5100.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 600.0
     },
     {
      "name": "Advance care planning",
-     "lines": 12,
-     "visits": 12,
-     "dollars": 1596.0
+     "lines": 8,
+     "visits": 8,
+     "dollars": 1064.0
     }
    ],
    "cpt": [
     {
      "name": "99233",
-     "lines": 66,
-     "visits": 66,
-     "dollars": 10560.0
+     "lines": 55,
+     "visits": 55,
+     "dollars": 8800.0
     },
     {
      "name": "99309",
@@ -314,27 +308,27 @@
     },
     {
      "name": "99232",
-     "lines": 35,
-     "visits": 35,
-     "dollars": 3885.0
+     "lines": 31,
+     "visits": 31,
+     "dollars": 3441.0
     },
     {
      "name": "99223",
-     "lines": 18,
-     "visits": 18,
-     "dollars": 5580.0
-    },
-    {
-     "name": "99344",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 5100.0
+     "lines": 12,
+     "visits": 12,
+     "dollars": 3720.0
     },
     {
      "name": "99497",
-     "lines": 12,
-     "visits": 12,
-     "dollars": 1596.0
+     "lines": 8,
+     "visits": 8,
+     "dollars": 1064.0
+    },
+    {
+     "name": "99344",
+     "lines": 2,
+     "visits": 2,
+     "dollars": 600.0
     },
     {
      "name": "99306",
@@ -349,12 +343,6 @@
      "dollars": 214.0
     },
     {
-     "name": "99239",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 163.0
-    },
-    {
      "name": "99316",
      "lines": 1,
      "visits": 1,
@@ -364,15 +352,9 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 122,
-     "visits": 118,
-     "dollars": 20250.0
-    },
-    {
-     "name": "Sodalis ALF",
-     "lines": 23,
-     "visits": 18,
-     "dollars": 5935.0
+     "lines": 99,
+     "visits": 96,
+     "dollars": 15890.0
     },
     {
      "name": "Westminster Bertrand",
@@ -393,6 +375,12 @@
      "dollars": 2463.0
     },
     {
+     "name": "Sodalis ALF",
+     "lines": 5,
+     "visits": 3,
+     "dollars": 1036.0
+    },
+    {
      "name": "unknown facility",
      "lines": 4,
      "visits": 3,
@@ -408,9 +396,9 @@
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 122,
-     "visits": 118,
-     "dollars": 20250.0
+     "lines": 99,
+     "visits": 96,
+     "dollars": 15890.0
     },
     {
      "name": "Skilled nursing facility",
@@ -420,127 +408,114 @@
     },
     {
      "name": "Assisted living",
-     "lines": 25,
-     "visits": 19,
-     "dollars": 6368.0
+     "lines": 7,
+     "visits": 4,
+     "dollars": 1469.0
     }
    ],
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 127,
-     "visits": 118,
-     "dollars": 21145.0
+     "lines": 107,
+     "visits": 102,
+     "dollars": 16740.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 60,
-     "visits": 58,
-     "dollars": 10882.0
+     "lines": 40,
+     "visits": 38,
+     "dollars": 6328.0
     },
     {
      "name": "Pamela G.",
-     "lines": 20,
-     "visits": 19,
-     "dollars": 3263.0
+     "lines": 19,
+     "visits": 18,
+     "dollars": 2963.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 80,
-     "visits": 76,
-     "dollars": 13248.0
+     "lines": 64,
+     "visits": 62,
+     "dollars": 9427.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 42,
-     "visits": 39,
-     "dollars": 7351.0
+     "lines": 30,
+     "visits": 29,
+     "dollars": 4723.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 9,
-     "visits": 9,
-     "dollars": 1594.0
+     "lines": 7,
+     "visits": 7,
+     "dollars": 1134.0
     },
     {
      "name": "Commercial / other",
-     "lines": 17,
-     "visits": 16,
-     "dollars": 2771.0
-    },
-    {
-     "name": "VA / TRICARE",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 300.0
+     "lines": 15,
+     "visits": 14,
+     "dollars": 2301.0
     },
     {
      "name": "No active plan",
-     "lines": 58,
-     "visits": 54,
-     "dollars": 10026.0
+     "lines": 50,
+     "visits": 46,
+     "dollars": 8446.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 29
-    },
-    {
-     "code": "E785",
      "patients": 18
     },
     {
-     "code": "I639",
-     "patients": 12
+     "code": "E785",
+     "patients": 11
     },
     {
      "code": "J449",
-     "patients": 10
-    },
-    {
-     "code": "N390",
-     "patients": 9
-    },
-    {
-     "code": "M4802",
-     "patients": 8
-    },
-    {
-     "code": "M48.02",
-     "patients": 8
-    },
-    {
-     "code": "I4891",
      "patients": 7
     },
     {
-     "code": "R55",
+     "code": "N390",
+     "patients": 7
+    },
+    {
+     "code": "I639",
+     "patients": 7
+    },
+    {
+     "code": "M48.02",
      "patients": 6
+    },
+    {
+     "code": "M4802",
+     "patients": 6
+    },
+    {
+     "code": "R55",
+     "patients": 5
+    },
+    {
+     "code": "R627",
+     "patients": 5
+    },
+    {
+     "code": "I509",
+     "patients": 5
     },
     {
      "code": "M6281",
-     "patients": 6
-    },
-    {
-     "code": "E119",
-     "patients": 6
+     "patients": 4
     },
     {
      "code": "E039",
-     "patients": 5
+     "patients": 4
     }
    ],
    "days": [
-    {
-     "date": "2026-11-03",
-     "visits": 37,
-     "lines": 41,
-     "dollars": 9259.0,
-     "patients": 37
-    },
     {
      "date": "2026-11-04",
      "visits": 59,
@@ -582,12 +557,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-10",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "month": {
-   "from": "2026-10-11",
-   "to": "2026-11-09",
+   "from": "2026-10-12",
+   "to": "2026-11-10",
    "visits": 953,
    "lines": 1225,
    "dollars": 202812.0,
@@ -945,22 +927,15 @@
      "patients": 24
     },
     {
-     "code": "M4802",
+     "code": "M48.02",
      "patients": 24
     },
     {
-     "code": "M48.02",
+     "code": "M4802",
      "patients": 24
     }
    ],
    "days": [
-    {
-     "date": "2026-10-11",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
-    },
     {
      "date": "2026-10-12",
      "visits": 23,
@@ -1163,12 +1138,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-10",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "all": {
    "from": "2026-09-01",
-   "to": "2026-11-09",
+   "to": "2026-11-10",
    "visits": 1037,
    "lines": 1316,
    "dollars": 213807.0,
@@ -1526,11 +1508,11 @@
      "patients": 24
     },
     {
-     "code": "M4802",
+     "code": "M48.02",
      "patients": 24
     },
     {
-     "code": "M48.02",
+     "code": "M4802",
      "patients": 24
     }
    ],
@@ -2020,6 +2002,13 @@
     },
     {
      "date": "2026-11-09",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
+    },
+    {
+     "date": "2026-11-10",
      "visits": 0,
      "lines": 0,
      "dollars": 0.0,
