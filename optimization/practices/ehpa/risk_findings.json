@@ -37,23 +37,39 @@
  {
   "id": "ehpa-risk-place-of-service",
   "ord": 2,
-  "title": "Every nursing facility claim billed as a Medicare Part A skilled stay",
-  "severity": "high",
-  "likelihood": "high",
+  "title": "Nursing facility claims went out as skilled stays; a visit-pattern rule now sets the long-term code",
+  "severity": "medium",
+  "likelihood": "medium",
   "category_slug": "cc-place-of-service",
-  "what_we_see": "All nursing facility visits and 152 of October's care-management lines carry place of service 31, the code for a patient in a Medicare Part A covered skilled stay. Place of service 32, for residents who are not in such a stay, was never used. With five facilities and many long-term residents, a large share of these claims almost certainly name the wrong setting.",
-  "rule": "Medicare's manual says to use place of service 31 when the patient is in a Part A skilled stay and 32 when the patient is not, even in the same building. The setting changes the payment rate: 31 pays the facility rate and 32 the non-facility rate.",
-  "exposure": "Money left unclaimed, not money owed back. In 2026 Medicare allows more under code 32 than under code 31: $114.90 against $99.58 for a follow-up visit, and for complex care management $142.98 against $80.71 for the first hour and $77.47 against $44.58 for each added half hour. The practice's own remittances show both rates being paid. October 2026 had 112 Medicare fee-for-service first-hour lines and 96 add-on lines billed as skilled stays. If every one of those residents was a long-term resident and every claim paid, the difference is about $10,100 a month. At today's paid rate a realistic figure is $30,000 to $60,000 a year on care management, plus $10,000 to $25,000 on 2026 visits. For 2027 Medicare set the two rates equal for visits only. A paid claim is corrected by asking the Medicare contractor to reopen it. First Coast accepts that request for any reason within one year of the original payment decision. After that it reopens a claim only for good cause, within four years at most, and may refuse. Wrong setting codes also undermine the practice's credibility in any audit.",
-  "recommended_review": "Ask each facility for a current census showing which residents are in a Part A skilled stay, with the start and end date of each stay back to November 2025. Compare with the claims and count how many carried the wrong code and the payment difference. Place of service is a fact about the resident on that date, so the facility's record decides each claim.",
-  "control": "A weekly census from every facility with skilled-stay status and payer, stored with the patient, from which the billing routine sets place of service for each date of service, on visits and on care management.",
+  "what_we_see": "Until November 10, 2026 every nursing facility visit and every care-management line in the five nursing buildings carried place of service 31, the code for a patient in a Medicare Part A covered skilled stay. Place of service 32, for residents who are not in such a stay, was never used. The payments confirm it: in 2026 Medicare paid $63.28 for the first hour of complex care management in those buildings, which is the skilled-stay rate. On November 10, 2026 the owner set a rule and the billing back end now applies it when a charge is entered: care management in a nursing building is billed as 32, the monthly visit as 32, and weekly or twice-weekly visits, admissions and anything unclear as 31. The rule reads the visit pattern on the chart. It does not read each facility's list of residents in a Part A stay. It reached the live billing branch at 11:14 UTC that day as rule version 2026-11-10.4, and version 2026-11-10.6, live at 22:46 UTC, added the reviewers' follow-ups. The first live batch (12:39 UTC: 60 visits, 66 lines, $10,368, none failed) entered 24 Brynwood visits at 32 and 6 at 31, the one Aspire visit at 31, 28 hospital visits at 21 and 1 assisted living visit at 13. Both initial nursing facility visits went in at 31. Whether AdvancedMD kept every 32 has not been read yet.",
+  "rule": "Medicare's manual says to use place of service 31 when the patient is in a Part A skilled stay and 32 when the patient is not, even in the same building. The setting changes the payment: 31 pays the facility rate and 32 the non-facility rate. Since July 2025 Medicare compares every line billed as 32 with the facility's Part A claim. A line that does not match is returned with reason code 58, or is paid and later repriced. A 2016 Medicare question-and-answer sheet said care management cannot be billed for a resident in a Part A covered stay. The current sheet does not repeat that limit, and which code fits a month with some Part A days is unsettled.",
+  "exposure": "Two kinds. Money left unclaimed in the past: from November 2025 through October 2026 Medicare paid 1,667 care-management lines in the nursing buildings, $85,176 in all, at the skilled-stay rate. At the long-term rate the same lines would have been allowed $76,549 more, of which Medicare's share is $60,015. The owner decided on November 10, 2026 not to ask Medicare to reopen paid claims. From now on the risk runs the other way: a line billed as 32 for a resident who was in a Part A stay that month is an error in the practice's favor. A 2023 Inspector General audit found $22.5 million paid nationally on 1.13 million lines coded 32 during Part A stays. The rule keeps unclear cases at 31, and a line Medicare returns or reprices is reported to the owner and is not changed or resent without his word.",
+  "recommended_review": "Ask each facility for its monthly list of residents in a Part A skilled stay, with start and end dates. Compare one month of claims billed as 32 with that list. Read the next feed reports: each has a place-of-service line with counts and chart numbers, and says whether AdvancedMD stored the code that was sent. The first batch's import register had not reached the live branch by 14:32 UTC on November 10, so the first read of a stored 32 comes from a later batch.",
+  "control": "The rule in the feed import, with its own self-test and a line in every feed report. A monthly Part A list from each facility as the proof. Any line Medicare returns with reason code 58 or reprices goes to the owner the same week.",
   "sources": [
    {
     "title": "Medicare Claims Processing Manual, Chapter 12: Physicians and Nonphysician Practitioners (Rev. 13753)",
     "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c12.pdf"
    },
    {
+    "title": "MLN Matters MM13767: Improving payment accuracy for physician services in skilled nursing facilities",
+    "url": "https://www.cms.gov/files/document/mm13767-improving-payment-accuracy-physician-services-skilled-nursing-facilities.pdf"
+   },
+   {
+    "title": "Office of Inspector General, report A-04-21-04084 (May 2023): Medicare paid millions more for physician services at higher nonfacility rates while enrollees were inpatients of facilities",
+    "url": "https://oig.hhs.gov/reports/all/2023/medicare-paid-millions-more-for-physician-services-at-higher-nonfacility-rates-rather-than-at-lower-facility-rates-while-enrollees-were-inpatients-of-facilities/"
+   },
+   {
     "title": "Frequently Asked Questions About Practitioner Billing for Chronic Care Management Services",
     "url": "https://www.cms.gov/files/document/chronic-care-management-faqs.pdf"
+   },
+   {
+    "title": "42 CFR 411.15: Particular services excluded from coverage",
+    "url": "https://www.ecfr.gov/current/title-42/section-411.15"
+   },
+   {
+    "title": "CMS Physician Fee Schedule relative value file RVU26D (2026)",
+    "url": "https://www.cms.gov/files/zip/rvu26d.zip"
    },
    {
     "title": "Calendar Year 2027 Medicare Physician Fee Schedule Final Rule fact sheet",
@@ -62,21 +78,25 @@
   ]
  },
  {
-  "id": "ehpa-risk-np-initial-visits",
+  "id": "ehpa-risk-wrong-clinician",
   "ord": 3,
-  "title": "Initial nursing facility visits billed by the nurse practitioner in skilled stays",
-  "severity": "medium",
-  "likelihood": "medium",
+  "title": "149 October visits were entered under the other clinician by the charge import",
+  "severity": "high",
+  "likelihood": "high",
   "category_slug": "cc-who-bills",
-  "what_we_see": "The nurse practitioner billed 10 of the 19 initial nursing facility visits in the charge feed, all at the top level and all as skilled stays. CMS data show she billed that code 37 times in 2023 and 129 times in 2024. In the 2024 public data, which leaves out rows with fewer than 11 patients, the physician billed 102 nursing facility visits of any kind. That is fewer than the 129 initial visits the nurse practitioner billed. That gap is the first thing to explain.",
-  "rule": "A nurse practitioner may bill an initial nursing facility code for a medically necessary first evaluation. But in a skilled nursing facility the physician must personally perform the federally required initial comprehensive visit, no later than 30 days after admission, and may not delegate it. After that visit, alternate required visits may be delegated. For residents who are not in a Part A stay, federal rules leave this to the State. Florida's nursing home rule allows required visits by a physician or another licensed health professional, but it lets the physician hand over his part of the care only after the required visit. Ask the attorney how that applies to the first visit.",
-  "exposure": "If the nurse practitioner's visit was the only comprehensive visit in a Medicare Part A skilled stay, the facility is out of compliance with its survey rule and the physician has not made a visit he must make in person. The nurse practitioner's own claim can still be valid as a medically necessary visit. Facilities are cited for this, and it can cost a medical directorship or the relationship.",
-  "recommended_review": "For each skilled admission in the last six months where the nurse practitioner did the first visit, find the date and note of the physician's own comprehensive visit. Start after the attorney is engaged, and give the list to the attorney.",
-  "control": "Track, for every skilled admission, the due date and the completion date of the physician's comprehensive visit, and the 30-day and 60-day visits that follow.",
+  "what_we_see": "Since October 28, 2026 the practice enters its own charges from the Claimocity feed. Until November 10 the import kept one clinician per patient per batch: the last message it read. When a resident's care-management charge (the physician's) and the nurse practitioner's visit charges arrived in the same batch, the visits were entered under the physician. Comparing each feed message's own clinician with the clinician entered shows 149 visits and 167 charge lines, all with October 2026 dates of service and all but one visit in the October 28 batch. On 165 lines the feed names the nurse practitioner and the charge was entered under the physician. On 2 care-management lines it is the other way round. Fees are about $21,900. On November 10, 133 of the lines were billed and not yet paid (120 of them at Medicare), 15 were not yet billed and 19 were paid ($1,711, none of it by Medicare). Only 3 lines are with a Medicaid plan, so this is not the set of Medicaid visits moved to the physician in September. The owner replied the same day that not every nursing visit is the nurse practitioner's. Whether the clinician on a Claimocity charge is always the person who saw the patient is his to confirm. The same check found 18 visits entered under a different building than their message names. None of these has been corrected in AdvancedMD.",
+  "rule": "A claim must name the clinician who performed the service. Medicare pays a nurse practitioner's service at 85% of the physician fee schedule amount. A payment received under the wrong clinician includes the difference, and an overpayment must be returned within 60 days of being identified.",
+  "exposure": "If the 120 Medicare lines are paid under the physician, about 15% of each payment is more than Medicare owes: about $1,400 on roughly $9,100 of payments (Medicare pays the physician $78.07 and the nurse practitioner $66.36 for the usual follow-up visit). The larger cost is the pattern: 148 claims that name a clinician the feed says did not see the patient is the kind of finding an auditor extends to other months. No earlier month is affected. Before October 28 charges came in by another route, and every batch that held no care-management charge for the patient entered each visit under the clinician its message names.",
+  "recommended_review": "Decided by the owner on November 10, 2026 for the 15 lines not yet billed, which are 12 of the 84 feed visits that were never billed (see that finding): the 10 visits that are not initial visits are moved to the nurse practitioner before they are sent, and the 2 initial visits stay under the physician (the owner, 15:18 UTC: 'i saw those patients'). Still open, with no word from the owner to correct them: the 133 lines billed and not yet paid and the 19 paid lines. For those the choices are a corrected claim, or for a paid line a corrected claim or a refund of the difference. The list of visits (chart, visit, date, codes) is rebuilt at any time by tools/feed/feed_clinician_audit.py.",
+  "control": "Since rule version 2026-11-10.4 reached the live billing branch at 11:14 UTC on November 10, 2026 the import takes the clinician, the building and the admission date from each visit's own feed message. The import counts any visit it could not match to its own message, and the feed report names those visits. Once a month, run the audit tool: it compares every entered visit with the feed.",
   "sources": [
    {
-    "title": "42 CFR 483.30: Physician services in long-term care facilities",
-    "url": "https://www.ecfr.gov/current/title-42/section-483.30"
+    "title": "42 CFR 414.56: Payment for nurse practitioners' and clinical nurse specialists' services",
+    "url": "https://www.ecfr.gov/current/title-42/section-414.56"
+   },
+   {
+    "title": "42 CFR 401.305: Reporting and returning overpayments",
+    "url": "https://www.ecfr.gov/current/title-42/section-401.305"
    },
    {
     "title": "Medicare Claims Processing Manual, Chapter 12: Physicians and Nonphysician Practitioners (Rev. 13753)",
@@ -85,8 +105,54 @@
   ]
  },
  {
-  "id": "ehpa-risk-no-audit-no-program",
+  "id": "ehpa-risk-np-initial-visits",
   "ord": 4,
+  "title": "Initial nursing facility visits now go in under the physician; 982 past ones stand under the nurse practitioner's code",
+  "severity": "medium",
+  "likelihood": "medium",
+  "category_slug": "cc-who-bills",
+  "what_we_see": "The owner's rule, in his words on November 10, 2026: 'going forward the 99306 should always be billed under effinger npi and group npi as i am the one who is doing the initial hps 99306 and 99497'. Rule version 2026-11-10.6, live on the billing branch since 22:46 UTC that day, applies it from the next feed import: every initial nursing facility visit (99306), with the advance care planning line (99497) billed with it, goes in under the physician and the group, whatever clinician the feed message names. Past claims are not reopened or corrected, and are not listed as work; the owner wrote 'it looks like the initial 99306 billing under arnpo has been fixed mostly for 2026'. The billing history holds 982 initial nursing facility visits under the nurse practitioner's code (946 of 99306 and 36 of 99305): 48 in 2022 (from July), 143 in 2023, 522 in 2024, 224 in 2025 and 45 in 2026. The pattern starts in July 2023. From April 2024 to May 2025, 610 of 663 initial visits (92%) were under her code. From June 2025 to November 9, 2026, 422 were under the physician's code and 99 under hers. On the 982 visits $249,340 was charged and insurance payments of $88,061 are posted, $29,641 of it from Medicare Part B. Since October 28, 2026 the feed has named the nurse practitioner on 10 initial visits and the physician on 9.",
+  "rule": "A claim must name the clinician who performed the service. Medicare allows a nurse practitioner's visit at 85% of the physician amount, and the billing history shows Medicare, Capital Health Plan, Humana and WellCare allowing her initial visits at exactly that share. In a Medicare Part A skilled stay the physician must personally perform the federally required initial comprehensive visit, no later than 30 days after admission; a nurse practitioner may bill a medically necessary first evaluation. A billing record shows only the code a visit was entered under. Only the visit note, who wrote and signed it, shows who saw the patient.",
+  "exposure": "Going forward, every initial visit goes out under the physician's number. That is right only when he personally did the visit. If the nurse practitioner does one, it must be billed under her. Since October 28 the feed has named her on 10 of the 19 initial visits, so what is logged in Claimocity and what is billed can now differ. The past visits stand as billed: the owner decided on November 10, 2026 not to reopen past claims.",
+  "recommended_review": "Fix it at the source: the person who logs an initial visit in Claimocity logs it under the clinician who saw the patient, so the feed and the claim agree. If the nurse practitioner does an initial visit, tell billing so that visit goes out under her. A workbook of the 982 past visits was given to the owner on November 10, 2026. No work on past claims is planned, at his direction.",
+  "control": "The import enters every 99306 and its 99497 under the physician (rule version 2026-11-10.6), and the feed report names each initial visit it entered under the physician when the feed named another clinician. The monthly clinician check compares the feed's clinician with the clinician entered. For each skilled admission, record the date of the physician's own comprehensive visit.",
+  "sources": [
+   {
+    "title": "42 CFR 483.30: Physician services in long-term care facilities",
+    "url": "https://www.ecfr.gov/current/title-42/section-483.30"
+   },
+   {
+    "title": "Medicare Claims Processing Manual, Chapter 12: Physicians and Nonphysician Practitioners (Rev. 13753)",
+    "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c12.pdf"
+   },
+   {
+    "title": "42 CFR 414.56: Payment for nurse practitioners' and clinical nurse specialists' services",
+    "url": "https://www.ecfr.gov/current/title-42/section-414.56"
+   }
+  ]
+ },
+ {
+  "id": "ehpa-risk-never-billed-feed-visits",
+  "ord": 5,
+  "title": "84 feed visits were released by the insurance check but never billed",
+  "severity": "medium",
+  "likelihood": "high",
+  "category_slug": "ar-claim-submission",
+  "what_we_see": "Proven on November 10, 2026 by two independent read-only reviews. 84 feed visits (102 charge lines, $18,802, 39 charts, service dates October 12 to November 7, 2026) were entered while the chart had no insurance plan, so AdvancedMD kept an empty insurance-order list on each. When a plan reached the chart later, the insurance check skipped the save because the visit's order already read '1', and it logged success. A visit with an empty list builds no claim and appears in no Claims Center column: none of the 84 was ever in the Unbilled column across 458 scans, and none of 5,228 billed visits has an empty list. 69 of the 84 ($15,616) were released after the look-up added the chart's first plan; 15 ($3,186) were held and their plan came later. The check's HOLD is only a label in its report: AdvancedMD does not read it, and 56 held visits on charts with a plan were billed anyway. None of the 84 has been billed yet.",
+  "rule": "A claim is paid only if it is filed within the payer's limit: for Medicare one year from the date of service, and as little as six months for Florida Medicaid plans. A visit that never becomes a claim earns nothing. AdvancedMD lists such a visit on no work list, so only a read of the visit's own insurance order finds it.",
+  "exposure": "$18,802 of charges, none billed yet. The oldest service date is October 12, 2026, so no filing limit has passed. Whether each payer the look-up found is right is not yet tested, so the $18,802 is not a forecast of collections. Until the fix is live, the same can happen to any visit entered while its chart has no plan.",
+  "recommended_review": "The owner answered on November 10, 2026 at 15:15 UTC: 'yes to all your recommendations'. So: the 71 visits whose payer only the look-up found go out only after an eligibility check dated to each service date shows the plan active; the one chart with two plans goes to the plan that check shows active; the 13 visits whose plan came from the feed, a face sheet or by hand are sent; the nurse practitioner's visits entered under the physician are moved to her first (10 visits), and the two initial visits stay under the physician (15:18 UTC: 'i saw those patients'). A standing word lets a routine save such a visit again once its first plan lands, after read-backs of the clinician, the admission date and the insurance order, and never on a billed visit. The billing routine sends them after the fix is live, one pilot visit first.",
+  "control": "The fix, rule version 2026-11-10.7, checks the insurance-order list after every save, never saves a billed visit, reads the admission date before and after, words a hold by what the list shows, and adds a daily read-only list of feed visits that were never billed. It passed three independent reviews, a fix round and a re-check. Its delivery was being prepared late on November 10, after the look-up savings went live at 23:44 UTC. It is not live yet.",
+  "sources": [
+   {
+    "title": "42 CFR 424.44: Time limits for filing claims",
+    "url": "https://www.ecfr.gov/current/title-42/section-424.44"
+   }
+  ]
+ },
+ {
+  "id": "ehpa-risk-no-audit-no-program",
+  "ord": 6,
   "title": "No coding audit and no compliance program on record",
   "severity": "high",
   "likelihood": "high",
@@ -109,12 +175,12 @@
  },
  {
   "id": "ehpa-risk-overpayment-clock",
-  "ord": 5,
+  "ord": 7,
   "title": "Possible overpayments with a legal deadline once identified",
   "severity": "high",
   "likelihood": "medium",
   "category_slug": "cr-overpayments",
-  "what_we_see": "Two patterns in this review could each mean Medicare paid more than the records support: visit levels and advance care planning. Two others raise different questions. If long-term residents were billed as skilled stays, Medicare paid less in 2026, not more. The nurse practitioner's initial visits raise a facility rule, not a payment rule. None has been tested against charts.",
+  "what_we_see": "Two patterns in this review could each mean Medicare paid more than the records support: visit levels and advance care planning. Two others raise different questions. If long-term residents were billed as skilled stays, Medicare paid less in 2026, not more. The nurse practitioner's initial visits raise a facility rule; Medicare allowed them at her 85% rate, and the owner decided on November 10, 2026 not to reopen past claims. A third pattern that could mean Medicare pays more than it owes was found that day: 149 October visits went in under the physician although the feed names the nurse practitioner on them. If Medicare pays them under the physician, it pays about 15% more than it owes on each. None has been tested against charts.",
   "rule": "A provider must report and return an overpayment within 60 days of identifying it. Since January 1, 2025 an overpayment is identified when the provider knows of it, deliberately avoids learning of it, or recklessly disregards the information in hand. That is the False Claims Act meaning of \"knowingly\". Once a first overpayment is identified, a timely, good-faith investigation of related overpayments suspends the deadline until the total is calculated or 180 days after that first identification, whichever comes first. The lookback is six years.",
   "exposure": "Money kept after the deadline can become a false claim: three times the amount plus a penalty of $14,308 to $28,619 for each claim at current levels. Acting promptly and on advice keeps a billing problem a refund.",
   "recommended_review": "Have the attorney open and direct the review of visit levels, and set the sample plan with the auditor. Give the attorney the history first: why top-level hospital visits fell to 1.3% in 2024 and rose again, and any audit, record request, denial pattern or advice from that time. Earlier notice changes the legal position. Record the date the review starts and the date each overpayment is identified. The 60 days run from identification. A prompt, good-faith review of related claims pauses them from the day it starts, for no more than 180 days after the first identification.",
@@ -136,7 +202,7 @@
  },
  {
   "id": "ehpa-risk-medical-director",
-  "ord": 6,
+  "ord": 8,
   "title": "Medical director payments that may come from facilities where the practice also treats residents",
   "severity": "medium",
   "likelihood": "unknown",
@@ -171,16 +237,16 @@
  },
  {
   "id": "ehpa-risk-enrollment-gaps",
-  "ord": 7,
-  "title": "Enrollment and credentialing gaps, with a Medicaid deadline on December 1",
+  "ord": 9,
+  "title": "Enrollment and credentialing gaps; the physician's Medicaid agreement expires December 27",
   "severity": "high",
   "likelihood": "high",
   "category_slug": "pc-credentialing",
-  "what_we_see": "At least nine enrollment problems are open. The physician's Florida Medicaid provider agreement renewal is due December 1, 2026 and the nurse practitioner's revalidation was returned incomplete. A commercial plan terminated the practice after a missed recredentialing. Railroad Medicare claims are being written off because the practice is not enrolled. The nurse practitioner's national provider record is out of date.",
+  "what_we_see": "Several enrollment problems are open. The physician's Florida Medicaid provider agreement expires December 27, 2026; the practice's target is to file the renewal by December 1, and nothing shows it has been filed. The nurse practitioner's Florida Medicaid enrollment is a new application, not a renewal: her old Medicaid number ended, and the agency returned the application with three faults. A commercial plan terminated the practice after a missed recredentialing. TRICARE For Life's electronic enrollment was rejected. The nurse practitioner's national provider record is out of date. Three items in the earlier plan were out of date and are corrected (November 10, 2026): the UnitedHealthcare directory attestation is not overdue (done August 28, next about November 26), TRICARE East's electronic claims were approved in October, and Railroad Medicare is paying ($718.76 in 2026, $3,764 open).",
   "rule": "A claim is payable only if the clinician was enrolled with that payer on the date of service. Florida Medicaid enrollment is what lets the practice be paid by Medicaid and by Medicaid managed care plans, and order or refer services for Medicaid patients. It adds little secondary payment on dual-eligible patients, who are about four in ten of the practice's Medicare patients: Florida pays nothing toward Medicare coinsurance when Medicare has already paid at least the Medicaid rate.",
   "exposure": "Denied Medicaid and Medicaid-plan claims until fixed, a plan's duty to drop a provider who is not enrolled with the State, denied claims for services the physician orders for Medicaid patients, and services that can never be billed for the gap period. 108 denied visits are already tagged credentialing.",
-  "recommended_review": "File the Medicaid renewal this week and confirm receipt. Then rank the remaining items by dollars affected.",
-  "control": "One calendar of every enrollment, license and registration expiry for both clinicians with 90-day warnings, checked at the monthly review.",
+  "recommended_review": "Reset the Florida Medicaid portal password (it expired November 4 unless it was changed), file the renewal in that portal by December 1 and get written confirmation. Then rank the remaining items by dollars affected.",
+  "control": "One calendar of every enrollment, license and registration expiry for both clinicians with 90-day warnings, checked at the monthly review. The practice's sheet 'Practice compliance & renewals calendar' mirrors to Google Calendar; 22 rows were added on November 10, 2026.",
   "sources": [
    {
     "title": "Florida Statutes 409.907: Medicaid provider agreements",
@@ -194,7 +260,7 @@
  },
  {
   "id": "ehpa-risk-key-person",
-  "ord": 8,
+  "ord": 10,
   "title": "The practice depends on one physician and a few sites",
   "severity": "high",
   "likelihood": "medium",
@@ -208,16 +274,16 @@
  },
  {
   "id": "ehpa-risk-automation-controls",
-  "ord": 9,
+  "ord": 11,
   "title": "Software agents act on billing rules that have not been independently reviewed",
   "severity": "high",
   "likelihood": "medium",
   "category_slug": "td-ai-governance",
-  "what_we_see": "Agents enter charges, send claims, post payments, re-send denied claims and write off old balances every few hours under a written rulebook. Rules include writing off balances over a year old ($40,686 on November 2, 2026) and re-dating a care-management claim to month end after a frequency denial. This application also allows anyone to create a sign-in. Since a check added on November 10, 2026, only an approved address that has been confirmed can see data.",
+  "what_we_see": "Agents enter charges, send claims, post payments, re-send denied claims and write off old balances every few hours under a written rulebook. Rules include writing off balances over a year old ($40,686 on November 2, 2026) and re-dating a care-management claim to month end after a frequency denial. This application also allows anyone to create a sign-in. Since a check added on November 10, 2026, only an approved address that has been confirmed can see data. On November 10, 2026 an independent review of a new place-of-service rule found an older defect in the charge import: it had entered 149 October visits under the other clinician (see that finding). The same day two read-only reviews proved that the insurance check had logged success on 84 feed visits that could never bill (see that finding). The check had also added 56 plans found only by discovery, in 13 batches, without a person; one was a dental plan added by mistake. The owner said on November 10 that such plans may keep being added, only medical plans active on the date of service; that check comes with rule version .7, which is not live yet. The first version of the place-of-service rule went to the live billing branch on the owner's word before its review had finished. The reviewed version 2026-11-10.4 replaced it at 11:14 UTC, after a confirming review of that exact version came back clean, and version .6 went live at 22:46 UTC after three independent reviews, a fix round and a re-check.",
   "rule": "The practice is responsible for every claim submitted in its name, whoever or whatever prepares it. Under the False Claims Act, knowing includes reckless disregard, with no proof of intent needed. Florida's Medicaid law gives the provider an affirmative duty to supervise the preparation and submission of claims. Changing a code, date, modifier or diagnosis after a denial is acceptable only when the record supports the change and a qualified person has checked it. A Medicare denial is a payment decision. It stands unless it is reopened or appealed. A claim is sent again only when it was rejected as incomplete or when First Coast's instructions for that denial say to resubmit. Re-sending paid or denied claims produces duplicate denials, and the share of claims denied is one of the things Medicare weighs when it decides whether to revoke billing privileges. Routinely waiving Medicare copayments and deductibles is unlawful. A patient's balance may be written off for documented hardship or after a real effort to collect has failed. The opposite rule applies to Qualified Medicare Beneficiaries, a group that includes most dual-eligible patients nationally: federal law forbids billing them for Medicare cost sharing at all. Every write-off therefore needs a reason code.",
   "exposure": "An automated rule that is wrong is wrong on every claim it touches, and it leaves a complete log of having done so. In 2025 a physician group paid $45 million over allegations that its billing software was set to bill the higher-paid service every time.",
   "recommended_review": "Have the coding auditor read every rule that changes a code, date, modifier, diagnosis, place of service or balance, and sample 25 automated actions against the charts. The rules for care-management claims, and the actions taken under them, are left out of that reading and that sample. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. Confirm that the automatic write-off rule touches insurance balances only and records a reason. List every rule that re-sends a claim Medicare has already paid or denied. Check each against First Coast's instructions: reopening, appeal or, where allowed, a corrected new claim.",
-  "control": "The owner's written approval for any rule that changes a claim's code, date, modifier, diagnosis, place of service or balance. A monthly sample of automated actions. Open sign-up turned off and access keys rotated.",
+  "control": "The owner's written approval for any rule that changes a claim's code, date, modifier, diagnosis, place of service or balance. A monthly sample of automated actions. Open sign-up turned off and access keys rotated. A rule that changes what goes on a claim goes live only after an independent review of that exact version is back, unless the owner says in writing to deliver first. A routine reads back what it saved before it logs success.",
   "sources": [
    {
     "title": "31 U.S.C. 3729: False claims",
@@ -243,26 +309,46 @@
  },
  {
   "id": "ehpa-risk-quality-program",
-  "ord": 10,
-  "title": "Unknown status in Medicare's quality payment program",
-  "severity": "medium",
-  "likelihood": "medium",
+  "ord": 12,
+  "title": "Medicare quality program: a 9% cut is set for the nurse practitioner in 2027, and for both clinicians in 2028 unless 2026 is reported",
+  "severity": "high",
+  "likelihood": "high",
   "category_slug": "qv-mips",
-  "what_we_see": "Neither clinician's status in the Merit-based Incentive Payment System is known. In 2024 each clinician exceeded all three low-volume limits ($90,000 of allowed charges, 200 patients, 200 services), and Medicare paid the two about $350,000.",
-  "rule": "Eligible clinicians who do not report receive the maximum negative adjustment, 9% of Medicare Part B payments, two years after the performance year. In a small practice the electronic-records category is dropped automatically and quality can be reported on claims. A clinician who does 75% or more of his Medicare services in a hospital is scored on the hospital's results for quality and cost with nothing to submit. That may apply to the physician, but it may not be enough by itself to avoid a penalty. No exception covers a practice that simply did not report. The exception application is for rare events outside the practice's control, and for 2026 it closes December 31, 2026.",
-  "exposure": "Up to about $31,000 a year.",
-  "recommended_review": "Look up both clinicians in the participation status tool, read the latest performance feedback, and note the reporting deadline for the 2026 performance year.",
-  "control": "Each January, confirm status for the year just starting and choose the measures. Collect quality data all year. Start an improvement activity early enough to run 90 days in a row before December 31. Submit by March 31 of the following year.",
+  "what_we_see": "Both clinicians must take part. For 2022 to 2024 CMS excused them automatically after declared disasters, with a neutral score of 75. For 2025 nothing was reported. CMS scored the physician on the hospital's results, because 95% of his Medicare services in the measuring period were in the hospital: 65.81 points and a 1.10% cut. It scored the nurse practitioner on cost alone: 16.31 points and the full 9% cut. Both cuts apply to Medicare Part B payments from January 1, 2027. For 2026 the physician no longer meets the hospital test (64% of his Medicare lines in the measuring period, 42% in the latest year), so with nothing reported both clinicians are scored on cost alone. On November 10, 2026 the owner told billing to add the advance care plan code to the next Medicare claim of every patient 65 or older, once per patient, and registered the group and both clinicians for the reporting option Quality Care for Patients with Neurological Conditions (M0004). The first registration that day was for Value in Primary Care; it was changed after an independent check of the 2026 options showed that the neurological option, whose only claims measure is the advance care plan, scores better for the same code. M0004 is in AdvancedMD's code list. Rule version 2026-11-10.6, live on the billing branch since 22:46 UTC on November 10, adds the no-charge code 1123F from the next feed import: up to three lines first, on Medicare patients 65 and older and never on hospital visits; once one is seen billed, more visits carry it and M0004 goes once on one claim for each clinician. On the owner's word ('doesnt appear to have any significance whiever way to just deal with it'), a visit held only because of its no-charge line has that line taken off and goes out.",
+  "rule": "Below 75 points the cut is 9% times the shortfall divided by 75, and a flat 9% at 18.75 points or fewer. A small practice needs one improvement activity for full credit in that category, 30 points of the 100. It is attested between January 4 and March 31, 2027 (8 p.m. Eastern) for the 2026 year, and the activity must have run 90 days in a row during 2026, so it must have been running by October 3, 2026. Quality codes go on Medicare claims with 2026 dates of service through December 31, 2026, and those claims must be processed by March 1, 2027. For the 2026 score the number of coded lines does not matter: at least one counted line and M0004 once for each clinician are what count. Both clinicians carry a 10-point bonus for complex patients, which counts only when something is submitted. A small practice that reports through a reporting option needs only that option's claim measures: Value in Primary Care has four, the neurological option has one, the advance care plan. A registration can be changed until November 30, 2026, 8 p.m. Eastern. The exception application is for rare events outside the practice's control and closes December 31, 2026.",
+  "exposure": "2027: about $16,500 to $18,000, already fixed (about $4,800 to $5,700 for the physician and $11,700 to $12,200 for the nurse practitioner). 2028: 9% for both if nothing is reported for 2026. Medicare Part B for the two clinicians is projected at $567,280 for 2026 (range $522,000 to $597,000; the method missed by up to 9% on earlier years), so 9% is about $47,000 to $54,000. Attesting one improvement activity alone brings the estimated score to about 56 and the cut to about 2.2%, about $12,000 to $13,600. Under the neurological option, with the advance care plan code on 2026 claims, M0004 on one claim for each clinician and one activity attested, the estimate is at least 69 points, and 95 if cost is not scored; 75 or more means no cut. The same code on the ordinary route gives at most 66. These are estimates: the 56 assumes a cost score like the nurse practitioner's 2025 score of 54 and the same 10-point bonus. The Medicare amounts are AdvancedMD's posted payments.",
+  "recommended_review": "Done on November 10, 2026: status looked up; the 2025 feedback and payment adjustment read; the group and both clinicians registered for the neurological option (M0004); M0004 found in AdvancedMD's code list; the quality code live in billing (version .6); 34 calendar entries, 22 rows in the compliance sheet and 3 new rows on the Credentialing Board, with the attestation set for Monday January 4, 2027 at 9:00 AM. Next: the owner names the one improvement activity both clinicians carried out 90 days in a row in 2026, and its proof file is built. Then six entries at qpp.cms.gov between January 4 and March 31, 2027: the group and each clinician, under the option and under traditional reporting.",
+  "control": "A calendar, now set up. November 30, 2026, 8 p.m. Eastern: last day to change the registration. December 31, 2026: last date of service for 2026 claim codes and last day for an exception application. March 1, 2027: claims with quality codes must be processed. January 4 to March 31, 2027: the attestation. The CMS sign-in password must be changed every 60 days. From January 1, 2027: quality codes on every eligible Medicare claim, checked monthly, and one improvement activity named in January with its proof filed as the year goes.",
   "sources": [
    {
-    "title": "2026 Quality Payment Program Final Rule fact sheet",
-    "url": "https://qpp-cm-prod-content.s3.amazonaws.com/uploads/3506/2026%20Quality%20Payment%20Program%20Final%20Rule%20Fact%20Sheet%20and%20Policy%20Comparison%20Table.pdf"
+    "title": "42 CFR 414.1405: Payment (Merit-based Incentive Payment System)",
+    "url": "https://www.ecfr.gov/current/title-42/section-414.1405"
+   },
+   {
+    "title": "2026 Traditional MIPS Scoring Guide",
+    "url": "https://qpp.cms.gov/content-management/resources/document/6051c5a1-fb0b-463c-a863-00fb769629e8/download/file"
+   },
+   {
+    "title": "2026 MIPS Improvement Activities Quick Start Guide",
+    "url": "https://qpp.cms.gov/content-management/resources/document/4541ca5c-a09b-4fd1-95b9-cc3c20f641ff/download/file"
+   },
+   {
+    "title": "2026 Part B Claims Quality Measure Reporting Quick Start Guide",
+    "url": "https://qpp.cms.gov/content-management/resources/document/bf377d33-280d-48d3-97e4-417fbc0458f3/download/file"
+   },
+   {
+    "title": "2026 MVP Registration Guide",
+    "url": "https://qpp.cms.gov/content-management/resources/document/218a36d8-bcaf-45a3-9c75-4bd9ffee7721/download/file"
+   },
+   {
+    "title": "2026 MIPS Extreme and Uncontrollable Circumstances Exception Application Guide",
+    "url": "https://qpp.cms.gov/content-management/resources/document/ce97d14e-b9fb-4da7-9aee-3a1633eaddb8/download/file"
    }
   ]
  },
  {
   "id": "ehpa-risk-thin-cash-costly-debt",
-  "ord": 11,
+  "ord": 13,
   "title": "Thin cash and expensive debt against an audit or a lost site",
   "severity": "medium",
   "likelihood": "medium",
@@ -276,7 +362,7 @@
  },
  {
   "id": "ehpa-risk-acp-documentation",
-  "ord": 12,
+  "ord": 14,
   "title": "Advance care planning billed without a tested record of time and consent",
   "severity": "medium",
   "likelihood": "medium",
@@ -303,16 +389,16 @@
  },
  {
   "id": "ehpa-risk-ccm-volume",
-  "ord": 13,
+  "ord": 15,
   "title": "Complex chronic care management: records confirmed by the owner",
   "severity": "low",
   "likelihood": "unknown",
   "category_slug": "cc-time-based-codes",
-  "what_we_see": "In October 2026 the practice billed the complex care-management code (99487) for 257 patients, 213 of them with the add-on code (99489), all under the physician. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. No review is planned. The open question on this line is collection: only about 42% of these lines have been paid since June. Of October's lines, 152 carry place of service 31 (skilled stay) and 103 carry place of service 13 (assisted living).",
+  "what_we_see": "In October 2026 the practice billed the complex care-management code (99487) for 257 patients, 213 of them with the add-on code (99489), all under the physician. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. No review is planned. The open question on this line is collection: only about 42% of these lines have been paid since June. Of October's lines, 152 carry place of service 31 (skilled stay) and 103 carry place of service 13 (assisted living). Since November 10, 2026 the charge import enters care management in the five nursing buildings as place of service 32, except in a month the chart looks skilled (see the place-of-service finding).",
   "rule": "Each claim rests on: two or more chronic conditions expected to last at least 12 months; the patient's consent before care management starts; a comprehensive care plan; at least 60 minutes that month of care-management time by clinical staff under the billing practitioner's direction, toward which the practitioner's own time also counts (30 more for each add-on); and medical decisions of moderate or high complexity. Medicare's guidance allows the service for residents of nursing and assisted living facilities and says to report the place of service where the practitioner would ordinarily see the patient.",
   "exposure": "None is flagged. This is a revenue line of about $165,000 a year at October's volume and today's paid rate, and about $370,000 a year if every line were paid.",
   "recommended_review": "None planned, at the owner's direction.",
-  "control": "Keep each month's consent, care plan and time log where they can be pulled by patient and month. Set the place of service from the resident's status. Never use a date of service after the patient's date of death, and do not bill care management in a month when hospice or home health supervision (G0182 or G0181) is billed.",
+  "control": "Keep each month's consent, care plan and time log where they can be pulled by patient and month. Place of service is set by the import's rule (32 in a nursing building, 31 in a month the chart looks skilled), backed by each facility's Part A list. Never use a date of service after the patient's date of death, and do not bill care management in a month when hospice or home health supervision (G0182 or G0181) is billed.",
   "sources": [
    {
     "title": "Chronic Care Management Services (MLN909188)",

@@ -176,7 +176,7 @@
   "status": "amber",
   "basis": "measured",
   "value": 6.3,
-  "note": "Billing services and software were $63,573 on $1,010,153 of collections. The third quarter alone ran 8.7%, so the trend needs watching.",
+  "note": "Billing services and software were $63,573 on $1,010,153 of collections. The third quarter alone ran 8.7%, so the trend needs watching. The look-up vendor's usage was $1,879.97 for September 5-30 and $2,029.25 for October 2026 at public prices; with the practice's own changes an October-size month is about $450 to $975 (estimate).",
   "source": "ehpa-financials"
  },
  {
@@ -217,11 +217,11 @@
  },
  {
   "metric_slug": "fe-eligibility-verified-rate",
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "status": "red",
   "basis": "measured",
   "value": 30.6,
-  "note": "151 of 493 patient coverage cards are fully verified. 342 are still in work.",
+  "note": "154 of 503 cards on the Insurance Refresh Board were done and 349 open on November 10, 2026, before that day's cleanup. The cleanup closed 136 cards with nothing left to bill or collect; closing a card is not verifying coverage. The refresh stopped in mid-September and no routine works the open cards.",
   "source": "ehpa-neon"
  },
  {
@@ -235,11 +235,11 @@
  },
  {
   "metric_slug": "fe-no-payer-rate",
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-10",
   "status": "red",
   "basis": "measured",
-  "value": 11.2,
-  "note": "11.2% of charges in the feed had no payer recorded when entered.",
+  "value": 13.3,
+  "note": "138 of the 1,037 visits in the first 13 feed batches (from October 28, 2026) reached charge entry with no open plan on the chart: $29,286, 13.7% of dollars. The 11.2% shown before measured something else: the share of feed dollars on charts the insurance check held after its look-up ($23,534 of $211,062).",
   "source": "ehpa-neon"
  },
  {
@@ -325,20 +325,20 @@
  },
  {
   "metric_slug": "cc-pos-error-rate",
-  "as_of": "2026-11-07",
-  "status": "red",
+  "as_of": "2026-11-10",
+  "status": "amber",
   "basis": "measured",
-  "value_text": "100% of nursing facility visits billed as place of service 31",
-  "note": "Place of service 32, for residents not in a Medicare Part A skilled stay, was never used. Long-term residents are almost certainly among them.",
+  "value_text": "Rule in place since November 10, 2026; before it, 100% of nursing facility lines went out as place of service 31",
+  "note": "Care management in the nursing buildings is now entered as 32 and the monthly visit as 32; weekly visits and admissions stay 31. The rule reads the visit pattern, not the facility's Part A list. First live batch (November 10, 12:39 UTC): 24 Brynwood visits entered at 32 and 6 at 31; whether AdvancedMD kept the 32s is not read yet.",
   "source": "ehpa-neon"
  },
  {
   "metric_slug": "cc-app-own-number-share",
-  "as_of": "2026-11-07",
-  "status": "unknown",
-  "basis": "unknown",
-  "value_text": "Not measured yet",
-  "note": "309 encounters were billed under the nurse practitioner's own number. Whether any visit she performed was billed under the physician has not been tested. That needs each note's signer compared with the clinician on the claim.",
+  "as_of": "2026-11-10",
+  "status": "amber",
+  "basis": "measured",
+  "value_text": "149 October feed visits entered under the other clinician; the share is not measured",
+  "note": "A check on November 10, 2026 compared each feed message's clinician with the clinician entered: 148 visits the feed names the nurse practitioner on went in under the physician in October, and 1 the other way (an import defect, fixed for new batches by rule version 2026-11-10.4). From version .6 every initial nursing facility visit is entered under the physician by the owner's rule. Whether the clinician the feed names is the one who saw the patient still needs the note's signer.",
   "source": "ehpa-neon"
  },
  {
@@ -518,7 +518,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Needs payments, contractual adjustments and write-offs by month of service from the billing system. This is the single most useful missing number.",
+  "note": "The full AdvancedMD history (payments, write-offs and balances on 84,617 charge lines) has been in the practice database since November 10, 2026. The rate can be worked out from it by month of service once contractual write-offs are told apart from the others; allowed amounts per charge come with the charge-detail pull, 4,552 of 11,050 charts by 23:05 UTC on November 10. Not computed yet. Posted payments for 2022 to 2025 are a floor: 12,821 charge lines with $1,910,279.88 of fees were closed in May 2026 as 'paid, not posted'. This is the single most useful missing number.",
   "source": "ehpa-neon"
  },
  {
@@ -554,7 +554,7 @@
   "status": "na",
   "basis": "measured",
   "value": 55.5,
-  "note": "Medicare fee-for-service, by charges. Insurers that sell Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11% had no payer recorded.",
+  "note": "Medicare fee-for-service, by charges. Insurers that sell Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11.2% of feed dollars sat on charts the insurance check held after its look-up, which is not a share of charges with no payer.",
   "source": "ehpa-neon"
  },
  {
@@ -577,11 +577,11 @@
  },
  {
   "metric_slug": "pc-enrollment-current",
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "status": "red",
   "basis": "measured",
-  "value_text": "At least 9 open enrollment problems",
-  "note": "Across two clinicians: a commercial plan terminated after a missed recredentialing, Railroad Medicare not enrolled, Tricare and Veterans Affairs gaps, a Medicaid renewal due December 1, 2026, and a stale national provider record for the nurse practitioner.",
+  "value_text": "At least 7 open enrollment problems",
+  "note": "Open: the physician's Florida Medicaid agreement (expires December 27, 2026; target to file December 1), the nurse practitioner's new Medicaid application (returned with three faults), Cigna's termination (its messages can be read until December 7), TRICARE For Life's electronic enrollment (rejected), the Veterans Affairs portal registration, the nurse practitioner's national provider record and the hospital reappointment. Corrected on November 10, 2026: the UnitedHealthcare attestation is not overdue, TRICARE East's electronic claims are approved, and Railroad Medicare is paying ($718.76 in 2026, $3,764 open).",
   "source": "ehpa-neon"
  },
  {
@@ -724,8 +724,8 @@
   "as_of": "2026-11-10",
   "status": "red",
   "basis": "measured",
-  "value": 21,
-  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
+  "value": 47,
+  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. The practice's target is to file by December 1 to leave the agency time; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
   "source": "ehpa-neon"
  },
  {
@@ -856,11 +856,11 @@
  },
  {
   "metric_slug": "qv-mips-score",
-  "as_of": "2026-11-09",
-  "status": "unknown",
-  "basis": "unknown",
-  "value_text": "Not measured yet",
-  "note": "Status in the Medicare quality program is not known for either clinician. Both appear to bill Medicare more than the program's minimums ($90,000 billed, 200 patients and 200 services a year), so it likely applies to them.",
+  "as_of": "2026-11-10",
+  "status": "red",
+  "basis": "measured",
+  "value_text": "2025 scores: physician 65.8 (1.10% cut), nurse practitioner 16.3 (9% cut), against a threshold of 75",
+  "note": "From the owner's CMS feedback download. Cuts apply from January 1, 2027. For 2026 both clinicians are scored on cost alone unless something is submitted; one attested improvement activity is worth 30 points and unlocks a 10-point bonus. The group and both clinicians are registered for the neurological option (M0004), and billing adds the advance care plan code and M0004 automatically from November 10, 2026 (rule version 2026-11-10.6).",
   "source": "ehpa-neon"
  },
  {
@@ -1018,11 +1018,11 @@
  },
  {
   "metric_slug": "gm-listing-accuracy",
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-10",
   "status": "amber",
   "basis": "measured",
   "value_text": "Known errors",
-  "note": "The nurse practitioner's national provider record is out of date with the wrong specialty code, and one plan's directory attestation is overdue.",
+  "note": "The nurse practitioner's national provider record is out of date with the wrong specialty code. The UnitedHealthcare directory attestation is not overdue: it was done August 28, 2026 and is next due about November 26.",
   "source": "ehpa-neon"
  },
  {

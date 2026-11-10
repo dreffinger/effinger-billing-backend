@@ -3,26 +3,27 @@
   "slug": "ccm-footing",
   "ord": 1,
   "title": "Care management: correct place of service and collect what is billed",
-  "objective": "Bill care management under each resident's correct place of service, and find out why more than half of the lines go unpaid.",
+  "objective": "Care management in the nursing buildings is billed as place of service 32 since November 10, 2026. Prove it with each facility's Part A list, and find out why more than half of the lines go unpaid.",
   "category_slug": "cc-time-based-codes",
   "priority": "now",
-  "impact_low": 30000,
-  "impact_high": 60000,
-  "impact_note": "Place of service on care-management lines for long-term residents, at today's paid rate. The line itself is about $165,000 a year at October's volume and today's paid rate, and about $370,000 if every line were paid, so each 10 points of paid rate is worth roughly $37,000 a year.",
+  "impact_low": 50000,
+  "impact_high": 70000,
+  "impact_note": "Place of service 32 on care-management lines in the nursing buildings: about $6,000 a month of Medicare payment at 2026 volume, less the lines kept at 31 or matched to a Part A stay. The line itself is about $165,000 a year at October's volume and today's paid rate, and about $370,000 if every line were paid, so each 10 points of paid rate is worth roughly $37,000 a year.",
   "owner": "william",
   "start_by": "2026-11-11",
   "target_date": "2026-12-18",
   "success_measures": [
-   "Every care-management claim carries the place of service that matches the resident's status that month",
+   "Every feed report shows the care-management lines entered as 32, and AdvancedMD stored 32",
+   "Each facility's Part A list is on file for the month before its claims are checked",
    "The share of care-management lines paid within 60 days is measured each month and rises",
    "The reason for each denied line is known and worked"
   ],
   "steps": [
+   "Rule in the charge import (live November 10, 2026, rule version 2026-11-10.4)",
+   "Read the feed reports and one stored charge",
    "Get Part A stay lists from the five facilities",
-   "Set place of service on new care-management claims",
    "Ask First Coast what the wrong-provider-type denials mean",
-   "Work the unpaid lines by reason",
-   "Decide on a look-back once it is sized"
+   "Work the unpaid lines by reason"
   ]
  },
  {
@@ -59,46 +60,50 @@
   "objective": "Know for every resident and every date whether they are in a Medicare Part A skilled stay, on hospice or in a Medicare Advantage plan, and bill accordingly.",
   "category_slug": "fe-coverage-status",
   "priority": "now",
-  "impact_low": 10000,
-  "impact_high": 25000,
-  "impact_note": "One time, for 2026 visits. Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are counted under the care-management project.",
+  "impact_low": 2000,
+  "impact_high": 8000,
+  "impact_note": "For visits the two codes pay differently only in 2026, so the money here is small and ends December 31, 2026. The lasting value is proof: a facility's Part A list behind every line billed as 32, hospice status known before a claim goes out, and fewer wrong-payer denials. Higher care-management payments are counted under the care-management project.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-31",
   "success_measures": [
-   "Each facility sends a weekly census with skilled-stay status and payer",
-   "Place of service 31 or 32 is set from that census on every nursing facility claim",
+   "Each facility sends a list of residents in a Part A stay with dates, weekly or monthly",
+   "Each month's claims billed as 32 are compared with that list",
    "For each hospice patient the system flags the hospice election, and the clinician records two facts for the visit: whether he or she is the attending clinician the patient named, and whether the visit relates to the terminal illness. The claim then carries the matching modifier (GV for a related visit by the named attending clinician, GW for an unrelated visit), or the visit is billed to the hospice"
   ],
   "steps": [
-   "Ask each facility for the census",
+   "Ask each facility for the list",
    "Store status with the patient by date",
-   "Set place of service from it",
-   "Measure the past year of claims"
+   "Compare claims billed as 32 with it each month",
+   "Past year measured (done November 10, 2026)"
   ]
  },
  {
   "slug": "coverage-cleanup",
   "ord": 4,
   "title": "Finish the coverage refresh and verify monthly",
-  "objective": "No charge without a verified payer, and every active patient re-verified on the first of each month.",
+  "objective": "No visit without a verified payer, every active patient checked on the first of each month, and every visit that has a payer billed.",
   "category_slug": "fe-eligibility",
   "priority": "now",
   "impact_low": 30000,
   "impact_high": 70000,
-  "impact_note": "11.2% of charges had no payer when entered. Coverage and wrong-payer problems are about a quarter of denied visits.",
+  "impact_note": "Coverage and wrong-payer problems are about a quarter of denied visits. On November 10, 2026, 122 feed visits ($26,373) had no claim: 86 with a payer on the chart that were never sent ($19,405), 21 with no plan ($4,358) and 15 on the patient's balance ($2,610). The range is a low-confidence estimate.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-18",
   "success_measures": [
-   "All 493 coverage cards verified or marked self-pay",
-   "Charges with no payer under 2%",
-   "A re-verification run on the first of each month"
+   "Every open card on the Insurance Refresh Board worked or closed (349 of 503 open on November 10, 2026; 136 closed that day)",
+   "Visits arriving with no open plan on the chart under 2% (138 of 1,037 in the first 13 feed batches)",
+   "A check-only coverage run on the first of each month, within its cap of 150 checks or $75",
+   "No feed visit left unbilled once its chart has a plan"
   ],
   "steps": [
-   "Clear the 342 cards in work",
-   "Monthly re-verification",
-   "Hold claims with no verified payer"
+   "Close the cards with nothing left to bill or collect (done November 10, 2026: 136 closed)",
+   "Work the 145 charts with money waiting, biggest and most recent first",
+   "Look-up savings live (done November 10, 2026: plain Medicare checks, one shared answer, claim status by need)",
+   "Build and start the check-only monthly run",
+   "Send the 84 never-billed visits as the owner approved",
+   "List held visits daily and re-check held charts"
   ]
  },
  {
@@ -140,14 +145,14 @@
   "start_by": "2026-11-11",
   "target_date": "2027-01-29",
   "success_measures": [
-   "Medicaid renewal filed before December 1 and confirmed",
+   "Medicaid renewal filed before December 1 and confirmed (the agreement expires December 27, 2026)",
    "No open item on the credentialing board older than 60 days",
    "One expiry calendar with 90-day warnings"
   ],
   "steps": [
    "Medicaid renewal",
-   "Nurse practitioner revalidation and national record",
-   "Railroad Medicare",
+   "Nurse practitioner's new Medicaid application and national record",
+   "Railroad Medicare: stop the write-offs and ask about refused claims",
    "Commercial plan status",
    "Calendar"
   ]
@@ -244,38 +249,50 @@
   "success_measures": [
    "Open sign-up turned off",
    "The shared access key replaced",
-   "A monthly sample of 25 automated actions reviewed and logged"
+   "A monthly sample of 25 automated actions reviewed and logged",
+   "The 149 October visits entered under the other clinician are decided and corrected",
+   "Every entered visit is compared with the feed's clinician each month",
+   "No feed visit stays unbilled once its chart has a plan: the daily never-billed list is read and empty"
   ],
   "steps": [
    "Pause the automatic write-off of balances over a year old",
    "Close sign-up",
    "Rotate keys",
    "Approval for claim-changing rules",
-   "Monthly sample"
+   "Monthly sample",
+   "Decide and correct the 149 visits",
+   "Independent review before a claim-changing rule goes live",
+   "Deliver the never-billed fix (rule version 2026-11-10.7)"
   ]
  },
  {
   "slug": "quality-mips",
   "ord": 11,
-  "title": "Find out where the practice stands in Medicare's quality program",
-  "objective": "Avoid a penalty of up to 9% of Medicare payments.",
+  "title": "Report 2026 to Medicare's quality program",
+  "objective": "Turn a 9% cut for both clinicians in 2028 into little or none, and set 2027 up so it does not happen again.",
   "category_slug": "qv-mips",
-  "priority": "next",
-  "impact_low": 0,
-  "impact_high": 31000,
-  "impact_note": "Penalty avoided, if either clinician is required to report.",
+  "priority": "now",
+  "impact_low": 35000,
+  "impact_high": 54000,
+  "impact_note": "The 2028 cut avoided. 9% of the 2026 Medicare Part B projection for the two clinicians ($567,280, range $522,000 to $597,000) is about $47,000 to $54,000; one attested improvement activity alone saves about $35,000 to $40,000 of it. The 2027 cut from the 2025 year, about $16,500 to $18,000, is already fixed.",
   "owner": "william",
   "start_by": "2026-11-10",
   "target_date": "2027-03-31",
   "success_measures": [
-   "Status known for both clinicians",
-   "A reporting plan for the 2026 performance year, decided by early December 2026"
+   "The neurological option registered for the group and for each clinician (done November 10, 2026)",
+   "The advance care plan code on 2026 Medicare claims and M0004 on one claim for each clinician, processed by March 1, 2027 (billing adds both, rule version 2026-11-10.6)",
+   "Proof file for one improvement activity complete by December 31, 2026",
+   "Attestation done by March 31, 2027: the group and each clinician, under the option and under traditional reporting",
+   "From January 2027 the codes go on every eligible claim and are checked monthly"
   ],
   "steps": [
-   "Look up status",
-   "Read past feedback",
-   "Choose a reporting route",
-   "Submit 2026 data"
+   "Status and 2025 results read (done November 10, 2026)",
+   "Group and both clinicians registered for the neurological option M0004 (done November 10, 2026)",
+   "M0004 found in AdvancedMD's code list (done November 10, 2026)",
+   "Quality code in billing: up to three lines first, then M0004 once for each clinician (live November 10, 2026)",
+   "The owner names the improvement activity; build its proof file",
+   "Check the lookup again in December; decide on an exception application by December 31",
+   "Attest January 4 to March 31, 2027 (calendar entry Monday January 4 at 9:00 AM)"
   ]
  },
  {

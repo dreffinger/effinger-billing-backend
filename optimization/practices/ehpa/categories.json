@@ -215,13 +215,14 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "This is the largest fixable leak. Two thirds of coverage cards are unverified, one charge in nine has no payer when entered, and coverage and wrong-payer problems are about a quarter of denied visits.",
+  "assessment": "This is the largest fixable leak. The coverage refresh stopped in mid-September and no routine works the open cards: 349 of 503 were open on November 10, 2026, when 136 with nothing left to bill or collect were closed. In the first 13 feed batches, 138 of 1,037 visits arrived with no open plan on the chart (13.7% of dollars). A payer found is not a claim sent: 84 feed visits whose chart had a plan were never billed. Coverage and wrong-payer problems are about a quarter of denied visits.",
   "evidence": [
-   "342 of 493 coverage cards still in work",
-   "11.2% of charges had no payer recorded",
+   "349 of 503 coverage cards open on November 10, 2026; 136 closed that day",
+   "138 of 1,037 feed visits arrived with no open plan ($29,286, 13.7% of dollars); the earlier 11.2% was dollars on charts the insurance check held after its look-up",
+   "122 feed visits ($26,373) had no claim on November 10, 84 of them because of the never-billed defect",
    "350 of 1,356 denied visits were coverage or wrong-payer problems. Another 100 carry code 23, which only records what an earlier payer paid"
   ],
-  "next_step": "Finish the coverage refresh, then re-verify every active patient on the first of each month."
+  "next_step": "Work the open cards and deliver the never-billed fix (the look-up savings went live on November 10), then start the check-only monthly run the owner approved that day."
  },
  {
   "category_slug": "fe-coverage-status",
@@ -230,7 +231,7 @@
   "priority": 1,
   "assessment": "For nursing facility residents, three facts decide who pays and how much: whether the resident is in a Medicare Part A skilled stay, whether hospice has been elected, and whether a Medicare Advantage plan has started. None of the three is captured today.",
   "evidence": [
-   "Every nursing facility visit is billed as a Part A skilled stay",
+   "Until November 10, 2026 every nursing facility visit was billed as a Part A skilled stay; since then the import sets 31 or 32 from the visit pattern",
    "31 hospice denials and 68 Medicare Advantage denials in the register"
   ],
   "next_step": "Get a weekly census from each facility showing payer and skilled-stay status, and store it with the patient."
@@ -312,25 +313,28 @@
  {
   "category_slug": "cc-place-of-service",
   "applicability": "core",
-  "status": "red",
+  "status": "amber",
   "priority": 1,
-  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and complex care management about 44% less, so the practice has been underpaid on visits to any long-term residents. From January 1, 2027 Medicare pays nursing facility visits the same under either code. The code still sets the care-management rate and must match the patient's status.",
+  "assessment": "Until November 10, 2026 every nursing facility line was billed with the code for a Medicare Part A skilled stay, and Medicare paid complex care management at that lower rate. Since that day the charge import sets the code when it enters a charge: care management in a nursing building and the monthly visit as the long-term code, weekly visits and admissions as the skilled-stay code. The rule reads the visit pattern, not each facility's list of Part A stays, and Medicare checks every long-term-code line against the facility's own claim. From January 1, 2027 Medicare pays nursing facility visits the same under either code; the code still sets the care-management rate.",
   "evidence": [
-   "Place of service 32 was never used",
-   "Care management paid $63 at the facility rate on 32 lines and $112 at the non-facility rate on 12 lines"
+   "Medicare paid 1,667 care-management lines in the nursing buildings from November 2025 to October 2026, all at the skilled-stay rate ($63.28 for the first hour in 2026)",
+   "At the long-term rate those lines would have been allowed $76,549 more",
+   "First live batch, November 10, 2026: 24 Brynwood visits entered at the long-term code and 6 at the skilled-stay code"
   ],
-  "next_step": "Set the place of service per visit from each facility's skilled-stay census."
+  "next_step": "Read the feed reports under the rule, confirm AdvancedMD kept the long-term code, and get each facility's Part A list as the proof."
  },
  {
   "category_slug": "cc-who-bills",
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "309 encounters were billed under the nurse practitioner's own number. Whether any visit she performed was billed under the physician has not been tested. She also billed 10 of the 19 initial nursing facility visits. That is allowed for a medically necessary first evaluation, but in a skilled stay the physician must still personally do the required comprehensive visit within 30 days.",
+  "assessment": "309 encounters were billed under the nurse practitioner's own number in the feed window. A check on November 10, 2026 found that the charge import had entered 149 October visits under a different clinician than the feed names: 165 lines of the nurse practitioner's under the physician and 2 the other way; new batches take each visit's clinician from its own message since that day. By the owner's rule of November 10, every initial nursing facility visit and its advance care planning line now go in under the physician and the group, whatever the feed names. That is right only when he personally did the visit: since October 28 the feed has named the nurse practitioner on 10 of 19 initial visits. The billing history holds 982 past initial visits under her code; past claims are not reopened.",
   "evidence": [
-   "CMS data: the nurse practitioner billed the top initial nursing facility code 37 times in 2023 and 129 times in 2024"
+   "CMS data: the nurse practitioner billed the top initial nursing facility code 37 times in 2023 and 129 times in 2024",
+   "Feed registers: 149 visits and 167 charge lines entered under the other clinician, all October 2026 dates of service",
+   "Billing history: 982 initial nursing facility visits under the nurse practitioner's code, 2022 to 2026; 610 of 663 initial visits from April 2024 to May 2025"
   ],
-  "next_step": "For each skilled admission, record the date of the physician's own comprehensive visit."
+  "next_step": "Log each visit in Claimocity under the clinician who saw the patient; the owner marks which of the 149 October visits were his own. For each skilled admission, record the date of the physician's own comprehensive visit."
  },
  {
   "category_slug": "cc-modifiers-edits",
@@ -366,7 +370,7 @@
    "42% of lines paid since June 2026",
    "Advance care planning billed on 62 encounters, about 8% of face-to-face visits"
   ],
-  "next_step": "Set the place of service on each care-management claim from the resident's status, and work the unpaid lines by denial reason. Put the minutes, who took part and a statement that the talk was voluntary in every advance care planning note."
+  "next_step": "Confirm the care-management lines go out as place of service 32 under the new rule, and work the unpaid lines by denial reason. Put the minutes, who took part and a statement that the talk was voluntary in every advance care planning note."
  },
  {
   "category_slug": "cc-fee-schedule",
@@ -384,19 +388,20 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure.",
+  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure. On November 10, 2026 two reviews proved that 84 feed visits ($18,802) had been released but never billed, because their insurance-order list was empty; the fix (rule version .7) is not live yet.",
   "evidence": [
    "218 of 311 primary lines paid, service since August 1, 2026",
-   "13,385 claims sent since July 2026, including mass re-sends of old claims"
+   "13,385 claims sent since July 2026, including mass re-sends of old claims",
+   "84 feed visits, 102 lines, $18,802, never billed; none of 5,228 billed visits has an empty insurance-order list"
   ],
-  "next_step": "Track first-pass payment by payer every week and fix the top reason each month."
+  "next_step": "Track first-pass payment by payer every week and fix the top reason each month. Deliver the never-billed fix and send the 84 visits as the owner approved."
  },
  {
   "category_slug": "ar-rejections",
   "applicability": "core",
   "status": "unknown",
   "priority": 3,
-  "assessment": "Rejections are worked but not counted, so there is no trend. One enrollment rejection for electronic claims is open with a military plan.",
+  "assessment": "Rejections are worked but not counted, so there is no trend. TRICARE For Life's enrollment for electronic claims was rejected; TRICARE East's was approved in October 2026.",
   "evidence": [
    "Claim inspector queue was 2 after the last run"
   ],
@@ -480,7 +485,7 @@
   "assessment": "About four in ten Medicare patients also have Medicaid. Much of that coinsurance is legally uncollectible, and the rest depends on Medicaid enrollment staying current.",
   "evidence": [
    "39 recent lines carried the prior-payer adjustment code",
-   "The physician's Medicaid provider agreement renewal is due December 1, 2026"
+   "The physician's Medicaid provider agreement expires December 27, 2026 (target to file December 1)"
   ],
   "next_step": "Post uncollectible dual-eligible coinsurance as contractual, and renew Medicaid on time."
  },
@@ -508,19 +513,19 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Write-offs are large and include avoidable ones. The net collection rate, the measure that would show how much collectible money is lost, cannot yet be calculated.",
+  "assessment": "Write-offs are large and include avoidable ones. The AdvancedMD history now in the practice database brings the net collection rate within reach, once contractual write-offs are told apart from the others; it has not been computed yet, and posted payments for 2022 to 2025 are a floor.",
   "evidence": [
    "100 denied visits had timely filing as the first reason",
    "$40,686 written off in one batch on November 2, 2026"
   ],
-  "next_step": "Pull payments, adjustments and write-offs by month of service from the billing system and compute the net collection rate."
+  "next_step": "Compute the net collection rate by month of service from the AdvancedMD history, labelling 2022 to 2025 'posted payments'."
  },
  {
   "category_slug": "pc-payer-mix",
   "applicability": "core",
   "status": "amber",
   "priority": 3,
-  "assessment": "Medicare fee-for-service is 55.5% of charges. Insurers that sell Medicare Advantage plans are about 25%, and the data does not yet split their Medicare Advantage patients from commercial ones. Medicaid plans are about 6%, and 11.2% of charges had no payer recorded. Medicare pays fastest and most reliably. In 2027 its hospital visit rates fall 3% to 5% and its rates for nursing facility visits billed as a skilled stay rise 10% to 12%.",
+  "assessment": "Medicare fee-for-service is 55.5% of charges. Insurers that sell Medicare Advantage plans are about 25%, and the data does not yet split their Medicare Advantage patients from commercial ones. Medicaid plans are about 6%, and 11.2% of feed dollars sat on charts the insurance check held after its look-up, which is not a share of charges with no payer. Medicare pays fastest and most reliably. In 2027 its hospital visit rates fall 3% to 5% and its rates for nursing facility visits billed as a skilled stay rise 10% to 12%.",
   "evidence": [
    "Lead payer shares by charges, October 2026"
   ],
@@ -550,14 +555,14 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Enrollment problems are costing money now. At least nine are open across the two clinicians, and one deadline is three weeks away.",
+  "assessment": "Enrollment problems are costing money now. Several are open across the two clinicians. The physician's Medicaid provider agreement expires December 27, 2026, and the practice's target is to file by December 1.",
   "evidence": [
-   "Florida Medicaid provider agreement renewal due December 1, 2026",
-   "Nurse practitioner's Medicaid revalidation returned incomplete",
-   "Railroad Medicare claims are written off because the practice is not enrolled",
+   "The physician's Florida Medicaid provider agreement expires December 27, 2026 (target to file December 1)",
+   "The nurse practitioner's Medicaid enrollment is a new application, returned with three faults",
+   "Railroad Medicare is paying: $718.76 in 2026, $3,764 open (the earlier 'not enrolled' was wrong)",
    "108 denied visits tagged credentialing"
   ],
-  "next_step": "File the Medicaid renewal this week, then clear the list in order of dollars affected."
+  "next_step": "Reset the Medicaid portal password and file the renewal by December 1, then clear the list in order of dollars affected."
  },
  {
   "category_slug": "pc-medicare-ffs",
@@ -611,12 +616,12 @@
   "applicability": "relevant",
   "status": "amber",
   "priority": 3,
-  "assessment": "Small payers each have an open setup problem: Veterans Affairs portal registration, a military plan that has not credentialed the nurse practitioner, and Railroad Medicare.",
+  "assessment": "Small payers each have an open setup problem: the Veterans Affairs portal registration, TRICARE For Life's rejected electronic enrollment, and whether TRICARE East will take the nurse practitioner into its network. TRICARE East's electronic claims were approved in October 2026, and Railroad Medicare is paying.",
   "evidence": [
    "$6,024 open with Veterans Affairs community care",
-   "$3,764 of Railroad Medicare claims being written off"
+   "Railroad Medicare paid $718.76 in 2026; $3,764 open"
   ],
-  "next_step": "Enroll with Railroad Medicare, and stop writing off its claims until the effective date is known. Finish the other two, or stop seeing those patients under the unenrolled clinician."
+  "next_step": "Stop writing off Railroad Medicare claims. Finish the Veterans Affairs registration and TRICARE For Life's enrollment, and ask TRICARE East about the nurse practitioner."
  },
  {
   "category_slug": "cr-program",
@@ -693,9 +698,9 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement, hospital reappointment items and the nurse practitioner's national provider record. Not yet confirmed: that the nurse practitioner's written protocol with the physician is current and kept at each facility where she sees patients, as Florida requires unless she is registered for autonomous practice. Medicare pays for her visits only if she works with a physician as state law requires.",
+  "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement (it expires December 27, 2026), hospital reappointment items and the nurse practitioner's national provider record. Not yet confirmed: that the nurse practitioner's written protocol with the physician is current and kept at each facility where she sees patients, as Florida requires unless she is registered for autonomous practice. Medicare pays for her visits only if she works with a physician as state law requires.",
   "evidence": [
-   "Medicaid renewal due December 1, 2026",
+   "The physician's Medicaid provider agreement expires December 27, 2026 (target to file December 1)",
    "Nurse practitioner's national provider record carries the wrong specialty code"
   ],
   "next_step": "Put every license, registration and enrollment expiry on one calendar with 90-day warnings."
@@ -725,7 +730,7 @@
   "evidence": [
    "Required: a visit every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. In a Part A skilled stay the physician must make the first visit and at least every other one",
    "Hospital reappointment has open items",
-   "10 of 19 initial nursing facility visits were billed under the nurse practitioner"
+   "Since October 28, 2026 the feed has named the nurse practitioner on 10 of 19 initial nursing facility visits; since November 10 billing enters every initial visit under the physician (the owner's rule)"
   ],
   "next_step": "Add a required-visit due date to each resident on the census."
  },
@@ -786,12 +791,12 @@
   "applicability": "core",
   "status": "amber",
   "priority": 1,
-  "assessment": "Complex care management (code 99487) was billed for 257 of the 326 patients seen in October 2026, 213 of them with the add-on code (99489). The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. What needs work is collection. Only about 42% of these lines have been paid since June, and 152 of October's lines carry place of service 31, the code for a skilled stay, which pays less than the code for a long-term resident. That is why the rating is amber.",
+  "assessment": "Complex care management (code 99487) was billed for 257 of the 326 patients seen in October 2026, 213 of them with the add-on code (99489). The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. What needs work is collection. Only about 42% of these lines have been paid since June, and 152 of October's lines carry place of service 31, the code for a skilled stay, which pays less than the code for a long-term resident. Since November 10, 2026 the charge import enters care management in the five nursing buildings as place of service 32, except in a month the chart looks skilled. The low paid rate is why the rating is amber.",
   "evidence": [
    "257 patients billed the complex code in October 2026, 213 with the add-on",
    "About 42% of lines paid since June 2026. 152 of October's lines carry place of service 31"
   ],
-  "next_step": "Set the place of service on each claim from the resident's status, and work the unpaid lines by denial reason."
+  "next_step": "Read the November month-end batch to see the care-management lines entered and stored as 32, get each facility's Part A list, and work the unpaid lines by denial reason."
  },
  {
   "category_slug": "co-access-scheduling",
@@ -839,13 +844,15 @@
  {
   "category_slug": "qv-mips",
   "applicability": "core",
-  "status": "unknown",
-  "priority": 2,
-  "assessment": "Medicare's quality program can cut payments by up to 9% for clinicians who are required to report and do not. Both clinicians appear to bill Medicare more than the program's minimums ($90,000 billed, 200 patients and 200 services a year), so it likely applies to them. Their status is not known.",
+  "status": "red",
+  "priority": 1,
+  "assessment": "Both clinicians must take part in Medicare's quality program. Nothing was reported for 2025: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face 9% in 2028 unless something is submitted. One attested improvement activity and codes on the remaining 2026 claims can remove most or all of it.",
   "evidence": [
-   "Medicare paid the two clinicians about $350,000 in 2024, so up to about $31,000 a year is at stake"
+   "2025 scores from CMS: physician 65.8, nurse practitioner 16.3; threshold 75",
+   "Medicare Part B for the two is projected at $567,280 for 2026 (range $522,000 to $597,000), so 9% is about $47,000 to $54,000",
+   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026; billing adds the advance care plan code and M0004 automatically from that day (rule version 2026-11-10.6)"
   ],
-  "next_step": "Look up both clinicians in the Quality Payment Program participation tool this week."
+  "next_step": "The owner names the one improvement activity both clinicians carried out 90 days in a row in 2026; build its proof file; attest between January 4 and March 31, 2027."
  },
  {
   "category_slug": "qv-risk-adjustment",
@@ -1001,8 +1008,11 @@
   "applicability": "core",
   "status": "amber",
   "priority": 3,
-  "assessment": "A single database and dashboard already cover receivables, denials, charges, treasury and credentialing. Missing are the net collection rate, results by line of work and the financial statements.",
-  "next_step": "Load monthly billing-system transactions and the accounting data."
+  "assessment": "A single database and dashboard cover receivables, denials, charges, treasury and credentialing. Since November 10, 2026 the full AdvancedMD history is in the same database: 11,050 charts and 84,617 charge lines with their payments and write-offs, dates of service 2022 to November 2026. Its definitions were corrected the same day: 'paid' became 'settled' (payments plus write-offs), reason codes and empty dates were fixed, and unapplied payments got their own table. Still missing: the net collection rate, results by line of work and the financial statements.",
+  "next_step": "Compute the net collection rate by month of service, labelling 2022 to 2025 'posted payments', and load the accounting data.",
+  "evidence": [
+   "Charge detail (place of service, allowed amount) pulled for 4,552 of 11,050 charts by 23:05 UTC on November 10, continuing in two-hour pieces on the owner's word"
+  ]
  },
  {
   "category_slug": "td-automation-ai",
@@ -1022,7 +1032,9 @@
   "priority": 2,
   "assessment": "Agents work from written rules and ask for approval on some actions. Missing are a monthly human sample of what they did, and an outside review of the two things that carry audit risk: the automatic write-off of old balances and how visit levels reach the claim. Any rule that changes a claim's date, code or balance also needs the owner's written approval.",
   "evidence": [
-   "An automatic write-off rule is in force. So is a rule that re-dates a care-management claim to month end after a frequency denial and resends it"
+   "An automatic write-off rule is in force. So is a rule that re-dates a care-management claim to month end after a frequency denial and resends it",
+   "November 10, 2026: an independent review found the charge import had entered 149 October visits under the other clinician",
+   "November 10, 2026: two read-only reviews proved the insurance check had logged success on 84 feed visits that could never bill"
   ],
   "next_step": "Sample 25 automated actions a month and record the result."
  },
@@ -1040,7 +1052,10 @@
   "status": "amber",
   "priority": 3,
   "assessment": "The practice depends on a handful of software vendors. Which have signed business associate agreements, and what each costs, is not in one list.",
-  "next_step": "Make the list, with agreement date and yearly cost."
+  "next_step": "Make the list, with agreement date and yearly cost. Agree no monthly commitment without written per-check prices.",
+  "evidence": [
+   "The look-up vendor billed $1,879.97 for September 5-30 and $2,029.25 for October 2026 at public prices; its October 30 offer of 'just above $1.3k' a month names no rates or terms"
+  ]
  },
  {
   "category_slug": "td-business-continuity",
@@ -1056,7 +1071,11 @@
   "status": "amber",
   "priority": 3,
   "assessment": "A gate keeps patient details out of the repository. Record retention rules and a periodic check of who has access have not been written.",
-  "next_step": "Review user access every six months."
+  "next_step": "Review user access every six months.",
+  "evidence": [
+   "The AdvancedMD history tables hold no names, full birth dates, addresses, phone numbers, member numbers or Social Security numbers, but they are pseudonymous, not anonymous: chart numbers can be tied to names through the practice's other data",
+   "The tables as they were before the November 10 correction are kept, named *_before_1110, until the owner says to remove them"
+  ]
  },
  {
   "category_slug": "gm-market-analysis",

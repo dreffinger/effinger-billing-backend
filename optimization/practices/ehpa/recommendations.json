@@ -4,25 +4,44 @@
   "ord": 1,
   "kind": "revenue",
   "category_slug": "cc-place-of-service",
-  "title": "Bill care management under each resident's correct place of service",
-  "why": "Every nursing facility claim says the resident is in a Medicare Part A skilled stay (place of service 31). For a long-term resident the correct code is 32, and in 2026 Medicare allows more under it: $142.98 against $80.71 for the first hour of complex care management and $77.47 against $44.58 for each added half hour. The practice's own remittances show both rates being paid.",
+  "title": "Care management in the nursing buildings is now billed as place of service 32: back it with each facility's Part A list",
+  "why": "Until November 10, 2026 every care-management line in the five nursing buildings went out as a Medicare Part A skilled stay (place of service 31) and was paid at that rate: $63.28 for the first hour in 2026. For a long-term resident the code is 32, and Medicare allows $142.98 against $80.71 for the first hour and $77.47 against $44.58 for each added half hour. The owner's rule of November 10 bills these lines as 32 from now on; it went live at 11:14 UTC that day (rule version 2026-11-10.4). Care management is billed as a monthly total at month end, so the November lines are the first to carry 32. The rule reads the visit pattern, so the facility's own list is still the proof.",
   "what": [
-   "Get each facility's list of residents in a Part A stay, with dates",
-   "Set place of service from it on every new claim",
-   "Size the past year before deciding whether to ask Medicare to reopen paid claims"
+   "Read the feed reports: counts by place of service, and that AdvancedMD stored 32",
+   "Get each facility's monthly list of residents in a Part A stay, with dates",
+   "Tell the back end whether to keep the safeguard that leaves care management at 31 in a month that looks skilled"
   ],
-  "impact_basis": "October 2026 had 112 Medicare fee-for-service first-hour lines and 96 add-on lines billed as skilled stays. If every one of those residents was a long-term resident and every claim paid, the difference is about $10,100 a month in allowed amount. About 42% to 50% of these lines are paid today, so a realistic figure is $30,000 to $60,000 a year. Place of service is a fact about the resident, so the gain exists only for residents who were not in a Part A stay. The matching gain on visits is counted under the census recommendation.",
+  "impact_basis": "From February to September 2026 Medicare paid about 86 first-hour and 71 add-on lines a month in the nursing buildings. At 32 each first-hour line pays $48.82 more and each add-on $25.79 more, about $6,000 a month and $72,000 a year. Lines the safeguard keeps at 31 (about one resident in eight in October) and lines Medicare matches to a Part A stay reduce it, so the range is $50,000 to $70,000 a year. The patient's 20% share rises by about $19 a month per resident. For the past year the same arithmetic gives $60,015 of Medicare payment not claimed; the owner decided not to ask Medicare to reopen paid claims.",
   "effort": "medium",
-  "horizon": "this month",
+  "horizon": "in place since November 10, 2026; first care-management lines at 32 with the November month-end batch",
   "owner": "william",
   "project_slug": "ccm-footing",
-  "confidence": "high on the rates; low on the share of residents who are long-term until the facilities' lists arrive",
-  "impact_low": 30000,
-  "impact_high": 60000
+  "confidence": "high on the rates and the line counts; medium on how many lines Medicare will match to a Part A stay",
+  "impact_low": 50000,
+  "impact_high": 70000
+ },
+ {
+  "id": "ehpa-rec-19",
+  "ord": 2,
+  "kind": "risk",
+  "category_slug": "cc-who-bills",
+  "title": "Decide what to do with the October visits entered under the other clinician",
+  "why": "The charge import entered 165 lines the feed names the nurse practitioner on under the physician, and 2 lines the other way. 120 of them are at Medicare, which pays a nurse practitioner's visit at 85% of the physician amount. Most are billed and not yet paid, so they can still be corrected before the money arrives. The 15 lines not yet billed were decided by the owner on November 10, 2026.",
+  "what": [
+   "Decided November 10: of the 15 lines not yet billed (12 never-billed visits), 10 visits move to the nurse practitioner before they are sent and the 2 initial visits stay under the physician",
+   "The owner marks any of the other listed visits he performed himself",
+   "For the rest the owner decides: corrected claims for the 133 lines billed and not yet paid, and corrected claims or refunds for the 19 paid lines"
+  ],
+  "impact_basis": "About $1,400 of Medicare payment more than is owed if nothing is corrected, and 148 claims naming the wrong clinician. Correcting them now costs a rebill; leaving them costs a refund and a finding.",
+  "effort": "low",
+  "horizon": "this week",
+  "owner": "william",
+  "project_slug": "automation-controls",
+  "confidence": "high on the counts; the owner confirms which visits were his"
  },
  {
   "id": "ehpa-rec-07",
-  "ord": 2,
+  "ord": 3,
   "kind": "risk",
   "category_slug": "cr-overpayments",
   "title": "Bring in a healthcare attorney before the visit-level audit begins",
@@ -41,7 +60,7 @@
  },
  {
   "id": "ehpa-rec-02",
-  "ord": 3,
+  "ord": 4,
   "kind": "risk",
   "category_slug": "cr-coding-audits",
   "title": "Commission an independent audit of visit levels",
@@ -60,57 +79,76 @@
  },
  {
   "id": "ehpa-rec-03",
-  "ord": 4,
+  "ord": 5,
   "kind": "revenue",
   "category_slug": "fe-eligibility",
   "title": "Finish the coverage refresh and verify every patient monthly",
-  "why": "One charge in nine has no payer, two thirds of coverage cards are unverified, and coverage and wrong-payer problems are about a quarter of denied visits.",
+  "why": "The coverage refresh stopped in mid-September after passes by hand on September 5-8 and 23-24, and no routine works the open cards: 349 of 503 Insurance Refresh Board cards were open on November 10, 2026, and 145 charts with money waiting hold $153,124. That day 122 feed visits ($26,373) had no claim: 86 with a payer on the chart that were never sent ($19,405; 84 of them the never-billed visits), 21 with no plan ($4,358) and 15 moved to the patient's balance ($2,610). Coverage and wrong-payer problems are about a quarter of denied visits.",
   "what": [
-   "Clear the 342 cards in work",
-   "Re-verify on the first of each month",
-   "Hold claims with no verified payer"
+   "Work the open cards, biggest balances and most recent first (136 with nothing left to bill or collect were closed on November 10)",
+   "A check-only coverage run on the first of each month, for the patients being billed that month (approved November 10)",
+   "List every held visit daily and re-check held charts; a HOLD today is only a label in the check's report and does not stop the claim"
   ],
-  "impact_basis": "About $113,000 a year of collections rides on charges that had no payer when entered (11.2% of $1,010,153). The range assumes that about a quarter to 60% of it is never collected. That share is a guess until these charges are tracked to payment.",
+  "impact_basis": "The plan's earlier 'one charge in nine has no payer' was the share of feed dollars on charts the insurance check held after its look-up ($23,534 of $211,062, 11.2%), not a share of all charges. Visits that arrived with no open plan on the chart were 138 of 1,037 ($29,286, 13.7% of dollars). The $30,000 to $70,000 is a low-confidence estimate of denials and unbilled visits avoided. The monthly run adds about $10 to $40 a month of checks and a one-time catch-up at most about $260, so it pays for itself if it saves one to six visits a month from denial (estimates).",
   "effort": "medium",
-  "horizon": "this month",
+  "horizon": "the cards now; the monthly run once it is built, after rule version .7 is live (the look-up savings went live on November 10)",
   "owner": "claude",
   "project_slug": "coverage-cleanup",
-  "confidence": "low",
+  "confidence": "low on the dollar range; high on the counts",
   "impact_low": 30000,
   "impact_high": 70000
  },
  {
+  "id": "ehpa-rec-20",
+  "ord": 6,
+  "kind": "revenue",
+  "category_slug": "ar-claim-submission",
+  "title": "Send the 84 never-billed feed visits as the owner approved, once the fix is live",
+  "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) were released by the insurance check but could never bill, because their insurance-order list was empty. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
+  "what": [
+   "Deliver the fix (rule version 2026-11-10.7), then send one pilot visit and read it back",
+   "Send the 71 visits whose payer only the look-up found only when an eligibility check dated to the service date shows the plan active; the two-plan chart by that check; send the other 13",
+   "Move the 10 nurse practitioner visits to her before they go; keep the 2 initial visits under the physician"
+  ],
+  "impact_basis": "Not valued: the charges are $18,802, but whether each payer found is right is not yet tested. The dated checks cost about $10 to $25.",
+  "effort": "low",
+  "horizon": "after rule version .7 is live; one pilot visit first",
+  "owner": "claude",
+  "project_slug": "coverage-cleanup",
+  "confidence": "high on the cause and the count; the dated coverage check settles each payer"
+ },
+ {
   "id": "ehpa-rec-04",
-  "ord": 5,
+  "ord": 7,
   "kind": "revenue",
   "category_slug": "fe-coverage-status",
   "title": "Get skilled-stay, hospice and plan status from each facility every week",
-  "why": "That status decides the payer, the place of service and the rate. Today every nursing facility claim says the patient is in a skilled stay.",
+  "why": "That status decides the payer, the place of service and the rate. Since November 10, 2026 the back end sets place of service from the visit pattern: the monthly visit as 32, weekly visits and admissions as 31. A facility's own list of Part A stays is the proof behind every 32, and it is what Medicare's own check uses.",
   "what": [
-   "Weekly census from each facility",
-   "Place of service set from it",
+   "Monthly or weekly list from each facility: who is in a Part A stay, from when to when",
+   "Compare each month's claims billed as 32 with it",
    "Hospice status flagged automatically; the clinician chooses the modifier"
   ],
-  "impact_basis": "For 2026 visits only. Medicare allows $13 to $15 more for a follow-up visit to a long-term resident when the claim carries place of service 32. At October's pace that adds about $10,000 to $20,000 on Medicare fee-for-service visits if half to all of them were to long-term residents, and more if Medicare Advantage plans pay the same way. From 2027 Medicare pays these visits the same under either code. The larger gain, on care management, is counted under the place-of-service recommendation. Fewer wrong-payer denials are not valued here.",
+  "impact_basis": "For visits the two codes pay differently only in 2026. If every Medicare-paid nursing visit from January to October 2026 had been a long-term resident, Medicare would have paid at most $16,383 more ($20,897 allowed; most of these visits are the nurse practitioner's, paid at 85%). The rule gives 32 to about a third of visits, so the two months left in 2026 are worth a few thousand dollars at most. From January 1, 2027 Medicare pays these visits the same under either code. The lasting value is proof for the care-management lines and fewer wrong-payer denials, which are not valued here.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",
   "project_slug": "census-status",
-  "confidence": "low",
-  "impact_low": 10000,
-  "impact_high": 25000
+  "confidence": "medium",
+  "impact_low": 2000,
+  "impact_high": 8000
  },
  {
   "id": "ehpa-rec-05",
-  "ord": 6,
+  "ord": 8,
   "kind": "risk",
   "category_slug": "pc-credentialing",
   "title": "File the Medicaid renewal now and clear the enrollment list",
-  "why": "The physician's Medicaid provider agreement is due December 1. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Those payers are about 6% to 9% of charges.",
+  "why": "The physician's Florida Medicaid provider agreement expires December 27, 2026; the practice's target is to file by December 1 to leave the agency time. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Those payers are about 6% to 9% of charges. The nurse practitioner's Medicaid enrollment is a new application that was returned with three faults.",
   "what": [
-   "File and confirm the renewal",
-   "Fix the nurse practitioner's revalidation and national record",
-   "Enroll with Railroad Medicare"
+   "Reset the Medicaid portal password, then file and confirm the renewal",
+   "Resubmit the nurse practitioner's new Medicaid application and correct her national record",
+   "Stop writing off Railroad Medicare claims: it paid $718.76 in 2026 and $3,764 is open"
   ],
   "impact_basis": "Medicaid and Medicaid-plan payments kept and credentialing denials avoided.",
   "effort": "medium",
@@ -123,7 +161,7 @@
  },
  {
   "id": "ehpa-rec-06",
-  "ord": 7,
+  "ord": 9,
   "kind": "revenue",
   "category_slug": "ar-followup",
   "title": "Work the aged receivables before filing deadlines pass",
@@ -144,7 +182,7 @@
  },
  {
   "id": "ehpa-rec-08",
-  "ord": 8,
+  "ord": 10,
   "kind": "revenue",
   "category_slug": "ar-deposit-reconciliation",
   "title": "Match every deposit to a remittance each week",
@@ -165,7 +203,7 @@
  },
  {
   "id": "ehpa-rec-09",
-  "ord": 9,
+  "ord": 11,
   "kind": "capability",
   "category_slug": "sg-operating-rhythm",
   "title": "Close the books monthly and hold a monthly owner review",
@@ -184,7 +222,7 @@
  },
  {
   "id": "ehpa-rec-10",
-  "ord": 10,
+  "ord": 12,
   "kind": "risk",
   "category_slug": "cr-program",
   "title": "Adopt a short written compliance program",
@@ -203,28 +241,28 @@
  },
  {
   "id": "ehpa-rec-11",
-  "ord": 11,
+  "ord": 13,
   "kind": "risk",
   "category_slug": "qv-mips",
-  "title": "Check both clinicians' status in Medicare's quality program",
-  "why": "A clinician who must report and does not is paid 9% less two years later.",
+  "title": "Report 2026 to Medicare's quality program and avoid most of a 9% cut in 2028",
+  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks a 10-point bonus both clinicians already qualify for. Since November 10, 2026 billing adds the advance care plan code and M0004 automatically (rule version 2026-11-10.6).",
   "what": [
-   "Look up status",
-   "Read past feedback",
-   "Decide how to report for 2026 by early December"
+   "Advance care plan code on Medicare claims through December 31 (billing adds it automatically)",
+   "M0004 once on one claim for each clinician (billing adds it after the first coded line is seen billed)",
+   "Name one improvement activity both clinicians really carried out 90 days in a row in 2026, build its proof file, and attest between January 4 and March 31, 2027"
   ],
-  "impact_basis": "Penalty avoided, if either clinician is required to report.",
+  "impact_basis": "Medicare Part B for the two clinicians is projected at $567,280 for 2026 (range $522,000 to $597,000; the method missed by up to 9% on earlier years). A 9% cut on that is about $47,000 to $54,000. Attesting one activity alone brings the estimated score to about 56 and the cut to about 2.2%, saving about $35,000 to $40,000. Under the neurological option, with the code on 2026 claims, M0004 on one claim for each clinician and the activity, the estimate is at least 69 points and 95 if cost is not scored; 75 or more means no cut. Estimates: the 56 assumes a cost score of 54 and the same 10-point bonus as 2025.",
   "effort": "low",
-  "horizon": "this month, then March 31, 2027",
+  "horizon": "codes now through December 31; attestation January 4 to March 31, 2027",
   "owner": "william",
   "project_slug": "quality-mips",
-  "confidence": "medium",
-  "impact_low": 0,
-  "impact_high": 31000
+  "confidence": "high on the rules and dates; medium on the 2026 cost score",
+  "impact_low": 35000,
+  "impact_high": 54000
  },
  {
   "id": "ehpa-rec-12",
-  "ord": 12,
+  "ord": 14,
   "kind": "revenue",
   "category_slug": "gm-service-lines",
   "title": "Restart wellness visits and add transitional care",
@@ -245,7 +283,7 @@
  },
  {
   "id": "ehpa-rec-13",
-  "ord": 13,
+  "ord": 15,
   "kind": "revenue",
   "category_slug": "pc-contract-inventory",
   "title": "Collect every payer contract and reprice for 2027",
@@ -266,7 +304,7 @@
  },
  {
   "id": "ehpa-rec-14",
-  "ord": 14,
+  "ord": 16,
   "kind": "cost",
   "category_slug": "fm-debt-capital",
   "title": "Refinance the 13.99% note and clear the owner's loan",
@@ -287,15 +325,15 @@
  },
  {
   "id": "ehpa-rec-15",
-  "ord": 15,
+  "ord": 17,
   "kind": "capability",
   "category_slug": "td-ai-governance",
   "title": "Put guard rails on the billing agents",
-  "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates, modifiers, diagnoses, places of service or balances need a second pair of eyes.",
+  "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates, modifiers, diagnoses, places of service, clinicians or balances need a second pair of eyes. On November 10, 2026 reviews found that the charge import had entered 149 October visits under the other clinician, and that the insurance check had logged success on 84 feed visits that could never bill.",
   "what": [
    "Pause the automatic write-off of old balances, close open sign-up and replace the shared key",
-   "Approval for claim-changing rules",
-   "Monthly sample of 25 actions"
+   "Approval for claim-changing rules, and an independent review of the exact version before it goes live",
+   "Monthly sample of 25 actions, the monthly clinician check on entered visits, and the daily list of never-billed feed visits"
   ],
   "impact_basis": "Lower chance of a systematic error.",
   "effort": "low",
@@ -306,7 +344,7 @@
  },
  {
   "id": "ehpa-rec-16",
-  "ord": 16,
+  "ord": 18,
   "kind": "value",
   "category_slug": "lv-key-person",
   "title": "Reduce dependence on the owner",
@@ -325,7 +363,7 @@
  },
  {
   "id": "ehpa-rec-17",
-  "ord": 17,
+  "ord": 19,
   "kind": "revenue",
   "category_slug": "gm-clinician-growth",
   "title": "Add a second nurse practitioner once the audit is done",
@@ -346,7 +384,7 @@
  },
  {
   "id": "ehpa-rec-18",
-  "ord": 18,
+  "ord": 20,
   "kind": "value",
   "category_slug": "lv-sale-readiness",
   "title": "Build the file a buyer would ask for",
