@@ -35,7 +35,7 @@ for rf in sorted(glob.glob(os.path.join(REGS, "feed_import_*.json"))):
     except Exception: continue
     for r in reg.get("created", []):
         if r.get("visit"): entered[r["visit"]] = r
-rows = []; seen = set(); matched = 0
+rows = []; seen = set(); matched = 0; by_rule = 0
 for rf in sorted(glob.glob(os.path.join(REGS, "feed_recon_*.json"))):
     try: j = json.load(open(rf))
     except Exception: continue
@@ -44,10 +44,12 @@ for rf in sorted(glob.glob(os.path.join(REGS, "feed_recon_*.json"))):
         if not v or v not in entered or v in seen: continue
         seen.add(v); matched += 1
         feed = feed_clinician(r.get("prov")); ent = PROF.get(entered[v].get("prof"), str(entered[v].get("prof")))
+        if feed != ent and entered[v].get("prof_why"): by_rule += 1; continue      # William 11/10/2026: an initial nursing-facility visit goes in under the physician whatever the feed names - his rule, not a fault
         if feed != ent:
             rows.append({"batch": j.get("stamp"), "chart": r.get("p"), "visit": v, "date of service": r.get("d"), "codes": "+".join(r.get("c") or []),
                          "feed message says": feed, "entered under": ent, "charges": " ".join(entered[v].get("charges") or [])})
 print("feed visits entered: %d, matched to their feed message: %d, entered under a different clinician: %d" % (len(entered), matched, len(rows)))
+if by_rule: print("entered under the physician by William's initial-visit rule (11/10/2026, register field prof_why - not a fault, not listed): %d" % by_rule)
 _nc = sorted(v for v in entered if v not in seen)
 if _nc: print("not compared (no feed message found for the visit): %d - %s" % (len(_nc), " ".join(_nc[:40])))
 print("by direction:", dict(collections.Counter((r["feed message says"], r["entered under"]) for r in rows)))

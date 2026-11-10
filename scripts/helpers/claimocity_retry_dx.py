@@ -20,6 +20,23 @@ def opt(name, default=None): return a[a.index(name) + 1] if name in a else defau
 def utcnow(): return datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
 rstamp = re.sub(r"[^0-9TZ]", "", opt("--stamp", utcnow().strftime("%Y%m%dT%H%MZ"))) + "R"
 def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0:4])
+# 11/10/2026 (reviewers W1, C2): the retry enters charges with the same import helper as the ingest, so before anything runs it makes the feed
+# helpers here the repository's copies exactly as the ingest does - the one shared function claimocity_helpers_current.make_current: with the clone
+# there, every helper that differs is replaced by the clone's copy; without one, each is checked by its version line. It never holds a visit for
+# this (rules.md part 6): what could not be made current is said at the end of the RESULT line and goes to the top of the report.
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.6"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+def _helpers_current():
+    """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
+    for _p in (os.path.join(HERE, "claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py")):
+        try:
+            import importlib.util as _iu; _sp = _iu.spec_from_file_location("claimocity_helpers_current", _p); _m = _iu.module_from_spec(_sp); _sp.loader.exec_module(_m)
+            return _m.make_current(HERE, REPO_HELPERS, POS_RULE)
+        except Exception: continue
+    try: _ok = POS_RULE in open(os.path.join(HERE, "claimocity_import.py"), errors="replace").read()
+    except OSError: _ok = False
+    return [], " | FEED HELPERS NOT CHECKED: claimocity_helpers_current.py is missing here and in the repository%s" % ("" if _ok else " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is missing, an old copy or an earlier version of the rule and no repository copy was found - for William to check: the place of service, the building and the clinician of every visit this retry entered (a routine changes nothing on these visits)")
+_hl, pos_warn = _helpers_current()
+for _l in _hl: print(_l)
 REGF = "registers/claimocity_ingest.json"
 reg = json.load(open(REGF)) if os.path.exists(REGF) else {"files": {}, "runs": []}
 pmap = json.load(open("registers/claimocity_patient_map.json")) if os.path.exists("registers/claimocity_patient_map.json") else {}
@@ -128,14 +145,7 @@ if nohl7:
     json.dump(ready, open("feed_parsed_%s.json" % rstamp, "w"), indent=1)
     if not ready: os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
 env["FEED_HL7_DIR"] = os.path.abspath(hdir)
-# 11/10/2026 (review): the retry enters charges with the same import helper as the ingest, so it checks that helper the same way. It never
-# holds a visit for this (rules.md part 6): an old helper is said in the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.4"'; pos_warn = ""
-try: _current = POS_RULE in open(os.path.join(HERE, "claimocity_import.py"), errors="replace").read()
-except OSError: _current = False
-if not _current:
-    pos_warn = " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is an old copy or an earlier version of the rule - check the place of service, the building and the clinician of every visit this retry entered"
-    print("PLACE OF SERVICE RULE NOT CURRENT (retry): claimocity_import.py in %s is an old copy or an earlier version of the rule - say so at the top of the report" % HERE)
+# (the feed helpers were made the repository's at the start of this run - make_current above; pos_warn says what could not be)
 print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s | mode %s" % (rstamp, len(ready), ", ".join(batches), ("; %d still wait on %s" % (waiting, ", ".join(sorted(missing)))) if waiting else "", "LIVE" if live else "DRY"))
 step("import", [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"])
 if live:
