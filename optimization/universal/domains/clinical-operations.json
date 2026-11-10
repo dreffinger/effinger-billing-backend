@@ -332,7 +332,7 @@
     },
     {
      "action": "Bill under the performing clinician",
-     "detail": "Medicare pays nurse practitioners and physician assistants 85% of the physician rate under their own number (42 CFR 414.56 and 414.52). Billing their visits under the physician is allowed only in an office under the incident-to rules.",
+     "detail": "Medicare pays nurse practitioners and physician assistants 85% of the physician rate under their own number (42 CFR 414.56, 414.52). Billing their visits under the physician requires the incident-to rules, which do not apply in hospitals or skilled nursing facilities.",
      "cadence": "daily",
      "effort": "low",
      "impact": "high"

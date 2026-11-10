@@ -129,7 +129,7 @@
      "sources": [
       "hbma-2024"
      ],
-     "data_hint": "Remittance data matched to first submissions, by payer.",
+     "data_hint": "Payer payment statements (remittances) matched to first submissions, by payer.",
      "vendor_claim": "First-pass acceptance above 97%, with below 95% a sign of systematic coding problems. The vendor's free guide sets first-pass resolution at 90% or more.",
      "vendor_verdict": "Unverifiable. No source is given, and billing companies report 86% to 88% of claims paid on first submission."
     },
@@ -158,7 +158,7 @@
   {
    "slug": "ar-rejections",
    "name": "Clearinghouse and payer rejections",
-   "summary": "A rejection is a claim turned back by the clearinghouse (the service that relays claims) or the payer before it is decided, usually for a wrong identifier, payer or enrollment. Most never appear on a remittance, and a rejected claim does not count as filed.",
+   "summary": "A rejection is a claim turned back by the clearinghouse (the service that relays claims) or the payer before it is decided, often for a wrong identifier, payer or enrollment. Most never show on a payment statement, and a rejected claim is not filed.",
    "good_looks_like": [
     "Clearinghouse and payer rejection reports are opened every business day. Each rejected claim is corrected and resent within a set standard, such as two business days.",
     "Rejections are counted apart from denials and grouped by cause: patient identifier, wrong payer, clinician enrollment, missing or invalid data.",
@@ -166,7 +166,7 @@
     "Staff know that Medicare gives no appeal for a claim returned as unprocessable. It must be corrected and filed again within one year of the service."
    ],
    "failure_modes": [
-    "Rejections sit in a clearinghouse portal nobody opens. The claims never reach the payer, appear on no remittance, and look like any other unpaid claim on the aging report.",
+    "Rejections sit in a clearinghouse portal nobody opens. The claims never reach the payer, appear on no payment statement, and look like any other unpaid claim on the aging report.",
     "A rejected claim is logged as filed. Months later the corrected claim is denied as late, and the payer does not accept the rejection as proof of filing.",
     "A new clinician's claims reject for weeks because payer enrollment is unfinished, and nobody links the pattern to credentialing.",
     "Staff appeal a Medicare claim returned as unprocessable. No appeal exists for it (42 CFR 405.926), so time is lost while the filing clock runs.",
@@ -188,7 +188,7 @@
     },
     {
      "action": "Age unresolved rejections every week",
-     "detail": "Report count and dollars of rejected claims not yet accepted, by age. The receivables aging does not mark them as rejected. Send anything past a set age, such as 14 days, to the practice owner.",
+     "detail": "Report count and dollars of rejected claims not yet accepted, by age. The aging report of unpaid balances does not mark them as rejected. Send anything past a set age, such as 14 days, to the practice owner.",
      "cadence": "weekly",
      "effort": "low",
      "impact": "high"
@@ -335,7 +335,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Where most patients have Medicare, electronic remittances are the norm and the risk moves to crossover and zero-payment remittances. In a one-person billing office, the owner or an outside bookkeeper should sample posted remittances each month.",
+   "applies_when": "All practices, though where most patients have Medicare, electronic remittances are the norm and the risk moves to secondary-payer and zero-payment remittances. In a one-person billing office, the owner or an outside bookkeeper should sample posted remittances each month.",
    "vendor_refs": [
     {
      "item": "rcm-technology-buyers-playbook",
@@ -393,7 +393,7 @@
      "cadence": "daily",
      "benchmark_note": "No public benchmark was found. Set the target from first principles: nothing older than the practice's posting standard, and none unposted at month end, so that receivables and collections tie to the bank.",
      "confidence": "none",
-     "data_hint": "Clearinghouse remittance list compared with the posting batch log, plus the paper mail log.",
+     "data_hint": "Remittance list from the clearinghouse, the service that relays claims and remittances, compared with the posting batch log, plus the paper mail log.",
      "vendor_claim": "Payment posting lag under 2 business days. Another document says within 24 hours of deposit.",
      "vendor_verdict": "Unverifiable. Neither figure has a source. Either is a reasonable internal standard."
     },
@@ -483,7 +483,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Virtual cards come from Medicare Advantage and commercial plans, while traditional Medicare pays by bank transfer (42 CFR 424.510). A practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
+   "applies_when": "All practices, above all those paid by Medicare Advantage and commercial plans, the source of virtual cards, since traditional Medicare pays by bank transfer (42 CFR 424.510). A practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
    "vendor_refs": [
     {
      "item": "new-practice-launch-playbook",
@@ -579,7 +579,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with insurance receivables. A Medicare-heavy or facility-based practice should run well under general targets, because Medicare pays clean claims within 30 days. Its old balances often point to a wrong payer, a hospice election or a secondary payer.",
+   "applies_when": "Any practice with insurance receivables. A Medicare-heavy or facility-based practice should run well under general targets, because Medicare pays clean claims within 30 days, and its old balances often point to a wrong payer, a hospice election or a secondary payer.",
    "vendor_refs": [
     {
      "item": "kpi-03-days-in-ar",
@@ -711,7 +711,7 @@
    "failure_modes": [
     "Denials are reworked one claim at a time. The same cause produces the same denial next month and rework becomes a permanent job.",
     "A single blended denial rate looks acceptable while one plan denies a fifth of the practice's claims.",
-    "Denied lines are adjusted off as contractual when the remittance posts. The denial rate looks low and the loss is invisible.",
+    "Denied lines are written off as contractual discounts when the remittance, the payer's payment statement, posts. The denial rate looks low and the loss is invisible.",
     "Staff treat every denial as an appeal. Many need a corrected claim or a reopening, and the wrong remedy uses up the deadline.",
     "A denial the practice caused is moved to the patient's balance. Remark code MA13 on remittances warns of penalties for billing amounts not marked as patient responsibility."
    ],
@@ -956,7 +956,7 @@
      "cadence": "quarterly",
      "benchmark_best": "about 80% (prior authorization appeals, and a 2021 hospital target)",
      "benchmark_typical": "42% to 57% (measured, definitions vary)",
-     "benchmark_note": "Medicare: 48% of Part B first-level appeals decided in 2025 were fully or partly favorable. Health Affairs: 57% of Medicare Advantage denials overturned (2019). Kodiak: 42.1% (2025). KFF: 80.7% of appealed Medicare Advantage prior authorization denials overturned (2024). PwC's 2021 hospital target: over 80%.",
+     "benchmark_note": "Medicare: 48% of Part B first-level appeals decided in 2025 were fully or partly favorable. Health Affairs: 57% of Medicare Advantage denials overturned (2019). Vendor Kodiak: 42.1% (2025). KFF: 80.7% of appealed Medicare Advantage prior authorization denials overturned (2024). PwC's 2021 hospital target: over 80%.",
      "confidence": "medium",
      "sources": [
       "cms-ffs-appeals-data-2025",
@@ -1006,7 +1006,7 @@
   {
    "slug": "ar-underpayments",
    "name": "Underpayment detection",
-   "summary": "A paid claim can still be paid short. No denial code marks it, so nobody works it. Detection means comparing the allowed amount on each payment with the amount the fee schedule or contract promises, and disputing the difference in time.",
+   "summary": "A paid claim can still be paid short. No denial code marks it, so nobody works it. Detection compares the allowed amount, the payer's approved price before the patient's share, with the fee schedule or contract amount, and disputes the difference in time.",
    "good_looks_like": [
     "The current fee schedule for each major payer is loaded in the billing system, by code, modifier, place of service and clinician type.",
     "The allowed amount on each payment line is compared with the expected allowed amount. Lines that differ by more than a small tolerance go to a work list.",
@@ -1065,7 +1065,7 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Any practice paid under fee schedules. Small ones can sample by hand. For Medicare, check place of service, modifiers and clinician type first, since each changes the fee schedule amount. Commercial and Medicare Advantage rates need the contract in hand.",
+   "applies_when": "Any practice paid under fee schedules, and small ones can sample by hand. For Medicare, check place of service, modifiers and clinician type first, since each changes the fee schedule amount, while commercial and Medicare Advantage rates need the contract in hand.",
    "vendor_refs": [
     {
      "item": "payer-contract-intelligence-playbook",
@@ -1122,7 +1122,7 @@
    "name": "Secondary billing and crossovers",
    "summary": "After the first payer pays, a second payer owes part of the balance: a Medigap (Medicare supplement) policy, a retiree plan or Medicaid. Medicare forwards many claims automatically, called a crossover. Others need prompt billing, and some balances may never be billed to the patient.",
    "good_looks_like": [
-    "Staff can read on each Medicare remittance whether the claim was forwarded to a second insurer, and to which one.",
+    "Staff can read on each Medicare remittance, the payment statement, whether the claim was forwarded to a second insurer, and to which one.",
     "Claims that Medicare forwarded are not billed again. Claims it did not forward go to the second payer within days of the first payer's remittance.",
     "Balances waiting on a second payer are tracked as their own group, aged from the date of service, with a follow-up trigger.",
     "Qualified Medicare Beneficiary status, a Medicaid category for low-income Medicare patients, is checked at eligibility and on remittances. Those patients get no bill for Medicare deductibles or coinsurance.",
@@ -1252,7 +1252,7 @@
    "actions": [
     {
      "action": "Send statements on a rolling cycle",
-     "detail": "Generate the first statement within a few days of the insurer's remittance posting, then at fixed intervals. Show the service date, the insurance payment, the amount owed and several ways to pay.",
+     "detail": "Generate the first statement within a few days of the insurer's payment posting, then at fixed intervals. Show the service date, the insurance payment, the amount owed and several ways to pay.",
      "cadence": "weekly",
      "effort": "low",
      "impact": "high"
@@ -1420,7 +1420,7 @@
     },
     {
      "action": "Answer insurer refund demands in writing and on time",
-     "detail": "Check each demand against the claim. A timely appeal of a Medicare demand stops recoupment, which can otherwise start on day 41 (42 CFR 405.379). In Florida, insurers must demand within 12 months of paying a physician (section 627.6131).",
+     "detail": "Check each demand against the claim. A timely appeal stops Medicare from withholding later payments, which can otherwise start on day 41 (42 CFR 405.379). In Florida, insurers must demand within 12 months of paying a physician (section 627.6131).",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -1507,7 +1507,7 @@
    "actions": [
     {
      "action": "Adopt a fixed list of adjustment reasons",
-     "detail": "Separate contractual (fee schedule, sequestration, Medicaid crossover shortfall) from avoidable (late filing, lapsed appeal, no authorization, not enrolled) and from patient write-offs (hardship, small balance, bad debt). Remove any catch-all code.",
+     "detail": "Separate contractual (fee schedule, the 2% Medicare sequestration cut, Medicaid shortfall on Medicare cost sharing) from avoidable (late filing, lapsed appeal, no authorization, not enrolled) and from patient write-offs (hardship, small balance, bad debt). Remove any catch-all code.",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
@@ -1650,7 +1650,7 @@
      "sources": [
       "hfma-timely-filing-qa"
      ],
-     "data_hint": "Adjustment report filtered to the late-filing reason code, plus remittance lines denied with reason code 29.",
+     "data_hint": "Adjustment report filtered to the late-filing reason code, plus payer payment statement lines denied with reason code 29.",
      "vendor_claim": "Zero is the target. One document calls 0.2% of gross charges fixed and above 0.5% an action threshold.",
      "vendor_verdict": "Unverifiable. No source is given for the percentages. Zero is the right aim, though some cases fall under Medicare's exceptions."
     }

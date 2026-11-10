@@ -1172,7 +1172,9 @@
     "cfr-422-504",
     "cfr-422-138",
     "cfr-422-311",
-    "cfr-1003-200"
+    "cfr-1003-200",
+    "cms-tpe-qa",
+    "ngs-tpe-2022"
    ],
    "evidence_note": "Response times, denial for no response, appeal deadlines and the limit on recoupment are federal regulation (42 CFR part 405). The probe program's rounds are described by CMS (2026). Medicare Advantage and commercial audit terms come from each contract.",
    "metrics": [
@@ -1202,11 +1204,13 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No public pass mark was found. The page on targeted review from the Centers for Medicare & Medicaid Services states no error rate that ends a round, so ask your contractor. Its national sampling found 10.1% improper payments on visit codes (2025 report).",
+     "benchmark_note": "No national pass mark exists. The Centers for Medicare & Medicaid Services says the cutoff varies by service and contractor. One contractor's 2022 slides used about 15% of payments in error. Ask yours. National sampling found 10.1% improper payments on visit codes (2025 report).",
      "confidence": "none",
      "sources": [
       "cms-tpe",
-      "cms-cert-2025"
+      "cms-cert-2025",
+      "cms-tpe-qa",
+      "ngs-tpe-2022"
      ],
      "data_hint": "Review result letters and the record request log, totaled by reviewer and by error type."
     }
