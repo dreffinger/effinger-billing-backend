@@ -123,7 +123,11 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              # the AR ageing page: a reporting line never makes a visit read as denied (11/10/2026)
              "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")',
              # the one function the ingest and the retry share to make the feed helpers the repository's on every run (11/10/2026, reviewers C2 / W1)
-             "claimocity_helpers_current.py": "compared byte for byte with the clone's copy"}
+             "claimocity_helpers_current.py": "compared byte for byte with the clone's copy",
+             # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
+             "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
+             "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
+             "sweep_full.py": "claim_status_sweep.main("}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
