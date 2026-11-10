@@ -66,7 +66,8 @@ def mdy(yyyymmdd):
 #   any other line (99497/8)   -> the place of service of the visit line of the SAME date in the message, else the feed's.
 # Only a line of a message whose OWN building (site_of, below) is a KNOWN nursing building (FAC says 31) is ever changed - also when the
 # same feed patient has messages from another building in the batch. A message whose building cannot be told apart (the same patient,
-# date and codes under two buildings) keeps the feed's place of service and is reported.
+# date and codes under two buildings) keeps the feed's place of service and is reported. The batch's own visits are read with the
+# building each was sent from, like the chart's: a nursing visit after one in another building is "moved" (31), wherever that one is.
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
@@ -81,18 +82,21 @@ HOME_VISIT = {"99341", "99342", "99344", "99345", "99347", "99348", "99349", "99
 # other name - another nursing home, the hospital's rehab unit - is its own key). The Southwood building has two facility records.
 BUILDING_KEYS = (("BRYNWOOD", "fac34"), ("ASPIRE", "fac32"), ("CENTRE POINTE HEALTH", "fac33"), ("WESTMINSTER BERTRAND", "fac58"), ("WESTMINSTER OAKS", "fac58"), ("SOUTHWOOD", "fac1350"))
 def building_key(facname):
-    """The nursing building a facility name belongs to (its fac id), another building's own name, or None when no name is known."""
+    """The nursing building a facility name belongs to (its fac id), another building's own name, or None when no name is known.
+    A facility id (facNNN - what a row of this batch carries, see batch_building) is its own key."""
     n = " ".join(str(facname or "").upper().split())
     if not n: return None
+    if re.match(r"^FAC\d+$", n): return n.lower()
     for word, fac in BUILDING_KEYS:
         if word in n: return fac
     return n
 SKILLED_GAP_DAYS = 14      # weekly / twice-weekly visits (feed 9/1-11/5/2026: 100 gaps of 1-7 days, 10 of 8-14, 6 of 15-20, 41 of 21-35, 9 longer)
 MONTHLY_MIN_DAYS = 21      # 32 needs the monthly pattern actually shown: previous nursing visit 21 ...
 MONTHLY_MAX_DAYS = 92      # ... to 92 days back (the 60-day schedule fits; longer than that is a new stay, not a monthly visit)
-BATCH_NF = {}              # chart -> {(cpt, DOS)} nursing and hospital visits in THIS feed batch (main() fills it); read with the chart's history
+BATCH_NF = {}              # chart -> {(cpt, DOS, building key)} nursing, hospital and home visits in THIS feed batch (main() fills it); read with the chart's history
 BATCH_NF_ERR = [""]        # why the batch list could not be built (then the chart history alone is used) - reaches the DONE line
 FACS = {}                  # feed patient id -> every building name its messages carry in this batch (site_of: a message that cannot be matched is reported when there are two)
+UNSURE_BUILDING = "building not certain"       # the building key of a batch visit whose message cannot be matched to its own building: equal to no building
 # what nf_visit_kind can answer: kind -> (place of service, the words for the register; %d = days since the previous nursing visit)
 NF_KINDS = {
     "initial":      ("31", "31 by rule: initial visit"),
@@ -248,14 +252,15 @@ for f in glob.glob((HL7_DIR + "/*.hl7")):
         if pid is not None and _ft and len(_ft[0]) > 4:
             SITES.setdefault((pid, _ft[0][4][:8], tuple(sorted(s[25].split("^")[0] if len(s) > 25 else "" for s in _ft))), []).append((fac, _npi, _admit))
 def site_of(msg):
-    """(building, provider NPI, admission date, why) for ONE feed message (an entry of feed_parsed_<stamp>.json).
+    """(building, provider NPI, admission date, why, among) for ONE feed message (an entry of feed_parsed_<stamp>.json).
     The message's own three when its key names exactly one building (sent twice from that building - a re-send - the copy read last).
     Otherwise the patient-level three, exactly as before 11/10/2026: the same patient + date + codes under two buildings, or a message
     that is not in the batch's files. why gives the reason whenever that patient has more than one building in the batch - the
-    patient-level building is then a guess - and is "" everywhere else. (A message that is not in the files while its patient has
-    one building there, or none, is entered as before, unreported: the ingest and the diagnosis retry always hand over the files of
-    the messages they enter.) build() reports a visit with a why and never applies the place-of-service rule to it."""
-    fid = msg["pid"]; building, npi, admit, why = FACOF.get(fid, ""), NPIOF.get(fid, ""), ADMIT.get(fid, ""), ""
+    patient-level building is then a guess - and among the buildings it can be (the ones the twins were sent from, else all the
+    patient's buildings in the batch); both are empty everywhere else. (A message that is not in the files while its patient has one
+    building there, or none, is entered as before, unreported: the ingest and the diagnosis retry always hand over the files of the
+    messages they enter.) build() reports a visit with a why and never applies the place-of-service rule to it."""
+    fid = msg["pid"]; building, npi, admit, why, among = FACOF.get(fid, ""), NPIOF.get(fid, ""), ADMIT.get(fid, ""), "", []
     ft = msg.get("FT1") or []
     found = SITES.get((fid, ft[0]["dos"][:8], tuple(sorted(c["cpt"] for c in ft))), []) if ft else []
     names = sorted({x[0] for x in found})
@@ -263,11 +268,17 @@ def site_of(msg):
         building, n, a = found[-1]
         if n is not None: npi, admit = n, a           # (a message without PV1 keeps the patient-level provider and admission date)
     elif len(FACS.get(fid, ())) > 1:
+        among = names or sorted(FACS[fid])
         why = ("same patient, date and codes under %d buildings in this batch" % len(names) if names
-               else "message not in the batch's HL7 files and the patient has %d buildings there" % len(FACS[fid]))
-        why += " - the patient-level building, provider and admission date were used: check the facility and the place of service of this visit by hand"
-        why += " (sent from: %s)" % " | ".join(names) if names else " (the patient's buildings there: %s)" % " | ".join(sorted(FACS[fid]))
-    return building, npi, admit, why
+               else "message not in the batch's HL7 files and the patient has %d buildings there" % len(among))
+        why += " - patient-level building, provider and admission date used: check this visit's facility and place of service by hand"
+    return building, npi, admit, why, among
+def batch_building(msg):
+    """The building key of ONE batch message for the visit history the place-of-service rule reads - what building_key gives for a
+    chart row: the facility id when the facility table knows the message's building (the value build() passes as `here`), else the
+    building's own name; UNSURE_BUILDING when the message cannot be matched to its own building."""
+    building, _npi, _admit, why, _among = site_of(msg)
+    return UNSURE_BUILDING if why else (FAC.get(building, ("",))[0] or building)
 _ctx = {}
 def chart_ctx(pid):
     """episode, respparty, refplan, insorder, live {(cpt,dos)} from the chart's own history/detail."""
@@ -311,7 +322,7 @@ def same_encounter(cpt, dos, live):
     if not fam: return False
     return any(lc in fam and ld == dos for lc, ld in live)
 def build(msg, ctx):
-    facname, npi, admit, why = site_of(msg)         # this MESSAGE's building, provider and admission date (11/10/2026), not the patient's last-read ones
+    facname, npi, admit, why, among = site_of(msg)  # this MESSAGE's building, provider and admission date (11/10/2026), not the patient's last-read ones
     fac, pos = FAC.get(facname, ("", "31"))
     nursing = facname in FAC and pos == "31"        # one of the practice's nursing buildings (never the unknown-building default)
     prof = PROFILE.get(npi, "prof13")
@@ -367,7 +378,7 @@ def build(msg, ctx):
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
     info = {"dos": dos, "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos, "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err,
             "prof": prof, "admit": admit, "missing_dx": sorted(missing_dx)}
-    if why: info["site_unresolved"] = why           # only the visits whose building a person should check carry this key
+    if why: info["site_unresolved"] = why; info["site_among"] = among   # only the visits whose building a person should check carry these keys
     return (create, body), info
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
@@ -397,13 +408,15 @@ def main():
         d = v.get("dod") or ""
         return d if re.match(r"\d{4}-\d{2}-\d{2}$", d) else None
     # nursing and hospital visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
-    # so the result does not depend on the order the messages are entered in
+    # so the result does not depend on the order the messages are entered in. Each row carries the building its message was sent from
+    # (batch_building): a nursing visit after one in ANOTHER building of the same batch is a new admission there, not "the monthly visit"
     try:
         for _m in PARSED:
             _p = MATCH.get(_m["name"].upper().strip() + "|" + _m["dob"][:8], {}).get("resolved")
             if not _p: continue
+            _bk = batch_building(_m)
             for _c in _m.get("FT1") or []:
-                if (_c.get("cpt") in NF_VISIT or _c.get("cpt") in HOSP_VISIT or _c.get("cpt") in HOME_VISIT) and len(_c.get("dos") or "") >= 8: BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8])))
+                if (_c.get("cpt") in NF_VISIT or _c.get("cpt") in HOSP_VISIT or _c.get("cpt") in HOME_VISIT) and len(_c.get("dos") or "") >= 8: BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8]), _bk))
     except Exception as e:
         BATCH_NF.clear(); BATCH_NF_ERR[0] = str(e)[:120] or type(e).__name__
         print("POS RULE: batch visit list not built (%s) - the chart history alone is used" % BATCH_NF_ERR[0])
@@ -430,7 +443,7 @@ def main():
             n += 1
             if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
             if info.get("site_unresolved"):          # dry and live runs alike; the visit's register row carries the same text
-                stats["building ambiguous - patient-level value used"] += 1; print("BUILDING AMBIGUOUS", pid, info["dos"], info["cpts"], info["site_unresolved"])
+                stats["building ambiguous - patient-level value used"] += 1; print("BUILDING AMBIGUOUS", pid, info["dos"], info["cpts"], info["site_unresolved"], "| one of:", " | ".join(info["site_among"]))
             if dry:
                 print("DRY", pid, info); stats["dry"] += 1; count_pos(info, stats); continue
             create, body = body

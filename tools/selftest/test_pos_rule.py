@@ -13,8 +13,11 @@
 #     - the building, the rendering provider and the hospital admission date are taken from EACH feed message, not from the last message
 #       read for the feed patient (section 7): a nursing-building CCM and a hospital visit of one patient in one batch are entered under
 #       the nursing building (32 by the rule) and under the hospital (21); an assisted-living CCM and a nursing visit under 13 and the
-#       nursing building. Only the same patient + date + codes under two buildings keeps the patient-level building - entered at the
-#       feed's place of service and reported. Patients whose messages agree send byte-identical requests before and after;
+#       nursing building. A message that cannot be matched to its own building (the same patient + date + codes under two buildings,
+#       or a message that is not in the batch's files) keeps the patient-level building; when that patient has two buildings it is
+#       reported and, in a nursing building, entered at the feed's place of service. A nursing visit earlier in the SAME batch counts
+#       with the building it was sent from: after one in another building the visit is a new admission (31), never "the monthly
+#       visit". Patients whose messages agree send byte-identical requests before and after;
 #     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
 #       three helpers without the rule back onto main; the runbook copies them from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
@@ -453,6 +456,17 @@ def per_message_cases():
      "c5_nurs": message(5, NURS[0], [(-2, "99487", ["I10"], "1")], NPI_B),
      "c9_nurs": message(9, NURS[1], [(-2, "99487", ["I10"], "1")], NPI_B),
      "c9_alf":  message(9, ALF[1], [(-2, "99487", ["I10"], "1")], NPI_A),
+     # H: nursing visits a month apart in ONE batch - from two nursing buildings (21), from the hospital building and then a nursing
+     # building (22: the rehab-unit pattern), and from the same building twice (23)
+     "h21_one": message(21, NURS[0], [(-30, "99309", ["F0390"], "1")], NPI_B),
+     "h21_two": message(21, NURS[1], [(0, "99309", ["F0390"], "1")], NPI_B),
+     "h22_hosp": message(22, HOSPITAL, [(-30, "99309", ["F0390"], "1")], NPI_A),
+     "h22_nurs": message(22, NURS[0], [(0, "99309", ["F0390"], "1")], NPI_B),
+     "h23_one": message(23, NURS[1], [(-30, "99309", ["F0390"], "1")], NPI_B),
+     "h23_two": message(23, NURS[1], [(0, "99309", ["F0390"], "1")], NPI_B),
+     # K: same patient, same date, same FIRST code, another code set, two buildings - told apart by the whole key
+     "k25_alf":  message(25, ALF[0], [(-2, "99487", ["I10"], "1")], NPI_A),
+     "k25_nurs": message(25, NURS[1], CCM_OCT, NPI_B),
      # D: one building, three hospital days: two clinicians, then a second admission
      "d6_day0": message(6, HOSPITAL, [(0, "99223", ["N390"], "1")], NPI_A, ADM1),
      "d6_day1": message(6, HOSPITAL, [(1, "99232", ["N390"], "1")], NPI_B, ADM1),
@@ -475,13 +489,13 @@ def per_message_cases():
         return out
     ws = workspace("mixed")
     write(ws, day(0) + "aaaa0000.hl7", [M[k] for k in TWO + ("c5_hosp", "c5_alf", "c5_nurs", "c9_nurs", "c9_alf")], eol="\r")
-    write(ws, day(1) + "bbbb0000.hl7", [M[k] for k in ("d6_day0", "d6_day1", "d6_day5", "d8_only", "d10_first", "d10_again")], eol="\r\n")
+    write(ws, day(1) + "bbbb0000.hl7", [M[k] for k in ("d6_day0", "d6_day1", "d6_day5", "d8_only", "d10_first", "d10_again", "h21_one", "h21_two", "h22_hosp", "h22_nurs", "h23_one", "h23_two", "k25_alf", "k25_nurs")], eol="\r\n")
     mod, reg, sent, dry_log = run(ws, "--dry", extra=not_in_files)
     check("7: the stand-ins are what the importer imported (never the real AMD helper), and a dry run only reads",
           mod.amd is amd and mod.txh is txh and mod.resave is resave and reg is None and not [b for b in sent if re.search(r'action="(addvisit|updvisitwithnewcharges|updextrainsinfo)"', b)])
     mod, reg, sent, log = run(ws, extra=not_in_files)
     V = visits(sent)
-    check("7: every message is entered once (21 visits; each pair of twins in C, and the re-sent message of D, is one visit)", len(reg["created"]) == 21 and len(V) == 21 and not reg["failed"] and N["login"] == 2, (len(reg["created"]), len(V), reg["failed"], N))
+    check("7: every message is entered once (29 visits; each pair of twins in C, and the re-sent message of D, is one visit)", len(reg["created"]) == 29 and len(V) == 29 and not reg["failed"] and N["login"] == 2, (len(reg["created"]), len(V), reg["failed"], N))
     check("7: the building is read from MSH index 3 (last ^ part), as proven against the FAC table - never the next field", all(r["fac"] for r in reg["created"] if r["feed_id"] != fid(20)), [r["fac"] for r in reg["created"]])
     # A
     for n, nb, hcpt in ((1, NURS[0], "99232"), (2, NURS[1], "99233")):
@@ -498,8 +512,8 @@ def per_message_cases():
     for n, ab, nb, ncpt in ((3, ALF[0], NURS[0], "99309"), (4, ALF[1], NURS[1], "99308")):
         c = one(V, n, 0, "99487"); v = one(V, n, 1, ncpt); rv = row(reg, n, 1, ncpt)
         check("7B%d assisted-living CCM of a patient who also has a nursing visit: entered at the assisted-living facility at 13" % n, c and c["facility"] == F(ab) and c["pos"] == ["13"] and c["profile"] == PROF_A, where(c))
-        check("7B%d the nursing visit: under the nursing building, place of service decided by the rule" % n,
-              v and v["facility"] == F(nb) and v["pos"][0] in ("31", "32") and v["profile"] == PROF_B and rv.get("pos_err") == "" and rv.get("pos_kind") not in (None, [""]), (where(v), rv))
+        check("7B%d the nursing visit: under the nursing building, the rule applied (first nursing visit on the chart: 31)" % n,
+              v and v["facility"] == F(nb) and v["pos"] == ["31"] and v["profile"] == PROF_B and rv.get("pos_err") == "" and rv.get("pos_kind") == ["first"], (where(v), rv))
     # C
     t5 = one(V, 5, -2, "99487"); r5 = row(reg, 5, -2, "99487"); h5 = one(V, 5, 1, "99232"); t9 = one(V, 9, -2, "99487"); r9 = row(reg, 9, -2, "99487")
     check("7C same patient + date + codes under two buildings keeps the patient-level building and provider (the last message read), as before",
@@ -508,7 +522,7 @@ def per_message_cases():
           t5 and t5["pos"] == ["31"] and "same patient, date and codes under 2 buildings" in r5.get("pos_err", "") and r5.get("pos_lines") == ["31"], (where(t5), r5))
     check("7C ... reported in the register row whatever the building, with the two buildings it was sent from",
           all("same patient, date and codes under 2 buildings" in r.get("site_unresolved", "") for r in (r5, r9)) and r9.get("pos_err") == ""
-          and all(b in r5.get("site_unresolved", "") for b in (ALF[0], NURS[0])) and all(b in r9.get("site_unresolved", "") for b in (ALF[1], NURS[1])), (r5, r9))
+          and r5.get("site_among") == sorted([ALF[0], NURS[0]]) and r9.get("site_among") == sorted([ALF[1], NURS[1]]), (r5, r9))
     check("7C the same patient's other message is still resolved per message", h5 and h5["facility"] == F(HOSPITAL) and h5["pos"] == ["21"] and h5["ext"] == us(ADM1), where(h5))
     # D
     d0, d1, d5 = one(V, 6, 0, "99223"), one(V, 6, 1, "99232"), one(V, 6, 5, "99223")
@@ -519,13 +533,26 @@ def per_message_cases():
     check("7D a message that is not in the batch's HL7 files keeps the patient-level building and provider, as before, unreported",
           p8 and p8["facility"] == F(ALF[1]) and p8["pos"] == ["13"] and p8["profile"] == PROF_B and "site_unresolved" not in r8, (where(p8), r8))
     check("7D ... and when its patient has two buildings in the files: patient-level value as before, reported, the rule not applied",
-          p2 and p2["facility"] == F(NURS[1]) and p2["pos"] == ["31"] and p2["profile"] == PROF_B and "not in the batch's HL7 files" in r2.get("site_unresolved", "") and "2 buildings" in r2.get("pos_err", ""), (where(p2), r2))
+          p2 and p2["facility"] == F(NURS[1]) and p2["pos"] == ["31"] and p2["profile"] == PROF_B and "not in the batch's HL7 files" in r2.get("site_unresolved", "") and "2 buildings" in r2.get("pos_err", "")
+          and r2.get("site_among") == sorted([HOSPITAL, NURS[1]]) and r2.get("pos_err") == r2.get("site_unresolved"), (where(p2), r2))
     p20 = one(V, 20, 4, "99487"); r20 = row(reg, 20, 4, "99487")
     check("7D ... and of a patient who is not in the files at all: no facility, the default 31, as before, unreported as a building question",
           p20 and p20["facility"] == "" and p20["pos"] == ["31"] and "site_unresolved" not in r20 and r20.get("pos_err") == "", (where(p20), r20))
     p10 = one(V, 10, 0, "99232"); r10 = row(reg, 10, 0, "99232")
     check("7D the same message twice from one building is one visit with the provider and admission date of the copy read last, unreported",
           p10 and p10["facility"] == F(HOSPITAL) and p10["profile"] == PROF_B and p10["ext"] == us(ADM2) and "site_unresolved" not in r10 and r10.get("pos_err") == "", (where(p10), r10))
+    # H: the batch's own nursing visits are read with the building they were sent from
+    h1, h2 = one(V, 21, -30, "99309"), one(V, 21, 0, "99309"); rh2 = row(reg, 21, 0, "99309")
+    check("7H a nursing visit a month after one in ANOTHER nursing building, both in this batch: a new admission here - 31 by the rule, never 'the monthly visit'",
+          h1 and h1["facility"] == F(NURS[0]) and h2 and h2["facility"] == F(NURS[1]) and h2["pos"] == ["31"] and rh2.get("pos_kind") == ["moved"] and rh2.get("pos_err") == "", (where(h2), rh2))
+    h1, h2 = one(V, 22, -30, "99309"), one(V, 22, 0, "99309"); rh2 = row(reg, 22, 0, "99309")
+    check("7H ... the same after a nursing visit sent from the HOSPITAL building (its rehab unit): that one stays where the feed put it (21), this one is 31, moved",
+          h1 and h1["facility"] == F(HOSPITAL) and h1["pos"] == ["21"] and h2 and h2["facility"] == F(NURS[0]) and h2["pos"] == ["31"] and rh2.get("pos_kind") == ["moved"] and rh2.get("pos_err") == "", (where(h1), where(h2), rh2))
+    h2 = one(V, 23, 0, "99309"); rh2 = row(reg, 23, 0, "99309")
+    check("7H ... and in the SAME building the second one is still the monthly visit (32)", h2 and h2["facility"] == F(NURS[1]) and h2["pos"] == ["32"] and rh2.get("pos_kind") == ["monthly"], (where(h2), rh2))
+    k1, k2 = one(V, 25, -2, "99487"), one(V, 25, -2, "99489"); rk = [row(reg, 25, -2, c) for c in ("99487", "99489")]
+    check("7K the key is the WHOLE code list: same patient, date and first code under two buildings with different codes are told apart",
+          k1 and k1["facility"] == F(ALF[0]) and k1["pos"] == ["13"] and k2 and k2["facility"] == F(NURS[1]) and not any(r.get("site_unresolved") for r in rk), (where(k1), where(k2), rk))
     amb = lambda text: [l.split()[2] for l in text.splitlines() if l.startswith("BUILDING AMBIGUOUS ")]
     check("7C + 7D exactly those three visits are reported BUILDING AMBIGUOUS (log, DONE count, register; a dry run lists both twins - neither is entered yet)",
           amb(log) == [chart(5), chart(9), chart(2)] and amb(dry_log) == [chart(5)] * 2 + [chart(9)] * 2 + [chart(2)] and bool(re.search(r"(?m)^DONE .*building ambiguous[^,}]*: 3\b", log))
@@ -538,9 +565,14 @@ def per_message_cases():
     check("7C + 7D the feed digest names them: BUILDING AMBIGUOUS on 3 visits, POS RULE NOT APPLIED on the 2 in a nursing building",
           rep.returncode == 0 and "BUILDING AMBIGUOUS on 3 visit(s)" in dline and "POS RULE NOT APPLIED on 2 visit(s)" in dline, dline or rep.stderr[-300:])
     site = getattr(mod, "site_of", None); parsed = json.load(open(os.path.join(ws, "feed_parsed_%s.json" % STAMP)))
-    check("7: site_of(message) -> (building, provider key, admission date, why) for every parsed message; why only for C's twins and D's second message",
-          callable(site) and all(len(site(m)) == 4 for m in parsed) and [m["pid"] for m in parsed if site(m)[3]] == [fid(5), fid(5), fid(9), fid(9), fid(2)],
-          None if not callable(site) else [(m["pid"], site(m)[3][:40]) for m in parsed if site(m)[3]])
+    check("7: site_of(message) -> (building, provider key, admission date, why, candidate buildings) for every parsed message; why only for C's twins and D's second message, and short enough to be kept whole",
+          callable(site) and all(len(site(m)) == 5 for m in parsed) and [m["pid"] for m in parsed if site(m)[3]] == [fid(5), fid(5), fid(9), fid(9), fid(2)]
+          and all(len(site(m)[3]) <= 200 and bool(site(m)[3]) == bool(site(m)[4]) for m in parsed),
+          None if not callable(site) else [(m["pid"], len(site(m)[3]), site(m)[3][:40]) for m in parsed if site(m)[3]])
+    if callable(site):
+        mod.SITES[("NOPV1", day(0), ("99309",))] = [(NURS[0], None, None)]; mod.FACOF["NOPV1"] = HOSPITAL; mod.NPIOF["NOPV1"] = NPI_A; mod.ADMIT["NOPV1"] = ADM1
+        check("7: a message with no PV1 takes its own building and the patient-level provider and admission date", tuple(site({"pid": "NOPV1", "FT1": [{"dos": day(0), "cpt": "99309"}]})[:4]) == (NURS[0], NPI_A, ADM1, ""),
+              site({"pid": "NOPV1", "FT1": [{"dos": day(0), "cpt": "99309"}]}))
 
     # ---- E: a two-building feed patient is entered exactly like two one-building feed patients on the same chart -----------------------------
     ws = workspace("split")
@@ -586,7 +618,7 @@ def per_message_cases():
               1975e2a0d0ad dda4a1cca5d6 8bcb31732d1e 604c3aa8194d 4c326002b8a8 43c3e528af65 6140850e6ca1 48ca356a2b05 ad7eec73106e
               65398782598a 999e1026cbd9 6892feffc816 bf9b31ee84ef 8fd6449f5265 4a999517fbaf 6a700f630c96 9b3ee73c03d7 9a35da5368f9
               e7a950cb7eb0 d9134609ad6b 459a79b7fac7 cd8889ba998d f105c518d5d7 527937ad4a64 1cd626405b8b 3b67df6b411f 1377c8f76535""".split()
-    check("7F the batch covers entered, already-on-chart, no-chart and no-usable-dx messages and every kind of line the rule decides",
+    check("7F the batch covers entered, already-on-chart, no-chart and no-usable-dx messages and six kinds of line the rule decides",
           len(reg["created"]) == 12 and len(reg["skipped"]) == 2 and "'no chart': 1" in log and {k for r in reg["created"] for k in r["pos_kind"]} >= {"ccm", "ccm-skilled-month", "initial", "skilled", "monthly", "with-visit"},
           (len(reg["created"]), [r["why"] for r in reg["skipped"]], sorted({k for r in reg["created"] for k in r["pos_kind"]})))
     check("7F patients whose messages agree: every request byte-identical to before the change (%d requests)" % len(BEFORE), prints == BEFORE,

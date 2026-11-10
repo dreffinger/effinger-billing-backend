@@ -53,12 +53,18 @@ pattern; whatever the chart does not show stays at the feed's 31, exactly what w
   id PID-3 + first date of service + its CPT codes, read exactly as feed_parse_dft_1028.py reads FT1). The CCM is entered under
   the nursing building and this rule decides its lines; the hospital visit goes under the hospital at 21 with its own admission date; an
   assisted-living CCM stays 13 while the nursing visit goes under the nursing building. Before, the last message read for the PATIENT
-  decided every visit of that patient in the batch and this rule stepped aside for all of them. (The import registers of 10/28-11/9
-  hold seven visits whose codes do not fit their building - 2 CCM and 3 nursing visits at place of service 21, 2 hospital visits at 13,
-  each from a patient with several visits in that batch. Visits already entered are not changed by this.) The one case that cannot be
-  told apart is the same patient + the same date + the same codes under two buildings: that visit keeps the patient-level building,
-  provider and admission date as before, is entered at the feed's place of service and is reported (below). A patient whose messages
-  agree sends byte-identical requests before and after (tools/selftest/test_pos_rule.py section 7).
+  decided every visit of that patient in the batch and this rule stepped aside for all of them. The batch's own visits are now read
+  with the building each was sent from, like the chart's: a nursing visit after one in ANOTHER building of the same batch is a new
+  admission there (31, "moved"), never the monthly visit. The one case that cannot be told apart is the same patient + the same date +
+  the same codes under two buildings: that visit keeps the patient-level building, provider and admission date as before, is entered
+  at the feed's place of service and is reported (below). A patient whose messages agree sends byte-identical requests before and
+  after (tools/selftest/test_pos_rule.py section 7).
+  What the old reading left in the import registers of 10/28-11/9 - none of it is changed by this, and correcting any of it is
+  William's call, claim by claim: in the 10/28 backlog batch 148 visits went in under the other clinician's profile than the one their
+  own message names (147 messages naming the ARNP under prof13, 1 the reverse; all from the 107 feed patients of that batch whose
+  messages name both clinicians; none in the later batches). Seven visits carry a place of service that does not fit their codes: 2
+  CCM visits at 21 (the inspector step later moved one to HCA REHAB / 31), 3 nursing visits at 21 (these can also be genuine
+  rehab-unit messages) and 2 hospital visits at 13.
 - A nursing code the import's code table does not have (99304, 99305, 99307, 99310, 99315) is refused as before; whoever enters that
   visit by hand applies this rule by hand, and the visits after it may read the chart without it.
 What the run does with it: the precondition in step (c), then nothing by hand. The import log ends with one short line - `POS RULE: CCM 32
