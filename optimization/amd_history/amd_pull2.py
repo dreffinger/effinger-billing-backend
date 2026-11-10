@@ -10,7 +10,10 @@
 #   address, phone, e-mail, member id, group number or free-text note is ever written.
 # Rules: never logs in (uses the session an earlier amd.login_cached() left; a dead session stops it, exit 3); HTTP 429 / 5xx = wait and
 #   retry, then stop (exit 4); paced; resumable (state/progress_<layer>.jsonl); a STOP file in state/ ends it cleanly.
-# Usage: amd_pull2.py demog|detail [--workers 2] [--pace 0.5] [--limit N] [--until HH:MM]      amd_pull2.py status
+# Survives a lost machine: documents are written into staging folders of 200 charts in the order they finish (docs_<layer>/sNNNNN/), the
+#   loader puts every full folder into the database at once, and with --from-db a later session starts from what the DATABASE holds:
+#   the charts already loaded are skipped and the charge ids come from amd.charges (no local copy of the first layer is needed).
+# Usage: amd_pull2.py demog|detail [--workers 2] [--pace 0.5] [--limit N] [--until HH:MM] [--from-db] [--folder 200]      amd_pull2.py status
 import os, sys, re, json, time, threading, queue, datetime, collections, glob, io, contextlib, importlib.util
 import xml.etree.ElementTree as ET
 S = "/tmp/claude-0/-home-user/5aaa27c8-6973-50aa-bba1-4b473bbc3aa7/scratchpad/amdpull"
@@ -21,6 +24,34 @@ sys.argv = _argv
 a = sys.argv[1:]; CMD = a[0] if a else "status"
 def opt(name, default=None): return a[a.index(name) + 1] if name in a and a.index(name) + 1 < len(a) else default
 base.PACE = float(opt("--pace", "0.5")); WORKERS = int(opt("--workers", "2")); LIMIT = int(opt("--limit", "0")); UNTIL = opt("--until")
+FROM_DB = "--from-db" in a; FOLDER = int(opt("--folder", "200"))
+def db_rows(sql):
+    """Rows of one read query on the production practice database (the same HTTPS route the loader uses; the connection string is never printed)."""
+    sp = importlib.util.spec_from_file_location("neon_exec", S + "/neon_exec.py"); ne = importlib.util.module_from_spec(sp); sp.loader.exec_module(ne)
+    url, host = ne.url_for("prod"); return ne.run(url, host, sql).get("rows", [])
+# quiet windows (UTC): the scheduled billing runs use AdvancedMD then (columns 01:19 / 07:19 / 13:19 / 19:19, feed 01:34, cascade 05:35) -
+# the pull sleeps through them so it never competes with billing. "--quiet none" turns them off.
+QUIET = opt("--quiet", "01:10-02:40,05:30-06:40,07:10-08:15,13:10-14:15,19:10-20:15")
+def _mins(hhmm): h, m = hhmm.split(":"); return int(h) * 60 + int(m)
+QUIET_WINDOWS = [] if QUIET in ("", "none") else [tuple(_mins(x) for x in w.split("-")) for w in QUIET.split(",")]
+def wait_quiet():
+    """Sleep while the clock is inside a quiet window; True if the pull should go on, False if it was told to stop."""
+    said = False
+    while True:
+        now = utc(); m = now.hour * 60 + now.minute
+        if not any(a <= m < b for a, b in QUIET_WINDOWS): return True
+        if base._stop.is_set() or os.path.exists(os.path.join(STATE, "STOP")): return False
+        if not said: log("quiet window (scheduled billing run) - the pull is sleeping"); said = True
+        # one light read every ten minutes keeps the session from idling out (the pull never logs in again); it matches no patient
+        if time.time() - _alive[0] > 600:
+            with _alock:
+                if time.time() - _alive[0] > 600:
+                    _alive[0] = time.time()
+                    try: xml_call('<ppmdmsg action="lookuppatient" class="api" msgtime="%s" name="ZZQXJ%%" exactmatch="0" page="1"/>' % amd._msgtime())
+                    except base.SessionExpired: base.stop("AdvancedMD session expired during a quiet window - NOT logging in again from here"); return False
+                    except Exception: pass
+        time.sleep(30)
+_alive = [time.time()]; _alock = threading.Lock()
 STATE = os.path.join(S, "state"); LOG = os.path.join(S, "pull2.log")
 base.LOG = LOG
 log = base.log; xml_call = base.xml_call; iso = base.iso; utc = base.utc; amd = base.amd
@@ -86,6 +117,7 @@ def detail_doc(pid, charge_ids):
     charges = []; visits = {}; errs = []
     for cid in charge_ids:
         if base._stop.is_set(): raise base.Throttled("stopping")
+        if not wait_quiet(): raise base.Throttled("stopping")
         try:
             d, vd = detail_one(cid); charges.append(d)
             if vd.get("id"): visits[vd["id"]] = vd
@@ -94,8 +126,13 @@ def detail_doc(pid, charge_ids):
     return {"_written": iso(), "chart": "pat" + pid, "source": "AdvancedMD getchargedetaildataicd10", "charges": charges, "visits": visits, "errors": errs}
 
 # ---- driver ------------------------------------------------------------------------------------------------------------------------------
+DBCH = {}       # chart digits -> [charge id digits, newest date of service first], filled from amd.charges with --from-db
 def order():
-    allids = [l.strip() for l in open(os.path.join(STATE, "patients.txt")) if l.strip().isdigit()]; known = set(allids)
+    pfile = os.path.join(STATE, "patients.txt")
+    if not os.path.exists(pfile) and FROM_DB:      # a new machine: the list of charts comes from the database, most recently active first
+        ids = [re.sub(r"\D", "", r[0]) for r in db_rows("select chart_id from amd.charts order by newest_charge desc nulls last, chart_id")]
+        os.makedirs(STATE, exist_ok=True); open(pfile, "w").write("\n".join(ids) + "\n"); open(os.path.join(STATE, "priority.txt"), "w").write("\n".join(ids) + "\n")
+    allids = [l.strip() for l in open(pfile) if l.strip().isdigit()]; known = set(allids)
     pf = os.path.join(STATE, "priority.txt"); first = [l.strip() for l in open(pf) if l.strip() in known] if os.path.exists(pf) else []
     return list(dict.fromkeys(first + allids)), {pid: i for i, pid in enumerate(sorted(allids, key=int))}
 def read_progress(path):
@@ -108,7 +145,7 @@ def read_progress(path):
 def live_charge_ids(pid, index):
     """The charge ids of one chart from the history document already pulled: live lines only, newest date of service first."""
     f = os.path.join(S, "docs", "b%03d" % (index[pid] // 500), "txhistory", "pat%s.json" % pid)
-    if not os.path.exists(f): return None
+    if not os.path.exists(f): return DBCH.get(pid) if FROM_DB else None
     d = json.load(open(f)); rows = []
     for c in d["charges"]:
         if c.get("void") == "1" or (c.get("fee") or "").startswith("-"): continue
@@ -118,8 +155,19 @@ def live_charge_ids(pid, index):
 if CMD in ("demog", "detail"):
     base.session_open(); layer = "chartfacts" if CMD == "demog" else "chargedetail"
     PROG = os.path.join(STATE, "progress_%s.jsonl" % layer); ERRS = os.path.join(STATE, "errors_%s.jsonl" % layer); OUT = os.path.join(S, "docs_" + layer)
-    ids, index = order(); done = read_progress(PROG); todo = [p for p in ids if p not in done or not done[p].get("ok")]
+    ids, index = order(); done = read_progress(PROG)
+    if FROM_DB:
+        indb = {re.sub(r"\D", "", r[0]) for r in db_rows("select doc_id from raw.documents where source = 'amd_history' and collection = '%s'" % layer)}
+        for p in indb: done.setdefault(p, {"id": p, "ok": True, "n": 0, "at": "in the database"})
+        log("%s: %d charts already in the database for this layer" % (CMD, len(indb)))
+        if CMD == "detail":
+            for ch, cid in db_rows("select chart_id, charge_id from amd.charges where live order by chart_id, dos desc nulls last"):
+                DBCH.setdefault(re.sub(r"\D", "", ch), []).append(re.sub(r"\D", "", cid))
+            for p in ids: DBCH.setdefault(p, [])          # a chart with no live charge still gets its (empty) document
+            log("detail: live charge ids of %d charts read from the database" % len(DBCH))
+    todo = [p for p in ids if p not in done or not done[p].get("ok")]
     if LIMIT: todo = todo[:LIMIT]
+    seq = [len(glob.glob(os.path.join(OUT, "s*", layer, "pat*.json")))]      # documents on this machine so far: the next one goes into folder seq // FOLDER
     until = None
     if UNTIL:
         h, mm = UNTIL.split(":"); until = utc().replace(hour=int(h), minute=int(mm), second=0, microsecond=0)
@@ -135,13 +183,15 @@ if CMD in ("demog", "detail"):
             except queue.Empty: return
             if os.path.exists(os.path.join(STATE, "STOP")): base.stop("STOP file present"); return
             if until and utc() >= until: base.stop("reached --until %s" % UNTIL); return
+            if not wait_quiet(): base.stop("stopped during a quiet window"); return
             try:
                 if CMD == "demog": doc = demog_doc(pid); n = len(doc.get("plans") or [])
                 else:
                     cids = live_charge_ids(pid, index)
                     if cids is None: note(ERRS, {"id": pid, "err": "no history document yet", "at": iso()}); stats["skipped"] += 1; continue
                     doc = detail_doc(pid, cids); n = len(doc["charges"]); stats["charge errors"] += len(doc["errors"])
-                d = os.path.join(OUT, "b%03d" % (index[pid] // 500), layer); os.makedirs(d, exist_ok=True)
+                with lock: k_ = seq[0]; seq[0] += 1
+                d = os.path.join(OUT, "s%05d" % (k_ // FOLDER), layer); os.makedirs(d, exist_ok=True)
                 tmp = os.path.join(d, "pat%s.json.tmp" % pid)
                 with open(tmp, "w") as f: json.dump(doc, f, separators=(",", ":"))
                 os.replace(tmp, os.path.join(d, "pat%s.json" % pid))
