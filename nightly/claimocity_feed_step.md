@@ -81,7 +81,8 @@ submitted. If the Claim Inspector raises a place-of-service advisory (Pattern 45
 inspector step lists the visit as held and the claim does not go out until it is cleared: `cd /home/claude/unbilled && python3
 insp_bypass_ids.py <visitid>:<pattern number> --why 'William 11/10/2026 place of service 32, rules.md part 5' --stamp <run stamp>` (a
 dry run), then the same command with --live, and again while it still bypasses something (it clears ONE error of that pattern per pass
-and a CCM visit has two lines; 'NOT LISTED' = done); say so in the report with the pattern's own words. Only for a line the import entered as
+and a CCM visit has two lines; 'NOT LISTED' = done); say so in the report with the pattern's own words. Never for an advisory whose words name 1123F (the
+quality-code section below rules that one). Only for a line the import entered as
 32 - a 4531 anywhere else is handled as before. A 32 line Medicare returns with reason code 58, or reprices to the facility rate
 (remarks M77 / N692), was a resident in a Part A stay by Medicare's record: change and resend nothing on your own - name the chart, the
 line and the remit's words at the top of the report for William (rules.md, part 7). Reason 58 from Medicare is never bypassed like an

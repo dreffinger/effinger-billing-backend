@@ -415,7 +415,7 @@ check("live run: an answer without the place of service claims nothing either wa
 out, reg = run_live([P_("m5", "m5", [("99498", "20270121"), ("99309", "20270120")]), P_("m5", "m5", [("99306", "20270121")])])
 check("live run: a message with two dates is remembered line by line - the admission visit of the later date is still entered", len(reg["created"]) == 2 and reg["created"][0]["dos_lines"] == ["01/21/2027", "01/20/2027"] and reg["created"][1]["cpts"] == ["99306"] and reg["skipped"] == [], (reg["created"], reg["skipped"]))
 # ---- 4c. the advance-care-plan quality code 1123F (William 11/10/2026: "yes for all ... once per patient ... every patient 65 and older") ----
-def qmsg(fid, lines, dob="19400215"): return {"pid": fid, "name": "x", "dob": dob, "FT1": [{"cpt": c, "dos": d, "dx": "I10^E119", "units": "1"} for c, d in lines]}
+def qmsg(fid, lines, dob="1940" + "0215"): return {"pid": fid, "name": "x", "dob": dob, "FT1": [{"cpt": c, "dos": d, "dx": "I10^E119", "units": "1"} for c, d in lines]}
 def qctx(live=(), plans=None, order="1"):
     c = ctx(live); c["plans"] = [("ins1", "car6085", "01/01/2020", "", "1")] if plans is None else plans; c["insorder"] = order; return c
 def qreset(**kw): ci.QUALITY.clear(); ci.QUALITY.update(ci._quality_fresh()); ci.QUALITY.update(kw)
@@ -439,11 +439,11 @@ check("quality: a home / assisted-living visit carries it at 13", pp == [("pcode
 def none(label, m, c, **kw):
     qreset(**kw); out, info, pp = qbuilt(m, c)
     check("quality: no line - " + label, out is not None and QP not in out[1] and "quality_codes" not in info and out[1] == out[2], (pp, info))
-none("patient is 64 on the date of service", qmsg("n2", [("99309", "20261102")], dob="19621103"), qctx())
-qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")], dob="19611102"), qctx())
+none("patient is 64 on the date of service", qmsg("n2", [("99309", "20261102")], dob="1962" + "1103"), qctx())
+qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")], dob="1961" + "1102"), qctx())
 check("quality: ... and 65 on the very day gets it", QP in out[1], pp)
 none("no date of birth in the feed", qmsg("n2", [("99309", "20261102")], dob=""), qctx())
-none("the 01/01/1900 placeholder birth date", qmsg("n2", [("99309", "20261102")], dob="19000101"), qctx())
+none("the 01/01/1900 placeholder birth date", qmsg("n2", [("99309", "20261102")], dob="1900" + "0101"), qctx())
 none("care management only (not one of the measure's visit codes)", qmsg("n1", [("99487", "20261031"), ("99489", "20261031")]), qctx())
 none("advance care planning 99497 alone", qmsg("n2", [("99497", "20261102")]), qctx())
 none("a discharge visit alone", qmsg("n2", [("99316", "20261102")]), qctx())
@@ -484,7 +484,7 @@ check("quality: a line's billing is read from its charge detail - billed, never 
       and ci._bills("14", QP) == ["11/12/2026"] and ci._bills("15") == [] and ci._bills("") is None and ci._bills(None) is None)
 BILLS.clear()
 # through main(): the pilot, its outcome, the refusal - every state read from the earlier registers
-def Q_(fid, k, lines, dob="19400215"): return {"pid": fid, "name": NAME(k), "dob": dob, "file": "f", "FT1": [{"cpt": c, "dos": d, "dx": "I10", "units": "1"} for c, d in lines]}
+def Q_(fid, k, lines, dob="1940" + "0215"): return {"pid": fid, "name": NAME(k), "dob": dob, "file": "f", "FT1": [{"cpt": c, "dos": d, "dx": "I10", "units": "1"} for c, d in lines]}
 for i in range(1, 10): ci.MATCH[NAME("q%d" % i).upper().strip() + "|" + "19400215"] = {"resolved": "pat40%d" % i}
 def charts0(): CHART.update({"40%d" % i: [("99309", "10/03/2026")] for i in range(1, 10)})
 charts0()
@@ -576,6 +576,16 @@ BILLS.clear()
 many = {"created": [dict(qrows[0], pid="pat5%02d" % i, visit="vst9%02d" % i, quality_charge="charge99%02d1" % i, charges=["charge99%02d0" % i, "charge99%02d1" % i]) for i in range(8)], "skipped": [], "failed": []}
 clear_regs(); keep(many, "20261111T0100Z"); out, regm = live(visits("20261109", (4,)))
 check("at most six earlier lines are looked up in one run (two reads each); the rest keep the pilot waiting", len([d for d in DETAILS if d.startswith("99")]) == 12 and regm["quality_gate"]["wait"] is True and len(regm["quality_gate"]["pending"]) == 8, (DETAILS, regm["quality_gate"]))
+# what AdvancedMD stored is checked for a visit that carries the quality line too (its answer lists one more charge)
+clear_regs(); BILLS.clear(); charts0(); keep(dict(RUN1, quality_gate=dict(RUN1["quality_gate"], confirmed=True)), "20261111T0100Z")
+out, regk = run_live(visits("20261203", (6,)))
+rk = regk["created"][0]
+check("a monthly visit with the quality line: the answer's two charges are compared with both lines sent (32, 32) - kept as sent", rk.get("quality_codes") == ["1123F"] and rk["pos_lines"] == ["32"] and rk["quality_pos"] == "32"
+      and rk["pos_stored"] == ["32", "32"] and rk["pos_sent"] == ["32", "32"] and "POS NOT KEPT" not in out, (rk, out[-300:]))
+charts0(); out, regk2 = run_live(visits("20261204", (7,)), flip=True)
+rk2 = regk2["created"][0]
+check("... and when AdvancedMD stores 31 where 32 was sent on such a visit, it is said loudly", rk2.get("quality_codes") == ["1123F"] and rk2["pos_stored"] == ["31", "31"] and "POS NOT KEPT" in out and "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE" in out, (rk2, out[-400:]))
+clear_regs()
 # AdvancedMD refuses a visit that carries the line
 clear_regs(); BILLS.clear(); charts0()
 out, reg5 = live(QB, refuse_quality=True)
@@ -654,6 +664,7 @@ check("the rule's version line is the same in the helper, mirror.py, the ingest 
 check("... and in the retry driver, which checks the import helper itself before it enters charges and says an old one in its RESULT line", ver in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read() and mir.count(ver) == 3
       and "+ pos_warn)" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read())
 _wd = [open(os.path.join(ROOT, d, "working_denials.py")).read() for d in ("boards", os.path.join("scripts", "helpers"))]
+check("both copies of the denial table read reason 246 (a reporting code) as information", all(' "246": ("INFO"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "246":')] == [l for l in _wd[1].split("\n") if l.startswith(' "246":')])
 check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
 check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
       "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
@@ -734,6 +745,9 @@ def qdigest(rows, gate, stamp="20261111T0100Z", failed=()):
     return r, "\n".join(l for l in r.stdout.splitlines() if "uality code" in l or l.startswith("  - carried by") or "QUALITY CODE" in l or "quality line" in l or "quality-code" in l)
 G0 = {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False, "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "reset": False, "pilot_cap": 3, "notes": []}
 qrow = dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_fee="0.00", quality_charge="charge77", charges=["charge1", "charge77"], fees=["1.00"])
+r, line = digest([dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge77", quality_pos="32", pos_stored=["32", "32"], pos_sent=["32", "32"]),
+                  dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_charge="charge78", quality_pos="32", pos_stored=["31", "31"], pos_sent=["32", "32"])])
+check("digest: a visit with the quality line is read back with both of its lines", "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on 1 of 2 visit(s) read back" in r.stdout and "sent ['32', '32'] stored ['31', '31']" in r.stdout, r.stdout[-600:])
 r, ql = qdigest([qrow, rows[4]], G0)
 check("digest: the quality code has its own line with the visits under it, says it is a pilot and what proves a line", r.returncode == 0 and "Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on 1 visit(s) in this batch, line amount $0.00; PILOT - at most 3 visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD." in ql
       and "carried by: pat9 vst1 charge77" in ql and "remark N620 on the 1123F line means Medicare counted it" in r.stdout and "2 visits / 2 charge lines created" in r.stdout, (ql, r.stdout[:400], r.stderr[-300:]))

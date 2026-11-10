@@ -52,6 +52,7 @@ DENIAL_RULES = {
  "45":  ("CONTRACTUAL","Charge exceeds fee schedule (contractual write-down) - normal, no action"),
  "23":  ("INFO","Impact of prior payer adjudication (COB info) - informational"),
  "253": ("INFO","Sequestration reduction - informational"),
+ "246": ("INFO","Non-payable code for required reporting only - a quality code such as 1123F (advance care plan); with remark N620 Medicare accepted it for the quality program. Nothing to do; a one-cent charge on that line is contractual"),
  "94":  ("INFO","Processed in excess/duplicate of charges - informational"),
  "253 ":("INFO","Sequestration - informational"),
 }

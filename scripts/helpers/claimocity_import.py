@@ -148,7 +148,7 @@ def quality_due(msg, ctx, lines):
     i = next((k for k, c in enumerate(lines) if c.get("cpt") in QUALITY_VISITS), None)
     if i is None: return None
     d8 = re.sub(r"\D", "", str(lines[i].get("dos") or ""))[:8]; dob = re.sub(r"\D", "", str(msg.get("dob") or ""))[:8]
-    if len(d8) != 8 or len(dob) != 8 or not ("1900" < dob[:4] <= d8[:4]): return None      # no birth date, or the 01/01/1900 placeholder: age not shown
+    if len(d8) != 8 or len(dob) != 8 or not ("1900" < dob[:4] <= d8[:4]): return None      # no birth date, or the year-1900 placeholder: age not shown
     age = int(d8[:4]) - int(dob[:4]) - (1 if d8[4:] < dob[4:] else 0)
     if age < QUALITY_MIN_AGE or age > 115: return None
     if not medicare_first(ctx, mdy(d8)): return None
@@ -557,7 +557,7 @@ def build(msg, ctx):
     # quality_codes: the reporting code that rides with this visit (never in cpts: the register dedupe keys on the message's own codes)
     return (create, body, plain), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
                             "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx),
-                            **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8])} if qchg else {})}
+                            **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8]), "quality_pos": lpos[qi]} if qchg else {})}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
@@ -684,10 +684,14 @@ def main():
                 # pos_stored None = the answer did not carry it for every line (then nothing is claimed either way)
                 try:
                     _st = re.findall(r'<charge id="charge\d+"[^>]*?\bpos="(\d+)"', r)
-                    info["pos_stored"] = _st if len(_st) == len(info["pos_lines"]) else None
-                    if info["pos_stored"] is not None and sorted(_st) != sorted(info["pos_lines"]):
+                    # a visit that carries the quality line has one more charge in the answer: compare with that line's place of service too
+                    _want = [list(info["pos_lines"])] + ([list(info["pos_lines"]) + [info["quality_pos"]]] if info.get("quality_codes") and info.get("quality_pos") else [])
+                    _sent = next((e for e in reversed(_want) if len(e) == len(_st)), None)
+                    info["pos_stored"] = _st if _sent is not None else None
+                    if _sent is not None and len(_sent) != len(info["pos_lines"]): info["pos_sent"] = _sent      # only when it differs from pos_lines
+                    if _sent is not None and sorted(_st) != sorted(_sent):
                         stats["ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE (stored differs from sent)"] += 1
-                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", info["pos_lines"], "stored", _st)
+                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", _sent, "stored", _st)
                 except Exception: info["pos_stored"] = None
                 if info["admit"] and any(c in HOSP for c in info["cpts"]):
                     # the extins child is ignored on create - write the admission date with the proven updextrainsinfo shape

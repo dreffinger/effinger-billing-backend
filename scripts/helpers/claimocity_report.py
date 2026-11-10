@@ -54,7 +54,8 @@ try:
         if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
         if x.get("pos_stored") is not None and x.get("pos_lines"):
             _ps["readback"] += 1
-            if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), x["pos_lines"], x["pos_stored"]))
+            _sent = x.get("pos_sent") if isinstance(x.get("pos_sent"), list) else x["pos_lines"]      # pos_sent: with the quality line when the visit carried one
+            if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in _sent): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), _sent, x["pos_stored"]))
         if x.get("pos_err"): _ps["err"] += 1; _who["err"].append("%s (%s)" % (_tag(x), str(x["pos_err"])[:70])); continue
         if not x.get("pos_lines"):
             if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1; _who["norule"].append(_tag(x))
