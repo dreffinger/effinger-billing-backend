@@ -198,7 +198,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice, with a solo clinician needing an outside reviewer. Facility-based practices should weight the sample toward hospital and nursing facility visits and care-management codes, where Medicare's measured error rates run from about twice to twelve times the rate for established office visits.",
+   "applies_when": "Every practice, with a solo clinician needing an outside reviewer. Facility-based practices should weight the sample toward hospital and nursing facility visits and care-management codes, where Medicare's measured error rates run from more than twice (those visits) to about twelve times (chronic care management) the rate for established office visits.",
    "vendor_refs": [
     {
      "item": "coding-audit-playbook",
@@ -333,7 +333,7 @@
    "vendor_refs": [
     {
      "item": "universal-specialty-billing-framework",
-     "note": "Suggests rating top procedure codes for audit risk and watching the OIG work plan and recovery audit topics. Names no data source for comparing with peers."
+     "note": "Suggests rating top codes for audit risk and watching the OIG work plan and recovery audit topics. Wrongly calls the work plan annual. Names no peer data source."
     },
     {
      "item": "coding-audit-playbook",
@@ -354,14 +354,15 @@
     "cms-ffs-compliance",
     "fcso-cbr-guide",
     "oig-em-trends-2012",
-    "cfr-424-535"
+    "cfr-424-535",
+    "oig-work-plan"
    ],
    "evidence_note": "The Centers for Medicare & Medicaid Services states how contractors choose review targets, and error rates by service are measured (2025 report). No agency publishes the statistical threshold that triggers a review, so any outlier cutoff is the practice's own choice.",
    "metrics": [
     {
      "slug": "cr-outlier-code-families",
      "name": "Code families where the practice is a statistical outlier",
-     "definition": "Number of code families in which any clinician's share of top-level codes, or use of a service, is far outside same-specialty peers in the same setting with no written explanation on file.",
+     "definition": "Number of code families (related codes, such as one visit type's levels) in which any clinician's share of top-level codes, or use of a service, is far outside same-specialty peers in the same setting with no written explanation.",
      "formula": "Count of code families where a clinician exceeds the practice's written cutoff against same-specialty peers (for example the 90th percentile) with no explanation memo on file",
      "unit": "count",
      "direction": "lower",

@@ -107,8 +107,8 @@
    "good_looks_like": [
     "Name, birth date, sex, address, subscriber number and plan are taken from the insurance card or an electronic eligibility answer, not typed from memory.",
     "Required fields cannot be skipped.",
-    "For facility patients, the face sheet is obtained at admission and checked against eligibility.",
-    "Consent to treat and to bill, and assignment of benefits, are on file."
+    "For facility patients, the admission summary (face sheet) is obtained at admission and checked against eligibility.",
+    "A signed authorization to bill the insurer and be paid directly is on file. If a Medicare patient cannot sign, a guardian, relative or facility representative may (42 CFR 424.36)."
    ],
    "failure_modes": [
     "Names and numbers are retyped from a faxed face sheet and one digit is wrong.",
@@ -152,12 +152,24 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Practices with no front desk depend on facility face sheets and electronic eligibility, so the accuracy check has to be built into intake of the census.",
-   "sources": [
-    "hfma-map-keys",
-    "caqh-2024"
+   "applies_when": "Every practice. Practices with no front desk depend on facility face sheets, hospital registration data and electronic eligibility, so the accuracy check has to be built into intake of the census.",
+   "vendor_refs": [
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Lists registration data to capture and how often to re-check it. Its 2% and 5% thresholds are unsourced, and it matches names to photo ID, not the payer's record."
+    },
+    {
+     "item": "front-end-control-kit-workbook",
+     "note": "Adds a weekly registration audit sheet and a pre-service queue. The sheets are empty tables: the status column has no formula, and nothing covers face sheets or facility patients."
+    }
    ],
-   "evidence_note": "Standard revenue cycle practice. No measured benchmark for registration accuracy in physician practices was found.",
+   "sources": [
+    "cfr-424-36",
+    "hfma-map-keys",
+    "x12-carc",
+    "experian-2026"
+   ],
+   "evidence_note": "Convention, apart from the Medicare signature rule (42 CFR 424.36). No measured benchmark for registration accuracy in physician practices was found. The Healthcare Financial Management Association (HFMA) defines a pre-registration rate but sets no target. Survey context comes from Experian Health, a vendor (2026).",
    "metrics": [
     {
      "slug": "fe-registration-error-rate",
@@ -167,9 +179,15 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Group the reason codes for missing or invalid patient and subscriber information.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For context, 43% of 204 surveyed provider staff said inaccurate registration data caused at least 5% of their denials (Experian Health, a vendor, 2026).",
      "confidence": "none",
-     "data_hint": "Clearinghouse rejection reports and remittance reason codes."
+     "sources": [
+      "experian-2026",
+      "x12-carc"
+     ],
+     "data_hint": "Clearinghouse rejection reports, plus remittance reason codes 31 (patient not identified as insured) and 140 (identification number and name do not match).",
+     "vendor_claim": "The purchased front-end playbook sets a target of under 2% of claims denied for registration reasons and calls over 5% a systematic problem.",
+     "vendor_verdict": "Unverifiable. No source is given, and it counts payer denials only, missing the clearinghouse rejections where many of these errors surface."
     }
    ]
   },

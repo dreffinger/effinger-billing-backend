@@ -483,18 +483,23 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices, most of all those with many Medicare Advantage and commercial plans, which bring more virtual cards and split payments. A practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
+   "applies_when": "All practices. Virtual cards come from Medicare Advantage and commercial plans, while traditional Medicare pays by bank transfer (42 CFR 424.510). A practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
    "vendor_refs": [
     {
      "item": "new-practice-launch-playbook",
      "note": "One sentence on bank lockbox services. The library has no method for matching deposits to remittances and never mentions separation of duties or virtual cards."
+    },
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Reminds a new owner to update the deposit bank account with each payer and check weekly that payments arrive there. Confuses the remittance with the deposit."
     }
    ],
    "sources": [
     "cfr-162-1602",
     "cms-vcc-eft-2022",
     "cms-cpm-ch22",
-    "mgma-embezzlement-2026"
+    "mgma-embezzlement-2026",
+    "cfr-424-510"
    ],
    "evidence_note": "The trace number that links a payment to its remittance is part of the federal standard (45 CFR 162.1602). Separation of duties is standard internal control advice, repeated by MGMA in 2026. No benchmark data exist for reconciliation.",
    "metrics": [
@@ -574,7 +579,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with insurance receivables. A Medicare-heavy or facility-based practice should run well under general targets, and its old balances usually point to a wrong payer, a hospice election or a secondary payer.",
+   "applies_when": "Any practice with insurance receivables. A Medicare-heavy or facility-based practice should run well under general targets, because Medicare pays clean claims within 30 days. Its old balances often point to a wrong payer, a hospice election or a secondary payer.",
    "vendor_refs": [
     {
      "item": "kpi-03-days-in-ar",
@@ -608,7 +613,7 @@
     "cfr-447-45",
     "fl-627-6131"
    ],
-   "evidence_note": "Targets for days in receivables and aging are conventions from the American Academy of Family Physicians (AAFP) and a 2012 AAPC article. Measured values, from the Medical Group Management Association (MGMA) and a small billing-company survey, are worse. Payer payment deadlines are regulation.",
+   "evidence_note": "Targets for days in receivables and aging are conventions from the American Academy of Family Physicians (AAFP) and a 2012 AAPC article. Measured values, from the Medical Group Management Association (MGMA) and a small billing-company survey, miss the best bands. Payer payment deadlines are regulation.",
    "metrics": [
     {
      "slug": "ar-days-in-ar",
@@ -758,7 +763,7 @@
    "vendor_refs": [
     {
      "item": "denial-management-playbook",
-     "note": "Sound two-part method: recover and prevent. Its table of a typical denial mix and the $25 to $118 rework cost have no sound source. Treats every fix as an appeal."
+     "note": "Sound two-part method: recover and prevent. Its table of a typical denial mix and the $25 to $118 rework cost have no sound source. Never mentions Medicare reopenings."
     },
     {
      "item": "denial-control-kit-workbook",
