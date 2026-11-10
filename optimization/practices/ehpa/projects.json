@@ -11,10 +11,10 @@
   "impact_note": "Protects a revenue line of about $165,000 a year at October's volume and today's paid rate (about $370,000 if every line were paid) and limits repayment exposure.",
   "owner": "william",
   "start_by": "2026-11-11",
-  "target_date": "2026-12-15",
+  "target_date": "2026-12-18",
   "success_measures": [
    "No care-management claim is sent for November 2026 or any later month unless it traces to a consent, a care plan and a time log",
-   "Total minutes billed in a month do not exceed staff hours available",
+   "Total minutes billed in a month do not exceed the hours the staff and the physician had available",
    "The attorney has given written advice on past claims"
   ],
   "steps": [
@@ -38,7 +38,7 @@
   "impact_note": "Protects about $600,000 a year of visit revenue. An audit of 80 to 100 notes typically costs a few thousand dollars.",
   "owner": "william",
   "start_by": "2026-11-17",
-  "target_date": "2027-01-15",
+  "target_date": "2027-01-22",
   "success_measures": [
    "A written audit report covering every main code family for both clinicians",
    "A decision, on advice, about any overpayment",
@@ -65,7 +65,7 @@
   "impact_note": "One time, for 2026 visits. Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are not counted until the care-management review is done.",
   "owner": "claude",
   "start_by": "2026-11-11",
-  "target_date": "2026-12-10",
+  "target_date": "2026-12-31",
   "success_measures": [
    "Each facility sends a weekly census with skilled-stay status and payer",
    "Place of service 31 or 32 is set from that census on every nursing facility claim",
@@ -90,7 +90,7 @@
   "impact_note": "11.2% of charges had no payer when entered. Coverage and wrong-payer problems are about a quarter of denied visits.",
   "owner": "claude",
   "start_by": "2026-11-11",
-  "target_date": "2026-12-04",
+  "target_date": "2026-12-18",
   "success_measures": [
    "All 493 coverage cards verified or marked self-pay",
    "Charges with no payer under 2%",
@@ -106,7 +106,7 @@
   "slug": "ar-recovery",
   "ord": 5,
   "title": "Collect the aged receivables before filing windows close",
-  "objective": "Work the $65,431 tagged correct-and-resend and the 74 actionable denials, oldest deadline first.",
+  "objective": "Work the correct-and-resend list ($65,431 when it was tagged on October 16, 2026; refresh it first) and the 74 actionable denials, oldest deadline first.",
   "category_slug": "ar-followup",
   "priority": "now",
   "impact_low": 20000,
@@ -188,7 +188,7 @@
   "impact_high": null,
   "impact_note": "No direct dollar value. It is how every other project stays done.",
   "owner": "william",
-  "start_by": "2026-12-01",
+  "start_by": "2026-11-16",
   "target_date": "2027-01-29",
   "success_measures": [
    "Books closed by the 15th of each month",
@@ -213,7 +213,7 @@
   "impact_high": null,
   "impact_note": "Changes how any future billing problem is treated.",
   "owner": "william",
-  "start_by": "2026-12-15",
+  "start_by": "2026-11-30",
   "target_date": "2027-02-26",
   "success_measures": [
    "A written program adopted and dated",
@@ -240,7 +240,7 @@
   "impact_high": null,
   "impact_note": "Reduces the chance that one wrong rule repeats across hundreds of claims.",
   "owner": "claude",
-  "start_by": "2026-11-11",
+  "start_by": "2026-11-10",
   "target_date": "2027-01-15",
   "success_measures": [
    "Open sign-up turned off",
@@ -248,6 +248,7 @@
    "A monthly sample of 25 automated actions reviewed and logged"
   ],
   "steps": [
+   "Switch off three standing billing rules",
    "Close sign-up",
    "Rotate keys",
    "Approval for claim-changing rules",
@@ -265,8 +266,8 @@
   "impact_high": 31000,
   "impact_note": "Penalty avoided, if either clinician is required to report.",
   "owner": "william",
-  "start_by": "2026-11-17",
-  "target_date": "2027-01-29",
+  "start_by": "2026-11-10",
+  "target_date": "2027-03-31",
   "success_measures": [
    "Status known for both clinicians",
    "A reporting plan for the 2026 performance year, decided by early December 2026"
@@ -274,7 +275,8 @@
   "steps": [
    "Look up status",
    "Read past feedback",
-   "Choose a reporting route"
+   "Choose a reporting route",
+   "Submit 2026 data"
   ]
  },
  {
@@ -293,7 +295,7 @@
   "success_measures": [
    "Wellness visits scheduled for long-term residents",
    "Transitional care billed for patients discharged to assisted living or home",
-   "A time statement in every advance care planning note"
+   "A time statement in every advance care planning note (the work item sits with the coding audit, due December 4, 2026)"
   ],
   "steps": [
    "List eligible patients",
@@ -338,7 +340,7 @@
   "impact_high": 12000,
   "impact_note": "Interest saved by refinancing. The larger value is a clean balance sheet before any sale.",
   "owner": "cpa",
-  "start_by": "2026-12-01",
+  "start_by": "2026-11-10",
   "target_date": "2027-02-26",
   "success_measures": [
    "A refinancing decision on the 13.99% note",

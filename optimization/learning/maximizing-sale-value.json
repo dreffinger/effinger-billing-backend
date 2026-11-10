@@ -126,7 +126,7 @@
         "$1,058,153"
        ],
        [
-        "Less collections estimated as one-time recovery of old receivables",
+        "Less one-time recovery of old receivables (a placeholder, not measured)",
         "-$46,000"
        ],
        [
@@ -157,12 +157,12 @@
      },
      {
       "type": "p",
-      "text": "Then the multiple. The published band for small primary care is 3 to 6 times. This practice sits in the lower half: one physician, government fee-for-service payers, and facility relationships it does not own. A planning range of 2 to 4 times gives about $176,000 to $352,000 on earnings of about $88,000. Marketplace sales of medical practices, which are not split by specialty, point higher, about $420,000 at their lower-quartile revenue multiple, so that check gets a quarter of the weight. The result is about **$300,000**, within a range of about $50,000 to $680,000."
+      "text": "Then the multiple. The published band for small primary care is 3 to 6 times. This estimate uses 2 to 4 times, one point below that band, because the practice has one physician, government fee-for-service payers, and facility relationships it does not own. That gives about $176,000 to $352,000 on earnings of about $88,000. Marketplace sales of medical practices, which are not split by specialty, point higher, about $418,000 at their lower-quartile revenue multiple, so that check gets a quarter of the weight. The result is about **$300,000**, within a range of about $50,000 to $680,000."
      },
      {
       "type": "table",
       "columns": [
-       "From value to what you keep",
+       "From value to a subtotal (not yet what you keep)",
        "Amount"
       ],
       "rows": [
@@ -221,7 +221,7 @@
         "Growth",
         "Steady growth over years",
         "Flat or falling",
-        "Down 46% from 2023 to 2025, up 19.9% in 2026"
+        "Down 46% from 2023 to 2025, up 19.9% in the first nine months of 2026"
        ],
        [
         "Payer mix",
@@ -430,7 +430,7 @@
   "takeaways": [
    "Buyers pay for future cash they can keep without you: how much, how certain, how transferable.",
    "Value is earnings after a market wage times a multiple. For this practice that is about $88,000 times roughly 3, or about $300,000 after a marketplace check.",
-   "The multiple is held down by one-physician dependence, a falling three-year trend, government fee-for-service payers and untested billing patterns.",
+   "The multiple is held down by one-physician dependence, a two-year revenue decline in 2024 and 2025, government fee-for-service payers and untested billing patterns.",
    "A clean independent coding audit turns the biggest discount into a selling point.",
    "Plan three to five years ahead. Pick the year you want to step back and work backward.",
    "Know the deal terms before the first conversation: asset sale, cash-free and debt-free, escrow, non-compete, enrollment."

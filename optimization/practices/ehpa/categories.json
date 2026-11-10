@@ -33,7 +33,7 @@
    "Financial statements arrive quarterly",
    "No budget to compare against"
   ],
-  "next_step": "Hold a 45-minute review in the first half of every month using the scorecard page."
+  "next_step": "Hold a 45-minute review every month, after the books close on the 15th, using the scorecard page."
  },
  {
   "category_slug": "sg-decision-rights",
@@ -326,7 +326,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The nurse practitioner bills under her own number, which is correct. She also billed 10 of the 19 initial nursing facility visits. That is allowed for a medically necessary first evaluation, but in a skilled stay the physician must still personally do the required comprehensive visit within 30 days.",
+  "assessment": "309 encounters were billed under the nurse practitioner's own number. Whether any visit she performed was billed under the physician has not been tested. She also billed 10 of the 19 initial nursing facility visits. That is allowed for a medically necessary first evaluation, but in a skilled stay the physician must still personally do the required comprehensive visit within 30 days.",
   "evidence": [
    "CMS data: the nurse practitioner billed the top initial nursing facility code 37 times in 2023 and 129 times in 2024"
   ],
@@ -337,7 +337,7 @@
   "applicability": "relevant",
   "status": "amber",
   "priority": 3,
-  "assessment": "Edit denials are a small but steady drain: duplicates, monthly frequency limits, add-on codes not paid separately, and hospice patients billed without the hospice modifier.",
+  "assessment": "Edit denials are a small but steady drain: monthly frequency limits, add-on codes not paid separately, and visits to hospice patients billed without a hospice modifier (GV or GW), which the clinician has to choose for each visit. Duplicate denials add to the drain, but they are not edit denials.",
   "evidence": [
    "18 duplicate denials among recent zero-paid lines and 6 frequency denials on care-management lines since June",
    "31 hospice denials in the register"
@@ -616,7 +616,7 @@
    "$6,024 open with Veterans Affairs community care",
    "$3,764 of Railroad Medicare claims being written off"
   ],
-  "next_step": "Enroll with Railroad Medicare and finish the other two, or stop seeing those patients under the unenrolled clinician."
+  "next_step": "Enroll with Railroad Medicare, and stop writing off its claims until the effective date is known. Finish the other two, or stop seeing those patients under the unenrolled clinician."
  },
  {
   "category_slug": "cr-program",
@@ -639,7 +639,7 @@
    "Medicare's 2025 review found that 12.7% of the dollars paid for nursing facility visits were paid in error, 25.5% for the top initial code, and 13.8% for subsequent hospital visits",
    "The Inspector General reported in July 2026 that 42 of 60 sampled patient-months of nursing home visits paid by another contractor failed review, 24 of them for medical necessity"
   ],
-  "next_step": "Baseline audit now, then 10 charts per clinician each quarter."
+  "next_step": "Baseline audit now, engaged through the attorney, then 10 charts per clinician each quarter."
  },
  {
   "category_slug": "cr-outlier-monitoring",
@@ -652,7 +652,7 @@
    "As billed, the physician's work units run near three times the family medicine median",
    "The Florida Medicare contractor lists care management (99490, 99491) and hospital visits (99221 to 99223, 99231 to 99233) as active targeted reviews"
   ],
-  "next_step": "Review the outlier table every quarter and keep the audit results that explain it."
+  "next_step": "Review the outlier table every quarter. Keep the routine audit results that explain it, as the attorney advises."
  },
  {
   "category_slug": "cr-overpayments",
@@ -661,7 +661,7 @@
   "priority": 1,
   "assessment": "No review is open, yet three patterns could each point to money that must be returned if charts do not support the claims: complex care management, visit levels and advance care planning. The 60-day clock starts when a practice knows of an overpayment or recklessly disregards the signs of one.",
   "evidence": [
-   "60 days to report and return once identified, with up to 180 days to investigate in good faith",
+   "60 days to report and return once identified. A prompt, good-faith review of related claims pauses the 60 days, for no more than 180 days after the first overpayment was identified",
    "Six-year lookback"
   ],
   "next_step": "Have the attorney open and direct the review, and write down when it began."
@@ -671,7 +671,7 @@
   "applicability": "core",
   "status": "unknown",
   "priority": 2,
-  "assessment": "The practice is paid as medical director by facilities whose residents it also treats. Those arrangements are lawful when written, signed, at fair market value and backed by time records. That paperwork has not been confirmed.",
+  "assessment": "The practice received two medical director stipends in 2026. The data in hand do not name who pays them. If the payers are facilities whose residents the practice also treats, the arrangements are lawful when written, signed, at fair market value and backed by time records. That paperwork has not been confirmed.",
   "evidence": [
    "Two medical director stipends in 2026"
   ],
@@ -684,7 +684,7 @@
   "priority": 2,
   "assessment": "Patient data sits in a HIPAA-enabled database, the AI vendor is under a business associate agreement, and a gate keeps patient details out of the code repository. The date of the last security risk analysis and the full vendor list are unknown.",
   "evidence": [
-   "This application allows open sign-up with no email verification, although only approved addresses can read data"
+   "This application still allows open sign-up. Since a check added on November 10, 2026, only an approved address that has been confirmed can read data"
   ],
   "next_step": "Do a security risk analysis, list every vendor that touches patient data with its agreement and where it stores the data, and close open sign-up."
  },
@@ -706,7 +706,7 @@
   "status": "unknown",
   "priority": 1,
   "assessment": "Care management requires each patient's consent, recorded before care management starts. Whether that record exists for the 257 patients billed in October has not been checked.",
-  "next_step": "Check consent in the first 30 charts sampled, then all of them."
+  "next_step": "Have consent checked in the attorney-directed look at 30 patient-months. Then make a recorded consent a condition of every new care-management claim."
  },
  {
   "category_slug": "cr-audit-response",
@@ -789,9 +789,9 @@
   "assessment": "Care management is being billed at large scale, but it is not yet visible as a program with enrolled patients, care plans, staff, and a monthly cycle of logged work.",
   "evidence": [
    "79% of patients seen in October were billed the complex code",
-   "Implied staff time 364 hours a month"
+   "The claims imply about 364 hours of care-management time a month"
   ],
-  "next_step": "Rebuild it as a program: eligibility list, consent, care plan, time log, and a monthly check of minutes against staff hours."
+  "next_step": "Rebuild it as a program: eligibility list, consent, care plan, time log, and a monthly check of minutes billed against the hours the staff and the physician had available."
  },
  {
   "category_slug": "co-access-scheduling",
@@ -928,7 +928,7 @@
   "applicability": "relevant",
   "status": "unknown",
   "priority": 5,
-  "assessment": "Few staff. Pay and hours by person are not in the data. They matter here because care-management claims assert about 364 staff hours a month.",
+  "assessment": "Few staff. Pay and hours by person are not in the data. They matter here because care-management claims assert about 364 hours a month of time by staff or by the physician himself.",
   "next_step": "Get pay and hours by person for October."
  },
  {
@@ -948,7 +948,7 @@
   "status": "amber",
   "priority": 2,
   "assessment": "Both clinicians choose their own visit levels. Given the level patterns, a half-day of coding education on hospital and nursing facility visits is cheap insurance.",
-  "next_step": "Have the auditor teach from the audit's own findings."
+  "next_step": "Have the auditor teach from the audit findings that the attorney agrees to share."
  },
  {
   "category_slug": "pp-retention-wellbeing",
@@ -1150,7 +1150,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The practice earns $585,057 before owner pay, but a buyer subtracts a market wage for the physician and any income that will not repeat. That leaves about $88,000, or up to about $170,000 if a buyer assumes a wage near the survey medians.",
+  "assessment": "The practice earns $585,057 before owner pay, but a buyer subtracts a market wage for the physician and any income that will not repeat. That leaves about $88,000. In the valuation's high case it is about $170,000, where a buyer assumes a wage near the survey medians and counts all $48,000 of stipends.",
   "evidence": [
    "Market wage with taxes and benefits about $435,000",
    "About $46,000 of 2026 collections treated as one-time recovery (a placeholder, not measured)"
@@ -1167,7 +1167,7 @@
    "Revenue down 16% a year from 2023 to the latest twelve months",
    "Operating cost 44.7% of revenue"
   ],
-  "next_step": "Work the three detractors in order: billing risk, key-person dependence, concentration."
+  "next_step": "Work the detractors the practice can change, in this order: billing risk, key-person dependence, concentration in a few sites."
  },
  {
   "category_slug": "lv-key-person",

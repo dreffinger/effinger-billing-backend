@@ -5,7 +5,7 @@
   "kind": "risk",
   "category_slug": "cc-time-based-codes",
   "title": "Hold complex care-management billing until records support each claim",
-  "why": "In October 2026, 257 patients were billed a code that asserts 60 minutes of staff time each. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
+  "why": "In October 2026, 257 patients were billed a code that asserts at least 60 minutes of care-management time each, by the practice's staff or the physician himself. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
   "what": [
    "Hold the November batch and engage the attorney",
    "Attorney-directed look at 30 patient-months",
@@ -43,7 +43,7 @@
   "kind": "risk",
   "category_slug": "cr-coding-audits",
   "title": "Commission an independent audit of visit levels",
-  "why": "Seven code families sit far above national patterns, and the practice's most-billed visit code (99233) had a 22.7% improper-payment rate in Medicare's 2025 review, and the code it bills for every nursing facility admission (99306) had 25.5%. No chart audit is on record.",
+  "why": "Seven code families sit far above national patterns. In Medicare's 2025 review the practice's most-billed visit code (99233) had a 22.7% improper-payment rate, and the code it bills for every nursing facility admission (99306) had 25.5%. No chart audit is on record.",
   "what": [
    "Attorney engages a certified auditor",
    "10 random notes per code family per clinician",
@@ -230,7 +230,7 @@
   "what": [
    "About a dozen wellness visits a month",
    "Transitional care routine for discharges",
-   "Time statement in advance care planning notes"
+   "Time statement in advance care planning notes by December 4, 2026 (tracked with the coding audit)"
   ],
   "impact_basis": "About 150 wellness visits ($137 each, $174 for a first one) and 50 transitional care services ($218 or $295) a year at 2026 Florida Medicare amounts, 15% less when the nurse practitioner bills. A transitional care service includes its follow-up visit, so it replaces a visit worth about $133 where one would have been billed. 2027 amounts are 2% to 5% lower.",
   "effort": "medium",
@@ -268,7 +268,7 @@
   "kind": "cost",
   "category_slug": "fm-debt-capital",
   "title": "Refinance the 13.99% note and clear the owner's loan",
-  "why": "The note costs about $30,000 a year in interest, and earnings cover it many times over. The amount the owner owes the corporation has to be dealt with before any sale.",
+  "why": "The note costs about $30,000 a year in interest. Earnings before owner pay cover the yearly loan payments more than seven times. After a market wage for the owner they cover them about 1.1 times, so a lender may see less room than the owner does. The amount the owner owes the corporation has to be dealt with before any sale.",
   "what": [
    "Two refinance quotes",
    "A plan for the shareholder loan",
@@ -291,7 +291,7 @@
   "title": "Put guard rails on the billing agents",
   "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates, modifiers, diagnoses, places of service or balances need a second pair of eyes.",
   "what": [
-   "Close open sign-up and replace the shared key",
+   "Switch off the three standing rules, close open sign-up and replace the shared key",
    "Approval for claim-changing rules",
    "Monthly sample of 25 actions"
   ],
@@ -314,7 +314,7 @@
    "Second clinician introduced at each site",
    "Relationship records and written agreements"
   ],
-  "impact_basis": "One more point of the multiple, for example from 3 times earnings to 4, is worth one year of earnings after a market wage: about $88,000 on the wage used in the valuation, and up to about $170,000 if a buyer assumes a lower wage.",
+  "impact_basis": "One more point of the multiple, for example from 3 times earnings to 4, is worth one year of earnings after a market wage: about $88,000 on the wage used in the valuation, and up to about $170,000 in the valuation's high case, where a buyer assumes a lower wage and counts all $48,000 of stipends.",
   "effort": "high",
   "horizon": "6 months",
   "owner": "william",

@@ -41,7 +41,7 @@
   "status": "amber",
   "basis": "estimated",
   "value": 8.8,
-  "note": "About $88,000 on revenue of $996,153, after a $435,000 loaded market wage for the physician, an estimated $46,000 of one-time collections and $16,000 of stipends no longer received.",
+  "note": "About $88,000 on revenue of $996,153, after a market wage of $435,000 for the physician with payroll tax and benefits, a $46,000 placeholder for one-time collections (not measured) and $16,000 of stipends no longer received.",
   "source": "ehpa-financials"
  },
  {
@@ -110,10 +110,10 @@
  {
   "metric_slug": "fm-debt-to-ebitda",
   "as_of": "2026-09-30",
-  "status": "green",
+  "status": "amber",
   "basis": "estimated",
   "value": 2.41,
-  "note": "$212,206 of debt against normalized earnings of $88,057.",
+  "note": "$212,206 of debt against normalized earnings of $88,057, so the debt equals about 2.4 years of those earnings. The framework has no benchmark for this ratio. It says to read it beside debt service coverage, which is 1.13 here, below the 1.2 lenders look for. That is why this is amber and not green. The ratio moves with the wage assumed: about 1.2 on the valuation's high case for earnings (about $170,000) and about 12 on its low case (about $17,000).",
   "source": "ehpa-financials"
  },
  {
@@ -158,7 +158,7 @@
   "status": "green",
   "basis": "measured",
   "value": 44.7,
-  "note": "Was 56.7% in 2025 and 58.3% in 2024. Roughly 60% is typical for primary care (MGMA-attributed, not a published median).",
+  "note": "Was 56.7% in 2025 and 58.3% in 2024. Roughly 60% is quoted for office-based primary care, and a practice that visits facilities carries less office and front-desk cost.",
   "source": "ehpa-financials"
  },
  {
@@ -410,7 +410,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Scrubber pass rate is not captured in the database.",
+  "note": "The share of claims that pass the automatic checks before they are sent is not captured in the database.",
   "source": "ehpa-neon"
  },
  {
@@ -554,7 +554,7 @@
   "status": "na",
   "basis": "measured",
   "value": 55.5,
-  "note": "Medicare fee-for-service, by charges. Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11% had no payer recorded.",
+  "note": "Medicare fee-for-service, by charges. Insurers that sell Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11% had no payer recorded.",
   "source": "ehpa-neon"
  },
  {
@@ -680,7 +680,7 @@
   "status": "red",
   "basis": "measured",
   "value": 0,
-  "note": "No review has been opened. Four patterns in the risk review warrant one.",
+  "note": "No review has been opened. Three patterns in the risk review could each mean Medicare paid more than the records support, and each warrants one: complex care management, visit levels and advance care planning.",
   "source": "ehpa-neon"
  },
  {
@@ -689,7 +689,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Two medical director arrangements with facilities that also refer patients. Written agreements, fair-market-value support and time logs have not been confirmed.",
+  "note": "Two medical director stipends in 2026. The data in hand do not name who pays them. If the payers are facilities whose residents the practice also treats, each arrangement needs a written agreement, fair-market-value support and time logs. None of these has been confirmed.",
   "source": "ehpa-neon"
  },
  {
@@ -725,7 +725,7 @@
   "status": "red",
   "basis": "measured",
   "value": 21,
-  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, Medicaid and its plans can stop paying the practice.",
+  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
   "source": "ehpa-neon"
  },
  {
@@ -833,7 +833,7 @@
   "status": "red",
   "basis": "estimated",
   "value_text": "Not measured. The codes billed imply 85 minutes a patient",
-  "note": "The codes billed in October imply 21,810 minutes, about 364 hours, which is the full time of about two people. Staff pay is about $206,000 a year including the nurse practitioner. An auditor would ask who logged the hours. Documented minutes have not been checked.",
+  "note": "The codes billed in October imply 21,810 minutes, about 364 hours, which is the full time of about two people. Time by the practice's staff counts, and so does the physician's own care-management time. Staff pay is about $206,000 a year including the nurse practitioner. An auditor would ask who logged the hours. Documented minutes have not been checked.",
   "source": "ehpa-neon"
  },
  {
@@ -860,7 +860,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Status in the Medicare quality program is not known for either clinician. Both appear to exceed the low-volume exclusion.",
+  "note": "Status in the Medicare quality program is not known for either clinician. Both appear to bill Medicare more than the program's minimums ($90,000 billed, 200 patients and 200 services a year), so it likely applies to them.",
   "source": "ehpa-neon"
  },
  {

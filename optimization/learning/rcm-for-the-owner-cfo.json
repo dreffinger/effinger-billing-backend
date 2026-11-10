@@ -233,12 +233,12 @@
         "First-pass payment",
         "90% or more",
         "86% to 88%",
-        "70%"
+        "About 70% of recent lines paid. This counts lines, not claims, so it only approximates the first-pass rate"
        ],
        [
         "Initial denial rate",
         "Under 5%",
-        "7% to 8% in practices; 17% for Medicare Advantage",
+        "7% to 8% in practices; 17% for Medicare Advantage plans in 2019 data",
         "Up to 30% of lines"
        ],
        [
@@ -383,15 +383,15 @@
        ],
        [
         "Medicare Advantage plans",
-        "About 25%",
+        "About 25% at most. The data does not yet split these insurers' Medicare Advantage patients from their other patients",
         "By contract with each plan. Slower.",
-        "Network status, hospital-visit rules, residents switching plans mid-year. Plans deny about 17% of initial claims nationally and more than half of those denials are overturned."
+        "Network status, hospital-visit rules, residents switching plans mid-year. Plans denied about 17% of initial claims nationally in 2019 data, and more than half of those denials were overturned."
        ],
        [
         "Medicaid plans",
         "About 6%",
         "Low rates. Little or nothing on Medicare coinsurance.",
-        "Keep enrollment current. It is the gate to any secondary payment."
+        "Keep enrollment current. Without it Medicaid and its plans can stop paying the physician and can deny services he orders for Medicaid patients."
        ],
        [
         "Veterans, military, commercial",
@@ -419,7 +419,7 @@
       "items": [
        "Log every denial with its reason code, payer and the step that caused it.",
        "Each month, rank causes by dollars, not by count.",
-       "Pick the top cause and change the upstream step: a required field, a monthly coverage check, a scrubber rule.",
+       "Pick the top cause and change the upstream step: a required field, a monthly coverage check, an automatic check before the claim is sent.",
        "Watch that cause for three months. If it comes back, the fix was not a fix."
       ]
      },
@@ -436,7 +436,7 @@
     "blocks": [
      {
       "type": "p",
-      "text": "Money that has to be returned was never revenue. Medicare requires a provider to report and return an overpayment within 60 days of identifying it, looks back six years, and since 2025 treats you as having identified it when you actually know of it, deliberately ignore it or recklessly disregard it. A good-faith investigation started promptly can pause that deadline for up to 180 days."
+      "text": "Money that has to be returned was never revenue. Medicare requires a provider to report and return an overpayment within 60 days of identifying it, looks back six years, and since 2025 treats you as having identified it when you actually know of it, deliberately ignore it or recklessly disregard it. A prompt, good-faith review of related claims pauses that deadline, for no more than 180 days after the first overpayment was identified."
      },
      {
       "type": "p",
@@ -462,7 +462,7 @@
        "**Statements (10 minutes).** Revenue, expenses and earnings against budget and against the same month last year. One sentence on why each large variance happened.",
        "**Receivables (10 minutes).** Total, days, share older than 90 days, by payer. What is the plan for the oldest $20,000?",
        "**Denials and first-pass rate (5 minutes).** Top cause by dollars. What upstream fix was made last month and did it work?",
-       "**Compliance (5 minutes).** Level mix against national, care-management minutes against staff hours, audit findings, expiring enrollments.",
+       "**Compliance (5 minutes).** Level mix against national, care-management minutes against the hours the staff and the physician had, audit findings, expiring enrollments.",
        "**Work list (10 minutes).** What was finished, what is stuck, and one decision written down."
       ]
      },
@@ -477,7 +477,7 @@
    "A visit becomes cash through nine steps, and most denials start in the first three.",
    "Charge, allowed, paid and adjustments are different numbers. Only avoidable write-offs are lost money.",
    "Conventional billing targets are conventions. Compare yourself with measured results and with your own trend.",
-   "This practice is fast (3-day charge lag, 18 days to payment) and leaky (30% of lines unpaid first time, 35% of receivables over 90 days).",
+   "This practice is fast (3-day charge lag, 18 days to payment) and leaky (30% of recent claim lines paid nothing, 35% of receivables over 90 days).",
    "Earnings before owner pay are $585,057. Earnings after a market wage are about $88,000. Both numbers matter.",
    "Revenue that would not survive a chart review is not revenue. Test it yourself first.",
    "Forty-five minutes a month with the scorecard is the whole CFO job."

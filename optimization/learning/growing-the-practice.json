@@ -56,7 +56,7 @@
        ],
        [
         "Leakage",
-        "30% of recent claim lines unpaid first time. 11% of charges with no payer"
+        "30% of recent claim lines paid nothing. 11% of charges with no payer"
        ]
       ]
      },
@@ -153,7 +153,7 @@
        [
         "Standard chronic care management",
         "Two or more serious chronic conditions, with consent",
-        "20 minutes a month of staff time, logged, and a care plan",
+        "20 minutes a month of logged time by staff or the billing clinician, and a care plan",
         "Only the complex code is billed"
        ],
        [
@@ -165,7 +165,7 @@
        [
         "Complex chronic care management",
         "As for standard, with moderate or high complexity decisions",
-        "60 minutes a month of staff time, logged",
+        "60 minutes a month of logged time by staff or the billing clinician",
         "257 patients in October 2026. Under review"
        ]
       ]

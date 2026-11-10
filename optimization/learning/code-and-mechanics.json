@@ -338,7 +338,7 @@
       "type": "callout",
       "tone": "warn",
       "title": "Controls that belong around any billing agent",
-      "text": "A person approves any rule that changes a code, a date, a place of service or a balance. Someone samples the agents' actions against charts every month. An outside coder reads the rulebook once a year. Every action is logged with the rule that caused it. The practice, not the software, is responsible for each claim."
+      "text": "A person approves any rule that changes a code, a date, a modifier, a diagnosis, a place of service or a balance. Someone samples the agents' actions against charts every month. An outside coder reads the rulebook once a year. Every action is logged with the rule that caused it. The practice, not the software, is responsible for each claim."
      }
     ]
    },

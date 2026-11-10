@@ -39,8 +39,8 @@
   "id": "ehpa-ccm-footing-03",
   "project_slug": "ccm-footing",
   "ord": 5,
-  "title": "Add up logged minutes against staff hours",
-  "detail": "Start only after the attorney is engaged. One month of minutes billed compared with the hours each staff member and the physician worked. Start from payroll. October's claims assert about 364 staff hours, the full working month of about two people. Staff pay for the first nine months of 2026 was $154,534, including the nurse practitioner. List each person, the hours worked in October and the hours spent on care management. Include any outside company that does this work, with its contract and invoices.",
+  "title": "Add up logged minutes against the hours the staff and the physician worked",
+  "detail": "Start only after the attorney is engaged. One month of minutes billed compared with the hours each staff member and the physician worked. Start from payroll. October's claims assert about 364 hours of care-management time, the full working month of about two people. Staff pay for the first nine months of 2026 was $154,534, including the nurse practitioner. List each person, the hours worked in October and the hours spent on care management. Include any outside company that does this work, with its contract and invoices. The results go to the attorney.",
   "owner": "attorney",
   "due": "2026-11-24"
  },
@@ -72,9 +72,18 @@
   "due": "2026-11-24"
  },
  {
-  "id": "ehpa-ccm-footing-09",
+  "id": "ehpa-ccm-footing-08",
   "project_slug": "ccm-footing",
   "ord": 9,
+  "title": "Check each patient's status before a care-management claim is built",
+  "detail": "If the patient died, left the practice's care or elected hospice during the month, bill only when the full time was logged before that day. Never use a date of service after the date of death. Hold claims for any patient who was in a Part A skilled stay during the month until First Coast has answered.",
+  "owner": "claude",
+  "due": "2026-11-27"
+ },
+ {
+  "id": "ehpa-ccm-footing-09",
+  "project_slug": "ccm-footing",
+  "ord": 10,
   "title": "Write down where each kind of record is kept",
   "detail": "List visit notes, care plans, consents and care-management time logs. For each, name the system or facility that holds it and who can pull a copy. Confirm the practice can get a copy of any note when a payer asks for it.",
   "owner": "william",
@@ -83,7 +92,7 @@
  {
   "id": "ehpa-ccm-footing-10",
   "project_slug": "ccm-footing",
-  "ord": 10,
+  "ord": 11,
   "title": "Get the attorney's written advice on care-management claims already paid",
   "detail": "Include which months to review and whether a wider sample is needed.",
   "owner": "attorney",
@@ -92,7 +101,7 @@
  {
   "id": "ehpa-ccm-footing-11",
   "project_slug": "ccm-footing",
-  "ord": 11,
+  "ord": 12,
   "title": "Have the attorney set, in writing, the dates that govern any refund",
   "detail": "The rule gives 60 days to report and return an overpayment once it is identified. A prompt, good-faith review of related claims pauses that deadline, for no more than 180 days after the first overpayment was identified (title 42 of the Code of Federal Regulations, section 401.305). The attorney decides when each clock starts. As an outer guide only: counted from this report, November 10, 2026, day 60 is January 9, 2027 and day 180 is May 9, 2027. Put the attorney's dates on the calendar, and send any audit finding of an overpayment to the attorney the same week.",
   "owner": "attorney",
@@ -101,7 +110,7 @@
  {
   "id": "ehpa-ccm-footing-12",
   "project_slug": "ccm-footing",
-  "ord": 12,
+  "ord": 13,
   "title": "Write one page for the attorney on why revenue fell from 2023 to 2025",
   "detail": "Do this after the attorney is engaged. List the sites, services and staff that were lost and why. Say why complex care management stopped in 2024 and when and why it started again, including any payer letter, record request or denial pattern at the time.",
   "owner": "william",
@@ -110,7 +119,7 @@
  {
   "id": "ehpa-coding-audit-01",
   "project_slug": "coding-audit",
-  "ord": 13,
+  "ord": 14,
   "title": "Have the attorney engage a certified outside auditor",
   "detail": "Ask for experience with hospital and nursing facility visits and for both over- and under-coding findings.",
   "owner": "attorney",
@@ -119,7 +128,7 @@
  {
   "id": "ehpa-coding-audit-02",
   "project_slug": "coding-audit",
-  "ord": 14,
+  "ord": 15,
   "title": "Have the auditor draw the random sample",
   "detail": "The software gives the auditor a list of every visit claim from the last six months. The auditor picks 10 notes per code family per clinician, about 80 to 100 notes.",
   "owner": "attorney",
@@ -128,7 +137,7 @@
  {
   "id": "ehpa-coding-audit-03",
   "project_slug": "coding-audit",
-  "ord": 15,
+  "ord": 16,
   "title": "Send the notes securely",
   "detail": "Clinical notes come from the health record, not from the billing database.",
   "owner": "william",
@@ -137,7 +146,7 @@
  {
   "id": "ehpa-coding-audit-04",
   "project_slug": "coding-audit",
-  "ord": 16,
+  "ord": 17,
   "title": "Review the report with the attorney, then with both clinicians as the attorney advises",
   "detail": "Agree what changes in how levels are chosen and documented.",
   "owner": "william",
@@ -146,16 +155,25 @@
  {
   "id": "ehpa-coding-audit-05",
   "project_slug": "coding-audit",
-  "ord": 17,
+  "ord": 18,
   "title": "Schedule the quarterly 10-chart audit",
   "detail": "Same auditor, both clinicians, results logged.",
   "owner": "william",
   "due": "2027-01-15"
  },
  {
+  "id": "ehpa-coding-audit-06",
+  "project_slug": "coding-audit",
+  "ord": 19,
+  "title": "Ask the auditor to include 10 advance care planning notes and 10 care-management records",
+  "detail": "Both services have high national error rates for missing documentation of time.",
+  "owner": "william",
+  "due": "2026-11-24"
+ },
+ {
   "id": "ehpa-coding-audit-07",
   "project_slug": "coding-audit",
-  "ord": 18,
+  "ord": 20,
   "title": "List every initial nursing facility visit billed under the nurse practitioner since May 1, 2026",
   "detail": "Start after the attorney is engaged. The software drafts the list from claims. Ask each facility which of these residents were in a Medicare Part A skilled stay. For those, the physician writes down from the chart the date of his own comprehensive visit, or that none was found. Give the list to the attorney.",
   "owner": "william",
@@ -164,7 +182,7 @@
  {
   "id": "ehpa-coding-audit-08",
   "project_slug": "coding-audit",
-  "ord": 19,
+  "ord": 21,
   "title": "Write down how a visit level gets from the note to the claim, and what changed in 2024 and in 2026",
   "detail": "Do this for the attorney, after the attorney is engaged. The physician's share of top-level hospital follow-ups was 64.5% in 2023, 1.3% in 2024 and 73.7% now. For each period record who picked the code, in which tool, and whether the tool offers a default level. Do the same for how patients get onto the monthly care-management list. The attorney shares it with the auditor.",
   "owner": "william",
@@ -173,7 +191,7 @@
  {
   "id": "ehpa-coding-audit-09",
   "project_slug": "coding-audit",
-  "ord": 20,
+  "ord": 22,
   "title": "Add a monthly table of each clinician's level mix against the national mix to the scorecard",
   "detail": "For each code family, show the share billed at each level beside the national share.",
   "owner": "claude",
@@ -182,7 +200,7 @@
  {
   "id": "ehpa-coding-audit-10",
   "project_slug": "coding-audit",
-  "ord": 21,
+  "ord": 23,
   "title": "Hold a coding education session built from the audit's findings",
   "detail": "Use what the attorney agrees to share from the audit. Both clinicians attend. Record the date and who was there.",
   "owner": "william",
@@ -191,7 +209,7 @@
  {
   "id": "ehpa-service-lines-04",
   "project_slug": "coding-audit",
-  "ord": 22,
+  "ord": 24,
   "title": "Add a time statement and the required elements to the advance care planning note",
   "detail": "At least 16 minutes of discussion is needed to bill it. The note states the minutes, who took part and that the talk was voluntary. Those minutes are not counted toward the visit billed the same day. From January 1, 2027 code 99497 covers only time the billing clinician personally spent. Time spent by staff uses new codes G0572 and G0573.",
   "owner": "william",
@@ -200,7 +218,7 @@
  {
   "id": "ehpa-census-status-01",
   "project_slug": "census-status",
-  "ord": 23,
+  "ord": 25,
   "title": "Ask each of the five nursing facilities for a weekly census with payer, skilled-stay status and the start and end date of each skilled stay",
   "detail": "The business office produces this already for its own billing.",
   "owner": "william",
@@ -209,7 +227,7 @@
  {
   "id": "ehpa-census-status-02",
   "project_slug": "census-status",
-  "ord": 24,
+  "ord": 26,
   "title": "Store skilled-stay, hospice and plan status by date",
   "detail": "New fields on the patient record in the database.",
   "owner": "claude",
@@ -218,7 +236,7 @@
  {
   "id": "ehpa-census-status-03",
   "project_slug": "census-status",
-  "ord": 25,
+  "ord": 27,
   "title": "Set place of service 31 or 32 from the census",
   "detail": "Applies to visits now. For care management, change nothing yet. Moving a line from code 31 to code 32 raises the allowed amount from about $79 to about $140, so it waits for the care-management review. Ask the attorney, and ask First Coast in writing, whether care management may be billed for a month in which the resident was in a Medicare Part A skilled stay. A 2016 Medicare question-and-answer sheet said no. The current one, last updated in 2022, says care management can be billed for nursing facility residents and does not repeat that limit.",
   "owner": "claude",
@@ -227,7 +245,7 @@
  {
   "id": "ehpa-census-status-04",
   "project_slug": "census-status",
-  "ord": 26,
+  "ord": 28,
   "title": "Count how many of the last three months' claims carried the wrong setting",
   "detail": "Report the number and the payment difference in each direction for the attorney.",
   "owner": "claude",
@@ -236,7 +254,7 @@
  {
   "id": "ehpa-census-status-05",
   "project_slug": "census-status",
-  "ord": 27,
+  "ord": 29,
   "title": "Correct 2026 nursing facility visits for long-term residents billed as skilled stays",
   "detail": "Medicare paid these 12% to 15% less under code 31 in 2026. Correct each one by a reopening request to First Coast, changing the place of service. First Coast takes these requests through its SPOT portal (Secure Provider Online Tool) or its Reopening Gateway. The limit is one year from the date the claim was first paid, so the oldest 2026 claims reach it in January 2027. After a year First Coast reopens only for good cause and may refuse. Build the list from the facilities' skilled-stay dates. The attorney approves the list, in both directions, and says whether to wait for the coding audit. A person sends each batch. Do not net money recovered this way against any refund owed on other claims.",
   "owner": "william",
@@ -245,7 +263,7 @@
  {
   "id": "ehpa-census-status-06",
   "project_slug": "census-status",
-  "ord": 28,
+  "ord": 30,
   "title": "Ask each nursing facility for every resident's skilled-stay start and end dates since January 1, 2026",
   "detail": "The weekly census shows today only. Past dates are needed to tell which 2026 visits carried the wrong setting.",
   "owner": "william",
@@ -254,7 +272,7 @@
  {
   "id": "ehpa-coverage-cleanup-01",
   "project_slug": "coverage-cleanup",
-  "ord": 29,
+  "ord": 31,
   "title": "Clear the 342 coverage cards still in work",
   "detail": "Electronic check first, portal second, facility business office third.",
   "owner": "claude",
@@ -263,7 +281,7 @@
  {
   "id": "ehpa-coverage-cleanup-02",
   "project_slug": "coverage-cleanup",
-  "ord": 30,
+  "ord": 32,
   "title": "Run eligibility for every active patient on December 1",
   "detail": "Then on the first of every month. Flag plan changes, hospice and new secondary coverage.",
   "owner": "claude",
@@ -272,7 +290,7 @@
  {
   "id": "ehpa-coverage-cleanup-03",
   "project_slug": "coverage-cleanup",
-  "ord": 31,
+  "ord": 33,
   "title": "Hold any claim with no verified payer and list it daily",
   "detail": "Replace silent no-payer charges with a short daily list.",
   "owner": "claude",
@@ -281,7 +299,7 @@
  {
   "id": "ehpa-coverage-cleanup-04",
   "project_slug": "coverage-cleanup",
-  "ord": 32,
+  "ord": 34,
   "title": "Get portal access for the Medicaid long-term care plan with $26,640 open",
   "detail": "It allows eligibility only through its portal and pays by paper check.",
   "owner": "william",
@@ -290,7 +308,7 @@
  {
   "id": "ehpa-coverage-cleanup-05",
   "project_slug": "coverage-cleanup",
-  "ord": 33,
+  "ord": 35,
   "title": "Count how many charges entered with no payer were never paid",
   "detail": "Take October's charges that had no payer when entered. Report how many now have a payer, how many were paid, and the dollars still unpaid.",
   "owner": "claude",
@@ -299,7 +317,7 @@
  {
   "id": "ehpa-coverage-cleanup-06",
   "project_slug": "coverage-cleanup",
-  "ord": 34,
+  "ord": 36,
   "title": "Compare each day's visits by site with the charges entered, and list the gaps",
   "detail": "A visit on the census with no charge goes on a short daily list.",
   "owner": "claude",
@@ -308,7 +326,7 @@
  {
   "id": "ehpa-ar-recovery-01",
   "project_slug": "ar-recovery",
-  "ord": 35,
+  "ord": 37,
   "title": "Sort the correct-and-resend list by each payer's filing deadline",
   "detail": "Medicare: one year from the date of service. Florida Medicaid plans: six months from the date of service when the plan pays first. When Medicare pays first, the state's plan contract allows three years from the date of service. When another insurer pays first, 90 days from that insurer's final decision. Ask each plan which of these it applies when a Medicare Advantage plan pays first. Florida Medicaid itself, after Medicare: 12 months from the date of service or six months after Medicare's decision, whichever is later. Other plans: the contract. Check each plan's provider manual before treating any claim as too late. These limits are for sending a claim the first time. A Medicare claim that was denied is usually fixed by a reopening request within one year of the decision or an appeal within 120 days of it. Only a claim Medicare returned as incomplete is sent again.",
   "owner": "claude",
@@ -317,7 +335,7 @@
  {
   "id": "ehpa-ar-recovery-02",
   "project_slug": "ar-recovery",
-  "ord": 36,
+  "ord": 38,
   "title": "Work the 74 actionable denials worth $13,463",
   "detail": "From the latest billing run. Leave out every care-management line while that billing is on hold. Leave out any fix that changes a code, a date, a modifier, a diagnosis or the place of service until a person has approved it.",
   "owner": "claude",
@@ -326,7 +344,7 @@
  {
   "id": "ehpa-ar-recovery-03",
   "project_slug": "ar-recovery",
-  "ord": 37,
+  "ord": 39,
   "title": "Dispute recent denials coded as not payable under a managed care contract",
   "detail": "32 recent lines carry this code: 21 top-level hospital follow-ups, plus hospital and nursing facility admissions. First find which plan sent each one, whether the practice is in that plan's network, and whether the denial is still inside the plan's dispute window.",
   "owner": "claude",
@@ -335,7 +353,7 @@
  {
   "id": "ehpa-ar-recovery-04",
   "project_slug": "ar-recovery",
-  "ord": 38,
+  "ord": 40,
   "title": "Report receivables by age and payer every Monday",
   "detail": "One table on the dashboard.",
   "owner": "claude",
@@ -344,7 +362,7 @@
  {
   "id": "ehpa-ar-recovery-05",
   "project_slug": "ar-recovery",
-  "ord": 39,
+  "ord": 41,
   "title": "Report denials by cause and payer each month",
   "detail": "One table on the dashboard. Pick one cause to fix each month.",
   "owner": "claude",
@@ -353,7 +371,7 @@
  {
   "id": "ehpa-enrollment-fix-01",
   "project_slug": "enrollment-fix",
-  "ord": 40,
+  "ord": 42,
   "title": "File the physician's Florida Medicaid provider agreement renewal",
   "detail": "Due December 1, 2026. File this week. Thanksgiving leaves few working days before the deadline. Ask for written confirmation that the renewal is complete, not only received, and ask what happens to claims if approval comes after December 1. Use the nurse practitioner's returned filing to see what the agency rejects.",
   "owner": "william",
@@ -362,7 +380,7 @@
  {
   "id": "ehpa-enrollment-fix-02",
   "project_slug": "enrollment-fix",
-  "ord": 41,
+  "ord": 43,
   "title": "Resubmit the nurse practitioner's Medicaid revalidation",
   "detail": "It was returned incomplete. Ask the agency exactly what was missing. The nurse practitioner signs it.",
   "owner": "william",
@@ -371,7 +389,7 @@
  {
   "id": "ehpa-enrollment-fix-03",
   "project_slug": "enrollment-fix",
-  "ord": 42,
+  "ord": 44,
   "title": "Correct the nurse practitioner's national provider record",
   "detail": "Current address and the right specialty code.",
   "owner": "pam",
@@ -380,7 +398,7 @@
  {
   "id": "ehpa-enrollment-fix-04",
   "project_slug": "enrollment-fix",
-  "ord": 43,
+  "ord": 45,
   "title": "Enroll with Railroad Medicare",
   "detail": "A separate contractor, Palmetto GBA, handles Railroad Medicare. Have a person at the practice ask it how enrollment works and what the effective date will be. Stop writing off these claims until that is known, because a claim may be filed up to one year after the date of service. $3,764 is open.",
   "owner": "william",
@@ -389,7 +407,7 @@
  {
   "id": "ehpa-enrollment-fix-05",
   "project_slug": "enrollment-fix",
-  "ord": 44,
+  "ord": 46,
   "title": "Resolve the terminated commercial plan",
   "detail": "Confirm in writing whether the physician is participating, and re-apply if not.",
   "owner": "william",
@@ -398,7 +416,7 @@
  {
   "id": "ehpa-enrollment-fix-06",
   "project_slug": "enrollment-fix",
-  "ord": 45,
+  "ord": 47,
   "title": "Finish Veterans Affairs portal registration and the military plan's credentialing of the nurse practitioner",
   "detail": "The nurse practitioner signs her own application. The software can prepare the forms.",
   "owner": "william",
@@ -407,7 +425,7 @@
  {
   "id": "ehpa-enrollment-fix-07",
   "project_slug": "enrollment-fix",
-  "ord": 46,
+  "ord": 48,
   "title": "Build one expiry calendar for both clinicians",
   "detail": "Licenses, registrations, board certification, privileges, every payer enrollment, and the nurse practitioner's protocol (or autonomous practice registration) with its date.",
   "owner": "claude",
@@ -416,7 +434,7 @@
  {
   "id": "ehpa-enrollment-fix-08",
   "project_slug": "enrollment-fix",
-  "ord": 47,
+  "ord": 49,
   "title": "Close the open items on the hospital reappointment",
   "detail": "Call the medical staff office this week. Ask for the list of what is missing and the date the current appointment ends, then send everything. The hospital is 37.8% of charges.",
   "owner": "william",
@@ -425,7 +443,7 @@
  {
   "id": "ehpa-enrollment-fix-09",
   "project_slug": "enrollment-fix",
-  "ord": 48,
+  "ord": 50,
   "title": "Complete the overdue UnitedHealthcare directory attestation",
   "detail": "UnitedHealthcare and its plan for people with Medicare and Medicaid hold $48,140 of open receivables.",
   "owner": "william",
@@ -434,7 +452,7 @@
  {
   "id": "ehpa-enrollment-fix-10",
   "project_slug": "enrollment-fix",
-  "ord": 49,
+  "ord": 51,
   "title": "Complete the overdue required training for the Sunshine plan",
   "detail": "Ask the plan which clinician it lists as overdue, and keep the completion record.",
   "owner": "william",
@@ -443,7 +461,7 @@
  {
   "id": "ehpa-enrollment-fix-11",
   "project_slug": "enrollment-fix",
-  "ord": 50,
+  "ord": 52,
   "title": "Fix the military plan's rejected enrollment for electronic claims, and get an authorization number before each Veterans Affairs visit is billed",
   "detail": "Resubmit the enrollment and get written confirmation. Hold each Veterans Affairs claim until its authorization number is on it.",
   "owner": "william",
@@ -452,7 +470,7 @@
  {
   "id": "ehpa-treasury-01",
   "project_slug": "treasury",
-  "ord": 51,
+  "ord": 53,
   "title": "Explain the $12,902 of Medicare deposits with no remittance",
   "detail": "Find and post the remittances.",
   "owner": "claude",
@@ -461,7 +479,7 @@
  {
   "id": "ehpa-treasury-02",
   "project_slug": "treasury",
-  "ord": 52,
+  "ord": 54,
   "title": "Chase the large plan whose remittances arrived with no money",
   "detail": "Call the plan this week. Ask how each payment since August was sent. If it was sent as a one-time card number, ask for it to be reissued and switch to bank deposit. The software lists the remittances that have no matching deposit.",
   "owner": "william",
@@ -470,7 +488,7 @@
  {
   "id": "ehpa-treasury-03",
   "project_slug": "treasury",
-  "ord": 53,
+  "ord": 55,
   "title": "Complete electronic remittance and deposit enrollment for every payer",
   "detail": "Including the plan whose enrollment was rejected. The software prepares each form. The owner signs it and confirms the bank account.",
   "owner": "william",
@@ -479,7 +497,7 @@
  {
   "id": "ehpa-treasury-04",
   "project_slug": "treasury",
-  "ord": 54,
+  "ord": 56,
   "title": "Have the accountant reconcile the bank account monthly",
   "detail": "Someone other than the person, or the software, that posts payments.",
   "owner": "cpa",
@@ -488,7 +506,7 @@
  {
   "id": "ehpa-operating-rhythm-01",
   "project_slug": "operating-rhythm",
-  "ord": 55,
+  "ord": 57,
   "title": "Re-authorize the accounting software connection",
   "detail": "So monthly results can load into the practice database.",
   "owner": "william",
@@ -497,7 +515,7 @@
  {
   "id": "ehpa-operating-rhythm-02",
   "project_slug": "operating-rhythm",
-  "ord": 56,
+  "ord": 58,
   "title": "Agree a monthly close by the 15th with the accountant",
   "detail": "Income statement, balance sheet and a cash summary.",
   "owner": "cpa",
@@ -506,7 +524,7 @@
  {
   "id": "ehpa-operating-rhythm-03",
   "project_slug": "operating-rhythm",
-  "ord": 57,
+  "ord": 59,
   "title": "Build the 2027 budget with four scenarios",
   "detail": "Steady, loss of the largest site, a second nurse practitioner, and care management cut by half or stopped. Price the 2027 Medicare changes code by code, not as a flat 2.31% cut: hospital visits fall 3% to 5% and nursing facility visits billed as a skilled stay rise 10% to 12%.",
   "owner": "william",
@@ -515,7 +533,7 @@
  {
   "id": "ehpa-operating-rhythm-04",
   "project_slug": "operating-rhythm",
-  "ord": 58,
+  "ord": 60,
   "title": "Hold the first monthly review",
   "detail": "Scorecard, work list, cash, and one decision recorded.",
   "owner": "william",
@@ -524,7 +542,7 @@
  {
   "id": "ehpa-operating-rhythm-05",
   "project_slug": "operating-rhythm",
-  "ord": 59,
+  "ord": 61,
   "title": "Pull payments, adjustments and write-offs by month of service",
   "detail": "From the billing system, to compute the net collection rate.",
   "owner": "claude",
@@ -533,7 +551,7 @@
  {
   "id": "ehpa-operating-rhythm-06",
   "project_slug": "operating-rhythm",
-  "ord": 60,
+  "ord": 62,
   "title": "Name one person to keep this work list",
   "detail": "A staff member or an outside project manager keeps the list, chases each item and reports to you each week. Until mid-December keep for yourself only what needs your judgment or signature: engaging the attorney, signing the Medicaid renewal, approving which billing rules are switched off, and deciding the care-management code once the attorney-directed sample is done. Hand the facility calls, the plan portal access and the accounting link to that person or to the nurse practitioner. Leave the database key change with whoever already administers the database.",
   "owner": "william",
@@ -542,7 +560,7 @@
  {
   "id": "ehpa-compliance-program-01",
   "project_slug": "compliance-program",
-  "ord": 61,
+  "ord": 63,
   "title": "Write a compliance program of a few pages with the attorney",
   "detail": "The seven elements from federal guidance, scaled down.",
   "owner": "attorney",
@@ -551,7 +569,7 @@
  {
   "id": "ehpa-compliance-program-02",
   "project_slug": "compliance-program",
-  "ord": 62,
+  "ord": 64,
   "title": "Collect every medical director agreement from the past six years, with fair-market-value support and time logs",
   "detail": "For the attorney's review. Two are active in 2026. Five or more were active in 2023, when stipends were $185,300. Stipends were $54,000 in 2024 and $96,500 in 2025. Include agreements that have ended, with the end date and the reason. Start a monthly time log for the two active ones now.",
   "owner": "william",
@@ -560,7 +578,7 @@
  {
   "id": "ehpa-compliance-program-03",
   "project_slug": "compliance-program",
-  "ord": 63,
+  "ord": 65,
   "title": "Do a security risk analysis",
   "detail": "Assess the risks to all electronic patient information the practice holds: where it is stored and sent, who and what can reach it (including the software agents and their keys), what could go wrong, how likely and how serious it is, and what will be done about each risk. Include the vendor list, each business associate agreement and where each vendor stores data. Have someone other than the billing agent review and sign it. The free federal Security Risk Assessment Tool at healthit.gov is built for small practices. The owner signs and dates the result.",
   "owner": "william",
@@ -569,16 +587,16 @@
  {
   "id": "ehpa-compliance-program-04",
   "project_slug": "compliance-program",
-  "ord": 64,
+  "ord": 66,
   "title": "Have the auditor read the billing rulebook's high-risk rules",
-  "detail": "Any rule that changes a code, date, modifier, place of service or balance.",
+  "detail": "Any rule that changes a code, date, modifier, diagnosis, place of service or balance.",
   "owner": "william",
   "due": "2026-12-18"
  },
  {
   "id": "ehpa-compliance-program-05",
   "project_slug": "compliance-program",
-  "ord": 65,
+  "ord": 67,
   "title": "Name one person to receive record requests and log deadlines",
   "detail": "Pick the person who opens the mail and the payer portals each business day. Log each request the day it arrives: who sent it, which claims, the due date and what was sent back.",
   "owner": "william",
@@ -587,16 +605,25 @@
  {
   "id": "ehpa-compliance-program-06",
   "project_slug": "compliance-program",
-  "ord": 66,
+  "ord": 68,
   "title": "Add a required-visit due date for every nursing facility resident",
   "detail": "Every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. Record who must make each visit: in a Medicare Part A skilled stay the physician makes the first visit and at least every other required visit. For other residents Florida's rule allows another licensed professional. Ask the attorney whether that covers the first visit.",
   "owner": "claude",
   "due": "2026-12-11"
  },
  {
+  "id": "ehpa-compliance-program-07",
+  "project_slug": "compliance-program",
+  "ord": 69,
+  "title": "Get a written statement of where each vendor stores patient information",
+  "detail": "Florida requires patient information kept offsite or in the cloud to stay in the continental United States, its territories or Canada. Ask every software and AI vendor.",
+  "owner": "william",
+  "due": "2027-01-29"
+ },
+ {
   "id": "ehpa-compliance-program-08",
   "project_slug": "compliance-program",
-  "ord": 67,
+  "ord": 70,
   "title": "Record yearly compliance training for both clinicians",
   "detail": "One hour is enough. Keep the date, the topics and the names.",
   "owner": "william",
@@ -605,7 +632,7 @@
  {
   "id": "ehpa-compliance-program-09",
   "project_slug": "compliance-program",
-  "ord": 68,
+  "ord": 71,
   "title": "Have the attorney read the nurse practitioner's employment agreement and her Florida practice protocol",
   "detail": "Florida requires a written protocol kept at each place she practices, unless she is registered for autonomous practice.",
   "owner": "attorney",
@@ -614,7 +641,7 @@
  {
   "id": "ehpa-automation-controls-01",
   "project_slug": "automation-controls",
-  "ord": 69,
+  "ord": 72,
   "title": "Turn off open sign-up on this application",
   "detail": "A check added on November 10, 2026 refuses any account whose address has not been confirmed. Before that, an account needed only an approved address. Read the access log for sign-ins nobody recognizes, confirm that the approved address's account belongs to its owner, and write down what was found. Then turn off open sign-up. The access log was read on November 10, 2026: 31 requests, all on November 7, all from the one confirmed account, and none refused. Only one account exists.",
   "owner": "william",
@@ -623,7 +650,7 @@
  {
   "id": "ehpa-automation-controls-02",
   "project_slug": "automation-controls",
-  "ord": 70,
+  "ord": 73,
   "title": "Replace the database access key that was pasted into a chat",
   "detail": "Revoke it in the database console today and issue a new one. Then read the database's connection and query logs for the days the key was exposed, and write down what was found and what was done. If the console shows no logs, ask the database vendor for them. If the logs show access nobody can explain, tell the attorney, because the breach notification rules may apply.",
   "owner": "william",
@@ -632,7 +659,7 @@
  {
   "id": "ehpa-automation-controls-03",
   "project_slug": "automation-controls",
-  "ord": 71,
+  "ord": 74,
   "title": "Require the owner's written approval for any rule that changes a claim's code, date, modifier, diagnosis, place of service or balance",
   "detail": "The software builds the check and lists the rules. You approve each one in writing before it runs.",
   "owner": "william",
@@ -641,16 +668,25 @@
  {
   "id": "ehpa-automation-controls-04",
   "project_slug": "automation-controls",
-  "ord": 72,
+  "ord": 75,
   "title": "Sample 25 automated actions each month and record the result",
   "detail": "The correction rate becomes a scorecard measure.",
   "owner": "william",
   "due": "2026-12-31"
  },
  {
+  "id": "ehpa-automation-controls-05",
+  "project_slug": "automation-controls",
+  "ord": 76,
+  "title": "Make every write-off carry a reason code, and keep patient balances out of the automatic rule",
+  "detail": "Routine waiver of Medicare copayments and deductibles is unlawful, and billing a Qualified Medicare Beneficiary for them is forbidden. The automatic rule should touch insurance balances only. A patient balance is written off only with a reason: Qualified Medicare Beneficiary, documented hardship, or unpaid after documented attempts to collect.",
+  "owner": "claude",
+  "due": "2026-12-04"
+ },
+ {
   "id": "ehpa-automation-controls-07",
   "project_slug": "automation-controls",
-  "ord": 73,
+  "ord": 77,
   "title": "Run a credit balance report, and confirm the November 2 write-off touched only amounts owed to the practice",
   "detail": "List every account where a payer or patient is owed money. Check that none of the $40,686 written off was a credit. The owner reviews the list.",
   "owner": "claude",
@@ -659,7 +695,7 @@
  {
   "id": "ehpa-quality-mips-01",
   "project_slug": "quality-mips",
-  "ord": 74,
+  "ord": 78,
   "title": "Look up both clinicians in the participation status tool",
   "detail": "Use each clinician's national provider number.",
   "owner": "claude",
@@ -668,7 +704,7 @@
  {
   "id": "ehpa-quality-mips-02",
   "project_slug": "quality-mips",
-  "ord": 75,
+  "ord": 79,
   "title": "Read the latest performance feedback and payment adjustment",
   "detail": "",
   "owner": "william",
@@ -677,7 +713,7 @@
  {
   "id": "ehpa-quality-mips-03",
   "project_slug": "quality-mips",
-  "ord": 76,
+  "ord": 80,
   "title": "Choose how to report for 2026",
   "detail": "Decide by early December. A practice with 15 or fewer clinicians is excused from the electronic health record category without applying. Quality for 2026 can still be reported after the year ends, for example through a qualified registry, if the notes hold the data. An improvement activity counts only if it ran 90 days in a row within 2026. The exception application is only for events outside the practice's control and closes December 31, 2026. Submission is due March 31, 2027.",
   "owner": "william",
@@ -686,7 +722,7 @@
  {
   "id": "ehpa-quality-mips-04",
   "project_slug": "quality-mips",
-  "ord": 77,
+  "ord": 81,
   "title": "Submit 2026 quality data",
   "detail": "The submission window at qpp.cms.gov opens January 4, 2027 and closes March 31, 2027. Aim to finish two weeks early.",
   "owner": "william",
@@ -695,7 +731,7 @@
  {
   "id": "ehpa-service-lines-01",
   "project_slug": "service-lines",
-  "ord": 78,
+  "ord": 82,
   "title": "List long-term residents with no wellness visit in the last 12 months",
   "detail": "Use the census and the billing history. Mark any resident whose last wellness visit date is not known.",
   "owner": "claude",
@@ -704,7 +740,7 @@
  {
   "id": "ehpa-service-lines-02",
   "project_slug": "service-lines",
-  "ord": 79,
+  "ord": 83,
   "title": "Schedule wellness visits, about a dozen a month",
   "detail": "Work from the list, one facility at a time.",
   "owner": "pam",
@@ -713,7 +749,7 @@
  {
   "id": "ehpa-service-lines-03",
   "project_slug": "service-lines",
-  "ord": 80,
+  "ord": 84,
   "title": "Set up a transitional care routine for discharges to assisted living or home",
   "detail": "Contact within two business days and a visit within 7 or 14 days.",
   "owner": "pam",
@@ -722,7 +758,7 @@
  {
   "id": "ehpa-service-lines-05",
   "project_slug": "service-lines",
-  "ord": 81,
+  "ord": 85,
   "title": "Reset the fee schedule each January",
   "detail": "Every charge above the highest contracted rate. This needs the contract rates, which are due by the end of February. The software drafts the schedule and the owner approves it.",
   "owner": "william",
@@ -731,7 +767,7 @@
  {
   "id": "ehpa-payer-contracts-01",
   "project_slug": "payer-contracts",
-  "ord": 82,
+  "ord": 86,
   "title": "Request the current contract and fee schedule from every plan",
   "detail": "Write to each plan's provider relations office. Ask for the signed contract, every amendment and the current fee schedule for the practice's codes.",
   "owner": "william",
@@ -740,7 +776,7 @@
  {
   "id": "ehpa-payer-contracts-02",
   "project_slug": "payer-contracts",
-  "ord": 83,
+  "ord": 87,
   "title": "Load the 2027 Medicare fee schedule for the practice's locality",
   "detail": "Medicare published the 2027 values in November 2026. First Coast posts the fees for each Florida area in its Fee Schedule Lookup.",
   "owner": "claude",
@@ -749,7 +785,7 @@
  {
   "id": "ehpa-payer-contracts-03",
   "project_slug": "payer-contracts",
-  "ord": 84,
+  "ord": 88,
   "title": "Reprice the top 15 codes at 2027 rates by site of service",
   "detail": "Show the change per code and in total.",
   "owner": "claude",
@@ -758,7 +794,7 @@
  {
   "id": "ehpa-payer-contracts-04",
   "project_slug": "payer-contracts",
-  "ord": 85,
+  "ord": 89,
   "title": "Flag any payment below the expected amount",
   "detail": "Compare each paid line with the loaded fee schedule and list the differences each week.",
   "owner": "claude",
@@ -767,7 +803,7 @@
  {
   "id": "ehpa-finance-cleanup-01",
   "project_slug": "finance-cleanup",
-  "ord": 86,
+  "ord": 90,
   "title": "Get two refinance quotes for the $187,206 note",
   "detail": "Check the note for a prepayment charge first.",
   "owner": "william",
@@ -776,7 +812,7 @@
  {
   "id": "ehpa-finance-cleanup-02",
   "project_slug": "finance-cleanup",
-  "ord": 87,
+  "ord": 91,
   "title": "Agree a plan to retire the $162,121 owed by the owner",
   "detail": "Repayment, pay or distribution, and the tax effect of each.",
   "owner": "cpa",
@@ -785,7 +821,7 @@
  {
   "id": "ehpa-finance-cleanup-03",
   "project_slug": "finance-cleanup",
-  "ord": 88,
+  "ord": 92,
   "title": "Review the owner's salary against market pay",
   "detail": "Reasonable compensation for an S corporation owner.",
   "owner": "cpa",
@@ -794,7 +830,7 @@
  {
   "id": "ehpa-finance-cleanup-04",
   "project_slug": "finance-cleanup",
-  "ord": 89,
+  "ord": 93,
   "title": "Set a cash floor and start a 13-week cash forecast",
   "detail": "A cash floor is the lowest bank balance you allow before owner draws pause. Ninety days of spending is about $177,000, and cash was $94,431 on September 30, 2026. Agree with the accountant what owner distributions are paid until the floor is reached and the care-management sample has been read. A 13-week forecast is one row a week of expected deposits and payments. Ask the accountant for a template.",
   "owner": "william",
@@ -803,7 +839,7 @@
  {
   "id": "ehpa-finance-cleanup-05",
   "project_slug": "finance-cleanup",
-  "ord": 90,
+  "ord": 94,
   "title": "Ask the broker about cyber and billing-audit defense cover",
   "detail": "Call the malpractice insurer and the insurance broker this week. Ask whether the current policy pays for the defense of a billing audit, and whether it requires an attorney from the insurer's list. Ask only what the policy covers. Leave any description of the reviews to the attorney.",
   "owner": "william",
@@ -812,7 +848,7 @@
  {
   "id": "ehpa-finance-cleanup-06",
   "project_slug": "finance-cleanup",
-  "ord": 91,
+  "ord": 95,
   "title": "Tell the accountant about any personal tax balance, and include it when asking for loan quotes",
   "detail": "Any personal tax balance owed to the Internal Revenue Service (IRS), and any payment plan on it, is outside the practice. It still bears on distributions, on any refinance and on a sale.",
   "owner": "william",
@@ -821,7 +857,7 @@
  {
   "id": "ehpa-finance-cleanup-07",
   "project_slug": "finance-cleanup",
-  "ord": 92,
+  "ord": 96,
   "title": "Ask the bank for a line of credit",
   "detail": "The risk review lists an unused line of credit as a control. Ask while 2026 results are strong.",
   "owner": "william",
@@ -830,7 +866,7 @@
  {
   "id": "ehpa-key-person-01",
   "project_slug": "key-person",
-  "ord": 93,
+  "ord": 97,
   "title": "Write a two-page emergency plan",
   "detail": "Who covers patients, who can sign, who has access to bank and systems, and who can pause the billing software if you are away. Add who would tell patients and facilities, and who would keep the records, if the practice had to stop.",
   "owner": "william",
@@ -839,7 +875,7 @@
  {
   "id": "ehpa-key-person-02",
   "project_slug": "key-person",
-  "ord": 94,
+  "ord": 98,
   "title": "Sign a mutual coverage agreement with another physician",
   "detail": "Ask a physician who already sees patients at the same hospital or facilities. Put in writing who covers whom, for how long and how each is paid.",
   "owner": "william",
@@ -848,7 +884,7 @@
  {
   "id": "ehpa-key-person-03",
   "project_slug": "key-person",
-  "ord": 95,
+  "ord": 99,
   "title": "Start a relationship record for each site",
   "detail": "Decision makers, last contact, what they want, any agreement and its end date.",
   "owner": "william",
@@ -857,7 +893,7 @@
  {
   "id": "ehpa-key-person-04",
   "project_slug": "key-person",
-  "ord": 96,
+  "ord": 100,
   "title": "Review disability, key-person and business overhead insurance",
   "detail": "Ask the insurance broker what each policy would pay if you could not work for three months.",
   "owner": "william",
@@ -866,7 +902,7 @@
  {
   "id": "ehpa-key-person-05",
   "project_slug": "key-person",
-  "ord": 97,
+  "ord": 101,
   "title": "Introduce the nurse practitioner to the administrator at each site",
   "detail": "Start with the three largest sites.",
   "owner": "william",
@@ -875,7 +911,7 @@
  {
   "id": "ehpa-growth-clinician-01",
   "project_slug": "growth-clinician",
-  "ord": 98,
+  "ord": 102,
   "title": "List every nursing and assisted living facility within 40 minutes",
   "detail": "Beds, current physician coverage and a contact.",
   "owner": "claude",
@@ -884,7 +920,7 @@
  {
   "id": "ehpa-growth-clinician-02",
   "project_slug": "growth-clinician",
-  "ord": 99,
+  "ord": 103,
   "title": "Build the hiring case",
   "detail": "Six-month ramp, three-month enrollment delay, cost and break-even census.",
   "owner": "claude",
@@ -893,7 +929,7 @@
  {
   "id": "ehpa-growth-clinician-03",
   "project_slug": "growth-clinician",
-  "ord": 100,
+  "ord": 104,
   "title": "Decide, and if yes start enrollment the day the offer is signed",
   "detail": "Use the hiring case. Decide only after the coding audit is finished.",
   "owner": "william",
@@ -902,7 +938,7 @@
  {
   "id": "ehpa-sale-readiness-01",
   "project_slug": "sale-readiness",
-  "ord": 101,
+  "ord": 105,
   "title": "Open a data room folder with the standard sections",
   "detail": "Financial, contracts, billing reports, compliance, people, systems.",
   "owner": "claude",
@@ -911,7 +947,7 @@
  {
   "id": "ehpa-sale-readiness-02",
   "project_slug": "sale-readiness",
-  "ord": 102,
+  "ord": 106,
   "title": "Separate recurring collections from recovery of old receivables each month",
   "detail": "Use payment dates and dates of service, together with the month-of-service pull in the monthly close project. Do not rely on the valuation until this is done.",
   "owner": "claude",
@@ -920,7 +956,7 @@
  {
   "id": "ehpa-sale-readiness-03",
   "project_slug": "sale-readiness",
-  "ord": 103,
+  "ord": 107,
   "title": "Choose a target year for stepping back",
   "detail": "Plan three to five years ahead.",
   "owner": "william",
@@ -929,46 +965,10 @@
  {
   "id": "ehpa-sale-readiness-04",
   "project_slug": "sale-readiness",
-  "ord": 104,
+  "ord": 108,
   "title": "Refresh the valuation with a full year of clean numbers",
   "detail": "Use twelve months of monthly statements and the split of recurring and one-time collections.",
   "owner": "claude",
   "due": "2027-09-30"
- },
- {
-  "id": "ehpa-automation-controls-05",
-  "project_slug": "automation-controls",
-  "ord": 105,
-  "title": "Make every write-off carry a reason code, and keep patient balances out of the automatic rule",
-  "detail": "Routine waiver of Medicare copayments and deductibles is unlawful, and billing a Qualified Medicare Beneficiary for them is forbidden. The automatic rule should touch insurance balances only. A patient balance is written off only with a reason: Qualified Medicare Beneficiary, documented hardship, or unpaid after documented attempts to collect.",
-  "owner": "claude",
-  "due": "2026-12-04"
- },
- {
-  "id": "ehpa-compliance-program-07",
-  "project_slug": "compliance-program",
-  "ord": 106,
-  "title": "Get a written statement of where each vendor stores patient information",
-  "detail": "Florida requires patient information kept offsite or in the cloud to stay in the continental United States, its territories or Canada. Ask every software and AI vendor.",
-  "owner": "william",
-  "due": "2027-01-29"
- },
- {
-  "id": "ehpa-ccm-footing-08",
-  "project_slug": "ccm-footing",
-  "ord": 107,
-  "title": "Check each patient's status before a care-management claim is built",
-  "detail": "If the patient died, left the practice's care or elected hospice during the month, bill only when the full time was logged before that day. Never use a date of service after the date of death. Hold claims for any patient who was in a Part A skilled stay during the month until First Coast has answered.",
-  "owner": "claude",
-  "due": "2026-11-27"
- },
- {
-  "id": "ehpa-coding-audit-06",
-  "project_slug": "coding-audit",
-  "ord": 108,
-  "title": "Ask the auditor to include 10 advance care planning notes and 10 care-management records",
-  "detail": "Both services have high national error rates for missing documentation of time.",
-  "owner": "william",
-  "due": "2026-11-24"
  }
 ]
