@@ -44,7 +44,7 @@
        ],
        [
         "Collections per active patient",
-        "Roughly $258 a month ($1.01 million a year across 326 patients)"
+        "Roughly $258 a month across all patients, hospital patients included. A facility resident brings about $110 to $160 a month."
        ],
        [
         "Monthly programs",
@@ -62,7 +62,7 @@
      },
      {
       "type": "p",
-      "text": "Two rules of thumb fall out of those numbers. Every ten additional residents under care are worth about $31,000 a year at today's yield. And the cheapest growth available is the last line: money already earned and not collected."
+      "text": "Two rules of thumb fall out of those numbers. Every ten additional residents under care are worth about $13,000 to $19,000 a year at today's payments. The figure reaches $31,000 only if care management is paid for every resident every month. And the cheapest growth available is the last line: money already earned and not collected."
      }
     ]
    },
@@ -97,9 +97,9 @@
         "$20,000 to $35,000, one time"
        ],
        [
-        "Payments that never landed",
-        "$12,902 of unmatched deposits. Remittances with no money",
-        "$5,000 to $20,000"
+        "Deposits and remittances that do not match",
+        "$12,902 of Medicare deposits arrived with no remittance to post against. One plan's remittances arrived with no deposit, amount not yet totaled",
+        "Not known until the unpaid remittances are totaled"
        ],
        [
         "Contracts unknown",
@@ -141,7 +141,7 @@
        [
         "Advance care planning",
         "Any patient, when the conversation happens",
-        "At least 16 minutes of discussion, documented with time. No cost sharing when done with a wellness visit.",
+        "At least 16 minutes of discussion, documented with time. From January 1, 2027, 99497 counts only the billing clinician's own time. Staff time is billed with new codes G0572 and G0573, which pay less. No cost sharing when done with a wellness visit.",
         "Billed on about 8% of visits. Add a time statement"
        ],
        [
@@ -166,13 +166,13 @@
         "Complex chronic care management",
         "As for standard, with moderate or high complexity decisions",
         "60 minutes a month of staff time, logged",
-        "257 patients a month. Under review"
+        "257 patients in October 2026. Under review"
        ]
       ]
      },
      {
       "type": "p",
-      "text": "The honest size of this lever is modest: about a dozen wellness visits a month and a few transitional care services, worth $25,000 to $50,000 a year. The larger number sitting in care management is real only to the extent the work is done and logged."
+      "text": "The honest size of this lever is modest: about a dozen wellness visits a month and a few transitional care services, worth about $21,000 to $41,000 a year. The larger number sitting in care management is real only to the extent the work is done and logged."
      },
      {
       "type": "callout",
@@ -290,7 +290,7 @@
      },
      {
       "type": "p",
-      "text": "At roughly $258 a month per active patient, a facility needs about 65 residents under care to equal one nurse practitioner's cost, so a new site usually fills an existing clinician's day before it justifies a hire."
+      "text": "At about $1,300 to $1,900 a year per resident, it takes roughly 105 to 150 residents under care to equal one nurse practitioner's cost, so a new site usually fills an existing clinician's day before it justifies a hire."
      },
      {
       "type": "callout",
@@ -388,7 +388,7 @@
   ],
   "takeaways": [
    "Fix leakage first: it is nearly all margin and makes every other lever worth more.",
-   "Every ten additional residents under care are worth about $31,000 a year at today's yield.",
+   "Every ten additional residents under care are worth about $13,000 to $19,000 a year at today's payments. The figure reaches $31,000 only if care management is paid for every resident every month.",
    "A nurse practitioner covers her cost at about 12 visits a day. Profit starts above that, after a ramp of several months.",
    "Monthly programs are worth only what the logged work supports.",
    "Prefer growth that lowers dependence on the owner and on the largest site.",

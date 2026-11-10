@@ -5,7 +5,7 @@
   "status": "red",
   "basis": "measured",
   "value": 37.8,
-  "note": "One hospital is 37.8% of charges. The top three sites are 64.8%.",
+  "note": "One hospital is 37.8% of charges and about 44% of expected payment, because care-management lines at the other sites are paid less than half the time. The top three sites are 64.8% of charges.",
   "source": "ehpa-neon"
  },
  {
@@ -20,7 +20,7 @@
  {
   "metric_slug": "sg-monthly-reviews-held",
   "as_of": "2026-11-09",
-  "status": "amber",
+  "status": "red",
   "basis": "estimated",
   "value": 0,
   "note": "The dashboard is live and billing runs are logged, but no monthly owner review covering billing, finance and compliance is on record.",
@@ -167,7 +167,7 @@
   "status": "green",
   "basis": "measured",
   "value": 23.3,
-  "note": "$246,801 of staff pay and benefits in the last twelve months, and that includes the nurse practitioner. MGMA reports support staff alone at 30% to 34% of revenue in primary care (2025).",
+  "note": "$246,801 of staff pay and benefits in the last twelve months, and that includes the nurse practitioner. The Medical Group Management Association (MGMA) reports support staff alone at roughly 30% to 34% of revenue across primary care, single-specialty and surgical practices (2025).",
   "source": "ehpa-financials"
  },
  {
@@ -229,8 +229,8 @@
   "as_of": "2026-11-09",
   "status": "red",
   "basis": "measured",
-  "value_text": "31% of denied visits were coverage or payer-order problems",
-  "note": "419 of the 1,356 visits in the denial register: coverage ended, patient in a Medicare Advantage plan, other payer primary, or coordination of benefits.",
+  "value_text": "15% of denied visits were for coverage that had ended or lapsed",
+  "note": "209 of the 1,356 visits in the denial register, service dates 2022 to 2026 (reason codes 27 and 200). A share of denials, not of all claims.",
   "source": "ehpa-neon"
  },
  {
@@ -245,10 +245,10 @@
  {
   "metric_slug": "fe-wrong-payer-denial-rate",
   "as_of": "2026-11-09",
-  "status": "unknown",
-  "basis": "unknown",
-  "value_text": "Not measured yet",
-  "note": "Not tracked as a rate. Hospice and plan-switch denials appear in the register (31 hospice, 68 Medicare Advantage).",
+  "status": "amber",
+  "basis": "measured",
+  "value_text": "10% of denied visits",
+  "note": "141 of 1,356 visits in the denial register: 68 for a patient in a Medicare Advantage plan, 42 for coordination of benefits and 31 for hospice. Another 100 visits were adjusted for a prior payer's payment. Not yet a share of all claims.",
   "source": "ehpa-neon"
  },
  {
@@ -284,7 +284,7 @@
   "status": "green",
   "basis": "measured",
   "value": 3,
-  "note": "Median 3 days from service to entry, 90th percentile 5 days. MGMA reported 7.75 days across practices (2022).",
+  "note": "Median 3 days from service to entry, 90th percentile 5 days. The Medical Group Management Association (MGMA) reports a three to seven day lag from service to claim across practices (2026), and measured 7.75 days in 2022.",
   "source": "ehpa-neon"
  },
  {
@@ -311,7 +311,7 @@
   "status": "red",
   "basis": "unknown",
   "value_text": "No audit on record",
-  "note": "CMS found errors in 12% to 14% of claims nationally for the codes this practice bills most (fiscal 2025).",
+  "note": "Medicare's fiscal 2025 review found that 12% to 14% of the dollars paid nationally for hospital and nursing facility visits were paid in error. By code the rate ran from 4.1% for 99232 and 7.2% for 99309 to 22.7% for 99233, the practice's most-billed code, and 25.5% for 99306.",
   "source": "ehpa-neon"
  },
  {
@@ -335,10 +335,10 @@
  {
   "metric_slug": "cc-app-own-number-share",
   "as_of": "2026-11-07",
-  "status": "green",
-  "basis": "measured",
-  "value": 100,
-  "note": "The nurse practitioner's 309 encounters were billed under her own number.",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "309 encounters were billed under the nurse practitioner's own number. Whether any visit she performed was billed under the physician has not been tested. That needs each note's signer compared with the clinician on the claim.",
   "source": "ehpa-neon"
  },
  {
@@ -346,8 +346,8 @@
   "as_of": "2026-11-09",
   "status": "amber",
   "basis": "estimated",
-  "value_text": "About 14% of recent zero-paid lines",
-  "note": "Duplicate, frequency and not-separately-payable reasons on lines for service since August 1, 2026.",
+  "value_text": "Not measured as a rate yet",
+  "note": "Frequency denials (code 151) hit 6 care-management lines and not-paid-separately denials (code 234) hit 6 add-on lines, for service since June 1, 2026. Duplicates were 18 of 311 primary lines for service since August 1, 2026, about 6%, and are not edit denials. A rate needs a count by reason code for one set of lines.",
   "source": "ehpa-neon"
  },
  {
@@ -373,8 +373,8 @@
   "as_of": "2026-11-07",
   "status": "amber",
   "basis": "estimated",
-  "value": 1.3,
-  "note": "Lowest ratio among the main codes: about 1.3 times Medicare for subsequent nursing facility and hospital visits. For years the care-management charge sat at the Medicare allowed amount, which capped every other payer.",
+  "value": 1.1,
+  "note": "Lowest ratio among the main codes: about 1.1 to 1.2 for the subsequent nursing facility visit 99309 (charge $130 to $141 against a 2026 Florida Medicare amount of $114.90 at the non-facility rate). Subsequent hospital visits run about 1.5. At the $130 charge, any plan that allows more than 113% of Medicare is capped. For years the care-management charge sat at the Medicare allowed amount, which capped every other payer.",
   "source": "ehpa-neon"
  },
  {
@@ -392,7 +392,7 @@
   "status": "red",
   "basis": "measured",
   "value": 70.1,
-  "note": "218 of 311 primary remittance lines for service since August 1, 2026 were paid. Billing companies average 86% to 88% (HBMA, 2024).",
+  "note": "218 of 311 primary remittance lines for service since August 1, 2026 were paid. This counts lines, not claims, and cannot tell a first submission from a resend, so it only approximates the first-pass rate. Billing companies report 86% to 88% of claims paid on first submission (Healthcare Business Management Association, 2024).",
   "source": "ehpa-neon"
  },
  {
@@ -445,8 +445,8 @@
   "as_of": "2026-09-11",
   "status": "red",
   "basis": "measured",
-  "value_text": "$12,902 of deposits unmatched in one month",
-  "note": "Medicare deposits with no matching remittance, remittances from one large plan with no money landing, and six payers with no deposits in the month reviewed.",
+  "value_text": "At most 80% of payer deposit dollars matched in one month",
+  "note": "$12,902 of the $66,065 of payer deposits in the month reviewed were Medicare deposits with no matching remittance. One large plan's remittances showed no deposit, and six payers made no deposits. Other unmatched items are not totaled, so the true rate may be lower.",
   "source": "ehpa-neon"
  },
  {
@@ -525,9 +525,9 @@
   "metric_slug": "ar-gross-collection-rate",
   "as_of": "2026-09-30",
   "status": "na",
-  "basis": "estimated",
-  "value": 51,
-  "note": "Twelve-month collections against gross charges at October's pace. Useful only as a trend.",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Needs collections and charges for the same months of service. Twelve-month collections divided by twelve times October's charges gives 51%, but the periods do not match and 46% of October's charges are care management. At October's code mix and today's paid rates, about 40% to 47% of charges is what to expect.",
   "source": "ehpa-neon"
  },
  {
@@ -535,8 +535,8 @@
   "as_of": "2026-11-02",
   "status": "red",
   "basis": "estimated",
-  "value": 3.8,
-  "note": "One batch: $40,686 of balances over a year old written off on November 2, 2026, as a share of twelve-month revenue.",
+  "value": 1.8,
+  "note": "One batch: $40,686 of billed charges over a year old written off on November 2, 2026. At the 40% to 51% the practice usually collects on charges, that is about $16,000 to $21,000 of lost payment, or 1.5% to 2.0% of twelve-month revenue. Not every balance in the batch was avoidable.",
   "source": "ehpa-neon"
  },
  {
@@ -544,8 +544,8 @@
   "as_of": "2026-11-09",
   "status": "red",
   "basis": "measured",
-  "value": 100,
-  "note": "Visits in the denial register whose first denial reason was timely filing. The target is zero.",
+  "value_text": "At least 100 visits, dollars not yet totaled",
+  "note": "Visits in the denial register whose first denial reason was timely filing, service dates 2022 to 2026. At the register average of $236 a visit that is about $23,600 of charges, or roughly $10,000 of payment if none were recovered. Four reason codes show exactly 100 visits, so check that the register query is not cut off at 100. The target is zero.",
   "source": "ehpa-neon"
  },
  {
@@ -554,7 +554,7 @@
   "status": "na",
   "basis": "measured",
   "value": 55.5,
-  "note": "Medicare fee-for-service, by charges. Medicare Advantage plans are about 22% and Medicaid plans about 9%.",
+  "note": "Medicare fee-for-service, by charges. Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11% had no payer recorded.",
   "source": "ehpa-neon"
  },
  {
@@ -598,8 +598,8 @@
   "as_of": "2026-11-04",
   "status": "amber",
   "basis": "estimated",
-  "value": -13000,
-  "note": "The 2027 conversion factor falls 2.31%. Applied to about $560,000 of Medicare fee-for-service revenue. Code-level changes for facility visits could add to or reduce this.",
+  "value": -2000,
+  "note": "Estimated code by code, assuming the same services billed the same way. For 2027 the conversion factor falls 2.31%. Unless Congress acts, Florida also loses a 2.3% floor on the work part of each fee. Hospital visits fall 3% to 5%. Nursing facility visits billed with place of service 31 rise 10% to 12% from what was paid in 2026, because the 2027 rule pays them the same as place of service 32. Care management falls 2% to 5%. Net effect on about $560,000 of Medicare fee-for-service revenue: between a $5,000 loss and a $7,000 gain.",
   "source": "ehpa-neon"
  },
  {
@@ -607,8 +607,8 @@
   "as_of": "2026-10-31",
   "status": "na",
   "basis": "estimated",
-  "value": 22,
-  "note": "By charges: UnitedHealthcare, Humana, Capital Health Plan, Florida Blue and dual-eligible plans.",
+  "value": 25,
+  "note": "By charges, assuming these insurers' patients here are in Medicare Advantage plans: UnitedHealthcare 8.0%, Humana 5.6%, Capital Health Plan 5.0%, Florida Blue 3.8% and UnitedHealthcare Dual Complete 2.3%. Some may hold commercial or supplement policies.",
   "source": "ehpa-neon"
  },
  {
@@ -617,7 +617,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Denials are not yet reported by payer class. Nationally, plans deny 17% of initial claims (Health Affairs, 2025).",
+  "note": "Denials are not yet reported by payer class. Nationally, plans denied 17% of initial claims in 2019 data (Health Affairs, 2025).",
   "source": "ehpa-neon"
  },
  {
@@ -662,7 +662,7 @@
   "status": "red",
   "basis": "measured",
   "value": 7,
-  "note": "Subsequent and initial hospital care, subsequent and initial nursing facility care, both discharge-day families, and complex versus standard care management.",
+  "note": "Subsequent and initial hospital care, subsequent and initial nursing facility care, both discharge-day families, and complex versus standard care management. The two discharge-day families rest on only 7 and 3 visits in the current feed, but the 2019 to 2023 public data show the same pattern. New-patient residence visits were all billed at one level (31 of 31) and are not counted.",
   "source": "cms-puf"
  },
  {
@@ -670,8 +670,8 @@
   "as_of": "2026-10-31",
   "status": "red",
   "basis": "estimated",
-  "value": 80,
-  "note": "Hospital and nursing facility visits plus complex care management, by charges. CMS error rates for those visit codes are 12% to 14%.",
+  "value": 90,
+  "note": "Hospital and nursing facility visits plus complex care management, by charges: about 90% ($190,000 of $211,062 in the charge feed). Care management alone is 36%. Medicare measured improper payment rates of 12% to 14% of dollars for those visit types, 22.7% for the top subsequent hospital code 99233 and 25.5% for the top initial nursing facility code 99306.",
   "source": "ehpa-neon"
  },
  {
@@ -725,7 +725,7 @@
   "status": "red",
   "basis": "measured",
   "value": 21,
-  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, crossover payments stop.",
+  "note": "The physician's Florida Medicaid provider agreement renewal is due December 1, 2026. Without it, Medicaid and its plans can stop paying the practice.",
   "source": "ehpa-neon"
  },
  {
@@ -832,8 +832,8 @@
   "as_of": "2026-10-31",
   "status": "red",
   "basis": "estimated",
-  "value": 85,
-  "note": "Minutes per patient implied by the codes billed: 21,810 minutes, about 364 staff hours, in one month. Documented minutes have not been checked.",
+  "value_text": "Not measured. The codes billed imply 85 minutes a patient",
+  "note": "The codes billed in October imply 21,810 minutes, about 364 hours, which is the full time of about two people. Staff pay is about $206,000 a year including the nurse practitioner. An auditor would ask who logged the hours. Documented minutes have not been checked.",
   "source": "ehpa-neon"
  },
  {
@@ -869,16 +869,16 @@
   "status": "na",
   "basis": "measured",
   "value": 2.18,
-  "note": "CMS data for 2024: 2.10 for the physician's patients and 2.27 for the nurse practitioner's. The Medicare average is 1.0.",
+  "note": "CMS data for 2024: 2.10 for the physician's patients and 2.27 for the nurse practitioner's. Among Medicare patients who use Part B services the average is 1.15 and the median 0.73 (Medicare data, 2024). Nine in ten patients score below 2.35.",
   "source": "cms-puf"
  },
  {
   "metric_slug": "qv-acp-documented",
   "as_of": "2026-11-07",
-  "status": "na",
-  "basis": "measured",
-  "value": 8,
-  "note": "Advance care planning was billed on 62 encounters, about 8% of face-to-face visits. Share of patients with a documented plan is not known.",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured yet",
+  "note": "Share of patients with a documented plan is not known. Facility charts usually hold the directive. For reference, advance care planning was billed on 62 encounters, about 8% of face-to-face visits.",
   "source": "ehpa-neon"
  },
  {
@@ -1076,7 +1076,7 @@
   "status": "amber",
   "basis": "estimated",
   "value_text": "26% to 62% of billed charges",
-  "note": "Estimated from billed charges, not collections. Nursing facility and assisted living visits are about 26% of charges. Complex care-management charges for those residents are another 36%. Those claims have paid about 42% of the time and are flagged in the risk review. Hospital work, 37.8%, depends on continuing referrals. No follow-up assisted living visits appear in the charge feed for this period. The share of collections has not been measured.",
+  "note": "Estimated from billed charges, not collections. Nursing facilities are 42.6% of charges and assisted living 19.3%, about 62% together. Nursing facility and assisted living visits are about 26% of charges. Complex care-management charges for those residents are another 36%. Those claims have paid about 42% of the time and are flagged in the risk review. Hospital work, 37.8%, depends on continuing referrals. No follow-up assisted living visits appear in the charge feed for this period. The share of collections has not been measured.",
   "source": "ehpa-neon"
  },
  {

@@ -5,13 +5,13 @@
   "kind": "risk",
   "category_slug": "cc-time-based-codes",
   "title": "Hold complex care-management billing until records support each claim",
-  "why": "257 patients a month are billed a code that asserts 60 minutes of staff time each. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
+  "why": "In October 2026, 257 patients were billed a code that asserts 60 minutes of staff time each. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
   "what": [
    "Hold the November batch and engage the attorney",
    "Attorney-directed look at 30 patient-months",
    "Bill only from a time log, at the code the minutes support"
   ],
-  "impact_basis": "Protects up to about $160,000 a year of billing and limits repayment of past claims.",
+  "impact_basis": "At October's volume and today's 42% to 50% paid rate, these claims would bring in about $165,000 a year. If every line were paid it would be about $370,000. The review protects that revenue and limits repayment of past claims.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "william",
@@ -43,13 +43,13 @@
   "kind": "revenue",
   "category_slug": "fe-eligibility",
   "title": "Finish the coverage refresh and verify every patient monthly",
-  "why": "One charge in nine has no payer, two thirds of coverage cards are unverified, and coverage problems are about 31% of denied visits.",
+  "why": "One charge in nine has no payer, two thirds of coverage cards are unverified, and coverage and wrong-payer problems are about a quarter of denied visits.",
   "what": [
    "Clear the 342 cards in work",
    "Re-verify on the first of each month",
    "Hold claims with no verified payer"
   ],
-  "impact_basis": "Estimated from 11.2% of charges with no payer, collected at the practice's usual rate.",
+  "impact_basis": "About $113,000 a year of collections rides on charges that had no payer when entered (11.2% of $1,010,153). The range assumes that about a quarter to 60% of it is never collected. That share is a guess until these charges are tracked to payment.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",
@@ -70,14 +70,14 @@
    "Place of service set from it",
    "Hospice status flagged automatically; the clinician chooses the modifier"
   ],
-  "impact_basis": "2026 visits to long-term residents repaid at the correct rate (about $10,000 to $25,000), care management paid at the right rate, and fewer wrong-payer denials.",
+  "impact_basis": "For 2026 visits only. Medicare allows $13 to $15 more for a follow-up visit to a long-term resident when the claim carries place of service 32. At October's pace that adds about $10,000 to $20,000 on Medicare fee-for-service visits if half to all of them were to long-term residents, and more if Medicare Advantage plans pay the same way. From 2027 Medicare pays these visits the same under either code. Do not count higher care-management payments until the review in recommendation 1 is done. Fewer wrong-payer denials are not valued here.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",
   "project_slug": "census-status",
   "confidence": "low",
-  "impact_low": 15000,
-  "impact_high": 60000
+  "impact_low": 10000,
+  "impact_high": 25000
  },
  {
   "id": "ehpa-rec-05",
@@ -85,7 +85,7 @@
   "kind": "risk",
   "category_slug": "pc-credentialing",
   "title": "File the Medicaid renewal now and clear the enrollment list",
-  "why": "The physician's Medicaid provider agreement is due December 1. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
+  "why": "The physician's Medicaid provider agreement is due December 1. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Those payers are about 6% to 9% of charges.",
   "what": [
    "File and confirm the renewal",
    "Fix the nurse practitioner's revalidation and national record",
@@ -152,7 +152,7 @@
    "Finish electronic payment enrollment",
    "Accountant reconciles monthly"
   ],
-  "impact_basis": "Missing payments recovered, then a standing control.",
+  "impact_basis": "The $12,902 of unmatched Medicare deposits is cash already received that could not be posted. The amount on remittances with no deposit has not been totaled, so the range is a placeholder.",
   "effort": "low",
   "horizon": "60 days",
   "owner": "claude",
@@ -232,14 +232,14 @@
    "Transitional care routine for discharges",
    "Time statement in advance care planning notes"
   ],
-  "impact_basis": "About 150 wellness visits and 50 transitional care services a year at Medicare rates.",
+  "impact_basis": "About 150 wellness visits ($137 each, $174 for a first one) and 50 transitional care services ($218 or $295) a year at 2026 Florida Medicare amounts, 15% less when the nurse practitioner bills. A transitional care service includes its follow-up visit, so it replaces a visit worth about $133 where one would have been billed. 2027 amounts are 2% to 5% lower.",
   "effort": "medium",
   "horizon": "90 days",
   "owner": "pam",
   "project_slug": "service-lines",
   "confidence": "medium",
-  "impact_low": 25000,
-  "impact_high": 50000
+  "impact_low": 21000,
+  "impact_high": 41000
  },
  {
   "id": "ehpa-rec-13",

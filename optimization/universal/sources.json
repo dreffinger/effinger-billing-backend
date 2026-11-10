@@ -4103,5 +4103,14 @@
   "url": "https://www.govinfo.gov/link/uscode/42/1395nn?type=usc&year=mostrecent&link-type=html",
   "kind": "primary",
   "note": "Subsection (g): Medicare may not pay for a designated health service furnished on a prohibited referral, and amounts collected for it must be refunded. A person who bills for a service that he knows or should know is barred faces a civil money penalty of up to $15,000 for each service."
+ },
+ {
+  "slug": "cms-pfs-2027-addenda",
+  "title": "Calendar Year 2027 Physician Fee Schedule Final Rule Addenda (CMS-1848-F), updated November 5, 2026",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/zip/cy-2027-pfs-final-rule-addenda-updated-11-05-2026.zip",
+  "kind": "primary",
+  "note": "Addendum B gives the 2027 relative values by code: nursing facility visit 99309 has practice expense 1.30 in both settings, and complex care management 99487 has 2.38 non-facility and 0.42 facility. Addendum E gives the geographic indices: Rest of Florida work 0.977, practice expense 0.971, malpractice 1.54. Its note says the 1.0 floor on the work index was extended through January 1, 2027, so the 2027 work indices do not reflect it. Used with the 2027 conversion factor of 32.6286 to price the practice's codes for 2027. Read from the copy the reviewers saved on November 10, 2026."
  }
 ]

@@ -250,13 +250,13 @@
        [
         "Charge lag",
         "Notes in 72 hours, charges in 2 days",
-        "7.75 days (2022)",
+        "3 to 7 days, service to claim (2026). 7.75 days in 2022",
         "3 days"
        ],
        [
         "Cost to collect",
         "No sound benchmark for small practices",
-        "Outsourced billing 4% to 10% of collections",
+        "Billing company fees were quoted at 8% to 10% of collections for primary care in 2010. No newer public figure was found",
         "6.3%"
        ],
        [
@@ -338,7 +338,7 @@
      {
       "type": "list",
       "items": [
-       "**Operating expense ratio: 44.7%.** Roughly 60% is typical for primary care. Lean staffing and automated billing explain the gap.",
+       "**Operating expense ratio: 44.7%.** Roughly 60% is quoted for office-based primary care, and a practice that visits facilities carries less office and front-desk cost. Lower staff cost explains the drop from 56.7% in 2025. Billing cost rose in the third quarter.",
        "**The balance sheet shows $94,431 of cash and no receivables**, because cash basis leaves them out. About $75,000 of the $342,620 open is likely to turn into cash.",
        "**It also shows $162,121 that you owe the corporation.** That is cash you have already taken, recorded as a loan. It needs a plan, with the accountant, before year end.",
        "**Debt is $212,206, most of it at 13.99%.** Interest was nearly $30,000 for the year."
@@ -383,13 +383,13 @@
        ],
        [
         "Medicare Advantage plans",
-        "About 22%",
+        "About 25%",
         "By contract with each plan. Slower.",
         "Network status, hospital-visit rules, residents switching plans mid-year. Plans deny about 17% of initial claims nationally and more than half of those denials are overturned."
        ],
        [
-        "Medicaid and dual-eligible plans",
-        "About 9%",
+        "Medicaid plans",
+        "About 6%",
         "Low rates. Little or nothing on Medicare coinsurance.",
         "Keep enrollment current. It is the gate to any secondary payment."
        ],
@@ -436,11 +436,11 @@
     "blocks": [
      {
       "type": "p",
-      "text": "Money that has to be returned was never revenue. Medicare requires a provider to report and return an overpayment within 60 days of identifying it, looks back six years, and since 2025 treats you as having identified it when you knew or should have known. A good-faith investigation started promptly can pause that deadline for up to 180 days."
+      "text": "Money that has to be returned was never revenue. Medicare requires a provider to report and return an overpayment within 60 days of identifying it, looks back six years, and since 2025 treats you as having identified it when you actually know of it, deliberately ignore it or recklessly disregard it. A good-faith investigation started promptly can pause that deadline for up to 180 days."
      },
      {
       "type": "p",
-      "text": "Medicare measures error rates by service. For fiscal 2025 it found errors in 12.7% of nursing facility visit claims and 13.8% of subsequent hospital visits, against 5.3% for ordinary office visits. Those are the codes this practice bills most, and its level mix sits far above national patterns in seven code families. That does not mean the claims are wrong. It means the practice should test them itself, through an attorney, before a contractor does."
+      "text": "Medicare measures error rates by service. For fiscal 2025 it found that 12.7% of the dollars paid for nursing facility visits and 13.8% of the dollars paid for subsequent hospital visits were paid in error, against 5.3% for established-patient office visits. For 99233, the code this practice bills most, the figure was 22.7%, and 43% of the sampled lines had an error. The practice's level mix sits far above national patterns in seven code families. That does not mean the claims are wrong. It means the practice should test them itself, through an attorney, before a contractor does."
      },
      {
       "type": "list",

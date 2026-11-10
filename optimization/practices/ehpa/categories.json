@@ -98,7 +98,7 @@
   "applicability": "core",
   "status": "green",
   "priority": 3,
-  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage for this workload, about $88,000 remains, a 9% margin.",
+  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage of about $435,000 and removing about $46,000 of one-time collections and $16,000 of stipends no longer received, about $88,000 remains, a 9% margin on the remaining revenue.",
   "evidence": [
    "Operating margin before owner pay 55.3%",
    "Net income $336,858 after recorded doctor pay of $217,296"
@@ -112,7 +112,7 @@
   "priority": 2,
   "assessment": "There is no budget. Medicare's 2027 fee schedule cuts the conversion factor 2.31%, and one site is more than a third of charges, so a plan with scenarios is worth an afternoon.",
   "evidence": [
-   "About $13,000 a year at stake from the 2027 conversion factor alone"
+   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down and nursing facility visits up"
   ],
   "next_step": "Build a 2027 budget with three cases: steady, loss of the largest site, and a second nurse practitioner."
  },
@@ -157,7 +157,7 @@
   "applicability": "core",
   "status": "green",
   "priority": 3,
-  "assessment": "Operating cost is 44.7% of revenue, down from 56.7% in 2025, because staffing is lean and billing is automated. The one line moving the wrong way is billing software and services.",
+  "assessment": "Operating cost is 44.7% of revenue, down from 56.7% in 2025. Lower staff cost (35% of revenue in 2025, 23% now) on higher collections explains the drop. Billing cost fell to 4.7% of collections in the first half of 2026, then rose to 8.7% in the third quarter, above the 8.4% of 2025.",
   "evidence": [
    "Staff pay and benefits 23.3% of revenue, including the nurse practitioner",
    "Billing cost 6.3% of collections over twelve months, 8.7% in the third quarter of 2026"
@@ -215,11 +215,11 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "This is the largest fixable leak. Two thirds of coverage cards are unverified, one charge in nine has no payer when entered, and coverage problems are about 31% of denied visits.",
+  "assessment": "This is the largest fixable leak. Two thirds of coverage cards are unverified, one charge in nine has no payer when entered, and coverage and wrong-payer problems are about a quarter of denied visits.",
   "evidence": [
    "342 of 493 coverage cards still in work",
    "11.2% of charges had no payer recorded",
-   "419 of 1,356 denied visits were coverage or payer-order problems"
+   "350 of 1,356 denied visits were coverage or wrong-payer problems"
   ],
   "next_step": "Finish the coverage refresh, then re-verify every active patient on the first of each month."
  },
@@ -314,7 +314,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and complex care management about 44% less, so the practice has been underpaid on its long-term residents.",
+  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and complex care management about 44% less, so the practice has been underpaid on visits to any long-term residents. From January 1, 2027 Medicare pays nursing facility visits the same under either code. The code still sets the care-management rate and must match the patient's status.",
   "evidence": [
    "Place of service 32 was never used",
    "Care management paid $63 at the facility rate on 32 lines and $112 at the non-facility rate on 12 lines"
@@ -339,7 +339,7 @@
   "priority": 3,
   "assessment": "Edit denials are a small but steady drain: duplicates, monthly frequency limits, add-on codes not paid separately, and hospice patients billed without the hospice modifier.",
   "evidence": [
-   "18 duplicate and 6 frequency denials among recent zero-paid lines",
+   "18 duplicate denials among recent zero-paid lines and 6 frequency denials on care-management lines since June",
    "31 hospice denials in the register"
   ],
   "next_step": "Add scrubber rules for one care-management claim per patient per month, and hold a hospice patient's claim until the clinician chooses the modifier."
@@ -360,7 +360,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Complex chronic care management is billed for 257 patients a month, usually with the add-on code. Each claim says the practice's staff, or the physician himself, spent at least 60 minutes on that patient's care management that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 hours a month.",
+  "assessment": "Complex chronic care management was billed for 257 patients in October 2026, usually with the add-on code. Each claim says the practice's staff, or the physician himself, spent at least 60 minutes on that patient's care management that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 hours a month.",
   "evidence": [
    "257 patients billed the complex code in October 2026, 213 with the add-on",
    "42% of lines paid since June 2026",
@@ -373,7 +373,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 3,
-  "assessment": "Charges for the main visit codes run about 1.3 to 1.8 times Medicare. For years the care-management charge was set at the Medicare allowed amount, which capped what any better-paying plan could pay.",
+  "assessment": "Charges for the main visit codes run about 1.1 to 2 times Medicare, lowest for the nursing facility follow-up visit 99309. For years the care-management charge was set at the Medicare allowed amount, which capped what any better-paying plan could pay.",
   "evidence": [
    "Care-management charge $135 against $130 allowed in 2022 and 2023, $206 now"
   ],
@@ -384,7 +384,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid on the first pass, against 86% to 88% reported by billing companies.",
+  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure.",
   "evidence": [
    "218 of 311 primary lines paid, service since August 1, 2026",
    "13,385 claims sent since July 2026, including mass re-sends of old claims"
@@ -443,7 +443,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Nearly three in ten recent primary lines paid nothing. The reasons are mostly upstream: coverage, payer order, missing information and services a plan will not pay this practice for.",
+  "assessment": "Nearly three in ten recent primary lines paid nothing. Two thirds of those lines (63 of 93) carry denial code 170, which says the payer will not pay this type of provider for the service. It is the code Medicare gives most often when it refuses a care-management line. Without those lines about 12% paid nothing. The other reasons are a prior payer's payment, plans that will not pay this practice for hospital visits, non-covered services, missing information and duplicates. Count in the register how many of the 63 are care-management lines.",
   "evidence": [
    "29.9% of primary lines paid zero, service since August 1, 2026",
    "74 actionable denials worth $13,463 after the last run"
@@ -520,7 +520,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 3,
-  "assessment": "Medicare fee-for-service is 55.5% of charges, Medicare Advantage about 22% and Medicaid plans about 9%. Medicare pays fastest and most reliably. Its rates fall again in 2027.",
+  "assessment": "Medicare fee-for-service is 55.5% of charges, Medicare Advantage about 25% and Medicaid plans about 6%. Medicare pays fastest and most reliably. In 2027 its hospital visit rates fall 3% to 5% and its rates for nursing facility visits billed as a skilled stay rise 10% to 12%.",
   "evidence": [
    "Lead payer shares by charges, October 2026"
   ],
@@ -564,10 +564,10 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Medicare's 2027 rule cuts the conversion factor 2.31% and changes practice expense for visits to patients in a skilled stay. The 2026 rule already lowered payment for services in facility settings. Nobody has repriced the practice's top codes.",
+  "assessment": "Medicare's 2027 rule cuts the conversion factor 2.31%. It also pays nursing facility visits billed as a skilled stay at the same rate as long-term visits, which raises them 10% to 12% here. Florida loses a 2.3% floor on the work part of each fee unless Congress acts. Hospital visits fall 3% to 5%. Nobody has repriced the practice's top codes.",
   "evidence": [
    "2027 conversion factor $32.63",
-   "About $13,000 a year at stake from the conversion factor alone"
+   "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down and nursing facility visits up"
   ],
   "next_step": "Reprice the top 15 codes at 2027 rates by site of service before January."
  },
@@ -602,7 +602,7 @@
   "priority": 3,
   "assessment": "Rules reach the billing rulebook after a denial teaches them. No one reads the Medicare contractor's bulletins or the annual rule on a schedule.",
   "evidence": [
-   "The 2027 final rule was published November 4, 2026"
+   "The 2027 final rule was released November 4, 2026 and published November 9, 2026"
   ],
   "next_step": "Add a monthly check of the contractor's updates and a yearly read of the fee schedule rule."
  },
@@ -636,7 +636,7 @@
   "priority": 1,
   "assessment": "No outside audit is on record. The practice's most-billed visit code (99233) had a 22.7% improper-payment rate in Medicare's 2025 review, and the code it bills for every nursing facility admission (99306) had 25.5%.",
   "evidence": [
-   "Medicare's 2025 review found errors in 12.7% of nursing facility visit claims, 25.5% for the top initial code, and 13.8% of subsequent hospital visits",
+   "Medicare's 2025 review found that 12.7% of the dollars paid for nursing facility visits were paid in error, 25.5% for the top initial code, and 13.8% for subsequent hospital visits",
    "The Inspector General reported in July 2026 that 42 of 60 sampled patient-months of nursing home visits paid by another contractor failed review, 24 of them for medical necessity"
   ],
   "next_step": "Baseline audit now, then 10 charts per clinician each quarter."
@@ -740,7 +740,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. As billed, their work units are about twice the survey medians, which is the same pattern the risk review flags.",
+  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. As billed, the physician's work units are nearly three times the family medicine median (about 19,000 against 6,505) and the nurse practitioner's are about a third above hers (6,300 against 4,647). Care management accounts for about 8,100 of the physician's units. It is the same pattern the risk review flags.",
   "evidence": [
    "About 25,000 work units a year as billed, against medians of 6,505 and 4,647"
   ],
