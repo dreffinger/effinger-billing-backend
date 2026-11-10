@@ -362,7 +362,7 @@
    ],
    "failure_modes": [
     "One trusted person collects, posts, adjusts and reconciles unreviewed. In a 2010 Medical Group Management Association survey, about 83% of 688 practice managers had worked where employee theft occurred.",
-    "A blanket rule writes off small Medicare balances. Routinely waiving cost sharing can violate the beneficiary inducement law (42 U.S.C. 1320a-7a(a)(5)). The exception needs non-routine, individual findings of financial need.",
+    "Small Medicare balances are written off automatically. Routine cost-sharing waivers can violate the beneficiary inducement law (42 U.S.C. 1320a-7a(a)(5)). Exceptions: individual financial need, or reasonable collection efforts (42 CFR 1003.110).",
     "Policies were bought as a binder and never read. Written policy and actual practice differ, which an auditor or a buyer will notice.",
     "A billing company or software agent changes codes or resubmits claims on its own. The physician remains responsible to Medicare for claims sent in the physician's name.",
     "Staff do not know their limits. Small decisions wait for the owner, and large ones get made without the owner."
@@ -398,7 +398,7 @@
     },
     {
      "action": "Give vendors and software agents written standing rules",
-     "detail": "State what they may do alone, what needs a clinician or the owner and what is forbidden. Clinicians decide codes and medical necessity. Log every rule change with its date.",
+     "detail": "State what they may do alone, what needs a clinician or the owner and what is forbidden. Reserve medical necessity and changes to billed codes for a clinician's sign-off. Log every rule change with its date.",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
@@ -411,7 +411,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice, though with few staff the owner's monthly review of adjustments, refunds and bank activity must stand in for a second employee. State law can limit delegation: California's medical board says a licensed physician must keep final responsibility for coding and billing procedures and payer contract terms.",
+   "applies_when": "Every practice. With few staff, the owner's monthly review of adjustments, refunds and bank activity stands in for a second employee, and with no front desk taking payments those reviews are the main control. State law can limit delegation: California's medical board says a licensed physician should decide coding and billing procedures and the terms for contracting with payers.",
    "vendor_refs": [
     {
      "item": "performance-system-release-notes",
@@ -419,7 +419,7 @@
     },
     {
      "item": "kpi-10-cost-to-collect",
-     "note": "Proposes writing off balances under $25 or $50 after one statement. As written this ignores the limits on routinely waiving Medicare cost sharing."
+     "note": "Proposes writing off balances under $25 or $50 after one automated statement. Silent on the federal limits on routine waiver of Medicare cost sharing, so document the collection attempt."
     },
     {
      "item": "revenue-cycle-staffing-and-compensation-playbook",
@@ -436,7 +436,9 @@
     "amednews-embezzlement-2011",
     "nist-ai-rmf",
     "ca-mbc-cpom",
-    "cfr-164-316"
+    "cfr-164-316",
+    "cfr-1003-110",
+    "oig-waiver-1994"
    ],
    "evidence_note": "Office of Inspector General guidance (2000, 2023) and 45 CFR 164.316 are published standards. The federal AI Risk Management Framework, which is voluntary, calls for documented roles and human oversight. The theft figure is one 2010 survey. Approval limits are the owner's choice.",
    "metrics": [
@@ -450,7 +452,7 @@
      "cadence": "annual",
      "benchmark_best": "100% reviewed within 12 months",
      "benchmark_red": "any billing or compliance policy past 12 months",
-     "benchmark_note": "The Office of Inspector General's 2023 compliance guidance recommends reviewing policies at least annually. The federal privacy documentation rule (45 CFR 164.316) says periodically. This is guidance, not measurement: no survey of actual review rates was found.",
+     "benchmark_note": "The Office of Inspector General's 2023 compliance guidance recommends reviewing policies at least annually. The federal health data security rule (45 CFR 164.316) says periodically. This is guidance, not measurement: no survey of actual review rates was found.",
      "confidence": "medium",
      "sources": [
       "oig-gcpg",
