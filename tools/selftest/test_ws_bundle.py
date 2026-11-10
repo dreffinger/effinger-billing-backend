@@ -9,19 +9,24 @@
 #     - the order comes from the NUMBER after ".part" however it is written: two digits with a third when needed (how every bundle
 #       before the fix was named), no leading zeros at all, or padded wider than needed;
 #     - pack names a set in ONE width (part001 .. part267), so a plain text sort of a new set is also its number order, and a small
-#       set keeps the two-digit names it always had (part01 .. part03);
+#       set keeps the two-digit names it always had (part01 .. part03); the rule is checked at its edges (99, 100, 999, 1,000 parts);
 #     - a 3-part bundle still round-trips, and so does a bundle of more than 1,000 parts (four-digit numbers);
 #     - a missing part and an altered part are refused: nothing is written, and both are named, in number order; a part that was
 #       cut short is refused the same way instead of stopping the script with an error;
-#     - a file in the folder that is not a part (a second download of one) is left out and said so, never joined in; one part
-#       in the folder twice under two spellings is refused, and the report says the listed parts are intact rather than "unknown";
-#     - with two sets in one folder the newer one is restored, whichever of the two is the big one;
+#     - a second download of a part ("part07 (1).b64") is left out and said so when the real part07 is there, and used when it is
+#       the only copy; one part number under two spellings is refused, and the report names both files instead of blaming a part
+#       that is intact;
+#     - with two sets in one folder the newer one is restored, whichever of the two is the big one - and when the newest set cannot
+#       be used, unpack refuses: it never restores an older set in its place;
+#     - an intact set without its manifest still restores (it cannot be checked - that is unchanged), and so do parts saved with
+#       Windows line ends;
 #     - the command lines the routine prompts name (pack --out DIR, unpack DIR) do the same with the real part size;
-#     - secrets/, the credential, session and lock files and old bundle files never travel.
+#     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder.
 # Run: python3 tools/selftest/test_ws_bundle.py   (exit 1 on any failure)
 import os, sys, io, re, json, glob, shutil, random, hashlib, tempfile, subprocess, contextlib, atexit
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TOOL = os.path.join(ROOT, "tools", "bootstrap", "ws_bundle.py")
+sys.dont_write_bytecode = True                                 # leave no __pycache__ beside the tool
 sys.path.insert(0, os.path.join(ROOT, "tools", "bootstrap")); import ws_bundle
 FAILS = []
 def check(name, cond, extra=""):
@@ -29,7 +34,7 @@ def check(name, cond, extra=""):
     if not cond: FAILS.append(name)
 
 TMP = tempfile.mkdtemp(prefix="wsbundle_selftest_")
-atexit.register(shutil.rmtree, TMP, ignore_errors=True)        # every throwaway folder goes when the test ends, however it ends
+atexit.register(shutil.rmtree, TMP, ignore_errors=True)        # every throwaway folder goes when the test ends, passed or failed
 SEQ = [0]
 def fresh(label):                                              # a new empty throwaway folder
     SEQ[0] += 1; d = os.path.join(TMP, "%02d_%s" % (SEQ[0], label)); os.makedirs(d); return d
@@ -40,7 +45,7 @@ def put(d, rel, data):
     p = os.path.join(d, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, "wb").write(data if isinstance(data, bytes) else data.encode())
 
-NEVER = ("secrets", ".amd_cred.json", ".session.json", ".amd_login_lock", ".lock", "outbox", ".b64", "__pycache__")
+NEVER = ("secrets", ".amd_cred.json", ".session.json", ".amd_login_lock", ".lock", "outbox", "chat_history", ".b64", ".bundle", "__pycache__")
 def make_workspace(label, files, size, marker):
     """A folder shaped like the nightly workspace: state files at the top, registers/, patient_db/ (nested), era_details/ and
     tools/ - plus the kinds of file the tool promises to leave behind. Returns (folder, {relative path: sha256} of what must travel)."""
@@ -55,10 +60,12 @@ def make_workspace(label, files, size, marker):
     for i in range(files):
         put(d, "registers/register_%03d.json" % i, junk(size))      # the tool carries bytes, whatever the file is called
     travels = {rel: sha for rel, sha in tree(d).items()}
-    put(d, "secrets/some.key", "NOT-A-REAL-KEY")                # everything from here down must stay behind
-    put(d, ".amd_cred.json", "{}"); put(d, ".session.json", "{}"); put(d, ".amd_login_lock", "")
-    put(d, "registers/run.lock", ""); put(d, "outbox/state/old_set.part01.b64", "AAAA")
-    put(d, "registers/leftover.part01.b64", "AAAA"); put(d, "tools/__pycache__/x.json", "{}")
+    # everything from here down must stay behind - at the top of the folder AND inside the folders pack walks
+    put(d, "secrets/some.key", "NOT-A-REAL-KEY"); put(d, "tools/secrets/other.key", "NOT-A-REAL-KEY")
+    put(d, ".amd_cred.json", "{}"); put(d, ".session.json", "{}"); put(d, ".amd_login_lock", ""); put(d, "registers/.amd_login_lock", "")
+    put(d, "registers/run.lock", ""); put(d, "registers/leftover.part01.b64", "AAAA"); put(d, "registers/old.bundle.json", "{}")
+    put(d, "outbox/state/old_set.part01.b64", "AAAA"); put(d, "registers/outbox/old.json", "{}")
+    put(d, "patient_db/chat_history/x.json", "{}"); put(d, "tools/__pycache__/x.json", "{}")
     return d, travels
 
 def tree(d):
@@ -130,6 +137,15 @@ check("B1 the big folder packs into more than 100 parts (%d)" % n_b, 100 < n_b <
 comes_back("B2 a bundle of more than 100 parts comes back whole", b_out, BIG_FILES)
 check("B3 pack names a set in one width, so a text sort of the names is the number order", len({len(n) for n in b_names}) == 1 and numbers(b_names) == list(range(1, n_b + 1)), b_names[:3] + b_names[98:102])
 check("B4 the manifest lists the parts in number order", numbers(b_man["parts"]) == list(range(1, n_b + 1)))
+NAMES = ws_bundle._part_names                                  # (stamp, base64 characters, part size) -> the names pack writes
+def digits(names): return sorted({len(n.split(".part")[1]) - len(".b64") for n in names})
+check("B5 the naming rule at its edges: 1 part and 99 full parts keep two digits (part01 .. part99)",
+      NAMES("s", 1, 8000) == ["workspace_state_s.part01.b64"] and len(NAMES("s", 99 * 8000, 8000)) == 99 and digits(NAMES("s", 99 * 8000, 8000)) == [2])
+check("B6 ... one character more makes 100 parts, every one three digits (part001 .. part100); 999 parts are three digits too",
+      len(NAMES("s", 99 * 8000 + 1, 8000)) == 100 and digits(NAMES("s", 99 * 8000 + 1, 8000)) == [3] and NAMES("s", 99 * 8000 + 1, 8000)[0].endswith(".part001.b64")
+      and len(NAMES("s", 999 * 8000, 8000)) == 999 and digits(NAMES("s", 999 * 8000, 8000)) == [3])
+check("B7 ... and 1,000 parts are every one four digits (part0001 .. part1000)",
+      len(NAMES("s", 999 * 8000 + 1, 8000)) == 1000 and digits(NAMES("s", 999 * 8000 + 1, 8000)) == [4] and NAMES("s", 999 * 8000 + 1, 8000)[-1].endswith(".part1000.b64"))
 
 # ---- C. the number decides, however it is written ------------------------------------------------------------------------------
 c_old = copy_set(b_out, "c_two_digit", "%02d")                           # part01 .. part99, part100 .. - every set packed before the fix
@@ -140,7 +156,7 @@ comes_back("C3 the same set padded wider than needed (part000001 ..) comes back 
 
 # ---- D. more than 1,000 parts --------------------------------------------------------------------------------------------------
 d_out = fresh("d_over_1000"); d_man = pack(BIG, d_out, part_chars=24); n_d = len(d_man["parts"])
-check("D1 the same folder in tiny parts makes more than 1,000 (%d)" % n_d, n_d > 1000)
+check("D1 the same folder in tiny parts makes more than 1,000 (%d), every name four digits wide" % n_d, n_d > 1000 and digits(part_names(d_out)) == [4])
 comes_back("D2 a bundle of more than 1,000 parts comes back whole", d_out, BIG_FILES)
 comes_back("D3 ... and so does that set named the old way (part99, part100, part999, part1000)", copy_set(d_out, "d_two_digit", "%02d"), BIG_FILES)
 
@@ -172,10 +188,12 @@ check("E7 the per-part check goes by part number too: files named part7 against 
 e5_dir = copy_set(b_out, "e_no_manifest", "%02d"); os.remove(manifest_of(e5_dir)); cut_short(e5_dir, 57)
 e5_dst = fresh("restore"); rc, out = unpack(e5_dir, e5_dst)
 check("E8 parts that cannot decode and no manifest beside them: refused (exit 2), nothing written", rc == 2 and tree(e5_dst) == {}, (rc, out))
-e6_dir = copy_set(b_out, "e_part_twice", "%02d"); shutil.copy(part_file(e6_dir, 7), part_file(e6_dir, 7).replace(".part07.", ".part007."))
+e6_dir = copy_set(b_out, "e_part_twice", "%02d"); real = part_file(e6_dir, 7); twin = real.replace(".part07.", ".part7."); t = open(real).read()
+open(twin, "w").write(("B" if t[0] != "B" else "C") + t[1:])       # the same part number under a second spelling, with other content
 e6_dst = fresh("restore"); rc, out = unpack(e6_dir, e6_dst)
-check("E9 one part in the folder twice under two spellings (part07 and part007): refused, nothing written, and the report says every listed part is intact",
-      rc == 2 and tree(e6_dst) == {} and "none of the %d parts the manifest lists" % n_b in out and "no per-part sha" not in out, (rc, out))
+check("E9 one part number under two spellings (part07 and part7): refused, nothing written; the report does not blame the intact part and names both files",
+      rc == 2 and tree(e6_dst) == {} and named(out) == [] and "none of the %d parts the manifest lists" % n_b in out and "no per-part sha" not in out
+      and all(os.path.basename(x) in out for x in (real, twin)), (rc, out))
 
 # ---- F. two sets in one folder: the newer stamp wins, whichever one is the big one ---------------------------------------------------
 f1 = fresh("f_old_big_new_small"); copy_set(b_out, "", "%02d", "2026-01-05_2301UTC", into=f1); copy_set(a_out, "", None, "2026-01-06_0102UTC", into=f1)
@@ -194,6 +212,29 @@ check("G2 `ws_bundle.py unpack DIR` restores them (exit 0)", u.returncode == 0, 
 check("G3 ... every file byte for byte", tree(g_dst) == REAL_FILES, "restored %d of %d" % (len(tree(g_dst)), len(REAL_FILES)))
 g_old = copy_set(g_out, "g_cli_old_names", "%02d"); g_dst2 = fresh("g_cli_restore_old"); u = cli(["unpack", g_old], g_dst2)
 check("G4 ... and the same set named the old way (the names a 100+ part set already on Drive has)", u.returncode == 0 and tree(g_dst2) == REAL_FILES, (u.returncode, u.stdout[-300:], u.stderr[-300:]))
+
+os.remove(part_file(g_old, 33)); g_dst3 = fresh("g_cli_refused"); u = cli(["unpack", g_old], g_dst3)
+check("G5 the command line answers a damaged set with exit status 2 and writes nothing", u.returncode == 2 and tree(g_dst3) == {} and "SHA256 MISMATCH" in u.stdout, (u.returncode, u.stdout[-300:], u.stderr[-300:]))
+
+# ---- H. copies under decorated names, and never an older set in place of the newest ---------------------------------------------------
+h1 = copy_set(b_out, "h_only_decorated", "%02d"); only = part_file(h1, 7); os.rename(only, only[:-4] + " (1).b64")
+h1_dst = fresh("restore"); rc, out = unpack(h1, h1_dst)
+check("H1 a part that is in the folder ONLY under a decorated name (part07 (1).b64) is used, and said so: the set comes back whole", rc == 0 and tree(h1_dst) == BIG_FILES and "(1).b64' as part 7" in out, (rc, out))
+h2 = fresh("h_newest_all_decorated"); copy_set(a_out, "", None, "2026-01-05_2301UTC", into=h2); copy_set(b_out, "", "%02d", "2026-01-06_0102UTC", into=h2)
+for x in part_names(h2):
+    if "2026-01-06_0102UTC" in x: os.rename(os.path.join(h2, x), os.path.join(h2, x[:-4] + " (1).b64"))
+comes_back("H2 every part of the NEWEST set under a decorated name, an older set beside it: the newest is restored, not the older", h2, BIG_FILES)
+h3 = fresh("h_newest_unnumbered"); copy_set(a_out, "", None, "2026-01-05_2301UTC", into=h3); put(h3, "workspace_state_2026-01-06_0102UTC.partial.b64", "AAAA")
+h3_dst = fresh("restore"); rc, out = unpack(h3, h3_dst)
+check("H3 the newest set has no numbered part at all: refused (exit 2) - the older set is NOT restored in its place", rc == 2 and tree(h3_dst) == {}, (rc, out))
+
+# ---- I. what did not change -----------------------------------------------------------------------------------------------------------
+i1 = copy_set(b_out, "i_no_manifest", "%02d"); os.remove(manifest_of(i1))
+comes_back("I1 an intact set without its manifest still restores (it cannot be checked - unchanged)", i1, BIG_FILES)
+i2 = copy_set(b_out, "i_windows_line_ends", "%02d")
+for x in part_names(i2):
+    t = open(os.path.join(i2, x)).read(); open(os.path.join(i2, x), "wb").write(t.replace("\n", "\r\n").encode() + b"\r\n")
+comes_back("I2 parts saved with Windows line ends and a trailing empty line still restore", i2, BIG_FILES)
 
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)
