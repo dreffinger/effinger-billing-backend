@@ -706,7 +706,7 @@
     },
     {
      "action": "Write a breach plan and rehearse it once",
-     "detail": "Name who assesses an incident, the 60-day federal deadline to notify patients and your state's deadline, which may be shorter (30 days in Florida). Require vendors by contract to tell you within days.",
+     "detail": "Name who assesses an incident. Federal rules give 60 days to notify patients, and state law may give less. Florida's law says 30 days but accepts notice given under the federal rule. Require vendors by contract to tell you within days.",
      "cadence": "once",
      "effort": "low",
      "impact": "high"

@@ -194,12 +194,13 @@
   {
    "slug": "fe-eligibility",
    "name": "Eligibility and coverage discovery",
-   "summary": "Confirming, electronically, that the patient is covered on the date of service, by which plan, and with what cost sharing. For patients seen repeatedly, coverage must be checked again each month, because plans change.",
+   "summary": "Confirming, electronically, that the patient is covered on the date of service, by which plan, and what the patient will owe. For patients seen repeatedly, coverage must be checked again each month, because plans change.",
    "good_looks_like": [
     "Eligibility is checked electronically before or on the date of service for every patient.",
     "Patients under ongoing care are re-checked at the start of every month.",
     "The full answer from the payer is stored as proof.",
-    "When no coverage is found, a search for other coverage, including Medicaid, is run before the patient is treated as self-pay."
+    "When no coverage is found, a search for other coverage, including Medicaid, is run before the patient is treated as self-pay.",
+    "The check confirms the plan type, whether the clinician is in its network, and whether a referral or authorization is needed."
    ],
    "failure_modes": [
     "Coverage is checked once at intake and never again, so a January plan change produces months of denials.",
@@ -223,7 +224,7 @@
     },
     {
      "action": "Re-verify all active patients monthly",
-     "detail": "Run the whole active list on the first business day and flag any change of plan, secondary coverage or hospice status.",
+     "detail": "Run the whole active list on the first business day. Medicare's answer shows Medicare Advantage enrollment, another primary payer, hospice periods and Qualified Medicare Beneficiary status. Flag every change.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
@@ -237,19 +238,36 @@
     },
     {
      "action": "Search for coverage before billing self-pay",
-     "detail": "Query Medicare, Medicaid and known plans by name and birth date.",
+     "detail": "Medicare's contractor portal can find a patient's Medicare number from name, birth date and Social Security number. Also check the state Medicaid portal and any coverage search your clearinghouse offers.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Monthly re-verification matters most where patients are seen repeatedly and can change plans during the year, as nursing facility residents and people with both Medicare and Medicaid can.",
+   "applies_when": "Every practice. Monthly re-verification matters most where patients are seen repeatedly and can change plans in any month, as nursing facility residents and people with both Medicare and Medicaid can (42 CFR 422.62 and 423.38). Hospital-based practices get coverage from the hospital's registration and should re-check it before billing.",
+   "vendor_refs": [
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Lists what to read in the payer's answer and re-checks coverage at every visit. Its figure of 20% to 30% of self-pay patients with hidden coverage has no source."
+    },
+    {
+     "item": "front-end-control-kit-workbook",
+     "note": "Adds a re-verification log recording stage, date, source and result of each check. It has no fields for Medicare Advantage enrollment, hospice or patients who may not be billed."
+    }
+   ],
    "sources": [
+    "cfr-162-925",
+    "cfr-422-62",
+    "cfr-423-38",
+    "cms-mln-check-eligibility",
+    "cms-getting-mbis",
+    "cms-qmb",
     "caqh-2024",
     "hfma-map-keys",
-    "cms-qmb"
+    "conifer-kpi-2023",
+    "x12-carc"
    ],
-   "evidence_note": "The cost advantage of electronic checks is measured by CAQH. The definition of the verification rate is HFMA's. Targets quoted by vendors, such as 98%, have no published source.",
+   "evidence_note": "Health plans must answer an electronic eligibility inquiry (45 CFR 162.925). CAQH, an industry nonprofit, measured the cost of each method. The Healthcare Financial Management Association (HFMA) defines the verification rate and sets no target. The common 98% target traces to a vendor white paper.",
    "metrics": [
     {
      "slug": "fe-eligibility-verified-rate",
@@ -259,15 +277,15 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "HFMA defines the measure and publishes no target. An electronic check cost $2.00 and 4 minutes against $8.57 and 16 minutes by hand (CAQH, 2023 data). From first principles, aim for every encounter.",
-     "confidence": "low",
-     "data_hint": "Eligibility transaction logs matched to encounters.",
-     "vendor_claim": "The purchased library repeats a 98% or higher target.",
-     "vendor_verdict": "Unverifiable. No published source sets a target. The direction is right.",
+     "benchmark_note": "HFMA defines the measure and publishes no target. Aim for every encounter. Provider cost per check (CAQH, 2023 data): $2.00 and 4 minutes electronic, $4.46 and 8 minutes by portal, $8.57 and 16 minutes by phone or fax.",
+     "confidence": "none",
      "sources": [
       "hfma-map-keys",
       "caqh-2024"
-     ]
+     ],
+     "data_hint": "Eligibility transaction logs matched to encounters.",
+     "vendor_claim": "The purchased front-end playbook says the rate should approach 100% and treats under 95% as a workflow failure. Other documents in the library use 80% or 85% as the alarm line.",
+     "vendor_verdict": "Unverifiable. No document cites a source and the thresholds disagree with each other. The direction is right."
     },
     {
      "slug": "fe-eligibility-denial-rate",
@@ -277,9 +295,12 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. These denials are almost entirely preventable, so any sustained level above about 1% deserves a root-cause look.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend by payer. Many of these denials can be prevented by a check on the date of service, so a rising share deserves a root-cause look. Retroactive plan changes cannot be prevented.",
      "confidence": "none",
-     "data_hint": "Remittance reason codes for coverage terminated, not eligible and coverage lapse."
+     "sources": [
+      "x12-carc"
+     ],
+     "data_hint": "Remittance reason codes 26 (before coverage began), 27 (after coverage ended), 200 (lapse in coverage) and 177 (eligibility requirements not met)."
     },
     {
      "slug": "fe-no-payer-rate",
@@ -303,10 +324,10 @@
     "For each date of service the practice knows whether a nursing facility patient was in a Part A skilled stay.",
     "Hospice election dates and the hospice's name are recorded the day they are learned.",
     "Medicare Advantage enrollment and plan changes are caught by the monthly check.",
-    "Patients who may not be billed for Medicare cost sharing are flagged."
+    "Qualified Medicare Beneficiaries, low-income patients whose Medicare deductibles and coinsurance may not be billed to them, are flagged."
    ],
    "failure_modes": [
-    "Every nursing facility visit is billed with the skilled nursing place of service because nobody tracks when the Part A stay ended.",
+    "Every nursing facility visit gets one place-of-service code because nobody tracks Part A stays. Coding a Part A patient as a long-stay resident can create an overpayment that Medicare recovers.",
     "A Medicare Advantage member elects hospice and claims keep going to the plan, which denies them.",
     "A claim goes to Medicare when a workers' compensation or employer plan was primary.",
     "Statements are sent to patients the practice is forbidden to bill."
@@ -327,34 +348,56 @@
     },
     {
      "action": "Record hospice elections immediately",
-     "detail": "Election date, hospice name and whether the practice's clinician is the designated attending. Apply the hospice modifiers.",
+     "detail": "Election date, hospice name and whether the practice's clinician is the designated attending. Bill Original Medicare with modifier GV (attending, related care) or GW (unrelated care), even for Medicare Advantage members.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Set place of service from status",
-     "detail": "Skilled nursing facility code during a Part A stay, nursing facility code otherwise, for each date of service.",
+     "detail": "Skilled nursing facility code (31) during a Part A stay, nursing facility code (32) otherwise, for each date of service. For 2026 visits the two codes pay differently. From 2027 visit codes pay the same.",
      "cadence": "daily",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Flag patients who may not be billed",
-     "detail": "Mark Qualified Medicare Beneficiaries and suppress statements for Medicare cost sharing.",
+     "detail": "Mark Qualified Medicare Beneficiaries, suppress statements for Medicare cost sharing and refund anything already collected.",
      "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Ask about coverage that pays before Medicare",
+     "detail": "At intake and each visit, ask the patient or representative about a current employer's plan, workers' compensation, and auto or liability insurance. Bill that payer first.",
+     "cadence": "per event",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Essential for practices that see nursing facility, hospice or dual-eligible patients. Office practices meet the same issues less often, mainly with Medicare Advantage switches and other primary payers.",
+   "applies_when": "Essential for practices that see nursing facility, hospice or dual-eligible patients. Office and hospital-based practices meet the same issues less often, mainly with Medicare Advantage switches and other primary payers such as workers' compensation or auto insurance.",
+   "vendor_refs": [
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Says a Medicare Secondary Payer questionnaire must be completed, a duty Medicare states for hospitals. Practices must ask about other coverage. Silent on hospice, Part A stays and protected beneficiaries."
+    },
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "Treats each Medicare Advantage plan as a separate payer with its own rules, which is right. It never mentions that Original Medicare pays once a plan member elects hospice."
+    }
+   ],
    "sources": [
     "cms-cpm-ch12",
     "cms-cpm-ch11",
     "cms-qmb",
-    "cms-pfs-2027"
+    "cms-mln-msp",
+    "cms-mln-check-eligibility",
+    "oig-pos-2023",
+    "fr-pfs-2027-final",
+    "cms-pfs-2027",
+    "x12-carc"
    ],
-   "evidence_note": "These are Medicare rules: place of service by Part A status, hospice billing modifiers, and the ban on billing Qualified Medicare Beneficiaries. No benchmark exists for how often practices get them wrong.",
+   "evidence_note": "Medicare rules: place of service by Part A status (Claims Processing Manual chapter 12, section 30.6.13), hospice modifiers (chapter 11) and no billing of Qualified Medicare Beneficiaries. Federal auditors found $22.5 million overpaid in 2019 and 2020 on services coded 32 during Part A stays.",
    "metrics": [
     {
      "slug": "fe-wrong-payer-denial-rate",
@@ -366,7 +409,10 @@
      "cadence": "monthly",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Track hospice and plan-switch denials as their own lines, since each has a specific upstream fix.",
      "confidence": "none",
-     "data_hint": "Remittance reason codes for other payer primary, covered by a managed care plan, hospice and coordination of benefits."
+     "sources": [
+      "x12-carc"
+     ],
+     "data_hint": "Remittance reason codes 22 (another payer may cover), 24 (covered by a managed care plan), 109 (send to the correct payer) and B9 (patient in hospice)."
     }
    ]
   },

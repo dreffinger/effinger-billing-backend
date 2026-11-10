@@ -53,12 +53,19 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. Medians come mostly from office-based groups. Hospital and facility rounding produces different visit mixes, so compare a clinician first with their own history and with audited coding.",
+   "applies_when": "Every practice, but survey medians come mostly from large office-based groups, so hospital, facility and home-visit clinicians should be compared first with their own history and audited coding. Medicare may review an unreasonable number of same-day visits by one physician to many patients at one facility (Claims Processing Manual, chapter 12, section 30.6.13).",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Adds a simple capacity model (clinic hours times visits per hour) and a utilization measure. Its 85% to 95% utilization target and its work-unit medians have no source."
+    }
+   ],
    "sources": [
     "amga-2026",
-    "cms-puf"
+    "cms-puf",
+    "cms-cpm-ch12"
    ],
-   "evidence_note": "Work-unit medians are survey data from mostly large groups. CMS publishes every clinician's Medicare services by code, so productivity outliers are visible to auditors.",
+   "evidence_note": "Work-unit medians are survey data from mostly large groups. The Centers for Medicare and Medicaid Services (CMS) publishes each clinician's Medicare services by code, leaving out codes with 10 or fewer patients, so productivity outliers are visible to auditors.",
    "metrics": [
     {
      "slug": "co-encounters-per-clinician-day",
@@ -68,7 +75,7 @@
      "unit": "count",
      "direction": "range",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Sustainable volume depends on setting, visit type and travel, so set the range yourself.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Sustainable volume depends on setting, visit type and travel, so set the range yourself. Very high daily counts at one facility can draw Medicare review.",
      "confidence": "none",
      "data_hint": "Billing system encounters by rendering clinician and date."
     },
@@ -82,12 +89,14 @@
      "cadence": "annual",
      "benchmark_typical": "about 6,500 for family physicians and 4,600 for primary care nurse practitioners",
      "benchmark_red": "far above the median without audit support",
-     "benchmark_note": "AMGA medians, 2025 data: family medicine 6,505, internal medicine 6,390, primary care nurse practitioner 4,647. Mostly large groups. The red flag is a judgment.",
+     "benchmark_note": "AMGA medians, 2025 data, 451 mostly large groups: family medicine 6,505, internal medicine 6,390, primary care nurse practitioner 4,647. Geriatrics and facility-based medians are not in the free release. The red flag is a judgment.",
      "confidence": "medium",
-     "data_hint": "Services by code and rendering clinician, multiplied by the work value in the Medicare fee schedule.",
      "sources": [
       "amga-2026"
-     ]
+     ],
+     "data_hint": "Services by code and rendering clinician, multiplied by the work value in the Medicare fee schedule.",
+     "vendor_claim": "The purchased financial playbook gives median yearly work units of about 5,200 for family medicine and 4,000 for internal medicine, with red flags below 3,200 and 3,000.",
+     "vendor_verdict": "Unverifiable. It cites MGMA loosely with no table or year. AMGA's published 2025 medians are 6,505 and 6,390, so the internal medicine figure looks far too low."
     }
    ]
   },
@@ -143,12 +152,14 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice that follows patients over time. Office practices track panel size per clinician. Facility practices track census per site, where a change of facility leadership can move many patients at once.",
+   "applies_when": "Every practice that follows patients over time: office practices track panel size per clinician, and facility or home-visit practices track census per site. Nursing facility residents have a federal right to choose their attending physician (42 CFR 483.10), yet a change in facility leadership can still move many patients at once.",
+   "vendor_refs": [],
    "sources": [
     "ncqa-pcmh",
-    "mgma-bok"
+    "raffoul-panel-2016",
+    "cfr-483-10"
    ],
-   "evidence_note": "Panel and census management are core concepts in the medical-home model and practice management guidance. No benchmark applies across settings.",
+   "evidence_note": "The National Committee for Quality Assurance (NCQA) medical-home model makes knowing and managing your patients a core concept. Census tracking for visiting practices is common practice, not a published standard. The often-quoted panel of 2,500 has no research basis.",
    "metrics": [
     {
      "slug": "co-active-census",
@@ -158,8 +169,11 @@
      "unit": "count",
      "direction": "info",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Define active once, for example seen within 90 days or currently resident, and keep the definition fixed.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Define active once, for example seen within 90 days or currently resident, and keep the definition fixed. The familiar 2,500-patient office panel has no research basis (Raffoul and colleagues, 2016).",
      "confidence": "none",
+     "sources": [
+      "raffoul-panel-2016"
+     ],
      "data_hint": "The active-patient list or distinct patients with a visit in the period."
     },
     {
@@ -170,7 +184,7 @@
      "unit": "count",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Growth is only good while clinicians have capacity, so read it beside visits per clinician day.",
      "confidence": "none",
      "data_hint": "Month-end census counts by site."
     }
@@ -190,7 +204,7 @@
     "A nursing facility is cited because a required physician visit was late or done by a clinician not allowed to do it.",
     "Visits follow the clinician's memory of who was seen recently.",
     "Wellness visits are never offered, or are billed too soon after the last one.",
-    "Stable patients are seen far more often than their condition requires, which invites review."
+    "Stable patients are seen more often than their condition requires. Medicare pays for extra visits only when each is medically necessary for that patient."
    ],
    "key_questions": [
     "Does every patient have a next-visit-due date?",
@@ -215,26 +229,33 @@
     },
     {
      "action": "Schedule regulatory visits from admission",
-     "detail": "Federal rules require a physician visit at least every 30 days for the first 90 days, then every 60 days.",
+     "detail": "42 CFR 483.30 requires a physician visit at least every 30 days for the first 90 days, then every 60 days. A visit counts as timely up to 10 days after it was due.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Offer wellness visits yearly",
-     "detail": "Check the date of the last one in the eligibility answer before scheduling.",
+     "detail": "Medicare covers one every 12 months. Confirm the date of the last one before scheduling, through the Medicare eligibility check or the patient, because another clinician may have done it.",
      "cadence": "monthly",
      "effort": "medium",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice with continuing patients. The nursing facility schedule is federal regulation, and in a skilled nursing facility the first comprehensive visit must be done by the physician personally.",
+   "applies_when": "Every practice with continuing patients, with intervals set from the care plan in office and home-visit work. Under 42 CFR 483.30, in a skilled nursing facility the physician must make the first required visit personally and may then alternate required visits with a nurse practitioner, physician assistant or clinical nurse specialist.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Adds a monthly due list and three-channel reminders for wellness visits. Its 70% completion target and 'average below 40%' have no source."
+    }
+   ],
    "sources": [
     "cfr-483-30",
     "cms-cpm-ch12",
+    "cms-wellness-visits",
     "cms-cert-2025"
    ],
-   "evidence_note": "The nursing facility visit schedule is federal regulation. Medicare's manual warns that an unreasonable number of visits may be reviewed. Wellness visit claims have a measured error rate of about 14%.",
+   "evidence_note": "The nursing facility schedule is federal regulation. Medicare's manual pays visits beyond it only when medically necessary for that patient. Subsequent wellness visits (G0439) had a 13.6% overpayment rate in Medicare's fiscal 2025 claim review.",
    "metrics": [
     {
      "slug": "co-visits-on-schedule",
@@ -244,8 +265,12 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "weekly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. For federally required nursing facility visits the standard is 100%.",
-     "confidence": "none",
+     "benchmark_best": "100% of required nursing facility visits on time",
+     "benchmark_note": "The 100% standard is federal regulation for required nursing facility visits only (42 CFR 483.30, timely up to 10 days after the due date). For other patient types no public benchmark was found, so compare with your own trend.",
+     "confidence": "high",
+     "sources": [
+      "cfr-483-30"
+     ],
      "data_hint": "Next-visit-due dates compared with today's date."
     },
     {
@@ -258,7 +283,9 @@
      "cadence": "quarterly",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Plans and accountable care organizations often set their own targets.",
      "confidence": "none",
-     "data_hint": "Wellness visit codes by patient and date, against the active Medicare list."
+     "data_hint": "Wellness visit codes by patient and date, against the active Medicare list.",
+     "vendor_claim": "The purchased geriatrics guide says the average practice completes wellness visits for under 40% of eligible patients and that well-run practices reach 70% or more.",
+     "vendor_verdict": "Unverifiable. No source is given for either figure, and no national rate for practices was found to test them against."
     }
    ]
   },
@@ -301,7 +328,7 @@
     },
     {
      "action": "Bill under the performing clinician",
-     "detail": "Medicare pays advanced practice clinicians 85% of the physician rate under their own number.",
+     "detail": "Medicare pays nurse practitioners and physician assistants 85% of the physician rate under their own number (42 CFR 414.56 and 414.52). Billing their visits under the physician is allowed only in an office under the incident-to rules.",
      "cadence": "daily",
      "effort": "low",
      "impact": "high"
@@ -314,14 +341,17 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Any practice with more than one type of clinician or with clinical staff. The billing rules differ by setting: billing a staff member's work under the physician is an office concept and does not apply in hospitals or skilled nursing facilities.",
+   "applies_when": "Any practice with more than one type of clinician or with clinical staff. Billing differs by setting: work billed under the physician ('incident to', 42 CFR 410.26) is not payable in hospitals or skilled nursing facilities, and shared visits are billable in hospitals and skilled nursing facilities but not for other nursing facility residents.",
+   "vendor_refs": [],
    "sources": [
     "cfr-414-56",
+    "cfr-414-52",
+    "cfr-410-26",
     "cfr-483-30",
     "cms-cpm-ch12",
     "mgma-app-2026"
    ],
-   "evidence_note": "Payment and delegation rules are federal regulation and Medicare manual text. Staffing ratios are MGMA survey medians for office-based primary care.",
+   "evidence_note": "Payment and delegation rules are federal regulation and Medicare manual text. Staffing ratios are Medical Group Management Association (MGMA) survey medians for office-based primary care.",
    "metrics": [
     {
      "slug": "co-app-per-physician",
@@ -332,12 +362,12 @@
      "direction": "info",
      "cadence": "annual",
      "benchmark_typical": "0.80 in primary care",
-     "benchmark_note": "MGMA median, 2025 data. Not a target. The right ratio depends on which visits must be done by a physician in the practice's setting.",
+     "benchmark_note": "MGMA median for primary care practices that use these clinicians, 2025 data (middle half 0.44 to 1.39). Not a target. The right ratio depends on which visits a physician must do in the practice's setting.",
      "confidence": "medium",
-     "data_hint": "Payroll.",
      "sources": [
       "mgma-app-2026"
-     ]
+     ],
+     "data_hint": "Payroll."
     },
     {
      "slug": "co-support-staff-per-clinician",
@@ -348,12 +378,12 @@
      "direction": "info",
      "cadence": "annual",
      "benchmark_typical": "4.42 per physician in primary care",
-     "benchmark_note": "MGMA median per physician, 2025 data, for office-based primary care. Practices with no front desk or with automated billing run far lower. Use it as a reference, not a target.",
+     "benchmark_note": "MGMA median per physician, 2025 data, office-based primary care: about 2.2 clinical, 2.1 front office, 0.5 business and 0.5 ancillary staff. A practice with no front desk should expect far less. A reference, not a target.",
      "confidence": "medium",
-     "data_hint": "Payroll.",
      "sources": [
       "mgma-app-2026"
-     ]
+     ],
+     "data_hint": "Payroll. To compare with MGMA, divide by physicians only."
     }
    ]
   },
@@ -362,16 +392,16 @@
    "name": "Care-management programs",
    "summary": "Running monthly care management as a real program: who is eligible, who has consented, what the care plan says, who does the work, how time is logged, and what it achieves. The billing rules are covered under charges and coding.",
    "good_looks_like": [
-    "An enrollment list shows each patient's eligibility, consent date and care plan date.",
+    "An enrollment list shows each patient's qualifying conditions, initiating visit where one is required, consent date and care plan date.",
     "Named staff do the work, with enough hours to cover the minutes billed.",
     "Every contact is logged with date, person, minutes and what was done.",
     "Each month the total minutes logged are compared with staff hours available."
    ],
    "failure_modes": [
     "The whole census is enrolled and billed before staff, logs or consent exist.",
-    "Time by a facility's own nurses is counted as the practice's staff time.",
+    "Time spent by a facility's own nurses, who are not the practice's employed or contracted staff, is counted toward the practice's minutes.",
     "Minutes are estimated at month end.",
-    "Billing continues for patients who died, moved, entered hospice or are managed by another practice."
+    "Billing continues after a patient died, moved or chose another practice, or in a month when home health or hospice supervision was also billed."
    ],
    "key_questions": [
     "How many patients are enrolled, and does each have documented consent and a care plan?",
@@ -382,7 +412,7 @@
    "actions": [
     {
      "action": "Build the enrollment list",
-     "detail": "Eligible conditions, consent date, care plan date, assigned staff member.",
+     "detail": "Two or more qualifying chronic conditions, initiating visit if not seen within a year, consent date (verbal is allowed if documented), care plan date, assigned staff member.",
      "cadence": "monthly",
      "effort": "medium",
      "impact": "high"
@@ -403,7 +433,7 @@
     },
     {
      "action": "Remove patients who no longer qualify",
-     "detail": "Deaths, discharges, hospice elections and transfers of care, checked before each billing cycle.",
+     "detail": "Deaths, moves and transfers of care, checked before each billing cycle. Do not bill a month in which home health or hospice supervision (G0181, G0182) is billed.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
@@ -416,14 +446,25 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Practices providing primary care to patients with chronic conditions, in offices, at home or in facilities. For facility residents the work must be done by the practice's own staff, and the place of service on the claim changes the payment.",
+   "applies_when": "Practices providing primary care to patients with chronic conditions, in offices, at home or in facilities. For facility residents the counted time must come from staff the practice employs or contracts and supervises, not facility staff, and the facility place of service pays a quarter to a third less (2024 Medicare averages).",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Adds a count of eligible against billed patients and a monthly time-log routine. Wrongly says care management and transitional care cannot be billed in the same month."
+    },
+    {
+     "item": "primarycare-companion-guide",
+     "note": "Adds a four-point check before each monthly claim: consent, current care plan, minutes and one billing clinician. Its revenue estimate assumes most eligible patients are billed every month."
+    }
+   ],
    "sources": [
     "cms-mln-ccm",
     "cms-ccm-faq",
     "cms-apcm",
-    "cms-cert-2025"
+    "cms-cert-2025",
+    "cms-puf"
    ],
-   "evidence_note": "Requirements are set out in CMS booklets and its 2022 question-and-answer document. Medicare's 2025 review found most standard care-management claims improper, chiefly for missing documentation, so the operational controls matter.",
+   "evidence_note": "Requirements come from a Centers for Medicare and Medicaid Services (CMS) booklet and its 2022 questions and answers. Medicare's fiscal 2025 review found 65% of payments for the standard code (99490) improper, all for missing or insufficient documentation, from 68 sampled claims.",
    "metrics": [
     {
      "slug": "co-care-mgmt-enrollment",
@@ -433,12 +474,14 @@
      "unit": "percent",
      "direction": "range",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A very high share enrolled at the most intensive code is a reason to audit. Nationally the complex code is about 8% of care-management claims.",
-     "confidence": "low",
-     "data_hint": "The enrollment list against the active-patient list.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A very high share enrolled at the most intensive code is a reason to audit: nationally the complex code was about 8% of care-management claims in 2024 Medicare data.",
+     "confidence": "none",
      "sources": [
       "cms-puf"
-     ]
+     ],
+     "data_hint": "The enrollment list against the active-patient list.",
+     "vendor_claim": "The purchased primary care guide says to enroll the eligible population within 60 days, and the neurology guide to bill every qualifying patient every month.",
+     "vendor_verdict": "Not supported. Each patient needs consent and logged staff time. With 65% of sampled 99490 payments found improper in 2025, speed is the wrong goal."
     },
     {
      "slug": "co-care-mgmt-minutes",
@@ -448,13 +491,17 @@
      "unit": "count",
      "direction": "range",
      "cadence": "monthly",
-     "benchmark_best": "at or above the threshold of the code billed, for every patient",
-     "benchmark_note": "Thresholds from CMS: 20 minutes for standard care management, 60 for complex. A code billed without that many logged minutes is not supported.",
+     "benchmark_best": "every billed patient-month at or above the code's threshold",
+     "benchmark_red": "any billed month below the threshold",
+     "benchmark_note": "CMS thresholds: 20 minutes of staff time for 99490, 30 minutes by the clinician for 99491, 60 for complex 99487. An average hides shortfalls, so also count billed months below threshold. Advanced primary care management codes have no minute threshold.",
      "confidence": "high",
-     "data_hint": "The time log, summed by patient and month.",
      "sources": [
-      "cms-mln-ccm"
-     ]
+      "cms-mln-ccm",
+      "cms-apcm"
+     ],
+     "data_hint": "The time log, summed by patient and month.",
+     "vendor_claim": "The purchased geriatrics and primary care guides give at least 20 minutes for 99490, 30 for 99491 and 60 for 99487.",
+     "vendor_verdict": "Supported. These match the thresholds in the CMS booklet."
     }
    ]
   },
@@ -483,7 +530,7 @@
    "actions": [
     {
      "action": "Measure access monthly",
-     "detail": "Third next available appointment for offices. Days from admission to first visit for facilities.",
+     "detail": "Third next available appointment for offices. Days from admission to first visit for facilities, where 42 CFR 483.30 allows at most 30 days and a practice should set a much shorter standard.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "medium"
@@ -511,10 +558,12 @@
     }
    ],
    "applies_when": "Office practices use the appointment measures. Hospital, facility and home-visit practices have no appointment schedule, and the equivalent measures are time to first visit, patients per trip and travel time.",
+   "vendor_refs": [],
    "sources": [
-    "mgma-app-2026"
+    "mgma-app-2026",
+    "cfr-483-30"
    ],
-   "evidence_note": "Appointment access figures are MGMA medians for office-based primary care. No published benchmark exists for rounding efficiency.",
+   "evidence_note": "Appointment access figures are Medical Group Management Association (MGMA) medians for office-based primary care, 2025 data. No published benchmark exists for rounding or travel efficiency.",
    "metrics": [
     {
      "slug": "co-third-next-available",
@@ -525,12 +574,12 @@
      "direction": "lower",
      "cadence": "monthly",
      "benchmark_typical": "8.0 days for established patients, 13.7 for new",
-     "benchmark_note": "MGMA primary care medians, 2025 data. Applies to scheduled office practices only.",
+     "benchmark_note": "MGMA primary care medians, 2025 data. The same report gives a 6.0% no-show rate and 11.0% of visits booked the same day. Applies to scheduled office practices only.",
      "confidence": "medium",
-     "data_hint": "The scheduling system.",
      "sources": [
       "mgma-app-2026"
-     ]
+     ],
+     "data_hint": "The scheduling system."
     },
     {
      "slug": "co-patients-per-site-visit",
@@ -549,7 +598,7 @@
   {
    "slug": "co-coverage-call",
    "name": "Call coverage and after-hours care",
-   "summary": "Who answers when a patient, family or facility needs a clinician outside working hours, and who covers when a clinician is away. Weak coverage sends patients to the emergency department and wears out clinicians.",
+   "summary": "Who answers when a patient, family or facility needs a clinician outside working hours, and who covers when a clinician is away. Weak coverage can send patients to the emergency department and wears out clinicians.",
    "good_looks_like": [
     "A written schedule shows who is on call every night and weekend.",
     "A covering clinician is named for each planned absence.",
@@ -598,12 +647,16 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice responsible for patients outside office hours. The burden is heaviest in small hospital and facility practices, where calls come from nursing staff at all hours.",
+   "applies_when": "Every practice responsible for patients outside office hours, and heaviest in small hospital and facility practices, where nursing staff call at all hours. Nursing facilities must arrange physician services 24 hours a day for emergencies and a second physician when the attending is unavailable (42 CFR 483.30), and monthly care-management billing requires 24-hour access for urgent needs.",
+   "vendor_refs": [],
    "sources": [
+    "cfr-483-30",
+    "cms-mln-ccm",
+    "cms-apcm",
     "ama-burnout-2026",
     "ihi-aims"
    ],
-   "evidence_note": "Professional guidance. The link between workload and burnout is measured. No benchmark for call volume exists.",
+   "evidence_note": "Coverage duties for nursing facilities and for care-management billing are federal rules. The rest is professional judgment. An American Medical Association survey found 41.9% of physicians reported a burnout symptom in 2025. No benchmark for call volume exists.",
    "metrics": [
     {
      "slug": "co-after-hours-contacts",
@@ -622,7 +675,7 @@
   {
    "slug": "co-transitions",
    "name": "Care transitions and communication",
-   "summary": "The handoffs when a patient moves between hospital, nursing facility, assisted living and home. Most medication errors and avoidable readmissions happen here, and Medicare pays for managing the transition back to the community.",
+   "summary": "The handoffs when a patient moves between hospital, nursing facility, assisted living and home. Medication errors and avoidable readmissions often start at these handoffs, and Medicare pays for managing the transition back to the community.",
    "good_looks_like": [
     "The practice learns of every admission and discharge within a day.",
     "Medications are reconciled at each move.",
@@ -644,7 +697,7 @@
    "actions": [
     {
      "action": "Set up admission and discharge notices",
-     "detail": "From hospitals, facilities, health information exchanges or plan alerts.",
+     "detail": "From hospitals, facilities, health information exchanges or plan alerts. Hospitals with capable electronic records must make a reasonable effort to send admission and discharge notices to the patient's established primary care clinician (42 CFR 482.24).",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
@@ -658,7 +711,7 @@
     },
     {
      "action": "Run a transitional care routine",
-     "detail": "Contact within two business days and a visit within 7 days for high-complexity or 14 days for moderate-complexity decisions.",
+     "detail": "Contact within two business days and a visit within 7 days for high-complexity or 14 days for moderate-complexity decisions. Reconcile medications on or before the visit date.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "medium"
@@ -671,12 +724,19 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice whose patients are hospitalized. Transitional care management is payable only when the patient returns to a community setting such as home or assisted living, and only one clinician may bill it.",
-   "sources": [
-    "cms-cert-2025",
-    "ihi-aims"
+   "applies_when": "Every practice whose patients are hospitalized or move between settings. Transitional care management is payable only when the patient returns to a community setting such as home or assisted living, including after a skilled nursing facility stay, and only one clinician may bill it.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Adds a discharge-tracking routine for transitional care. Wrongly puts medication reconciliation at two business days and omits that the patient must return to a community setting."
+    }
    ],
-   "evidence_note": "The transitional care requirements are set by CMS. Evidence that timely follow-up lowers readmissions is well established. No benchmark for capture rate was found.",
+   "sources": [
+    "cms-tcm",
+    "bindman-cox-2018",
+    "cfr-482-24"
+   ],
+   "evidence_note": "Transitional care requirements are set by the Centers for Medicare and Medicaid Services (CMS). In Medicare claims for 2013 to 2015, patients who received it had lower costs and death rates the following month. That study is observational.",
    "metrics": [
     {
      "slug": "co-tcm-capture",
@@ -686,16 +746,23 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
-     "confidence": "none",
-     "data_hint": "Discharge notices matched to contact logs and visit dates."
+     "benchmark_typical": "7% of eligible Medicare discharges nationally (2015)",
+     "benchmark_note": "Measured, not a target: in Medicare fee-for-service claims, transitional care was billed after 7.0% of eligible discharges in 2015 (Bindman and Cox, JAMA Internal Medicine 2018). Dated and national. Nothing newer was found, so compare with your own trend.",
+     "confidence": "medium",
+     "sources": [
+      "bindman-cox-2018",
+      "cms-tcm"
+     ],
+     "data_hint": "Discharge notices matched to contact logs and visit dates.",
+     "vendor_claim": "The purchased primary care guide wants every hospital discharge caught within 24 hours and transitional care billed for each one.",
+     "vendor_verdict": "Partly supported. The two-day and 7 or 14-day windows match CMS. Only discharges to a community setting qualify, and one clinician may bill."
     }
    ]
   },
   {
    "slug": "co-documentation-workflow",
    "name": "Documentation workflow",
-   "summary": "How notes get written: templates, dictation, scribes and artificial intelligence tools, and how quickly notes are finished. Slow or copied notes delay billing, add after-hours work and weaken audit defense.",
+   "summary": "How notes get written: templates, dictation, scribes and artificial intelligence (AI) tools, and how quickly notes are finished. Slow or copied notes delay billing, add after-hours work and weaken audit defense.",
    "good_looks_like": [
     "Notes are completed the day of the visit, or within 72 hours at most.",
     "Templates prompt for what the code and the payer require without filling it in automatically.",
@@ -704,7 +771,7 @@
    ],
    "failure_modes": [
     "Notes are finished days later from memory.",
-    "Copied-forward text makes every note identical, which auditors treat as unsupported.",
+    "Copied-forward text makes every note look the same, so a reviewer cannot tell what was done at each visit.",
     "AI-drafted notes are signed in bulk without reading.",
     "Clinicians spend their evenings charting."
    ],
@@ -717,7 +784,7 @@
    "actions": [
     {
      "action": "Set a same-day standard for notes",
-     "detail": "With a weekly list of unsigned notes by clinician.",
+     "detail": "Medicare expects a service to be documented during or as soon as practicable after it is provided (Claims Processing Manual, chapter 12, section 30.6.1). Keep a weekly list of unsigned notes by clinician.",
      "cadence": "weekly",
      "effort": "low",
      "impact": "high"
@@ -731,7 +798,7 @@
     },
     {
      "action": "Require individual sign-off on drafted notes",
-     "detail": "Medicare's manual requires the practitioner to review and sign documentation captured by a scribe or AI tool.",
+     "detail": "Under Medicare's Program Integrity Manual (chapter 3, section 3.3.2.4), the clinician's signature affirms that the note documents the care given, for scribe and AI drafts alike. So each note must be read before signing.",
      "cadence": "daily",
      "effort": "low",
      "impact": "high"
@@ -745,12 +812,19 @@
     }
    ],
    "applies_when": "Every practice. Rounding practices document on the move, so mobile tools and same-day completion matter most there.",
+   "vendor_refs": [
+    {
+     "item": "kpi-09-charge-lag",
+     "note": "Adds daily charge submission for rounding work and a trace of where time is lost between visit and charge. Dangerous advice: file near a deadline regardless of documentation completeness."
+    }
+   ],
    "sources": [
     "cms-pim-ch3",
+    "cms-cpm-ch12",
     "mgma-stat-ar-2026",
     "ama-burnout-2026"
    ],
-   "evidence_note": "The sign-off requirement is Medicare manual text. MGMA advises closing notes within 72 hours. Same-day completion is a practical standard, not a rule.",
+   "evidence_note": "The sign-off rule and the expectation of prompt documentation are Medicare manual text. The Medical Group Management Association (MGMA) advises closing encounters within 72 hours. Same-day completion is a practical standard, not a rule.",
    "metrics": [
     {
      "slug": "co-same-day-note-rate",
@@ -760,12 +834,14 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No published benchmark. MGMA advises closing notes within 72 hours, so the share closed within that window is a second useful figure.",
-     "confidence": "low",
-     "data_hint": "Health record report of note signature time against visit date.",
+     "benchmark_note": "No published benchmark was found. MGMA advises clinicians to close encounters within 72 hours (2026 article, advice not data), so the share closed within that window is a second useful figure. Compare with your own trend.",
+     "confidence": "none",
      "sources": [
       "mgma-stat-ar-2026"
-     ]
+     ],
+     "data_hint": "Health record report of note signature time against visit date.",
+     "vendor_claim": "The purchased charge-lag guide expects office notes finished by the end of the business day and hospital notes within 24 hours.",
+     "vendor_verdict": "Unverifiable as a benchmark. Reasonable as an internal standard, but the guide cites no source for it."
     }
    ]
   },
@@ -821,12 +897,15 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Every practice. Office practices can use standard surveys. Practices serving frail or cognitively impaired patients rely on families and facility staff for feedback.",
+   "applies_when": "Every practice. Office practices can use standard surveys, while practices serving frail or cognitively impaired patients rely on families and facility staff for feedback. Nursing facility residents may choose their attending physician (42 CFR 483.10), so resident and family experience affects census directly.",
+   "vendor_refs": [],
    "sources": [
     "ahrq-cgcahps",
+    "ahrq-cgcahps-chartbook-2019",
+    "cfr-483-10",
     "ihi-aims"
    ],
-   "evidence_note": "The standard survey is a federal instrument. Its last national results are from 2019, since submissions were suspended in 2021. No newer national benchmark exists.",
+   "evidence_note": "The standard office survey, the Consumer Assessment of Healthcare Providers and Systems (CAHPS) Clinician and Group survey, is a federal instrument. Its last national results are for 2019, because new submissions were suspended in 2021. No newer national benchmark exists.",
    "metrics": [
     {
      "slug": "co-experience-score",
@@ -837,12 +916,13 @@
      "direction": "higher",
      "cadence": "quarterly",
      "benchmark_typical": "79% rated their clinician 9 or 10 out of 10",
-     "benchmark_note": "CAHPS Clinician and Group database, adult survey, 2019. Provider communication 85%, access 65%. Office-based practices only and now dated.",
-     "confidence": "low",
-     "data_hint": "A short survey or structured interviews.",
+     "benchmark_note": "AHRQ CAHPS Clinician and Group database, adult survey, 2019 chartbook (fielded January 2019 to June 2020, 2,002 practice sites). Provider communication 85%, access 65%. Office-based practices only and now dated.",
+     "confidence": "medium",
      "sources": [
+      "ahrq-cgcahps-chartbook-2019",
       "ahrq-cgcahps"
-     ]
+     ],
+     "data_hint": "A short survey or structured interviews."
     },
     {
      "slug": "co-complaints-rate",

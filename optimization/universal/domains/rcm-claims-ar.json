@@ -941,7 +941,8 @@
     "cfr-45-149-510",
     "kff-ma-pa",
     "vabson-2025",
-    "kodiak-2026"
+    "kodiak-2026",
+    "pwc-hfma-2021"
    ],
    "evidence_note": "Medicare deadlines and remedies are regulation (42 CFR part 405). Medicare Advantage rules come from 42 CFR part 422 and federal guidance. Overturn rates are measured, but vary two-fold with the denominator. No study supports claims about appeal templates.",
    "metrics": [
@@ -953,15 +954,16 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_best": "about 80% (Medicare Advantage authorization appeals)",
+     "benchmark_best": "about 80% (prior authorization appeals, and a 2021 hospital target)",
      "benchmark_typical": "42% to 57% (measured, definitions vary)",
-     "benchmark_note": "Medicare data: 48% of Part B first-level appeals decided in 2025 were fully or partly favorable. Health Affairs: 57% of Medicare Advantage claim denials overturned (2019). Kodiak: 42.1% (2025). KFF: 80.7% of appealed Medicare Advantage prior authorization denials overturned (2024).",
+     "benchmark_note": "Medicare: 48% of Part B first-level appeals decided in 2025 were fully or partly favorable. Health Affairs: 57% of Medicare Advantage denials overturned (2019). Kodiak: 42.1% (2025). KFF: 80.7% of appealed Medicare Advantage prior authorization denials overturned (2024). PwC's 2021 hospital target: over 80%.",
      "confidence": "medium",
      "sources": [
       "cms-ffs-appeals-data-2025",
       "vabson-2025",
       "kodiak-2026",
-      "kff-ma-pa"
+      "kff-ma-pa",
+      "pwc-hfma-2021"
      ],
      "data_hint": "Appeal log with outcome and dollars, by payer and denial reason.",
      "vendor_claim": "Appeal success above 60% for clinical denials, with below 40% a signal to review appeal quality.",
@@ -982,7 +984,7 @@
       "kff-ma-pa"
      ],
      "data_hint": "Denial log: denials flagged appealable, with the date an appeal or reopening was filed.",
-     "vendor_claim": "Every denial classed as appealable must have an appeal filed within 30 days of receipt.",
+     "vendor_claim": "A house standard: file the appeal within 30 days of receiving any denial judged worth appealing.",
      "vendor_verdict": "Unverifiable as a benchmark. A sound house rule, but deadlines differ by payer, and Medicare's first level allows 120 days."
     },
     {
@@ -996,8 +998,8 @@
      "benchmark_note": "No public benchmark was found. The target is zero. Review each case for its cause: a denial nobody saw, a zero-payment remittance not posted, or a deadline taken from the wrong payer rule.",
      "confidence": "none",
      "data_hint": "Adjustment report filtered to the lapsed-appeal reason code, checked against the denial log.",
-     "vendor_claim": "No appeal deadline should be missed.",
-     "vendor_verdict": "Supported as a first-principles target. The library offers no data, and none is needed."
+     "vendor_claim": "Filing every appeal within 30 days is said to end write-offs for missed deadlines.",
+     "vendor_verdict": "Supported as a first-principles target of zero missed deadlines. The library offers no data, and none is needed."
     }
    ]
   },
@@ -1014,7 +1016,7 @@
    ],
    "failure_modes": [
     "No fee schedules are loaded, so the system accepts whatever the payer allows. A plan pays an old rate for a year and nobody notices.",
-    "Staff compare the paid amount with the contract rate. Deductibles and coinsurance make most lines look short, and real underpayments are lost in the noise.",
+    "Staff compare the paid amount with the contract rate. Deductibles and coinsurance make many lines look short, and real underpayments are lost in the noise.",
     "A plan loads the practice under the wrong fee schedule after a contract change or when a new clinician joins. Every claim pays short until someone compares.",
     "A shortfall is found after the dispute window has closed. In Florida, a physician's underpayment claim must reach the insurer within 12 months of payment.",
     "Payment equals the billed charge on some lines. The practice's fee is below the payer's allowed amount, and money is left unclaimed every time."
@@ -1063,7 +1065,7 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Any practice paid under fee schedules, and small ones can sample by hand. Medicare shortfalls usually trace to place of service, modifiers or clinician type, while commercial and Medicare Advantage rates need the contract in hand.",
+   "applies_when": "Any practice paid under fee schedules. Small ones can sample by hand. For Medicare, check place of service, modifiers and clinician type first, since each changes the fee schedule amount. Commercial and Medicare Advantage rates need the contract in hand.",
    "vendor_refs": [
     {
      "item": "payer-contract-intelligence-playbook",
@@ -1086,6 +1088,7 @@
     "fcso-sequestration",
     "x12-carc",
     "cms-cpm-ch12",
+    "cfr-414-52",
     "cfr-414-56",
     "cfr-422-402",
     "fl-627-6131",
@@ -1093,7 +1096,7 @@
     "cms-cpm-ch1",
     "trizetto-2026"
    ],
-   "evidence_note": "Expected Medicare amounts follow public rules: the fee schedule, the 2% sequestration cut, multiple surgery rules (Claims Processing Manual, chapter 12, section 40.6) and 42 CFR 414.56. Dispute deadlines come from contract and state law. Frequency data come from one vendor.",
+   "evidence_note": "Expected Medicare amounts follow public rules: the fee schedule, the 2% sequestration cut, multiple surgery rules (Claims Processing Manual, chapter 12, section 40.6) and 42 CFR 414.52 and 414.56. Dispute deadlines come from contract and state law. Frequency data come from one vendor.",
    "metrics": [
     {
      "slug": "ar-underpayment-rate",
@@ -1142,7 +1145,7 @@
    "actions": [
     {
      "action": "Read the crossover message on every Medicare remittance",
-     "detail": "Remark code MA18 means the claim was forwarded to the supplemental insurer. MA19 means it was not, because that insurer's details were wrong. Bill the second payer yourself only when the claim was not forwarded.",
+     "detail": "Remark code MA18 means the claim was forwarded to the supplemental insurer and MA07 to Medicaid. MA19 means it was not forwarded because the insurer's details were wrong. Bill the second payer yourself only when the claim was not forwarded.",
      "cadence": "daily",
      "effort": "low",
      "impact": "high"
@@ -1163,7 +1166,7 @@
     },
     {
      "action": "Enroll with Medicaid for crossover claims",
-     "detail": "States must let Medicare-enrolled clinicians enroll so that cost-sharing claims can process. A Medicaid remittance, even one that pays nothing, closes the account and documents the adjustment.",
+     "detail": "States must let Medicare-enrolled clinicians enroll so that cost-sharing claims can process (42 CFR 455.410). A Medicaid remittance, even one that pays nothing, closes the account and documents the adjustment.",
      "cadence": "once",
      "effort": "medium",
      "impact": "medium"
@@ -1188,7 +1191,7 @@
     },
     {
      "item": "front-end-rcm-playbook",
-     "note": "Sound advice to ask about secondary coverage at every registration. Nothing on what to do after the primary payer pays."
+     "note": "Sound advice to ask at each registration whether the patient has a second insurer. Nothing on what to do after the primary payer pays."
     }
    ],
    "sources": [
@@ -1202,9 +1205,10 @@
     "fl-409-908",
     "fl-627-6131",
     "macpac-crossover-2025",
-    "uhc-admin-guide-2026"
+    "uhc-admin-guide-2026",
+    "cfr-455-410"
    ],
-   "evidence_note": "Crossover mechanics are in the Medicare Claims Processing Manual, chapter 28. The ban on billing Qualified Medicare Beneficiaries is federal law. State payment of cost sharing varies: the federal Medicaid advisory commission MACPAC counted 41 states with lesser-of policies for physician services in 2025.",
+   "evidence_note": "Crossover mechanics are in the Medicare Claims Processing Manual, chapter 28. The ban on billing Qualified Medicare Beneficiaries is federal law. State payment varies: the federal advisory commission MACPAC counted 41 states in 2025 that cap total physician payment at the Medicaid rate.",
    "metrics": [
     {
      "slug": "ar-secondary-ar-share",
