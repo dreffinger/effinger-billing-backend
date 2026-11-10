@@ -19,12 +19,17 @@
 #   ({visit, pid, charge, fee, why, void_ok, released, at}); the import reads it (one refusal when the visit then went through). A void that
 #   fails = nothing else is tried, the visit is held with its line ("quality": true). A visit still listed after the line is gone is held
 #   for its own reason, as before. Held rows say "quality": true when the visit still carries the line, "names_line": true when the words name it.
+#   Each entry also says "resave_ok" (written false BEFORE the re-save, so an error leaves it false) and, when the visit is still listed and the
+#   re-save failed or the remaining words still name a line that came off, "still_named": true - AdvancedMD did not inspect the visit again; the
+#   import then switches the code off until William has looked (one re-save of the visit should release it).
 # THE OPTION CODE M0004 (William 11/10/2026: "use it"; it rides once per clinician with the 1123F line, after proof): the same for its no-charge
 #   line - an edit that names M0004 / pcode692183 is never bypassed, and the step takes BOTH no-charge lines off when the edits name neither or
-#   both, only the one that is named when they name one (claimocity_import.names_lines: words about a zero amount name the line whose code is not
-#   named). Each line is known by its OWN procedure in its own detail (1123F pcode65441, M0004 pcode692183, at most one cent) - never a visit's own
-#   charge, also when the import recorded the two the other way round. One "quality_removed" entry PER line, with its "code"; held rows say
-#   "mvp": true while the visit still carries the M0004 line and "names_mvp": true when the words name it.
+#   both, and also when they name 1123F alone (the 1123F line never leaves the M0004 line behind: M0004 rides only with 1123F; that M0004 entry
+#   says "with": "1123F" and does not switch M0004 off); only the M0004 line when they name M0004 alone (claimocity_import.names_lines: words
+#   about a zero amount name the line whose code is not named). Each line is known by its OWN procedure in its own detail (1123F pcode65441,
+#   M0004 pcode692183, at most one cent) - never a visit's own charge, also when the import recorded the two the other way round. One
+#   "quality_removed" entry PER line, with its "code"; held rows say "mvp": true while the visit still carries the M0004 line and "names_mvp":
+#   true when the words name it.
 # Only visits this import created are touched (registers/feed_import_1028.json). Writes registers/feed_inspector_1028.json.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
@@ -164,7 +169,7 @@ def advisories(vid, c, adv):
     return ["bypassed %d advisories%s" % (len(adv), "" if ok else " FAILED")]
 def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     """William 11/10/2026: the routine takes the no-charge line(s) off a held visit by itself. which = [(code, charge)] of the lines to take off (the
-    1123F line when not given; with the M0004 line: both, or only the one the edits name). Each line's own detail is read first, and NOTHING is
+    1123F line when not given; with the M0004 line: both, or only the M0004 line when the edits name M0004 alone). Each line's own detail is read first, and NOTHING is
     voided unless every line to take off shows itself live with its own procedure and at most one cent. Then ONE void per line (void_tx.void_charge,
     in order; the first that fails ends it - nothing else is tried), a re-save of the visit on its OWN first charge so AdvancedMD inspects it again,
     the batch listed again; then the visit is released or held for its own reason. One "quality_removed" entry per line records it. -> a note."""
@@ -180,6 +185,7 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat(); entries = []
     for k, x in todo:
         entry = {"visit": vid, "pid": c["pid"], "charge": x, "code": k, "fee": c.get("mvp_fee" if k == MVP_CODE else "quality_fee"), "why": words[:140], "void_ok": False, "released": False, "at": at}
+        if k == MVP_CODE and named and not mnamed: entry["with"] = QUALITY_CODE      # taken off only because the 1123F line comes off (M0004 never rides without it, 8.2): not M0004's fault
         OUT["quality_removed"].append(entry); entries.append((k, entry))      # recorded at once: even if a later call raises, the import knows what was tried
     bad = [(k, live[k][1]) for k, _ in todo if live[k][0] == "unsure"]
     if bad:
@@ -193,6 +199,7 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
                 if e2 is not entry and not e2["void_ok"]: e2["note"] = "not tried: the void of the %s line failed" % k
             hold(words, named, mnamed); return "HELD with its quality line: the void failed" if one else "HELD with its %s line: the void failed" % k
         entry["void_ok"] = True; gone.add(k)
+    for _k, entry in entries: entry["resave_ok"] = False      # written BEFORE the re-save: an error in the re-save or in the listing leaves it False (confirm review NH2-2)
     ok2, r = resave_visit(own); time.sleep(1.0)
     if not ok2:
         for _k, entry in entries: entry["note"] = "the re-save after the void failed: %s" % r[:100]
@@ -200,7 +207,12 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     rq = c.get("quality_charge") if carries[QUALITY_CODE] and QUALITY_CODE not in gone else ""; rm = c.get("mvp_charge") if carries[MVP_CODE] and MVP_CODE not in gone else ""
     adv, data = split_errors(again["errors"], rq, rm) if again else ([], [])
     notes = advisories(vid, c, adv)
-    for _k, entry in entries: entry["released"] = not data
+    # still listed for the edit about a line that came off (the re-save failed, or the remaining words still name that line): AdvancedMD did not
+    # inspect the visit again - that is NOT the visit's own reason; the import switches the code off until William has looked (NH2-2)
+    _still = bool(data) and (not ok2 or any(names_lines(e["text"], c.get("quality_charge") or "", c.get("mvp_charge") or "")[0 if k_ == QUALITY_CODE else 1] for e in data for k_, _x in todo))
+    for _k, entry in entries:
+        entry["released"] = not data; entry["resave_ok"] = bool(ok2)
+        if _still: entry["still_named"] = True
     if data:
         if one: held(vid, c, "; ".join(e["text"][:80] for e in data), names=any(names_line(e["text"], c.get("quality_charge")) for e in data))
         else: hold("; ".join(e["text"][:80] for e in data), bool(rq) and any(names_lines(e["text"], rq, rm)[0] for e in data), bool(rm) and any(names_lines(e["text"], rq, rm)[1] for e in data))
@@ -262,11 +274,12 @@ def main():
                     c = dict(c, quality_charge=qline, mvp_charge=mline)
                 adv, data = split_errors(again["errors"], qline, mline)
                 note.extend(advisories(vid, c, adv))
-                if data and mline:      # 11.6: both no-charge lines come off when the edits name neither or both, only the named one when they name one
+                if data and mline:      # 11.6: both no-charge lines come off when the edits name neither or both; only the M0004 line when they name M0004 alone. The 1123F
+                    # line never leaves the M0004 line behind (8.2: M0004 rides only with 1123F; confirm review NH2-1): words that name 1123F take both off
                     words = "; ".join(e["text"][:80] for e in data)
                     nq = bool(qline) and any(names_lines(e["text"], qline, mline)[0] for e in data); nm = any(names_lines(e["text"], qline, mline)[1] for e in data)
                     if not QUALITY_PROVEN or nq or nm:
-                        which = [(k, x) for k, x in ((QUALITY_CODE, qline), (MVP_CODE, mline)) if x and (nq == nm or (k == QUALITY_CODE) == nq)]
+                        which = [(k, x) for k, x in ((QUALITY_CODE, qline), (MVP_CODE, mline)) if x and (nq or not nm or k == MVP_CODE)]
                         note.append(take_line_off(vid, c, cid, words, nq, which, nm))
                     else: held(vid, c, words, quality=bool(qline), mvp=True); note.append("HELD: " + "; ".join(pattern(e) for e in data))
                 elif data:

@@ -38,7 +38,8 @@ BACKLOG = {"UNI20", "BCBS"}
 MEDICAID_FAMILY = {"MCAD", "SUN01", "FLO99", "SIM01", "WEL04", "UHCMA", "HUM07"}
 # REPORTING LINES (11/10/2026, second no-harm review): a no-charge quality code (1123F / 1124F) or option code (M0004) rides at $0.00 or
 # $0.01 on a Medicare claim; Medicare answers it with reason 246 (remark N620). Its payment lines never make a visit read as denied or
-# paid - they are left out of what decide() counts for the visit - and 246 is an informational reason.
+# paid - they are left out of what decide() counts for the visit (their payments AND their bill dates: a line billed later is not the
+# visit's last send) - and 246 is an informational reason.
 REPORTING = {"1123F", "1124F", "M0004"}
 INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")
 num = lambda s: re.sub(r"\D", "", str(s or ""))
@@ -113,7 +114,7 @@ def decide(r, charges, plans, dod):
     charges = [c for c in charges if num(c.get("visit") or c.get("visitid")) == vid and c.get("void") != "1"]
     cpts = sorted({c.get("proccode", "") for c in charges})
     mods = sorted({(c.get("modcodes") or c.get("modifiers") or "").strip() for c in charges} - {""})
-    bill_dates = [mdy(c.get("billdate")) for c in charges if mdy(c.get("billdate"))]
+    bill_dates = [mdy(c.get("billdate")) for c in charges if mdy(c.get("billdate")) and str(c.get("proccode") or "").strip().upper() not in REPORTING]      # a reporting line's bill date is not the visit's (confirm review NH2-6): billed later, it would hide the visit's own denial
     last_sent = max(bill_dates) if bill_dates else None
     pays = [p for c in charges if str(c.get("proccode") or "").strip().upper() not in REPORTING for p in c.get("payments", []) if p.get("void") != "1"]      # a reporting line's payments are not the visit's
     real_pays = [p for p in pays if abs(f(p.get("amount"))) > 0.005]
