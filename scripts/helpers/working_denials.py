@@ -20,6 +20,7 @@ DENIAL_RULES = {
  "197": ("FIX",  "Auth/precert absent - attach the auth (facesheet/VA), rebill; no auth -> hold, do not bill"),
  "288": ("FIX",  "Referral absent - obtain referral, rebill"),
  "B9":  ("FIX",  "Hospice - William 9/12: rebill Medicare with GV modifier (only if DOS within 12 months; older = untimely write-off)"),
+ "58":  ("REVIEW","Place of service inconsistent - on a nursing-building line sent as 32 Medicare is saying the resident was in a Part A stay (rules.md 11/10/2026, part 7): name the chart for William; he says for that claim whether it is corrected to 31 and sent again as a new claim; never again at 32, never resent unchanged; on any other line read the RARC"),
  "226": ("FIX",  "Records requested from provider - William follows up from the list (no auto action)"),
  "227": ("FIX",  "Info requested from patient not furnished - follow up"),
  "252": ("FIX",  "Attachment/document required - resubmit with the attachment"),
