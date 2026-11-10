@@ -8,6 +8,8 @@
 #      commercial/MA plan; only Medicaid/LTC plans -> the ACTIVE one (FCC answers AAA at eligibility but pays - REJECTED kept).
 #      Secondary = one more open plan of another carrier (the Medicaid/LTC plan for a QMB/dual). Medicaid/LTC never leads over Medicare.
 #   4. the visits' insorder is set to that order (full-visit echo, no rebill - nothing is billed yet); the chart default order is left.
+#      A visit that carries the no-charge quality line 1123F and whose echo is refused is echoed ONCE more without that line, which voids it
+#      (William 11/10/2026: a reporting line never holds a visit); the removal is recorded under "quality_removed" in the chart's entry.
 #   5. no ACTIVE plan at all -> Stedi insurance discovery -> add a found ACTIVE MEDICAL plan (never Part D / PDP) + order; else HOLD.
 #   6. the feed's IN1 payers are mapped and reported next to the chart (the 271 decides, the feed only informs).
 # Writes feed_verify_1028.json (+ registers copy). AMD writes: visit insorder resaves; addinsurance only from discovery.
@@ -63,35 +65,56 @@ def mma_plan(s):
             names = " ".join((e.get("name") or "") for e in o.get("entities") or [])
             return map_payer(names, STEDI_NAME_MAP) or "?" + names[:30]
     return None
-def fast_set_insorder(v, order):
+def fast_set_insorder(v, order, removed=None):
     """Visit insorder by full echo of THIS import's charges (the register holds every charge id of the visit, so no
-    gettxhistory paging): one getchargedetaildataicd10 per charge + one updvisitwithcharges force=1. -> (ok, msg)"""
+    gettxhistory paging): one getchargedetaildataicd10 per charge + one updvisitwithcharges force=1. -> (ok, msg)
+    THE NO-CHARGE QUALITY LINE (William 11/10/2026: a reporting line never holds a visit - the routine takes it off by itself): when the full
+    echo is answered with a fault and the visit carries a LIVE quality line (its own detail shows pcode65441 and at most one cent - never a
+    visit's own charge), the echo is sent ONCE more without that line (a charge left out of a full echo is voided - that is the removal).
+    Accepted, the order reads back right and the line reads void: the order is set and the removal is added to `removed` (a list the caller
+    passes; its register's "quality_removed"). A fault again: held as before - the line was not the cause."""
     import xml.etree.ElementTree as ET
-    charges = []; vis = pat = None; qgone = 0
+    charges = []; vis = pat = None; qgone = 0; qc = v.get("quality_charge") or "-"
     for cid in v["charges"]:
         d = ET.fromstring(resave.detail(re.sub(r"\D", "", cid)))
         if vis is None: vis = d.find(".//visit"); pat = d.find(".//patient")
         for c in d.iter("charge"):
             if c.get("id") == cid and c.get("void") != "1": charges.append(c)
-            elif c.get("id") == cid and cid == (v.get("quality_charge") or "-"): qgone = 1      # 11/10/2026: a VOID no-charge quality line has nothing to echo and never holds the visit
+            elif c.get("id") == cid and cid == qc: qgone = 1      # 11/10/2026: a VOID no-charge quality line has nothing to echo and never holds the visit
     if vis is None or not charges or len(charges) != len(v["charges"]) - qgone:
         return False, "detail read mismatch (%d of %d charges live)" % (len(charges), len(v["charges"]))
     if (vis.get("insorder") or "").replace(" ", "") == order: return True, "already %s" % order
-    chg = ""
-    for c in charges:
-        a = {"id": c.get("id")}
-        for f in resave.CHG_FIELDS:
-            if c.get(f) is not None: a[f] = c.get(f)
-        chg += "<charge %s/>" % " ".join('%s="%s"' % (k, x) for k, x in a.items())
-    va = dict(vis.attrib); va["force"] = "1"; va["insorder"] = order
-    r = amd.post(amd.msg("updvisitwithcharges", "chargeentry", {"patientid": pat.get("id"), "episodeid": vis.get("episode"), "approval": "1",
-                 "inspectorenabled": "1", "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"},
-                 "<visit %s><chargelist>%s</chargelist></visit>" % (" ".join('%s="%s"' % (k, x) for k, x in va.items()), chg)), timeout=180)
-    if "Fault" in r: return False, "resave FAULT " + re.sub(r"\s+", " ", r[:200])
+    def echo(chs):      # the full echo of the given charges with the new order
+        chg = ""
+        for c in chs:
+            a = {"id": c.get("id")}
+            for f in resave.CHG_FIELDS:
+                if c.get(f) is not None: a[f] = c.get(f)
+            chg += "<charge %s/>" % " ".join('%s="%s"' % (k, x) for k, x in a.items())
+        va = dict(vis.attrib); va["force"] = "1"; va["insorder"] = order
+        return amd.post(amd.msg("updvisitwithcharges", "chargeentry", {"patientid": pat.get("id"), "episodeid": vis.get("episode"), "approval": "1",
+                        "inspectorenabled": "1", "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"},
+                        "<visit %s><chargelist>%s</chargelist></visit>" % (" ".join('%s="%s"' % (k, x) for k, x in va.items()), chg)), timeout=180)
+    r = echo(charges); took = ""
+    if "Fault" in r:
+        q = [c for c in charges if c.get("id") == qc]; rest = [c for c in charges if c.get("id") != qc]
+        try: small = bool(q) and float(q[0].get("fee") or "0") <= 0.01
+        except Exception: small = False
+        if not (q and rest and small and q[0].get("proccode") == "pcode65441" and v.get("quality_codes")): return False, "resave FAULT " + re.sub(r"\s+", " ", r[:200])
+        r2 = echo(rest)      # ONCE more, without the quality line
+        if "Fault" in r2: return False, "resave FAULT %s (sent once more without the quality line %s: a fault again - the line is not the cause)" % (re.sub(r"\s+", " ", r[:120]), qc)
+        charges = rest; took = re.sub(r"\s+", " ", r[:140])
     d2 = ET.fromstring(resave.detail(re.sub(r"\D", "", charges[0].get("id")))); v2 = d2.find(".//visit")      # read back through a charge that is live
     live = [c for c in d2.iter("charge") if c.get("void") != "1"]
     got = (v2.get("insorder") or "").replace(" ", "") if v2 is not None else ""
-    return got == order and len(live) >= 1, "insorder %s -> %s" % (vis.get("insorder"), got)
+    ok = got == order and len(live) >= 1
+    if took:      # was the quality line really voided by the echo without it? One read of its own detail
+        qv = [c for c in ET.fromstring(resave.detail(re.sub(r"\D", "", qc))).iter("charge") if c.get("id") == qc]
+        gone = bool(qv) and qv[0].get("void") == "1"
+        if ok and gone and isinstance(removed, list):
+            removed.append({"visit": v.get("visit"), "pid": v.get("pid"), "charge": qc, "fee": v.get("quality_fee"), "why": took, "void_ok": True, "released": True, "at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).replace(tzinfo=None).isoformat()})
+        return ok, "insorder %s -> %s (the echo with the quality line %s was refused; sent once more without it: the line is %s)" % (vis.get("insorder"), got, qc, "void" if gone else "still live")
+    return ok, "insorder %s -> %s" % (vis.get("insorder"), got)
 def main():
     a = sys.argv[1:]; use_stedi = "--no-stedi" not in a; limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
     only = set(a[a.index("--only") + 1].split(",")) if "--only" in a else None
@@ -227,13 +250,17 @@ def main():
                     if same_as_default: rec["applied"][v["visit"]] = order; continue
                     cid = v["charges"][0] if v.get("charges") else None
                     if not cid: rec["fixes"].append("%s: no charge id recorded" % v["visit"]); continue
+                    # 11/10/2026: a visit that carries the no-charge quality line and whose order cannot be set says so in the words the import
+                    # looks for ("insorder not applied on <visit>" with the line named) - the import then switches the code off until William looks
+                    qtag = (lambda w: " (the visit carries the quality line %s: %s)" % (v.get("quality_charge"), w[:120])) if (v.get("quality_codes") and v.get("quality_charge")) else None
                     try:
-                        ok, m = fast_set_insorder(v, order)
+                        removed = []; ok, m = fast_set_insorder(v, order, removed)
                         rec["fixes"].append("%s insorder %s: %s" % (v["visit"], order, "ok" if ok else m[:140]))
+                        if removed: rec.setdefault("quality_removed", []).extend(removed); rec["fixes"].append("%s: the quality line %s was taken off - the echo with it was refused, the echo without it was accepted (William 11/10/2026: a reporting line never holds a visit)" % (v["visit"], v.get("quality_charge")))
                         if ok: rec["applied"][v["visit"]] = order
-                        else: rec["hold"].append("insorder not applied on %s" % v["visit"])
+                        else: rec["hold"].append("insorder not applied on %s%s" % (v["visit"], qtag(m) if qtag else ""))
                     except Exception as e:
-                        rec["hold"].append("insorder error on %s: %s" % (v["visit"], str(e)[:100]))
+                        rec["hold"].append(("insorder not applied on %s%s" % (v["visit"], qtag("error %s" % str(e)[:100]))) if qtag else "insorder error on %s: %s" % (v["visit"], str(e)[:100]))
                     time.sleep(0.4)
             if feed_codes and lead is not None and code_of[lead["id"]] not in feed_codes:
                 rec["note"] = "feed IN1 says %s, chart bills %s first (%s)" % (feed_codes, code_of[lead["id"]], reason)

@@ -68,10 +68,11 @@ class Practice:
       history_hides_zero   the chart history does not list a no-charge line
       detail_quality   what the charge detail says about a quality line: None = as it is, 'fault' / 'empty' / 'garbage' / 'raise' = the charge cannot be read, 'text' = the code as text instead
                        of AdvancedMD's id, 'hidden' = the answer leaves no-charge lines out;   detail_no_proc: the detail names no procedure at all
+      detail_text      the charge detail's list of procedures names each procedure id with its code text (proccodelist/proccode id= code=);   wrong_text: the text it gives the quality line's id instead of 1123F
       bill             function(practice, visit, charge, days since entered) -> True when that charge goes out on a claim that day"""
     def __init__(self, **opts):
         self.o = dict(refuse_fees=set(), refuse_all=False, fault_but_store=False, drop_quality=False, timeout_line=0, timeout_plain=0, answer="sent", names=False, fees=True, history_hides_zero=False,
-                      detail_quality=None, detail_no_proc=False, history_raises=0, bill=lambda p, v, c, age: False)
+                      detail_quality=None, detail_no_proc=False, detail_text=True, wrong_text="", history_raises=0, bill=lambda p, v, c, age: False)
         self.o.update(opts)
         self.charts = {}; self.visits = {}; self.charges = {}; self.vseq = 500; self.cseq = 9000; self.posts = []; self.today = None; self.reads = collections.Counter(); self.log = []; self.refused = set(); self.held = set()
     # ---- set-up ---------------------------------------------------------------------------------------------------------------------------
@@ -126,14 +127,16 @@ class Practice:
         if how == "fault": return "<r><Fault>charge not found</Fault></r>"
         if how == "empty": return "<r/>"
         if how == "garbage": return "<r><charge"
-        v = self.visits[c["vid"]]; rows = ""
+        v = self.visits[c["vid"]]; rows = ""; texts = {}
         for k in v["charges"]:
             x = self.charges[k]
             if o["detail_quality"] == "hidden" and x["quality"] and x["entered"] is not None: continue
             pc = "" if o["detail_no_proc"] else ' proccode="%s"' % (x["cpt"] if (o["detail_quality"] == "text" and x["quality"]) else x["pcode"])
+            if pc and o["detail_text"] and o["detail_quality"] != "text": texts[x["pcode"]] = (o["wrong_text"] or x["cpt"]) if x["quality"] else x["cpt"]
             rows += '<charge id="%s"%s fee="%s" void="%s" insbilled="%s" datebilled="%s" respparty="%s"><insbilllist>%s</insbilllist></charge>' % (
                 k, pc, x["fee"], "1" if x["void"] else "0", "1" if x["billed"] else "0", x["billed"][-1] if x["billed"] else "", self.charts.get(x["pid"], {}).get("resp", ""), "".join('<insbill billeddate="%s"/>' % d for d in x["billed"]))
-        return '<r><patient id="%s"/><visit id="%s" episode="eps1" refplan="" insorder="%s"/><chargelist>%s</chargelist></r>' % (digits(c["pid"]), c["vid"], self.charts.get(c["pid"], {}).get("order", "1"), rows)
+        plist = "<proccodelist>%s</proccodelist>" % "".join('<proccode id="%s" code="%s"/>' % kv for kv in sorted(texts.items())) if texts else ""
+        return '<r><patient id="%s"/><visit id="%s" episode="eps1" refplan="" insorder="%s"/><chargelist>%s</chargelist>%s</r>' % (digits(c["pid"]), c["vid"], self.charts.get(c["pid"], {}).get("order", "1"), rows, plist)
     def fetch(self, num):
         num = digits(num); self.reads["history"] += 1
         if self.o["history_raises"] > 0: self.o["history_raises"] -= 1; raise TimeoutError("read timed out")
@@ -301,26 +304,35 @@ def cases(root, check):
     m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3, 4), "20261110")); A, Bq, C = qrows(r1)
     p.bill_visit(A["visit"], "11/11/2026", lines=False); p.bill_visit(Bq["visit"], "11/12/2026"); p.bill_visit(C["visit"], "11/12/2026")
     m, o2, r2, e = night(ws, p, "20261113T1240Z", visits((5,), "20261112")); g2 = gate(r2)
-    check("SM-1 (E2x), read on 11/13: a visit billed 11/11 WITHOUT its $0.00 line, two visits billed 11/12 WITH theirs - $0.00 is proven (no move to one cent); ONLY the line read as left off is listed dead, the two billed lines are recorded as billed",
-          g2["fee"] == "0.00" and g2["zero_not_billed"] is False and g2["confirmed"] is True and g2["dead_zero_lines"] == [[A["pid"], A["visit"], A["quality_charge"]]] and g2["left_off_lines"] == [A["quality_charge"]]
+    check("SM-1 (E2x), read on 11/13: a visit billed 11/11 WITHOUT its $0.00 line, two visits billed 11/12 WITH theirs - $0.00 is proven (no move to one cent); the line not billed TWO days after its visit is not called left off yet (13.1: three days), the two billed lines are recorded as billed",
+          g2["fee"] == "0.00" and g2["zero_not_billed"] is False and g2["confirmed"] is True and g2["dead_zero_lines"] == [] and g2["left_off_lines"] == []
           and sorted(g2["billed_lines"]) == sorted([Bq["quality_charge"], C["quality_charge"]]) and [(r["pid"], r["quality_fee"]) for r in qrows(r2)] == [("pat7005", "0.00")], g2)
     for r in qrows(r2): p.bill_visit(r["visit"], "11/13/2026")
-    m, o3, r3, e = night(ws, p, "20261114T1240Z", visits((6,), "20261113")); m, o4, r4, e = night(ws, p, "20261125T1240Z", visits((1, 2, 3), "20261124"))
+    m, o3, r3, e = night(ws, p, "20261114T1240Z", visits((6,), "20261113")); g3 = gate(r3)
+    check("SM-1 (E2x), 11/14: three days after its visit was billed the line is still not billed - NOW it is left off: ONLY that line is listed (for William; no routine voids it), its patient due again; the amount stays $0.00 (proven)",
+          g3["dead_zero_lines"] == [[A["pid"], A["visit"], A["quality_charge"]]] and g3["left_off_lines"] == [A["quality_charge"]] and g3["left_off_on"] == {A["quality_charge"]: {"on": "11/14/2026", "billed": "11/11/2026"}}
+          and g3["fee"] == "0.00" and g3["confirmed"] is True, g3)
+    m, o4, r4, e = night(ws, p, "20261125T1240Z", visits((1, 2, 3), "20261124"))
     for r in qrows(r3) + qrows(r4): p.bill_visit(r["visit"], "11/25/2026")
     check("SM-1 (E2x), 11/25, the next visits of the three: the patient whose line was left off gets the code again; the two whose $0.00 line went out are NOT coded a second time - nobody has two billed quality lines in 2026",
           [(r["pid"], r["quality_fee"]) for r in qrows(r4)] == [("pat7001", "0.00")] and max(per_year(p, billed=True).values()) == 1 and all(per_year(p, billed=True)[("pat70%02d" % k, "2026")] == 1 for k in (1, 2, 3, 5, 6)), dict(per_year(p, billed=True)))
     ws, p = mk(root, "B2"); m, o1, r1, e = night(ws, p, "20261110T0121Z", visits((1, 2, 3, 4, 5), "20261109")); q = qrows(r1)
     p.bill_visit(q[0]["visit"], "11/10/2026", lines=False); p.bill_visit(q[1]["visit"], "11/10/2026")      # visit 1's 99309 billed; visit 2's 99309 AND its 1123F line billed; visit 3 not yet
     m, o2, r2, e = night(ws, p, "20261111T0121Z", visits((2, 6, 7, 8), "20261110"))
-    check("B2 (the operations reviewer's input): visit 1 billed without its $0.00 line, visit 2 billed WITH its line, visit 3 not billed yet; the next batch brings patient 2 again - patient 2 gets NO second 1123F in the year, only visit 1's line is listed dead, "
-          "visit 3's line is neither dead nor listed, and the billed line is the proof",
-          [x["pid"] for x in qrows(r2)] == ["pat7006", "pat7007", "pat7008"] and gate(r2)["dead_zero_lines"] == [[q[0]["pid"], q[0]["visit"], q[0]["quality_charge"]]] and gate(r2)["proof"]["charge"] == q[1]["quality_charge"]
+    check("B2 (the operations reviewer's input): visit 1 billed without its $0.00 line, visit 2 billed WITH its line, visit 3 not billed yet; the next batch brings patient 2 again - patient 2 gets NO second 1123F in the year, the billed line is the proof, "
+          "and no line is listed dead yet (visit 1 was billed one day ago: a line is called left off three days after its visit was billed, 13.1)",
+          [x["pid"] for x in qrows(r2)] == ["pat7006", "pat7007", "pat7008"] and gate(r2)["dead_zero_lines"] == [] and gate(r2)["proof"]["charge"] == q[1]["quality_charge"]
           and gate(r2)["fee"] == "0.00" and per_year(p)[("pat7002", "2026")] == 1, (gate(r2), dict(per_year(p))))
+    m, o3, r3, e = night(ws, p, "20261113T0121Z", visits((9,), "20261112"))
+    check("B2: ... three days after visit 1 was billed, ONLY visit 1's line is listed dead; visit 3's line (its visit not billed) is neither dead nor listed, and patient 2 still has one line",
+          gate(r3)["dead_zero_lines"] == [[q[0]["pid"], q[0]["visit"], q[0]["quality_charge"]]] and q[2]["quality_charge"] not in gate(r3)["left_off_lines"] + gate(r3)["void_lines"] and per_year(p)[("pat7002", "2026")] == 1, gate(r3))
     ws, p = mk(root, "E2b"); m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3, 4), "20261110")); q = qrows(r1)
     p.bill_visit(q[2]["visit"], "11/11/2026", lines=False); p.bill_visit(q[0]["visit"], "11/12/2026"); p.bill_visit(q[1]["visit"], "11/12/2026")
     m, o2, r2, e = night(ws, p, "20261113T1240Z", visits((5,), "20261112"))
-    check("SM-1 (E2b): the same three with the visit that went out WITHOUT its line as the third row - the same conclusion (it does not depend on the order of the rows), and that line is NOT counted as reported",
-          gate(r2)["confirmed"] is True and gate(r2)["fee"] == "0.00" and gate(r2)["dead_zero_lines"] == [[q[2]["pid"], q[2]["visit"], q[2]["quality_charge"]]], gate(r2))
+    m, o3, r3, e = night(ws, p, "20261114T1240Z", visits((6,), "20261113"))
+    check("SM-1 (E2b): the same three with the visit that went out WITHOUT its line as the third row - the same conclusion (it does not depend on the order of the rows): proven on 11/13, and on 11/14 (three days after) that line is NOT counted as reported",
+          gate(r2)["confirmed"] is True and gate(r2)["fee"] == "0.00" and gate(r2)["dead_zero_lines"] == [] and gate(r3)["dead_zero_lines"] == [[q[2]["pid"], q[2]["visit"], q[2]["quality_charge"]]]
+          and gate(r3)["fee"] == "0.00", (gate(r2), gate(r3)))
     # -- SM-3 / NH-1: lines that are void, or cannot be read, are not waited for / free a place they must not free -----------------------------------
     ws, p = mk(root, "E3", n=20); added = []; gs = []; k = 1
     for n_ in range(8):
@@ -355,18 +367,18 @@ def cases(root, check):
     out, p = pilot_days("NH1F", days=5, void_from_day2=True)
     check("NH-1 (F): the three lines are void from day 2 while their visits stay - lines added per run 3, 0, 0, 0, 0 (the code is off until William restarts it; it used to start a new pilot each day)", out == [3, 0, 0, 0, 0], out)
     # -- SM-4: an OFF that needs William is remembered ------------------------------------------------------------------------------------------------
-    ws, p = mk(root, "E4", n=16)
+    ws, p = mk(root, "E4", n=16)      # the reviewer's nights, three days apart: a line is called left off three days after its visit was billed (13.1)
     m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3), "20261110"))
     for r in qrows(r1): p.bill_visit(r["visit"], "11/11/2026", lines=False)
-    m, o2, r2, e = night(ws, p, "20261112T1240Z", visits((4, 5, 6), "20261111"))            # $0.00 left off -> three one-cent lines
-    for r in qrows(r2): p.bill_visit(r["visit"], "11/12/2026", lines=False)
-    m, o3, r3, e = night(ws, p, "20261113T1240Z", visits((7, 8, 9), "20261112"))            # one cent left off too -> OFF
+    m, o2, r2, e = night(ws, p, "20261114T1240Z", visits((4, 5, 6), "20261113"))            # $0.00 left off -> three one-cent lines
+    for r in qrows(r2): p.bill_visit(r["visit"], "11/14/2026", lines=False)
+    m, o3, r3, e = night(ws, p, "20261117T1240Z", visits((7, 8, 9), "20261116"))            # one cent left off too -> OFF
     p.void(*[r["quality_charge"] for r in qrows(r1) + qrows(r2)])                             # then somebody voids the six dead lines
-    m, o4, r4, e = night(ws, p, "20261114T1240Z", visits((10, 11, 12), "20261113"))
+    m, o4, r4, e = night(ws, p, "20261118T1240Z", visits((10, 11, 12), "20261117"))
     check("SM-4 (E4): $0.00 left off -> one cent; one cent left off -> OFF; then the six dead lines are voided - the next run does NOT start a new pilot by itself: still OFF with the same sentence, no line",
           [len(qrows(r)) for r in (r1, r2, r3, r4)] == [3, 3, 0, 0] and [r["quality_fee"] for r in qrows(r2)] == ["0.01"] * 3 and "without its one-cent quality line too" in gate(r3)["off_until_reset"]
           and gate(r4)["off_until_reset"] == gate(r3)["off_until_reset"] and "off until William restarts it" in qline(o4) and len(p.q()) == 6 and len(gate(r3)["dead_zero_lines"]) == 6, (qline(o3), qline(o4)))
-    m, o5, r5, e = night(ws, p, "20261115T1240Z", visits((1, 13, 14, 15), "20261114"), env="reset")
+    m, o5, r5, e = night(ws, p, "20261119T1240Z", visits((1, 13, 14, 15), "20261118"), env="reset")
     check("SM-4 / SM-10: after William's restart a new round begins at $0.00, and a patient whose line was read as left off (one cent or not) is due again", gate(r5)["reset"] is True and gate(r5)["fee"] == "0.00" and gate(r5)["off_until_reset"] == ""
           and [(r["pid"], r["quality_fee"]) for r in qrows(r5)] == [("pat7001", "0.00"), ("pat7013", "0.00"), ("pat7014", "0.00")], (gate(r5), [(r["pid"], r["quality_fee"]) for r in qrows(r5)]))
     # -- SM-5 / NH-11: a fault although AdvancedMD kept the visit; a time-out around the line ---------------------------------------------------------
@@ -535,8 +547,55 @@ def cases(root, check):
                    ("20270104T1240Z", visits((7,), "20270103")), ("20270105T1240Z", visits((1, 2, 3, 4), "20270104"))):
         m, o, r, e = night(ws, p, st, ms); p.claim_run(datetime.datetime.strptime(st[:8], "%Y%m%d").date()); log.append((st[:8], [(x["pid"], x["quality_fee"], x["quality_dos"]) for x in qrows(r)], gate(r)))
     check("SM-10 (Y6): $0.00 lines of 12/28/2026 are left off the claim; in January the three patients are seen again - they get NO line dated 2027 (the old code gave them the 2027 code and the report promised a re-code): the dead 2026 lines are listed, "
-          "the January visits are counted as waiting for the renewal",
-          not any(c["dos"].endswith("2027") for _, c in p.q()) and len(log[-1][2]["dead_zero_lines"]) == 3 and log[-1][1] == [] and log[-1][2]["not_renewed"] == {"2027": 4} and log[2][1] == [("pat7005", "0.01", "12/30/2026")], [(a, b) for a, b, _ in log])
+          "the January visits are counted as waiting for the renewal. On 12/31 the lines are not called left off yet (their visits were billed 12/30: three days, 13.1), so pat7005's 12/30 visit waits; from 01/02 they are, at one cent",
+          not any(c["dos"].endswith("2027") for _, c in p.q()) and len(log[-1][2]["dead_zero_lines"]) == 3 and log[-1][1] == [] and log[-1][2]["not_renewed"] == {"2027": 4} and log[2][1] == []
+          and log[2][2]["wait"] is True and log[2][2]["fee"] == "0.00" and log[3][2]["fee"] == "0.01" and log[3][2]["zero_not_billed"] is True, [(a, b, g_.get("fee"), g_.get("wait")) for a, b, g_ in log])
+    # -- the second reviewers (11/10/2026 11:45Z): their exact inputs ------------------------------------------------------------------------------------------
+    ws, p = mk(root, "gapA")      # t_gapA: three pilot visits billed in the evening, their $0.00 lines billed the NEXT evening
+    m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3), "20261110")); q = qrows(r1)
+    for r in q: p.bill_visit(r["visit"], "11/11/2026", lines=False)
+    m, o2, r2, e = night(ws, p, "20261112T1240Z", visits((4,), "20261111"))
+    for r in q: p.bill_visit(r["visit"], "11/12/2026")
+    m, o3, r3, e = night(ws, p, "20261113T1240Z", visits((5,), "20261112")); m, o4, r4, e = night(ws, p, "20261125T1240Z", visits((1, 2, 3), "20261124"))
+    check("13.1 (t_gapA, the second state-machine reviewer's exact input): three pilot visits billed 11/11 without their $0.00 lines, the lines billed the next evening - nobody is coded twice, no line is ever listed dead, the amount stays $0.00",
+          [len(qrows(r)) for r in (r1, r2, r3, r4)] == [3, 0, 1, 0] and all(gate(r)["dead_zero_lines"] == [] and gate(r)["fee"] == "0.00" for r in (r2, r3, r4)) and gate(r2)["wait"] is True and gate(r3)["confirmed"] is True
+          and max(per_year(p).values()) == 1, ([len(qrows(r)) for r in (r1, r2, r3, r4)], gate(r2).get("notes"), dict(per_year(p))))
+    ws, p = mk(root, "gapE", n=19)      # t_gapEJ part GAP_E: proof, lines entered while proven, a restart, then ONE line read as left off
+    m, o, r, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3), "20261110"))
+    for x in qrows(r): p.bill_visit(x["visit"], "11/11/2026")
+    m, o, r, e = night(ws, p, "20261112T1240Z", visits(range(4, 14), "20261111"))
+    for x in qrows(r): p.bill_visit(x["visit"], "11/12/2026")
+    m, o, r, e = night(ws, p, "20261113T1240Z", visits((14, 15), "20261112"))
+    for x in qrows(r): p.bill_visit(x["visit"], "11/13/2026")
+    m, o, r, e = night(ws, p, "20261119T1240Z", [], env="stop")      # a restart needs a lasting OFF first (a reset is honoured only then); the reviewer reached it by two refusals
+    m, o, rR, e = night(ws, p, "20261120T1240Z", visits((16, 17, 18), "20261119"), env="reset"); qR = qrows(rR)
+    p.bill_visit(qR[0]["visit"], "11/20/2026", lines=False); p.bill_visit(qR[1]["visit"], "11/20/2026"); p.bill_visit(qR[2]["visit"], "11/20/2026")
+    m, o, r21, e = night(ws, p, "20261121T1240Z", visits((19,), "20261120")); m, o, rD, e = night(ws, p, "20261201T1240Z", visits(range(1, 16), "20261130"))
+    check("13.1 (t_gapEJ GAP_E, his third item): proof, twelve lines entered while proven, a restart, the first visit of the new round billed WITHOUT its line - on 12/01 ONLY that line is listed dead; none of the fifteen earlier patients is coded again",
+          gate(rR)["reset"] is True and gate(r21)["confirmed"] is True and gate(rD)["dead_zero_lines"] == [[qR[0]["pid"], qR[0]["visit"], qR[0]["quality_charge"]]] and qrows(rD) == [] and max(per_year(p).values()) == 1,
+          (gate(rD).get("dead_zero_lines"), [x["pid"] for x in qrows(rD)], dict(per_year(p))))
+    ws, p = mk(root, "gapJ", n=6)       # t_gapEJ part GAP_J: the same feed patient matched to a second chart
+    m, o, r, e = night(ws, p, "20261111T1240Z", [msg(1, [("99309", "20261110")])]); p.bill_visit(qrows(r)[0]["visit"], "11/11/2026")
+    m, o, r, e = night(ws, p, "20261112T1240Z", visits((3,), "20261111"))
+    p.today = D(2026, 11, 25); _b = [msg(1, [("99309", "20261124")]), msg(2, [("99309", "20261124")])]
+    ws.batch("20261125T1240Z", _b, {"ZZ CASE 01|" + DOB: "pat7006", "ZZ CASE 02|" + DOB: "pat7002"}); m, o, rJ, e = ws.run("20261125T1240Z", p)
+    check("13.6 (t_gapEJ GAP_J, the second state-machine reviewer's exact input): feed patient f7001, coded under chart pat7001, is matched to chart pat7006 two weeks later - no second line for that feed patient; another feed patient still gets one",
+          [x["pid"] for x in qrows(rJ)] == ["pat7002"] and len(rJ["created"]) == 2 and gate(rJ)["confirmed"] is True, ([x["pid"] for x in qrows(rJ)], qline(o)))
+    ws, p = mk(root, "cut")             # the second Medicare reviewer's 13.5: the register of the pilot night is cut off
+    m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3), "20261110")); _good = open(os.path.join(ws.dir, "registers", "feed_import_20261111T1240Z.json")).read()
+    open(os.path.join(ws.dir, "registers", "feed_import_20261111T1240Z.json"), "w").write(_good[:len(_good) // 2])
+    m, o2, r2, e = night(ws, p, "20261112T1240Z", visits((4, 5), "20261111")); m, o3, r3, e = night(ws, p, "20261113T1240Z", visits((6,), "20261112"))
+    open(os.path.join(ws.dir, "registers", "feed_import_20261111T1240Z.json"), "w").write(_good)
+    m, o4, r4, e = night(ws, p, "20261114T1240Z", visits((7, 8), "20261113"))
+    check("13.5: the import register of the pilot night is cut off - the next runs add NO line and say why (the log names the file), the visits go in; the second run in a row knows the run before could not read it either; with the file restored the round continues where it was (it waits for its three lines)",
+          [len(qrows(r)) for r in (r1, r2, r3, r4)] == [3, 0, 0, 0] and "the import register feed_import_20261111T1240Z.json cannot be read" in qline(o2) and gate(r2)["unread"] == ["feed_import_20261111T1240Z.json"] and gate(r2)["unread_prev"] == []
+          and gate(r3)["unread"] == gate(r3)["unread_prev"] == ["feed_import_20261111T1240Z.json"] and len(r2["created"]) == 2 and gate(r4)["unread"] == [] and gate(r4)["wait"] is True and len(gate(r4)["pending"]) == 3 and len(p.q()) == 3,
+          ([len(qrows(r)) for r in (r1, r2, r3, r4)], qline(o2), gate(r3).get("unread_prev"), gate(r4).get("pending")))
+    ws, p = mk(root, "hosp")            # the second Medicare reviewer's 13.2: a hospital follow-up, then the same patient's nursing visit
+    m, o1, r1, e = night(ws, p, "20261111T1240Z", [msg(1, [("99232", "20261110")], fac="h1")]); m, o2, r2, e = night(ws, p, "20261112T1240Z", [msg(1, [("99309", "20261111")])])
+    check("13.2: a hospital follow-up of a patient who meets every other condition gets no line and is counted in the gate; the same patient's nursing visit in the next batch carries it",
+          qrows(r1) == [] and len(r1["created"]) == 1 and gate(r1)["quality_skipped_hospital"] == 1 and r1["created"][0].get("quality_skipped") == "hospital" and [x["pid"] for x in qrows(r2)] == ["pat7001"]
+          and gate(r2)["quality_skipped_hospital"] == 0 and qrows(r2)[0]["quality_pos"] != "21", (gate(r1).get("quality_skipped_hospital"), [x["pid"] for x in qrows(r2)]))
     # -- what is NOT solved, said plainly (M8c, M4) ---------------------------------------------------------------------------------------------------------
     ws, p = mk(root, "M8c", n=12, bill=NEXT_DAY)
     m, o1, r1, e = night(ws, p, "20261111T1240Z", visits((1, 2, 3, 4), "20261110")); ws.rm("feed_import_20261111T1240Z.json")      # the next machine never got this register
@@ -575,6 +634,7 @@ BEHAVIOURS = {
     "year_end":       dict(doc="bills every line; the nights run across the year end (M10)", bill=SOON, start=D(2026, 12, 24)),
     "n620":           dict(doc="bills every line; Medicare's own answer is on file from the sixth night (M4)", bill=SOON, n620_from=5),
     "lost_register":  dict(doc="bills every line; the import register of the first night that entered a line never reaches the next machine (M8c - not solved: what happens is stated)", bill=SOON, lose_first=True),
+    "next_day":       dict(doc="bills each visit the evening it is entered and its quality line the NEXT evening (the second state-machine reviewer's first item: nobody may be coded twice, 13.1)", bill=lambda p, v, c, age: age >= (1 if c["quality"] else 0)),
 }
 def population(seed, start, nights, n=40, hand_on_list=False):
     """Invented patients: how often they are seen and where, their date of birth as the feed sends it, their plans, what the insurance check finds, what was entered by hand before."""
@@ -636,9 +696,10 @@ def due_lines(m, chart, check, exceptions):
     message for which everything is shown - a visit code of the measure, a real date of service in a year the rule was read for, a real
     date of birth that is not the placeholder, 65 to 115 years old that day, Medicare Part B first in billing order and in force that day (no
     begin date = no lower limit; a begin or end date that cannot be read shows nothing), the chart's newest EARLIER insurance check released
-    it with Medicare leading, and the chart is not on William's list."""
+    it with Medicare leading, and the chart is not on William's list. A hospital visit never carries the line in this version (13.2): the
+    hospital's messages are entered at place of service 21."""
     b = day8(m.get("dob"))
-    if b is None or b.year <= 1900 or check != OKCHK or chart["pid"] in exceptions: return []
+    if b is None or b.year <= 1900 or check != OKCHK or chart["pid"] in exceptions or m.get("_fac") == BLD["h1"]: return []
     first = (str(chart["order"] or "1").replace(" ", "").split(",") or [""])[0]; row = next((r for r in chart["plans"] if str(r[4]) == first), None)
     if not row or row[1] != "car6085": return []
     out = []
@@ -709,7 +770,7 @@ def simulate(root, behaviour, nights=14, seed=1, n_pat=40):
                 vl = msg_["FT1"][idx[0]]; mine = [o_ for o_ in own if o_["proccode"] == PCODE[vl["cpt"]] and o_["begindate"] == mdy(day8(vl["dos"]))]
                 if not mine or (a["begindate"], a["enddate"], a["pos"], a["modcodes"], a["units"], a["fee"], a["diagcodes"]) != (mine[0]["begindate"], mine[0]["enddate"], mine[0]["pos"], "", "1", g.get("fee"), mine[0]["diagcodes"].split(" ")[0]):
                     V(k, "I3", "the quality line is not shaped like the rule says (its visit line's date and place of service, no modifier, one unit, the round's amount, the first diagnosis only)", line=a, visit_line=mine[:1])
-                if a["pos"] == "23" or a["begindate"][-4:] not in YEARS: V(k, "I3", "a quality line at place of service 23 or dated in a year the rule was not read for", line=a)
+                if a["pos"] in ("21", "22", "23") or a["begindate"][-4:] not in YEARS: V(k, "I3", "a quality line at place of service 21, 22 or 23 (a hospital or emergency-department line) or dated in a year the rule was not read for", line=a)
         if any(x["fee"] != g.get("fee") for _, x in new): V(k, "I3", "a line was entered at another amount than the gate says", fees=[x["fee"] for _, x in new], gate=g.get("fee"))
         if len(new) > len(rec): V(k, "I3", "more quality lines in AdvancedMD than build() made")
         # I4: both worlds hold the same own charges; the register rows of the visits themselves are in order
@@ -805,6 +866,8 @@ EXPECT = {
     "lost_register":  ("NOT solved, stated (M8c): the next machine does not know the lines of the lost register, so the pilot round starts again and adds up to three more before anything is proven - more than the pilot "
                        "allows (the runbook's commit of the import register right after the import step is what prevents it). What still holds: never more than six unproven lines, nobody is coded twice (the charts show "
                        "the lines), and the code is proven as usual", lambda s: s["first_proven"] is not None and len(s["known"]) >= 1 and sum(s["per_night"][:s["first_proven"]]) <= 6 and s["last"]["off"] == ""),
+    "next_day":       ("the lines billed a day after their visits are never called left off: proven at $0.00, nothing is listed dead, never one cent", lambda s: s["first_proven"] is not None and sum(s["per_night"][:s["first_proven"]]) <= 3
+                       and s["last"]["fee"] == "0.00" and s["gate"]["dead_zero_lines"] == [] and s["gate"]["zero_not_billed"] is False and s["last"]["off"] == "" and s["lines_billed"] >= 3),
 }
 # M8c is not solved. For the behaviour that loses a register, the two things the loss leads to break invariant I2 by its nature; they are named here, required by EXPECT above, and
 # not counted against "every invariant held" - every other invariant (never more than six lines in a round, once per patient per year, the visit's own request ...) still is.

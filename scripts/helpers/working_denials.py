@@ -52,12 +52,16 @@ DENIAL_RULES = {
  "45":  ("CONTRACTUAL","Charge exceeds fee schedule (contractual write-down) - normal, no action"),
  "23":  ("INFO","Impact of prior payer adjudication (COB info) - informational"),
  "253": ("INFO","Sequestration reduction - informational"),
- "246": ("INFO","Non-payable code for required reporting only - a quality code such as 1123F (advance care plan); with remark N620 Medicare accepted it for the quality program. Nothing to do; a one-cent charge on that line is contractual"),
+ "246": ("INFO","Non-payable code for required reporting only (a quality code such as 1123F, or the option code M0004) - reporting line - nothing to do, never bill a cent of it to the patient. Remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site. A one-cent charge on that line is contractual"),
  "94":  ("INFO","Processed in excess/duplicate of charges - informational"),
  "253 ":("INFO","Sequestration - informational"),
 }
 DISPO_ORDER = ["FIX","COB","TIMELY","CRED","REVIEW","PATIENT","DUPLICATE","CONTRACTUAL","INFO","UNCLASSIFIED"]
 ACTIONABLE = {"FIX","COB","TIMELY","CRED","REVIEW"}
+# REPORTING LINES (11/10/2026, Medicare review M7 - the same rule as boards/working_denials.py): a no-charge quality code (1123F / 1124F) or
+# option code (M0004) on a remittance line is INFO whatever its reason or group code - never work, never a rebill, never a patient balance.
+REPORTING_CODES = {"1123F", "1124F", "M0004"}
+REPORTING_WORDS = "reporting line - nothing to do, never bill a cent of it to the patient"
 
 def norm(carc):
     """AMD reasoncode carries a doubled group prefix: 'CO18'->'18', 'COA1'->'A1', 'PI29'->'29'. Strip one leading group token."""
@@ -70,10 +74,15 @@ def age_days(dos):
     try: return (datetime.date.today() - datetime.date.fromisoformat(str(dos)[:10])).days
     except Exception: return None
 
-def triage(carc):
+def triage(carc, cpt=""):
     code = norm(carc)
+    if str(cpt or "").strip().upper() in REPORTING_CODES: return ("INFO", "%s (%s, reason %s)" % (REPORTING_WORDS, str(cpt).strip().upper(), code))
     if code in DENIAL_RULES: return DENIAL_RULES[code]
     return ("UNCLASSIFIED", "No rule yet for CARC %s - review and add to DENIAL_RULES" % code)
+
+def triage_line(carc, cpt="", mods=""):
+    """The procedure-aware form the refresh step (denials_refresh.py) asks for: a reporting line is INFO; everything else = triage(carc)."""
+    return triage(carc, cpt)
 
 def amd_status(visits):
     """Cross-check each denied visit against AMD: RESOLVED (a real payment posted), WRITTEN-OFF, OPEN. Cached per patient.
@@ -114,7 +123,7 @@ def main():
     byv = {}
     for r in rows:
         code = str(r.get("carc") or "").strip()
-        dispo, action = triage(code)
+        dispo, action = triage(code, r.get("cpt"))      # the procedure too: a reporting line (1123F / 1124F / M0004) is INFO whatever its reason code
         key = (r["pid"], r["visitid"])
         rec = byv.get(key)
         rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)

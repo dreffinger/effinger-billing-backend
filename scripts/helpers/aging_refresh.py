@@ -14,6 +14,7 @@
 #   WOCAID2ND, plus any unwritten contractual = WOINS); wrong-payer denials (PR27/26/200/22/204/24/31/109) -> insurance cascade;
 #   CCM to straight Medicaid, and CCM DENIED on a hospice patient (GV / CO-B9), -> WONCS; CO-29 -> WOLATE; DOS after a Medicare
 #   date of death -> void. Recommendations are for William's word - this script writes nothing in AMD.
+#   A no-charge reporting line (1123F / 1124F / M0004, 11/10/2026) never makes a visit read as denied; reason 246 is informational.
 # Never touches: AMD writes, balances, claims.
 #   cd /home/claude/unbilled && python3 aging_refresh.py [--out aging_latest.json] [--threads 4] [--max N]
 #   --offline <unpaid.json> <suffix>   no AMD at all: rows from a saved massrebillsearch answer, charts from
@@ -35,6 +36,11 @@ CCM = {"99490", "99491", "99487", "99489", "99439", "99437", "G0506", "G0511", "
 WRONG_PAYER = {"27", "26", "200", "31", "109", "22", "24", "204", "49"}
 BACKLOG = {"UNI20", "BCBS"}
 MEDICAID_FAMILY = {"MCAD", "SUN01", "FLO99", "SIM01", "WEL04", "UHCMA", "HUM07"}
+# REPORTING LINES (11/10/2026, second no-harm review): a no-charge quality code (1123F / 1124F) or option code (M0004) rides at $0.00 or
+# $0.01 on a Medicare claim; Medicare answers it with reason 246 (remark N620). Its payment lines never make a visit read as denied or
+# paid - they are left out of what decide() counts for the visit - and 246 is an informational reason.
+REPORTING = {"1123F", "1124F", "M0004"}
+INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")
 num = lambda s: re.sub(r"\D", "", str(s or ""))
 
 def mdy(s):
@@ -109,12 +115,12 @@ def decide(r, charges, plans, dod):
     mods = sorted({(c.get("modcodes") or c.get("modifiers") or "").strip() for c in charges} - {""})
     bill_dates = [mdy(c.get("billdate")) for c in charges if mdy(c.get("billdate"))]
     last_sent = max(bill_dates) if bill_dates else None
-    pays = [p for c in charges for p in c.get("payments", []) if p.get("void") != "1"]
+    pays = [p for c in charges if str(c.get("proccode") or "").strip().upper() not in REPORTING for p in c.get("payments", []) if p.get("void") != "1"]      # a reporting line's payments are not the visit's
     real_pays = [p for p in pays if abs(f(p.get("amount"))) > 0.005]
     zero_pays = [p for p in pays if abs(f(p.get("amount"))) <= 0.005]
     zero_denials = [p for p in zero_pays if p.get("reasons")]
     pr_only_zero = [p for p in zero_denials if all(group(code) == "PR" and norm(code) in ("1", "2", "3") for code, amt in p.get("reasons", []))]
-    denial_codes = sorted({norm(code) for p in zero_denials if p not in pr_only_zero for code, amt in p.get("reasons", []) if norm(code) not in ("45", "253", "23", "94", "1", "2", "3")})
+    denial_codes = sorted({norm(code) for p in zero_denials if p not in pr_only_zero for code, amt in p.get("reasons", []) if norm(code) not in INFO_REASONS})
     last_denial = max([mdy(p.get("date")) for p in zero_denials if mdy(p.get("date"))] or [None], key=lambda d: d or datetime.date.min)
     first_real = min([mdy(p.get("date")) for p in real_pays if mdy(p.get("date"))] or [None], key=lambda d: d or datetime.date.max)
     primary_paid_by = sorted({p.get("carrier", "") for p in real_pays})

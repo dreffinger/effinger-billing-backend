@@ -110,13 +110,17 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.5"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.5"',
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.6"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.6"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.5"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.5"',
-             "claimocity_inspector.py": "is never moved to HCA REHAB either",
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.6"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.6"',
+             # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
+             # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has
+             "claimocity_inspector.py": "THIS STEP TAKES THE LINE OFF BY ITSELF", "claimocity_verify.py": "echo is sent ONCE more without that line",
              # the denial table exists twice (boards/ and here); the workspace copy the bootstrap lays out first is this one - an older
-             # workspace copy without Medicare's reason-58 rule must not come back over it
-             "working_denials.py": "he says for that claim"}
+             # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
+             "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',
+             # the AR ageing page: a reporting line never makes a visit read as denied (11/10/2026)
+             "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")'}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
