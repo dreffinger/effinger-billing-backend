@@ -254,7 +254,7 @@
     "Key agreements are written, current and assignable where possible, and no manager, biller or vendor holds knowledge that is not written down."
    ],
    "failure_modes": [
-    "Flat volume under falling fee schedules. Medicare's 2027 conversion factor drops 2.31%, so standing still means shrinking.",
+    "Flat volume under falling fee schedules. Medicare's 2027 conversion factor drops 2.31% for most clinicians, so standing still means shrinking.",
     "One facility or referral source supplies most patients under a handshake arrangement that ends when the owner leaves.",
     "Books good enough only to file taxes. A buyer cannot compare periods and prices the uncertainty.",
     "A code distribution far from peers with no audit to explain it. Buyers assume repayment risk and cut price or demand escrow.",
@@ -330,9 +330,11 @@
     "cms-puf",
     "cms-ccm-faq",
     "cms-mln-ccm",
-    "hallrender-meddir-2025"
+    "hallrender-meddir-2025",
+    "foley-pe-2025",
+    "iconic-multiples"
    ],
-   "evidence_note": "The list of drivers comes from valuation firms and a published buyer's diligence checklist, which agree with each other. How much each driver moves price is opinion. No published discount or premium percentages were found.",
+   "evidence_note": "The list of drivers comes from valuation firms and a published buyer's diligence checklist, which agree with each other. How much each driver moves price is opinion. The few published premium figures are advisory-firm claims with no data shown.",
    "metrics": [
     {
      "slug": "lv-revenue-cagr-3yr",
@@ -342,8 +344,8 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_red": "Below about 4% a year, the long-run rise in operating cost",
-     "benchmark_note": "Medical Group Management Association, 2025: median operating cost per physician rose 71.6% from 2011 to 2024 in physician-owned multispecialty groups, about 4% a year by our arithmetic. No growth benchmark for small practices was found.",
+     "benchmark_red": "Below growth in your own operating cost (long-run national figure: about 4% a year)",
+     "benchmark_note": "Medical Group Management Association (October 2025): median operating cost per full-time physician rose 71.6% from 2011 to 2024 in physician-owned multispecialty groups, about 4% a year by our arithmetic, but 6.2% from 2020 to 2024. A first-principles floor. No small-practice growth benchmark was found.",
      "confidence": "low",
      "sources": [
       "mgma-stat-margin",
@@ -359,7 +361,7 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_note": "No published benchmark was found. PYA's diligence checklist has buyers count active patients over time, and Scope Research ties predictable revenue to higher multiples. Track your own trend, by facility where relevant.",
+     "benchmark_note": "No published benchmark was found. PYA's diligence checklist has buyers count active patients over time. Scope Research links higher multiples to capitated or shared-savings revenue, which it calls predictable and recurring. Track your own trend, by facility where relevant.",
      "confidence": "none",
      "sources": [
       "pya-checklist",
@@ -376,7 +378,7 @@
    "good_looks_like": [
     "Other clinicians generate a meaningful and rising share of collections, and patients or facilities accept them as their regular clinician.",
     "Every critical business function has a written procedure and a second person or vendor who has actually done it.",
-    "Facility, hospital and referral relationships are held by the practice in written agreements, with more than one clinician known to each partner.",
+    "Facility and hospital arrangements are written agreements in the practice's name, and more than one clinician is known to each facility and referral source.",
     "Passwords, payer portal access, bank authority and vendor contacts are in a shared, secured record, not in the owner's head.",
     "The owner can take four weeks off without revenue, billing or payroll stopping."
    ],
@@ -384,7 +386,7 @@
     "The owner bills most collections and plans to retire at closing. Buyers pay little for goodwill that walks out the door.",
     "Only the owner knows how payroll, payer enrollment or the billing system works. An illness stops cash within weeks.",
     "The owner signed a non-compete with the owner's own practice entity. Advisers warn this can defeat the separate sale of personal goodwill.",
-    "Shifting visits to a nurse practitioner without checking the rules. Some skilled nursing facility visits must be the physician's, and Medicare pays practitioners 85%.",
+    "Shifting visits to a nurse practitioner without checking the rules. Some skilled nursing facility visits must be the physician's, and Medicare pays nurse practitioners 85% of the physician rate.",
     "Relationships rest on friendship with one administrator or referring physician and vanish when either person moves on."
    ],
    "key_questions": [
@@ -431,11 +433,11 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Most acute in solo and two-clinician practices, where the owner is also the manager. In skilled nursing facilities the physician must personally make the initial comprehensive visit and at least every other required visit (42 CFR 483.30), so a nurse practitioner alone cannot carry the revenue.",
+   "applies_when": "Most acute in solo and two-clinician practices, where the owner is also the manager. In skilled nursing facilities the physician must personally make the initial comprehensive visit and at least every other required visit (42 CFR 483.30), so a nurse practitioner alone cannot cover every required visit.",
    "vendor_refs": [
     {
      "item": "practice-valuation-playbook",
-     "note": "Treats owner dependence as a discount and offers four staff-dependency questions. Framed around a human billing manager, with no way to measure the owner's revenue share."
+     "note": "Treats owner dependence as a discount and offers four staff-dependency questions. Framed around billing staff, with no way to measure the owner's revenue share."
     },
     {
      "item": "revenue-cycle-staffing-and-compensation-playbook",

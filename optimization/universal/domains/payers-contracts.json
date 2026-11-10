@@ -199,7 +199,7 @@
    "name": "Rate analysis and negotiation",
    "summary": "Comparing what each plan pays with Medicare and with other plans for the practice's own most-used codes, and asking for better terms where the practice has something the plan needs.",
    "good_looks_like": [
-    "Each plan's rates for the practice's top codes are expressed as a percentage of Medicare.",
+    "Each plan's rates for the practice's top codes are expressed as a percentage of Medicare's rate for the same locality and setting.",
     "The practice knows what it offers each plan: access, quality results, coverage of sites the plan must serve.",
     "Requests are made in writing, with data, well before renewal.",
     "Terms other than rates are negotiated too: filing limits, appeal rights, amendment notice."
@@ -208,7 +208,8 @@
     "A plan pays below Medicare and nobody has calculated it.",
     "The practice asks for more with no data and accepts the first refusal.",
     "A rate increase is won and never loaded, so underpayments go unnoticed.",
-    "Charges are set below a plan's allowed amount, so the practice caps its own payment."
+    "Charges are set below a plan's allowed amount. Plans and Medicare pay the lesser of the charge or the fee schedule, so the practice caps its own payment.",
+    "Competing practices agree among themselves on the fees to ask of a plan. Fee agreements among competing physicians are price fixing, illegal in itself under the Sherman Act."
    ],
    "key_questions": [
     "For our top 15 codes, what does each plan pay as a percent of Medicare?",
@@ -219,7 +220,7 @@
    "actions": [
     {
      "action": "Build a payer-by-code rate table",
-     "detail": "Top 15 codes by revenue, each plan's allowed amount, and Medicare's for the same locality.",
+     "detail": "Top 15 codes by revenue: each plan's allowed amount (not the paid amount) from remittances, beside Medicare's rate for the same locality and setting.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
@@ -232,8 +233,8 @@
      "impact": "medium"
     },
     {
-     "action": "Ask in writing 120 days before renewal",
-     "detail": "And follow up on a schedule.",
+     "action": "Ask in writing well before renewal",
+     "detail": "Start before the contract's notice deadline for ending or not renewing, so a refusal still leaves a choice. Follow up on a schedule.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -244,26 +245,61 @@
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
+    },
+    {
+     "action": "Look up what the plan pays others",
+     "detail": "Employer and individual-market plans must publish in-network rates in public data files (45 CFR 147.212). The files are huge, so use a lookup tool or an adviser. Medicare Advantage and Medicaid plan rates are not included.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
     }
    ],
-   "applies_when": "Practices with commercial, Medicare Advantage or Medicaid managed care contracts. Small practices have little bargaining power on rates but can often win better non-rate terms, and gain power where a plan needs coverage of specific sites or populations.",
+   "applies_when": "Practices with commercial, Medicare Advantage or Medicaid managed care contracts. Small practices are paid less than large groups and have little power on rates, but can ask for better non-rate terms, and gain power where a plan needs their sites covered, such as nursing homes its members live in.",
+   "vendor_refs": [
+    {
+     "item": "payer-rate-negotiation-playbook",
+     "note": "Adds a negotiation timeline, a data package and replies to stock objections. Credits public price files to the wrong law. Its 15.5% average increase is a contracting vendor's own figure."
+    },
+    {
+     "item": "fee-schedule-optimization-playbook",
+     "note": "Adds the check that no charge sits below a contract rate. Its charge rule of 200% to 250% of Medicare has no source and ignores Medicare's limiting charge."
+    }
+   ],
    "sources": [
-    "cms-pfs-2026",
+    "medpac-mar26-ch4",
+    "kff-private-vs-medicare-2020",
+    "trish-2017",
+    "kff-medicaid-fee-index",
+    "roberts-2017",
+    "cfr-45-147-212",
+    "cfr-414-21",
+    "uhc-admin-guide-2026",
+    "maricopa-1982",
+    "ama-contract-checklist",
     "cms-pfs-2027"
    ],
-   "evidence_note": "Method is professional practice. No reliable public benchmark for plan rates relative to Medicare was found, since contract rates are confidential.",
+   "evidence_note": "Method is professional practice. Measured averages exist: commercial preferred provider plans paid 147% of Medicare for clinician services in 2024 (MedPAC), and Medicaid paid 75% (KFF). Commercial in-network rates have been public by federal rule since 2022. The antitrust rule is Supreme Court precedent.",
    "metrics": [
     {
      "slug": "pc-rate-vs-medicare",
      "name": "Contracted rates as a percent of Medicare, by payer",
-     "definition": "For the practice's main codes, each plan's allowed amount divided by Medicare's allowed amount for the same code and locality.",
+     "definition": "For the practice's main codes, each plan's allowed amount divided by Medicare's allowed amount for the same code, locality and place of service.",
      "formula": "Plan allowed amount / Medicare allowed amount, weighted by the practice's code volume",
      "unit": "percent",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare plans with each other. Any plan below 100% deserves a decision.",
-     "confidence": "none",
-     "data_hint": "Fee schedules or allowed amounts on remittances, against the Medicare fee schedule lookup."
+     "benchmark_typical": "commercial about 147%, Medicare Advantage about 97%, Medicaid about 75% of Medicare",
+     "benchmark_note": "Measured national averages, not targets. MedPAC, 2024: commercial preferred provider plans 147% of Medicare, from 124% for care management visits to 213% for CT scans. Trish, 2007 to 2012 claims: Medicare Advantage 97% for an office visit. KFF, 2024: Medicaid 75% (Florida 64%).",
+     "confidence": "medium",
+     "sources": [
+      "medpac-mar26-ch4",
+      "trish-2017",
+      "kff-medicaid-fee-index",
+      "kff-private-vs-medicare-2020"
+     ],
+     "data_hint": "Fee schedules or allowed amounts on remittances, against the Medicare fee schedule lookup.",
+     "vendor_claim": "The purchased library gives bands with no source: commercial plans 110% to 145% of Medicare, Medicare Advantage 85% to 110%, Medicaid 50% to 80%.",
+     "vendor_verdict": "Partly supported. Measured averages sit in or near the bands (147%, 97%, 75%), but nothing is cited and a national band says little about one practice's codes."
     }
    ]
   },

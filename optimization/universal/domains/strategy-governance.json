@@ -569,7 +569,7 @@
       "pya-checklist"
      ],
      "data_hint": "Practice management report of payments by facility or place of service and by referring clinician, for 12 months.",
-     "vendor_claim": "The library sets thresholds only for payer concentration: one playbook calls a payer above 25% of net revenue a risk, another says 45% from a single payer.",
+     "vendor_claim": "The library has no threshold for site or referral-source concentration. For payers, one playbook calls a payer above 25% of net revenue a risk, and another says 45% from a single payer.",
      "vendor_verdict": "Unverifiable. Neither figure has a source, the two disagree, and a practice built around Medicare exceeds both by design."
     },
     {

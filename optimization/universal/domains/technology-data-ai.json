@@ -4,7 +4,7 @@
   {
    "slug": "td-core-systems",
    "name": "Core systems: health record and practice management",
-   "summary": "The health record and billing system the practice runs on. The questions are fit, cost, and how much of what is already paid for is actually used.",
+   "summary": "The electronic health record and the billing system (often sold together as a practice management system) that the practice runs on. The questions are fit, cost, and how much of what is already paid for is actually used.",
    "good_looks_like": [
     "The systems fit how the practice works: office schedule, hospital rounds, facility census or home visits.",
     "The practice uses the eligibility, claim scrubbing, remittance posting and reporting features it already pays for.",
@@ -33,14 +33,14 @@
     },
     {
      "action": "Ask the vendor for a feature review",
-     "detail": "Most vendors will walk through unused features at no charge.",
+     "detail": "Many vendors will walk through unused features at no charge. Ask the account manager for the list of modules on the contract.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     },
     {
      "action": "Test a full data export",
-     "detail": "Charges, payments, adjustments and patient balances, by service date.",
+     "detail": "Charges, payments, adjustments and patient balances, by service date. A certified health record must also let a user export all of a patient's stored record without the developer's help (45 CFR 170.315(b)(10)).",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -53,27 +53,44 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Facility-based and home-visit practices should check that the system handles census-based charge capture, multiple places of service and mobile use, which office-oriented products often do poorly.",
+   "applies_when": "Every practice. Clinicians who work in hospitals or nursing facilities often chart in the facility's record, so the practice's own system is mainly for billing. Check that it handles census-based charge capture, several places of service and mobile use, which office-oriented products often do poorly.",
+   "vendor_refs": [
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Adds a demonstration script built on exception cases and a 60-point vendor scorecard. Cites no sources, omits the federal data export rule, and calls clearinghouse rejections denials."
+    },
+    {
+     "item": "news-insider-01",
+     "note": "Argues for reconfiguring before replacing and gives a short audit of claim edits. Wrongly treats any denial of a scrubbed claim as proof the edits are misconfigured."
+    },
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Suggests a yearly list of every billing tool with its cost. Its keep-or-cancel test counts only staff hours saved, and its cost shares have no source."
+    }
+   ],
    "sources": [
     "hci-mgma-it-2017",
-    "mgma-bok"
+    "mgma-stat-hit-costs-2023",
+    "mgma-bok",
+    "cfr-170-315-b10"
    ],
-   "evidence_note": "Management practice. The only public cost figure found is from 2016 and is too old to use as a target.",
+   "evidence_note": "Management practice, plus one federal rule: certified health records must include a data export (45 CFR 170.315(b)(10)). MGMA's free cost figures date from 2015 to 2022 and use different definitions, so they show rough scale, not a target.",
    "metrics": [
     {
      "slug": "td-it-cost-per-clinician",
      "name": "Technology cost per full-time clinician",
      "definition": "Yearly spending on software, hosting, clearinghouse, devices and technology support, per full-time clinician.",
-     "formula": "Annual technology spending / full-time clinicians",
+     "formula": "Annual technology spending / number of full-time-equivalent clinicians",
      "unit": "dollars",
      "direction": "info",
      "cadence": "annual",
-     "benchmark_note": "MGMA reported $14,000 to $19,000 per full-time physician in 2016. No current public figure was found, so use your own trend and watch per-claim and usage-based charges.",
+     "benchmark_note": "MGMA's last free per-physician figures are old: $14,000 to $19,000 in technology operating expense (2016 data) and $32,500 including staff and equipment (2015). Its 2022 survey report put the median near $2 per total relative value unit. Use your own trend.",
      "confidence": "low",
-     "data_hint": "A year of vendor invoices from the accounting system.",
      "sources": [
-      "hci-mgma-it-2017"
-     ]
+      "hci-mgma-it-2017",
+      "mgma-stat-hit-costs-2023"
+     ],
+     "data_hint": "A year of vendor invoices from the accounting system."
     }
    ]
   },
