@@ -15,8 +15,8 @@
    "failure_modes": [
     "No buy-sell agreement, or one with a stale price. A death, disability or divorce leaves the remaining owners negotiating with an estate or a former spouse.",
     "An S corporation pays its physician-owner a low salary and large distributions. The IRS can reclassify distributions as wages subject to employment taxes.",
-    "A change of ownership is not reported to Medicare within 30 days (42 CFR 424.516(d)). Unreported changes can lead to deactivated billing privileges (42 CFR 424.540).",
-    "Ownership breaks state law. In Florida a practice not wholly owned by licensed practitioners generally needs a clinic license (section 400.9905(4)). California bars practicing medicine through a limited liability company.",
+    "A change of ownership is not reported to Medicare within 30 days (42 CFR 424.516(d)). Unreported changes can lead to deactivated or revoked billing privileges (42 CFR 424.540(a)(2), 424.535(a)(9)).",
+    "Ownership breaks state law. Florida generally requires a clinic license unless licensed practitioners, or they and close family, own the whole practice (section 400.9905(4)(g)). California bars physician limited liability companies.",
     "A change of ownership that also changes the tax identification number generally requires a new Medicare enrollment application (42 CFR 424.550(c)). Unplanned, this interrupts billing."
    ],
    "key_questions": [
@@ -67,11 +67,11 @@
    "vendor_refs": [
     {
      "item": "new-practice-launch-playbook",
-     "note": "Puts entity formation first in its launch sequence and says to confirm state rules with an attorney. Silent on bylaws, buy-sell terms, tax election and annual filings."
+     "note": "Puts entity formation first and advises confirming state rules with an attorney. Claims, unsourced, that most states require a professional corporation or similar. Nothing on bylaws, buy-sell or tax election."
     },
     {
      "item": "practice-acquisition-revenue-cycle-integration-playbook",
-     "note": "Describes management company structures as if state bans on non-physician ownership were nearly universal. State rules vary widely, so check your own state."
+     "note": "Describes the management company structure used in investor-backed purchases and says counsel must review it against state ownership rules. Gives no state detail, and those rules vary widely."
     },
     {
      "item": "provider-compensation-design-playbook",
@@ -82,6 +82,7 @@
     "cfr-424-516",
     "cfr-424-502",
     "cfr-424-540",
+    "cfr-424-535",
     "cfr-424-550",
     "irs-s-corp-compensation",
     "irs-s-corporations",

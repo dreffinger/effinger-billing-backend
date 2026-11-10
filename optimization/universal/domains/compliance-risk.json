@@ -90,9 +90,10 @@
     "cfr-164-530",
     "cfr-164-308",
     "oig-heat-training",
-    "cfr-45-102-3"
+    "cfr-45-102-3",
+    "healthicity-survey-2017"
    ],
-   "evidence_note": "Based on Office of Inspector General guidance for small entities (2023) and small physician practices (2000). Both are voluntary guidance, not regulation. No survey was found of how many small practices have a working program.",
+   "evidence_note": "Based on Office of Inspector General guidance for small entities (2023) and small physician practices (2000), both voluntary. No reliable rate of working programs in small practices exists: a 2017 vendor survey found 12% of responding organizations had none, half of them small practices.",
    "metrics": [
     {
      "slug": "cr-program-elements",
@@ -706,7 +707,7 @@
     },
     {
      "action": "Write a breach plan and rehearse it once",
-     "detail": "Name who assesses an incident. Federal rules give 60 days to notify patients, and state law may give less. Florida's law says 30 days but accepts notice given under the federal rule. Require vendors by contract to tell you within days.",
+     "detail": "Name who assesses an incident. Federal rules give 60 days to notify patients, and state law may give less. Florida's law says 30 days but accepts notice under the federal rule. Require vendors by contract to tell you within days.",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
@@ -1015,7 +1016,7 @@
     },
     {
      "action": "Review all notice and consent forms once a year",
-     "detail": "Check the expiration date printed on the Medicare form, the privacy notice against current rules, your state's telehealth consent rule and the care-management script against Medicare's current booklet.",
+     "detail": "Check the Medicare form's printed expiration date, the privacy notice, your state's telehealth consent rule and the care-management script. In hospitals and surgery centers, confirm in writing who gives commercially insured patients the federal surprise-billing notice (45 CFR 149.430).",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -1050,7 +1051,8 @@
     "cfr-45-149-620",
     "cfr-164-520",
     "cchp-telehealth-consent-2026",
-    "fl-456-47"
+    "fl-456-47",
+    "cfr-45-149-430"
    ],
    "evidence_note": "Consent elements come from Medicare's care-management booklet (June 2025). Notice rules come from the Medicare claims manual, chapter 30, and the form instructions. Estimate deadlines are federal regulation (45 CFR 149.610). Telehealth consent is state law and varies.",
    "metrics": [

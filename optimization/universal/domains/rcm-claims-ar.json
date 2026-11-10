@@ -89,7 +89,8 @@
     "hbma-2024",
     "mgma-stat-ar-2026",
     "mgma-ops-2023",
-    "uhc-admin-guide-2026"
+    "uhc-admin-guide-2026",
+    "advancedmd-claim-scrubbing"
    ],
    "evidence_note": "What counts as a filed claim comes from the Medicare Claims Processing Manual, chapter 1, section 70, and from each payer's manual. Speed targets are MGMA advice. Clean claim targets are convention. Measured figures come from small billing-company surveys.",
    "metrics": [
@@ -101,19 +102,20 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_best": "95% or more (convention, no data behind it)",
+     "benchmark_best": "95% or more (vendor convention, no data)",
      "benchmark_typical": "93% to 94% (measured first-pass acceptance)",
      "benchmark_red": "under 85% (below a 2021 hospital target)",
-     "benchmark_note": "HFMA defines the measure and sets no target. The 95% convention has no dataset. PwC's 2021 hospital scorecard used 85% or more. The Healthcare Business Management Association (HBMA) 2024 survey found 93% to 94% accepted by the clearinghouse on first pass, a looser measure.",
+     "benchmark_note": "HFMA sets no target. The 95% convention is vendor marketing, without data. PwC's 2021 hospital scorecard used 85% or more. A Healthcare Business Management Association (HBMA) survey published January 2024 found 93% to 94% accepted by the clearinghouse on first pass, a looser measure.",
      "confidence": "low",
      "sources": [
       "hfma-map-keys",
       "pwc-hfma-2021",
-      "hbma-2024"
+      "hbma-2024",
+      "advancedmd-claim-scrubbing"
      ],
      "data_hint": "Scrubber or clearinghouse report of claims that needed manual correction before release.",
      "vendor_claim": "Above 95% is the top band, 92% to 95% acceptable, and below 88% serious underperformance.",
-     "vendor_verdict": "Partly supported. 95% is a convention with no dataset behind it. HFMA sets no target, and measured first-pass acceptance averages 93% to 94%."
+     "vendor_verdict": "Partly supported. 95% is a vendor convention with no dataset behind it. HFMA sets no target, and measured first-pass acceptance averages 93% to 94%."
     },
     {
      "slug": "ar-first-pass-resolution",
@@ -124,7 +126,7 @@
      "direction": "higher",
      "cadence": "monthly",
      "benchmark_typical": "86% to 88% (measured, billing companies)",
-     "benchmark_note": "HBMA 2024 survey of billing companies (38 responses): mean 85.7% for office-based and 88.3% for hospital-based practices. No authoritative target exists. The often quoted 90% has no source. Set targets by payer from your own history.",
+     "benchmark_note": "HBMA survey of billing companies, published January 2024 (38 responses): mean 85.7% for office-based and 88.3% for hospital-based practices. No authoritative target exists. The often quoted 90% has no source. Set targets by payer from your own history.",
      "confidence": "medium",
      "sources": [
       "hbma-2024"
@@ -247,7 +249,7 @@
      "direction": "lower",
      "cadence": "monthly",
      "benchmark_typical": "about 6% to 7% (inferred from one survey)",
-     "benchmark_note": "A 2024 survey by HBMA, the Healthcare Business Management Association (38 billing-company responses), found 93% to 94% of claims accepted by the clearinghouse on first pass. That implies about 6% to 7% rejected. This is an inference. No published target was found.",
+     "benchmark_note": "A survey by HBMA, the Healthcare Business Management Association, published January 2024 (38 billing-company responses), found 93% to 94% of claims accepted by the clearinghouse on first pass. That implies about 6% to 7% rejected, an inference. No published target was found.",
      "confidence": "low",
      "sources": [
       "hbma-2024"
@@ -626,7 +628,7 @@
      "benchmark_best": "under 35 days",
      "benchmark_typical": "35 to 50 days",
      "benchmark_red": "over 50 days",
-     "benchmark_note": "Targets are AAFP (undated) and AAPC (2012) convention with no data. A 2024 survey by HBMA, the Healthcare Business Management Association (25 billing-company responses), found a mean of 42.3 days. MGMA poll, July 2026: 32% of practices said days had risen in a year.",
+     "benchmark_note": "Targets are AAFP (undated) and AAPC (2012) convention without data. A survey by HBMA, the Healthcare Business Management Association, published January 2024 (25 billing-company responses), found a mean of 42.3 days. MGMA poll, July 2026: 32% of practices said days had risen in a year.",
      "confidence": "medium",
      "sources": [
       "aafp-finances",
@@ -648,7 +650,7 @@
      "cadence": "monthly",
      "benchmark_best": "20% or less (2021 hospital target)",
      "benchmark_typical": "about 29% (measured mean)",
-     "benchmark_note": "No practice standard exists. A PwC hospital scorecard (2021) used 20% or less of billed insurance receivables. The HBMA 2024 survey of billing companies (25 responses) found a mean of 28.6%. Targets of under 10% or 15% appear only in vendor material.",
+     "benchmark_note": "No practice standard exists. A PwC hospital scorecard (2021) used 20% or less of billed insurance receivables. The HBMA survey of billing companies published January 2024 (25 responses) found a mean of 28.6%. Targets of under 10% or 15% appear only in vendor material.",
      "confidence": "medium",
      "sources": [
       "pwc-hfma-2021",
@@ -1338,7 +1340,7 @@
      "direction": "higher",
      "cadence": "quarterly",
      "benchmark_typical": "about 35% to 54% (measured, definitions differ)",
-     "benchmark_note": "No standard exists. A 2024 survey by HBMA, the Healthcare Business Management Association, found self-pay collection averaging 54% for office-based and 44% for hospital-based practices. Kodiak: providers collected 34.5% of amounts owed by insured patients in 2024. Targets of 90% appear only in vendor material.",
+     "benchmark_note": "No standard exists. A survey by HBMA, the Healthcare Business Management Association, published January 2024, found self-pay collection averaging 54% office-based and 44% hospital-based. Vendor Kodiak: providers collected 34.5% of amounts owed by insured patients in 2024. Targets of 90% appear only in vendor material.",
      "confidence": "medium",
      "sources": [
       "hbma-2024",
@@ -1592,7 +1594,7 @@
      "benchmark_best": "99% or more",
      "benchmark_typical": "95% to 99%",
      "benchmark_red": "under 95%",
-     "benchmark_note": "Bands are AAFP (undated) and AAPC (2012) convention. A 2024 survey by HBMA, the Healthcare Business Management Association (37 billing-company responses), reported means of 84.9% for office-based and 93.2% for hospital-based practices. Any write-off coded contractual inflates the rate.",
+     "benchmark_note": "Bands are AAFP (undated) and AAPC (2012) convention. A survey by HBMA, the Healthcare Business Management Association, published January 2024 (37 billing-company responses), reported means of 84.9% for office-based and 93.2% for hospital-based practices. Any write-off coded contractual inflates the rate.",
      "confidence": "medium",
      "sources": [
       "aafp-finances",
@@ -1612,7 +1614,7 @@
      "unit": "percent",
      "direction": "info",
      "cadence": "monthly",
-     "benchmark_note": "No valid benchmark exists, because the rate depends on the fee schedule. For reference, the HBMA 2024 survey reported means of 53.6% for office-based and 64.7% for hospital-based practices. Use it only to watch your own trend.",
+     "benchmark_note": "No valid benchmark exists, because the rate depends on the fee schedule. For reference, the HBMA survey published January 2024 reported means of 53.6% for office-based and 64.7% for hospital-based practices. Use it only to watch your own trend.",
      "confidence": "none",
      "sources": [
       "hbma-2024",

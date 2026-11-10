@@ -552,34 +552,37 @@
    "name": "Financial clearance, estimates and required notices",
    "summary": "Telling patients the likely cost before a service, and delivering the notices the law requires: a good-faith estimate for uninsured and self-pay patients, and an Advance Beneficiary Notice when Original Medicare is expected to deny a service as not medically necessary.",
    "good_looks_like": [
-    "Self-pay and uninsured patients receive a written good-faith estimate for scheduled services.",
+    "Self-pay and uninsured patients receive a written good-faith estimate within one business day of scheduling a service three or more business days ahead, or within three business days of asking.",
     "Staff know which services need an Advance Beneficiary Notice and use the current form.",
     "A written financial policy covers payment plans and hardship.",
-    "Hardship decisions are made case by case and documented."
+    "Hardship decisions are made case by case and documented.",
+    "A notice that self-pay patients can get an estimate is posted in the office and on the website."
    ],
    "failure_modes": [
     "A Medicare claim is denied as not medically necessary and, with no notice signed in advance, the patient cannot be billed.",
     "The Medicare notice is used for Medicare Advantage patients, where it has no effect.",
-    "Cost sharing is waived routinely, which federal guidance treats as unlawful.",
-    "A self-pay patient receives a bill far above anything they were told."
+    "Medicare cost sharing is waived routinely, which federal guidance treats as unlawful.",
+    "A self-pay patient is billed $400 or more above the estimate, which gives the patient a federal right to dispute the bill.",
+    "The Medicare notice is handed to every patient as routine. Medicare treats routine notices as ineffective."
    ],
    "key_questions": [
     "Which of our services are sometimes denied by Medicare as not medically necessary?",
     "Do self-pay patients get a written estimate before scheduled services?",
     "Is our financial hardship policy written, and are decisions documented?",
-    "Do we ever waive copayments or deductibles as a routine?"
+    "Do we ever waive copayments or deductibles as a routine?",
+    "If our clinicians are out of network at a hospital where they work, do we ever bill insured patients more than in-network cost sharing?"
    ],
    "actions": [
     {
      "action": "List services that need a Medicare notice",
-     "detail": "Build it from the practice's own medical-necessity and frequency denials.",
+     "detail": "Build it from the practice's own medical-necessity and frequency denials. Give the notice only when a denial is expected, to the patient or the legal representative, before the service.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     },
     {
      "action": "Give good-faith estimates to self-pay patients",
-     "detail": "Use the federal template for scheduled services and keep a copy.",
+     "detail": "Use the federal template. Send it within one business day of scheduling, or three business days of a request. Keep it with the medical record.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -593,30 +596,61 @@
     },
     {
      "action": "Never waive cost sharing routinely",
-     "detail": "Waive only for documented individual hardship or where the law forbids billing.",
+     "detail": "Waive only for documented individual hardship, after a good-faith effort to collect, or where the law forbids billing.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
+    },
+    {
+     "action": "Post the right-to-an-estimate notice",
+     "detail": "Display the federal model notice in the office, on the website and where scheduling happens, and tell self-pay patients when they book.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "low"
     }
    ],
-   "applies_when": "Mostly office and procedural practices with scheduled services and patient balances. Practices whose work is hospital and facility visits for Medicare patients rarely need either notice.",
+   "applies_when": "Mostly office and procedural practices with scheduled services and patient balances. The estimate rule does not cover Medicare or Medicaid patients, so practices doing hospital and facility visits for them rarely need it. A Medicare notice for a patient who cannot decide goes to the legal representative.",
+   "vendor_refs": [
+    {
+     "item": "medicare-abn-compliance-playbook",
+     "note": "Good idea: build the notice list from the practice's own denials. It wrongly puts the Medicare number on the form and says never-covered services need a notice to be billed."
+    },
+    {
+     "item": "no-surprises-act-playbook",
+     "note": "States the estimate deadlines and the $400 dispute threshold correctly. Its penalty worksheet multiplies every missed estimate by the maximum fine, a worst case it presents as the practice's exposure."
+    },
+    {
+     "item": "patient-collections-playbook",
+     "note": "Has usable scripts for stating the amount due. It never states the federal estimate duty or its deadlines, and never mentions Medicare or Medicaid."
+    }
+   ],
    "sources": [
+    "cfr-45-149-610",
+    "cfr-45-149-620",
+    "cfr-45-149-420",
+    "cms-gfe-uninsured-fact-sheet",
+    "cms-gfe-sample",
     "cms-cpm-ch30",
-    "cfr-149-610",
+    "cms-abn-instructions",
     "oig-waiver-1994"
    ],
-   "evidence_note": "Both notices are federal requirements. The Medicare notice applies to Original Medicare only. The warning against routine waivers is long-standing federal guidance.",
+   "evidence_note": "Federal requirements: good-faith estimates (45 CFR 149.610), the Medicare notice for Original Medicare only (Claims Processing Manual, chapter 30, section 50), and limits on out-of-network billing at in-network facilities (45 CFR 149.420). The routine-waiver warning is Inspector General guidance from 1994.",
    "metrics": [
     {
      "slug": "fe-estimates-given-rate",
      "name": "Self-pay or scheduled services given a written estimate",
-     "definition": "Share of scheduled services for uninsured or self-pay patients for which a written good-faith estimate was given beforehand.",
-     "formula": "Scheduled self-pay services with an estimate on file / scheduled self-pay services",
+     "definition": "Share of services for uninsured or self-pay patients, scheduled at least 3 business days ahead or with an estimate requested, for which a written good-faith estimate was given on time.",
+     "formula": "Qualifying self-pay services with an on-time estimate on file / qualifying self-pay services",
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The legal requirement applies to every such service, so the target is 100%.",
-     "confidence": "none",
+     "benchmark_best": "100% of qualifying services, a legal requirement",
+     "benchmark_note": "No survey benchmark was found. The target is the federal rule itself (45 CFR 149.610, text in effect November 2026): every self-pay service scheduled at least three business days ahead, and every request. Medicare and Medicaid patients are not counted.",
+     "confidence": "high",
+     "sources": [
+      "cfr-45-149-610",
+      "cms-gfe-uninsured-fact-sheet"
+     ],
      "data_hint": "A copy of each estimate filed with the encounter."
     }
    ]
@@ -624,7 +658,7 @@
   {
    "slug": "fe-pos-collections",
    "name": "Time-of-service collections",
-   "summary": "Collecting copayments, deductibles and prior balances when the patient is present. It is the cheapest money a practice collects, and the hardest to collect later.",
+   "summary": "Collecting copayments, deductibles and prior balances when the patient is present. What is not collected at the visit moves to statements and calls, which cost more and bring in less.",
    "good_looks_like": [
     "Staff know what each patient owes before the visit, from the eligibility answer.",
     "Copayments are requested at check-in as routine.",
@@ -632,10 +666,11 @@
     "Collections are counted daily and compared with what was due."
    ],
    "failure_modes": [
-    "Staff are uncomfortable asking, so copayments are billed later at several times the cost.",
+    "Staff are uncomfortable asking, so copayments are billed later by statement, at extra cost and with less chance of payment.",
     "The amount due is unknown at check-in because eligibility was not checked.",
     "Cash and card receipts are not reconciled at day end.",
-    "Patients who may not be billed are asked to pay."
+    "Qualified Medicare Beneficiaries, who may not be charged Medicare cost sharing, are asked to pay at the desk.",
+    "Estimated amounts are collected before the insurer has processed the claim, and the overpayments that result are not refunded."
    ],
    "key_questions": [
     "What share of copayments due do we collect at the visit?",
@@ -673,13 +708,27 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Office practices with a front desk. It does not apply to hospital and facility rounding, where no payment is collected at the visit and most cost sharing is covered by a secondary payer or may not be billed. Those practices should measure statement yield on collectible balances.",
+   "applies_when": "Office practices with a front desk. It does not apply to hospital and facility rounding, where no payment is collected at the visit. For nursing facility residents much cost sharing is covered by a secondary payer or may not be billed. Those practices should measure what share of billable patient balances their statements collect.",
+   "vendor_refs": [
+    {
+     "item": "kpi-05-pos-collection-rate",
+     "note": "Good routine: show the amount, ask, coach each staff member. Its 90% target has no source, it calls copayments an absolute right, and never mentions Medicare or protected patients."
+    },
+    {
+     "item": "patient-collections-playbook",
+     "note": "Scripts for quoting the amount at booking and check-in. It takes the copayment before rooming with no exceptions, which is wrong for patients who may not be charged."
+    },
+    {
+     "item": "front-end-rcm-playbook",
+     "note": "Says visit-time collection costs nothing and later billing costs $8 to $14 a statement, with no source. Its 65% to 75% target conflicts with the library's other documents."
+    }
+   ],
    "sources": [
     "mgma-stat-ar-2026",
     "hfma-map-keys",
     "cms-qmb"
    ],
-   "evidence_note": "MGMA measured the share of copayments and balances collected at the visit. HFMA defines a related measure for hospitals and publishes no target.",
+   "evidence_note": "The Medical Group Management Association (MGMA) measured the share of copayments and other balances collected at the visit (2024). The Healthcare Financial Management Association (HFMA) defines a different ratio, visit-time cash over all patient cash, with no target.",
    "metrics": [
     {
      "slug": "fe-pos-collection-rate",
@@ -689,14 +738,16 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_typical": "about 72% of copayments",
-     "benchmark_note": "MGMA, 2024 data: practices collected 72% of copayments and about 27% of other balances at the time of service. HFMA defines a different ratio, against all self-pay cash, with no target.",
+     "benchmark_typical": "72% of copayments, 27% of other balances due",
+     "benchmark_note": "MGMA, 2024 data, quoted in a July 2026 article without method detail: practices collected 72% of copayments and about 27% of other balances at the time of service. HFMA defines a different ratio, against all self-pay cash, with no target.",
      "confidence": "medium",
-     "data_hint": "Daily collection log compared with copayments due on the schedule.",
      "sources": [
       "mgma-stat-ar-2026",
       "hfma-map-keys"
-     ]
+     ],
+     "data_hint": "Daily collection log compared with copayments due on the schedule.",
+     "vendor_claim": "The purchased library gives three different targets: over 90% of known patient amounts (KPI guides), 65% to 75% (front-end playbook), and 95% or more of copayments.",
+     "vendor_verdict": "Unverifiable. No source is cited and the targets disagree. Measured reality is far lower: 72% of copayments in 2024 (MGMA)."
     }
    ]
   }
