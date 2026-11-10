@@ -23,7 +23,7 @@
     -473096
    ],
    [
-    "Earnings before any owner pay (seller's discretionary earnings)",
+    "Earnings before any owner pay, after removing one-time collections and lost stipends",
     523057
    ],
    [
@@ -136,7 +136,7 @@
   "high": 1072000,
   "inputs": [
    [
-    "Earnings before any owner pay",
+    "Earnings before any owner pay, after removing one-time collections and lost stipends",
     523057
    ],
    [

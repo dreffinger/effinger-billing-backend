@@ -37,14 +37,14 @@ Derived:
 - Revenue trend: -30% (2024 vs 2023), -23% (2025 vs 2024), +19.9% (nine months 2026 vs nine months 2025); Q3 2026 net revenue +38% vs Q3 2025. Q3 2026 annualizes to $1.27M; the first half of 2026 annualized to $0.97M. Part of Q3 2026 collections is recovery of old receivables from the AI-run cleanup that began in September 2026 (not yet separated from recurring collections).
 - Operating expense ratio (operating expenses / net revenue): 56.5% (2023), 58.3% (2024), 56.7% (2025), 45.7% (nine months 2026).
 - Billing cost as a share of professional fees: 7.0% (2023), 8.1% (2024), 8.4% (2025), 6.3% (nine months 2026); Q3 2026 alone 8.7% (billing services and software $26,790 on $307,949).
-- Owner cash in the nine months 2026: salary $135,000 plus $176,241 of distributions (about $43K of which went to the IRS per the owner's finance board).
+- Owner cash in the nine months 2026: salary $135,000 plus $176,241 of distributions.
 
 Balance sheet at 9/30/2026 (cash basis, so no receivables or payables are on it):
 - Cash $94,431 (two Regions accounts). Net property and equipment $22,497. Capitalized loan fees, net $13,005.
 - Shareholder loan receivable $162,121 (money the owner owes the corporation; it was $288,420 at end of 2023; interest accrues as income).
 - Debt $212,206: Bankers Healthcare Group note $187,206 (current portion $48,053; the owner's board lists the rate as 13.99%) and a family trust loan $25,000. Merchant-cash-advance style notes (Square Capital, Spartan Capital) were paid off during 2024; interest expense fell from $195K (2023) to about $29K a year now.
 - Stockholder's equity $79,847.
-- Outside the corporation, the owner's finance board notes a personal IRS balance of about $240,000 on a $4,398 a month installment.
+- Outside the corporation, the owner's finance board notes a personal tax balance on a monthly installment plan (amount not recorded here).
 
 ## 3. Revenue cycle (Neon `ehpa.*`, aggregates)
 
@@ -66,6 +66,7 @@ Balance sheet at 9/30/2026 (cash basis, so no receivables or payables are on it)
 - Code counts (entered lines, whole window): 99233 x269; 99309 x260; 99487 x257; 99489 x213; 99232 x96; 99223 x70; 99497 x62; 99344 x31; 99306 x19; 99308 x12; 99239 x7; 99316 x3; 99498 x2. No 99231, 99221, 99222, 99304, 99305, 99307, 99310, 99238, 99315, and no established-patient home/residence codes (99347-99350) in this window (99349 does appear on earlier remittances).
 - Level distribution inside each family: subsequent hospital care 99233 73.7% / 99232 26.3% / 99231 0%; initial hospital care 99223 100%; subsequent nursing facility care 99309 95.6% / 99308 4.4% / 99307 0% / 99310 0%; initial nursing facility care 99306 100% (19 visits, 10 of them billed under the nurse practitioner at POS 31); discharge day codes 100% the over-30-minute code (99239 x7, 99316 x3); assisted living 99344 (new patient) x31, 25 of them by the nurse practitioner.
 - Advance care planning 99497 on 62 encounters (about 8% of face-to-face visits), usually on the same day as an admission or visit.
+- Nursing facility visits per resident, October 2026 (charge feed, counted 2026-11-10): 218 visits to 135 residents, 1.61 each; 14 residents were seen four or more times.
 - Place of service: every nursing-facility visit in the feed carries POS 31 (skilled nursing facility); POS 32 (nursing facility, long-term) is never used.
 - The practice's charge amounts: 99233 $160; 99232 $111; 99223 $310; 99309 $130-141; 99308 $107; 99306 n/a alone; 99487 $206; 99487+99489 $315; 99344 $300; 99239 $163; 99316 $207.
 
