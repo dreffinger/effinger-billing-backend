@@ -728,6 +728,70 @@
   "practice_impact": "Direct: cerumen removal is routine in facility geriatrics. Bill 69210 once per session regardless of ears, document impaction, and expect about $48-$52 at office or nursing-facility POS 32 and $28-$31 at SNF POS 31 in Florida."
  },
  {
+  "id": "geriatrics-companion-guide:C1",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "99483: 'Billable separately from E&M on same day.' Combining 99483, advance care planning (99497) and a 99215 visit in a single appointment can generate approximately $540 to $580 in Medicare revenue; 'This is not upcoding.'",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C2",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "An Advance Beneficiary Notice (ABN) 'must be issued to the patient before the service is provided' whenever 'a service may not be covered by Medicare or an MA plan'.",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C3",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "Denial pattern: CCM (99490/99491) billed in the same month as TCM (99495/99496) for one patient; because TCM includes care management, 'the two cannot be billed in the same calendar month'.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C4",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "Medicare is always primary. Medicaid is the payer of last resort. Never bill the patient for the balance on a dual-eligible claim; Medicaid's payment (often $0) is the final settlement.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C5",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "A geriatric practice with heavy Medicare Advantage volume operates in a multi-payer commercial environment where every plan has its own rules and none of them are required to follow Medicare's.",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C6",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "CCM requires written patient consent, obtained and documented before CCM services begin; this consent must be renewed if the patient changes providers.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C7",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "Core CPT Code Reference lists as current Medicare-paid codes: G0505 cognitive assessment ($232-$250), 99358 prolonged non-face-to-face service ($110-$118), and 99339/99340 'Care plan oversight - home health/hospice' ($55-$104).",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "geriatrics-companion-guide:C8",
+  "item_slug": "geriatrics-companion-guide",
+  "claim": "TCM requires medication reconciliation within two business days of discharge, documented as a completed activity, not an intention.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
   "id": "neurology-companion-guide:C1",
   "item_slug": "neurology-companion-guide",
   "claim": "High-complexity MDM (99215) requires multiple chronic conditions with exacerbation risk or one condition with severe exacerbation risk; prescription drug management with risk of adverse effects; and independent interpretation of tests or independent historians. Virtually every active neurology patient qualifies.",
@@ -1166,6 +1230,70 @@
   "source_url": "https://www.cms.gov/files/zip/october-2026-alpha-numeric-hcpcs-file.zip",
   "confidence": "high",
   "practice_impact": "G0444 is payable only in office-type or telehealth places of service (02, 10, 11, 19, 22, 49, 71), so it denies on nursing-facility or assisted-living visits; it pays about $18.70 non-facility in 2026."
+ },
+ {
+  "id": "primarycare-companion-guide:C1",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "A TCM claim cannot be submitted until after the face-to-face visit, but must be submitted with the date of discharge as the service date.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C2",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "A physician managing a patient on prescription drug management, which includes virtually every chronic disease patient on any medication, is performing moderate MDM by definition; an established chronic illness is at minimum moderate MDM, supporting 99214.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C3",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "The first 30 minutes of ACP conversation in a calendar year bills at 99497. Additional 30-minute increments bill at 99498. The revenue is $50 to $80 per encounter under Medicare.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C4",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "Incident-to billing pays 100% of the physician fee schedule versus 85% under the NPP's own NPI, and requires that the physician is physically present in the office suite during the NPP's service and established the plan of care.",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C5",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "CCM requires documented monthly contact totaling at least 20 minutes, a current comprehensive care plan, patient consent on file, and billing that submits the service in the calendar month it was performed.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C6",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "AWV required components: health risk assessment, review of medical and family history, list of current providers and medications, measurement of cognitive function, detection of depression risk factors, and a written personalized prevention plan.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C7",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "The national benchmark for primary care is approximately 30% of established patient visits at 99213 and 45% at 99214, per the CMS Medicare Physician and Other Supplier Public Use File; 60% or more at 99213 signals systematic undercoding.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "primarycare-companion-guide:C8",
+  "item_slug": "primarycare-companion-guide",
+  "claim": "A practice with 300 CCM-eligible Medicare patients, billing 99490 at the current Medicare rate, generates approximately $150,000 to $230,000 per year in additional revenue.",
+  "kind": "payment_rate",
+  "stakes": "medium",
+  "verdict": "not checked"
  },
  {
   "id": "radiologylab-companion-guide:C1",

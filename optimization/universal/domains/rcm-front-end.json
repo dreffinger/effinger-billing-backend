@@ -1,0 +1,590 @@
+{
+ "domain": "rcm-front-end",
+ "categories": [
+  {
+   "slug": "fe-encounter-source",
+   "name": "Encounter source: schedule or census",
+   "summary": "The list of who was seen, where and by whom. Office practices have an appointment schedule. Hospital, nursing facility and home-visit practices have a census or rounding list. Every billable encounter starts here, so gaps here never appear in any billing report.",
+   "good_looks_like": [
+    "One list each day shows every patient seen, the site and the clinician.",
+    "Each day's list is compared with charges entered, and every difference is explained.",
+    "New admissions, discharges, transfers and deaths reach the list the same day.",
+    "For office practices, no-shows and cancellations are recorded and followed up."
+   ],
+   "failure_modes": [
+    "A clinician sees patients who were never added to the census, and those visits are never billed.",
+    "A patient is discharged or dies and recurring charges continue.",
+    "Two lists exist, the facility's and the practice's, and nobody reconciles them.",
+    "Empty appointment slots and no-shows go unmeasured."
+   ],
+   "key_questions": [
+    "Where does our list of patients seen come from, and who keeps it current?",
+    "How many encounters last month had no charge, and why?",
+    "How quickly do we learn of an admission, discharge or death?",
+    "What is our no-show rate, if we schedule visits?"
+   ],
+   "actions": [
+    {
+     "action": "Reconcile the list to charges every day",
+     "detail": "Count encounters by site and clinician on the census or schedule, and compare with charges entered. List the gaps.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Get facility census changes daily",
+     "detail": "Ask each facility for a daily admission, discharge and transfer report, or pull it from its portal.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Close each day's list",
+     "detail": "The clinician confirms the list is complete before leaving the site or at day end.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Track no-shows and fill gaps",
+     "detail": "For scheduled practices: reminders, a waiting list and a same-day standby list.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Office practices work from a schedule and care about fill rate and no-shows. Facility-based and home-visit practices work from a census, where the risk is a visit that was made but never listed.",
+   "sources": [
+    "hfma-map-keys",
+    "mgma-app-2026"
+   ],
+   "evidence_note": "Reconciling encounters to charges is standard practice in HFMA and MGMA guidance. The no-show figure is measured by MGMA for office primary care. No benchmark exists for census accuracy.",
+   "metrics": [
+    {
+     "slug": "fe-encounter-reconciliation",
+     "name": "Encounters reconciled to a charge or a documented reason",
+     "definition": "Share of encounters on the schedule or census that have either a charge entered or a recorded reason for no charge.",
+     "formula": "Encounters with a charge or documented reason / encounters on the schedule or census",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "daily",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100% within a few days of service.",
+     "confidence": "none",
+     "data_hint": "The scheduling or census tool compared with charges in the billing system."
+    },
+    {
+     "slug": "fe-no-show-rate",
+     "name": "No-show rate",
+     "definition": "Share of scheduled appointments where the patient did not arrive and did not cancel in advance.",
+     "formula": "No-show appointments / scheduled appointments",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_typical": "about 6% in primary care",
+     "benchmark_note": "MGMA primary care median, 2025 data: 6.0%. Applies to scheduled office practices. It does not apply to rounding practices.",
+     "confidence": "medium",
+     "data_hint": "The scheduling system's appointment status report.",
+     "sources": [
+      "mgma-app-2026"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "fe-registration",
+   "name": "Registration and demographic accuracy",
+   "summary": "Getting the patient's identity, insurance details and responsible party right at the start. A wrong birth date, subscriber number or name spelling is enough to reject a claim.",
+   "good_looks_like": [
+    "Name, birth date, sex, address, subscriber number and plan are taken from the insurance card or an electronic eligibility answer, not typed from memory.",
+    "Required fields cannot be skipped.",
+    "For facility patients, the face sheet is obtained at admission and checked against eligibility.",
+    "Consent to treat and to bill, and assignment of benefits, are on file."
+   ],
+   "failure_modes": [
+    "Names and numbers are retyped from a faxed face sheet and one digit is wrong.",
+    "The patient's plan changed in January and the old card is still on file.",
+    "The responsible party for a patient with dementia is unknown, so statements go nowhere.",
+    "Registration errors are fixed claim by claim and never traced to their source."
+   ],
+   "key_questions": [
+    "What share of our rejections and denials come from registration errors?",
+    "Do we verify identity and coverage electronically before the first claim?",
+    "For facility patients, who sends us the face sheet and how fast?",
+    "Do we know the responsible party for every patient who cannot manage their own affairs?"
+   ],
+   "actions": [
+    {
+     "action": "Use the eligibility answer to correct registration",
+     "detail": "When the payer's electronic answer shows a different name, birth date or subscriber number, update the record to match.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Make key fields required",
+     "detail": "Subscriber number, plan, birth date and responsible party before a claim can be created.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Trace registration denials to their source",
+     "detail": "Each month, list rejections and denials caused by demographic errors and where each record came from.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Get face sheets at admission",
+     "detail": "Agree with each facility on how and when the practice receives them.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Practices with no front desk depend on facility face sheets and electronic eligibility, so the accuracy check has to be built into intake of the census.",
+   "sources": [
+    "hfma-map-keys",
+    "caqh-2024"
+   ],
+   "evidence_note": "Standard revenue cycle practice. No measured benchmark for registration accuracy in physician practices was found.",
+   "metrics": [
+    {
+     "slug": "fe-registration-error-rate",
+     "name": "Claims rejected or denied for registration errors",
+     "definition": "Share of claims rejected by the clearinghouse or denied by the payer because of patient identity, subscriber or demographic errors.",
+     "formula": "Claims rejected or denied for registration reasons / claims submitted",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Group the reason codes for missing or invalid patient and subscriber information.",
+     "confidence": "none",
+     "data_hint": "Clearinghouse rejection reports and remittance reason codes."
+    }
+   ]
+  },
+  {
+   "slug": "fe-eligibility",
+   "name": "Eligibility and coverage discovery",
+   "summary": "Confirming, electronically, that the patient is covered on the date of service, by which plan, and with what cost sharing. For patients seen repeatedly, coverage must be checked again each month, because plans change.",
+   "good_looks_like": [
+    "Eligibility is checked electronically before or on the date of service for every patient.",
+    "Patients under ongoing care are re-checked at the start of every month.",
+    "The full answer from the payer is stored as proof.",
+    "When no coverage is found, a search for other coverage, including Medicaid, is run before the patient is treated as self-pay."
+   ],
+   "failure_modes": [
+    "Coverage is checked once at intake and never again, so a January plan change produces months of denials.",
+    "Staff check coverage by phone or portal for payers that answer electronically.",
+    "A charge is entered with no payer and sits unbilled.",
+    "A patient is billed as self-pay when Medicaid or a Medicare plan was active."
+   ],
+   "key_questions": [
+    "What share of encounters have an electronic eligibility check on file?",
+    "Do we re-check every active patient each month?",
+    "How many charges last month had no payer when entered?",
+    "What share of our denials are for coverage that had ended or another payer being responsible?"
+   ],
+   "actions": [
+    {
+     "action": "Check eligibility electronically for every encounter",
+     "detail": "Use the billing system or a clearinghouse connection. Reserve phone and portal checks for payers with no electronic answer.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Re-verify all active patients monthly",
+     "detail": "Run the whole active list on the first business day and flag any change of plan, secondary coverage or hospice status.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Hold claims with no verified payer",
+     "detail": "A short daily list of encounters with no confirmed coverage, worked until empty.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Search for coverage before billing self-pay",
+     "detail": "Query Medicare, Medicaid and known plans by name and birth date.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Monthly re-verification matters most where patients are seen repeatedly and can change plans during the year, as nursing facility residents and people with both Medicare and Medicaid can.",
+   "sources": [
+    "caqh-2024",
+    "hfma-map-keys",
+    "cms-qmb"
+   ],
+   "evidence_note": "The cost advantage of electronic checks is measured by CAQH. The definition of the verification rate is HFMA's. Targets quoted by vendors, such as 98%, have no published source.",
+   "metrics": [
+    {
+     "slug": "fe-eligibility-verified-rate",
+     "name": "Encounters with eligibility verified",
+     "definition": "Share of encounters for which coverage was confirmed with the payer for the date of service, before the claim was sent.",
+     "formula": "Encounters with a stored eligibility confirmation / encounters",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "HFMA defines the measure and publishes no target. An electronic check cost $2.00 and 4 minutes against $8.57 and 16 minutes by hand (CAQH, 2023 data). From first principles, aim for every encounter.",
+     "confidence": "low",
+     "data_hint": "Eligibility transaction logs matched to encounters.",
+     "vendor_claim": "The purchased library repeats a 98% or higher target.",
+     "vendor_verdict": "Unverifiable. No published source sets a target. The direction is right.",
+     "sources": [
+      "hfma-map-keys",
+      "caqh-2024"
+     ]
+    },
+    {
+     "slug": "fe-eligibility-denial-rate",
+     "name": "Denials for coverage or eligibility",
+     "definition": "Share of claims denied because coverage had ended, had not begun, or the patient was not eligible for the service on that date.",
+     "formula": "Claims denied for eligibility reasons / claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. These denials are almost entirely preventable, so any sustained level above about 1% deserves a root-cause look.",
+     "confidence": "none",
+     "data_hint": "Remittance reason codes for coverage terminated, not eligible and coverage lapse."
+    },
+    {
+     "slug": "fe-no-payer-rate",
+     "name": "Encounters with no payer on file at charge entry",
+     "definition": "Share of encounters that reach charge entry with no identified, verified payer.",
+     "formula": "Encounters with no payer at charge entry / encounters",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "weekly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is close to zero, with a daily list of exceptions.",
+     "confidence": "none",
+     "data_hint": "A billing system report of charges with blank or unverified insurance."
+    }
+   ]
+  },
+  {
+   "slug": "fe-coverage-status",
+   "name": "Coverage status that changes who pays",
+   "summary": "Facts about a patient on the date of service that change the payer, the place of service or whether a service is payable: a Medicare Part A skilled stay, hospice election, Medicare Advantage enrollment, another primary payer, and Qualified Medicare Beneficiary status.",
+   "good_looks_like": [
+    "For each date of service the practice knows whether a nursing facility patient was in a Part A skilled stay.",
+    "Hospice election dates and the hospice's name are recorded the day they are learned.",
+    "Medicare Advantage enrollment and plan changes are caught by the monthly check.",
+    "Patients who may not be billed for Medicare cost sharing are flagged."
+   ],
+   "failure_modes": [
+    "Every nursing facility visit is billed with the skilled nursing place of service because nobody tracks when the Part A stay ended.",
+    "A Medicare Advantage member elects hospice and claims keep going to the plan, which denies them.",
+    "A claim goes to Medicare when a workers' compensation or employer plan was primary.",
+    "Statements are sent to patients the practice is forbidden to bill."
+   ],
+   "key_questions": [
+    "Do we know, for each nursing facility visit, whether the patient was in a Part A stay that day?",
+    "How do we learn that a patient has elected hospice, and how fast?",
+    "How many denials last quarter were for the wrong payer or for hospice?",
+    "Are Qualified Medicare Beneficiaries flagged in our system?"
+   ],
+   "actions": [
+    {
+     "action": "Get skilled-stay status from each facility",
+     "detail": "A weekly census from the business office showing which residents are in a Part A stay, with start and end dates.",
+     "cadence": "weekly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Record hospice elections immediately",
+     "detail": "Election date, hospice name and whether the practice's clinician is the designated attending. Apply the hospice modifiers.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set place of service from status",
+     "detail": "Skilled nursing facility code during a Part A stay, nursing facility code otherwise, for each date of service.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Flag patients who may not be billed",
+     "detail": "Mark Qualified Medicare Beneficiaries and suppress statements for Medicare cost sharing.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Essential for practices that see nursing facility, hospice or dual-eligible patients. Office practices meet the same issues less often, mainly with Medicare Advantage switches and other primary payers.",
+   "sources": [
+    "cms-cpm-ch12",
+    "cms-cpm-ch11",
+    "cms-qmb",
+    "cms-pfs-2027"
+   ],
+   "evidence_note": "These are Medicare rules: place of service by Part A status, hospice billing modifiers, and the ban on billing Qualified Medicare Beneficiaries. No benchmark exists for how often practices get them wrong.",
+   "metrics": [
+    {
+     "slug": "fe-wrong-payer-denial-rate",
+     "name": "Denials for wrong payer or changed coverage status",
+     "definition": "Share of claims denied because another payer was responsible, the patient was in a Medicare Advantage plan or hospice, or benefits needed coordination.",
+     "formula": "Claims denied for other-payer, managed-care, hospice or coordination reasons / claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Track hospice and plan-switch denials as their own lines, since each has a specific upstream fix.",
+     "confidence": "none",
+     "data_hint": "Remittance reason codes for other payer primary, covered by a managed care plan, hospice and coordination of benefits."
+    }
+   ]
+  },
+  {
+   "slug": "fe-authorization",
+   "name": "Prior authorization and referrals",
+   "summary": "Knowing which services each payer will not pay for without advance approval or a referral, getting it, and recording the number on the claim. Mostly a Medicare Advantage, Medicaid plan and commercial issue. Original Medicare requires it for few services.",
+   "good_looks_like": [
+    "A list by payer shows which of the practice's services need authorization or a referral.",
+    "Authorization is requested before the service, and the number, dates and units are stored with the encounter.",
+    "Expiring authorizations are flagged before they lapse.",
+    "Denials of authorization are appealed when the criteria were met."
+   ],
+   "failure_modes": [
+    "A service is done on the assumption that the plan follows Medicare, and the claim is denied for no authorization.",
+    "An authorization was obtained but the number never reached the claim.",
+    "Visits continue after the approved dates or units ran out.",
+    "Denied requests are accepted without appeal, although most appealed denials are overturned."
+   ],
+   "key_questions": [
+    "Which of our services need authorization or a referral, for which plans?",
+    "How many claims were denied last quarter for missing authorization or referral?",
+    "Where is the authorization number stored, and does it reach the claim automatically?",
+    "Do we appeal authorization denials?"
+   ],
+   "actions": [
+    {
+     "action": "Build a payer-by-service authorization list",
+     "detail": "Start from last year's authorization and referral denials and each plan's published list.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Request before the service and record the number",
+     "detail": "Store approval number, dates and units where the claim can pick them up.",
+     "cadence": "daily",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track expirations",
+     "detail": "A weekly list of authorizations ending in the next two weeks.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Appeal denials that meet criteria",
+     "detail": "Send the clinical record that answers the plan's stated criteria point by point.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices with Medicare Advantage, Medicaid managed care, Veterans Affairs community care or commercial patients. Hospital and nursing facility visits seldom need authorization, but HMO plans may require a referral from the assigned primary care physician.",
+   "sources": [
+    "kff-ma-pa",
+    "hfma-map-keys"
+   ],
+   "evidence_note": "Denial and overturn rates for Medicare Advantage are measured by KFF from plan data. Since January 2026 a federal rule requires plans to decide standard requests within seven days and urgent ones within 72 hours.",
+   "metrics": [
+    {
+     "slug": "fe-auth-obtained-rate",
+     "name": "Services requiring authorization that had one",
+     "definition": "Share of encounters needing prior authorization or a referral for which approval was on file before the service.",
+     "formula": "Encounters with authorization on file / encounters that required it",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "HFMA defines the measure and publishes no target. From first principles the aim is every such service.",
+     "confidence": "low",
+     "data_hint": "Authorization log matched to encounters by payer and service.",
+     "sources": [
+      "hfma-map-keys"
+     ]
+    },
+    {
+     "slug": "fe-auth-denial-rate",
+     "name": "Denials for missing authorization or referral",
+     "definition": "Share of claims denied because prior authorization or a required referral was absent or invalid.",
+     "formula": "Claims denied for authorization or referral reasons / claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No practice-level benchmark was found. For context, Medicare Advantage plans denied 7.7% of authorization requests in 2024 and 80.7% of appealed denials were overturned (KFF).",
+     "confidence": "low",
+     "data_hint": "Remittance reason codes for authorization or referral absent.",
+     "sources": [
+      "kff-ma-pa"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "fe-financial-clearance",
+   "name": "Financial clearance, estimates and required notices",
+   "summary": "Telling patients the likely cost before a service, and delivering the notices the law requires: a good-faith estimate for uninsured and self-pay patients, and an Advance Beneficiary Notice when Original Medicare is expected to deny a service as not medically necessary.",
+   "good_looks_like": [
+    "Self-pay and uninsured patients receive a written good-faith estimate for scheduled services.",
+    "Staff know which services need an Advance Beneficiary Notice and use the current form.",
+    "A written financial policy covers payment plans and hardship.",
+    "Hardship decisions are made case by case and documented."
+   ],
+   "failure_modes": [
+    "A Medicare claim is denied as not medically necessary and, with no notice signed in advance, the patient cannot be billed.",
+    "The Medicare notice is used for Medicare Advantage patients, where it has no effect.",
+    "Cost sharing is waived routinely, which federal guidance treats as unlawful.",
+    "A self-pay patient receives a bill far above anything they were told."
+   ],
+   "key_questions": [
+    "Which of our services are sometimes denied by Medicare as not medically necessary?",
+    "Do self-pay patients get a written estimate before scheduled services?",
+    "Is our financial hardship policy written, and are decisions documented?",
+    "Do we ever waive copayments or deductibles as a routine?"
+   ],
+   "actions": [
+    {
+     "action": "List services that need a Medicare notice",
+     "detail": "Build it from the practice's own medical-necessity and frequency denials.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Give good-faith estimates to self-pay patients",
+     "detail": "Use the federal template for scheduled services and keep a copy.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Write a financial policy",
+     "detail": "Payment plans, hardship criteria and who may approve an exception.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Never waive cost sharing routinely",
+     "detail": "Waive only for documented individual hardship or where the law forbids billing.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Mostly office and procedural practices with scheduled services and patient balances. Practices whose work is hospital and facility visits for Medicare patients rarely need either notice.",
+   "sources": [
+    "cms-cpm-ch30",
+    "cfr-149-610",
+    "oig-waiver-1994"
+   ],
+   "evidence_note": "Both notices are federal requirements. The Medicare notice applies to Original Medicare only. The warning against routine waivers is long-standing federal guidance.",
+   "metrics": [
+    {
+     "slug": "fe-estimates-given-rate",
+     "name": "Self-pay or scheduled services given a written estimate",
+     "definition": "Share of scheduled services for uninsured or self-pay patients for which a written good-faith estimate was given beforehand.",
+     "formula": "Scheduled self-pay services with an estimate on file / scheduled self-pay services",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The legal requirement applies to every such service, so the target is 100%.",
+     "confidence": "none",
+     "data_hint": "A copy of each estimate filed with the encounter."
+    }
+   ]
+  },
+  {
+   "slug": "fe-pos-collections",
+   "name": "Time-of-service collections",
+   "summary": "Collecting copayments, deductibles and prior balances when the patient is present. It is the cheapest money a practice collects, and the hardest to collect later.",
+   "good_looks_like": [
+    "Staff know what each patient owes before the visit, from the eligibility answer.",
+    "Copayments are requested at check-in as routine.",
+    "Several ways to pay exist, including a card on file with consent.",
+    "Collections are counted daily and compared with what was due."
+   ],
+   "failure_modes": [
+    "Staff are uncomfortable asking, so copayments are billed later at several times the cost.",
+    "The amount due is unknown at check-in because eligibility was not checked.",
+    "Cash and card receipts are not reconciled at day end.",
+    "Patients who may not be billed are asked to pay."
+   ],
+   "key_questions": [
+    "What share of copayments due do we collect at the visit?",
+    "Do staff know the amount due before the patient arrives?",
+    "Is the day's cash and card total reconciled every day?",
+    "If we have no front desk, what replaces this step?"
+   ],
+   "actions": [
+    {
+     "action": "Show the amount due at check-in",
+     "detail": "Pull copayment and deductible from the eligibility answer onto the schedule.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Train and script the request",
+     "detail": "A simple, consistent sentence, and a clear policy for patients who cannot pay that day.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Offer card on file",
+     "detail": "With written consent and a stated maximum.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Reconcile receipts daily",
+     "detail": "Cash, checks and card totals against the day's posting.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Office practices with a front desk. It does not apply to hospital and facility rounding, where no payment is collected at the visit and most cost sharing is covered by a secondary payer or may not be billed. Those practices should measure statement yield on collectible balances.",
+   "sources": [
+    "mgma-stat-ar-2026",
+    "hfma-map-keys",
+    "cms-qmb"
+   ],
+   "evidence_note": "MGMA measured the share of copayments and balances collected at the visit. HFMA defines a related measure for hospitals and publishes no target.",
+   "metrics": [
+    {
+     "slug": "fe-pos-collection-rate",
+     "name": "Point-of-service collection rate",
+     "definition": "Share of patient amounts due at the time of the visit, such as copayments, that were collected at the visit.",
+     "formula": "Patient payments collected at the visit / patient amounts due at the visit",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_typical": "about 72% of copayments",
+     "benchmark_note": "MGMA, 2024 data: practices collected 72% of copayments and about 27% of other balances at the time of service. HFMA defines a different ratio, against all self-pay cash, with no target.",
+     "confidence": "medium",
+     "data_hint": "Daily collection log compared with copayments due on the schedule.",
+     "sources": [
+      "mgma-stat-ar-2026",
+      "hfma-map-keys"
+     ]
+    }
+   ]
+  }
+ ]
+}

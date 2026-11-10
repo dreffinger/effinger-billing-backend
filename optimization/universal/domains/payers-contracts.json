@@ -1,0 +1,745 @@
+{
+ "domain": "payers-contracts",
+ "categories": [
+  {
+   "slug": "pc-payer-mix",
+   "name": "Payer mix strategy",
+   "summary": "Which payers the practice's revenue comes from, what each pays per visit, how fast and how reliably. Payer mix is partly a choice: which plans to join, which to leave, and which patients and sites to pursue.",
+   "good_looks_like": [
+    "Revenue, visits and payment per visit are reported by payer class every quarter.",
+    "The practice knows its three best and three worst payers by net payment per visit and by denial rate.",
+    "Dependence on any one payer is known and planned for.",
+    "Decisions to join or leave a plan are made from numbers."
+   ],
+   "failure_modes": [
+    "The practice joins every plan offered and never checks which ones pay less than the cost of the visit.",
+    "One payer provides most of the revenue and its yearly rate change is never modeled.",
+    "A plan's low rate is tolerated because nobody added up its denials and delays too.",
+    "Payer mix shifts toward slower, lower-paying plans without anyone noticing."
+   ],
+   "key_questions": [
+    "What share of revenue comes from each payer class?",
+    "What do we collect per visit from each payer, after denials?",
+    "Which plan would we drop if we could, and what would it cost us?",
+    "How has the mix changed in two years?"
+   ],
+   "actions": [
+    {
+     "action": "Report by payer every quarter",
+     "detail": "Charges, payments, visits, payment per visit, denial rate and days to pay.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Rank payers by net yield",
+     "detail": "Payment per visit after denials and write-offs, with the time and effort each takes.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Model the largest payer's rate change",
+     "detail": "Each November for Medicare, and at each contract renewal for plans.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Decide yearly on each small plan",
+     "detail": "Keep, renegotiate or leave, with the access consequences for patients and sites.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Practices serving older adults are dominated by Medicare and Medicare Advantage, so the mix question is mostly which plans to contract with and how to work each one.",
+   "sources": [
+    "vabson-2025",
+    "mgma-stat-ar-2026"
+   ],
+   "evidence_note": "Management practice. Differences between payers in denial rates and payment speed are measured in published studies. No benchmark for an ideal mix exists.",
+   "metrics": [
+    {
+     "slug": "pc-payer-mix-top-share",
+     "name": "Share of revenue from the largest payer",
+     "definition": "Net revenue from the single largest payer as a share of total net revenue.",
+     "formula": "Largest payer's payments / total payments",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "quarterly",
+     "benchmark_note": "Not a target. It measures dependence. A practice above half on one payer should model that payer's rate and policy changes every year.",
+     "confidence": "none",
+     "data_hint": "Payments by payer from the billing system."
+    },
+    {
+     "slug": "pc-yield-by-payer",
+     "name": "Net revenue per visit by payer",
+     "definition": "Payments received from a payer, including its patients' cost sharing collected, divided by visits billed to that payer.",
+     "formula": "Payments for the payer's patients / visits billed to that payer",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare payers with each other and with Medicare for the same code mix.",
+     "confidence": "none",
+     "data_hint": "Payments and encounters by payer."
+    }
+   ]
+  },
+  {
+   "slug": "pc-contract-inventory",
+   "name": "Contract inventory and terms",
+   "summary": "Holding a signed copy of every payer agreement and its current fee schedule, and knowing the terms that cost money when missed: filing and appeal deadlines, amendment rules, renewal and termination dates.",
+   "good_looks_like": [
+    "One folder holds every payer contract, amendment and fee schedule.",
+    "A register lists each contract's effective date, renewal date, notice period, filing limit and appeal deadline.",
+    "Fee schedules are loaded where payments can be checked against them.",
+    "Payer notices of amendment are read and answered before their deadline."
+   ],
+   "failure_modes": [
+    "The practice cannot find its contract, so it cannot dispute an underpayment.",
+    "A plan changes rates by a notice that takes effect unless objected to within 30 days, and nobody reads it.",
+    "A contract renews automatically for years at an old rate.",
+    "Filing limits differ by plan and staff apply one rule to all."
+   ],
+   "key_questions": [
+    "Do we hold a signed contract and current fee schedule for every plan we bill?",
+    "What is each plan's filing limit and appeal deadline?",
+    "Which contracts renew or can be reopened in the next 12 months?",
+    "Who reads payer notices, and how fast?"
+   ],
+   "actions": [
+    {
+     "action": "Collect every contract and fee schedule",
+     "detail": "Request missing copies from each plan's provider relations or network office.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Build the contract register",
+     "detail": "Dates, notice periods, filing and appeal limits, amendment clause, contact.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Load fee schedules into the billing system",
+     "detail": "So that each payment can be compared with the expected amount.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Log and answer payer notices",
+     "detail": "Record the date received and the response deadline for every amendment or policy notice.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice that contracts with health plans. Medicare fee-for-service has no negotiated contract, but its fee schedule should be loaded the same way.",
+   "sources": [
+    "fl-627-6131",
+    "fl-641-3155",
+    "cfr-424-44"
+   ],
+   "evidence_note": "Filing limits and prompt-payment duties come from contracts, state statute and federal regulation. Florida's statutes are cited as an example of state rules. Each state differs.",
+   "metrics": [
+    {
+     "slug": "pc-contracts-on-file",
+     "name": "Payers with a signed contract and current fee schedule on file",
+     "definition": "Share of contracted payers for which the practice holds the signed agreement and the fee schedule now in force.",
+     "formula": "Payers with contract and current fee schedule on file / contracted payers",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
+     "confidence": "none",
+     "data_hint": "The contract register."
+    }
+   ]
+  },
+  {
+   "slug": "pc-rate-negotiation",
+   "name": "Rate analysis and negotiation",
+   "summary": "Comparing what each plan pays with Medicare and with other plans for the practice's own most-used codes, and asking for better terms where the practice has something the plan needs.",
+   "good_looks_like": [
+    "Each plan's rates for the practice's top codes are expressed as a percentage of Medicare.",
+    "The practice knows what it offers each plan: access, quality results, coverage of sites the plan must serve.",
+    "Requests are made in writing, with data, well before renewal.",
+    "Terms other than rates are negotiated too: filing limits, appeal rights, amendment notice."
+   ],
+   "failure_modes": [
+    "A plan pays below Medicare and nobody has calculated it.",
+    "The practice asks for more with no data and accepts the first refusal.",
+    "A rate increase is won and never loaded, so underpayments go unnoticed.",
+    "Charges are set below a plan's allowed amount, so the practice caps its own payment."
+   ],
+   "key_questions": [
+    "For our top 15 codes, what does each plan pay as a percent of Medicare?",
+    "Which plan is furthest below the others?",
+    "What do we offer that a plan needs?",
+    "Are our charges above every plan's allowed amount?"
+   ],
+   "actions": [
+    {
+     "action": "Build a payer-by-code rate table",
+     "detail": "Top 15 codes by revenue, each plan's allowed amount, and Medicare's for the same locality.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Write the case before asking",
+     "detail": "Volume, access, quality and cost results, and the specific rates requested.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Ask in writing 120 days before renewal",
+     "detail": "And follow up on a schedule.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Verify new rates are paid",
+     "detail": "Check the first month of remittances after any change.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Practices with commercial, Medicare Advantage or Medicaid managed care contracts. Small practices have little bargaining power on rates but can often win better non-rate terms, and gain power where a plan needs coverage of specific sites or populations.",
+   "sources": [
+    "cms-pfs-2026",
+    "cms-pfs-2027"
+   ],
+   "evidence_note": "Method is professional practice. No reliable public benchmark for plan rates relative to Medicare was found, since contract rates are confidential.",
+   "metrics": [
+    {
+     "slug": "pc-rate-vs-medicare",
+     "name": "Contracted rates as a percent of Medicare, by payer",
+     "definition": "For the practice's main codes, each plan's allowed amount divided by Medicare's allowed amount for the same code and locality.",
+     "formula": "Plan allowed amount / Medicare allowed amount, weighted by the practice's code volume",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare plans with each other. Any plan below 100% deserves a decision.",
+     "confidence": "none",
+     "data_hint": "Fee schedules or allowed amounts on remittances, against the Medicare fee schedule lookup."
+    }
+   ]
+  },
+  {
+   "slug": "pc-credentialing",
+   "name": "Credentialing and enrollment",
+   "summary": "Getting each clinician enrolled with Medicare, Medicaid and every plan, at every location, before they see patients, and keeping those enrollments current. A claim is payable only if the clinician was enrolled on the date of service.",
+   "good_looks_like": [
+    "A tracker lists every clinician, payer and location with status, effective date and next revalidation or recredentialing date.",
+    "Applications are filed the day a clinician's offer is signed.",
+    "Revalidation and recredentialing requests are answered well before the deadline.",
+    "Changes of address, ownership or clinicians are reported within the required time."
+   ],
+   "failure_modes": [
+    "A clinician sees patients for months before enrollment is effective, and the visits cannot be billed.",
+    "A recredentialing letter goes to an old address and the plan terminates the practice.",
+    "A new location is never added to the enrollment record.",
+    "The clinician's national provider record lists the wrong specialty or address."
+   ],
+   "key_questions": [
+    "Is every clinician enrolled and current with every payer we bill?",
+    "When is each next revalidation or recredentialing due?",
+    "How many claims were denied last quarter for enrollment reasons?",
+    "Are our national provider records and practice locations up to date?"
+   ],
+   "actions": [
+    {
+     "action": "Keep one enrollment tracker",
+     "detail": "Clinician, payer, location, status, effective date, next due date, last contact.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "File at offer acceptance and follow up weekly",
+     "detail": "Medicare's effective date depends on the filing date, with only a short look-back.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Calendar every revalidation 120 days ahead",
+     "detail": "Including the profile used by health plans, which must be re-attested regularly.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Report changes on time",
+     "detail": "Medicare requires reports of ownership and location changes within 30 days and most other changes within 90.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Every practice that bills insurers. Each clinician needs separate enrollment with Medicare, with Medicaid where dual-eligible patients are seen, and with each plan.",
+   "sources": [
+    "fcso-enroll",
+    "cfr-424-516",
+    "cfr-424-520",
+    "cfr-424-521",
+    "caqh-providers"
+   ],
+   "evidence_note": "Medicare's rules are federal regulation, and its contractor publishes processing times. Plan credentialing timelines are set by each plan and are not published.",
+   "metrics": [
+    {
+     "slug": "pc-enrollment-current",
+     "name": "Clinician and payer pairs that are active and current",
+     "definition": "Share of clinician-payer-location combinations the practice bills that are enrolled, effective and not past a revalidation date.",
+     "formula": "Active and current enrollments / enrollments the practice needs",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
+     "confidence": "none",
+     "data_hint": "The enrollment tracker."
+    },
+    {
+     "slug": "pc-credentialing-days",
+     "name": "Days from application to billable",
+     "definition": "Calendar days from submitting a complete enrollment application to the date the clinician can be paid by that payer.",
+     "formula": "Effective or approval date - complete application date, by payer",
+     "unit": "days",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_best": "15 days for Medicare online applications",
+     "benchmark_typical": "up to 50 days for Medicare",
+     "benchmark_note": "First Coast, Medicare's contractor in Florida: 95% of clean online applications processed in 15 days and all within 50. Health plans publish no figures and often take longer.",
+     "confidence": "medium",
+     "data_hint": "The enrollment tracker.",
+     "sources": [
+      "fcso-enroll"
+     ]
+    },
+    {
+     "slug": "pc-credentialing-denial-rate",
+     "name": "Denials for enrollment or credentialing",
+     "definition": "Share of claims denied because the rendering or billing clinician was not enrolled or eligible with the payer on the date of service.",
+     "formula": "Claims denied for provider enrollment reasons / claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. These are fully preventable, so the target is zero.",
+     "confidence": "none",
+     "data_hint": "Remittance reason codes for provider not eligible or not enrolled."
+    }
+   ]
+  },
+  {
+   "slug": "pc-medicare-ffs",
+   "name": "Medicare fee-for-service rules and the annual fee schedule",
+   "summary": "How Original Medicare pays: a national fee schedule set each year, adjusted by locality and by whether the service was given in a facility. Each November's final rule changes what the practice will be paid from January.",
+   "good_looks_like": [
+    "Someone reads the summary of the final rule each November and lists what changes for the practice's codes.",
+    "The top codes are repriced at next year's rates before the year starts.",
+    "The practice knows whether each service is paid at the facility or non-facility rate, and why.",
+    "Participation status is a deliberate choice."
+   ],
+   "failure_modes": [
+    "The conversion factor falls and the practice learns it from its January deposits.",
+    "A place-of-service error pays the wrong rate for years.",
+    "A code is deleted or replaced on January 1 and claims are rejected for weeks.",
+    "Budgeting assumes last year's rates."
+   ],
+   "key_questions": [
+    "What does next year's final rule do to our top 15 codes?",
+    "Which of our services are paid at the facility rate?",
+    "Have deleted, new or revised codes been loaded for January?",
+    "Are we a participating provider, and do we know what that means?"
+   ],
+   "actions": [
+    {
+     "action": "Read the final rule summary each November",
+     "detail": "CMS publishes a fact sheet. Note the conversion factor and any policy touching the practice's services.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Reprice the top codes",
+     "detail": "Next year's rate by code and place of service, times this year's volume.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Load code changes before January 1",
+     "detail": "New, deleted and revised codes and any modifier changes.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Check place of service on a sample",
+     "detail": "Facility and non-facility rates differ, sometimes by a third.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice that bills Original Medicare. The effect of each year's rule depends on the practice's code mix and settings: recent rules have treated services in facility settings differently from office services.",
+   "sources": [
+    "cms-pfs-2026",
+    "cms-pfs-2027",
+    "cfr-414-56",
+    "cms-cpm-ch12"
+   ],
+   "evidence_note": "The fee schedule and its yearly changes are federal rulemaking. The 2026 conversion factors are $33.40 and $33.57. The 2027 rule sets $32.63 and $32.95, a 2.31% cut.",
+   "metrics": [
+    {
+     "slug": "pc-fee-schedule-impact",
+     "name": "Estimated revenue effect of the coming year's Medicare fee schedule",
+     "definition": "Change in yearly Medicare revenue expected from the next fee schedule, holding volume and code mix constant.",
+     "formula": "Sum over codes of (next year's rate - this year's rate) x this year's volume",
+     "unit": "dollars",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "For 2027 the conversion factor falls 2.31% for most clinicians (CMS final rule, November 2026). Code-level and setting-level changes can add to or offset that.",
+     "confidence": "high",
+     "data_hint": "Volume by code and place of service from the billing system, with the Medicare fee schedule lookup for both years.",
+     "sources": [
+      "cms-pfs-2027"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "pc-medicare-advantage",
+   "name": "Medicare Advantage operations",
+   "summary": "Working with private Medicare plans: confirming network status, meeting each plan's authorization and referral rules, tracking slower and less certain payment, and disputing denials. Each plan is a separate set of rules.",
+   "good_looks_like": [
+    "A one-page sheet per plan lists network status, authorization and referral rules, filing limit, dispute process and contacts.",
+    "Enrollment in a plan is confirmed monthly for continuing patients.",
+    "Denials are tracked by plan and disputed through the contract's process.",
+    "The practice knows what happens to billing when a plan member elects hospice."
+   ],
+   "failure_modes": [
+    "Staff assume a plan follows Original Medicare's rules and are surprised by denials.",
+    "A patient switches plans and the practice bills the old one for months.",
+    "Denials are written off, although most disputed denials are overturned.",
+    "Claims for a plan member on hospice keep going to the plan."
+   ],
+   "key_questions": [
+    "For each plan, are we in network, and what needs authorization or a referral?",
+    "What is each plan's denial rate and average days to pay?",
+    "How many denials did we dispute last quarter, and how many did we win?",
+    "Do we re-check plan enrollment every month?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page sheet per plan",
+     "detail": "Network status, product types, authorization and referral rules, filing and dispute deadlines, contacts.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track denials and days to pay by plan",
+     "detail": "Monthly, beside Original Medicare for comparison.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Dispute denials systematically",
+     "detail": "Use the contract's dispute process and cite Medicare coverage rules, which plans must follow.",
+     "cadence": "weekly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Handle hospice elections",
+     "detail": "From the election date Original Medicare pays, and claims need the hospice modifiers.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice with Medicare-age patients. Residents of nursing facilities and people with both Medicare and Medicaid can change plans during the year, so enrollment has to be re-checked monthly.",
+   "sources": [
+    "vabson-2025",
+    "kff-ma-pa",
+    "cms-cpm-ch11"
+   ],
+   "evidence_note": "Denial and overturn rates are from a peer-reviewed study of 2019 claims and from KFF's analysis of plan data. Federal rules, not state prompt-payment laws, govern these plans.",
+   "metrics": [
+    {
+     "slug": "pc-ma-denial-rate",
+     "name": "Medicare Advantage initial denial rate",
+     "definition": "Share of claims to Medicare Advantage plans that are denied on first adjudication, reported by plan.",
+     "formula": "Medicare Advantage claims denied on first adjudication / Medicare Advantage claims adjudicated",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "monthly",
+     "benchmark_typical": "about 17% nationally",
+     "benchmark_note": "Health Affairs, 2025, using 2019 claims: plans denied 17% of initial claims and 57% of denials were later overturned. Set targets by plan, not as one blended figure.",
+     "confidence": "medium",
+     "data_hint": "Remittances grouped by plan.",
+     "sources": [
+      "vabson-2025"
+     ]
+    },
+    {
+     "slug": "pc-ma-revenue-share",
+     "name": "Share of revenue from Medicare Advantage",
+     "definition": "Payments from Medicare Advantage plans as a share of total payments.",
+     "formula": "Medicare Advantage payments / total payments",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "quarterly",
+     "benchmark_note": "Not a target. A rising share means more of the practice's revenue depends on contracts, authorization rules and dispute work.",
+     "confidence": "none",
+     "data_hint": "Payments by payer class."
+    }
+   ]
+  },
+  {
+   "slug": "pc-medicaid-duals",
+   "name": "Medicaid and dual-eligible rules",
+   "summary": "The rules for patients who have Medicaid, alone or alongside Medicare. They decide whether any secondary payment arrives, whether the patient may be billed, and which managed care plan is responsible.",
+   "good_looks_like": [
+    "Every clinician who sees dual-eligible patients is enrolled with the state Medicaid program.",
+    "Staff know that Qualified Medicare Beneficiaries may not be billed for Medicare cost sharing.",
+    "Coinsurance that Medicaid will not pay is posted as a contractual adjustment, not left as a balance.",
+    "The practice knows each Medicaid managed care plan's filing limit and payment method."
+   ],
+   "failure_modes": [
+    "A clinician is not enrolled with Medicaid, so crossover claims are rejected and nothing is paid.",
+    "Patients protected by federal law receive statements for coinsurance.",
+    "Uncollectible dual-eligible balances inflate receivables for years.",
+    "A Medicaid plan's short filing limit is missed."
+   ],
+   "key_questions": [
+    "Are all our clinicians enrolled with Medicaid?",
+    "What share of our Medicare patients also have Medicaid?",
+    "How much secondary payment do we actually receive on those patients?",
+    "Are protected patients flagged so they never get a statement?"
+   ],
+   "actions": [
+    {
+     "action": "Enroll every clinician with Medicaid",
+     "detail": "And calendar its revalidation.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Flag protected patients",
+     "detail": "Identify Qualified Medicare Beneficiaries from the eligibility answer and suppress statements.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Post unpayable coinsurance as contractual",
+     "detail": "Use a specific adjustment code so it can be reported separately.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Know each Medicaid plan's rules",
+     "detail": "Filing limit, crossover handling and whether it pays electronically.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices serving low-income older or disabled patients, including most nursing facility practices. State rules differ. In Florida, Medicaid pays nothing on Medicare coinsurance when Medicare's payment already meets Medicaid's own rate.",
+   "sources": [
+    "cms-qmb",
+    "fl-409-907"
+   ],
+   "evidence_note": "The ban on billing Qualified Medicare Beneficiaries is federal law. State payment rules on crossover claims vary, and most states limit them in a similar way.",
+   "metrics": [
+    {
+     "slug": "pc-dual-share",
+     "name": "Share of patients who are dual eligible",
+     "definition": "Patients with both Medicare and Medicaid as a share of the practice's Medicare patients.",
+     "formula": "Dual-eligible patients / Medicare patients",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_note": "Not a target. CMS publishes each clinician's share for fee-for-service patients. A high share means much coinsurance is uncollectible by law.",
+     "confidence": "high",
+     "data_hint": "Eligibility data, or the CMS public file by clinician.",
+     "sources": [
+      "cms-puf"
+     ]
+    },
+    {
+     "slug": "pc-crossover-yield",
+     "name": "Secondary payment received on dual-eligible coinsurance",
+     "definition": "Payments received from Medicaid on Medicare coinsurance and deductibles, as a share of the amounts crossed over.",
+     "formula": "Medicaid crossover payments / Medicare cost sharing crossed over to Medicaid",
+     "unit": "percent",
+     "direction": "info",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Expect a low figure in states with lesser-of payment rules. Its use is to confirm crossovers are being processed at all.",
+     "confidence": "none",
+     "data_hint": "Secondary remittances from Medicaid against Medicare cost sharing."
+    }
+   ]
+  },
+  {
+   "slug": "pc-policy-monitoring",
+   "name": "Payment policy monitoring",
+   "summary": "Watching for rule changes that alter what gets paid: Medicare's yearly rule, the regional contractor's coverage policies and review topics, plan policy bulletins and yearly code updates. Each change should become a written rule in the billing process.",
+   "good_looks_like": [
+    "One person is responsible for reading payer and contractor updates on a schedule.",
+    "Each relevant change is turned into a dated entry in the practice's billing rules.",
+    "The contractor's list of services under targeted review is checked against what the practice bills.",
+    "Yearly code changes are loaded before January."
+   ],
+   "failure_modes": [
+    "The practice learns of a policy change from a wave of denials.",
+    "A contractor announces a review of a service the practice bills heavily and nobody sees it.",
+    "A rule is learned once and forgotten when staff change.",
+    "Plan bulletins go to an unread mailbox."
+   ],
+   "key_questions": [
+    "Who reads Medicare contractor and plan updates, and how often?",
+    "Is any service we bill on the contractor's active review list?",
+    "Where are our billing rules written down, with dates?",
+    "How did we find out about the last policy change that affected us?"
+   ],
+   "actions": [
+    {
+     "action": "Assign a monthly policy review",
+     "detail": "Contractor news, coverage policy changes, the review topic list and each plan's bulletins.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep a dated rulebook",
+     "detail": "One entry per rule, with its source and the date it took effect.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Check billed services against review topics",
+     "detail": "If a high-volume service is listed, audit it before the contractor does.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Subscribe to the contractor's and plans' notices",
+     "detail": "Sent to a mailbox someone reads.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice. Those using automated billing should treat each policy change as a change to the automation's rules, reviewed before release.",
+   "sources": [
+    "fcso-tpe",
+    "cms-pfs-2027",
+    "oig-gcpg"
+   ],
+   "evidence_note": "Federal compliance guidance expects practices to keep current with payer rules. Contractors publish their review topics, so monitoring them is straightforward.",
+   "metrics": [
+    {
+     "slug": "pc-policy-review-cadence",
+     "name": "Payer policy review cadence",
+     "definition": "How often a named person reviews Medicare contractor and plan policy updates and records the result.",
+     "formula": "Count of documented policy reviews in the last 12 months",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Monthly is a reasonable standard, with a yearly read of the Medicare fee schedule rule.",
+     "confidence": "none",
+     "data_hint": "The rulebook's change log."
+    }
+   ]
+  },
+  {
+   "slug": "pc-other-payers",
+   "name": "Veterans, military, commercial and out-of-network payers",
+   "summary": "The smaller payers, each with its own gatekeeping: Veterans Affairs community care, the military health plan, workers' compensation, small commercial plans, and patients seen out of network or with no insurance.",
+   "good_looks_like": [
+    "For each small payer the practice has decided to participate properly or not at all.",
+    "Veterans Affairs community care visits have an authorization on file before the service.",
+    "Out-of-network and self-pay patients get the notices the law requires.",
+    "Write-offs for unenrolled payers are counted, so the cost of not enrolling is known."
+   ],
+   "failure_modes": [
+    "A clinician sees patients from a payer that has never credentialed them, and every claim is written off.",
+    "Veterans' visits are billed with no authorization number.",
+    "An out-of-network bill breaks surprise-billing rules.",
+    "Small-plan claims are abandoned because each needs a phone call."
+   ],
+   "key_questions": [
+    "Which payers do we bill without being enrolled or contracted?",
+    "How much did we write off last year for those payers?",
+    "Do Veterans Affairs community care visits always have an authorization first?",
+    "Do we ever bill patients out of network, and do we give the required notices?"
+   ],
+   "actions": [
+    {
+     "action": "List every payer billed without enrollment",
+     "detail": "With last year's charges and write-offs for each.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Decide for each: enroll or stop",
+     "detail": "Enroll where volume justifies it. Otherwise refer or schedule those patients differently.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Require authorization for veterans' community care",
+     "detail": "Record the authorization number before the visit.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Give required notices to self-pay patients",
+     "detail": "A good-faith estimate for scheduled services.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Practices with a scattering of patients outside their main payers. Federal surprise-billing rules mainly concern out-of-network care at hospitals and surgery centers for commercially insured patients, so they touch facility-visit practices only at the edges.",
+   "sources": [
+    "cfr-424-44",
+    "fl-627-6131"
+   ],
+   "evidence_note": "Rules differ by payer and are set by statute, regulation and program manuals. This area is guidance on managing the long tail, with no benchmark.",
+   "metrics": [
+    {
+     "slug": "pc-out-of-network-share",
+     "name": "Share of charges billed out of network",
+     "definition": "Charges billed to payers with which the practice or the rendering clinician has no enrollment or contract, as a share of total charges.",
+     "formula": "Charges to non-enrolled or non-contracted payers / total charges",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Read it with the write-offs on those charges, which show what non-enrollment costs.",
+     "confidence": "none",
+     "data_hint": "Charges by payer against the enrollment tracker."
+    }
+   ]
+  }
+ ]
+}

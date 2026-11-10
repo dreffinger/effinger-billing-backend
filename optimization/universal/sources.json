@@ -1577,5 +1577,67 @@
   "url": "https://www.hcinnovationgroup.com/finance-revenue-cycle/news/13028929/survey-it-expenses-per-physician-continue-to-rise-to-nearly-19000",
   "kind": "secondary",
   "note": "The most recent public MGMA figure found: $14,000 to $19,000 of technology operating expense per full-time physician in 2016."
+ },
+ {
+  "slug": "ahrq-cgcahps",
+  "title": "CAHPS Clinician and Group Survey database",
+  "publisher": "Agency for Healthcare Research and Quality",
+  "year": "2021",
+  "url": "https://www.ahrq.gov/cahps/cahps-database/cg-database/index.html",
+  "kind": "primary",
+  "note": "Last national results are for 2019. New submissions were suspended in 2021, so nothing newer exists nationally."
+ },
+ {
+  "slug": "mgma-fin-ops-2025",
+  "title": "2025 Financials and Operations: key insights",
+  "publisher": "MGMA",
+  "year": "2025",
+  "url": "https://www.mgma.com/2025-financials-and-operations",
+  "kind": "secondary",
+  "note": "Primary care revenue per physician $760,383 (2024 data). The full tables are paywalled."
+ },
+ {
+  "slug": "fr-pfs-2027-final",
+  "title": "Medicare and Medicaid Programs; CY 2027 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 91 FR 70992)",
+  "publisher": "CMS, Federal Register",
+  "year": "2026",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm",
+  "kind": "primary",
+  "note": "Published November 9, 2026, effective January 1, 2027. Facility practice expense set equal to non-facility for nursing facility visit codes 99304 to 99310, 99315 and 99316 (pages 71018 to 71019). 20 percent reduction when an office visit is billed with a zero-day global procedure. Modifiers B1 and B2 replace G2211. Telehealth modifiers BB and BC. Staff advance care planning codes G0572 and G0573."
+ },
+ {
+  "slug": "fr-pfs-2025-final",
+  "title": "Medicare and Medicaid Programs; CY 2025 Payment Policies Under the Physician Fee Schedule and Other Changes to Part B Payment and Coverage Policies (final rule, 89 FR 97710)",
+  "publisher": "CMS, Federal Register",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-09/html/2024-25382.htm",
+  "kind": "primary",
+  "note": "Pages 97894 to 97896: chronic, principal and transitional care management and listed communication services may not be billed in the same month as advanced primary care management by the same practitioner. Another practitioner may bill them when medically necessary."
+ },
+ {
+  "slug": "cms-pfs-rvu-2026",
+  "title": "2026 National Physician Fee Schedule Relative Value File, October release (RVU26D)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/zip/rvu26d.zip",
+  "kind": "primary",
+  "note": "Released August 26, 2026. Conversion factor 33.4009. Gives status, global period and facility and non-facility relative values by code. Used for 2026 facility versus non-facility payment of nursing facility visit and care-management codes, and to confirm code status (99417 and 99418 not valid for Medicare, 45385 not an add-on code, 20611 includes ultrasound)."
+ },
+ {
+  "slug": "cms-cpm-ch30",
+  "title": "Medicare Claims Processing Manual, Chapter 30: Financial Liability Protections",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
+  "kind": "primary",
+  "note": "Advance Beneficiary Notice rules. The notice is for Original Medicare and is not used for Medicare Advantage."
+ },
+ {
+  "slug": "cfr-149-610",
+  "title": "45 CFR 149.610: Good faith estimates for uninsured or self-pay individuals",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.610",
+  "kind": "primary"
  }
 ]

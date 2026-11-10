@@ -645,7 +645,32 @@
   "pages": 37,
   "words": 6578,
   "list_price_usd": 7.46,
-  "verdict": "Not yet reviewed.",
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "Office-centric geriatric billing add-on arguing revenue sits in CCM, TCM, AWV, cognitive assessment and E/M leveling, with Medicare Advantage run plan by plan. Useful program skeletons; no templates, sources or fee-schedule year. Several code rules are retired, outdated or wrong, and one recommended code combination is prohibited. Reviewer spot checks used secondary sources; cms.gov was unreachable from this session.",
+  "top_ideas": [
+   "Bill monthly care-management codes from a time log with a month-end trigger and automated conflict checks, separate from encounter-based charge capture.",
+   "Quarterly audit of place of service and code family against the patient's actual setting for providers working across facilities.",
+   "Per-plan Medicare Advantage operating sheet plus annual contract review against Medicare rates for the practice's own top codes.",
+   "Discharge tracker with clocks for the two-business-day contact and 7/14-day visit, limited to discharges to community settings."
+  ],
+  "red_flags": [
+   "Recommends billing 99483 with 99497 and 99215 on one date as 'not upcoding'; CMS guidance bars 99483 with same-day office E/M and advance care planning.",
+   "Says an ABN applies when an MA plan may not cover a service (ABNs are Original Medicare only) and that MA plans need not follow Medicare rules.",
+   "Lists retired or non-payable codes as live with rates: G0505 (replaced 2018), 99339/99340 (deleted 2023, wrongly described), 99358 (not recognised by Medicare since 2023).",
+   "Outdated rules (CCM/TCM same-month ban, written CCM consent, TCM medication-reconciliation deadline) and unsourced statistics; revenue estimates are gross, ignore staffing cost and contradict each other across sections."
+  ],
+  "domains": [
+   "rcm-charge-coding",
+   "clinical-operations",
+   "payers-contracts",
+   "rcm-claims-ar",
+   "rcm-front-end",
+   "compliance-risk",
+   "growth-market"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,
@@ -872,7 +897,33 @@
   "pages": 40,
   "words": 8416,
   "list_price_usd": 7.46,
-  "verdict": "Not yet reviewed.",
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 3,
+  "summary": "Office-centric primary care billing essay: level visits by decision-making, bill preventive plus problem visits, and build care-management, transitional-care, wellness and advance-care-planning workflows, backed by quarterly audits. No sources or templates; ignores facility visit codes, G2211 and APCM; misstates transitional-care service date, medication-management leveling, advance-care-planning frequency and incident-to supervision.",
+  "top_ideas": [
+   "Hard pre-bill gate on monthly care-management claims: consent, current care plan, time threshold and designated billing practitioner verified, otherwise hold the claim.",
+   "Benchmark each clinician's visit-level distribution against public Medicare utilization data for the same code family; review outliers quarterly in both directions.",
+   "Discharge-triggered transitional-care sequence: alert within 24 hours, contact within two business days, visit inside the 7- or 14-day window.",
+   "Quarterly internal coding audit of a fixed sample per clinician (top visit levels, modifier 25, care management), plus payer performance reported by plan and product."
+  ],
+  "red_flags": [
+   "Says prescription drug management makes a visit moderate complexity 'by definition', supporting 99214, contradicting the two-of-three rule it states; following it would upcode.",
+   "Instructs billing transitional care with the discharge date as service date; CMS uses the face-to-face visit date. Omits decision-making level and community-discharge requirements.",
+   "Advance care planning framed as first 30 minutes 'in a calendar year' needing five minutes of documentation; no 16-minute minimum. Incident-to physical-presence rule outdated; setting limits ignored.",
+   "No citations, dated rates or templates; revenue figures assume 100% uptake and ignore labor; contradictory statistics; nothing on G2211, APCM, complex CCM, facility visit codes or split/shared visits."
+  ],
+  "domains": [
+   "rcm-charge-coding",
+   "clinical-operations",
+   "compliance-risk",
+   "rcm-front-end",
+   "payers-contracts",
+   "rcm-claims-ar",
+   "quality-value",
+   "growth-market"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
   "claims_checked": 0,
   "claims_supported": 0,
   "claims_partly": 0,
