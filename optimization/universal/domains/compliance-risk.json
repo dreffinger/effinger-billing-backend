@@ -89,7 +89,8 @@
     "cfr-401-305",
     "cfr-164-530",
     "cfr-164-308",
-    "oig-heat-training"
+    "oig-heat-training",
+    "cfr-45-102-3"
    ],
    "evidence_note": "Based on Office of Inspector General guidance for small entities (2023) and small physician practices (2000). Both are voluntary guidance, not regulation. No survey was found of how many small practices have a working program.",
    "metrics": [
@@ -130,7 +131,7 @@
       "cfr-164-308"
      ],
      "data_hint": "Training log or learning system export, matched against the current roster of staff, clinicians and contractors.",
-     "vendor_claim": "The purchased playbook on the federal privacy rules says all staff need role-specific training every 12 months and that generic annual training fails the rule.",
+     "vendor_claim": "The purchased playbook on the federal privacy rules says all billing staff need role-specific training every 12 months and that generic annual training fails the rule.",
      "vendor_verdict": "Partly supported. Annual training is federal compliance guidance. The privacy and security rules require training fitted to the job but set no annual interval."
     }
    ]
@@ -746,9 +747,10 @@
     "fl-501-171",
     "fl-408-051",
     "fl-456-057",
-    "fedreg-rin-0945-aa22"
+    "fedreg-rin-0945-aa22",
+    "fedreg-pfs-2027-final"
    ],
-   "evidence_note": "The duties are federal regulation (45 CFR parts 160 and 164). A 12-month risk analysis interval is not in the current rule. It comes from a 2025 proposal still pending in November 2026 and from Medicare's quality program. State breach deadlines vary.",
+   "evidence_note": "The duties are federal regulation (45 CFR parts 160 and 164), which sets no 12-month risk analysis interval. That interval comes from a 2025 proposal still pending in November 2026 and from a Medicare quality measure that ends after 2026. State breach deadlines vary.",
    "metrics": [
     {
      "slug": "cr-risk-analysis-age",
@@ -760,18 +762,19 @@
      "cadence": "annual",
      "benchmark_best": "12 months or less",
      "benchmark_red": "never done, or not updated after a system change",
-     "benchmark_note": "45 CFR 164.308 requires the analysis but sets no interval. Clinicians reporting Medicare's Promoting Interoperability category must do it each calendar year (42 CFR 414.1375). A January 2025 federal proposal for a 12-month rule was still pending in November 2026.",
+     "benchmark_note": "45 CFR 164.308 requires the analysis but sets no interval. Medicare's Promoting Interoperability category required a yearly attestation through 2026 and drops it from 2027 (42 CFR 414.1375, amended November 2026). A January 2025 proposal for a 12-month rule was still pending in November 2026.",
      "confidence": "medium",
      "sources": [
       "cfr-164-308",
       "cfr-414-1375",
       "hhs-hipaa-security-nprm-2025",
       "reginfo-hipaa-security-2026",
-      "fedreg-rin-0945-aa22"
+      "fedreg-rin-0945-aa22",
+      "fedreg-pfs-2027-final"
      ],
      "data_hint": "The dated risk analysis document and the list of decisions that came out of it.",
      "vendor_claim": "The purchased privacy playbook says current federal guidance already requires a risk analysis at least annually and before any new billing system.",
-     "vendor_verdict": "Partly supported. The rule requires an analysis, kept current. A fixed 12-month interval exists only in the 2025 proposal and in Medicare's quality program."
+     "vendor_verdict": "Partly supported. The rule requires an analysis, kept current. A fixed 12-month interval exists only in the 2025 proposal and in a Medicare quality measure that ends after 2026."
     },
     {
      "slug": "cr-baa-coverage",

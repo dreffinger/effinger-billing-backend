@@ -166,7 +166,7 @@
     "Staff know that Medicare gives no appeal for a claim returned as unprocessable. It must be corrected and filed again within one year of the service."
    ],
    "failure_modes": [
-    "Rejections sit in a clearinghouse portal nobody opens. The claims never reach the payer and appear on no remittance and no aging report.",
+    "Rejections sit in a clearinghouse portal nobody opens. The claims never reach the payer, appear on no remittance, and look like any other unpaid claim on the aging report.",
     "A rejected claim is logged as filed. Months later the corrected claim is denied as late, and the payer does not accept the rejection as proof of filing.",
     "A new clinician's claims reject for weeks because payer enrollment is unfinished, and nobody links the pattern to credentialing.",
     "Staff appeal a Medicare claim returned as unprocessable. No appeal exists for it (42 CFR 405.926), so time is lost while the filing clock runs.",
@@ -188,7 +188,7 @@
     },
     {
      "action": "Age unresolved rejections every week",
-     "detail": "Report count and dollars of rejected claims not yet accepted, by age. These claims do not show on the receivables aging. Send anything past a set age, such as 14 days, to the practice owner.",
+     "detail": "Report count and dollars of rejected claims not yet accepted, by age. The receivables aging does not mark them as rejected. Send anything past a set age, such as 14 days, to the practice owner.",
      "cadence": "weekly",
      "effort": "low",
      "impact": "high"
@@ -208,7 +208,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices that send electronic claims. Facility-based practices see more wrong-payer and identifier rejections, because coverage is taken from a facility face sheet and can change during a stay.",
+   "applies_when": "All practices that send electronic claims. Facility-based practices are prone to wrong-payer and identifier rejections, because coverage is copied from a facility face sheet and can change during a stay.",
    "vendor_refs": [
     {
      "item": "kpi-02-clean-claim-rate",
@@ -335,7 +335,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices, though where most patients have Medicare most lines post automatically and the risk moves to crossover and zero-payment remittances. In a one-person billing office, the owner or an outside bookkeeper should sample posted remittances each month.",
+   "applies_when": "All practices. Where most patients have Medicare, electronic remittances are the norm and the risk moves to crossover and zero-payment remittances. In a one-person billing office, the owner or an outside bookkeeper should sample posted remittances each month.",
    "vendor_refs": [
     {
      "item": "rcm-technology-buyers-playbook",

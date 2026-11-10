@@ -53,12 +53,22 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Office practices work from a schedule and care about fill rate and no-shows. Facility-based and home-visit practices work from a census, where the risk is a visit that was made but never listed.",
+   "applies_when": "Every practice. Office practices work from a schedule and watch unfilled slots and no-shows. Facility-based and home-visit practices work from a census, where the risk is a visit made but never listed. Hospital-based specialists work from the hospital's census, operating room schedule or order log.",
+   "vendor_refs": [
+    {
+     "item": "annual-revenue-cycle-assessment-guide",
+     "note": "One checklist question scores daily or weekly matching of completed encounters to posted charges. No method is given, and nothing covers a facility census or no-shows."
+    },
+    {
+     "item": "kpi-action-guide-vol1-core10",
+     "note": "Recommends a monthly count of encounters against charges. Its statement that 1% to 3% of encounters typically go unbilled has no source."
+    }
+   ],
    "sources": [
     "hfma-map-keys",
     "mgma-app-2026"
    ],
-   "evidence_note": "Reconciling encounters to charges is standard practice in HFMA and MGMA guidance. The no-show figure is measured by MGMA for office primary care. No benchmark exists for census accuracy.",
+   "evidence_note": "Reconciling the day's list to charges is an internal control by convention, not a regulation. The Healthcare Financial Management Association (HFMA) measures schedule use and charge delay, not reconciliation. No-show figures are Medical Group Management Association (MGMA) medians for 2025. Census accuracy has no benchmark.",
    "metrics": [
     {
      "slug": "fe-encounter-reconciliation",
@@ -80,13 +90,13 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_typical": "about 6% in primary care",
-     "benchmark_note": "MGMA primary care median, 2025 data: 6.0%. Applies to scheduled office practices. It does not apply to rounding practices.",
+     "benchmark_typical": "5% to 7% by specialty group, 6% in primary care",
+     "benchmark_note": "MGMA medians, 2025 data: primary care 6.0%, surgical 5.0%, nonsurgical specialties 7.0%. One in three groups reported higher no-shows in 2026 (MGMA poll). Applies to scheduled office practices, not to rounding practices.",
      "confidence": "medium",
-     "data_hint": "The scheduling system's appointment status report.",
      "sources": [
       "mgma-app-2026"
-     ]
+     ],
+     "data_hint": "The scheduling system's appointment status report."
     }
    ]
   },
