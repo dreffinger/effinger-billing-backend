@@ -16,8 +16,21 @@ turns that state into text parts small enough for the Google Drive connector, an
 Includes: *.py *.sh *.md *.json *.jsonl *.csv *.txt at the top level, tools/, patient_db/, era_details/, registers/.
 Excludes: secrets/, .amd_cred.json, .session.json, *.lock, .amd_login_lock, __pycache__, outbox/, chat_history/,
           *.bundle*, *.b64, raw *.xml dumps over 2 MB, and anything over 8 MB. No secret ever enters a bundle.
+
+Part order (11/10/2026): unpack joins the parts by the NUMBER after ".part", never by the text of their names. Until then it sorted
+the names as text, where part100 comes between part10 and part11, so any bundle of 100 parts or more - the default pack was 267
+parts that day - was refused with "SHA256 MISMATCH ... bad parts: unknown" (or stopped on a base64 error) and the run's state did
+not carry over to the next fresh container, whichever mode had packed it. Bundles under 100 parts were never affected. Now:
+  - any way of writing the number is read (part07, part7, part007), so a set written by an older copy of this tool (two digits,
+    a third only from part100 on) unpacks as well;
+  - pack writes one width per set (part01 .. part99, part001 .. part267, part0001 ..), so a text sort of a new set is its number
+    order too and an older copy of this tool can still restore it; sets under 100 parts are named exactly as before;
+  - the bad-part report goes by part number as well and lists the parts in number order; a part cut short is refused and named
+    instead of ending in an error; when every listed part is intact it says so (look for a part file that does not belong);
+  - a file in the folder whose name is not workspace_state_<stamp>.part<number>.b64 is left out, and said so.
+Self-test (offline, throwaway folders, no patient data): python3 tools/selftest/test_ws_bundle.py
 """
-import os, sys, io, tarfile, base64, json, time, glob, hashlib
+import os, sys, io, re, tarfile, base64, json, time, glob, hashlib
 
 WS = os.environ.get("WS", "/home/claude/unbilled")
 PART = 8000             # chars per part (80 lines x 100) - the size the Drive connector has round-tripped cleanly; 150k parts did not survive
@@ -87,8 +100,10 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
     b64 = base64.b64encode(raw).decode()
     os.makedirs(out_dir, exist_ok=True)
     parts = []; part_sha = {}
+    # 11/10/2026: one width per set - part01..part99, part001..part267, part0001.. - so a plain text sort of a set is its number order too
+    width = max(2, len(str((len(b64) + PART - 1) // PART)))
     for i in range(0, len(b64), PART):
-        fn = os.path.join(out_dir, f'workspace_state_{stamp}.part{len(parts)+1:02d}.b64')
+        fn = os.path.join(out_dir, f'workspace_state_{stamp}.part{len(parts)+1:0{width}d}.b64')
         chunk = b64[i:i + PART]
         # 100-char lines: the Drive connector round-trips wrapped text reliably (9/13/2026)
         open(fn, 'w').write('\n'.join(chunk[j:j + 100] for j in range(0, len(chunk), 100)))
@@ -102,27 +117,46 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
     return manifest
 
 
+PART_NAME = re.compile(r'^(workspace_state_.+)\.part(\d+)\.b64$')   # <set>.part<number>.b64 - the set is everything before the last ".part<digits>.b64"
+
+
+def _part_no(name):
+    """The number after ".part" as a number: part07 -> 7, part7 -> 7, part100 -> 100, part0100 -> 100 (None when the name carries none).
+    11/10/2026: a part is this number, never the text of its name - in text order part100 sorts between part10 and part11, which is
+    how a 267-part bundle came back as "SHA256 MISMATCH ... bad parts: unknown"."""
+    m = PART_NAME.match(os.path.basename(name))
+    return int(m.group(2)) if m else None
+
+
 def unpack(src_dir, force=False):
     sets = {}
     for fn in glob.glob(os.path.join(src_dir, 'workspace_state_*.part*.b64')):
-        stamp = os.path.basename(fn).split('.part')[0]
-        sets.setdefault(stamp, []).append(fn)
+        m = PART_NAME.match(os.path.basename(fn))
+        if not m:   # e.g. a second download saved as "...part07 (1).b64": never joined in
+            print('unpack: left out', os.path.basename(fn), '- its name is not workspace_state_<stamp>.part<number>.b64'); continue
+        sets.setdefault(m.group(1), []).append(fn)
     if not sets:
         print('unpack: no workspace_state_*.partNN.b64 files in', src_dir); return 1
-    stamp = sorted(sets)[-1]
-    parts = sorted(sets[stamp])
-    chunks = {os.path.basename(p): open(p).read().replace('\n', '').strip() for p in parts}
-    b64 = ''.join(chunks[os.path.basename(p)] for p in parts)
-    raw = base64.b64decode(b64)
+    stamp = sorted(sets)[-1]   # the stamp is fixed-width UTC (YYYY-MM-DD_HHMMUTC), so its text order is its time order
+    parts = sorted(sets[stamp], key=lambda p: (_part_no(p), os.path.basename(p)))   # by part NUMBER (11/10/2026), however the number is padded
+    chunks = {_part_no(p): open(p).read().replace('\n', '').strip() for p in parts}
+    b64 = ''.join(chunks[_part_no(p)] for p in parts)
+    try:
+        raw = base64.b64decode(b64); broken = ''
+    except ValueError as e:   # a part cut short or garbled so far that the text is no longer base64: refuse and name it, like any other mismatch
+        raw = None; broken = ' (the parts do not even decode as base64: %s)' % e
     mf = os.path.join(src_dir, stamp + '.manifest.json')
-    if os.path.exists(mf):
-        man = json.load(open(mf)); want = man.get('sha256')
-        got = hashlib.sha256(raw).hexdigest()
-        if want and want != got:
-            bad = [n for n, h in (man.get('part_sha256') or {}).items() if hashlib.sha256(chunks.get(n, '').encode()).hexdigest() != h]
-            print('unpack: SHA256 MISMATCH - a part is missing, truncated or altered; refusing to extract. bad parts:', bad or 'unknown (manifest has no per-part sha)')
-            print('        recovery: zlib-decompress up to the CRC error and take the intact tar members (see 9/13/2026 7pm ET run), then overlay the previous sha-clean set')
-            return 2
+    man = json.load(open(mf)) if os.path.exists(mf) else {}
+    want = man.get('sha256')
+    if raw is None or (want and want != hashlib.sha256(raw).hexdigest()):
+        listed = man.get('part_sha256') or {}   # the per-part check goes by part number too, and reports in number order
+        bad = [n for n in sorted(listed, key=lambda n: (_part_no(n) or 0, n)) if hashlib.sha256(chunks.get(_part_no(n), '').encode()).hexdigest() != listed[n]]
+        if not bad:
+            bad = ('none of the %d parts the manifest lists - each matches its own sha256; look for a part file that does not belong to this set, or a damaged manifest' % len(listed) if listed
+                   else 'unknown (manifest has no per-part sha)' if man else 'unknown (no manifest in the folder)')
+        print('unpack: SHA256 MISMATCH%s - a part is missing, truncated or altered; refusing to extract. bad parts:' % broken, bad)
+        print('        recovery: zlib-decompress up to the CRC error and take the intact tar members (see 9/13/2026 7pm ET run), then overlay the previous sha-clean set')
+        return 2
     kept = restored = 0
     with tarfile.open(fileobj=io.BytesIO(raw), mode='r:gz') as tar:
         for m in tar.getmembers():
