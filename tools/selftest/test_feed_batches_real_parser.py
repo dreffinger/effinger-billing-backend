@@ -12,6 +12,8 @@
 #     B  assisted-living care management + a nursing visit (both orders): 13 and the nursing building;
 #     C  the same patient + date + codes sent from two buildings cannot be told apart: the visit is entered once, at the feed's
 #        place of service when it lands in a nursing building, and its register row says it is not the message's own reading;
+#     R  a hospital message sent twice, the second copy with a corrected admission date, while another message of the same patient
+#        is read last: one visit, with the admission date of its own last copy;
 #     D  one building: each visit under the clinician and the admission date of its own message (also when PV1 stands after FT1);
 #     H  nursing visits a month apart inside ONE batch: after one in another nursing building, or one sent from the hospital
 #        building, the visit is a new admission (31); in the same building it is the monthly visit (32);
@@ -25,7 +27,7 @@
 #   and H every visit of the patient went in under one building / clinician / admission date.
 # Never touches: AMD (the importer gets stand-in amd / resave / txh modules in this process and every socket is refused), Gmail,
 #   Drive, the workspace. The parser is started with python -I and imports only the standard library. Writes only to a temp
-#   directory, removed at the end.
+#   directory, removed at the end. No switch or cache of the calling shell is read: every environment name the importer knows is unset.
 # No patient data: every patient id, name, date of birth and chart number is invented and assembled at run time. The buildings and
 #   the two clinician ids are read from the importer's own FAC / PROFILE tables at run time, so none is written here.
 # Not used on purpose: stored fingerprints of requests (they would move with every revision of the rule) and 99306 (who it is entered
@@ -47,7 +49,9 @@ def check(name, cond, extra=""):
 # ------------------------------------------------------------------ stand-ins: no real amd / resave / txh, no socket
 def _no_network(*a, **k): raise AssertionError("network use in an offline self-test")
 socket.socket = _no_network; socket.create_connection = _no_network
-os.environ.pop("DECEASED_CACHE", None)          # a run shell's own cache must never decide what these invented charts get
+# whatever the calling shell exports, none of the importer's switches or caches decides what these invented charts get: every
+# environment name the importer reads is unset here (the three this test needs are set again at each load)
+for _name in set(re.findall(r'environ(?:\.get\(|\[)\s*"([A-Za-z_][A-Za-z0-9_]*)"', open(HELPER, encoding="utf-8").read())): os.environ.pop(_name, None)
 sys.dont_write_bytecode = True
 SENT = []; N = {"visit": 0, "charge": 0, "login": 0}
 def _msg(action, cls, attrs=None, children=""):
@@ -206,15 +210,19 @@ C = {"c5_hosp": message(5, HOSPITAL, [(1, "99232", ["N390"], "1")], NPI_A, ADM1)
      "c5_nurs": message(5, NURS[0], [(-2, "99487", ["I10"], "1")], NPI_B),
      "c9_nurs": message(9, NURS[1], [(-2, "99487", ["I10"], "1")], NPI_B),
      "c9_alf":  message(9, ALF[1], [(-2, "99487", ["I10"], "1")], NPI_A)}
+# R: a hospital message sent twice - the second copy corrects the admission date - while another message of the patient is read last
+R = [message(8, HOSPITAL, [(0, "99232", ["N390"], "1")], NPI_A, day(-9)), message(8, HOSPITAL, [(0, "99232", ["N390"], "1")], NPI_A, ADM1),
+     message(8, NURS[0], [(2, "99309", ["F0390"], "1")], NPI_B, day(2))]
+APART = (chart(5), chart(9), chart(8))                                # the charts of C and R: not every visit there is one message read once
 ws = workspace("batch")
-write(ws, day(0) + "aaaa0000.hl7", [M[k] for k in ORDER[:10]] + [C[k] for k in ("c5_hosp", "c5_alf", "c5_nurs", "c9_nurs")], eol="\r")
+write(ws, day(0) + "aaaa0000.hl7", [M[k] for k in ORDER[:10]] + [C[k] for k in ("c5_hosp", "c5_alf", "c5_nurs", "c9_nurs")] + R, eol="\r")
 write(ws, day(1) + "bbbb0000.hl7", [M[k] for k in ORDER[10:]] + [C["c9_alf"]], eol="\r\n")       # patient 9's twins are in two files: the later file is read last
 reg, sent, dry_log = run(ws, "--dry")
 check("dry run: reads only - no visit, charge or admission-date request, no register", reg is None and not [b for b in sent if re.search(r'action="(addvisit|updvisitwithnewcharges|updextrainsinfo)"', b)])
 reg, sent, log = run(ws)
 V = visits(sent)
-check("every message is entered once (24 visits; each pair of twins in C is one visit) and nothing failed",
-      len(reg["created"]) == 24 and len(V) == 24 and not reg["failed"], (len(reg["created"]), len(V), reg["failed"]))
+check("every message is entered once (26 visits; each pair of twins in C and the message sent twice in R are one visit) and nothing failed",
+      len(reg["created"]) == 26 and len(V) == 26 and not reg["failed"], (len(reg["created"]), len(V), reg["failed"]))
 check("every visit has a facility: the building is read from the raw message as the facility table knows it", all(r["fac"] for r in reg["created"]), [r["fac"] for r in reg["created"]])
 # A
 for n, nb, hcpt in ((1, NURS[0], "99232"), (2, NURS[1], "99233")):
@@ -240,6 +248,11 @@ check("C the same patient + date + code from two buildings is ONE visit, in the 
 check("C ... in a nursing building it stays at the feed's 31 and the rule says it was not applied", t5 and t5["pos"] == ["31"] and bool(r5.get("pos_err")), (where(t5), r5))
 check("C ... and both register rows say the visit is not the message's own reading", r5.get("msg_own") is False and r9.get("msg_own") is False, (r5, r9))
 check("C the same patient's other message keeps its own building and admission date", h5 and h5["facility"] == FACID(HOSPITAL) and h5["pos"] == ["21"] and h5["ext"] == us(ADM1), where(h5))
+# R
+h8 = one(V, 8, 0, "99232"); n8 = one(V, 8, 2, "99309")
+check("R a hospital message sent twice with a corrected admission date, another message of the patient read last: ONE visit, with the date of its own LAST copy",
+      h8 and h8["facility"] == FACID(HOSPITAL) and h8["profile"] == PROF_A and h8["ext"] == us(ADM1) and h8["admit_calls"] == [us(ADM1)]
+      and n8 and n8["facility"] == FACID(NURS[0]) and n8["profile"] == PROF_B and n8["ext"] is None, (where(h8), where(n8), "the first copy said " + us(day(-9)), "the other message says " + us(day(2))))
 # D
 d0, d1, d5 = one(V, 6, 0, "99223"), one(V, 6, 1, "99232"), one(V, 6, 5, "99223")
 check("D one building, two clinicians: each hospital day under the clinician of ITS message", d0 and d1 and d5 and [d0["profile"], d1["profile"], d5["profile"]] == [PROF_A, PROF_B, PROF_A], [where(x) for x in (d0, d1, d5)])
@@ -257,8 +270,8 @@ check("H ... and in the SAME building the second one is the monthly visit (32)",
 # K
 k1, k2 = one(V, 25, -2, "99487"), one(V, 25, -2, "99489")
 check("K same patient, date and first code under two buildings with different code lists are told apart", k1 and k1["facility"] == FACID(ALF[0]) and k1["pos"] == ["13"] and k2 and k2["facility"] == FACID(NURS[1]), (where(k1), where(k2)))
-own = [r for r in reg["created"] if r["pid"] not in (chart(5), chart(9))]
-check("apart from the twins of C, every visit is the reading of its own message and the rule was applied where it has a say",
+own = [r for r in reg["created"] if r["pid"] not in APART]
+check("apart from the twins of C and the message sent twice in R, every visit is the reading of its own message and the rule was applied where it has a say",
       len(own) == 21 and not [r for r in own if r.get("msg_own") is False or r.get("pos_err")], [(r["pid"], r.get("msg_own"), r.get("pos_err")) for r in own if r.get("msg_own") is False or r.get("pos_err")])
 
 # ------------------------------------------------------------------ E: every message under its own feed patient id, same charts
@@ -267,7 +280,7 @@ split = {k: 100 + i for i, k in enumerate(ORDER)}                    # message -
 write(ws, day(0) + "cccc0000.hl7", [message(*a, as_id=split[k], **kw) for k, (a, kw) in SPEC.items()])
 people = {split[k]: int(re.match(r"[a-z](\d+)_", k).group(1)) for k in ORDER}
 V2 = visits(run(ws, same_chart=people)[1])
-keys = [k for k in V if k[0] not in (chart(5), chart(9))]
+keys = [k for k in V if k[0] not in APART]
 check("E every message under a feed patient id of its own (same charts): the same 21 visits, each sent byte for byte the same",
       len(keys) == 21 and sorted(keys) == sorted(V2) and all(V[k]["requests"] == V2[k]["requests"] for k in keys), [k for k in keys if k not in V2 or V[k]["requests"] != V2[k]["requests"]] or (len(keys), len(V2)))
 
@@ -282,12 +295,13 @@ AGREE = {
  33: (ALF[0], NPI_B, "", [[(0, "99344", ["I10"], "1")], CCM_NOV[:1]]),                                                          # assisted living
  34: (NURS[1], NPI_A, "", [[(1, "99308", ["F0390"], "1")], [(3, "99316", ["F0390"], "1")]]),                                     # a short nursing stay
 }
-ws = workspace("agree"); other = os.path.join(ws, "hl7_one_other_message_per_patient"); os.makedirs(other)
-write(ws, day(0) + "dddd0000.hl7", [message(n, b, lines, npi, adm) for n, (b, npi, adm, msgs) in AGREE.items() for lines in msgs])
+ws = workspace("agree_own_message"); ws2 = workspace("agree_patient_values")       # a workspace each: nothing one run leaves behind reaches the other
+other = os.path.join(ws2, "hl7_one_other_message_per_patient"); os.makedirs(other)
+for w in (ws, ws2): write(w, day(0) + "dddd0000.hl7", [message(n, b, lines, npi, adm) for n, (b, npi, adm, msgs) in AGREE.items() for lines in msgs])
 open(os.path.join(other, day(0) + "eeee0000.hl7"), "wb").write("".join("\r".join(message(n, b, [(-300, "99487", ["I10"], "1")], npi, adm)) + "\r"
                                                                     for n, (b, npi, adm, msgs) in AGREE.items()).encode())
 reg1, sent1, _ = run(ws); V1 = visits(sent1)
-reg2, sent2, _ = run(ws, hl7=other); V2 = visits(sent2)
+reg2, sent2, _ = run(ws2, hl7=other); V2 = visits(sent2)
 check("F the batch of agreeing patients is entered in full both ways (10 visits, nothing failed)",
       len(V1) == 10 and len(V2) == 10 and not reg1["failed"] and not reg2["failed"], (len(V1), len(V2), reg1["failed"], reg2["failed"]))
 check("F first way: every visit is the reading of its own message; second way: none is (the patient's values, as before 11/10/2026)",
