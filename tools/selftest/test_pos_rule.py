@@ -16,7 +16,7 @@
 #     - a visit an earlier batch could not enter is still read as history; when the batch's own visits cannot be listed no line is 32;
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
-#       three helpers without the rule back onto main; the runbook copies them from the repository before every ingest.
+#       feed helpers without the rule back onto main; the runbook copies them (and the parser) from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
 import os, sys, json, types, tempfile, importlib.util, io, re, contextlib
 import xml.etree.ElementTree as ET
@@ -414,7 +414,7 @@ _wd = [open(os.path.join(ROOT, d, "working_denials.py")).read() for d in ("board
 check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
 check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
       "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
-check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
+check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_ingest.py claimocity_retry_dx.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
 check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
 check("ingest: when only some helpers could be replaced the result line names the ones that are still older copies; the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in ingest and "pos_warn" in ingest[ingest.index("FEED HELPERS NOT ALL CURRENT") - 200:ingest.index("FEED HELPERS NOT ALL CURRENT")]
       and "FEED HELPERS NOT ALL CURRENT" in step and "the feed files are not on hand and could not be fetched' also goes under Holds" in step)
@@ -458,6 +458,7 @@ check("digest: a visit that could not be matched to its own feed message is name
 r, line = digest([dict(rows[4], msg_own=False), rows[5]], stamp="1028")
 check("digest: the not-matched line is printed whatever the batch stamp looks like", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout, r.stdout[-500:])
 r, line = digest(rows + [dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), prof_default=True), dict(reg_row(["99232"], "", "31", ["31"]), pos_kind=[""])])
+check("digest: what is for William says so - no line tells a routine to check or change a visit by hand", "check them by hand" not in r.stdout and r.stdout.count("for William (a routine changes nothing on these visits)") == 2, r.stdout[-900:])
 check("digest: a visit under the default clinician and a hospital visit with no facility are each named for the top of the report", "Clinician: 1 visit(s) whose feed message names no clinician id the profile table has" in r.stdout
       and "Building: 1 hospital / home / other visit(s) came from a building the facility table does not know" in r.stdout, r.stdout[-900:])
 r, line = digest(rows + [OLD_ROW])
@@ -470,6 +471,10 @@ r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lin
 check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
 
 aud = tempfile.mkdtemp(prefix="posrule_aud_")
+_r1 = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", os.path.join(aud, "nowhere")], capture_output=True, text=True)
+_r2 = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud, "--csv"], capture_output=True, text=True)
+check("audit tool: a registers folder that is not there, or --csv without a file name, ends with a plain sentence - not with a zero count or a traceback", _r1.returncode != 0 and "registers folder not found" in _r1.stderr
+      and _r2.returncode != 0 and "needs a file or folder name" in _r2.stderr and "Traceback" not in _r1.stderr + _r2.stderr, (_r1.stderr[-200:], _r2.stderr[-200:]))
 json.dump({"created": [{"visit": "vst1", "pid": "pat1", "prof": "prof13", "fac": "fac29", "cpts": ["99309"], "dos": "10/05/2026", "charges": ["charge1"]},
                        {"visit": "vst2", "pid": "pat1", "prof": "prof15", "fac": "fac34", "cpts": ["99309"], "dos": "10/12/2026", "charges": ["charge2"]},
                        {"visit": "vst3", "pid": "pat2", "prof": "prof13", "fac": "fac29", "cpts": ["99487"], "dos": "10/31/2026", "charges": ["charge3"]},

@@ -16,9 +16,13 @@
 # Usage: python3 tools/feed/feed_clinician_audit.py [--registers practices/ehpa/registers] [--csv out.csv] [--buildings-csv out2.csv]
 import os, sys, re, json, glob, csv, collections
 a = sys.argv[1:]
-def opt(name, default=None): return a[a.index(name) + 1] if name in a else default
+def opt(name, default=None):
+    if name not in a: return default
+    if a.index(name) + 1 >= len(a) or a[a.index(name) + 1].startswith("--"): sys.exit("%s needs a file or folder name after it" % name)
+    return a[a.index(name) + 1]
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 REGS = opt("--registers", os.path.join(ROOT, "practices", "ehpa", "registers"))
+if not os.path.isdir(REGS): sys.exit("registers folder not found: %s" % REGS)
 PROF = {"prof13": "physician", "prof15": "nurse practitioner"}             # the two rendering profiles of the practice
 # the labels claimocity_recon.clin() writes for the practice's two clinicians (a third label is listed as 'other' and counts as a difference)
 LABELS = {"Dr. Effinger (DO)": "physician", "Pamela G. (ARNP)": "nurse practitioner", "Pamela G.": "nurse practitioner"}

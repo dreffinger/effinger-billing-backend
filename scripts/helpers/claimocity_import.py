@@ -458,8 +458,9 @@ def main():
                 reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **({} if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue
             n += 1
             if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
-            if info.get("prof_default"): print("CLINICIAN NOT KNOWN", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile, check by hand")
-            if not info.get("fac"): print("NO FACILITY", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service, check by hand")
+            if info.get("msg_own") is False and not info.get("pos_err"): print("POS CHECK not own message", pid, info["dos"], info["cpts"], "the raw files gave no single answer for this message - the patient's last-read building / clinician / admission date were used where its copies differ; for William")
+            if info.get("prof_default"): print("POS CHECK clinician not known", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile; for William")
+            if not info.get("fac"): print("POS CHECK no facility", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service; for William")
             if dry:
                 print("DRY", pid, info); stats["dry"] += 1; count_pos(info, stats); continue
             create, body = body

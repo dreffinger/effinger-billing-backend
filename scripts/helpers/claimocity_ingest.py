@@ -110,7 +110,7 @@ if not _has_rule(os.path.join(HERE, "claimocity_import.py")):
         try:
             for _f in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"): shutil.copy2(os.path.join(REPO_HELPERS, _f), os.path.join(HERE, _f))
             print("POS RULE: the workspace held an OLD claimocity_import.py (not the current place-of-service rule) - replaced by the repository copy before the import")
-        except Exception as _e:        # a clone without one of the three, or a file that cannot be written: the import still runs, and says what ran
+        except Exception as _e:        # a clone without one of the three helpers copied here, or a file that cannot be written: the import still runs, and says what ran
             if not _has_rule(os.path.join(HERE, "claimocity_import.py")):
                 pos_warn = " | PLACE OF SERVICE RULE NOT CURRENT: the import helper here is an old copy or an earlier version of the rule and could not be replaced (%s)" % type(_e).__name__
             else:                      # the import helper is current; the report or the inspector helper of this run may still be the older copy
@@ -121,7 +121,7 @@ if not _has_rule(os.path.join(HERE, "claimocity_import.py")):
                 if _stale: pos_warn = " | FEED HELPERS NOT ALL CURRENT: %s could not be replaced by the repository copy (%s) - this run's digest or inspector step may be an older version" % (", ".join(_stale), type(_e).__name__)
             print("POS RULE: the repository copies could not all be copied over the workspace helpers (%s: %s) - say so at the top of the report" % (type(_e).__name__, str(_e)[:120]))
     else:
-        pos_warn = " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is an old copy or an earlier version of the rule and no repository copy was found - check the place of service of every nursing-building line this run entered"
+        pos_warn = " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is an old copy or an earlier version of the rule and no repository copy was found - check the place of service of every nursing-building line this run entered, and the clinician and building of every visit whose patient has another message in the batch"
         print("PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py in %s is an old copy or an earlier version of the rule and %s has no copy - say so at the top of the report" % (HERE, REPO_HELPERS))
 cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"]
 if limit: cmd += ["--limit", str(limit)]

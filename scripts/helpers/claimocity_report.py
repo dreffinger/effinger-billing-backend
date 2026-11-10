@@ -93,11 +93,11 @@ try:
         elif _ps["readback"]: L("  - AdvancedMD's own answer shows the place of service as sent on all %d visit(s) it echoed." % _ps["readback"])
         elif _ps["ccm32"] or _ps["nf32"]: L("  - AdvancedMD's answer did not echo the place of service: read ONE 32 line back by hand (runbook, 'first batch that enters a 32 line').")
     if _ps["notown"]:
-        L("- Clinician and building: %d visit(s) could not be matched to their own feed message, so the patient's last-read building and clinician were used - TOP OF THE REPORT, check them by hand:" % _ps["notown"]); _names("notown", "charts")
+        L("- Clinician and building: %d visit(s) could not be matched to their own feed message, so the patient's last-read building and clinician were used - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["notown"]); _names("notown", "charts")
     if _ps["profdef"]:
-        L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, check them by hand:" % _ps["profdef"]); _names("profdef", "charts")
+        L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["profdef"]); _names("profdef", "charts")
     if _ps["nofacother"]:
-        L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, check them by hand:" % _ps["nofacother"]); _names("nofacother", "charts")
+        L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["nofacother"]); _names("nofacother", "charts")
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))
