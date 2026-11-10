@@ -228,6 +228,8 @@ def seen_lines(msg):
 def count_pos(info, stats):
     """The DONE-line counters for one message that was entered (or would be, in a dry run)."""
     if info.get("msg_own") is False: stats["feed message not matched to its own raw message - the patient's last-read building / clinician used"] += 1
+    if info.get("prof_default"): stats["clinician id of the feed message is not one of the practice's two - entered under the physician profile"] += 1
+    if not info.get("fac"): stats["visit entered with NO facility - its building is not in the facility table"] += 1      # every code, not only CCM / nursing lines
     if info.get("pos_err"):
         stats["POS RULE NOT APPLIED (entered at the feed's place of service)"] += 1; return
     for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
@@ -263,15 +265,15 @@ for f in sorted(glob.glob((HL7_DIR + "/*.hl7"))):       # sorted: "the last mess
     raw = open(f, errors="replace").read().replace("\r", "\n")
     for b in re.split(r"(?m)^(?=MSH\|)", raw):
         if not b.startswith("MSH|"): continue
-        msh = b.split("\n")[0].split("|"); fac = msh[3].split("^")[-1]; pid = None
-        _npi = _adm = ""; _ft = []
-        for line in b.split("\n"):
+        msh = b.split("\n")[0].split("|"); fac = msh[3].split("^")[-1] if len(msh) > 3 else ""; pid = None      # a short line never stops the load
+        _npi = _adm = ""; _ft = []; _pv1 = False
+        for line in b.strip().split("\n"):              # b.strip(): exactly what feed_parse_dft does to a block, so both readers see the same last field
             s = line.split("|")
-            if s[0] == "PID": pid = s[3]; FACOF[pid] = fac; FACS.setdefault(pid, set()).add(fac)
-            if s[0] == "PV1" and pid:
-                NPIOF[pid] = _npi = s[7].split("^")[0] if len(s) > 7 else ""
-                ADMIT[pid] = _adm = s[44] if len(s) > 44 else ""
+            if s[0] == "PID": pid = s[3] if len(s) > 3 else ""; FACOF[pid] = fac; FACS.setdefault(pid, set()).add(fac)
+            if s[0] == "PV1":                             # wherever it stands in the message (the parser does not care about the order either)
+                _pv1 = True; _npi = s[7].split("^")[0] if len(s) > 7 else ""; _adm = s[44] if len(s) > 44 else ""
             if s[0] == "FT1": _ft.append((s[25].split("^")[0] if len(s) > 25 else "", s[4] if len(s) > 4 else ""))
+        if pid and _pv1: NPIOF[pid] = _npi; ADMIT[pid] = _adm
         try:
             if pid: MSGOF.setdefault(msg_key(pid, _ft), set()).add((fac, _npi, _adm))
         except Exception: pass
@@ -323,7 +325,7 @@ def build(msg, ctx):
     facname = _ag[0] if _ag[0] is not None else FACOF.get(fid, ""); npi = _ag[1] if _ag[1] is not None else NPIOF.get(fid, ""); admit = _ag[2] if _ag[2] is not None else ADMIT.get(fid, "")
     fac, pos = FAC.get(facname, ("", "31"))
     nursing = facname in FAC and pos == "31"        # one of the practice's nursing buildings (never the unknown-building default)
-    prof = PROFILE.get(npi, "prof13")
+    prof = PROFILE.get(npi, "prof13")               # an id that is not one of the practice's two (or none at all) still goes in under the physician - and is said
     lines = []
     for c in msg["FT1"]:
         cpt = c["cpt"]
@@ -380,7 +382,7 @@ def build(msg, ctx):
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
     # dos_lines: every line's own date (a message can carry two); msg_own: False = building / clinician came from the per-patient fallback
     return (create, body), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
-                            "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx)}
+                            "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx)}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
@@ -456,6 +458,8 @@ def main():
                 reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **({} if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue
             n += 1
             if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
+            if info.get("prof_default"): print("CLINICIAN NOT KNOWN", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile, check by hand")
+            if not info.get("fac"): print("NO FACILITY", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service, check by hand")
             if dry:
                 print("DRY", pid, info); stats["dry"] += 1; count_pos(info, stats); continue
             create, body = body
@@ -502,8 +506,10 @@ def main():
     # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
-    if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched"):
-        print("POS CHECK: AdvancedMD stored another place of service x%d; not matched to its own message x%d" % (_pk("ADVANCEDMD DID NOT KEEP"), _pk("feed message not matched")))
+    if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
+        # one SHORT line, like the next one (89 characters with one-digit counts)
+        print("POS CHECK: stored another POS x%d; not own message x%d; clinician unknown x%d; no facility x%d" % (
+            _pk("ADVANCEDMD DID NOT KEEP"), _pk("feed message not matched"), _pk("clinician id of the feed message"), _pk("visit entered with NO facility")))
     # one SHORT line (the ingest shows 110 characters of each of the last three log lines): 91 characters with one-digit counts
     print("POS RULE: CCM 32 x%d, CCM 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown bldg x%d" % (
         _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))

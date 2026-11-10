@@ -49,6 +49,8 @@ try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
         if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x))
+        if x.get("prof_default") is True: _ps["profdef"] += 1; _who["profdef"].append(_tag(x))
+        if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
         if x.get("pos_stored") is not None and x.get("pos_lines"):
             _ps["readback"] += 1
             if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), x["pos_lines"], x["pos_stored"]))
@@ -71,7 +73,7 @@ try:
                 _ps["nf%s" % _p] += 1
                 if _kind in ("extra", "between"): _ps["nfleft"] += 1; _who["nfleft"].append(_tag(x))
                 if _kind == "moved": _ps["nfmoved"] += 1
-    if any(_ps[k] for k in _ps if k not in ("readback", "notown")):
+    if any(_ps[k] for k in _ps if k not in ("readback", "notown", "profdef", "nofacother")):
         L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
             (" (and %d kept at 31 because the chart shows weekly visits, an admission or a new stay that month - not held: they go out at 31 with the next claim run unless William changes them first)" % _ps["ccm31"]) if _ps["ccm31"] else "",
@@ -92,6 +94,10 @@ try:
         elif _ps["ccm32"] or _ps["nf32"]: L("  - AdvancedMD's answer did not echo the place of service: read ONE 32 line back by hand (runbook, 'first batch that enters a 32 line').")
     if _ps["notown"]:
         L("- Clinician and building: %d visit(s) could not be matched to their own feed message, so the patient's last-read building and clinician were used - TOP OF THE REPORT, check them by hand:" % _ps["notown"]); _names("notown", "charts")
+    if _ps["profdef"]:
+        L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, check them by hand:" % _ps["profdef"]); _names("profdef", "charts")
+    if _ps["nofacother"]:
+        L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, check them by hand:" % _ps["nofacother"]); _names("nofacother", "charts")
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))

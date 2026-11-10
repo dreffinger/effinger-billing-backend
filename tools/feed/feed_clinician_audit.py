@@ -44,6 +44,8 @@ for rf in sorted(glob.glob(os.path.join(REGS, "feed_recon_*.json"))):
             rows.append({"batch": j.get("stamp"), "chart": r.get("p"), "visit": v, "date of service": r.get("d"), "codes": "+".join(r.get("c") or []),
                          "feed message says": feed, "entered under": ent, "charges": " ".join(entered[v].get("charges") or [])})
 print("feed visits entered: %d, matched to their feed message: %d, entered under a different clinician: %d" % (len(entered), matched, len(rows)))
+_nc = sorted(v for v in entered if v not in seen)
+if _nc: print("not compared (no feed message found for the visit): %d - %s" % (len(_nc), " ".join(_nc[:40])))
 print("by direction:", dict(collections.Counter((r["feed message says"], r["entered under"]) for r in rows)))
 print("by batch:", dict(collections.Counter(r["batch"] for r in rows)))
 try:

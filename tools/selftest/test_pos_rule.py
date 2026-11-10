@@ -59,7 +59,16 @@ RAW = [("n1", B["n1"], "", [("99487", "20261031"), ("99489", "20261031")], NPI),
        ("m6", B["h1"], "20261018", [("99232", "20261020")], NPI), ("m6", B["h1"], "20261019", [("99232", "20261020")], NPI), ("m6", B["n2"], "", [("99309", "20261025")], NP_NPI),
        # s1: the visit after three refused ones
        ("s1", B["n2"], "", [("99309", "20261113")], NPI)]
-open(os.path.join(tmp, "hl7", "b.hl7"), "w").write("".join(hl7(f, fac, adm, lines, npi) for f, fac, adm, lines, npi in RAW))
+def ft1_bare(cpt, dos):      # the code is the LAST field of the line, with one blank after it and no component
+    f = ["FT1"] + [""] * 25; f[4] = dos; f[10] = "1"; f[19] = "I10"; f[25] = cpt + " "; return "|".join(f)
+def pv1(npi, admit=""): return "|".join(["PV1", "1", "I", "", "", "", "", npi + "^x"] + [""] * 36 + [admit])
+ODD = ("MSH|^~\\&|feed|" + B["n1"] + "|x|x|20261109||DFT^P03|1|P|2.3\rPID|1||m7\r" + pv1(NP_NPI) + "\r" + ft1_bare("99309", "20261104") + "\r"       # m7: the blank-ended code ...
+       + hl7("m7", B["n2"], "", [("99309", "20261104")], NPI)                                                                                             # ... and the same lines from another building and clinician
+       + hl7("m8", B["n1"], "", [("99309", "20261104")], "1999999984")                                                                                  # m8: a clinician id the profile table does not have
+       + "MSH|^~\\&|feed|" + B["n1"] + "|x|x|20261109||DFT^P03|1|P|2.3\r" + pv1(NP_NPI) + "\rPID|1||m9\r" + ft1("99309", "20261102") + "\r"            # m9: PV1 before PID
+       + hl7("u2", "ZZ Other Hospital", "20261028", [("99232", "20261030")], NPI)                                                                         # u2: a hospital the table does not know
+       + "MSH|^~\\&|feed\rPID|1|\r")                                                                                                                    # two short lines: they must not stop the load
+open(os.path.join(tmp, "hl7", "b.hl7"), "w").write("".join(hl7(f, fac, adm, lines, npi) for f, fac, adm, lines, npi in RAW) + ODD)
 json.dump([], open("feed_parsed_SELFTEST.json", "w")); json.dump({}, open("feed_match_SELFTEST.json", "w"))
 json.dump({"I10": "dcode1", "E119": "dcode2"}, open("dx.json", "w"))
 
@@ -252,6 +261,18 @@ check("build: a visit sent twice with a corrected admission date keeps its own b
       i6["fac"] == "fac29" and [q for _, q in pp6] == ["21"] and i6["prof"] == "prof13" and i6["pos_err"] == "" and i6["msg_own"] is False and ci.msg_agreed(msg("m6", [("99232", "20261020")])) == (B["h1"], NPI, None), i6)
 check("build: (the per-patient value alone would have put that hospital visit in the nursing building under the nurse practitioner)", ci.FACOF["m6"] == B["n2"] and ci.NPIOF["m6"] == NP_NPI)
 check("msg_agreed: a message the raw files do not hold has no agreed value; a message sent once has all three", ci.msg_agreed(msg("m6", [("99232", "20261021")])) == (None, None, None) and ci.msg_agreed(msg("m2", [("99232", "20261020")])) == (B["h1"], NPI, "20261018"))
+b7, i7, pp7 = built("m7", [("99309", "20261104")])
+check("build: a blank after the last code of a message does not let the visit take ANOTHER message's building and clinician - the two messages are a tie, entered as before and reported",
+      i7["msg_own"] is False and "2 buildings" in i7["pos_err"] and ci.msg_own(msg("m7", [("99309", "20261104")])) is None, i7)
+b8, i8, pp8 = built("m8", [("99309", "20261104")], live=[("99309", "10/03/2026")])
+check("build: a clinician id the profile table does not have: entered under the physician profile, and said (prof_default)", i8["prof"] == "prof13" and i8["prof_default"] is True and i8["msg_own"] is True, i8)
+check("build: ... the practice's own two clinicians are never flagged", i_np["prof_default"] is False and i_md["prof_default"] is False)
+b9, i9, pp9 = built("m9", [("99309", "20261102")], live=[("99309", "10/03/2026")])
+check("build: a PV1 that stands before the PID is still read - the nurse practitioner's visit stays hers", i9["prof"] == "prof15" and i9["prof_default"] is False and i9["msg_own"] is True, i9)
+bu, iu, ppu = built("u2", [("99232", "20261030")])
+_st2 = __import__("collections").Counter(); ci.count_pos(iu, _st2)
+check("build: a hospital visit from a building the table does not know goes in with no facility as before - and is now counted", iu["fac"] == "" and [q for _, q in ppu] == ["31"] and _st2["visit entered with NO facility - its building is not in the facility table"] == 1, (iu, dict(_st2)))
+check("the raw-file loader was not stopped by a three-field MSH line or a two-field PID line", "" in ci.FACOF and ci.FACOF.get("m9") == B["n1"])
 body, info, pp = built("m3", [("99487", "20261031")])
 check("build: the same lines sent from two buildings have no single answer: the last-read building is used as before and the visit is reported", info["msg_own"] is False and "2 buildings" in info["pos_err"] and [q for _, q in pp] == ["13"], (pp, info))
 check("seen_lines: the visit lines of a message that is not entered, with its building, for the register", ci.seen_lines(msg("m2", [("99232", "20261020")])) == [["99232", "10/20/2026", B["h1"]]] and ci.seen_lines(msg("n1", [("99487", "20261031")])) == [])
@@ -366,7 +387,7 @@ check("live run: what AdvancedMD stored is read back and matches what was sent",
 check("live run: the refused message leaves its visit line in the register for later batches", [r.get("lines") for r in reg["skipped"]] == [[["99310", "11/02/2026", B["n2"]]]], reg["skipped"])
 out, reg = run_live(M1, flip=True)
 last3 = out.strip().splitlines()[-3:]
-check("live run: AdvancedMD storing 31 where 32 was sent is said per visit, counted, and shown in a short line within the last three", out.count("POS NOT KEPT") == 2 and any(l.startswith("POS CHECK: AdvancedMD stored another place of service x2; not matched to its own message x0") and len(l) <= 110 for l in last3)
+check("live run: AdvancedMD storing 31 where 32 was sent is said per visit, counted, and shown in a short line within the last three", out.count("POS NOT KEPT") == 2 and any(l.startswith("POS CHECK: stored another POS x2; not own message x0; clinician unknown x0; no facility x0") and len(l) <= 110 for l in last3)
       and any(l.startswith("POS RULE:") for l in last3) and all(r["pos_stored"] != r["pos_lines"] for r in reg["created"]), last3)
 out, reg = run_live(M1, none=True)
 check("live run: an answer without the place of service claims nothing either way", all(r["pos_stored"] is None for r in reg["created"]) and "POS NOT KEPT" not in out, reg["created"])
@@ -393,7 +414,7 @@ _wd = [open(os.path.join(ROOT, d, "working_denials.py")).read() for d in ("board
 check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
 check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
       "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
-check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
+check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
 check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
 check("ingest: when only some helpers could be replaced the result line names the ones that are still older copies; the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in ingest and "pos_warn" in ingest[ingest.index("FEED HELPERS NOT ALL CURRENT") - 200:ingest.index("FEED HELPERS NOT ALL CURRENT")]
       and "FEED HELPERS NOT ALL CURRENT" in step and "the feed files are not on hand and could not be fetched' also goes under Holds" in step)
@@ -436,6 +457,9 @@ r, line = digest(rows + [dict(reg_row(["99232"], "fac29", "21", ["21"]), msg_own
 check("digest: a visit that could not be matched to its own feed message is named for a check of clinician and building", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout and "charts: pat9 11/02/2026 99232" in r.stdout, r.stdout[-600:])
 r, line = digest([dict(rows[4], msg_own=False), rows[5]], stamp="1028")
 check("digest: the not-matched line is printed whatever the batch stamp looks like", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout, r.stdout[-500:])
+r, line = digest(rows + [dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), prof_default=True), dict(reg_row(["99232"], "", "31", ["31"]), pos_kind=[""])])
+check("digest: a visit under the default clinician and a hospital visit with no facility are each named for the top of the report", "Clinician: 1 visit(s) whose feed message names no clinician id the profile table has" in r.stdout
+      and "Building: 1 hospital / home / other visit(s) came from a building the facility table does not know" in r.stdout, r.stdout[-900:])
 r, line = digest(rows + [OLD_ROW])
 check("digest: from 11/10/2026 on, a nursing-building row without the rule's fields means an old helper ran - said loudly", "PLACE OF SERVICE RULE DID NOT RUN on 1 visit(s)" in line, line)
 r, line = digest([OLD_ROW, rows[4], rows[5]], stamp="20261028T0623Z")
@@ -455,7 +479,7 @@ json.dump({"stamp": "20261101T0000Z", "rows": [{"v": "vst1", "p": "pat1", "d": "
 r = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud], capture_output=True, text=True)
 check("audit tool: lists the visit entered under the other clinician and the visits whose codes do not fit the building they were entered in", r.returncode == 0 and "entered under a different clinician: 1" in r.stdout
       and "2 visit(s) whose codes do not fit the building" in r.stdout and "'nursing code at the hospital': 1" in r.stdout and "'care management at the hospital': 1" in r.stdout
-      and "charts with a nursing code entered at the hospital AND visits entered in a nursing building: 1" in r.stdout, r.stdout[-700:] + r.stderr[-300:])
+      and "charts with a nursing code entered at the hospital AND visits entered in a nursing building: 1" in r.stdout and "not compared" not in r.stdout, r.stdout[-700:] + r.stderr[-300:])
 
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)
