@@ -384,16 +384,16 @@
   {
    "slug": "gm-clinician-growth",
    "name": "Adding clinicians",
-   "summary": "Hiring a physician, nurse practitioner or physician assistant to grow. The decision rests on demand that exists now, the months before the new clinician is paid for their work, and what the hire does to quality and oversight.",
+   "summary": "Hiring a physician, nurse practitioner or physician assistant to grow. The decision rests on demand that exists now, the months before payers pay for the new clinician's work, and what the hire does to quality and oversight.",
    "good_looks_like": [
     "Unmet demand is measured, such as waiting patients, turned-away facilities, or clinicians above a sustainable visit count.",
     "A hiring case shows cost, expected visits, collections per visit, and the ramp month by month.",
-    "Enrollment starts at offer acceptance and cash is set aside for the ramp.",
+    "Health plan credentialing starts at offer acceptance, the Medicare application is filed within 60 days of the start date, and cash is set aside for the ramp.",
     "The new clinician's charts are audited in the first 90 days."
    ],
    "failure_modes": [
     "A clinician is hired on hope and sits half-full for a year.",
-    "Enrollment delays mean months of visits that cannot be billed.",
+    "Health plan credentialing runs late. Medicare can pay back to the application filing date (42 CFR 424.520(d)), but some plans allow no claims for visits before approval.",
     "A nurse practitioner is assigned work that only a physician may do or bill.",
     "The owner's oversight is spread too thin and coding patterns drift."
    ],
@@ -406,42 +406,50 @@
    "actions": [
     {
      "action": "Calculate break-even visits a day",
-     "detail": "Full yearly cost divided by collections per visit times working days.",
+     "detail": "Full yearly cost (pay, payroll taxes, benefits, malpractice cover) divided by collections per visit, then by working days. AMGA 2025 medians for pay alone: family physician $342,411, primary care nurse practitioner $149,178.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Model the ramp and the cash need",
-     "detail": "Assume low volume and delayed payment for the first three to six months.",
+     "detail": "Assume low volume and slow payment for the first three to six months, a planning assumption. Medicare's standard for online applications is 15 to 85 days. Some plans have taken 100 days and allowed no back-billing.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Check scope and billing rules for the role",
-     "detail": "State scope of practice, supervision, Medicare's 85% rate for non-physician clinicians, and visits reserved for physicians.",
+     "detail": "State scope of practice and supervision, Medicare's 85% rate for nurse practitioners and physician assistants (42 CFR 414.52, 414.56), visits reserved for physicians, no 'incident to' billing at the full rate for hospital or skilled nursing patients (42 CFR 410.26).",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Audit early",
-     "detail": "Twenty charts in the first month and again at 90 days.",
+     "detail": "Review at least ten of the new clinician's charts in the first month and again at 90 days. OIG's guide for small practices suggests five to ten records per physician as a basic sample.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Practices with more demand than clinician time. In nursing facilities, federal rules reserve certain required visits for the physician, which limits how much a physician can delegate.",
+   "applies_when": "Practices with more demand than clinician time. Delegation has limits: in a skilled nursing facility the physician personally makes the initial comprehensive visit and may delegate only alternate required visits (42 CFR 483.30), and state law sets supervision.",
    "sources": [
     "amga-2026",
     "cfr-414-56",
+    "cfr-414-52",
+    "cfr-410-26",
     "cfr-483-30",
+    "cfr-424-520",
+    "cfr-424-521",
+    "cfr-424-526",
     "fcso-enroll",
+    "mgma-stat-cred-2021",
+    "oig-physician-cpg-2000",
+    "fl-464-012",
     "fl-464-0123"
    ],
-   "evidence_note": "Pay medians are survey data from mostly large groups. Payment and visit rules are federal regulation. Break-even is arithmetic from the practice's own numbers.",
+   "evidence_note": "Pay medians are AMGA survey data from mostly large groups. Payment and visit rules are federal regulation. Supervision is state law: in Florida, nurse practitioners need a physician protocol unless registered for autonomous primary care (sections 464.012 and 464.0123). Break-even is the practice's own arithmetic.",
    "metrics": [
     {
      "slug": "gm-months-to-breakeven-clinician",
@@ -451,9 +459,15 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Plan for at least the enrollment period plus the payment lag.",
+     "benchmark_note": "No reliable public benchmark was found. Plan for the enrollment period plus the payment lag. Medicare's contractor standard for online applications is 15 to 85 days (First Coast, 2026). MGMA members reported plans taking up to 100 days (2021 poll).",
      "confidence": "none",
-     "data_hint": "Collections by rendering clinician and payroll."
+     "data_hint": "Collections by rendering clinician and payroll.",
+     "sources": [
+      "fcso-enroll",
+      "mgma-stat-cred-2021"
+     ],
+     "vendor_claim": "A new clinician covers their cost after roughly three to nine months, and an experienced nurse practitioner or physician assistant usually within six.",
+     "vendor_verdict": "Unverifiable. No source is cited, and the document says it widened its ramp figures to make them agree. Use the practice's own model."
     },
     {
      "slug": "gm-capacity-utilization",
@@ -463,9 +477,28 @@
      "unit": "percent",
      "direction": "range",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The sustainable number is the practice's own judgment. Sustained use above it signals a hire, and well below it signals a demand problem.",
+     "benchmark_note": "No reliable public benchmark exists. The sustainable number is the practice's own judgment: use above it signals a hire, well below it a demand problem. AMGA 2025 medians: 6,505 work relative value units a year for family physicians, 4,647 for primary care nurse practitioners.",
      "confidence": "none",
-     "data_hint": "Visits by clinician and days worked."
+     "data_hint": "Visits by clinician and days worked.",
+     "sources": [
+      "amga-2026"
+     ],
+     "vendor_claim": "Keep each clinician at 85% to 95% of theoretical visit capacity. Below 80% is revenue to recover and above 95% is an access and retention risk.",
+     "vendor_verdict": "Unverifiable. No source is cited. A workable starting band only if the practice sets capacity honestly, including travel time for visiting clinicians."
+    }
+   ],
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Section 11 models a new clinician's ramp and monthly cash drain. Its ramp lengths and dollar ranges are unsourced, and a note admits one was widened to reconcile with others."
+    },
+    {
+     "item": "credentialing-and-re-credentialing-management-playbook",
+     "note": "Backward-planned timeline for enrolling a new clinician with each payer. Says to file Medicare 90 or more days ahead, but applications received over 60 days early may be returned."
+    },
+    {
+     "item": "kpi-action-guide-vol2-specialty",
+     "note": "Chapter 13 tracks days from start date to first accepted claim, by payer. Its under-60-day target for plans is labelled aspirational, with 90 to 150 days called typical. Both unsourced."
     }
    ]
   },

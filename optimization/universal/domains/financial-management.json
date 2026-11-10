@@ -265,13 +265,13 @@
    "failure_modes": [
     "There is no budget, so no result is ever surprising or actionable.",
     "The budget is last year plus 3%, with no link to volume or rates.",
-    "A known Medicare rate cut is never priced in.",
+    "A known Medicare rate cut is never priced in, so the drop in receipts comes as a surprise.",
     "A hire or a lease is committed to with no forecast of cash."
    ],
    "key_questions": [
     "Do we have a written budget for this year, by month?",
     "How far is revenue and spending from budget so far?",
-    "What would a 3% cut in Medicare rates do to earnings?",
+    "What would a 2% to 3% cut in Medicare rates, like the 2.31% cut for 2027, do to earnings?",
     "What happens to cash if our largest source of patients stops?"
    ],
    "actions": [
@@ -304,13 +304,20 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. Practices that depend on Medicare should rebuild the revenue side each November, when the next year's fee schedule is final.",
+   "applies_when": "Every practice. Practices that depend on Medicare should rebuild the revenue side each November, when the next year's fee schedule becomes final. Facility-based practices should model facility-rate changes separately, such as the 2027 change for visits to patients in a Medicare Part A skilled nursing stay.",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Adds break-even volume and a three-scenario test before a new site. No yearly budget. Its portal payback example (1.4 days) treats a receivables balance as monthly cash."
+    }
+   ],
    "sources": [
+    "sba-business-plan",
     "sba-finances",
     "cms-pfs-2027",
-    "aafp-finances"
+    "aafp-vital-signs"
    ],
-   "evidence_note": "General business practice. The yearly Medicare fee schedule rule is the one outside input every Medicare practice can and should model.",
+   "evidence_note": "General business practice, not measured data. The yearly Medicare fee schedule rule is the one outside input every Medicare practice can model. The 2027 rule, issued November 2026, cuts the base payment rate (the conversion factor) by 2.31%, to $32.63.",
    "metrics": [
     {
      "slug": "fm-budget-variance",
@@ -320,7 +327,7 @@
      "unit": "percent",
      "direction": "range",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Many organizations investigate any line more than about 5% to 10% off budget. That threshold is convention.",
+     "benchmark_note": "No reliable public benchmark was found. Set your own trigger, for example any line off budget by more than 10% and by more than a set dollar amount, and explain each one. The 10% figure is a rule of thumb with no data behind it.",
      "confidence": "none",
      "data_hint": "The budget against the income statement."
     }
