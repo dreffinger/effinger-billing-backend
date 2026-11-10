@@ -50,7 +50,7 @@
     },
     {
      "action": "Train everyone at hire and yearly, and keep the log",
-     "detail": "Include clinicians, staff and contractors who touch claims or patient data. Cover false claims, kickbacks, privacy and how to report. Free OIG training videos can serve as material. Keep a dated sign-in sheet or quiz record.",
+     "detail": "Include clinicians, staff and contractors who touch claims or patient data. Cover false claims, kickbacks, privacy and how to report. Free OIG videos from 2011 can serve as a base. Keep a dated sign-in sheet or quiz record.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -79,7 +79,7 @@
     },
     {
      "item": "practice-financial-intelligence-playbook",
-     "note": "Recommends a yearly risk assessment and a training log, which matches federal guidance. Its penalty table uses outdated dollar amounts."
+     "note": "Recommends a yearly risk assessment and a training log, which matches federal guidance. Its penalty table shows outdated self-referral and privacy penalty amounts."
     }
    ],
    "sources": [
@@ -87,7 +87,9 @@
     "oig-physician-cpg-2000",
     "usc-31-3729",
     "cfr-401-305",
-    "cfr-164-530"
+    "cfr-164-530",
+    "cfr-164-308",
+    "oig-heat-training"
    ],
    "evidence_note": "Based on Office of Inspector General guidance for small entities (2023) and small physician practices (2000). Both are voluntary guidance, not regulation. No survey was found of how many small practices have a working program.",
    "metrics": [
@@ -218,7 +220,7 @@
     "cfr-401-305",
     "oig-sdp-2026"
    ],
-   "evidence_note": "Audit frequency and sample size come from Office of Inspector General guidance (2000 and 2023), which is voluntary. Error rates are measured by Medicare's claim sampling program (2025 report). The 5% trigger is a convention from older integrity agreements.",
+   "evidence_note": "Audit frequency and sample size come from voluntary Office of Inspector General guidance (2000 and 2023). Error rates are measured by Medicare's claim sampling program (2025 report). The 5% trigger comes from older integrity agreements, the compliance terms attached to government settlements.",
    "metrics": [
     {
      "slug": "cr-audit-coverage",
@@ -244,13 +246,13 @@
     {
      "slug": "cr-audit-error-rate",
      "name": "Financial error rate in the audit sample",
-     "definition": "Dollars paid in error in the audited sample as a share of all dollars paid for the sample. Overpaid and underpaid dollars are also reported separately.",
+     "definition": "Net dollars overpaid in the audited sample (overpaid minus underpaid) as a share of all dollars paid for the sample. Overpaid and underpaid dollars are also reported separately, because each needs its own fix.",
      "formula": "(Overpaid dollars - underpaid dollars) / total dollars paid for the sampled claims x 100",
      "unit": "percent",
      "direction": "lower",
      "cadence": "annual",
      "benchmark_best": "under 5% net",
-     "benchmark_typical": "about 10% on visit codes in Medicare's own sampling",
+     "benchmark_typical": "about 10% gross on visit codes in Medicare's national sampling",
      "benchmark_red": "5% or more net: widen the sample and find the cause",
      "benchmark_note": "5% net was the trigger in older Office of Inspector General integrity agreements. The Centers for Medicare & Medicaid Services found 10.1% of evaluation and management dollars improper, over- and underpayments combined (2025 report, claims July 2023 to June 2024). Refund any overpayment found.",
      "confidence": "medium",
@@ -454,7 +456,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice paid by Medicare or Medicaid. Medicare Advantage and commercial refunds follow the contract and state law (in Florida an insurer's overpayment demand is limited to 12 months), and facility-based practices should look first at stale skilled-stay or hospice status and visits billed under the wrong clinician.",
+   "applies_when": "Every practice paid by Medicare or Medicaid, including through Medicare Advantage, where refunds follow the plan contract but the money still comes from Medicare. Commercial refunds follow contract and state law (Florida gives insurers 12 months to demand one from a physician), and facility-based practices should first check stale skilled-stay or hospice status and visits billed under the wrong clinician.",
    "vendor_refs": [
     {
      "item": "stark-antikickback-playbook",
@@ -481,7 +483,8 @@
     "usc-31-3729",
     "cfr-1003-200",
     "fl-627-6131",
-    "fl-409-913"
+    "fl-409-913",
+    "fl-641-3155"
    ],
    "evidence_note": "The 60-day duty, the knowledge standard, the 180-day investigation window and the six-year lookback are federal regulation (42 CFR 401.305, amended effective 2025). Protocol terms are from the October 2026 update. When to involve counsel is professional judgment.",
    "metrics": [
@@ -512,10 +515,11 @@
      "cadence": "quarterly",
      "benchmark_best": "60 days or fewer, every time",
      "benchmark_red": "over 60 days with no documented investigation or disclosure filing",
-     "benchmark_note": "42 CFR 401.305 sets 60 days for Medicare. The clock pauses during a good-faith investigation of related overpayments (at most 180 days) or after a filed self-disclosure. Regulation, not survey data. Other payers follow contract and state law.",
+     "benchmark_note": "42 CFR 401.305 sets 60 days for Medicare and pauses the clock during a good-faith investigation of related overpayments (at most 180 days) or once an agency acknowledges a self-disclosure. The statute sets 60 days for Medicaid too. A legal limit, not survey data.",
      "confidence": "high",
      "sources": [
-      "cfr-401-305"
+      "cfr-401-305",
+      "usc-42-1320a-7k"
      ],
      "data_hint": "Overpayment log dates matched to refund checks, claim adjustments or remittance offsets.",
      "vendor_claim": "The purchased playbook on the self-referral and kickback laws sets 60 days or less from when the provider identified, or should have identified, the overpayment through reasonable diligence.",
@@ -579,13 +583,13 @@
     },
     {
      "action": "Send new or changed arrangements to a healthcare attorney first",
-     "detail": "Do this before signing a directorship, a lease, a vendor deal paid by volume or anything with a hospital, facility, agency or laboratory. Use the practice's own counsel, not the other party's.",
+     "detail": "Do this before signing a directorship, lease or volume-paid vendor deal, before adding in-office laboratory, imaging or therapy services, and before any deal with a hospital, facility or agency. Use the practice's own counsel, not the other party's.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with a financial tie to a party it refers to or receives patients from. Stark applies when that party bills Medicare for designated services such as hospital, home health, laboratory, imaging or therapy services, while the kickback law covers any federal program business and state laws such as Florida's reach all payers.",
+   "applies_when": "Any practice with a financial tie to a party it refers to or receives patients from. Stark applies where Medicare is billed for designated services such as hospital, home health, laboratory, imaging or therapy, including a practice's own in-office services (42 CFR 411.355), while the kickback law covers federal program business and state laws such as Florida's reach all payers.",
    "vendor_refs": [
     {
      "item": "stark-antikickback-playbook",
@@ -679,7 +683,7 @@
     },
     {
      "action": "List every vendor that touches patient data",
-     "detail": "Include billing and clearinghouse, record system, cloud storage, email, texting, e-signature, transcription and AI vendors. No signed business associate agreement, no data. Florida also requires offsite patient data to stay in the continental United States, its territories or Canada.",
+     "detail": "List billing, clearinghouse, record system, cloud, email, texting, e-signature, transcription and AI vendors. No business associate agreement, no data. Florida requires practices using certified record systems to keep offsite patient data in the continental United States, its territories or Canada.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -710,7 +714,7 @@
    "vendor_refs": [
     {
      "item": "hipaa-revenue-cycle-playbook",
-     "note": "Useful six-part self-audit and vendor inventory. Wrong that agreements signed before 2013 are automatically void and that a risk analysis is already required every year."
+     "note": "Useful six-part self-audit and vendor inventory. Wrong that agreements signed before 2013 are automatically non-compliant and that a risk analysis is already required every year."
     },
     {
      "item": "rcm-technology-buyers-playbook",
@@ -740,7 +744,9 @@
     "cfr-414-1375",
     "onc-sra-tool",
     "fl-501-171",
-    "fl-408-051"
+    "fl-408-051",
+    "fl-456-057",
+    "fedreg-rin-0945-aa22"
    ],
    "evidence_note": "The duties are federal regulation (45 CFR parts 160 and 164). A 12-month risk analysis interval is not in the current rule. It comes from a 2025 proposal still pending in November 2026 and from Medicare's quality program. State breach deadlines vary.",
    "metrics": [
@@ -760,7 +766,8 @@
       "cfr-164-308",
       "cfr-414-1375",
       "hhs-hipaa-security-nprm-2025",
-      "reginfo-hipaa-security-2026"
+      "reginfo-hipaa-security-2026",
+      "fedreg-rin-0945-aa22"
      ],
      "data_hint": "The dated risk analysis document and the list of decisions that came out of it.",
      "vendor_claim": "The purchased privacy playbook says current federal guidance already requires a risk analysis at least annually and before any new billing system.",
@@ -822,11 +829,11 @@
     "Medicare and health plans are told of a license action or other adverse action within their deadlines."
    ],
    "failure_modes": [
-    "Exclusion is checked only at hire. In 2025 a solo Florida practitioner paid about $41,700 to settle with the Office of Inspector General (OIG) over an excluded receptionist.",
+    "Exclusion is checked only at hire. In 2025 a Florida podiatrist paid about $41,700 to settle with the Office of Inspector General (OIG) over an excluded receptionist.",
     "Billing, coding or staffing vendors are never screened, and the practice has no proof that the vendor screens its own staff.",
-    "A license or DEA registration lapses for a few weeks. Federal programs do not pay for services provided by an unlicensed person, so claims in the gap are at risk.",
+    "A license lapses for a few weeks. Federal programs do not pay for an unlicensed person's services, so those claims are at risk. A lapsed DEA registration bars controlled-substance prescribing.",
     "A nurse practitioner works without the signed protocol the state requires, or the physician never filed the required notice with the licensing board.",
-    "Medicare is not told of a license restriction or other adverse action within 30 days, which is itself a ground for revoking enrollment (42 CFR 424.535)."
+    "Medicare is not told of a license suspension or other adverse legal action within 30 days, which is itself a ground for revoking enrollment (42 CFR 424.535)."
    ],
    "key_questions": [
     "In how many of the last 12 months was a documented exclusion check done for everyone?",
@@ -859,7 +866,7 @@
     },
     {
      "action": "Check supervision paperwork for each advanced practice clinician",
-     "detail": "Confirm each protocol or collaboration agreement is signed, current and meets state law. Medicare covers nurse practitioner services only when collaboration with a physician meets state law (42 CFR 410.75). Florida physicians must notify their board within 30 days.",
+     "detail": "Confirm each protocol or collaboration agreement is signed and current. Medicare covers nurse practitioner services only when the practitioner collaborates with a physician as state law provides (42 CFR 410.75). Florida physicians must notify their board within 30 days.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -906,7 +913,8 @@
     "fl-464-012",
     "fl-458-348",
     "fl-464-0123",
-    "fl-458-319"
+    "fl-458-319",
+    "cfr-424-502"
    ],
    "evidence_note": "The effect of exclusion is federal regulation (42 CFR 1001.1901). Monthly screening is an Inspector General recommendation (2013), not a federal mandate. License terms and supervision rules are state law. The Florida examples were read in the 2026 statutes.",
    "metrics": [
@@ -1079,7 +1087,7 @@
     "The letter goes to an old address or sits unopened. Medicare may deny the claim for no response (42 CFR 405.930), and missing records count as errors in federal sampling.",
     "Records are sent without the signature, time statement or order that supports the code. Insufficient documentation is the largest error category in Medicare's sampling.",
     "Notes are rewritten or completed after the request arrives, which can turn a payment question into a fraud referral.",
-    "A targeted review fails three rounds. The Centers for Medicare & Medicaid Services (CMS) says next steps can include review of every claim before payment, extrapolation or a recovery auditor.",
+    "After three failed targeted review rounds, the Centers for Medicare & Medicaid Services (CMS) may review every claim before payment, project errors onto all claims or involve a recovery auditor.",
     "The appeal deadline passes while the practice argues by phone. Medicare can begin taking the money back 41 days after the demand letter (42 CFR 405.379)."
    ],
    "key_questions": [
@@ -1113,7 +1121,7 @@
     },
     {
      "action": "Appeal on the calendar, not by phone",
-     "detail": "Medicare allows 120 days to request redetermination and 180 for the next level. A valid request received before day 41 after a demand letter stops recoupment while it is decided. Interest still runs.",
+     "detail": "Medicare allows 120 days for the first appeal (redetermination) and 180 for the second (reconsideration). A valid request stops Medicare taking money back, which can start on day 41 and resume 60 days after a first-level loss. Interest still runs.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -1215,7 +1223,7 @@
     "A required visit is more than 10 days late, or is done by a nurse practitioner when the rule requires the physician. That is a deficiency for the facility.",
     "A nurse practitioner employed by the facility does required visits in a nursing facility. The state option covers only practitioners who are not facility employees.",
     "A required visit is done by video. Medicare's claims manual says federally required nursing facility visits may not be furnished by telehealth.",
-    "Stable residents are seen by habit. Medicare does not pay for visits made for facility or administrative purposes, and a 2026 federal audit found 24 of 60 sampled visits unnecessary.",
+    "Stable residents are seen by habit. Medicare does not pay for visits made for facility or administrative purposes. A 2026 regional federal audit found 24 of 60 sampled visits unnecessary.",
     "Hospital records are finished late. Federal rules require a history and physical within 24 hours of admission and completed records within 30 days of discharge."
    ],
    "key_questions": [
@@ -1235,7 +1243,7 @@
     },
     {
      "action": "Mark each resident as skilled stay or long-term stay",
-     "detail": "The delegation rules and the place of service code both depend on it. Recheck whenever a Medicare Part A stay starts or ends. Keep a current census feed from each facility.",
+     "detail": "The delegation rules, the place of service code and the payment rate all depend on it. Recheck whenever a Medicare Part A stay starts or ends. Keep a current census feed from each facility.",
      "cadence": "weekly",
      "effort": "low",
      "impact": "high"
@@ -1295,7 +1303,7 @@
     {
      "slug": "cr-required-visits-on-time",
      "name": "Required facility visits done on time by an allowed clinician",
-     "definition": "Share of federally required nursing home visits due in the period that were done within 10 days of the due date by a clinician the rule allows for that visit.",
+     "definition": "Share of federally required nursing home visits due in the period that were done no later than 10 days after the due date by a clinician the rule allows for that visit.",
      "formula": "Required visits done on time by an allowed clinician / required visits due in the period x 100",
      "unit": "percent",
      "direction": "higher",
@@ -1317,14 +1325,14 @@
    "name": "Malpractice and business insurance",
    "summary": "The policies that keep one bad event from ending the practice: professional liability with the right limits and tail coverage, cyber, general liability and property, workers' compensation, employment practices, defense of billing audits, and cover for the owner's death or disability.",
    "good_looks_like": [
-    "One schedule lists every policy with carrier, limits, deductible, premium, renewal date and whether it is claims-made or occurrence.",
-    "The owner knows the retroactive date of each claims-made malpractice policy, who pays for tail coverage when a clinician leaves and when the carrier waives it.",
+    "One schedule lists every policy with carrier, limits, deductible, premium, renewal date and whether it covers claims by report date (claims-made) or by date of care (occurrence).",
+    "The owner knows each claims-made policy's retroactive date, who pays for tail coverage (for claims reported after the policy ends) when a clinician leaves, and when the carrier waives it.",
     "Malpractice limits meet the highest requirement among state law, hospital bylaws, facility contracts and health plan contracts.",
     "Cyber coverage is in place, and the security conditions stated in the application are actually met.",
     "The whole program is reviewed with a broker once a year and whenever the practice adds a clinician, site, service or major vendor."
    ],
    "failure_modes": [
-    "A claims-made policy is cancelled or the carrier is changed with no tail or prior-acts coverage, leaving past care uninsured.",
+    "A claims-made policy is cancelled or the carrier is changed with no tail from the old carrier or prior-acts coverage from the new one, leaving past care uninsured.",
     "A nurse practitioner or a new service is never added to the policy, and the gap is found only when a claim arrives.",
     "No cyber coverage and no tested recovery plan. In a 2026 Medical Group Management Association poll, only 19% of practice leaders were very confident of recovering quickly from a cyberattack.",
     "Nobody has checked whether any policy pays legal costs for a billing audit, a licensing complaint or a privacy investigation, until the letter arrives.",
@@ -1354,7 +1362,7 @@
     },
     {
      "action": "Get the tail terms in writing",
-     "detail": "Ask each malpractice carrier for the retroactive date, today's tail price, and when tail is waived for death, disability or retirement. The retirement waiver often requires a minimum age and years insured.",
+     "detail": "Ask each malpractice carrier for the retroactive date (the earliest care covered), today's tail price, and when tail is waived for death, disability or retirement. The retirement waiver often requires a minimum age and years insured.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -1368,13 +1376,13 @@
     },
     {
      "action": "Check the coverage the law requires",
-     "detail": "Workers' compensation is state law: Florida requires it for non-construction employers with four or more employees. A retirement plan needs a fidelity bond of at least 10% of plan funds handled (29 CFR 2580.412-11).",
+     "detail": "Workers' compensation is state law: Florida requires it for non-construction employers with four or more employees. A retirement plan that covers employees needs a fidelity bond of at least 10% of plan funds handled (29 CFR 2580.412-11).",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice, scaled to size. Facility-based practices need little property cover but must meet each hospital's and facility's malpractice requirements, and state law sets the floor: Florida requires $100,000 per claim, or $250,000 with hospital privileges, or an approved alternative.",
+   "applies_when": "Every practice, scaled to size. Facility-based practices need little property cover but must meet each hospital's and facility's malpractice requirements, and state law sets the floor: Florida requires $100,000 per claim, or $250,000 with hospital privileges, or an approved alternative, and lets a physician go without under stated conditions if patients are told.",
    "vendor_refs": [
     {
      "item": "physician-compensation-negotiation-guide",
@@ -1396,9 +1404,11 @@
     "fl-440-02",
     "cfr-29-2580",
     "mgma-stat-cyber-2026",
-    "mms-insurance-2026"
+    "mms-insurance-2026",
+    "aaa-medmal-types-2008",
+    "cfr-29-2510-3-3"
    ],
-   "evidence_note": "Policy mechanics come from an American Academy of Actuaries fact sheet (2012). Florida limits and prices come from statute and the state's 2025 rate report. A yearly review is convention and one medical society's advice, not a measured standard.",
+   "evidence_note": "Policy mechanics come from American Academy of Actuaries fact sheets (2008 and 2012). Florida limits and prices come from statute and the state's 2025 rate report. A yearly review is convention and one medical society's advice, not a measured standard.",
    "metrics": [
     {
      "slug": "cr-insurance-review-age",
