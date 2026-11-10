@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-10T0920Z",
+ "stamp": "2026-11-10T2118Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42789842571",
- "started": "2026-11-10T09:20:22Z",
- "ended": "2026-11-10T09:26:37Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42903766061",
+ "started": "2026-11-10T21:18:46Z",
+ "ended": "2026-11-10T21:25:56Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 344048.63,
-   "visits": 2701,
-   "charts": 490,
+   "total": 282329.57,
+   "visits": 2487,
+   "charts": 460,
    "over_365": {
     "n": 542,
     "dollars": 25096.53
@@ -65,7 +65,7 @@
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-10 09:26 UTC"
+   "asof": "2026-11-10 21:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T09:20:22Z",
-   "ended": "2026-11-10T09:20:23Z"
+   "started": "2026-11-10T21:18:46Z",
+   "ended": "2026-11-10T21:18:47Z"
   },
   {
    "name": "columns",
@@ -129,8 +129,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:20:23Z",
-   "ended": "2026-11-10T09:22:24Z"
+   "started": "2026-11-10T21:18:47Z",
+   "ended": "2026-11-10T21:20:54Z"
   },
   {
    "name": "era",
@@ -152,8 +152,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T09:22:24Z",
-   "ended": "2026-11-10T09:22:26Z"
+   "started": "2026-11-10T21:20:54Z",
+   "ended": "2026-11-10T21:20:56Z"
   },
   {
    "name": "packages",
@@ -164,29 +164,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T09:22:26Z",
-   "ended": "2026-11-10T09:22:26Z"
+   "started": "2026-11-10T21:20:56Z",
+   "ended": "2026-11-10T21:20:56Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2701 visits on 490 charts, $344048.63 open; 542 over a year ($25096.53)",
+   "summary": "2487 visits on 460 charts, $282329.57 open; 542 over a year ($25096.53)",
    "counts": {
-    "visits": 2701,
-    "charts": 490,
+    "visits": 2487,
+    "charts": 460,
     "over 365 days": 542
    },
    "dollars": {
-    "open insurance balance": 344048.63,
+    "open insurance balance": 282329.57,
     "over 365 days": 25096.53
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1486,
-     "dollars": 190824.3,
+     "visits": 1284,
+     "dollars": 130936.24,
      "oldest_days": 1091
     },
     {
@@ -220,8 +220,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 66,
-     "dollars": 11132.13,
+     "visits": 58,
+     "dollars": 9775.13,
      "oldest_days": 664
     },
     {
@@ -239,13 +239,6 @@
      "oldest_days": 50
     },
     {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 23,
-     "dollars": 4603.0,
-     "oldest_days": 360
-    },
-    {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 32,
@@ -260,6 +253,13 @@
      "oldest_days": 176
     },
     {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 19,
+     "dollars": 4129.0,
+     "oldest_days": 360
+    },
+    {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
@@ -268,30 +268,30 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:22:26Z",
-   "ended": "2026-11-10T09:22:28Z"
+   "started": "2026-11-10T21:20:56Z",
+   "ended": "2026-11-10T21:20:58Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7823 denied visits on 853 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4511, RESUBMITTED 198, OPEN 138",
+   "summary": "7823 denied visits on 846 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESUBMITTED 196, RESOLVED 4513, OPEN 138",
    "counts": {
-    "charts read": 853,
-    "denial lines": 13298,
+    "charts read": 846,
+    "denial lines": 13290,
     "visits": 7823,
     "actionable": 74,
     "inside 12 months": 71,
     "status WRITTEN-OFF": 2976,
-    "status RESOLVED": 4511,
-    "status RESUBMITTED": 198,
+    "status RESUBMITTED": 196,
+    "status RESOLVED": 4513,
     "status OPEN": 138
    },
    "dollars": {
     "actionable": 13463.0,
     "inside 12 months": 12944.0,
-    "resubmitted": 34120.37,
-    "resolved since": 682036.33
+    "resubmitted": 33724.37,
+    "resolved since": 682432.33
    },
    "lines": [
     {
@@ -356,8 +356,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:22:28Z",
-   "ended": "2026-11-10T09:26:37Z"
+   "started": "2026-11-10T21:20:58Z",
+   "ended": "2026-11-10T21:25:56Z"
   }
  ],
  "packages": [],
