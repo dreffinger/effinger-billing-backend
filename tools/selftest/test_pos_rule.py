@@ -16,8 +16,10 @@
 #     - a visit an earlier batch could not enter is still read as history; when the batch's own visits cannot be listed no line is 32;
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
-#       whose first plan is Medicare Part B - never on a care-management-only message, never twice, at most three visits a run until a
-#       quality line has been seen billed; a refused visit is entered again without it;
+#       whose first plan is Medicare Part B and whose last insurance check showed Medicare first - never on a care-management-only message,
+#       never twice; a pilot round holds at most three lines and adds none while one of them is not decided; the code is off until William
+#       restarts it when a person, a hold or a refusal shows the line is in the way; a refused visit is entered again without it
+#       (section 4c here, and the nights of tools/selftest/test_quality_nights.py);
 #     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
 #       feed helpers without the rule back onto main; the runbook copies them (and the parser) from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
@@ -96,7 +98,10 @@ DEMOG = {"order": "1", "plans": ""}                                    # the sta
 MEDICARE = '<insplan id="ins1" carrier="car6085" begindate="01/01/2020" enddate="" x="" sequence="1"/>'
 OTHER = '<insplan id="ins2" carrier="car6404" begindate="01/01/2020" enddate="" x="" sequence="2"/>'
 BILLS = {}                                                             # charge number -> the dates AdvancedMD lists under billed to insurance
-ECHO = {"flip": False, "none": False, "refuse_quality": False, "refuse_all": False, "fail_create": 0, "drop_quality": False, "partial": None, "proccode": False, "fees": False, "qfirst": False}
+ECHO = {"flip": False, "none": False, "refuse_quality": False, "refuse_all": False, "fail_create": 0, "drop_quality": False, "partial": None, "proccode": False, "fees": False, "qfirst": False,
+        "plain_raises": False, "line_raises": False, "all_raise": False, "detail_noproc": False}      # ..._raises: the charge call ends in a time-out (after a refusal / when it carries the quality line / always); detail_noproc: the charge detail shows no procedure
+PROC = {}                                                              # charge number -> the procedure the stand-in stored for it
+REFUSED = set()                                                        # visits whose charge call the stand-in answered with a fault
 ECHO0 = dict(ECHO); SEQ = [100]                                         # visit numbers never repeat between runs (the charge numbers are built from them)                                  # flip: the stand-in stores 31 where 32 was sent; none: its answer carries no place of service
 def _post(body, timeout=0):
     POSTS.append(body)
@@ -105,12 +110,16 @@ def _post(body, timeout=0):
         if ECHO["fail_create"] > 0: ECHO["fail_create"] -= 1; return "<r><Fault>no visit today</Fault></r>"
         SEQ[0] += 1; return '<r><visit id="vst%d"/></r>' % SEQ[0]
     if 'action="updvisitwithnewcharges"' in body:
+        _v = re.search(r'<visit id="(vst\d+)"', body).group(1)
+        if ECHO["all_raise"] or (ECHO["line_raises"] and "pcode65441" in body) or (ECHO["plain_raises"] and _v in REFUSED): raise TimeoutError("read timed out")
         if ECHO["refuse_all"] or (ECHO["refuse_quality"] and "pcode65441" in body):
+            REFUSED.add(_v)
             if ECHO["partial"]: CHART.setdefault(ECHO["partial"][0], []).append(tuple(ECHO["partial"][1:]))      # the stand-in stores a line although it answers with a fault
             return "<r><Fault>the charge amount is not accepted</Fault></r>"
         sent = re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)" tos="01" units="[^"]*" netfee="0" fee="([^"]*)"', body); vid = re.search(r'<visit id="(vst\d+)"', body).group(1)
         if ECHO["drop_quality"]: sent = [x for x in sent if x[0] != "pcode65441"]
         num = list(enumerate(sent))                                                   # the charge number follows the order SENT ...
+        for i, (pc, q, fee) in num: PROC["%d%d" % (int(vid[3:]), i)] = pc
         if ECHO["qfirst"]: num = sorted(num, key=lambda x: x[1][0] != "pcode65441")   # ... the answer can list the quality charge first
         return '<r><visit id="%s">%s</visit></r>' % (vid, "".join('<charge id="charge%d%d"%s fee="%s"%s/>' % (int(vid[3:]), i, ' proccode="%s"' % pc if ECHO["proccode"] else "", fee if ECHO["fees"] else "1.00",
                                                  "" if ECHO["none"] else ' pos="%s"' % ("31" if ECHO["flip"] and q == "32" else q)) for i, (pc, q, fee) in num))
@@ -119,9 +128,14 @@ amd.post = _post
 resave = types.ModuleType("resave")
 DETAILS = []                                                           # every charge number whose detail was read
 def _detail(cid):
-    DETAILS.append(str(cid)); b = BILLS.get(str(cid), [])
-    if isinstance(b, dict): return '<r><visit episode="eps9" refplan=""/><charge id="charge%s" %s/></r>' % (cid, " ".join('%s="%s"' % kv for kv in b.items()))
-    return '<r><visit episode="eps9" refplan=""/><charge id="charge%s"><insbilllist>%s</insbilllist></charge></r>' % (cid, "".join('<insbill billeddate="%s"/>' % d for d in b))
+    DETAILS.append(str(cid)); b = BILLS.get(str(cid), [])      # BILLS: a list of billed dates, a dict of attributes, or a word for an answer that does not hold the charge
+    if b == "RAISE": raise RuntimeError("detail read failed")
+    if b == "FAULT": return "<r><Fault>charge not found</Fault></r>"
+    if b == "MISSING": return '<r><visit episode="eps9" refplan=""/></r>'
+    if b == "NOTXML": return "not an answer"
+    pc = "" if ECHO["detail_noproc"] else PROC.get(str(cid), "")
+    if isinstance(b, dict): return '<r><visit episode="eps9" refplan=""/><charge id="charge%s" %s/></r>' % (cid, " ".join('%s="%s"' % kv for kv in dict({"proccode": pc} if pc else {}, **b).items()))
+    return '<r><visit episode="eps9" refplan=""/><charge id="charge%s"%s><insbilllist>%s</insbilllist></charge></r>' % (cid, ' proccode="%s"' % pc if pc else "", "".join('<insbill billeddate="%s"/>' % d for d in b))
 resave.detail = _detail
 CHART = {}                                                             # chart number -> [(cpt, 'MM/DD/YYYY')] the stand-in history returns
 txh = types.ModuleType("txh")
@@ -404,13 +418,14 @@ os.remove(os.path.join(tmp, "registers", "feed_import_20261111T0000Z.json"))
 ci.PARSED[:] = [P_("n2", "two", [("99310", "20261102")])]
 out, dry = run_dry()
 check("main --dry: a refused message is said as before", "skip: unknown CPT 99310" in out, out[-300:])
-def run_live(parsed, flip=False, none=False):
-    ci.PARSED[:] = parsed; ECHO.update(flip=flip, none=none); POSTS.clear(); buf = io.StringIO(); argv = sys.argv[:]; sys.argv = ["claimocity_import.py", "--all"]
+def run_live(parsed, flip=False, none=False, argv=("--all",), keep_own=False):
+    ci.PARSED[:] = parsed; ECHO.update(flip=flip, none=none); POSTS.clear(); buf = io.StringIO(); _argv = list(argv); argv = sys.argv[:]; sys.argv = ["claimocity_import.py"] + _argv
     ci.BATCH_NF.clear(); ci.BATCH_NF_ERR[0] = ""; ci._ctx.clear(); regp = os.path.join(tmp, "registers", "feed_import_SELFTEST.json"); _sleep = ci.time.sleep; ci.time.sleep = lambda s: None
     try:
         with contextlib.redirect_stdout(buf): ci.main()
     finally: ci.time.sleep = _sleep; sys.argv = argv; ECHO.update(ECHO0)
-    reg = json.load(open(regp)); os.remove(regp)
+    reg = json.load(open(regp))
+    if not keep_own: os.remove(regp)
     return buf.getvalue(), reg
 out, reg = run_live(M1 + M2 + [P_("n2", "two", [("99310", "20261102")])])
 by = {(r["pid"], tuple(r["cpts"])): r for r in reg["created"]}
@@ -428,23 +443,44 @@ check("live run: an answer without the place of service claims nothing either wa
 out, reg = run_live([P_("m5", "m5", [("99498", "20270121"), ("99309", "20270120")]), P_("m5", "m5", [("99306", "20270121")])])
 check("live run: a message with two dates is remembered line by line - the admission visit of the later date is still entered", len(reg["created"]) == 2 and reg["created"][0]["dos_lines"] == ["01/21/2027", "01/20/2027"] and reg["created"][1]["cpts"] == ["99306"] and reg["skipped"] == [], (reg["created"], reg["skipped"]))
 # ---- 4c. the advance-care-plan quality code 1123F (William 11/10/2026: "yes for all ... once per patient ... every patient 65 and older") ----
+# 4c.1 who gets the line (quality_due through build()): every condition must be shown
+REGDIR = os.path.join(tmp, "registers")
+def wreg(name, obj): json.dump(obj, open(os.path.join(REGDIR, name), "w"))
+def rmreg(*names):
+    for n_ in names:
+        if os.path.exists(os.path.join(REGDIR, n_)): os.remove(os.path.join(REGDIR, n_))
+def vrow(visits=(), decision="RELEASE", lead="FLO02", hold=(), fixes=()):      # one chart's entry in an insurance-check register
+    return dict({"visits": list(visits), "decision": decision, "hold": list(hold), "fixes": list(fixes)}, **({"lead": {"code": lead}} if lead else {}))
+OKCHK = ("RELEASE", "FLO02")                                             # an earlier insurance check that released the chart with Medicare leading
 def qmsg(fid, lines, dob="1940" + "0215"): return {"pid": fid, "name": "x", "dob": dob, "FT1": [{"cpt": c, "dos": d, "dx": "I10^E119", "units": "1"} for c, d in lines]}
 def qctx(live=(), plans=None, order="1"):
     c = ctx(live); c["plans"] = [("ins1", "car6085", "01/01/2020", "", "1")] if plans is None else plans; c["insorder"] = order; return c
-def qreset(**kw): ci.QUALITY.clear(); ci.QUALITY.update(ci._quality_fresh()); ci.QUALITY.update(kw)
+def qreset(**kw): ci.QUALITY.clear(); ci.QUALITY.update(ci._quality_fresh()); ci.QUALITY["verify"] = {"pat9": OKCHK}; ci.QUALITY.update(kw)
 def qbuilt(m, c):
     out, info = ci.build(m, c)
     return (out, info, re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)"', out[1]) if out else [])
 QP = "pcode65441"
+QCHG = r'<charge id=""(?:(?!</charge>).)*proccode="pcode65441"(?:(?!</charge>).)*</charge>'      # the quality line as it is sent
 qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("99309", "10/03/2026")]))
 check("quality: a monthly nursing visit of a Medicare patient of 86 carries 1123F as its LAST line, same place of service, no charge, no modifier",
       pp == [("pcode65119", "32"), (QP, "32")] and info["quality_codes"] == ["1123F"] and info["cpts"] == ["99309"] and info["quality_fee"] == "0.00" and info["quality_dos"] == "11/02/2026"
       and re.search(r'modcodes="" aging="11/02/2026" billins="1" proccode="pcode65441" cobcode="" pos="32" tos="01" units="1" netfee="0" fee="0.00" allowed="0.00"', out[1]) is not None, (pp, info))
-check("quality: the same visit WITHOUT the line is kept for the fail-safe, and differs only by that line", QP not in out[2] and out[2].count("<charge ") == 1 and out[1].count("<charge ") == 2 and len(re.findall(r'<charge id=""(?:(?!</charge>).)*proccode="pcode65441"(?:(?!</charge>).)*</charge>', out[1])) == 1
-      and re.sub(r'<charge id=""(?:(?!</charge>).)*proccode="pcode65441"(?:(?!</charge>).)*</charge>', "", out[1]) == out[2] and out[1].index(QP) > out[1].index("pcode65119") and out[1].rstrip().endswith("</charge></chargelist></visit></ppmdmsg>"), out[2][-300:])
-check("quality: the line carries the diagnoses of its visit line", out[1].count('diagcodes="dcode1 dcode2"') == 2)
+check("quality: the same visit WITHOUT the line is kept for the fail-safe, and differs only by that line", QP not in out[2] and out[2].count("<charge ") == 1 and out[1].count("<charge ") == 2 and len(re.findall(QCHG, out[1])) == 1
+      and re.sub(QCHG, "", out[1]) == out[2] and out[1].index(QP) > out[1].index("pcode65119") and out[1].rstrip().endswith("</charge></chargelist></visit></ppmdmsg>"), out[2][-300:])
+qreset(off="reference"); out0, info0, pp0 = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("99309", "10/03/2026")]))
+check("quality: the visit's own request is byte for byte what the helper sends with the code switched off (create call, charge call, register fields)",
+      out0[0] == out[0] and out0[1] == out0[2] == out[2] and info0 == {k: v for k, v in info.items() if not k.startswith("quality_")}, (out0[1][-200:], info0))
+_ql = re.findall(QCHG, out[1])[0]
+check("quality: the line carries ONE diagnosis - the first of its visit line - while the visit line keeps all of its own (CMS: one diagnosis pointer on a quality line)",
+      'diagcodes="dcode1"' in _ql and "<diagcodelist><diagcode id=\"1\"/></diagcodelist>" in _ql and out[1].count('diagcodes="dcode1 dcode2"') == 1 and out[2].count('diagcodes="dcode1 dcode2"') == 1, _ql)
+ci.DX.update({"D%02d" % i: "dcode%d" % (20 + i) for i in range(14)})      # a visit line with 14 diagnoses in the feed (the Medicare reviewer's input): the visit line sends 12, the quality line one
+qreset(); m14 = qmsg("n2", [("99309", "20261103")]); m14["FT1"][0]["dx"] = "^".join("D%02d" % i for i in range(14)); out14, info14, pp14 = qbuilt(m14, qctx())
+_q14 = re.findall(QCHG, out14[1])[0]
+check("quality: a visit line with 14 diagnoses - the visit line carries its 12, the quality line the first one only", 'diagcodes="dcode20"' in _q14 and _q14.count("<diagcode ") == 1 and out14[2].count("<diagcode ") == 12 and re.sub(QCHG, "", out14[1]) == out14[2], _q14)
+for i in range(14): del ci.DX["D%02d" % i]
+qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("99309", "10/03/2026")]))
 out2, info2, pp2 = qbuilt(qmsg("n2", [("99309", "20261105")]), qctx([("99309", "10/03/2026")]))
-check("quality: once per patient - a second visit of the same chart in the same run gets no second line", QP not in out2[1] and "quality_codes" not in info2, info2)
+check("quality: once per patient - a second visit of the same chart in the same run gets no second line", QP in out[1] and QP not in out2[1] and "quality_codes" not in info2, info2)
 qreset(); out, info, pp = qbuilt(qmsg("h1", [("99232", "20261031")]), qctx())
 check("quality: a hospital visit carries it at place of service 21", pp == [("pcode65089", "21"), (QP, "21")], pp)
 qreset(); out, info, pp = qbuilt(qmsg("a1", [("99344", "20261031")]), qctx())
@@ -452,51 +488,396 @@ check("quality: a home / assisted-living visit carries it at 13", pp == [("pcode
 def none(label, m, c, **kw):
     qreset(**kw); out, info, pp = qbuilt(m, c)
     check("quality: no line - " + label, out is not None and QP not in out[1] and "quality_codes" not in info and out[1] == out[2], (pp, info))
+def gets(label, m, c, **kw):
+    qreset(**kw); out, info, pp = qbuilt(m, c)
+    check("quality: the line is added - " + label, out is not None and len(re.findall(QCHG, out[1])) == 1 and info.get("quality_codes") == ["1123F"], (pp, info))
+V1 = qmsg("n2", [("99309", "20261102")])
 none("patient is 64 on the date of service", qmsg("n2", [("99309", "20261102")], dob="1962" + "1103"), qctx())
-qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")], dob="1961" + "1102"), qctx())
-check("quality: ... and 65 on the very day gets it", QP in out[1], pp)
+gets("65 on the very day", qmsg("n2", [("99309", "20261102")], dob="1961" + "1102"), qctx())
+gets("115 years old (the upper limit)", qmsg("n2", [("99309", "20261102")], dob="1911" + "1102"), qctx())
+none("116 years old - not a believable date", qmsg("n2", [("99309", "20261102")], dob="1910" + "1102"), qctx())
 none("no date of birth in the feed", qmsg("n2", [("99309", "20261102")], dob=""), qctx())
-none("the 01/01/1900 placeholder birth date", qmsg("n2", [("99309", "20261102")], dob="1900" + "0101"), qctx())
+none("the 01/01/1900 placeholder", qmsg("n2", [("99309", "20261102")], dob="1900" + "0101"), qctx())
+none("a date with month 00 and day 00 is not a date (the old code read it as 65 from January 1)", qmsg("n2", [("99309", "20261102")], dob="1961" + "0000"), qctx())
+none("a date with month 13 is not a date", qmsg("n2", [("99309", "20261102")], dob="1961" + "1345"), qctx())
+none("February 29 of a year that had none is not a date", qmsg("n2", [("99309", "20261102")], dob="1961" + "0229"), qctx())
+gets("a real February 29", qmsg("n2", [("99309", "20261102")], dob="1960" + "0229"), qctx())
+qreset(); _l48 = [{"cpt": "99348", "dos": "20261231"}]
+check("quality: the state-machine reviewer's two inputs through the decision itself (a home visit code on the last day of the year): no line for either, a line for a real date",
+      ci.quality_due({"dob": "1961" + "0000"}, qctx(), _l48) is None and ci.quality_due({"dob": "1961" + "1345"}, qctx(), _l48) is None and ci.quality_due({"dob": "1961" + "0101"}, qctx(), _l48) == 0)
+qreset()
+check("quality: a date of service that is not a real date shows nothing - no line (month 13, a February 29 that did not exist), a real one does",
+      ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20261345"}]) is None and ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20260229"}]) is None and ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "2026"}]) is None
+      and ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20260228"}]) == 0)
+_mf = ci.medicare_first; ci.medicare_first = lambda *a_, **k_: True; qreset()      # the plan test also reads the date; here it is made to say yes to everything, so that the decision's OWN look at the date is what is tested
+check("quality: ... the decision itself throws such a date of service out - it does not lean on the plan test to do it (the plan test here says yes to everything)",
+      ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20261345"}]) is None and ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20260229"}]) is None and ci.quality_due(V1, qctx(), [{"cpt": "99309", "dos": "20260228"}]) == 0)
+ci.medicare_first = _mf
+_yrs = set(ci.QUALITY_YEARS); ci.QUALITY_YEARS.add("2010"); qreset(); _c00 = qctx(plans=[("ins1", "car6085", "01/01/2000", "", "1")]); _l10 = [{"cpt": "99309", "dos": "20101102"}]
+check("quality: the year-1900 placeholder (or an earlier year) shows no age whatever the year of the visit - here a visit of 2010, where it would pass for 110 years old; a real 1901 date gets the line",
+      ci.quality_due({"dob": "1900" + "0101"}, _c00, _l10) is None and ci.quality_due({"dob": "1899" + "1231"}, _c00, _l10) is None and ci.quality_due({"dob": "1901" + "0101"}, _c00, _l10) == 0)
+ci.QUALITY_YEARS.clear(); ci.QUALITY_YEARS.update(_yrs)
 none("care management only (not one of the measure's visit codes)", qmsg("n1", [("99487", "20261031"), ("99489", "20261031")]), qctx())
 none("advance care planning 99497 alone", qmsg("n2", [("99497", "20261102")]), qctx())
 none("a discharge visit alone", qmsg("n2", [("99316", "20261102")]), qctx())
-none("Medicare is not the FIRST plan", qmsg("n2", [("99309", "20261102")]), qctx(plans=[("ins1", "car6085", "01/01/2020", "", "1"), ("ins2", "car6404", "01/01/2020", "", "2")], order="2,1"))
-none("the first plan is another payer", qmsg("n2", [("99309", "20261102")]), qctx(plans=[("ins2", "car6404", "01/01/2020", "", "1")]))
-none("the Medicare plan ended before the visit", qmsg("n2", [("99309", "20261102")]), qctx(plans=[("ins1", "car6085", "01/01/2020", "10/31/2026", "1")]))
-none("the Medicare plan starts after the visit", qmsg("n2", [("99309", "20261102")]), qctx(plans=[("ins1", "car6085", "12/01/2026", "", "1")]))
-none("no plan on the chart", qmsg("n2", [("99309", "20261102")]), qctx(plans=[]))
-none("1123F already on the chart this year", qmsg("n2", [("99309", "20261102")]), qctx([("1123F", "03/04/2026")]))
-none("1124F already on the chart this year", qmsg("n2", [("99309", "20261102")]), qctx([("1124F", "03/04/2026")]))
-none("the code is switched off", qmsg("n2", [("99309", "20261102")]), qctx(), off="refused")
-none("the pilot cap is reached", qmsg("n2", [("99309", "20261102")]), qctx(), added=3)
-none("earlier pilot lines are still waiting for their outcome", qmsg("n2", [("99309", "20261102")]), qctx(), wait=True)
-none("an earlier import register already shows the code for this patient this year (whatever the chart history lists)", qmsg("n2", [("99309", "20261102")]), qctx(), done={("pat9", "2026")})
+none("Medicare is not the FIRST plan", V1, qctx(plans=[("ins1", "car6085", "01/01/2020", "", "1"), ("ins2", "car6404", "01/01/2020", "", "2")], order="2,1"))
+none("the first plan is another payer", V1, qctx(plans=[("ins2", "car6404", "01/01/2020", "", "1")]))
+none("the Medicare plan ended before the visit", V1, qctx(plans=[("ins1", "car6085", "01/01/2020", "10/31/2026", "1")]))
+none("the Medicare plan starts after the visit", V1, qctx(plans=[("ins1", "car6085", "12/01/2026", "", "1")]))
+gets("the Medicare plan has NO begin date (no lower limit - 15 of 684 real Medicare plan rows have none)", V1, qctx(plans=[("ins1", "car6085", "", "", "1")]))
+for _beg in ("2020-01-01", "13/40/2020", "00/00/0000", "x"):
+    none("the Medicare plan's begin date is there but cannot be read (%s): the plan is not shown in force" % _beg, V1, qctx(plans=[("ins1", "car6085", _beg, "", "1")]))
+none("the Medicare plan's end date cannot be read", V1, qctx(plans=[("ins1", "car6085", "01/01/2020", "x", "1")]))
+none("no plan on the chart", V1, qctx(plans=[]))
+none("1123F already on the chart this year", V1, qctx([("1123F", "03/04/2026")]))
+none("1124F already on the chart this year", V1, qctx([("1124F", "03/04/2026")]))
+none("the code is switched off", V1, qctx(), off="refused")
+none("the pilot round is full", V1, qctx(), added=3)
+none("a line of the round still waits for its outcome", V1, qctx(), wait=True)
+none("an earlier import register already shows the code for this patient this year (whatever the chart history lists)", V1, qctx(), done={("pat9", "2026")})
+none("the chart has no earlier insurance check (a first-ever visit gets none; the next batch's visit does)", V1, qctx(), verify={})
+none("the chart's newest earlier insurance check put it on HOLD", V1, qctx(), verify={"pat9": ("HOLD", "")})
+none("the chart's newest earlier insurance check put it on HOLD although it names Medicare as the lead (its order could not be set)", V1, qctx(), verify={"pat9": ("HOLD", "FLO02")})
+none("the chart's newest earlier insurance check named another payer than Medicare (a Medicare Advantage plan)", V1, qctx(), verify={"pat9": ("RELEASE", "HUM01")})
+none("the chart is on William's exception list (a patient who declined)", V1, qctx(), exceptions={"pat9"})
+gets("another chart on the exception list does not matter", V1, qctx(), exceptions={"pat8"})
 qreset(dead={("pat9", "1123F", "10/05/2026")}); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("99309", "10/03/2026"), ("1123F", "10/05/2026")]))
-check("quality: a $0.00 line that never went out on a claim does not count as reported - the patient gets the code again", QP in out[1], pp)
+check("quality: a line read as left off the claim does not count as reported - the patient gets the code again", QP in out[1], pp)
 qreset(dead={("pat9", "1123F", "10/05/2026")}); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("99309", "10/03/2026"), ("1123F", "10/05/2026"), ("1123F", "10/20/2026")]))
 check("quality: ... but another 1123F on the chart that year still does", QP not in out[1], pp)
 ci.FAC["ER X"] = ("fac99", "23"); ci.FACOF["e1"] = "ER X"; qreset(); out, info, pp = qbuilt(qmsg("e1", [("99232", "20261031")]), qctx())
 check("quality: never on an emergency-department line (place of service 23)", out is not None and QP not in out[1] and "quality_codes" not in info and pp == [("pcode65089", "23")], (pp, info))
+check("quality: ... the decision itself leaves a 23 line out when it is told the places of service", ci.quality_due(qmsg("e1", [("99232", "20261031")]), qctx(), [{"cpt": "99232", "dos": "20261031"}], ["23"]) is None
+      and ci.quality_due(qmsg("e1", [("99232", "20261031")]), qctx(), [{"cpt": "99232", "dos": "20261031"}], ["21"]) == 0)
+qreset(); _q = ci.quality_due; ci.quality_due = lambda *a_, **k_: 0; out, info, pp = qbuilt(qmsg("e1", [("99232", "20261031")]), qctx()); ci.quality_due = _q      # the second guard, in build(): here the decision is made to say yes
+check("quality: ... and build() itself never puts the line on a 23 line, even when the decision says yes: the visit goes in as without the code, no place of the round is used",
+      out is not None and QP not in out[1] and out[1] == out[2] and "quality_codes" not in info and pp == [("pcode65089", "23")] and ci.QUALITY["added"] == 0 and ci.QUALITY["done"] == set(), (pp, info))
 del ci.FAC["ER X"]; del ci.FACOF["e1"]
-qreset(added=3, confirmed=True); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx())
-check("quality: ... and no cap once a quality line has been seen billed", QP in out[1], pp)
+gets("after proof, while the run still has room (10 a run until Medicare's own answer is on file)", V1, qctx(), added=9, confirmed=True, budget=10)
+none("after proof, the run's 10 are used up", V1, qctx(), added=10, confirmed=True, budget=10)
+gets("after proof with Medicare's answer on file there is no cap", V1, qctx(), added=500, confirmed=True, budget=None)
 qreset(); out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx([("1123F", "12/04/2025")]))
 check("quality: last year's code does not count for this year", QP in out[1], pp)
 qreset(); out, info, pp = qbuilt(qmsg("n2", [("99497", "20261102"), ("99309", "20261102")]), qctx([("99309", "10/03/2026")]))
 check("quality: with a visit and 99497 in one message the line rides with the VISIT and comes last", [x for x, _ in pp] == ["pcode492667", "pcode65119", QP] and pp[2][1] == pp[1][1], pp)
+# the year: the code list was read for 2026 only (the Medicare reviewer's three inputs), and every visit line of a message is looked at (the year end)
+none("a 2027 date of service, the register showing a 2026 line: not added until William renews the rule", qmsg("n2", [("99309", "20270104")]), qctx(), done={("pat9", "2026")})
+check("quality: ... and that visit is counted for the January line of the report (year -> charts)", ci.QUALITY["not_renewed"] == {"2027": {"pat9"}}, ci.QUALITY["not_renewed"])
+none("a 2031 date of service", qmsg("n2", [("99309", "20310104")]), qctx())
+none("a 2025 date of service entered now (it can no longer count)", qmsg("n2", [("99309", "20251220")]), qctx())
+check("quality: ... a year that is over is not counted as waiting for a renewal", ci.QUALITY["not_renewed"] == {}, ci.QUALITY["not_renewed"])
+none("a visit that is not eligible anyway is not counted as waiting for a renewal either", qmsg("n2", [("99309", "20270104")], dob="1990" + "0101"), qctx())
+check("quality: ... (nothing counted)", ci.QUALITY["not_renewed"] == {})
+qreset(); out, info, pp = qbuilt(qmsg("m5", [("99309", "20270101"), ("99309", "20261231")]), qctx())
+check("quality: one message with a 01/01/2027 visit line and then a 12/31/2026 one - the line rides with the 2026 visit (every visit line is looked at, not only the first)", info.get("quality_dos") == "12/31/2026" and len(re.findall(QCHG, out[1])) == 1
+      and re.search(r'begindate="12/31/2026" enddate="12/31/2026"[^>]*proccode="pcode65441"', out[1]) is not None and ci.QUALITY["not_renewed"] == {"2027": {"pat9"}}, info)
+none("one message with 12/31/2026 and 01/01/2027 visit lines for a patient already coded in 2026: no line from that message until the rule is renewed", qmsg("m5", [("99309", "20261231"), ("99309", "20270101")]), qctx(), done={("pat9", "2026")})
+_yrs = set(ci.QUALITY_YEARS); ci.QUALITY_YEARS.add("2027")
+qreset(done={("pat9", "2026")}); out, info, pp = qbuilt(qmsg("m5", [("99309", "20261231"), ("99309", "20270101")]), qctx())
+check("quality: ... once William has renewed it for 2027, the SECOND visit line of that message carries the 2027 line", info.get("quality_dos") == "01/01/2027" and len(re.findall(QCHG, out[1])) == 1, info)
+ci.QUALITY_YEARS.clear(); ci.QUALITY_YEARS.update(_yrs)
+check("quality: the rule is read for 2026 only", ci.QUALITY_YEARS == {"2026"})
 qreset(); _q = ci.quality_due; ci.quality_due = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom"))
 out, info, pp = qbuilt(qmsg("n2", [("99309", "20261102")]), qctx())
 check("quality: a failure in the decision never touches the visit (entered as before, no line)", QP not in out[1] and out[1] == out[2] and "quality_codes" not in info, info)
 ci.quality_due = _q
 check("quality: Medicare first is read from the billing order, not from the list order", ci.medicare_first({"insorder": "2,1", "plans": [("i", "car6404", "", "", "1"), ("j", "car6085", "01/01/2020", "", "2")]}, "11/02/2026")
       and not ci.medicare_first({"insorder": "1,2", "plans": [("i", "car6404", "", "", "1"), ("j", "car6085", "01/01/2020", "", "2")]}, "11/02/2026") and not ci.medicare_first({"insorder": "1", "plans": None}, "11/02/2026") and not ci.medicare_first({}, "x"))
-# _bills: what the charge detail says about one line
-BILLS.clear(); BILLS.update({"11": ["11/11/2026"], "12": {"void": "1"}, "13": {"proccode": "pcode65119"}, "14": {"insbilled": "1", "datebilled": "11/12/2026 21:10:33", "proccode": "pcode65441"}, "15": {"insbilled": "0", "datebilled": ""}})
-check("quality: a line's billing is read from its charge detail - billed, never billed, void, another procedure, the charge's own billed flag",
-      ci._bills("charge11") == ["11/11/2026"] and ci._bills("charge10") == [] and ci._bills("12") is None and ci._bills("13", QP) is None and ci._bills("13") == []
-      and ci._bills("14", QP) == ["11/12/2026"] and ci._bills("15") == [] and ci._bills("") is None and ci._bills(None) is None)
-BILLS.clear()
-# through main(): the pilot, its outcome, the refusal - every state read from the earlier registers
+check("quality: a fresh helper that has not read the registers yet gives nobody a line (no insurance check is known)", ci._quality_fresh()["verify"] == {} and ci._quality_fresh()["budget"] == ci.QUALITY_PILOT == 3 and ci.QUALITY_DAILY == 10 and ci.QUALITY_LOOKS == 6)
+check("names_line: a hold names the quality line by its code, AdvancedMD's id for it, its own charge number, or a zero amount of a charge - and by nothing else",
+      all(ci.names_line(w, "charge7000011") for w in ("Pattern 990001: procedure 1123F - line item charge amount is zero", "pcode65441 not allowed", "edit on charge 7000011", "Pattern 88001: Charge amount is zero for this procedure", "Line charge of $0.00 is below the minimum", "the AMOUNT of a line is $0"))
+      and not any(ci.names_line(w, "charge7000011") for w in ("Pattern 24078: something else", "Relationship of Subscriber to Patient is invalid", "The beginning or ending Date of service", "no admission anchor (no PV1 admit, no 99223 within 45 days)", "charge 17000011 is odd", "zero units", "", None)))
+# 4c.2 one read of a line: its own charge detail (_line). Only void="1" on that charge is void; whatever cannot be read as the line is 'unknown'
+def chg(cid, state=(), pcode=QP):      # what the stand-in's charge detail shows for one charge: its procedure and its billing (a list of billed dates, a dict of attributes, or a word)
+    PROC[num(cid)] = pcode; BILLS[num(cid)] = state if isinstance(state, (dict, str)) else list(state)
+def num(cid): return re.sub(r"\D", "", cid)
+BILLS.clear(); PROC.clear()
+chg("11", ["11/11/2026"]); chg("12", {"void": "1"}); chg("13", [], "pcode65119"); chg("14", {"insbilled": "1", "datebilled": "11/12/2026 21:10:33"}); chg("15", {"insbilled": "0", "datebilled": ""})
+chg("16", "FAULT"); chg("17", "RAISE"); chg("18", "MISSING"); chg("19", "NOTXML"); chg("20", [], ""); chg("21", {"void": "1"}, "pcode65119"); chg("22", {"void": "1"}, ""); chg("23", ["11/11/2026"], "")
+check("quality: a line's own charge detail is read as billed (dates listed, or the charge's own billed flag), open, or void",
+      ci._line("charge11", QP) == ("billed", ["11/11/2026"]) and ci._line("14", QP) == ("billed", ["11/12/2026"]) and ci._line("15", QP) == ("open", []) and ci._line("12", QP) == ("void", []))
+check("quality: ... and as UNKNOWN - never as void - when the charge shows another procedure, shows none, is not in the answer (a fault answer, an empty one), or the read fails",
+      [ci._line(c, QP)[0] for c in ("13", "20", "16", "18", "17", "19", "", None)] == ["unknown"] * 8 and ci._line("23", QP)[0] == "unknown" and ci._line("21", QP)[0] == "unknown"
+      and "another procedure" in ci._line("13", QP)[1][0] and "no procedure" in ci._line("20", QP)[1][0] and "not in AdvancedMD's answer" in ci._line("16", QP)[1][0] and "the read failed" in ci._line("17", QP)[1][0],
+      [ci._line(c, QP) for c in ("13", "20", "16", "18", "17", "19", "21", "23")])
+check("quality: ... only void=\"1\" on that very charge is void (also when AdvancedMD shows no procedure for a void charge)", ci._line("22", QP) == ("void", []) and ci._line("12") == ("void", []))
+check("quality: the visit's own charge is read the same way without a procedure to look for", ci._line("13") == ("open", []) and ci._line("11") == ("billed", ["11/11/2026"]) and ci._line("23") == ("billed", ["11/11/2026"]) and ci._line("16")[0] == "unknown")
+check("quality: the old reader is gone (one read of a line is _line)", not hasattr(ci, "_bills"))
+BILLS.clear(); PROC.clear(); DETAILS.clear()
+# 4c.3 what the quality code reads from the registers folder besides the import registers (quality_files)
+wreg("feed_verify_20261101T0000Z.json", {"pat1": vrow(["vst1"]), "pat2": vrow(["vst2"], "HOLD", "", ["no active plan: discovery found nothing"]), "pat3": vrow(["vst3"], lead="HUM01"), "pat5": vrow(["vst5"], lead="HUM01"), "odd": 7})
+wreg("feed_verify_20261105T0000Z.json", {"pat1": vrow(["vst11"], lead="HUM01"), "pat3": vrow(["vst13"]), "pat4": vrow(["vst14", "vst15"], "HOLD", "", ["insorder not applied on vst14"], ["vst14 insorder 2: detail read mismatch (1 of 2 charges live)"])})
+wreg("feed_verify_20261105T0000ZR.json", {"pat5": vrow(["vst16"])})
+wreg("feed_verify_20261109T0000Z.json", {"pat1": vrow(["vst21"]), "pat2": vrow(["vst22"])})
+wreg("feed_inspector_20261105T0000Z.json", {"fixed": [], "bypassed": [], "laterality": [], "held": [{"visit": "14", "pid": "pat4", "why": "Pattern 88001: Charge amount is zero for this procedure"}, {"visit": "vst15", "pid": "pat4", "why": "Pattern 24078: something else", "names_line": True}, 7, {"pid": "x"}]})
+F = ci.quality_files("20261109T0000Z")
+check("registers: the NEWEST insurance check of an EARLIER batch is what counts for a chart - a later one replaces an older one, a retry batch counts, the batch's own check and later ones do not",
+      F["verify"] == {"pat1": ("RELEASE", "HUM01"), "pat2": ("HOLD", ""), "pat3": OKCHK, "pat4": ("HOLD", ""), "pat5": OKCHK} and F["problems"] == [], F["verify"])
+check("registers: every check is kept by batch for the proof, the visits of a HOLD with the hold's own words, the Claim Inspector's held visits by visit number",
+      F["checks"]["20261101T0000Z"]["pat3"] == ("RELEASE", "HUM01") and F["checks"]["20261109T0000Z"]["pat1"] == OKCHK and sorted(F["check_holds"]) == ["14", "15", "2"]
+      and F["check_holds"]["14"] == [("feed_verify_20261105T0000Z.json", ["insorder not applied on vst14", "vst14 insorder 2: detail read mismatch (1 of 2 charges live)"])]
+      and F["held"] == {"14": [("feed_inspector_20261105T0000Z.json", "Pattern 88001: Charge amount is zero for this procedure", False)], "15": [("feed_inspector_20261105T0000Z.json", "Pattern 24078: something else", True)]}, (F["check_holds"], F["held"]))
+check("registers: a later batch sees the check of 11/09 too; the first batch of all sees none", ci.quality_files("20261110T0000Z")["verify"]["pat1"] == OKCHK and ci.quality_files("1028")["verify"] == {})
+check("registers: no exception list and no remittance file = no exceptions, Medicare's answer not on file", F["exceptions"] == set() and F["n620"] is False)
+wreg("quality_exceptions.json", {"pat123": "declined", "17478346": "never addressed", "_note": "kept by William"})
+check("exception list: an object of chart ids (with or without the 'pat'), a key that starts with _ is a remark", ci.quality_files("x")["exceptions"] == {"pat123", "pat17478346"} and ci.quality_files("x")["problems"] == [])
+wreg("quality_exceptions.json", ["pat7", 8, " pat9 "])
+check("exception list: a list of chart ids", ci.quality_files("x")["exceptions"] == {"pat7", "pat8", "pat9"})
+for _bad, _what in (("{not json", "not JSON"), ('"pat7"', "a bare word"), ('["pat7", {"a": 1}]', "an entry that is not a chart id"), ('{"some name": 1}', "a key that is not a chart id")):
+    open(os.path.join(REGDIR, "quality_exceptions.json"), "w").write(_bad); _f = ci.quality_files("x")
+    check("exception list: a file that is there but cannot be read (%s) is a PROBLEM, not an empty list - no line is added in such a run" % _what, _f["exceptions"] == set() and len(_f["problems"]) == 1 and "quality_exceptions.json" in _f["problems"][0], _f["problems"])
+rmreg("quality_exceptions.json")
+open(os.path.join(REGDIR, "quality_n620_seen.json"), "w").write("not even JSON - the import only looks whether the file is there")
+check("remittance file: the import only looks whether it exists", ci.quality_files("x")["n620"] is True and ci.quality_files("x")["problems"] == [])
+rmreg("quality_n620_seen.json")
+open(os.path.join(REGDIR, "feed_verify_20261106T0000Z.json"), "w").write("{cut off"); open(os.path.join(REGDIR, "feed_inspector_20261106T0000Z.json"), "w").write("[1, 2]")
+check("registers: an insurance-check or inspector register that cannot be read is named as a problem (a hold or another payer could be hidden in it)", sorted(p.split(" ")[0] for p in ci.quality_files("20261109T0000Z")["problems"]) == ["registers/feed_inspector_20261106T0000Z.json", "registers/feed_verify_20261106T0000Z.json"], ci.quality_files("20261109T0000Z")["problems"])
+rmreg("feed_verify_20261101T0000Z.json", "feed_verify_20261105T0000Z.json", "feed_verify_20261105T0000ZR.json", "feed_verify_20261109T0000Z.json", "feed_inspector_20261105T0000Z.json", "feed_verify_20261106T0000Z.json", "feed_inspector_20261106T0000Z.json")
+# 4c.4 the ledger of lines (quality_state), fed directly with made-up registers: three pilot lines A, B, C of one batch and what the stand-in shows for them
+RN = lambda s: "registers/feed_import_%s.json" % s
+def qrow(pid, visit, qc, own, fee="0.00", dos="11/10/2026", **kw): return dict({"pid": pid, "visit": visit, "quality_codes": ["1123F"], "quality_charge": qc, "charges": [own, qc], "quality_fee": fee, "quality_dos": dos, "dos": dos, "cpts": ["99309"]}, **kw)
+def state(regs, look=True, **kw):
+    DETAILS.clear(); ci.quality_state(regs, look, **kw); return dict(ci.QUALITY)
+def nextreg(stamp, created=(), failed=(), **gate):      # the register a later run writes: the gate of the state just computed (plus what the test changes in it) and its own rows
+    return (RN(stamp), {"created": list(created), "failed": list(failed), "skipped": [], "quality_gate": dict(ci.quality_gate(), **gate)})
+A_, B_, C_ = qrow("pat7001", "vst1", "charge12", "charge11"), qrow("pat7002", "vst2", "charge22", "charge21"), qrow("pat7003", "vst3", "charge32", "charge31")
+R1 = (RN("20261111T1240Z"), {"created": [A_, B_, C_], "failed": [], "skipped": []})
+def world(**st):      # every charge of A, B, C is open unless said otherwise
+    BILLS.clear(); PROC.clear(); CHART["7001"] = [("99309", "11/10/2026"), ("1123F", "11/10/2026")]; CHART["7002"] = [("99309", "11/10/2026")]
+    for c_ in ("12", "22", "32"): chg(c_, st.get("c" + c_, []))
+    for c_ in ("11", "21", "31"): chg(c_, st.get("c" + c_, []), "pcode65119")
+BILLED = ["11/12/2026"]; VOID = {"void": "1"}
+world(); s = state([R1])
+check("ledger: three lines, nothing billed - the round WAITS: no new line, the three visits are named, every line and its visit's own charge was read once",
+      s["wait"] is True and s["budget"] == 0 and s["pending"] == ["vst1", "vst2", "vst3"] and s["pending_since"] == "feed_import_20261111T1240Z.json" and s["confirmed"] is False and s["off"] == ""
+      and sorted(DETAILS) == ["11", "12", "21", "22", "31", "32"] and s["round"] == {"n": 1, "fee": "0.00", "since": "feed_import_20261111T1240Z.json", "lines": 3, "void": 0, "open": 3}
+      and s["done"] == {("pat7001", "2026"), ("pat7002", "2026"), ("pat7003", "2026")}, s)
+s = state([R1], look=False)
+check("ledger: a dry run reads nothing in AdvancedMD and waits", s["wait"] is True and DETAILS == [] and any("dry run" in n for n in s["notes"]), (s["notes"], DETAILS))
+world(c12=BILLED); s = state([R1])
+check("ledger: one line is BILLED - proven: the proof is recorded, later lines are capped at 10 a run until Medicare's own answer is on file, and the chart history was read once to see whether it lists the line (it does)",
+      s["confirmed"] is True and s["proof"] == {"register": "feed_import_20261111T1240Z.json", "chart": "pat7001", "visit": "vst1", "charge": "charge12", "billed": "11/12/2026", "fee": "0.00"} and s["budget"] == 10
+      and s["billed_lines"] == ["charge12"] and s["wait"] is False and s["history_shows_line"] is True and s["off"] == "", s)
+s2 = state([R1, nextreg("20261112T1240Z")])
+check("ledger: the next run reads the proof from the gate - no line is read again (nothing is read back after proof)", s2["confirmed"] is True and DETAILS == [] and s2["proof"]["charge"] == "charge12" and s2["history_shows_line"] is True and s2["budget"] == 10, (s2, DETAILS))
+s = state([R1], files={"n620": True})
+check("ledger: with Medicare's answer on file there is no cap after proof", s["confirmed"] is True and s["budget"] is None and s["n620"] is True, s)
+world(c22=BILLED); s = state([R1])
+check("ledger: the history of the proof's chart does NOT list the line - recorded (a 1123F / 1124F entered by hand is invisible to the import) with a note that points to the exception list",
+      s["confirmed"] is True and s["history_shows_line"] is False and any("invisible to the import" in n and "quality_exceptions.json" in n for n in s["notes"]), s["notes"])
+# the state-machine reviewer's mixed outcome (SM-1): visit A billed WITHOUT its $0.00 line, B's line billed, C open
+world(c11=["11/11/2026"], c22=BILLED); s = state([R1])
+check("ledger (SM-1): a visit billed without its $0.00 line while ANOTHER $0.00 line of the round is billed - $0.00 is proven; only the line READ as left off is dead and its patient due again; nobody else is touched",
+      s["confirmed"] is True and s["fee"] == "0.00" and s["zero_not_billed"] is False and s["left_off_lines"] == ["charge12"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]] and s["dead"] == {("pat7001", "1123F", "11/10/2026")}
+      and s["done"] == {("pat7002", "2026"), ("pat7003", "2026")} and s["proof"]["charge"] == "charge22", s)
+s_rev = state([(RN("20261111T1240Z"), {"created": [C_, B_, A_]})])
+check("ledger (SM-1): ... the same whatever the order of the rows", (s_rev["confirmed"], s_rev["fee"], s_rev["left_off_lines"], s_rev["done"], s_rev["proof"]["charge"]) == (True, "0.00", ["charge12"], s["done"], "charge22"), s_rev)
+world(c11=["11/11/2026"]); s = state([R1])
+check("ledger: a visit billed without its $0.00 line and NO line of the round billed - new lines carry one cent, a new round of three; only that one line is dead, the two lines not decided yet keep counting as reported",
+      s["fee"] == "0.01" and s["zero_not_billed"] is True and s["confirmed"] is False and s["wait"] is False and s["budget"] == 3 and s["left_off_lines"] == ["charge12"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]]
+      and s["done"] == {("pat7002", "2026"), ("pat7003", "2026")} and s["round"]["n"] == 2 and s["round"]["fee"] == "0.01" and s["round"]["lines"] == 0 and any("without its $0.00 quality line" in n for n in s["notes"]), s)
+world(c11=["11/11/2026"], c22=BILLED); s3 = state([R1], files={"checks": {"20261111T1240Z": {"pat7002": ("RELEASE", "HUM01")}}})
+check("ledger: a visit billed without its $0.00 line while another $0.00 line of the round IS billed, though on a claim that cannot be the proof - the amount does NOT move to one cent (AdvancedMD does send a $0.00 line); the round waits for its third line",
+      s3["fee"] == "0.00" and s3["zero_not_billed"] is False and s3["confirmed"] is False and s3["wait"] is True and s3["pending"] == ["vst3"] and s3["left_off_lines"] == ["charge12"] and s3["billed_lines"] == ["charge22"], s3)
+world(c11=["11/11/2026"]); state([R1])
+world(c11=["11/11/2026"], c22=BILLED); s2 = state([R1, nextreg("20261112T1240Z")])
+check("ledger: once at one cent it stays there - a $0.00 line found billed LATER is counted for its patient but changes nothing; the line already read as left off is not read again, the other two are read until decided",
+      s2["fee"] == "0.01" and s2["confirmed"] is False and s2["billed_lines"] == ["charge22"] and s2["left_off_lines"] == ["charge12"] and "12" not in DETAILS and "22" in DETAILS and "32" in DETAILS and s2["budget"] == 3, (s2, DETAILS))
+world(c11=["11/11/2026"], c32="RAISE"); s = state([R1])
+check("ledger: a line whose read FAILS is never called dead - it is not decided (the reviewer's case: one visit billed without its line, another line's read raises)", s["left_off_lines"] == ["charge12"] and ("pat7003", "2026") in s["done"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]], s)
+world(c12="FAULT"); s = state([R1])
+check("ledger (NH-1): a line AdvancedMD answers with a fault is not decided - the round waits, the place is NOT freed, and a note says so", s["wait"] is True and s["budget"] == 0 and s["void_lines"] == [] and any("vst1" in n and "not decided" in n for n in s["notes"]), s)
+world(); _wrong = (RN("20261111T1240Z"), {"created": [qrow("pat7003", "vst3", "charge21", "charge31")]}); s = state([_wrong])
+check("ledger (SM-6): a row that names ANOTHER visit's own charge as the quality line is not a line that can be decided - never 'proven', never 'void': it waits", s["wait"] is True and s["confirmed"] is False and s["void_lines"] == [], s)
+world(c21=BILLED); ECHO["detail_noproc"] = True; s = state([_wrong]); ECHO["detail_noproc"] = False
+check("ledger (SM-6): ... also when that charge is billed and the charge detail shows no procedure at all - 'proven' needs a charge that SHOWS procedure pcode65441", s["confirmed"] is False and s["wait"] is True and s["billed_lines"] == [], s)
+world(c12="MISSING"); s = state([R1])
+check("ledger: a charge that is not in AdvancedMD's answer at all is not decided", s["wait"] is True and s["void_lines"] == [] and s["pending"] == ["vst1", "vst2", "vst3"], s)
+# VOID: taken off by a person / the whole visit gone / not known
+world(c12=VOID); s = state([R1])
+check("ledger: a line is void while its visit's own charge is still live - a person took it off: the code is OFF until William restarts it, the sentence names the visit, no new line",
+      "1 earlier quality line(s) were taken off their visits" in s["off"] and "vst1" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["void_lines"] == ["charge12"] and s["wait"] is False and ("pat7001", "2026") not in s["done"], s)
+world(c12=VOID, c11=VOID); s = state([R1])
+check("ledger: a line is void and its visit's own charge too - the visit is gone: no outcome either way, its patient is due again, the round still waits for the two other lines", s["off"] == "" and s["void_lines"] == ["charge12"] and s["wait"] is True
+      and s["pending"] == ["vst2", "vst3"] and ("pat7001", "2026") not in s["done"] and s["round"]["void"] == 1, s)
+check("ledger: ... and a round that waits has NO room for a new line (budget 0), also while one of its three places is free again - the free place is used only once the other lines are decided", s["wait"] is True and s["budget"] == 0 and ci.quality_gate()["budget"] == 0, s)
+world(c12=VOID, c11=VOID, c22=VOID, c21=VOID, c32=VOID, c31=VOID); s = state([R1])
+check("ledger: all three visits are gone - their places are free: three more lines may be entered in this round", s["off"] == "" and s["wait"] is False and s["budget"] == 3 and s["round"] == {"n": 1, "fee": "0.00", "since": "feed_import_20261111T1240Z.json", "lines": 3, "void": 3, "open": 0}, s)
+R1b = (RN("20261112T1240Z"), {"created": [qrow("pat7004", "vst4", "charge42", "charge41"), qrow("pat7005", "vst5", "charge52", "charge51"), qrow("pat7006", "vst6", "charge62", "charge61")], "quality_gate": ci.quality_gate()})
+for c_ in ("42", "52", "62"): chg(c_, VOID)
+for c_ in ("41", "51", "61"): chg(c_, VOID, "pcode65119")
+s = state([R1, R1b])
+check("ledger: the replacement lines are voided too - a round never holds more than six lines: the code is OFF ('the pilot's lines keep being voided') until William restarts it",
+      "the pilot's lines keep being voided" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["round"]["lines"] == 6 and not any(c_ in DETAILS for c_ in ("12", "22", "32")), (s, DETAILS))
+chg("62", []); chg("61", []); s = state([R1, R1b])
+check("ledger: ... while one of the six is still open the round only waits", s["off"] == "" and s["wait"] is True and s["pending"] == ["vst6"] and s["budget"] == 0, s)
+world(c12=BILLED, c22=VOID, c21=VOID, c32=VOID, c31=VOID); s = state([R1], files={"checks": {"20261111T1240Z": {"pat7001": ("RELEASE", "HUM01")}}})
+check("ledger: the cap of three counts every line of the round that is not void - one line billed (on a claim that cannot be the proof) and two visits gone: TWO more lines may be entered, not three", s["budget"] == 2 and s["confirmed"] is False and s["wait"] is False and s["off"] == "", s)
+R4 = (RN("20261111T1240Z"), {"created": [A_, B_, C_, qrow("pat7004", "vst4", "charge42", "charge41")]}); world(c12=VOID, c11=VOID, c22=VOID, c21=VOID, c32=VOID, c31=VOID); chg("42", VOID); chg("41", VOID, "pcode65119"); s = state([R4])
+check("ledger: a round never holds more than six lines - four lines, all gone with their visits: TWO more may be entered, not three", s["budget"] == 2 and s["round"]["lines"] == 4 and s["round"]["void"] == 4 and s["off"] == "", s)
+world(c12=VOID, c11="RAISE"); s = state([R1])
+check("ledger: a void line whose visit's own charge cannot be read is not decided (was the line taken off, or is the visit gone?) - it waits", s["off"] == "" and s["void_lines"] == [] and s["wait"] is True and "vst1" in s["pending"], s)
+world(c12=VOID); s = state([(RN("20261111T1240Z"), {"created": [dict(A_, charges=None)]})])
+check("ledger: a void line in a row that records no charge of the visit itself is just void - an odd row never switches the code off or makes the pilot wait", s["off"] == "" and s["wait"] is False and s["void_lines"] == ["charge12"] and s["budget"] == 3, s)
+world(c11=VOID); s = state([R1])
+check("ledger: the visit's own charge is void while its quality line is still live - not decided, and a note asks William to look", s["wait"] is True and any("still live" in n for n in s["notes"]), s["notes"])
+# an OLDER pilot line (not of the current round) that is read later and found taken off by a person: OFF only when it was entered since the last restart and the current amount is not proven yet
+D1C = qrow("pat7004", "vst4", "charge42", "charge41", fee="0.01")
+world(c11=["11/11/2026"]); state([R1]); ONEC = nextreg("20261112T1240Z", created=[D1C])      # A's visit went out without its $0.00 line: one cent, and a one-cent line D is entered
+chg("42", []); chg("41", [], "pcode65119"); chg("22", VOID); s = state([R1, ONEC])               # D is not decided yet; B's $0.00 line is void while B's own charge is still live
+check("ledger: an earlier $0.00 line is read later and found taken off its visit by a person while the one-cent round is NOT proven - the code is OFF until William restarts it, and the sentence names that visit",
+      s["off"] == "the quality line of visit vst2 was taken off the visit (void) while the visit is still there - William looks" and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["wait"] is False
+      and s["void_lines"] == ["charge22"] and s["fee"] == "0.01" and ("pat7002", "2026") not in s["done"], s)
+chg("42", BILLED); chg("41", BILLED, "pcode65119"); s = state([R1, ONEC])                        # the same, but the one-cent line D is billed: one cent is proven in this very run
+check("ledger: ... the same $0.00 line found taken off once one cent IS proven - the line is just void (its patient is due again); the proven code is not switched off by an old line of the other amount",
+      s["off"] == "" and s["confirmed"] is True and s["fee"] == "0.01" and s["budget"] == 10 and s["void_lines"] == ["charge22"] and s["billed_lines"] == ["charge42"] and ("pat7002", "2026") not in s["done"]
+      and any("taken off the visit" in n for n in s["notes"]), s)
+world(c12=VOID); chg("42", []); chg("41", [], "pcode65119")                                      # A's $0.00 line was taken off by a person; nobody had read it before William restarted the code
+s = state([R1, (RN("20261112T1240Z"), {"created": [qrow("pat7004", "vst4", "charge42", "charge41")], "quality_gate": {"reset": True, "fee": "0.00"}})])
+check("ledger: a line from BEFORE William's restart that is read only now and found taken off - it is just void (he has looked, and said to start again): the new round is not switched off, it waits for its own line",
+      s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["void_lines"] == ["charge12"] and s["round"]["lines"] == 1 and ("pat7001", "2026") not in s["done"] and any("taken off the visit" in n for n in s["notes"]), s)
+# what proves the code: a billed line whose visit was never held and whose own batch's insurance check did not hold the chart or name another payer
+world(c12=BILLED)
+for _chk, _ok in ((None, True), (OKCHK, True), (("HOLD", ""), False), (("RELEASE", "HUM01"), False), (("RELEASE", ""), False)):
+    s = state([R1], files={"checks": {"20261111T1240Z": {"pat7001": _chk}} if _chk else {}})
+    check("ledger: a billed line and its own batch's insurance check %s -> %s" % (_chk or "(none of that batch)", "proven" if _ok else "NOT the proof - billed all the same, and the round goes on waiting for the other lines"),
+          s["confirmed"] is _ok and s["billed_lines"] == ["charge12"] and (_ok or (s["wait"] is True and s["pending"] == ["vst2", "vst3"] and any("cannot be the proof" in n for n in s["notes"]))), s)
+s = state([R1], files={"checks": {"20261109T0000Z": {"pat7001": ("HOLD", "")}}})
+check("ledger: ... the check of ANOTHER batch does not matter for the proof", s["confirmed"] is True, s)
+world(c12=BILLED, c22=BILLED, c32=BILLED); s = state([R1], files={"checks": {"20261111T1240Z": {p_: ("RELEASE", "HUM01") for p_ in ("pat7001", "pat7002", "pat7003")}}})
+check("ledger: the round is full, every line is decided and none can be the proof - OFF until William has looked (otherwise the pilot would stand still for ever without a word)", "the pilot round is full (3 lines) and none of them can be the proof" in s["off"] and s["off_until_reset"] == s["off"] and s["confirmed"] is False, s)
+# HELD VISITS (the Medicare reviewer's M1): a visit that carries the line and is held
+INS = lambda why, **kw: {"held": {"1": [("feed_inspector_20261111T1240Z.json", why, kw.get("marked", False))]}}
+world(); s = state([R1], files=INS("Relationship of Subscriber to Patient is invalid"))
+check("ledger (M1): BEFORE proof any Claim Inspector hold on a visit that carries the line switches the code OFF until William restarts it - the sentence names the visit and quotes the hold; nothing is read",
+      "the Claim Inspector holds visit vst1, which carries the quality line" in s["off"] and '"Relationship of Subscriber to Patient is invalid"' in s["off"] and "feed_inspector_20261111T1240Z.json" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and DETAILS == [], (s, DETAILS))
+world(c12=BILLED, c22=BILLED); s = state([R1], files=INS("Pattern 990001: procedure 1123F - line item charge amount is zero"))
+check("ledger (M1): a held visit that a person released and that is billed afterwards is NEVER the proof - the code stays off", s["confirmed"] is False and "the Claim Inspector holds visit vst1" in s["off"] and s["budget"] == 0, s)
+PROVEN = (RN("20261112T1240Z"), {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00", "proof": {"visit": "vst2", "charge": "charge22"}}})
+world(); s = state([R1, PROVEN], files=INS("Relationship of Subscriber to Patient is invalid"))
+check("ledger (M1): AFTER proof a hold whose words do not name the line changes nothing", s["off"] == "" and s["confirmed"] is True and s["budget"] == 10, s)
+for _w in ("Pattern 990001: procedure 1123F - line item charge amount is zero", "edit on pcode65441", "charge 12 cannot be billed", "Pattern 88001: Charge amount is zero for this procedure"):
+    s = state([R1, PROVEN], files=INS(_w))
+    check("ledger (M1): AFTER proof a hold whose words name the line (%s) switches the code OFF until William restarts it" % _w[:40], "the Claim Inspector holds visit vst1" in s["off"] and _w[:30] in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0, s)
+s = state([R1, PROVEN], files=INS("Pattern 24078: something else", marked=True))
+check("ledger (M1): ... and so does a hold the inspector step itself marked as naming the line", "the Claim Inspector holds visit vst1" in s["off"], s)
+s = state([R1, PROVEN], files={"held": {"9": [("feed_inspector_20261111T1240Z.json", "procedure 1123F - zero", False)]}})
+check("ledger: a hold on a visit that does not carry the line is not the quality code's business", s["off"] == "" and s["confirmed"] is True, s)
+world(); s = state([R1, (RN("20261112T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})], files=INS("Pattern 990001: procedure 1123F - line item charge amount is zero"))
+check("ledger (M1): a hold on a visit from BEFORE William's restart no longer switches the code off (he has looked, and said to start again)", s["off"] == "" and s["budget"] == 3 and s["round"]["lines"] == 0, s)
+CHK = lambda *words: {"check_holds": {"1": [("feed_verify_20261111T1240Z.json", list(words))]}}
+for _w in ("insorder not applied on vst1", "vst1 insorder 2: detail read mismatch (1 of 2 charges live)", "vst1 insorder 2: resave FAULT <Fault>x</Fault>", "insorder not applied"):
+    for _regs, _when in (([R1], "before"), ([R1, PROVEN], "after")):
+        world(); s = state(_regs, files=CHK("no active plan: discovery found nothing", _w))
+        check("ledger (M1): %s proof, the insurance check could not set the order of a visit that carries the line (%s) - OFF until William restarts it, the sentence names the visit and quotes the hold" % (_when, _w[:34]),
+              "the insurance check could not set the order of visit vst1, which carries the quality line" in s["off"] and _w[:30] in s["off"] and s["off_until_reset"] == s["off"], s)
+world(c12=BILLED); s = state([R1], files=CHK("insorder not applied on vst9", "no active plan: discovery found nothing"))
+check("ledger (M1): another insurance-check HOLD on a pilot visit (or one that names another visit) does not switch the code off - but that visit can never be the proof, and the round waits for the others",
+      s["off"] == "" and s["confirmed"] is False and s["billed_lines"] == ["charge12"] and s["wait"] is True and s["pending"] == ["vst2", "vst3"], s)
+# an OFF that only William's restart ends is REMEMBERED (SM-4), and the switches (SM-8)
+world(c12=VOID); s = state([R1]); _off = s["off"]; LATER = nextreg("20261112T1240Z")
+world(c12=VOID, c11=VOID, c22=VOID, c21=VOID, c32=VOID, c31=VOID); s = state([R1, LATER])
+check("ledger (SM-4): an OFF that needs William's word is carried forward by the gate - the next run is still OFF with the same sentence although everything now reads void (voiding the lines does not start a new pilot), and reads nothing",
+      s["off"] == _off and s["off_until_reset"] == _off and s["budget"] == 0 and DETAILS == [] and s["reset"] is False, (s, DETAILS))
+s = state([R1, LATER, nextreg("20261113T1240Z"), nextreg("20261114T1240Z")])
+check("ledger (SM-4): ... and the run after, and the one after that", s["off"] == _off and s["budget"] == 0, s)
+s = state([R1, LATER], reset=True)
+check("switch reset (William's word) with the code OFF: a new round at $0.00, the OFF is gone, the restart is recorded - the old lines are no longer this round's, but a line that exists still counts once a year",
+      s["off"] == "" and s["off_until_reset"] == "" and s["reset"] is True and s["fee"] == "0.00" and s["budget"] == 3 and s["round"]["lines"] == 0 and s["round"]["n"] == 2 and any("started again" in n for n in s["notes"]) and s["loud"] == "", s)
+RESET = nextreg("20261113T1240Z", created=[qrow("pat7004", "vst4", "charge42", "charge41")]); chg("42", []); chg("41", [], "pcode65119")
+s = state([R1, LATER, RESET])
+check("ledger: after the restart the next run waits for the NEW round's line only; the lines from before the restart are not this round's", s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["reset"] is False and s["round"]["lines"] == 1, s)
+world(); s0 = state([R1]); s = state([R1], reset=True)
+check("switch reset with NOTHING switched off is ignored, loudly - a switch left in a routine cannot start a new round every night (the round still waits for its three lines)",
+      s["reset"] is False and s["wait"] is True and s["pending"] == s0["pending"] and s["budget"] == 0 and "NOTHING TO RESTART" in s["loud"] and any("NOTHING TO RESTART" in n for n in s["notes"]) and "NOTHING TO RESTART" in ci.quality_log(0, False), s)
+s = state([R1], stop=True)
+check("switch stop (William's word): OFF until he restarts it - written into the gate", "stopped on William's word (QUALITY_CODE=stop)" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and DETAILS == [], s)
+STOPPED = nextreg("20261112T1240Z"); s = state([R1, STOPPED])
+check("switch stop: ... the next run, without any switch, is still off", "stopped on William's word" in s["off"] and s["budget"] == 0, s)
+s = state([R1, STOPPED], reset=True)
+check("switch stop then reset: the code starts again", s["off"] == "" and s["reset"] is True and s["budget"] == 3, s)
+world(c12=VOID); state([R1]); TAKEN = nextreg("20261112T1240Z"); s = state([R1, TAKEN], stop=True)
+check("switch stop when the code is already off keeps the first sentence", "taken off their visits" in s["off"] and any("already off" in n for n in s["notes"]), s)
+# REFUSALS in a row at one amount (SM-11): before proof ONE is enough, after proof TWO; a stored line clears the count; the refused patient gets no second try that year
+REF = lambda pid, fee="0.00", **kw: dict({"pid": pid, "visit": "vst9", "quality_codes": [], "quality_refused": "Fault: no", "quality_refused_fee": fee, "quality_tried": fee, "quality_dos": "11/10/2026", "dos": "11/10/2026", "charges": ["charge91"]}, **kw)
+world(); s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009")]})])
+check("refusals: BEFORE proof one refused visit at $0.00 moves the amount to one cent (a new round); the refused patient gets no second try that year",
+      s["fee"] == "0.01" and s["off"] == "" and s["budget"] == 3 and s["round"]["n"] == 2 and s["refused"] == {("pat7009", "2026")} and ("pat7009", "2026") in s["done"] and ci.quality_gate()["refused_charts"] == [["pat7009", "2026"]], s)
+s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009")]}), (RN("20261112T1240Z"), {"created": [REF("pat7010", "0.01")]})])
+check("refusals: refused at one cent too - OFF until William restarts it, and the sentence says where", s["off"] == "AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261112T1240Z.json) - William looks" and s["off_until_reset"] == s["off"]
+      and s["refused"] == {("pat7009", "2026"), ("pat7010", "2026")}, s)
+s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009", "0.01")]})])
+check("refusals: refusals are counted in a row at ONE amount - a refusal recorded at one cent while the code stands at $0.00 (the registers before it never reached this machine) does not move the amount; that patient still gets no second try",
+      s["fee"] == "0.00" and s["off"] == "" and s["budget"] == 3 and s["round"]["n"] == 1 and ("pat7009", "2026") in s["done"], s)
+s = state([(RN("20261111T1240Z"), {"created": [dict(REF("pat7009"), quality_refused=None, quality_not_stored="0.00")]})])
+check("refusals: a visit stored WITHOUT its line counts the same way - but that patient was not refused and is still due", s["fee"] == "0.01" and s["refused"] == set() and ("pat7009", "2026") not in s["done"], s)
+world(c12=BILLED)
+def after_proof(*later): return state([R1, (RN("20261112T1240Z"), {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00"}})] + [(RN("202611%dT1240Z" % (13 + i)), {"created": list(rows)}) for i, rows in enumerate(later)])
+s = after_proof([REF("pat7009")])
+check("refusals (SM-11): AFTER proof ONE refused visit changes nothing - the proof at $0.00 still counts", s["fee"] == "0.00" and s["confirmed"] is True and s["off"] == "" and s["budget"] == 10 and ("pat7009", "2026") in s["done"], s)
+s = after_proof([REF("pat7009")], [qrow("pat7010", "vst10", "charge102", "charge101")], [REF("pat7011")])
+check("refusals (SM-11): ... a line stored in between clears the count: a second refused visit days later still changes nothing", s["fee"] == "0.00" and s["confirmed"] is True and s["off"] == "", s)
+s = after_proof([REF("pat7009")], [REF("pat7011")])
+check("refusals (SM-11): after proof TWO refused visits in a row with no line stored in between move the amount to one cent - a new round that needs its own proof", s["fee"] == "0.01" and s["confirmed"] is False and s["budget"] == 3 and s["off"] == "", s)
+chg("102", []); chg("101", [], "pcode65119")      # a line entered AFTER proof (its register's gate says proven), then the same two refusals
+s = state([R1, (RN("20261112T1240Z"), {"created": [qrow("pat7010", "vst10", "charge102", "charge101")], "quality_gate": {"confirmed": True, "fee": "0.00", "billed_lines": ["charge12"]}}),
+           (RN("20261113T1240Z"), {"created": [REF("pat7009")]}), (RN("20261114T1240Z"), {"created": [REF("pat7011")]})])
+check("ledger: a line entered AFTER proof is never read back - not even when two refusals later move the amount to one cent; only the pilot's own lines that are not decided yet are still read, and a line already decided is not read again",
+      s["fee"] == "0.01" and s["confirmed"] is False and "102" not in DETAILS and "101" not in DETAILS and "22" in DETAILS and "32" in DETAILS and "12" not in DETAILS and ("pat7010", "2026") in s["done"], (s, DETAILS))
+s = after_proof([REF("pat7009")], [REF("pat7011")], [REF("pat7012", "0.01")])
+check("refusals: ... and one refused visit at one cent, before that round is proven, switches the code OFF", "with a one-cent charge too" in s["off"] and s["off_until_reset"] == s["off"], s)
+FAILED = lambda **kw: dict({"feed_id": "f1", "pid": "pat7009", "empty_visit": "vst70", "info": {"quality_tried": "0.00", "quality_dos": "11/10/2026", "dos": "11/10/2026", "cpts": ["99309"]}, "err": "x"}, **kw)
+world(); s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=[["99309", "11/10/2026"], ["1123F", "11/10/2026"]])]})])
+check("refusals (SM-5): a fault although the chart shows the visit - from the next run the code is OFF until William has looked; the sentence names the chart, the visit and the register; that patient gets no second try",
+      s["off"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat7009, visit vst70, feed_import_20261111T1240Z.json)" and s["off_until_reset"] == s["off"] and s["budget"] == 0 and ("pat7009", "2026") in s["done"], s)
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=["chart not read: TimeoutError"])]})])
+check("refusals (SM-5): ... and the same when the chart could not be read after the fault (the sentence says that)", s["off"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat7009") and s["budget"] == 0, s)
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_sent="0.00")]})])
+check("refusals (NH-11): a visit refused with the line whose send WITHOUT the line then failed is counted like a refusal by the next run (one cent before proof), and that patient gets no second try", s["fee"] == "0.01" and s["off"] == "" and ("pat7009", "2026") in s["done"], s)
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_unknown="0.00")]})])
+check("refusals: a call that carried the line and ended in an error (nobody knows what AdvancedMD kept) - OFF until William has looked", s["off"].startswith("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart pat7009, visit vst70") and s["off_until_reset"] == s["off"], s)
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(), FAILED(stored=[]), {"err": "x"}, 7]})])
+check("refusals: a visit refused with AND without the line is an ordinary fault - it says nothing about the code (a plain pilot the next run)", s["fee"] == "0.00" and s["off"] == "" and s["budget"] == 3 and s["refused"] == set(), s)
+# a restart inside a stamp that already holds rows: what was written before the restart stays in the old round
+world(); chg("42", []); chg("41", [], "pcode65119")
+SAME = (RN("20261111T1240Z"), {"created": [A_, qrow("pat7004", "vst4", "charge42", "charge41")], "failed": [FAILED(stored=[["99309", "11/10/2026"]])], "quality_gate": {"reset": True, "reset_after": [1, 1], "fee": "0.00"}})
+s = state([SAME])
+check("restart under a stamp that already held rows: the fault and the line from BEFORE the restart do not switch the code off again or sit in the new round - the new round holds only the line entered after it",
+      s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["round"]["lines"] == 1 and ("pat7001", "2026") in s["done"], s)
+s = state([(SAME[0], dict(SAME[1], quality_gate={"reset": True, "fee": "0.00"}))])
+check("restart: ... (without the mark of where the restart happened, the whole register counts as after it - the fault would switch the code off again)", "AdvancedMD answered a fault but kept the visit" in s["off"], s)
+# registers in odd shapes, out of order, copied, with words where a yes / no is expected (the state-machine reviewer's list): never an error, never a wrong 'proven'
+world(c11=["11/11/2026"], c22=BILLED)
+ZNB = {"created": [], "quality_gate": {"zero_not_billed": True, "fee": "0.01"}}; CONF0 = {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00"}}
+s = state([(RN("20261112T1240Z"), ZNB), R1])
+check("odd registers: given newest first - they are read oldest first by name", s["fee"] == "0.01" and s["zero_not_billed"] is True and s["round"]["fee"] == "0.01", s)
+s = state([R1, (RN("20261112T1240Z"), CONF0), (RN("20261113T1240Z"), ZNB)])
+check("odd registers: a proof at $0.00 followed by a gate at one cent - one cent stays (never back without a restart), and one cent is not proven", s["fee"] == "0.01" and s["confirmed"] is False, s)
+s = state([R1, (RN("20261112T1240Z"), ZNB), (RN("20261113T1240Z"), CONF0)])
+check("odd registers: ... and a gate 'proven at $0.00' AFTER the gate at one cent does not bring $0.00 back or prove one cent", s["fee"] == "0.01" and s["confirmed"] is False, s)
+s = state([R1, (RN("20261112T1240Z"), ZNB), (RN("20261113T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})])
+check("odd registers: a restart after the switch to one cent - back at $0.00, and the earlier lines still count once a year", s["fee"] == "0.00" and s["zero_not_billed"] is False and ("pat7002", "2026") in s["done"] and s["round"]["lines"] == 0, s)
+world(); s = state([(RN("20261111T1240ZR"), CONF0), R1])
+check("odd registers: a batch and its retry batch (stamp ...R) - the retry's gate is read after the batch's rows", s["confirmed"] is True and DETAILS == [], s)
+s = state([R1, (RN("20261111T1240Z_copy"), {"created": [C_]})])
+check("odd registers: a copy of a register under another name doubles a row - no error, the round only gets fuller", s["wait"] is True and s["round"]["lines"] == 4 and s["off"] == "", s)
+s = state([R1, (RN("20261112T1240Z"), {"created": [], "quality_gate": {"zero_not_billed": "no", "reset": "no", "confirmed": "yes", "fee": "0.00", "off_until_reset": 5, "billed_lines": "charge12", "void_lines": [7, None], "refused_charts": "x", "round": {"n": "9"}, "reset_after": "x"}})])
+check("odd registers: words where a yes / no is expected ('no', 'yes') are not taken for a yes; odd lists are passed over", s["fee"] == "0.00" and s["reset"] is False and s["confirmed"] is False and s["off"] == "" and s["wait"] is True and s["billed_lines"] == [] and s["round"]["n"] == 1, s)
+for odd in ([("a", {"created": "not a list", "quality_gate": 7})], [("b", [1, 2])], [("c", None)], [(5, {"created": [7, None, "x"], "quality_gate": {"confirmed": "yes", "fee": 9, "zero_not_billed": 0, "reset": 0}})], []):
+    try: ci.quality_state(odd, look=True); okq = ci.QUALITY["off"] == "" and ci.QUALITY["fee"] == "0.00" and ci.QUALITY["confirmed"] is False and ci.QUALITY["wait"] is False and json.dumps(ci.quality_gate()) != ""
+    except Exception as e: okq = False
+    check("quality: the state is read without an error from an odd register list (%s)" % (type(odd[0][1]).__name__ if odd else "empty"), okq, dict(ci.QUALITY))
+for odd in ([("d", {"created": [{"quality_codes": ["1123F"], "quality_charge": "chargeX", "charges": "abc", "pid": "pat7001", "quality_dos": None, "dos": None}, {"quality_codes": ["1123F"], "quality_charge": "charge12", "charges": {"a": 1}, "pid": 3, "visit": {"v": 1}, "quality_fee": ["0.00"], "quality_dos": ["x"]}],
+                    "quality_gate": {"reset": "no", "zero_not_billed": "no"}})],
+            [({"n": 1}, {"created": [{"quality_refused": True, "quality_refused_fee": {"x": 1}}], "failed": [{"quality_sent": {"a": 1}, "info": "x"}, {"quality_unknown": [], "pid": 5}, {"stored": [], "info": {"quality_tried": 0}}]})]):
+    try: ci.quality_state(odd, look=True); okq = ci.QUALITY["off"] == "" and ci.QUALITY["fee"] == "0.00" and ci.QUALITY["confirmed"] is False and json.dumps(ci.quality_gate()) != ""
+    except Exception as e: okq = False
+    check("quality: rows with odd values (%s ...) are read without an error, never prove the code and never switch it off; the gate can still be written" % str(odd[0][1])[:36], okq, dict(ci.QUALITY))
+try: ci.quality_state([], look=True); okq = ci.QUALITY["off"] == "" and ci.QUALITY["fee"] == "0.00" and ci.QUALITY["budget"] == 3 and ci.QUALITY["wait"] is False
+except Exception: okq = False
+check("quality: no register at all is a fresh pilot (three lines may be entered)", okq, dict(ci.QUALITY))
+BILLS.clear(); PROC.clear(); DETAILS.clear(); CHART.pop("7001", None); CHART.pop("7002", None)
+# 4c.5 through main(): the pilot, its outcome, the refusal - every state read from the registers
 def Q_(fid, k, lines, dob="1940" + "0215"): return {"pid": fid, "name": NAME(k), "dob": dob, "file": "f", "FT1": [{"cpt": c, "dos": d, "dx": "I10", "units": "1"} for c, d in lines]}
 for i in range(1, 10): ci.MATCH[NAME("q%d" % i).upper().strip() + "|" + "19400215"] = {"resolved": "pat40%d" % i}
 def charts0(): CHART.update({"40%d" % i: [("99309", "10/03/2026")] for i in range(1, 10)})
@@ -504,30 +885,50 @@ charts0()
 def visits(day, ks): return [Q_("n2", "q%d" % k, [("99309", day)]) for k in ks]
 QB = visits("20261102", (1, 2, 3, 4)) + [Q_("n1", "q5", [("99487", "20261031")])]
 DEMOG["plans"] = MEDICARE + OTHER
-REGDIR = os.path.join(tmp, "registers")
 def clear_regs():
     for f in os.listdir(REGDIR):
         if f.startswith("feed_import_"): os.remove(os.path.join(REGDIR, f))
 def keep(reg, stamp): json.dump(reg, open(os.path.join(REGDIR, "feed_import_%s.json" % stamp), "w"))
 def qrows_of(reg): return [r for r in reg["created"] if r.get("quality_codes")]
-def num(cid): return re.sub(r"\D", "", cid)
-def live(parsed, env=None, **echo):
-    ECHO.update(echo); DETAILS.clear(); old = os.environ.get("QUALITY_CODE")
+def live(parsed, env=None, argv=("--all",), keep_own=False, **echo):
+    ECHO.update(echo); DETAILS.clear(); REFUSED.clear(); old = os.environ.get("QUALITY_CODE")
     if env is None: os.environ.pop("QUALITY_CODE", None)
     else: os.environ["QUALITY_CODE"] = env
-    try: return run_live(parsed)
+    try: return run_live(parsed, argv=argv, keep_own=keep_own)
     finally:
         if old is None: os.environ.pop("QUALITY_CODE", None)
         else: os.environ["QUALITY_CODE"] = old
-clear_regs(); ci.PARSED[:] = QB; out, dry = run_dry()
-nq = [k for k, v in dry.items() if v[0].get("quality_codes")]
+def qline(out): return next((l for l in out.splitlines() if l.startswith("QUALITY 1123F:")), "")
+def lined(dry): return sorted(k for k, v in dry.items() if v[0].get("quality_codes"))
+EARLIER = "feed_verify_20261101T0000Z.json"                              # an earlier batch's insurance check released every one of these charts with Medicare leading
+def earlier(): wreg(EARLIER, {"pat40%d" % i: vrow() for i in range(1, 10)})
+earlier(); clear_regs(); ci.PARSED[:] = QB; out, dry = run_dry()
+nq = lined(dry)
 check("main --dry: pilot - three of four eligible visits would carry the code, the care-management message none, and the log line says so", len(nq) == 3 and "pat405" not in nq
       and "QUALITY 1123F: would be on x3 visit(s), line amount $0.00, pilot: at most 3 visit(s) until one is seen billed" in out, (nq, out[-400:]))
+rmreg(EARLIER); out, dry = run_dry()
+check("main --dry: without an earlier insurance check nobody gets a line (a first-ever visit gets none; the next batch's visit does)", lined(dry) == [] and "would be on x0 visit(s)" in out, out[-300:])
+earlier(); wreg("feed_verify_20261105T0000Z.json", {"pat401": vrow(["vst1"], lead="HUM01")}); out, dry = run_dry()
+check("main --dry (NH-3): a chart whose NEWEST earlier insurance check found a Medicare Advantage plan gets no line although the chart still shows Medicare first; the other three do", lined(dry) == ["pat402", "pat403", "pat404"], lined(dry))
+wreg("feed_verify_SELFTEST.json", {"pat402": vrow(lead="HUM01")}); wreg("feed_verify_ZZ.json", {"pat403": vrow(lead="HUM01")}); out, dry = run_dry()
+check("main --dry: ... the insurance check of this very batch (a second start) and of a later batch are not 'earlier' - they change nothing", lined(dry) == ["pat402", "pat403", "pat404"], lined(dry))
+rmreg("feed_verify_20261105T0000Z.json", "feed_verify_SELFTEST.json", "feed_verify_ZZ.json")
+wreg("quality_exceptions.json", {"pat402": "declined"}); out, dry = run_dry()
+check("main --dry (M5): a chart on William's exception list never gets the automatic line; the others do", lined(dry) == ["pat401", "pat403", "pat404"], lined(dry))
+open(os.path.join(REGDIR, "quality_exceptions.json"), "w").write("{oops"); out, dry = run_dry()
+check("main --dry (M5): an exception list that is there but cannot be read - NO line for anybody in that run, and the log line names the file", lined(dry) == [] and "OFF - this run: registers/quality_exceptions.json" in qline(out) and "cannot be read" in qline(out) and "DONE" in out, qline(out))
+out, regx_ = live(QB)
+check("... the visits themselves all go in (a reporting code never holds a charge), and the register says why no line was added", len(regx_["created"]) == 5 and regx_["failed"] == [] and qrows_of(regx_) == [] and "quality_exceptions.json" in regx_["quality_gate"]["off"]
+      and regx_["quality_gate"]["off_until_reset"] == "", regx_["quality_gate"])
+rmreg("quality_exceptions.json"); open(os.path.join(REGDIR, "feed_import_20261101T0000Z.json"), "w").write("{cut off"); out, dry = run_dry()
+check("main --dry: an import register that is there but cannot be read (the lines it may hold are not known) - no line in that run, and the log line names it", lined(dry) == [] and "feed_import_20261101T0000Z.json (not readable)" in qline(out), qline(out))
+clear_regs(); charts0()
 out, reg = live(QB); qrows = qrows_of(reg)
 check("live run 1: three visits carry the line; each row keeps the line's charge number last in its charge list and its codes unchanged", len(qrows) == 3 and all(r["cpts"] == ["99309"] and len(r["charges"]) == 2
       and r["quality_charge"] == r["charges"][-1] and r["fees"] == ["1.00"] for r in qrows) and len(reg["created"]) == 5 and "QUALITY 1123F: on x3 visit(s), line amount $0.00, pilot: at most 3 visit(s) until one is seen billed" in out, (reg["created"], out[-300:]))
-check("live run 1: the register records where the quality code stands (pilot, $0.00, nothing known yet)", reg["quality_gate"] == {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False,
-      "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "void_lines": [], "reset": False, "pilot_cap": 3, "notes": []}, reg.get("quality_gate"))
+check("live run 1: the register records where the quality code stands (round 1 at $0.00, three lines entered and not decided, nothing known yet)", reg["quality_gate"] == {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False,
+      "off": "", "off_until_reset": "", "wait": False, "pending": [], "pending_since": "", "billed_lines": [], "void_lines": [], "left_off_lines": [], "dead_zero_lines": [], "reset": False, "reset_after": None,
+      "round": {"n": 1, "fee": "0.00", "since": "feed_import_SELFTEST.json", "lines": 3, "void": 0, "open": 3}, "budget": 3, "pilot_cap": 3, "n620": False, "history_shows_line": None, "refused_charts": [], "not_renewed": {}, "notes": []}, reg.get("quality_gate"))
 out, regp = live(visits("20261103", (4,)), proccode=True); rp_ = qrows_of(regp)
 check("the line's charge number is taken from AdvancedMD's answer by its procedure when the answer names it; the fee list stays one amount per message code", len(rp_) == 1 and rp_[0]["quality_charge"] == rp_[0]["charges"][-1] and rp_[0]["fees"] == ["1.00"] and "charge lines': 1" in out, (regp["created"], out[-200:]))
 RUN1 = reg; keep(RUN1, "20261111T0100Z"); PIL = [num(r["quality_charge"]) for r in qrows]; FIRST = [num(r["charges"][0]) for r in qrows]
@@ -536,57 +937,93 @@ out, reg2 = live(visits("20261109", (4, 1)))
 check("run 2, nothing billed yet: NO new line (the pilot waits for the outcome of its first three), every earlier line was looked up", qrows_of(reg2) == [] and len(reg2["created"]) == 2 and reg2["quality_gate"]["wait"] is True
       and reg2["quality_gate"]["pending"] == [r["visit"] for r in qrows] and reg2["quality_gate"]["pending_since"] == "feed_import_20261111T0100Z.json" and all(c in DETAILS for c in PIL + FIRST)
       and "pilot: waiting for the outcome of 3 earlier line(s) - none added" in out, (reg2["quality_gate"], out[-300:]))
-keep(reg2, "20261112T0100Z"); ci.PARSED[:] = visits("20261110", (4,)); out, dry = run_dry()
-check("a dry run reads nothing in AdvancedMD for the pilot and shows 'waiting'", not any(v[0].get("quality_codes") for v in dry.values()) and "pilot: waiting for the outcome of 3 earlier line(s)" in out and ci.QUALITY["wait"] is True, out[-300:])
-# run 3: one of the first lines is listed as billed -> proven, no cap; once per patient per year also from the registers
+keep(reg2, "20261112T0100Z"); ci.PARSED[:] = visits("20261110", (4,)); _n0 = len(DETAILS); out, dry = run_dry()
+check("a dry run reads nothing in AdvancedMD for the pilot and shows 'waiting'", not any(v[0].get("quality_codes") for v in dry.values()) and "pilot: waiting for the outcome of 3 earlier line(s)" in out and ci.QUALITY["wait"] is True
+      and not (set(DETAILS[_n0:]) & set(PIL + FIRST)), (out[-300:], DETAILS[_n0:]))
+# run 3: one of the first lines is listed as billed -> proven; once per patient per year also from the registers
 BILLS[PIL[0]] = ["11/12/2026"]; charts0()
 out, reg3 = live(visits("20261116", (1, 2, 3, 4, 6, 7, 8, 9)))
 got = {r["pid"] for r in qrows_of(reg3)}
-check("run 3, an earlier line is billed: proof recorded, no cap - every patient not yet coded gets the line, nobody twice (the chart history here lists no 1123F at all: the registers say who has it)",
+check("run 3, an earlier line is billed: proof recorded - every patient not yet coded gets the line (at most 10 a run until Medicare's own answer is on file), nobody twice (the chart history here lists no 1123F at all: the registers say who has it)",
       got == {"pat404", "pat406", "pat407", "pat408", "pat409"} and reg3["quality_gate"]["confirmed"] is True and reg3["quality_gate"]["proof"]["charge"] == qrows[0]["quality_charge"] and reg3["quality_gate"]["proof"]["billed"] == "11/12/2026"
-      and reg3["quality_gate"]["pilot_cap"] is None and reg3["quality_gate"]["wait"] is False and "no cap (a quality line was seen billed)" in out, (sorted(got), reg3["quality_gate"]))
+      and reg3["quality_gate"]["pilot_cap"] is None and reg3["quality_gate"]["budget"] == 10 and reg3["quality_gate"]["wait"] is False
+      and "at most 10 a run (a quality line was seen billed; Medicare has not yet shown a 1123F line on a remittance)" in qline(out) and "pilot" not in qline(out), (sorted(got), reg3["quality_gate"], qline(out)))
+check("run 3 (SM-7): on the run that finds the proof the chart's history is read once - here it does not list the line, and the register says so", reg3["quality_gate"]["history_shows_line"] is False and reg3["quality_gate"]["billed_lines"] == [qrows[0]["quality_charge"]], reg3["quality_gate"])
 keep(reg3, "20261116T0100Z"); BILLS.clear()
 out, reg4 = live(visits("20261123", (5,)))
-check("later runs read the proof from the register: no line is looked up again, the next patient gets the code", reg4["quality_gate"]["confirmed"] is True and len(qrows_of(reg4)) == 1 and not (set(DETAILS) & set(PIL + FIRST)), (reg4["quality_gate"], DETAILS))
-# AdvancedMD bills the visit but leaves the $0.00 line off the claim -> one cent, a new pilot, and the first patients get the code again
+check("later runs read the proof from the register: no line is looked up again, the next patient gets the code", reg4["quality_gate"]["confirmed"] is True and len(qrows_of(reg4)) == 1 and not (set(DETAILS) & set(PIL + FIRST))
+      and reg4["quality_gate"]["history_shows_line"] is False and reg4["quality_gate"]["proof"]["charge"] == qrows[0]["quality_charge"], (reg4["quality_gate"], DETAILS))
+# after proof: at most QUALITY_DAILY lines a run until registers/quality_n620_seen.json exists (Medicare's own answer seen on a remittance), then no cap
+clear_regs(); charts0(); keep(dict(RUN1, quality_gate=dict(RUN1["quality_gate"], confirmed=True)), "20261111T0100Z"); _daily = ci.QUALITY_DAILY; ci.QUALITY_DAILY = 2
+out, regd1 = live(visits("20261117", (4, 5, 6, 7, 8, 9)))
+check("after proof, Medicare's answer not yet on file: a run adds no more lines than the daily cap (here set to 2); every visit goes in", len(qrows_of(regd1)) == 2 and len(regd1["created"]) == 6 and regd1["quality_gate"]["budget"] == 2 and regd1["quality_gate"]["n620"] is False
+      and "at most 2 a run" in qline(out), (len(qrows_of(regd1)), qline(out)))
+open(os.path.join(REGDIR, "quality_n620_seen.json"), "w").write("{}"); charts0()
+out, regd2 = live(visits("20261118", (4, 5, 6, 7, 8, 9)))
+check("after proof, with Medicare's answer on file (the import only looks whether the file exists): no cap", len(qrows_of(regd2)) == 6 and regd2["quality_gate"]["budget"] is None and regd2["quality_gate"]["n620"] is True and "no cap (a quality line was seen billed)" in qline(out), (len(qrows_of(regd2)), qline(out)))
+ci.QUALITY_DAILY = _daily; rmreg("quality_n620_seen.json")
+# a second start under ONE stamp (the state-machine reviewer's SM-2): the register this stamp is writing belongs to the state
+clear_regs(); charts0(); S7 = [Q_("n2", "q%d" % k, [("99309", "202611%02d" % (2 + k))]) for k in range(1, 8)]      # seven patients, each on its own day
+out, rs1 = live(S7, argv=("--all", "--limit", "3"), keep_own=True); out2, rs2 = live(S7)
+check("second start under ONE stamp (--limit 3, then the rest): the lines the first start entered count - three lines in all, the second start waits for them and adds none; every visit is entered once",
+      len(qrows_of(rs1)) == 3 and len(rs1["created"]) == 3 and len(qrows_of(rs2)) == 3 and len(rs2["created"]) == 7 and "pilot: waiting for the outcome of 3 earlier line(s) - none added" in qline(out2)
+      and rs2["quality_gate"]["round"]["lines"] == 3 and rs2["quality_gate"]["pending_since"] == "feed_import_SELFTEST.json", (len(qrows_of(rs2)), qline(out2)))
+clear_regs(); charts0()
+for _k in range(4): out, rs3 = live(S7, argv=("--all", "--limit", "1"), keep_own=(_k < 3))
+check("four starts of one visit each under ONE stamp: the cap is per ROUND, not per start - one line, then every start waits for it", len(qrows_of(rs3)) == 1 and len(rs3["created"]) == 4 and rs3["quality_gate"]["wait"] is True, (len(qrows_of(rs3)), rs3["quality_gate"]))
+# AdvancedMD bills a visit but leaves its $0.00 line off the claim, and no $0.00 line of the round is billed -> one cent, a new round
 clear_regs(); keep(RUN1, "20261111T0100Z"); BILLS.clear(); BILLS[FIRST[0]] = ["11/11/2026"]
-CHART.update({r["pid"][3:]: [("99309", "10/03/2026"), ("99309", "11/02/2026"), ("1123F", "11/02/2026")] for r in qrows})      # the chart history lists the dead $0.00 lines
+CHART.update({r["pid"][3:]: [("99309", "10/03/2026"), ("99309", "11/02/2026"), ("1123F", "11/02/2026")] for r in qrows})      # the chart history lists the $0.00 lines
 out, regz = live(visits("20261109", (1, 2, 3, 4))); qz = qrows_of(regz); gz = regz["quality_gate"]
-check("the visit was billed WITHOUT its $0.00 quality line -> new lines carry one cent, a new pilot of three, the register says why and lists the dead $0.00 lines", gz["fee"] == "0.01" and gz["zero_not_billed"] is True
-      and gz["confirmed"] is False and gz["wait"] is False and len(qz) == 3 and all(r["quality_fee"] == "0.01" for r in qz) and sorted(d[0] for d in gz["dead_zero_lines"]) == sorted(r["pid"] for r in qrows)
-      and all(d[2] in [r["quality_charge"] for r in qrows] for d in gz["dead_zero_lines"]) and any("without its $0.00 quality line" in n for n in gz["notes"]), gz)
-check("... the patients whose $0.00 line never went out get the code AGAIN at one cent (their dead line on the chart does not count)", {r["pid"] for r in qz} <= {r["pid"] for r in qrows} | {"pat404"} and len({r["pid"] for r in qz} & {r["pid"] for r in qrows}) >= 2, [r["pid"] for r in qz])
-check("... and the one-cent line is what was sent", sum(1 for b_ in POSTS if re.search(r'proccode="pcode65441" cobcode="" pos="\d+" tos="01" units="1" netfee="0" fee="0.01" allowed="0.01"', b_)) == 3, [b_[-300:] for b_ in POSTS if "pcode65441" in b_])
+check("a visit was billed WITHOUT its $0.00 quality line and no $0.00 line is billed -> new lines carry one cent, a new round; the register says why and lists ONLY the line that was read as left off (SM-1)", gz["fee"] == "0.01" and gz["zero_not_billed"] is True
+      and gz["confirmed"] is False and gz["wait"] is False and gz["dead_zero_lines"] == [[qrows[0]["pid"], qrows[0]["visit"], qrows[0]["quality_charge"]]] and gz["left_off_lines"] == [qrows[0]["quality_charge"]]
+      and any("without its $0.00 quality line" in n for n in gz["notes"]) and gz["round"]["n"] == 2 and gz["round"]["fee"] == "0.01", gz)
+check("... the patient whose $0.00 line was read as left off gets the code AGAIN at one cent (the dead line on the chart does not count); the two patients whose $0.00 lines are not decided yet are not coded a second time", {r["pid"] for r in qz} == {qrows[0]["pid"], "pat404"}
+      and all(r["quality_fee"] == "0.01" for r in qz), [r["pid"] for r in qz])
+check("... and the one-cent line is what was sent", sum(1 for b_ in POSTS if re.search(r'proccode="pcode65441" cobcode="" pos="\d+" tos="01" units="1" netfee="0" fee="0.01" allowed="0.01"', b_)) == 2, [b_[-300:] for b_ in POSTS if "pcode65441" in b_])
 keep(regz, "20261112T0100Z"); PZ = [num(r["quality_charge"]) for r in qz]; FZ = [num(r["charges"][0]) for r in qz]
 out, regz2 = live(visits("20261116", (1, 2, 3, 4)))
-check("one cent, nothing billed yet: the new pilot waits too (only the one-cent lines are looked up)", qrows_of(regz2) == [] and regz2["quality_gate"]["wait"] is True and regz2["quality_gate"]["fee"] == "0.01"
-      and len(regz2["quality_gate"]["pending"]) == 3 and regz2["quality_gate"]["pending_since"] == "feed_import_20261112T0100Z.json" and not (set(DETAILS) & set(PIL)), (regz2["quality_gate"], DETAILS))
-keep(regz2, "20261116T0100Z"); BILLS[PZ[1]] = ["11/17/2026"]
+check("one cent, nothing billed yet: the new round waits too. The line already read as left off is not read again; the two other $0.00 lines are read until they are decided (every $0.00 line is read in the end)", qrows_of(regz2) == [] and regz2["quality_gate"]["wait"] is True
+      and regz2["quality_gate"]["fee"] == "0.01" and len(regz2["quality_gate"]["pending"]) == 2 and regz2["quality_gate"]["pending_since"] == "feed_import_20261112T0100Z.json" and PIL[0] not in DETAILS and PIL[1] in DETAILS and PIL[2] in DETAILS
+      and all(c in DETAILS for c in PZ), (regz2["quality_gate"], DETAILS))
+keep(regz2, "20261116T0100Z"); BILLS[PZ[1]] = ["11/17/2026"]; BILLS[FIRST[1]] = ["11/17/2026"]; BILLS[PIL[2]] = ["11/17/2026"]      # a one-cent line billed; of the two $0.00 lines one visit went out without its line, the other with it
 out, regz3 = live(visits("20261123", (1, 2, 3, 4)))
-left = ({r["pid"] for r in qrows} | {"pat404"}) - {r["pid"] for r in qz}
-check("a one-cent line is billed: proven at one cent - the one patient still without a reported code gets it, the others are not coded again", regz3["quality_gate"]["confirmed"] is True and regz3["quality_gate"]["fee"] == "0.01"
-      and {r["pid"] for r in qrows_of(regz3)} == left and len(left) == 1, (left, [r["pid"] for r in qrows_of(regz3)], regz3["quality_gate"]))
+check("a one-cent line is billed: proven at one cent. The $0.00 line read as left off frees its patient, who gets a one-cent line; the $0.00 line read as billed counts for its patient; nobody is coded twice", regz3["quality_gate"]["confirmed"] is True
+      and regz3["quality_gate"]["fee"] == "0.01" and {r["pid"] for r in qrows_of(regz3)} == {qrows[1]["pid"]} and sorted(regz3["quality_gate"]["left_off_lines"]) == sorted([qrows[0]["quality_charge"], qrows[1]["quality_charge"]])
+      and qrows[2]["quality_charge"] in regz3["quality_gate"]["billed_lines"] and len(regz3["quality_gate"]["dead_zero_lines"]) == 2, ([r["pid"] for r in qrows_of(regz3)], regz3["quality_gate"]))
 clear_regs(); keep(RUN1, "20261111T0100Z"); keep(regz, "20261112T0100Z"); BILLS.clear(); BILLS[FZ[0]] = ["11/13/2026"]
 out, regz4 = live(visits("20261116", (4,)))
-check("a visit is billed without its ONE-CENT line too: the code is switched off and the register says a person has to look", qrows_of(regz4) == [] and "without its one-cent quality line too" in regz4["quality_gate"]["off"] and len(regz4["created"]) == 1
-      and "OFF - AdvancedMD billed visit" in out, (regz4["quality_gate"], out[-300:]))
+check("a visit is billed without its ONE-CENT line too: the code is switched off until William restarts it and the register says why", qrows_of(regz4) == [] and "without its one-cent quality line too" in regz4["quality_gate"]["off"] and len(regz4["created"]) == 1
+      and regz4["quality_gate"]["off_until_reset"] == regz4["quality_gate"]["off"] and "OFF - AdvancedMD billed visit" in out and "off until William restarts it" in qline(out) and "pilot" not in qline(out), (regz4["quality_gate"], out[-300:]))
+keep(regz4, "20261116T0100Z"); BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + PZ]
+out, regz5 = live(visits("20261117", (5, 6, 7)))
+check("... (SM-4) the OFF is remembered: after somebody has voided the lines the next run does NOT start a new pilot by itself - no line, the same sentence, nothing read",
+      qrows_of(regz5) == [] and len(regz5["created"]) == 3 and regz5["quality_gate"]["off_until_reset"] == regz4["quality_gate"]["off_until_reset"] and not (set(DETAILS) & set(PIL + PZ)), (regz5["quality_gate"], DETAILS))
+# somebody takes the pilot's lines off / the whole visits are voided
 BILLS.clear(); BILLS[PIL[0]] = {"void": "1"}; BILLS[PIL[1]] = {"void": "1"}; BILLS[PIL[2]] = {"void": "1"}; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
 out, regv = live(visits("20261109", (4,)))
-check("somebody took the pilot's lines off their visits (void) and none was billed: NO new pilot - the code is off until a person says to try again", qrows_of(regv) == [] and len(regv["created"]) == 1 and regv["quality_gate"]["wait"] is False
+check("somebody took the pilot's lines off their visits (void) while the visits are still there: NO new pilot - the code is off until William restarts it", qrows_of(regv) == [] and len(regv["created"]) == 1 and regv["quality_gate"]["wait"] is False
       and "3 earlier quality line(s) were taken off their visits" in regv["quality_gate"]["off"] and sum("taken off the visit" in n for n in regv["quality_gate"]["notes"]) == 3
-      and sorted(regv["quality_gate"]["void_lines"]) == sorted(r["quality_charge"] for r in qrows), regv["quality_gate"])
+      and sorted(regv["quality_gate"]["void_lines"]) == sorted(r["quality_charge"] for r in qrows) and regv["quality_gate"]["off_until_reset"] == regv["quality_gate"]["off"], regv["quality_gate"])
 keep(regv, "20261112T0100Z"); out, regv2 = live(visits("20261110", (1, 4)), env="reset")
-check("... after QUALITY_CODE=reset the pilot starts again, and a patient whose line was taken off is due again", {r["pid"] for r in qrows_of(regv2)} == {"pat401", "pat404"} and regv2["quality_gate"]["off"] == "" and regv2["quality_gate"]["reset"] is True, (regv2["quality_gate"], [r["pid"] for r in qrows_of(regv2)]))
+check("... after QUALITY_CODE=reset the pilot starts again, and a patient whose line was taken off is due again", {r["pid"] for r in qrows_of(regv2)} == {"pat401", "pat404"} and regv2["quality_gate"]["off"] == "" and regv2["quality_gate"]["reset"] is True
+      and regv2["quality_gate"]["reset_after"] == [0, 0] and regv2["quality_gate"]["round"]["n"] == 2, (regv2["quality_gate"], [r["pid"] for r in qrows_of(regv2)]))
 BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + FIRST]; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
 out, regw = live(visits("20261109", (1, 2, 3, 4)))
-check("the pilot's whole visits were voided: no outcome either way - the pilot carries on with three visits, and those patients are due again", len(qrows_of(regw)) == 3 and regw["quality_gate"]["off"] == "" and regw["quality_gate"]["wait"] is False
-      and regw["quality_gate"]["confirmed"] is False and sum("no longer on the chart (void)" in n for n in regw["quality_gate"]["notes"]) == 3 and {r["pid"] for r in qrows_of(regw)} <= {"pat401", "pat402", "pat403", "pat404"}, regw["quality_gate"])
+check("the pilot's whole visits were voided: no outcome either way - their places are free, the round carries on with three more visits, and those patients are due again", len(qrows_of(regw)) == 3 and regw["quality_gate"]["off"] == "" and regw["quality_gate"]["wait"] is False
+      and regw["quality_gate"]["confirmed"] is False and sum("no longer on the chart (void)" in n for n in regw["quality_gate"]["notes"]) == 3 and {r["pid"] for r in qrows_of(regw)} <= {"pat401", "pat402", "pat403", "pat404"}
+      and regw["quality_gate"]["round"] == {"n": 1, "fee": "0.00", "since": "feed_import_20261111T0100Z.json", "lines": 6, "void": 3, "open": 3} and regw["quality_gate"]["budget"] == 3, regw["quality_gate"])
+keep(regw, "20261112T0100Z"); [BILLS.__setitem__(num(c), {"void": "1"}) for r in qrows_of(regw) for c in r["charges"]]; charts0()
+out, regw2 = live(visits("20261113", (5, 6, 7)))
+check("... and when the three replacement visits are voided as well, the round has had its six lines: the code is OFF ('the pilot's lines keep being voided') until William restarts it", qrows_of(regw2) == [] and len(regw2["created"]) == 3
+      and "the pilot's lines keep being voided" in regw2["quality_gate"]["off_until_reset"] and "OFF - the pilot's lines keep being voided" in qline(out), regw2["quality_gate"])
 swap = json.loads(json.dumps(RUN1)); [r.update(charges=[r["quality_charge"], r["charges"][0]]) for r in swap["created"] if r.get("quality_charge")]
 BILLS.clear(); BILLS[FIRST[0]] = ["11/11/2026"]; clear_regs(); keep(swap, "20261111T0100Z"); charts0()
 out, regx = live(visits("20261109", (4,)))
 check("the visit's own charge is found whatever the order of the recorded charge numbers (a visit billed without its $0.00 line is still seen)", regx["quality_gate"]["zero_not_billed"] is True and regx["quality_gate"]["fee"] == "0.01", regx["quality_gate"])
 BILLS.clear()
 many = {"created": [dict(qrows[0], pid="pat5%02d" % i, visit="vst9%02d" % i, quality_charge="charge99%02d1" % i, charges=["charge99%02d0" % i, "charge99%02d1" % i]) for i in range(8)], "skipped": [], "failed": []}
+PROC.update({"99%02d1" % i: QP for i in range(8)})
 clear_regs(); keep(many, "20261111T0100Z"); out, regm = live(visits("20261109", (4,)))
 check("at most six earlier lines are looked up in one run (two reads each); the rest keep the pilot waiting", len([d for d in DETAILS if d.startswith("99")]) == 12 and regm["quality_gate"]["wait"] is True and len(regm["quality_gate"]["pending"]) == 8, (DETAILS, regm["quality_gate"]))
 # what AdvancedMD stored is checked for a visit that carries the quality line too: its own lines as before, the quality line apart
@@ -600,11 +1037,12 @@ rk2 = regk2["created"][0]
 check("... and when AdvancedMD stores 31 where 32 was sent on such a visit, it is said loudly", rk2.get("quality_codes") == ["1123F"] and rk2["pos_stored"] == ["31"] and rk2["quality_pos_stored"] == "31" and "POS NOT KEPT" in out and "ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE" in out, (rk2, out[-400:]))
 charts0(); CHART["408"] = [("99309", "10/03/2026")]; out, regf = live([Q_("n2", "q8", [("99309", "20261207"), ("99497", "20261207")])], fees=True, qfirst=True)
 rf = regf["created"][0]
-check("the answer lists the quality charge FIRST and names no procedure: the charge is found by its amount - the right charge number, the visit's own fees in order, the visit's own lines compared",
-      rf.get("quality_codes") == ["1123F"] and rf["quality_charge"] == rf["charges"][0] and len(rf["charges"]) == 3 and rf["fees"] == ["141.00", "133.00"] and rf["pos_stored"] == rf["pos_lines"] and rf["quality_pos_stored"] == rf["quality_pos"], rf)
+check("the answer lists the quality charge FIRST and names no procedure: the charge is found by its amount. The register row lists the visit's own charge numbers first, in the answer's order, THEN the quality charge - so its first charge is the visit's own and the fees pair with the charges in order",
+      rf.get("quality_codes") == ["1123F"] and rf["quality_charge"] == rf["charges"][-1] and len(rf["charges"]) == 3 and rf["charges"][0][-1] == "0" and rf["charges"][1][-1] == "1" and rf["quality_charge"][-1] == "2" and rf["fees"] == ["141.00", "133.00"]
+      and rf["pos_stored"] == rf["pos_lines"] and rf["quality_pos_stored"] == rf["quality_pos"] and PROC[num(rf["quality_charge"])] == QP and PROC[num(rf["charges"][0])] == "pcode65119", rf)
 charts0(); out, regn = live(visits("20261208", (9,)), proccode=True, qfirst=True)
 rn = regn["created"][0]
-check("the answer names procedures: the quality charge is found by its procedure wherever it stands", rn.get("quality_codes") == ["1123F"] and rn["quality_charge"] == rn["charges"][0] and rn["fees"] == ["1.00"], rn)
+check("the answer names procedures: the quality charge is found by its procedure wherever it stands - and is recorded last", rn.get("quality_codes") == ["1123F"] and rn["quality_charge"] == rn["charges"][-1] and len(rn["charges"]) == 2 and PROC[num(rn["quality_charge"])] == QP and rn["fees"] == ["1.00"], rn)
 check("quality_in_answer: by procedure, else the one charge with the line's amount, else the last of an unnamed longer list, else nothing",
       ci.quality_in_answer([("charge1", "pcode65119", "141.00", "32"), ("charge2", "pcode65441", "0.00", "32")], 1, "0.00") == 1
       and ci.quality_in_answer([("charge2", "", "0.00", "32"), ("charge1", "", "141.00", "32")], 1, "0.00") == 0 and ci.quality_in_answer([("charge1", "", "1.00", ""), ("charge2", "", "1.00", "")], 1, "0.00") == 1
@@ -625,20 +1063,52 @@ check("refused: after a fresh read of the chart the visit is entered again WITHO
       and len(ref[0]["charges"]) == 1 and ref[0]["quality_refused_fee"] == "0.00" and ref[0]["quality_tried"] == "0.00", (reg5["created"], reg5["failed"]))
 check("refused: no further line is tried in that run, it is said and counted", sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "QUALITY CODE REFUSED" in out and "QUALITY CODE NOT ACCEPTED by AdvancedMD" in out
       and "QUALITY 1123F: on x0 visit(s)" in out and "OFF - this run: AdvancedMD refused a visit that carried the code" in out, out[-600:])
+_plain = [b_ for b_ in POSTS if "updvisitwithnewcharges" in b_ and "pcode65441" not in b_ and ref[0]["visit"] in b_]; _with = [b_ for b_ in POSTS if "pcode65441" in b_]
+check("refused: what goes in the second time is the first request with nothing but the quality line taken out", len(_plain) == 1 and len(_with) == 1 and re.sub(QCHG, "", _with[0]) == _plain[0], (_plain, _with))
+check("refused: the register names the refused patient - no second try for that patient this year", reg5["quality_gate"]["refused_charts"] == [[ref[0]["pid"], "2026"]] and reg5["quality_gate"]["off_until_reset"] == "", reg5["quality_gate"])
 keep(reg5, "20261113T0100Z"); ci.PARSED[:] = visits("20261117", (2,)); out, dry = run_dry()
 check("refused at $0.00: the next run tries one cent", ci.QUALITY["fee"] == "0.01" and ci.QUALITY["off"] == "" and any(v[0].get("quality_fee") == "0.01" for v in dry.values()), (ci.QUALITY, dry))
+ci.PARSED[:] = [Q_("n2", "q%d" % int(ref[0]["pid"][-1]), [("99309", "20261117")])]; out, dry = run_dry()
+check("refused: ... but the refused patient's own next visit this year carries no line (one try per patient and year)", lined(dry) == [] and ("pat40%s" % ref[0]["pid"][-1], "2026") in ci.QUALITY["done"] and ci.QUALITY["budget"] == 3, (dry, ci.QUALITY["done"]))
 reg6 = json.loads(json.dumps(reg5)); [r.update(quality_refused_fee="0.01") for r in reg6["created"] if r.get("quality_refused")]
-keep(reg6, "20261114T0100Z"); out, dry = run_dry()
+keep(reg6, "20261114T0100Z"); ci.PARSED[:] = visits("20261117", (2,)); out, dry = run_dry()
 check("refused at one cent too: the code stays off until William says to start again, and every run says so", ci.QUALITY["off"] != "" and not any(v[0].get("quality_codes") for v in dry.values())
-      and "OFF - AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261114T0100Z.json)" in out, out[-400:])
+      and "OFF - AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261114T0100Z.json)" in out and ci.QUALITY["off_until_reset"] == ci.QUALITY["off"], out[-400:])
 out, regr = live(visits("20261117", (2,)), env="reset")
 check("QUALITY_CODE=reset (William's word): the pilot starts again at $0.00 and the register records the restart", regr["quality_gate"]["reset"] is True and regr["quality_gate"]["off"] == "" and regr["quality_gate"]["fee"] == "0.00"
       and len(qrows_of(regr)) == 1 and any("started again" in n for n in regr["quality_gate"]["notes"]), regr["quality_gate"])
 keep(regr, "20261117T0100Z"); out, regr2 = live(visits("20261118", (3,)))
 check("after a restart the earlier refusals no longer count: the pilot waits for its new first line", regr2["quality_gate"]["off"] == "" and regr2["quality_gate"]["fee"] == "0.00" and regr2["quality_gate"]["wait"] is True
       and regr2["quality_gate"]["reset"] is False and regr2["quality_gate"]["pending"] == [qrows_of(regr)[0]["visit"]], regr2["quality_gate"])
+out, regr3 = live(visits("20261118", (3,)), env="reset")
+check("QUALITY_CODE=reset a second time, with nothing switched off (the switch left in a routine): ignored, loudly - the round goes on waiting, no new line", qrows_of(regr3) == [] and regr3["quality_gate"]["reset"] is False and regr3["quality_gate"]["wait"] is True
+      and "NOTHING TO RESTART" in qline(out) and any("NOTHING TO RESTART" in n for n in regr3["quality_gate"]["notes"]), (qline(out), regr3["quality_gate"]))
 out, rego = live(visits("20261119", (6,)), env="off")
-check("QUALITY_CODE=off: no line in that run, and the register says why", qrows_of(rego) == [] and "switched off (QUALITY_CODE=off)" in rego["quality_gate"]["off"] and len(rego["created"]) == 1, rego["quality_gate"])
+check("QUALITY_CODE=off: no line in that run, and the register says why", qrows_of(rego) == [] and "switched off (QUALITY_CODE=off)" in rego["quality_gate"]["off"] and len(rego["created"]) == 1 and rego["quality_gate"]["off_until_reset"] == "", rego["quality_gate"])
+# the switches (the reviewers' values): case and spaces do not matter; a value the import does not know adds NO line and is named in the log
+clear_regs(); charts0(); W2 = visits("20261110", (1, 2))
+for _val, _lines in (("OFF", 0), (" Off ", 0), ("0", 0), ("false", 0), ("no", 0), ("disable", 0), ("of", 0), ("restart", 0), ("", 2), ("  ", 2)):
+    out, rsw = live(W2, env=_val); _named = ("QUALITY_CODE=%r is not a value the import knows" % _val.strip().lower()) in qline(out)
+    check("switch QUALITY_CODE=%r: %s" % (_val, "the visits carry the line as usual" if _lines else "no line - " + ("switched off" if _val.strip().lower() == "off" else "the log line says the value was not understood")),
+          len(qrows_of(rsw)) == _lines and len(rsw["created"]) == 2 and (_lines == 2 or _val.strip().lower() == "off" or _named) and (rsw["quality_gate"]["off_until_reset"] == ""), (qline(out), rsw["quality_gate"]["off"]))
+out, rst = live(W2, env="Stop")
+check("switch QUALITY_CODE=stop: no line, and the code is OFF until William restarts it", qrows_of(rst) == [] and len(rst["created"]) == 2 and "stopped on William's word (QUALITY_CODE=stop)" in rst["quality_gate"]["off_until_reset"]
+      and "off until William restarts it" in qline(out), (qline(out), rst["quality_gate"]))
+keep(rst, "20261111T0100Z"); out, rst2 = live(visits("20261111", (1, 2)))
+check("switch stop: ... the next run, with no switch at all, still adds no line", qrows_of(rst2) == [] and "stopped on William's word" in rst2["quality_gate"]["off_until_reset"] and len(rst2["created"]) == 2, rst2["quality_gate"])
+keep(rst2, "20261112T0100Z"); out, rst3 = live(visits("20261112", (1, 2)), env="RESET")
+check("switch reset after stop: the pilot starts", len(qrows_of(rst3)) == 2 and rst3["quality_gate"]["reset"] is True and rst3["quality_gate"]["off_until_reset"] == "", rst3["quality_gate"])
+clear_regs(); charts0(); keep(rst, "20261111T0100Z")
+out, ra1 = live(visits("20261112", (1,)), env="reset", keep_own=True); out, ra2 = live(visits("20261113", (2,)))
+check("a restart, then a later start under the SAME stamp without the switch: the restart is not lost when that start writes the gate again, and the later start waits for the restart's line", ra1["quality_gate"]["reset"] is True and ra1["quality_gate"]["reset_after"] == [0, 0]
+      and len(qrows_of(ra1)) == 1 and ra2["quality_gate"]["reset"] is True and ra2["quality_gate"]["reset_after"] == [0, 0] and len(qrows_of(ra2)) == 1 and len(ra2["created"]) == 2 and ra2["quality_gate"]["wait"] is True
+      and ra2["quality_gate"]["off_until_reset"] == "", (ra1["quality_gate"], ra2["quality_gate"]))
+keep(ra2, "20261113T0100Z"); out, ra3 = live(visits("20261114", (3,)))
+check("... and the run after that still stands on the restart: not off, waiting for the new round's line", ra3["quality_gate"]["off_until_reset"] == "" and ra3["quality_gate"]["wait"] is True and ra3["quality_gate"]["reset"] is False and qrows_of(ra3) == [], ra3["quality_gate"])
+clear_regs(); charts0(); keep(rst, "20261111T0100Z")
+out, rb1 = live(visits("20261112", (1,)), keep_own=True); out, rb2 = live(visits("20261113", (2,)), env="reset")
+check("a restart under a stamp that already holds a row (entered while the code was off) records that the row was there before it", qrows_of(rb1) == [] and rb2["quality_gate"]["reset"] is True and rb2["quality_gate"]["reset_after"] == [1, 0]
+      and [r["pid"] for r in qrows_of(rb2)] == ["pat402"], rb2["quality_gate"])
 # refused, and the chart then shows part of the visit: never sent a second time
 clear_regs(); charts0()
 out, regq = live(visits("20261102", (1, 2)), refuse_quality=True, partial=("401", "99309", "11/02/2026"))
@@ -646,15 +1116,56 @@ f = regq["failed"]
 check("refused and the chart now shows a line of that visit: NOT sent again (it would double the charge) - the visit is named for a person, the next visit goes in without the code",
       len(f) == 1 and f[0]["pid"] == "pat401" and f[0]["stored"] == [["99309", "11/02/2026"]] and f[0]["empty_visit"].startswith("vst") and "not sent again" in f[0]["err"] and f[0]["info"]["quality_tried"] == "0.00"
       and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 2 and len(regq["created"]) == 1 and qrows_of(regq) == [] and "could not be shown free of it" in regq["quality_gate"]["off"], (f, regq["created"]))
-_cl = ci.chart_lines_now; ci.chart_lines_now = lambda pid: (_ for _ in ()).throw(RuntimeError("history down")); charts0()
-out, regq2 = live(visits("20261102", (1,)), refuse_quality=True); ci.chart_lines_now = _cl
-check("refused and the chart cannot be read: not sent again either", len(regq2["failed"]) == 1 and regq2["created"] == [] and "chart not read" in str(regq2["failed"][0]["stored"]), regq2["failed"])
+check("... (SM-5) and the code is OFF from then on until William has looked at that visit: the register says so with the chart and the visit", regq["quality_gate"]["off_until_reset"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_SELFTEST.json)" % f[0]["empty_visit"]
+      and regq["quality_gate"]["refused_charts"] == [["pat401", "2026"]], regq["quality_gate"])
+keep(regq, "20261103T0100Z"); charts0(); out, regq3 = live(visits("20261104", (3, 4, 5)))
+check("... (SM-5) the next run adds no line and registers no further failed visit: one such visit, then the code waits for William", qrows_of(regq3) == [] and regq3["failed"] == [] and len(regq3["created"]) == 3 and not any("pcode65441" in b_ for b_ in POSTS)
+      and regq3["quality_gate"]["off_until_reset"] == regq["quality_gate"]["off_until_reset"] and "OFF - AdvancedMD answered a fault but kept the visit" in qline(out), (regq3["quality_gate"], qline(out)))
+keep({k_: v_ for k_, v_ in regq.items() if k_ != "quality_gate"}, "20261103T0100Z"); charts0(); out, regq5 = live(visits("20261104", (3, 4, 5)))
+check("... (SM-5) also when that run was cut off before it wrote its gate: the failed row alone switches the code off, and the sentence names the register it stands in", qrows_of(regq5) == [] and len(regq5["created"]) == 3
+      and regq5["quality_gate"]["off_until_reset"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_20261103T0100Z.json)" % f[0]["empty_visit"], regq5["quality_gate"])
+clear_regs(); charts0(); _cl = ci.chart_lines_now; _tries = []
+def _never(pid): _tries.append(pid); raise RuntimeError("history down")
+ci.chart_lines_now = _never; out, regq2 = live(visits("20261102", (1,)), refuse_quality=True); ci.chart_lines_now = _cl
+check("refused and the chart cannot be read in three tries: not sent again either", len(regq2["failed"]) == 1 and regq2["created"] == [] and "chart not read" in str(regq2["failed"][0]["stored"]) and len(_tries) == 3
+      and regq2["quality_gate"]["off_until_reset"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat401"), (regq2["failed"], _tries, regq2["quality_gate"]))
+charts0(); _tries = []
+def _once(pid):
+    _tries.append(pid)
+    if len(_tries) == 1: raise TimeoutError("read timed out")
+    return _cl(pid)
+ci.chart_lines_now = _once; out, regq4 = live(visits("20261102", (1,)), refuse_quality=True); ci.chart_lines_now = _cl
+check("refused and the chart read fails ONCE (NH-5): the second try reads it - the visit is entered without the line, nothing is left for entry by hand", regq4["failed"] == [] and len(regq4["created"]) == 1 and regq4["created"][0].get("quality_refused")
+      and len(regq4["created"][0]["charges"]) == 1 and len(_tries) == 2 and regq4["quality_gate"]["off_until_reset"] == "", (regq4["failed"], regq4["created"], _tries))
 # refused with AND without the line: the code is not blamed
-out, rega = live(QB, refuse_all=True)
+charts0(); out, rega = live(QB, refuse_all=True)
 check("refused with and without the line: an ordinary fault - no refusal of the code is recorded, and after two such visits no further line is tried in that run", len(rega["failed"]) == 5 and rega["created"] == []
-      and not any((x["info"] or {}).get("quality_refused") for x in rega["failed"]) and sum(1 for b_ in POSTS if "pcode65441" in b_) == 2 and "two visits were refused with and without the code" in rega["quality_gate"]["off"], (rega["quality_gate"], len(POSTS)))
+      and not any((x["info"] or {}).get("quality_refused") for x in rega["failed"]) and sum(1 for b_ in POSTS if "pcode65441" in b_) == 2 and "two visits were refused with and without the code" in rega["quality_gate"]["off"]
+      and rega["quality_gate"]["off_until_reset"] == "" and rega["quality_gate"]["refused_charts"] == [], (rega["quality_gate"], len(POSTS)))
 keep(rega, "20261113T0100Z"); ci.PARSED[:] = QB; out, dry = run_dry()
 check("... and the next run is a plain pilot again (a failed visit says nothing about the code)", ci.QUALITY["fee"] == "0.00" and ci.QUALITY["off"] == "" and ci.QUALITY["wait"] is False and sum(1 for v in dry.values() if v[0].get("quality_codes")) == 3, ci.QUALITY)
+# the send WITHOUT the line fails after a refusal (a time-out), and the call that carries the line itself fails
+clear_regs(); charts0()
+out, regt = live(visits("20261102", (1, 2, 3)), refuse_quality=True, plain_raises=True)
+ft = regt["failed"]
+check("refused, and the send without the line then raises (NH-11): the code is off for the REST of the run (one visit lost, not every eligible one), and the failed row records the amount that was refused",
+      len(ft) == 1 and ft[0].get("quality_sent") == "0.00" and ft[0]["info"]["quality_tried"] == "0.00" and ft[0]["info"]["quality_codes"] == [] and len(regt["created"]) == 2 and qrows_of(regt) == []
+      and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "could not be sent without it either (TimeoutError)" in regt["quality_gate"]["off"], (ft, regt["quality_gate"]))
+keep(regt, "20261103T0100Z"); ci.PARSED[:] = visits("20261104", (1, 4)); out, dry = run_dry()
+check("... the next run counts it like a refusal: one cent, and that patient gets no second try this year", ci.QUALITY["fee"] == "0.01" and ci.QUALITY["off"] == "" and lined(dry) == ["pat404"], (ci.QUALITY["fee"], lined(dry)))
+clear_regs(); charts0()
+out, regu = live(visits("20261102", (1, 2, 3)), line_raises=True)
+fu = regu["failed"]
+check("the call that CARRIES the line ends in an error (a time-out): nothing is sent again, no further line in that run, the other visits go in, and the failed row says that nobody knows what AdvancedMD kept",
+      len(fu) == 1 and fu[0].get("quality_unknown") == "0.00" and fu[0]["info"]["quality_codes"] == [] and fu[0]["empty_visit"].startswith("vst") and len(regu["created"]) == 2 and qrows_of(regu) == []
+      and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "ended in an error (TimeoutError)" in regu["quality_gate"]["off"] and "nobody knows whether AdvancedMD kept that visit - William looks (chart pat401" in regu["quality_gate"]["off_until_reset"], (fu, regu["quality_gate"]))
+keep(regu, "20261103T0100Z"); ci.PARSED[:] = visits("20261104", (4,)); out, dry = run_dry()
+check("... and the code is OFF until William has looked at that visit", lined(dry) == [] and "nobody knows whether AdvancedMD kept that visit" in ci.QUALITY["off_until_reset"] and ci.QUALITY["budget"] == 0, ci.QUALITY["off_until_reset"])
+keep({k_: v_ for k_, v_ in regu.items() if k_ != "quality_gate"}, "20261103T0100Z"); out, dry = run_dry()
+check("... also from the failed row alone (that run cut off before it wrote its gate)", lined(dry) == [] and "feed_import_20261103T0100Z.json" in ci.QUALITY["off_until_reset"] and "chart pat401" in ci.QUALITY["off_until_reset"], ci.QUALITY["off_until_reset"])
+clear_regs(); charts0(); out, regu2 = live([P_("n1", "one", [("99487", "20261031")])] + visits("20261102", (1,)), all_raise=True)
+check("... a visit WITHOUT the line whose call raises is handled exactly as before: a plain error row, nothing about the code, and the code is not switched off by it", len(regu2["failed"]) == 2 and sorted(regu2["failed"][0]) == ["err", "feed_id", "lines", "pid"]
+      and regu2["failed"][1].get("quality_unknown") == "0.00" and regu2["created"] == [], regu2["failed"])
 # the visit is stored, the line is not
 clear_regs(); charts0()
 out, regd = live(QB, drop_quality=True); ns = [r for r in regd["created"] if r.get("quality_not_stored")]
@@ -669,15 +1180,18 @@ check("a visit that could not be created frees its place: the other three eligib
 _qs = ci.quality_state; ci.quality_state = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
 out, regs_ = live(QB); ci.quality_state = _qs
 check("the state of the code cannot be read: every visit is entered, none with the line, and the register says so", len(regs_["created"]) == 5 and qrows_of(regs_) == [] and "could not be read (RuntimeError)" in regs_["quality_gate"]["off"], regs_["quality_gate"])
+_qg = ci.quality_gate; ci.quality_gate = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
+out, regg = live(QB); ci.quality_gate = _qg
+check("the gate cannot be written (NH-13): the register is NOT lost - every visit and line of the run is in it, with a gate that says so, and the run reaches its end", len(regg["created"]) == 5 and len(qrows_of(regg)) == 3
+      and "could not be written (RuntimeError)" in regg["quality_gate"]["off"] and "DONE" in out and qline(out) != "", (regg["quality_gate"], out[-200:]))
+_ql_ = ci.quality_log; ci.quality_log = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
+out, regl = live(QB); ci.quality_log = _ql_
+check("the log line cannot be built (NH-13): the run still writes its register and reaches DONE", len(regl["created"]) == 5 and isinstance(regl["quality_gate"].get("round"), dict) and "QUALITY 1123F: this line could not be built" in out and "DONE" in out, out[-300:])
 clear_regs(); json.dump({"created": [{"quality_codes": 5, "quality_charge": {"a": 1}, "charges": None}, {"quality_codes": ["1123F"], "quality_charge": "charge5", "pid": ["x"], "dos": 5, "quality_gate": 3},
                                        {"quality_refused": 0, "quality_not_stored": None, "quality_codes": None}], "skipped": [], "failed": [], "quality_gate": "odd"}, open(os.path.join(REGDIR, "feed_import_20261115T0100Z.json"), "w")); charts0()
 BILLS["5"] = {"void": "1"}; out, reg7 = live(visits("20261109", (3,)))
 check("odd values in an earlier register cannot stop the import or switch the code off", len(reg7["created"]) == 1 and reg7["quality_gate"]["off"] == "" and len(qrows_of(reg7)) == 1, reg7.get("quality_gate"))
-for odd in ([("a", {"created": "not a list", "quality_gate": 7})], [("b", [1, 2])], [("c", None)], [(5, {"created": [7, None, "x"], "quality_gate": {"confirmed": "yes", "fee": 9, "zero_not_billed": 0, "reset": 0}})], []):
-    try: ci.quality_state(odd, look=True); okq = ci.QUALITY["off"] == "" and ci.QUALITY["fee"] == "0.00" and ci.QUALITY["confirmed"] is False and ci.QUALITY["wait"] is False
-    except Exception as e: okq = False
-    check("quality: the state is read without an error from an odd register list (%s)" % (type(odd[0][1]).__name__ if odd else "empty"), okq, dict(ci.QUALITY))
-clear_regs(); DEMOG["plans"] = ""; BILLS.clear(); DETAILS.clear(); charts0(); qreset(); ci.PARSED[:] = BASE
+clear_regs(); rmreg(EARLIER); DEMOG["plans"] = ""; BILLS.clear(); PROC.clear(); DETAILS.clear(); charts0(); qreset(); ci.PARSED[:] = BASE
 
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
@@ -921,6 +1435,17 @@ check("... a visit on the day of death or before it is left alone", not e_ and V
 o_, e_, res = vd_run([dict(_vrow, charges=["charge10"])], {"1": {"dod": _DAY1}})
 check("... a visit recorded with one charge has that charge voided (as before)", not e_ and VD["voided"] == [("1", "charge10")], (e_, res, VD))
 check("the stand-ins are gone again after such a run (the import helper's own stand-ins are back)", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and sys.modules.get("txh") is txh and "void_tx" not in sys.modules and "deceased_guard" not in sys.modules)
+
+# ---- 7. the nights: the reviewers' own multi-night inputs, and three behaviours of a stand-in AdvancedMD over ten nights -------------------------
+# (tools/selftest/test_quality_nights.py is the whole simulation; run alone it goes through every behaviour, longer)
+_np = os.path.join(ROOT, "tools", "selftest", "test_quality_nights.py"); _nsrc = open(_np).read()
+check("the night simulation starts no program, shuts the network itself and loads the import helper only with its own stand-in modules",
+      not re.search("|".join(("sub" + "process", "os" + r"\.system\(", "os" + r"\.popen\(", "run" + r"py\.")), _nsrc) and "_socket.socket.connect = _no_network" in _nsrc and "the stand-in modules are not in place - the helper is not loaded" in _nsrc)
+_nspec = importlib.util.spec_from_file_location("test_quality_nights", _np); nights = importlib.util.module_from_spec(_nspec); _nspec.loader.exec_module(nights)
+_nroot = tempfile.mkdtemp(prefix="posrule_nights_"); _env0 = dict(os.environ)
+nights.cases(_nroot, check); nights.short(_nroot, check)
+check("after the nights this self-test stands where it stood: its own stand-in modules, its own folder, its own environment", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and sys.modules.get("txh") is txh
+      and os.path.realpath(os.getcwd()) == os.path.realpath(tmp) and dict(os.environ) == _env0 and sys.argv[0].endswith("test_pos_rule.py"), (os.getcwd(), sorted(set(os.environ) ^ set(_env0))))
 
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)
