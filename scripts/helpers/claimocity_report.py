@@ -284,6 +284,7 @@ L("- Charts: %d verified -> RELEASE %d (%d visits), HOLD %d (%d visits)." % (len
 # 11/10/2026 (round 7): what the insurance check could not confirm on a visit's insurance-order LIST (a claim is built from the list; a visit entered
 # while its chart had no plan reads insorder "1" over an EMPTY list and is never billed). Each is ONE line that starts "  - TOP OF THE REPORT - ".
 _HELD = "HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it"
+_NOCLAIM = "HELD in this report only - AdvancedMD makes no claim for this visit until it is saved again with its plan in place"      # the ending of a chart whose visits have an empty insurance order
 try:
     _ov = lambda key: [(p_, x_) for p_, v_ in ver.items() if isinstance(v_, dict) for x_ in (v_.get(key) if isinstance(v_.get(key), list) else [])]
     _who2 = lambda rows: ", ".join("%s %s" % (p_, x_) for p_, x_ in rows[:40]) + (" +%d more" % (len(rows) - 40) if len(rows) > 40 else "")
@@ -301,7 +302,8 @@ L("- Lead payer on released charts: " + ", ".join("%s %d" % (k, v) for k, v in l
 L("- Visit insurance orders changed (saves sent and accepted by AdvancedMD): %d; plans added from discovery / feed IN1: %d" % (orders_changed, len(plans_added)))
 for pid, f in plans_added: L("  - %s: %s" % (pid, f))
 L("- Holds (William) - %s (a visit whose insurance order is empty bills nothing until it is saved again):" % _HELD)
-for pid, h in holds.items(): L("  - %s: %s%s" % (pid, "; ".join(str(x).replace(" - " + _HELD, "") for x in h)[:400], (" - " + _HELD) if any(_HELD in str(x) for x in h) else ""))
+for pid, h in holds.items(): L("  - %s: %s%s%s" % (pid, "; ".join(str(x).replace(" - " + _HELD, "").replace(" - " + _NOCLAIM, "") for x in h)[:400], (" - " + _HELD) if any(_HELD in str(x) for x in h) else "",
+                                (" - " + _NOCLAIM) if any(_NOCLAIM in str(x) for x in h) else ""))      # each ending said once; a chart with no plan (empty insurance orders) gets the NO CLAIM words
 L("")
 L("## Claim Inspector pass")
 L("- fixed %d visits, advisories bypassed on %d, laterality logged %d, held %d (Pattern 24078 CCI: 99309 same day as the 10/22 CCM)." % (len(insp.get("fixed", [])), len(insp.get("bypassed", [])), len(insp.get("laterality", [])), len(insp.get("held", []))))

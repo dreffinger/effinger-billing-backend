@@ -22,9 +22,11 @@ def run(vid, cid, seq):
 def reroute(vid, cid, order, seq=None, dry=False):
     """THE re-route (William 10/6/2026 - one frequency-1 rebill per visit): set the visit insorder by a no-rebill full-visit
     echo (resave.set_insorder), then ONE frequency-1 reset + ONE chargerebill to `seq` (default = the first plan of the new
-    order). Never move_to_ins.move(cid, seq) + run(): move rebills on its own, before the reset - two rebills for one visit."""
+    order). Never move_to_ins.move(cid, seq) + run(): move rebills on its own, before the reset - two rebills for one visit.
+    11/10/2026: this helper re-routes an ALREADY-BILLED visit after a wrong-payer denial, so it passes allow_billed=True (set_insorder's billed
+    guard is for every other caller - the specification's correction of 11/10/2026); the full echo, the admission date and the read-back still apply."""
     seq = int(seq or str(order).split(",")[0])
-    ok, msg = resave.set_insorder(cid, order, dry=dry)
+    ok, msg = resave.set_insorder(cid, order, dry=dry, allow_billed=True)
     if not ok: return "NOT rebilled - visit order step failed: " + msg
     if dry: return "%s | DRY freq1 + rebill seq %s" % (msg, seq)
     time.sleep(0.5)
