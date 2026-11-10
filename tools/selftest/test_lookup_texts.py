@@ -21,7 +21,10 @@
 #       the aging_refresh.py timeout, the exact-date sentence, the new hand-off reason and report lines, the STEP 6 ledger copy, rule (f)
 #       of the Button and the price table's limits are stated as the code has them;
 #     - (11/10/2026 re-check fixes) the guard paragraph of the skill, the CS_OFF proposal and the fourth hand-off reason in STEP 2 and the
-#       sweep, rule (f) after a refusal of our provider number, and the price table's coordination-of-benefits sentence say what the code does.
+#       sweep, rule (f) after a refusal of our provider number, and the price table's coordination-of-benefits sentence say what the code does;
+#     - (11/10/2026 second re-check) every text that describes the CS_OFF proposal (STEP 2, the sweep's header and its line, the rules'
+#       header and propose_off) names its look-back - no usable answer from any claim of the payer from 7 days before the first of the four
+#       tries until now - and none promises that a payer that answers its other claims is never named.
 # Run: python3 tools/selftest/test_lookup_texts.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, re, json, glob, types, datetime
 import importlib.abc, importlib.machinery
@@ -304,8 +307,23 @@ def t_review_texts():
           lambda: CS.STOP_AFTER_ANY == 4 and "four unusable answers in a row whether or not the payer answered another claim those nights" in STEP2 and "PROPOSE FOR CS_OFF" in STEP2 and "PROPOSE FOR CS_OFF" in lits
           and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in STEP2 and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in lits and "four answers in a row with no usable content" in SRC["cs_rules.py"])
     check("review texts: STEP 2, the sweep's header and its PROPOSE FOR CS_OFF line name a payer only on evidence about the payer itself - none says a payer 'answered nothing on four runs in a row' (re-check NEW-2)",
-          lambda: not any("answered nothing" in t for t in (STEP2, lits, _header(SRC["claim_status_sweep.py"]))) and "a payer that answers its other claims is never named" in STEP2
-          and "the payer answered none of its claims, and it has answered none since" in lits and "cs_rules.propose_off(" in SRC["claim_status_sweep.py"] and "def propose_off(" in SRC["cs_rules.py"])
+          lambda: not any("answered nothing" in t for t in (STEP2, lits, _header(SRC["claim_status_sweep.py"]))) and "only on evidence about the payer itself" in _header(SRC["claim_status_sweep.py"])
+          and "cs_rules.propose_off(" in SRC["claim_status_sweep.py"] and "def propose_off(" in SRC["cs_rules.py"])
+    # the second re-check (R2-1): the proposal looks back to 7 days before the first of the four tries; every text that describes it says so
+    def _flat(t): return " ".join(str(t).split())
+    po = _flat(SRC["cs_rules.py"].split("def propose_off(", 1)[1].split('"""')[1]) if SRC["cs_rules.py"].count("def propose_off(") == 1 else ""
+    hs, hc = _header(SRC["claim_status_sweep.py"]), _header(SRC["cs_rules.py"])
+    promise = re.compile(r"answers its other claims (is|while)[^.]{0,90}never (named|proposed)|never proposed because one claim")
+    said = {"STEP 2": "none of that payer's claims has had a usable answer from 7 days before the first of those four until now" in STEP2
+                      and "on the Sunday before the first of the four or on any night since is never named" in STEP2,
+            "the sweep's line": "no claim of this payer has had a usable answer from %d days before the first of those four until now (in weekly runs: from the Sunday before)" in lits
+                                and "cs_rules.PROPOSE_BEFORE_DAYS))" in SRC["claim_status_sweep.py"],
+            "the sweep's header": "no claim of that payer has had a usable answer from 7 days before the first of those four answers until now" in hs,
+            "the rules' header": "none of its claims has had a usable answer from 7 days before the first of those four until now" in hc,
+            "propose_off": "from PROPOSE_BEFORE_DAYS (7) days before the first of those four until now" in po,
+            "no false promise": not any(promise.search(t) for t in (STEP2, lits, hs, hc, po))}
+    check("review texts: every text that describes the CS_OFF proposal says what propose_off checks - no usable answer from any claim of the payer from 7 days before the first of the four tries until now (the Sunday before, in weekly runs) - and none promises that 'a payer that answers its other claims is never named' (second re-check R2-1)",
+          lambda: all(said.values()) and CS.PROPOSE_BEFORE_DAYS == CS.WAITS["no usable answer"] == 7, said)
     STEP6 = STEP(CAS, "STEP 6 - ", "\nREPORT:")
     check("review texts: STEP 6 copies the Sunday ledger back where the mirror is done, and a person's clear is made in the repository's ledger (ops N8)",
           lambda: "(on Sundays registers/claim_status_ledger.json over practices/ehpa/registers/claim_status_ledger.json" in STEP6

@@ -19,8 +19,9 @@
 #     sent again or a person clears its row (python3 cs_rules.py --clear <visit id>). An empty answer counts toward the two only when
 #     another claim of the same payer answered that night; four answers in a row with no usable content end the asking either way
 #     (11/10/2026 review fix: a claim that always comes back empty, or a payer that answers nobody, is no longer bought every week).
-#     A payer is proposed for CS_OFF only on evidence about the payer itself (propose_off: on the four nights one of its claims was last
-#     asked it answered no claim at all, and has answered none since - 11/10/2026 re-check fix).
+#     A payer is proposed for CS_OFF only on evidence about the payer itself (propose_off: one of its claims was handed off after four
+#     answers in a row with no usable content, and none of its claims has had a usable answer from 7 days before the first of those four
+#     until now - the whole span of the four tries, the Sunday before them in weekly runs, and since; 11/10/2026 re-check fixes).
 #     A claim with a final answer on file and still nothing posted for its payer is listed again in every report (no call is made).
 #   - READING THE ANSWER: paid / finalized at $0 / denied / pending / not found (may be resent, as before) / no electronic answer (the
 #     payer cannot give the status electronically: stop and hand off) / not matched (date of service, member id, too many matches - and,
@@ -54,6 +55,7 @@ NEED_DAYS = {"primary": 45, "secondary": 60}   # days since the claim was last s
 FILING_LIMIT_DAYS = {"default": 365, "secondary": 365}
 STOP_AFTER = {"no usable answer": 2, "pending": 3}   # answers in a row that end the asking (spec 9.4)
 STOP_AFTER_ANY = 4                     # unusable answers in a row that end the asking even when the payer answered no other claim (review fix)
+PROPOSE_BEFORE_DAYS = WAITS["no usable answer"]   # the CS_OFF proposal looks back this many days before the first of those four (second re-check fix)
 PAYER_RUN_STOP = 5                     # unusable answers in a row from one payer end that payer for the rest of the run (spec 9.5)
 CAPS = {"run checks": 150, "run dollars": 25.00, "month checks": 400, "month dollars": 100.00}   # spec 9.6, priced with stedi_prices.py
 HISTORY = 8                            # answers kept per ledger row (day, label)
@@ -342,32 +344,41 @@ def finish_run(rows, answers, today):
         if not L.get("stopped"):
             if int(L.get("unusable_row") or 0) >= STOP_AFTER[UNUSABLE]: stop(L, today, "two answers in a row with no usable content"); out.append(k)
             elif int(L.get("nousable_row") or 0) >= STOP_AFTER_ANY:
-                quiet = not int(L.get("unusable_row") or 0)      # (re-check fix) none of the four counted: the payer answered no other claim on those nights
-                stop(L, today, "four answers in a row with no usable content" + (" (its payer answered no other claim on those nights)" if quiet else ""))
-                if quiet: L["payer_quiet"] = True                # evidence about the PAYER - propose_off reads it
+                quiet = not int(L.get("unusable_row") or 0)      # (re-check fix) none of the four counted: no other claim of the payer gave a usable answer those nights
+                stop(L, today, "four answers in a row with no usable content" + (" (no other claim of its payer gave a usable answer on those nights)" if quiet else ""))
+                if quiet: L["payer_quiet"] = True; L["quiet_from"] = _first_of_four(L)   # evidence about the PAYER, and the night of the first of the four - propose_off reads both
                 out.append(k)
             elif int(L.get("pending_row") or 0) >= STOP_AFTER[PENDING]: stop(L, today, "three 'pending' answers in a row"); out.append(k)
         elif L.get("stopped") == today.isoformat() and k not in out: out.append(k)
     return out
+def _first_of_four(L):
+    """The day (YYYY-MM-DD) of the first of the STOP_AFTER_ANY answers in a row that handed a claim off: the row's history keeps its last
+    HISTORY answers, and a handed-off claim is not asked again. '' when the row has no history."""
+    h = [x for x in (L.get("history") or []) if isinstance(x, (list, tuple)) and x]
+    return str(h[-STOP_AFTER_ANY:][0][0])[:10] if h else ""
 def propose_off(ledger_rows, handed_off):
-    """11/10/2026 (re-check fix): the payers to propose for CS_OFF -> {payer code: its claims on the hand-off list}. Only on evidence about
-    the PAYER, never about one claim: one of its claims was handed off after four answers in a row with no usable content on nights when
-    the payer answered no other claim either (payer_quiet, set by finish_run), and no claim of that payer has had a usable answer since
-    that day (every answer the ledger keeps counts, tonight's too). A payer that answers its other claims while one claim always comes
-    back empty is never proposed."""
-    quiet, n, seen = {}, collections.Counter(), set()
+    """11/10/2026 (re-check fixes): the payers to propose for CS_OFF -> {payer code: its claims on the hand-off list}. Only on evidence about
+    the PAYER, never about one claim: one of its claims was handed off after four answers in a row with no usable content, none of which
+    counted (payer_quiet, set by finish_run), AND no claim of that payer - that claim included - has a usable answer in the ledger from
+    PROPOSE_BEFORE_DAYS (7) days before the first of those four until now: the whole span of the four tries, the week before the first of
+    them (the Sunday before, in weekly runs) and every night since, tonight's answers too. So a payer that answered any of its claims -
+    even 'pending', or paid - the Sunday before the first try, on any night of the span, or since, is not proposed (second re-check). A
+    usable answer is any answer but 'no usable answer'."""
+    start, n, seen = {}, collections.Counter(), set()
     for d in handed_off or []:
         L = d.get("ledger") or {}; r = d.get("row") or {}; k = d.get("key") or key(r)
         if k in seen: continue
         seen.add(k); payer = str(r.get("payer") or L.get("payer") or "").strip(); n[payer] += 1
-        if L.get("payer_quiet"): quiet[payer] = max(quiet.get(payer, ""), str(L.get("stopped") or ""))
+        first = _date(L.get("quiet_from")) or _date(_first_of_four(L))          # the night of the first of the four (else read from the history)
+        if L.get("payer_quiet") and first:
+            start[payer] = max(start.get(payer, ""), (first - datetime.timedelta(days=PROPOSE_BEFORE_DAYS)).isoformat())
     last_good = collections.defaultdict(str)              # payer -> the last day any of its claims got a usable answer
     for L in (ledger_rows or {}).values():
         if not isinstance(L, dict): continue
         for h in L.get("history") or []:
             if isinstance(h, (list, tuple)) and len(h) > 1 and h[1] != UNUSABLE:
                 p = str(L.get("payer") or "").strip(); last_good[p] = max(last_good[p], str(h[0]))
-    return {p: n[p] for p, day in quiet.items() if day > last_good[p]}
+    return {p: n[p] for p, day in start.items() if last_good[p] < day}
 def clear(L, today):
     """A person re-opens a row (a handed-off claim): its answers are forgotten, its history is kept; it is asked again by need."""
     L = dict(L or {})

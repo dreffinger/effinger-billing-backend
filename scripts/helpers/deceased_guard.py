@@ -19,7 +19,10 @@
 #          (it stays 'unverified', exactly as before). A date of death a Medicare answer carried during this very check (a plain answer
 #          with error 61 and the date, then a look-up that failed) blocks this claim at once; so does a date of death any answer kept in
 #          the store shows, whatever its age or month of service, when the guard's own call fails (11/10/2026 re-check fix: the store
-#          and this cache travel apart - the cache may be lost, unreadable or scrubbed to '[DOB]'). A care-management
+#          and this cache travel apart - the cache may be lost, unreadable or scrubbed to '[DOB]'). That fallback takes the EARLIEST
+#          date of death any kept answer shows, even when a newer kept answer shows none - it errs toward blocking, as this cache itself
+#          keeps a death for good (once a death is in it, every claim of that chart dated after the death is blocked with no new call;
+#          second re-check, 11/10/2026: kept as it is). A care-management
 #          chart with no Medicare plan keeps the look-up by name, counted as 'guard, no Medicare plan on the chart'. The cache is
 #          written one chart at a time into the ONE file it is configured with (DECEASED_CACHE, else the default below), read again just
 #          before the write and replaced in one step, so nothing another helper learned meanwhile is lost. No own request, no key file.

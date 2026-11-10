@@ -32,7 +32,10 @@
 #       chart number still 'differs'; the store keeps the Advantage plan line; a temporary file of an atomic write is git-ignored;
 #     - (11/10/2026 re-check fixes) a death the answer store already holds blocks the claim with no call when the guard's cache lacks it,
 #       and still blocks when the guard's own call fails (also an answer about last month's visit); a failed look-up for a stored
-#       'number differs' answer is not kept in the pre-claim check's cache for the month.
+#       'number differs' answer is not kept in the pre-claim check's cache for the month;
+#     - (11/10/2026 second re-check, kept as it is) when the guard's own call fails, the death an OLDER kept answer shows blocks even when
+#       a newer kept answer shows none, it goes into the guard's cache and the chart's next claim is blocked with no call - and the
+#       guard's header says so.
 # Run: python3 tools/selftest/test_lookup_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback
 import importlib.abc, importlib.machinery
@@ -120,7 +123,10 @@ def newp(death=None, advantage=None, hospice=False, beneficiary=True):
     _K[0] += 1; k = _K[0]
     last = "ZZTEST" + "".join(chr(65 + int(c)) for c in "%03d" % k)
     return person("p%d" % k, "TESTER", last, datetime.date(1930 + k % 20, 1 + k % 12, 1 + k % 27), mnum(k), death, advantage, hospice, beneficiary)
-WRONG = [mnum(i) for i in range(95, 100)]        # well-shaped numbers that belong to nobody (a chart holding one has a wrong number)
+WRONG = [mnum(i) for i in range(895, 900)]       # well-shaped numbers that belong to nobody (a chart holding one has a wrong number)
+# (11/10/2026, third fix round) mnum() repeats every 900 and the invented people are numbered 1, 2, 3 ... - numbers 95 to 99 were
+# also the 95th to 99th person's own, so one more person earlier in the run made a 'wrong' number that person's own; 895-899 are
+# never reached (a check at the end proves no person holds one).
 _C = [0]
 def cid():
     """A new invented chart id."""
@@ -812,6 +818,27 @@ def t_guard_review():
     check("guard: a death in a stored answer about LAST month's visit, the guard's cache lost, and its own call for this month's claim fails (42 / time-out) -> still blocked by that death, not UNVERIFIED (re-check NEW-1)",
           lambda: all(x[1][0] is True and "after date of death %s" % iso(last_month - datetime.timedelta(days=5)) in x[1][1] and x[2] == ["CMS"] and x[3] == [] for x in res)
           and res[0][4] == ymd(last_month - datetime.timedelta(days=5)), res)
+    # second re-check R2-2 (kept as it is - it errs toward blocking): Medicare's older kept answer showed a death, its newer kept answer
+    # shows none (a corrected record); the guard's cache holds the hook's 'no death on record', asked before the claim's date of service;
+    # the guard's own call fails (42) -> the EARLIEST death a kept answer shows blocks, goes into the guard's cache, and the chart's next
+    # claim is blocked with no call although Medicare would now answer 'no death'. The guard's header says so.
+    reset(); p = newp(death=ago(16)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])])
+    askp(p, dos=ymd(ago(15)), pid=pid, who="pre-claim check", max_age_days=0)                      # the older answer: it shows the death
+    store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(14))))
+    p["death8"] = None                                                                             # a corrected record: no death any more
+    askp(p, dos=ymd(ago(7)), pid=pid, who="pre-claim check", max_age_days=0)                       # the newer answer: no death
+    store_edit(lambda d: d["charts"][pid]["answers"][-1].update(asked=iso(ago(6))))
+    c = cache_json() or {}; c.setdefault(pid, {}).update(checked=iso(ago(6)))
+    with open(DCACHE, "w") as fh: json.dump(c, fh)
+    kept = [bool(a.get("death")) for a in sorted(store_chart(pid).get("answers") or [], key=lambda a: str(a.get("asked")))]; was = dict(c.get(pid) or {})
+    OVERRIDE[("CMS", p["number"])] = ("answer", err_answer("42")); OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("42")); del SENT[:]
+    r1 = guard_check(pid, iso(ago(2))); k1 = kinds(); dod1 = ((cache_json() or {}).get(pid) or {}).get("dod")
+    OVERRIDE.clear(); del SENT[:]; r2 = guard_check(pid, iso(ago(1))); k2 = kinds()
+    head = " ".join(l.lstrip("# ") for l in _read("scripts/helpers/deceased_guard.py").split("\nimport ", 1)[0].splitlines() if l.startswith("#"))
+    check("guard: its own call fails (42) - the death an OLDER kept answer shows blocks even though a NEWER kept answer shows none (the earliest death counts), it goes into the guard's cache and the chart's next claim is blocked with no call; the guard's header says it errs toward blocking (second re-check R2-2, kept as it is)",
+          lambda: kept == [True, False] and was.get("dod") is None and r1[0] is True and "after date of death %s" % iso(ago(16)) in r1[1] and k1 == ["CMS"] and dod1 == iso(ago(16))
+          and r2[0] is True and k2 == [] and "That fallback takes the EARLIEST date of death any kept answer shows, even when a newer kept answer shows none" in head
+          and "it errs toward blocking, as this cache itself keeps a death for good" in head, (kept, was, r1, k1, dod1, r2, k2))
 
 def t_guard_number():
     reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", mdy(ago(400)), WRONG[0]), ("car6085", "", spaced(p["number"])), ("car6404", "", "M" + "5" * 9)])
@@ -1074,6 +1101,8 @@ reset(); DG = load("scripts/helpers/deceased_guard.py", "deceased_guard"); sys.m
 check("guard: the guard is the real file, it uses the one cache path it is configured with, and its own request and key file are gone",
       lambda: DG.CACHE == DCACHE and DG.MAX_AGE_DAYS == 30 and not hasattr(DG, "KEYF") and not hasattr(DG, "STEDI") and "requests" not in _read("scripts/helpers/deceased_guard.py"))
 for t in GUARD_TESTS + LAST: _run(t)
+check("fixtures: the well-shaped 'wrong' numbers belong to no invented person of this run (so a chart holding one really has a wrong number)",
+      lambda: 0 < len(PEOPLE) < 895 and not any(q["number"] in WRONG for q in PEOPLE.values()), len(PEOPLE))
 check("nothing was written in the checkout", lambda: _snapshot() == BEFORE, sorted(set(_snapshot().items()) ^ set(BEFORE.items()))[:5])
 print("test_lookup_rules: %d checks, %d failed%s" % (COUNT[0], len(FAILS), "" if not FAILS else " - " + "; ".join(FAILS)[:300]))
 sys.exit(1 if FAILS else 0)

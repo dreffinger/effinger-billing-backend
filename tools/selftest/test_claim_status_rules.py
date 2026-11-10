@@ -36,9 +36,11 @@
 #       matched' and never final; four unusable answers in a row hand a claim off even when no try counted, and a payer that answers
 #       nobody is proposed for CS_OFF; a final answer with nothing posted is listed again; a new ledger counts its checks once; the
 #       hand-off and switched-off lists are printed whole;
-#     - (11/10/2026 re-check fix) a payer that answers its other claims is never proposed for CS_OFF because one claim always comes back
-#       empty, and that claim's hand-off reason does not say the payer answered nothing; a payer that answers nobody is proposed until
-#       one of its claims answers again.
+#     - (11/10/2026 re-check fixes) a payer is proposed for CS_OFF only when none of its claims had a usable answer from 7 days before
+#       the first of the four tries that handed one off until now: a payer that answered its other claim on the first of those nights,
+#       or paid it or answered it 'pending' the Sunday before the first try (weekly runs, a week passing between them), is never
+#       proposed, live or in a dry run; the hand-off reason says no other claim of the payer gave a usable answer only when that is true;
+#       a payer that answers nobody is proposed until one of its claims answers again.
 # Run: python3 tools/selftest/test_claim_status_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback, collections
 import importlib.abc, importlib.machinery
@@ -267,6 +269,24 @@ def set_asked(ws, c, days):
     """Time passes for one claim: its last answer is moved `days` back (the helpers run on today's date)."""
     def f(d): d["rows"]["%s|%s" % (c["vid"], c["payer"])]["asked"] = iso(ago(days))
     ledger_edit(ws, f)
+def time_passes(ws, claims, days=7):
+    """Time passes for the whole workspace (the helpers run on today's date): every date in the ledger rows (the answers' days in their
+    history too) and on the claims' ageing rows moves `days` back, and the ageing file is written again - a week between Sunday runs."""
+    def back(s):
+        try: return iso(datetime.date.fromisoformat(str(s)[:10]) - datetime.timedelta(days=days)) if s else s
+        except ValueError: return s
+    def f(d):
+        for L in d["rows"].values():
+            for k in ("asked", "stopped", "sent", "dos", "cleared", "quiet_from"):
+                if L.get(k): L[k] = back(L[k])
+            L["history"] = [[back(h[0])] + list(h[1:]) for h in L.get("history") or []]
+    ledger_edit(ws, f)
+    for c in claims:
+        for k in ("sent", "dos", "paid_on", "denied"):
+            if c["row"].get(k): c["row"][k] = back(c["row"][k])
+        for k in ("days_sent", "days_dos"):
+            if isinstance(c["row"].get(k), int): c["row"][k] += days
+    write_aging(ws, claims)
 def write_aging(ws, claims, asof=None, extra=None):
     asof = asof or datetime.datetime.now(datetime.timezone.utc)
     d = {"schema": "ar-aging/1", "asof": asof.strftime("%Y-%m-%d %H:%M UTC"), "today": iso(TODAY), "rows": [c["row"] for c in claims]}
@@ -736,13 +756,47 @@ def t_review_fixes():
     check("payers: a payer that answers nobody is proposed for CS_OFF the night its claims are handed off; once another of its claims answers ('pending') the line is gone, that night too (re-check NEW-2)",
           lambda: "PROPOSE FOR CS_OFF: UNI20 - 2 claim(s)" in out1 and lrow(ws, x).get("payer_quiet") is True and lrow(ws, z).get("answer") == "pending"
           and "PROPOSE FOR CS_OFF" not in out2 and "PROPOSE FOR CS_OFF" not in out3, ([l for l in (out1 + out2 + out3).splitlines() if "PROPOSE" in l][:3], lrow(ws, z).get("answer")))
-    # the rule itself: a usable answer from the payer BEFORE the quiet hand-off does not stop the proposal; one on that day or after it does
-    led_rows = {"1|UNI20": {"payer": "UNI20", "stopped": iso(ago(7)), "payer_quiet": True, "history": [[iso(ago(d)), "no usable answer"] for d in (28, 21, 14, 7)]},
-                "2|UNI20": {"payer": "UNI20", "history": [[iso(ago(30)), "pending"]]}, "3|AET07": {"payer": "AET07", "history": [[iso(ago(1)), "pending"]]}}
-    ho = [dict(key="1|UNI20", row={"payer": "UNI20"}, ledger=led_rows["1|UNI20"])]
-    later = json.loads(json.dumps(led_rows)); later["2|UNI20"]["history"].append([iso(ago(3)), "pending"])
-    check("payers: propose_off reads the payer's own evidence - another payer's answer and the payer's own answer from before the quiet hand-off leave the proposal; its answer after the hand-off ends it (re-check NEW-2)",
-          lambda: CS.propose_off(led_rows, ho) == {"UNI20": 1} and CS.propose_off(later, ho) == {}, led_rows)
+    # second re-check R2-1 (the re-check's input, shifted by one week): weekly Sunday runs, a week passing between them. The payer PAID its
+    # other claim - or answered it 'pending' - the Sunday BEFORE one claim first came due; that claim always comes back empty and is
+    # handed off at its fourth try, and no other claim of the payer is asked on those four Sundays. The payer is never proposed for CS_OFF:
+    # not that night, not on the Sundays after, not in a dry run.
+    res = {}
+    for shape, other_answer, other_sent, weeks in (("paid", PAID_A, 100, 8), ("pending", PENDING_A, 123, 6)):
+        reset(); ws = new_ws(); a = claim(dos=60, sent=38); b = claim(dos=150, sent=other_sent); both = [a, b]
+        write_aging(ws, both); answer(a, EMPTY_A); answer(b, other_answer(b)); outs = []
+        for week in range(weeks):
+            code, out, err = sweep(ws, "--go"); outs.append(out); time_passes(ws, both)
+        code, dry, err = sweep(ws); L = lrow(ws, a); hist = L.get("history") or []
+        res[shape] = {"why": L.get("stop_why"), "quiet": L.get("payer_quiet"), "from": L.get("quiet_from"), "first of four": hist[-4][0] if len(hist) >= 4 else None,
+                      "weeks proposed": [i for i, o in enumerate(outs) if "PROPOSE FOR CS_OFF" in o], "dry run proposes": "PROPOSE FOR CS_OFF" in dry, "other": lrow(ws, b).get("answer")}
+    check("payers: weekly runs - a payer that PAID its other claim, or answered it 'pending', the Sunday before one claim first came due is NEVER proposed for CS_OFF when that claim always comes back empty and is handed off at its fourth try (live runs and a dry run); the row keeps the night of the first of the four (second re-check R2-1)",
+          lambda: sorted(res) == ["paid", "pending"] and all(v["why"] == "four answers in a row with no usable content (no other claim of its payer gave a usable answer on those nights)"
+                                                              and v["quiet"] is True and v["from"] and v["from"] == v["first of four"] and v["weeks proposed"] == [] and v["dry run proposes"] is False for v in res.values())
+          and res["paid"]["other"] == "paid" and res["pending"]["other"] == "pending", res)
+    # the rule itself (second re-check R2-1): a payer is proposed only when none of its claims had a usable answer from 7 days before the
+    # first of the four tries that handed one off until now - an answer the Sunday before the first try (even paid), on a night of the span
+    # or after the hand-off ends the proposal; one 8 days before the first try, or another payer's, does not. A row that does not record
+    # the night of the first try (quiet_from) is read from its history.
+    four = [[iso(ago(d)), "no usable answer"] for d in (28, 21, 14, 7)]
+    def quiet_rows(day=None, label="pending", payer="UNI20", recorded=True):
+        q = {"payer": "UNI20", "stopped": iso(ago(7)), "payer_quiet": True, "history": [list(h) for h in four]}
+        if recorded: q["quiet_from"] = iso(ago(28))
+        rows_ = {"1|UNI20": q, "3|AET07": {"payer": "AET07", "history": [[iso(ago(20)), "pending"]]}}
+        if day is not None: rows_["2|" + payer] = {"payer": payer, "history": [[iso(ago(day)), label]]}
+        return rows_
+    def prop(rows_): return CS.propose_off(rows_, [dict(key="1|UNI20", row={"payer": "UNI20"}, ledger=rows_["1|UNI20"])])
+    want = {"no other answer": ((), {"UNI20": 1}), "pending 36 days ago (8 days before the first try)": ((36,), {"UNI20": 1}),
+            "paid 35 days ago (the Sunday before the first try)": ((35, "paid"), {}), "pending 31 days ago (a night of the week before)": ((31,), {}),
+            "pending 24 days ago (a night between two tries)": ((24,), {}), "pending 3 days ago (after the hand-off)": ((3,), {}),
+            "paid the Sunday before, the first try read from the history": ((35, "paid", "UNI20", False), {}),
+            "pending 36 days ago, the first try read from the history": ((36, "pending", "UNI20", False), {"UNI20": 1}),
+            "another payer paid the Sunday before": ((35, "paid", "AET07"), {"UNI20": 1})}
+    got = {}
+    def r21():
+        for name, (args, _) in want.items(): got[name] = prop(quiet_rows(*args))
+        return all(got[name] == w for name, (_, w) in want.items())
+    check("payers: propose_off proposes a payer only when none of its claims had a usable answer from 7 days before the first of the four tries that handed one off until now - an answer the Sunday before (even paid), on a night of the span or after the hand-off ends it; one 8 days before, or another payer's, does not (second re-check R2-1)",
+          lambda: r21() and CS.PROPOSE_BEFORE_DAYS == 7, got)
     # CS-5: a final answer nobody acted on is listed again (no call)
     reset(); ws = new_ws(); pd_ = claim(sent=100, dos=120, bal=250.0); write_aging(ws, [pd_]); answer(pd_, PAID_A(pd_, 250.0)); sweep(ws, "--go")
     reset(); code, out, err = sweep(ws, "--go"); tail = out.split("FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER")[-1]

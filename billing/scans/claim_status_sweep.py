@@ -21,10 +21,11 @@
 #   11/10/2026 (review fixes): the hand-off list and the switched-off payers' claims are printed whole; a claim with a final answer on
 #   file and still nothing posted for its payer is listed in every report ('FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER',
 #   no call); a payer with claims on the hand-off list is named in a 'PROPOSE FOR CS_OFF' line only on evidence about the payer itself:
-#   on the four nights one of those claims was last asked the payer answered none of its claims, and it has answered none since
-#   (cs_rules.propose_off; 11/10/2026 re-check fix - a payer that answers its other claims is never proposed because one claim always
-#   comes back empty; in a live run the line is printed at the end, with tonight's answers on record). A person switches it off in
-#   cs_rules.py; the helper never does.
+#   one of those claims was handed off after four answers in a row with no usable content, and no claim of that payer has had a usable
+#   answer from 7 days before the first of those four answers until now - the whole span of the four tries, the Sunday before them in
+#   weekly runs, and every night since (cs_rules.propose_off; 11/10/2026 re-check fixes - so a payer that answered any of its claims,
+#   even 'pending' or paid, the Sunday before the first try or on any night since is never named; in a live run the line is printed at
+#   the end, with tonight's answers on record). A person switches it off in cs_rules.py; the helper never does.
 #   11/10/2026 (step 3): claimstatus_<date>.json is written again after EVERY claim, like the ledger - a run cut off half way (the Bash
 #   tool's time limit) keeps every answer it got where the runbook reads them, instead of answers that sit in the ledger only.
 # ---
@@ -105,10 +106,10 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim
     pl = cs_rules.plan(rows, led.rows(), today, CAR2STEDI, carriers=carriers, vids=vids)
     due = pl["due"]; caps = cs_rules.Caps(led.month_checks(month), o.max)
     def propose(extra=()):
-        # 11/10/2026 (re-check fix): a payer is proposed for CS_OFF only on evidence about the payer itself (cs_rules.propose_off), with
+        # 11/10/2026 (re-check fixes): a payer is proposed for CS_OFF only on evidence about the payer itself (cs_rules.propose_off), with
         # every answer on record - in a live run tonight's too, so the line is printed at the END of the run
         for payer, n in sorted(cs_rules.propose_off(led.rows(), list(pl["handed_off"]) + list(extra)).items()):
-            p("  PROPOSE FOR CS_OFF: %s - %d claim(s) on the hand-off list; on the four nights one of them was last asked the payer answered none of its claims, and it has answered none since; switch it off in cs_rules.py CS_OFF (with the date and the reason) unless vendor support fixes it" % (payer, n))
+            p("  PROPOSE FOR CS_OFF: %s - %d claim(s) on the hand-off list; one of them was handed off after four answers in a row with no usable content, and no claim of this payer has had a usable answer from %d days before the first of those four until now (in weekly runs: from the Sunday before); switch it off in cs_rules.py CS_OFF (with the date and the reason) unless vendor support fixes it" % (payer, n, cs_rules.PROPOSE_BEFORE_DAYS))
     p("%s - claim-status check by need, %s (ageing file of %s: %d unpaid claims; ledger %s)" % (prog, today.isoformat(), asof.strftime("%Y-%m-%d %H:%M UTC"), pl["rows"], led.path))
     p("  claims silent 60 or more days since they were last sent, with nothing posted for their payer: %d" % pl["silent60"])
     p("  due tonight: %d; not due: %s" % (len(due), ", ".join("%s %d" % kv for kv in pl["waits"].most_common()) or "none") + ("; rows lacking a field: %d" % pl["skipped"] if pl["skipped"] else ""))
