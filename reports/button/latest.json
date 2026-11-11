@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-11T2120Z",
+ "stamp": "2026-11-11T2318Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 1 checks $54.81 -> 0 checks $0.00",
+ "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43102218011",
- "started": "2026-11-11T21:20:51Z",
- "ended": "2026-11-11T21:26:40Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43118814832",
+ "started": "2026-11-11T23:18:47Z",
+ "ended": "2026-11-11T23:25:19Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 54.81
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 54.81,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7841,
    "actionable": 76,
    "actionable_amt": 13875.0,
-   "asof": "2026-11-11 21:26 UTC"
+   "asof": "2026-11-11 23:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T21:20:51Z",
-   "ended": "2026-11-11T21:20:51Z"
+   "started": "2026-11-11T23:18:47Z",
+   "ended": "2026-11-11T23:18:48Z"
   },
   {
    "name": "columns",
@@ -121,42 +121,31 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T21:20:51Z",
-   "ended": "2026-11-11T21:22:39Z"
+   "started": "2026-11-11T23:18:48Z",
+   "ended": "2026-11-11T23:20:58Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $54.81 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks the Post button posted or was offered": 1,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 0,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0,
-    "denial lines recorded": 2
+    "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 54.81,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 54.81
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053504,
-     "payer": "SUNSHINE STATE HEALTH PLAN",
-     "checknumber": "0918107402",
-     "amount": 0.0,
-     "unposted": 54.81,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-11T21:22:39Z",
-   "ended": "2026-11-11T21:22:48Z"
+   "started": "2026-11-11T23:20:58Z",
+   "ended": "2026-11-11T23:21:00Z"
   },
   {
    "name": "packages",
@@ -167,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T21:22:48Z",
-   "ended": "2026-11-11T21:22:48Z"
+   "started": "2026-11-11T23:21:00Z",
+   "ended": "2026-11-11T23:21:00Z"
   },
   {
    "name": "outstanding",
@@ -271,22 +260,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T21:22:48Z",
-   "ended": "2026-11-11T21:22:50Z"
+   "started": "2026-11-11T23:21:00Z",
+   "ended": "2026-11-11T23:21:02Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7841 denied visits on 849 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 140",
+   "summary": "7841 denied visits on 849 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); RESOLVED 4529, WRITTEN-OFF 2978, RESUBMITTED 194, OPEN 140",
    "counts": {
     "charts read": 849,
     "denial lines": 13323,
     "visits": 7841,
     "actionable": 76,
     "inside 12 months": 73,
-    "status WRITTEN-OFF": 2978,
     "status RESOLVED": 4529,
+    "status WRITTEN-OFF": 2978,
     "status RESUBMITTED": 194,
     "status OPEN": 140
    },
@@ -359,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T21:22:50Z",
-   "ended": "2026-11-11T21:26:40Z"
+   "started": "2026-11-11T23:21:02Z",
+   "ended": "2026-11-11T23:25:19Z"
   }
  ],
  "packages": [],
