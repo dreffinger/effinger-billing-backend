@@ -61,7 +61,11 @@ select d.doc_id as message_id, nullif(d.body->>'received_at', '')::timestamptz a
        d.body->>'kind' as kind, d.loaded_at
 from raw.documents d where d.source = 'ccm' and d.collection = 'faxes';
 
--- a signed note is final: a later change to it, or its removal, is skipped (and so is a change to the record of a signed month)
+-- a signed note is final: a later change to it, or its removal, is skipped (and so is a change to the record of a signed month).
+-- "A change" is any new body, fingerprint (body_sha256) or key (source, collection, doc_id) - not only a new fingerprint: a hand-typed
+-- UPDATE that edits the body and leaves body_sha256 alone is skipped too (tightened 11/11/2026 after an independent check found that gap;
+-- rehearsed on the temporary branch - edit without a new fingerprint, rename and move of a signed note skipped, a reload that only
+-- touches loaded_by and a change to an unsigned month applied - then applied to the practice database).
 create or replace function ccm.keep_signed_final() returns trigger language plpgsql as $$
 begin
   if tg_op = 'DELETE' then
@@ -71,7 +75,11 @@ begin
     end if;
     return old;
   end if;
-  if new.body_sha256 is not distinct from old.body_sha256 then return new; end if;
+  -- an update that leaves what the record holds as it was (the same body, fingerprint and keys) goes through
+  if new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256
+     and new.source is not distinct from old.source and new.collection is not distinct from old.collection and new.doc_id is not distinct from old.doc_id then
+    return new;
+  end if;
   if old.collection = 'signed' or (old.collection = 'months' and exists (select 1 from raw.documents s where s.source = 'ccm' and s.collection = 'signed' and s.doc_id = old.doc_id)) then
     raise notice 'ccm: % belongs to a signed note - it is final, the change was skipped (a correction is a new late entry)', old.doc_id;
     return null;
