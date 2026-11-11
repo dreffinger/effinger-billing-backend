@@ -878,7 +878,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Share of patients with a documented plan is not known. Facility charts usually hold the directive. For reference, advance care planning was billed on 62 encounters, about 8% of face-to-face visits. Asked on November 10, 2026 whether every patient's chart holds a decision-maker, an advance directive or a documented discussion, the owner answered 'yes for all', and billing now adds the code that says so to Medicare claims. This has not been checked against charts.",
+  "note": "Share of patients with a documented plan is not known. Facility charts usually hold the directive. For reference, advance care planning was billed on 62 encounters, about 8% of face-to-face visits. Asked on November 10, 2026 whether every patient's chart holds a decision-maker, an advance directive or a documented discussion, the owner answered 'yes for all'. Rule version 2026-11-10.6 adds the code that says so to Medicare claims from the next feed import. This has not been checked against charts.",
   "source": "ehpa-neon"
  },
  {
