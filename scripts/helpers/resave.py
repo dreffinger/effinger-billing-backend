@@ -7,7 +7,8 @@
 #   11/11/2026 (round 8, the echo guard): set_insorder never sends a save when the visit's charges could not all be read. This helper finds a
 #   visit's charges in the chart's transaction history, page by page (visit_charges). A history page that FAILS brings no charge row, and that
 #   used to be taken for "no more charges": the list of live charges came back short or EMPTY without a word - and a full-visit save that leaves
-#   a live charge out VOIDS it (9/3/2026). Not known to have happened; closed before the 84 never-billed feed visits are saved. visit_charges
+#   a live charge out VOIDS it (9/3/2026). Not known to have happened. 52 of the 84 never-billed feed visits were saved on 11/11/2026 before this guard, each read back
+#   with all its charges; the guard is in place for the rest and for every later save. visit_charges
 #   still returns exactly what it returned before, to every caller, and raises nothing new; beside its answer it now records in READ_NOTE why
 #   the charges may not all have been read (a failed history page, a history longer than the 700 rows it reads, a live charge missing from its
 #   own detail). set_insorder answers "visit <id>: nothing sent - ..." - for a dry run too - when that note is not empty, when no live charge
