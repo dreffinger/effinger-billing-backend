@@ -31,7 +31,8 @@
   "scansnap": "1wpksmUG0a8VgPk2q41LNNIfRiwEJAXQh",
   "workspace_mirror": "135OCbRNCnFLyVm2GBXk1XsE3lt0vnsrn",
   "github_mirror": "1yr8X30h01-tPa0swclvtBFdAisiHzgJ8",
-  "board_inbox": "1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8"
+  "board_inbox": "1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8",
+  "census_inbox": "1FCZQpMV9hE5UHJ-VdV_n-sVgOMJMIGsa"
  },
  "boards": {
   "insurance_refresh": "ae4bc5c4-1d6c-4ffc-bc78-3fc284ad262d",
@@ -43,6 +44,7 @@
   "scansnap_cloud_app": "scanner -> Gmail attachment (PDF batches) + Drive 'scansnap' folder; remits, facesheets, census (docs/input_channels.md)",
   "zapier_gmail": "gmail_get_attachment_by_filename for attachments the Gmail connector cannot read (> ~6 MB)",
   "square_virtual_terminal": "Zelis/ECHO virtual cards keyed by hand; API cannot take card numbers",
-  "claimocity": "census/facesheet app (current); ScanSnap census scan proposed as the quicker alternative"
+  "claimocity": "the Claimocity feed: the electronic census input and the record (nightly/claimocity_feed_step.md) - one section of the category 'Census inputs'",
+  "census_inputs": "the category the Claimocity feed is one section of (William 11/11/2026): a screenshot of the Claimocity app's census list, a hospital or facility census list (picture, scan or fax), the ortho report by fax (RingCentral API), a daily census another practice sends in - uploaded to Drive 'aa census imports files' (drive.census_inbox), read and saved by census_inputs.py and compared with the feed, which stays the record (nightly/census_inputs_step.md)"
  }
 }

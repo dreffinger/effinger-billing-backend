@@ -29,3 +29,14 @@ node_modules/
 !apps/ehpadb/tsconfig.json
 apps/ehpadb/src/generated/
 *.tmp
+# census pictures, scans and faxes carry patient names: they live in Drive and the workspace, never in the tree
+# (the privacy gate reads text files only - 11/11/2026, nightly/census_inputs_step.md)
+census/
+inbox/
+practices/**/*.pdf
+practices/**/*.png
+practices/**/*.jpg
+practices/**/*.jpeg
+practices/**/*.heic
+practices/**/*.tif
+practices/**/*.tiff
