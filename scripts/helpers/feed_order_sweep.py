@@ -45,6 +45,18 @@
 #   is written BEFORE it is sent, marked unexpected until its read-back is recorded: a run cut off in between (a time limit) leaves a STOP.
 #   Every register is written as the run goes, and the TOP lines are printed even when the run fails or is stopped from outside (SIGTERM).
 #   The clinician move carries the checked insurance order; a move that builds another order is an unexpected read-back.
+#   NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ (11/11/2026, round 8 - the echo guard). A save or a clinician move sends
+#   the WHOLE visit back, and a live charge left out of it is voided. Before its own save (--resave) and its own move (--fix-clinician) this
+#   helper reads every live charge of the visit (resave.visit_charges, through the chart's transaction history). When AdvancedMD did not
+#   return all of them - resave.py's note (READ_NOTE) says a history page failed, the history is longer than the pages read or a live charge
+#   is missing from its own detail; or no live charge came back; or a charge this run's listing read for the visit is not among them -
+#   nothing is sent for that visit, no row is written for it, and the run ends the way it always has when that read fails with an error:
+#   'TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: nothing was sent for ...', exit 2, no STOP. The same when resave.set_insorder
+#   answers "visit <id>: nothing sent - ..." (its own guard, on its own read): the visit's row says that nothing was sent, it is not marked
+#   sent and it is not a STOP. What a routine or a billing session does then: it leaves the visit as it is, reports the line, and runs the
+#   same command again later - never again and again in a loop. The daily listing is unchanged, and so is every other path.
+#   This helper does not start with a resave.py from before 11/11/2026 (one that leaves no such note): 'FEED ORDER SWEEP DID NOT RUN'.
+#   A known, older gap, not closed here: the OTHER helpers that call visit_charges do not look at that note yet and still save what they read.
 # Never: resets a chart's default order, adds or ends a plan, rebills (chargerebill answers HTTP 500 on these visits), saves a billed or
 #   paid visit, touches a visit the approved file keeps for William, takes the free 271 as proof for a date of service (it answers for
 #   today) or a plan begin date in AdvancedMD as proof (68 of the 84 carry the add-plan default: one year before the day the plan was
@@ -88,6 +100,10 @@ LIMITED = r"FAMILY PLANNING|LIMITED TO|EMERGENCY (?:SERVICES )?ONLY|QMB ONLY|\bS
 MA_TYPES = {"HN", "HM", "PR", "PS", "IN", "MD"}      # a Medicare Advantage / other primary plan on a Medicare answer (precheck.py's list; Medicaid never leads over Medicare)
 DECISIONS = {"send", "send_if_active_on_dos", "order_by_dated_check", "william"}
 STANDING = "standing word, William 11/10/2026"
+class NotAllRead(Exception):
+    """11/11/2026 (round 8): AdvancedMD did not return all of a visit's charges, so NOTHING was sent for that visit. It is raised and caught
+    inside main() only - it never leaves this helper: it ends the run by the very path an error at the same read takes (the top of the
+    report says DID NOT FINISH, exit 2), with no row written for a visit nothing was sent for and no STOP left behind."""
 
 def d8(x):
     """A date as YYYYMMDD ("11/02/2026", "2026-11-02", "20261102" -> "20261102"); "" when it cannot be read."""
@@ -210,6 +226,8 @@ def main():
     need = ("detail", "visit_charges", "CHG_FIELDS", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "HOSP_CODES", "set_insorder")
     old = [n for n in need if not hasattr(resave, n)]
     if old: print("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT RUN: resave.py in this folder is older than 11/10/2026 (no %s) - copy the repository's scripts/helpers/resave.py here and run again" % ", ".join(old)); sys.exit(2)
+    if not hasattr(resave, "READ_NOTE"):      # 11/11/2026 (round 8): an older resave.py leaves no note when a visit's charges were not all read - this helper would be blind to it
+        print("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT RUN: resave.py in this folder is older than 11/11/2026 (no READ_NOTE: it cannot say when AdvancedMD did not return all of a visit's charges) - copy the repository's scripts/helpers/resave.py here and run again"); sys.exit(2)
     AP = {}; ap_err = ""; ap_ok = False      # the owner's approved file: the one named, else the workspace's own copy (its William visits are never touched)
     try:
         if apath or os.path.exists(APPROVED): AP = approved(apath or APPROVED); ap_ok = True
@@ -464,6 +482,24 @@ def main():
             if w3: out.append(w3[2:])
         except Exception as e2: out.append("the visit could not be read again (%s) - look at it in AdvancedMD" % type(e2).__name__)
         return out
+    unsent = False      # 11/11/2026 (round 8): True when the run ended because AdvancedMD did not return all of a visit's charges - nothing was sent for that visit
+    def read_all(info, before_what):
+        """Every live charge of the visit, read for this helper's OWN save or clinician move (11/11/2026, round 8 - the echo guard): (visit,
+        patient, charges) as resave.visit_charges gives them. Both send the WHOLE visit back, and a live charge left out is voided - so when
+        AdvancedMD did not return all of the visit's charges, NotAllRead ends the run before anything is sent for it: resave.py's note is
+        not empty (a history page failed, the history is longer than the pages read, a live charge is missing from its own detail), or no
+        live charge was read, or a charge this run's listing read for the visit is not among the live charges read. The note is set to ""
+        here before the read: a stand-in for visit_charges never touches it."""
+        resave.READ_NOTE = ""
+        vis, pat, allc = resave.visit_charges(num(info["charges"][0])); note = resave.READ_NOTE
+        got = [num(c.get("id")) for c in allc]; miss = [x for x in info["charges"] if num(x) not in got]
+        which = ("%d live charge(s) came back and the read was not complete" % len(allc) if note else "no live charge came back" if not allc else
+                 "%s, which this run's listing read for the visit, did not come back among the %d live charge(s) read" % (",".join(miss), len(allc)) if miss else "")
+        if which:
+            raise NotAllRead("nothing was sent for %s %s (service date %s) - AdvancedMD did not return all of this visit's charges before the %s: %s. A full-visit save that leaves a live charge out "
+                             "voids that charge. No row was written for the visit and no STOP is left: leave it as it is and run the same command again later%s" % (
+                             info["chart"], info["visit"], info["dos"], before_what, which, (" - " + note) if note else ""))
+        return vis, pat, allc
     try:
       dump_sweep()      # the listing's register (with the visits seen billed) right away: a run cut off later never reads them again
       # ---- --coverage: one eligibility check dated to the date of service per chart, date and plan (paid, capped) -------------------------------
@@ -535,7 +571,7 @@ def main():
             if not LIVE:
                 rec["dry"] = True; info["move"] = "would be moved (dry run)"; out.append(rec); done += 1
                 print("FEED ORDER CLINICIAN (dry run): would move %s %s %s to %s with insurance order %s (it reads [%s] now)" % (info["chart"], info["visit"], info["dos"], WHO[target], order, info["list"])); continue
-            vis, pat, allc = resave.visit_charges(num(info["charges"][0]))
+            vis, pat, allc = read_all(info, "clinician move")      # 11/11/2026 (round 8): not all of its charges read -> nothing is sent, the run ends (DID NOT FINISH)
             old_ids = [c.get("id") for c in allc]; adm0 = resave.admit_codes(allc); vadm0 = "" if adm0 else resave.admit_of(vis)      # the admission date of each hospital code, before the move
             rec.update(old_visit=vis.get("id"), old_charges=old_ids)
             if resave.billed_reasons(allc) or [c for c in allc if float(c.get("patbalance") or 0) > 0.004]:
@@ -609,7 +645,7 @@ def main():
             if not LIVE:
                 row["dry"] = True; info["save"] = "would be saved (dry run)"; rows.append(row); done += 1
                 print("FEED ORDER SAVE (dry run): would save %s %s %s insurance order %s (%s)" % (info["chart"], vid, info["dos"], order, mode)); continue
-            v0, p0, c0 = resave.visit_charges(num(info["charges"][0]))      # every live charge of the visit, also one the import register does not list: nothing billed, paid or on the patient
+            v0, p0, c0 = read_all(info, "save")      # every live charge of the visit, also one the import register does not list: nothing billed, paid or on the patient (11/11/2026: not all read -> nothing sent, the run ends)
             if resave.billed_reasons(c0) or [c for c in c0 if float(c.get("patbalance") or 0) > 0.004]:
                 row["refused"] = info["save"] = "billed, paid or a balance on the patient on one of its %d live charges (read just now) - never saved" % len(c0); rows.append(row)
                 print("FEED ORDER SAVE - not saved: %s %s %s (%s) - %s" % (info["chart"], vid, info["dos"], mode, row["refused"])); continue
@@ -619,6 +655,11 @@ def main():
             try:
                 ok, m = resave.set_insorder(num(info["charges"][0]), order)      # the list-aware save of round 7: skips nothing but a visit already right, refuses a billed one, reads back
                 row.update(sent=m.startswith("resave "), words=m); time.sleep(0.8)      # "resave ..." = a save went out ("visit ... already" / "... not saved" = none did)
+                if not ok and re.match(r"visit \S+: nothing sent - ", m):      # 11/11/2026 (round 8): set_insorder's own guard - on ITS read not all of the visit's charges came back, and it sent NOTHING
+                    row["sent"] = False; row.pop("unexpected", None); row["refused"] = info["save"] = "nothing was sent - the order save answered: " + m      # the truth in the row: not sent, and not a STOP (nothing went out)
+                    dump_rows()
+                    raise NotAllRead("nothing was sent for %s %s (service date %s) - the order save could not read all of this visit's charges and sent nothing. The visit's row says so and is not a STOP: "
+                                     "leave the visit as it is and run the same command again later - the order save answered: %s" % (info["chart"], vid, info["dos"], m))
                 v2, p2, c2 = resave.visit_charges(num(info["charges"][0])); ids2 = [c.get("id") for c in c2]
                 a2 = resave.admit_codes(c2) if info.get("admits") else {}      # each hospital code's admission date, from its own charge
                 row.update(list_after=resave.order_list(v2), admit_after=mdy(next((x for x in a2.values() if x), "")) if info.get("admits") else mdy(resave.admit_of(v2)), profile=v2.get("profile"))
@@ -627,6 +668,7 @@ def main():
                 prob += (["the admission date reads %s, before the save %s" % (row["admit_after"] or "none", row["admit_before"])] if lost else [])
                 prob += (["the clinician reads %s, expected %s" % (row["profile"], info["expected"])] if row["profile"] != info["expected"] else [])
                 prob += (["charge(s) no longer live: %s" % ",".join(x for x in info["charges"] if x not in ids2)] if [x for x in info["charges"] if x not in ids2] else [])
+            except NotAllRead: raise      # 11/11/2026: nothing went out for this visit - the run ends below (DID NOT FINISH), not a STOP
             except Exception as e:      # the save may have landed: read the visit again, put a lost admission date back - and stop
                 row["sent"] = True; prob = ["the save or its read-back failed (%s: %s)" % (type(e).__name__, str(e)[:100])] + reread(info)
             row["ok"] = info["saved"] = not prob
@@ -640,13 +682,15 @@ def main():
         n_ok = sum(1 for r in rows if r.get("ok")); n_ref = sum(1 for r in rows if r.get("refused")); n_wait = sum(1 for r in rows if r.get("waits"))
         print("Feed order saves%s: %d saved and read back, %d not saved (a check failed - listed above for William), %d waiting%s" % ("" if LIVE else " (dry run - nothing sent)", n_ok, n_ref, n_wait, " (pilot: one visit first)" if PILOT["rows"] and n_wait else ""))
     except SystemExit as e: crash = "it was stopped from outside before it finished (%s)" % (e.code if e.code not in (None, 0) else "exit")
+    except NotAllRead as e: crash = str(e); unsent = True      # 11/11/2026 (round 8): AdvancedMD did not return all of a visit's charges - nothing was sent for it; the run ends as on an error at that read
     except Exception as e: crash = "%s: %s" % (type(e).__name__, str(e)[:160])
     finally:      # the TOP lines and the registers, also when the run failed or was stopped from outside (a time limit sends SIGTERM)
         if old_term is not None:
             try: signal.signal(signal.SIGTERM, old_term)
             except (ValueError, OSError): pass
         for s_ in stopped: print("TOP OF THE REPORT - FEED ORDER SWEEP STOPPED at %s - nothing more was sent; look at this visit in AdvancedMD before anything else is done" % s_)
-        if crash: print("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: %s - what it did is in the registers named below; a save or move it had begun is marked unexpected there (a STOP until a person has looked at that visit)" % crash)
+        if crash: print("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: %s - what it did is in the registers named below%s" % (crash, "" if unsent else      # (11/11/2026: nothing was begun when a visit's charges were not all read)
+                        "; a save or move it had begun is marked unexpected there (a STOP until a person has looked at that visit)"))
         if NOFILE: print(NOFILE)
         for l_ in LOSTADM: print(l_)
         for info in empty:      # the visits still without an insurance order after this run (a visit saved and read back as asked is no longer one)

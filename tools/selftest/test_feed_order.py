@@ -18,6 +18,12 @@
 #       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version 2026-11-10.7, the mirror's markers,
 #       the owner's approved file unchanged, and the words of the runbook, the rulebook, the lessons and the captured calls.
 #   The import's new register fields (section 7) are proved in tools/selftest/test_pos_rule.py, where the import runs with its stand-ins.
+#   11/11/2026 (round 8, the echo guard) - section R8: the sweep's own read before its own save (--resave) and its own clinician move
+#   (--fix-clinician) - here the REAL resave.visit_charges, lifted out of resave.py's text, over a stand-in transaction history - meeting a
+#   failed history page, an empty read and a listed charge that did not come back: nothing is sent for that visit, the run ends DID NOT FINISH
+#   as on an error at that read, no row is marked sent and no STOP is left; the order save's own refusal ("visit <id>: nothing sent - ...")
+#   is never taken for a save; the insurance check's own save makes the very calls it made before (it does not look at the note yet); the
+#   mirror's markers, the rulebook line and the lesson line of that day.
 # Run: python3 tools/selftest/test_feed_order.py   (exit 1 on any failure)
 import os, sys, json, types, tempfile, io, re, ast, contextlib, time, glob
 import xml.etree.ElementTree as ET
@@ -505,9 +511,10 @@ check("8.3 the sweep never resets a chart's default order, adds or ends a plan, 
 check("8.2 an insurance order is saved only through resave.set_insorder (step 1's list-aware save) - the sweep sends no updvisitwithcharges of its own", "resave.set_insorder(" in SSRC and "updvisitwithcharges" not in SSRC)
 check("8.5 the price and the caps: $0.30 a check, 120 checks and $40 a run", "PRICE, CAP_CHECKS, CAP_DOLLARS = 0.30, 120, 40.0" in SSRC)
 MIR = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read(); HCS = open(os.path.join(HELPERS, "claimocity_helpers_current.py")).read()
-_mk = {"resave.py": "set_insorder reads the visit's insurance-order LIST", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST", "feed_order_sweep.py": 'STANDING = "standing word, William 11/10/2026"'}
-check("mirror.py protects resave.py, the insurance check and the sweep with sentences only their round-7 versions have (a copy from before never comes back over them); the shared helper names the same sentence for the insurance check",
-      all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items())
+_mk = {"resave.py": "set_insorder never sends a save when the visit's charges could not all be read", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST", "feed_order_sweep.py": "NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ"}
+_mk7 = ('"resave.py": "set_insorder reads the visit\'s insurance-order LIST"', "\"feed_order_sweep.py\": 'STANDING = \"standing word, William 11/10/2026\"'")      # the round-7 entries of mirror.py's table: gone since 11/11/2026
+check("mirror.py protects resave.py and the sweep with sentences only their round-8 versions (11/11/2026, the echo guard) have, and the insurance check with one only its round-7 version has (a copy from before never comes back over them - the round-7 sentences of resave.py and the sweep are no longer the markers); the shared helper names the same sentence for the insurance check",
+      all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()) and not any(x_ in MIR for x_ in _mk7)
       and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in HCS and "def set_insorder" not in MIR, {f_: m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()})
 _vc = {p_: open(os.path.join(ROOT, p_)).read() for p_ in ("scripts/helpers/claimocity_import.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_retry_dx.py", "scripts/helpers/claimocity_report.py", "scripts/helpers/claimocity_helpers_current.py", "tools/mirror/mirror.py", "nightly/claimocity_feed_step.md")}
 check("the rule version is 2026-11-10.7 in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and 2026-11-10.6 in none of them",
@@ -553,6 +560,7 @@ class SWorld(World):
 DREADS = []; ELIG = {"calls": [], "ans": {}}; DGB = set()
 SRS = {k_: RNS[k_] for k_ in ("CHG_FIELDS", "HOSP_CODES", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "set_insorder") if k_ in RNS}      # step 1's own functions, run against the stand-in
 SRS.update(detail=lambda cid: (DREADS.append(re.sub(r"\D", "", str(cid))), W[0].detail(cid))[1], visit_charges=lambda cid: W[0].visit_charges(cid))
+SRS["READ_NOTE"] = ""      # 11/11/2026 (round 8): resave.py's note beside visit_charges's answer - the sweep does not start with a resave.py that has none (section R8); this stand-in's visit_charges never writes it
 def _elig(payer, first, last, b8, member, dos, stc=("30",), pid=None):
     ELIG["calls"].append({"payer": payer, "first": first, "last": last, "b": b8, "member": member, "dos": dos, "pid": pid})
     return ELIG["ans"].get((payer, member, dos), {"errors": [{"code": "T1", "description": "no answer in this test"}]})
@@ -936,6 +944,135 @@ _old_rs = SSTAND["resave"]; SSTAND["resave"] = {k_: v_ for k_, v_ in SRS.items()
 try: o, e = sweep()
 finally: SSTAND["resave"] = _old_rs
 check("8.2 a workspace resave.py older than round 7 (no list-aware save): the sweep does not run at all and says so at the top", "TOP OF THE REPORT - FEED ORDER SWEEP DID NOT RUN: resave.py in this folder is older than 11/10/2026 (no billed_reasons)" in o and DREADS == [], o[-300:])
+# ---- R8. (11/11/2026, round 8 - the echo guard) nothing is sent when AdvancedMD did not return all of a visit's charges ----------------------------
+# Until here a stand-in listed a visit's live charges. In this section the REAL resave.visit_charges runs under the sweep, under the order save and
+# under the insurance check's own save: it is lifted out of resave.py's text with the other functions, all into ONE namespace (as in the real
+# module), and the stand-in AdvancedMD answers each charge's own detail and the chart's transaction history (gettxhistory, 100 charge rows a page).
+import hashlib
+class HW(SWorld):
+    """SWorld plus the two calls the real visit_charges makes. gettxhistory lists `pad` charge rows of another visit first, then every charge of
+    every visit of this world (its visit, its void flag, its fee); a good page carries the empty <Error /> of a good answer and memos with the
+    letters "Fault". fault = the history CALLS (the first is 1) answered with a Fault; timeout = history calls that never answer; hide = charges
+    the history does not list."""
+    def __init__(self, charts, *visits, pad=0): SWorld.__init__(self, charts, *visits); self.pad, self.fault, self.timeout, self.hide, self.hcalls = pad, set(), set(), set(), 0
+    def rows(self):
+        return ['<charge id="%d" visit="555" void="0" fee="50.00" memo="No Fault of the payer"/>' % (700000 + k) for k in range(self.pad)] + [
+            '<charge id="%s" visit="%s" void="%d" fee="%s"/>' % (k[6:], re.sub(r"\D", "", sv.vid), bool(c.get("void")), c.get("fee", "141.00")) for sv in self.v.values() for k, c in sv.ch.items() if k not in self.hide]
+    def post(self, body, timeout=0):
+        if 'action="gettxhistory"' in body:
+            self.posts.append(body); self.hcalls += 1; page = int(re.search(r'pagenumber="(\d+)"', body).group(1))
+            if self.hcalls in self.timeout: raise TimeoutError("read timed out (test)")
+            if self.hcalls in self.fault: return "<PPMDResults><Error><Fault><detail><description>Server Error (test)</description></detail></Fault></Error></PPMDResults>"
+            return "<PPMDResults><Results>%s</Results><Error /></PPMDResults>" % "".join(self.rows()[(page - 1) * 100:page * 100])
+        if 'action="getchargedetaildataicd10"' in body: self.posts.append(body); return self.detail(re.search(r'chargeid="(\d+)"', body).group(1))
+        return SWorld.post(self, body, timeout)
+RNS8 = {"re": re, "ET": ET, "amd": AM}
+exec(lift(os.path.join(HELPERS, "resave.py"), {"detail", "READ_NOTE", "_fault_text", "visit_charges", "CHG_FIELDS", "HOSP_CODES", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "set_insorder"}), RNS8)
+def _vc8(cid):      # resave.py is ONE module in real life: the note visit_charges writes is the note the sweep reads. Here the lifted functions live in RNS8 and the sweep sees a stand-in module, so the note is handed over to that module
+    out = RNS8["visit_charges"](cid)
+    if "READ_NOTE" in RNS8 and "resave" in sys.modules: sys.modules["resave"].READ_NOTE = RNS8["READ_NOTE"]
+    return out
+SRS8 = {k_: RNS8[k_] for k_ in ("READ_NOTE", "detail", "CHG_FIELDS", "HOSP_CODES", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "set_insorder") if k_ in RNS8}; SRS8["visit_charges"] = _vc8
+SSTAND8 = dict(SSTAND, resave=SRS8)
+def sweep8(*argv):      # the sweep over the real history read; also the exit code it ended with (None = it ran to its end)
+    se = io.StringIO(); codes = []; _exit = sys.exit; sys.exit = lambda c=0: (codes.append(c), _exit(c))[1]
+    try:
+        with contextlib.redirect_stderr(se): o_, e_ = run_inside(SWP, SSTAND8, SWD[0], argv=argv)
+    finally: sys.exit = _exit
+    return o_ + se.getvalue(), e_, (codes[-1] if codes else None)
+def dnf(o_): return next((l_ for l_ in o_.splitlines() if l_.startswith("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: ")), "")
+def rows8(kind, *vids): return [r_ for j_ in sreg(kind) for r_ in (j_.get("rows") or j_.get("moves") or []) if r_.get("visit") in vids]
+def calls8():      # every call of a scenario, in the order it came, in a few words
+    out_ = []
+    for b_ in W[0].posts:
+        a_ = re.search(r'action="([^"]*)"', b_).group(1)
+        out_.append("history %s" % re.search(r'pagenumber="(\d+)"', b_).group(1) if a_ == "gettxhistory" else "detail %s" % re.search(r'chargeid="(\d+)"', b_).group(1) if a_ == "getchargedetaildataicd10"
+                    else "save %s insorder=%s" % (",".join(re.findall(r'<charge id="charge(\d+)"', b_)) or "NO CHARGE", re.search(r'<visit [^>]*insorder="([^"]*)"', b_).group(1)) if a_ == "updvisitwithcharges" else a_)
+    return out_
+def sum8(): return hashlib.sha256("\n".join(W[0].posts).encode()).hexdigest()[:16]      # the bodies of those calls, word for word and in order, as one short fingerprint
+STOPTAIL = "a save or move it had begun is marked unexpected there (a STOP until a person has looked at that visit)"
+SIB = dict(cpt="99497", pcode="pcode65299", fee="86.00")      # the visit's second charge
+# the sweep's OWN read before its OWN save (--resave) and its OWN clinician move (--fix-clinician)
+for _ph, _kind, _what, _ap, _who in (("--resave", "resave", "save", _send, DOC), ("--fix-clinician", "fixclin", "clinician move", _mv, NPL)):
+    for _case, _knob, _two, _pad, _words in (
+            ("a FAULT PAGE in the chart's history (the listed charge is read; a sibling the import register does not list is on the page that failed - only resave.py's note can tell)", "fault", False, 99, "1 live charge(s) came back and the read was not complete"),
+            ("an EMPTY READ (the history lists none of the visit's charges, and nothing failed)", "hide_all", False, 0, "no live charge came back"),
+            ("a LISTED CHARGE THAT IS MISSING (the history lists one of the two charges this run's listing read)", "hide_one", True, 0, "charge80012, which this run's listing read for the visit, did not come back among the 1 live charge(s) read"),
+            ("an ERROR at that read (a time-out): what the sweep has always done there - here for comparison", "timeout", False, 0, "")):
+        W[0] = HW({"801": med("801", "M801"), "802": med("802", "M802")}, SW("vst8001", [chg(80011), chg(80012, **SIB)]), SW("vst8002", [chg(80021)]), pad=_pad)
+        ws9([srow("vst8001", "pat801", "10/12/2026", ["99309", "99497"] if _two else ["99309"], ["charge80011", "charge80012"] if _two else ["charge80011"]), srow("vst8002", "pat802", "10/13/2026", ["99309"], ["charge80021"])],
+            recon={"vst8001": _who, "vst8002": _who}, approved={"vst8001": _ap, "vst8002": _ap}, seed=[PILOT_DONE, MOVE_DONE])
+        setattr(W[0], *{"fault": ("fault", {2}), "hide_all": ("hide", {"charge80011", "charge80012"}), "hide_one": ("hide", {"charge80012"}), "timeout": ("timeout", {1})}[_knob])
+        o, e, code = sweep8(_ph, "--approved", APPF, "--live"); A, B = W[0].v["vst8001"], W[0].v["vst8002"]; line = dnf(o); r0 = rows8(_kind, "vst8001", "vst8002")
+        nothing = not (A.saves or A.moves or A.extins or B.saves or B.moves or B.extins)
+        if _knob == "timeout":
+            check("R8 %s meets %s: nothing is sent, 'FEED ORDER SWEEP DID NOT FINISH: TimeoutError: ...', exit 2, no row for the visit" % (_ph, _case),
+                  e == "" and code == 2 and nothing and r0 == [] and line.startswith("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: TimeoutError: read timed out (test) - what it did is in the registers named below; " + STOPTAIL)
+                  and (sreg("sweep") or [{}])[-1].get("finished") is False, (e, code, line, r0))
+        else:
+            check("R8 %s meets %s: NOTHING is sent for that visit and the run ends the same way - 'FEED ORDER SWEEP DID NOT FINISH: nothing was sent for ... - AdvancedMD did not return all of this visit's charges before the %s: ...', exit 2, the next visit not touched" % (_ph, _case, _what),
+                  e == "" and code == 2 and nothing and line.startswith("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: nothing was sent for pat801 vst8001 (service date 10/12/2026) - AdvancedMD did not return all of this visit's charges before the %s: %s. A full-visit save that leaves a live charge out voids that charge. No row was written for the visit and no STOP is left: leave it as it is and run the same command again later" % (_what, _words))
+                  and STOPTAIL not in line and ("gettxhistory page 2 for visit vst8001 of chart pat1 answered a Fault" in line) == (_knob == "fault") and line.endswith(" - what it did is in the registers named below") and (sreg("sweep") or [{}])[-1].get("finished") is False, (e, code, line))
+        W[0].fault, W[0].timeout, W[0].hide = set(), set(), set(); o2, e2, code2 = sweep8(_ph, "--approved", APPF, "--live"); _body = (A.saves or A.moves or [""])[0]
+        check("R8 ... no row was written for that visit (none marked sent) and no STOP is left: the same command, run again once AdvancedMD answers in full, %s both visits - both charges of the first one in its echo - with nothing for a person to clear" % ("saves" if _ph == "--resave" else "moves"),
+              r0 == [] and e2 == "" and code2 is None and "FEED ORDER SWEEP STOPPED" not in o2 and "DID NOT FINISH" not in o2 and 'id="charge80011"' in _body and 'id="charge80012"' in _body
+              and ((len(A.saves) == 1 and A.lst == "1" and len(B.saves) == 1 and not A.moves) if _ph == "--resave" else (len(A.moves) == 1 and A.prof == "prof15" and len(B.moves) == 1 and not A.saves)), (r0, e2, code2, o2[-400:]))
+# the sweep sets the note to "" itself before each of its two reads: a stand-in for visit_charges never touches it (sections 8.x use one), and a note left in the module by an earlier read must not refuse a good one
+_old_rs = SSTAND["resave"]; SSTAND["resave"] = dict(SRS, READ_NOTE="a note left by an earlier read (test)")
+try:
+    for _ph, _ap, _who in (("--resave", _send, DOC), ("--fix-clinician", _mv, NPL)):
+        W[0] = SWorld({"801": med("801", "M801")}, SW("vst8001", [chg(80011)])); ws9([srow("vst8001", "pat801", "10/12/2026", ["99309"], ["charge80011"])], recon={"vst8001": _who}, approved={"vst8001": _ap}, seed=[PILOT_DONE, MOVE_DONE])
+        o, e = sweep(_ph, "--approved", APPF, "--live"); A = W[0].v["vst8001"]
+        check("R8 %s with a stand-in for visit_charges that never touches the note, and a stale note left in the module: the sweep sets the note to '' itself before its read - the visit is %s, nothing is refused" % (_ph, "saved" if _ph == "--resave" else "moved"),
+              e == "" and "DID NOT FINISH" not in o and ((len(A.saves) == 1 and A.lst == "1") if _ph == "--resave" else (len(A.moves) == 1 and A.prof == "prof15")), (e, o[-400:]))
+finally: SSTAND["resave"] = _old_rs
+# the answer of the order save: set_insorder's own guard, on its own read, inside the sweep (no pilot save has been made yet in this workspace)
+W[0] = HW({"801": med("801", "M801"), "802": med("802", "M802")}, SW("vst8001", [chg(80011), chg(80012, **SIB)]), SW("vst8002", [chg(80021)]))
+ws9([srow("vst8001", "pat801", "10/12/2026", ["99309"], ["charge80011"]), srow("vst8002", "pat802", "10/13/2026", ["99309"], ["charge80021"])], recon={"vst8001": DOC, "vst8002": DOC}, approved={"vst8001": _send, "vst8002": _send})
+W[0].fault = {2}      # the sweep's own read (history call 1) is complete; the order save's own read (call 2) meets a failed page
+o, e, code = sweep8("--resave", "--approved", APPF, "--live"); A, B = W[0].v["vst8001"], W[0].v["vst8002"]; line = dnf(o); r0 = rows8("resave", "vst8001")
+check("R8 the order save refuses inside the sweep (the sweep's own read was complete; set_insorder's read met a failed page): its answer 'visit vst8001: nothing sent - ...' is not taken for a save - nothing went out, the visit's row is NOT marked sent, carries no 'unexpected' (so it is no STOP) and says that nothing was sent; the run ends DID NOT FINISH, exit 2",
+      e == "" and code == 2 and not (A.saves or A.extins or B.saves) and len(r0) == 1 and r0[0].get("sent") is False and r0[0].get("ok") is False and "unexpected" not in r0[0] and str(r0[0].get("words")).startswith("visit vst8001: nothing sent - AdvancedMD did not return all of this visit's charges")
+      and str(r0[0].get("refused")).startswith("nothing was sent - the order save answered: visit vst8001: nothing sent - ") and STOPTAIL not in line and "FEED ORDER SWEEP STOPPED" not in o
+      and line.startswith("TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: nothing was sent for pat801 vst8001 (service date 10/12/2026) - the order save could not read all of this visit's charges and sent nothing. The visit's row says so and is not a STOP: leave the visit as it is and run the same command again later - the order save answered: visit vst8001: nothing sent - ")
+      and "| this run: nothing was sent - the order save answered: visit vst8001: nothing sent - " in top(o, "vst8001"), (e, code, r0, line))
+W[0].fault = set(); o2, e2, code2 = sweep8("--resave", "--approved", APPF, "--live")
+check("R8 ... and the next run goes on as if that visit had never been tried: no STOP, and the refused row did not count as the pilot save - this run is still the pilot: it saves that ONE visit (both its charges echoed) and the other waits",
+      e2 == "" and code2 is None and "FEED ORDER SWEEP STOPPED" not in o2 and len(A.saves) == 1 and A.lst == "1" and 'id="charge80012"' in (A.saves or [""])[0] and B.saves == [] and "FEED ORDER SAVE - waits: pat802 vst8002 10/13/2026 - the pilot saves ONE visit" in o2, (e2, code2, o2[-500:]))
+# the sweep does not start with a resave.py from before round 8
+_old_rs = SSTAND["resave"]; SSTAND["resave"] = {k_: v_ for k_, v_ in SRS.items() if k_ != "READ_NOTE"}; DREADS.clear(); _p0 = len(W[0].posts)
+try: o, e = sweep("--resave", "--approved", APPF, "--live")
+finally: SSTAND["resave"] = _old_rs
+check("R8 a workspace resave.py from before round 8 (it leaves no note when a visit's charges were not all read): the sweep does not run at all and says so at the top - the same line and the same remedy as for a copy from before round 7",
+      "TOP OF THE REPORT - FEED ORDER SWEEP DID NOT RUN: resave.py in this folder is older than 11/11/2026 (no READ_NOTE" in o and "copy the repository's scripts/helpers/resave.py here and run again" in o and DREADS == [] and len(W[0].posts) == _p0, o[-300:])
+# the insurance check's own save (claimocity_verify.fast_set_insorder) does not look at the note - a known, older gap that round 8 leaves as it was.
+# Over the REAL history read it makes, on a good read and on a failed one, the very calls it made before this round: each fingerprint below was
+# taken from the helpers of the live branch as it stood before round 8 (this same file, the same answers), and the helpers of this tree give the same.
+RSV8 = types.SimpleNamespace(detail=RNS8["detail"], CHG_FIELDS=RNS8["CHG_FIELDS"], READ_NOTE="")      # the resave module as the insurance check sees it: the real history read, and the note where the real module keeps it
+def _vc8v(cid): out = RNS8["visit_charges"](cid); RSV8.READ_NOTE = RNS8.get("READ_NOTE", ""); return out
+RSV8.visit_charges = _vc8v
+VNS8 = {"resave": RSV8, "amd": AM, "re": re, "CARRIERS": CARS, "CODE2CAR": {v_[0]: k_ for k_, v_ in CARS.items()}}
+exec(compile(_vs, "claimocity_verify.py", "exec"), VNS8); fast8 = VNS8["fast_set_insorder"]
+def w81(pad=0, **knob): W[0] = HW({}, SV("vst8101", [chg(81011), chg(81012, **SIB)], attr="1", lst=""), pad=pad); [setattr(W[0], k_, v_) for k_, v_ in knob.items()]
+w81(); _a = _try(fast8, row("vst8101", ["charge81011"]), "1", [], {})
+check("R8 UNCHANGED in round 8 - the insurance check's own save on a good read: the sibling the register does not list is echoed in ONE save and read back - the answer and the calls of before this round, word for word",
+      _a == (True, "insorder 1 -> 1, list [] -> [1], 2 of 2 echoed charges live (also echoed, not in the register: charge81012)") and sum8() == "397b65b3ac41b14e"
+      and calls8() == ["detail 81011", "detail 81011", "history 1", "detail 81011", "detail 81012", "detail 81011", "detail 81012", "save 81011,81012 insorder=1", "detail 81011", "history 1", "detail 81011", "detail 81012"] and W[0].v["vst8101"].live() == ["charge81011", "charge81012"], (_a, calls8(), sum8()))
+w81(fault={1}); _a = _try(fast8, row("vst8101", ["charge81011"]), "1", [], {})
+check("R8 UNCHANGED in round 8 - the insurance check's own save, a Fault on the first history page: its own guard holds the visit ('detail read mismatch ... not among the visit's 0 live charges'), nothing sent - the answer and the calls of before this round, word for word",
+      _a == (False, "detail read mismatch (register charge(s) charge81011 not among the visit's 0 live charges)") and calls8() == ["detail 81011", "detail 81011", "history 1"] and sum8() == "46b65262491445ed" and W[0].v["vst8101"].saves == [], (_a, calls8(), sum8()))
+w81(pad=99, fault={2}); _a = _try(fast8, row("vst8101", ["charge81011"]), "1", [], {})
+check("R8 UNCHANGED in round 8 (the known, older gap - NOT closed here) - the insurance check's own save, a Fault on page 2 of the history: the register's charge is read, the sibling on the failed page is not - it still saves the ONE charge it read (the stand-in voids the sibling left out) - the answer and the calls of before this round, word for word",
+      _a == (True, "insorder 1 -> 1, list [] -> [1], 1 of 1 echoed charges live") and sum8() == "8fb38fbd4e02f462"
+      and calls8() == ["detail 81011", "detail 81011", "history 1", "history 2", "detail 81011", "detail 81011", "save 81011 insorder=1", "detail 81011", "history 1", "history 2", "detail 81011"] and W[0].v["vst8101"].live() == ["charge81011"], (_a, calls8(), sum8()))
+# nobody else reads the note, and the two helpers say in their own words what is refused and what is still open
+_rn = sorted(os.path.relpath(f_, ROOT) for f_ in glob.glob(os.path.join(HELPERS, "*.py")) + glob.glob(os.path.join(ROOT, "core", "*.py")) if "READ_NOTE" in open(f_, errors="replace").read())
+check("R8 only resave.py (both copies) and the sweep know the note: no other helper under scripts/helpers or core reads READ_NOTE - every other caller of visit_charges gets its answer exactly as before",
+      _rn == ["core/resave.py", "scripts/helpers/feed_order_sweep.py", "scripts/helpers/resave.py"], _rn)
+_rsrc = open(os.path.join(HELPERS, "resave.py")).read(); _ssrc8 = open(SWP).read()
+check("R8 resave.py and the sweep say, dated 11/11/2026, what is refused ('nothing sent') and that every OTHER helper that calls visit_charges still saves what it read - a known, older gap; the refusal never begins with the word the sweep reads as 'a save went out'",
+      all("11/11/2026 (round 8" in x_ and "nothing sent - " in x_ and re.search(r"KNOWN, OLDER GAP|known, older gap", x_) and "do not look at that note yet" in x_.replace("does not", "do not") for x_ in (_rsrc, _ssrc8))
+      and 'return False, "visit %s: nothing sent - ' in _rsrc and 'm.startswith("resave ")' in _ssrc8 and 're.match(r"visit \\S+: nothing sent - ", m)' in _ssrc8, [("11/11/2026 (round 8" in x_, "nothing sent - " in x_) for x_ in (_rsrc, _ssrc8)])
 # ---- 9. the words: the runbook's step and section, the rulebook, the lessons, the captured calls -----------------------------------------------------
 _stp = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read(); _stpn = _stp.replace("\n", " "); _rl = open(os.path.join(ROOT, "practices", "ehpa", "rules.md")).read()
 _ls = open(os.path.join(ROOT, "docs", "SHARED_LESSONS.md")).read(); _cc = open(os.path.join(ROOT, "docs", "captured_calls.md")).read()
@@ -953,6 +1090,16 @@ check("9 rulebook and lessons: one dated line each, with the cause; captured cal
       _rl.count("FEED VISITS WITH AN EMPTY INSURANCE ORDER") == 1 and "(11/10/2026, William in chat, STANDING for the charge feed) FEED VISITS WITH AN EMPTY INSURANCE ORDER. The cause:" in _rl
       and _ls.count("| chat (round 7, feed visits with no insurance order) | TRAP |") == 1 and any(l_.startswith("- 2026-11-10T1915Z | chat (round 7") for l_ in _ls.split("\n"))
       and sum(1 for s_ in _cc.split("\n## ") if s_.startswith("2026-11-10T1915Z - a visit's insurance-order LIST, read back")) == 1 and "the 10/28 advice above (skip the save when the chart default already equals the target) is withdrawn" in _cc)
+# 11/11/2026 (round 8): the two new lines are COUNTED too, wherever they stand in their files - routines append to both
+_rl8 = next((l_ for l_ in _rl.split("\n") if "NO SAVE WHEN A VISIT'S CHARGES COULD NOT ALL BE READ" in l_), ""); _ls8 = next((l_ for l_ in _ls.split("\n") if "| chat (round 8, the echo guard) | TRAP |" in l_), "")
+check("R8 rulebook: ONE dated line on the echo guard, after round 7's line on feed visits with an empty insurance order - the order save and the sweep never send a save when AdvancedMD did not return all of a visit's charges, and what a routine or a billing session does on 'nothing sent' / 'DID NOT FINISH' for that reason: it leaves the visit as it is, reports the line, runs the same command again later, never in a loop",
+      _rl.count("NO SAVE WHEN A VISIT'S CHARGES COULD NOT ALL BE READ") == 1 and _rl8.startswith("- (11/11/2026, ") and _rl.index("FEED VISITS WITH AN EMPTY INSURANCE ORDER") < _rl.index("NO SAVE WHEN A VISIT'S CHARGES COULD NOT ALL BE READ")
+      and all(x_ in _rl8 for x_ in ("resave.set_insorder", "feed_order_sweep.py --resave and --fix-clinician", "never send a save when AdvancedMD did not return all of a visit's charges", '"visit <id>: nothing sent - ..."', '"NOT rebilled"',
+                                    "FEED ORDER SWEEP DID NOT FINISH: nothing was sent for", "leaves no STOP", "it leaves the visit as it is (no save by another helper, no rebill), reports the line, and runs the same command again later", "it never retries in a loop", "A KNOWN, OLDER GAP")),
+      [x_ for x_ in ("leaves the visit as it is", "runs the same command again later", "never retries in a loop") if x_ not in _rl8] or _rl8[:200])
+check("R8 lessons: ONE dated TRAP line - a failed history read looks like 'no more charges', a save that leaves a live charge out voids it, which helpers are guarded now and that the others are not yet",
+      _ls.count("| chat (round 8, the echo guard) | TRAP |") == 1 and _ls8.startswith("- 2026-11-11T") and all(x_ in _ls8 for x_ in ('A failed history read looks like "no more charges"', "A full-visit save that leaves a live charge out voids it",
+                                    "GUARDED since 11/11/2026: resave.set_insorder", "feed_order_sweep.py (--resave, --fix-clinician)", "NOT GUARDED YET: every other helper that calls visit_charges", "move_to_ins.move", "freq1_visit.run", "claimocity_verify.fast_set_insorder", "never in a loop")), _ls8[:300])
 # the three confirmation reviews: the words a routine follows
 check("OPS-1/R7-REPLAY-1 runbook (c2): the owner's approved file is copied from the repository every run, and the call never drops --approved (no 'drop --approved' fallback - the sweep lists only and says so)",
       "cp -p ../../practices/ehpa/registers/feed_order_approved.json /home/claude/unbilled/registers/" in _c2 and "drop --approved" not in _stp and "the call never changes when the approved file is missing" in _c2)

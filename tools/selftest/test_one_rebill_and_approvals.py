@@ -14,6 +14,12 @@
 #   Since that day it also proves, on the real modules, what that rule version added (sections B2 and C2): set_insorder reads the visit's
 #   insurance-order LIST, refuses a visit already billed unless the caller passes allow_billed=True (freq1_visit.reroute does), echoes
 #   every live charge and looks for each again, and puts back an admission date the save wiped - or says "admission date lost on save".
+#   11/11/2026 (round 8, the echo guard) - section H runs the REAL resave.visit_charges (sections B-D replace it) on an invented chart history
+#   and proves: a history page that fails, a history longer than the pages read and a live charge missing from its own detail are NOTED beside
+#   an answer that is otherwise exactly what it was; set_insorder and freq1_visit.reroute then send NOTHING ("visit ...: nothing sent", "NOT
+#   rebilled") - also when no live charge was read or the asked charge is not among them, also for a dry run - and a read-back that could not
+#   read all the charges is not trusted. move_to_ins.move and freq1_visit.run do NOT look at that note yet (a known, older gap): section H
+#   pins the very calls they make on a failed read, so that this round is seen to change nothing in them.
 import os, sys, json, re, tempfile, time, types
 import xml.etree.ElementTree as ET
 import socket as _socket      # 11/11/2026: no network route is open in this process - a call no stand-in answers fails here, it never reaches a host
@@ -24,6 +30,7 @@ TMP = tempfile.mkdtemp(prefix="selftest_ws_")
 os.environ["BILLING_WORKSPACE"] = TMP
 sys.path.insert(0, os.path.join(ROOT, "scripts", "helpers")); sys.path.insert(1, os.path.join(ROOT, "core"))
 import amd, resave, freq1_visit, move_to_ins, ins_update, approval_submit
+REAL_VISIT_CHARGES, REAL_DETAIL = resave.visit_charges, resave.detail      # 11/11/2026 (round 8): the REAL history read and charge detail, kept for section H (sections B-D put stand-ins in their place)
 FAILS = []
 def check(name, cond, extra=""):
     print(("ok   " if cond else "FAIL ") + name + ("" if cond else "  " + str(extra)))
@@ -420,6 +427,167 @@ check("no email-reply approval channel is offered", "APPROVED <id>" not in body 
 
 check("gate catches a member number inside an add_ins command", approval_submit.privacy_hit("cd /home/claude/unbilled && python3 add_ins.py 17477638 car6404 912345678") is not None)
 check("repo copy also scrubs AMD's no-space LAST,FIRST form and the command", approval_submit.repo_safe("XANTHER," + "OTTO pat17477638 via x.py --only A") == "[name] pat17477638 via x.py --only A")
+
+# ------------------------------------------------------------------ H. (11/11/2026, round 8) the echo guard: no save when the visit's charges could not all be read
+# Sections B-D put a stand-in in the place of resave.visit_charges; here the REAL one runs (and the real resave.detail) on an invented chart
+# history. gettxhistory answers pages of 100 charge rows, newest first: `before` rows of ANOTHER visit of the chart, this visit's charges (a
+# void one keeps its row, void="1"), one row of this visit with a negative fee (a reversal - never a live charge), then `after` more rows of
+# the other visit. Every good page carries the empty <Error /> that every good AdvancedMD answer carries, and a memo with the letters "Fault".
+#   fault_pages = the pages answered with a Fault on every read; fault_calls = the history CALLS of the scenario (the first is 1) answered
+#   with one; nodetail = charges whose OWN detail answer does not hold them. The charge details, the save, the admission-date write and the
+#   frequency reset are answered by section B's stand-in (r_post). HCALLS = every call of the scenario in the order it came; HBOD = the
+#   bodies, word for word (hsum = their fingerprint).
+import hashlib
+HIST = {}; HCALLS = []; HBOD = []; HREB = []
+def hreal(**h):      # a new scenario: its knobs, and nothing counted yet
+    HIST.clear(); HIST.update(before=0, after=0, fault_pages=(), fault_calls=(), nodetail=(), words="Server Error", asked=0); HIST.update(h); del HCALLS[:]; del HBOD[:]; del HREB[:]
+def h_rows():
+    other = ['<charge id="%d" visit="555" void="0" fee="50.00" memo="Faulty meter - Default plan"/>' % (700000 + k) for k in range(HIST["before"] + HIST["after"])]
+    mine = ['<charge id="%s" visit="900" void="%d" fee="100.00"/>' % (c[6:], c in STATE["void"]) for c in cids()] + ['<charge id="499" visit="900" void="0" fee="-100.00"/>']
+    return other[:HIST["before"]] + mine + other[HIST["before"]:]
+def h_post(body, timeout=180):
+    m = re.match(r'<ppmdmsg action="([^"]*)"', body); act = m.group(1) if m else "?"; HBOD.append(body)
+    if act == "gettxhistory":
+        page = int(re.search(r' pagenumber="(\d+)"', body).group(1)); HIST["asked"] += 1; HCALLS.append("history %d" % page)
+        if page in HIST["fault_pages"] or HIST["asked"] in HIST["fault_calls"]:
+            return "<PPMDResults><Error><Fault><detail><code>500</code><description>%s</description></detail></Fault></Error></PPMDResults>" % HIST["words"]
+        return '<PPMDResults><Results><patient id="pat77"><chargelist>%s</chargelist></patient></Results><Error /></PPMDResults>' % "".join(h_rows()[(page - 1) * 100:page * 100])
+    if act == "getchargedetaildataicd10":
+        cid = re.search(r' chargeid="(\d+)"', body).group(1); HCALLS.append("detail " + cid)
+        if "charge" + cid in HIST["nodetail"]: return "<PPMDResults><Fault>charge not found</Fault></PPMDResults>"      # the other shape of a Fault: not under <Error>
+        return r_post(body, timeout)
+    if act == "updvisitwithcharges": HCALLS.append("save %s insorder=%s" % (",".join(re.findall(r'<charge id="(charge\d+)"', body)) or "NO CHARGE", (re.search(r'<visit [^>]*insorder="([^"]*)"', body) or [None, "?"])[1]))
+    elif act == "updextrainsinfo": HCALLS.append("%s %s" % ("reset" if "resubmissioncode" in body else "admit", (re.search(r'txtChargeCode="([^"]*)"', body) or [None, "?"])[1]))
+    else: HCALLS.append(act)
+    return r_post(body, timeout)
+def h_rebill(cid, seq, **k): HREB.append((cid, seq)); HCALLS.append("rebill %s %s" % (cid, seq)); HBOD.append("rebill %s %s %s" % (cid, seq, sorted(k.items()))); return 204, ""
+def hsum(): return hashlib.sha256("\n".join(HBOD).encode()).hexdigest()[:16]
+def hnote(): return getattr(resave, "READ_NOTE", "(this resave.py keeps no READ_NOTE)")
+def hvc(cid="500"):      # the real visit_charges: (visit id, chart id, the ids of the live charges it returns) - or, in words, what it raised
+    try: v, p, cs = resave.visit_charges(cid); return v.get("id"), p.get("id"), [c.get("id") for c in cs]
+    except Exception as e: return "RAISED %s: %s" % (type(e).__name__, e)
+def hdo(f, *a):      # another helper over the real read - a raise becomes an answer the check shows
+    try: return f(*a)
+    except Exception as e: return "RAISED %s: %s" % (type(e).__name__, e)
+_keep = (amd.post, amd.rebill_charge, amd._msgtime, resave.visit_charges, resave.detail, freq1_visit.run, time.sleep)
+amd.post = h_post; amd.rebill_charge = h_rebill; amd._msgtime = lambda: "T"; resave.visit_charges = REAL_VISIT_CHARGES; resave.detail = REAL_DETAIL; freq1_visit.run = f_run; time.sleep = lambda *a: None
+NOTHING = "visit vst900: nothing sent - "; VOIDS = "A full-visit save that leaves a live charge out voids that charge: read the visit again before anything is sent"
+READ1 = ["detail 500", "history 1"]; READ2 = ["detail 500", "history 1", "history 2", "detail 500"]      # the calls of ONE read of the visit: a Fault on page 1; 99 other rows first and a Fault on page 2
+# a good read: the answer is what it always was, and there is nothing to note
+fresh(order="1", n=4, void={"charge503"}); hreal(before=3, after=2); got = hvc("501")
+check("H the REAL visit_charges on a good read - three live charges among another visit's rows, a void charge and a reversal; the page carries the empty <Error /> of a good answer and memos with the letters 'Fault': the visit, the chart and exactly the three live charges, each from its own detail - the answer and the calls of before round 8",
+      got == ("vst900", "pat77", ["charge500", "charge501", "charge502"]) and HCALLS == ["detail 501", "history 1", "detail 500", "detail 501", "detail 502"] and hsum() == "b186023af5f12b43", (got, HCALLS, hsum()))
+check("H ... and READ_NOTE stays empty: there is nothing to say about a good read (the letters 'Fault' in a memo and the empty <Error /> are not a fault)", hnote() == "", hnote())
+fresh(order="1", n=4, void={"charge503"}); hreal(before=3, after=2); ok, msg = setord("501", "2")
+check("H set_insorder over the real history read, a good read: saved once, the three live charges echoed and read back - ok",
+      ok is True and sent() == ["save"] and re.findall(r'<charge id="(charge\d+)"', STATE["posts"][0]) == ["charge500", "charge501", "charge502"] and "3 live charges (was 3)" in msg and hnote() == "", (msg, HCALLS))
+# a. a history page answered with a Fault - the first page
+LONG = "The transaction history of this chart could not be read at this time. " * 3      # 213 characters: the note keeps the first 120 of the fault's words
+fresh(order="1"); hreal(fault_pages={1}, words=LONG); got = hvc()
+check("H a Fault on the FIRST history page: the answer is what it was before round 8 - the visit, the chart and NO charge (the failed page is taken for 'no more charges') after ONE history call, and nothing is raised",
+      got == ("vst900", "pat77", []) and HCALLS == READ1 and hsum() == "9ac1587ee9a113dc", (got, HCALLS, hsum()))
+_n = hnote(); _fw = " ".join(("500 " + LONG).split())[:120]
+check("H ... and READ_NOTE says why the charges may not all have been read: the call and the page first (gettxhistory page 1), the visit and the chart, and the first 120 characters of the fault's own words last",
+      _n.startswith("gettxhistory page 1 for visit vst900 of chart pat77 answered a Fault") and _n.endswith(": " + _fw) and len(_fw) == 120 and LONG.strip() not in _n, _n)
+fresh(order="1"); hreal(fault_pages={1}); ok, msg = setord("500", "2")
+check("H set_insorder, a Fault on the first history page: NOT ok, 'visit vst900: nothing sent - ...' - it says AdvancedMD did not return all the charges, that a save which leaves a live charge out voids it, to read the visit again, the fault's words last - and NOTHING went out: no save, no further read (before round 8: a save with an EMPTY charge list, answered ok, '0 live charges (was 0)')",
+      ok is False and msg.startswith(NOTHING + "AdvancedMD did not return all of this visit's charges (0 live charge(s) read). " + VOIDS) and msg.endswith("answered a Fault, so the chart's charges were not all listed: 500 Server Error")
+      and not msg.startswith("resave") and not sent() and HCALLS == READ1 and not STATE["void"], (msg, HCALLS))
+fresh(order="1"); hreal(fault_pages={1}); ok, msg = setord("500", "2", dry=True)
+check("H ... the same for a DRY run: NOT ok, 'nothing sent' - never 'DRY resave ... (0 live charges echoed)'", ok is False and msg.startswith(NOTHING) and "DRY" not in msg and not sent() and HCALLS == READ1, (msg, HCALLS))
+billed(order="1"); hreal(fault_pages={1}); r = route("900", "500", "2")
+check("H ... and through freq1_visit.reroute on an already-billed visit (the real frequency reset and rebill stand behind it): 'NOT rebilled - visit order step failed: visit vst900: nothing sent - ...' - no save, no frequency reset, no rebill (before round 8: the empty save, then the rebill)",
+      r.startswith("NOT rebilled - visit order step failed: " + NOTHING) and not sent() and not HREB and HCALLS == READ1, (r, HCALLS))
+_ft = getattr(resave, "_fault_text", lambda root: "(this resave.py has no _fault_text)"); _x = ET.fromstring
+_shapes = ("<r><Error><Fault><detail>Server   Error</detail></Fault></Error></r>", "<r><Fault>charge not found</Fault></r>", "<Fault>down</Fault>", '<r xmlns:s="urn:x"><s:Fault>soap fault</s:Fault></r>', "<r><Fault/></r>",
+           '<r><Results><charge memo="Fault line"/><facility label="Default - Faulty meter">No Fault found</facility></Results><Error /></r>', "<r><Error /></r>")
+check("H the Fault test looks for an ELEMENT named Fault anywhere in the answer - under <Error>, at the top, as the answer itself, with a namespace - and never for the letters: a memo, a label or a text that holds 'Fault', and the empty <Error /> of a good answer, are no fault",
+      [_ft(_x(a_)) for a_ in _shapes] == ["Server Error", "charge not found", "down", "soap fault", "no words in it", None, None], [_ft(_x(a_)) for a_ in _shapes])
+# a. the SECOND page of a two-page history: the asked charge is read, its siblings are not - only the note can tell
+fresh(order="1", n=3); hreal(before=99, fault_pages={2}); got = hvc()
+check("H a Fault on the SECOND page of a two-page history (charge500 is the last row of page 1, its two siblings are on page 2): the answer of before round 8 - charge500 ALONE, the siblings missing without a word",
+      got == ("vst900", "pat77", ["charge500"]) and HCALLS == READ2 and hsum() == "e0bf5e78192bcfda", (got, HCALLS, hsum()))
+check("H ... and READ_NOTE names page 2", hnote().startswith("gettxhistory page 2 for visit vst900 of chart pat77 answered a Fault") and hnote().endswith(": 500 Server Error"), hnote())
+fresh(order="1", n=3); hreal(before=99, fault_pages={2}); ok, msg = setord("500", "2")
+check("H set_insorder, the Fault on page 2: the asked charge WAS read and the list is not empty - only the note tells - NOT ok, nothing sent, nothing more read, and the two siblings stay live (before round 8 the save left them out, and AdvancedMD voids a charge left out)",
+      ok is False and msg.startswith(NOTHING + "AdvancedMD did not return all of this visit's charges (1 live charge(s) read). " + VOIDS + " (insorder 1, list [1], asked 2) - gettxhistory page 2 ") and not sent() and not STATE["void"] and HCALLS == READ2, (msg, HCALLS))
+fresh(order="1", n=3); hreal(before=99, fault_pages={2}); ok, msg = setord("500", "2", dry=True)
+check("H ... the same for a DRY run", ok is False and msg.startswith(NOTHING) and "DRY" not in msg and not sent() and HCALLS == READ2, (msg, HCALLS))
+billed(order="1", n=3); hreal(before=99, fault_pages={2}); r = route("900", "500", "2")
+check("H ... and through freq1_visit.reroute: 'NOT rebilled', no save, no frequency reset, no rebill", r.startswith("NOT rebilled - visit order step failed: " + NOTHING) and not sent() and not HREB and HCALLS == READ2, (r, HCALLS))
+fresh(order="1", n=3, bill={"charge500": BILLED}); hreal(before=99, fault_pages={2}); ok, msg = setord("500", "2")
+check("H the guard comes BEFORE the billed guard: a billed visit whose charges were not all read answers 'nothing sent', not 'already billed - not saved' (bill signs read from an incomplete list prove nothing)",
+      ok is False and msg.startswith(NOTHING) and "already billed" not in msg and not sent() and HCALLS == READ2, (msg, HCALLS))
+# b. the page cap: page 7 still full
+fresh(order="1"); hreal(before=700); got = hvc()
+check("H the page cap - 700 newer charge rows of another visit come before this visit's: the answer of before round 8 (NO charge, after seven full pages)",
+      got == ("vst900", "pat77", []) and HCALLS == ["detail 500"] + ["history %d" % p_ for p_ in range(1, 8)] and hsum() == "915025a49320f905", (got, HCALLS, hsum()))
+check("H ... and READ_NOTE says page 7 was still full: the history is longer than the 700 charge rows read", hnote().startswith("gettxhistory page 7 for visit vst900 of chart pat77 was still full") and "longer than the 700 charge rows" in hnote(), hnote())
+fresh(order="1"); hreal(before=697); ok, msg = setord("500", "2")      # 697 other rows + this visit's two charges + its reversal row = exactly 700 rows: both charges are read, on a page 7 that is full
+check("H set_insorder at the cap - exactly 700 rows, both charges of the visit read on page 7: the page is full, so more rows may follow - NOT ok, nothing sent (only the note tells)",
+      ok is False and msg.startswith(NOTHING + "AdvancedMD did not return all of this visit's charges (2 live charge(s) read). ") and "gettxhistory page 7 for visit vst900 of chart pat77 was still full" in msg and not sent() and not STATE["void"], (msg, HCALLS[-3:]))
+fresh(order="1"); hreal(before=696); ok, msg = setord("500", "2")      # one row fewer: page 7 is not full - the whole history was read
+check("H ... one row fewer (699 rows, page 7 not full): the whole history was read - saved as before, ok, no note", ok is True and sent() == ["save"] and "2 live charges (was 2)" in msg and hnote() == "", (msg, hnote()))
+# c. a live charge that is not in its own detail answer
+fresh(order="1"); hreal(nodetail={"charge501"}); got = hvc()
+check("H a charge the history lists as live whose OWN detail answer does not hold it (a Fault, not under <Error>): the answer of before round 8 - that charge is left out without a word",
+      got == ("vst900", "pat77", ["charge500"]) and HCALLS == ["detail 500", "history 1", "detail 500", "detail 501"] and hsum() == "2b0e0327d21f885c", (got, HCALLS, hsum()))
+check("H ... and READ_NOTE names the call and the charge, the fault's words last", hnote() == "getchargedetaildataicd10 of charge 501 for visit vst900 of chart pat77 did not return that charge, which the history lists as live: charge not found", hnote())
+fresh(order="1"); hreal(nodetail={"charge501"}); ok, msg = setord("500", "2")
+check("H set_insorder, a live charge missing from its own detail answer: NOT ok, nothing sent - charge501 stays live (before round 8 it was left out of the save)",
+      ok is False and msg.startswith(NOTHING + "AdvancedMD did not return all of this visit's charges (1 live charge(s) read). ") and "getchargedetaildataicd10 of charge 501" in msg and not sent() and not STATE["void"], (msg, HCALLS))
+fresh(order="1", n=3); hreal(before=98, fault_pages={2}, nodetail={"charge501"}); got = hvc()      # two reasons in one read: page 2 fails (noted first), then charge501 - read on page 1 - is missing from its own detail
+check("H two reasons in one read: the note keeps the FIRST one (the failed page), and the answer is still what it was before round 8", got == ("vst900", "pat77", ["charge500"]) and hnote().startswith("gettxhistory page 2 for visit vst900 of chart pat77 answered a Fault"), (got, hnote()))
+# no live charge read, and the asked charge not among the live charges read - a complete read, no note: the list itself tells
+fresh(order="1", void={"charge500", "charge501"}); hreal(); got = hvc(); _n = hnote(); hreal(); ok, msg = setord("500", "2")
+check("H every charge of the visit is void (a complete read: no note): NOT ok, 'nothing sent - no live charge of this visit was read' - no save with an EMPTY charge list (before round 8 that save went out and was answered ok)",
+      got == ("vst900", "pat77", []) and _n == "" and ok is False and msg.startswith(NOTHING + "no live charge of this visit was read (0 read). " + VOIDS) and not sent() and HCALLS == READ1, (got, _n, msg, HCALLS))
+fresh(order="1", n=3, void={"charge500"}); hreal(); ok, msg = setord("500", "2")
+check("H the charge asked for is void while its two siblings are live (a complete read: no note): NOT ok, 'nothing sent - charge 500, the one asked for, is not among the 2 live charge(s) read' (move_to_ins.move's own guard, now here too)",
+      ok is False and msg.startswith(NOTHING + "charge 500, the one asked for, is not among the 2 live charge(s) read (501,502). " + VOIDS) and not sent() and hnote() == "", (msg, HCALLS))
+# the skip answer is unchanged - chosen: a visit already right is "skipped", note or no note (it is decided from the asked charge's own detail, and nothing is sent on that path)
+fresh(order="2"); hreal(fault_pages={1}); ok, msg = setord("500", "2")
+check("H the skip is unchanged: a visit ALREADY as asked (attribute and list) is still 'skipped' when the history could not be read - ok, the words of before round 8, nothing sent",
+      ok is True and msg == "visit vst900 insorder already 2, list [2] - resave skipped" and not sent() and HCALLS == READ1, (msg, HCALLS))
+# after the save: a read-back that could not read all the charges is not trusted
+fresh(order="1"); hreal(fault_calls={2}); ok, msg = setord("500", "2")      # the first read is good, the save lands, the read-back's history page fails, the read after it is good
+check("H the READ-BACK after the save cannot read all the visit's charges: it is not trusted - NOT ok through 'read again', with what the visit reads now",
+      ok is False and sent() == ["save"] and msg.startswith("resave vst900: the read-back after the save could not read all the visit's charges (gettxhistory page 1 for visit vst900 of chart pat77 answered a Fault")
+      and " - read again: insorder 2, list [1] -> [2], 2 live charges (was 2)" in msg and msg.endswith(" - NOT as asked") and HIST["asked"] == 3, (msg, HCALLS))
+fresh(order="1"); hreal(fault_calls={2, 3}); ok, msg = setord("500", "2")
+check("H ... and when the read after it is not complete either: 'the visit could not be read again ... look at it in AdvancedMD before anything else is sent' - the last answer of a read-back that fails",
+      ok is False and sent() == ["save"] and ", and the visit could not be read again (not all of its charges came back: gettxhistory page 1 " in msg and msg.endswith(" - look at it in AdvancedMD before anything else is sent - NOT as asked") and HIST["asked"] == 3, (msg, HCALLS))
+fresh(order="1", **HOSP(), wipe=True); hreal(fault_calls={2}); ok, msg = setord("500", "2,1")
+check("H ... a hospital code's admission date the save wiped is still written back on that 'read again' path", ok is False and STATE["admit"] == {"99223": ADM} and len(STATE["admits"]) == 1 and "written back (99223)" in msg and "NOT as asked" in msg, (msg, STATE["log"]))
+# the note never goes stale, and a stand-in that never touches it keeps working
+fresh(order="1"); hreal(fault_pages={1}); hvc(); _n1 = hnote(); HIST["fault_pages"] = (); got = hvc()
+check("H the note is set anew by every call of visit_charges: a failed read followed by a good one leaves no stale note", _n1 != "" and got == ("vst900", "pat77", ["charge500", "charge501"]) and hnote() == "", (_n1, got, hnote()))
+fresh(order="1"); hreal(fault_pages={1}); hvc(); _n1 = hnote()      # a failed REAL read leaves its note ...
+resave.visit_charges = live_charges; ok, msg = setord("500", "2"); resave.visit_charges = REAL_VISIT_CHARGES      # ... then a stand-in that never touches the note (sections B-D's own) takes the real one's place
+check("H a stand-in for visit_charges that never touches the note keeps working: set_insorder sets the note to '' itself before it reads - saved, ok (a stale note would have refused it)", _n1 != "" and ok is True and sent() == ["save"], (msg, _n1))
+# move_to_ins.move and freq1_visit.run do not look at the note - a known, older gap that round 8 leaves as it was. On a good read and on a failed
+# one they make the very calls, word for word, that they made before this round: each fingerprint below was taken from the helpers of the live
+# branch as it stood before round 8 (this same file, the same answers), and the helpers of this tree give the same.
+fresh(order="1"); hreal(); _m = hdo(move_to_ins.move, "500", "2")
+check("H UNCHANGED in round 8 - move_to_ins.move on a good read: both charges echoed in ONE save, read back, ONE rebill - the calls of before this round, word for word",
+      _m == "moved 0.00 -> {'insbalance': '100.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204" and HCALLS == ["detail 500", "history 1", "detail 500", "detail 501", "save charge500,charge501 insorder=2", "detail 500", "rebill 500 2"] and hsum() == "da5df0b7128ee6d7", (_m, HCALLS, hsum()))
+fresh(order="1"); hreal(fault_pages={1}); _m = hdo(move_to_ins.move, "500", "2")
+check("H UNCHANGED in round 8 - move_to_ins.move, a Fault on the first history page: its own guard answers 'charge not live on visit' - two calls, nothing sent, nothing raised",
+      _m == "charge not live on visit" and HCALLS == READ1 and hsum() == "9ac1587ee9a113dc" and not sent(), (_m, HCALLS, hsum()))
+fresh(order="1"); hreal(before=99, fault_pages={2}); _m = hdo(move_to_ins.move, "500", "2")
+check("H UNCHANGED in round 8 (the known, older gap - NOT closed here) - move_to_ins.move, a Fault on page 2: it still saves the ONE charge it read (the stand-in voids the sibling left out) and rebills - the calls of before this round, word for word",
+      _m == "moved 0.00 -> {'insbalance': '100.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204" and HCALLS == READ2 + ["save charge500 insorder=2", "detail 500", "rebill 500 2"] and hsum() == "fcf0dbcf40e717f3" and STATE["void"] == {"charge501"}, (_m, HCALLS, hsum()))
+fresh(order="1", cpt={"charge501": "99223"}); hreal(); _f = hdo(f_run, "900", "500", 2)
+check("H UNCHANGED in round 8 - freq1_visit.run on a good read: a frequency reset for each of the visit's two procedures, then ONE rebill - the calls of before this round, word for word",
+      _f == "freq1 + rebill seq 2 -> 204" and HCALLS == ["detail 500", "history 1", "detail 500", "detail 501", "reset pcode1", "reset pcode2", "rebill 500 2"] and hsum() == "02b425450e5f457b", (_f, HCALLS, hsum()))
+fresh(order="1", cpt={"charge501": "99223"}); hreal(fault_pages={1}); _f = hdo(f_run, "900", "500", 2)
+check("H UNCHANGED in round 8 (the known, older gap - NOT closed here) - freq1_visit.run, a Fault on the first history page: NO frequency reset, and the rebill still goes out - the calls of before this round, word for word",
+      _f == "freq1 + rebill seq 2 -> 204" and HCALLS == READ1 + ["rebill 500 2"] and hsum() == "2af86ab9d0f80f57", (_f, HCALLS, hsum()))
+fresh(order="1", cpt={"charge501": "99223"}); hreal(before=99, fault_pages={2}); _f = hdo(f_run, "900", "500", 2)
+check("H UNCHANGED in round 8 (the known, older gap - NOT closed here) - freq1_visit.run, a Fault on page 2: the frequency reset goes out for the ONE procedure it read, then the rebill - the calls of before this round, word for word",
+      _f == "freq1 + rebill seq 2 -> 204" and HCALLS == READ2 + ["reset pcode1", "rebill 500 2"] and hsum() == "85f36e10b6d90cbf", (_f, HCALLS, hsum()))
+check("H the stand-in AdvancedMD of section H had an answer for every call the helpers made (no action it does not know)", not UNANSWERED, UNANSWERED)
+amd.post, amd.rebill_charge, amd._msgtime, resave.visit_charges, resave.detail, freq1_visit.run, time.sleep = _keep
 
 print("\n%d failure(s)" % len(FAILS) + (": " + ", ".join(FAILS) if FAILS else " - all guarantees hold"))
 sys.exit(1 if FAILS else 0)
