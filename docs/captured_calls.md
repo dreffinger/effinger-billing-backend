@@ -5983,3 +5983,35 @@ No new AdvancedMD / Stedi call shapes this run (vocabulary +0). Lessons for the 
 4. BOARD READS, cheap and complete: `query items where status == claude AND updated > <last complete run>` (two where clauses) returns only the Claude-turn rows William touched since - 0 rows this run; `status == william` (8 rows) is the facesheet-email source. A single-clause `status == claude` query returns 200+ rows and hits the result cap.
 5. FEED: the 11/10 bucket file (download__20261110626627aa54d52f67a80d586a.hl7, 81 KB, 60 messages, 4 patients new to the map - all FOUND by lookup) was entirely already in AMD (60 skipped) - the GitHub Actions button slots had entered it during the day. dx cache started empty on the fresh workspace (145 lookupdiagcode calls, 143 found, 2 not in AMD); dx_cache_feed.json is now on main so the next run looks up none. retry-dx re-fetched three old batches' files from the bucket and found nothing to retry.
 6. Postman: collection 2a1aec48-7c24-4044-9e78-9f60ec404c8f "Effinger AMD - captured calls (generated 2026-10-28, 69 calls)" in workspace d869e89a-d16a-4ed1-8443-54ed1a6ded35 - unchanged (no new vocabulary entry).
+
+# captured_calls additions - backend billing run 2026-11-11T1239Z (ehpa cloud, Code routine, 7:39 AM ET Wed 11/11, six-hourly slot)
+
+No new AMD / Stedi call shapes this run (vocabulary +0). Lessons:
+
+1. HCA CENSUS AS THE ADMISSION-DATE SOURCE (William dropped `census paper.pdf` into Drive 'bht hca facesheets' 04:03Z 11/11 = the HCA PAN LIVE "Two Line Patient Table" of 11/07/26, Capital Regional Medical Ctr, 21 inpatients with DOB, Admitted date and attending). It is image-only ("Microsoft: Print To PDF"); `pdftoppm -r 220 -png` + the Read tool on the PNGs reads it cleanly where tesseract garbles the handwriting. The standing Claim Inspector hold pat22322 Pattern 4531 (99223+99497 11/04/2026 and 99233 11/05/2026 entered by the feed at the chart's ALF, fac65 / POS 13) was NOT a coding call: the census lists that patient as an inpatient (attending Effinger), so the feed's location was wrong. Fix shape (insp_1111_1239.py, dry then live): `updextrainsinfo` per CPT with `hospitalizationfrom` = the 99223's DOS (never hospitalizationto) + full-visit echo `updvisitwithnewcharges` with visit `facility="fac29"` (HCA FLORIDA CAPITAL HOSPITAL), `onhcfa="1"`, `force="1"`, every charge echoed with `pos="21"` -> both visits left the inspector list (getclaiminspectorbatches = []), readback facility fac29 / pos 21 / extins hospitalizationfrom 11/04/2026. Rule for the next runs: a Pattern 4531 on hospital codes is first checked against the newest HCA census in 'bht hca facesheets' (local parse inbox/facesheets/census_1107.json) before it is called a coding question.
+2. claimocity_gcs.py --install-key needs the same `PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3` as the listing call - without it the image's cryptography module panics under pyo3 ('Python API call failed') and the key is not installed (exit 4 on the next call). The runbook's (a) paragraph should name the environment on the install command too.
+3. The 06:39Z 11/11 firing of this routine posted no START and no digest (the GitHub Actions engine covered the columns at 05:18Z / 07:19Z) - the fourth silent firing since 11/9 (11/9 00:39Z, 11/10 12:39Z, 11/10 18:39Z, 11/11 06:39Z). The Code routine's run history for trig_01QRqT8KB4Q1H9EyYRG4NBKX shows why.
+4. transcript_extract.py `drive <fileId>=<path>` restored pseudonyms.json byte-exact (12,881 bytes, 449 names) after a heredoc paste of the same base64 also decoded to valid JSON this time - use the extractor every run regardless; the paste is the fragile path.
+
+# captured_calls additions - 2026-11-11T1839Z (1:39 PM ET Wed 11/11 backend billing run, ehpa cloud Code routine, six-hourly slot)
+
+No new call shapes this run (vocabulary unchanged). Lessons for the registry:
+
+- PCC Clinical Resident Profile by phone photo (Pam's admit email, Westminster Oaks SNF): the sheet's "Primary Payer" + "Ins. Company" +
+  "Managed Care Policy #" settle a chart the Stedi cascade had left on William's turn. pat17478318 (feed chart F261105-04, HCA stay
+  11/03-11/08/2026): the 11/5 feed discovery hit was CIGNA DENTAL; the sheet names CAPITAL HEALTH PLAN policy <8 digits> with a Medicare HIC
+  listed beside it and "Managed Care coinsurance from private" as the second payer. Stedi 95112 with that policy at DOS 11/07/2026:
+  Active Coverage, HM (HMO), planCoverage COMMERCIAL, planBegin 20181001, and the payer ECHOES the member id with its CHP prefix
+  (subscriber.memberId CHP<8 digits>, planInformation.priorIdNumber = the bare 8 digits) - enter the CAP07 plan with the CHP-prefixed id,
+  as the chart's other CAP07 plans carry it. A METLIFE 'CITY OF TALLAHASSEE' discovery hit on a working-aged Tallahassee resident is the
+  City employee/retiree benefit; the medical plan is CHP (commercial HMO), primary ahead of any Medicare (working aged).
+- Same recipe as facesheet_insure_1109_0639.py, no auth: add_ins CAP07 car41826 (begin = Stedi planBegin, no group) -> ins_update enddate on
+  the wrong plan the day before the first DOS (the edit blanks the patient insorder: ins_update sequence=<new seq> restores it, read back
+  on getdemographic) -> each visit's FULL charge echo resave with insorder=<new seq> onhcfa=1 and its OWN hospitalizationfrom kept
+  (resave._extins_xml(v, <the visit's current value>)) -> freq1_visit.run(vid, cid, seq) -> 204 each -> amd.check_eligibility on the
+  new plan. Helper grantham_1111_1839.py (register registers/grantham_2026-11-11T1839Z.json).
+- Claimocity GCS key install: the pylib path (PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3) is needed for
+  --install-key as well as for the list (12:39Z lesson confirmed).
+- feed_order_sweep.py writes its log with Python's block buffering under nohup: logs/feed_order_sweep_<stamp>.log stays at 0 bytes for
+  the first minutes while registers/feed_order_sweep_<stamp>.json already exists - not a stalled sweep; `pgrep -f feed_order_sweep.py`
+  tells.
