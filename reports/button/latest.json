@@ -1,18 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-11T1918Z",
+ "stamp": "2026-11-11T2120Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/10/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 1 checks $54.81 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43086002171",
- "started": "2026-11-11T19:18:55Z",
- "ended": "2026-11-11T19:24:53Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43102218011",
+ "started": "2026-11-11T21:20:51Z",
+ "ended": "2026-11-11T21:26:40Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 10,
+    "claim_inspector": 2,
     "unbilled": 0,
     "exclusions": 1
    },
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 54.81
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 54.81,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 285818.17,
-   "visits": 2513,
-   "charts": 464,
+   "total": 285707.17,
+   "visits": 2512,
+   "charts": 463,
    "over_365": {
     "n": 544,
     "dollars": 25147.93
@@ -65,7 +65,7 @@
    "visits": 7841,
    "actionable": 76,
    "actionable_amt": 13875.0,
-   "asof": "2026-11-11 19:24 UTC"
+   "asof": "2026-11-11 21:26 UTC"
   }
  },
  "steps": [
@@ -82,22 +82,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T19:18:55Z",
-   "ended": "2026-11-11T19:18:56Z"
+   "started": "2026-11-11T21:20:51Z",
+   "ended": "2026-11-11T21:20:51Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 10->2, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 2->2, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
-    "claim inspector": 10,
+    "claim inspector": 2,
     "unbilled": 0,
     "exclusions": 1,
-    "inspector advisories to bypass": 8,
+    "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 2,
-    "inspector bypasses sent": 8,
+    "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 0,
@@ -107,12 +107,6 @@
    },
    "dollars": {},
    "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 8,
-     "ids": "v19458935 v19459007 v19459224 v19459229 v19459230 v19459231 v19459232 v19460175"
-    },
     {
      "column": "claim inspector",
      "kind": "missing data / dx",
@@ -127,31 +121,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T19:18:56Z",
-   "ended": "2026-11-11T19:20:53Z"
+   "started": "2026-11-11T21:20:51Z",
+   "ended": "2026-11-11T21:22:39Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $54.81 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 2
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 54.81,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 54.81
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053504,
+     "payer": "SUNSHINE STATE HEALTH PLAN",
+     "checknumber": "0918107402",
+     "amount": 0.0,
+     "unposted": 54.81,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-11T19:20:53Z",
-   "ended": "2026-11-11T19:20:54Z"
+   "started": "2026-11-11T21:22:39Z",
+   "ended": "2026-11-11T21:22:48Z"
   },
   {
    "name": "packages",
@@ -162,21 +167,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T19:20:54Z",
-   "ended": "2026-11-11T19:20:54Z"
+   "started": "2026-11-11T21:22:48Z",
+   "ended": "2026-11-11T21:22:48Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2513 visits on 464 charts, $285818.17 open; 544 over a year ($25147.93)",
+   "summary": "2512 visits on 463 charts, $285707.17 open; 544 over a year ($25147.93)",
    "counts": {
-    "visits": 2513,
-    "charts": 464,
+    "visits": 2512,
+    "charts": 463,
     "over 365 days": 544
    },
    "dollars": {
-    "open insurance balance": 285818.17,
+    "open insurance balance": 285707.17,
     "over 365 days": 25147.93
    },
    "lines": [
@@ -251,31 +256,31 @@
      "oldest_days": 177
     },
     {
-     "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 36,
-     "dollars": 3782.06,
-     "oldest_days": 51
-    },
-    {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 204
+    },
+    {
+     "carrier": "SUN01",
+     "name": "SUNSHINE STATE HEALTH PLAN",
+     "visits": 35,
+     "dollars": 3671.06,
+     "oldest_days": 51
     }
    ],
    "errors": [],
-   "started": "2026-11-11T19:20:54Z",
-   "ended": "2026-11-11T19:20:55Z"
+   "started": "2026-11-11T21:22:48Z",
+   "ended": "2026-11-11T21:22:50Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7841 denied visits on 850 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 140",
+   "summary": "7841 denied visits on 849 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 140",
    "counts": {
-    "charts read": 850,
+    "charts read": 849,
     "denial lines": 13323,
     "visits": 7841,
     "actionable": 76,
@@ -354,8 +359,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T19:20:55Z",
-   "ended": "2026-11-11T19:24:53Z"
+   "started": "2026-11-11T21:22:50Z",
+   "ended": "2026-11-11T21:26:40Z"
   }
  ],
  "packages": [],

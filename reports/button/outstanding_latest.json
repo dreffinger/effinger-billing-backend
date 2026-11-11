@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-11T19:20:55Z",
+ "at": "2026-11-11T21:22:50Z",
  "as_of": "2026-11-11",
- "total": 285818.17,
- "visits": 2513,
- "charts": 464,
+ "total": 285707.17,
+ "visits": 2512,
+ "charts": 463,
  "over_365": {
   "n": 544,
   "dollars": 25147.93
  },
  "by_bucket": {
   "0-30": {
-   "n": 602,
-   "dollars": 107205.01
+   "n": 601,
+   "dollars": 107094.01
   },
   "31-60": {
    "n": 275,
@@ -187,21 +187,6 @@
    "oldest_days": 177
   },
   {
-   "carrier": "SUN01",
-   "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 36,
-   "dollars": 3782.06,
-   "buckets": {
-    "0-30": 2824.88,
-    "31-60": 957.18,
-    "61-90": 0.0,
-    "91-180": 0.0,
-    "181-365": 0.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 51
-  },
-  {
    "carrier": "RET01",
    "name": "RETIRED RAILROAD MEDICARE",
    "n": 15,
@@ -215,6 +200,21 @@
     "over 365": 0.0
    },
    "oldest_days": 204
+  },
+  {
+   "carrier": "SUN01",
+   "name": "SUNSHINE STATE HEALTH PLAN",
+   "n": 35,
+   "dollars": 3671.06,
+   "buckets": {
+    "0-30": 2713.88,
+    "31-60": 957.18,
+    "61-90": 0.0,
+    "91-180": 0.0,
+    "181-365": 0.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 51
   },
   {
    "carrier": "SIM01",
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 250,
-   "dollars": 44377.0
+   "n": 249,
+   "dollars": 44266.0
   }
  ],
  "oldest": [
@@ -19590,14 +19590,6 @@
    "visitid": 19460168,
    "patientid": 17478264,
    "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 10,
-   "dos": "2026-11-01"
-  },
-  {
-   "visitid": 19460159,
-   "patientid": 17478213,
-   "carriercode": "SUN01",
    "insbalance": 111.0,
    "days": 10,
    "dos": "2026-11-01"
