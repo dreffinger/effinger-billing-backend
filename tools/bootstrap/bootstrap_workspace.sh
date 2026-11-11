@@ -53,7 +53,7 @@ case "$mode" in
 
   layout)
     REPO="${2:-$REPO_DEFAULT}"
-    mkdir -p "$WS" "$WS/secrets" "$WS/patient_db" "$WS/era_details" "$WS/outbox" "$WS/chat_history" "$WS/tools"
+    mkdir -p "$WS" "$WS/secrets" "$WS/patient_db" "$WS/era_details" "$WS/outbox" "$WS/chat_history" "$WS/tools" "$WS/logs" "$WS/registers" "$WS/inbox"
     chmod 700 "$WS/secrets"
     if [ ! -d "$REPO" ]; then
       echo "layout: no repo clone at $REPO - skipping repo copy (Drive overlay only)."; exit 0
