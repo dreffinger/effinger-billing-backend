@@ -4,8 +4,21 @@
 #   without a rebill (resave.set_insorder), the patient order verified and carried by an active plan (ins_update.update), and the
 #   approval email/push carrying links to the approval buttons (approval_submit). Run: python3 tools/selftest/test_one_rebill_and_approvals.py
 # Never touches: AMD, Gmail, Drive, the page. Writes only to a temp directory.
+# 11/11/2026 - RUN THIS TEST BEFORE A DELIVERY. It loads the REAL billing modules (amd, resave, freq1_visit, move_to_ins, ins_update,
+#   approval_submit) and puts its own stand-ins where they would call AdvancedMD, so the delivery sessions' guarded test runner refuses it
+#   and it is NOT run with the other self-tests. On November 11, 2026 it stood RED on the live branch: the change to resave.py of rule
+#   version 2026-11-10.7 (never-billed feed visits) had been delivered without running it - set_insorder had started to READ each charge's
+#   detail, and this file's stand-in still took every call for a save and crashed. Run it before delivering ANY change to amd.py,
+#   resave.py, freq1_visit.py, move_to_ins.py, ins_update.py or approval_submit.py - offline as the header above says, or in a sandbox
+#   with no network.
+#   Since that day it also proves, on the real modules, what that rule version added (sections B2 and C2): set_insorder reads the visit's
+#   insurance-order LIST, refuses a visit already billed unless the caller passes allow_billed=True (freq1_visit.reroute does), echoes
+#   every live charge and looks for each again, and puts back an admission date the save wiped - or says "admission date lost on save".
 import os, sys, json, re, tempfile, time, types
 import xml.etree.ElementTree as ET
+import socket as _socket      # 11/11/2026: no network route is open in this process - a call no stand-in answers fails here, it never reaches a host
+def _no_network(*a, **k): raise RuntimeError("this self-test must not use the network")
+_socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TMP = tempfile.mkdtemp(prefix="selftest_ws_")
 os.environ["BILLING_WORKSPACE"] = TMP
@@ -56,19 +69,73 @@ c11 = amd.rebill_charge("803", 3)
 check("deceased guard still blocks (409) and is not recorded", c11[0] == 409 and "v901:3" not in amd._REBILLED and len(CALLS) == 8, c11)
 
 # ------------------------------------------------------------------ B. resave.set_insorder (no rebill)
-def visit(order, n=2):
+# 11/11/2026: the stand-in AdvancedMD of sections B-D is ONE invented visit (vst900 of chart pat77, charges charge500..) kept in STATE, and it
+#   answers BY ACTION, the way the real system does (shapes: docs/captured_calls.md, and the reviewed stand-in of tools/selftest/test_feed_order.py):
+#     getchargedetaildataicd10 -> a READ, the detail of THAT charge: the patient, the visit (insorder, extins with the admission date of that
+#                                 charge's procedure code, the insurance-order LIST), the charge with its bill signs, the procedure list (id -> code);
+#     updvisitwithcharges      -> the SAVE: the new order lands and the list follows it; a live charge left out of the echo is voided;
+#     updextrainsinfo          -> the admission date written for that procedure code (with a resubmissioncode: section C's frequency reset);
+#     any other action         -> AssertionError that names it. Until 11/11/2026 every call was taken for a save, and the first READ crashed here.
+#   STATE["posts"] holds the SAVES only, so "nothing posted" still means "no save was sent"; the reads, the admission-date writes and the
+#   frequency resets are counted on their own (STATE["reads"], ["admits"], ["resets"]; STATE["log"] = all four kinds in the order they came).
+_sleep = time.sleep; time.sleep = lambda *a: None      # set_insorder waits 0.8 s after every save - nothing to wait for here (put back after section D)
+PROC = {"99309": "pcode1", "99223": "pcode2", "99497": "pcode3"}      # the stand-in's procedure list: code -> procedure id (a charge carries the id; its detail maps it back)
+STATE = {}; UNANSWERED = []
+def fresh(**kw):      # the visit as a check needs it. Default: never billed, two 99309 charges, order 1,2 with its list, no admission date, nothing counted
+    STATE.clear(); STATE.update(order="1,2", lst=None, n=2, fault=False, cpt={}, bill={}, admit={}, void=set(), lands=True, builds=True, wipe=False, restore=True, gone=(), grow=0,
+                                noanswer=None, readfail=0, posts=[], reads=[], admits=[], resets=[], log=[]); STATE.update(kw)
+fresh()
+def cids(): return ["charge%d" % (500 + k) for k in range(STATE["n"])]
+def later(mark, what): return mark in STATE["log"] and any(x.startswith(what) for x in STATE["log"][STATE["log"].index(mark) + 1:])      # did a `what...` come after `mark`?
+def charge(cid):      # one charge as its OWN detail shows it; STATE["bill"][cid] = (attributes, child rows) = its bill signs
+    a, kids = STATE["bill"].get(cid, ({}, ""))
+    c = ET.fromstring('<charge id="%s" proccode="%s" fee="100.00" insbalance="100.00" void="%d" insbilled="0" datebilled="">%s</charge>' % (cid, PROC[STATE["cpt"].get(cid, "99309")], cid in STATE["void"], kids))
+    c.attrib.update(a); return c
+def visit(order, n=2, cid="charge500"):
     v = ET.Element("visit", {"id": "vst900", "episode": "ep1", "insorder": order})
+    adm = STATE["admit"].get(STATE["cpt"].get(cid, "99309"), "")      # AdvancedMD keeps the admission date per procedure code: a charge's detail shows its own code's
+    ET.SubElement(v, "extins", dict({"id": "ext900"}, **({"hospitalizationfrom": adm} if adm else {})))
     lst = ET.SubElement(v, "insuranceorderlist")      # 11/10/2026: AdvancedMD builds the visit's insurance-order LIST from its order; set_insorder reads it
-    for i, s in enumerate(x for x in order.replace(" ", "").split(",") if x): ET.SubElement(lst, "insuranceorder", {"sequence": s, "ordinal": str(i)})
+    for i, s in enumerate(x for x in (order if STATE["lst"] is None else STATE["lst"]).replace(" ", "").split(",") if x): ET.SubElement(lst, "insuranceorder", {"sequence": s, "ordinal": str(i)})
     p = ET.Element("patient", {"id": "pat77"})
-    cs = [ET.Element("charge", {"id": "charge%d" % (500 + k), "proccode": "pcode1", "fee": "100.00", "insbalance": "100.00"}) for k in range(n)]
+    cs = [charge(c) for c in ("charge%d" % (500 + k) for k in range(n)) if c not in STATE["void"]]
     return v, p, cs
-STATE = {"order": "1,2", "n": 2, "fault": False, "posts": []}
-resave.visit_charges = lambda cid: visit(STATE["order"], STATE["n"])
+resave.visit_charges = lambda cid: visit(STATE["order"], STATE["n"], "charge" + re.sub(r"\D", "", str(cid)))
+def refuse(what, body):
+    UNANSWERED.append(what); raise AssertionError("the stand-in AdvancedMD of sections B-D has no answer for %s: %s" % (what, body[:200]))
 def r_post(body, timeout=180):
-    STATE["posts"].append(body)
-    if STATE["fault"]: return "<PPMDResults><Error><Fault>boom</Fault></Error></PPMDResults>"
-    m = re.search(r'<visit [^>]*insorder="([^"]*)"', body); STATE["order"] = m.group(1); return '<PPMDResults><Results success="1"/></PPMDResults>'
+    m = re.match(r'<ppmdmsg action="([^"]*)"', body); act = m.group(1) if m else "?"
+    if act == "getchargedetaildataicd10":      # a READ - never counted as a save
+        m = re.search(r' chargeid="(\d+)"', body); cid = "charge" + (m.group(1) if m else "?")
+        if cid not in cids(): refuse("action getchargedetaildataicd10 for a charge the visit does not have", body)
+        if STATE["readfail"] and "save" in STATE["log"]: STATE["readfail"] -= 1; raise TimeoutError("read timed out")      # readfail = how many reads AFTER the save get no answer
+        STATE["reads"].append(cid); STATE["log"].append("read " + cid); v, p, _cs = visit(STATE["order"], STATE["n"], cid); c = charge(cid)
+        return '<PPMDResults><Results>%s%s%s<proccodelist><proccode id="%s" code="%s"/></proccodelist></Results></PPMDResults>' % (
+            ET.tostring(p, encoding="unicode"), ET.tostring(v, encoding="unicode"), ET.tostring(c, encoding="unicode"), c.get("proccode"), STATE["cpt"].get(cid, "99309"))
+    if act == "updextrainsinfo":      # the admission date written for ONE procedure code - or, with a resubmissioncode, the frequency reset of freq1_visit.run
+        m = re.search(r'<extins ([^>]*)/>', body)
+        if not m or not re.search(r' visitid="(vst)?900"', body): refuse("action updextrainsinfo without an extins row for visit 900", body)
+        a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(1))); code = a.get("txtChargeCode", "")
+        if "resubmissioncode" in a:
+            STATE["resets"].append(body); STATE["log"].append("reset " + code)
+            return '<PPMDResults><Results><extins id="ext900" resubmissioncode="%s" origrefnum="%s"/></Results></PPMDResults>' % (a["resubmissioncode"], a.get("origrefnum", ""))
+        STATE["admits"].append(body); STATE["log"].append("admit " + code)
+        if STATE["restore"] and a.get("hospitalizationfrom"): STATE["admit"][code] = a["hospitalizationfrom"]      # kept for THAT code, exactly as it was sent
+        return '<PPMDResults><Results><extins id="ext900" hospitalizationfrom="%s" hospitalizationto=""/></Results></PPMDResults>' % STATE["admit"].get(code, "")
+    if act == "updvisitwithcharges":      # the SAVE
+        STATE["posts"].append(body); STATE["log"].append("save")
+        if STATE["fault"]: return "<PPMDResults><Error><Fault>boom</Fault></Error></PPMDResults>"
+        m = re.search(r'<visit [^>]*insorder="([^"]*)"', body)
+        if not m: refuse("action updvisitwithcharges without a visit insorder", body)
+        echoed = re.findall(r'<charge id="(charge\d+)"', body)
+        STATE["void"] |= {c for c in cids() if c not in echoed} | set(STATE["gone"])      # a live charge left out of the echo is voided (learned 9/3/2026); gone = voided although it was echoed
+        was = STATE["order"] if STATE["lst"] is None else STATE["lst"]
+        if STATE["lands"]: STATE["order"] = m.group(1); STATE["lst"] = None if STATE["builds"] else was      # the list follows the new order - unless the chart has no plan to build it from (lands False: accepted, and nothing changed)
+        STATE["n"] += STATE["grow"]      # grow = a charge that was not there before the save
+        if STATE["wipe"]: STATE["admit"] = dict.fromkeys(STATE["admit"], "")      # a save can wipe the admission date (docs/captured_calls.md, 9/22/2026)
+        if STATE["noanswer"]: raise STATE["noanswer"]      # the save landed, its answer never comes back
+        return '<PPMDResults><Results success="1"/></PPMDResults>'
+    refuse("action %r" % act, body)
 amd.post = r_post
 REB = []; amd_rebill_orig = amd.rebill_charge
 amd.rebill_charge = lambda cid, seq, **k: (REB.append((cid, seq)) or (204, ""))
@@ -81,6 +148,89 @@ check("live -> one updvisitwithcharges, every charge echoed, force=1, no rebill"
 STATE["fault"] = True; ok, msg = resave.set_insorder("500", "1"); STATE["fault"] = False
 check("Fault -> ok False", not ok and "FAULT" in msg, msg)
 
+# ---- B2 (11/11/2026). What rule version 2026-11-10.7 added to set_insorder, proved on the REAL resave.py - each check fails when its rule is broken.
+ADM = "10/27/2026"
+HOSP = lambda: dict(cpt={"charge500": "99497", "charge501": "99223"}, admit={"99223": ADM})      # a 99497 (the charge named) and a 99223: the admission date is the 99223's, and only its own detail shows it
+SHAPE = ('<extins txtChargeCode="99223" hospitalizationfrom="%s" patsignature="1" emergency="0" epsdt="0" payprov="1" employment="0" '
+         'autoaccident="0" otheraccident="0" pregnant="0" outsidelab="0"/>') % ADM      # the import's own call for the admission date (claimocity_import.py)
+BILLED = ({"datebilled": "10/28/2026 21:07:13", "insbilled": "1"},      # billed, and answered with a $0.00 line: a bill date, the flag, a bill row, a payment
+          '<insbilllist><insbill billeddate="10/28/2026"/></insbilllist><paymentlist><payment amount="0.00" void="0"/></paymentlist>')
+def setord(*a, **k):      # resave.set_insorder - a raise becomes an answer the check shows, so one broken guarantee cannot hide the checks after it
+    try: return resave.set_insorder(*a, **k)
+    except Exception as e: return None, "RAISED %s: %s" % (type(e).__name__, e)
+def route(*a, **k):      # freq1_visit.reroute, the same way (section C2)
+    try: return freq1_visit.reroute(*a, **k)
+    except Exception as e: return "RAISED %s: %s" % (type(e).__name__, e)
+fresh()
+try: amd.post(amd.msg("gettxhistory", "demographics", {"patientid": "pat77"})); _r = "answered"
+except Exception as e: _r = "%s: %s" % (type(e).__name__, e)
+check("the stand-in refuses an action it has no answer for, by its name, and never counts it as a save",
+      _r.startswith("AssertionError") and "'gettxhistory'" in _r and not STATE["posts"] and UNANSWERED == ["action 'gettxhistory'"], (_r, UNANSWERED)); UNANSWERED.clear()
+# a dry run reads and never writes
+fresh(**HOSP(), wipe=True); ok, msg = setord("500", "3,2", dry=True)
+check("dry: the visit is only READ (each live charge's own detail) - no save, no admission-date write; the order, the list and the date stay as they were",
+      ok and "DRY" in msg and "list [1,2]" in msg and sorted(set(STATE["reads"])) == ["charge500", "charge501"] and not STATE["posts"] and not STATE["admits"]
+      and STATE["order"] == "1,2" and STATE["admit"] == {"99223": ADM}, (msg, STATE["log"]))
+# the insurance-order LIST decides, not the attribute; and the save is only as good as what is read back
+fresh(order="1", lst=""); ok, msg = setord("500", "1")
+check("the attribute already reads the order but the insurance-order LIST is EMPTY (a feed visit entered while its chart had no plan) -> NOT skipped: saved once, the message carries the list before and after",
+      ok and len(STATE["posts"]) == 1 and 'insorder="1"' in STATE["posts"][0] and "list [] -> [1]" in msg and "skipped" not in msg, msg)
+fresh(order="1", lst="1,2"); ok, msg = setord("500", "1")
+check("the attribute reads the order but the list holds ANOTHER order -> saved, list [1,2] -> [1] (the attribute alone proves nothing)", ok and len(STATE["posts"]) == 1 and "list [1,2] -> [1]" in msg, msg)
+fresh(order="1", lst="", builds=False); ok, msg = setord("500", "1")
+check("the save is accepted but AdvancedMD builds NO list -> NOT ok: list [] -> [], 'NOT as asked'", ok is False and len(STATE["posts"]) == 1 and "list [] -> []" in msg and "NOT as asked" in msg, msg)
+fresh(order="1", lands=False); ok, msg = setord("500", "2")
+check("the save is accepted but the order does not land -> NOT ok: read back as it was, 'NOT as asked'", ok is False and len(STATE["posts"]) == 1 and "insorder 1 -> 1, list [1] -> [1]" in msg and "NOT as asked" in msg, msg)
+# a visit already billed is never saved - unless the caller passes allow_billed=True
+for _what, _word, _sign in (("a bill date", "bill date", ({"datebilled": "10/28/2026 21:07:13"}, "")), ("the insurance-bill flag", "insurance bill", ({"insbilled": "1"}, "")),
+                            ("an insurance-bill row", "insurance bill", ({}, '<insbilllist><insbill billeddate="10/28/2026"/></insbilllist>')),
+                            ("a payment that is not void, even of $0.00", "payment", ({}, '<paymentlist><payment amount="0.00" void="0"/></paymentlist>'))):
+    fresh(order="1", bill={"charge501": _sign}); ok, msg = setord("500", "2,1")
+    check("a visit already billed (%s on one of its live charges) is REFUSED: 'already billed - not saved', nothing sent" % _what,
+          ok is False and "already billed - not saved (%s on a live charge" % _word in msg and not STATE["posts"] and not STATE["admits"] and STATE["order"] == "1", msg)
+fresh(order="1", bill={"charge501": ({}, '<paymentlist><payment amount="60.74" void="1"/></paymentlist>')}); ok, msg = setord("500", "2,1")
+check("a VOID payment is not a bill sign: that visit is saved", ok and len(STATE["posts"]) == 1 and "list [1] -> [2,1]" in msg, msg)
+fresh(order="1", bill={"charge500": BILLED, "charge501": BILLED}); ok, msg = setord("500", "2,1", allow_billed=True)
+check("the billed visit WITH allow_billed=True (the two re-route helpers' word) IS saved: one save, every charge echoed, read back",
+      ok and len(STATE["posts"]) == 1 and STATE["posts"][0].count("<charge ") == 2 and "list [1] -> [2,1]" in msg and "already billed" not in msg, msg)
+fresh(bill={"charge500": BILLED, "charge501": BILLED}); ok, msg = setord("500", "1,2")
+check("a billed visit whose attribute AND list already read the order: nothing to do - ok, skipped, nothing sent (no false refusal)", ok and "resave skipped" in msg and not STATE["posts"], msg)
+# the admission date of a hospital code, read from that code's own charge detail before the save and after it
+fresh(order="1", **HOSP()); ok, msg = setord("500", "2,1")
+check("a hospital code's admission date that the save KEEPS: ok, nothing written, not a word about it",
+      ok and len(STATE["posts"]) == 1 and not STATE["admits"] and "admission" not in msg and STATE["admit"] == {"99223": ADM}, (msg, STATE["log"]))
+fresh(order="1", **HOSP(), wipe=True); ok, msg = setord("500", "2,1")
+check("a hospital code's admission date that the save WIPES: written back with updextrainsinfo for THAT code (the import's own call, visit vst900) and read again - ok, and the message says it was written back",
+      ok and len(STATE["admits"]) == 1 and SHAPE in STATE["admits"][0] and 'action="updextrainsinfo" class="chargeentry"' in STATE["admits"][0] and 'visitid="vst900"' in STATE["admits"][0]
+      and STATE["admit"] == {"99223": ADM} and "admission date %s was lost on save and written back (99223)" % ADM in msg and later("admit 99223", "read charge501"), (msg, STATE["log"]))
+fresh(order="1", **HOSP(), wipe=True, restore=False); ok, msg = setord("500", "2,1")
+check("a hospital code's admission date that the save wipes and that CANNOT be written back: NOT ok, 'admission date lost on save' (was the date, now none), after one try",
+      ok is False and "admission date lost on save (was %s, now none" % ADM in msg and len(STATE["admits"]) == 1 and "NOT as asked" in msg, (msg, STATE["log"]))
+fresh(order="1", admit={"99309": ADM}, wipe=True); ok, msg = setord("500", "2,1")
+check("a visit with NO hospital code whose one admission date the save wipes: there is no code to write it back for - NOT ok, said",
+      ok is False and "admission date lost on save (was %s, now none; written back for no hospital code)" % ADM in msg and not STATE["admits"], (msg, STATE["log"]))
+# every live charge is echoed, and each is looked for again by its id
+fresh(order="1", n=3); ok, msg = setord("501", "2")
+check("every live charge of the visit is echoed in the save - three of three, whichever charge was named - and all are live after it",
+      ok and len(STATE["posts"]) == 1 and re.findall(r'<charge id="(charge\d+)"', STATE["posts"][0]) == ["charge500", "charge501", "charge502"] and not STATE["void"] and "3 live charges (was 3)" in msg, (msg, sorted(STATE["void"])))
+fresh(order="1", gone=("charge501",)); ok, msg = setord("500", "2")
+check("a charge that is NO LONGER LIVE after the save -> NOT ok, named", ok is False and "no longer live: charge501" in msg and "NOT as asked" in msg, msg)
+fresh(order="1", grow=1); ok, msg = setord("500", "2")
+check("a charge that is NEW after the save -> NOT ok, named", ok is False and "new: charge502" in msg and "NOT as asked" in msg, msg)
+fresh(order="1", gone=("charge501",), grow=1); ok, msg = setord("500", "2")
+check("one charge gone and one new - the same COUNT as before - is NOT ok either: every echoed charge is looked for by its id", ok is False and "no longer live: charge501" in msg and "new: charge502" in msg, msg)
+# an error after the save was sent is never raised: the visit is read again and the answer is NOT ok
+fresh(order="1", **HOSP(), wipe=True, noanswer=TimeoutError("read timed out")); ok, msg = setord("500", "2,1")
+check("the save lands but its answer never comes back: NOT raised - the visit is read again, the wiped admission date written back, NOT ok, with what the visit reads now",
+      ok is False and "the answer to the save never came back (TimeoutError" in msg and "list [1] -> [2,1]" in msg and STATE["admit"] == {"99223": ADM} and len(STATE["admits"]) == 1 and "NOT as asked" in msg, (msg, STATE["log"]))
+fresh(order="1", **HOSP(), readfail=1); ok, msg = setord("500", "2,1")
+check("a read after the save gets no answer: NOT raised - the visit is read again, NOT ok, with what it reads now",
+      ok is False and "the read-back after the save failed (TimeoutError" in msg and "read again: insorder 2,1, list [1] -> [2,1]" in msg and "NOT as asked" in msg, (msg, STATE["log"]))
+fresh(order="1", **HOSP(), readfail=99); ok, msg = setord("500", "2,1")
+check("no read after the save gets an answer: NOT raised - NOT ok, 'look at it in AdvancedMD before anything else is sent'",
+      ok is False and "the visit could not be read again (TimeoutError)" in msg and "look at it in AdvancedMD before anything else is sent" in msg, (msg, STATE["log"]))
+fresh()      # section C starts from the visit as it was
+
 # ------------------------------------------------------------------ C. freq1_visit.reroute
 RUNS = []; f_run = freq1_visit.run
 freq1_visit.run = lambda vid, cid, seq: (RUNS.append((vid, cid, seq)) or "freq1 + rebill seq %s -> 204" % seq)
@@ -92,6 +242,32 @@ check("reroute does NOT rebill when the order step fails", not RUNS and r.starts
 RUNS.clear(); STATE["order"] = "1,2"; r = freq1_visit.reroute("900", "500", "2,1", dry=True)
 check("reroute dry -> no rebill", not RUNS and "DRY" in r, r)
 
+# ---- C2 (11/11/2026). The real nightly case: the visit is ALREADY BILLED (a wrong-payer denial), and reroute passes allow_billed=True.
+s_run = freq1_visit.run      # the recorder set above (RUNS); f_run is the real frequency-1 reset + rebill
+def billed(**kw): fresh(bill={"charge500": BILLED, "charge501": BILLED}, **kw); RUNS.clear(); REB.clear()
+billed(); r = route("900", "500", "3,2")
+check("reroute on an ALREADY-BILLED visit (the nightly re-route after a wrong-payer denial): the order IS saved, then ONE freq-1 rebill to the first plan of the new order",
+      RUNS == [("900", "500", 3)] and len(STATE["posts"]) == 1 and 'insorder="3,2"' in STATE["posts"][0] and "list [1,2] -> [3,2]" in r and "rebill seq 3" in r and not r.startswith("NOT rebilled"), r)
+billed(); r = route("900", "500", "3,2", dry=True)
+check("reroute dry on an already-billed visit: said, nothing saved, no rebill", not RUNS and "DRY resave" in r and "DRY freq1 + rebill seq 3" in r and not STATE["posts"], r)
+billed(); _real = resave.set_insorder
+resave.set_insorder = lambda cid, order, dry=False, allow_billed=False: _real(cid, order, dry=dry)      # the order step asked WITHOUT the re-route's word: the billed guard refuses it
+r = route("900", "500", "3,2"); resave.set_insorder = _real
+check("reroute does NOT rebill when the order step is REFUSED (the billed guard - asked here without the re-route's word): 'NOT rebilled', nothing sent",
+      not RUNS and r.startswith("NOT rebilled") and "already billed - not saved" in r and not STATE["posts"] and STATE["order"] == "1,2", r)
+billed(fault=True); r = route("900", "500", "3,2")
+check("reroute on an already-billed visit does NOT rebill when the save FAILS (a Fault): one save tried, 'NOT rebilled'", not RUNS and r.startswith("NOT rebilled") and "resave FAULT" in r and len(STATE["posts"]) == 1, r)
+billed(cpt={"charge500": "99223"}, admit={"99223": ADM}, wipe=True, restore=False); r = route("900", "500", "3,2")
+check("reroute on an already-billed HOSPITAL visit does NOT rebill when the save wiped the admission date and it cannot be written back", not RUNS and r.startswith("NOT rebilled") and "admission date lost on save" in r, r)
+billed(cpt={"charge500": "99223"}, admit={"99223": ADM}, wipe=True); r = route("900", "500", "3,2")
+check("reroute on an already-billed HOSPITAL visit rebills ONCE when the wiped admission date was written back", RUNS == [("900", "500", 3)] and "written back (99223)" in r and STATE["admit"] == {"99223": ADM}, r)
+freq1_visit.run = f_run      # ONCE with the REAL freq1_visit.run under reroute (amd.rebill_charge is still section B's recorder REB)
+billed(); r = route("900", "500", "3,2"); freq1_visit.run = s_run
+check("the whole re-route of an already-billed visit on the real helpers: ONE save, then the frequency reset (resubmissioncode 1, no payer reference number), then exactly ONE rebill - to sequence 3",
+      REB == [("500", 3)] and len(STATE["posts"]) == 1 and len(STATE["resets"]) == 1 and 'resubmissioncode="1"' in STATE["resets"][0] and 'origrefnum=""' in STATE["resets"][0]
+      and later("save", "reset ") and r.endswith("| freq1 + rebill seq 3 -> 204"), (r, REB, STATE["log"]))
+fresh(); RUNS.clear(); REB.clear()      # section D starts from the visit as it was
+
 # ------------------------------------------------------------------ D. move_to_ins.move rebill flag
 move_to_ins.time = types.SimpleNamespace(sleep=lambda s: None)
 resave.detail = lambda cid: '<x><visit id="vst900" insorder="%s"/><charge id="charge500" insbalance="100.00" patbalance="0.00"/></x>' % STATE["order"]
@@ -99,6 +275,8 @@ REB.clear(); STATE["order"] = "1,2"; m1 = move_to_ins.move("500", "2,1", rebill=
 check("move(..., rebill=False) never rebills", not REB and "no rebill" in m1, m1)
 REB.clear(); m2 = move_to_ins.move("500", "1,2")
 check("move(...) default keeps its single rebill (backward compatible)", REB == [("500", 1)], (REB, m2))
+check("the stand-in AdvancedMD of sections B-D had an answer for every call the helpers made (no action it does not know)", not UNANSWERED, UNANSWERED)
+time.sleep = _sleep
 
 # ------------------------------------------------------------------ E. ins_update.update order carried by an ACTIVE plan + verified + restored
 amd.rebill_charge = amd_rebill_orig
