@@ -32,7 +32,7 @@
    "The owner marks any of the other listed visits he performed himself",
    "For the rest the owner decides: corrected claims for the 133 lines billed and not yet paid, and corrected claims or refunds for the 19 paid lines"
   ],
-  "impact_basis": "About $1,400 of Medicare payment more than is owed if nothing is corrected, and 148 claims naming the wrong clinician. Correcting them now costs a rebill; leaving them costs a refund and a finding.",
+  "impact_basis": "Up to about $1,400 of Medicare payment more than is owed if nothing is corrected, and 136 visits already billed under a clinician the feed does not name. Correcting them now costs a rebill; leaving them costs a refund and a finding.",
   "effort": "low",
   "horizon": "this week",
   "owner": "william",
@@ -89,7 +89,7 @@
    "A check-only coverage run on the first of each month, for the patients being billed that month (approved November 10)",
    "List every held visit daily and re-check held charts; a HOLD today is only a label in the check's report and does not stop the claim"
   ],
-  "impact_basis": "The plan's earlier 'one charge in nine has no payer' was the share of feed dollars on charts the insurance check held after its look-up ($23,534 of $211,062, 11.2%), not a share of all charges. Visits that arrived with no open plan on the chart were 138 of 1,037 ($29,286, 13.7% of dollars). The $30,000 to $70,000 is a low-confidence estimate of denials and unbilled visits avoided. The monthly run adds about $10 to $40 a month of checks and a one-time catch-up at most about $260, so it pays for itself if it saves one to six visits a month from denial (estimates).",
+  "impact_basis": "The plan's earlier 'one charge in nine has no payer' was the share of feed dollars on charts the insurance check held (counted after the check ran; $23,534 of $211,062, 11.2%), not a share of all charges. Visits that arrived with no open plan on the chart were 138 of 1,037 ($29,286, 13.7% of dollars). The $30,000 to $70,000 is the plan's earlier range. It was built on the 11.2% figure (about $113,000 a year, with a quarter to 60% assumed never collected), which measured something else. It has not been worked out again and is a placeholder until these visits are tracked to payment. The monthly run adds about $10 to $40 a month of checks and a one-time catch-up of at most about $260. At the plan's median payment of about $45 to $125 a visit, it pays for itself if it saves one visit a month from denial (estimates).",
   "effort": "medium",
   "horizon": "the cards now; the monthly run once it is built, after rule version .7 is live (the look-up savings went live on November 10)",
   "owner": "claude",
@@ -104,7 +104,7 @@
   "kind": "revenue",
   "category_slug": "ar-claim-submission",
   "title": "Send the 84 never-billed feed visits as the owner approved, once the fix is live",
-  "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) were released by the insurance check but could never bill, because their insurance-order list was empty. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
+  "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
   "what": [
    "Deliver the fix (rule version 2026-11-10.7), then send one pilot visit and read it back",
    "Send the 71 visits whose payer only the look-up found only when an eligibility check dated to the service date shows the plan active; the two-plan chart by that check; send the other 13",
@@ -129,14 +129,14 @@
    "Compare each month's claims billed as 32 with it",
    "Hospice status flagged automatically; the clinician chooses the modifier"
   ],
-  "impact_basis": "For visits the two codes pay differently only in 2026. If every Medicare-paid nursing visit from January to October 2026 had been a long-term resident, Medicare would have paid at most $16,383 more ($20,897 allowed; most of these visits are the nurse practitioner's, paid at 85%). The rule gives 32 to about a third of visits, so the two months left in 2026 are worth a few thousand dollars at most. From January 1, 2027 Medicare pays these visits the same under either code. The lasting value is proof for the care-management lines and fewer wrong-payer denials, which are not valued here.",
+  "impact_basis": "For visits the two codes pay differently only in 2026. If every Medicare-paid nursing visit from January to October 2026 had been a long-term resident, Medicare would have paid at most $16,383 more ($20,897 allowed; most of these visits are the nurse practitioner's, paid at 85%). Before go-live the rule was expected to give 32 to about a third of visits; the first live batch gave it to 24 of 31 nursing facility visits. For November 10 to December 31, 2026 that is worth about $1,000 to $3,000 of Medicare payment (estimate). From January 1, 2027 Medicare pays these visits the same under either code. The lasting value is proof for the care-management lines and fewer wrong-payer denials, which are not valued here.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",
   "project_slug": "census-status",
   "confidence": "medium",
-  "impact_low": 2000,
-  "impact_high": 8000
+  "impact_low": 1000,
+  "impact_high": 3000
  },
  {
   "id": "ehpa-rec-05",
@@ -244,14 +244,14 @@
   "ord": 13,
   "kind": "risk",
   "category_slug": "qv-mips",
-  "title": "Report 2026 to Medicare's quality program and avoid most of a 9% cut in 2028",
-  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks a 10-point bonus both clinicians already qualify for. Since November 10, 2026 billing adds the advance care plan code and M0004 automatically (rule version 2026-11-10.6).",
+  "title": "Report 2026 to Medicare's quality program and avoid most of a cut of about 9% in 2028",
+  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. No line had been entered by the end of November 10 (UTC).",
   "what": [
    "Advance care plan code on Medicare claims through December 31 (billing adds it automatically)",
    "M0004 once on one claim for each clinician (billing adds it after the first coded line is seen billed)",
    "Name one improvement activity both clinicians really carried out 90 days in a row in 2026, build its proof file, and attest between January 4 and March 31, 2027"
   ],
-  "impact_basis": "Medicare Part B for the two clinicians is projected at $567,280 for 2026 (range $522,000 to $597,000; the method missed by up to 9% on earlier years). A 9% cut on that is about $47,000 to $54,000. Attesting one activity alone brings the estimated score to about 56 and the cut to about 2.2%, saving about $35,000 to $40,000. Under the neurological option, with the code on 2026 claims, M0004 on one claim for each clinician and the activity, the estimate is at least 69 points and 95 if cost is not scored; 75 or more means no cut. Estimates: the 56 assumes a cost score of 54 and the same 10-point bonus as 2025.",
+  "impact_basis": "Medicare Part B for the two clinicians is projected at $567,280 for 2026 (range $522,000 to $597,000; the method missed by up to 9% on earlier years). A 9% cut on that is about $47,000 to $54,000; the 9% is itself an estimate (9% if each cost score is 62.5 or lower, about 6.3% at a median cost score). Attesting one activity alone brings the estimated score to about 56 and the cut to about 2.2%, saving about $35,000 to $40,000. Under the neurological option, with the code on 2026 claims, M0004 on one claim for each clinician and the activity, the estimate is at least 69 points and 95 if cost is not scored; 75 or more means no cut. Estimates: the 56 assumes a cost score of 54 and the same 10-point bonus as 2025.",
   "effort": "low",
   "horizon": "codes now through December 31; attestation January 4 to March 31, 2027",
   "owner": "william",

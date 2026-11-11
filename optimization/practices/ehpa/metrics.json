@@ -239,7 +239,7 @@
   "status": "red",
   "basis": "measured",
   "value": 13.3,
-  "note": "138 of the 1,037 visits in the first 13 feed batches (from October 28, 2026) reached charge entry with no open plan on the chart: $29,286, 13.7% of dollars. The 11.2% shown before measured something else: the share of feed dollars on charts the insurance check held after its look-up ($23,534 of $211,062).",
+  "note": "138 of the 1,037 visits in the first 13 feed batches (from October 28, 2026), 13.3% of visits, reached charge entry with no open plan on the chart: $29,286, 13.7% of dollars. The 11.2% shown before measured something else: the share of feed dollars on charts the insurance check held (counted after the check ran; $23,534 of $211,062).",
   "source": "ehpa-neon"
  },
  {
@@ -554,7 +554,7 @@
   "status": "na",
   "basis": "measured",
   "value": 55.5,
-  "note": "Medicare fee-for-service, by charges. Insurers that sell Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11.2% of feed dollars sat on charts the insurance check held after its look-up, which is not a share of charges with no payer.",
+  "note": "Medicare fee-for-service, by charges. Insurers that sell Medicare Advantage plans are about 25%, Medicaid plans about 6%, and 11.2% of feed dollars sat on charts the insurance check held (counted after the check ran), which is not a share of charges with no payer.",
   "source": "ehpa-neon"
  },
  {
@@ -680,7 +680,7 @@
   "status": "red",
   "basis": "measured",
   "value": 0,
-  "note": "No review has been opened. Two patterns in the risk review could each mean Medicare paid more than the records support, and each warrants one: visit levels and advance care planning.",
+  "note": "No review has been opened. Two patterns in the risk review could each mean Medicare paid more than the records support, and each warrants one: visit levels and advance care planning. A third was found on November 10, 2026: the charge import entered 148 October visits under the physician although the feed names the nurse practitioner on them. Medicare had paid none of their lines by that day. Of the 167 lines entered under a different clinician than the feed names, other payers had paid 19 ($1,711).",
   "source": "ehpa-neon"
  },
  {
@@ -725,7 +725,7 @@
   "status": "red",
   "basis": "measured",
   "value": 47,
-  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. The practice's target is to file by December 1 to leave the agency time; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
+  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. The practice's target is to file by December 1 to leave the agency time; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Nearer dated duties, which are not expirations and are not counted here: the Veterans Affairs payment portal account (it lapses about November 22 unless someone signs in; estimated), the UnitedHealthcare directory attestation (about November 26) and the physician's board-certification yearly assessment (due November 30, 2026; not known whether it is done).",
   "source": "ehpa-neon"
  },
  {
@@ -860,7 +860,7 @@
   "status": "red",
   "basis": "measured",
   "value_text": "2025 scores: physician 65.8 (1.10% cut), nurse practitioner 16.3 (9% cut), against a threshold of 75",
-  "note": "From the owner's CMS feedback download. Cuts apply from January 1, 2027. For 2026 both clinicians are scored on cost alone unless something is submitted; one attested improvement activity is worth 30 points and unlocks a 10-point bonus. The group and both clinicians are registered for the neurological option (M0004), and billing adds the advance care plan code and M0004 automatically from November 10, 2026 (rule version 2026-11-10.6).",
+  "note": "From the owner's CMS feedback download. Cuts apply from January 1, 2027. For 2026 both clinicians are scored on cost alone unless something is submitted; one attested improvement activity is worth 30 points and unlocks the bonus for complex patients (10 points for each clinician in 2025; the 2026 amount is not known). The group and both clinicians are registered for the neurological option (M0004). Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. No line had been entered by the end of November 10 (UTC).",
   "source": "ehpa-neon"
  },
  {
@@ -878,7 +878,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Share of patients with a documented plan is not known. Facility charts usually hold the directive. For reference, advance care planning was billed on 62 encounters, about 8% of face-to-face visits.",
+  "note": "Share of patients with a documented plan is not known. Facility charts usually hold the directive. For reference, advance care planning was billed on 62 encounters, about 8% of face-to-face visits. Asked on November 10, 2026 whether every patient's chart holds a decision-maker, an advance directive or a documented discussion, the owner answered 'yes for all', and billing now adds the code that says so to Medicare claims. This has not been checked against charts.",
   "source": "ehpa-neon"
  },
  {

@@ -175,7 +175,7 @@
   "project_slug": "coding-audit",
   "ord": 20,
   "title": "Log each initial visit in Claimocity under the clinician who saw the patient",
-  "detail": "From rule version 2026-11-10.6 (live on the billing branch November 10, 2026) billing enters every initial nursing facility visit (99306) and its advance care planning line (99497) under the physician and the group, as the owner directed that day: 'going forward the 99306 should always be billed under effinger npi and group npi as i am the one who is doing the initial hps 99306 and 99497'. That is right only when he personally did the visit. Since October 28 the feed has named the nurse practitioner on 10 of 19 initial visits, so fix it at the source: whoever logs an initial visit in Claimocity logs it under the clinician who saw the patient. If the nurse practitioner does an initial visit, tell billing so it goes out under her. Past claims are not listed or reopened, at the owner's direction; a workbook of the 982 past initial visits under her code was given to him on November 10.",
+  "detail": "From rule version 2026-11-10.6 (live on the billing branch November 10, 2026) billing enters every initial nursing facility visit (99306) and its advance care planning line (99497) under the physician and the group, as the owner directed that day: 'going forward the 99306 should always be billed under [the physician's] npi and group npi as i am the one who is doing the initial hps 99306 and 99497'. That is right only when he personally did the visit. Since October 28 the feed has named the nurse practitioner on 10 of 19 initial visits, so fix it at the source: whoever logs an initial visit in Claimocity logs it under the clinician who saw the patient. If the nurse practitioner does an initial visit, tell billing so it goes out under her. Past claims are not listed or reopened: the owner did not ask for it. A workbook of the 982 past initial visits under her code was given to him on November 10.",
   "owner": "william",
   "due": "2026-11-24"
  },
@@ -247,7 +247,7 @@
   "project_slug": "census-status",
   "ord": 28,
   "title": "Done November 10, 2026: the past year's claims are counted",
-  "detail": "From November 2025 through October 2026, 3,505 care-management lines were billed in the five nursing buildings. Medicare paid 1,667 of them, $85,176, all at the skilled-stay rate. At the long-term rate the same lines would have been allowed $76,549 more: $60,015 from Medicare and $15,310 from patients or secondary payers. For visits the two codes paid differently only in 2026: 1,530 Medicare-paid visits from January to October, and at most $16,383 more Medicare payment ($20,897 allowed) if every one had been a long-term resident; most of them are the nurse practitioner's, paid at 85%. A workbook with the lines by month, code, setting, clinician and payer was given to the owner.",
+  "detail": "From November 2025 through October 2026, 3,505 care-management lines were billed in the five nursing buildings. Medicare paid 1,667 of them, $85,176, none at the long-term rate (95.3% exactly at the skilled-stay amount). At the long-term rate the same lines would have been allowed $76,549 more: $60,015 from Medicare and $15,310 from patients or secondary payers. For visits the two codes paid differently only in 2026: 1,530 Medicare-paid visits from January to October, and at most $16,383 more Medicare payment ($20,897 allowed) if every one had been a long-term resident; most of them are the nurse practitioner's, paid at 85%. A workbook with the lines by month, code, setting, clinician and payer was given to the owner.",
   "owner": "claude",
   "due": "2026-11-10"
  },
@@ -373,7 +373,7 @@
   "project_slug": "enrollment-fix",
   "ord": 42,
   "title": "File the physician's Florida Medicaid provider agreement renewal",
-  "detail": "The agreement expires December 27, 2026 (the agency's letter of September 29, 2026). December 1 is the practice's own target, to leave the agency time to process it; Thanksgiving week and Christmas week leave few working days, and December 27 is a Sunday. Reset the Florida Medicaid portal password first: it expired November 4 unless it was changed, and the renewal is filed in that portal. Ask for written confirmation that the renewal is complete, not only received. Use the nurse practitioner's returned application to see what the agency rejects.",
+  "detail": "The agreement expires December 27, 2026 (the agency's letter of September 29, 2026). File by November 13, this item's date. December 1 is the last call the practice set, to leave the agency time to process it; Thanksgiving week and Christmas week leave few working days, and December 27 is a Sunday. Reset the Florida Medicaid portal password first: it expired November 4 unless it was changed, and the renewal is filed in that portal. Ask for written confirmation that the renewal is complete, not only received. Use the nurse practitioner's returned application to see what the agency rejects.",
   "owner": "william",
   "due": "2026-11-13"
  },
@@ -400,7 +400,7 @@
   "project_slug": "enrollment-fix",
   "ord": 45,
   "title": "Stop writing off Railroad Medicare claims and ask about any it refused",
-  "detail": "Railroad Medicare is paying: it paid $718.76 in 2026 and $3,764 is open, and its numbers are on the credentialing board. The plan's earlier 'not enrolled' was wrong. Stop writing off these claims. Have a person ask Palmetto GBA, the Railroad Medicare contractor, about any claim it refused and why. A claim may be filed up to one year after the date of service.",
+  "detail": "Railroad Medicare is paying: it paid $718.76 in 2026 and $3,764 is open, and its numbers are on the credentialing board. The plan's earlier 'not enrolled' looks wrong for the group and the physician. Whether the nurse practitioner has a Railroad Medicare number is not known. Stop writing off these claims. Have a person ask Palmetto GBA, the Railroad Medicare contractor, about any claim it refused and why, whether the nurse practitioner has a number, and how to get her one if she has none. A claim may be filed up to one year after the date of service.",
   "owner": "william",
   "due": "2026-12-11"
  },
@@ -427,7 +427,7 @@
   "project_slug": "enrollment-fix",
   "ord": 48,
   "title": "Build one expiry calendar for both clinicians",
-  "detail": "Licenses, registrations, board certification, privileges, every payer enrollment, and the nurse practitioner's protocol (or autonomous practice registration) with its date. Include each clinician's re-attestation date for the shared credentialing profile (CAQH), which lapses after 120 days, and each Medicare revalidation due date from Medicare's revalidation list: a missed revalidation means unpaid visits from the due date. Use the existing sheet 'Practice compliance & renewals calendar', which mirrors to Google Calendar. On November 10, 2026, 22 rows were added (quality program and credentialing) and 34 calendar entries were made. The sheet's routine makes only a 14-day warning, so the 90-day warnings must be added by hand.",
+  "detail": "Licenses, registrations, board certification, privileges, every payer enrollment, and the nurse practitioner's protocol (or autonomous practice registration) with its date. Include each clinician's re-attestation date for the shared credentialing profile (CAQH), which lapses after 120 days, and each Medicare revalidation due date from Medicare's revalidation list: a missed revalidation means unpaid visits from the due date. Use the existing sheet 'Practice compliance & renewals calendar', which mirrors to Google Calendar. On November 10, 2026, 22 rows were added (quality program and credentialing) and 34 calendar entries were made. One of the new rows is the physician's board-certification yearly assessment, due November 30, 2026; it is not known whether it is done. The sheet is rebuilt by a weekly routine whose November 9 run did not finish. Check on Monday November 16 that it kept the 22 new rows and doubled nothing. The sheet's routine makes only a 14-day warning, so the 90-day warnings must be added by hand.",
   "owner": "claude",
   "due": "2026-12-18"
  },
@@ -724,7 +724,7 @@
   "project_slug": "quality-mips",
   "ord": 81,
   "title": "Done November 10, 2026: group and both clinicians registered for the neurological option",
-  "detail": "Decided November 10, 2026: the advance care plan code goes on the next Medicare claim of every patient 65 or older, once per patient; depression screening was not chosen. Value in Primary Care, the first choice, has four claim measures, so one measure fills a quarter of its quality score. Quality Care for Patients with Neurological Conditions (M0004) has one claim measure, the advance care plan, so the same codes fill 90%. The group, the physician and the nurse practitioner are each registered for M0004 (registration summaries downloaded). CMS lists this option for neurology and for nurse practitioners and has no rule limiting the choice; whether CMS would question it for a nursing-facility practice is the open point, and the service center (1-866-288-8292) can say.",
+  "detail": "Decided November 10, 2026: the advance care plan code goes on the next Medicare claim of every patient 65 or older, once per patient; depression screening was not chosen. The code states that a plan or a named decision-maker is documented in each coded patient's record, and it rests on the owner's 'yes for all' (see the work item on the code). Value in Primary Care, the first choice, has four claim measures, so one measure fills a quarter of its quality score. Quality Care for Patients with Neurological Conditions (M0004) has one claim measure, the advance care plan, so the same codes fill 90%. The group, the physician and the nurse practitioner are each registered for M0004 (the owner pasted the three registration screens on November 10; each shows status Complete). The compliance sheet has a row to save a copy of each as proof by November 30, 2026, when edits close at 8 p.m. Eastern. CMS lists this option for neurology and for nurse practitioners and has no rule limiting the choice; whether CMS would question it for a nursing-facility practice is the open point, and the service center (1-866-288-8292) can say.",
   "owner": "william",
   "due": "2026-11-10"
  },
@@ -1002,7 +1002,7 @@
   "id": "ehpa-automation-controls-08",
   "project_slug": "automation-controls",
   "ord": 112,
-  "title": "Mark which of the 149 October visits were the physician's own",
+  "title": "Mark which of the 148 October visits were the physician's own",
   "detail": "The list gives chart, visit, date and codes for each visit the feed names the nurse practitioner on that was entered under the physician. Start with the 4 initial visits: on November 10 the owner said 'i saw those patients' about the 2 of them that were never billed, so those stay under him. Any visit the physician performed himself is right as it stands. The question behind it: is the clinician on a Claimocity charge always the person who saw the patient?",
   "owner": "william",
   "due": "2026-11-13"
@@ -1021,7 +1021,7 @@
   "project_slug": "automation-controls",
   "ord": 114,
   "title": "Run the clinician check on entered visits every month",
-  "detail": "tools/feed/feed_clinician_audit.py compares every visit the import entered with the clinician its feed message names. Run it on the first of each month and report any difference. The feed report also names any visit the import could not match to its own message.",
+  "detail": "tools/feed/feed_clinician_audit.py compares every visit the import entered with the clinician its feed message names. Run it on the first of each month and report any difference. It does not list initial visits entered under the physician by the owner's rule: it only counts them, and the feed report names each one. The feed report also names any visit the import could not match to its own message.",
   "owner": "claude",
   "due": "2026-12-01"
  },
@@ -1030,7 +1030,7 @@
   "project_slug": "automation-controls",
   "ord": 115,
   "title": "Deliver the never-billed fix (rule version 2026-11-10.7) and its daily list",
-  "detail": "The fix checks the insurance-order list after every save, never saves a billed visit, reads the admission date before and after a save, words a hold by what the list shows, and adds a daily read-only list of feed visits that were never billed. It passed three independent reviews, a fix round and a re-check, which said deliver. Its delivery, merged with version .6 and the look-up savings (live at 23:44 UTC on November 10), was being prepared late on November 10; it is not live yet. The insurance check's HOLD stays a label in its report; making a hold stop a claim in AdvancedMD is a later change that needs the owner's word.",
+  "detail": "The fix checks the insurance-order list after every save, never saves a billed visit when it repairs a never-billed one, reads the admission date before and after a save, words a hold by what the list shows, and adds a daily read-only list of feed visits that were never billed. It passed three independent reviews, a fix round and a re-check, which said deliver. Its delivery, merged with version .6 and the look-up savings (live at 23:44 UTC on November 10), was being prepared late on November 10; it is not live yet. The insurance check's HOLD stays a label in its report; making a hold stop a claim in AdvancedMD is a later change that needs the owner's word.",
   "owner": "claude",
   "due": "2026-11-13"
  },
@@ -1048,7 +1048,7 @@
   "project_slug": "quality-mips",
   "ord": 117,
   "title": "Advance care plan code on Medicare claims through December 31",
-  "detail": "Live on the billing branch since 22:46 UTC on November 10, 2026 (rule version 2026-11-10.6), from the next feed import. The import adds one no-charge line with 1123F to the next Medicare visit of each patient 65 or older, once a year, under the visit's own clinician, and never on a hospital visit in 2026. It starts with up to three lines and adds no more until AdvancedMD shows one of them billed; then up to 10 a run until Medicare's first answer on such a line is seen, then every eligible visit. If AdvancedMD leaves a $0.00 line off the claim, the import switches to one cent. A visit held only because of its no-charge line has that line taken off and goes out (the owner: 'doesnt appear to have any significance whiever way to just deal with it'). For the 2026 score the number of coded lines does not matter: at least one counted line and M0004 once for each clinician are what count, on claims processed by March 1, 2027. Read the first remittances for Medicare's answer on the line.",
+  "detail": "Live on the billing branch since 22:46 UTC on November 10, 2026 (rule version 2026-11-10.6), from the next feed import. The import adds one no-charge line with 1123F to the next Medicare visit of each patient 65 or older, once a year, under the visit's own clinician, and never on a hospital visit in 2026. It adds the code only to visits dated in 2026 (see the item on 2027). The code says that an advance care plan or a named decision-maker is documented in the patient's record. Asked on November 10, 2026 whether this holds for every patient the practice follows, the owner answered 'yes for all', so the statement on each claim is his, and CMS can ask for the record of any coded patient. A patient who declined needs code 1124F, which is not in AdvancedMD's code list, and one with whom it was never discussed needs 1123F with modifier 8P. A person enters both, and the owner names those patients. It starts with up to three lines and adds no more until AdvancedMD shows one of them billed; then up to 10 a run until Medicare's first answer on such a line is seen, then every eligible visit. If AdvancedMD leaves a $0.00 line off the claim, the import switches to one cent. A visit held only because of its no-charge line has that line taken off and goes out (the owner: 'doesnt appear to have any significance whiever way to just deal with it'). For the 2026 score the number of coded lines does not matter: at least one counted line and M0004 once for each clinician are what count, on claims processed by March 1, 2027. The code switches itself off in some cases, for example when AdvancedMD keeps leaving the line off the claim or a held visit's line cannot be taken off, and it stays off until the owner restarts it. Read the quality line of every feed report through December 31. From December 1 the report puts at its top any clinician with no M0004 line billed or waiting. Read the first remittances for Medicare's answer on the line.",
   "owner": "claude",
   "due": "2026-11-24"
  },
@@ -1057,7 +1057,7 @@
   "project_slug": "quality-mips",
   "ord": 118,
   "title": "Name the improvement activity and build its proof file",
-  "detail": "First the owner names the one activity both clinicians carried out for 90 days in a row in 2026; it must have been running by October 3, 2026. CMS asks for no documents at attestation but can ask for them for six years. For the care-management activity it lists: a dated list of high-risk patients and either their personal care plans or evidence that care managers follow them. Gather 2026 records that show the activity ran at least 90 days in a row, for at least one of the two clinicians.",
+  "detail": "First the owner names the one activity both clinicians carried out for 90 days in a row in 2026; it must have been running by October 3, 2026. CMS asks for no documents at attestation but can ask for them for six years. For the care-management activity it lists: a dated list of high-risk patients and either their personal care plans or evidence that care managers follow them. Gather 2026 records that show the activity ran at least 90 days in a row for both clinicians: each is attested alone as well as in the group, and both doing it covers the group rule whichever clinicians CMS counts.",
   "owner": "william",
   "due": "2026-12-15"
  },
@@ -1075,9 +1075,9 @@
   "project_slug": "quality-mips",
   "ord": 120,
   "title": "Set up 2027 before January 1",
-  "detail": "From the first claim of January: the quality codes go on every eligible Medicare claim automatically, with a monthly check of how many patients are coded. Name one improvement activity in January and file its proof as the year goes. Registration for 2027 opens April 1 and closes November 30, 2027; the attestation for 2027 is due by March 31, 2028. The November 10 reminders hold the 2026 dates; add the 2027 ones.",
-  "owner": "claude",
-  "due": "2026-12-31"
+  "detail": "Billing adds the quality code only to visits dated in 2026. From January 1, 2027 it adds none until the owner renews the rule, and in January the feed report says so at the top. So before January the owner says whether to renew it for 2027, and settles three choices that come with it: whether hospital visits are coded, whether charts where Medicare is the second payer are coded, and whether the code goes on once per patient or once for each clinician. A calendar entry for this is set for Monday December 21, 2026 at 9:00 AM. After the renewal, billing checks each month how many patients are coded. Name one improvement activity in January and file its proof as the year goes. Registration for 2027 opens April 1 and closes November 30, 2027; the attestation for 2027 is expected by March 31, 2028 (CMS has not published that window). The November 10 reminders hold the 2026 dates; billing adds the 2027 ones as CMS publishes them.",
+  "owner": "william",
+  "due": "2026-12-21"
  },
  {
   "id": "ehpa-coverage-cleanup-07",
@@ -1093,7 +1093,7 @@
   "project_slug": "coverage-cleanup",
   "ord": 122,
   "title": "Look-up savings live: watch the first runs, and replace the installed look-up skill file",
-  "detail": "Live on the billing branch since 23:44 UTC on November 10, 2026, after three independent reviews and three fix rounds. Three changes that need no contract: plain Medicare eligibility checks with the Medicare number on the chart first ($0.15, instead of a look-up at $0.40 to $1.00; the practice's Medicare enrollment at the vendor is live for the group number), one shared Medicare answer per patient per month for the pre-claim check and the deceased-patient guard, and claim status asked by need, at most once a week per claim, with caps of 150 checks or $25 a run and 400 checks or $100 a month. Still to do: watch the first nightly run and the usage log; the owner replaces his installed copy of the look-up skill with the new file billing sent him, because a push does not change it; the next statement shows the price of a plain Medicare check.",
+  "detail": "Live on the billing branch since 23:44 UTC on November 10, 2026, after three independent reviews and three fix rounds. Three changes that need no contract: plain Medicare eligibility checks with the Medicare number on the chart first ($0.15, instead of a look-up at $0.40 to $1.00; the practice's Medicare enrollment at the vendor is live for the group number), one shared Medicare answer per patient per month for the pre-claim check and the deceased-patient guard, and claim status asked by need, at most once a week per claim, with caps of 150 checks or $25 a run and 400 checks or $100 a month. Still to do: watch the first nightly run and the usage log; the owner replaces his installed copy of the look-up skill with the new file billing sent him, because a push does not change it; the next statement shows the price of a plain Medicare check. Three effects of the claim-status change to put to the owner: a claim more than a year old gets no status check (kept, in line with his write-off rule of November 2); claims that stop being asked go to a hand-off list that needs a person, about 129 claims in an October-size month (estimate); and claim status is switched off for TRICARE (80 unpaid visits, $4,226) until the vendor says whether an enrollment fixes it.",
   "owner": "claude",
   "due": "2026-11-12"
  },

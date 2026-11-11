@@ -9,7 +9,7 @@
   "entity": "Florida professional association taxed as an S corporation",
   "clinicians": "One physician-owner (family medicine) and one nurse practitioner",
   "sites": "One hospital, five nursing facilities and seven assisted living facilities in the latest charge feed",
-  "payers": "Medicare fee-for-service is 55.5% of charges. UnitedHealthcare, Humana, Capital Health Plan and Florida Blue, with UnitedHealthcare's plan for people who have both Medicare and Medicaid, are about 25%. These insurers sell Medicare Advantage plans, and the data does not yet say how much of the 25% is Medicare Advantage. Medicaid plans and Florida Medicaid are about 6%. Veterans Affairs is 0.9%. 11.2% of feed dollars sat on charts the insurance check held after its look-up; 138 of 1,037 feed visits arrived with no open plan on the chart (November 10, 2026).",
+  "payers": "Medicare fee-for-service is 55.5% of charges. UnitedHealthcare, Humana, Capital Health Plan and Florida Blue, with UnitedHealthcare's plan for people who have both Medicare and Medicaid, are about 25%. These insurers sell Medicare Advantage plans, and the data does not yet say how much of the 25% is Medicare Advantage. Medicaid plans and Florida Medicaid are about 6%. Veterans Affairs is 0.9%. 11.2% of feed dollars sat on charts the insurance check held (counted after the check ran); 138 of 1,037 feed visits arrived with no open plan on the chart (November 10, 2026).",
   "systems": "AdvancedMD, Claimocity, Stedi, QuickBooks, a HIPAA-enabled Neon database, and software agents that run billing every 2 to 6 hours",
   "revenue_ttm": 1058153,
   "as_of": "2026-11-10",

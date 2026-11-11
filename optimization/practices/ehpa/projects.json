@@ -60,8 +60,8 @@
   "objective": "Know for every resident and every date whether they are in a Medicare Part A skilled stay, on hospice or in a Medicare Advantage plan, and bill accordingly.",
   "category_slug": "fe-coverage-status",
   "priority": "now",
-  "impact_low": 2000,
-  "impact_high": 8000,
+  "impact_low": 1000,
+  "impact_high": 3000,
   "impact_note": "For visits the two codes pay differently only in 2026, so the money here is small and ends December 31, 2026. The lasting value is proof: a facility's Part A list behind every line billed as 32, hospice status known before a claim goes out, and fewer wrong-payer denials. Higher care-management payments are counted under the care-management project.",
   "owner": "claude",
   "start_by": "2026-11-11",
@@ -87,7 +87,7 @@
   "priority": "now",
   "impact_low": 30000,
   "impact_high": 70000,
-  "impact_note": "Coverage and wrong-payer problems are about a quarter of denied visits. On November 10, 2026, 122 feed visits ($26,373) had no claim: 86 with a payer on the chart that were never sent ($19,405), 21 with no plan ($4,358) and 15 on the patient's balance ($2,610). The range is a low-confidence estimate.",
+  "impact_note": "Coverage and wrong-payer problems are about a quarter of denied visits. On November 10, 2026, 122 feed visits ($26,373) had no claim: 86 with a payer on the chart that were never sent ($19,405), 21 with no plan ($4,358) and 15 on the patient's balance ($2,610). The $30,000 to $70,000 is the plan's earlier range. It was built on the 11.2% figure (about $113,000 a year, with a quarter to 60% assumed never collected), which measured something else. It has not been worked out again and is a placeholder until these visits are tracked to payment.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-18",
@@ -269,12 +269,12 @@
   "slug": "quality-mips",
   "ord": 11,
   "title": "Report 2026 to Medicare's quality program",
-  "objective": "Turn a 9% cut for both clinicians in 2028 into little or none, and set 2027 up so it does not happen again.",
+  "objective": "Turn an expected cut of about 9% for both clinicians in 2028 into little or none, and set 2027 up so it does not happen again.",
   "category_slug": "qv-mips",
   "priority": "now",
   "impact_low": 35000,
   "impact_high": 54000,
-  "impact_note": "The 2028 cut avoided. 9% of the 2026 Medicare Part B projection for the two clinicians ($567,280, range $522,000 to $597,000) is about $47,000 to $54,000; one attested improvement activity alone saves about $35,000 to $40,000 of it. The 2027 cut from the 2025 year, about $16,500 to $18,000, is already fixed.",
+  "impact_note": "The 2028 cut avoided. 9% of the 2026 Medicare Part B projection for the two clinicians ($567,280, range $522,000 to $597,000) is about $47,000 to $54,000; one attested improvement activity alone saves about $35,000 to $40,000 of it. The 2027 cut from the 2025 year, about $16,500 to $18,000, is already set.",
   "owner": "william",
   "start_by": "2026-11-10",
   "target_date": "2027-03-31",
@@ -283,7 +283,7 @@
    "The advance care plan code on 2026 Medicare claims and M0004 on one claim for each clinician, processed by March 1, 2027 (billing adds both, rule version 2026-11-10.6)",
    "Proof file for one improvement activity complete by December 31, 2026",
    "Attestation done by March 31, 2027: the group and each clinician, under the option and under traditional reporting",
-   "From January 2027 the codes go on every eligible claim and are checked monthly"
+   "For 2027 the owner renews the quality-code rule before January 1; then the codes go on every eligible Medicare claim and are checked monthly"
   ],
   "steps": [
    "Status and 2025 results read (done November 10, 2026)",
@@ -292,6 +292,7 @@
    "Quality code in billing: up to three lines first, then M0004 once for each clinician (live November 10, 2026)",
    "The owner names the improvement activity; build its proof file",
    "Check the lookup again in December; decide on an exception application by December 31",
+   "The owner renews the quality-code rule for 2027 and settles its three open choices (calendar entry Monday December 21, 2026 at 9:00 AM)",
    "Attest January 4 to March 31, 2027 (calendar entry Monday January 4 at 9:00 AM)"
   ]
  },
