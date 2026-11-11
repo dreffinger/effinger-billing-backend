@@ -103,16 +103,16 @@
   "ord": 6,
   "kind": "revenue",
   "category_slug": "ar-claim-submission",
-  "title": "Send the 84 never-billed feed visits as the owner approved, once the guard for the visit-save helper is live too",
+  "title": "Finish sending the 84 never-billed feed visits as the owner approved: 52 were saved on November 11, 32 wait",
   "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
   "what": [
-   "The fix (rule version 2026-11-10.7) is live since November 11, 2026: once the guard for the visit-save helper is live too, send one pilot visit and read it back",
+   "Done on November 11, 2026: the fix (rule version 2026-11-10.7) went live, the billing routine saved one test visit and then 51 more, all read back correctly, and a guard for the save step went live that evening",
    "Send the 71 visits whose payer only the look-up found only when an eligibility check dated to the service date shows the plan active; the two-plan chart by that check; send the other 13",
    "Move the 10 nurse practitioner visits to her before they go; keep the 2 initial visits under the physician"
   ],
-  "impact_basis": "Not valued: the charges are $18,802, but whether each payer found is right is not yet tested. The dated checks cost about $10 to $25.",
+  "impact_basis": "Not valued: the charges are $18,802, but whether each payer found is right is not yet tested. The first 61 dated checks cost $18.30: 51 confirmed the plan, 9 did not and 1 gave an error.",
   "effort": "low",
-  "horizon": "once the guard for the visit-save helper is live too (rule version .7 has been live since November 11, 2026); one pilot visit first",
+  "horizon": "52 saved on November 11, 2026; the 10 clinician moves by a billing chat session and the owner's 22 this week",
   "owner": "claude",
   "project_slug": "coverage-cleanup",
   "confidence": "high on the cause and the count; the dated coverage check settles each payer"
@@ -245,7 +245,7 @@
   "kind": "risk",
   "category_slug": "qv-mips",
   "title": "Report 2026 to Medicare's quality program and avoid most of a cut of about 9% in 2028",
-  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit, because all 60 of its visits were already in the billing system, so no line has been entered yet.",
+  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit. None of the three is confirmed billed yet.",
   "what": [
    "Advance care plan code on Medicare claims through December 31 (billing adds it automatically)",
    "M0004 once on one claim for each clinician (billing adds it after the first coded line is seen billed)",

@@ -388,7 +388,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure. On November 10, 2026 two reviews proved that 84 feed visits ($18,802) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The fix (rule version .7) went live on November 11, 2026; none of the 84 visits is billed yet.",
+  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure. On November 10, 2026 two reviews proved that 84 feed visits ($18,802) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The fix (rule version .7) went live on November 11, 2026, and that day the billing routine saved 52 of the 84 visits, each read back correctly. None is confirmed billed yet, and 32 wait for a clinician move or for the owner.",
   "evidence": [
    "218 of 311 primary lines paid, service since August 1, 2026",
    "13,385 claims sent since July 2026, including mass re-sends of old claims",
@@ -850,7 +850,7 @@
   "evidence": [
    "2025 scores from CMS: physician 65.8, nurse practitioner 16.3; threshold 75",
    "Medicare Part B for the two is projected at $567,280 for 2026 (range $522,000 to $597,000), so 9% is about $47,000 to $54,000",
-   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit, because all 60 of its visits were already in the billing system, so no line has been entered yet"
+   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit. None of the three is confirmed billed yet"
   ],
   "next_step": "The owner names the one improvement activity both clinicians carried out 90 days in a row in 2026; build its proof file; attest between January 4 and March 31, 2027."
  },
