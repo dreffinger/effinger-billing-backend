@@ -1,0 +1,78 @@
+{
+ "fixed": [
+  {
+   "visit": "19460833",
+   "pid": "pat24368",
+   "patterns": [
+    "2049",
+    "90069082079"
+   ],
+   "note": [
+    "quality line charge23373645 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19460835",
+   "pid": "pat17473571",
+   "patterns": [
+    "2049",
+    "90069082079"
+   ],
+   "note": [
+    "quality line charge23373648 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19460836",
+   "pid": "pat17473962",
+   "patterns": [
+    "2049",
+    "90069082079"
+   ],
+   "note": [
+    "quality line charge23373650 taken off (void), visit re-saved: released"
+   ]
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": [],
+ "quality_removed": [
+  {
+   "visit": "19460833",
+   "pid": "pat24368",
+   "charge": "charge23373645",
+   "code": "1123F",
+   "fee": "0.00",
+   "why": "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-11T12:59:20.020429",
+   "resave_ok": true
+  },
+  {
+   "visit": "19460835",
+   "pid": "pat17473571",
+   "charge": "charge23373648",
+   "code": "1123F",
+   "fee": "0.00",
+   "why": "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-11T12:59:29.300349",
+   "resave_ok": true
+  },
+  {
+   "visit": "19460836",
+   "pid": "pat17473962",
+   "charge": "charge23373650",
+   "code": "1123F",
+   "fee": "0.00",
+   "why": "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-11T12:59:37.979953",
+   "resave_ok": true
+  }
+ ]
+}
