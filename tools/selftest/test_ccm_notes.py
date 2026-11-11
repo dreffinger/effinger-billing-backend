@@ -9,7 +9,11 @@
 #     - the note is laid out like his sample (letterhead, patient, location, provider, charge date, "Late entry", the stamp down the side),
 #       is dated the day it is written - never an earlier day - and carries the signed stamp ONLY when a signing was recorded for it;
 #     - a supporting item must fall in the note's own month; a month with none is said so on the note and flagged;
-#     - nothing a caller passes in can break the page (every text is escaped).
+#     - nothing a caller passes in can break the page (every text is escaped);
+#     - a month whose charges need his own eyes is flagged: 99487 billed twice, 99489 billed more than once (no ready-made statement),
+#       a line billed under another clinician than the signer;
+#     - what a signature covers: the note's fields in one fixed text form plus the day written, hashed (SHA-256); a signing whose hash does
+#       not match the stored draft, or that is dated another day than it was made, is refused - nothing is ever signed in his name.
 # Never touches: AdvancedMD, RingCentral, Neon, Drive. Nothing is started as a program; the helper is loaded from its file and the network
 #   is closed first. No patient data: every name, birth day and number here is invented and put together at run time.
 # Run: python3 tools/selftest/test_ccm_notes.py   (exit 1 on any failure)
@@ -27,7 +31,7 @@ def check(name, cond, extra=""):
     if not cond: FAILS.append(name)
 src = open(PATH, encoding="utf-8").read() if os.path.exists(PATH) else ""
 names = {m.split()[0].split(".")[0] for k, r in re.findall(r"^[ \t]*(import|from)[ \t]+([^\n#;]+)", src, re.M) for m in (r.split(",") if k == "import" else [r]) if m.strip()}
-check("the helper is there and loads the standard library only (nothing that talks to AdvancedMD, nothing that starts a program)", src != "" and names <= {"os", "sys", "re", "json", "html", "datetime", "collections"}, sorted(names))
+check("the helper is there and loads the standard library only (nothing that talks to AdvancedMD, nothing that starts a program)", src != "" and names <= {"os", "sys", "re", "json", "html", "hashlib", "datetime", "collections", "zoneinfo"}, sorted(names))
 if FAILS: print("\ntest_ccm_notes: %d checks, %d failed - the helper is not there" % (RAN[0], len(FAILS))); sys.exit(1)
 spec = importlib.util.spec_from_file_location("ccm_notes_t", PATH); C = importlib.util.module_from_spec(spec); spec.loader.exec_module(C)
 
@@ -82,6 +86,42 @@ evil = C.note_html(M[(P2, "2026-10")], dict(person(2), name="<script>x</script>,
 check("2 whatever text is passed in is shown as text - it cannot break the page", "<script>x</script>" not in evil and "&lt;script&gt;" in evil and "<b>bold</b>" not in evil)
 check("2 the page is a whole document that prints on letter paper: its own title, the side stamp set vertically", "<title>" in draft and "@page" in draft and "writing-mode" in draft)
 
+# ---- 1b. months that need his own eyes (William 11/11/2026: duplicates, extra units, another clinician)
+def L(n, day, code, charge, **kw): return dict(dict(line(n, day, code, charge), provider_code="WEFFI"), **kw)
+X = {(m["chart"], m["month"]): m for m in C.months([L(5, "2026-08-20", "99487", 11), L(5, "2026-08-20", "99489", 12, units="2"),
+      L(6, "2026-08-20", "99487", 13), L(6, "2026-08-25", "99487", 14), L(7, "2026-08-20", "99487", 15, provider_code="GARCIA"),
+      L(8, "2026-08-20", "99487", 16), L(8, "2026-08-20", "99489", 17)], signer="WEFFI")}
+P5, P6, P7, P8 = (person(n)["chart"] for n in (5, 6, 7, 8))
+check("1b 99489 billed twice (two units) gets NO ready-made statement - more than 120 minutes is his to write", X[(P5, "2026-08")]["statement"] is None and "99489 billed 2 times" in X[(P5, "2026-08")]["flag"] and "more than 120 minutes" in X[(P5, "2026-08")]["flag"], X[(P5, "2026-08")]["flag"])
+check("1b 99487 billed twice in one month keeps its statement but is flagged as a possible duplicate charge", X[(P6, "2026-08")]["minutes"] == 60 and "99487 billed 2 times" in X[(P6, "2026-08")]["flag"] and "duplicate" in X[(P6, "2026-08")]["flag"], X[(P6, "2026-08")]["flag"])
+check("1b a line billed under another clinician than the signer is flagged; an ordinary month of his is not", "billed under GARCIA, not WEFFI" in X[(P7, "2026-08")]["flag"] and X[(P8, "2026-08")]["flag"] == "" and X[(P8, "2026-08")]["minutes"] == 90, (X[(P7, "2026-08")]["flag"], X[(P8, "2026-08")]["flag"]))
+check("1b a flagged month needs his review even with supporting items on file", C.needs_review(X[(P6, "2026-08")], EV_ := [{"kind": "fax_lab", "date": "2026-08-07", "source": "s", "summary": "x"}]) and not C.needs_review(X[(P8, "2026-08")], EV_))
+
+# ---- 2b. what a signature covers, and the check of a signing
+F = C.note_fields(M[(P1, "2026-10")], person(1), None, EV)
+def flat_ok(v): return isinstance(v, str) or (isinstance(v, list) and all(isinstance(x, str) or (isinstance(x, list) and all(isinstance(y, str) for y in x)) for x in v))
+check("2b the fields of a note are exactly its content, as plain text only (strings and lists of strings)", tuple(sorted(F)) == tuple(sorted(C.FIELD_KEYS)) and all(flat_ok(v) for v in F.values()), F)
+check("2b the fields carry the practice, the patient, the late-entry line and his statement", F["practice"] == "North Florida Senior Care" and F["patient"] == person(1)["name"] and F["late_entry"] == "LATE ENTRY for the charge dated 10/31/2026, for the month of October 2026 (99487 + 99489)." and F["statement"].startswith("Greater than 90 minutes") and F["charges"][0] == ["10/31/2026", "99487", "vst701", "charge1"], F)
+check("2b the fixed text form: keys sorted, no spaces, the same text every time", C.canon({"b": "2", "a": ["x", "y"]}) == '{"a":["x","y"],"b":"2"}' and C.canon(F) == C.canon(dict(reversed(list(F.items())))))
+W = datetime.date(2026, 11, 15); SHA = C.signing_sha(F, W)
+check("2b the hash changes with any word of the note and with the day it is written", SHA != C.signing_sha(dict(F, patient=F["patient"] + "x"), W) and SHA != C.signing_sha(F, datetime.date(2026, 11, 16)) and len(SHA) == 64)
+SIG = {"by": "EFFINGER, WILLIAM", "written": "11/15/2026", "at": "2026-11-15T21:05:00Z", "sha": SHA}
+ok, why = C.verify_signature(F, SIG)
+check("2b a signing made on the hub page for exactly this note is accepted, and the note is then dated the day it was signed", ok is not None and why == "" and ok["written"] == "11/15/2026" and ok["statement"] == F["statement"], why)
+check("2b a signing for a note that changed after he saw it is refused - never signed in his name", C.verify_signature(dict(F, insurance="Another Payer"), SIG)[0] is None and "changed after it was shown" in C.verify_signature(dict(F, insurance="Another Payer"), SIG)[1])
+check("2b a signing dated another day than the practice's day it was made on is refused (Eastern time, daylight saving included)",
+      C.verify_signature(F, dict(SIG, at="2026-11-16T15:00:00Z"))[0] is None and C.verify_signature(F, dict(SIG, at="2026-11-16T03:30:00Z"))[0] is not None and C.verify_signature(F, dict(SIG, at="2026-11-15T21:05:00"))[0] is None)
+check("2b the practice's day is Eastern time with daylight saving: 04:30 UTC in July is the day before, in December too", C.local_day(datetime.datetime(2026, 7, 2, 3, 30, tzinfo=datetime.timezone.utc)) == datetime.date(2026, 7, 1) and C.local_day(datetime.datetime(2026, 12, 2, 4, 30, tzinfo=datetime.timezone.utc)) == datetime.date(2026, 12, 1) and C.local_day(datetime.datetime(2026, 12, 2, 5, 30, tzinfo=datetime.timezone.utc)) == datetime.date(2026, 12, 2))
+FN = C.note_fields(dict(X[(P5, "2026-08")], statement=None), person(5), None, [])
+OWN = "Greater than 120 minutes spent during August 2026 on this patient's care."
+check("2b where there is no ready-made statement, his own words are signed; without them nothing is; where there is one, it is not replaced",
+      C.verify_signature(FN, {"by": "EFFINGER, WILLIAM", "written": "11/15/2026", "at": "2026-11-15T21:05:00Z", "statement": OWN, "sha": C.signing_sha(dict(FN, statement=OWN), W)})[0]["statement"] == OWN
+      and C.verify_signature(FN, dict(SIG, sha=C.signing_sha(FN, W)))[0] is None and C.verify_signature(F, dict(SIG, statement=OWN))[0] is None)
+check("2b a signing without who or when, or with a forged hash, is refused", C.verify_signature(F, dict(SIG, by=""))[0] is None and C.verify_signature(F, dict(SIG, sha="0" * 64))[0] is None and C.verify_signature(F, "x")[0] is None)
+R = C.render(ok, written=W, signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-15T16:05:00"})
+check("2b a signed note renders from its stored fields: the practice's letterhead, the late entry dated the day signed, his stamp down the side",
+      all(w in R for w in ("<h1>North Florida Senior Care</h1>", C.LETTERHEAD[0], C.LETTERHEAD[1], "Fax: " + C.FAX, "LATE ENTRY for the charge dated 10/31/2026, for the month of October 2026 (99487 + 99489).</b> Written 11/15/2026.", "Electronically Signed and Reviewed by EFFINGER, WILLIAM 11/15/2026 16:05:00")) and "DRAFT - NOT SIGNED" not in R, R[:400])
+
 # ---- 3. the words
 DOC = open(os.path.join(ROOT, "docs", "CCM_DOCUMENTATION_HUB.md"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "docs", "CCM_DOCUMENTATION_HUB.md")) else ""
 DOCN = DOC.replace("\n", " ")
@@ -90,7 +130,23 @@ check("3 the hub's document says what the code does: one record per patient per 
       [w for w in ("one record per patient per calendar month", "greater than 60 minutes", "greater than 90 minutes", "never signs for him", "never dated an earlier day", "flagged", "Neon") if w not in DOCN])
 check("3 every kind of supporting item the helper accepts is named in the document", all(("`%s`" % k) in DOC for k in C.KINDS), [k for k in C.KINDS if ("`%s`" % k) not in DOC])
 SQL = open(os.path.join(ROOT, "tools", "db", "ccm_schema.sql"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "tools", "db", "ccm_schema.sql")) else ""
-check("3 the Neon section is written down as its own schema - months, notes, supporting items, faxes - and a signed note cannot be changed",
-      all(w in SQL for w in ("create schema if not exists ccm", "ccm.patient_month", "ccm.note", "ccm.evidence", "ccm.fax")) and "signed_at" in SQL and "ccm.note_signed_is_final" in SQL, [w for w in ("ccm.patient_month", "ccm.note", "ccm.evidence", "ccm.fax") if w not in SQL])
+SQLW = ("create schema if not exists ccm", "ccm.patients", "ccm.months", "ccm.signed_notes", "ccm.notes", "ccm.evidence", "ccm.faxes", "ccm.keep_signed_final", "before update or delete on raw.documents", "grant select on all tables in schema ccm to ehpa_routine")
+check("3 the Neon section is written down as its own schema - patients, months, signed notes, supporting items, faxes - and a signed note cannot be changed or removed",
+      all(w in SQL for w in SQLW), [w for w in SQLW if w not in SQL])
+# ---- 4. the hub page agrees with this helper on what a signature covers
+import json as _json, shutil as _shutil, subprocess as _subprocess
+PG = open(os.path.join(ROOT, "tools", "db", "ccm_hub_page.html"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "tools", "db", "ccm_hub_page.html")) else ""
+check("4 the hub page signs only on the owner's click after a ticked review, never writes over a signing, and records the day in Eastern time",
+      all(w in PG for w in ("isOwner()", 'id="ack"', 'id="ackAll"', "if (have[c]) delete sigs[c]", 'timeZone: "America/New_York"')), [w for w in ("isOwner()", 'id="ack"', 'id="ackAll"', "if (have[c]) delete sigs[c]") if w not in PG])
+m = re.search(r"function canon\(v\) \{.*?\n\}", PG, re.S)
+SAMPLE = dict(F, patient="O'" + "QUOTE \"Q\" \\ " + "Ñ" + "\u0001", charges=[["10/31/2026", "99487", "v", "c"]], evidence=[], written="11/15/2026")
+node = _shutil.which("node")
+if node and m:
+    js = m.group(0) + "\nprocess.stdout.write(canon(JSON.parse(process.argv[1])));"
+    r = _subprocess.run([node, "-e", js, _json.dumps(SAMPLE)], capture_output=True, text=True, timeout=60)
+    check("4 the page's canon() gives exactly the text this helper hashes - quotes, backslash, accented letter and control character included (run in node)", r.stdout == C.canon(SAMPLE), (r.stdout[:200], C.canon(SAMPLE)[:200], r.stderr[:200]))
+else:
+    check("4 the page's canon() sorts keys and joins without spaces like this helper's (node is not on this machine, so the source is checked)", m is not None and "Object.keys(v).sort()" in m.group(0) and 'join(",")' in m.group(0))
+
 print("\ntest_ccm_notes: %d checks, %d failed%s" % (RAN[0], len(FAILS), "" if not FAILS else " - " + "; ".join(FAILS)[:1200]))
 sys.exit(1 if FAILS else 0)
