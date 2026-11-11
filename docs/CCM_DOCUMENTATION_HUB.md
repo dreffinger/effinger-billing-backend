@@ -22,6 +22,8 @@ There is one record per patient per calendar month - the unit chronic care manag
 ## The note
 `scripts/helpers/ccm_notes.py` lays the note out like his sample encounter note: the practice's letterhead, the patient, the location,
 the provider, the charge date and codes, a section headed LATE ENTRY, the month's supporting items, and his signed stamp down the side.
+- The top of the note is the practice's name, North Florida Senior Care. The late entry reads "LATE ENTRY for the charge dated <date>,
+  for the month of <month>" and then the day it was written (William 11/11/2026; he and his attorney approved the wording that day).
 - It is a late entry: dated the day it is written, never dated an earlier day, and it cannot be signed before it was written.
 - The helper never signs for him. The stamp appears only when a signing (who, when) was recorded for that note; until then the note says
   DRAFT - NOT SIGNED. Whether the statement is true of that patient and month is his to review before he signs.
@@ -45,6 +47,5 @@ of a patient is written into this repository.
 - The RingCentral search (faxes, calls): it needs the practice's RingCentral app key; `scripts/helpers/ringcentral_fax.py` is on the
   census-inputs pull request.
 - Applying `tools/db/ccm_schema.sql` to the practice's database, the loader, the hub artifact page, and his signing step.
-- William's attorney has not seen this wording through this repository: the exact template and process go to him before the first batch.
 
 Offline proof: `python3 tools/selftest/test_ccm_notes.py` (no AdvancedMD, no RingCentral, no Neon, no network).

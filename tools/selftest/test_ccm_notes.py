@@ -57,8 +57,10 @@ EV = [{"kind": "fax_lab", "date": "2026-10-07", "source": "ringcentral:9001", "s
 draft = C.note_html(M[(P1, "2026-10")], person(1), PRACTICE, written=TODAY, today=TODAY, evidence=EV)
 check("2 the note is laid out like the sample: the practice's letterhead, the patient, the location, the provider, the charge date and the codes",
       all(w in draft for w in ("Invented Senior Care", "1 Invented Way, Suite 9", "Fax: (555) 010-0002", person(1)["name"].replace("&", "&amp;"), "Invented Nursing Center", "William Effinger, DO", "10/31/2026", "99487", "99489")), draft[:300])
-check("2 it is headed LATE ENTRY, dated the day it is written, names the month it is for, and carries the statement",
-      "LATE ENTRY" in draft and "written 11/11/2026" in draft and "October 2026" in draft and "Greater than 90 minutes" in draft)
+check("2 it is headed LATE ENTRY for the date of the charge and the month of the charge, says the day it was written, and carries the statement",
+      "LATE ENTRY for the charge dated 10/31/2026, for the month of October 2026" in draft and "Written 11/11/2026" in draft and "Greater than 90 minutes" in draft, draft[draft.find("LATE ENTRY for"):][:200])
+top = C.note_html(M[(P1, "2026-10")], person(1), dict(PRACTICE, name=""), written=TODAY, today=TODAY, evidence=EV)
+check("2 the name at the top is the practice's own - North Florida Senior Care - unless a caller names another practice", "<h1>North Florida Senior Care</h1>" in top and C.PRACTICE_NAME == "North Florida Senior Care")
 check("2 the month's supporting items are listed under the statement, each with its date, kind and source", all(w in draft for w in ("10/07/2026", "Lab result received and reviewed", "ringcentral:9001", "10/21/2026", "Call with the facility nurse about medications")))
 check("2 a note nobody has signed says so and carries NO signed stamp", "DRAFT - NOT SIGNED" in draft and "Electronically Signed" not in draft)
 signed = C.note_html(M[(P1, "2026-10")], person(1), PRACTICE, written=TODAY, today=TODAY, evidence=EV, signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-11T21:05:00"})

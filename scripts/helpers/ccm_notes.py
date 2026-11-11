@@ -4,6 +4,7 @@
 # Decides: nothing about a charge. It turns chronic-care-management charge lines into ONE RECORD PER PATIENT PER CALENDAR MONTH (the unit
 #   CCM is billed in) and lays out that month's late-entry note the way his sample encounter note is laid out: the practice's letterhead,
 #   the patient, the location, the provider, the charge date and codes, a section headed LATE ENTRY, and his signed stamp down the side.
+#   The late entry names the date of the charge and the month of the charge, then the day it was written (his wording, 11/11/2026).
 # The statement (his own words; codes confirmed by him 11/11/2026): 99487 alone = "Greater than 60 minutes spent ...", 99487 with 99489 =
 #   "Greater than 90 minutes spent ...". Any other set of codes gets NO ready-made statement: the record is flagged and he writes that one.
 # What this helper never does:
@@ -15,6 +16,7 @@
 # Patient data: none is kept here. A caller passes the patient and the practice at run time (from Neon, the primary store); nothing of a
 #   patient is written into the repository. Standard library only; never talks to AdvancedMD, RingCentral or Neon.
 import re, html, datetime, collections
+PRACTICE_NAME = "North Florida Senior Care"      # the name at the top of every note (William 11/11/2026) unless a caller names another practice
 CCM_CODES = ("99487", "99489", "99490", "99491", "99439", "99437", "G0506")      # the care-management codes a record is built for
 STATEMENT = ("Greater than %d minutes spent during %s performing chart review, reviewing medication lists, faxes, labs, orders, referrals, "
              "phone conversations with nurses, the ARNP, the treatment team and family if needed, and on developing treatment plans for this patient.")
@@ -98,13 +100,13 @@ table{border-collapse:collapse;width:100%%} td,th{text-align:left;padding:3px 8p
 <h2>Chronic care management charges - %(mn)s</h2>
 <table><thead><tr><th>Charge date</th><th>Code</th><th>Visit</th><th>Charge</th></tr></thead><tbody>%(rows)s</tbody></table>
 <h2>LATE ENTRY</h2>
-<div class="late"><p><b>LATE ENTRY - written %(written)s</b> for chronic care management services of %(mn)s (%(codes)s).</p><p>%(statement)s</p></div>
+<div class="late"><p><b>LATE ENTRY for the charge dated %(dates)s, for the month of %(mn)s</b> (%(codes)s). Written %(written)s.</p><p>%(statement)s</p></div>
 <h2>Supporting documentation on file for %(mn)s</h2>
 %(evidence)s
 <div class="sig">Rendering Provider Signature - %(prov)s</div>
 <div class="foot">%(pname)s | %(prov)s | Late entry written %(written)s</div>
 </body></html>""" % {"chart": e(month["chart"]), "mn": e(mn), "side": side, "name": e(patient.get("name")), "dob": e(us(patient.get("dob")) if patient.get("dob") else ""),
-                      "pname": e(practice.get("name")), "paddr": "".join("<div>%s</div>" % e(a) for a in practice.get("address") or []), "phone": e(practice.get("phone")), "fax": e(practice.get("fax")),
+                      "pname": e(practice.get("name") or PRACTICE_NAME), "dates": e(" and ".join(sorted({us(c.get("dos")) for c in ch}))), "paddr": "".join("<div>%s</div>" % e(a) for a in practice.get("address") or []), "phone": e(practice.get("phone")), "fax": e(practice.get("fax")),
                       "ins": e(patient.get("insurance")), "fac": e(first.get("facility")), "prov": e(first.get("provider")), "rows": rows, "written": w.strftime("%m/%d/%Y"),
                       "codes": e(" + ".join(month["codes"])), "statement": e(month["statement"]),
                       "evidence": ("<ul>%s</ul>" % ev) if ev else "<p>No supporting item is on file for this month. The statement above stands alone.</p>"}
