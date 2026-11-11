@@ -58,6 +58,8 @@ check("deceased guard still blocks (409) and is not recorded", c11[0] == 409 and
 # ------------------------------------------------------------------ B. resave.set_insorder (no rebill)
 def visit(order, n=2):
     v = ET.Element("visit", {"id": "vst900", "episode": "ep1", "insorder": order})
+    lst = ET.SubElement(v, "insuranceorderlist")      # 11/10/2026: AdvancedMD builds the visit's insurance-order LIST from its order; set_insorder reads it
+    for i, s in enumerate(x for x in order.replace(" ", "").split(",") if x): ET.SubElement(lst, "insuranceorder", {"sequence": s, "ordinal": str(i)})
     p = ET.Element("patient", {"id": "pat77"})
     cs = [ET.Element("charge", {"id": "charge%d" % (500 + k), "proccode": "pcode1", "fee": "100.00", "insbalance": "100.00"}) for k in range(n)]
     return v, p, cs

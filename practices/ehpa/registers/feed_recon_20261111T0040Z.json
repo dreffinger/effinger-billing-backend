@@ -1,0 +1,1215 @@
+{
+"schema":"feed-recon/1",
+"stamp":"20261111T0040Z",
+"built":"2026-11-11T00:56:55Z",
+"at":null,
+"live":null,
+"files":[
+{
+"name":"20261110",
+"date":"20261110",
+"messages":60
+}
+],
+"dmin":"2026-11-02",
+"dmax":"2026-11-08",
+"counts":{
+"messages":60,
+"entered":0,
+"lines":0,
+"dollars":0,
+"already":60,
+"deceased":0,
+"dx":0,
+"cpt":0,
+"skipped":0,
+"failed":0,
+"nochart":0,
+"voided":0,
+"unrecorded":0,
+"new_charts":0,
+"holds":0
+},
+"rows":[
+{
+"f":"6a7327dd61ec913eee3a837e",
+"d":"2026-11-07",
+"c":[
+"99233"
+],
+"dx":[
+"M43.16",
+"M47.26",
+"M62.551",
+"M96.1",
+"R31.9"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477352",
+"why":"all lines already in AMD"
+},
+{
+"f":"6abb8159ae162bdf91be064b",
+"d":"2026-11-07",
+"c":[
+"99233"
+],
+"dx":[
+"M86.171"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477972",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a9a809df6af6a5ec0c5e971",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"M94.0",
+"R07.81",
+"R53.1",
+"R53.81",
+"R54",
+"Z85.3"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17477651",
+"why":"all lines already in AMD"
+},
+{
+"f":"6883d6615ae9ace80812fce2",
+"d":"2026-11-05",
+"c":[
+"99306",
+"99497"
+],
+"dx":[
+"E11.9",
+"E46",
+"F41.8",
+"G40.909",
+"G46.4",
+"G47.33",
+"G62.9",
+"I10",
+"I63.9",
+"M62.81",
+"R13.10",
+"R62.7"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17474046",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a3cc5fcbf1f798d7b8b553e",
+"d":"2026-11-05",
+"c":[
+"99344",
+"99497"
+],
+"dx":[
+"E78.5",
+"F02.80",
+"G30.9",
+"I10",
+"R26.81",
+"R29.6",
+"R53.1"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17476928",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aa0a6014a9455ee8c0bef81",
+"d":"2026-11-08",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"I21.4",
+"N10",
+"Z87.898",
+"Z91.81"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17477851",
+"why":"all lines already in AMD"
+},
+{
+"f":"6ad8ecfc5411455d7c20a66c",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"M47.12"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478223",
+"why":"all lines already in AMD"
+},
+{
+"f":"67994d49fde1f815791b4594",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"L03.90"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472826",
+"why":"all lines already in AMD"
+},
+{
+"f":"669ad9a71d003b595a81631c",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17473090",
+"why":"all lines already in AMD"
+},
+{
+"f":"66c63e40026452cacfe6daae",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"J96.21"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471478",
+"why":"all lines already in AMD"
+},
+{
+"f":"62f4a7b7ad77382d803896cd",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"F01.50",
+"F31.9",
+"F32.A",
+"F41.9",
+"G47.00",
+"I10",
+"J06.9",
+"K21.9"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat44953",
+"why":"all lines already in AMD"
+},
+{
+"f":"6536ab03b626dc96365fc8de",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"G20.A1",
+"G89.29",
+"I10",
+"I50.9",
+"J40",
+"M54.9",
+"R62.7"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat22322",
+"why":"all lines already in AMD"
+},
+{
+"f":"68074b247da49c456a5ae036",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"E78.5",
+"F03.B0",
+"G47.33",
+"I10",
+"J44.9",
+"N39.0",
+"R01.1"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17473197",
+"why":"all lines already in AMD"
+},
+{
+"f":"6abb8159ae162bdf91be064b",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"M86.171"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477972",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a7327dd61ec913eee3a837e",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"M43.16",
+"M47.26",
+"M62.551",
+"M96.1",
+"R31.9"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477352",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a21b852fc671d52db26c01a",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"F20.0",
+"F31.9",
+"I26.99"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476739",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a0772e8dbd2a23f6bc38ff3",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"R07.9"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476583",
+"why":"all lines already in AMD"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"J96.21",
+"M79.81",
+"R58"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475970",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aea453aa45a633ebd24133d",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M17.12"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478316",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aee0e5d813a9039cc51ed0e",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M17.11"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478348",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aee99e1dfef44221c8bfab8",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M17.12"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478347",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aee996e2bfc253ac863d04a",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M17.11"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478346",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aea178475d91711b303e95c",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M17.12"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478318",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aedf94442b8c45d3a602f22",
+"d":"2026-11-08",
+"c":[
+"99232"
+],
+"dx":[
+"M16.0"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478350",
+"why":"all lines already in AMD"
+},
+{
+"f":"6ae18ba0d34805b07960ca03",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"M51.17",
+"M51.86"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17478261",
+"why":"all lines already in AMD"
+},
+{
+"f":"657b808081bfed65c07b22e4",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"Z96.651"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17470950",
+"why":"all lines already in AMD"
+},
+{
+"f":"6ae94ba0a0e552e64deaf124",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"G20.A1",
+"I10",
+"J18.9"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472228",
+"why":"all lines already in AMD"
+},
+{
+"f":"690e46258092a8a7829b2c31",
+"d":"2026-11-08",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17474611",
+"why":"all lines already in AMD"
+},
+{
+"f":"67994d49fde1f815791b4594",
+"d":"2026-11-07",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"L03.90"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17472826",
+"why":"all lines already in AMD"
+},
+{
+"f":"690e46258092a8a7829b2c31",
+"d":"2026-11-07",
+"c":[
+"99223"
+],
+"dx":[
+"R55"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17474611",
+"why":"all lines already in AMD"
+},
+{
+"f":"6422b24a9f164d322725a97c",
+"d":"2026-11-08",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"K51.518"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat12182947",
+"why":"all lines already in AMD"
+},
+{
+"f":"6501593ae9abd1e55976e55c",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"F32.A",
+"G47.33",
+"G62.9",
+"G89.29",
+"I10",
+"K21.9",
+"M54.2",
+"M54.9",
+"R13.10"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17469466",
+"why":"all lines already in AMD"
+},
+{
+"f":"6643ca74873f3f63c87372b4",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"E11.65",
+"E78.5",
+"G31.84",
+"I10",
+"M06.9",
+"R51.9",
+"Z87.440"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17471793",
+"why":"all lines already in AMD"
+},
+{
+"f":"627a3e0153431d27ed7eb845",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"E78.5",
+"F03.90",
+"I10",
+"I63.9"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat25869",
+"why":"all lines already in AMD"
+},
+{
+"f":"6ac003dace81b0407879a746",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"F03.A0",
+"I10",
+"I48.91",
+"N18.32",
+"N30.00"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17478019",
+"why":"all lines already in AMD"
+},
+{
+"f":"69c6e2bccc6a369da0911aa0",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"H53.9",
+"I48.91",
+"I49.5",
+"K02.9",
+"M19.92",
+"R54",
+"Z95.0"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17476036",
+"why":"all lines already in AMD"
+},
+{
+"f":"62bbd6fca4ea93d62bc262a6",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"G47.33",
+"G89.29",
+"I10",
+"M25.551",
+"M25.562",
+"R55",
+"Z85.42",
+"Z86.79",
+"Z90.710",
+"Z99.89"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat21692",
+"why":"all lines already in AMD"
+},
+{
+"f":"67fd52f5574ce834b66a6c20",
+"d":"2026-11-05",
+"c":[
+"99309"
+],
+"dx":[
+"D51.9",
+"F03.90",
+"F32.A",
+"I10",
+"M25.50"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17473222",
+"why":"all lines already in AMD"
+},
+{
+"f":"627a3e0353431d27ed7ebb48",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"F03.90",
+"I26.99",
+"I82.409",
+"M19.90",
+"N39.0",
+"S72.009D"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat20729",
+"why":"all lines already in AMD"
+},
+{
+"f":"6436c1469793d2942323993a",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"I63.9",
+"M62.81",
+"Z86.79"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17477010",
+"why":"all lines already in AMD"
+},
+{
+"f":"639be7ee080aab6d37bfd3fe",
+"d":"2026-11-02",
+"c":[
+"99308"
+],
+"dx":[
+"E46",
+"E78.5",
+"H54.7",
+"I69.398",
+"R41.89",
+"R53.1"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat12182946",
+"why":"all lines already in AMD"
+},
+{
+"f":"64226d1f9793d29423f32b74",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"F32.A",
+"I10",
+"I63.9",
+"M62.81",
+"N39.0"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat12232001",
+"why":"all lines already in AMD"
+},
+{
+"f":"627a3e0053431d27ed7eb6fc",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"G31.84",
+"G40.909",
+"J44.9",
+"N18.4",
+"N18.5",
+"N39.0",
+"Z86.79"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat21172",
+"why":"all lines already in AMD"
+},
+{
+"f":"651e40e8e9abd1e559c2cfc9",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"F32.A",
+"G93.40",
+"M24.559",
+"M24.569",
+"R13.10",
+"R56.9",
+"R62.7",
+"Z93.1"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17469549",
+"why":"all lines already in AMD"
+},
+{
+"f":"65485098449bae5f795d6c43",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E66.01",
+"G31.84",
+"G62.9",
+"I27.20",
+"R68.89",
+"T78.40XA"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17470743",
+"why":"all lines already in AMD"
+},
+{
+"f":"6601f9e5082e16e04338fd09",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E43",
+"F32.9",
+"G40.909",
+"R62.7",
+"Z21",
+"Z87.01"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17471384",
+"why":"all lines already in AMD"
+},
+{
+"f":"66c8be69026452cacf9f956f",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E78.5",
+"F02.80",
+"G31.83",
+"G47.00",
+"L40.9",
+"R19.8"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat21308",
+"why":"all lines already in AMD"
+},
+{
+"f":"689e37d0d2e3dc868739eb55",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"F03.90",
+"F32.A",
+"I63.9",
+"M62.81"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17473748",
+"why":"all lines already in AMD"
+},
+{
+"f":"6436c1429793d2942323908e",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"I10",
+"I69.320",
+"I69.322",
+"M24.50"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat20716",
+"why":"all lines already in AMD"
+},
+{
+"f":"6436c1419793d29423238f2e",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"F20.0",
+"F32.A",
+"F41.9",
+"R53.1",
+"R56.9"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat23177",
+"why":"all lines already in AMD"
+},
+{
+"f":"674503a88c71534235f916c6",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E46",
+"F03.90",
+"G20.C",
+"G62.9",
+"I10"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17472594",
+"why":"all lines already in AMD"
+},
+{
+"f":"635a0b52080aab6d371b29f7",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"F41.1",
+"G89.29",
+"M48.00",
+"M54.9",
+"N18.9",
+"R26.2"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat47039",
+"why":"all lines already in AMD"
+},
+{
+"f":"6a21b852fc671d52db26c01a",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"F03.A0",
+"G89.29",
+"I50.9",
+"J44.9",
+"M16.0",
+"Z86.59",
+"Z86.711",
+"Z86.79"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17476739",
+"why":"all lines already in AMD"
+},
+{
+"f":"62b7e6a6a4ea93d62b381c36",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"D64.9",
+"E11.9",
+"I48.0",
+"I73.9",
+"N13.9",
+"N18.6",
+"Z95.0",
+"Z99.2"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat45008",
+"why":"all lines already in AMD"
+},
+{
+"f":"62a2d52339a4b322c3b6714a",
+"d":"2026-11-02",
+"c":[
+"99308"
+],
+"dx":[
+"A41.9",
+"G20.A1",
+"G24.01",
+"G40.909",
+"J69.0",
+"J96.01",
+"R62.7",
+"Z21"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat20863",
+"why":"all lines already in AMD"
+},
+{
+"f":"67f83840574ce834b69e5dc7",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"I10",
+"I63.9",
+"K21.9"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat17473190",
+"why":"all lines already in AMD"
+},
+{
+"f":"6422b24a9f164d322725a97c",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"F31.9",
+"F41.1",
+"F79",
+"K21.9",
+"K62.5",
+"N81.6",
+"R73.9"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat12182947",
+"why":"all lines already in AMD"
+},
+{
+"f":"62871e9281f139179df5dae9",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"H54.8",
+"I10",
+"I63.9",
+"N18.9",
+"Z93.3"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat24330",
+"why":"all lines already in AMD"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-11-02",
+"c":[
+"99309"
+],
+"dx":[
+"E11.9",
+"F03.90",
+"G40.909",
+"I25.2",
+"I63.9",
+"R29.6"
+],
+"file":"20261110",
+"prov":"Pamela G.",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"all lines already in AMD"
+},
+{
+"f":"6aece88416d94458f0771c16",
+"d":"2026-11-06",
+"c":[
+"99306",
+"99497"
+],
+"dx":[
+"C61",
+"E03.9",
+"F02.C0",
+"F32.9",
+"G30.9",
+"I10",
+"K21.9",
+"R41.82"
+],
+"file":"20261110",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17478361",
+"why":"all lines already in AMD"
+}
+]
+}

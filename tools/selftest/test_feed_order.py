@@ -1,0 +1,981 @@
+#!/usr/bin/env python3
+# PLAIN ENGLISH (offline self-test of round 7, 11/10/2026: no feed visit is left without an insurance order)
+# Decides: nothing. Proves, with stand-ins for AdvancedMD and the look-up vendor (no AMD, no network, no patient data - every id here is
+#   invented), what the specification's sections 3-6 say:
+#     - fast_set_insorder (claimocity_verify.py) and resave.set_insorder read the visit's insurance-order LIST: a visit entered with no plan
+#       reads insorder "1" over an EMPTY list - once the plan exists the save IS sent and the list is read back; a visit whose list already
+#       equals the order is not saved; a billed visit is never saved; every live charge is echoed (a sibling the register does not list is not
+#       voided); a void no-charge quality line never holds the visit; an admission date the save wiped is written back with the import's own
+#       call and read again, and when that fails the visit is not confirmed;
+#     - the insurance check's loop holds - never releases - such a visit in words that say what its list shows, keeps today's skip of charts the
+#       same batch already released, trusts only this version's entries, logs the whole answer, says every hold is a label in the report only;
+#       a plan only the paid look-up found is added only when it is a medical plan shown active on every date of service, and nothing is bought
+#       when every free check of the chart errored;
+#     - the digest puts the visits with no insurance order at the TOP and counts only saves that were sent;
+#     - (sections 8 and 9, step 2) feed_order_sweep.py, run INSIDE this process with stand-ins: the read-only listing (TOP lines with the clinician
+#       and admission-date problems), the eligibility checks dated to the service date (one per chart, date and plan; capped; no name, birth date
+#       or member id written), the clinician moves of the owner's file, the save through set_insorder only for the approved and standing-word
+#       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version 2026-11-10.7, the mirror's markers,
+#       the owner's approved file unchanged, and the words of the runbook, the rulebook, the lessons and the captured calls.
+#   The import's new register fields (section 7) are proved in tools/selftest/test_pos_rule.py, where the import runs with its stand-ins.
+# Run: python3 tools/selftest/test_feed_order.py   (exit 1 on any failure)
+import os, sys, json, types, tempfile, io, re, ast, contextlib, time, glob
+import xml.etree.ElementTree as ET
+# THIS SELF-TEST NEVER REACHES ADVANCEDMD OR ANY OTHER HOST. Every network route is closed here, first: scripts/helpers holds the real amd /
+# resave / txh / void_tx modules. Helpers that talk to AdvancedMD are only ever run INSIDE this process with stand-in modules (run_inside), or
+# their functions are lifted out of the source text; no helper is started as a program, and no real module is imported.
+import socket as _socket
+def _no_network(*a, **k): raise RuntimeError("the self-test must not use the network")
+_socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
+for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"): os.environ[_k] = "http://127.0.0.1:9"
+os.environ.update(NO_PROXY="", no_proxy="")
+AMD_MODULES = ("amd", "resave", "txh", "void_tx", "deceased_guard", "freq1_visit", "move_to_ins", "ins_update", "stedi", "elig_amd", "add_ins")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+HELPERS = os.path.join(ROOT, "scripts", "helpers")
+FAILS = []
+def check(name, cond, extra=""):
+    print(("ok   " if cond else "FAIL ") + name + (("  -> " + str(extra)[:900]) if extra != "" and not cond else ""))
+    if not cond: FAILS.append(name)
+_sleep0 = time.sleep; time.sleep = lambda *_a: None      # the helpers wait between calls; nothing to wait for here
+HELD = "HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it"
+
+# ---- a stand-in AdvancedMD: visits with charges, the insorder attribute, the insurance-order LIST and the admission date --------------------
+class SV:
+    """One visit as AdvancedMD keeps it. A save (updvisitwithcharges) behaves as the practice's notes say: a charge left out of the echo is voided
+    (resave.visit_charges, 9/3/2026); the list is built from the order only when the chart has a plan (builds); wipe = the save wipes the
+    admission date (captured_calls 9/22); restore = updextrainsinfo writes it back; fault = 'always' or a charge id whose echo is refused."""
+    def __init__(self, vid, charges, attr="1", lst="", admit="", builds=True, wipe=False, restore=True, fault=None, void_after=(), rev=False, raise_after=None):
+        self.vid, self.attr, self.lst, self.admit, self.builds, self.wipe, self.restore, self.fault, self.void_after, self.rev = vid, attr, lst, admit, builds, wipe, restore, fault, set(void_after), rev
+        self.raise_after = raise_after
+        self.ch = {c["id"]: dict(c) for c in charges}; self.saves = []; self.extins = []
+    def adm(self, cid):      # admit = one date for the visit, or {CPT: date} = AdvancedMD keeping the date per procedure code (each charge's detail shows its own code's)
+        return (self.admit.get(self.ch[cid].get("cpt", "99309")) or "") if isinstance(self.admit, dict) else self.admit
+    def detail(self, cid):
+        c = self.ch[cid]; seqs = [s for s in self.lst.split(",") if s]
+        rows = ['<insuranceorder carrier="car1" sequence="%s" ordinal="%d"/>' % (s, i) for i, s in enumerate(seqs)]
+        if self.rev: rows = rows[::-1]      # AdvancedMD can list the entries out of claim order: the ordinal decides
+        attrs = dict({"id": cid, "proccode": c.get("pcode", "pcode1"), "fee": c.get("fee", "141.00"), "void": "1" if c.get("void") else "0", "billins": "1", "insbilled": "0", "datebilled": ""}, **c.get("attrs", {}))
+        pays = "".join('<payment amount="%s" void="%s"/>' % (p["amount"], p.get("void", "0")) for p in c.get("pays", []))
+        kids = ("<paymentlist>%s</paymentlist>" % pays if pays else "") + ("<insbilllist><insbill billeddate=\"x\"/></insbilllist>" if c.get("insbill") else "")
+        return ('<r><patient id="pat1"/><visit id="%s" episode="e1" insorder="%s" profile="prof13">%s<insuranceorderlist>%s</insuranceorderlist></visit>'
+                '<charge %s>%s</charge><proccodelist><proccode id="%s" code="%s"/></proccodelist></r>') % (
+            self.vid, self.attr, '<extins hospitalizationfrom="%s"/>' % self.adm(cid) if self.adm(cid) else "", "".join(rows),
+            " ".join('%s="%s"' % kv for kv in attrs.items()), kids, c.get("pcode", "pcode1"), c.get("cpt", "99309"))
+    def live(self): return [k for k, c in self.ch.items() if not c.get("void")]
+    def post(self, body):
+        if "updextrainsinfo" in body:
+            self.extins.append(body); m = re.search(r'hospitalizationfrom="([^"]*)"', body); k_ = re.search(r'txtChargeCode="([^"]*)"', body)
+            if self.restore and m:
+                if isinstance(self.admit, dict): self.admit[k_.group(1) if k_ else "?"] = m.group(1)
+                else: self.admit = m.group(1)
+                return '<r><extins hospitalizationfrom="%s"/></r>' % m.group(1)
+            return "<r/>"
+        self.saves.append(body)
+        if self.fault == "always" or (self.fault and 'id="%s"' % self.fault in body): return "<r><Fault><description>Charge amount is zero</description></Fault></r>"
+        sent = set(re.findall(r'<charge id="(charge\d+)"', body))
+        for k in self.ch:
+            if k not in sent or k in self.void_after: self.ch[k]["void"] = True
+        self.attr = re.search(r'<visit [^>]*insorder="([^"]*)"', body).group(1)
+        if self.builds: self.lst = self.attr
+        if self.wipe: self.admit = {k_: "" for k_ in self.admit} if isinstance(self.admit, dict) else ""
+        if self.raise_after: raise self.raise_after      # the save landed, but its answer never comes back (a time-out)
+        return "<r/>"
+class World:
+    def __init__(self, *visits): self.v = {}; self.posts = []; [self.put(x) for x in visits]
+    def put(self, sv): self.v[sv.vid] = sv; return sv
+    def owner(self, cid):
+        cid = "charge" + re.sub(r"\D", "", str(cid)); return next((x for x in self.v.values() if cid in x.ch), None), cid
+    def detail(self, cid):
+        sv, cid = self.owner(cid); return sv.detail(cid) if sv else "<r><Fault>charge not found</Fault></r>"
+    def visit_charges(self, cid):
+        sv, cid = self.owner(cid); r = ET.fromstring(sv.detail(cid))
+        return r.find(".//visit"), r.find(".//patient"), [ET.fromstring(sv.detail(k)).find(".//charge") for k in sv.live()]
+    def post(self, body, timeout=0):
+        self.posts.append(body); m = re.search(r'visitid="(vst\d+)"', body) or re.search(r'<visit id="(vst\d+)"', body)
+        return self.v[m.group(1)].post(body) if m and m.group(1) in self.v else "<r/>"
+W = [World()]
+AM = types.SimpleNamespace(msg=lambda action, cls, attrs=None, children="": '<ppmdmsg action="%s" class="%s" %s>%s</ppmdmsg>' % (action, cls, " ".join('%s="%s"' % kv for kv in (attrs or {}).items()), children),
+                           post=lambda body, timeout=0: W[0].post(body, timeout), login_cached=lambda *a: None)
+RS = types.SimpleNamespace(detail=lambda cid: W[0].detail(cid), visit_charges=lambda cid: W[0].visit_charges(cid),
+                           CHG_FIELDS=["respparty", "begindate", "enddate", "diagcodes", "modcodes", "aging", "billins", "proccode", "cobcode", "pos", "tos", "units", "netfee", "fee", "allowed", "patportion", "insportion", "patbalance", "insbalance", "finclasscode", "lineitemnote"])
+def chg(n, cpt="99309", pcode="pcode65119", fee="141.00", **kw): return dict({"id": "charge%s" % n, "cpt": cpt, "pcode": pcode, "fee": fee}, **kw)
+
+# ---- the two helpers' functions, lifted out of their source text (the modules themselves are never imported) ------------------------------------
+VSRC = open(os.path.join(HELPERS, "claimocity_verify.py")).read()
+_vs = VSRC[VSRC.index("def fast_set_insorder(v, order, removed=None, info=None):"):VSRC.index("def main():")]
+CARS = {"car6085": ["FLO02", "FLORIDA MEDICARE"], "car100": ["CIG09", "CIGNA"], "car300": ["UNI20", "UNITED HEALTHCARE"], "car400": ["TRI05", "TRICARE FOR LIFE"]}
+VNS = {"resave": RS, "amd": AM, "re": re, "CARRIERS": CARS, "CODE2CAR": {v_[0]: k_ for k_, v_ in CARS.items()}}; exec(compile(_vs, "claimocity_verify.py", "exec"), VNS)
+fast = VNS["fast_set_insorder"]
+def lift(path, names):
+    tree = ast.parse(open(path).read())
+    keep = [n for n in tree.body if (isinstance(n, ast.FunctionDef) and n.name in names) or (isinstance(n, ast.Assign) and any(getattr(t, "id", None) in names for t in n.targets))]
+    return compile(ast.Module(body=keep, type_ignores=[]), path, "exec")
+RNS = {"re": re, "ET": ET, "amd": AM, "detail": lambda cid: W[0].detail(cid), "visit_charges": lambda cid: W[0].visit_charges(cid)}
+exec(lift(os.path.join(HELPERS, "resave.py"), {"CHG_FIELDS", "HOSP_CODES", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "set_insorder"}), RNS)      # core/resave.py must be the same file (next check)
+setins = RNS["set_insorder"]
+check("both copies of resave.py are the same file (scripts/helpers and core)", open(os.path.join(HELPERS, "resave.py")).read() == open(os.path.join(ROOT, "core", "resave.py")).read())
+NEW = {"open_plans_at_entry": 0, "chart_insorder": ""}      # a row the round-7 import wrote (the chart had no plan when the visit was entered)
+def row(vid, charges, **kw): return dict({"visit": vid, "pid": "pat1", "charges": charges, "dos": "11/02/2026", "cpts": ["99309"]}, **dict(NEW, **kw))
+
+# ---- 3.1 order_list: plan sequences in ordinal order, joined like the attribute; the two copies agree ------------------------------------------
+_shapes = ['<visit insorder="1"><insuranceorderlist/></visit>', '<visit insorder="1"/>', '<visit><insuranceorderlist><insuranceorder sequence="1" ordinal="0"/></insuranceorderlist></visit>',
+           '<visit><insuranceorderlist><insuranceorder sequence="2" ordinal="1"/><insuranceorder sequence="4" ordinal="0"/></insuranceorderlist></visit>',
+           '<visit><insuranceorderlist><insuranceorder sequence="1" ordinal="0"/><insuranceorder sequence="3" ordinal="1"/><insuranceorder sequence="2" ordinal="2"/></insuranceorderlist></visit>']
+_want = ["", "", "1", "4,2", "1,3,2"]
+check("3.1 order_list: empty list -> '', one plan -> '1', claim order by ordinal (XML 2/ordinal 1 then 4/ordinal 0 -> '4,2'), three plans", [VNS["order_list"](ET.fromstring(s_)) for s_ in _shapes] == _want, [VNS["order_list"](ET.fromstring(s_)) for s_ in _shapes])
+check("3.1 order_list: the insurance check's copy and resave.py's copy give the same answer on every shape", [RNS["order_list"](ET.fromstring(s_)) for s_ in _shapes] == _want)
+for _nm in ("billed_reasons", "admit_of"):
+    _c = [ET.fromstring(x_) for x_ in ('<charge datebilled="10/28/2026 21:07:13"/>', '<charge insbilled="1"/>', '<charge><insbilllist><insbill/></insbilllist></charge>', '<charge><paymentlist><payment amount="0.00" void="0"/></paymentlist></charge>', '<charge><paymentlist><payment amount="60.74" void="1"/></paymentlist></charge>', '<charge datebilled="" insbilled="0"/>')]
+    if _nm == "billed_reasons": check("3.3 billed: a bill date, an insurance bill (flag or row) or a payment that is not void (any amount) - and the two copies agree", [VNS[_nm]([c_]) for c_ in _c] == [["bill date"], ["insurance bill"], ["insurance bill"], ["payment"], [], []] == [RNS[_nm]([c_]) for c_ in _c], [VNS[_nm]([c_]) for c_ in _c])
+
+# ---- 3.2 - 3.6 fast_set_insorder ------------------------------------------------------------------------------------------------------------
+# (a) THE STUCK VISIT: entered with no plan, insorder "1", EMPTY list; the plan has landed at sequence 1 (order "1") -> the save IS sent, list read back
+W[0] = World(SV("vst11", [chg(111)], attr="1", lst="")); inf = {}
+ok, m = fast(row("vst11", ["charge111"]), "1", [], inf); sv = W[0].v["vst11"]
+check("3.2/10 stuck visit (attribute 1 over an EMPTY list, plan added): the save IS sent once and the list is read back [1]", ok and len(sv.saves) == 1 and sv.lst == "1" and "list [] -> [1]" in m and inf.get("sent") and inf.get("accepted") and inf.get("list_now") == "1", (ok, m, inf))
+# (b) the list already equals the order -> nothing sent
+W[0] = World(SV("vst12", [chg(121)], attr="1", lst="1")); ok, m = fast(row("vst12", ["charge121"]), "1", [], {})
+check("3.2/10 a visit whose list already equals the order: no save, ok, says 'nothing sent'", ok and W[0].v["vst12"].saves == [] and "nothing sent" in m, (ok, m))
+# (b2) the attribute equals the order but the list holds another order -> sent (the attribute alone proves nothing)
+W[0] = World(SV("vst13", [chg(131)], attr="1", lst="1,2")); ok, m = fast(row("vst13", ["charge131"]), "1", [], {})
+check("3.2 attribute equal but list different (1,2) -> the save is sent and the list reads [1]", ok and len(W[0].v["vst13"].saves) == 1 and "list [1,2] -> [1]" in m, (ok, m))
+# (c) a billed visit -> never saved, not ok, words; each kind of bill sign
+for _lbl, _c in (("bill date", chg(141, attrs={"datebilled": "10/28/2026 21:07:13", "insbilled": "1"}, insbill=True)), ("insurance bill", chg(141, insbill=True)), ("payment", chg(141, pays=[{"amount": "60.74"}]))):
+    W[0] = World(SV("vst14", [_c], attr="1", lst="1")); inf = {}; ok, m = fast(row("vst14", ["charge141"]), "1,2", [], inf)
+    check("3.3/10 a billed visit (%s) is never saved: not ok, 'already billed - not saved', nothing posted" % _lbl, not ok and W[0].posts == [] and m.startswith("already billed - not saved") and _lbl in inf.get("billed", []), (ok, m, inf))
+W[0] = World(SV("vst15", [chg(151, pays=[{"amount": "60.74", "void": "1"}])], attr="1", lst="")); ok, m = fast(row("vst15", ["charge151"]), "1", [], {})
+check("3.3 a VOID payment is not a payment: the never-billed visit is saved", ok and len(W[0].v["vst15"].saves) == 1, (ok, m))
+W[0] = World(SV("vst16", [chg(161, attrs={"datebilled": "10/28/2026"})], attr="1", lst="1")); ok, m = fast(row("vst16", ["charge161"]), "1", [], {})
+check("3.3 a billed visit whose list already equals the order: nothing to do - ok, nothing sent (no false hold)", ok and W[0].posts == [] and "nothing sent" in m, (ok, m))
+# (d) an extra live sibling the register does not list -> echoed, not voided (challenger case 1)
+W[0] = World(SV("vst17", [chg(171), chg(172, cpt="99497", pcode="pcode65299", fee="86.00")], attr="1", lst="")); ok, m = fast(row("vst17", ["charge171"]), "1", [], {})
+sv = W[0].v["vst17"]
+check("3.4/10 an extra live sibling not in the register is echoed, not voided (both ids in the save, both still live)", ok and 'id="charge172"' in sv.saves[0] and 'id="charge171"' in sv.saves[0] and sv.live() == ["charge171", "charge172"] and "also echoed, not in the register: charge172" in m, (ok, m, sv.live()))
+# (e) a void no-charge quality line (1123F / M0004) is exempt: not echoed, never holds the visit
+for _code, _pc, _key in (("1123F", "pcode65441", "quality_charge"), ("M0004", "pcode692183", "mvp_charge")):
+    W[0] = World(SV("vst18", [chg(181), chg(182, cpt=_code, pcode=_pc, fee="0.00", void=True)], attr="1", lst=""))
+    r_ = row("vst18", ["charge181", "charge182"], **{_key: "charge182", ("quality_codes" if _key == "quality_charge" else "mvp_codes"): [_code]})
+    ok, m = fast(r_, "1", [], {}); sv = W[0].v["vst18"]
+    check("3.4/10 a VOID %s line is exempt: the visit is saved with its own charge only and confirmed" % _code, ok and len(sv.saves) == 1 and "charge182" not in sv.saves[0] and sv.lst == "1", (ok, m))
+W[0] = World(SV("vst19", [chg(191), chg(192, void=True)], attr="1", lst="")); ok, m = fast(row("vst19", ["charge191", "charge192"]), "1", [], {})
+check("3.4 a VOID charge of the visit's own (not a no-charge line) still holds as before: 'detail read mismatch', nothing sent", not ok and "mismatch" in m and W[0].posts == [], (ok, m))
+# round 6 kept: the echo with a LIVE quality line refused -> sent once more without it, accepted, line void, removal reported
+W[0] = World(SV("vst20", [chg(201), chg(202, cpt="1123F", pcode="pcode65441", fee="0.00")], attr="1", lst="", fault="charge202")); _rm = []
+ok, m = fast(row("vst20", ["charge201", "charge202"], quality_charge="charge202", quality_codes=["1123F"], quality_fee="0.00"), "1", _rm, {})
+check("3.4 (round 6 kept) a refused echo with the live quality line is sent once more without it: confirmed, the line void, the removal reported", ok and len(W[0].v["vst20"].saves) == 2 and "line is void" in m and len(_rm) == 1 and W[0].v["vst20"].lst == "1", (ok, m, _rm))
+# (f) the save wipes the admission date -> written back with the import's own call (per hospital code) and read again
+W[0] = World(SV("vst21", [chg(211, cpt="99223", pcode="pcode65101"), chg(212, cpt="99497", pcode="pcode65299")], attr="1", lst="", admit="10/27/2026", wipe=True))
+inf = {}; ok, m = fast(row("vst21", ["charge211", "charge212"], cpts=["99223", "99497"]), "1", [], inf); sv = W[0].v["vst21"]
+_shape = ('<extins txtChargeCode="99223" hospitalizationfrom="10/27/2026" patsignature="1" emergency="0" epsdt="0" payprov="1" employment="0" '
+          'autoaccident="0" otheraccident="0" pregnant="0" outsidelab="0"/>')
+check("3.5/10 an admission date wiped by the save is written back with the import's exact updextrainsinfo shape (per hospital code only) and read again: ok",
+      ok and len(sv.extins) == 1 and _shape in sv.extins[0] and 'action="updextrainsinfo" class="chargeentry"' in sv.extins[0] and 'visitid="vst21"' in sv.extins[0] and sv.admit == "10/27/2026"
+      and "admission date 10/27/2026 was lost on save and written back (99223)" in m and not inf.get("admit_lost"), (ok, m, sv.extins))
+_frag = ("'<extins txtChargeCode=\"%s\" hospitalizationfrom=\"%s\" patsignature=\"1\" emergency=\"0\" epsdt=\"0\" payprov=\"1\" employment=\"0\" '",
+         "'autoaccident=\"0\" otheraccident=\"0\" pregnant=\"0\" outsidelab=\"0\"/>'", 'amd.msg("updextrainsinfo", "chargeentry", {"visitid": ')
+_srcs = {n_: open(os.path.join(HELPERS, n_)).read() for n_ in ("claimocity_import.py", "claimocity_verify.py", "resave.py")}
+check("3.5 ... and that shape is the import's own: the same template and call in claimocity_import.py, claimocity_verify.py and resave.py", all(f_ in s_ for f_ in _frag for s_ in _srcs.values()), {n_: [f_ in s_ for f_ in _frag] for n_, s_ in _srcs.items()})
+# (g) restoring fails -> not ok: "admission date lost on save" (the loop holds it)
+W[0] = World(SV("vst22", [chg(221, cpt="99232", pcode="pcode65102")], attr="1", lst="", admit="10/27/2026", wipe=True, restore=False)); inf = {}
+ok, m = fast(row("vst22", ["charge221"], cpts=["99232"]), "1", [], inf)
+check("3.5/10 the write-back does not take: not ok, 'admission date lost on save', info.admit_lost", not ok and "admission date lost on save (was 10/27/2026, now none" in m and inf.get("admit_lost"), (ok, m))
+W[0] = World(SV("vst23", [chg(231)], attr="1", lst="", admit="10/27/2026", wipe=True)); ok, m = fast(row("vst23", ["charge231"]), "1", [], {})
+check("3.5 a wiped admission date on a visit with no hospital code cannot be written back: not ok, said", not ok and "no hospital code" in m and W[0].v["vst23"].extins == [], (ok, m))
+W[0] = World(SV("vst24", [chg(241, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/27/2026")); ok, m = fast(row("vst24", ["charge241"], cpts=["99223"]), "1", [], {})
+check("3.5 an admission date the save keeps: nothing is written", ok and W[0].v["vst24"].extins == [] and "admission" not in m, (ok, m))
+# (h) AdvancedMD accepts the save but builds no list -> not ok (investigator case 2)
+W[0] = World(SV("vst25", [chg(251)], attr="1", lst="", builds=False)); inf = {}; ok, m = fast(row("vst25", ["charge251"]), "1", [], inf)
+check("3.6 the save is accepted but the list stays EMPTY: not ok, 'NOT AS ASKED', the list read back is ''", not ok and "NOT AS ASKED" in m and inf.get("list_now") == "" and inf.get("accepted"), (ok, m))
+# (i) a real re-order 1,2 -> 1 (investigator case 4); (j) a sibling voided by the save (investigator case 5); (k) claim order 4,2 (case 6)
+W[0] = World(SV("vst26", [chg(261)], attr="1,2", lst="1,2")); ok, m = fast(row("vst26", ["charge261"]), "1", [], {})
+check("3.6 a real change 1,2 -> 1: sent once, 'list [1,2] -> [1]'", ok and len(W[0].v["vst26"].saves) == 1 and "list [1,2] -> [1]" in m, (ok, m))
+W[0] = World(SV("vst27", [chg(271), chg(272)], attr="1", lst="", void_after={"charge272"})); ok, m = fast(row("vst27", ["charge271", "charge272"]), "1", [], {})
+check("3.6 a sibling voided by the save is caught: not ok, 'no longer live: charge272'", not ok and "no longer live: charge272" in m and "1 of 2 echoed charges live" in m, (ok, m))
+W[0] = World(SV("vst28", [chg(281)], attr="1", lst="", rev=True)); ok, m = fast(row("vst28", ["charge281"]), "4,2", [], {})
+check("3.6 a two-plan order keeps its claim order (ordinal), not numeric order: [4,2]", ok and "-> [4,2]" in m, (ok, m))
+# (l) a visit the import entered BEFORE this change (no open_plans_at_entry) with an EMPTY list is not saved here (spec 4.2: old stuck visits -> the sweep)
+W[0] = World(SV("vst29", [chg(291)], attr="1", lst="")); inf = {}
+ok, m = fast({"visit": "vst29", "pid": "pat1", "charges": ["charge291"], "dos": "10/20/2026", "cpts": ["99309"]}, "1", [], inf)
+check("4.2 an old row (entered before 11/10/2026) with an EMPTY list is never saved by the insurance check - only by feed_order_sweep.py with the owner's file", not ok and W[0].posts == [] and inf.get("old_row") and "feed_order_sweep.py --resave" in m, (ok, m))
+W[0] = World(SV("vst30", [chg(301)], attr="2", lst="2")); ok, m = fast({"visit": "vst30", "pid": "pat1", "charges": ["charge301"], "dos": "10/20/2026", "cpts": ["99309"]}, "1", [], {})
+check("4.2 ... an old row whose list is NOT empty is set as before (it would bill to its old order otherwise)", ok and len(W[0].v["vst30"].saves) == 1, (ok, m))
+# the challenger's four hazards (c8_test_proposed.py), on the built function: none of them happens now
+W[0] = World(SV("vst31", [chg(311), chg(312)], attr="1", lst="", admit="10/21/2026", wipe=True)); ok, m = fast(row("vst31", ["charge311"]), "1", [], {})
+check("challenger c8 (1)+(2): an extra live charge is not voided, and a wiped admission date is never answered 'ok'", W[0].v["vst31"].live() == ["charge311", "charge312"] and not (ok and W[0].v["vst31"].admit == ""), (ok, m))
+W[0] = World(SV("vst32", [chg(321), chg(329, cpt="1123F", pcode="pcode65441", fee="0.00", void=True)], attr="1", lst="")); ok, m = fast(row("vst32", ["charge321", "charge329"], quality_charge="charge329", quality_codes=["1123F"]), "1", [], {})
+check("challenger c8 (3): a void quality line kept in the register no longer makes the check not ok", ok and len(W[0].v["vst32"].saves) == 1, (ok, m))
+W[0] = World(SV("vst33", [chg(331, attrs={"insbilled": "1", "datebilled": "10/29/2026"})], attr="1", lst="1")); ok, m = fast(row("vst33", ["charge331"]), "1,2", [], {})
+check("challenger c8 (4): a billed visit re-checked after its lead changed is NOT re-saved", W[0].v["vst33"].saves == [] and not ok, (ok, m))
+
+# ---- 5. resave.set_insorder: the same rules for every caller (freq1_visit.reroute, hand-fix helpers) ----------------------------------------------
+W[0] = World(SV("vst41", [chg(411)], attr="1", lst="")); ok, m = setins("411", "1")
+check("5 set_insorder: stuck visit (attribute 1, EMPTY list) -> saved, list read back [1] (it was 'already 1 - resave skipped' before)", ok and len(W[0].v["vst41"].saves) == 1 and "list [] -> [1]" in m, (ok, m))
+W[0] = World(SV("vst42", [chg(421)], attr="1,2", lst="1,2")); ok, m = setins("421", "1,2")
+check("5 set_insorder: list already equal -> skipped, nothing posted", ok and W[0].posts == [] and "resave skipped" in m, (ok, m))
+W[0] = World(SV("vst43", [chg(431, attrs={"datebilled": "10/28/2026"}, insbill=True)], attr="1", lst="1")); ok, m = setins("431", "2,1")
+check("5 set_insorder: a billed visit is never saved - not ok, 'already billed - not saved'", not ok and W[0].posts == [] and "already billed - not saved" in m, (ok, m))
+try: ok, m = setins("431", "2,1", allow_billed=True)
+except TypeError as e_: ok, m = False, "set_insorder takes no allow_billed: %s" % e_
+check("5 CORRECTION (A) set_insorder(..., allow_billed=True) - the re-route helpers' word - saves the billed visit, with the full echo and the read-back", ok and len(W[0].v["vst43"].saves) == 1 and "list [1] -> [2,1]" in m, (ok, m))
+check("5 CORRECTION (A) the keyword is allow_billed and it is False unless a caller says so (every other caller keeps the billed guard)", "def set_insorder(chargeid, order, dry=False, allow_billed=False):" in open(os.path.join(HELPERS, "resave.py")).read() and "billed_ok" not in open(os.path.join(HELPERS, "resave.py")).read())
+W[0] = World(SV("vst44", [chg(441), chg(442, cpt="99497", pcode="pcode65299")], attr="1", lst="")); ok, m = setins("441", "1")
+check("5 set_insorder: every live charge is echoed (visit_charges) and read back live", ok and W[0].v["vst44"].saves[0].count("<charge ") == 2 and W[0].v["vst44"].live() == ["charge441", "charge442"], (ok, m))
+W[0] = World(SV("vst45", [chg(451, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/27/2026", wipe=True)); ok, m = setins("451", "1")
+check("5 set_insorder: a wiped admission date is written back with the import's call and read again", ok and len(W[0].v["vst45"].extins) == 1 and _shape.replace("99223", "99223") in W[0].v["vst45"].extins[0] and W[0].v["vst45"].admit == "10/27/2026", (ok, m))
+W[0] = World(SV("vst46", [chg(461, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/27/2026", wipe=True, restore=False)); ok, m = setins("461", "1")
+check("5 set_insorder: the write-back does not take -> not ok, 'admission date lost on save' (a reroute then never rebills)", not ok and "admission date lost on save" in m, (ok, m))
+W[0] = World(SV("vst47", [chg(471)], attr="1", lst="", builds=False)); ok, m = setins("471", "1")
+check("5 set_insorder: accepted but the list stays empty -> not ok", not ok and "NOT as asked" in m, (ok, m))
+W[0] = World(SV("vst48", [chg(481), chg(482)], attr="1", lst="", void_after={"charge482"})); ok, m = setins("481", "1")
+check("5 set_insorder: a charge voided by the save -> not ok, named", not ok and "no longer live: charge482" in m, (ok, m))
+W[0] = World(SV("vst49", [chg(491)], attr="1", lst="", fault="always")); ok, m = setins("491", "1")
+check("5 set_insorder: a Fault -> not ok, 'resave FAULT'", not ok and "resave FAULT" in m, (ok, m))
+W[0] = World(SV("vst50", [chg(501)], attr="1", lst="")); ok, m = setins("501", "3,2", dry=True)
+check("5 set_insorder: dry -> nothing posted, the list named", ok and W[0].posts == [] and "DRY" in m and "list []" in m, (ok, m))
+_fq = open(os.path.join(HELPERS, "freq1_visit.py")).read(); _fqc = open(os.path.join(ROOT, "core", "freq1_visit.py")).read(); _msp = open(os.path.join(HELPERS, "unbilled_msp_1109_0639.py")).read()
+check("5 CORRECTION (A) freq1_visit.reroute (both copies, the same file) and the MSP Unbilled fix pass allow_billed=True - they re-route an ALREADY-BILLED visit after a wrong-payer denial",
+      "ok, msg = resave.set_insorder(cid, order, dry=dry, allow_billed=True)" in _fq and _fq == _fqc and "resave.set_insorder(cid, order, dry=not LIVE, allow_billed=True)" in _msp)
+_cl = [(f_, l_.strip()) for f_ in glob.glob(os.path.join(HELPERS, "*.py")) + glob.glob(os.path.join(ROOT, "core", "*.py")) for l_ in open(f_, errors="replace").read().splitlines() if "set_insorder(" in l_ and "allow_billed=True" in l_ and "def set_insorder" not in l_]
+check("5 CORRECTION (A) ... and no other helper passes allow_billed=True (the insurance check, the sweep and the hand helpers keep the guard)", sorted({os.path.basename(f_) for f_, _l in _cl}) == ["freq1_visit.py", "unbilled_msp_1109_0639.py"], _cl)
+# the re-route of a billed, denied visit end to end (NH7-2 / R7-REPLAY-3 / OPS-3: freq1_visit.reroute lifted out of its source, the stand-in AdvancedMD, set_insorder of resave.py)
+_rbill = []
+FQNS = {"resave": types.SimpleNamespace(set_insorder=setins, visit_charges=lambda cid: W[0].visit_charges(cid), clean_extins=lambda a: a), "time": time, "amd": types.SimpleNamespace(
+        msg=AM.msg, post=lambda body, timeout=0: W[0].post(body, timeout), rebill_charge=lambda cid, seq, visitid=None: (_rbill.append((cid, seq)), ("200", "rebilled"))[1])}
+exec(lift(os.path.join(HELPERS, "freq1_visit.py"), {"run", "reroute"}), FQNS)
+W[0] = World(SV("vst601", [chg(6011, attrs={"datebilled": "10/28/2026 21:07:13", "insbilled": "1"}, insbill=True)], attr="1", lst="1"))
+_rr = FQNS["reroute"]("vst601", "6011", "2")
+check("5 CORRECTION (A) freq1_visit.reroute on a visit billed to sequence 1 whose denial names sequence 2: the order is saved [2] (full echo, read back) and ONE frequency-1 rebill goes to sequence 2 - not 'NOT rebilled ... already billed'",
+      not _rr.startswith("NOT rebilled") and W[0].v["vst601"].lst == "2" and len(W[0].v["vst601"].saves) == 1 and _rbill == [("6011", 2)], (_rr, _rbill))
+W[0] = World(SV("vst602", [chg(6021, attrs={"datebilled": "10/28/2026 21:07:13", "insbilled": "1"}, insbill=True)], attr="1", lst="1")); ok, m = setins("6021", "2")
+check("5 CORRECTION (A) the same billed visit through set_insorder WITHOUT the re-route's word (the insurance check, the sweep, a hand helper): never saved", not ok and W[0].posts == [] and "already billed - not saved" in m, (ok, m))
+
+# ---- the three confirmation reviews (round 7 fix round): the admission date per hospital code, an answer that never comes back -----------------
+def _try(f, *a):
+    try: return f(*a)
+    except Exception as e_: return False, "RAISED %s: %s" % (type(e_).__name__, e_)
+# NH7-4: AdvancedMD keeps the admission date per procedure code (one updextrainsinfo per CPT): 99497 + 99223, the date on the 99223 only
+W[0] = World(SV("vst53", [chg(531, cpt="99497", pcode="pcode65299"), chg(532, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit={"99223": "10/10/2026"}, wipe=True)); inf = {}
+ok, m = _try(fast, row("vst53", ["charge531", "charge532"], cpts=["99497", "99223"]), "1", [], inf); sv = W[0].v["vst53"]
+check("NH7-4 fast_set_insorder, per-code store, the 99497 first in the register: the 99223's admission date the save wiped is seen, written back for 99223 and read again (it was missed and the visit confirmed)",
+      ok and sv.admit == {"99223": "10/10/2026"} and len(sv.extins) == 1 and 'txtChargeCode="99223"' in sv.extins[0] and "was lost on save and written back (99223)" in m, (ok, m, sv.admit))
+W[0] = World(SV("vst54", [chg(541, cpt="99497", pcode="pcode65299"), chg(542, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit={"99223": "10/10/2026"}))
+ok, m = _try(fast, row("vst54", ["charge542", "charge541"], cpts=["99223", "99497"]), "1", [], {})
+check("NH7-4 fast_set_insorder, per-code store, the 99223 first in the register and the date kept by the save: no false 'admission date lost on save' (the read-back went through the 99497's detail)",
+      ok and "admission date" not in m and W[0].v["vst54"].extins == [], (ok, m))
+W[0] = World(SV("vst55", [chg(551, cpt="99497", pcode="pcode65299"), chg(552, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit={"99223": "10/10/2026"}, wipe=True)); ok, m = _try(setins, "551", "1")
+check("NH7-4 set_insorder, per-code store, the 99497 first: the 99223's wiped date is written back and read again", ok and W[0].v["vst55"].admit == {"99223": "10/10/2026"} and "written back (99223)" in m, (ok, m, W[0].v["vst55"].admit))
+# NH7-3: the save lands, then its answer never comes back (a time-out) - on a hospital visit whose admission date the save wiped
+W[0] = World(SV("vst56", [chg(561, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/10/2026", wipe=True, raise_after=TimeoutError("read timed out"))); inf = {}
+ok, m = _try(fast, row("vst56", ["charge561"], cpts=["99223"]), "1", [], inf)
+check("NH7-3 fast_set_insorder: the save lands and its answer times out - not raised: the visit is read again, the wiped admission date written back (the import's call), not ok, with what the visit reads now",
+      not ok and m.startswith("error after the save was sent: the answer to the save never came back (TimeoutError") and W[0].v["vst56"].admit == "10/10/2026" and len(W[0].v["vst56"].extins) == 1 and inf.get("list_now") == "1", (ok, m, inf))
+W[0] = World(SV("vst57", [chg(571, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/10/2026", wipe=True, raise_after=TimeoutError("read timed out"))); ok, m = _try(setins, "571", "1")
+check("NH7-3 set_insorder: the same - not raised (the sweep no longer crashes), the date written back, not ok", not ok and "the answer to the save never came back" in m and m.startswith("resave ") and W[0].v["vst57"].admit == "10/10/2026", (ok, m))
+# (B) the 11/10 clarification: a Medicare Advantage plan WITH drug coverage is a MEDICAL plan; only a stand-alone drug plan is skipped
+_drv = VNS["disc_refusal"]; _itb = lambda payer, plan="": {"payer": payer, "plan": plan, "status": "Active Coverage", "member": "X1", "dates": {"planBegin": "20260101"}}
+check("B / R7-REPLAY-4 / OPS-6 the insurance check's look-up rule: an Advantage plan with drug coverage may be added ('Medicare Advantage Prescription Drug', an HMO with Part D, an MA-PD PPO with a pharmacy row)",
+      _drv(_itb("UNITEDHEALTHCARE"), {"benefitsInformation": [{"code": "1", "planCoverage": "Medicare Advantage Prescription Drug"}]}, "UNI20", ["20261012", "20261020"]) == ""
+      and _drv(_itb("HUMANA", "HUMANA GOLD PLUS HMO - MEDICARE ADVANTAGE PRESCRIPTION DRUG"), {}, None, ["20261012"]) == ""
+      and _drv(_itb("UNITED HEALTHCARE", "AARP MEDICARE ADVANTAGE HMO WITH PART D"), {}, "UNI20", ["20261012"]) == ""
+      and _drv(_itb("AETNA", "MA-PD PPO"), {"benefitsInformation": [{"code": "1", "planCoverage": "PHARMACY"}]}, None, ["20261012"]) == "",
+      [_drv(_itb("UNITEDHEALTHCARE"), {"benefitsInformation": [{"code": "1", "planCoverage": "Medicare Advantage Prescription Drug"}]}, "UNI20", ["20261012"])])
+check("B ... and a STAND-ALONE drug plan is still skipped ('Prescription Drug Plan', Part D, a PDP - no Advantage / HMO / PPO / medical word); a 'Dental HMO' is still dental",
+      all(_drv(_itb(p_, q_), {}, None, ["20261012"]) for p_, q_ in (("HUMANA", "Humana Walmart Value Rx Plan (PDP)"), ("WELLCARE", "Prescription Drug Plan"), ("SILVERSCRIPT", "Medicare Part D"), ("CIGNA", "Cigna Dental HMO")))
+      and "dental" in _drv(_itb("CIGNA", "Cigna Dental HMO"), {}, None, ["20261012"]))
+
+# ---- 4.4 / 4.6 the hold words (order_hold) -------------------------------------------------------------------------------------------------------
+oh = VNS["order_hold"]
+l1, k1 = oh("vst1", "1", "x", {"list_now": ""})
+l2, k2 = oh("vst1", "1", "y", {"list_now": "1,2", "sent": True})
+l3, k3 = oh("vst1", "1,2", "z", {"list_now": "1", "billed": ["bill date"]})
+l4, k4 = oh("vst1", "1", "e", {"list_now": None})
+l5, k5 = oh("vst1", "1", "admission date lost on save", {"list_now": "1", "sent": True, "admit_lost": True})
+l6, k6 = oh("vst1", "1", "q", {"list_now": "", "accepted": True, "sent": True})
+check("4.4/10 an EMPTY list -> 'NO CLAIM CAN BE MADE on <visit>: its insurance order is empty', under no_order_list", l1.startswith("NO CLAIM CAN BE MADE on vst1: its insurance order is empty") and k1 == "no_order_list", l1)
+check("4.4/10 a list that differs -> '<visit> still bills to its old insurance order <list>', under order_differs", l2.startswith("vst1 still bills to its old insurance order 1,2") and k2 == "order_differs", l2)
+check("4.4/10 billed -> 'already billed - its order was not changed', under order_differs", l3.startswith("vst1 already billed - its order was not changed") and k3 == "order_differs", l3)
+check("4.4 a list that could not be read -> said, under order_unread; the order right but the admission date lost -> save_problem", "could not be read" in l4 and k4 == "order_unread" and k5 == "save_problem" and "admission date lost on save" in l5, (l4, l5))
+check("4.4 an empty list after an accepted save says the save was sent and no list was built (look before anything is sent again)", "the save was sent and AdvancedMD still built no list" in l6, l6)
+check("4.6 every hold line says HOLD stops nothing in AdvancedMD - except a NO CLAIM line, where AdvancedMD makes no claim (it says that instead)",
+      all(l_.endswith(HELD) for l_ in (l2, l3, l4, l5)) and HELD not in l1 and l1.endswith("AdvancedMD makes no claim for this visit until it is saved again with its plan in place"), (l1, l2))
+lq, kq = oh("vst1", "1", "resave FAULT x", {"list_now": "2"}, lambda w: " (the visit carries the quality line charge9: %s)" % w[:120])
+check("4.4 a visit with the quality line keeps the import's words in front ('insorder not applied on <visit> (the visit carries ...)')", lq.startswith("insorder not applied on vst1 (the visit carries the quality line charge9: resave FAULT x) - vst1 still bills to its old insurance order 2"), lq)
+_trig = re.compile(r"no active plan|no ACTIVE plan|discovery found \[|CMS reports MA/other primary|Medicaid 271 names SMMC MMA plan")
+check("4.4 none of the new words carries a phrase the hand step claimocity_fixholds.py acts on", not any(_trig.search(l_) for l_ in (l1, l2, l3, l4, l5, l6, lq, HELD)))
+
+# ---- 4.7 / 4.8 the look-up rules, as functions --------------------------------------------------------------------------------------------------
+dr = VNS["disc_refusal"]
+_it = lambda payer, plan="", dates=None: {"payer": payer, "plan": plan, "status": "Active Coverage", "member": "X1", "dates": dates or {}}
+_D = ["20261012", "20261020"]
+check("4.7 a dental plan by payer name is refused", "dental" in dr(_it("CIGNA Dental Health, Inc.", "Dental HMO"), {}, "CIG09", _D))
+check("4.8 THE 11/9 GAP: dental only in a SECOND benefit row's plan text (the summary's plan text and the payer name say nothing) is refused",
+      "dental" in dr(_it("CIGNA", ""), {"benefitsInformation": [{"code": "1", "planCoverage": ""}, {"code": "1", "planCoverage": "HM Dental HMO"}]}, "CIG09", _D))
+check("4.7 vision, life, drug-only (PDP / Part D / pharmacy) plans are refused", all(dr(_it(p_, q_), {}, None, _D) for p_, q_ in (("EYEMED", ""), ("MetLife", ""), ("HUMANA", "Medicare Part D PDP"), ("OptumRx", ""), ("X", "Pharmacy only"))))
+check("4.7 TRICARE FOR LIFE is a medical plan (not refused for the word LIFE)", dr(_it("TRICARE FOR LIFE", "TFL", {"planBegin": "20250101"}), {}, None, _D) == "")
+check("4.7 a medical plan whose own dates cover every date of service may be added", dr(_it("UNITED HEALTHCARE", "AARP Medicare Advantage", {"planBegin": "20260101"}), {}, "UNI20", _D) == "")
+check("4.7 a plan that begins after the earliest date of service is refused ('not active on 10/12/2026')", dr(_it("UNITED HEALTHCARE", "MA", {"planBegin": "20261015"}), {}, "UNI20", _D).startswith("not active on 10/12/2026"))
+check("4.7 a plan that ends before the latest date of service is refused (range in a benefit row)", dr(_it("UNITED HEALTHCARE", "MA"), {"benefitsInformation": [{"benefitsDateInformation": {"plan": "20260301-20261015"}}]}, "UNI20", _D).startswith("not active on 10/20/2026"))
+check("4.7 no plan begin date and visits on two dates: not shown active on the earlier date - refused; one date only: allowed (the look-up is dated to it)",
+      dr(_it("UNITED HEALTHCARE", "MA"), {}, "UNI20", _D) != "" and dr(_it("UNITED HEALTHCARE", "MA"), {}, "UNI20", ["20261020"]) == "")
+_bd = {"planBegin": "1940" + "0215", "planEnd": "1940" + "0215"}      # a placeholder row whose plan dates are the patient's birth date
+_w = VNS["disc_words"](_it("SOME PAYER", "x", _bd), {}) + " " + dr(_it("SOME PAYER", "x", _bd), {}, None, _D)
+check("4.7 the words for William never print a plan date (a placeholder row can carry the birth date there)", "1940" not in _w and "02/15" not in _w, _w)
+check("4.7 dates of service as YYYYMMDD", [VNS["ymd"](x_) for x_ in ("11/02/2026", "1/5/2026", "2026-11-02", "", "x")] == ["20261102", "20260105", "20261102", "", ""])
+
+# ---- 4. the insurance check's loop, run INSIDE this process with stand-in modules -------------------------------------------------------------
+def loads(src):
+    out_ = set()
+    for kind, rest in re.findall(r"^[ \t]*(import|from)[ \t]+([^\n#]+)", src, re.M):
+        for n in (rest.split(",") if kind == "import" else [rest]):
+            n = n.strip().split()[0].split(".")[0] if n.strip() else ""
+            if n: out_.add(n)
+    return out_
+def run_inside(path, standins, cwd, env=None, argv=()):
+    """Run a helper INSIDE this process: its AMD modules are the stand-ins given here (refuses when one is missing), put in sys.modules for the run."""
+    src = open(path).read(); missing = sorted((loads(src) & set(AMD_MODULES)) - set(standins))
+    if missing: raise RuntimeError("no stand-in for %s - the helper is not run" % missing)
+    old_mod = {k: sys.modules.get(k) for k in standins}; old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); out = io.StringIO(); err = ""
+    try:
+        for k, v in standins.items():
+            m_ = types.ModuleType(k); m_.STAND_IN = True
+            for n, f in v.items(): setattr(m_, n, f)
+            sys.modules[k] = m_
+        os.chdir(cwd); os.environ.update(env or {}); sys.argv = [path] + list(argv)
+        with contextlib.redirect_stdout(out):
+            try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path})
+            except SystemExit: pass
+            except Exception as e: err = "%s: %s" % (type(e).__name__, e)
+    finally:
+        os.chdir(old_cwd); sys.argv = old_argv
+        for k in list(os.environ):
+            if k not in old_env: del os.environ[k]
+        os.environ.update(old_env)
+        for k, v in old_mod.items():
+            if v is None: sys.modules.pop(k, None)
+            else: sys.modules[k] = v
+    return out.getvalue(), err
+WS = tempfile.mkdtemp(prefix="feedorder_"); os.makedirs(os.path.join(WS, "registers"))
+json.dump(CARS, open(os.path.join(WS, "carriers_rich.json"), "w")); json.dump([{"pid": "f1", "name": "x", "dob": "", "IN1": []}], open(os.path.join(WS, "feed_parsed_T7.json"), "w"))
+CH = {}       # chart number -> {"insorder", "plans": [...], "status": {plan id: status}}
+DISC = {"calls": [], "answer": {"items": []}}; ADDED = []
+_ssrc = ast.parse(open(os.path.join(HELPERS, "stedi.py")).read()); _sns = {}
+exec(compile(ast.Module(body=[n for n in _ssrc.body if isinstance(n, ast.FunctionDef) and n.name == "disc_summ"], type_ignores=[]), "stedi.py", "exec"), _sns)      # the vendor client's own summary (a pure function; the module is not imported)
+def _plans(num): c = CH[num]; return {"insorder": c["insorder"], "deceased": ""}, [dict(p) for p in c["plans"]]
+def _run_plan(num, p):
+    s = CH[num]["status"].get("ins" + p, "UNKNOWN")
+    if s == "RAISE": raise RuntimeError("271 timed out")
+    return {"status": s, "other_payers": []}
+def _add(num, car, member): ADDED.append((num, car)); CH[num]["plans"].append({"id": "ins9", "carrier": car, "sequence": "1", "enddate": ""}); return "ins9", "1"
+def _disc(first, last, dob, state="FL", dos=None): DISC["calls"].append(dos); return DISC["answer"]
+STAND = {"amd": {"login_cached": lambda *a: None, "msg": AM.msg, "post": AM.post}, "resave": {"detail": RS.detail, "visit_charges": RS.visit_charges, "CHG_FIELDS": RS.CHG_FIELDS},
+         "elig_amd": {"plans": _plans, "run_plan": _run_plan, "one_line": lambda s: s.get("status")}, "deceased_guard": {"check": lambda *a, **k: (False, ""), "record": lambda *a, **k: None, "_iso": lambda x: x},
+         "stedi": {"disc": _disc, "disc_summ": _sns["disc_summ"]}, "add_ins": {"add": _add}, "ins_update": {"_set_order": lambda num, plans, insid, seq: (True, "chart order set")}}
+MEDICARE = {"id": "ins1", "carrier": "car6085", "sequence": "1", "enddate": ""}
+def verify(rows, charts, prev=None, stedi=False):
+    """One insurance-check run over the given import rows; returns (records, output, error)."""
+    CH.clear(); CH.update(charts); json.dump({"created": rows}, open(os.path.join(WS, "registers", "feed_import_T7.json"), "w"))
+    vf = os.path.join(WS, "feed_verify_T7.json")
+    if os.path.exists(vf): os.remove(vf)
+    if prev is not None: json.dump(prev, open(vf, "w"))
+    o_, e_ = run_inside(os.path.join(HELPERS, "claimocity_verify.py"), STAND, WS, env={"FEED_STAMP": "T7", "DECEASED_CACHE": os.path.join(WS, "dc.json")}, argv=() if stedi else ("--no-stedi",))
+    return (json.load(open(vf)) if os.path.exists(vf) else {}), o_, e_
+def frow(pid, vid, charges, dos="11/02/2026", **kw): return dict({"feed_id": "f1", "pid": pid, "visit": vid, "charges": charges, "fees": ["141.00"], "dos": dos, "cpts": ["99309"]}, **dict(NEW, **kw))
+# 4.1 THE STUCK VISIT END TO END: chart default "1" = the order "1" (the old shortcut sent nothing) - the save is sent, the list read back, RELEASE
+W[0] = World(SV("vst701", [chg(7011)], attr="1", lst=""))
+R, o, e = verify([frow("pat701", "vst701", ["charge7011"])], {"701": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+r = R.get("pat701") or {}
+check("4.1/10 a no-plan visit whose plan landed (chart default 1 = order 1): the save IS sent, the list read back, RELEASE, record version 4", e == "" and r.get("decision") == "RELEASE" and r.get("v") == 4 and len(W[0].v["vst701"].saves) == 1 and W[0].v["vst701"].lst == "1", (e, r))
+check("4.3 the fix line carries the whole answer (never just 'ok'), and the save is counted under 'saved'", any(f_.startswith("vst701 insorder 1: insorder 1 -> 1, list [] -> [1]") for f_ in r.get("fixes", [])) and r.get("saved") == ["vst701"], r.get("fixes"))
+# 4.2 skip of charts the SAME batch already released - version 3 and version 4 records alike; a held chart is checked again; old 'applied' entries not trusted
+for _v in (3, 4):
+    W[0] = World(SV("vst702", [chg(7021)], attr="1", lst=""))
+    R, o, e = verify([frow("pat702", "vst702", ["charge7021"])], {"702": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}}, prev={"pat702": {"v": _v, "decision": "RELEASE", "visits": ["vst702"], "applied": {"vst702": "1"}}})
+    check("4.2 a chart an earlier run of this batch RELEASED (record version %d) is not checked again - nothing read, nothing saved" % _v, e == "" and W[0].posts == [] and R["pat702"].get("v") == _v, (e, R.get("pat702")))
+W[0] = World(SV("vst703", [chg(7031)], attr="1", lst=""))
+R, o, e = verify([frow("pat703", "vst703", ["charge7031"])], {"703": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}}, prev={"pat703": {"v": 3, "decision": "HOLD", "visits": ["vst703"], "applied": {"vst703": "1"}}})
+check("4.2 a HELD chart is checked again, and its version-3 'applied' entry is not trusted (it trusted the attribute): the visit's list is read and saved", e == "" and len(W[0].v["vst703"].saves) == 1 and R["pat703"]["decision"] == "RELEASE", (e, R.get("pat703")))
+W[0] = World(SV("vst704", [chg(7041)], attr="1", lst=""))
+R, o, e = verify([frow("pat704", "vst704", ["charge7041"])], {"704": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}}, prev={"pat704": {"v": 4, "decision": "HOLD", "visits": ["vst704"], "applied": {"vst704": "1"}}})
+check("4.2 ... a version-4 'applied' entry IS trusted (this version read the list): no save", e == "" and W[0].v["vst704"].saves == [], (e, R.get("pat704")))
+# 4.4 holds in the loop: billed / list differs / empty after the save / old row; every line with the 4.6 words
+W[0] = World(SV("vst705", [chg(7051, attrs={"datebilled": "11/03/2026", "insbilled": "1"})], attr="2", lst="2"), SV("vst706", [chg(7061)], attr="2", lst="2", fault="always"),
+             SV("vst707", [chg(7071)], attr="1", lst="", builds=False))
+R, o, e = verify([frow("pat705", "vst705", ["charge7051"]), frow("pat705", "vst706", ["charge7061"]), frow("pat705", "vst707", ["charge7071"])], {"705": {"insorder": "2", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+r = R.get("pat705") or {}; H = r.get("hold", [])
+check("4.4/10 the loop HOLDS - never releases - a chart with an unconfirmed visit", e == "" and r.get("decision") == "HOLD", (e, r))
+check("4.4/10 a billed visit is never saved, held 'already billed - its order was not changed'", W[0].v["vst705"].saves == [] and any(h_.startswith("vst705 already billed - its order was not changed") for h_ in H), H)
+check("4.4/10 a list that differs (save refused) -> 'vst706 still bills to its old insurance order 2'", any(h_.startswith("vst706 still bills to its old insurance order 2") for h_ in H), H)
+check("4.4/10 an empty list after the save -> 'NO CLAIM CAN BE MADE on vst707: its insurance order is empty'", any(h_.startswith("NO CLAIM CAN BE MADE on vst707: its insurance order is empty") for h_ in H), H)
+check("4.4 the visits are recorded under no_order_list / order_differs", r.get("no_order_list") == ["vst707"] and sorted(r.get("order_differs") or []) == ["vst705", "vst706"], r)
+check("4.6 every hold line says HOLD is a label in this report only (a NO CLAIM line says AdvancedMD makes no claim)", all(h_.endswith(HELD) or h_.endswith("until it is saved again with its plan in place") for h_ in H) and len(H) == 3, H)
+check("4.6 the log line of the chart says it too", "HELD in this report only" in o, o[-300:])
+W[0] = World(SV("vst708", [chg(7081)], attr="1", lst=""))
+R, o, e = verify([dict(frow("pat708", "vst708", ["charge7081"]), **{"open_plans_at_entry": None})], {"708": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+check("4.2 a row whose import could not read the chart (open_plans_at_entry None) is a round-7 row: its stuck visit IS saved", W[0].v["vst708"].lst == "1" and R["pat708"]["decision"] == "RELEASE", R.get("pat708"))
+W[0] = World(SV("vst709", [chg(7091)], attr="1", lst=""))
+_old = {k_: v_ for k_, v_ in frow("pat709", "vst709", ["charge7091"]).items() if k_ not in NEW}
+R, o, e = verify([_old], {"709": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+check("4.2 an OLD batch's stuck visit (row without the round-7 fields) is never saved by a re-run: HELD, NO CLAIM, named for the sweep", W[0].v["vst709"].saves == [] and R["pat709"]["decision"] == "HOLD" and R["pat709"].get("no_order_list") == ["vst709"]
+      and any("feed_order_sweep.py --resave" in h_ for h_ in R["pat709"]["hold"]), R.get("pat709"))
+W[0] = World(); R, o, e = verify([frow("pat710", "vst710", [])], {"710": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+check("4.4 a visit with no charge id recorded can no longer pass silently: HOLD, order_unread", R["pat710"]["decision"] == "HOLD" and R["pat710"].get("order_unread") == ["vst710"], R.get("pat710"))
+# 4.5 a chart held with no open plan gets its line
+W[0] = World(SV("vst711", [chg(7111)], attr="1", lst=""))
+R, o, e = verify([frow("pat711", "vst711", ["charge7111"])], {"711": {"insorder": "", "plans": [], "status": {}}})
+NOCLAIM = "HELD in this report only - AdvancedMD makes no claim for this visit until it is saved again with its plan in place"
+check("4.5 a chart held with no open plan: 'each visit of this chart must be saved again after a plan is added'", R["pat711"]["decision"] == "HOLD" and any(h_.startswith("no open plan on this chart: each visit of this chart must be saved again after a plan is added (vst711)") for h_ in R["pat711"]["hold"]), R.get("pat711"))
+check("OPS-9/R7-REPLAY-N1 a chart with no plan whose visits were entered with no plan: EVERY hold line ends with the NO CLAIM words (their insurance order is empty) - never 'AdvancedMD will still bill this visit'",
+      R["pat711"]["hold"] and all(h_.endswith(NOCLAIM) and HELD not in h_ for h_ in R["pat711"]["hold"]), R["pat711"]["hold"])
+W[0] = World(SV("vst719", [chg(7191)], attr="1", lst="1"))
+_ended = {"id": "ins7", "carrier": "car6085", "sequence": "1", "enddate": "10/01/2026"}
+R, o, e = verify([dict(frow("pat719", "vst719", ["charge7191"]), open_plans_at_entry=1, chart_insorder="1")], {"719": {"insorder": "1", "plans": [_ended], "status": {}}})
+check("OPS-9 ... but a chart whose only plan has ended, with a visit entered while the plan was open (its insurance order is not empty): the lines still say AdvancedMD will bill it", R["pat719"]["hold"] and all(h_.endswith(HELD) for h_ in R["pat719"]["hold"]), R["pat719"]["hold"])
+# NH7-5: a lost admission date is remembered - a second run of the same batch does not RELEASE the visit while the date is still gone
+W[0] = World(SV("vst720", [chg(7201, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/10/2026", wipe=True, restore=False))
+R1, o, e = verify([frow("pat720", "vst720", ["charge7201"], cpts=["99223"])], {"720": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+R2, o, e = verify([frow("pat720", "vst720", ["charge7201"], cpts=["99223"])], {"720": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}}, prev=R1)
+check("NH7-5 run 1: the save wipes the admission date and the write-back is refused - HOLD 'admission date lost on save', and the record remembers the date", R1["pat720"]["decision"] == "HOLD" and (R1["pat720"].get("admit_lost") or {}).get("vst720") == {"99223": "10/10/2026"}, R1.get("pat720"))
+check("NH7-5 run 2 of the same batch: the list now reads right, but the date is still gone - still HELD (save_problem), never RELEASED; nothing is sent again",
+      R2["pat720"]["decision"] == "HOLD" and R2["pat720"].get("save_problem") == ["vst720"] and any("admission date was lost on an earlier save" in h_ for h_ in R2["pat720"]["hold"]) and len(W[0].v["vst720"].saves) == 1, R2.get("pat720"))
+W[0].v["vst720"].admit = "10/10/2026"
+R3, o, e = verify([frow("pat720", "vst720", ["charge7201"], cpts=["99223"])], {"720": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}}, prev=R2)
+check("NH7-5 run 3, after a person wrote the date back: RELEASE, and the memory is gone", R3["pat720"]["decision"] == "RELEASE" and not R3["pat720"].get("admit_lost"), R3.get("pat720"))
+# OPS-4: SAVE NOT AS ASKED on one visit of a chart (the admission date lost): the chart's other visits are not saved - William looks first
+W[0] = World(SV("vst721", [chg(7211, cpt="99223", pcode="pcode65101")], attr="1", lst="", admit="10/10/2026", wipe=True, restore=False), SV("vst722", [chg(7221)], attr="1", lst=""))
+R, o, e = verify([frow("pat721", "vst721", ["charge7211"], cpts=["99223"]), frow("pat721", "vst722", ["charge7221"], dos="11/03/2026")], {"721": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "ACTIVE"}}})
+check("OPS-4 after a save that lost the admission date, the chart's next visit is NOT saved: held 'the rest of this chart waits for William' (order_unread)", W[0].v["vst722"].saves == [] and R["pat721"].get("order_unread") == ["vst722"]
+      and any(h_.startswith("the insurance order of vst722 was not read or saved: the save of vst721 on this chart did not read back as asked") for h_ in R["pat721"]["hold"]), R.get("pat721"))
+# 4.8 free check down: every free check of a chart with plans errored -> nothing bought
+W[0] = World(SV("vst712", [chg(7121)], attr="1", lst="1")); DISC["calls"].clear()
+R, o, e = verify([frow("pat712", "vst712", ["charge7121"])], {"712": {"insorder": "1", "plans": [MEDICARE, {"id": "ins2", "carrier": "car300", "sequence": "2", "enddate": ""}], "status": {"ins1": "PARSE", "ins2": "RAISE"}}}, stedi=True)
+check("4.8 every free check errored: no paid look-up is bought, HOLD 'free check down - not checked tonight'", DISC["calls"] == [] and R["pat712"]["decision"] == "HOLD" and any(h_.startswith("free check down - not checked tonight") for h_ in R["pat712"]["hold"]), (DISC["calls"], R.get("pat712")))
+check("4.8 ... worded so the hand step claimocity_fixholds.py buys nothing either (no 'no active plan')", not any(_trig.search(h_) for h_ in R["pat712"]["hold"]), R["pat712"]["hold"])
+W[0] = World(SV("vst713", [chg(7131)], attr="1", lst="")); DISC["calls"].clear(); DISC["answer"] = {"items": []}
+R, o, e = verify([frow("pat713", "vst713", ["charge7131"])], {"713": {"insorder": "1", "plans": [MEDICARE], "status": {"ins1": "INACTIVE"}}}, stedi=True)
+check("4.8 one free check answered (INACTIVE): the look-up is bought, dated to the chart's latest date of service", DISC["calls"] == ["20261102"], DISC["calls"])
+# 4.7 a plan only the look-up found: a dental answer is not added; a medical plan active on every date is added and the visits saved
+def _ans(payer, plan, dates=None, rows=None): return {"items": [{"payer": {"name": payer}, "payerId": "1", "subscriber": {"memberId": "X1"}, "planDateInformation": dates or {}, "benefitsInformation": rows or [{"code": "1", "name": "Active Coverage", "planCoverage": plan}]}]}
+W[0] = World(SV("vst714", [chg(7141)], attr="1", lst="")); ADDED.clear(); DISC["calls"].clear(); DISC["answer"] = _ans("CIGNA Dental Health, Inc.", "Dental HMO", {"planBegin": "20260101"})
+R, o, e = verify([frow("pat714", "vst714", ["charge7141"])], {"714": {"insorder": "", "plans": [], "status": {}}}, stedi=True)
+check("4.7 a dental plan only the look-up found is NOT added; the chart is held for William with the answer's words", ADDED == [] and R["pat714"]["decision"] == "HOLD" and any("the look-up's answer was not added - for William: CIGNA Dental Health, Inc. 'Dental HMO' Active Coverage" in h_ for h_ in R["pat714"]["hold"]), R.get("pat714"))
+check("4.7 ... worded without 'discovery found [' (the hand step would buy the look-up again and add it)", not any("discovery found [" in h_ for h_ in R["pat714"]["hold"]), R["pat714"]["hold"])
+W[0] = World(SV("vst715", [chg(7151)], attr="1", lst="")); ADDED.clear(); DISC["answer"] = _ans("UNITED HEALTHCARE", "AARP Medicare Advantage", {"planBegin": "20261015"})
+R, o, e = verify([frow("pat715", "vst715", ["charge7151"], dos="10/12/2026"), frow("pat715", "vst716", ["charge7161"], dos="10/20/2026")], {"715": {"insorder": "", "plans": [], "status": {}}}, stedi=True)
+check("4.7 a medical plan the answer does not show active on every date of service (begins after 10/12) is NOT added", ADDED == [] and any("not active on 10/12/2026" in h_ for h_ in R["pat715"]["hold"]), R.get("pat715"))
+W[0] = World(SV("vst717", [chg(7171)], attr="1", lst="")); ADDED.clear(); DISC["answer"] = _ans("UNITED HEALTHCARE", "AARP Medicare Advantage", {"planBegin": "20260101"})
+R, o, e = verify([frow("pat717", "vst717", ["charge7171"])], {"717": {"insorder": "", "plans": [], "status": {}}}, stedi=True)
+check("4.7 a medical plan active on every date of service IS added, and the visit is then saved and its list read back - RELEASE", ADDED == [("717", "car300")] and R["pat717"]["decision"] == "RELEASE" and W[0].v["vst717"].lst == "1", (ADDED, R.get("pat717")))
+W[0] = World(SV("vst718", [chg(7181)], attr="1", lst="")); ADDED.clear(); DISC["answer"] = _ans("UNITEDHEALTHCARE", "Medicare Advantage Prescription Drug", {"planBegin": "20260101"})
+R, o, e = verify([frow("pat718", "vst718", ["charge7181"])], {"718": {"insorder": "", "plans": [], "status": {}}}, stedi=True)
+check("B (R7-REPLAY-4's exact input) the look-up answers a Medicare Advantage plan WITH drug coverage on a chart with no plan: the plan IS added and the visit saved - RELEASE (it was refused as 'drug-only')",
+      ADDED == [("718", "car300")] and R["pat718"]["decision"] == "RELEASE" and W[0].v["vst718"].lst == "1", (ADDED, R.get("pat718")))
+W[0] = World(SV("vst719x", [chg(7192)], attr="1", lst="")); ADDED.clear(); DISC["answer"] = _ans("HUMANA", "Humana Walmart Value Rx Plan (PDP)", {"planBegin": "20260101"})
+R, o, e = verify([frow("pat7192", "vst719x", ["charge7192"])], {"7192": {"insorder": "", "plans": [], "status": {}}}, stedi=True)
+check("B ... a stand-alone drug plan (PDP) is still not added: held for William with the answer's words", ADDED == [] and R["pat7192"]["decision"] == "HOLD" and any("stand-alone drug plan" in h_ for h_ in R["pat7192"]["hold"]), R.get("pat7192"))
+
+# ---- 6. the digest (claimocity_report.py, run INSIDE this process: it loads no AdvancedMD module) -----------------------------------------------
+RSRC = open(os.path.join(HELPERS, "claimocity_report.py")).read()
+check("6 the digest helper loads none of the modules that talk to AdvancedMD", not (loads(RSRC) & set(AMD_MODULES)), loads(RSRC))
+DG = tempfile.mkdtemp(prefix="feedorder_digest_"); os.makedirs(os.path.join(DG, "registers"))
+_rows = [{"feed_id": "f%d" % i, "pid": "pat8%d" % i, "visit": "vst8%d" % i, "charges": ["charge8%d1" % i], "fees": ["141.00"], "cpts": ["99309"], "dos": "11/02/2026"} for i in range(1, 5)]
+json.dump({"created": _rows, "skipped": [], "failed": []}, open(os.path.join(DG, "registers", "feed_import_T8.json"), "w"))
+json.dump({"pat81": {"v": 4, "decision": "HOLD", "visits": ["vst81"], "no_order_list": ["vst81"], "hold": ["NO CLAIM CAN BE MADE on vst81: its insurance order is empty - x"], "fixes": ["vst81 insorder 1: insorder 1 -> 1, list [] -> [] - NOT AS ASKED"]},
+           "pat82": {"v": 4, "decision": "HOLD", "visits": ["vst82"], "hold": ["no ACTIVE plan on the chart (Stedi off) - " + NOCLAIM, "no open plan on this chart: each visit of this chart must be saved again after a plan is added (vst82) - " + NOCLAIM], "fixes": []},
+           "pat85": {"v": 4, "decision": "HOLD", "visits": ["vst85"], "order_differs": ["vst85"], "hold": ["vst85 still bills to its old insurance order 2 (x) - " + HELD], "fixes": []},
+           "pat83": {"v": 4, "decision": "RELEASE", "visits": ["vst83"], "saved": ["vst83"], "insorder": "1", "applied": {"vst83": "1"}, "fixes": ["vst83 insorder 1: insorder 1 -> 1, list [] -> [1]"], "hold": [], "lead": {"code": "FLO02"}},
+           "pat84": {"v": 4, "decision": "RELEASE", "visits": ["vst84"], "insorder": "1", "applied": {"vst84": "2"}, "fixes": ["vst84 insorder 2: already 2, list [2] - nothing sent"], "hold": [], "lead": {"code": "FLO02"}}},
+          open(os.path.join(DG, "feed_verify_T8.json"), "w"))
+o, e = run_inside(os.path.join(HELPERS, "claimocity_report.py"), {}, DG, env={"FEED_STAMP": "T8"})
+_top = [l_ for l_ in o.splitlines() if l_.startswith("  - TOP OF THE REPORT - ")]
+check("6/10 the digest's TOP line, word for word: '  - TOP OF THE REPORT - NO CLAIM CAN BE MADE: 1 visit(s) on 1 chart(s) have no insurance order: pat81 vst81'", e == "" and "  - TOP OF THE REPORT - NO CLAIM CAN BE MADE: 1 visit(s) on 1 chart(s) have no insurance order: pat81 vst81" in _top, (e, _top, o[-600:]))
+check("6/10 ... and a TOP line for the chart held with no plan", any(l_.startswith("  - TOP OF THE REPORT - 1 chart(s) held with NO plan:") and "pat82 (vst82)" in l_ for l_ in _top), _top)
+check("6 'orders changed' counts only saves actually sent and accepted (1 - the visit whose order already matched is not a change)", "- Visit insurance orders changed (saves sent and accepted by AdvancedMD): 1;" in o, [l_ for l_ in o.splitlines() if "orders changed" in l_])
+check("4.6/6 the digest says a HOLD is a label in this report only (said once at the end of a chart's line)", "- Holds (William) - " + HELD in o and any(l_.startswith("  - pat85: vst85 still bills") and l_.endswith(HELD) and l_.count(HELD) == 1 for l_ in o.splitlines()), o[-800:])
+check("OPS-9 the digest's line for a chart with no plan ends ONCE with the NO CLAIM words and never says AdvancedMD will still bill it", any(l_.startswith("  - pat82: no ACTIVE plan") and l_.endswith(NOCLAIM) and l_.count(NOCLAIM) == 1 and HELD not in l_ for l_ in o.splitlines()), [l_ for l_ in o.splitlines() if "pat82:" in l_])
+json.dump({"pat81": {"v": 3, "decision": "RELEASE", "visits": ["vst81"], "insorder": "", "applied": {"vst81": "1"}, "fixes": ["vst81 insorder 1: ok"], "hold": [], "lead": {"code": "FLO02"}}}, open(os.path.join(DG, "feed_verify_T8.json"), "w"))
+o, e = run_inside(os.path.join(HELPERS, "claimocity_report.py"), {}, DG, env={"FEED_STAMP": "T8"})
+check("6 an older (version 3) check whose order differed from an empty chart order is NOT counted as a change (nothing says a save was sent)", e == "" and "orders changed (saves sent and accepted by AdvancedMD): 0;" in o and "TOP OF THE REPORT - NO CLAIM" not in o, (e, o[-400:]))
+
+# ---- 8. feed_order_sweep.py: the daily listing, the dated checks, the clinician moves and the owner-approved save (run INSIDE this process) ---------
+import glob, datetime
+SWP = os.path.join(HELPERS, "feed_order_sweep.py"); SSRC = open(SWP).read()
+check("8 the sweep loads exactly the modules this self-test stands in for (amd, resave, stedi, deceased_guard)", loads(SSRC) & set(AMD_MODULES) == {"amd", "resave", "stedi", "deceased_guard"}, loads(SSRC) & set(AMD_MODULES))
+check("8.3 the sweep never resets a chart's default order, adds or ends a plan, or rebills: none of those helpers or calls is in it",
+      not (loads(SSRC) & {"ins_update", "add_ins", "move_to_ins", "freq1_visit", "elig_amd"}) and not re.search(r'_set_order\(|"addinsurance"|"chargerebill"|rebill_charge\(|"updinsurance"', SSRC))
+check("8.2 an insurance order is saved only through resave.set_insorder (step 1's list-aware save) - the sweep sends no updvisitwithcharges of its own", "resave.set_insorder(" in SSRC and "updvisitwithcharges" not in SSRC)
+check("8.5 the price and the caps: $0.30 a check, 120 checks and $40 a run", "PRICE, CAP_CHECKS, CAP_DOLLARS = 0.30, 120, 40.0" in SSRC)
+MIR = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read(); HCS = open(os.path.join(HELPERS, "claimocity_helpers_current.py")).read()
+_mk = {"resave.py": "set_insorder reads the visit's insurance-order LIST", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST", "feed_order_sweep.py": 'STANDING = "standing word, William 11/10/2026"'}
+check("mirror.py protects resave.py, the insurance check and the sweep with sentences only their round-7 versions have (a copy from before never comes back over them); the shared helper names the same sentence for the insurance check",
+      all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items())
+      and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in HCS and "def set_insorder" not in MIR, {f_: m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()})
+_vc = {p_: open(os.path.join(ROOT, p_)).read() for p_ in ("scripts/helpers/claimocity_import.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_retry_dx.py", "scripts/helpers/claimocity_report.py", "scripts/helpers/claimocity_helpers_current.py", "tools/mirror/mirror.py", "nightly/claimocity_feed_step.md")}
+check("the rule version is 2026-11-10.7 in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and 2026-11-10.6 in none of them",
+      all('VERSION = "2026-11-10.7"' in s_ and '"2026-11-10.6"' not in s_ for s_ in _vc.values()) and MIR.count('POS_RULE_VERSION = "2026-11-10.7"') == 3
+      and "grep -c 'POS_RULE_VERSION = \"2026-11-10.7\"' /home/claude/unbilled/claimocity_import.py" in _vc["nightly/claimocity_feed_step.md"], [p_ for p_, s_ in _vc.items() if 'VERSION = "2026-11-10.7"' not in s_])
+_apf = os.path.join(ROOT, "practices", "ehpa", "registers", "feed_order_approved.json")
+check("8.8 the owner's approved file is in the repository unchanged (the very bytes of 11/10/2026): 84 visits, his answers, no 'william' visit left after his second answer",
+      __import__("hashlib").sha256(open(_apf, "rb").read()).hexdigest() == "cb96a8d0ee76af6e4ffc20dba1efe051e5baa71bf38f6e7e4ff668e4ddbee3dc" and len(json.load(open(_apf))["visits"]) == 84
+      and "yes to all your recommendations" in open(_apf).read() and not [v_ for v_ in json.load(open(_apf))["visits"].values() if v_.get("decision") == "william"])
+BD8 = "1940" + "0215"; BDS = "02/15/" + "1940"      # an invented birth date, written in two pieces (the privacy gate's rule for test dates)
+CARS9 = dict(CARS, car500=["DEN01", "CIGNA DENTAL"], car600=["ZZZ01", "SOME PLAN"], car700=["CAP07", "CAPITAL HEALTH"], car800=["BAN07", "BANKERS LIFE AND CASUALTY"])
+class SW(SV):
+    """A visit for the sweep: its own clinician profile, and the clinician move (updvisitwithnewcharges with another profile) as rebill_under_effinger.py
+    describes it - AdvancedMD voids the echoed charges and creates them again under the new profile (keep_old: the old ones stay live = duplicates;
+    move_builds: that full save builds the list; move_fault: refused)."""
+    def __init__(self, vid, charges, prof="prof13", keep_old=False, move_builds=True, move_fault=False, move_list=None, **kw):
+        SV.__init__(self, vid, charges, **kw); self.prof, self.keep_old, self.move_builds, self.move_fault, self.moves = prof, keep_old, move_builds, move_fault, []
+        self.move_list = move_list      # the list the move builds when it is NOT the insorder sent (an unexpected read-back)
+    def detail(self, cid): return SV.detail(self, cid).replace('profile="prof13"', 'profile="%s"' % self.prof)
+    def post(self, body):
+        m = re.search(r'<visit [^>]*profile="([^"]*)"', body)
+        if 'action="updvisitwithnewcharges"' in body and m and m.group(1) != self.prof:
+            self.moves.append(body)
+            if self.move_fault: return "<r><Fault><description>refused in this test</description></Fault></r>"
+            new = []
+            for k in [k for k, c in self.ch.items() if not c.get("void") and 'id="%s"' % k in body]:
+                self.ch[k + "9"] = dict(self.ch[k], id=k + "9"); new.append(k + "9")
+                if not self.keep_old: self.ch[k]["void"] = True
+            self.prof = m.group(1); a_ = re.search(r'<visit [^>]*insorder="([^"]*)"', body); self.attr = a_.group(1) if a_ else self.attr      # the move is a full save: it keeps the insorder it is sent
+            if self.move_builds and self.builds: self.lst = self.attr if self.move_list is None else self.move_list
+            if self.wipe: self.admit = ""
+            return '<r><visit id="%s" profile="%s"><chargelist>%s</chargelist></visit></r>' % (self.vid, self.prof, "".join('<charge id="%s" void="0"/>' % n for n in new))
+        return SV.post(self, body)
+class SWorld(World):
+    """The visits, and each chart's plans for getdemographic (the patient's name and birth date are invented)."""
+    def __init__(self, charts, *visits): World.__init__(self, *visits); self.charts = charts
+    def post(self, body, timeout=0):
+        if 'action="getdemographic"' not in body: return World.post(self, body, timeout)
+        self.posts.append(body); c = self.charts.get(re.search(r'patientid="pat(\d+)"', body).group(1))
+        if c is None: return "<r><Fault><description>no such chart</description></Fault></r>"
+        return '<r><patient id="pat1" name="TESTER, ALPHA" %s="%s"/>%s</r>' % ("dob", BDS, "".join('<insplan id="%s" carrier="%s" begindate="%s" enddate="%s" subscribernum="%s" sequence="%s"/>' % (
+            p["id"], p["car"], p.get("begin", "01/01/2026"), p.get("end", ""), p.get("member", "M1"), p["seq"]) for p in c))
+DREADS = []; ELIG = {"calls": [], "ans": {}}; DGB = set()
+SRS = {k_: RNS[k_] for k_ in ("CHG_FIELDS", "HOSP_CODES", "order_list", "billed_reasons", "admit_of", "admit_codes", "admit_back", "restore_admit", "set_insorder") if k_ in RNS}      # step 1's own functions, run against the stand-in
+SRS.update(detail=lambda cid: (DREADS.append(re.sub(r"\D", "", str(cid))), W[0].detail(cid))[1], visit_charges=lambda cid: W[0].visit_charges(cid))
+def _elig(payer, first, last, b8, member, dos, stc=("30",), pid=None):
+    ELIG["calls"].append({"payer": payer, "first": first, "last": last, "b": b8, "member": member, "dos": dos, "pid": pid})
+    return ELIG["ans"].get((payer, member, dos), {"errors": [{"code": "T1", "description": "no answer in this test"}]})
+SSTAND = {"amd": STAND["amd"], "resave": SRS, "stedi": {"elig": _elig},
+          "deceased_guard": {"check": lambda pid, dos, carrier=None, proc=None, allow_lookup=True: (True, "the deceased guard blocks it (test)") if pid in DGB else (False, "")}}
+SWD = [None]; NOW = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None); DOC, NPL = "Dr. Effinger (DO)", "Pamela G."; APPF = "registers/feed_order_approved.json"
+def ws9(rows, recon=None, verify=None, approved=None, seed=()):
+    """A fresh workspace for the sweep: the import register (batch T9), the feed's clinicians, the insurance check's record, the approved file, earlier registers."""
+    d = tempfile.mkdtemp(prefix="feedorder_sweep_"); os.makedirs(os.path.join(d, "registers")); SWD[0] = d; ELIG["calls"].clear(); DREADS.clear(); DGB.clear()
+    json.dump(CARS9, open(os.path.join(d, "carriers_rich.json"), "w")); json.dump({"created": rows}, open(os.path.join(d, "registers", "feed_import_T9.json"), "w"))
+    json.dump({"rows": [{"v": v_, "prov": p_} for v_, p_ in (recon or {}).items()]}, open(os.path.join(d, "registers", "feed_recon_T9.json"), "w"))
+    if verify is not None: json.dump(verify, open(os.path.join(d, "registers", "feed_verify_T9.json"), "w"))
+    if approved is not None: json.dump({"what": "test", "approved_by": "the owner (test)", "answers": ["yes (test)"], "visits": approved}, open(os.path.join(d, "registers", "feed_order_approved.json"), "w"))
+    for name, j_ in seed: json.dump(j_, open(os.path.join(d, "registers", name), "w"))
+def sweep(*argv):
+    se = io.StringIO()
+    with contextlib.redirect_stderr(se): o_, e_ = run_inside(SWP, SSTAND, SWD[0], argv=argv)
+    return o_ + se.getvalue(), e_
+def sreg(kind): return [json.load(open(f_)) for f_ in sorted(glob.glob(os.path.join(SWD[0], "registers", "feed_order_%s_*.json" % kind)))]
+def srow(vid, pid, dos, cpts, charges, days_ago=1, **kw): return dict({"feed_id": "f9", "pid": pid, "visit": vid, "charges": charges, "fees": ["141.00"] * len(charges), "at": (NOW - datetime.timedelta(days=days_ago)).isoformat(), "dos": dos, "cpts": cpts, "prof": "prof13", "admit": ""}, **kw)
+def age(dos): return (NOW.date() - datetime.date(int(dos[6:]), int(dos[:2]), int(dos[3:5]))).days
+def tops(o_): return [l_ for l_ in o_.splitlines() if l_.startswith("TOP OF THE REPORT - NO CLAIM CAN BE MADE: ")]
+def top(o_, vid): return next((l_ for l_ in tops(o_) if re.match(r"TOP OF THE REPORT - NO CLAIM CAN BE MADE: \S+ %s\b" % vid, l_)), "")
+def med(pid, member, *more): return [{"id": "ins%s" % pid, "car": "car6085", "seq": "1", "member": member}] + list(more)
+PARTB = lambda: {"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "MEDICARE PART B"}], "benefitsInformation": [{"code": "1", "insuranceTypeCode": "MB", "benefitsDateInformation": {"plan": "20200101-"}}]}
+PILOT_DONE = ("feed_order_resave_20261101T000000Z.json", {"rows": [{"visit": "vst1", "sent": True, "ok": True}]})
+MOVE_DONE = ("feed_order_fixclin_20261101T000000Z.json", {"moves": [{"visit": "vst1", "sent": True, "ok": True}]})
+# 8.1 THE LISTING (read only)
+W[0] = SWorld({"901": med("901", "M901"), "902": [{"id": "ins902", "car": "car300", "seq": "1"}], "903": [{"id": "ins903", "car": "car100", "seq": "1"}], "904": med("904", "M904"), "905": med("905", "M905"), "906": [], "907": med("907", "M907")},
+    SW("vst9011", [chg(90111)]), SW("vst9012", [chg(90121, cpt="99306", pcode="pcode65306"), chg(90122, cpt="99497", pcode="pcode65299")]),
+    SW("vst9013", [chg(90131, cpt="99223", pcode="pcode65101")], admit="10/28/2026"), SW("vst9015", [chg(90151, cpt="99232", pcode="pcode65102")], admit="10/27/2026"),
+    SW("vst9016", [chg(90161, cpt="99232", pcode="pcode65102", attrs={"datebilled": "11/01/2026"})], lst="1", admit="10/28/2026"), SW("vst9017", [chg(90171, cpt="99232", pcode="pcode65102")]),
+    SW("vst9018", [chg(90181, attrs={"insbilled": "1"})], lst="1"), SW("vst9019", [chg(90191)], lst="1"), SW("vst9020", [chg(90201, attrs={"billins": "0"})], attr=""),
+    SW("vst9021", [chg(90211)]), SW("vst9022", [chg(90221), chg(90222, cpt="1123F", pcode="pcode65441", fee="0.00", void=True)]),
+    SW("vst9023", [chg(90231, attrs={"datebilled": "11/02/2026"}), chg(90232, attrs={"datebilled": "11/02/2026"})], lst="1"), SW("vst9024", [chg(90241), chg(90242, cpt="99497", pcode="pcode65299", void=True)]))
+ws9([srow("vst9011", "pat901", "10/12/2026", ["99344"], ["charge90111"]), srow("vst9012", "pat901", "10/14/2026", ["99306", "99497"], ["charge90121", "charge90122"]),
+     srow("vst9013", "pat902", "10/27/2026", ["99223"], ["charge90131"], admit="20261028"),
+     srow("vst9015", "pat903", "10/30/2026", ["99232"], ["charge90151"], admit="20261027"), srow("vst9016", "pat903", "10/31/2026", ["99232"], ["charge90161"], admit="20261028"),
+     srow("vst9017", "pat904", "11/01/2026", ["99232"], ["charge90171"], admit="20261101"), srow("vst9018", "pat905", "11/02/2026", ["99309"], ["charge90181"]),
+     srow("vst9019", "pat905", "11/03/2026", ["99309"], ["charge90191"]), srow("vst9020", "pat906", "11/03/2026", ["99309"], ["charge90201"]),
+     srow("vst9021", "pat907", "09/25/2026", ["99309"], ["charge90211"], days_ago=40), srow("vst9022", "pat901", "11/04/2026", ["99309", "1123F"], ["charge90221", "charge90222"], quality_charge="charge90222", quality_codes=["1123F"]),
+     srow("vst9023", "pat905", "11/02/2026", ["99309", "99497"], ["charge90231", "charge90232"]), srow("vst9024", "pat901", "11/05/2026", ["99309", "99497"], ["charge90241", "charge90242"])],
+    recon={"vst9011": NPL, "vst9012": NPL, "vst9013": DOC, "vst9015": DOC, "vst9017": DOC, "vst9022": DOC, "vst9024": DOC})
+o, e = sweep()
+check("8.1/10 the listing: one TOP line per never-billed visit with an EMPTY insurance order - chart, visit, service date, age, payer", e == "" and len(tops(o)) == 8
+      and top(o, "vst9011").startswith("TOP OF THE REPORT - NO CLAIM CAN BE MADE: pat901 vst9011 service date 10/12/2026 (%d days old), payer FLO02 seq 1: its insurance order is empty" % age("10/12/2026")), (e, tops(o)))
+check("8.1 a billed visit, a visit whose list is filled (it waits for the claim run) and a self-pay visit are not listed", not any(top(o, v_) for v_ in ("vst9016", "vst9018", "vst9019", "vst9020", "vst9023")), tops(o))
+check("R7-REPLAY-5 a stuck visit entered 40 days ago (service date 09/25/2026) is STILL listed - the window is the service date's timely-filing year, not 30 days from entry", top(o, "vst9021") != "", tops(o))
+check("8.1/8.4/10 a clinician mismatch is listed: entered under the physician, the feed names the nurse practitioner", "clinician: entered under the physician (prof13) - the feed names the nurse practitioner (prof15)" in top(o, "vst9011"), top(o, "vst9011"))
+check("8.4 an initial nursing-facility visit (99306 + 99497) under the physician is not a mismatch, and the line SHOWS the feed's clinician for William",
+      "clinician: entered under" not in top(o, "vst9012") and "an initial nursing-facility visit: the physician's by William's rule - the feed names the nurse practitioner (prof15): William confirms who saw the patient" in top(o, "vst9012"), top(o, "vst9012"))
+check("8.1/10 admission-date problems are listed: one after the service date, two in one stay, a hospital visit with none",
+      "its admission date 10/28/2026 is after its service date 10/27/2026" in top(o, "vst9013") and "two admission dates in one stay: vst9015 10/27/2026, vst9016 10/28/2026" in top(o, "vst9015")
+      and "a hospital visit with no admission date" in top(o, "vst9017") and "admission" not in top(o, "vst9011"), (top(o, "vst9013"), top(o, "vst9015"), top(o, "vst9017")))
+check("8.1 a void no-charge quality line (1123F) the import entered does not count against the visit", top(o, "vst9022") != "" and "read void" not in top(o, "vst9022"), top(o, "vst9022"))
+check("8.1 (investigator's case) a charge of the visit's own that now reads void is listed - a person reads it; the save refuses it", "charge(s) the import entered now read void: charge90242" in top(o, "vst9024"), top(o, "vst9024"))
+check("8.1 one charge detail per charge the import entered - and a billed visit stops at its first billed charge", "90121" in DREADS and "90122" in DREADS and "90231" in DREADS and "90232" not in DREADS and "90211" in DREADS, DREADS)
+check("8.1 the listing is read only: no save, no admission-date write, no vendor call - only charge details and one chart read per chart with such a visit",
+      not any(re.search(r'action="(updvisit|updextrainsinfo|addinsurance)', p_) for p_ in W[0].posts) and ELIG["calls"] == [] and not any(sv_.saves or sv_.extins for sv_ in W[0].v.values())
+      and len(W[0].posts) == len(set(W[0].posts)) == 5, [p_[:90] for p_ in W[0].posts])
+_r1 = sreg("sweep")
+check("8.1 its register lists the billed visits (never read again) and carries no name or birth date", len(_r1) == 1 and set(_r1[0].get("billed") or []) == {"vst9016", "vst9018", "vst9023"}
+      and not re.search("TESTER|ALPHA|%s|%s" % (BD8, re.escape(BDS)), json.dumps(_r1)), _r1[0].get("billed") if _r1 else _r1)
+DREADS.clear(); o2, e2 = sweep()
+check("8.1 the next run does not read a visit an earlier sweep saw billed", e2 == "" and "billed before 3" in o2 and not set(DREADS) & {"90161", "90181", "90231"} and len(sreg("sweep")) == 2, ([l_ for l_ in o2.splitlines() if l_.startswith("Feed order sweep")], DREADS))
+# 8.5 + 8.2 THE OWNER'S APPROVED VISITS: dated checks, then the save (the pilot first)
+FL1 = [{"carrier": "FLO02", "seq": "1"}]
+APB = {"vst9101": {"decision": "send_if_active_on_dos", "order": "1", "plans_in_force_today": FL1}, "vst9102": {"decision": "send_if_active_on_dos", "order": "1", "plans_in_force_today": FL1},
+       "vst9103": {"decision": "send", "order": "1", "evidence": "face sheet (test)", "plans_in_force_today": [{"carrier": "CAP07", "seq": "1"}]},
+       "vst9104": {"decision": "send_if_active_on_dos", "order": "1", "plans_in_force_today": [{"carrier": "UNI20", "seq": "1"}]},
+       "vst9106": {"decision": "william", "order": "1"}, "vst9107": {"decision": "send_if_active_on_dos", "order": "1", "plans_in_force_today": FL1}}
+W[0] = SWorld({"911": med("911", "M911"), "912": [{"id": "ins912", "car": "car700", "seq": "1", "member": "M912"}], "913": [{"id": "ins913", "car": "car300", "seq": "1", "member": "M913"}],
+               "914": med("914", "M914"), "915": med("915", "M915"), "916": med("916", "M916")},
+    *[SW("vst910%d" % i_, [chg(91000 + i_ * 10 + 1, attrs={"patbalance": "20.00"} if i_ == 7 else {})]) for i_ in range(1, 8)])
+ws9([srow("vst9101", "pat911", "10/15/2026", ["99309"], ["charge91011"]), srow("vst9102", "pat911", "10/15/2026", ["99309"], ["charge91021"]), srow("vst9103", "pat912", "10/16/2026", ["99309"], ["charge91031"]),
+     srow("vst9104", "pat913", "10/17/2026", ["99309"], ["charge91041"]), srow("vst9105", "pat914", "10/18/2026", ["99309"], ["charge91051"], open_plans_at_entry=1, chart_insorder="1"),
+     srow("vst9106", "pat915", "10/19/2026", ["99309"], ["charge91061"]), srow("vst9107", "pat916", "10/20/2026", ["99309"], ["charge91071"])],
+    recon={"vst910%d" % i_: DOC for i_ in range(1, 8)}, approved=APB)
+ELIG["ans"] = {("CMS", "M911", "20261015"): PARTB(), ("87726", "M913", "20261017"): {"planStatus": [{"statusCode": "6", "status": "Inactive"}]}}
+o, e = sweep("--coverage", "--approved", APPF)
+check("8.5 --coverage without --live buys nothing and says what it would buy (one check per chart and date: vst9101 and vst9102 share one)", e == "" and ELIG["calls"] == [] and "2 eligibility check(s) dated to the service date would be bought (dry run - nothing bought) - $0.60" in o
+      and "would check vst9101 10/15/2026 FLO02 seq 1" in o and "would check vst9104 10/17/2026 UNI20 seq 1" in o and sreg("coverage") == [], (e, o[-700:]))
+o, e = sweep("--coverage", "--approved", APPF, "--live")
+_cv = sreg("coverage"); _ans = (_cv[0].get("answers") if _cv else []) or []
+check("8.5/10 --coverage --live: ONE check dated to the service date per chart and date - Medicare through the CMS route with the chart's Medicare number, the other plan with its member id",
+      e == "" and sorted((c_["payer"], c_["member"], c_["dos"], c_["pid"], c_["first"], c_["last"], c_["b"]) for c_ in ELIG["calls"]) == [("87726", "M913", "20261017", "913", "ALPHA", "TESTER", BD8), ("CMS", "M911", "20261015", "911", "ALPHA", "TESTER", BD8)], (e, ELIG["calls"]))
+check("8.5 no check for a visit the file sends on its evidence, a visit kept for William, a visit outside the file, or a visit that fails another check (a balance on the patient)", not [c_ for c_ in ELIG["calls"] if c_["member"] in ("M912", "M914", "M915", "M916")], ELIG["calls"])
+check("8.5 the register: visit, chart, date of service, payer, yes / no with the answer's words - never a name, a birth date or a member id; the count and the cost are said",
+      sorted((a_["visit"], a_["dos"], a_["code"], a_["active"]) for a_ in _ans) == [("vst9101", "10/15/2026", "FLO02", "yes"), ("vst9104", "10/17/2026", "UNI20", "no")] and _cv[0].get("checks") == 2 and _cv[0].get("cost") == 0.6
+      and not re.search("TESTER|ALPHA|M911|M913|%s|%s" % (BD8, re.escape(BDS)), json.dumps(_cv)) and "2 eligibility check(s) dated to the service date bought - $0.60 at $0.30 a check (cap 120 checks / $40 a run); active on the date 1, not active 1, error 0" in o, (_ans, o[-500:]))
+check("8.5 a plan the dated check does not show active is listed for William (never saved)", "FEED ORDER COVERAGE - for William: pat913 vst9104 service date 10/17/2026, UNI20 seq 1: no - Inactive" in o, o[-400:])
+ELIG["calls"].clear(); o, e = sweep("--coverage", "--approved", APPF, "--live")
+check("8.5 an answered check is never bought again", e == "" and ELIG["calls"] == [] and len(sreg("coverage")) == 1, ELIG["calls"])
+o, e = sweep("--resave", "--approved", APPF, "--live"); _rs = sreg("resave")
+sv1 = W[0].v["vst9101"]
+check("8.2/10 PILOT: the first live run saves ONE visit (the oldest that passes every check) through set_insorder - the full echo with insorder 1 - and reads the list back [1]",
+      e == "" and len(sv1.saves) == 1 and 'action="updvisitwithcharges"' in sv1.saves[0] and 'insorder="1"' in sv1.saves[0] and sv1.lst == "1" and all(W[0].v[v_].saves == [] for v_ in ("vst9102", "vst9103", "vst9104", "vst9105", "vst9106", "vst9107"))
+      and "FEED ORDER SAVE: pat911 vst9101 10/15/2026 (the owner's approved file (send_if_active_on_dos)): saved - insurance order [1], admission date none, clinician prof13 read back as asked" in o, (e, o[-900:]))
+_rows = {r_["visit"]: r_ for r_ in (_rs[0]["rows"] if _rs else [])}
+check("8.2 one register row per visit: saved and read back, waiting for the pilot, refused with its words", _rows.get("vst9101", {}).get("ok") is True and _rows.get("vst9101", {}).get("list_after") == "1" and "pilot" in _rows.get("vst9102", {}).get("waits", "")
+      and "pilot" in _rows.get("vst9103", {}).get("waits", "") and "the check dated to 10/17/2026 answered: Inactive" in _rows.get("vst9104", {}).get("refused", ""), _rows)
+check("8.1/8.2 the TOP lines come last and say what this run did: the visit saved and read back has none any more; a visit not saved carries the reason",
+      not top(o, "vst9101") and top(o, "vst9104").endswith("| this run: for William: the check dated to 10/17/2026 answered: Inactive") and top(o, "vst9102").endswith("| this run: the pilot saves ONE visit whose clinician was never changed and reads it back first - the next run does the rest")
+      and o.index("FEED ORDER SAVE: pat911 vst9101") < o.index("TOP OF THE REPORT - NO CLAIM CAN BE MADE: pat911 vst9102"), [l_[-140:] for l_ in tops(o)])
+check("8.2/10 --resave refuses a visit not in the approved file, never touches a visit kept for William, and refuses a visit that fails a check (a balance on the patient)",
+      _rows.get("vst9105", {}).get("refused") == "not in the owner's approved file - never saved by --resave --approved" and "kept for William" in _rows.get("vst9106", {}).get("kept", "") and "$20.00 sits on the patient" in _rows.get("vst9107", {}).get("refused", ""), _rows)
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.2 after the pilot read back as asked, the next run saves the rest that pass (the file's own evidence counts for a 'send' visit) - and the saved one is no longer listed",
+      e == "" and len(W[0].v["vst9102"].saves) == 1 and len(W[0].v["vst9103"].saves) == 1 and W[0].v["vst9103"].lst == "1" and len(sv1.saves) == 1 and not top(o, "vst9101") and all(W[0].v[v_].saves == [] for v_ in ("vst9104", "vst9105", "vst9106", "vst9107")), (e, o[-600:]))
+# the first unexpected read-back stops the run, and every later run, until a person writes "cleared" into that row
+W[0] = SWorld({"921": med("921", "M921")}, SW("vst9201", [chg(92011)], builds=False), SW("vst9202", [chg(92021)]))
+_send = {"decision": "send", "order": "1", "evidence": "face sheet (test)", "plans_in_force_today": FL1}
+ws9([srow("vst9201", "pat921", "10/12/2026", ["99309"], ["charge92011"]), srow("vst9202", "pat921", "10/13/2026", ["99309"], ["charge92021"])], recon={"vst9201": DOC, "vst9202": DOC},
+    approved={"vst9201": _send, "vst9202": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.2/10 STOP at the first unexpected read-back: the save is sent, AdvancedMD builds no list - the run stops there, the next visit is not saved, the top of the report says so",
+      e == "" and len(W[0].v["vst9201"].saves) == 1 and W[0].v["vst9202"].saves == [] and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED at pat921 vst9201: the save did not read back as asked" in o, (e, o[-600:]))
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.2 ... and every later run sends nothing while that row is not cleared", e == "" and len(W[0].v["vst9201"].saves) == 1 and W[0].v["vst9202"].saves == [] and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED: an earlier save or move did not read back as asked: vst9201" in o
+      and "an earlier save or move did not read back as asked - nothing is saved" in o, o[-600:])
+_f = sorted(glob.glob(os.path.join(SWD[0], "registers", "feed_order_resave_*.json")))[-1]; _j = json.load(open(_f))
+for r_ in _j["rows"]:
+    if r_.get("unexpected"): r_["cleared"] = "a person, after looking at the visit (test)"
+json.dump(_j, open(_f, "w")); W[0].v["vst9201"].builds = True
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.2 once a person has written 'cleared' into that row, the saves go on", e == "" and W[0].v["vst9201"].lst == "1" and len(W[0].v["vst9202"].saves) == 1 and W[0].v["vst9202"].lst == "1", o[-500:])
+# 8.7 THE CLINICIAN MOVES (William 11/10/2026, Q4)
+_mv = dict(_send, clinician="prof15")
+W[0] = SWorld({"931": med("931", "M931"), "932": med("932", "M932"), "933": med("933", "M933")},
+    SW("vst9301", [chg(93011)], move_builds=False), SW("vst9302", [chg(93021, cpt="99306", pcode="pcode65306"), chg(93022, cpt="99497", pcode="pcode65299")]),
+    SW("vst9303", [chg(93031)]), SW("vst9304", [chg(93041, cpt="99232", pcode="pcode65102")], admit="10/15/2026", wipe=True, move_builds=False))
+ws9([srow("vst9301", "pat931", "10/12/2026", ["99309"], ["charge93011"]), srow("vst9302", "pat931", "10/14/2026", ["99306", "99497"], ["charge93021", "charge93022"]),
+     srow("vst9303", "pat932", "10/15/2026", ["99309"], ["charge93031"]), srow("vst9304", "pat933", "10/16/2026", ["99232"], ["charge93041"], admit="20261015")],
+    recon={v_: NPL for v_ in ("vst9301", "vst9302", "vst9303", "vst9304")},
+    approved={"vst9301": _mv, "vst9302": _mv, "vst9303": dict(_mv, decision="send_if_active_on_dos", evidence=""), "vst9304": _mv})
+o, e = sweep("--fix-clinician", "--approved", APPF, "--live")
+check("9/8.7 the remedy order: no clinician move before the first save of this helper (the pilot, a visit whose clinician matches) has read back as asked",
+      e == "" and not any(sv_.moves for sv_ in W[0].v.values()) and "FEED ORDER CLINICIAN - waits: pat931 vst9301 10/12/2026 - the clinician moves wait until the first save of this helper (the pilot) has read back as asked" in o, o[-600:])
+json.dump(PILOT_DONE[1], open(os.path.join(SWD[0], "registers", PILOT_DONE[0]), "w"))      # the pilot save has read back as asked
+o, e = sweep("--fix-clinician", "--approved", APPF, "--live"); s1 = W[0].v["vst9301"]
+_call = ['action="updvisitwithnewcharges" class="chargeentry"', 'approval="1"', 'inspectorenabled="1"', 'getfinancials="-1"', 'customclaimfieldsavailable="1"', 'nocookie="1"', 'profile="prof15"', 'force="1"', '<charge id="charge93011"']
+check("8.7 PILOT: the first live run moves ONE visit to the nurse practitioner with rebill_under_effinger.py's call - updvisitwithnewcharges, profile prof15, force 1, every live charge echoed",
+      e == "" and len(s1.moves) == 1 and all(x_ in s1.moves[0] for x_ in _call) and s1.prof == "prof15" and s1.live() == ["charge930119"] and W[0].v["vst9304"].moves == [], (e, s1.moves[:1], o[-700:]))
+_fx = {m_["visit"]: m_ for m_ in (sreg("fixclin")[0]["moves"] if sreg("fixclin") else [])}
+check("8.7 read back and recorded: old -> new charge ids and visit id, the profile, the list", _fx.get("vst9301", {}).get("ok") is True and _fx["vst9301"].get("old_charges") == ["charge93011"] and _fx["vst9301"].get("new_charges") == ["charge930119"]
+      and _fx["vst9301"].get("new_visit") == "vst9301" and _fx["vst9301"].get("profile_now") == "prof15" and _fx["vst9301"].get("list_now") == "", _fx.get("vst9301"))
+check("8.4/8.7 an initial nursing-facility visit is never moved off the physician, even when the file asks; a visit without proof of coverage on its date is not moved either",
+      W[0].v["vst9302"].moves == [] and W[0].v["vst9303"].moves == [] and "an initial nursing-facility visit stays under the physician (William 11/10/2026)" in o and "FEED ORDER CLINICIAN - not moved: pat932 vst9303" in o, o[-900:])
+check("8.7 a clinician move sets no insurance order (no updvisitwithcharges)", not any(sv_.saves for sv_ in W[0].v.values()), [len(sv_.saves) for sv_ in W[0].v.values()])
+o, e = sweep("--fix-clinician", "--approved", APPF, "--live"); s4 = W[0].v["vst9304"]
+check("8.7 the next run moves the rest; an admission date the move wiped is written back with the import's own call and read again",
+      e == "" and len(s4.moves) == 1 and len(s4.extins) == 1 and _shape.replace("99223", "99232").replace("10/27/2026", "10/15/2026") in s4.extins[0] and s4.admit == "10/15/2026"
+      and "admission date 10/15/2026 was lost on the move and written back (99232)" in json.dumps(sreg("fixclin")), (e, s4.extins, o[-600:]))
+check("8.7 the listing then reads the moved visit's NEW charges and expects the nurse practitioner (no clinician line)", top(o, "vst9301") != "" and "clinician:" not in top(o, "vst9301") and "930119" in DREADS, top(o, "vst9301"))
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.7/8.2 the moved visit then goes through the save like the others - its clinician check now expects prof15 - and is read back", e == "" and len(s1.saves) == 1 and 'id="charge930119"' in s1.saves[0] and s1.lst == "1"
+      and "FEED ORDER SAVE: pat931 vst9301 10/12/2026 (the owner's approved file (send)): saved - insurance order [1], admission date none, clinician prof15 read back as asked" in o, (e, o[-600:]))
+check("8.7/8.2 a visit the file moves to the nurse practitioner is never saved while it is still under another clinician (here an initial visit, which stays under the physician: William decides)",
+      W[0].v["vst9302"].saves == [] and "for William: the owner's approved file moves this visit to the nurse practitioner (prof15) first, but an initial nursing-facility visit stays under the physician (William 11/10/2026) - it is still under the physician (prof13)" in o, o[-700:])
+check("OPS-5 a visit that waits for the clinician move says who acts: 'waits for the clinician move to the nurse practitioner (prof15) - a chat session runs --fix-clinician' (on its TOP line, after '| this run:' too) - never 'moved ... first' while it is not",
+      "waits for the clinician move to the nurse practitioner (prof15) - a chat session runs --fix-clinician" in top(o, "vst9303") and "moved to the nurse practitioner (prof15) first" not in o, top(o, "vst9303"))
+W[0] = SWorld({"941": med("941", "M941")}, SW("vst9311", [chg(93111)], keep_old=True, move_builds=False), SW("vst9312", [chg(93121)], move_builds=False))
+ws9([srow("vst9311", "pat941", "10/12/2026", ["99309"], ["charge93111"]), srow("vst9312", "pat941", "10/13/2026", ["99309"], ["charge93121"])], recon={"vst9311": NPL, "vst9312": NPL},
+    approved={"vst9311": _mv, "vst9312": _mv}, seed=[MOVE_DONE, PILOT_DONE])
+o, e = sweep("--fix-clinician", "--approved", APPF, "--live")
+check("8.7 a move that leaves the old charges live beside the new ones is an unexpected read-back: the run stops, the next visit is not moved", e == "" and W[0].v["vst9312"].moves == []
+      and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED at pat941 vst9311: old charge(s) still live beside the new ones: charge93111" in o, o[-600:])
+o, e = sweep("--resave", "--fix-clinician", "--approved", APPF, "--live")
+check("8.7 ... and nothing is moved or saved after it until that row is cleared", e == "" and W[0].v["vst9312"].moves == [] and not any(sv_.saves for sv_ in W[0].v.values()) and "nothing is moved" in o and "nothing is saved" in o, o[-500:])
+W[0] = SWorld({"942": med("942", "M942")}, SW("vst9321", [chg(93211)], prof="prof15"), SW("vst9322", [chg(93221)]))
+ws9([srow("vst9321", "pat942", "10/12/2026", ["99309"], ["charge93211"]), srow("vst9322", "pat942", "10/13/2026", ["99309"], ["charge93221"])], recon={"vst9321": NPL, "vst9322": DOC},
+    approved={"vst9321": _mv, "vst9322": _send}, seed=[("feed_order_fixclin_20261101T000000Z.json", {"moves": [{"visit": "vst9321", "sent": True, "ok": True, "new_visit": "vst9321", "new_charges": ["charge93211"]}]})])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("9 the pilot save is a visit whose clinician was never changed: the older, moved visit waits; the next run saves it", e == "" and W[0].v["vst9321"].saves == [] and len(W[0].v["vst9322"].saves) == 1
+      and "FEED ORDER SAVE - waits: pat942 vst9321 10/12/2026 - the pilot saves ONE visit whose clinician was never changed" in o, o[-600:])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("9 ... and after the pilot read back as asked, the moved visit is saved (under the nurse practitioner, as the file asks)", e == "" and len(W[0].v["vst9321"].saves) == 1 and W[0].v["vst9321"].lst == "1", o[-400:])
+# 8.6 THE STANDING WORD (William 11/10/2026, Q5)
+W[0] = SWorld({"951": med("951", "M951"), "952": med("952", "M952", {"id": "ins9522", "car": "car300", "seq": "2", "member": "U952"}), "953": med("953", "M953", {"id": "ins9532", "car": "car500", "seq": "2", "member": "D953"}),
+               "954": med("954", "M954"), "955": med("955", "M955"), "956": med("956", "M956")}, *[SW("vst940%d" % i_, [chg(94000 + i_ * 10 + 1)]) for i_ in range(1, 7)])
+_np = dict(open_plans_at_entry=0, chart_insorder="")
+ws9([srow("vst9401", "pat951", "10/20/2026", ["99309"], ["charge94011"], **_np), srow("vst9402", "pat952", "10/21/2026", ["99309"], ["charge94021"], **_np), srow("vst9403", "pat953", "10/22/2026", ["99309"], ["charge94031"], **_np),
+     srow("vst9404", "pat954", "10/23/2026", ["99309"], ["charge94041"], open_plans_at_entry=1, chart_insorder="1"), srow("vst9405", "pat955", "10/24/2026", ["99309"], ["charge94051"]),
+     srow("vst9406", "pat956", "10/25/2026", ["99309"], ["charge94061"], **_np)],
+    recon={"vst940%d" % i_: DOC for i_ in range(1, 7)}, verify={"pat955": {"v": 3, "plans": [], "insorder": ""}}, approved={"vst9406": _send}, seed=[PILOT_DONE])
+ELIG["ans"] = {("CMS", m_, d_): PARTB() for m_, d_ in (("M951", "20261020"), ("M953", "20261022"), ("M955", "20261024"))}
+o, e = sweep("--coverage", "--live")
+check("8.5/8.6 the dated checks also cover the standing word's visits: no plan at entry (the import's record, or the insurance check's record for an older batch), exactly one open MEDICAL plan now (a dental plan does not count)",
+      e == "" and sorted(c_["member"] for c_ in ELIG["calls"]) == ["M951", "M953", "M955"], (e, ELIG["calls"], o[-500:]))
+check("8.6 the listing says who decides the others: two open medical plans, or a plan at entry -> William", "for William: the chart has 2 open medical plans now - exactly one is needed" in top(o, "vst9402") and "for William: it had an open plan when it was entered" in top(o, "vst9404")
+      and "standing word: saved once every check passes" in top(o, "vst9401") and "the owner's approved file: send" in top(o, "vst9406"), [top(o, v_) for v_ in ("vst9402", "vst9404")])
+o, e = sweep("--resave", "--standing", "--live"); _rs = sreg("resave")
+check("8.6 --resave --standing --live saves WITHOUT an approved file exactly the standing-word visits, each after every check (dated proof included); the register says 'standing word, William 11/10/2026'",
+      e == "" and [len(W[0].v["vst940%d" % i_].saves) for i_ in range(1, 7)] == [1, 0, 1, 0, 1, 0] and all(W[0].v[v_].lst == "1" for v_ in ("vst9401", "vst9403", "vst9405"))
+      and sorted(r_["visit"] for r_ in _rs[-1]["rows"] if r_.get("mode") == "standing word, William 11/10/2026" and r_.get("ok")) == ["vst9401", "vst9403", "vst9405"], (e, o[-700:]))
+check("8.6 a visit the owner's approved file names is never saved by the standing word (the file decides it)", W[0].v["vst9406"].saves == [], o[-300:])
+# the two-plan chart: the ONE plan the dated checks show active on the date decides the order; both active -> William
+_two = [{"carrier": "UNI20", "seq": "1"}, {"carrier": "FLO02", "seq": "2"}]; _ob = {"decision": "order_by_dated_check", "order_candidates": ["1", "2"], "plans_in_force_today": _two}
+W[0] = SWorld({"961": [{"id": "ins9611", "car": "car300", "seq": "1", "member": "U961"}, {"id": "ins9612", "car": "car6085", "seq": "2", "member": "M961"}],
+               "962": [{"id": "ins9621", "car": "car300", "seq": "1", "member": "U962"}, {"id": "ins9622", "car": "car6085", "seq": "2", "member": "M962"}]}, SW("vst9501", [chg(95011)]), SW("vst9502", [chg(95021)]))
+ws9([srow("vst9501", "pat961", "10/15/2026", ["99309"], ["charge95011"]), srow("vst9502", "pat962", "10/16/2026", ["99309"], ["charge95021"])], recon={"vst9501": DOC, "vst9502": DOC},
+    approved={"vst9501": _ob, "vst9502": _ob}, seed=[PILOT_DONE])
+ELIG["ans"] = {("87726", "U961", "20261015"): {"planStatus": [{"statusCode": "6", "status": "Inactive"}]}, ("CMS", "M961", "20261015"): PARTB(),
+               ("87726", "U962", "20261016"): {"planStatus": [{"statusCode": "1", "status": "Active Coverage"}]}, ("CMS", "M962", "20261016"): PARTB()}
+o, e = sweep("--coverage", "--approved", APPF, "--live"); o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.5 the two-plan chart: a check of each plan dated to the service date; the one shown active (Medicare, sequence 2) is the order - saved, list [2]",
+      e == "" and len(ELIG["calls"]) == 4 and len(W[0].v["vst9501"].saves) == 1 and 'insorder="2"' in W[0].v["vst9501"].saves[0] and W[0].v["vst9501"].lst == "2", (e, o[-500:]))
+check("8.5 both plans active on the date -> William decides, nothing saved", W[0].v["vst9502"].saves == [] and "both plans answer active on 10/16/2026 - William decides the order" in o, o[-400:])
+# the other checks of a save, one at a time: the deceased guard, the plan the file names, AdvancedMD's plan dates, the admission date, a billed sibling
+W[0] = SWorld({"971": med("971", "M971"), "972": med("972", "M972"), "973": [{"id": "ins973", "car": "car6085", "seq": "1", "member": "M973", "begin": "10/30/2026"}], "974": med("974", "M974"), "975": med("975", "M975"),
+               "976": med("976", "M976"), "977": med("977", "M977"), "978": med("978", "M978")},
+    SW("vst9701", [chg(97011)]), SW("vst9702", [chg(97021)]), SW("vst9703", [chg(97031)]), SW("vst9704", [chg(97041, cpt="99223", pcode="pcode65101")], admit="10/29/2026"),
+    SW("vst9705", [chg(97051), chg(97052, cpt="99497", pcode="pcode65299", pays=[{"amount": "12.00"}])]), SW("vst9706", [chg(97061)]), SW("vst9707", [chg(97071)]), SW("vst9708", [chg(97081), chg(97082, cpt="99497", pcode="pcode65299", void=True)]))
+ws9([srow("vst970%d" % i_, "pat97%d" % i_, "10/2%d/2026" % i_, ["99223"] if i_ == 4 else ["99309"], ["charge970%d1" % i_] + (["charge97082"] if i_ == 8 else [])) for i_ in range(1, 9)], recon=dict({"vst970%d" % i_: DOC for i_ in range(1, 9)}, vst9706=NPL),
+    approved={"vst9701": _send, "vst9702": dict(_send, plans_in_force_today=[{"carrier": "UNI20", "seq": "1"}]), "vst9703": _send, "vst9704": _send, "vst9705": _send, "vst9706": _send,
+              "vst9707": dict(_send, order="2", plans_in_force_today=[]), "vst9708": _send}, seed=[PILOT_DONE])
+DGB.add("971"); o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.2 the deceased guard blocks a save", e == "" and W[0].v["vst9701"].saves == [] and "the deceased guard blocks it (test)" in o, o[-900:])
+check("8.2 a plan at the lead sequence that is not the carrier the owner's file names: not saved (never a claim to another payer than he approved)", W[0].v["vst9702"].saves == [] and "the plan at sequence 1 is FLO02 now - the approved file names UNI20" in o, o[-900:])
+check("8.2 AdvancedMD's plan begins after the date of service: not saved", W[0].v["vst9703"].saves == [] and "AdvancedMD's plan at sequence 1 begins 10/30/2026, after the service date" in o, o[-900:])
+check("8.2 an admission date that is not sane (after the date of service): not saved", W[0].v["vst9704"].saves == [] and "its admission date 10/29/2026 is after its service date 10/24/2026" in o, o[-900:])
+check("8.2 a payment on a charge the import register does not list (read just now through every live charge): never saved", W[0].v["vst9705"].saves == [] and "billed, paid or a balance on the patient on one of its 2 live charges" in o, o[-500:])
+check("8.2/8.4 the entered clinician must be the one the feed names: the nurse practitioner's visit under the physician is not saved", W[0].v["vst9706"].saves == [] and "entered under the physician (prof13), but the feed names the nurse practitioner (prof15)" in o, o[-900:])
+check("8.2 exactly one open plan at the lead sequence: an order whose plan the chart does not have is not saved", W[0].v["vst9707"].saves == [] and "0 open plan(s) at sequence 2 - exactly one is needed" in o, o[-900:])
+check("8.2 a charge the import entered that now reads void (not a no-charge line): not saved - a person reads the visit first", W[0].v["vst9708"].saves == [] and "charge(s) the import entered now read void: charge97082" in o, o[-600:])
+# the cap: 121 visits on one chart, each its own date -> 120 checks bought ($36.00), one waits for the next run
+W[0] = SWorld({"981": med("981", "M981")}, *[SW("vst98%03d" % i_, [chg(980000 + i_)]) for i_ in range(121)])
+_d0 = datetime.date(2026, 6, 1)
+ws9([srow("vst98%03d" % i_, "pat981", (_d0 + datetime.timedelta(days=i_)).strftime("%m/%d/%Y"), ["99309"], ["charge%d" % (980000 + i_)], **_np) for i_ in range(121)], recon={"vst98%03d" % i_: DOC for i_ in range(121)}, approved={})
+o, e = sweep("--coverage", "--live")
+check("8.5 the cap: 120 checks a run ($36.00 - under the $40 cap), the rest wait for the next run", e == "" and len(ELIG["calls"]) == 120 and "120 eligibility check(s) dated to the service date bought - $36.00" in o and "1 wait for the next run (cap reached)" in o, (e, len(ELIG["calls"]), o[-300:]))
+# vendor answers: errors are asked at most twice; a carrier the vendor cannot check buys nothing; a plan date equal to the birth date is neither used nor written
+W[0] = SWorld({"991": med("991", "M991"), "992": [{"id": "ins992", "car": "car600", "seq": "1", "member": "M992"}], "993": med("993", "M993")}, SW("vst9901", [chg(99011)]), SW("vst9902", [chg(99021)]), SW("vst9903", [chg(99031)]))
+ws9([srow("vst9901", "pat991", "10/20/2026", ["99309"], ["charge99011"], **_np), srow("vst9902", "pat992", "10/21/2026", ["99309"], ["charge99021"], **_np), srow("vst9903", "pat993", "10/22/2026", ["99309"], ["charge99031"], **_np)],
+    recon={"vst9901": DOC, "vst9902": DOC, "vst9903": DOC}, seed=[PILOT_DONE], approved={})
+ELIG["ans"] = {("CMS", "M993", "20261022"): dict(PARTB(), planDateInformation={"planBegin": BD8, "planEnd": BD8})}
+for _i in range(3): o, e = sweep("--coverage", "--live")
+check("8.5 an error answer is asked again once, never a third time; a carrier the vendor has no route for buys nothing and is not tried again", e == "" and [c_["member"] for c_ in ELIG["calls"]].count("M991") == 2 and "M992" not in [c_["member"] for c_ in ELIG["calls"]]
+      and "the vendor has no eligibility route for ZZZ01 - nothing was bought" in json.dumps(sreg("coverage")), [c_["member"] for c_ in ELIG["calls"]])
+_c3 = [a_ for j_ in sreg("coverage") for a_ in j_.get("answers") or [] if a_.get("visit") == "vst9903"]
+check("8.5 a plan date equal to the birth date is a placeholder: the answer still counts (active on the date), and that date is written nowhere", len(_c3) == 1 and _c3[0]["active"] == "yes" and not re.search("%s|%s" % (BD8, re.escape(BDS)), json.dumps(sreg("coverage")) + o), _c3)
+o, e = sweep("--resave", "--standing", "--live")
+check("8.5/8.6 an error is never proof: that visit is not saved; the one with a dated active answer is", W[0].v["vst9901"].saves == [] and W[0].v["vst9902"].saves == [] and len(W[0].v["vst9903"].saves) == 1, o[-600:])
+# the answer itself (verdict), lifted out of the sweep's source text
+SVN = {"re": re}; exec(lift(SWP, {"d8", "mdy", "verdict", "ACTIVE", "MA_TYPES", "NOT_MEDICAL", "LIMITED", "DRUG_ONLY", "MEDICAL_TOO", "CARRIER_NOT_MEDICAL", "not_medical"}), SVN); vd = SVN["verdict"]
+check("8.5 verdict: an active answer that limits the coverage (Florida Medicaid's family-planning class) or names a dental / drug-only plan is not proof -> no (William)",
+      vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "FP | Limited to family planning services"}]}, "20261015", False)[0] == "no"
+      and vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "Dental PPO"}]}, "20261015", False)[0] == "no"
+      and vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "TRICARE FOR LIFE"}]}, "20261015", False)[0] == "yes")
+check("8.5 verdict: active status -> yes; inactive -> no; an error -> error; active and inactive mixed -> error (William)",
+      [vd(x_, "20261015", False)[0] for x_ in ({"planStatus": [{"statusCode": "1"}]}, {"planStatus": [{"statusCode": "6"}]}, {"errors": [{"code": "62", "description": "x"}]}, {"planStatus": [{"statusCode": "1"}, {"statusCode": "6"}]}, {})] == ["yes", "no", "error", "error", "error"])
+check("8.5 verdict: the plan's own dates that do not cover the date of service -> no", vd({"planStatus": [{"statusCode": "1"}], "planDateInformation": {"planBegin": "20261020"}}, "20261015", False)[0] == "no"
+      and vd({"planStatus": [{"statusCode": "1"}], "planDateInformation": {"plan": "20260101-20261001"}}, "20261015", False)[0] == "no" and vd({"planStatus": [{"statusCode": "1"}], "planDateInformation": {"plan": "20260101-20261231"}}, "20261015", False)[0] == "yes")
+_ma = dict(PARTB(), benefitsInformation=PARTB()["benefitsInformation"] + [{"code": "R", "insuranceTypeCode": "HN", "benefitsRelatedEntities": [{"entityName": "SOME ADVANTAGE PLAN"}]}])
+check("8.5 verdict (Medicare): Part B active on the date -> yes; a Medicare Advantage plan named for the date -> no (its name said); no Part B -> no; a Part D entry (type OT) is not a payer",
+      vd(PARTB(), "20261015", True)[0] == "yes" and vd(_ma, "20261015", True)[:2] == ("no", "Medicare names another primary payer on 10/15/2026: SOME ADVANTAGE PLAN")
+      and vd({"planStatus": [{"statusCode": "1"}], "benefitsInformation": [{"code": "1", "insuranceTypeCode": "MA"}]}, "20261015", True)[0] == "no"
+      and vd(dict(PARTB(), benefitsInformation=PARTB()["benefitsInformation"] + [{"code": "R", "insuranceTypeCode": "OT"}]), "20261015", True)[0] == "yes")
+check("B / R7-REPLAY-4 / OPS-6 the sweep's dated proof: an active answer naming a Medicare Advantage plan WITH drug coverage is proof (yes); a stand-alone drug plan is not (no)",
+      vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "UHC MEDICARE ADVANTAGE PRESCRIPTION DRUG (MAPD) HMO"}]}, "20261015", False)[0] == "yes"
+      and vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "AARP MEDICARE ADVANTAGE PRESCRIPTION DRUG (HMO)"}]}, "20261015", False)[0] == "yes"
+      and vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "HUMANA WALMART VALUE RX PLAN (PDP)"}]}, "20261015", False)[0] == "no"
+      and vd({"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "Prescription Drug Plan"}]}, "20261015", False)[0] == "no")
+# NH7-1 (blocker): the clinician move carries the CHECKED order - the two-plan chart shaped like the owner's vst19459210 / vst19459257 (UHC seq 1 not active, Medicare seq 2 active)
+_obm = dict(_ob, clinician="prof15")
+W[0] = SWorld({"963": [{"id": "ins9631", "car": "car300", "seq": "1", "member": "U963"}, {"id": "ins9632", "car": "car6085", "seq": "2", "member": "M963"}],
+               "964": [{"id": "ins9641", "car": "car300", "seq": "1", "member": "U964"}, {"id": "ins9642", "car": "car6085", "seq": "2", "member": "M964"}]},
+              SW("vst9601", [chg(96011)]), SW("vst9602", [chg(96021)], move_list="1"))
+ws9([srow("vst9601", "pat963", "10/15/2026", ["99309"], ["charge96011"]), srow("vst9602", "pat964", "10/16/2026", ["99309"], ["charge96021"])], recon={"vst9601": NPL, "vst9602": NPL},
+    approved={"vst9601": _obm, "vst9602": _obm}, seed=[PILOT_DONE, MOVE_DONE])
+ELIG["ans"] = {("87726", "U963", "20261015"): {"planStatus": [{"statusCode": "6", "status": "Inactive"}]}, ("CMS", "M963", "20261015"): PARTB(),
+               ("87726", "U964", "20261016"): {"planStatus": [{"statusCode": "6", "status": "Inactive"}]}, ("CMS", "M964", "20261016"): PARTB()}
+o, e = sweep("--coverage", "--approved", APPF, "--live"); o, e = sweep("--fix-clinician", "--resave", "--approved", APPF, "--live"); s61 = W[0].v["vst9601"]; s62 = W[0].v["vst9602"]
+check("NH7-1 the move of a two-plan visit (order 2 by the dated checks, attribute 1) carries insorder 2 - never the old attribute 1 - and the list it builds reads [2]: billable as approved, no TOP line any more",
+      e == "" and len(s61.moves) == 1 and 'insorder="2"' in s61.moves[0] and s61.lst == "2" and not top(o, "vst9601") and s61.saves == [], (e, s61.moves[:1], s61.lst, o[-500:]))
+check("NH7-1 a move that builds ANOTHER list than the checked order ([1], the plan the dated check showed not active) is an unexpected read-back: the run stops and says so at the top",
+      len(s62.moves) == 1 and 'insorder="2"' in s62.moves[0] and s62.lst == "1" and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED at pat964 vst9602: the move built insurance order [1], not the checked order [2]" in o, (s62.lst, o[-700:]))
+_f = sorted(glob.glob(os.path.join(SWD[0], "registers", "feed_order_fixclin_*.json")))[-1]; _j = json.load(open(_f))
+for r_ in _j["moves"]:
+    if r_.get("unexpected"): r_["cleared"] = "a person, after looking at the visit (test)"
+json.dump(_j, open(_f, "w"))
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("NH7-1 once a person cleared that stop, the moved visit on the wrong order is listed ('NOT THE CHECKED INSURANCE ORDER ... reads [1], the checked order is [2]') and the save sets [2] - it is never left to bill the inactive plan",
+      e == "" and len(s62.saves) == 1 and 'insorder="2"' in s62.saves[0] and s62.lst == "2" and "1 moved visit(s) on another insurance order than the checked one" in o and "FEED ORDER SAVE: pat964 vst9602" in o, (e, s62.lst, o[-700:]))
+# NH7-3 / OPS-2: the save lands, its answer never comes back; a run cut off from outside; a visit saved earlier whose admission date is gone since
+W[0] = SWorld({"965": med("965", "M965"), "966": med("966", "M966")}, SW("vst9651", [chg(96511, cpt="99223", pcode="pcode65101")], admit="10/14/2026", wipe=True, raise_after=TimeoutError("read timed out")), SW("vst9652", [chg(96521)]))
+ws9([srow("vst9651", "pat965", "10/14/2026", ["99223"], ["charge96511"], admit="20261014"), srow("vst9652", "pat966", "10/15/2026", ["99309"], ["charge96521"])], recon={"vst9651": DOC, "vst9652": DOC},
+    approved={"vst9651": _send, "vst9652": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live"); _rs = sreg("resave")
+check("NH7-3 a hospital visit's save lands but its answer never comes back: the sweep does not crash - it reads the visit again, writes the wiped admission date back, records the row as unexpected and stops (the next visit is not saved)",
+      e == "" and W[0].v["vst9651"].admit == "10/14/2026" and W[0].v["vst9652"].saves == [] and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED at pat965 vst9651" in o
+      and any(r_.get("visit") == "vst9651" and r_.get("unexpected") and r_.get("sent") for j_ in _rs for r_ in j_.get("rows") or []), (e, o[-700:]))
+class SWR(SW):      # after its save, every read of this visit times out (the sweep's own read-back fails, not only set_insorder's)
+    def detail(self, cid):
+        if self.saves: raise TimeoutError("read timed out (test)")
+        return SW.detail(self, cid)
+W[0] = SWorld({"962": med("962", "M962"), "966": med("966", "M966")}, SWR("vst9621", [chg(96211)]), SW("vst9622", [chg(96221)]))
+ws9([srow("vst9621", "pat962", "10/14/2026", ["99309"], ["charge96211"]), srow("vst9622", "pat966", "10/15/2026", ["99309"], ["charge96221"])], recon={"vst9621": DOC, "vst9622": DOC},
+    approved={"vst9621": _send, "vst9622": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live"); _rs = sreg("resave")
+check("NH7-3 the sweep's own read-back fails after the save landed: caught - the row says what failed (not only that the run ended), the run stops, the next visit is not saved",
+      e == "" and W[0].v["vst9622"].saves == [] and any(r_.get("visit") == "vst9621" and str(r_.get("unexpected") or "").startswith("the save or its read-back failed (TimeoutError") for j_ in _rs for r_ in j_.get("rows") or []), (e, [r_ for j_ in _rs for r_ in j_.get("rows") or []][-2:]))
+W[0] = SWorld({"967": med("967", "M967"), "968": med("968", "M968")}, SW("vst9671", [chg(96711)], raise_after=SystemExit("stopped from outside (test)")), SW("vst9672", [chg(96721)]))
+ws9([srow("vst9671", "pat967", "10/14/2026", ["99309"], ["charge96711"]), srow("vst9672", "pat968", "10/15/2026", ["99309"], ["charge96721"])], recon={"vst9671": DOC, "vst9672": DOC},
+    approved={"vst9671": _send, "vst9672": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live"); _rs = sreg("resave"); _sw = sreg("sweep")
+check("OPS-2 a run cut off from outside right after a save landed: that save's row was written BEFORE the save and still says unexpected, the sweep's register is written, the top of the report says the run did not finish, and the TOP lines are still printed",
+      any(r_.get("visit") == "vst9671" and r_.get("unexpected") for j_ in _rs for r_ in j_.get("rows") or []) and len(_sw) == 1 and _sw[0].get("finished") is False
+      and "TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: it was stopped from outside" in o and top(o, "vst9672") != "", o[-800:])
+check("OPS-8 the sweep names every register it wrote (its own stamp) - the routine commits every one", any(l_.startswith("registers written this run - commit every one: ") and "feed_order_resave_" in l_ and "feed_order_sweep_" in l_ for l_ in o.splitlines()), o[-300:])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("OPS-2 ... and the next run STOPS on that row: nothing more is saved until a person has looked at the visit", W[0].v["vst9672"].saves == [] and "TOP OF THE REPORT - FEED ORDER SWEEP STOPPED: an earlier save or move did not read back as asked: vst9671" in o, o[-500:])
+class SWX(SW):      # its charge detail is answered by the run being stopped from outside (a time limit while the listing runs)
+    def detail(self, cid): raise SystemExit("stopped from outside (test)")
+W[0] = SWorld({"978": med("978", "M978")}, SW("vst9781", [chg(97811, attrs={"datebilled": "10/20/2026", "insbilled": "1"})], lst="1"), SWX("vst9782", [chg(97821)]))
+ws9([srow("vst9781", "pat978", "10/12/2026", ["99309"], ["charge97811"]), srow("vst9782", "pat978", "10/13/2026", ["99309"], ["charge97821"])], recon={"vst9781": DOC, "vst9782": DOC}, approved={})
+o, e = sweep(); _sw = sreg("sweep")
+check("OPS-2 a run stopped from outside while it lists: one TOP line says so, and the visits it saw billed are kept in its register (the next run does not read them again)",
+      "TOP OF THE REPORT - FEED ORDER SWEEP DID NOT FINISH: it was stopped from outside while listing" in o and len(_sw) == 1 and _sw[0].get("billed") == ["vst9781"], (o[-400:], _sw))
+W[0] = SWorld({"969": med("969", "M969")}, SW("vst9691", [chg(96911, cpt="99223", pcode="pcode65101")], lst="1", admit=""))
+ws9([srow("vst9691", "pat969", "10/14/2026", ["99223"], ["charge96911"], admit="20261014")], recon={"vst9691": DOC}, approved={"vst9691": _send},
+    seed=[("feed_order_resave_20261102T000000Z.json", {"rows": [{"visit": "vst9691", "sent": True, "ok": True, "admit_before": "10/14/2026", "list_after": "1"}]})])
+o, e = sweep()
+check("OPS-2/NH7-3 a visit an earlier run saved (its list filled, not billed yet) is read again until it bills: its admission date, gone since that save, gets a TOP line for a person",
+      e == "" and "TOP OF THE REPORT - FEED ORDER SWEEP - ADMISSION DATE LOST: pat969 vst9691 service date 10/14/2026: its admission date read 10/14/2026 before this helper's save" in o, o[-600:])
+# R7-REPLAY-2: two admission dates ONE day apart in one stay (the reviewer's exact shape) - both listed with it, neither saved; NH7-4 in the listing: 99497 first, the date on the 99223
+W[0] = SWorld({"970": med("970", "M970"), "974": med("974", "M974"), "977": med("977", "M977")}, SW("vst9801", [chg(98011, cpt="99223", pcode="pcode65101")], admit="10/27/2026"), SW("vst9802", [chg(98021, cpt="99232", pcode="pcode65102")], admit="10/28/2026"),
+              SW("vst9803", [chg(98031, cpt="99232", pcode="pcode65102", attrs={"datebilled": "11/02/2026", "insbilled": "1"})], lst="1", admit="10/28/2026"),
+              SW("vst9804", [chg(98041, cpt="99497", pcode="pcode65299"), chg(98042, cpt="99223", pcode="pcode65101")], admit={"99223": "10/20/2026"}),
+              SW("vst9805", [chg(98051, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9806", [chg(98061, cpt="99232", pcode="pcode65102")], admit="10/25/2026"))
+ws9([srow("vst9801", "pat970", "10/27/2026", ["99223"], ["charge98011"], admit="20261027"), srow("vst9802", "pat970", "10/28/2026", ["99232"], ["charge98021"], admit="20261028"),
+     srow("vst9803", "pat970", "11/01/2026", ["99232"], ["charge98031"], admit="20261028"), srow("vst9804", "pat974", "10/20/2026", ["99497", "99223"], ["charge98041", "charge98042"], admit="20261020"),
+     srow("vst9805", "pat977", "10/27/2026", ["99223"], ["charge98051"], admit="20261020"), srow("vst9806", "pat977", "10/28/2026", ["99232"], ["charge98061"], admit="20261025")],
+    recon={v_: DOC for v_ in ("vst9801", "vst9802", "vst9803", "vst9804", "vst9805", "vst9806")}, approved={"vst9801": _send, "vst9802": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("R7-REPLAY-2 two different admission dates within 3 days on one chart (10/27 and 10/28, one stay) are named on both visits' TOP lines and neither is saved until William settles the date",
+      e == "" and "two admission dates in one stay: vst9801 10/27/2026, vst9802 10/28/2026" in top(o, "vst9801") and "two admission dates in one stay: vst9802 10/28/2026, vst9801 10/27/2026" in top(o, "vst9802")
+      and W[0].v["vst9801"].saves == [] and W[0].v["vst9802"].saves == [] and "for William: two admission dates in one stay" in o, (top(o, "vst9801"), top(o, "vst9802")))
+check("8.1 (the builders' rule kept) two admission dates 5 days apart, both on or before both service dates, are still 'two admission dates in one stay'", "two admission dates in one stay: vst9805 10/20/2026, vst9806 10/25/2026" in top(o, "vst9805"), top(o, "vst9805"))
+check("NH7-4 the listing reads each hospital code's admission date from its own charge: a 99497 + 99223 visit whose date sits on the 99223 is not 'a hospital visit with no admission date'", top(o, "vst9804") != "" and "no admission date" not in top(o, "vst9804"), top(o, "vst9804"))
+check("OPS-5 a check only a person can clear says so: 'for William: ...' (here the admission date)", "FEED ORDER SAVE - not saved: pat970 vst9801 10/27/2026 (the owner's approved file (send)) - for William: two admission dates in one stay" in o, o[-900:])
+# R7-REPLAY-5 (the reviewer's exact input): a no-plan visit entered 31 days ago, its chart's first plan landed, the dated check active, not in the owner's file -> listed and saved by the standing word
+W[0] = SWorld({"975": [{"id": "ins975", "car": "car300", "seq": "1", "member": "U975"}]}, SW("vst9751", [chg(97511)]), SW("vst9752", [chg(97521)]))
+ws9([srow("vst9751", "pat975", "10/08/2026", ["99309"], ["charge97511"], days_ago=31, open_plans_at_entry=0, chart_insorder=""),
+     srow("vst9752", "pat975", "10/01/2025", ["99309"], ["charge97521"], days_ago=400, open_plans_at_entry=0, chart_insorder="")], recon={"vst9751": DOC, "vst9752": DOC}, approved={}, seed=[PILOT_DONE])
+ELIG["ans"] = {("87726", "U975", "20261008"): {"planStatus": [{"statusCode": "1", "status": "Active Coverage", "planDetails": "UHC MEDICARE ADVANTAGE (HMO)"}]}}
+o, e = sweep("--coverage", "--resave", "--standing", "--live")
+check("R7-REPLAY-5 a no-plan visit entered 31 days ago whose plan landed later is still listed and saved by the standing word (it went silent on day 31)", e == "" and len(W[0].v["vst9751"].saves) == 1 and W[0].v["vst9751"].lst == "1", (e, o[-600:]))
+check("R7-REPLAY-5 ... a visit whose service date is older than the timely-filing year is not read", "97521" not in DREADS and W[0].v["vst9752"].saves == [], DREADS)
+# OPS-7: Medicare + a Medigap carrier named '... LIFE ...' is TWO medical plans - the standing word does not save the visit with Medicare alone
+W[0] = SWorld({"976": med("976", "M976", {"id": "ins9762", "car": "car800", "seq": "2", "member": "B976"})}, SW("vst9761", [chg(97611)]))
+ws9([srow("vst9761", "pat976", "10/20/2026", ["99309"], ["charge97611"], open_plans_at_entry=0, chart_insorder="")], recon={"vst9761": DOC}, approved={}, seed=[PILOT_DONE])
+ELIG["ans"] = {("CMS", "M976", "20261020"): PARTB()}
+o, e = sweep("--coverage", "--resave", "--standing", "--live")
+check("OPS-7 a chart with Medicare and a Bankers Life Medigap plan has 2 open medical plans: nothing bought, nothing saved (never Medicare alone with the secondary dropped) - listed for William",
+      e == "" and W[0].v["vst9761"].saves == [] and ELIG["calls"] == [] and "for William: the chart has 2 open medical plans now - exactly one is needed" in top(o, "vst9761"), (e, top(o, "vst9761")))
+# what the sweep refuses to start
+W[0] = SWorld({"911": med("911", "M911")}, SW("vst9101", [chg(91011)])); ws9([srow("vst9101", "pat911", "10/15/2026", ["99309"], ["charge91011"])], recon={"vst9101": DOC})
+o, e = sweep("--resave", "--live")
+check("8.2 --resave without --approved <file> or --standing does nothing", e == "" and "--resave needs --approved <file>" in o and DREADS == [] and W[0].posts == [], o[-300:])
+with open(os.path.join(SWD[0], "registers", "feed_order_approved.json"), "w") as _fh: _fh.write("{not json")
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("8.8 an approved file that cannot be read: nothing is bought, moved or saved - the listing still runs, read only, and the top of the report says why",
+      "TOP OF THE REPORT - FEED ORDER SWEEP: the owner's approved file registers/feed_order_approved.json could not be read" in o and W[0].v["vst9101"].saves == [] and ELIG["calls"] == []
+      and not any(re.search(r'action="(updvisit|updextrainsinfo)', p_) for p_ in W[0].posts) and top(o, "vst9101") != "", o[-600:])
+# OPS-1 / R7-REPLAY-1 / NH7-N1: the approved file MISSING (the runbook used to say "drop --approved") - the standing word must not save the owner's visits without his file
+W[0] = SWorld({"912": med("912", "M912"), "913": med("913", "M913")}, SW("vst9111", [chg(91111)]), SW("vst9112", [chg(91121)]))
+ws9([srow("vst9111", "pat912", "10/20/2026", ["99309"], ["charge91111"], open_plans_at_entry=0, chart_insorder=""), srow("vst9112", "pat913", "10/21/2026", ["99309"], ["charge91121"])],
+    recon={"vst9111": DOC, "vst9112": DOC}, verify={"pat913": {"v": 3, "plans": [], "insorder": ""}}, seed=[PILOT_DONE])
+ELIG["ans"] = {("CMS", "M912", "20261020"): PARTB(), ("CMS", "M913", "20261021"): PARTB()}
+for _i in range(2): o, e = sweep("--coverage", "--resave", "--standing", "--live")
+check("OPS-1/R7-REPLAY-1 the approved file is missing: the runbook's call buys NOTHING and saves NOTHING - not the round-7 standing-word visit, not an old batch's stuck visit - and the top of the report says the file must be restored",
+      e == "" and ELIG["calls"] == [] and W[0].v["vst9111"].saves == [] and W[0].v["vst9112"].saves == [] and len(sreg("resave")) == 1 and sreg("coverage") == []
+      and "TOP OF THE REPORT - FEED ORDER SWEEP: the owner's approved file registers/feed_order_approved.json is not in this folder - nothing was bought, moved or saved this run, the standing word included" in o, (e, ELIG["calls"], [l_ for l_ in o.splitlines() if "approved file" in l_][:2]))
+check("OPS-1 ... the listing still runs (read only): both stuck visits have their TOP line", top(o, "vst9111") != "" and top(o, "vst9112") != "", tops(o))
+json.dump({"vst9111": "1", "vst9112": "1"}, open(os.path.join(SWD[0], "registers", "feed_order_approved.json"), "w"))
+o, e = sweep("--coverage", "--resave", "--standing", "--approved", APPF, "--live")
+check("OPS-13 a file that does not carry the owner's recorded word (a bare visit -> order list, no approved_by / answers) is not his approved file: nothing bought, moved or saved",
+      e == "" and ELIG["calls"] == [] and W[0].v["vst9111"].saves == [] and W[0].v["vst9112"].saves == [] and "does not carry the owner's recorded word (approved_by and answers)" in o, o[-500:])
+_old_rs = SSTAND["resave"]; SSTAND["resave"] = {k_: v_ for k_, v_ in SRS.items() if k_ != "billed_reasons"}; DREADS.clear()
+try: o, e = sweep()
+finally: SSTAND["resave"] = _old_rs
+check("8.2 a workspace resave.py older than round 7 (no list-aware save): the sweep does not run at all and says so at the top", "TOP OF THE REPORT - FEED ORDER SWEEP DID NOT RUN: resave.py in this folder is older than 11/10/2026 (no billed_reasons)" in o and DREADS == [], o[-300:])
+# ---- 9. the words: the runbook's step and section, the rulebook, the lessons, the captured calls -----------------------------------------------------
+_stp = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read(); _stpn = _stp.replace("\n", " "); _rl = open(os.path.join(ROOT, "practices", "ehpa", "rules.md")).read()
+_ls = open(os.path.join(ROOT, "docs", "SHARED_LESSONS.md")).read(); _cc = open(os.path.join(ROOT, "docs", "captured_calls.md")).read()
+_c2 = _stp[_stp.index("(c2) FEED VISITS WITH AN EMPTY INSURANCE ORDER"):_stp.index("(d) Every chart the digest lists")]
+check("9 runbook: step (c2) runs the sweep right after the insurance check - the repository's resave.py first, then the listing, the dated checks and the saves (approved file and standing word) in one call; its TOP lines go to the top and its registers are committed",
+      _stp.index("(c) FIRST the place-of-service precondition") < _stp.index("(c2) FEED VISITS") < _stp.index("(d) Every chart") and "cp -p feed_order_sweep.py resave.py /home/claude/unbilled/" in _c2
+      and "python3 feed_order_sweep.py --coverage --resave --standing --approved registers/feed_order_approved.json --live" in _c2 and "--fix-clinician" not in _c2
+      and "'TOP OF THE REPORT' go to the top of the report word for word" in _c2 and "feed_order_fixclin_<stamp>.json" in _c2 and "feed_order_coverage_<stamp>.json" in _c2)
+check("9 runbook section: the TOP lines and what the routine does, how William approves visits (the file only after his word, never by a routine), the remedy order (oldest first, one pilot whose clinician matches, read back, then the rest), the moves by a chat session",
+      all(x_ in _stpn for x_ in ("## Feed visits with an empty insurance order", "written only after his word, by a chat session or by him - never by a routine",
+                                 "THE REMEDY ORDER: oldest date of service first. The first live run saves ONE visit whose clinician matches - the pilot - and reads it back; the next run does the rest",
+                                 "are run by a chat session, not by a routine", "A routine never writes \"cleared\"", "HOLD in the insurance check's report is a label only")), [x_ for x_ in ("## Feed visits", "never by a routine", "THE REMEDY ORDER", "chat session, not by a routine") if x_ not in _stpn])
+# 11/11/2026: the lesson line and the captured-calls section are COUNTED, not pinned to the end of their files - every routine run appends to both
+check("9 rulebook and lessons: one dated line each, with the cause; captured calls: one new section on the list-aware read-back",
+      _rl.count("FEED VISITS WITH AN EMPTY INSURANCE ORDER") == 1 and "(11/10/2026, William in chat, STANDING for the charge feed) FEED VISITS WITH AN EMPTY INSURANCE ORDER. The cause:" in _rl
+      and _ls.count("| chat (round 7, feed visits with no insurance order) | TRAP |") == 1 and any(l_.startswith("- 2026-11-10T1915Z | chat (round 7") for l_ in _ls.split("\n"))
+      and sum(1 for s_ in _cc.split("\n## ") if s_.startswith("2026-11-10T1915Z - a visit's insurance-order LIST, read back")) == 1 and "the 10/28 advice above (skip the save when the chart default already equals the target) is withdrawn" in _cc)
+# the three confirmation reviews: the words a routine follows
+check("OPS-1/R7-REPLAY-1 runbook (c2): the owner's approved file is copied from the repository every run, and the call never drops --approved (no 'drop --approved' fallback - the sweep lists only and says so)",
+      "cp -p ../../practices/ehpa/registers/feed_order_approved.json /home/claude/unbilled/registers/" in _c2 and "drop --approved" not in _stp and "the call never changes when the approved file is missing" in _c2)
+check("OPS-2 runbook (c2): the sweep runs in the background under nohup with its own log, one at a time, read to its 'register: ' line - not one plain call under the 600 s cap",
+      "nohup python3 feed_order_sweep.py --coverage --resave --standing --approved registers/feed_order_approved.json --live > logs/feed_order_sweep_<run stamp>.log 2>&1 &" in _c2 and "ONE plain call" not in _c2
+      and "pgrep -f feed_order_sweep.py" in _c2 and "until its last line starts with 'register: '" in _c2)
+check("OPS-8 runbook (c2): <stamp> is the sweep's OWN stamp, every register its 'registers written this run' line names is committed, and the resave register holds the pilot and every STOP",
+      "'registers written this run - commit every one: ...'" in _c2 and "the sweep's OWN stamp" in _c2 and "the resave register holds the pilot and every STOP" in _c2)
+check("OPS-11 runbook (c2) runs EVERY run, also one that imported nothing new; the daily feed prompt (B5) and the billing button's FEED line name step (c2)",
+      "also a run that imported nothing new" in _c2 and "then the runbook's step (c2) - the feed order sweep (`feed_order_sweep.py`" in open(os.path.join(ROOT, "nightly", "live", "feed_daily.txt")).read()
+      and "then the runbook's step (c2), the feed order sweep (`feed_order_sweep.py`" in open(os.path.join(ROOT, "nightly", "live", "billing_button.txt")).read())
+check("OPS-4 runbook: every top-of-report line the change can print has its meaning and action (the digest's six and the sweep's), and step (f) lifts every digest TOP line to the top word for word",
+      all(x_ in re.sub(r"\s+", " ", _stp) for x_ in ("chart(s) held with NO plan", "OLD INSURANCE ORDER", "INSURANCE ORDER NOT READ", "SAVE NOT AS ASKED", "the insurance-order lines could not be built", "NOT THE CHECKED INSURANCE ORDER",
+                                 "ADMISSION DATE LOST", "FEED ORDER SWEEP DID NOT FINISH", "the owner's approved file ... - nothing was bought, moved or saved"))
+      and "Every line of the digest that starts '  - TOP OF THE REPORT - ' - those of the insurance check's section 'Cascade insurance check' included" in _stp)
+check("OPS-5 runbook: '| this run:', 'for William:' and 'waits for the clinician move ... a chat session runs --fix-clinician' are explained (who acts on a visit that only a person can move on)",
+      "after '| this run:' what this" in _stpn and "words that start 'for William:'" in _stpn and "waits for the clinician move to the nurse practitioner (prof15) - a chat session runs --fix-clinician' = only a chat" in _stpn)
+check("A/B words: captured calls, rulebook and lessons say the re-route helpers pass allow_billed=True and a Medicare Advantage plan with drug coverage is medical; no sentence says the re-route is refused",
+      "set_insorder(..., allow_billed=True)" in _cc and "Medicare Advantage plan with drug coverage" in _cc and "allow_billed=True" in _rl and "a Medicare Advantage plan with drug coverage is a medical plan" in _rl
+      and "only the re-route of a billed visit after a wrong-payer denial passes allow_billed=True" in _ls and "billed_ok" not in _cc + _rl + _ls)
+_own = open(os.path.abspath(__file__)).read()
+check("OPS-10 no invented member id here is 5 characters or more: the privacy gate's tree mode (mirror.py sync) would rewrite it and break this test", not re.findall(r'"(?:member|subscribernum|memberid|member_id)"\s*:\s*"[A-Za-z0-9][A-Za-z0-9\-]{4,}"', _own))
+
+time.sleep = _sleep0
+print("\n" + ("all checks passed" if not FAILS else "%d check(s) FAILED: %s" % (len(FAILS), "; ".join(FAILS))))
+sys.exit(1 if FAILS else 0)

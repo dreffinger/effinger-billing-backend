@@ -5,6 +5,9 @@
 #   25 on 99497 / 99489 as the practice's existing charges carry it, facility/POS/profile copied from how the feed's own
 #   earlier visits look in AMD. Charges enter Charge Review (approval=1, inspector on) like any feed charge.
 # Dedupe: a feed line whose patient already has a live (non-void) charge with the same CPT + DOS is skipped.
+# No plan at entry (11/10/2026, round 7): a visit entered while its chart has NO plan gets insorder "1" but AdvancedMD builds no insurance-order list
+#   for it (no claim, no work list). Every register row records chart_insorder and open_plans_at_entry (open_plan_seqs_at_entry; None = the chart
+#   could not be read), and each such visit is counted and printed "NO PLAN AT ENTRY". The insurance check saves it again once a plan is there.
 # Clinician, building and admission date (11/10/2026): each visit takes them from ITS OWN feed message (MSH-4, PV1-7, PV1-44), found by
 #   the message's patient id and its (code, DOS) lines. Until then ONE value per feed PATIENT was used - the last message read - so in a
 #   batch that held a resident's CCM (the physician's) and the nurse practitioner's visits, the visits went in under the physician (149
@@ -81,7 +84,7 @@ def mdy(yyyymmdd):
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.6"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-10.7"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -1206,6 +1209,12 @@ def chart_ctx(pid):
     ctx["resp"] = a.get("respparty", ""); ctx["insorder"] = a.get("insorder", "") or "1"; ctx["deceased"] = a.get("deceased", "")
     pl = re.findall(r'<insplan id="(ins\d+)" carrier="(car\d+)" begindate="([^"]*)" enddate="([^"]*)"[^>]*sequence="(\d+)"', r)
     ctx["plans"] = pl
+    # 11/10/2026 (round 7): the "1" above is only a stand-in when the chart has no plan - AdvancedMD then keeps insorder "1" on the new visit but builds
+    # NO insurance-order list, so no claim is made and no work list shows it (84 visits, $18,802). The chart's own order and its open plans at this
+    # moment go on every register row (None = the chart could not be read). The create shape stays: a blank insorder on a new visit is unproven.
+    _ip = [dict(re.findall(r'(\w+)="([^"]*)"', t)) for t in re.findall(r'<insplan ([^>]*)>', r)]      # attribute order does not matter (as elig_amd.plans)
+    ctx["chart_insorder"] = a.get("insorder", "") if p else None
+    ctx["open_plan_seqs"] = [x.get("sequence") or "?" for x in _ip if x.get("id") and not (x.get("enddate") or "").strip()] if p else None
     sample = sample or qsample
     if sample:
         d = ET.fromstring(resave.detail(re.sub(r"\D", "", sample)))
@@ -1618,7 +1627,13 @@ def main():
                             if len(fees) == len(cids): fees = fees[:_i] + fees[_i + 1:]
                         except Exception: pass
                         cids = [c for c in cids if c != info["quality_charge"]] + [info["quality_charge"]]
+                _ops = ctx.get("open_plan_seqs")      # 11/10/2026 (round 7): the chart's own order and open plans when this visit was entered (None = not read)
+                info["chart_insorder"] = ctx.get("chart_insorder"); info["open_plans_at_entry"] = len(_ops) if isinstance(_ops, list) else None; info["open_plan_seqs_at_entry"] = _ops
                 _unprov(); reg["created"].append({"feed_id": fid, "pid": pid, "visit": vid.group(1) if vid else "", "charges": cids, "fees": fees, "at": datetime.datetime.utcnow().isoformat(), **info})
+                if info["open_plans_at_entry"] == 0 or info["chart_insorder"] == "":
+                    stats["NO PLAN AT ENTRY"] += 1
+                    print("NO PLAN AT ENTRY", pid, vid.group(1) if vid else "?", info["dos"], "- %s: AdvancedMD built no insurance order for this visit; it bills only after a plan is added AND the visit is saved again (the insurance check does that)" % (
+                        "the chart had no open plan" if info["open_plans_at_entry"] == 0 else "the chart had no insurance order"))
                 for cpt, _d in zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"])): ctx["live"].add((cpt, _d))   # each line under its OWN date
                 if info.get("quality_codes") and info.get("quality_charge"):
                     ctx["live"].add((QUALITY_CODE, info.get("quality_dos") or info["dos"])); stats["quality code 1123F added (advance care plan)"] += 1

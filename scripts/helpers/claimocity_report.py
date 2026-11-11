@@ -6,7 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-10.6"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-10.7"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -22,7 +22,7 @@ json.dump(lite, open(("registers/feed_verify_%s.json" % STAMP), "w"), indent=1)
 fees = sum(float(f) for x in reg["created"] for f in x.get("fees", []) if re.match(r"^\d", f))
 cpts = collections.Counter(c for x in reg["created"] for c in x["cpts"])
 dec = collections.Counter(v.get("decision") for v in ver.values())
-orders_changed = sum(1 for v in ver.values() for k, o in (v.get("applied") or {}).items() if o and o != (v.get("insorder") or "").replace(" ", ""))
+orders_changed = sum(len(v.get("saved") or []) for v in ver.values())      # 11/10/2026 (round 7): only saves really sent and accepted (the old count took every order that differed from the chart's, sent or not)
 plans_added = [(pid, f) for pid, v in ver.items() for f in v.get("fixes") or [] if f.startswith("discovery: added")] + [(pid, f) for pid, v in fix.items() for f in v.get("fixes") or [] if f.startswith("added")]
 leads = collections.Counter((v.get("lead") or {}).get("code") for v in ver.values() if v.get("decision") == "RELEASE")
 holds = {pid: v.get("hold") for pid, v in ver.items() if v.get("decision") == "HOLD"}
@@ -294,11 +294,29 @@ L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["cre
 L("")
 L("## Cascade insurance check (AMD 271 per plan + deceased guard + Stedi discovery when nothing active)")
 L("- Charts: %d verified -> RELEASE %d (%d visits), HOLD %d (%d visits)." % (len(ver), dec.get("RELEASE", 0), release_visits, dec.get("HOLD", 0), hold_visits))
+# 11/10/2026 (round 7): what the insurance check could not confirm on a visit's insurance-order LIST (a claim is built from the list; a visit entered
+# while its chart had no plan reads insorder "1" over an EMPTY list and is never billed). Each is ONE line that starts "  - TOP OF THE REPORT - ".
+_HELD = "HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it"
+_NOCLAIM = "HELD in this report only - AdvancedMD makes no claim for this visit until it is saved again with its plan in place"      # the ending of a chart whose visits have an empty insurance order
+try:
+    _ov = lambda key: [(p_, x_) for p_, v_ in ver.items() if isinstance(v_, dict) for x_ in (v_.get(key) if isinstance(v_.get(key), list) else [])]
+    _who2 = lambda rows: ", ".join("%s %s" % (p_, x_) for p_, x_ in rows[:40]) + (" +%d more" % (len(rows) - 40) if len(rows) > 40 else "")
+    _nol, _dif, _unr, _svp = _ov("no_order_list"), _ov("order_differs"), _ov("order_unread"), _ov("save_problem")
+    _nop = [(p_, v_) for p_, v_ in ver.items() if isinstance(v_, dict) and v_.get("decision") == "HOLD" and any(str(h_).startswith("no open plan on this chart") for h_ in v_.get("hold") or [])]
+    if _nol: L("  - TOP OF THE REPORT - NO CLAIM CAN BE MADE: %d visit(s) on %d chart(s) have no insurance order: %s" % (len(_nol), len({p_ for p_, _x in _nol}), _who2(_nol)))
+    if _nop: L("  - TOP OF THE REPORT - %d chart(s) held with NO plan: each visit of such a chart must be saved again after a plan is added (a plan alone builds no insurance order): %s" % (
+        len(_nop), ", ".join("%s (%s)" % (p_, " ".join(v_.get("visits") or [])) for p_, v_ in _nop[:20]) + (" +%d more" % (len(_nop) - 20) if len(_nop) > 20 else "")))
+    if _dif: L("  - TOP OF THE REPORT - OLD INSURANCE ORDER: %d visit(s) on %d chart(s) still bill to their old insurance order (or are already billed) - %s: %s" % (len(_dif), len({p_ for p_, _x in _dif}), _HELD, _who2(_dif)))
+    if _unr: L("  - TOP OF THE REPORT - INSURANCE ORDER NOT READ: %d visit(s) on %d chart(s) - %s: %s" % (len(_unr), len({p_ for p_, _x in _unr}), _HELD, _who2(_unr)))
+    if _svp: L("  - TOP OF THE REPORT - SAVE NOT AS ASKED: %d visit(s) on %d chart(s) - the order reads right but the save lost a charge or the admission date (see the hold line): %s" % (len(_svp), len({p_ for p_, _x in _svp}), _who2(_svp)))
+except Exception as _e:                                    # never stops the digest
+    L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem in the insurance-check register." % type(_e).__name__)
 L("- Lead payer on released charts: " + ", ".join("%s %d" % (k, v) for k, v in leads.most_common()))
-L("- Visit insurance orders changed from the chart default: %d; plans added from discovery / feed IN1: %d" % (orders_changed, len(plans_added)))
+L("- Visit insurance orders changed (saves sent and accepted by AdvancedMD): %d; plans added from discovery / feed IN1: %d" % (orders_changed, len(plans_added)))
 for pid, f in plans_added: L("  - %s: %s" % (pid, f))
-L("- Holds (William):")
-for pid, h in holds.items(): L("  - %s: %s" % (pid, "; ".join(h)[:220]))
+L("- Holds (William) - %s (a visit whose insurance order is empty bills nothing until it is saved again):" % _HELD)
+for pid, h in holds.items(): L("  - %s: %s%s%s" % (pid, "; ".join(str(x).replace(" - " + _HELD, "").replace(" - " + _NOCLAIM, "") for x in h)[:400], (" - " + _HELD) if any(_HELD in str(x) for x in h) else "",
+                                (" - " + _NOCLAIM) if any(_NOCLAIM in str(x) for x in h) else ""))      # each ending said once; a chart with no plan (empty insurance orders) gets the NO CLAIM words
 L("")
 L("## Claim Inspector pass")
 L("- fixed %d visits, advisories bypassed on %d, laterality logged %d, held %d (Pattern 24078 CCI: 99309 same day as the 10/22 CCM)." % (len(insp.get("fixed", [])), len(insp.get("bypassed", [])), len(insp.get("laterality", [])), len(insp.get("held", []))))

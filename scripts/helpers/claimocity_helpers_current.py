@@ -16,8 +16,8 @@ FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_insp
                 "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py")
 # the version lines mirror.py protects (the self-test checks that the two lists agree); the import helper and the two drivers carry the
 # driver's own POS_RULE line. The parser has not changed since 10/28/2026 and carries none: without a clone it is not checked.
-VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.6"', "claimocity_inspector.py": "the step takes BOTH no-charge lines off",
-                 "claimocity_verify.py": "sent once more without BOTH lines"}
+VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.7"', "claimocity_inspector.py": "the step takes BOTH no-charge lines off",
+                 "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST"}      # 11/10/2026 (round 7): a sentence only the list-aware version has
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):
     try: return open(p, "rb").read()
