@@ -388,7 +388,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure. On November 10, 2026 two reviews proved that 84 feed visits ($18,802) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The fix (rule version .7) is not live yet.",
+  "assessment": "Claims go out within days and runs happen every few hours. Only 70% of recent primary lines were paid, against the 86% to 88% of claims that billing companies report paid on first submission. The two are not the same measure. On November 10, 2026 two reviews proved that 84 feed visits ($18,802) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The fix (rule version .7) went live on November 11, 2026; none of the 84 visits is billed yet.",
   "evidence": [
    "218 of 311 primary lines paid, service since August 1, 2026",
    "13,385 claims sent since July 2026, including mass re-sends of old claims",
@@ -485,7 +485,7 @@
   "assessment": "About four in ten Medicare patients also have Medicaid. Much of that coinsurance is legally uncollectible, and the rest depends on Medicaid enrollment staying current.",
   "evidence": [
    "39 recent lines carried the prior-payer adjustment code",
-   "The physician's Medicaid provider agreement expires December 27, 2026 (target to file December 1)"
+   "The physician's Medicaid provider agreement expires December 27, 2026 (file by November 13; December 1 is the last call)"
   ],
   "next_step": "Post uncollectible dual-eligible coinsurance as contractual, and renew Medicaid on time."
  },
@@ -555,14 +555,14 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Enrollment problems are costing money now. Several are open across the two clinicians. The physician's Medicaid provider agreement expires December 27, 2026, and the practice's target is to file by December 1.",
+  "assessment": "Enrollment problems are costing money now. Several are open across the two clinicians. The physician's Medicaid provider agreement expires December 27, 2026, and the renewal is to be filed by November 13, with December 1 as the last call.",
   "evidence": [
-   "The physician's Florida Medicaid provider agreement expires December 27, 2026 (target to file December 1)",
+   "The physician's Florida Medicaid provider agreement expires December 27, 2026 (file by November 13; December 1 is the last call)",
    "The nurse practitioner's Medicaid enrollment is a new application, returned with three faults",
    "Railroad Medicare is paying: $718.76 in 2026, $3,764 open (the earlier 'not enrolled' looks wrong for the group and the physician; the nurse practitioner's status is not known)",
    "108 denied visits tagged credentialing"
   ],
-  "next_step": "Reset the Medicaid portal password and file the renewal by December 1, then clear the list in order of dollars affected."
+  "next_step": "Reset the Medicaid portal password and file the renewal by November 13 (December 1 is the last call), then clear the list in order of dollars affected."
  },
  {
   "category_slug": "pc-medicare-ffs",
@@ -700,7 +700,7 @@
   "priority": 2,
   "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement (it expires December 27, 2026), hospital reappointment items and the nurse practitioner's national provider record. Not yet confirmed: that the nurse practitioner's written protocol with the physician is current and kept at each facility where she sees patients, as Florida requires unless she is registered for autonomous practice. Medicare pays for her visits only if she works with a physician as state law requires.",
   "evidence": [
-   "The physician's Medicaid provider agreement expires December 27, 2026 (target to file December 1)",
+   "The physician's Medicaid provider agreement expires December 27, 2026 (file by November 13; December 1 is the last call)",
    "Nurse practitioner's national provider record carries the wrong specialty code"
   ],
   "next_step": "Put every license, registration and enrollment expiry on one calendar with 90-day warnings."
@@ -1011,7 +1011,7 @@
   "assessment": "A single database and dashboard cover receivables, denials, charges, treasury and credentialing. Since November 10, 2026 the full AdvancedMD history is in the same database: 11,050 charts and 84,617 charge lines with their payments and write-offs, dates of service 2022 to November 2026. Its definitions were corrected the same day: 'paid' became 'settled' (payments plus write-offs), reason codes and empty dates were fixed, and unapplied payments got their own table. Still missing: the net collection rate, results by line of work and the financial statements.",
   "next_step": "Compute the net collection rate by month of service, labelling 2022 to 2025 'posted payments', and load the accounting data.",
   "evidence": [
-   "Charge detail (place of service, allowed amount) pulled for 4,552 of 11,050 charts by 23:05 UTC on November 10, continuing in two-hour pieces on the owner's word"
+   "Charge detail (place of service, allowed amount) pulled for all 11,050 charts; the pull finished at 01:08 UTC on November 11, 2026 (68,727 charge rows on the 5,416 charts that have charges)"
   ]
  },
  {

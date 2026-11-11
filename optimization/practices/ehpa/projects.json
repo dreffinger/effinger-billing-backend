@@ -145,7 +145,7 @@
   "start_by": "2026-11-11",
   "target_date": "2027-01-29",
   "success_measures": [
-   "Medicaid renewal filed before December 1 and confirmed (the agreement expires December 27, 2026)",
+   "Medicaid renewal filed by November 13 (December 1 at the latest) and confirmed (the agreement expires December 27, 2026)",
    "No open item on the credentialing board older than 60 days",
    "One expiry calendar with 90-day warnings"
   ],
@@ -262,7 +262,7 @@
    "Monthly sample",
    "Decide and correct the 149 visits",
    "Independent review before a claim-changing rule goes live",
-   "Deliver the never-billed fix (rule version 2026-11-10.7)"
+   "Deliver the never-billed fix (rule version 2026-11-10.7): done, live since November 11, 2026"
   ]
  },
  {

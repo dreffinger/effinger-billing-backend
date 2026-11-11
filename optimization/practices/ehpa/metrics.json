@@ -518,7 +518,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "The full AdvancedMD history (payments, write-offs and balances on 84,617 charge lines) has been in the practice database since November 10, 2026. The rate can be worked out from it by month of service once contractual write-offs are told apart from the others; allowed amounts per charge come with the charge-detail pull, 4,552 of 11,050 charts by 23:05 UTC on November 10. Not computed yet. Posted payments for 2022 to 2025 are a floor: 12,821 charge lines with $1,910,279.88 of fees were closed in May 2026 as 'paid, not posted'. This is the single most useful missing number.",
+  "note": "The full AdvancedMD history (payments, write-offs and balances on 84,617 charge lines) has been in the practice database since November 10, 2026. The rate can be worked out from it by month of service once contractual write-offs are told apart from the others; allowed amounts per charge came with the charge-detail pull, which finished for all 11,050 charts on November 11, 2026. Not computed yet. Posted payments for 2022 to 2025 are a floor: 12,821 charge lines with $1,910,279.88 of fees were closed in May 2026 as 'paid, not posted'. This is the single most useful missing number.",
   "source": "ehpa-neon"
  },
  {
@@ -581,7 +581,7 @@
   "status": "red",
   "basis": "measured",
   "value_text": "At least 7 open enrollment problems",
-  "note": "Open: the physician's Florida Medicaid agreement (expires December 27, 2026; target to file December 1), the nurse practitioner's new Medicaid application (returned with three faults), Cigna's termination (its messages can be read until December 7), TRICARE For Life's electronic enrollment (rejected), the Veterans Affairs portal registration, the nurse practitioner's national provider record and the hospital reappointment. Corrected on November 10, 2026: the UnitedHealthcare attestation is not overdue, TRICARE East's electronic claims are approved, and Railroad Medicare is paying ($718.76 in 2026, $3,764 open).",
+  "note": "Open: the physician's Florida Medicaid agreement (expires December 27, 2026; file by November 13, December 1 is the last call), the nurse practitioner's new Medicaid application (returned with three faults), Cigna's termination (its messages can be read until December 7), TRICARE For Life's electronic enrollment (rejected), the Veterans Affairs portal registration, the nurse practitioner's national provider record and the hospital reappointment. Corrected on November 10, 2026: the UnitedHealthcare attestation is not overdue, TRICARE East's electronic claims are approved, and Railroad Medicare is paying ($718.76 in 2026, $3,764 open).",
   "source": "ehpa-neon"
  },
  {
@@ -725,7 +725,7 @@
   "status": "red",
   "basis": "measured",
   "value": 47,
-  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. The practice's target is to file by December 1 to leave the agency time; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Nearer dated duties, which are not expirations and are not counted here: the Veterans Affairs payment portal account (it lapses about November 22 unless someone signs in; estimated), the UnitedHealthcare directory attestation (about November 26) and the physician's board-certification yearly assessment (due November 30, 2026; not known whether it is done).",
+  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. It is to be filed by November 13 to leave the agency time, with December 1 as the last call; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Nearer dated duties, which are not expirations and are not counted here: the Veterans Affairs payment portal account (it lapses about November 22 unless someone signs in; estimated), the UnitedHealthcare directory attestation (about November 26) and the physician's board-certification yearly assessment (due November 30, 2026; not known whether it is done).",
   "source": "ehpa-neon"
  },
  {

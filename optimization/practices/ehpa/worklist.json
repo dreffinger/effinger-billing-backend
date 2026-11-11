@@ -283,7 +283,7 @@
   "project_slug": "coverage-cleanup",
   "ord": 32,
   "title": "Start the check-only coverage run on the first of each month",
-  "detail": "Approved by the owner on November 10, 2026 as check-only: the run reads, records, compares with last month and writes board cards and a short report; it changes no chart, adds or ends no plan and re-sends no claim. Medicare is asked only about patients being billed that month, because Medicare does not allow checks not tied to real claims. Expected use is 40 to 70 paid checks, about $10 to $40 a month, capped at 150 checks or $75 a run with at most 25 discovery searches; a one-time catch-up costs at most about 450 checks, about $260 (estimates). It is built after rule version .7 is live (version .6 and the look-up savings went live on November 10); the owner creates the monthly routine on the web page from text billing gives him.",
+  "detail": "Approved by the owner on November 10, 2026 as check-only: the run reads, records, compares with last month and writes board cards and a short report; it changes no chart, adds or ends no plan and re-sends no claim. Medicare is asked only about patients being billed that month, because Medicare does not allow checks not tied to real claims. Expected use is 40 to 70 paid checks, about $10 to $40 a month, capped at 150 checks or $75 a run with at most 25 discovery searches; a one-time catch-up costs at most about 450 checks, about $260 (estimates). Its build started on November 11, 2026, after rule version .7 went live (version .6 and the look-up savings went live on November 10); the owner creates the monthly routine on the web page from text billing gives him.",
   "owner": "claude",
   "due": "2026-12-01"
  },
@@ -1029,8 +1029,8 @@
   "id": "ehpa-automation-controls-11",
   "project_slug": "automation-controls",
   "ord": 115,
-  "title": "Deliver the never-billed fix (rule version 2026-11-10.7) and its daily list",
-  "detail": "The fix checks the insurance-order list after every save, never saves a billed visit when it repairs a never-billed one, reads the admission date before and after a save, words a hold by what the list shows, and adds a daily read-only list of feed visits that were never billed. It passed three independent reviews, a fix round and a re-check, which said deliver. Its delivery, merged with version .6 and the look-up savings (live at 23:44 UTC on November 10), was being prepared late on November 10; it is not live yet. The insurance check's HOLD stays a label in its report; making a hold stop a claim in AdvancedMD is a later change that needs the owner's word.",
+  "title": "Never-billed fix (rule version 2026-11-10.7) and its daily list: delivered November 11, 2026; read back the first live batch",
+  "detail": "The fix checks the insurance-order list after every save, never saves a billed visit when it repairs a never-billed one, reads the admission date before and after a save, words a hold by what the list shows, and adds a daily read-only list of feed visits that were never billed. It passed three independent reviews, a fix round and a re-check, which said deliver. It was delivered, merged with version .6 and the look-up savings, at 01:20 UTC on November 11, 2026; all ten of the billing self-tests passed on the delivered version. Still to do: read back the first live batch under it. The insurance check's HOLD stays a label in its report; making a hold stop a claim in AdvancedMD is a later change that needs the owner's word.",
   "owner": "claude",
   "due": "2026-11-13"
  },
@@ -1102,7 +1102,7 @@
   "project_slug": "coverage-cleanup",
   "ord": 123,
   "title": "Send the 84 never-billed feed visits as the owner approved",
-  "detail": "After the never-billed fix (rule version .7) is live, the billing routine sends them: one pilot visit first, read back, then the rest oldest first. Approved by the owner on November 10, 2026: the 71 visits whose payer only the look-up found go out only when an eligibility check dated to the service date shows the plan active (the checks cost about $10 to $25); the chart with two plans goes to the plan that check shows active; the 13 visits whose plan came from the feed, a face sheet or by hand are sent. The nurse practitioner's 10 visits are moved to her first; the 2 initial visits stay under the physician. A standing word lets a routine save such a visit again once its first plan lands, after read-backs of the clinician, the admission date and the insurance order, never on a billed visit. None is billed yet.",
+  "detail": "The never-billed fix (rule version .7) has been live since November 11, 2026, so a billing session with write access to AdvancedMD can send them: one pilot visit first, read back, then the rest oldest first. Approved by the owner on November 10, 2026: the 71 visits whose payer only the look-up found go out only when an eligibility check dated to the service date shows the plan active (the checks cost about $10 to $25); the chart with two plans goes to the plan that check shows active; the 13 visits whose plan came from the feed, a face sheet or by hand are sent. The nurse practitioner's 10 visits are moved to her first; the 2 initial visits stay under the physician. A standing word lets a routine save such a visit again once its first plan lands, after read-backs of the clinician, the admission date and the insurance order, never on a billed visit. None is billed yet.",
   "owner": "claude",
   "due": "2026-11-20"
  }
