@@ -5992,3 +5992,26 @@ No new AMD / Stedi call shapes this run (vocabulary +0). Lessons:
 2. claimocity_gcs.py --install-key needs the same `PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3` as the listing call - without it the image's cryptography module panics under pyo3 ('Python API call failed') and the key is not installed (exit 4 on the next call). The runbook's (a) paragraph should name the environment on the install command too.
 3. The 06:39Z 11/11 firing of this routine posted no START and no digest (the GitHub Actions engine covered the columns at 05:18Z / 07:19Z) - the fourth silent firing since 11/9 (11/9 00:39Z, 11/10 12:39Z, 11/10 18:39Z, 11/11 06:39Z). The Code routine's run history for trig_01QRqT8KB4Q1H9EyYRG4NBKX shows why.
 4. transcript_extract.py `drive <fileId>=<path>` restored pseudonyms.json byte-exact (12,881 bytes, 449 names) after a heredoc paste of the same base64 also decoded to valid JSON this time - use the extractor every run regardless; the paste is the fragile path.
+
+# captured_calls additions - 2026-11-11T1839Z (1:39 PM ET Wed 11/11 backend billing run, ehpa cloud Code routine, six-hourly slot)
+
+No new call shapes this run (vocabulary unchanged). Lessons for the registry:
+
+- PCC Clinical Resident Profile by phone photo (Pam's admit email, Westminster Oaks SNF): the sheet's "Primary Payer" + "Ins. Company" +
+  "Managed Care Policy #" settle a chart the Stedi cascade had left on William's turn. pat17478318 (feed chart F261105-04, HCA stay
+  11/03-11/08/2026): the 11/5 feed discovery hit was CIGNA DENTAL; the sheet names CAPITAL HEALTH PLAN policy <8 digits> with a Medicare HIC
+  listed beside it and "Managed Care coinsurance from private" as the second payer. Stedi 95112 with that policy at DOS 11/07/2026:
+  Active Coverage, HM (HMO), planCoverage COMMERCIAL, planBegin 20181001, and the payer ECHOES the member id with its CHP prefix
+  (subscriber.memberId CHP<8 digits>, planInformation.priorIdNumber = the bare 8 digits) - enter the CAP07 plan with the CHP-prefixed id,
+  as the chart's other CAP07 plans carry it. A METLIFE 'CITY OF TALLAHASSEE' discovery hit on a working-aged Tallahassee resident is the
+  City employee/retiree benefit; the medical plan is CHP (commercial HMO), primary ahead of any Medicare (working aged).
+- Same recipe as facesheet_insure_1109_0639.py, no auth: add_ins CAP07 car41826 (begin = Stedi planBegin, no group) -> ins_update enddate on
+  the wrong plan the day before the first DOS (the edit blanks the patient insorder: ins_update sequence=<new seq> restores it, read back
+  on getdemographic) -> each visit's FULL charge echo resave with insorder=<new seq> onhcfa=1 and its OWN hospitalizationfrom kept
+  (resave._extins_xml(v, <the visit's current value>)) -> freq1_visit.run(vid, cid, seq) -> 204 each -> amd.check_eligibility on the
+  new plan. Helper grantham_1111_1839.py (register registers/grantham_2026-11-11T1839Z.json).
+- Claimocity GCS key install: the pylib path (PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3) is needed for
+  --install-key as well as for the list (12:39Z lesson confirmed).
+- feed_order_sweep.py writes its log with Python's block buffering under nohup: logs/feed_order_sweep_<stamp>.log stays at 0 bytes for
+  the first minutes while registers/feed_order_sweep_<stamp>.json already exists - not a stalled sweep; `pgrep -f feed_order_sweep.py`
+  tells.

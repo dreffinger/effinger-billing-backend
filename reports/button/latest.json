@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-11T1718Z",
+ "stamp": "2026-11-11T1839Z-engine",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 3 checks $341.13 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43066913129",
- "started": "2026-11-11T17:18:57Z",
- "ended": "2026-11-11T17:25:52Z",
+ "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled columns (live) - Code routine 1839Z",
+ "run_url": "",
+ "started": "2026-11-11T18:49:09Z",
+ "ended": "2026-11-11T18:58:09Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 3,
-    "unposted": 341.13
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 341.13,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7841,
    "actionable": 76,
    "actionable_amt": 13875.0,
-   "asof": "2026-11-11 17:25 UTC"
+   "asof": "2026-11-11 18:58 UTC"
   }
  },
  "steps": [
@@ -77,13 +77,13 @@
    "counts": {
     "helpers copied": 1379,
     "registers": 1844,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T17:18:57Z",
-   "ended": "2026-11-11T17:18:57Z"
+   "started": "2026-11-11T18:49:09Z",
+   "ended": "2026-11-11T18:49:09Z"
   },
   {
    "name": "columns",
@@ -117,64 +117,37 @@
     },
     {
      "column": "exclusions run 1700365",
-     "kind": "CIG09 PA  ACK,REJCTD FOR INVAL INFO-CLAIM,ENCNTR HAS INVAL INFO AS",
+     "kind": "CIG09 PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS",
      "visits": 1,
      "ids": "v19460525"
     }
    ],
    "errors": [],
-   "started": "2026-11-11T17:18:57Z",
-   "ended": "2026-11-11T17:20:49Z"
+   "started": "2026-11-11T18:49:09Z",
+   "ended": "2026-11-11T18:52:11Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "3 checks / $341.13 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 2,
-    "checks the Post button posted or was offered": 2,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 2,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 3,
+    "checks dismissed": 0,
     "checks held": 0,
-    "denial lines recorded": 10
+    "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 341.13,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 341.13
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053500,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "2611121354",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053501,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "190623614",
-     "amount": 0.0,
-     "unposted": 22.6,
-     "stage": "before"
-    },
-    {
-     "check": 1053502,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "213551637",
-     "amount": 0.0,
-     "unposted": 318.53,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-11T17:20:49Z",
-   "ended": "2026-11-11T17:21:17Z"
+   "started": "2026-11-11T18:52:11Z",
+   "ended": "2026-11-11T18:52:15Z"
   },
   {
    "name": "packages",
@@ -185,8 +158,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T17:21:17Z",
-   "ended": "2026-11-11T17:21:17Z"
+   "started": "2026-11-11T18:52:15Z",
+   "ended": "2026-11-11T18:52:15Z"
   },
   {
    "name": "outstanding",
@@ -205,56 +178,56 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1320,
      "dollars": 136534.28,
      "oldest_days": 1092
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 143,
      "dollars": 30007.07,
      "oldest_days": 1188
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 429
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 89,
      "dollars": 17848.4,
      "oldest_days": 1161
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 299,
      "dollars": 17713.48,
      "oldest_days": 1059
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 56,
      "dollars": 9247.05,
      "oldest_days": 665
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 33,
      "dollars": 6184.22,
      "oldest_days": 977
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 20,
      "dollars": 4562.0,
      "oldest_days": 361
@@ -268,29 +241,29 @@
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 373
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 36,
      "dollars": 3782.06,
      "oldest_days": 51
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 204
     }
    ],
    "errors": [],
-   "started": "2026-11-11T17:21:17Z",
-   "ended": "2026-11-11T17:21:19Z"
+   "started": "2026-11-11T18:52:15Z",
+   "ended": "2026-11-11T18:52:17Z"
   },
   {
    "name": "denials",
@@ -377,13 +350,11 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T17:21:19Z",
-   "ended": "2026-11-11T17:25:52Z"
+   "started": "2026-11-11T18:52:17Z",
+   "ended": "2026-11-11T18:58:09Z"
   }
  ],
  "packages": [],
- "waiting": [
-  "ERA CO-45 pass after the Post button: 2 line(s) left for review (registers/era_co45_relink_*)"
- ],
+ "waiting": [],
  "errors": []
 }

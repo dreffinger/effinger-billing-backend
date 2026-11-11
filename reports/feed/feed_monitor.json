@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-11T13:01:53Z",
+ "generated": "2026-11-11T19:05:45Z",
  "as_of": "2026-11-11",
  "coverage": {
   "files": [
@@ -414,21 +414,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 64,
-     "visits": 61,
-     "dollars": 10368.0
+     "lines": 69,
+     "visits": 65,
+     "dollars": 11180.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 30,
-     "visits": 29,
-     "dollars": 4673.0
+     "lines": 28,
+     "visits": 28,
+     "dollars": 4284.0
     },
     {
      "name": "Pamela G.",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 2454.0
+     "lines": 14,
+     "visits": 14,
+     "dollars": 2031.0
     }
    ],
    "payer": [
@@ -466,7 +466,7 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 14
+     "patients": 13
     },
     {
      "code": "E785",
@@ -477,23 +477,19 @@
      "patients": 6
     },
     {
-     "code": "M6281",
-     "patients": 5
-    },
-    {
      "code": "J449",
      "patients": 5
     },
     {
-     "code": "E039",
-     "patients": 5
-    },
-    {
-     "code": "I639",
-     "patients": 5
-    },
-    {
      "code": "R55",
+     "patients": 4
+    },
+    {
+     "code": "M6281",
+     "patients": 4
+    },
+    {
+     "code": "E039",
      "patients": 4
     },
     {
@@ -505,11 +501,15 @@
      "patients": 4
     },
     {
+     "code": "I639",
+     "patients": 4
+    },
+    {
      "code": "G20A1",
      "patients": 4
     },
     {
-     "code": "I739",
+     "code": "E119",
      "patients": 3
     }
    ],
@@ -834,21 +834,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 844,
-     "visits": 610,
-     "dollars": 139756.0
+     "lines": 849,
+     "visits": 614,
+     "dollars": 140568.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 278,
-     "visits": 242,
-     "dollars": 47099.0
+     "lines": 276,
+     "visits": 241,
+     "dollars": 46710.0
     },
     {
      "name": "Pamela G.",
-     "lines": 88,
-     "visits": 86,
-     "dollars": 13399.0
+     "lines": 85,
+     "visits": 83,
+     "dollars": 12976.0
     }
    ],
    "payer": [
@@ -892,7 +892,7 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 113
+     "patients": 112
     },
     {
      "code": "E785",
@@ -900,11 +900,11 @@
     },
     {
      "code": "I639",
-     "patients": 41
+     "patients": 40
     },
     {
      "code": "E039",
-     "patients": 38
+     "patients": 37
     },
     {
      "code": "N390",
@@ -920,7 +920,7 @@
     },
     {
      "code": "M6281",
-     "patients": 28
+     "patients": 27
     },
     {
      "code": "F0390",
@@ -928,7 +928,7 @@
     },
     {
      "code": "I4891",
-     "patients": 26
+     "patients": 25
     },
     {
      "code": "M48.02",
@@ -1421,21 +1421,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 959,
-     "visits": 717,
-     "dollars": 154685.0
+     "lines": 964,
+     "visits": 721,
+     "dollars": 155497.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 278,
-     "visits": 242,
-     "dollars": 47099.0
+     "lines": 276,
+     "visits": 241,
+     "dollars": 46710.0
     },
     {
      "name": "Pamela G.",
-     "lines": 88,
-     "visits": 86,
-     "dollars": 13399.0
+     "lines": 85,
+     "visits": 83,
+     "dollars": 12976.0
     }
    ],
    "payer": [
@@ -1479,7 +1479,7 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 113
+     "patients": 112
     },
     {
      "code": "E785",
@@ -1487,11 +1487,11 @@
     },
     {
      "code": "I639",
-     "patients": 41
+     "patients": 40
     },
     {
      "code": "E039",
-     "patients": 38
+     "patients": 37
     },
     {
      "code": "N390",
@@ -1507,7 +1507,7 @@
     },
     {
      "code": "M6281",
-     "patients": 28
+     "patients": 27
     },
     {
      "code": "F0390",
@@ -1515,7 +1515,7 @@
     },
     {
      "code": "I4891",
-     "patients": 26
+     "patients": 25
     },
     {
      "code": "M48.02",
