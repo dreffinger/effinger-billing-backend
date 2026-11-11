@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-11T13:20:59Z",
+ "at": "2026-11-11T15:21:03Z",
  "as_of": "2026-11-11",
- "total": 289105.17,
- "visits": 2529,
- "charts": 469,
+ "total": 288524.17,
+ "visits": 2526,
+ "charts": 468,
  "over_365": {
   "n": 544,
   "dollars": 25147.93
  },
  "by_bucket": {
   "0-30": {
-   "n": 617,
-   "dollars": 110286.01
+   "n": 614,
+   "dollars": 109705.01
   },
   "31-60": {
    "n": 275,
@@ -54,10 +54,10 @@
   {
    "carrier": "UNI20",
    "name": "UNITED HEALTHCARE",
-   "n": 145,
-   "dollars": 30428.07,
+   "n": 143,
+   "dollars": 30007.07,
    "buckets": {
-    "0-30": 13399.0,
+    "0-30": 12978.0,
     "31-60": 6110.0,
     "61-90": 1041.2,
     "91-180": 2055.0,
@@ -129,10 +129,10 @@
   {
    "carrier": "VACCN",
    "name": "OPTUM VA CCN",
-   "n": 34,
-   "dollars": 6344.22,
+   "n": 33,
+   "dollars": 6184.22,
    "buckets": {
-    "0-30": 2860.0,
+    "0-30": 2700.0,
     "31-60": 1433.0,
     "61-90": 640.0,
     "91-180": 913.0,
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 260,
-   "dollars": 46057.0
+   "n": 257,
+   "dollars": 45476.0
   }
  ],
  "oldest": [
@@ -19707,14 +19707,6 @@
    "dos": "2026-11-02"
   },
   {
-   "visitid": 19460172,
-   "patientid": 17475376,
-   "carriercode": "UNI20",
-   "insbalance": 310.0,
-   "days": 9,
-   "dos": "2026-11-02"
-  },
-  {
    "visitid": 19460171,
    "patientid": 17473113,
    "carriercode": "UNI20",
@@ -20302,14 +20294,6 @@
    "visitid": 19460203,
    "patientid": 17475599,
    "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 8,
-   "dos": "2026-11-03"
-  },
-  {
-   "visitid": 19460202,
-   "patientid": 17475376,
-   "carriercode": "UNI20",
    "insbalance": 111.0,
    "days": 8,
    "dos": "2026-11-03"
@@ -21222,14 +21206,6 @@
    "visitid": 19460409,
    "patientid": 17472228,
    "carriercode": "UNI20",
-   "insbalance": 160.0,
-   "days": 5,
-   "dos": "2026-11-06"
-  },
-  {
-   "visitid": 19460393,
-   "patientid": 17477352,
-   "carriercode": "VACCN",
    "insbalance": 160.0,
    "days": 5,
    "dos": "2026-11-06"

@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-11T1319Z",
+ "stamp": "2026-11-11T1518Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 2 checks $339.04 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43027999269",
- "started": "2026-11-11T13:19:06Z",
- "ended": "2026-11-11T13:24:43Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43047036758",
+ "started": "2026-11-11T15:18:41Z",
+ "ended": "2026-11-11T15:25:52Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 2,
+    "unposted": 339.04
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 339.04,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 289105.17,
-   "visits": 2529,
-   "charts": 469,
+   "total": 288524.17,
+   "visits": 2526,
+   "charts": 468,
    "over_365": {
     "n": 544,
     "dollars": 25147.93
@@ -65,7 +65,7 @@
    "visits": 7840,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-11 13:24 UTC"
+   "asof": "2026-11-11 15:25 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1379 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1379,
-    "registers": 1841,
+    "registers": 1844,
     "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T13:19:06Z",
-   "ended": "2026-11-11T13:19:07Z"
+   "started": "2026-11-11T15:18:41Z",
+   "ended": "2026-11-11T15:18:42Z"
   },
   {
    "name": "columns",
@@ -123,31 +123,50 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T13:19:07Z",
-   "ended": "2026-11-11T13:20:56Z"
+   "started": "2026-11-11T15:18:42Z",
+   "ended": "2026-11-11T15:20:43Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "2 checks / $339.04 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 2,
+    "checks the Post button posted or was offered": 2,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
     "checks dismissed": 0,
     "checks held": 0,
     "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 339.04,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 339.04
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053495,
+     "payer": "UNITED HEALTHCARE",
+     "checknumber": "W377275164",
+     "amount": 0.0,
+     "unposted": 230.04,
+     "stage": "before"
+    },
+    {
+     "check": 1053497,
+     "payer": "OPTUM VA CCN",
+     "checknumber": "3009733065",
+     "amount": 0.0,
+     "unposted": 109.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-11T13:20:56Z",
-   "ended": "2026-11-11T13:20:58Z"
+   "started": "2026-11-11T15:20:43Z",
+   "ended": "2026-11-11T15:21:01Z"
   },
   {
    "name": "packages",
@@ -158,21 +177,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T13:20:58Z",
-   "ended": "2026-11-11T13:20:58Z"
+   "started": "2026-11-11T15:21:01Z",
+   "ended": "2026-11-11T15:21:01Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2529 visits on 469 charts, $289105.17 open; 544 over a year ($25147.93)",
+   "summary": "2526 visits on 468 charts, $288524.17 open; 544 over a year ($25147.93)",
    "counts": {
-    "visits": 2529,
-    "charts": 469,
+    "visits": 2526,
+    "charts": 468,
     "over 365 days": 544
    },
    "dollars": {
-    "open insurance balance": 289105.17,
+    "open insurance balance": 288524.17,
     "over 365 days": 25147.93
    },
    "lines": [
@@ -186,8 +205,8 @@
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 145,
-     "dollars": 30428.07,
+     "visits": 143,
+     "dollars": 30007.07,
      "oldest_days": 1188
     },
     {
@@ -221,8 +240,8 @@
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
-     "visits": 34,
-     "dollars": 6344.22,
+     "visits": 33,
+     "dollars": 6184.22,
      "oldest_days": 977
     },
     {
@@ -262,22 +281,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T13:20:58Z",
-   "ended": "2026-11-11T13:20:59Z"
+   "started": "2026-11-11T15:21:01Z",
+   "ended": "2026-11-11T15:21:03Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7840 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2978, RESOLVED 4528, RESUBMITTED 196, OPEN 138",
+   "summary": "7840 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); RESOLVED 4528, WRITTEN-OFF 2978, RESUBMITTED 196, OPEN 138",
    "counts": {
     "charts read": 852,
     "denial lines": 13313,
     "visits": 7840,
     "actionable": 74,
     "inside 12 months": 71,
-    "status WRITTEN-OFF": 2978,
     "status RESOLVED": 4528,
+    "status WRITTEN-OFF": 2978,
     "status RESUBMITTED": 196,
     "status OPEN": 138
    },
@@ -350,8 +369,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T13:20:59Z",
-   "ended": "2026-11-11T13:24:43Z"
+   "started": "2026-11-11T15:21:03Z",
+   "ended": "2026-11-11T15:25:52Z"
   }
  ],
  "packages": [],
