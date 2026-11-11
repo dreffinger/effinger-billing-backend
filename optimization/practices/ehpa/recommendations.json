@@ -103,16 +103,16 @@
   "ord": 6,
   "kind": "revenue",
   "category_slug": "ar-claim-submission",
-  "title": "Send the 84 never-billed feed visits as the owner approved, now that the fix is live",
+  "title": "Send the 84 never-billed feed visits as the owner approved, once the guard for the visit-save helper is live too",
   "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
   "what": [
-   "The fix (rule version 2026-11-10.7) is live since November 11, 2026: send one pilot visit and read it back",
+   "The fix (rule version 2026-11-10.7) is live since November 11, 2026: once the guard for the visit-save helper is live too, send one pilot visit and read it back",
    "Send the 71 visits whose payer only the look-up found only when an eligibility check dated to the service date shows the plan active; the two-plan chart by that check; send the other 13",
    "Move the 10 nurse practitioner visits to her before they go; keep the 2 initial visits under the physician"
   ],
   "impact_basis": "Not valued: the charges are $18,802, but whether each payer found is right is not yet tested. The dated checks cost about $10 to $25.",
   "effort": "low",
-  "horizon": "now that rule version .7 is live (November 11, 2026); one pilot visit first",
+  "horizon": "once the guard for the visit-save helper is live too (rule version .7 has been live since November 11, 2026); one pilot visit first",
   "owner": "claude",
   "project_slug": "coverage-cleanup",
   "confidence": "high on the cause and the count; the dated coverage check settles each payer"
