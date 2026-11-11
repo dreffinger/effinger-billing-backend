@@ -948,10 +948,11 @@ check("9 runbook section: the TOP lines and what the routine does, how William a
       all(x_ in _stpn for x_ in ("## Feed visits with an empty insurance order", "written only after his word, by a chat session or by him - never by a routine",
                                  "THE REMEDY ORDER: oldest date of service first. The first live run saves ONE visit whose clinician matches - the pilot - and reads it back; the next run does the rest",
                                  "are run by a chat session, not by a routine", "A routine never writes \"cleared\"", "HOLD in the insurance check's report is a label only")), [x_ for x_ in ("## Feed visits", "never by a routine", "THE REMEDY ORDER", "chat session, not by a routine") if x_ not in _stpn])
-check("9 rulebook and lessons: one dated line each, with the cause; captured calls: a new section at the end on the list-aware read-back",
+# 11/11/2026: the lesson line and the captured-calls section are COUNTED, not pinned to the end of their files - every routine run appends to both
+check("9 rulebook and lessons: one dated line each, with the cause; captured calls: one new section on the list-aware read-back",
       _rl.count("FEED VISITS WITH AN EMPTY INSURANCE ORDER") == 1 and "(11/10/2026, William in chat, STANDING for the charge feed) FEED VISITS WITH AN EMPTY INSURANCE ORDER. The cause:" in _rl
-      and _ls.count("| chat (round 7, feed visits with no insurance order) | TRAP |") == 1 and _ls.rstrip("\n").split("\n")[-1].startswith("- 2026-11-10T1915Z | chat (round 7")
-      and _cc.rstrip("\n").split("\n## ")[-1].startswith("2026-11-10T1915Z - a visit's insurance-order LIST, read back") and "the 10/28 advice above (skip the save when the chart default already equals the target) is withdrawn" in _cc)
+      and _ls.count("| chat (round 7, feed visits with no insurance order) | TRAP |") == 1 and any(l_.startswith("- 2026-11-10T1915Z | chat (round 7") for l_ in _ls.split("\n"))
+      and sum(1 for s_ in _cc.split("\n## ") if s_.startswith("2026-11-10T1915Z - a visit's insurance-order LIST, read back")) == 1 and "the 10/28 advice above (skip the save when the chart default already equals the target) is withdrawn" in _cc)
 # the three confirmation reviews: the words a routine follows
 check("OPS-1/R7-REPLAY-1 runbook (c2): the owner's approved file is copied from the repository every run, and the call never drops --approved (no 'drop --approved' fallback - the sweep lists only and says so)",
       "cp -p ../../practices/ehpa/registers/feed_order_approved.json /home/claude/unbilled/registers/" in _c2 and "drop --approved" not in _stp and "the call never changes when the approved file is missing" in _c2)
