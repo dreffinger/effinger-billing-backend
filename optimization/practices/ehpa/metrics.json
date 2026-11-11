@@ -514,7 +514,7 @@
  },
  {
   "metric_slug": "ar-net-collection-rate",
-  "as_of": "2026-11-09",
+  "as_of": "2026-11-11",
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
@@ -725,7 +725,7 @@
   "status": "red",
   "basis": "measured",
   "value": 47,
-  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. It is to be filed by November 13 to leave the agency time, with December 1 as the last call; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Nearer dated duties, which are not expirations and are not counted here: the Veterans Affairs payment portal account (it lapses about November 22 unless someone signs in; estimated), the UnitedHealthcare directory attestation (about November 26) and the physician's board-certification yearly assessment (due November 30, 2026; not known whether it is done).",
+  "note": "The physician's Florida Medicaid provider agreement expires December 27, 2026, 47 days from November 10. The renewal is to be filed by November 13, with December 1 as the last call to leave the agency time; nothing shows it has been filed. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Nearer dated duties, which are not expirations and are not counted here: the Veterans Affairs payment portal account (it lapses about November 22 unless someone signs in; estimated), the UnitedHealthcare directory attestation (about November 26) and the physician's board-certification yearly assessment (due November 30, 2026; not known whether it is done).",
   "source": "ehpa-neon"
  },
  {
@@ -860,7 +860,7 @@
   "status": "red",
   "basis": "measured",
   "value_text": "2025 scores: physician 65.8 (1.10% cut), nurse practitioner 16.3 (9% cut), against a threshold of 75",
-  "note": "From the owner's CMS feedback download. Cuts apply from January 1, 2027. For 2026 both clinicians are scored on cost alone unless something is submitted; one attested improvement activity is worth 30 points and unlocks the bonus for complex patients (10 points for each clinician in 2025; the 2026 amount is not known). The group and both clinicians are registered for the neurological option (M0004). Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. No line had been entered by the end of November 10 (UTC).",
+  "note": "From the owner's CMS feedback download. Cuts apply from January 1, 2027. For 2026 both clinicians are scored on cost alone unless something is submitted; one attested improvement activity is worth 30 points and unlocks the bonus for complex patients (10 points for each clinician in 2025; the 2026 amount is not known). The group and both clinicians are registered for the neurological option (M0004). Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit, because all 60 of its visits were already in the billing system, so no line has been entered yet.",
   "source": "ehpa-neon"
  },
  {

@@ -222,7 +222,7 @@
    "122 feed visits ($26,373) had no claim on November 10, 84 of them because of the never-billed defect",
    "350 of 1,356 denied visits were coverage or wrong-payer problems. Another 100 carry code 23, which only records what an earlier payer paid"
   ],
-  "next_step": "Work the open cards and deliver the never-billed fix (the look-up savings went live on November 10), then start the check-only monthly run the owner approved that day."
+  "next_step": "Work the open cards and send the 84 never-billed visits as the owner approved (the fix went live on November 11, 2026; the look-up savings went live on November 10), then start the check-only monthly run the owner approved on November 10 once it is built."
  },
  {
   "category_slug": "fe-coverage-status",
@@ -394,7 +394,7 @@
    "13,385 claims sent since July 2026, including mass re-sends of old claims",
    "84 feed visits, 102 lines, $18,802, never billed; none of 5,228 billed visits has an empty insurance-order list"
   ],
-  "next_step": "Track first-pass payment by payer every week and fix the top reason each month. Deliver the never-billed fix and send the 84 visits as the owner approved."
+  "next_step": "Track first-pass payment by payer every week and fix the top reason each month. Send the 84 never-billed visits as the owner approved, one pilot visit first, and read back the first live batch under the fix."
  },
  {
   "category_slug": "ar-rejections",
@@ -850,7 +850,7 @@
   "evidence": [
    "2025 scores from CMS: physician 65.8, nurse practitioner 16.3; threshold 75",
    "Medicare Part B for the two is projected at $567,280 for 2026 (range $522,000 to $597,000), so 9% is about $47,000 to $54,000",
-   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. No line had been entered by the end of November 10 (UTC)"
+   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit, because all 60 of its visits were already in the billing system, so no line has been entered yet"
   ],
   "next_step": "The owner names the one improvement activity both clinicians carried out 90 days in a row in 2026; build its proof file; attest between January 4 and March 31, 2027."
  },
@@ -1011,7 +1011,7 @@
   "assessment": "A single database and dashboard cover receivables, denials, charges, treasury and credentialing. Since November 10, 2026 the full AdvancedMD history is in the same database: 11,050 charts and 84,617 charge lines with their payments and write-offs, dates of service 2022 to November 2026. Its definitions were corrected the same day: 'paid' became 'settled' (payments plus write-offs), reason codes and empty dates were fixed, and unapplied payments got their own table. Still missing: the net collection rate, results by line of work and the financial statements.",
   "next_step": "Compute the net collection rate by month of service, labelling 2022 to 2025 'posted payments', and load the accounting data.",
   "evidence": [
-   "Charge detail (place of service, allowed amount) pulled for all 11,050 charts; the pull finished at 01:08 UTC on November 11, 2026 (68,727 charge rows on the 5,416 charts that have charges)"
+   "Charge detail (place of service, allowed amount) pulled for all 11,050 charts; the pull finished at 01:08 UTC on November 11, 2026 (68,727 charge-detail rows on the 5,416 charts that have charges; the 84,617 charge lines in the assessment above are a different, larger count from the transaction history)"
   ]
  },
  {

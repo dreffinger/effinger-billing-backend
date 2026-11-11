@@ -144,7 +144,7 @@
   "kind": "risk",
   "category_slug": "pc-credentialing",
   "title": "File the Medicaid renewal now and clear the enrollment list",
-  "why": "The physician's Florida Medicaid provider agreement expires December 27, 2026; it is to be filed by November 13 to leave the agency time; December 1 is the last call. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Those payers are about 6% to 9% of charges. The nurse practitioner's Medicaid enrollment is a new application that was returned with three faults.",
+  "why": "The physician's Florida Medicaid provider agreement expires December 27, 2026; the renewal is to be filed by November 13, and December 1 is the last call, to leave the agency time. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients. Those payers are about 6% to 9% of charges. The nurse practitioner's Medicaid enrollment is a new application that was returned with three faults.",
   "what": [
    "Reset the Medicaid portal password, then file and confirm the renewal",
    "Resubmit the nurse practitioner's new Medicaid application and correct her national record",
@@ -245,7 +245,7 @@
   "kind": "risk",
   "category_slug": "qv-mips",
   "title": "Report 2026 to Medicare's quality program and avoid most of a cut of about 9% in 2028",
-  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. No line had been entered by the end of November 10 (UTC).",
+  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit, because all 60 of its visits were already in the billing system, so no line has been entered yet.",
   "what": [
    "Advance care plan code on Medicare claims through December 31 (billing adds it automatically)",
    "M0004 once on one claim for each clinician (billing adds it after the first coded line is seen billed)",
