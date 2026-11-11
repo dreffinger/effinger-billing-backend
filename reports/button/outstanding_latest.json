@@ -1,26 +1,26 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-11T15:21:03Z",
+ "at": "2026-11-11T17:21:19Z",
  "as_of": "2026-11-11",
- "total": 288524.17,
- "visits": 2526,
- "charts": 468,
+ "total": 287033.17,
+ "visits": 2520,
+ "charts": 466,
  "over_365": {
   "n": 544,
   "dollars": 25147.93
  },
  "by_bucket": {
   "0-30": {
-   "n": 614,
-   "dollars": 109705.01
+   "n": 609,
+   "dollars": 108420.01
   },
   "31-60": {
    "n": 275,
    "dollars": 39920.39
   },
   "61-90": {
-   "n": 155,
-   "dollars": 18100.58
+   "n": 154,
+   "dollars": 17894.58
   },
   "91-180": {
    "n": 356,
@@ -82,21 +82,6 @@
    "oldest_days": 429
   },
   {
-   "carrier": "BCBS",
-   "name": "FLORIDA BLUE",
-   "n": 305,
-   "dollars": 19204.48,
-   "buckets": {
-    "0-30": 8302.09,
-    "31-60": 1743.15,
-    "61-90": 606.92,
-    "91-180": 2250.7,
-    "181-365": 3103.67,
-    "over 365": 3197.95
-   },
-   "oldest_days": 1059
-  },
-  {
    "carrier": "UHCMA",
    "name": "UNITEDHEALTHCARE DUAL COMPLETE",
    "n": 89,
@@ -110,6 +95,21 @@
     "over 365": 2921.4
    },
    "oldest_days": 1161
+  },
+  {
+   "carrier": "BCBS",
+   "name": "FLORIDA BLUE",
+   "n": 299,
+   "dollars": 17713.48,
+   "buckets": {
+    "0-30": 7017.09,
+    "31-60": 1743.15,
+    "61-90": 400.92,
+    "91-180": 2250.7,
+    "181-365": 3103.67,
+    "over 365": 3197.95
+   },
+   "oldest_days": 1059
   },
   {
    "carrier": "HUM01",
@@ -730,8 +730,8 @@
   },
   {
    "month": "2026-08",
-   "n": 149,
-   "dollars": 16261.92
+   "n": 148,
+   "dollars": 16055.92
   },
   {
    "month": "2026-09",
@@ -740,13 +740,13 @@
   },
   {
    "month": "2026-10",
-   "n": 482,
-   "dollars": 80952.63
+   "n": 480,
+   "dollars": 80322.63
   },
   {
    "month": "2026-11",
-   "n": 257,
-   "dollars": 45476.0
+   "n": 254,
+   "dollars": 44821.0
   }
  ],
  "oldest": [
@@ -1361,14 +1361,6 @@
    "dos": "2026-11-03"
   },
   {
-   "visitid": 19460446,
-   "patientid": 44944,
-   "carriercode": "BCBS",
-   "insbalance": 433.0,
-   "days": 6,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460671,
    "patientid": 17476928,
    "carriercode": "CAP07",
@@ -1391,6 +1383,14 @@
    "insbalance": 389.0,
    "days": 379,
    "dos": "2025-10-28"
+  },
+  {
+   "visitid": 19425236,
+   "patientid": 17474826,
+   "carriercode": "FLO02",
+   "insbalance": 389.0,
+   "days": 344,
+   "dos": "2025-12-02"
   }
  ],
  "rows": [
@@ -13691,14 +13691,6 @@
    "dos": "2026-08-23"
   },
   {
-   "visitid": 19452567,
-   "patientid": 48449,
-   "carriercode": "BCBS",
-   "insbalance": 206.0,
-   "days": 80,
-   "dos": "2026-08-23"
-  },
-  {
    "visitid": 19452574,
    "patientid": 46678,
    "carriercode": "CAP07",
@@ -17251,22 +17243,6 @@
    "dos": "2026-10-22"
   },
   {
-   "visitid": 19459089,
-   "patientid": 17473090,
-   "carriercode": "BCBS",
-   "insbalance": 315.0,
-   "days": 20,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19458947,
-   "patientid": 48449,
-   "carriercode": "BCBS",
-   "insbalance": 315.0,
-   "days": 20,
-   "dos": "2026-10-22"
-  },
-  {
    "visitid": 19458942,
    "patientid": 46678,
    "carriercode": "CAP07",
@@ -20707,14 +20683,6 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460446,
-   "patientid": 44944,
-   "carriercode": "BCBS",
-   "insbalance": 433.0,
-   "days": 6,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460671,
    "patientid": 17476928,
    "carriercode": "CAP07",
@@ -21219,14 +21187,6 @@
    "dos": "2026-11-06"
   },
   {
-   "visitid": 19460404,
-   "patientid": 17478331,
-   "carriercode": "BCBS",
-   "insbalance": 111.0,
-   "days": 5,
-   "dos": "2026-11-06"
-  },
-  {
    "visitid": 19460405,
    "patientid": 17478318,
    "carriercode": "CIG09",
@@ -21374,14 +21334,6 @@
    "visitid": 19460531,
    "patientid": 17478346,
    "carriercode": "AET07",
-   "insbalance": 111.0,
-   "days": 4,
-   "dos": "2026-11-07"
-  },
-  {
-   "visitid": 19460528,
-   "patientid": 17478331,
-   "carriercode": "BCBS",
    "insbalance": 111.0,
    "days": 4,
    "dos": "2026-11-07"
