@@ -222,7 +222,7 @@
    "122 feed visits ($26,373) had no claim on November 10, 84 of them because of the never-billed defect",
    "350 of 1,356 denied visits were coverage or wrong-payer problems. Another 100 carry code 23, which only records what an earlier payer paid"
   ],
-  "next_step": "Work the open cards and send the 84 never-billed visits as the owner approved (the fix went live on November 11, 2026; the look-up savings went live on November 10), then start the check-only monthly run the owner approved on November 10 once it is built."
+  "next_step": "Work the open cards and finish sending the 84 never-billed visits as the owner approved (52 were saved on November 11, 2026; 32 wait for a clinician move or for the owner; the look-up savings went live on November 10), then start the check-only monthly run the owner approved on November 10 once it is built and reviewed."
  },
  {
   "category_slug": "fe-coverage-status",
@@ -394,7 +394,7 @@
    "13,385 claims sent since July 2026, including mass re-sends of old claims",
    "84 feed visits, 102 lines, $18,802, never billed; none of 5,228 billed visits has an empty insurance-order list"
   ],
-  "next_step": "Track first-pass payment by payer every week and fix the top reason each month. Send the 84 never-billed visits as the owner approved, one pilot visit first, and read back the first live batch under the fix."
+  "next_step": "Track first-pass payment by payer every week and fix the top reason each month. Finish sending the 84 never-billed visits as the owner approved: 52 were saved and read back on November 11, 2026; confirm that they bill, and clear the 32 that wait for a clinician move or for the owner."
  },
  {
   "category_slug": "ar-rejections",
@@ -850,7 +850,7 @@
   "evidence": [
    "2025 scores from CMS: physician 65.8, nurse practitioner 16.3; threshold 75",
    "Medicare Part B for the two is projected at $567,280 for 2026 (range $522,000 to $597,000), so 9% is about $47,000 to $54,000",
-   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit. None of the three is confirmed billed yet"
+   "Group and both clinicians registered for the neurological option (M0004) on November 10, 2026. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit, and took all three lines off again about two minutes later: the billing system's claim check had held the three visits for the no-charge line, and a held visit's quality line is taken off so that the visit can go on. The three visits went on without the code, so no coded line stands yet. Under billing's rule the next lines go in at one cent; if the claim check stops those too, the code switches off until the owner restarts it"
   ],
   "next_step": "The owner names the one improvement activity both clinicians carried out 90 days in a row in 2026; build its proof file; attest between January 4 and March 31, 2027."
  },

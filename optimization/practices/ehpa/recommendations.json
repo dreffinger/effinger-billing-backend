@@ -91,7 +91,7 @@
   ],
   "impact_basis": "The plan's earlier 'one charge in nine has no payer' was the share of feed dollars on charts the insurance check held (counted after the check ran; $23,534 of $211,062, 11.2%), not a share of all charges. Visits that arrived with no open plan on the chart were 138 of 1,037 ($29,286, 13.7% of dollars). The $30,000 to $70,000 is the plan's earlier range. It was built on the 11.2% figure (about $113,000 a year, with a quarter to 60% assumed never collected), which measured something else. It has not been worked out again and is a placeholder until these visits are tracked to payment. The monthly run adds about $10 to $40 a month of checks and a one-time catch-up of at most about $260. At the plan's median payment of about $45 to $125 a visit, it pays for itself if it saves one visit a month from denial (estimates).",
   "effort": "medium",
-  "horizon": "the cards now; the monthly run once it is built (its build started on November 11, 2026, after rule version .7 went live; the look-up savings went live on November 10)",
+  "horizon": "the cards now; the monthly run once it is built and reviewed (two of its three build steps are done and the third is under way on November 11, 2026; the look-up savings went live on November 10)",
   "owner": "claude",
   "project_slug": "coverage-cleanup",
   "confidence": "low on the dollar range; high on the counts",
@@ -106,11 +106,11 @@
   "title": "Finish sending the 84 never-billed feed visits as the owner approved: 52 were saved on November 11, 32 wait",
   "why": "84 feed visits ($18,802 of charges, service dates October 12 to November 7, 2026) could never bill, because their insurance-order list was empty: the insurance check had released 69 and held 15. The owner approved the remedy on November 10, 2026 ('yes to all your recommendations').",
   "what": [
-   "Done on November 11, 2026: the fix (rule version 2026-11-10.7) went live, the billing routine saved one test visit and then 51 more, all read back correctly, and a guard for the save step went live that evening",
+   "Done on November 11, 2026: the fix (rule version 2026-11-10.7) went live, the billing routine saved one test visit and then 51 more, all read back correctly, and a guard for the save step went live that afternoon (19:45 UTC), after those saves",
    "Send the 71 visits whose payer only the look-up found only when an eligibility check dated to the service date shows the plan active; the two-plan chart by that check; send the other 13",
    "Move the 10 nurse practitioner visits to her before they go; keep the 2 initial visits under the physician"
   ],
-  "impact_basis": "Not valued: the charges are $18,802, but whether each payer found is right is not yet tested. The first 61 dated checks cost $18.30: 51 confirmed the plan, 9 did not and 1 gave an error.",
+  "impact_basis": "Not valued: the charges are $18,802, and a plan confirmed by a dated check is still not a payment. The first 61 dated checks cost $18.30: 51 confirmed the plan, 9 did not and 1 gave an error.",
   "effort": "low",
   "horizon": "52 saved on November 11, 2026; the 10 clinician moves by a billing chat session and the owner's 22 this week",
   "owner": "claude",
@@ -245,7 +245,7 @@
   "kind": "risk",
   "category_slug": "qv-mips",
   "title": "Report 2026 to Medicare's quality program and avoid most of a cut of about 9% in 2028",
-  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit. None of the three is confirmed billed yet.",
+  "why": "For 2025 nothing was reported: the nurse practitioner's Medicare payments are cut 9% in 2027 and the physician's 1.1%. For 2026 the physician is no longer scored on the hospital's results, so both face about 9% in 2028 unless something is submitted. One attested improvement activity is worth 30 points and unlocks the bonus for complex patients, which was 10 points for each clinician in 2025; the 2026 amount is not known. Rule version 2026-11-10.6, live since 22:46 UTC on November 10, 2026, adds the advance care plan code from the next feed import, up to three lines first; M0004 follows once one of them is seen billed. The first import under the rule, at 00:40 UTC on November 11, 2026, created no visit; the next, at 12:39 UTC, put the code on its first three Medicare visits, the pilot's limit, and took all three lines off again about two minutes later: the billing system's claim check had held the three visits for the no-charge line, and a held visit's quality line is taken off so that the visit can go on. The three visits went on without the code, so no coded line stands yet. Under billing's rule the next lines go in at one cent; if the claim check stops those too, the code switches off until the owner restarts it.",
   "what": [
    "Advance care plan code on Medicare claims through December 31 (billing adds it automatically)",
    "M0004 once on one claim for each clinician (billing adds it after the first coded line is seen billed)",
