@@ -42,7 +42,21 @@ if not m: usage("--stamp must look like 2026-11-06T0535Z")
 y, mo, d, hh, mm = m.groups()
 stamp = "%s-%s-%sT%s%sZ" % (y, mo, d, hh, mm)                      # the dashed form the existing cascade_runs documents use
 at = "%s-%s-%sT%s:%s:00Z" % (y, mo, d, hh, mm)
-date = "%s-%s-%s" % (y, mo, d)                                      # the night's date: 05:35Z is 12:35 AM EST / 1:35 AM EDT, the same calendar day
+def eastern_date(utc):
+    """the night's date as the page and Neon's ehpa.cascade_nights read it: the EASTERN calendar date of the run (the page groups
+    runs by America/New_York day). 05:35Z is 12:35 AM EST / 1:35 AM EDT, the same day; an off-schedule run before 05:00Z (04:00Z in
+    summer) belongs to the day before - 11/12/2026: a 03:29Z make-up (10:29 PM ET 11/11) of the night the 11/11 run lost to exhausted
+    usage credits was dated 11/12 and hid behind that morning's 05:36Z run, while 11/11 read "no run recorded"."""
+    try:
+        from zoneinfo import ZoneInfo
+        return utc.astimezone(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
+    except Exception:                                               # no tz database here: the US rule
+        def sunday(month, n):                                       # the n-th Sunday of a month, 00:00Z
+            first = datetime.datetime(utc.year, month, 1, tzinfo=datetime.timezone.utc)
+            return first + datetime.timedelta(days=(6 - first.weekday()) % 7 + 7 * (n - 1))
+        edt = sunday(3, 2) + datetime.timedelta(hours=7) <= utc < sunday(11, 1) + datetime.timedelta(hours=6)   # EDT: 2nd Sunday of March 07:00Z to 1st Sunday of November 06:00Z
+        return (utc - datetime.timedelta(hours=4 if edt else 5)).strftime("%Y-%m-%d")
+date = eastern_date(datetime.datetime(int(y), int(mo), int(d), int(hh), int(mm), tzinfo=datetime.timezone.utc))
 
 def swallowed(name, v):
     """"$704" reaches a bash-run script as "04", "$8.40" as ".40", "$1,234.56" as ",234.56" - the $ and the digit behind it are gone"""
