@@ -16,8 +16,10 @@
 #     from the CMS code files (newest year first, a retired code keeps its last words, only the codes on a charge);
 #   - writes one dated diagnosis ADDENDUM per signed note (never for an addendum already signed, never for a note signed with its
 #     diagnoses), flags one with fewer than two diagnoses (with the chart's whole diagnosis list) or a charge missing from the history, and
-#     cuts the hub page's documents under 200 KB; records an addendum signing only when it matches the stored draft (a changed addendum, a
-#     forged hash, one that carries a statement, one dated before its note, one with no draft are refused; one already signed is skipped).
+#     cuts the hub page's documents under 200 KB; a SIGNED addendum keeps on the hub page exactly the fields he signed (its recorded
+#     document), even after the charge's codes and a CMS description change and addenda runs again; records an addendum signing only
+#     when it matches the stored draft (a changed addendum, a forged hash, one that carries a statement, one dated before its note, one
+#     with no draft are refused; one already signed is skipped).
 # Never touches: Neon, AdvancedMD, the network (the stand-in answers the queries). Nothing is started as a program. No patient data:
 #   every name and date is invented and put together at run time.
 # Run: python3 tools/selftest/test_ccm_build.py   (exit 1 on any failure)
@@ -71,7 +73,7 @@ DESC = {"E11.9": ["Invented diabetes words", 2027], "I10": ["Invented hypertensi
         "F03.90": ["Invented memory words", 2027], "J44.9": ["Invented lung words", 2027], "E78.5": ["Invented lipid words", 2025],
         "I50.9": ["Invented heart words", 2027], "Z99.89": ["Invented device words", 2027]}
 REF = [{"title": "test", "codes": DESC}]
-STORED = {}; NOTES_SIGNED = []; ADD_SIGNED = set(); ADD_DRAFTS = {}
+STORED = {}; NOTES_SIGNED = []; ADD_SIGNED = {}; ADD_DRAFTS = {}      # ADD_SIGNED: a signed addendum's id -> its recorded fields
 SIGNED = set(); DRAFTS = {}; SQL = []
 def select(sql, params=()):
     SQL.append(sql)
@@ -83,7 +85,7 @@ def select(sql, params=()):
     if "collection = 'chargedetail'" in sql and "select distinct x.code" in sql: return [[c] for c in sorted({c for r in CHARGEDETAIL for c in json.loads(r[2])} | {"Q99.99"})]
     if "collection = 'chargedetail'" in sql: return [list(r) for r in CHARGEDETAIL]
     if "collection = 'months' and doc_id in (select" in sql: return [[i, json.dumps(STORED[i])] for i in sorted(SIGNED) if i in STORED]
-    if "collection = 'addenda_signed'" in sql: return [[x] for x in sorted(ADD_SIGNED)]
+    if "collection = 'addenda_signed'" in sql: return [[x, json.dumps(ADD_SIGNED[x])] if "body->'fields'" in sql else [x] for x in sorted(ADD_SIGNED)]
     if "collection = 'addenda'" in sql: return [[i, json.dumps(ADD_DRAFTS[i])] for i in params[0].split(",") if i in ADD_DRAFTS]
     if "body->>'sha' from raw.documents where source = 'ccm' and collection = 'signed'" in sql: return [[i, json.dumps(f), sha] for i, f, sha in NOTES_SIGNED]
     if "collection = 'signed'" in sql: return [[x] for x in sorted(SIGNED)]
@@ -203,7 +205,9 @@ NOTES_SIGNED[:] = [
     ("%s_2026-08" % ch(3), note_signed(ch(3), "2026-08", [["08/20/2026", "99487", "v31", "c31"]], diagnoses=[["I50.9", "x"]]), "d" * 64),   # signed with its diagnoses
     ("%s_2026-08" % ch(2), note_signed(ch(2), "2026-08", [["08/25/2026", "99487", "v21", "c21"], ["08/27/2026", "99487", "v29", "c29"]]), "e" * 64)]   # c29: not in the history
 NOTES_SIGNED += [("%s_2026-07" % ch(10 + i), note_signed(ch(10 + i), "2026-07", [["07/%02d/2026" % (1 + i % 28), "99487", "vx%d" % i, "cx%d" % i]]), "f" * 64) for i in range(320)]
-ADD_SIGNED.add("%s_2026-08_dx" % ch(5))
+N5 = NOTES_SIGNED[2][1]      # ch(5)'s addendum is signed: its recorded document holds the fields he signed, with the day written
+SF5 = dict(N.addendum_fields(N5, "c" * 64, {"c51": DXC["c51"]}, DESC), written="11/12/2026"); SIGNED5 = {k: v for k, v in SF5.items() if k != "written"}
+ADD_SIGNED["%s_2026-08_dx" % ch(5)] = SF5
 A_OUT = os.path.join(TMP, "addenda_out")
 REF.clear()
 check("6 addenda refuses without the ICD-10 descriptions and writes nothing", B.main(["addenda", "--out", A_OUT], select=select) == 2 and not os.path.exists(A_OUT))
@@ -233,6 +237,19 @@ check("6 on the page an addendum carries its note's id, its fields, its flag and
       H["%s_2026-08_dx" % ch(1)]["note"] == "%s_2026-08" % ch(1) and H["%s_2026-08_dx" % ch(1)]["f"] == a1["fields"] and H["%s_2026-08_dx" % ch(5)]["status"] == "signed"
       and H["%s_2026-08_dx" % ch(4)]["status"] == "flagged" and H["%s_2026-08_dx" % ch(4)]["chart_dx"][0][:2] == ["I10", "Invented hypertension words"] and "chart_dx" not in H["%s_2026-08_dx" % ch(1)], H["%s_2026-08_dx" % ch(4)])
 check("6 addenda refuses an output folder inside the repository", B.main(["addenda", "--out", os.path.join(ROOT, "tmp_never4")], select=select) == 2 and not os.path.exists(os.path.join(ROOT, "tmp_never4")))
+# after the signing, the charge's codes in the AdvancedMD history and a CMS description change (a history refresh, a new fiscal year) and addenda runs again
+I51 = [i for i, r in enumerate(CHARGEDETAIL) if r[1] == "chargec51"][0]; OLD51 = CHARGEDETAIL[I51]
+CHARGEDETAIL[I51] = [OLD51[0], OLD51[1], json.dumps(["I10", "E78.5"])]
+DESC2 = dict(DESC, **{"E11.9": ["Invented diabetes words of a later year", 2028]}); REF[:] = [{"title": "test", "codes": DESC2}]
+A_OUT2 = os.path.join(TMP, "addenda_out2"); r6 = B.main(["addenda", "--out", A_OUT2], select=select)
+CHARGEDETAIL[I51] = OLD51; REF[:] = [{"title": "test", "codes": DESC}]
+H2 = {x["id"]: x for x in json.load(open(os.path.join(A_OUT2, "hub", "addenda", "2026-08-1.json")))["addenda"]}
+REBUILT5 = N.addendum_fields(N5, "c" * 64, {"c51": ["I10", "E78.5"]}, DESC2)      # what it would show if it were rebuilt from today's history
+check("6 a SIGNED addendum keeps on the hub page exactly the fields he signed (its recorded document, without the day written): the charge's codes and a CMS "
+      "description changed and addenda ran again - its item did not move, no draft is written for it, and an unsigned addendum did take the new words",
+      r6 == 0 and REBUILT5["diagnoses"] != SIGNED5["diagnoses"] and H2["%s_2026-08_dx" % ch(5)]["f"] == SIGNED5 and H2["%s_2026-08_dx" % ch(5)]["status"] == "signed"
+      and H2["%s_2026-08_dx" % ch(5)]["flag"] == "" and not os.path.exists(os.path.join(A_OUT2, "neon", "addenda", "%s_2026-08_dx.json" % ch(5)))
+      and H2["%s_2026-08_dx" % ch(1)]["f"]["diagnoses"][0] == ["E11.9", "Invented diabetes words of a later year"], (H2.get("%s_2026-08_dx" % ch(5), {}).get("f"), SIGNED5))
 
 # ---- 7. addendum signings from the hub page
 ADD_DRAFTS.update({d[:-5]: json.load(open(os.path.join(A_OUT, "neon", "addenda", d))) for d in drafts})

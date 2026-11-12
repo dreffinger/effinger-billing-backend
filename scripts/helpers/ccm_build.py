@@ -27,8 +27,9 @@
 #   - New notes carry the month's diagnoses in their fields (ccm_notes.note_fields); a signed note keeps the fields he signed (the stored
 #     draft), so its hash still verifies.
 #   - Every SIGNED note gets a dated ADDENDUM with the diagnoses on its CCM charge lines (command addenda; never for an addendum already
-#     signed), which he signs on the hub page later ("if needed i can sign the addendums later after they are added"); signatures --kind
-#     addenda checks each of those signings against the stored draft exactly as a note's signing is checked.
+#     signed - a signed addendum keeps on the hub page the fields he signed, its recorded document, never rebuilt from today's charge
+#     lines or descriptions), which he signs on the hub page later ("if needed i can sign the addendums later after they are added");
+#     signatures --kind addenda checks each of those signings against the stored draft exactly as a note's signing is checked.
 # What it never does: write to Neon or to AdvancedMD itself (it sends SELECT statements only - anything else is refused before it leaves);
 #   rebuild a month whose note is signed (a signed note is final - the database refuses the change too); record a signing it cannot verify
 #   against the stored draft (the hash of the note he saw, the day written, who and when - ccm_notes.verify_signature); put patient data in
@@ -81,7 +82,8 @@ CHART_DX_SQL = ("select d.doc_id, e->>'begindate', e->'dx' from raw.documents d 
                 "where d.source = 'amd_history' and d.collection = 'chargedetail' and d.doc_id = any(string_to_array(%s, ',')) and " + NOT_VOID)
 REF_SQL = "select body from raw.documents where source = 'ref' and collection = 'icd10cm' and doc_id = 'descriptions'"
 NOTES_SIGNED_SQL = "select doc_id, body->'fields', body->>'sha' from raw.documents where source = 'ccm' and collection = 'signed'"
-ADD_SIGNED_SQL = "select doc_id from raw.documents where source = 'ccm' and collection = 'addenda_signed'"
+# the signed addenda with their recorded fields (what he signed, with the day written): a signed addendum keeps them on the hub page
+ADD_SIGNED_SQL = "select doc_id, body->'fields' from raw.documents where source = 'ccm' and collection = 'addenda_signed'"
 ADD_DRAFTS_SQL = "select doc_id, body from raw.documents where source = 'ccm' and collection = 'addenda' and doc_id = any(string_to_array(%s, ','))"
 
 def neon_select(sql, params=()):
@@ -245,18 +247,23 @@ def chart_dx(select, charts):
 def addenda_records(select, descriptions):
     """(records, ids already signed): the diagnosis addendum of every signed note whose fields carry no diagnoses (a note signed with them
     needs none). A record: id (<chart>_<YYYY-MM>_dx), note, chart, month, fields (ccm_notes.addendum_fields), fields_sha, note_sha, flag,
-    status ("ready to sign", "flagged" or "signed") and, for a flagged one, the chart's whole diagnosis list (chart_dx)."""
-    done = {r[0] for r in select(ADD_SIGNED_SQL)}
+    status ("ready to sign", "flagged" or "signed") and, for a flagged one, the chart's whole diagnosis list (chart_dx). A SIGNED addendum
+    keeps the fields he signed (its recorded document, without the day written) - never rebuilt from today's charge lines or descriptions."""
+    signed_f = {r[0]: (_json(r[1]) if len(r) > 1 else None) for r in select(ADD_SIGNED_SQL)}
+    done = set(signed_f)
     dx = dx_by_charge(select); recs = []
     for did, fields, sha in select(NOTES_SIGNED_SQL):
         f = _json(fields)
         if not isinstance(f, dict) or "diagnoses" in f or not f.get("chart"): continue
-        cd = dx.get(f["chart"], {})
-        af = N.addendum_fields(f, sha or "", cd, descriptions)
-        flags = [x for x in [N.dx_flag(af["diagnoses"])] if x]
-        lost = [c[3] for c in af["charges"] if len(c) > 3 and c[3] not in cd]
-        if lost: flags.append("charge %s not found in the AdvancedMD history - its diagnoses could not be read" % ", ".join(lost))
         aid = did + "_dx"
+        if aid in done and isinstance(signed_f[aid], dict):
+            af = {k: v for k, v in signed_f[aid].items() if k != "written"}; flags = []      # a signed addendum is final: what he signed
+        else:
+            cd = dx.get(f["chart"], {})
+            af = N.addendum_fields(f, sha or "", cd, descriptions)
+            flags = [x for x in [N.dx_flag(af["diagnoses"])] if x]
+            lost = [c[3] for c in af["charges"] if len(c) > 3 and c[3] not in cd]
+            if lost: flags.append("charge %s not found in the AdvancedMD history - its diagnoses could not be read" % ", ".join(lost))
         recs.append({"id": aid, "note": did, "chart": af["chart"], "month": af["month"], "fields": af, "note_sha": sha or "",
                      "fields_sha": hashlib.sha256(N.canon(af).encode("utf-8")).hexdigest(), "flag": "; ".join(flags),
                      "status": "signed" if aid in done else ("flagged" if flags else "ready to sign")})

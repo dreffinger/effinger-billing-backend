@@ -70,9 +70,10 @@ database".
   side - signed, or ADDENDUM - NOT SIGNED. One with fewer than two diagnoses is flagged; the hub page shows that chart's whole diagnosis list
   beside it, and it is never part of "Sign all addenda".
 - A signed addendum is final like a signed note: the trigger skips any change to, or removal of, an `addenda_signed` document and its
-  `addenda` draft (views `ccm.addenda`, `ccm.signed_addenda`). Rehearsed 11/12/2026 on a throwaway local PostgreSQL 16 with invented rows:
-  edit, edit without a new fingerprint, rename, move, delete and an upsert of a signed addendum or its draft all skipped; an unsigned draft
-  rebuilt and removed; a reload that only touches loaded_by applied; the signed-note rules unchanged.
+  `addenda` draft (views `ccm.addenda`, `ccm.signed_addenda`), and the hub page shows the fields he signed (its `addenda_signed`
+  document): `addenda` never rebuilds a signed one from today's charge lines or descriptions. Rehearsed 11/12/2026 on a throwaway local
+  PostgreSQL 16 with invented rows: edit, edit without a new fingerprint, rename, move, delete and an upsert of a signed addendum or its
+  draft all skipped; an unsigned draft rebuilt and removed; a reload that only touches loaded_by applied; the signed-note rules unchanged.
 - Next, his words: "after that we need to find all supporting documentation and add it later as a dated addendum at that time [...] once we
   get records dated back and access to those on ring central or from pcc" - the supporting documents become further dated addenda (a doc_id
   of their own beside `_dx`).
