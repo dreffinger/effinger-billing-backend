@@ -36,6 +36,10 @@
 #   applies ANY file): a guess (open balance, dos in notes, newest charge) never replaces a badge found by a stronger rule - a visit match
 #   is never replaced by the chart's newest charge - while the card still has the chart(s) that badge was worked out on. A corrected
 #   chart number lets the new chart's result through.
+# A badge belongs to the chart(s) it was worked out on (third review 11/12, _on_card; the board page's cfOnCard is the same test): the
+#   page shows a badge, and applies a file's badge, only while the card still has every one of them (a card with no chart number of its
+#   own, and a badge naming none, pass), and build / stamp clear a stored badge worked out on a chart the card no longer has when nothing
+#   is found on the chart it has now (chargefac null) - a corrected chart number never leaves the old chart's facility, visit and date.
 # Reads (SELECT only - anything else is refused before it leaves; Neon's HTTPS SQL route with NEON_DATABASE_URL, the way
 #   tools/db/neon_db.py reaches it when port 5432 is closed): the board's copy (raw.documents source insurance_refresh_board, collection
 #   items - as fresh as the last practice database sync) unless --items gives the rows; amd.charges (AdvancedMD history, pulled
@@ -45,23 +49,28 @@
 #   never Drive (delivering the file to the "board inbox" folder is a separate step), never the repository (an output folder inside the
 #   checkout is refused).
 # Usage:
-#   python3 tools/db/board_chargefac.py plan [--items <file|dir>]          counts only: cards that get a specific facility, by rule; generic, by reason
+#   python3 tools/db/board_chargefac.py plan [--items <file|dir>]          counts only: cards that get a specific facility, by the rule of the
+#        badge each card ends up with (a card that keeps its stored badge counts under that badge's rule); how many keep their badge and how
+#        many lose another chart's badge; generic, by reason
 #   python3 tools/db/board_chargefac.py build --out <dir> [--stamp 2026-11-12T1500Z] [--all] [--items <file|dir>]
 #        ONE board_updates_<stamp>.json (schema irb-board-updates/1): {"op":"update","collection":"items","id":...,"set":{"chargefac":{...}}}
 #        for every open card whose charge facility is new or changed (--all: done cards too - applying stamps their `updated`, which the
 #        page's "Also on this chart: ... (done <date>)" line reads, so they are left out by default). "update" never re-creates a card that
 #        has left the board since the copy was made (that op fails and is listed by the page's sync log). A card whose badge stays
-#        (_keeps) gets no op - the page would keep that badge anyway, and the file would re-send it on every build.
+#        (_keeps) gets no op - the page would keep that badge anyway, and the file would re-send it on every build. A card whose stored
+#        badge was worked out on a chart it no longer has, with nothing found on the chart it has now, gets "set":{"chargefac":null}.
 #   python3 tools/db/board_chargefac.py stamp --file <board_updates_<stamp>.json> [--items <file|dir>]
 #        for a run, after board_ops.clean_file and before the upload: adds `chargefac` to every row the file creates or whose facility /
 #        amdid it sets. --items = the stored rows, from the run's inline board read, of the cards on the board that the file's ops touch
 #        (only those): such a card is worked out from the whole card (its stored text plus the op's set and appends) and keeps the badge
-#        it has (_keeps). A card stamp cannot see whole - not among the --items rows (second review 11/12: the rows given may be partial,
-#        empty or wrongly shaped), or no --items - gets only a charge it names (visit, dos, facility id), with its chart number read from
-#        the op's own amdid / pid / chart only (the stored card may carry an amdid the op does not repeat); a new card - its set carries
-#        `created`, as board_ops.plan_new_row writes it, or patient and dob - gets even a guess. The page's applyOp keeps a stronger
-#        badge whatever the file holds. Prints counts only (row ids are patient-name slugs). When the database cannot be read the file is
-#        left exactly as it was (exit 0) - the run goes on.
+#        it has (_keeps), or loses a stored badge worked out on a chart it no longer has (chargefac null, when nothing is found on the
+#        chart it has now). A card stamp cannot see whole - not among the --items rows (second review 11/12: the rows given may be
+#        partial, empty or wrongly shaped), or no --items - gets only a VISIT it names (third review 11/12: a date of service or facility
+#        id read from the op alone could be outranked by a visit its stored row names), with its chart number read from the op's own
+#        amdid / pid / chart only (the stored card may carry an amdid the op does not repeat); a new card - its set carries `created`, as
+#        board_ops.plan_new_row writes it, or patient and dob - gets any match, even a guess. The page's applyOp keeps a stronger badge,
+#        and refuses a badge worked out on a chart the card does not have, whatever the file holds. Prints counts only (row ids are
+#        patient-name slugs). When the database cannot be read the file is left exactly as it was (exit 0) - the run goes on.
 #   --items: a JSON list of rows (each with "id") or of ArtifactData documents ({id or doc_id, version, data}), either list under "items"
 #        or "documents", a JSON object {id: row}, or the folder an ArtifactData list wrote (<dir>/items/<id>.json). stamp reads a file
 #        that gives no row as no --items, and prints how many rows it gave.
@@ -402,9 +411,10 @@ def compute(rows, select, now=None, fallback=None):
 
 GENERIC_RE = re.compile(r"^(SNF|ALF|NF|HCA|TMH)(\b|[\s/(])", re.I)          # the page's test for a place-of-service guess
 def badge_source(row, cf):
-    """what the card's badge shows once the file is applied - the page's facInfo() order"""
+    """what the card's badge shows once the file is applied - the page's facInfo() order. A stored badge worked out on a chart the card
+    no longer has is not shown (third review 11/12, _on_card; the file clears it when nothing new is found - _clears)"""
     old = row.get("chargefac")
-    if cf or (isinstance(old, dict) and old.get("name")): return "charge facility"
+    if cf or (isinstance(old, dict) and old.get("name") and _on_card(old, row)): return "charge facility"
     fn = row.get("facnow")
     if isinstance(fn, dict) and fn.get("name"): return "newest visit (facnow)"
     if str(row.get("facilities") or "").strip(): return "facilities line"
@@ -414,15 +424,20 @@ def badge_source(row, cf):
     return "no facility at all"
 
 def counts(results, include_done=False):
-    """per part (open / done cards): how many get the charge's facility, by rule; why the others do not; what each badge then shows
-    (a done card left out of the file keeps the badge it has)"""
+    """per part (open / done cards): how many get the charge's facility, by the rule of the badge each card ENDS UP with (third review
+    11/12: a card that keeps its stored badge - _keeps - counts under that badge's rule, not under the weaker guess this run found;
+    `kept` says how many); why the others do not; how many lose a badge worked out on a chart they no longer have (`cleared`); what each
+    badge then shows (a done card left out of the file keeps the badge it has)"""
     c = collections.OrderedDict()
     for part, keep in (("open", lambda r: str(r.get("status") or "") != "done"), ("done", lambda r: str(r.get("status") or "") == "done")):
         sub = [(r, cf, why) for r, cf, why in results if keep(r)]
         applied = part == "open" or include_done
+        fin = [_final(r, cf) for r, cf, _ in sub]
         c[part] = {"cards": len(sub), "specific": sum(1 for _, cf, _ in sub if cf), "generic": sum(1 for _, cf, _ in sub if not cf),
-                   "by_rule": dict(collections.Counter(why for _, cf, why in sub if cf).most_common()),
-                   "chart_from": dict(collections.Counter(cf["chart_from"] for _, cf, _ in sub if cf and cf.get("chart_from")).most_common()),
+                   "by_rule": dict(collections.Counter(f.get("how") for f in fin if f).most_common()),
+                   "kept": sum(1 for r, cf, _ in sub if cf and _keeps(r.get("chargefac"), cf)),
+                   "cleared": sum(1 for r, cf, _ in sub if _clears(r, cf)),
+                   "chart_from": dict(collections.Counter(f["chart_from"] for f in fin if f and f.get("chart_from")).most_common()),
                    "not_found_why": dict(collections.Counter(why for _, cf, why in sub if not cf).most_common()),
                    "in_file": applied,
                    "badge": dict(collections.Counter(badge_source(r, cf if applied else None) for r, cf, _ in sub).most_common())}
@@ -433,8 +448,7 @@ def counts(results, include_done=False):
 def _inside_repo(p): p = os.path.abspath(p); return p == REPO or p.startswith(REPO + os.sep)
 def _now(): return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-STRONG = ("visit", "dos", "facility id")              # rules that find a charge the card itself names
-GUESS = ("open balance", "dos in notes", "newest charge")
+GUESS = ("open balance", "dos in notes", "newest charge")    # rules that guess; visit / dos / facility id find a charge the card names
 RANK = {"visit": 1, "dos": 2, "facility id": 3, "open balance": 4, "dos in notes": 5, "newest charge": 6}
 def _charts_of(v): return [c.strip() for c in str(v or "").split(",") if c.strip()]
 def _keeps(old, new):
@@ -449,11 +463,35 @@ def _keeps(old, new):
     now = _charts_of(new.get("chart"))
     return all(c in now for c in _charts_of(old["chart"]))
 
+def _on_card(cf, row):
+    """True while the card `row` still has EVERY chart the badge `cf` was worked out on (its `chart`) - third review 11/12: a chart
+    number corrected with no new badge left the old chart's badge (its facility, visit, date and code - perhaps another patient's) on
+    the card. The card's charts here are its own numbers (amdid / pid / chart): a card with none - matched through its id or text - and
+    a badge that names no chart pass. The board page's cfOnCard() is the same test - facInfo shows a badge, and applyOp writes a file's
+    badge, only while it holds - keep the two in step."""
+    if not isinstance(cf, dict): return True
+    was = _charts_of(cf.get("chart")) if isinstance(cf.get("chart"), str) else []
+    now = [c[3:] for c in chart_ids(row, fallback=False)]
+    return not (was and now) or all(c in now for c in was)
+
+def _clears(row, cf):
+    """no badge found now (cf None) and the card's stored badge was worked out on a chart it no longer has: the file writes chargefac
+    null (the store's update() replaces null wholesale), so the old chart's badge does not stay in the card's data"""
+    old = (row or {}).get("chargefac")
+    return not cf and isinstance(old, dict) and bool(old.get("name")) and not _on_card(old, row)
+
+def _final(row, cf):
+    """the badge the card ends up with once a file built from cf is applied: its stored badge when that stays (_keeps), else cf"""
+    old = (row or {}).get("chargefac")
+    return old if cf and _keeps(old, cf) else cf
+
 def build_file(results, stamp, now, include_done=False):
     ops = []
     for r, cf, _ in results:
-        if not cf or (not include_done and str(r.get("status") or "") == "done"): continue
-        if _same(cf, r.get("chargefac")) or _keeps(r.get("chargefac"), cf): continue
+        if not include_done and str(r.get("status") or "") == "done": continue
+        if _clears(r, cf):                          # third review 11/12: nothing found now, and the stored badge is another chart's
+            ops.append({"op": "update", "collection": "items", "id": r["id"], "set": {"chargefac": None}}); continue
+        if not cf or _same(cf, r.get("chargefac")) or _keeps(r.get("chargefac"), cf): continue
         ops.append({"op": "update", "collection": "items", "id": r["id"], "set": {"chargefac": cf}})
     doc = {"schema": "irb-board-updates/1", "source": "tools/db/board_chargefac.py build %s (read-only on Neon)" % stamp, "created": now, "ops": ops}
     return board_ops.clean_file(doc)
@@ -468,9 +506,12 @@ def stamp_file(doc, select, now=None, items=None):
     Review 11/12: an op alone is not the card - a card found in items is worked out from the whole card (its stored row, the op's set
     over it, notes / checks / api with the op's appends, as the page applies them) and keeps the badge it has (_keeps). Second review
     11/12: a card NOT found in items is not taken for a new card - items may be partial, empty or wrongly shaped - so its stored badge is
-    unknown: it gets only a charge it names (STRONG), worked out on the op's own amdid / pid / chart (never its id's number: the stored
-    card may carry an amdid the op does not repeat), unless the op creates it (_creates). A `replace` writes the whole row - the card's
-    old badge goes with it - so it is always stamped. Whatever is written, the page keeps a stronger badge when it applies the file."""
+    unknown: it gets only a VISIT it names (third review 11/12: a date of service or facility id read from the op alone can be outranked
+    by a visit the stored card names, and the page lets any named match replace another), worked out on the op's own amdid / pid / chart
+    (never its id's number: the stored card may carry an amdid the op does not repeat), unless the op creates it (_creates). A card seen
+    whole whose stored badge was worked out on a chart it no longer has, with nothing found on the chart it has now, gets chargefac null
+    (third review 11/12 - cleared). A `replace` writes the whole row - the card's old badge goes with it - so it is always stamped.
+    Whatever is written, the page keeps a stronger badge, and refuses a badge from a chart the card does not have, when it applies it."""
     board = {str(r.get("id")): r for r in (items or []) if isinstance(r, dict) and r.get("id")}
     targets = []
     for o in doc.get("ops") or []:
@@ -497,12 +538,17 @@ def stamp_file(doc, select, now=None, items=None):
     out = []
     for (body, row, cur, whole, new), (_, cf, why) in zip(targets, results):
         old = (cur or {}).get("chargefac")
-        if cf and not (whole or new) and cf["how"] not in STRONG:
-            out.append((row["id"], None, "kept as it is: only a guess (%s), and the card's own badge is not known (the card is not among the --items rows)" % cf["how"]))
+        if cf and not (whole or new) and cf["how"] != "visit":
+            out.append((row["id"], None, "not written: %s read from the op alone - the card is not among the --items rows, so its own badge is not known%s"
+                        % (("only a guess (%s)" % cf["how"]) if cf["how"] in GUESS else ("a %s match" % cf["how"]),
+                           "" if cf["how"] in GUESS else " (a visit it names would outrank this)")))
         elif cf and _keeps(old, cf):
             out.append((row["id"], None, "kept the card's badge: found by a stronger rule (%s) than this guess (%s)" % (old.get("how"), cf["how"])))
         elif cf and _same(cf, old):
             out.append((row["id"], None, "kept the card's badge: the same facility"))
+        elif not cf and cur is not None and isinstance(old, dict) and old.get("name") and not _on_card(old, row):
+            body["chargefac"] = None                 # third review 11/12: the stored badge is another chart's - the store's update() clears it
+            out.append((row["id"], None, "cleared: worked out on another chart"))
         else:
             if cf: body["chargefac"] = cf
             out.append((row["id"], cf, why))
@@ -527,15 +573,16 @@ def main(argv, select=None):
             except Exception as e:
                 print("board_chargefac stamp: --items could not be read (%s) - read as no --items" % type(e).__name__)
             items = items or None
+        before = json.dumps(doc, sort_keys=True)
         try: got = stamp_file(doc, select, now, items)
         except Exception as e:
             print("board_chargefac stamp: the practice database could not be read (%s) - %s left exactly as it was" % (str(e)[:160], os.path.basename(path)))
             return 0
-        if any(cf for _, cf, _ in got):
+        if json.dumps(doc, sort_keys=True) != before:   # a badge written, or (third review 11/12) another chart's badge cleared
             with open(path, "w", encoding="utf-8") as f: json.dump(doc, f, indent=1, ensure_ascii=False)
         # counts only (review 11/12): a row id is a patient-name slug (last-first-<amdid>), and this output lands in the run's transcript
         print("board_chargefac stamp %s: %d row(s) looked at, %d given the charge's facility%s" % (os.path.basename(path), len(got),
-              sum(1 for _, cf, _ in got if cf), "" if items is not None else " (no --items rows: a card already on the board gets only a charge it names)"))
+              sum(1 for _, cf, _ in got if cf), "" if items is not None else " (no --items rows: a card already on the board gets only a visit it names)"))
         print("  by rule: %s" % json.dumps(dict(collections.Counter(why for _, cf, why in got if cf).most_common())))
         print("  not given: %s" % json.dumps(dict(collections.Counter(why for _, cf, why in got if not cf).most_common())))
         return 0
@@ -556,16 +603,22 @@ def main(argv, select=None):
     for part, v in c.items():
         print("  %s cards %d: the charge's facility found for %d %s; not found for %d %s" % (part, v["cards"], v["specific"], json.dumps(v["by_rule"]), v["generic"], json.dumps(v["not_found_why"])))
         if v["chart_from"]: print("    chart number read from the card's id / text (no amdid on the card): %s" % json.dumps(v["chart_from"]))
+        # third review 11/12: plan says these too (it said only what this run found, so a card keeping its visit badge read as a guess)
+        if v["in_file"] and v["kept"]:
+            print("    %d card(s) keep the badge they have: found by a stronger rule than this run's guess, on a chart they still have (counted under that rule)" % v["kept"])
+        if v["in_file"] and v["cleared"]:
+            print("    %d card(s) lose a badge worked out on a chart they no longer have (nothing found on the chart they have now)" % v["cleared"])
         print("    the badge then shows%s: %s" % ("" if v["in_file"] else " (done cards are left out of the file - --all adds them)", json.dumps(v["badge"])))
     if cmd == "plan": return 0
     stamp = re.sub(r"[^0-9A-Za-z\-]", "", opt("--stamp") or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H%MZ"))
     doc = build_file(results, stamp, now, include_done="--all" in a)
-    kept = sum(1 for r, cf, _ in results if cf and _keeps(r.get("chargefac"), cf) and ("--all" in a or str(r.get("status") or "") != "done"))
     os.makedirs(out, exist_ok=True)
     name = os.path.join(out, "board_updates_%s.json" % stamp)
     with open(name, "w", encoding="utf-8") as f: json.dump(doc, f, indent=1, ensure_ascii=False)
-    if kept: print("  %d card(s) keep the badge they have: found by a stronger rule than this guess, on a chart they still have" % kept)
-    print("board_chargefac build: %d card(s) get the charge's facility -> %s (not delivered: the board applies it once it is in the Drive folder 'board inbox')" % (len(doc["ops"]), name))
+    given = sum(1 for o in doc["ops"] if isinstance(o["set"].get("chargefac"), dict))
+    lost = len(doc["ops"]) - given
+    print("board_chargefac build: %d card(s) get the charge's facility%s -> %s (not delivered: the board applies it once it is in the Drive folder 'board inbox')"
+          % (given, (", %d lose a badge worked out on a chart they no longer have" % lost) if lost else "", name))
     return 0
 
 if __name__ == "__main__":

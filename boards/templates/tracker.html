@@ -437,13 +437,25 @@ button.btn:disabled{opacity:.5;cursor:default}
     });
   }
   const RES_KIND=/^(SNF|ALF|IL|ICF)$/;
+  // 11/12 third review: a charge badge belongs to the chart(s) it was worked out on (its `chart`, comma-separated). It is shown - and
+  // applyOp writes a file's badge - only while the card still has EVERY one of them: a chart number corrected with no new badge left
+  // the old chart's facility, visit and date on the card (and in the worksheet). A card with no chart number of its own (the helper
+  // matched it through its id / text) and a badge that names no chart pass. Same test as tools/db/board_chargefac.py _on_card.
+  const chartList=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const chartNums=row=>{ const out=[]; for(const k of ['amdid','pid','chart']) for(const n of String((row||{})[k]||'').split(/\D+/)) if(n.length>=4&&n.length<=9&&!out.includes(n)) out.push(n); return out; };
+  function cfOnCard(cf, row){
+    const was=chartList(cf&&typeof cf==='object'&&typeof cf.chart==='string'?cf.chart:''), now=chartNums(row);
+    return !(was.length&&now.length) || was.every(c=>now.includes(c));
+  }
   function facInfo(it){
     // 11/12 (William): the facility the card's CHARGE came from comes first - written by tools/db/board_chargefac.py from the practice
     // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res, chart, chart_from}
     // 11/12 review: `res` (where a hospital patient lives) never shows under a home's own badge - a guard in case a store merge kept an
     // earlier hospital badge's res (the helper now writes every key, res null / also [] when they do not apply).
+    // 11/12 third review: a badge worked out on a chart the card no longer has falls through to facnow / the facilities line / lastfac /
+    // the facility text (cfOnCard).
     const cf=it.chargefac;
-    if(cf&&typeof cf==='object'&&cf.name){
+    if(cf&&typeof cf==='object'&&cf.name&&cfOnCard(cf, it)){
       const k=String(cf.kind||kindOf(cf.name)).toUpperCase();
       const res=(!RES_KIND.test(k)&&cf.res&&typeof cf.res==='object'&&cf.res.name&&cf.res.name!==cf.name)?{name:String(cf.res.name),kind:String(cf.res.kind||kindOf(cf.res.name)).toUpperCase()}:null;
       const also=(Array.isArray(cf.also)?cf.also:[]).map(String).filter(x=>x&&x!==cf.name);
@@ -684,7 +696,8 @@ button.btn:disabled{opacity:.5;cursor:default}
   function renderSyncLog(reg){
     const ul=$('#sync-log'); if(!ul) return;
     const rows=Object.entries((reg&&reg.applied)||{}).map(([id,v])=>Object.assign({id},v||{})).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,10);
-    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
+    // 11/12 third review: ops the page kept (nothing to write - the card's badge stays) are shown as kept, not as changes
+    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.kept?` · ${Number(r.kept)} kept (the card's badge stays)`:''}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
   }
   function b64utf8(b64){ const bin=atob(String(b64).replace(/\s/g,'')); const bytes=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(bytes); }
   const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -745,10 +758,10 @@ button.btn:disabled{opacity:.5;cursor:default}
   // badge is only a guess (open balance, dos in notes, newest charge) from a weaker rule than the stored badge's, and the card still has
   // every chart the stored badge was worked out on (its `chart`). A corrected chart number lets the new chart's badge through, and so
   // does a badge that does not say its chart. A card with no chart number of its own is matched through its id / text by the helper, so
-  // its chart is the one the op's badge was worked out on.
+  // its chart is the one the op's badge was worked out on. 11/12 third review: before that, a file's badge worked out on a chart the card
+  // will not have after the op (cfOnCard - chartList / chartNums / cfOnCard sit with the badge code above) is never written, on the merge
+  // and the replace path alike: the card keeps its own badge.
   const CF_RANK={'visit':1,'dos':2,'facility id':3,'open balance':4,'dos in notes':5,'newest charge':6}, CF_GUESS=['open balance','dos in notes','newest charge'];
-  const chartList=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
-  const chartNums=row=>{ const out=[]; for(const k of ['amdid','pid','chart']) for(const n of String((row||{})[k]||'').split(/\D+/)) if(n.length>=4&&n.length<=9&&!out.includes(n)) out.push(n); return out; };
   function keepsBadge(old, neu, row){
     if(!isObj(old)||!old.name||!isObj(neu)||!CF_GUESS.includes(String(neu.how||''))) return false;
     if(!(CF_RANK[String(neu.how)] > (CF_RANK[String(old.how||'')]||99))) return false;
@@ -768,7 +781,10 @@ button.btn:disabled{opacity:.5;cursor:default}
       const cur0=await withRetry(()=>ref.get());
       if(cur0.exists && fileCreated && String((cur0.data()||{}).updated||'')>String(fileCreated)) return 'stale';   // the row moved on after this file was written
       const data=Object.assign({}, op.data), old0=cur0.exists?(cur0.data()||{}).chargefac:null;
-      if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=old0;   // a stronger stored badge stays (see keepsBadge)
+      if(isObj(data.chargefac) && !cfOnCard(data.chargefac, data)){   // 11/12 third review: the file's badge is another chart's - the card's own goes over, if it fits
+        if(isObj(old0) && old0.name && cfOnCard(old0, data)) data.chargefac=old0; else delete data.chargefac;
+      }
+      else if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=old0;   // a stronger stored badge stays (see keepsBadge)
       await withRetry(()=>ref.set(Object.assign({},data,{updated:data.updated||now}))); return;
     }
     if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
@@ -780,8 +796,15 @@ button.btn:disabled{opacity:.5;cursor:default}
     // Post → Claude, a chat update), its status, need and why are newer than the file's — keep them; the file's appends still land.
     const stale = !!(cur && fileCreated && String(cur.updated||'')>String(fileCreated));
     if(stale){ for(const k of ['status','need','why','updated']) delete patch[k]; }
-    // 11/12 second review: a stronger stored charge-facility badge stays (keepsBadge) - the row as it will be after this op decides the chart
-    if(cur && isObj(patch.chargefac) && keepsBadge(cur.chargefac, patch.chargefac, Object.assign({}, cur, patch))) delete patch.chargefac;
+    // 11/12 second review: a stronger stored charge-facility badge stays (keepsBadge) - the row as it will be after this op decides the chart.
+    // 11/12 third review: and a badge worked out on a chart the card will not have after this op is never written (cfOnCard) - a new row's too.
+    // A clear (chargefac null - the helper's for a badge worked out on another chart) removes only a badge that is not on the card's charts:
+    // a file from an older copy of the board never wipes a badge the card's chart still supports.
+    if(isObj(patch.chargefac) || patch.chargefac===null){
+      const after=Object.assign({}, cur||{}, patch);
+      if(patch.chargefac===null){ if(cur && isObj(cur.chargefac) && cur.chargefac.name && cfOnCard(cur.chargefac, after)) delete patch.chargefac; }
+      else if(!cfOnCard(patch.chargefac, after) || (cur && keepsBadge(cur.chargefac, patch.chargefac, after))) delete patch.chargefac;
+    }
     // 11/2 (William): a run file carries its own 'updated' in set{}, and writing it verbatim rolled the row's stamp BACKWARDS past
     // William's Post - the card then read "updated <this morning>" and, worse, the stale guard above compares the row's stamp with
     // the file's created time, so the next file looked newer than his answer and its status/need/why overwrote it. The stamp only
@@ -846,7 +869,7 @@ button.btn:disabled{opacity:.5;cursor:default}
         renderSyncLog(reg);
         setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+').','ok'); return;
       }
-      let nFiles=0, nOps=0, nFail=0, regErr='';
+      let nFiles=0, nOps=0, nFail=0, nKept=0, regErr='';
       for(const f of todo){
         setSync('Applying '+f.title+' ('+(nFiles+1)+' of '+todo.length+')…','busy');
         let body=null; const entry={title:f.title, at:new Date().toISOString(), ops:0, failed:0};
@@ -856,16 +879,17 @@ button.btn:disabled{opacity:.5;cursor:default}
           if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
           else{
             const now=new Date().toISOString(); const errs=[];
-            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; else if(r==='kept') entry.kept=(entry.kept||0)+1; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            // 11/12 third review: an op applyOp kept (it returns 'kept': nothing to write, the card's badge stays) is counted as kept, never as a change
+            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); if(r==='kept') entry.kept=(entry.kept||0)+1; else{ entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; } }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
             if(errs.length) entry.error=errs.join('; ');
           }
         }
-        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed;
+        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed; nKept+=Number(entry.kept||0);
         try{ await saveReg(reg, existed); existed=true; regErr=''; }catch(e){ regErr=String(e&&e.code||e&&e.message||'error'); }
       }
       reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); regErr=''; }catch(e){ regErr=regErr||String(e&&e.code||e&&e.message||'error'); }
       renderSyncLog(reg);
-      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
+      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nKept?' ('+nKept+' kept: the card\'s badge stays)':'')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
     }catch(e){
       setSync(mcpMsg(e),'err');
     }finally{ syncing=false; const g=goEl(); if(g) g.disabled=false; }
