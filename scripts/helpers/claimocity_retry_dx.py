@@ -24,7 +24,7 @@ def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0
 # helpers here the repository's copies exactly as the ingest does - the one shared function claimocity_helpers_current.make_current: with the clone
 # there, every helper that differs is replaced by the clone's copy; without one, each is checked by its version line. It never holds a visit for
 # this (rules.md part 6): what could not be made current is said at the end of the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.7"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.8"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
     for _p in (os.path.join(HERE, "claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py")):

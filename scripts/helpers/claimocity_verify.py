@@ -391,8 +391,8 @@ def order_hold(visit, order, m, info, qtag=None):
     """(the hold line, the register list it goes in) for a visit whose insurance order was not confirmed - in words that say what the visit's
     insurance-order LIST shows (4.4): empty -> NO CLAIM CAN BE MADE (no_order_list); another order -> it still bills to that old order
     (order_differs); billed -> its order was not changed (order_differs); not read -> order_unread; the order is right but the save lost a
-    charge or the admission date -> save_problem. A visit that carries the quality / M0004 line keeps the words the import switches the code
-    off on ("insorder not applied on <visit> (the visit carries ...)") in front."""
+    charge or the admission date -> save_problem. A visit that carries the quality / M0004 line keeps the words the import starts probing on
+    (the visit itself is for a person; 11/12/2026: the code never switches itself off) ("insorder not applied on <visit> (the visit carries ...)") in front."""
     lst = info.get("list_now"); why = re.sub(r"\s+", " ", str(m or ""))[:220]; w_ = "" if qtag else " (%s)" % why      # a quality-line visit already carries the answer in front
     if info.get("billed"):
         words, key = held("%s already billed - its order was not changed (it bills to its insurance order %s)%s" % (visit, lst or "?", w_)), "order_differs"
@@ -571,7 +571,8 @@ def main():
                         rec["fixes"].append("%s: no charge id recorded" % v["visit"]); rec.setdefault("order_unread", []).append(v["visit"])
                         rec["hold"].append(held("the insurance order of %s could not be read (the import register holds no charge id for it)" % v["visit"])); continue
                     # 11/10/2026: a visit that carries the no-charge quality line and whose order cannot be set says so in the words the import
-                    # looks for ("insorder not applied on <visit>" with the line named) - the import then switches the code off until William looks
+                    # looks for ("insorder not applied on <visit>" with the line named) - the words the import starts probing on (the visit itself is for a person;
+                    # 11/12/2026: the code never switches itself off - it puts one line a run on the first eligible visit until one is billed)
                     qtag = (lambda w: " (the visit carries the quality line %s: %s)" % (v.get("quality_charge"), w[:120])) if (v.get("quality_codes") and v.get("quality_charge")) else None
                     if v.get("mvp_codes") and v.get("mvp_charge"):      # the option code's line too: the same words, naming both lines
                         qtag = lambda w: " (the visit carries the quality line %s and the M0004 line %s: %s)" % (v.get("quality_charge") or "-", v.get("mvp_charge"), w[:120])

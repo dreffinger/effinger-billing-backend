@@ -21,16 +21,28 @@
 #   for its own reason, as before. Held rows say "quality": true when the visit still carries the line, "names_line": true when the words name it.
 #   Each entry also says "resave_ok" (written false BEFORE the re-save, so an error leaves it false) and, when the visit is still listed and the
 #   re-save failed or the remaining words still name a line that came off, "still_named": true - AdvancedMD did not inspect the visit again; the
-#   import then switches the code off until William has looked (one re-save of the visit should release it).
+#   import then adds no new line in that run, and this step re-saves the visit again in every run until it is free (one re-save of the visit should release it).
+# THE RETRY PASS (11/12/2026; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds" - the code never switches itself off, and
+#   a real claim never waits because of it): a visit stuck held with its no-charge line (the void failed, the re-save after it failed, or the visit
+#   is still listed for the edit about the line) is tried again in every run of this step - the visits the import register's gates list under
+#   "stuck", and the ones this start could not free - until it is free; each such entry says "retry_of".
+#   every run tries the void and the re-save again for a visit stuck with its no-charge line.
+#   The pass also looks at the visits of EARLIER batches whose line is not decided yet (the gates'
+#   "open_lines"): when the claim check holds such a visit for a data error and no step ever looked at it, the line comes off here, a run late. The
+#   pass decides, per visit: no longer listed = free, nothing is voided or saved; listed with advisories only = they are bypassed, nothing is
+#   voided; the visit's own charge reads billed = a claim that was sent is never changed; else the line is voided (when it is still live), the
+#   visit re-saved and listed again. A listing AdvancedMD did not answer shows nothing: it frees nobody. A second start of the step under one
+#   stamp keeps what the first start recorded about no-charge lines.
 # THE OPTION CODE M0004 (William 11/10/2026: "use it"; it rides once per clinician with the 1123F line, after proof): the same for its no-charge
 #   line - an edit that names M0004 / pcode692183 is never bypassed, and the step takes BOTH no-charge lines off when the edits name neither or
 #   both, and also when they name 1123F alone (the 1123F line never leaves the M0004 line behind: M0004 rides only with 1123F; that M0004 entry
-#   says "with": "1123F" and does not switch M0004 off); only the M0004 line when they name M0004 alone (claimocity_import.names_lines: words
+#   says "with": "1123F" and starts nothing for M0004); only the M0004 line when they name M0004 alone (claimocity_import.names_lines: words
 #   about a zero amount name the line whose code is not named). Each line is known by its OWN procedure in its own detail (1123F pcode65441,
 #   M0004 pcode692183, at most one cent) - never a visit's own charge, also when the import recorded the two the other way round. One
 #   "quality_removed" entry PER line, with its "code"; held rows say "mvp": true while the visit still carries the M0004 line and "names_mvp":
 #   true when the words name it.
-# Only visits this import created are touched (registers/feed_import_1028.json). Writes registers/feed_inspector_1028.json.
+# Only visits this import created are touched (registers/feed_import_1028.json) - and, by the retry pass alone, the visits of earlier batches that
+#   the import register's gates name: on those nothing but a no-charge line is ever voided. Writes registers/feed_inspector_1028.json.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
 HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8133-5488-ad3a-bd2fb16f50f8/scratchpad/hl7/claimocity_oct")
@@ -208,7 +220,7 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     adv, data = split_errors(again["errors"], rq, rm) if again else ([], [])
     notes = advisories(vid, c, adv)
     # still listed for the edit about a line that came off (the re-save failed, or the remaining words still name that line): AdvancedMD did not
-    # inspect the visit again - that is NOT the visit's own reason; the import switches the code off until William has looked (NH2-2)
+    # inspect the visit again - that is NOT the visit's own reason; the import adds no new line while that is so, and this step tries again in every run (NH2-2)
     _still = bool(data) and (not ok2 or any(names_lines(e["text"], c.get("quality_charge") or "", c.get("mvp_charge") or "")[0 if k_ == QUALITY_CODE else 1] for e in data for k_, _x in todo))
     for _k, entry in entries:
         entry["released"] = not data; entry["resave_ok"] = bool(ok2)
@@ -218,8 +230,169 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
         else: hold("; ".join(e["text"][:80] for e in data), bool(rq) and any(names_lines(e["text"], rq, rm)[0] for e in data), bool(rm) and any(names_lines(e["text"], rq, rm)[1] for e in data))
     if one: return "quality line %s taken off (void), visit re-saved: %s%s" % (c.get("quality_charge"), "released" if not data else "still held for its own reason", ("; " + "; ".join(notes)) if notes else "")
     return "no-charge line(s) %s taken off (void), visit re-saved: %s%s" % (", ".join("%s %s" % (k, x) for k, x in todo), "released" if not data else "still held for its own reason", ("; " + "; ".join(notes)) if notes else "")
+# ---- THE RETRY PASS (11/12/2026; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds") ------------------------------------
+# The quality code never switches itself off any more, so a visit that is stuck held with its no-charge line must come free by the routine: this
+# pass runs after the step's normal pass, in every run of the step. It tries again (a) the visits the import register's gates list under "stuck"
+# (quality_gate for the 1123F line, mvp_gate for the M0004 line - written minutes earlier by the import of the same run), (b) the visits this very
+# start - or an earlier start under the same stamp - could not free (its own entries that say stuck), and it looks at (c) the visits of EARLIER
+# batches whose line is not decided yet (the gates' "open_lines"): a visit the claim check holds while no step ever looked at it.
+def listing(also=()):
+    """The Claim Inspector batch as list_batch reads it, for the retry pass: (True, {visit: {pid, errors}}) of my visits and of the visits in `also` -
+    or (False, {}) when AdvancedMD did not answer the listing (a fault, success="0", an answer that cannot be read). list_batch turns a fault
+    into an empty list, which reads as "no visit is listed"; this pass must never call a visit free on that: a listing that failed shows nothing."""
+    try:
+        r = amd.post(amd.msg("getclaiminspectorcharges", "chargeentry", {"batchid": "1", "nocookie": "1"}), timeout=180)
+        if "Fault" in r or 'success="0"' in r: return False, {}
+        out = {}
+        for v in ET.fromstring(r.encode("latin-1", "ignore")).iter("visit"):
+            vid = re.sub(r"\D", "", v.get("id") or "")
+            if vid in MINE or vid in also: out[vid] = {"pid": v.get("patientid"), "errors": [{"id": e.get("id"), "number": e.get("number") or "", "text": (e.get("name") or e.get("text") or "")[:160]} for e in v.iter("error")]}
+        return True, out
+    except Exception: return False, {}
+def own_billed(own):
+    """Was the visit's own first charge billed? ONE read of its detail, read as the import reads a charge (a billed date is listed): True / False -
+    or None when that cannot be shown. A claim that was sent is never changed: the retry pass neither voids nor saves on a visit that reads billed,
+    nor on one whose own charge cannot be read."""
+    cid = re.sub(r"\D", "", str(own or ""))
+    if not cid: return None
+    try:
+        for ch in ET.fromstring(resave.detail(cid)).iter("charge"):
+            if re.sub(r"\D", "", ch.get("id") or "") != cid: continue
+            return bool([b for b in ch.findall("insbilllist/insbill") if b.get("billeddate")] or (ch.get("insbilled") == "1" and (ch.get("datebilled") or "").strip()))
+        return None
+    except Exception: return None
+def stuck_says(e):
+    """Does a "quality_removed" entry say that the visit is stuck held with that line? The void failed - or the line came off and the visit is still
+    listed for the edit about it (the import's own test). An entry that says "listed": false says free."""
+    if e.get("listed") is False: return False
+    return e.get("void_ok") is not True or (e.get("released") is not True and (e.get("still_named") is True or e.get("resave_ok") is False))
+def retry_visits():
+    """{visit number: what the pass needs} - 'kind' ("stuck": tried again until free; "open": only looked at), 'c' (the visit's row: this batch's own,
+    or one built from the gate's items for a visit of an earlier batch), 'own' (the visit's own first charge), 'act' ({code: charge} of the lines the
+    gates or the entries name), 'since' (the register that first recorded the visit - every entry of the pass says it as "retry_of") and 'why'."""
+    num = lambda x: re.sub(r"\D", "", str(x or "")); out = {}
+    def add(vid, kind, code, charge, fee, own, pid, other, since, why):
+        t = out.setdefault(vid, {"kind": kind, "own": own, "pid": pid, "act": {}, "all": {}, "fee": {}, "since": since, "why": why})
+        if kind == "stuck" and t["kind"] != "stuck": t.update(kind="stuck", since=since, why=why, act={})      # stuck wins: the visit is tried until it is free
+        if kind == t["kind"]: t["act"][code] = charge
+        t["all"][code] = charge; t["fee"][code] = fee; t["own"] = t["own"] or own
+        if other: t["all"].setdefault(MVP_CODE if code == QUALITY_CODE else QUALITY_CODE, other)      # the visit's other no-charge line as its row recorded it
+    for gk in ("quality_gate", "mvp_gate"):
+        g = REG.get(gk) if isinstance(REG.get(gk), dict) else {}
+        for kind, key in (("stuck", "stuck"), ("open", "open_lines")):
+            for it in (g.get(key) if isinstance(g.get(key), list) else []):
+                if not isinstance(it, dict) or not num(it.get("visit")) or not num(it.get("charge")) or not isinstance(it.get("chart"), str): continue      # an odd item is passed over
+                vid = num(it.get("visit")); own = it.get("own") if isinstance(it.get("own"), str) else ""
+                if kind == "open" and (vid in MINE or not num(own)): continue      # this batch's own visits are the normal pass's; an item without its own first charge is passed over
+                add(vid, kind, MVP_CODE if str(it.get("code") or "").upper() == MVP_CODE else QUALITY_CODE, it["charge"], it.get("fee"), own, it["chart"],
+                    it.get("with") if isinstance(it.get("with"), str) else "", str(it.get("since") or it.get("register") or ""), str(it.get("why") or ""))
+    newest = {}
+    for e in OUT["quality_removed"]:      # this start's entries, and an earlier start's under the same stamp: the newest per line decides
+        if isinstance(e, dict) and num(e.get("visit")) and num(e.get("charge")): newest[(num(e.get("visit")), str(e.get("code") or QUALITY_CODE).upper())] = e
+    for (vid, code), e in newest.items():
+        if vid in out and out[vid]["kind"] == "stuck" and not stuck_says(e): out[vid]["act"].pop(code, None)      # a newer entry of this stamp already says that line is free
+        if not stuck_says(e) or vid not in MINE: continue
+        c = MINE[vid]; q = c.get("quality_charge") if (c.get("quality_codes") and c.get("quality_charge")) else ""; mv = c.get("mvp_charge") if (c.get("mvp_codes") and c.get("mvp_charge")) else ""
+        add(vid, "stuck", MVP_CODE if code == MVP_CODE else QUALITY_CODE, e["charge"], e.get("fee"), next((x for x in c["charges"] if x not in (q, mv)), ""), c["pid"],
+            (q if code == MVP_CODE else mv) or "", str(e.get("retry_of") or "feed_inspector_%s.json" % STAMP), str(e.get("why") or ""))
+    for vid, t in list(out.items()):
+        if not t["act"]: del out[vid]; continue
+        a = t["all"]
+        t["c"] = MINE[vid] if vid in MINE else {"visit": "vst" + vid, "pid": t["pid"], "cpts": [], "charges": [x for x in (t["own"], a.get(QUALITY_CODE), a.get(MVP_CODE)) if x],
+                                               "quality_codes": [QUALITY_CODE] if a.get(QUALITY_CODE) else [], "quality_charge": a.get(QUALITY_CODE, ""), "quality_fee": t["fee"].get(QUALITY_CODE),
+                                               "mvp_codes": [MVP_CODE] if a.get(MVP_CODE) else [], "mvp_charge": a.get(MVP_CODE, ""), "mvp_fee": t["fee"].get(MVP_CODE)}
+    return out
+def retry_one(vid, t, info):
+    """ONE visit of the retry pass. info = how the Claim Inspector lists it now (None = not listed). This is take_line_off's own sequence with these
+    differences: a line that is void already does not end it (the visit is re-saved and listed again), every entry says "retry_of", a listing that
+    failed frees nobody, and nothing is voided or saved on a visit that is free or was billed. -> a note for the step's log line."""
+    c = t["c"]; stuck = t["kind"] == "stuck"; q = c.get("quality_charge") if (c.get("quality_codes") and c.get("quality_charge")) else ""; mv = c.get("mvp_charge") if (c.get("mvp_codes") and c.get("mvp_charge")) else ""
+    at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat(); entries = []
+    def entry(code, charge, **kw):
+        e = dict({"visit": vid, "pid": c["pid"], "charge": charge, "code": code, "fee": c.get("mvp_fee" if code == MVP_CODE else "quality_fee"), "why": str(kw.pop("why", t["why"]))[:140], "void_ok": False, "released": False, "at": at,
+                  "retry_of": t["since"]}, **kw)
+        OUT["quality_removed"].append(e); entries.append((code, e)); return e      # recorded at once: even if a later call raises, the import knows what was tried
+    def free(note):      # the visit is free: one entry per line the gates named, nothing voided or saved ("void_ok" = that line reads void)
+        for code, charge in sorted(t["act"].items(), key=lambda kv: kv[0] != QUALITY_CODE): entry(code, charge, void_ok=line_live(c, code, charge)[0] == "gone", released=True, listed=False, note=note)
+        return "free: " + note
+    if info is None: return free("the visit is no longer listed by the Claim Inspector - nothing done") if stuck else "not listed - nothing done"
+    adv, data = split_errors(info["errors"], q, mv)
+    if not data:      # listed with advisories only: the hold is gone - they are bypassed as the step always does, nothing is voided
+        if not stuck: return "advisories only - nothing done"
+        notes = advisories(vid, c, adv)
+        if any("FAILED" in n for n in notes): return "advisories only, but the bypass was not accepted - nothing recorded, the next run tries again"
+        return free("only advisories remained - bypassed, nothing voided")
+    words = "; ".join(e["text"][:80] for e in data)
+    if q and mv: nq = any(names_lines(e["text"], q, mv)[0] for e in data); nm = any(names_lines(e["text"], q, mv)[1] for e in data)
+    else: nq = bool(q) and any(names_line(e["text"], q) for e in data); nm = bool(mv) and any(names_lines(e["text"], "", mv)[1] for e in data)
+    if not stuck and QUALITY_PROVEN and not (nq or nm): return "held for words that name no no-charge line - left alone (after proof)"      # the normal pass's own test
+    billed = own_billed(t["own"])
+    if billed is None: return "the visit's own charge could not be read - nothing done, the next run tries again"
+    if billed: return free("the visit was billed - nothing done") if stuck else "the visit was billed - nothing done"
+    if q and mv:      # both no-charge lines: told apart by their OWN procedure first (the import may have recorded them the other way round), as in the normal pass
+        _nl = dict(no_charge_lines(c)); q = _nl.get(QUALITY_CODE, ""); mv = _nl.get(MVP_CODE, ""); c = dict(c, quality_charge=q, mvp_charge=mv)
+        if stuck and set(t["act"].values()) <= {q, mv}: t = dict(t, act={k: x for k, x in ((QUALITY_CODE, q), (MVP_CODE, mv)) if k in t["act"]})
+    # which lines come off: a stuck visit - the lines that are stuck, and the M0004 line with the 1123F line (M0004 never rides without it); a visit that
+    # was only looked at - the normal pass's rule (both when the edits name neither or both or 1123F alone, only the M0004 line when they name M0004 alone)
+    take_q = bool(q) and ((QUALITY_CODE in t["act"]) if stuck else (nq or not nm))
+    which = [(k, x) for k, x in ((QUALITY_CODE, q), (MVP_CODE, mv)) if x and ((k == QUALITY_CODE and take_q) or (k == MVP_CODE and (take_q or not stuck or MVP_CODE in t["act"])))]
+    carries = {QUALITY_CODE: bool(q), MVP_CODE: bool(mv)}; gone = set()
+    def hold(w, n1, n2):      # ONE held row a visit: the row this start's normal pass wrote for it gives way to what the pass finds now (the digest lists and counts the held rows)
+        OUT["held"][:] = [r_ for r_ in OUT["held"] if not (isinstance(r_, dict) and r_.get("visit") == vid)]
+        held(vid, c, w, quality=carries[QUALITY_CODE] and QUALITY_CODE not in gone, names=n1, mvp=carries[MVP_CODE] and MVP_CODE not in gone, mnames=n2)
+    live = {k: line_live(c, k, x) for k, x in which}
+    for k, x in which:
+        e = entry(k, x, why=words)
+        if k == MVP_CODE and take_q and ((MVP_CODE not in t["act"]) if stuck else (nq and not nm)): e["with"] = QUALITY_CODE      # it comes off only because the 1123F line comes off (M0004 never rides without it): not M0004's fault
+        if live[k][0] == "gone": e["void_ok"] = True; gone.add(k)      # void already: nothing to void - go on to the re-save
+    bad = [(k, live[k][1]) for k, _ in which if live[k][0] == "unsure"]
+    if bad:      # a line that cannot be shown to be the no-charge line: nothing is voided, nothing else is tried for this visit
+        for k, e in entries:
+            if not e["void_ok"]: e["note"] = live[k][1] if live[k][0] == "unsure" else "not tried: another no-charge line of the visit could not be shown live"
+        hold(words, nq, nm); return "HELD with its no-charge line: %s" % bad[0][1]
+    for k, e in entries:
+        if e["void_ok"]: continue
+        ok, msg = void_tx.void_charge(c["pid"], live[k][1])
+        if not ok:      # the void failed again: nothing else is tried; the next run tries again
+            e["note"] = "the void failed: %s" % re.sub(r"\s+", " ", str(msg))[:120]
+            for _k2, e2 in entries:
+                if e2 is not e and not e2["void_ok"]: e2["note"] = "not tried: the void of the %s line failed" % k
+            hold(words, nq, nm); return "HELD with its %s line: the void failed again" % k
+        e["void_ok"] = True; gone.add(k)
+    for _k, e in entries: e["resave_ok"] = False      # written BEFORE the re-save: an error in the re-save or in the listing leaves it False
+    ok2, r = resave_visit(re.sub(r"\D", "", t["own"])); time.sleep(1.0)
+    if not ok2:
+        for _k, e in entries: e["note"] = "the re-save after the void failed: %s" % r[:100]
+    ok3, again = listing({vid})
+    if not ok3:      # the listing after the re-save failed: the visit is not shown free - the next run lists it again
+        for _k, e in entries: e.update(resave_ok=bool(ok2), released=False, still_named=True, note="the listing after the re-save failed")
+        return "line(s) off, visit re-saved, but the listing after it failed - the next run lists it again"
+    now = again.get(vid); rq = q if QUALITY_CODE not in gone else ""; rm = mv if MVP_CODE not in gone else ""
+    adv2, data2 = split_errors(now["errors"], rq, rm) if now else ([], [])
+    notes = advisories(vid, c, adv2)
+    _still = bool(data2) and (not ok2 or any(names_lines(e["text"], q or "", mv or "")[0 if k_ == QUALITY_CODE else 1] for e in data2 for k_, _x in which))
+    for _k, e in entries:
+        e["released"] = not data2; e["resave_ok"] = bool(ok2)
+        if _still: e["still_named"] = True
+    if data2: hold("; ".join(e["text"][:80] for e in data2), bool(rq) and any(names_lines(e["text"], rq, rm)[0] for e in data2), bool(rm) and any(names_lines(e["text"], rq, rm)[1] for e in data2))
+    return "no-charge line(s) %s off, visit re-saved: %s%s" % (", ".join("%s %s" % (k, x) for k, x in which), "released" if not data2 else "still listed", ("; " + "; ".join(notes)) if notes else "")
+def retry_pass():
+    """The retry pass over retry_visits(), with ONE listing of the Claim Inspector batch for all of them. A listing AdvancedMD did not answer shows
+    nothing: no entry is written and every visit stays as it was. An error while one visit is tried is caught - what was recorded for it stays -
+    and the pass goes on with the next visit."""
+    todo = retry_visits()
+    if not todo: return
+    ok, now = listing(set(todo))
+    if not ok: print("inspector retry: the Claim Inspector listing was not answered - %d visit(s) not looked at; the next run tries again" % len(todo)); return
+    for vid, t in todo.items():
+        try: print("RETRY", vid, t["kind"], "|", retry_one(vid, t, now.get(vid))[:200])
+        except Exception as e: print("ERR retry", vid, str(e)[:160])
 def main():
     amd.login_cached()
+    try:      # a second start of the step under one stamp keeps what the first start recorded about no-charge lines (11/12/2026: until then those entries were lost, and with them the import's knowledge of what the step had done)
+        _prev = json.load(open("registers/feed_inspector_%s.json" % STAMP))
+        OUT["quality_removed"][:0] = [e for e in (_prev.get("quality_removed") if isinstance(_prev, dict) and isinstance(_prev.get("quality_removed"), list) else []) if isinstance(e, dict)]
+    except Exception: pass
     batch = list_batch(); print("inspector: %d of my visits flagged" % len(batch))
     for vid, info in batch.items():
         c = MINE[vid]; pats = {pattern(e) for e in info["errors"]}
@@ -291,6 +464,11 @@ def main():
         except Exception as e:
             _off = lambda k: any(x.get("visit") == vid and x.get("void_ok") and (x.get("code") or QUALITY_CODE) == k for x in OUT["quality_removed"])      # a line already taken off in this step
             held(vid, c, "error %s" % str(e)[:160], quality=bool(qline) and not _off(QUALITY_CODE), mvp=bool(mline) and not _off(MVP_CODE)); print("ERR", vid, str(e)[:160])
+        json.dump(OUT, open(("registers/feed_inspector_%s.json" % STAMP), "w"), indent=1)
+    _n = (len(OUT["quality_removed"]), len(OUT["held"]))
+    try: retry_pass()      # 11/12/2026: every run tries again the visits stuck held with their no-charge line (THE RETRY PASS above); it never stops the step
+    except Exception as e: print("ERR retry pass", str(e)[:160])
+    if (len(OUT["quality_removed"]), len(OUT["held"])) != _n:      # written after the pass whenever it recorded an entry or a held row - also in a run whose normal pass found no visit of the batch listed (such a run wrote no register until now)
         json.dump(OUT, open(("registers/feed_inspector_%s.json" % STAMP), "w"), indent=1)
     left = list_batch(); print("inspector after: %d of my visits still listed" % len(left), collections.Counter(pattern(e) for v in left.values() for e in v["errors"]))
 if __name__ == "__main__": main()
