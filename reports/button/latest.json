@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-12T0920Z",
+ "stamp": "2026-11-12T1118Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43190526564",
- "started": "2026-11-12T09:20:14Z",
- "ended": "2026-11-12T09:26:11Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43208022784",
+ "started": "2026-11-12T11:18:46Z",
+ "ended": "2026-11-12T11:25:33Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7843,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-12 09:26 UTC"
+   "asof": "2026-11-12 11:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-12T09:20:14Z",
-   "ended": "2026-11-12T09:20:15Z"
+   "started": "2026-11-12T11:18:46Z",
+   "ended": "2026-11-12T11:18:47Z"
   },
   {
    "name": "columns",
@@ -115,8 +115,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T09:20:15Z",
-   "ended": "2026-11-12T09:22:03Z"
+   "started": "2026-11-12T11:18:47Z",
+   "ended": "2026-11-12T11:21:04Z"
   },
   {
    "name": "era",
@@ -138,8 +138,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-12T09:22:03Z",
-   "ended": "2026-11-12T09:22:05Z"
+   "started": "2026-11-12T11:21:04Z",
+   "ended": "2026-11-12T11:21:06Z"
   },
   {
    "name": "packages",
@@ -150,8 +150,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-12T09:22:05Z",
-   "ended": "2026-11-12T09:22:05Z"
+   "started": "2026-11-12T11:21:06Z",
+   "ended": "2026-11-12T11:21:06Z"
   },
   {
    "name": "outstanding",
@@ -254,22 +254,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T09:22:05Z",
-   "ended": "2026-11-12T09:22:06Z"
+   "started": "2026-11-12T11:21:06Z",
+   "ended": "2026-11-12T11:21:07Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7843 denied visits on 871 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); RESOLVED 4529, WRITTEN-OFF 2978, RESUBMITTED 194, OPEN 142",
+   "summary": "7843 denied visits on 871 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 142",
    "counts": {
     "charts read": 871,
     "denial lines": 13325,
     "visits": 7843,
     "actionable": 78,
     "inside 12 months": 75,
-    "status RESOLVED": 4529,
     "status WRITTEN-OFF": 2978,
+    "status RESOLVED": 4529,
     "status RESUBMITTED": 194,
     "status OPEN": 142
    },
@@ -342,8 +342,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T09:22:06Z",
-   "ended": "2026-11-12T09:26:11Z"
+   "started": "2026-11-12T11:21:07Z",
+   "ended": "2026-11-12T11:25:33Z"
   }
  ],
  "packages": [],
