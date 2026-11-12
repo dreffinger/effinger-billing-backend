@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# PLAIN ENGLISH (self-test, 11/10/2026) - proves offline that `neon_db.py init` sends EVERY statement of tools/db/neon_schema.sql.
+# PLAIN ENGLISH (self-test, 11/10/2026) - proves offline that `neon_db.py init` sends EVERY statement of tools/db/neon_schema.sql,
+#   each one exactly as it is written.
 # Why it exists: until 11/10/2026 the HTTPS SQL route (what a cloud run uses when neither psycopg nor pg8000 is installed) threw a
 #   statement away whenever a `--` comment line stood above it. 12 of the file's 32 statements never ran that way (the ehpa schema,
 #   billing_runs, approvals, board_documents, carriers, outstanding_claims, denial_visits, insurance_refresh_items, ar_aging_rows,
@@ -15,7 +16,10 @@
 #      when a connection string is there;
 #   4. `init` itself over both routes, each route swapped for a recorder: over HTTPS every statement goes out as the function
 #      returned it, one per request, and the count printed is the number sent; over the wire protocol the file still goes out
-#      whole in one piece (that path is unchanged) and the count printed is the same number.
+#      whole in one piece (that path is unchanged) and the count printed is the same number;
+#   5. the %s places (11/12/2026): over HTTPS a %s becomes $1..$n only when values are sent with the statement. A statement sent
+#      without values - every statement of the schema file, a `sql` question - goes out exactly as written; until 11/12 a %s inside
+#      its text (like '%sent%' in a view) left as $1 and Postgres stored that without an error.
 # No database, no network, no patient data: the SQL samples are made up, and see SAFETY FIRST below for why a container that holds
 #   the real connection string cannot reach the database from here. Writes only to a temp directory, removed when the test ends.
 # Run: python3 tools/selftest/test_neon_schema_split.py   (exit 1 on any failure)
@@ -29,8 +33,8 @@ def check(name, cond, extra=""):
 
 # SAFETY FIRST. A routine's container holds the real connection string, and `init` writes. Nothing below can reach the database:
 #   the address this process hands the script is made up and sits on .invalid (a domain that cannot exist); the script is pointed
-#   at a throwaway folder that holds only a copy of the schema file, so it finds no secrets/ file either; and both ways out of the
-#   process - the HTTPS call and the psycopg driver - are swapped for recorders before the script runs.
+#   at a throwaway folder that holds only a schema file - on EVERY run below, whatever the command - so it finds no secrets/ file
+#   either; and both ways out of the process - the HTTPS call and the psycopg driver - are swapped for recorders before it runs.
 os.environ["NEON_DATABASE_URL"] = "postgres://selftest:selftest@db.invalid/neondb"; os.environ.pop("DATABASE_URL", None)
 T = tempfile.mkdtemp(prefix="selftest_neon_"); atexit.register(shutil.rmtree, T, ignore_errors=True); os.makedirs(os.path.join(T, "tools", "db"))
 shutil.copy(SCHEMA, os.path.join(T, "tools", "db", "neon_schema.sql"))
@@ -138,26 +142,27 @@ r = subprocess.run([sys.executable, NEON_DB, "init", "--dry", "--repo", T, "--ws
 check("`init --dry` connects to nothing when a connection string IS there (the made-up one: a connection attempt would fail the run)", r.returncode == 0 and r.stdout == dry_line, (r.returncode, r.stdout.strip()[:240], r.stderr.strip()[:240]))
 
 # ------------------------------------------------------------------ 4. `init` over both routes, each swapped for a recorder
-SENT = []
+SENT = []; VALUES = []                                    # every statement sent, and beside it the values sent with it
 class Reply:                                              # what the HTTPS route answers: no rows
     def __enter__(self): return self
     def __exit__(self, *x): return False
     def read(self): return b'{"rows": [], "rowCount": 0}'
-def fake_urlopen(req, timeout=None): SENT.append(json.loads(req.data.decode("utf-8"))["query"]); return Reply()
+def fake_urlopen(req, timeout=None): body = json.loads(req.data.decode("utf-8")); SENT.append(body["query"]); VALUES.append(body["params"]); return Reply()
 class Cursor:                                             # what the wire-protocol driver answers: no rows
     description = None; rowcount = 0
-    def execute(self, sql, params=None): SENT.append(sql)
+    def execute(self, sql, params=None): SENT.append(sql); VALUES.append(params)
     def fetchall(self): return []
     def close(self): pass
 class Conn:
     def cursor(self): return Cursor()
     def close(self): pass
 fake_psycopg = types.ModuleType("psycopg"); fake_psycopg.connect = lambda url, **kw: Conn()
-def run_init(mode):
-    """`python3 tools/db/neon_db.py init` inside this process over one route (pg | http): the line it printed, the count in it, what it sent"""
-    del SENT[:]; os.environ["NEON_DB_MODE"] = mode; out = io.StringIO()
+def run(mode, *command, repo=None):
+    """`python3 tools/db/neon_db.py <command>` inside this process over one route (pg | http): what it printed, what it sent, the values sent beside.
+    The script is always pointed at a throwaway folder (repo, or the copy of the real schema file) - never at a real checkout with its secrets/."""
+    del SENT[:], VALUES[:]; os.environ["NEON_DB_MODE"] = mode; out = io.StringIO()
     keep = (sys.argv, urllib.request.urlopen, sys.modules.get("psycopg"))
-    sys.argv = [NEON_DB, "init", "--repo", T, "--ws", T]; urllib.request.urlopen = fake_urlopen; sys.modules["psycopg"] = fake_psycopg
+    sys.argv = [NEON_DB] + list(command) + ["--repo", repo or T, "--ws", T]; urllib.request.urlopen = fake_urlopen; sys.modules["psycopg"] = fake_psycopg
     try:
         with contextlib.redirect_stdout(out): runpy.run_path(NEON_DB, run_name="__main__")
     except SystemExit as e: out.write(" EXIT %s" % (e.code,))
@@ -165,8 +170,11 @@ def run_init(mode):
         sys.argv, urllib.request.urlopen = keep[0], keep[1]
         if keep[2] is None: sys.modules.pop("psycopg", None)
         else: sys.modules["psycopg"] = keep[2]
-    line = out.getvalue().strip(); m = re.search(r"neon_schema\.sql applied \((\d+) statement", line)
-    return line, (int(m.group(1)) if m else None), list(SENT)
+    return out.getvalue().strip(), list(SENT), list(VALUES)
+def run_init(mode):
+    """...and for `init` on the copy of the real schema file: the line it printed, the count in it, what it sent"""
+    line, sent, _ = run(mode, "init"); m = re.search(r"neon_schema\.sql applied \((\d+) statement", line)
+    return line, (int(m.group(1)) if m else None), sent
 
 line, n_wire, sent = run_init("pg")
 check("over the wire protocol the schema file still goes out whole, once, unchanged", "via psycopg" in line and sent.count(text) == 1 and sent[-2:-1] == [text], line[:240])
@@ -183,6 +191,25 @@ check("over HTTPS each request is one statement exactly as the function returned
 check("the count printed over HTTPS is the number of statements sent (%s printed, %d sent)" % (n_http, len(reqs)), n_http == len(reqs))
 check("the count printed over the wire protocol is that same number of statements (%s printed)" % n_wire, n_wire == len(stmts) == len(reqs))
 
+# ------------------------------------------------------------------ 5. the %s places: turned into $1..$n only when values are sent
+P = tempfile.mkdtemp(prefix="selftest_neon_places_"); atexit.register(shutil.rmtree, P, ignore_errors=True); os.makedirs(os.path.join(P, "tools", "db"))
+AS_WRITTEN = ["create or replace view demo.sent as select 1 as one where 'x' ilike '%sent%' or 'y' like '%s'",
+              "create or replace view demo.pair as select format('%s / %s', 'a', 'b') as both"]          # a made-up schema file whose statements hold %s as plain text
+open(os.path.join(P, "tools", "db", "neon_schema.sql"), "w", encoding="utf-8").write("-- made up: each statement holds %s as plain text\n" + ";\n".join(AS_WRITTEN) + ";\n")
+line, sent, _ = run("http", "init", repo=P)
+check("over HTTPS a %s inside a statement of the schema file goes out as written, not as $1", "applied (2 statements)" in line and sent[1 + base:-1] == AS_WRITTEN, sent[1 + base:-1])
+line, sent, _ = run("http", "sql", "select 'a%sb' as v")
+check("over HTTPS a %s inside the quotes of a `sql` question goes out as written", sent[1:] == ["select 'a%sb' as v"], sent[1:])
+line, sent, values = run("http", "set", "--key", "selftest_key", "--value", "100%sure")
+check("over HTTPS a statement sent WITH values still gets $1, $2, $3 in place of its %s, and the values travel beside it untouched",
+      len(sent) == 2 and "values ($1, $2, $3)" in sent[1] and "%s" not in sent[1] and values[1][:2] == ["selftest_key", "100%sure"] and len(values[1]) == 3, (sent[1:], values[1:]))
+line, sent, values = run("http", "run-log", "--routine", "selftest", "--stamp", "2026-11-12T0000Z", "--status", "ok", "--headline", "100%sure")
+check("...numbered in order, one for each value (the nine of a run-log line)",
+      len(sent) == 2 and re.findall(r"\$\d+", sent[1]) == ["$%d" % k for k in range(1, 10)] and "%s" not in sent[1] and len(values[1]) == 9 and "100%sure" in values[1], (sent[1:], values[1:]))
+line, sent, values = run("pg", "set", "--key", "selftest_key", "--value", "100%sure")
+check("over the wire protocol the driver still gets the %s places and the values as they are (that path is unchanged)",
+      len(sent) == 1 and "values (%s, %s, %s)" in sent[0] and "$" not in sent[0] and list(values[0])[:2] == ["selftest_key", "100%sure"], (sent, values))
+
 os.environ.pop("NEON_DB_MODE", None)
-print("\n%d failure(s)%s" % (len(FAILS), " - every statement of the schema file is sent, and the count says so" if not FAILS else ": " + "; ".join(FAILS)))
+print("\n%d failure(s)%s" % (len(FAILS), " - every statement of the schema file is sent as written, and the count says so" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

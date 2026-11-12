@@ -64,6 +64,24 @@ for f in sorted(glob.glob(os.path.join(hl7_dir, "*.hl7"))):
     if not reprocess and ((b in reg["files"] and reg["files"][b].get("sha256") == s) or s in known_sha): continue   # same name+content or same content under another name
     shutil.copy(f, os.path.join(batch, b)); files.append(b)
 print("stamp %s | %d new file(s) of %d in %s | mode %s" % (stamp, len(files), len(glob.glob(os.path.join(hl7_dir, "*.hl7"))), hl7_dir, "LIVE" if live else "DRY"))
+# ---- the feed helpers are the repository's (11/10/2026, reviewers C2 and W1) --------------------------------------------------------------
+# The place-of-service rule lives in claimocity_import.py (marker = its POS_RULE_VERSION line, the one mirror.py protects). On EVERY run - also when
+# nothing is new, so the retry of the same routine runs current helpers too - every feed helper here is compared with the repository clone's copy
+# and replaced when it differs (claimocity_helpers_current.make_current, the one function this driver and claimocity_retry_dx.py share). Without a
+# clone each helper is checked by its version line. An old helper is said at the end of the RESULT line, never a reason to hold a visit (rules.md part 6).
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.7"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+def _helpers_current():
+    """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
+    for _p in (os.path.join(HERE, "claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py")):
+        try:
+            import importlib.util as _iu; _sp = _iu.spec_from_file_location("claimocity_helpers_current", _p); _m = _iu.module_from_spec(_sp); _sp.loader.exec_module(_m)
+            return _m.make_current(HERE, REPO_HELPERS, POS_RULE)
+        except Exception: continue
+    try: _ok = POS_RULE in open(os.path.join(HERE, "claimocity_import.py"), errors="replace").read()
+    except OSError: _ok = False
+    return [], " | FEED HELPERS NOT CHECKED: claimocity_helpers_current.py is missing here and in the repository%s" % ("" if _ok else " | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is missing, an old copy or an earlier version of the rule and no repository copy was found - for William to check: the place of service of every nursing-building line this run entered, and the clinician and building of every visit whose patient has another message in the batch (a routine changes nothing on these visits)")
+_hl, pos_warn = _helpers_current()
+for _l in _hl: print(_l)
 if not files:
     print("nothing new - done"); finish(0)
 env["FEED_HL7_DIR"] = os.path.abspath(batch)
@@ -98,20 +116,7 @@ if missing:
     if live: step("newcharts", [sys.executable, os.path.join(HERE, "claimocity_newcharts.py")])
     else: print("DRY: %d patient(s) would get a NEW chart (addpatient + IN1 insurance): %s" % (len(missing), ", ".join(k.split("|")[0][:4] + "*" for k in missing)[:200]))
 # ---- 5 import -------------------------------------------------------------------------------------------------------------------
-# 11/10/2026: the place-of-service rule lives in claimocity_import.py (marker = its POS_RULE_VERSION line, the one mirror.py protects). A workspace
-# copy without it is an OLD copy (a state bundle or a Drive download with a fresh date): the repository copy replaces it; when there is no
-# repository copy the import still runs (charges are never held for this) and the RESULT line says so.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"; pos_warn = ""
-def _has_rule(p):
-    try: return POS_RULE in open(p, errors="replace").read()
-    except OSError: return False
-if not _has_rule(os.path.join(HERE, "claimocity_import.py")):
-    if _has_rule(os.path.join(REPO_HELPERS, "claimocity_import.py")):
-        for _f in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"): shutil.copy2(os.path.join(REPO_HELPERS, _f), os.path.join(HERE, _f))
-        print("POS RULE: the workspace held an OLD claimocity_import.py (no current place-of-service rule) - replaced by the repository copy before the import")
-    else:
-        pos_warn = " | POS RULE NOT APPLIED: claimocity_import.py here is an OLD copy and no repository copy was found - nursing-building lines went in at the feed's 31"
-        print("POS RULE NOT APPLIED: claimocity_import.py in %s has no place-of-service rule and %s has no copy - say so at the top of the report" % (HERE, REPO_HELPERS))
+# (the feed helpers were made the repository's at the start of this run - make_current above; pos_warn says what could not be)
 cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"]
 if limit: cmd += ["--limit", str(limit)]
 step("import", cmd)

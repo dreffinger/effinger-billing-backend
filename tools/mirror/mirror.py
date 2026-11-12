@@ -5,7 +5,7 @@
 #                  -> merged, PHI-gated -> docs/captured_calls.md
 #   2. helpers   - every *.py / carriers.json / facilities.json in the workspace that is newer than
 #                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore);
-#                  a stale Drive-overlaid copy of the seven protected helpers never overwrites the repo's
+#                  a stale Drive-overlaid copy of a protected helper (the PROTECTED table below) never overwrites the repo's
 #   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
 #                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
@@ -103,15 +103,39 @@ SKIP = {"vocab_seed.json"}
 # 10/6/2026: the repository is the record for these seven. A workspace copy overlaid from Drive carries a fresh
 # mtime but can be OLDER code (the pre-10/6 move_to_ins ignores --no-rebill; the old freq1_visit has no reroute);
 # a copy that lacks its marker never overwrites scripts/helpers/, whatever its mtime says.
-PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visit.py": "def reroute",
+PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a save when the visit's charges could not all be read", "freq1_visit.py": "def reroute",
              "move_to_ins.py": "--no-rebill", "ins_update.py": "_set_order", "dx_primary_fix.py": "--visits",
              "approval_submit.py": "LASTFIRST", "payreasons.py": "10/6: no patient name", "columns_scan.py": "NAMEKEY",
              # 11/10/2026: the feed import carries William's place-of-service rule (CCM in a nursing building = 32, visits by frequency);
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.2"', "claimocity_report.py": "Place of service in the nursing buildings",
-             "claimocity_inspector.py": "CCM at the hospital location"}
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.7"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.7"',
+             # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.7"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.7"',
+             # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
+             # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
+             # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
+             # 11/10/2026 (round 7): the insurance check and resave.py read each visit's insurance-order LIST - a copy from before that skipped the visits
+             # entered with no plan (84 never billed) and must not come back over them; their markers are sentences only the round-7 versions have
+             # (resave.py above). feed_order_sweep.py is new that day: the daily listing and the owner-approved save
+             "claimocity_inspector.py": "the step takes BOTH no-charge lines off", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
+             # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
+             # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out
+             # of a full-visit save is voided: such a copy must not come back over them. Their markers (resave.py's above, the sweep's here) are now
+             # sentences only the round-8 versions have - a round-7 copy is refused too; the insurance check keeps its round-7 sentence
+             "feed_order_sweep.py": "NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ",
+             # the denial table exists twice (boards/ and here); the workspace copy the bootstrap lays out first is this one - an older
+             # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
+             "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',
+             # the AR ageing page: a reporting line never makes a visit read as denied (11/10/2026)
+             "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")',
+             # the one function the ingest and the retry share to make the feed helpers the repository's on every run (11/10/2026, reviewers C2 / W1)
+             "claimocity_helpers_current.py": "compared byte for byte with the clone's copy",
+             # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
+             "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
+             "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
+             "sweep_full.py": "claim_status_sweep.main("}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
@@ -191,9 +215,16 @@ def commit_and_push(message):
 
 UNION = ["docs/captured_calls.md merge=union", "docs/captured_calls_additions_*.md merge=union", "practices/ehpa/rules.md merge=union",
          "needs_facesheet_list.md merge=union", "docs/SHARED_LESSONS.md merge=union", "practices/ehpa/registers/rebill_log.jsonl merge=union"]
+# 11/10/2026 (second ops-and-text review): rules.md merges by union - EXCEPT that a bullet rewritten in place (the place-of-service rule, the clinician
+# and building of a feed visit, the quality code 1123F with M0004, the initial nursing-facility visit) REPLACES its old copy instead of coming back
+# beside it; both sides rewriting the same bullet stops as a conflict. tools/mirror/rules_merge.py does it; this registers it as git's merge driver
+# for rules.md (repo-local config and .git/info/attributes, never committed). Its line goes after the union line: the later line wins.
+RULES_DRIVER = os.path.join(ROOT, "tools", "mirror", "rules_merge.py")
+RULES_ATTR = "practices/ehpa/rules.md merge=ehpa-rules"
 def union_rules():
     """Append-only text files merge by union (both sides kept) when origin/main moved under us - the same list
-    tools/mirror/apply_bundle.py uses; written to .git/info/attributes (repo-local, never committed). Idempotent."""
+    tools/mirror/apply_bundle.py uses; written to .git/info/attributes (repo-local, never committed). Idempotent.
+    rules.md gets the ehpa-rules driver on top (a rewritten bullet replaces its old copy) whenever tools/mirror/rules_merge.py is there."""
     d = sh("git rev-parse --git-dir").stdout.strip()
     if not os.path.isabs(d):
         d = os.path.join(ROOT, d)
@@ -202,6 +233,13 @@ def union_rules():
     add = [r for r in UNION if r not in have]
     if add:
         open(f, "a").write(("" if not have or have.endswith("\n") else "\n") + "\n".join(add) + "\n")
+    if os.path.exists(RULES_DRIVER):
+        import shlex
+        sh("git config merge.ehpa-rules.name %s" % shlex.quote("rules.md: union, a rewritten bullet replaces its old copy"))
+        sh("git config merge.ehpa-rules.driver %s" % shlex.quote("%s %s %%O %%A %%B" % (shlex.quote(sys.executable), shlex.quote(RULES_DRIVER))))
+        have = open(f).read().splitlines()
+        if [l for l in have if l.startswith("practices/ehpa/rules.md ")][-1:] != [RULES_ATTR]:      # the driver's line must be the LAST one for rules.md
+            open(f, "w").write("\n".join(l for l in have if l != RULES_ATTR) + "\n" + RULES_ATTR + "\n")
 
 def push_via_proxy():
     """11/2/2026 (William: "make it permanent where I don't have to manually push anything"): a Claude Code cloud session with

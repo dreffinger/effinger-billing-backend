@@ -16,6 +16,13 @@
 #   one is importable and the port is open, else Neon's HTTPS SQL endpoint on port 443 (POST https://<endpoint>/sql with the
 #   Neon-Connection-String header) - the same database, so a container whose egress policy blocks 5432 still writes. The PostgREST
 #   "Data API" is NOT used (Neon excludes it from its HIPAA coverage).
+# The %s places (11/12/2026): a statement marks each value it carries with %s, and the HTTPS route turns those into $1..$n - but only
+#   when values are sent with the statement. A statement sent without values (every statement of neon_schema.sql, a `sql` question)
+#   goes out exactly as written. Until 11/12 a %s inside such a text - like '%sent%' in a view, format('%s / %s', a, b) - left as $1
+#   and Postgres stored that with no error; the wire protocol never did this.
+#   A statement that DOES carry values must hold no other % in its text: there every %s is a place, also one inside quotes ('%sent%'
+#   would leave as '$2ent%' over HTTPS, while the wire driver refuses it), and %% stays doubled over HTTPS but becomes % over the
+#   wire. A pattern that holds % travels as a value. No statement in this script does otherwise today.
 # How init applies tools/db/neon_schema.sql (11/10/2026): the wire protocol takes the file whole. The HTTPS route takes ONE command per
 #   request, so sql_statements() cuts the file into its statements: a statement ends at the semicolon that closes it - never at one inside
 #   a comment, a quoted string, a "quoted name", a $$ body $$ or parentheses - and the comment lines above it are left out (comments
@@ -98,7 +105,7 @@ class DB:
     def _http(self, sql, params):
         n = [0]
         def repl(m): n[0] += 1; return "$%d" % n[0]
-        q = re.sub(r"%s", repl, sql)
+        q = re.sub(r"%s", repl, sql) if params else sql             # %s is a place for a value only when values are sent; with none the text goes out as written (like '%sent%' in a view used to leave as '$1ent%')
         body = json.dumps({"query": q, "params": [p if (p is None or isinstance(p, (int, float, bool))) else str(p) for p in (params or [])]}).encode("utf-8")
         req = urllib.request.Request("https://%s/sql" % self.host, data=body, method="POST", headers={"Neon-Connection-String": self.url, "Content-Type": "application/json", "Neon-Array-Mode": "true", "Neon-Raw-Text-Output": "true"})
         with urllib.request.urlopen(req, timeout=120) as r: j = json.loads(r.read().decode("utf-8"))

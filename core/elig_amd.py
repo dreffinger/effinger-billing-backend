@@ -13,9 +13,29 @@ def plans(pid):
     p = re.search(r'<patient [^>]*>', r); a = dict(re.findall(r'(\w+)="([^"]*)"', p.group(0))) if p else {}
     pl = [dict(re.findall(r'(\w+)="([^"]*)"', m)) for m in re.findall(r'<insplan ([^>]*)>', r)]
     return a, pl
+def _json271_to_xml(obj):
+    """11/6/2026: AMD's checkEligibility sometimes answers JSON ({"PPMDResults":{"Results":{"@attr":..,"Edi271":{..}}}},
+    attributes as "@name", children as dicts/lists) - rebuild the XML tree so summarize() reads it unchanged."""
+    def build(tag, val, parent):
+        el = ET.SubElement(parent, tag) if parent is not None else ET.Element(tag)
+        if isinstance(val, dict):
+            for k, v in val.items():
+                if k.startswith("@"): el.set(k[1:], "" if v is None else str(v))
+                elif k == "#text": el.text = "" if v is None else str(v)
+                elif isinstance(v, list):
+                    for item in v: build(k, item, el)
+                else: build(k, v, el)
+        elif val is not None: el.text = str(val)
+        return el
+    root_tag = next(iter(obj)); return build(root_tag, obj[root_tag], None)
 def summarize(xml_text):
     """271 -> plain summary."""
-    root = ET.fromstring(xml_text); res = root.find("Results"); out = {"status": None, "amd": dict(res.attrib) if res is not None else {}}
+    t = xml_text.lstrip()
+    if t.startswith("{"):
+        root = _json271_to_xml(json.loads(t))
+    else:
+        root = ET.fromstring(xml_text)
+    res = root.find("Results"); out = {"status": None, "amd": dict(res.attrib) if res is not None else {}}
     aaa = [dict(x.attrib) for x in root.iter("RequestValidation")] + [dict(x.attrib) for x in root.iter("AAASegment")]
     out["aaa"] = [{k.split("_", 1)[-1]: v for k, v in a.items() if v} for a in aaa]
     ebs = []

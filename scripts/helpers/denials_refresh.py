@@ -139,11 +139,12 @@ ts = [threading.Thread(target=worker, daemon=True) for _ in range(NT)]; [t.start
 byv = {}
 for r in lines:
     dispo, action = triage_line(r["carc"], r.get("cpt"), r.get("mods")); rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)
+    if norm(r["carc"]) == "58" and dispo == "REVIEW": rank = -1      # Medicare's place-of-service answer always leads its visit (rules.md 11/10/2026 part 7; the board's own roll-up does the same)
     key = (r["pid"], r["visitid"]); rec = byv.get(key)
     if rec is None or rank < rec["_rank"]:
         byv[key] = {"_rank": rank, "pid": r["pid"], "visitid": r["visitid"], "carrier": r["carrier"], "dos": r["dos"], "cpt": r["cpt"], "billed": r["billed"],
                     "dispo": dispo, "action": action, "carc": r["carc"], "reason": r["reason"], "check": r["check"], "amt": r["amt"],
-                    "codes": set(), "rarc": set(), "age": ago(r["dos"]), "timely": (ago(r["dos"]) or 9999) <= 365, "denied_on": r["paid_on"]}
+                    "codes": (rec["codes"] if rec else set()), "rarc": (rec["rarc"] if rec else set()), "age": ago(r["dos"]), "timely": (ago(r["dos"]) or 9999) <= 365, "denied_on": r["paid_on"]}      # a more actionable line keeps the codes already seen
     byv[key]["codes"].add("%s/%s%s" % (r["group"] or "??", r["group"], r["carc"]) if r["group"] else r["carc"])
 # carry prior rows whose chart was read but whose $0 line is gone (voided / re-posted): keep them with the live status
 for vid, row in prior_rows.items():

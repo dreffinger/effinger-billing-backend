@@ -11,7 +11,7 @@ LIVE = "--live" in sys.argv; STAMP = "2026-11-09T0639Z"
 ROWS = [("25558", "19460510", "23373216", "4", "ins9521057", True), ("21020", "19460514", "23373220", "3", "ins9506840", False), ("21020", "19460515", "23373221", "3", "ins9506840", False)]
 amd.login_cached(); out = {"stamp": STAMP, "live": LIVE, "rows": []}; released = []
 for pid, vid, cid, order, insid, fixdefault in ROWS:
-    ok, msg = resave.set_insorder(cid, order, dry=not LIVE); print(pid, vid, msg)
+    ok, msg = resave.set_insorder(cid, order, dry=not LIVE, allow_billed=True); print(pid, vid, msg)      # 11/10/2026: the MSP Unbilled fix re-routes after a wrong-payer answer - the billed guard is not for it (echo, admission date and read-back still apply)
     rec = {"pid": pid, "vid": vid, "order": order, "resave": msg[:200], "ok": ok}
     if LIVE and fixdefault:
         r = ins_update.update(pid, insid, sequence=order); rec["patient_order"] = str(r)[:160]; print("  patient default order", order, str(r)[:120])
