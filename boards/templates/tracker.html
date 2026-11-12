@@ -439,13 +439,15 @@ button.btn:disabled{opacity:.5;cursor:default}
   const RES_KIND=/^(SNF|ALF|IL|ICF)$/;
   function facInfo(it){
     // 11/12 (William): the facility the card's CHARGE came from comes first - written by tools/db/board_chargefac.py from the practice
-    // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res}
+    // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res, chart_from}
+    // 11/12 review: `res` (where a hospital patient lives) never shows under a home's own badge - a guard in case a store merge kept an
+    // earlier hospital badge's res (the helper now writes every key, res null / also [] when they do not apply).
     const cf=it.chargefac;
     if(cf&&typeof cf==='object'&&cf.name){
       const k=String(cf.kind||kindOf(cf.name)).toUpperCase();
-      const res=(cf.res&&typeof cf.res==='object'&&cf.res.name&&cf.res.name!==cf.name)?{name:String(cf.res.name),kind:String(cf.res.kind||kindOf(cf.res.name)).toUpperCase()}:null;
+      const res=(!RES_KIND.test(k)&&cf.res&&typeof cf.res==='object'&&cf.res.name&&cf.res.name!==cf.name)?{name:String(cf.res.name),kind:String(cf.res.kind||kindOf(cf.res.name)).toUpperCase()}:null;
       const also=(Array.isArray(cf.also)?cf.also:[]).map(String).filter(x=>x&&x!==cf.name);
-      return {name:String(cf.name),kind:k,dos:String(cf.dos||''),cpt:String(cf.cpt||''),visit:String(cf.visit||''),how:String(cf.how||''),also,res,src:'charge'};
+      return {name:String(cf.name),kind:k,dos:String(cf.dos||''),cpt:String(cf.cpt||''),visit:String(cf.visit||''),how:String(cf.how||''),chartFrom:String(cf.chart_from||''),also,res,src:'charge'};
     }
     const fn=it.facnow;
     if(fn&&typeof fn==='object'&&fn.name){
@@ -474,7 +476,9 @@ button.btn:disabled{opacity:.5;cursor:default}
     const also=(f.also&&f.also.length)?`<span class="fres">also billed at <b>${esc(f.also.join(', '))}</b></span>`:'';
     const dos=f.src==='charge'?[f.dos,f.cpt].filter(Boolean).join(' · '):f.dos;
     const HOW={'visit':'the visit named on this card','dos':'the date of service named on this card','facility id':'the facility id named on this card','open balance':"the chart's newest charge still owing",'dos in notes':'a date of service in the notes','newest charge':"the chart's newest charge"};
-    const title=f.src==='charge'?('Where this card\'s charge came from: AMD\'s facility on '+(HOW[f.how]||'the charge')+(f.visit?' (visit '+f.visit+(f.dos?', '+f.dos:'')+')':'')+' - from the practice database')
+    // 11/12 review: a card with no AMD chart number of its own is matched through the number its id ends with, or pat<n> in its text - say so
+    const CHART_FROM={'card id':" - the chart number was read from the end of this card's id (the card has no AMD chart number)",'card text':" - the chart number was read from pat<n> in this card's text (the card has no AMD chart number)"};
+    const title=f.src==='charge'?('Where this card\'s charge came from: AMD\'s facility on '+(HOW[f.how]||'the charge')+(f.visit?' (visit '+f.visit+(f.dos?', '+f.dos:'')+')':'')+' - from the practice database'+(CHART_FROM[f.chartFrom]||''))
       :f.src==='guess'?'Place-of-service type from the visit codes — the actual facility name lands when the backend reads the chart':'From the AMD chart: the facility of the newest visit, with where the patient lives';
     return `<div class="facbadge${f.src==='guess'?' unknown':''}" title="${esc(title)}"><span class="fname">${esc(f.name)}</span>${lbl?`<span class="fkind ${cls}">${esc(lbl)}</span>`:''}${dos?`<span class="fdos">${esc(dos)}</span>`:''}${res}${also}</div>`;
   }
@@ -768,7 +772,12 @@ button.btn:disabled{opacity:.5;cursor:default}
       for(const e of add){ if(!base.some(x=>same(x,e))) base.push(e); }
       patch[k]=base;
     }
-    if(!('updated' in patch)) patch.updated=now;
+    // 11/12 review: an op on an existing row that only sets the charge's facility badge (chargefac - tools/db/board_chargefac.py build)
+    // is display-only and leaves `updated` alone. Stamping it made every later run file in the same sync look stale to the 9/14 guard
+    // above on every card the badge file touched (their status / need / why were dropped), and moved a done card's "done <date>".
+    const setKeys=Object.keys(set);
+    const displayOnly=!!cur && setKeys.length>0 && setKeys.every(k=>k==='chargefac') && !Object.keys(app).length;
+    if(!('updated' in patch) && !displayOnly) patch.updated=now;
     if(cur){ await withRetry(()=>ref.update(patch)); }
     else{
       const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);

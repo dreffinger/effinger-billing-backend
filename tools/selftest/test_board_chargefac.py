@@ -8,13 +8,22 @@
 #     chart's newest charge - and names the facility most of those charges came from, the others as `also`, where a hospital patient
 #     lives as `res`; a feed visit the history lacks is named through its facility id;
 #   - leaves a card generic only when no facility can be found: no chart number, or the named charge has no facility in AdvancedMD;
+#   - (review 11/12) writes every chargefac with EVERY key, so a later badge merged over an earlier one by the store's update() keeps
+#     none of its 'resident at' / 'also billed at' and `build` settles; names the chart's NEWEST charge under rules 4 and 6 (not the
+#     facility most of its charges came from); reads a card's chart from the end of its id or pat<n> in its text when it has no amdid
+#     (never from a date-shaped id ending) and says so;
 #   - writes ONE board_updates_<stamp>.json (irb-board-updates/1): `update` ops that set only `chargefac`, never `updated`, only for
 #     open cards whose charge facility is new or changed (--all adds done cards), and refuses an output folder inside the repository;
 #   - stamps a run's own board file (new rows and rows whose facility it sets) and leaves it byte for byte when the database fails;
+#     with --items it works a card already on the board out from the whole card and never replaces a stronger badge (a visit match)
+#     with a weaker guess; without --items it writes only a charge the card names; it prints counts by rule, never a row id; the three
+#     live prompts pass --items;
 #   - reads board rows given as a list, an {id: row} object or an ArtifactData folder.
 # And that the board page (boards/templates/tracker.html, run in node when node is installed) shows the charge's facility first,
 #   keeps facnow / the facilities line / lastfac next, shows a generic SNF only when nothing names a facility, classifies facility
-#   names like the helper does, and still carries the live page's other behaviour.
+#   names like the helper does, and still carries the live page's other behaviour; that its applyOp (run against a stand-in store
+#   whose update() merges like the real one) leaves `updated` alone for an op that only sets chargefac, and that a home's badge never
+#   shows a 'resident at' line.
 # Never touches: Neon, AdvancedMD, the board, Drive, the network. Nothing is started as a program but node on a temporary copy of the
 #   page's badge code. No patient data: every chart, visit, facility and card is invented.
 # Run: python3 tools/selftest/test_board_chargefac.py   (exit 1 on any failure)
@@ -65,6 +74,12 @@ CHARGES = [
     line(10, "19999100", "2026-09-09", "99309", "INV1"), line(11, "19999110", "2026-09-10", "99309", "INV1"),
     line(12, "19999121", "2026-10-01", "99309", "INV1"), line(13, "19999131", "2026-10-03", "99309", "INV1"),
     line(14, "19999140", "2026-10-14", "99309", ""), line(14, "19999141", "2026-10-20", "99349", "INVA", ins="80.00"),
+    # review 11/12 - charts found only through a card's id / text, and charts whose most-billed facility is not their newest one
+    line(21, "19999210", "2026-10-05", "99349", "INVA"), line(22, "19999220", "2026-10-06", "99309", "INV1"),
+    line(30, "19999301", "2026-05-01", "99309", "INV1"), line(30, "19999302", "2026-05-02", "99309", "INV1"), line(30, "19999303", "2026-05-03", "99309", "INV1"),
+    line(30, "19999304", "2026-05-04", "99309", "INV1"), line(30, "19999305", "2026-05-05", "99309", "INV1"), line(30, "19999306", "2026-06-10", "99349", "INVA"),
+    line(31, "19999311", "2026-08-01", "99223", "INVH", ins="50.00"), line(31, "19999312", "2026-08-02", "99233", "INVH", ins="50.00"),
+    line(31, "19999313", "2026-08-03", "99233", "INVH", ins="50.00"), line(31, "19999314", "2026-09-15", "99309", "INV1", ins="75.00"),
 ]
 FEED = [["pat" + ch(9), "vst19999090", "2026-11-08", "99223", "fac903", "Invented Gardens (feed spelling)"],
         ["pat" + ch(1), "vst19999001", "2026-10-02", "99309", "fac902", "should not replace the history's line"]]
@@ -146,7 +161,49 @@ check("3 no chart number and no facility id: generic", res["card-h"][0] is None 
 i = res["card-i"][0]
 check("3 a feed visit the history lacks: named through the feed's facility id with AdvancedMD's spelling", i and i["name"] == "Invented Gardens ALF" and i["src"] == "neon feed" and i["dos"] == "11/08/2026", i)
 l = res["card-l"][0]
-check("3 a card on two charts: visits on both are found", l and l["name"] == "Invented Nursing and Rehabilitation Center" and l["how"] == "visit" and "also" not in l and l["dos"] == "10/03/2026", l)
+check("3 a card on two charts: visits on both are found", l and l["name"] == "Invented Nursing and Rehabilitation Center" and l["how"] == "visit" and l.get("also") == [] and l["dos"] == "10/03/2026", l)
+
+# ---- 3b. (review 11/12, blocking) every chargefac carries every key, so a later badge merged over an earlier one keeps none of it
+def update_merge(cur, patch):
+    """the board store's update() (db contract 0.2.96): nested objects merge key by key; anything else - a list, null - replaces the field"""
+    out = dict(cur)
+    for k, v in patch.items(): out[k] = update_merge(out[k], v) if isinstance(v, dict) and isinstance(out.get(k), dict) else v
+    return out
+found = [(k, cf) for k, (cf, _) in res.items() if cf]
+check("3b every chargefac carries every key of CF_KEYS (also [] and res / chart_from null when they do not apply) - the facility-id one too",
+      len(found) >= 9 and all(list(cf) == list(B.CF_KEYS) for _, cf in found), [(k, sorted(set(B.CF_KEYS) ^ set(cf))) for k, cf in found if list(cf) != list(B.CF_KEYS)])
+HOSP_CF, HOME_CF, FACID_CF = res["card-c"][0], res["card-a"][0], res["card-d"][0]
+for label, new in (("a nursing-home badge", HOME_CF), ("a facility-id badge", FACID_CF)):
+    merged = update_merge({"chargefac": HOSP_CF}, {"chargefac": new})["chargefac"]
+    check("3b %s written over a hospital badge with 'resident at' / 'also billed at': the store's merge keeps neither, and it equals the new badge" % label,
+          HOSP_CF.get("res") and HOSP_CF.get("also") and merged.get("res") is None and merged.get("also") == [] and B._same(new, merged), merged)
+settled = B.build_file([(dict(id="merged-1", status="claude", chargefac=update_merge({"chargefac": HOSP_CF}, {"chargefac": HOME_CF})["chargefac"]), HOME_CF, "visit")],
+                       "2026-11-12T1502Z", "2026-11-12T15:02:00Z")
+check("3b ... so the next build settles on that card (no op re-sent)", settled["ops"] == [], settled["ops"])
+
+# ---- 3c. (review 11/12) rules 4 and 6 name the chart's NEWEST charge, not the facility most of its charges came from
+EXTRA = {"newest-6": {"amdid": ch(30), "status": "claude", "facility": "", "need": "Nothing named here."},
+         "newest-4": {"amdid": ch(31), "status": "william", "facility": "", "need": "Which plan pays?"},
+         "fromid-9700021": {"status": "claude", "facility": "ALF", "need": "Which plan pays?"},
+         "fromtext-card": {"status": "claude", "facility": "", "need": "Chart pat9700022 per the facesheet."},
+         "sweep-x-1031": {"status": "claude", "facility": "", "need": "Sweep of 10/31 - every open denial."},
+         "sweep-x-20261112": {"status": "claude", "facility": "", "need": "Sweep of the day."}}
+xres = {r["id"]: (cf, why) for r, cf, why in B.compute([dict(v, id=k) for k, v in EXTRA.items()], select, now="2026-11-12T15:00:00Z")}
+n6, n4 = xres["newest-6"][0], xres["newest-4"][0]
+check("3c newest charge: five older nursing-home visits and one newer ALF visit - the newer ALF is named",
+      n6 and n6["how"] == "newest charge" and n6["name"] == "Invented Gardens ALF" and n6["dos"] == "06/10/2026", n6)
+check("3c open balance: three older owing hospital lines and one newer owing nursing-home line - the newer one is named",
+      n4 and n4["how"] == "open balance" and n4["name"] == "Invented Nursing and Rehabilitation Center" and n4["dos"] == "09/15/2026" and n4.get("res") is None, n4)
+
+# ---- 3d. (review 11/12) a card with no amdid: the chart from the end of its id, then pat<n> in its text - marked as found that way
+fi, ft = xres["fromid-9700021"][0], xres["fromtext-card"][0]
+check("3d no amdid, the id ends with the chart number (last-first-<amdid>): the chart's charge is found, marked chart_from 'card id'",
+      fi and fi["name"] == "Invented Gardens ALF" and fi.get("chart_from") == "card id" and fi["dos"] == "10/05/2026", fi)
+check("3d no amdid and no number at the end of the id: pat<n> in the card's text, marked chart_from 'card text'",
+      ft and ft["name"] == "Invented Nursing and Rehabilitation Center" and ft.get("chart_from") == "card text", ft)
+check("3d a date-shaped id ending (a sweep's -1031, -20261112) is never taken for a chart number",
+      xres["sweep-x-1031"] == (None, "no chart number on the card") and xres["sweep-x-20261112"] == (None, "no chart number on the card"), (xres["sweep-x-1031"], xres["sweep-x-20261112"]))
+check("3d a card with its own amdid is not marked (chart_from null)", res["card-a"][0].get("chart_from", "missing") is None and res["card-c"][0].get("chart_from", "missing") is None)
 
 # ---- 4. the board file
 OUT = os.path.join(TMP, "out")
@@ -187,10 +244,53 @@ check("5 stamp: a replaced row too (in its data)", ops["new-2"]["data"].get("cha
 check("5 stamp: an append-only op, a row that already names its charge facility and a drops delete are left as they were",
       ops["card-a"]["set"] == {} and ops["new-3"]["set"]["chargefac"] == {"name": "Kept as it was"} and ops["d1"] == {"op": "delete", "collection": "drops", "id": "d1"}, (ops["card-a"], ops["new-3"]))
 check("5 stamp: the file still passes the board_ops gate (no `updated` in any set)", not B.board_ops.clean_file_report(json.loads(json.dumps(got))), B.board_ops.clean_file_report(got))
+check("5 stamp prints counts by rule only - no row id (ids are patient-name slugs in the runs)",
+      '"dos": 1' in out and '"visit": 1' in out and not [i for i in ("new-1", "new-2", "new-3", "card-a") if i in out], out)
 RUN2 = os.path.join(TMP, "board_updates_2026-11-12T1640Z.json"); json.dump(run_doc, open(RUN2, "w"), indent=1); before = open(RUN2, "rb").read()
 def broken(sql, params=()): raise RuntimeError("could not reach the database")
 r, out = quiet(B.main, ["stamp", "--file", RUN2], select=broken)
 check("5 stamp with the database out of reach: the file is left byte for byte, the run goes on (exit 0)", r == 0 and open(RUN2, "rb").read() == before and "left exactly as it was" in out, out)
+
+# ---- 5b. (review 11/12) stamp --items: a card already on the board is worked out from the whole card and keeps a stronger badge
+GUESS_1 = B.compute([{"id": "probe-guess", "amdid": ch(1)}], select, now="2026-11-01T00:00:00Z")[0][1]     # chart 1's newest charge (a guess)
+VISIT_1 = dict(res["card-a"][0], at="2026-11-01T00:00:00Z")                                               # chart 1's visit 19999001 (a match)
+check("5b the stand-in: chart 1's newest charge is the hospital, its visit 19999001 the nursing home",
+      GUESS_1["how"] == "newest charge" and GUESS_1["name"] == "Invented General Hospital" and VISIT_1["how"] == "visit" and VISIT_1["name"] == "Invented Nursing and Rehabilitation Center")
+ITEMS_ROWS = [{"id": "keep-1", "amdid": ch(1), "status": "william", "facility": "SNF", "need": "Secondary pending.", "chargefac": VISIT_1},
+              {"id": "known-1", "amdid": ch(1), "status": "claude", "facility": "SNF", "need": "Watch."},
+              {"id": "weak-1", "amdid": ch(1), "status": "claude", "facility": "SNF", "need": "Pending.", "chargefac": GUESS_1},
+              {"id": "whole-1", "amdid": ch(1), "status": "claude", "facility": "SNF", "need": "Medicare denied v19999001.", "chargefac": GUESS_1}]
+ITEMS_FILE = os.path.join(TMP, "board_rows.json"); json.dump(ITEMS_ROWS, open(ITEMS_FILE, "w"))
+NOTE = lambda t: {"notes": [{"who": "Claude", "text": t, "at": "2026-11-12T17:45:00Z"}]}
+run3 = {"schema": "irb-board-updates/1", "source": "backend billing run 2026-11-12T1739Z", "created": "2026-11-12T17:45:00Z", "ops": [
+    {"op": "upsert", "collection": "items", "id": "keep-1", "set": {"amdid": ch(1), "facility": "SNF"}, "append": NOTE("Looked again.")},
+    {"op": "upsert", "collection": "items", "id": "known-1", "set": {"facility": "SNF"}},
+    {"op": "upsert", "collection": "items", "id": "weak-1", "set": {"amdid": ch(1), "facility": "SNF"}, "append": NOTE("Medicare paid visit v19999001.")},
+    {"op": "upsert", "collection": "items", "id": "whole-1", "set": {"facility": "Invented Nursing and Rehabilitation Center"}},
+    {"op": "upsert", "collection": "items", "id": "fresh-1", "set": {"amdid": ch(1), "facility": "SNF", "need": "New card.", "status": "claude"}},
+    {"op": "update", "collection": "items", "id": "gone-1", "set": {"amdid": ch(1), "facility": "SNF"}}]}
+RUN3, RUN4 = os.path.join(TMP, "board_updates_2026-11-12T1739Z.json"), os.path.join(TMP, "board_updates_2026-11-12T1740Z.json")
+json.dump(run3, open(RUN3, "w"), indent=1); json.dump(run3, open(RUN4, "w"), indent=1)
+r3, out3 = quiet(B.main, ["stamp", "--file", RUN3, "--items", ITEMS_FILE], select=select)
+s3 = {o["id"]: o["set"].get("chargefac") for o in json.load(open(RUN3))["ops"]}
+check("5b --items: a card whose badge came from its visit keeps it - the run's op alone would give only the chart's newest charge",
+      r3 == 0 and s3["keep-1"] is None and "stronger rule (visit)" in out3, (s3["keep-1"], out3))
+check("5b --items: the card is worked out from its stored row - the op sets only the facility, the stored need names the visit (a weaker stored badge is replaced)",
+      (s3["whole-1"] or {}).get("how") == "visit" and s3["whole-1"]["name"] == "Invented Nursing and Rehabilitation Center", s3["whole-1"])
+check("5b --items: the op's appended note counts (it names the visit), and a match replaces a stored guess",
+      (s3["weak-1"] or {}).get("how") == "visit", s3["weak-1"])
+check("5b --items: a card on the board with no badge yet, and a new card, get even a guess",
+      (s3["known-1"] or {}).get("how") == "newest charge" and (s3["fresh-1"] or {}).get("how") == "newest charge", (s3["known-1"], s3["fresh-1"]))
+check("5b --items: an `update` of a card missing from the rows given gets no guess (its badge is not known)", s3["gone-1"] is None, s3["gone-1"])
+r4, out4 = quiet(B.main, ["stamp", "--file", RUN4], select=select)
+s4 = {o["id"]: o["set"].get("chargefac") for o in json.load(open(RUN4))["ops"]}
+check("5b without --items: only a charge a card names is written (the visit in the appended note); no guess on any card",
+      r4 == 0 and (s4["weak-1"] or {}).get("how") == "visit" and all(s4[i] is None for i in ("keep-1", "known-1", "whole-1", "fresh-1", "gone-1")), (s4, out4))
+check("5b stamp prints no row id, with or without --items", not [i for o in run3["ops"] for i in [o["id"]] if i in out3 or i in out4], (out3, out4))
+for p in ("columns.txt", "cascade.txt", "billing_button.txt"):
+    t = open(os.path.join(ROOT, "nightly", "live", p), encoding="utf-8").read()
+    check("5b nightly/live/%s: the stamp sentence passes the run's inline board rows (--items)" % p,
+          re.search(r"board_chargefac\.py stamp --file <that board_updates file> --items <", t) is not None, re.findall(r".{0,40}board_chargefac\.py stamp[^`]*", t)[:1])
 
 # ---- 6. board rows from a file or an ArtifactData folder
 LST = os.path.join(TMP, "rows.json"); json.dump([dict(v, id=k) for k, v in CARDS.items()], open(LST, "w"))
@@ -256,6 +356,54 @@ elif m1 and m2:
     check("7 page: a generic SNF only when nothing names a facility - shown as a guess", inf[3]["src"] == "guess" and "facbadge unknown" in o["html"][3], (inf[3], o["html"][3]))
     check("7 page: a chart with no facility at all says so", inf[4] is None and "facility not on file yet" in o["html"][4], o["html"][4])
     check("7 page and helper classify every name alike", o["kinds"] == [B.kind_of(k) for k in KINDS], (o["kinds"], [B.kind_of(k) for k in KINDS]))
+
+# ---- 7b. (review 11/12) the page's applyOp against a stand-in store whose update() merges like the real one
+m_apply = re.search(r"\n  async function applyOp\(op, now, fileCreated\)\{[\s\S]*?\n  \}\n(?=  async function runSync\()", page)
+m_same = re.search(r"\n  const isObj=[^\n]+\n  const canon=[^\n]+\n  const same=[^\n]+\n", page)
+m_coll = re.search(r"\n  const COLL_OK=[^\n]+\n", page)
+check("7b applyOp and the helpers it uses are where the test expects them in the page", bool(m_apply and m_same and m_coll))
+if NODE and m1 and m2 and m_apply and m_same and m_coll:
+    JS2 = os.path.join(TMP, "apply.js")
+    open(JS2, "w", encoding="utf-8").write(
+        "// stand-ins: the board store - update() merges nested objects key by key, anything else replaces the field (db contract 0.2.96)\n"
+        "const store={}; const clone=v=>JSON.parse(JSON.stringify(v)); const isO=v=>!!v&&typeof v==='object'&&!Array.isArray(v);\n"
+        "function mergeS(a, b){ const o=Object.assign({}, a); for(const k of Object.keys(b)){ const v=b[k]; o[k]=(isO(v)&&isO(o[k]))?mergeS(o[k], v):v; } return o; }\n"
+        "const has=p=>Object.prototype.hasOwnProperty.call(store, p);\n"
+        "const db={doc(p){ return {get:async()=>({exists:has(p), data:()=>clone(store[p])}), set:async d=>{ store[p]=clone(d); },\n"
+        "  update:async d=>{ if(!has(p)) throw Object.assign(new Error('no such document'), {code:'invalid_argument'}); store[p]=mergeS(store[p], clone(d)); },\n"
+        "  delete:async()=>{ delete store[p]; }}; }};\n"
+        "const withRetry=fn=>fn(); const CHART=/^\\d{4,}$/; const chartSibs=()=>[]; const sibsLine=()=>'';\n"
+        + m_coll.group(0) + m_same.group(0) + m_apply.group(0) + m1.group(0) + m2.group(0)[:-len("\n  function render(){")] +
+        "\nconst probe=JSON.parse(require('fs').readFileSync(process.argv[2], 'utf8'));\n"
+        "(async()=>{ const out=[];\n"
+        "  for(const s of probe.steps){\n"
+        "    if(s.seed){ store[s.seed]=clone(s.row); continue; }\n"
+        "    let err=''; try{ await applyOp(s.op, s.now, s.created); }catch(e){ err=String(e&&e.message||e); }\n"
+        "    const row=store['items/'+s.op.id]||null;\n"
+        "    out.push({err, updated:row&&row.updated, chargefac:row&&row.chargefac, badge:row?facBadge(row):''});\n"
+        "  }\n"
+        "  process.stdout.write(JSON.stringify({out, guard:facInfo({chargefac:probe.guard}), fromid:facBadge({chargefac:probe.fromid})}));\n"
+        "})();\n")
+    STEPS = [{"seed": "items/x1", "row": {"id": "x1", "status": "done", "amdid": ch(3), "updated": "2026-11-10T09:00:00Z", "chargefac": HOSP_CF}},
+             {"op": {"op": "update", "collection": "items", "id": "x1", "set": {"chargefac": HOME_CF}}, "now": "2026-11-12T16:00:00Z", "created": "2026-11-12T15:00:00Z"},
+             {"op": {"op": "upsert", "collection": "items", "id": "x1", "set": {"need": "Asked again."}}, "now": "2026-11-12T16:05:00Z", "created": "2026-11-12T16:04:00Z"},
+             {"op": {"op": "update", "collection": "items", "id": "x1", "set": {"chargefac": HOME_CF}, "append": NOTE("Badge looked at.")}, "now": "2026-11-12T16:10:00Z", "created": "2026-11-12T16:09:00Z"}]
+    GUARD = {"name": "Invented Nursing and Rehabilitation Center", "kind": "SNF", "res": {"name": "Invented Gardens ALF", "kind": "ALF", "thru": "8/26"}, "also": []}
+    IN2 = os.path.join(TMP, "probe_apply.json"); json.dump({"steps": STEPS, "guard": GUARD, "fromid": xres["fromid-9700021"][0]}, open(IN2, "w"))
+    pr = subprocess.run([NODE, JS2, IN2], capture_output=True, text=True, timeout=60)
+    try: o2 = json.loads(pr.stdout)
+    except ValueError: o2 = {"out": [{}] * 3, "guard": {}, "fromid": ""}
+    check("7b node ran the page's applyOp against the stand-in store", pr.returncode == 0 and len(o2["out"]) == 3 and not any(x.get("err") for x in o2["out"]), (pr.stderr[-400:], o2["out"]))
+    a1, a2, a3 = (o2["out"] + [{}, {}, {}])[:3]
+    check("7b an op that only sets chargefac leaves the row's `updated` alone (a done card keeps its done date; a later run file is not made stale)",
+          a1.get("updated") == "2026-11-10T09:00:00Z", a1.get("updated"))
+    check("7b ... and the nursing-home badge written over the hospital one shows no 'resident at' / 'also billed at' left over from it",
+          "Invented Nursing and Rehabilitation Center" in a1.get("badge", "") and "resident at" not in a1.get("badge", "") and "also billed at" not in a1.get("badge", "")
+          and (a1.get("chargefac") or {}).get("res") is None and (a1.get("chargefac") or {}).get("also") == [], (a1.get("badge"), a1.get("chargefac")))
+    check("7b any other op still stamps `updated` (a set of need; a chargefac set that comes with an appended note)",
+          a2.get("updated") == "2026-11-12T16:05:00Z" and a3.get("updated") == "2026-11-12T16:10:00Z", (a2.get("updated"), a3.get("updated")))
+    check("7b page: a home's own badge never shows 'resident at' (a res left on it is ignored)", isinstance(o2["guard"], dict) and o2["guard"].get("src") == "charge" and o2["guard"].get("res") is None, o2["guard"])
+    check("7b page: a badge whose chart number came from the card's id says so in its tooltip", "read from the end of this card" in o2["fromid"] and "Invented Gardens ALF" in o2["fromid"], o2["fromid"])
 
 # ---- 8. what it did not touch
 check("8 every statement sent to the database was a SELECT", all(re.match(r"^\s*(select|with)\b", s, re.I) for s in SQL) and len(SQL) > 10)
