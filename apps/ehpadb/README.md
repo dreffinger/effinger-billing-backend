@@ -23,6 +23,10 @@ billing dashboard and the Practice Database page's views), the **CCM notes** and
   - `/api/ccm/summary | month/<YYYY-MM> | note/<chart>_<YYYY-MM> | patients | patient/<chart> | signed` (`src/ccm.ts`): the CCM
     Documentation Hub's notes from `ccm.notes`, `ccm.signed_notes`, `ccm.patients`, `ccm.months`. **Read-only, and it shows patient
     names and birth dates** - only behind the gate. Signing stays on the hub page on claude.ai.
+    **Where the `ccm.*` views come from:** `tools/db/ccm_schema.sql` on the branch `claude/ccm-documentation-hub`, which is not
+    merged yet, so the file is not in this tree. The views were already applied to the practice database on 11/11/2026, so these
+    routes need no schema change. Merge that branch (and draft PR #28, whose copy of this folder this branch starts from) before
+    this one; once the file is here, `tools/selftest/test_ehpadb_app.py` checks that it builds every view `src/ccm.ts` reads.
   - `/api/upo/...` (`src/upo.ts`): Universal Practice Optimization; its work-list POST is the app's one write.
   - `/api/links`: the header buttons - Practice Database page, Insurance Refresh Board, CCM Documentation Hub, CCM Hub Build
     (`src/links.ts`).

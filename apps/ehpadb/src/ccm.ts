@@ -15,6 +15,7 @@
 import type { Hono } from "hono";
 import type { Pool } from "pg";
 import { CCM_HUB, CCM_HUB_BUILD } from "./links";
+import { dbFail } from "./sql";
 
 type AppVars = { Variables: { user: { id: string; email: string } } };
 
@@ -69,7 +70,7 @@ const SIGNED_SQL = `select ${arr(`select s.note_id, s.chart_id, p.name as patien
 
 export function registerCcm(app: Hono<AppVars>, pool: Pool) {
   const q = async (sql: string, params: unknown[] = []) => (await pool.query(sql, params)).rows[0]?.doc ?? null;
-  const fail = (c: any, what: string, e: any) => { console.error(what, e?.message); return c.json({ error: "the database answered with an error for " + what }, 500); };
+  const fail = dbFail;   // logs the route pattern and SQLSTATE only - never the error's message, which can repeat a birth date (sql.ts)
   const links = { hub: CCM_HUB, build: CCM_HUB_BUILD };
 
   app.get("/api/ccm/summary", async (c) => {

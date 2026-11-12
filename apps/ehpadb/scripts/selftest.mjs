@@ -10,7 +10,12 @@
 //      carries the Content-Security-Policy and no-store headers;
 //   5. the color schemes: "/" is Light before any script runs, offers the five ehpa schemes with the Practice Database page's exact
 //      tokens (tools/db/practice_db_page.html), and /theme.js applies a remembered pick, ignores an unknown one and survives a browser
-//      that refuses localStorage.
+//      that refuses localStorage;
+//   6. (review of 11/12/2026) a failed query on a Practice Database or CCM route answers 500 with a fixed sentence and is logged by its
+//      route pattern and SQLSTATE only - never the error's message, where Postgres repeats the stored value it choked on;
+//   7. (review of 11/12/2026) the browser tab title - also what browser history keeps - never carries a patient's name: the real
+//      browser code opens a CCM note and a patient with a stand-in document, and after the idle sign-out (and the Sign out button) the
+//      title is the page's own again.
 // Never touches: Neon, the Auth server, the network (fetch is replaced by a refusal; the database address is made up). No patient
 // data: the one "patient" below is invented here. Writes only src/generated/client-bundle.ts (the bundle it checks; git-ignored).
 // Run: node scripts/selftest.mjs   (from apps/ehpadb; exit 1 on any failure) - tools/selftest/test_ehpadb_app.py runs it too.
@@ -19,6 +24,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { format } from "node:util";
 import vm from "node:vm";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -44,6 +50,8 @@ const PG_STUB = `export class Pool { constructor() {}
     const S = globalThis.__SELFTEST__; const text = typeof q === "string" ? q : q.text; S.sql.push({ text, params });
     if (/from neon_auth\\."user"/.test(text)) { const u = S.users[params[0]]; return { rows: u ? [{ email: u[0], verified: u[1] }] : [], fields: [] }; }
     if (/^\\s*insert into ops\\.app_access_log/i.test(text)) return { rows: [], fields: [], rowCount: 1 };
+    // part 6: the database refuses the way Postgres does - the stored value it choked on is repeated in the message and the detail
+    if (S.failing) { const e = new Error('invalid input syntax for type date: "' + S.invented + '"'); e.code = "22007"; e.detail = S.invented; throw e; }
     if (/^\\s*update /i.test(text)) return { rows: [{ id: params[1], status: params[2] }], fields: [], rowCount: 1 };
     if (typeof q === "object" && q.rowMode === "array") return { rows: [], fields: [] };
     // every other question gets one answer document holding the invented patient, so a leak would show
@@ -146,6 +154,86 @@ check("/theme.js: nothing remembered -> Light", runTheme(null) === "light");
 check("/theme.js: a remembered pick is applied before the first paint", runTheme("plum") === "plum" && runTheme("lapis") === "lapis");
 check("/theme.js: an unknown value -> Light", runTheme("<b>x</b>") === "light");
 check("/theme.js: a browser that refuses localStorage -> Light", runTheme("navy", true) === "light");
+
+// ---- 6. a failed query is logged by its route and SQLSTATE only -------------------------------------------------------------------------
+// Postgres repeats the value it choked on in an error's message ("invalid input syntax for type date: ..."); on the CCM routes that value
+// can be a birth date or a name, and PHI must never reach the Function's logs. Every query now fails with the invented name in its message
+// and detail. Each Practice Database and CCM route must answer 500 with its fixed sentence and log only its route pattern and the
+// SQLSTATE - not the name, and not the chart, note or run asked for. The log is captured the way Node prints it (util.format).
+const logged = [], realError = console.error;
+console.error = (...a) => { logged.push(format(...a)); };
+globalThis.__SELFTEST__.failing = true;
+const newRoutes = routes.filter((r) => r.method === "GET" && /^\/api\/(pdb|ccm)\//.test(r.path));
+check("the Practice Database and CCM routes are all asked with a failing database (17)", newRoutes.length === 17, newRoutes.length);
+for (const r of newRoutes) {
+  const path = r.path.replace(/:([a-z]+)/g, (_m, k) => SAMPLE[k] || "x");
+  const before = logged.length;
+  const res = await ask("GET", path, owner);
+  const lines = logged.slice(before);
+  check(`GET ${r.path} - a failed query: 500 with the fixed sentence, no data in it`, res.status === 500 && res.text.includes("the database answered with an error for ") && !res.text.includes(INVENTED), res.status + " " + res.text.slice(0, 120));
+  check(`GET ${r.path} - logged with its route pattern and SQLSTATE 22007 only`, lines.length > 0 && lines.every((l) => !l.includes(INVENTED) && l.includes(r.path) && l.includes("22007") && (path === r.path || !l.includes(path))), lines.join(" | ").slice(0, 300) || "nothing logged");
+}
+globalThis.__SELFTEST__.failing = false; console.error = realError;
+
+// ---- 7. the browser tab title never carries a patient's name, and sign-out resets it --------------------------------------------------
+// The tab title is also what browser history keeps, and the tab stays open after a sign-out (the idle sign-out included). The real browser
+// code (src/client.ts and every page it imports, bundled as for /app.js) runs here against a small stand-in document, a stand-in for the
+// Neon Auth client (signed in as the owner) and answers that hold the invented patient. No network: fetch answers from the table below.
+const AUTH_STUB = "export function createAuthClient() { return globalThis.__AUTH__; }";
+const cb = await build({ entryPoints: [resolve(root, "src/client.ts")], bundle: true, format: "iife", platform: "browser", target: ["es2022"], write: false, logLevel: "silent",
+  plugins: [{ name: "auth stand-in", setup(bd) {
+    bd.onResolve({ filter: /^@neon\/auth$/ }, (a) => ({ path: a.path, namespace: "auth-stub" }));
+    bd.onLoad({ filter: /.*/, namespace: "auth-stub" }, () => ({ contents: AUTH_STUB, loader: "js" }));
+  } }] });
+const CLIENT = cb.outputFiles[0].text;
+const PAGE_TITLE = (home.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
+const unhtml = (s) => s.replace(/<[^>]*>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+const NOTE = { note: { note_id: "pat1_2026-10", chart_id: "pat1", month: "2026-10", patient_name: INVENTED, birth_date: null, codes: ["99490"], minutes: 20, flag: "", insurance: "",
+  status: "ready to sign", written_on: null, signed_by: null, signed_at: null, sha: null }, draft: null, signed: null, hub: "" };
+const ANSWERS = { "/api/links": [], "/api/ccm/note/pat1_2026-10": NOTE, "/api/ccm/patient/pat1": { patient: { chart_id: "pat1", name: INVENTED, birth_date: null, sex: "" }, notes: [], chart: "pat1", hub: "" },
+  "/api/ccm/summary": { totals: { notes: 1, ready: 1, flagged: 0, noname: 0, signed: 0, patients: 1, months: 1 }, months: [], hub: "" } };
+function openBrowser(hash) {
+  const els = new Map(), timers = [], on = {};
+  class El {
+    constructor() { this.html = ""; this.textContent = ""; this.hidden = false; this.className = ""; this.dataset = {}; this.value = ""; this.on = {}; this.classList = { toggle() {}, add() {}, remove() {} }; }
+    get innerHTML() { return this.html; }
+    set innerHTML(v) { this.html = String(v); }
+    addEventListener(t, f) { (this.on[t] ||= []).push(f); }
+    querySelector(sel) { if (sel !== "h1") return el(sel); const m = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(this.html); return m ? { textContent: unhtml(m[1]) } : null; }
+    querySelectorAll() { return []; }
+    setAttribute() {} getAttribute() { return null; } toggleAttribute() {} focus() {} setSelectionRange() {} closest() { return null; }
+  }
+  const el = (sel) => { if (!els.has(sel)) els.set(sel, new El()); return els.get(sel); };
+  const attrs = { "data-auth-url": "https://auth.invalid/neondb/auth", "data-idle-minutes": "30", "data-practice": "ehpa", "data-ehpa": "light" };
+  const document = { title: PAGE_TITLE, querySelector: el, querySelectorAll: () => [], addEventListener() {},
+    documentElement: { getAttribute: (k) => attrs[k] ?? null, setAttribute: (k, v) => { attrs[k] = String(v); } } };
+  const auth = { getSession: async () => ({ data: { user: { email: "owner@invalid.test", name: "Owner" } } }), signOut: async () => ({}), token: async () => ({ data: { token: "stand-in" } }) };
+  const fetch = async (url) => { const body = ANSWERS[String(url)]; return new Response(JSON.stringify(body ?? { error: "not in the stand-in's table" }), { status: body === undefined ? 404 : 200, headers: { "content-type": "application/json" } }); };
+  const ctx = { document, location: { hash, origin: "http://app.invalid" }, fetch, Response, __AUTH__: auth, console: { log() {}, warn() {}, error() {} },
+    setTimeout: (f, ms) => timers.push({ f, ms }), clearTimeout() {}, scrollTo() {}, addEventListener: (t, f) => { (on[t] ||= []).push(f); },
+    localStorage: { getItem: () => null, setItem() {} } };
+  ctx.window = ctx;
+  vm.createContext(ctx);
+  vm.runInContext(CLIENT, ctx);
+  return { document, el, timers, on, ctx, heading: () => unhtml((/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(el("#main").innerHTML) || [])[1] || "") };
+}
+const settle = async () => { for (let i = 0; i < 200; i++) await new Promise((r) => setImmediate(r)); };
+check("the page's own <title> is known (" + PAGE_TITLE + ")", PAGE_TITLE !== "");
+const tab = openBrowser("#ccm/note/pat1_2026-10"); await settle();
+check("a CCM note is drawn with the invented patient's name as its heading (so the next check means something)", tab.heading().includes(INVENTED), tab.heading() || tab.el("#status").textContent);
+check("a CCM note: the tab title holds no patient name (CCM notes · ehpa)", tab.document.title === "CCM notes · ehpa", tab.document.title);
+tab.ctx.location.hash = "#ccm/p/pat1"; for (const f of tab.on.hashchange || []) f(); await settle();
+check("a CCM patient: drawn with the name as its heading, and the tab title holds no name", tab.heading().includes(INVENTED) && tab.document.title === "CCM notes · ehpa", tab.document.title);
+const idle = tab.timers.filter((t) => t.ms === 30 * 60_000).pop();
+check("the idle sign-out is armed (30 minutes)", Boolean(idle), tab.timers.map((t) => t.ms).join(","));
+if (idle) { await idle.f(); await settle(); }
+check("after the idle sign-out the tab title is the page's own again, and the page holds no name", tab.document.title === PAGE_TITLE && !tab.el("#main").innerHTML.includes(INVENTED), tab.document.title);
+const tab2 = openBrowser("#ccm/note/pat1_2026-10"); await settle();
+for (const f of tab2.el("#signout").on.click || []) await f();
+await settle();
+check("after Sign out (the button) on a CCM note the tab title is the page's own again", tab2.heading() === "" && tab2.document.title === PAGE_TITLE, tab2.document.title);
+const tab3 = openBrowser("#home"); await settle();
+check("a page with no patient data keeps its heading as the tab title (Practice applications · ehpa)", tab3.document.title === "Practice applications · ehpa", tab3.document.title);
 
 console.log(`\nehpadb selftest: ${RAN} checks, ${FAILS.length} failed`);
 process.exit(FAILS.length ? 1 : 0);

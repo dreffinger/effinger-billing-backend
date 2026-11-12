@@ -18,7 +18,7 @@
 import type { Hono } from "hono";
 import type { Pool } from "pg";
 import { PULLED_DAY } from "./views";
-import { SAFE_NUM, NEWEST_APPROVALS } from "./sql";
+import { SAFE_NUM, NEWEST_APPROVALS, dbFail } from "./sql";
 import { PAGES, MIRROR_LINKS, ROUTINES, routineUrl, githubFile, APPROVALS_PAGE, PRACTICE_DB_PAGE } from "./links";
 
 type AppVars = { Variables: { user: { id: string; email: string } } };
@@ -173,7 +173,7 @@ from raw.documents where source = 'practice_db' and collection = $1 and doc_id =
 
 export function registerPdb(app: Hono<AppVars>, pool: Pool) {
   const q = async (sql: string, params: unknown[] = []) => (await pool.query(sql, params)).rows[0]?.doc ?? null;
-  const fail = (c: any, what: string, e: any) => { console.error(what, e?.message); return c.json({ error: "the database answered with an error for " + what }, 500); };
+  const fail = dbFail;   // logs the route pattern and SQLSTATE only, never the error's message (sql.ts)
 
   app.get("/api/pdb/overview", async (c) => {
     try {

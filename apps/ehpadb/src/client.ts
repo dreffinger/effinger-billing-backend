@@ -49,9 +49,13 @@ async function signOut(reason?: string) {
 }
 
 // ---- screens ------------------------------------------------------------------------------------------------------------------
+// The tab title is also what browser history keeps, and the tab stays open after a sign-out (the idle one included). A CCM page's
+// heading is a patient's name, so route() never uses it as the title, and sign-out puts the page's own title back.
+const SIGNED_OUT_TITLE = document.title;   // the page's <title> (page.ts), read before any page changed it
 function showSignIn(msg?: string) {
   $("#app").hidden = true; $("#gate").hidden = false; $("#who").textContent = ""; $("#appbar").hidden = true; $("#session").hidden = true; $("#main").innerHTML = "";
   $("#links").hidden = true; $("#links").innerHTML = "";
+  document.title = SIGNED_OUT_TITLE;
   if (msg) say(msg, "");
 }
 async function showApp(user: { email?: string; name?: string }) {
@@ -119,7 +123,7 @@ async function route() {
       if (isRichView(view)) await showDb(view); else await showDashboard(view);
     }
     say("");
-    document.title = (main.querySelector("h1")?.textContent || "Practice applications") + " · ehpa";
+    document.title = (app === "ccm" ? "CCM notes" : main.querySelector("h1")?.textContent || "Practice applications") + " · ehpa";   // a CCM heading is a patient's name
     window.scrollTo(0, 0);
   } catch (e: any) { main.innerHTML = ""; say(e.message || String(e), "err"); }
 }

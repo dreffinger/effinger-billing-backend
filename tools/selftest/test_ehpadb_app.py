@@ -9,11 +9,16 @@
 #      Build, and no claude.ai page address is written into the public page or the browser script (they come from /api/links);
 #   3. every route group (the old ones, links, the Practice Database views, the CCM notes) is registered AFTER the sign-in gate in
 #      src/index.ts, and the new route files send only SELECT statements - the CCM section is read-only (signing stays on the hub);
+#   3b. (review of 11/12/2026) a CCM page's heading - a patient's name - never becomes the tab title (which browser history keeps) and
+#      sign-out puts the page's own title back; the Practice Database and CCM routes never log an error's message (Postgres repeats
+#      the stored value in it), only the route pattern and SQLSTATE; and the ccm.* views the CCM routes read are accounted for - built
+#      by tools/db/ccm_schema.sql when that file is in the tree, else the README says where it is and that it is already applied;
 #   4. part 2 runs apps/ehpadb/scripts/selftest.mjs (npm test): the real Function, built with stand-ins for Postgres and the Auth
 #      server's keys, asked every /api question with no session, a forged token, a not-allowed email and an unconfirmed one (401/403,
 #      no query, no data) and as the owner (runs, logged in ops.app_access_log with its route); the public answers carry no patient
-#      data; /theme.js applies, ignores and survives what it should. Part 2 needs node and `npm ci` in apps/ehpadb; without them it
-#      says SKIPPED and part 1 still decides.
+#      data; /theme.js applies, ignores and survives what it should; a failing database is logged by route and SQLSTATE only; the
+#      real browser code keeps the invented patient's name out of the tab title, before and after sign-out. Part 2 needs node and
+#      `npm ci` in apps/ehpadb; without them it says SKIPPED and part 1 still decides.
 # Never touches: Neon, the Auth server, AdvancedMD, the network (Python's sockets are shut; the node part replaces fetch, pg and the key
 #   set). Nothing is deployed and no program under scripts/helpers, boards/ or core is started. No patient data: the one name the node
 #   part uses is invented at run time.
@@ -81,6 +86,37 @@ for f in ["pdb.ts", "ccm.ts"]:
     check("src/%s sends no write: every SQL text in it is a SELECT" % f, not bad, bad)
 ccm = read(APP, "src", "ccm.ts")
 check("the CCM section reads the ccm.* views only (ccm.notes, ccm.signed_notes, ccm.patients, ccm.months)", set(re.findall(r"\bccm\.([a-z_]+)", ccm)) <= {"notes", "signed_notes", "patients", "months", "evidence", "faxes", "ts"}, set(re.findall(r"\bccm\.([a-z_]+)", ccm)))
+
+# ---- 3b. (review of 11/12/2026) no patient data in the tab title or the Function's logs; where the ccm.* views come from -------------
+cl = read(APP, "src", "client.ts")
+route_fn = cl.split("async function route()", 1)[-1].split("\n}\n", 1)[0]
+signin_fn = cl.split("function showSignIn(", 1)[-1].split("\n}\n", 1)[0]
+m = re.search(r"document\.title\s*=([^;]*);", route_fn)
+expr = m.group(1) if m else ""
+check('route() never makes a CCM page\'s heading (a patient\'s name) the tab title: app === "ccm" is decided before the h1 is read',
+      'app === "ccm"' in expr and 'querySelector("h1")' in expr and expr.index('app === "ccm"') < expr.index('querySelector("h1")'), expr.strip()[:160] or "no title in route()")
+check("showSignIn() puts the page's own title back, so no page's title outlives the session (the idle sign-out included)",
+      "document.title = SIGNED_OUT_TITLE" in signin_fn and re.search(r"const SIGNED_OUT_TITLE = document\.title\b", cl) is not None, signin_fn.strip()[:160])
+own_titles = [f for f in sorted(os.listdir(os.path.join(APP, "src", "client"))) if "document.title" in read(APP, "src", "client", f)] if os.path.isdir(os.path.join(APP, "src", "client")) else []
+check("no page under src/client/ sets the tab title itself (only route() and showSignIn() in src/client.ts do)", not own_titles and cl.count("document.title =") == 2, own_titles or cl.count("document.title ="))
+for f in ["pdb.ts", "ccm.ts", "sql.ts"]:
+    src = read(APP, "src", f)
+    check("src/%s logs no error message (Postgres repeats the stored value it choked on there)" % f, not re.search(r"console\.\w+\([^;]*\.message", src), re.findall(r"console\.\w+\([^;]*\.message[^;]*", src)[:2])
+sqlts, pdbts = read(APP, "src", "sql.ts"), read(APP, "src", "pdb.ts")
+fail_line = re.search(r"export function dbFail\([^)]*\)\s*\{\s*console\.error\(([^;]*)\);", sqlts)
+check("a failed query is logged by route pattern and SQLSTATE only (dbFail in src/sql.ts), and pdb.ts and ccm.ts both use it",
+      bool(fail_line) and norm(fail_line.group(1)) == '"database error", c.req.method, routePath(c), sqlState(e)'
+      and "const fail = dbFail;" in pdbts and "const fail = dbFail;" in ccm, fail_line.group(1) if fail_line else "no dbFail in src/sql.ts")
+readme = read(APP, "README.md")
+schema = read(ROOT, "tools", "db", "ccm_schema.sql")
+used = set(re.findall(r"\bccm\.([a-z_]+)\b", ccm)) - {"ts"}
+if schema:
+    built = set(re.findall(r"create\s+(?:or\s+replace\s+)?view\s+ccm\.([a-z_]+)", schema, re.I))
+    check("every ccm.* view src/ccm.ts reads is built by tools/db/ccm_schema.sql", used <= built, sorted(used - built))
+else:
+    note = next((p for p in re.split(r"\n(?=\s*- )|\n\s*\n", readme) if "tools/db/ccm_schema.sql" in p and "claude/ccm-documentation-hub" in p), "")
+    check("tools/db/ccm_schema.sql is not in this tree, so the README says where the ccm.* views come from (claude/ccm-documentation-hub) and that they were applied 11/11/2026",
+          note != "" and "applied to the practice database" in norm(note) and "11/11/2026" in note, norm(note)[:200] or "no such note in apps/ehpadb/README.md")
 
 # ---- 4. the app itself, built with stand-ins (node) -----------------------------------------------------------------------------------
 node = shutil.which("node")
