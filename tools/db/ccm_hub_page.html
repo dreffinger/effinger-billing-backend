@@ -9,10 +9,11 @@
 </script>
 <style>
 /* Layout: a Lapis header band with the practice's counts, then a working area - months on the left, the month's notes on the right -
-   and the note itself opening over it as a sheet of paper, laid out like William's sample encounter note. The ehpa palettes (Lapis, Midnight, Navy, Plum, Light) with a picker, Light by default. The paper is white in both themes: it is the printed note. */
+   and the note itself opening over it as a sheet of paper, laid out like William's sample encounter note. The ehpa palettes (Lapis, Midnight, Navy, Plum, Light) with a picker, Light by default. The paper is white in both themes: it is the printed note.
+   11/12/2026: a new note lists its ICD-10 diagnoses; a signed note shows its dated ADDENDUM (the diagnoses on its CCM charge) under it, on its own sheet with its own stamp. */
 :root{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;
   --accent:#0054e9;--on-accent:#ffffff;--accent-soft:#e0f4fd;--accent-2:#b4169e;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;
-  --pulled:#4e8f6e;--grad:linear-gradient(135deg,#0054e9 0%,#70d6f8 100%);--grid:rgba(8,47,53,.08);color-scheme:light
+  --pulled:#4e8f6e;--grad:linear-gradient(135deg,#0054e9 0%,#70d6f8 100%);--grid:rgba(8,47,53,.08);color-scheme:light;
   --paper:#ffffff;--paper-ink:#111111;--paper-dim:#666666;--paper-line:#dddddd;--scrim:rgba(8,47,53,.45);
   --font:"Quicksand",ui-rounded,"Segoe UI",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--note:Arial,Helvetica,sans-serif;
   --pill:999px;--r:12px}
@@ -56,6 +57,7 @@ a{color:var(--accent)} a:focus-visible,button:focus-visible,input:focus-visible,
 .chip{display:inline-flex;align-items:baseline;gap:7px;padding:6px 12px;border-radius:var(--pill);background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--muted)}
 .chip b{font:600 15px var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
 .chip.ready b{color:var(--accent)} .chip.flag b{color:var(--warn)} .chip.signed b{color:var(--ok)}
+.chip.add{border-style:dashed} .chip.add.ready b{color:var(--accent)} .chip.add.flag b{color:var(--warn)} .chip.add.signed b{color:var(--ok)}
 .notice{margin:16px 0 0;padding:12px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:14px;max-width:90ch}
 .notice.warn{border-color:var(--warn);background:var(--warn-soft)}
 main .wrap{padding-block:18px 48px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start}
@@ -67,7 +69,7 @@ main .wrap{padding-block:18px 48px;display:grid;grid-template-columns:260px minm
 .months .mn{font-weight:700} .months .mc{font:500 12.5px var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
 .months .ms{grid-column:1/-1;font-size:12px;color:var(--dim)}
 .monthhead{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
-.monthhead h2{margin:0;font:700 22px var(--font)}
+.monthhead h2{margin:0;font:700 22px var(--font)} .monthhead .grp{display:flex;flex-wrap:wrap;gap:8px}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
 .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;background:var(--surface)}
 .seg button{border:0;background:transparent;color:var(--muted);font:600 12.5px var(--font);padding:6px 11px;border-radius:var(--pill);cursor:pointer}
@@ -75,7 +77,7 @@ main .wrap{padding-block:18px 48px;display:grid;grid-template-columns:260px minm
 input[type=search],textarea{font:500 14px var(--font);color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;padding:8px 12px}
 input[type=search]{min-width:0;flex:1 1 220px;max-width:340px;border-radius:var(--pill)}
 .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
-table.list{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+table.list{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
 table.list th{text-align:left;font:700 11.5px var(--font);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface-2);position:sticky;top:0}
 table.list td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 table.list tr:last-child td{border-bottom:0} table.list tr:hover td{background:var(--surface-2)}
@@ -96,6 +98,8 @@ table.list tr:last-child td{border-bottom:0} table.list tr:hover td{background:v
 .panel h3{margin:0;font:700 18px var(--font)} .panel p{margin:0;color:var(--ink-2);max-width:72ch}
 .panel label{display:flex;gap:10px;align-items:flex-start;font-weight:600}
 .panel textarea{width:100%;min-height:92px;resize:vertical}
+.panel .dxbox{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:10px} .panel .dxbox table{border-collapse:collapse;width:100%;font-size:13px}
+.panel .dxbox th,.panel .dxbox td{text-align:left;padding:5px 9px;border-bottom:1px solid var(--line);vertical-align:top} .panel .dxbox th{font:700 11.5px var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);position:sticky;top:0}
 .status{min-height:1.4em;font-size:13.5px;color:var(--muted)} .status.ok{color:var(--ok)} .status.err{color:var(--bad)}
 /* the note, as on paper */
 .paper{background:var(--paper);color:var(--paper-ink);border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:26px 26px 30px 64px;position:relative;font:12.5px/1.42 var(--note);overflow:hidden}
@@ -109,6 +113,7 @@ table.list tr:last-child td{border-bottom:0} table.list tr:hover td{background:v
 .paper .late{border:1px solid #999;padding:10px 12px;margin-top:6px} .paper .late p{margin:0 0 8px} .paper .late p:last-child{margin:0}
 .paper .sig{margin-top:38px;border-top:1px solid #333;width:min(280px,100%);padding-top:4px;font-size:11.5px} .paper .foot{margin-top:26px;text-align:center;font-size:11px;color:#444}
 .paper .ownst{background:#fff7e6;outline:1px dashed #b98a33}
+.paper .code{white-space:nowrap;width:1%;padding-right:14px;font-family:var(--note)} .paper.add{border-top:4px solid #b14d00}
 @media (prefers-reduced-motion:no-preference){.sheetin{animation:rise .18s ease-out}@keyframes rise{from{transform:translateY(8px);opacity:.6}to{transform:none;opacity:1}}}
 </style>
 
@@ -132,6 +137,7 @@ table.list tr:last-child td{border-bottom:0} table.list tr:hover td{background:v
     <a class="btn" href="https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg" target="_blank" rel="noopener">Insurance Refresh board</a>
     <a class="btn" href="https://app.ehpa.dev/" target="_blank" rel="noopener">Practice Optimization suite</a>
     <button class="btn primary" id="signAllBtn" type="button" hidden>Sign all ready notes</button>
+    <button class="btn primary" id="signAllAddBtn" type="button" hidden>Sign all addenda</button>
   </div>
 </div></header>
 <main><div class="wrap">
@@ -144,12 +150,15 @@ table.list tr:last-child td{border-bottom:0} table.list tr:hover td{background:v
 (() => {
 "use strict";
 const S = { db: null, dl: null, owner: false, uid: null, cfg: null, docs: new Map(), loading: new Set(), sigs: new Map(),
+            acfg: null, adds: new Map(), aloading: new Set(), asigs: new Map(),
             month: null, filter: "all", q: "", shown: 120, open: null, busy: false };
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmt = n => Number(n || 0).toLocaleString("en-US");
+const addenda = n => fmt(n) + (Number(n) === 1 ? " addendum" : " addenda");
 const STATUS = { "ready to sign": ["ready", "Ready to sign"], "flagged": ["flagged", "Flagged - review"], "no name yet": ["noname", "Waiting for name"],
                  "signed": ["signed", "Signed and recorded"], "here": ["here", "Signed - being recorded"] };
+const ADD_STATUS = { "ready to sign": ["ready", "To sign"], "flagged": ["flagged", "Flagged"], "signed": ["signed", "Signed"], "here": ["here", "Being recorded"] };
 let dbTimer = null;
 
 /* ---- the fixed text form and its hash: the same as scripts/helpers/ccm_notes.py canon() / signing_sha() ---- */
@@ -185,7 +194,34 @@ function live(m) {      // the month's counts as of the last update, moved by th
   for (const c in sigs) if (!sigs[c].rec) { if (sigs[c].kind === "flagged") pf++; else pr++; }
   return { notes: m.notes, ready: Math.max(0, m.ready - pr), flagged: Math.max(0, m.flagged - pf), noname: m.noname, signed: (m.signed || 0) + pr + pf, pending: pr + pf };
 }
+/* the dated addenda (11/12/2026): one per signed note - the diagnoses on its CCM charge, signed on their own */
+function addInfo(ym) { return ((S.acfg && S.acfg.months) || []).find(m => m.month === ym); }
+function addFor(n, ym) { const a = S.adds.get(ym); return a ? a.byNote.get(n.id) || null : null; }
+function asigFor(a, ym) { const s = S.asigs.get(ym); return s && s.sigs ? s.sigs[a.id] : null; }
+function addStateOf(a, ym) {
+  if (a.status === "signed") return "signed";
+  if (asigFor(a, ym)) return "here";
+  return a.status;
+}
+function liveAdd(m) {      // a month's addenda counts as of the last update, moved by the addendum signings made here since
+  const sigs = ((S.asigs.get(m.month) || {}).sigs) || {}; let pr = 0, pf = 0;
+  for (const k in sigs) if (!sigs[k].rec) { if (sigs[k].kind === "flagged") pf++; else pr++; }
+  return { addenda: m.addenda, ready: Math.max(0, m.ready - pr), flagged: Math.max(0, m.flagged - pf), signed: (m.signed || 0) + pr + pf };
+}
+async function loadAddenda(ym) {
+  if (S.adds.has(ym) || S.aloading.has(ym) || !S.db) return;
+  const info = addInfo(ym); if (!info) return;
+  S.aloading.add(ym);
+  try {
+    const parts = await Promise.all(Array.from({ length: info.parts }, (_, i) => S.db.doc("addenda/" + ym + "-" + (i + 1)).get()));
+    const list = [];
+    for (const p of parts) if (p.exists) list.push(...((p.data() || {}).addenda || []));
+    S.adds.set(ym, { month: ym, list, byNote: new Map(list.map(a => [a.note, a])) });
+  } catch (e) { flash("The addenda for " + monthName(ym) + " could not be read (" + (e && e.code || "error") + "). Reload the page to try again.", true); }
+  S.aloading.delete(ym); render();
+}
 async function loadMonth(ym) {
+  loadAddenda(ym);
   if (S.docs.has(ym) || S.loading.has(ym) || !S.db) return;
   const info = monthInfo(ym); if (!info) return;
   S.loading.add(ym); render();
@@ -204,17 +240,22 @@ function renderCounts() {
   if (!c) { el.innerHTML = ""; return; }
   const t = { notes: 0, ready: 0, flagged: 0, noname: 0, signed: 0 };
   for (const m of S.cfg.months || []) { const x = live(m); for (const k in t) t[k] += x[k]; }
+  const a = { addenda: 0, ready: 0, flagged: 0, signed: 0 };
+  for (const m of (S.acfg && S.acfg.months) || []) { const x = liveAdd(m); for (const k in a) a[k] += x[k]; }
   el.innerHTML = [["", "Notes", t.notes], ["ready", "Ready to sign", t.ready], ["flag", "Flagged for you", t.flagged], ["", "Waiting for a name", t.noname],
-    ["signed", "Signed", t.signed]].map(([k, l, v]) => '<span class="chip ' + k + '"><b>' + fmt(v) + "</b>" + esc(l) + "</span>").join("");
+    ["signed", "Signed", t.signed]].concat(S.acfg ? [["add ready", "Addenda to sign", a.ready], ["add flag", "Addenda flagged", a.flagged], ["add signed", "Addenda signed", a.signed]] : [])
+    .map(([k, l, v]) => '<span class="chip ' + k + '"><b>' + fmt(v) + "</b>" + esc(l) + "</span>").join("");
   const btn = $("signAllBtn"); btn.hidden = !(S.owner && t.ready > 0); btn.textContent = "Sign all ready notes (" + fmt(t.ready) + ")";
+  const ab = $("signAllAddBtn"); ab.hidden = !(S.owner && a.ready > 0); ab.textContent = "Sign all addenda (" + fmt(a.ready) + ")";
 }
 function renderMonths() {
   const nav = $("months"); const ms = (S.cfg && S.cfg.months) || [];
   if (!ms.length) return;
   nav.innerHTML = "<h2>Months</h2>" + ms.map(m => {
-    const x = live(m);
+    const x = live(m); const ai = addInfo(m.month); const ax = ai ? liveAdd(ai) : null;
     return '<button type="button" data-month="' + esc(m.month) + '" aria-current="' + (m.month === S.month) + '"><span class="mn">' + esc(m.name) + '</span><span class="mc">' + fmt(x.notes) +
-      '</span><span class="ms">' + fmt(x.ready) + " ready · " + fmt(x.flagged) + " flagged" + (x.noname ? " · " + fmt(x.noname) + " waiting" : "") + (x.signed ? " · " + fmt(x.signed) + " signed" : "") + "</span></button>";
+      '</span><span class="ms">' + fmt(x.ready) + " ready · " + fmt(x.flagged) + " flagged" + (x.noname ? " · " + fmt(x.noname) + " waiting" : "") + (x.signed ? " · " + fmt(x.signed) + " signed" : "") +
+      (ax && (ax.ready || ax.flagged) ? " · " + addenda(ax.ready + ax.flagged) + " to sign" : "") + "</span></button>";
   }).join("");
 }
 function matches(n, ym) {
@@ -223,6 +264,7 @@ function matches(n, ym) {
   if (S.filter === "flagged" && st !== "flagged") return false;
   if (S.filter === "noname" && st !== "no name yet") return false;
   if (S.filter === "signed" && st !== "signed" && st !== "here") return false;
+  if (S.filter === "addflag") { const a = addFor(n, ym); if (!(a && addStateOf(a, ym) === "flagged")) return false; }
   if (S.q) { const q = S.q.toLowerCase(); if (!((n.f.patient || "").toLowerCase().includes(q) || n.f.chart.toLowerCase().includes(q))) return false; }
   return true;
 }
@@ -233,20 +275,25 @@ function renderView() {
   if (!info) { v.innerHTML = '<div class="notice">No months yet.</div>'; return; }
   let html = '<div class="monthhead"><h2>' + esc(info.name) + '</h2>';
   const readyHere = doc ? doc.notes.filter(n => stateOf(n, ym) === "ready to sign").length : 0;
-  if (S.owner) html += '<button class="btn primary" type="button" id="signMonthBtn" ' + (doc && readyHere ? "" : "disabled") + ">Sign the " + fmt(readyHere) + " ready notes in " + esc(info.name) + "</button>";
+  const ad = S.adds.get(ym), ainfo = addInfo(ym);
+  const readyAdd = ad ? ad.list.filter(a => addStateOf(a, ym) === "ready to sign").length : 0;
+  if (S.owner) html += '<div class="grp"><button class="btn primary" type="button" id="signMonthBtn" ' + (doc && readyHere ? "" : "disabled") + ">Sign the " + fmt(readyHere) + " ready notes in " + esc(info.name) + "</button>" +
+    (ainfo ? '<button class="btn" type="button" id="signMonthAddBtn" ' + (ad && readyAdd ? "" : "disabled") + ">Sign the " + addenda(readyAdd) + " in " + esc(info.name) + "</button>" : "") + "</div>";
   html += "</div>";
-  html += '<div class="tools"><div class="seg" role="group" aria-label="Show">' + [["all", "All"], ["ready", "Ready"], ["flagged", "Flagged"], ["noname", "Waiting for name"], ["signed", "Signed"]]
+  html += '<div class="tools"><div class="seg" role="group" aria-label="Show">' + [["all", "All"], ["ready", "Ready"], ["flagged", "Flagged"], ["noname", "Waiting for name"], ["signed", "Signed"]].concat(S.acfg ? [["addflag", "Addenda flagged"]] : [])
     .map(([k, l]) => '<button type="button" data-filter="' + k + '" aria-pressed="' + (S.filter === k) + '">' + l + "</button>").join("") + "</div>" +
     '<input type="search" id="q" placeholder="Find a patient or chart" value="' + esc(S.q) + '" aria-label="Find a patient or chart"></div>';
   if (!doc) { v.innerHTML = html + '<div class="notice">' + (S.loading.has(ym) ? "Reading the notes for " + esc(info.name) + "…" : "") + "</div>"; return; }
   const rows = doc.notes.filter(n => matches(n, ym));
   if (!rows.length) { v.innerHTML = html + '<div class="tablebox"><div class="empty">No notes match.</div></div>'; return; }
-  html += '<div class="tablebox"><table class="list"><thead><tr><th>Patient</th><th>Birth date</th><th>Chart</th><th>Codes</th><th>Location</th><th>Status</th><th></th></tr></thead><tbody>';
+  html += '<div class="tablebox"><table class="list"><thead><tr><th>Patient</th><th>Birth date</th><th>Chart</th><th>Codes</th><th>Location</th><th>Status</th><th>Addendum</th><th></th></tr></thead><tbody>';
   for (const n of rows.slice(0, S.shown)) {
     const st = STATUS[stateOf(n, ym)] || STATUS["no name yet"];
+    const a = addFor(n, ym); const ast = a ? (ADD_STATUS[addStateOf(a, ym)] || ADD_STATUS["ready to sign"]) : null;
     html += "<tr><td>" + (n.f.patient ? esc(n.f.patient) : '<span class="dim">name not read yet</span>') + (n.flag ? '<div class="flagtext">' + esc(n.flag) + "</div>" : "") +
       '</td><td class="mono">' + esc(n.f.dob) + '</td><td class="mono">' + esc(n.f.chart) + '</td><td class="mono">' + esc(n.f.codes.join(" + ")) +
-      "</td><td>" + esc(n.f.location) + '</td><td><span class="pill ' + st[0] + '">' + st[1] + '</span></td><td><button class="btn" type="button" data-open="' + esc(n.id) + '">Open</button></td></tr>';
+      "</td><td>" + esc(n.f.location) + '</td><td><span class="pill ' + st[0] + '">' + st[1] + "</span></td><td>" + (ast ? '<span class="pill ' + ast[0] + '">' + ast[1] + "</span>" : '<span class="dim">-</span>') +
+      '</td><td><button class="btn" type="button" data-open="' + esc(n.id) + '">Open</button></td></tr>';
   }
   html += "</tbody></table>" + (rows.length > S.shown ? '<div class="more"><button class="btn" type="button" id="moreBtn">Show ' + fmt(Math.min(200, rows.length - S.shown)) + " more of " + fmt(rows.length - S.shown) + "</button></div>" : "") + "</div>";
   const keep = document.activeElement && document.activeElement.id === "q" ? [document.activeElement.selectionStart] : null;
@@ -256,6 +303,34 @@ function renderView() {
 function render() { renderCounts(); renderMonths(); renderView(); if (S.open) renderNote(); }
 
 /* ---- the note ---- */
+function dxTable(dx, heading) {      // the same table as scripts/helpers/ccm_notes.py _dx_table()
+  const rows = (dx || []).map(x => '<tr><td class="code">' + esc(x[0]) + "</td><td>" + (x[1] ? esc(x[1]) : "<i>no CMS description</i>") + "</td></tr>").join("");
+  return "<h2>" + esc(heading) + "</h2>" + (rows ? "<table><thead><tr><th class=\"code\">ICD-10</th><th>Description</th></tr></thead><tbody>" + rows + "</tbody></table>" : "<p>No diagnosis is on this month's CCM charge lines.</p>");
+}
+function chargesTable(f) {
+  return "<h2>Chronic care management charges - " + esc(monthName(f.month)) + "</h2><table><thead><tr><th>Charge date</th><th>Code</th><th>Visit</th><th>Charge</th></tr></thead><tbody>" +
+    (f.charges || []).map(c => "<tr><td>" + esc(c[0]) + "</td><td>" + esc(c[1]) + "</td><td>" + esc(c[2]) + "</td><td>" + esc(c[3]) + "</td></tr>").join("") + "</tbody></table>";
+}
+function headHTML(f) {
+  const lh = (S.cfg && S.cfg.letterhead) || [];
+  return '<div class="top"><span>' + esc(f.patient || "(name not read yet)") + " (" + esc(f.dob) + ") #" + esc(f.chart) + "</span><span>CCM month: " + esc(monthName(f.month)) + "</span></div>" +
+    '<div class="head"><h1>' + esc(f.practice) + "</h1>" + lh.map(a => "<div>" + esc(a) + "</div>").join("") + "<div>Phone: " + esc(S.cfg && S.cfg.phone) + " &nbsp; Fax: " + esc(S.cfg && S.cfg.fax) + "</div></div>";
+}
+/* the addendum on paper: the same words as scripts/helpers/ccm_notes.py addendum_section(), its own stamp - signed, or ADDENDUM - NOT SIGNED */
+function addPaperHTML(af, written, signed) {
+  const sha = String(af.note_sha || "");
+  return '<div class="side ' + (signed ? "" : "draft") + '">' + (signed ? "Electronically Signed and Reviewed by " + esc(signed.by) + " " + esc(signed.when) : "ADDENDUM - NOT SIGNED") + "</div>" + headHTML(af) +
+    '<div class="grid"><div><b>Patient:</b> ' + esc(af.patient) + "</div><div><b>DOB:</b> " + esc(af.dob) + "</div><div><b>Chart:</b> " + esc(af.chart) + "</div>" +
+    "<div><b>Provider:</b> " + esc(af.provider) + "</div><div><b>Note:</b> " + esc(af.note) + "</div><div><b>Addendum:</b> diagnoses (ICD-10)</div></div>" +
+    '<h2>ADDENDUM</h2><div class="late"><p><b>ADDENDUM - ' + (written ? "written " + esc(written) : "dated the day it is signed") + ", to " + esc(af.addendum_to) + ".</b></p>" +
+    "<p>The late entry was written and signed " + esc(af.note_written) + (sha ? " (fingerprint " + esc(sha.slice(0, 16)) + ")" : "") + " and is final: this addendum adds to it and changes nothing in it.</p></div>" +
+    chargesTable(af) + dxTable(af.diagnoses, "Diagnoses on the CCM charge (ICD-10)") +
+    '<div class="sig">Rendering Provider Signature - ' + esc(af.provider) + '</div><div class="foot">' + esc(af.practice) + " | " + esc(af.provider) + " | Addendum written " + esc(written) + "</div>";
+}
+function chartDxHTML(a) {      // a flagged addendum: the chart's whole diagnosis list (every charge line not void), to check for two or more chronic conditions
+  const rows = (a.chart_dx || []).map(x => '<tr><td class="mono">' + esc(x[0]) + "</td><td>" + esc(x[1] || "(no CMS description)") + '</td><td class="mono">' + esc(x[2]) + '</td><td class="mono">' + esc(x[3]) + '</td><td class="mono">' + esc(x[4]) + "</td></tr>").join("");
+  return rows ? "<p>The chart's diagnosis list (every charge line in AdvancedMD that is not void):</p><div class=\"dxbox\"><table><thead><tr><th>ICD-10</th><th>Description</th><th>First</th><th>Last</th><th>Lines</th></tr></thead><tbody>" + rows + "</tbody></table></div>" : "";
+}
 function paperHTML(f, written, signed, own) {
   const ev = (f.evidence || []).map(x => "<li><b>" + esc(x[0]) + "</b> - " + esc(x[1]) + " - " + esc(x[2]) + ' <span style="color:#666;font-size:11px">(' + esc(x[3]) + ")</span></li>").join("");
   const lh = (S.cfg && S.cfg.letterhead) || [];
@@ -267,13 +342,15 @@ function paperHTML(f, written, signed, own) {
     "<div><b>Location:</b> " + esc(f.location) + "</div><div><b>Provider:</b> " + esc(f.provider) + "</div><div><b>Chart:</b> " + esc(f.chart) + "</div></div>" +
     "<h2>Chronic care management charges - " + esc(monthName(f.month)) + "</h2><table><thead><tr><th>Charge date</th><th>Code</th><th>Visit</th><th>Charge</th></tr></thead><tbody>" +
     f.charges.map(c => "<tr><td>" + esc(c[0]) + "</td><td>" + esc(c[1]) + "</td><td>" + esc(c[2]) + "</td><td>" + esc(c[3]) + "</td></tr>").join("") + "</tbody></table>" +
+    (Array.isArray(f.diagnoses) ? dxTable(f.diagnoses, "Diagnoses (ICD-10)") : "") +
     '<h2>LATE ENTRY</h2><div class="late"><p><b>' + esc(f.late_entry) + "</b> Written " + esc(written) + ".</p>" + statement + "</div>" +
     "<h2>Supporting documentation on file for " + esc(monthName(f.month)) + "</h2>" + (ev ? "<ul>" + ev + "</ul>" : "<p>No supporting item is on file for this month. The statement above stands alone.</p>") +
     '<div class="sig">Rendering Provider Signature - ' + esc(f.provider) + '</div><div class="foot">' + esc(f.practice) + " | " + esc(f.provider) + " | Late entry written " + esc(written) + "</div>";
 }
-function standalone(f, written, signed) {
-  const css = "@page{size:letter;margin:.6in .6in .6in .9in}body{font:12.5px/1.4 Arial,Helvetica,sans-serif;color:#111;margin:0;padding:24px 24px 24px 56px;position:relative}.top{display:flex;justify-content:space-between;font-size:11.5px}.head{text-align:center;margin:6px 0 14px}.head h1{font-size:22px;color:#666;margin:0 0 4px;font-weight:400}.head div{color:#777;font-size:15px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 18px;margin-bottom:14px}.grid b{display:inline-block;min-width:74px}h2{font-size:15px;margin:18px 0 6px}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:3px 8px 3px 0;border-bottom:1px solid #ddd;font-size:12px}.late{border:1px solid #999;padding:10px 12px;margin-top:6px}.side{position:fixed;left:14px;top:50%;writing-mode:vertical-rl;transform:rotate(180deg) translateY(50%);font-size:14px;white-space:nowrap}.sig{margin-top:38px;border-top:1px solid #333;width:280px;padding-top:4px;font-size:11.5px}.foot{margin-top:26px;text-align:center;font-size:11px;color:#444}";
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>CCM late entry - ' + esc(f.chart) + " - " + esc(monthName(f.month)) + "</title><style>" + css + "</style></head><body>" + paperHTML(f, written, signed, null) + "</body></html>";
+function standalone(f, written, signed, adds) {      // the note, and its addenda each on a sheet of its own (adds = addPaperHTML pieces)
+  const css = "@page{size:letter;margin:.6in .6in .6in .9in}body{font:12.5px/1.4 Arial,Helvetica,sans-serif;color:#111;margin:0;padding:24px 24px 24px 56px}.pg{position:relative}.pg+.pg{break-before:page;page-break-before:always;margin-top:36px;padding-top:24px;border-top:2px dashed #bbb}@media print{.pg{min-height:9in}.pg+.pg{margin-top:0;padding-top:0;border-top:0}}.top{display:flex;justify-content:space-between;font-size:11.5px}.head{text-align:center;margin:6px 0 14px}.head h1{font-size:22px;color:#666;margin:0 0 4px;font-weight:400}.head div{color:#777;font-size:15px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 18px;margin-bottom:14px}.grid b{display:inline-block;min-width:74px}h2{font-size:15px;margin:18px 0 6px}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:3px 8px 3px 0;border-bottom:1px solid #ddd;font-size:12px}.code{white-space:nowrap;width:1%;padding-right:14px}.late{border:1px solid #999;padding:10px 12px;margin-top:6px}.side{position:absolute;left:-42px;top:50%;writing-mode:vertical-rl;transform:rotate(180deg) translateY(50%);font-size:14px;white-space:nowrap}.sig{margin-top:38px;border-top:1px solid #333;width:280px;padding-top:4px;font-size:11.5px}.foot{margin-top:26px;text-align:center;font-size:11px;color:#444}";
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>CCM late entry - ' + esc(f.chart) + " - " + esc(monthName(f.month)) + "</title><style>" + css + '</style></head><body><section class="pg">' + paperHTML(f, written, signed, null) + "</section>" +
+    (adds || []).map(x => '<section class="pg">' + x + "</section>").join("") + "</body></html>";
 }
 function findNote(id) {
   for (const [ym, doc] of S.docs) { const i = doc.notes.findIndex(n => n.id === id); if (i >= 0) return { ym, doc, n: doc.notes[i], i }; }
@@ -283,7 +360,8 @@ function renderNote() {
   const hit = findNote(S.open); const box = $("sheetin");
   if (!hit) { closeSheet(); return; }
   const { ym, doc, n } = hit; const f = fieldsOf(n, doc); const st = stateOf(n, ym); const sig = sigFor(n, ym);
-  const keepOwn = $("ownSt") ? $("ownSt").value : ""; const keepAck = $("ack") ? $("ack").checked : false;
+  const mine = el => el && el.dataset.for === n.id;      // a tick or his own words never carry over to another note (Previous / Next)
+  const keepOwn = mine($("ownSt")) ? $("ownSt").value : ""; const keepAck = mine($("ack")) ? $("ack").checked : false; const keepAckAdd = mine($("ackAdd")) ? $("ackAdd").checked : false;
   const needsOwn = !f.statement && st !== "signed" && st !== "here";
   const signed = sig ? { by: sig.by, when: easternParts(new Date(sig.at)).day + " " + easternParts(new Date(sig.at)).time } : null;
   const written = sig ? sig.written : todayET();
@@ -295,8 +373,8 @@ function renderNote() {
     (S.dl ? '<button class="btn" type="button" data-save>Save this note</button>' : "") + "</div></div>";
   if (S.owner && (st === "ready to sign" || st === "flagged")) {
     h += '<div class="panel">' + (n.flag ? "<h3>Flagged for your review</h3><p>" + esc(n.flag) + "</p>" : "<h3>Sign this note</h3>");
-    if (needsOwn) h += '<label for="ownSt" style="display:block">Your statement for ' + esc(monthName(n.f.month)) + '</label><textarea id="ownSt" placeholder="Greater than … minutes spent during … on this patient\'s care">' + esc(keepOwn) + "</textarea>";
-    h += '<label><input type="checkbox" id="ack" ' + (keepAck ? "checked" : "") + "> I have reviewed this note" + (n.flag ? " and the flag above" : "") + ". Sign it as " + esc(S.cfg.signer) + ", dated today (" + esc(todayET()) + ").</label>" +
+    if (needsOwn) h += '<label for="ownSt" style="display:block">Your statement for ' + esc(monthName(n.f.month)) + '</label><textarea id="ownSt" data-for="' + esc(n.id) + '" placeholder="Greater than … minutes spent during … on this patient\'s care">' + esc(keepOwn) + "</textarea>";
+    h += '<label><input type="checkbox" id="ack" data-for="' + esc(n.id) + '" ' + (keepAck ? "checked" : "") + "> I have reviewed this note" + (n.flag ? " and the flag above" : "") + ". Sign it as " + esc(S.cfg.signer) + ", dated today (" + esc(todayET()) + ").</label>" +
       '<div><button class="btn primary" type="button" id="signOne">Sign this note</button></div><div class="status" id="oneStatus"></div></div>';
   } else if (st === "here" || st === "signed") {
     h += '<div class="panel"><h3>Signed</h3><p class="status ok" id="oneStatus">Signed as ' + esc(sig ? sig.by : S.cfg.signer) + (signed ? " on " + esc(signed.when) + " (Eastern)" : "") +
@@ -305,6 +383,24 @@ function renderNote() {
     h += '<div class="panel"><p>The patient\'s name and birth date have not been read from AdvancedMD yet, so this note cannot be signed. It fills in when the read finishes.</p></div>';
   }
   h += '<div class="paper" id="paper">' + paperHTML(shownF, written, signed, needsOwn ? keepOwn : null) + "</div>";
+  const a = addFor(n, ym);
+  if (a) {
+    const ast = addStateOf(a, ym), asig = asigFor(a, ym);
+    const asigned = asig ? { by: asig.by, when: easternParts(new Date(asig.at)).day + " " + easternParts(new Date(asig.at)).time } : null;
+    const noteDone = st === "signed" || st === "here";
+    if (S.owner && noteDone && (ast === "ready to sign" || ast === "flagged")) {
+      h += '<div class="panel" id="addPanel">' + (a.flag ? "<h3>Addendum flagged for your review</h3><p>" + esc(a.flag) + "</p>" + chartDxHTML(a) :
+        "<h3>Sign this addendum</h3><p>The diagnoses on this month's CCM charge, added to the signed note as a dated addendum. The note itself is final and is not changed.</p>") +
+        '<label><input type="checkbox" id="ackAdd" data-for="' + esc(n.id) + '" ' + (keepAckAdd ? "checked" : "") + "> I have reviewed this addendum" + (a.flag ? " and the flag above" : "") + ". Sign it as " + esc(S.cfg.signer) + ", dated today (" + esc(todayET()) + ").</label>" +
+        '<div><button class="btn primary" type="button" id="signAdd">Sign this addendum</button></div><div class="status" id="addStatus"></div></div>';
+    } else if (ast === "here" || ast === "signed") {
+      h += '<div class="panel"><h3>Addendum signed</h3><p class="status ok" id="addStatus">Signed as ' + esc(asig ? asig.by : S.cfg.signer) + (asigned ? " on " + esc(asigned.when) + " (Eastern)" : "") +
+        (ast === "here" ? ". It is recorded in the practice database at the next update; a signed addendum is final." : " and recorded in the practice database. A signed addendum is final.") + "</p></div>";
+    } else if (!noteDone) {
+      h += '<div class="panel"><p>This note is not signed yet - its addendum is signed after it.</p></div>';
+    }
+    h += '<div class="paper add" id="addPaper">' + addPaperHTML(a.f, asig ? asig.written : todayET(), asigned) + "</div>";
+  }
   box.innerHTML = h;
   const own = $("ownSt"); if (own) own.addEventListener("input", () => { const p = $("paper"); if (p) p.innerHTML = paperHTML(f, written, null, own.value); });
 }
@@ -312,10 +408,10 @@ function openNote(id) { S.open = id; $("sheet").hidden = false; document.body.st
 function closeSheet() { S.open = null; $("sheet").hidden = true; $("sheetin").innerHTML = ""; document.body.style.overflow = ""; }
 
 /* ---- signing: only by the owner, only on his click, never for a note he did not open or confirm ---- */
-async function writeSigs(byMonth, progress) {
+async function writeSigs(byMonth, progress, coll) {      // coll: "signatures" (notes) or "addendum_signatures" (addenda)
   let done = 0;
   for (const [ym, sigs] of byMonth) {
-    const ref = S.db.doc("signatures/" + ym); const cur = await ref.get();
+    const ref = S.db.doc((coll || "signatures") + "/" + ym); const cur = await ref.get();
     const have = cur.exists ? ((cur.data() || {}).sigs || {}) : {};
     for (const c of Object.keys(sigs)) if (have[c]) delete sigs[c];      // a signing is never written over
     const n = Object.keys(sigs).length; if (!n) continue;
@@ -345,6 +441,55 @@ async function signOne() {
     out.className = "status ok"; out.textContent = done ? "Signed. It is recorded in the practice database at the next update." : "This note was already signed.";
   } catch (e) { out.className = "status err"; out.textContent = "Not signed: " + ((e && e.code) || "error") + ". Nothing was changed; try again."; }
   S.busy = false; render();
+}
+/* an addendum is signed like a note: the hash of its fields with the day written - no statement (scripts/helpers/ccm_notes.py verify_signature(..., statement=False)) */
+async function addSigOf(af, kind) {
+  const now = new Date(); const written = easternParts(now).day; const at = now.toISOString().replace(/\.\d{3}Z$/, "Z");
+  return { written, at, by: S.cfg.signer, by_id: S.uid || "", sha: await sha256hex(canon(Object.assign({}, af, { written }))), kind: kind === "flagged" ? "flagged" : "ready" };
+}
+async function signAdd() {
+  const hit = findNote(S.open); if (!hit || S.busy || !S.owner) return;
+  const { ym, n } = hit; const a = addFor(n, ym); const out = $("addStatus"); if (!a || !out) return;
+  const st = stateOf(n, ym);
+  if (st !== "signed" && st !== "here") { out.className = "status err"; out.textContent = "The note is signed first; its addendum after it."; return; }
+  if (!$("ackAdd").checked) { out.className = "status err"; out.textContent = "Tick the box to confirm you reviewed this addendum."; return; }
+  S.busy = true; out.className = "status"; out.textContent = "Signing…";
+  try {
+    const done = await writeSigs(new Map([[ym, { [a.id]: await addSigOf(a.f, a.flag ? "flagged" : "ready") }]]), null, "addendum_signatures");
+    out.className = "status ok"; out.textContent = done ? "Addendum signed. It is recorded in the practice database at the next update." : "This addendum was already signed.";
+  } catch (e) { out.className = "status err"; out.textContent = "Not signed: " + ((e && e.code) || "error") + ". Nothing was changed; try again."; }
+  S.busy = false; render();
+}
+function confirmAddPanel(scope) {      // "Sign all addenda" / "Sign the addenda in <month>": how many and what they say, signed only after the tick; flagged ones left out
+  const months = scope === "all" ? ((S.acfg && S.acfg.months) || []).map(m => m.month) : [S.month];
+  $("sheet").hidden = false; document.body.style.overflow = "hidden"; S.open = null;
+  const box = $("sheetin");
+  box.innerHTML = '<div class="panel"><h3>' + (scope === "all" ? "Sign all addenda" : "Sign the addenda in " + esc(monthName(S.month))) + '</h3><p id="cfAddText">Reading the addenda…</p>' +
+    '<label><input type="checkbox" id="ackAllAdd"> I have reviewed these addenda - the diagnoses on each month\'s CCM charge, added to the signed notes - signed as ' + esc(S.cfg.signer) + " and dated today (" + esc(todayET()) + ').</label>' +
+    '<div class="grp" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" type="button" id="doSignAdd" disabled>Sign</button><button class="btn" type="button" data-close>Cancel</button></div><div class="status" id="allAddStatus"></div></div>';
+  (async () => {
+    for (let i = 0; i < months.length; i += 4) { await Promise.all(months.slice(i, i + 4).map(loadAddenda)); const t0 = $("cfAddText"); if (t0) t0.textContent = "Reading the addenda… " + Math.min(i + 4, months.length) + " of " + months.length + " months"; }
+    const picks = []; let flagged = 0;
+    for (const ym of months) { const d = S.adds.get(ym); if (d) for (const a of d.list) { const st = addStateOf(a, ym); if (st === "ready to sign") picks.push({ ym, a }); else if (st === "flagged") flagged++; } }
+    const t = $("cfAddText"); if (!t) return;
+    t.innerHTML = "This signs <b>" + addenda(picks.length) + "</b>" + (scope === "all" ? " across " + fmt(months.length) + (months.length === 1 ? " month" : " months") : "") + ". Each says “ADDENDUM - written " + esc(todayET()) +
+      ", to the late entry for the charge dated …, for the month of …” and lists the diagnoses (ICD-10) on that month's CCM charge; the signed notes themselves are not changed. " +
+      (flagged ? addenda(flagged) + " flagged (fewer than two diagnoses on the charge) " + (flagged === 1 ? "is" : "are") + " left out; open " + (flagged === 1 ? "it" : "those one by one") + "." :
+      "Flagged addenda (fewer than two diagnoses on the charge) are left out; open those one by one.");
+    const b = $("doSignAdd"); b.textContent = "Sign " + addenda(picks.length); b.disabled = !picks.length;
+    b.onclick = async () => {
+      const out = $("allAddStatus");
+      if (!$("ackAllAdd").checked) { out.className = "status err"; out.textContent = "Tick the box to confirm you reviewed these addenda."; return; }
+      if (S.busy || !S.owner) return; S.busy = true; b.disabled = true; out.className = "status"; out.textContent = "Signing…";
+      try {
+        const m = new Map();
+        for (const p of picks) { if (!m.has(p.ym)) m.set(p.ym, {}); m.get(p.ym)[p.a.id] = await addSigOf(p.a.f, "ready"); }
+        const done = await writeSigs(m, d => { out.textContent = "Signed " + fmt(d) + " of " + fmt(picks.length) + "…"; }, "addendum_signatures");
+        out.className = "status ok"; out.textContent = "Signed " + addenda(done) + ". " + (done === 1 ? "It is" : "They are") + " recorded in the practice database at the next update.";
+      } catch (e) { out.className = "status err"; out.textContent = "Stopped: " + ((e && e.code) || "error") + ". Addenda signed before the stop are kept; the rest are unsigned. Try again to finish."; }
+      S.busy = false; render();
+    };
+  })();
 }
 function confirmPanel(scope) {
   const months = scope === "all" ? ((S.cfg && S.cfg.months) || []).map(m => m.month) : [S.month];
@@ -381,7 +526,9 @@ async function saveNote() {
   const { ym, doc, n } = hit; const sig = sigFor(n, ym); const f = fieldsOf(n, doc);
   const signed = sig ? { by: sig.by, when: easternParts(new Date(sig.at)).day + " " + easternParts(new Date(sig.at)).time } : null;
   const fin = sig && sig.statement ? Object.assign({}, f, { statement: sig.statement }) : f;
-  try { await S.dl.save({ filename: "CCM late entry " + n.f.chart + " " + n.f.month + (sig ? " signed" : " draft") + ".html", data: standalone(fin, sig ? sig.written : todayET(), signed) }); }
+  const a = addFor(n, ym); const adds = [];
+  if (a) { const asig = asigFor(a, ym); adds.push(addPaperHTML(a.f, asig ? asig.written : todayET(), asig ? { by: asig.by, when: easternParts(new Date(asig.at)).day + " " + easternParts(new Date(asig.at)).time } : null)); }
+  try { await S.dl.save({ filename: "CCM late entry " + n.f.chart + " " + n.f.month + (sig ? " signed" : " draft") + (a ? " with addendum" : "") + ".html", data: standalone(fin, sig ? sig.written : todayET(), signed, adds) }); }
   catch (e) { flash("The note was not saved (" + ((e && e.code) || "declined") + ").", true); }
 }
 function flash(msg, bad) { const b = $("boot"); if (b) { b.className = "notice" + (bad ? " warn" : ""); b.textContent = msg; b.hidden = false; } }
@@ -402,6 +549,9 @@ document.addEventListener("click", e => {
   if (t.id === "signOne") { signOne(); return; }
   if (t.id === "signMonthBtn") { confirmPanel("month"); return; }
   if (t.id === "signAllBtn") { confirmPanel("all"); return; }
+  if (t.id === "signAdd") { signAdd(); return; }
+  if (t.id === "signMonthAddBtn") { confirmAddPanel("month"); return; }
+  if (t.id === "signAllAddBtn") { confirmAddPanel("all"); return; }
 });
 document.addEventListener("input", e => { if (e.target.id === "q") { S.q = e.target.value; S.shown = 120; renderView(); } });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("sheet").hidden && !S.busy) closeSheet(); });
@@ -427,6 +577,12 @@ async function start() {
     loadMonth(S.month); render();
   }, e => { clearTimeout(dbTimer); flash("The notes could not be read (" + ((e && e.code) || "error") + ").", true); });
   db.collection("signatures").onSnapshot(q => { S.sigs = new Map(q.docs.map(d => [d.id, d.data()])); render(); }, () => {});
+  db.doc("config/addenda").onSnapshot(s => {      // the addenda (11/12/2026): counts per month; a rebuild drops what was read before
+    const next = s.exists ? s.data() : null;
+    if (!next || !S.acfg || next.built_at !== S.acfg.built_at) S.adds.clear();
+    S.acfg = next; if (S.month) loadAddenda(S.month); render();
+  }, () => {});
+  db.collection("addendum_signatures").onSnapshot(q => { S.asigs = new Map(q.docs.map(d => [d.id, d.data()])); render(); }, () => {});
 }
 start();
 })();

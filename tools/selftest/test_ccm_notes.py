@@ -13,7 +13,12 @@
 #     - a month whose charges need his own eyes is flagged: 99487 billed twice, 99489 billed more than once (no ready-made statement),
 #       a line billed under another clinician than the signer;
 #     - what a signature covers: the note's fields in one fixed text form plus the day written, hashed (SHA-256); a signing whose hash does
-#       not match the stored draft, or that is dated another day than it was made, is refused - nothing is ever signed in his name.
+#       not match the stored draft, or that is dated another day than it was made, is refused - nothing is ever signed in his name;
+#     - (William 11/12/2026) a new note lists the ICD-10 codes on the month's CCM charge lines (the 99487 line first, then 99489, each code
+#       once) with their descriptions, and a month with fewer than two is flagged; a note signed before keeps its fields as they were;
+#     - the dated diagnosis ADDENDUM to a signed note: its fields are plain text, it names the note (id, day written, hash), it is signed
+#       like a note but with no statement and never before the note, it renders under the note on its own sheet with its own stamp
+#       (signed, or ADDENDUM - NOT SIGNED); the hub page signs it with the same fixed text form and hash (run in node and verified here).
 # Never touches: AdvancedMD, RingCentral, Neon, Drive. Nothing is started as a program; the helper is loaded from its file and the network
 #   is closed first. No patient data: every name, birth day and number here is invented and put together at run time.
 # Run: python3 tools/selftest/test_ccm_notes.py   (exit 1 on any failure)
@@ -122,9 +127,70 @@ R = C.render(ok, written=W, signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-15
 check("2b a signed note renders from its stored fields: the practice's letterhead, the late entry dated the day signed, his stamp down the side",
       all(w in R for w in ("<h1>North Florida Senior Care</h1>", C.LETTERHEAD[0], C.LETTERHEAD[1], "Fax: " + C.FAX, "LATE ENTRY for the charge dated 10/31/2026, for the month of October 2026 (99487 + 99489).</b> Written 11/15/2026.", "Electronically Signed and Reviewed by EFFINGER, WILLIAM 11/15/2026 16:05:00")) and "DRAFT - NOT SIGNED" not in R, R[:400])
 
+# ---- 5. the diagnoses on a new note (William 11/12/2026: "for new notes going forward always include the individual patient icd10 diagnosis list")
+DESC = {"E11.9": ["Invented diabetes words", 2027], "I10": "Invented hypertension words", "F03.90": ["Invented memory words", 2026]}
+check("5 the diagnoses on a month's CCM lines: the 99487 line first, then 99489, each line's codes in AdvancedMD's order, each code once, with its description ('' when none is known)",
+      C.diagnoses([("99489", ["I10", "F03.90", "Q99.99"]), ("99487", ["E11.9", "I10"])], DESC) == [["E11.9", "Invented diabetes words"], ["I10", "Invented hypertension words"], ["F03.90", "Invented memory words"], ["Q99.99", ""]]
+      and C.diagnoses([], DESC) == [] and C.diagnoses([("99487", None)]) == [], C.diagnoses([("99489", ["I10", "F03.90", "Q99.99"]), ("99487", ["E11.9", "I10"])], DESC))
+D = {(m["chart"], m["month"]): m for m in C.months([dict(line(1, "2026-10-31", "99487", 1), dx=["E11.9", "I10"]), dict(line(1, "2026-10-31", "99489", 2), dx=["I10"]),
+                                                    dict(line(2, "2026-10-31", "99487", 3), dx=["I10"]), dict(line(3, "2026-10-31", "99487", 4), dx=[])])}
+check("5 a month whose charge carries fewer than two diagnoses is flagged - Medicare looks first for two or more qualifying chronic conditions; lines read without their codes are not judged",
+      D[(P1, "2026-10")]["flag"] == "" and "fewer than two diagnoses on the CCM charge (1)" in D[(P2, "2026-10")]["flag"] and "Medicare looks first for two or more qualifying chronic conditions - check the chart's diagnosis list" in D[(P2, "2026-10")]["flag"]
+      and "(0)" in D[(P3, "2026-10")]["flag"] and M[(P2, "2026-10")]["flag"] == "" and C.dx_flag([["a", ""], ["b", ""]]) == "", (D[(P2, "2026-10")]["flag"], D[(P3, "2026-10")]["flag"]))
+FD = C.note_fields(dict(D[(P1, "2026-10")], diagnoses=C.diagnoses([("99487", ["E11.9", "I10"]), ("99489", ["I10"])], DESC)), person(1), None, EV)
+check("5 a new note's fields carry its diagnoses as [code, description] - plain text, part of what he signs", FD["diagnoses"] == [["E11.9", "Invented diabetes words"], ["I10", "Invented hypertension words"]] and flat_ok(FD["diagnoses"])
+      and C.note_fields(D[(P1, "2026-10")], person(1), None, EV)["diagnoses"] == [["E11.9", ""], ["I10", ""]] and FD["diagnoses"] != F.get("diagnoses"), FD["diagnoses"])
+RD = C.render(FD, written=TODAY)
+check("5 a new note shows them as a 'Diagnoses (ICD-10)' table (code and description) above the late entry",
+      "<h2>Diagnoses (ICD-10)</h2>" in RD and '<td class="code">E11.9</td><td>Invented diabetes words</td>' in RD and RD.index("Diagnoses (ICD-10)") < RD.index("LATE ENTRY for"), RD[RD.find("Diagnoses"):][:300])
+OLDF = {k: v for k, v in F.items() if k != "diagnoses"}
+check("5 a note signed before (its stored fields carry no diagnoses) renders exactly as it was signed: no diagnoses table", "Diagnoses (ICD-10)" not in C.render(OLDF, written=W) and "Electronically Signed" in C.render(OLDF, written=W, signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-15T16:05:00"}))
+
+# ---- 6. the dated diagnosis ADDENDUM to a signed note (William 11/12/2026: "add this as an addendum to the note, if needed i can sign the addendums later")
+NOTE = dict(OLDF, written="11/11/2026"); NSHA = C.signing_sha(OLDF, datetime.date(2026, 11, 11)); NOTE_BEFORE = dict(NOTE)
+AF = C.addendum_fields(NOTE, NSHA, {"charge2": ["I10", "F03.90"], "charge1": ["E11.9", "I10"]}, DESC)
+check("6 the addendum's fields are exactly its content, as plain text only (strings and lists of strings)", tuple(sorted(AF)) == tuple(sorted(C.ADDENDUM_KEYS)) and all(flat_ok(v) for v in AF.values()), AF)
+check("6 it names the signed note it adds to - its id, the day it was written, the hash he signed - and the charge of that note",
+      AF["note"] == P1 + "_2026-10" and AF["note_written"] == "11/11/2026" and AF["note_sha"] == NSHA and AF["charges"] == OLDF["charges"] and AF["kind"] == "diagnoses"
+      and AF["addendum_to"] == "the late entry for the charge dated 10/31/2026, for the month of October 2026" and AF["patient"] == OLDF["patient"], AF)
+check("6 it lists the diagnoses on that note's own charge lines: the 99487 line first, then 99489, each code once, with the CMS words",
+      AF["diagnoses"] == [["E11.9", "Invented diabetes words"], ["I10", "Invented hypertension words"], ["F03.90", "Invented memory words"]] and C.dx_flag(AF["diagnoses"]) == "", AF["diagnoses"])
+check("6 the signed note itself is not touched (its fields and its signing still verify)", NOTE == NOTE_BEFORE and C.verify_signature(OLDF, dict(SIG, written="11/11/2026", at="2026-11-11T21:05:00Z", sha=NSHA))[0] is not None)
+def a_refused(note):
+    try: C.addendum_fields(note, NSHA, {}, DESC); return ""
+    except ValueError as e: return str(e)
+check("6 no addendum for a note that is not signed, nor for a note signed with its diagnoses (it needs none)", "SIGNED note" in a_refused(OLDF) and "needs no addendum" in a_refused(dict(NOTE, diagnoses=[])))
+A1 = C.addendum_fields(NOTE, NSHA, {"charge1": ["I10"]}, DESC)
+check("6 a charge with fewer than two diagnoses gives a flag for his own eyes (Medicare looks first for two or more qualifying chronic conditions - check the chart's diagnosis list)",
+      "Medicare looks first for two or more qualifying chronic conditions - check the chart's diagnosis list" in C.dx_flag(A1["diagnoses"]) and "flag" not in A1, C.dx_flag(A1["diagnoses"]))
+AW = datetime.date(2026, 11, 13); ASHA = C.signing_sha(AF, AW)
+ASIG = {"by": "EFFINGER, WILLIAM", "written": "11/13/2026", "at": "2026-11-13T15:30:00Z", "sha": ASHA}
+aok, awhy = C.verify_signature(AF, ASIG, statement=False)
+check("6 an addendum signing for exactly this addendum is accepted (no statement demanded), dated the day it was signed", aok is not None and awhy == "" and aok["written"] == "11/13/2026" and "statement" not in aok, awhy)
+check("6 without the addendum option the same signing is refused - a note needs a statement, an addendum has none", C.verify_signature(AF, ASIG)[0] is None and "no ready-made statement" in C.verify_signature(AF, ASIG)[1])
+check("6 an addendum that changed after it was shown, a forged hash, a signing that brings a statement, or one without who or when is refused",
+      "addendum changed after it was shown" in C.verify_signature(dict(AF, diagnoses=AF["diagnoses"][:1]), ASIG, statement=False)[1] and C.verify_signature(AF, dict(ASIG, sha="0" * 64), statement=False)[0] is None
+      and "carries no statement" in C.verify_signature(AF, dict(ASIG, statement="Greater than 60 minutes."), statement=False)[1] and C.verify_signature(AF, dict(ASIG, by=""), statement=False)[0] is None)
+check("6 an addendum is never dated before the note it adds to, nor another day than it was signed (Eastern time)",
+      "written after the note it adds to" in C.verify_signature(AF, dict(ASIG, written="11/10/2026", at="2026-11-10T15:00:00Z", sha=C.signing_sha(AF, datetime.date(2026, 11, 10))), statement=False)[1]
+      and C.verify_signature(AF, dict(ASIG, at="2026-11-14T15:00:00Z"), statement=False)[0] is None)
+RA = C.render(NOTE, written="11/11/2026", signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-11T21:05:00"}, addenda=[(aok, AW, {"by": "EFFINGER, WILLIAM", "at": "2026-11-13T10:30:00"})])
+check("6 the addendum renders under the signed note on a sheet of its own: 'ADDENDUM - written <day>, to the late entry for the charge dated ..., for the month of ...' and the diagnoses table",
+      "ADDENDUM - written 11/13/2026, to the late entry for the charge dated 10/31/2026, for the month of October 2026.</b>" in RA and "<h2>Diagnoses on the CCM charge (ICD-10)</h2>" in RA
+      and '<td class="code">F03.90</td><td>Invented memory words</td>' in RA and RA.index("LATE ENTRY for the charge dated") < RA.index("ADDENDUM - written") and RA.count('<section class="pg') == 2 and "page-break-before:always" in RA, RA[RA.find("ADDENDUM -"):][:300])
+check("6 each sheet carries its own stamp: the note's signing, and the addendum's own (who and when)",
+      "Electronically Signed and Reviewed by EFFINGER, WILLIAM 11/11/2026 21:05:00" in RA and "Electronically Signed and Reviewed by EFFINGER, WILLIAM 11/13/2026 10:30:00" in RA and "ADDENDUM - NOT SIGNED" not in RA and "written and signed 11/11/2026 (fingerprint %s)" % NSHA[:16] in RA)
+RU = C.render(NOTE, written="11/11/2026", signed={"by": "EFFINGER, WILLIAM", "at": "2026-11-11T21:05:00"}, addenda=[(AF, AW, None)])
+check("6 an addendum nobody signed says ADDENDUM - NOT SIGNED down its side; the signed note keeps its own stamp", "ADDENDUM - NOT SIGNED" in RU and RU.count("Electronically Signed and Reviewed by") == 1)
+RE = C.render(NOTE, written="11/11/2026", addenda=[(dict(AF, diagnoses=[["X1", "<img src=x onerror=1>"]]), None, None)])
+check("6 an addendum's text is shown as text, and one not yet written says it is dated the day it is signed", "<img src=x" not in RE and "&lt;img" in RE and "ADDENDUM - dated the day it is signed, to the late entry" in RE)
+
 # ---- 3. the words
 DOC = open(os.path.join(ROOT, "docs", "CCM_DOCUMENTATION_HUB.md"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "docs", "CCM_DOCUMENTATION_HUB.md")) else ""
 DOCN = DOC.replace("\n", " ")
+DOCW = ("ICD-10", "addendum", "Medicare looks first for two or more qualifying chronic conditions", "ccm.chart_diagnoses", "ccm.icd10", "ccm.addenda", "ccm.signed_addenda", "addendum_signatures",
+        "ccm_build.py icd10 --cms", "ccm_build.py addenda --out", "signatures --kind addenda", "load-docs --src", "--source ref")
+check("3 (11/12/2026) the document says how the diagnoses reach every note and every chart, and how the addenda are built, signed and recorded", all(w in DOCN for w in DOCW), [w for w in DOCW if w not in DOCN])
 check("3 the hub's document says what the code does: one record per patient per month, the two statements, never signed for him, never backdated, a month without support flagged, Neon the primary store",
       all(w in DOCN for w in ("one record per patient per calendar month", "greater than 60 minutes", "greater than 90 minutes", "99487", "99489", "never signs for him", "never dated an earlier day", "flagged", "Neon", "python3 tools/selftest/test_ccm_notes.py")),
       [w for w in ("one record per patient per calendar month", "greater than 60 minutes", "greater than 90 minutes", "never signs for him", "never dated an earlier day", "flagged", "Neon") if w not in DOCN])
@@ -133,11 +199,30 @@ SQL = open(os.path.join(ROOT, "tools", "db", "ccm_schema.sql"), encoding="utf-8"
 SQLW = ("create schema if not exists ccm", "ccm.patients", "ccm.months", "ccm.signed_notes", "ccm.notes", "ccm.evidence", "ccm.faxes", "ccm.keep_signed_final", "before update or delete on raw.documents", "grant select on all tables in schema ccm to ehpa_routine")
 check("3 the Neon section is written down as its own schema - patients, months, signed notes, supporting items, faxes - and a signed note cannot be changed or removed",
       all(w in SQL for w in SQLW), [w for w in SQLW if w not in SQL])
+SQLD = ("create or replace view ccm.icd10", "d.source = 'ref' and d.collection = 'icd10cm' and d.doc_id = 'descriptions'", "create or replace view ccm.chart_diagnoses",
+        "d.source = 'amd_history' and d.collection = 'chargedetail'", "lower(coalesce(e->>'void', '0')) not in", "left join ccm.icd10 i on i.code = x.code",
+        "create or replace view ccm.addenda", "d.collection = 'addenda'", "create or replace view ccm.signed_addenda", "d.collection = 'addenda_signed'")
+check("3 (11/12/2026) the ICD-10 descriptions, every chart's diagnosis list over the AdvancedMD history (non-void lines), the addenda and the signed addenda are views - no new table",
+      all(w in SQL for w in SQLD) and "create table" not in SQL.lower(), [w for w in SQLD if w not in SQL])
+TRG = SQL[SQL.find("create or replace function ccm.keep_signed_final()"):SQL.find("end $$;")]
+TRGW = (("old.collection in ('signed', 'addenda_signed')", 2), ("(old.collection = 'addenda' and exists (select 1 from raw.documents s where s.source = 'ccm' and s.collection = 'addenda_signed' and s.doc_id = old.doc_id))", 2),
+        ("(old.collection = 'months' and exists (select 1 from raw.documents s where s.source = 'ccm' and s.collection = 'signed' and s.doc_id = old.doc_id))", 2),
+        ("new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256", 1), ("new.source is not distinct from old.source and new.collection is not distinct from old.collection and new.doc_id is not distinct from old.doc_id", 1))
+check("3 the trigger keeps a signed addendum and its draft final exactly like a signed note and its month - on removal and on any change of body, fingerprint or keys",
+      all(TRG.count(w) == k for w, k in TRGW) and "when (old.source = 'ccm')" in SQL, [(w[:50], TRG.count(w), k) for w, k in TRGW])
 # ---- 4. the hub page agrees with this helper on what a signature covers
 import json as _json, shutil as _shutil, subprocess as _subprocess
 PG = open(os.path.join(ROOT, "tools", "db", "ccm_hub_page.html"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "tools", "db", "ccm_hub_page.html")) else ""
 check("4 the hub page signs only on the owner's click after a ticked review, never writes over a signing, and records the day in Eastern time",
       all(w in PG for w in ("isOwner()", 'id="ack"', 'id="ackAll"', "if (have[c]) delete sigs[c]", 'timeZone: "America/New_York"')), [w for w in ("isOwner()", 'id="ack"', 'id="ackAll"', "if (have[c]) delete sigs[c]") if w not in PG])
+PGA = ("Sign this addendum", '"Sign all addenda (" + fmt(a.ready) + ")"', 'id="ackAdd"', 'id="ackAllAdd"', 'if (!$("ackAdd").checked)', 'if (!$("ackAllAdd").checked)', '"addendum_signatures"',
+       'S.db.doc((coll || "signatures") + "/" + ym)', "S.owner && noteDone && (ast === \"ready to sign\" || ast === \"flagged\")", 'ab.hidden = !(S.owner && a.ready > 0)',
+       'if (st === "ready to sign") picks.push({ ym, a }); else if (st === "flagged") flagged++;', "Flagged addenda (fewer than two diagnoses on the charge) are left out; open those one by one", '" flagged (fewer than two diagnoses on the charge) "',
+       "ADDENDUM - NOT SIGNED", "Diagnoses on the CCM charge (ICD-10)", '"Diagnoses (ICD-10)"', "this addendum adds to it and changes nothing in it", 'db.collection("addendum_signatures")', 'db.doc("config/addenda")',
+       '"Addenda to sign"', '"Addenda signed"', "standalone(fin, sig ? sig.written : todayET(), signed, adds)", "mine($(\"ack\"))")
+check("4 the page (11/12/2026): each signed note shows its addendum with 'Sign this addendum' (owner only, review tick) and 'Sign all addenda (N)' with the same confirmation - flagged ones left out - "
+      "signings go to addendum_signatures and are never written over, counts for addenda, the saved note includes the addendum, a tick never carries over to another note",
+      all(w in PG for w in PGA), [w for w in PGA if w not in PG])
 m = re.search(r"function canon\(v\) \{.*?\n\}", PG, re.S)
 SAMPLE = dict(F, patient="O'" + "QUOTE \"Q\" \\ " + "Ñ" + "\u0001", charges=[["10/31/2026", "99487", "v", "c"]], evidence=[], written="11/15/2026")
 node = _shutil.which("node")
@@ -147,6 +232,20 @@ if node and m:
     check("4 the page's canon() gives exactly the text this helper hashes - quotes, backslash, accented letter and control character included (run in node)", r.stdout == C.canon(SAMPLE), (r.stdout[:200], C.canon(SAMPLE)[:200], r.stderr[:200]))
 else:
     check("4 the page's canon() sorts keys and joins without spaces like this helper's (node is not on this machine, so the source is checked)", m is not None and "Object.keys(v).sort()" in m.group(0) and 'join(",")' in m.group(0))
+check("4 the paper is white in every palette: --paper is a declaration of its own (11/12/2026: a missing semicolon after color-scheme had swallowed it and every sheet showed the list through it)",
+      re.search(r"[;{]\s*--paper:#ffffff;", PG) is not None and ".paper{background:var(--paper)" in PG and re.search(r"color-scheme:light\s*\n\s*--", PG) is None)
+check("4 the page's canon() is the one this test has always checked (unchanged by the addenda)", m is not None and m.group(0) == 'function canon(v) {\n  if (Array.isArray(v)) return "[" + v.map(canon).join(",") + "]";\n  if (v && typeof v === "object") return "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + canon(v[k])).join(",") + "}";\n  return JSON.stringify(v);\n}', m.group(0) if m else "")
+fns = [re.search(r"(?:async )?function %s\(.*?\n\}" % n, PG, re.S) for n in ("canon", "sha256hex", "easternParts", "addSigOf")]
+if node and all(fns):
+    js = "\n".join(x.group(0) for x in fns) + '\nconst S = { cfg: { signer: "EFFINGER, WILLIAM" }, uid: "u_test" };\naddSigOf(JSON.parse(process.argv[1]), "ready").then(s => process.stdout.write(JSON.stringify(s)));'
+    r = _subprocess.run([node, "-e", js, _json.dumps(dict(AF, patient=SAMPLE["patient"]))], capture_output=True, text=True, timeout=60)
+    try: psig = _json.loads(r.stdout)
+    except ValueError: psig = {}
+    pok, pwhy = C.verify_signature(dict(AF, patient=SAMPLE["patient"]), psig, statement=False) if psig else (None, r.stderr[:200])
+    check("4 an addendum signed by the page's own code (addSigOf, run in node: today's Eastern day, the hash of the fields) is accepted by this helper's check - and refused once a code is changed",
+          pok is not None and psig.get("kind") == "ready" and "statement" not in psig and C.verify_signature(dict(AF, patient=SAMPLE["patient"], diagnoses=AF["diagnoses"][1:]), psig, statement=False)[0] is None, (pwhy, psig))
+else:
+    check("4 the page signs an addendum with the same fixed text form and hash (node is not on this machine, so the source is checked)", all(fns) and "sha256hex(canon(Object.assign({}, af, { written })))" in PG)
 
 print("\ntest_ccm_notes: %d checks, %d failed%s" % (RAN[0], len(FAILS), "" if not FAILS else " - " + "; ".join(FAILS)[:1200]))
 sys.exit(1 if FAILS else 0)
