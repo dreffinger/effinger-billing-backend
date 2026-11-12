@@ -33,6 +33,14 @@
 #   voided; the visit's own charge reads billed = a claim that was sent is never changed; else the line is voided (when it is still live), the
 #   visit re-saved and listed again. A listing AdvancedMD did not answer shows nothing: it frees nobody. A second start of the step under one
 #   stamp keeps what the first start recorded about no-charge lines.
+# November 12, 2026 - fix round 1 (the lead's decisions K10 and K11): (a) THE ROUTINE'S OWN VOID IS NEVER LOST - the register is written to disk
+#   after the entries are recorded and BEFORE the first void, in take_line_off and in the retry pass (and after each visit, as before): a cut right
+#   after the void leaves the entry saying void_ok false, the import reads the visit as stuck, and the retry pass finds the line void already and
+#   re-saves the visit. (b) A VISIT OF A FAULT RUN (AdvancedMD answered a fault but kept the visit, the call that carried the 1123F line ended in an
+#   error, or the run was cut while it was out) is listed by the import under "stuck" with "fault": true, its line's charge number perhaps unknown:
+#   the retry pass looks at it in every run (retry_fault) - not listed = free; listed with a data error (before the proof any, after the proof only
+#   words that name the line) = its live 1123F line is found on THAT visit by its own procedure and amount (fault_lines) and taken off by the retry
+#   sequence, with the M0004 line beside it; none found = it stays for a person, and no new line meanwhile. No other charge of the visit is touched.
 # THE OPTION CODE M0004 (William 11/10/2026: "use it"; it rides once per clinician with the 1123F line, after proof): the same for its no-charge
 #   line - an edit that names M0004 / pcode692183 is never bypassed, and the step takes BOTH no-charge lines off when the edits name neither or
 #   both, and also when they name 1123F alone (the 1123F line never leaves the M0004 line behind: M0004 rides only with 1123F; that M0004 entry
@@ -121,6 +129,12 @@ def held(vid, c, why, quality=False, names=False, mvp=False, mnames=False):
     if mvp: row["mvp"] = True                  # the visit still carries the M0004 line
     if mnames: row["names_mvp"] = True         # the words name the M0004 line
     OUT["held"].append(row)
+def write_register():
+    """The step's register on disk as it stands now. November 12, 2026 - fix round 1 (decision K10): written after each visit as always, and ALSO right
+    after the entries are recorded and BEFORE the first void, in take_line_off and in the retry pass - the routine's own void is never lost. A cut right
+    after the void then leaves that entry on disk saying void_ok false: the import reads the visit as stuck (no new line), and the retry pass finds the
+    line void already and re-saves the visit. A write that fails raises: nothing is voided that is not on disk first."""
+    with open("registers/feed_inspector_%s.json" % STAMP, "w") as f: json.dump(OUT, f, indent=1)
 def list_batch():
     r = amd.post(amd.msg("getclaiminspectorcharges", "chargeentry", {"batchid": "1", "nocookie": "1"}), timeout=180)
     root = ET.fromstring(r.encode("latin-1", "ignore")); out = {}
@@ -203,6 +217,7 @@ def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     if bad:
         for k, entry in entries: entry["note"] = live[k][1] if live[k][0] == "unsure" else "not tried: another no-charge line of the visit could not be shown live"
         hold(words, named, mnamed); return "HELD with its quality line: %s" % bad[0][1] if one else "HELD with its no-charge lines: %s" % bad[0][1]
+    write_register()      # K10 (November 12, 2026 - fix round 1): what is about to be tried is ON DISK before the first void - a cut after the void leaves void_ok false = the visit is stuck, and the retry pass re-saves it
     for k, entry in entries:
         ok, msg = void_tx.void_charge(c["pid"], live[k][1])
         if not ok:
@@ -281,11 +296,14 @@ def retry_visits():
         g = REG.get(gk) if isinstance(REG.get(gk), dict) else {}
         for kind, key in (("stuck", "stuck"), ("open", "open_lines")):
             for it in (g.get(key) if isinstance(g.get(key), list) else []):
-                if not isinstance(it, dict) or not num(it.get("visit")) or not num(it.get("charge")) or not isinstance(it.get("chart"), str): continue      # an odd item is passed over
+                # K11 (November 12, 2026 - fix round 1): a visit of a fault run is listed under "stuck" of the quality_gate with what the import knows - its line's charge number may be unknown
+                flt = isinstance(it, dict) and it.get("fault") is True and kind == "stuck" and gk == "quality_gate" and bool(num(it.get("visit"))) and isinstance(it.get("chart"), str)
+                if not flt and (not isinstance(it, dict) or not num(it.get("visit")) or not num(it.get("charge")) or not isinstance(it.get("chart"), str)): continue      # an odd item is passed over
                 vid = num(it.get("visit")); own = it.get("own") if isinstance(it.get("own"), str) else ""
                 if kind == "open" and (vid in MINE or not num(own)): continue      # this batch's own visits are the normal pass's; an item without its own first charge is passed over
-                add(vid, kind, MVP_CODE if str(it.get("code") or "").upper() == MVP_CODE else QUALITY_CODE, it["charge"], it.get("fee"), own, it["chart"],
+                add(vid, kind, MVP_CODE if str(it.get("code") or "").upper() == MVP_CODE else QUALITY_CODE, it["charge"] if isinstance(it.get("charge"), str) else "", it.get("fee"), own, it["chart"],
                     it.get("with") if isinstance(it.get("with"), str) else "", str(it.get("since") or it.get("register") or ""), str(it.get("why") or ""))
+                if flt: out[vid].update(fault=True, dos=str(it.get("dos") or ""))
     newest = {}
     for e in OUT["quality_removed"]:      # this start's entries, and an earlier start's under the same stamp: the newest per line decides
         if isinstance(e, dict) and num(e.get("visit")) and num(e.get("charge")): newest[(num(e.get("visit")), str(e.get("code") or QUALITY_CODE).upper())] = e
@@ -310,7 +328,7 @@ def retry_one(vid, t, info):
     at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat(); entries = []
     def entry(code, charge, **kw):
         e = dict({"visit": vid, "pid": c["pid"], "charge": charge, "code": code, "fee": c.get("mvp_fee" if code == MVP_CODE else "quality_fee"), "why": str(kw.pop("why", t["why"]))[:140], "void_ok": False, "released": False, "at": at,
-                  "retry_of": t["since"]}, **kw)
+                  "retry_of": t["since"]}, **dict(t.get("mark") or {}, **kw))      # mark: {"fault": true} for a visit of a fault run (retry_fault, K11) - the import finds it by its visit
         OUT["quality_removed"].append(e); entries.append((code, e)); return e      # recorded at once: even if a later call raises, the import knows what was tried
     def free(note):      # the visit is free: one entry per line the gates named, nothing voided or saved ("void_ok" = that line reads void)
         for code, charge in sorted(t["act"].items(), key=lambda kv: kv[0] != QUALITY_CODE): entry(code, charge, void_ok=line_live(c, code, charge)[0] == "gone", released=True, listed=False, note=note)
@@ -350,6 +368,8 @@ def retry_one(vid, t, info):
         for k, e in entries:
             if not e["void_ok"]: e["note"] = live[k][1] if live[k][0] == "unsure" else "not tried: another no-charge line of the visit could not be shown live"
         hold(words, nq, nm); return "HELD with its no-charge line: %s" % bad[0][1]
+    for _k, e in entries: e["resave_ok"] = False      # written BEFORE the void and the re-save: an error in the re-save or in the listing leaves it False - and on disk a line already void waits for its re-save ("still listed")
+    write_register()      # K10 (November 12, 2026 - fix round 1): what is about to be tried is ON DISK before the first void - a cut after the void leaves void_ok false = the visit stays stuck, and the next retry re-saves it
     for k, e in entries:
         if e["void_ok"]: continue
         ok, msg = void_tx.void_charge(c["pid"], live[k][1])
@@ -359,7 +379,6 @@ def retry_one(vid, t, info):
                 if e2 is not e and not e2["void_ok"]: e2["note"] = "not tried: the void of the %s line failed" % k
             hold(words, nq, nm); return "HELD with its %s line: the void failed again" % k
         e["void_ok"] = True; gone.add(k)
-    for _k, e in entries: e["resave_ok"] = False      # written BEFORE the re-save: an error in the re-save or in the listing leaves it False
     ok2, r = resave_visit(re.sub(r"\D", "", t["own"])); time.sleep(1.0)
     if not ok2:
         for _k, e in entries: e["note"] = "the re-save after the void failed: %s" % r[:100]
@@ -376,6 +395,77 @@ def retry_one(vid, t, info):
         if _still: e["still_named"] = True
     if data2: hold("; ".join(e["text"][:80] for e in data2), bool(rq) and any(names_lines(e["text"], rq, rm)[0] for e in data2), bool(rm) and any(names_lines(e["text"], rq, rm)[1] for e in data2))
     return "no-charge line(s) %s off, visit re-saved: %s%s" % (", ".join("%s %s" % (k, x) for k, x in which), "released" if not data2 else "still listed", ("; " + "; ".join(notes)) if notes else "")
+# ---- A VISIT OF A FAULT RUN (November 12, 2026 - fix round 1, decision K11) ----------------------------------------------------------------------------
+# AdvancedMD answered a fault but kept the visit, the call that carried the 1123F line ended in an error, or the run was cut while that call was out:
+# that visit is for a person and its patient gets no line again this year (as before), AND the import lists it under "stuck" (with "fault": true and
+# what it knows - the visit, the chart, the amount, the date; the line's charge number may be unknown), so no real claim waits for it: no new line while
+# the Claim Inspector holds it, and this pass looks at it in every run until it is free. Never any other charge of the visit than its no-charge lines.
+def fault_lines(vid, t):
+    """The no-charge lines of a visit of a fault run. The 1123F line: the charge an earlier look found (it may be void by now), else ONE read of the chart's
+    history for a live 1123F line of at most one cent on the line's date (on this visit, when the history names visits). Each candidate's OWN detail must
+    show procedure pcode65441, at most one cent, and THIS visit - the visit the feed import itself created (its failed row names it); a line that is
+    being looked for must be live. Then the visit's live charges (resave.visit_charges): its own first charge, and a live M0004 line of at most one cent
+    (it comes off with the 1123F line - M0004 never rides without it). -> ("found", {code: charge}, own) | ("none", why, "") | ("unsure", why, "")."""
+    known = re.sub(r"\D", "", str(t["act"].get(QUALITY_CODE) or "")); cands = [known] if known else []
+    if not known:
+        try: hist = txh.fetch(re.sub(r"\D", "", t["pid"]))
+        except Exception as e: return "unsure", "the chart's history could not be read (%s)" % type(e).__name__, ""
+        for ch in hist.iter("charge"):
+            a = ch.attrib
+            if str(a.get("proccode") or "").upper() != QUALITY_CODE or a.get("void") == "1" or (a.get("fee") or "").startswith("-"): continue
+            if a.get("visit") and re.sub(r"\D", "", a.get("visit")) != vid: continue      # the history names the visit: it must be this one
+            if t.get("dos") and a.get("dos") and a.get("dos") != t["dos"]: continue
+            try: small = float(a.get("fee") or "0") <= 0.01
+            except Exception: small = False
+            if small and re.sub(r"\D", "", a.get("id") or ""): cands.append(re.sub(r"\D", "", a.get("id")))
+    good = []
+    for cid in dict.fromkeys(cands):
+        try: root = ET.fromstring(resave.detail(cid))
+        except Exception as e: return "unsure", "charge %s could not be read (%s)" % (cid, type(e).__name__), ""
+        vis = root.find(".//visit"); ch = next((x for x in root.iter("charge") if re.sub(r"\D", "", x.get("id") or "") == cid), None)
+        if ch is None or vis is None or re.sub(r"\D", "", vis.get("id") or "") != vid or ch.get("proccode") != QUALITY_PCODE: continue
+        try: small = float(ch.get("fee") or "0") <= 0.01
+        except Exception: small = False
+        if small and (known or ch.get("void") != "1"): good.append(cid)
+    if not good: return "none", ("charge %s is not shown as that visit's 1123F line" % known) if known else "no live 1123F line of at most one cent on that visit in the chart's history", ""
+    if len(good) > 1: return "none", "%d live 1123F lines on that visit (%s) - not told apart" % (len(good), ", ".join(good)), ""
+    try: _v, _p, allc = resave.visit_charges(good[0])
+    except Exception as e: return "unsure", "the visit's charges could not be read (%s)" % type(e).__name__, ""
+    own = next((re.sub(r"\D", "", x.get("id") or "") for x in allc if x.get("proccode") not in (QUALITY_PCODE, MVP_PCODE) and re.sub(r"\D", "", x.get("id") or "")), "")
+    if not own: return "none", "the visit shows no live charge of its own", ""
+    def tiny(x):
+        try: return float(x.get("fee") or "0") <= 0.01
+        except Exception: return False
+    mv = [re.sub(r"\D", "", x.get("id") or "") for x in allc if x.get("proccode") == MVP_PCODE and x.get("void") != "1" and tiny(x)]
+    return "found", dict({QUALITY_CODE: "charge" + good[0]}, **({MVP_CODE: "charge" + mv[0]} if len(mv) == 1 else {})), "charge" + own
+def retry_fault(vid, t, info):
+    """ONE visit of a fault run (K11). info = how the Claim Inspector lists it now (None = not listed). Not listed = free. Listed with advisories only =
+    they are bypassed as the step always does, free. Listed with a data error - before the proof any, after the proof only words that name a no-charge
+    line - its no-charge lines are found (fault_lines) and taken off by the retry sequence (retry_one: the line read live first, the void, the re-save on
+    the visit's own first charge, the listing; a visit that reads billed is never changed). No such line found = it stays listed for a person, and no
+    new line meanwhile. Every entry says "fault": true (the import finds the visit by its number) and "retry_of". -> a note for the step's log line."""
+    at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat()
+    def entry(**kw):
+        e = dict({"visit": vid, "pid": t["pid"], "charge": re.sub(r"\D", "", str(t["act"].get(QUALITY_CODE) or "")) and str(t["act"].get(QUALITY_CODE)), "code": QUALITY_CODE, "fee": t["fee"].get(QUALITY_CODE),
+                  "why": t["why"][:140], "void_ok": False, "released": False, "at": at, "retry_of": t["since"], "fault": True}, **kw)
+        OUT["quality_removed"].append(e); return e
+    if info is None: entry(released=True, listed=False, note="the visit is no longer listed by the Claim Inspector - nothing done"); return "free: not listed"
+    named = lambda e: any(names_lines(e["text"], t["act"].get(QUALITY_CODE) or ""))      # the code, its id, the charge number when known, or a zero amount
+    adv = [e for e in info["errors"] if (pattern(e) in ADVISORY or pattern(e) == "11256") and not named(e)]; data = [e for e in info["errors"] if e not in adv]
+    if not data:      # advisories only: the hold is gone - bypassed as always, nothing voided
+        notes = advisories(vid, {"pid": t["pid"]}, adv)
+        if any("FAILED" in n for n in notes): return "advisories only, but the bypass was not accepted - nothing recorded, the next run tries again"
+        entry(released=True, listed=False, note="only advisories remained - bypassed, nothing voided"); return "free: only advisories remained"
+    words = "; ".join(e["text"][:80] for e in data)
+    if QUALITY_PROVEN and not any(named(e) for e in data):      # after the proof only words that name a no-charge line take it off (the normal pass's own test): this hold is the visit's own - a person looks
+        entry(why=words, note="held after the proof for words that name no no-charge line - left alone; a person looks at that visit"); return "held after the proof for words that name no line - for a person"
+    st, found, own = fault_lines(vid, t)
+    if st == "unsure": return "%s - nothing done, the next run tries again" % found
+    if st == "none": entry(why=words, note="%s - nothing voided; a person looks at that visit" % found); return "for a person: %s" % found
+    q = found[QUALITY_CODE]; mv = found.get(MVP_CODE, ""); fee = t["fee"].get(QUALITY_CODE)
+    c = {"visit": "vst" + vid, "pid": t["pid"], "cpts": [], "charges": [x for x in (own, q, mv) if x], "quality_codes": [QUALITY_CODE], "quality_charge": q, "quality_fee": fee,
+         "mvp_codes": [MVP_CODE] if mv else [], "mvp_charge": mv, "mvp_fee": fee if mv else None}
+    return retry_one(vid, dict(t, c=c, own=own, act={QUALITY_CODE: q}, all=dict(found), mark={"fault": True}), info)
 def retry_pass():
     """The retry pass over retry_visits(), with ONE listing of the Claim Inspector batch for all of them. A listing AdvancedMD did not answer shows
     nothing: no entry is written and every visit stays as it was. An error while one visit is tried is caught - what was recorded for it stays -
@@ -385,7 +475,7 @@ def retry_pass():
     ok, now = listing(set(todo))
     if not ok: print("inspector retry: the Claim Inspector listing was not answered - %d visit(s) not looked at; the next run tries again" % len(todo)); return
     for vid, t in todo.items():
-        try: print("RETRY", vid, t["kind"], "|", retry_one(vid, t, now.get(vid))[:200])
+        try: print("RETRY", vid, t["kind"] + (" (a fault run)" if t.get("fault") else ""), "|", (retry_fault if t.get("fault") else retry_one)(vid, t, now.get(vid))[:200])
         except Exception as e: print("ERR retry", vid, str(e)[:160])
 def main():
     amd.login_cached()

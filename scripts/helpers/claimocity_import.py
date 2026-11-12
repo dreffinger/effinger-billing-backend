@@ -137,10 +137,16 @@ MSGLAST = {}               # one feed message -> the LAST raw copy read of it: w
 #             before the third day the line is simply not decided). AdvancedMD left it off the claim: that line is dead and its patient is
 #             due again. It is listed for William; no routine voids it. It is read again until QUALITY_LEFT_OFF_REREAD (30) days after
 #             that billed date - billed after all, it counts as billed and its patient as coded.
+#             November 12, 2026 - fix round 1 (K12): its patient is due again only once the line was called left off QUALITY_LEFT_OFF_REREAD
+#             (30) days ago or more - until then AdvancedMD may still bill it, and once per patient and year holds also across a left-off line,
+#             whether the code probes or goes. The same for M0004, per clinician.
 #   VOID      the line itself says void. If the visit's own charge is still live, a person took the line off: that patient gets no line
 #             again this year and the code stays on (before proof it probes). If the visit's own charge is void too, the visit is gone and its place in the round is free. A line
 #             the inspector step or the insurance check took off a held visit by itself (registers' "quality_removed") is void too, but
-#             the routine's doing, not a person's - see removal() in quality_state.
+#             the routine's doing, not a person's - see removal() in quality_state. November 12, 2026 - fix round 1 (K10): "a person took
+#             the line off" is said only of a line found void with no entry of the routine's on record (an entry that says "listed": false
+#             records that the step did nothing); the inspector step writes its entry before the void, so a cut after the void leaves the
+#             visit stuck, and the step re-saves it.
 #   open / unknown: not decided - the pilot WAITS. Unknown = the charge is not in the answer, shows no procedure or another one, its code
 #             text is not 1123F, or the read failed. Unknown is never taken for void.
 # A ROUND is the lines entered at the current amount since the last restart. A round holds at most QUALITY_PILOT lines that are not void, and
@@ -184,6 +190,11 @@ MSGLAST = {}               # one feed message -> the LAST raw copy read of it: w
 # line stored in between - before proof ONE, after proof
 # TWO - move the amount to one cent (a new round); at one cent the code probes. A fault although the chart shows the visit, or
 # the chart cannot be read: the visit is NOT sent again - William looks at that visit - and the code probes from the next run.
+# November 12, 2026 - fix round 1 (K11): such a visit - and the visit of a call that carried the line and ended in an error, or of a run cut
+# while that call was out - stays for a person, its patient gets no line again that year, AND the gate lists it under "stuck" ("fault": true,
+# the line's charge number perhaps unknown): no new line while the Claim Inspector holds it, and every run's inspector step looks at it - not
+# listed = free, the probe goes on; held = its live 1123F line comes off by the retry sequence; no such line found = for a person, and no new
+# line meanwhile. The state line names the visit in every run until it is free.
 # SWITCHES (William's; QUALITY_CODE in the environment of the import and of the retry command; case and spaces do not matter): off = no
 # line in this run; stop = OFF until William restarts it, the only lasting OFF there is; reset = a new round at $0.00, honoured ONLY after his stop (left in
 # a routine it does nothing); any other value that is not empty = no line in this run, and the log says which value was not understood.
@@ -192,6 +203,8 @@ QUALITY_SAME = {"1123F", "1124F"}                          # either one on the c
 QUALITY_PILOT = 3                                            # lines a pilot ROUND may hold before one of them is proven (void lines not counted; never more than twice this in all)
 QUALITY_PROBE = 1                                            # lines a RUN may add while the code PROBES (11/12/2026: where it used to go off) - one, on the first eligible visit, across every register of that run
 QUALITY_STOP_WORDS = "stopped on William's word"             # how William's own stop begins in a gate's "off_until_reset" - the only lasting OFF there is; any other sentence there was written by the code before 11/12/2026
+QUALITY_FAULT_WHAT = {"cut": "the run was cut while the call that carried the line was out", "error": "the call that carried the line ended in an error",      # November 12, 2026 - fix round 1 (K11): how the gate's "stuck"
+                      "kept": "AdvancedMD answered a fault but kept the visit", "unread": "AdvancedMD answered a fault and the chart could not be read afterwards"}      # names a visit of a fault run before the inspector step has looked at it
 QUALITY_LOOKS = 6                                            # quality lines read per run for their outcome (one read of the line; one of its visit's own charge where the outcome needs it); after proof, as many again for Medicare's answer
 QUALITY_DAILY = 10                                           # after proof: lines per run until Medicare's own answer is on file (a payment line read by the import, or QUALITY_N620)
 QUALITY_MIN_AGE = 65
@@ -220,7 +233,8 @@ QUALITY_VISITS = set("99304 99305 99306 99307 99308 99309 99310 99341 99342 9934
 #   that is billed or not decided yet.
 # ITS OWN SMALL LEDGER (mvp_state; the register's "mvp_gate"), built like the 1123F ledger from the same registers: an M0004 line is read in
 #   AdvancedMD (its own charge detail, _line) until it is decided. BILLED = that clinician is done for the year. VOID = it may ride again. LEFT
-#   OFF (its visit billed, the line not, and still so QUALITY_LEFT_OFF_DAYS days after the visit's billed date) = that clinician gets it once more;
+#   OFF (its visit billed, the line not, and still so QUALITY_LEFT_OFF_DAYS days after the visit's billed date) = that clinician gets it once more
+#   (November 12, 2026 - fix round 1, K12: once the line was called left off QUALITY_LEFT_OFF_REREAD days ago or more - it may still be billed until then);
 #   the line is read again until QUALITY_LEFT_OFF_REREAD days after that date (billed after all = done). Open / unknown = no second line for that
 #   clinician. The line is known by its code text: the charge detail must name pcode692183 as M0004.
 # M0004 NEVER SWITCHES ITSELF OFF EITHER (11/12/2026; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"; the gate's
@@ -644,9 +658,9 @@ def quality_files(own_stamp):
         if out["n620"]:
             _seen = json.load(open(QUALITY_N620)); out["n620_seen"] = re.sub(r"\s+", " ", str(_seen.get("seen") or "")).strip()[:40] if isinstance(_seen, dict) else ""
     except Exception: out["n620_seen"] = ""
-    def removed(f, st, entries):      # entry by entry: an odd entry is passed over
+    def removed(f, st, entries):      # entry by entry: an odd entry is passed over (November 12, 2026 - fix round 1, K11: an entry about a visit of a fault run is known by its visit - its line's charge number may be unknown)
         for e in (entries if isinstance(entries, list) else []):
-            if isinstance(e, dict) and isinstance(e.get("charge"), str) and re.sub(r"\D", "", e["charge"]): out["removed"].setdefault(st, []).append((_os.path.basename(f), e))
+            if isinstance(e, dict) and ((isinstance(e.get("charge"), str) and re.sub(r"\D", "", e["charge"])) or (e.get("fault") is True and re.sub(r"\D", "", str(e.get("visit") or "")))): out["removed"].setdefault(st, []).append((_os.path.basename(f), e))
     num = lambda x: re.sub(r"\D", "", str(x or "")); stamp_of = lambda f, kind: re.sub(r"^feed_%s_|\.json$" % kind, "", _os.path.basename(f))
     for f in sorted(_g.glob("registers/feed_verify_*.json"), key=lambda f: stamp_of(f, "verify")):
         try:
@@ -698,6 +712,7 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
          "probe": "", "pkind": "", "psince": "", "pwords": "", "ptries": 0, "standing": None, "own_tries": 0, "aside": None, "at": ""}      # probe ...: why the code probes (the newest cause), its kind, the register the first cause lies in, AdvancedMD's own words, how many causes; standing: an older register's own OFF; own_tries: tries this stamp's register already holds
     billed = set(); void = set(); left = set(); refused = set(); lines = []; era = [0]      # lines: every quality line of the registers, oldest first; era: where the lines entered since the last restart (or since a probe set a proof aside) begin
     took = set()      # carried by the gates: the lines a person took off their visits (that patient gets no line again that year)
+    faults = []       # November 12, 2026 - fix round 1 (K11): the visits of a fault run (AdvancedMD answered a fault but kept the visit, the call that carried the line ended in an error, or the run was cut while it was out) - each is for a person AND stuck until the inspector step finds it free
     texts = set(); billed_on = {}; lseen = {}; lon = {}; late = {}; late_rows = []      # carried by the gates: code text read as 1123F, billed dates, when a visit was first seen billed, left-off dates, lines billed late
     base = lambda name: _os.path.basename(str(name)); num = lambda x: re.sub(r"\D", "", str(x or ""))
     st_of = lambda name: re.sub(r"^feed_(?:import|inspector|verify)_|\.json$", "", base(name)); short = lambda w: re.sub(r"\s+", " ", str(w or "")).strip()[:140]
@@ -764,11 +779,19 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
         re-save again in every run, and the code probes afterwards. The entries are read in place, the NEWEST for a line deciding: an entry that
         says "listed": false (the step's retry found the visit no longer listed) is looked at first - it ends the mark and counts nothing more:
         no refusal, the patient is not marked, and the line is not called void by it (it is read in AdvancedMD like any other line). An entry
-        that carries "retry_of" (the step tried an earlier visit again) begins a probe when none is running."""
+        that carries "retry_of" (the step tried an earlier visit again) begins a probe when none is running.
+        November 12, 2026 - fix round 1: an entry with "fault": true is about a visit of a fault run (K11, fault_entry below) and is found by its visit;
+        every entry that is not a "listed": false one says the routine took the line off or tried to (K10: "tried" - such a line found void while its
+        visit is still there is the routine's doing, never a person's decision)."""
         if str(e.get("code") or "").strip().upper() == MVP_CODE: return
+        if e.get("fault") is True:
+            K = next((K for K in reversed(faults) if num(K["visit"]) == num(e.get("visit"))), None)
+            if K is None: notes.append("%s names visit %s of a fault run, which no import register row carries - passed over" % (regname, e.get("visit"))); return
+            fault_entry(K, regname, e); return
         L = next((L for L in reversed(lines) if num(L["charge"]) == num(e.get("charge"))), None) or next((L for L in reversed(lines) if L.get("mvp") and num(L["mvp"]) == num(e.get("charge"))), None)
         if L is None: notes.append("%s names quality charge %s, which no import register row carries - passed over" % (regname, e.get("charge"))); return
         was = bool(L.get("stuck")); L["removed"] = dict(e, register=regname); w = short(e.get("why"))
+        if e.get("listed") is not False: L["tried"] = regname      # K10: the routine's own entry is on record for this line (the register that holds it)
         def freed():      # the step's retry: the visit was held with its line and is free now - from here the code probes (when no probe is running already)
             if e.get("retry_of") and not S["probe"]: probe("visit %s was held with its quality line until the routine could free it (%s: \"%s\")" % (L["visit"], regname, w), regname, "stuck", w)
         if e.get("listed") is False: L["stuck"] = None; freed(); return
@@ -785,11 +808,29 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
         if e.get("released") is True:
             if len(L["dos"]) >= 4: refused.add((L["chart"], L["dos"][-4:]))
             refusal(L["fee"], "held visit %s because of its quality line (the routine took the line off and the visit went through)" % L["visit"], regname, "claim_check", w)
+    def fault_entry(K, regname, e):
+        """November 12, 2026 - fix round 1 (K11): what the inspector step's retry pass found about a visit of a fault run - the newest entry decides, as for
+        every stuck visit. Not listed = free (the probe goes on). The line came off and the visit went through = free, and ONE refusal at its amount (its
+        patient is marked already). The line came off and the visit is held for its own reason = free. Still listed for the edit about the line, or the
+        line did not come off (the void failed, or no live 1123F line of that visit was found) = it stays stuck - for a person - and no new line meanwhile."""
+        w = short(e.get("why")); nt = short(e.get("note")); since = (K.get("stuck") or {}).get("since") or K["reg"]
+        if num(e.get("charge")): K["charge"] = str(e["charge"])      # the line's charge number, found by the step: the next look starts from it
+        if e.get("listed") is False: K["stuck"] = None; return
+        if e.get("void_ok") is not True: K["stuck"] = {"what": "the Claim Inspector holds it and its line did not come off (%s)" % (nt or "the void failed"), "register": regname, "why": w, "since": since}; return
+        if e.get("released") is not True and (e.get("still_named") is True or e.get("resave_ok") is False):
+            K["stuck"] = {"what": "the line is off, but the visit is still listed for the edit about it", "register": regname, "why": w, "since": since}; return
+        K["stuck"] = None
+        if e.get("released") is True: refusal(K["fee"], "held visit %s because of its quality line (the routine took the line off and the visit went through)" % K["visit"], regname, "claim_check", w)
     def failed_row(name, r, _gconf):
         info = r.get("info") if isinstance(r.get("info"), dict) else {}; pid = r.get("pid") if isinstance(r.get("pid"), str) else ""
         d = str(info.get("quality_dos") or info.get("dos") or ""); who = "chart %s, visit %s, %s" % (pid or "?", r.get("empty_visit") or "?", base(name))
         if not (r.get("quality_sent") or r.get("quality_unknown") or (r.get("stored") and "quality_tried" in info)): return
         if pid and len(d) >= 4: refused.add((pid, d[-4:]))
+        if not r.get("quality_sent") and num(r.get("empty_visit")):      # K11 (November 12, 2026 - fix round 1): that visit may carry the line - it is for a person AND stuck until the inspector step finds it free
+            st_ = r.get("stored") if isinstance(r.get("stored"), list) else [r.get("stored")]
+            kind_ = "cut" if r.get("provisional") else "error" if r.get("quality_unknown") else "unread" if any(isinstance(x, str) and x.startswith("chart not read") for x in st_) else "kept"
+            faults.append({"chart": pid, "visit": str(r["empty_visit"]), "charge": "", "fee": str(r.get("quality_unknown") or info.get("quality_tried") or info.get("quality_fee") or ""), "dos": d, "reg": base(name),
+                           "stuck": {"what": QUALITY_FAULT_WHAT[kind_] + " - nobody has seen yet whether the Claim Inspector holds it", "register": base(name), "why": short(r.get("err")), "since": base(name)}})
         if r.get("quality_sent"): refusal(str(r.get("quality_sent")), "refused a visit that carried the code", name, "refused")      # refused with the line, and the send without it failed: counted like a refusal
         elif r.get("quality_unknown"):      # the call that carried the line ended in an error - or the run was cut while it was out (the provisional row main() writes before that call): that visit is for a person; the code probes
             probe(("the run was cut while a call that carried the quality line was out; nobody knows whether AdvancedMD kept that visit and its line - William looks (%s)" if r.get("provisional")
@@ -927,7 +968,9 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
                     notes.append("visit %s was billed %s without its $%s quality line, and the line is still not billed %d days later - left off the claim" % (L["visit"], _fmt_day(bday), L["fee"], (day - bday).days))
                 else: notes.append("visit %s was billed %s; its $%s quality line is not billed yet - not decided before %s (a line can be billed a day after its visit)" % (L["visit"], _fmt_day(bday), L["fee"], _fmt_day(bday + datetime.timedelta(days=QUALITY_LEFT_OFF_DAYS))))
             elif own == "void": notes.append("the own charge of visit %s is void while its quality line is still live - not decided; William looks" % L["visit"])
-        elif own in ("billed", "open"):      # a person took the line off: that patient gets no line again this year (a person decided), and the code stays on (11/12/2026)
+        elif own in ("billed", "open") and L.get("tried"):      # K10 (November 12, 2026 - fix round 1): the routine's own entry for this line is on record - its void, not a person's (a cut right after the void leaves that entry saying void_ok false: the visit stays stuck and the inspector step re-saves it)
+            void.add(L["charge"]); notes.append("the quality line of visit %s reads void and the routine's own entry for it is on record (%s) - the routine took it off, not a person" % (L["visit"], L["tried"]))
+        elif own in ("billed", "open"):      # a person took the line off: that patient gets no line again this year (a person decided), and the code stays on (11/12/2026) - only when no entry of the routine's is on record for it (K10)
             void.add(L["charge"]); L["taken"] = True; took.add(L["charge"])
             if L["chart"] and len(L["dos"]) >= 4: refused.add((L["chart"], L["dos"][-4:]))
             notes.append("the quality line of visit %s was taken off the visit (void) while the visit itself is still there - a person decided: %s gets no line again this year; the code stays on" % (L["visit"], L["chart"] or "that patient"))
@@ -1031,15 +1074,24 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
     # A PAUSE is THIS run's (11/12/2026): a visit stuck held with its line - a real claim never waits because of this code, so no new line while that is
     # so, and the inspector step of every run tries the void and the re-save again - or another code text for the line's id. Every run looks again.
     stuck = [L for L in lines if L.get("stuck")]; pause = ""; probing = bool(S["probe"]) and not proven
+    fstuck = [K for K in faults if K.get("stuck")]      # K11 (November 12, 2026 - fix round 1): a visit of a fault run is stuck too until the inspector step finds it free
     def item(L, **more): return dict({"chart": L["chart"], "visit": L["visit"], "charge": L["charge"], "own": L["own"], "code": QUALITY_CODE, "fee": L["fee"], "with": L.get("mvp") or ""}, **more)      # what the inspector step needs to find the visit and its line again ("with" = the same visit's M0004 line as the row recorded it)
-    if stuck:
-        s0 = stuck[0]["stuck"]
-        pause = "paused this run: visit %s (chart %s) is held with its quality line - %s (%s: \"%s\")%s; no new line while that is so - every run's inspector step tries the void and the re-save again" % (
-            stuck[0]["visit"], stuck[0]["chart"], s0["what"], s0["register"], s0["why"], ("; and %d more visit(s)" % (len(stuck) - 1)) if len(stuck) > 1 else "")
+    def fitem(K): return {"chart": K["chart"], "visit": K["visit"], "charge": K["charge"], "own": "", "code": QUALITY_CODE, "fee": K["fee"], "with": "", "dos": K["dos"], "fault": True,      # what the step knows of a visit of a fault run (K11)
+                          "why": K["stuck"]["why"], "register": K["stuck"]["register"], "what": K["stuck"]["what"], "since": K["stuck"]["since"]}
+    if stuck or fstuck:
+        X, isf = (stuck[0], False) if stuck else (fstuck[0], True); s0 = X["stuck"]
+        pause = "paused this run: visit %s (chart %s) %s - %s (%s: \"%s\")%s; no new line while that is so - every run's inspector step %s" % (
+            X["visit"], X["chart"], "came from a fault while the call that carried its quality line was out" if isf else "is held with its quality line", s0["what"], s0["register"], s0["why"],
+            ("; and %d more visit(s)" % (len(stuck) + len(fstuck) - 1)) if len(stuck) + len(fstuck) > 1 else "", "looks at it again" if isf else "tries the void and the re-save again")
     elif S["wrong"]: pause = "paused this run: AdvancedMD shows procedure id %s as %s, not %s - no line while that is so; every run reads it again" % (QUALITY_PCODE, S["wrong"], QUALITY_CODE)
     for L in lines:      # once per patient per year - from the registers, whatever the chart history shows; by the chart and by the feed's own patient id
         if not L["chart"] or len(L["dos"]) < 4 or final(L) == "void": continue      # a void line was never reported: its patient is due again
-        if final(L) == "left": q["dead"].add((L["chart"], QUALITY_CODE, L["dos"])); q["dead_rows"].append([L["chart"], L["visit"], L["charge"]])      # left off the claim: dead, its patient is due again
+        if final(L) == "left":      # left off the claim: dead, its patient is due again - K12 (November 12, 2026 - fix round 1): only once the line was called left off QUALITY_LEFT_OFF_REREAD days ago or more
+            q["dead"].add((L["chart"], QUALITY_CODE, L["dos"])); q["dead_rows"].append([L["chart"], L["visit"], L["charge"]])
+            w_ = lon.get(L["charge"]) if isinstance(lon.get(L["charge"]), dict) else {}; d_ = _mdy_day(str(w_.get("on") or "")) or _mdy_day(str(w_.get("billed") or ""))
+            if d_ is None or (day - d_).days < QUALITY_LEFT_OFF_REREAD:      # AdvancedMD may still bill the first line (it is read again for 30 days): once per patient and year also across a left-off line, probing or going; a date that cannot be read = not shown = no line
+                q["done"].add((L["chart"], L["dos"][-4:]))
+                if _feed_mark(L.get("feed")): q["done"].add((_feed_mark(L["feed"]), L["dos"][-4:]))
         else:
             q["done"].add((L["chart"], L["dos"][-4:]))
             if _feed_mark(L.get("feed")): q["done"].add((_feed_mark(L["feed"]), L["dos"][-4:]))
@@ -1049,7 +1101,7 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
              left_off_on={k: v for k, v in lon.items() if k in left}, late_billed=dict(late), late_rows=late_rows, wrong_code_text=S["wrong"], wrong_code_charge=S["wrongc"] if S["wrong"] else "", proof_wait=pw,
              medicare_answer=S["answer"] if proven else None, medicare_wait=mwait, unread_prev=list(S["unread_prev"]))
     q.update(probe=S["probe"] if probing else "", probe_kind=S["pkind"] if probing else "", probe_since=S["psince"] if probing else "", probe_words=S["pwords"] if probing else "", probe_tries=S["ptries"] if probing else 0,
-             paused=pause, stuck=[item(L, why=L["stuck"]["why"], register=L["stuck"]["register"], what=L["stuck"]["what"], since=L["stuck"]["since"]) for L in stuck],
+             paused=pause, stuck=[item(L, why=L["stuck"]["why"], register=L["stuck"]["register"], what=L["stuck"]["what"], since=L["stuck"]["since"]) for L in stuck] + [fitem(K) for K in fstuck],
              open_lines=[item(L, why="", register=L["reg"]) for L in lines if L["pilot"] and not final(L) and not L.get("stuck")],      # entered before proof and not decided: the inspector step looks whether the claim check holds such a visit of an earlier batch
              standing_restart=S["standing"], taken_lines=sorted(took), n620_seen=str(files.get("n620_seen") or "")[:40] if n620 else "", proof_aside=S["aside"] if not proven else None,
              left_off_cent=[L["visit"] for L in lines if final(L) == "left" and L["fee"] == "0.01"])      # the visits whose ONE-CENT line AdvancedMD left off its claim: the report names how many sit unbilled
@@ -1104,6 +1156,13 @@ def quality_probe_now(why, kind="fault"):
     if QUALITY.get("probe") != why: QUALITY["probe_tries"] = int(QUALITY.get("probe_tries") or 0) + 1
     if QUALITY.get("confirmed") is True: QUALITY["proof_aside"] = dict(QUALITY["proof"], fee=QUALITY["fee"]) if isinstance(QUALITY.get("proof"), dict) else {"fee": QUALITY["fee"]}      # a proof was in place when this happened: the next run sets the lines entered so far aside
     QUALITY.update(probe=why, probe_kind=kind, probe_since=QUALITY.get("probe_since") or _os.path.basename(REG), probe_words="", confirmed=False, proof=None)
+def quality_fault_visit(chart, visit, fee, dos, kind, why):
+    """November 12, 2026 - fix round 1 (K11): the visit of a fault, a time-out (or a cut run) while the call that carried the line was out is for a person,
+    AND it is listed under "stuck" at once - with what the import knows (the line's charge number is not known) - so that THIS run's inspector step
+    already looks whether the Claim Inspector holds it. The next run reads the same from the failed row (quality_state)."""
+    QUALITY.setdefault("stuck", []).append({"chart": chart, "visit": visit, "charge": "", "own": "", "code": QUALITY_CODE, "fee": str(fee or ""), "with": "", "dos": str(dos or ""), "fault": True,
+                                            "why": re.sub(r"\s+", " ", str(why or "")).strip()[:140], "register": _os.path.basename(REG), "what": QUALITY_FAULT_WHAT[kind] + " - nobody has seen yet whether the Claim Inspector holds it",
+                                            "since": _os.path.basename(REG)})
 def quality_log(n, dry):
     """The ONE line a run prints about the quality code (the runbook reads it by its start). It says 'pilot:' exactly while a pilot round is open,
     'probing:' exactly while the code probes and 'paused:' exactly in a pause (11/12/2026) - the runbook reads those three words. 'off until
@@ -1169,7 +1228,9 @@ def mvp_state(regs, look, reset=False, files=None, day=None):
         THE STUCK VISIT (11/12/2026), as for the 1123F line: a void that failed, or the visit still listed for the edit about the line after the
         void (the re-save failed, or AdvancedMD did not inspect the visit again; NH2-2) = the visit is stuck with its M0004 line: no new M0004 line
         while that is so, the inspector step tries again in every run, M0004 probes afterwards. The NEWEST entry for a line decides; an entry that
-        says "listed": false ends the mark and counts nothing more; an entry that carries "retry_of" begins a probe when none is running."""
+        says "listed": false ends the mark and counts nothing more; an entry that carries "retry_of" begins a probe when none is running.
+        November 12, 2026 - fix round 1 (K11): an entry with "fault": true is about a visit of a fault run - the 1123F ledger reads it (quality_state)."""
+        if e.get("fault") is True: return
         c_ = num(e.get("charge"))
         M = next((M for M in reversed(lines) if num(cof(M)) == c_), None)
         if M is None:      # the row recorded it as its 1123F line (the two were swapped): it is this row's M0004 line
@@ -1334,6 +1395,9 @@ def mvp_state(regs, look, reset=False, files=None, day=None):
         if not M["prof"] or len(M["dos"]) < 4: continue
         if final(M) == "billed": m["done"].add((M["prof"], M["dos"][-4:]))
         elif not final(M): m["wait"].add((M["prof"], M["dos"][-4:]))
+        elif final(M) == "left":      # K12 (November 12, 2026 - fix round 1): a left-off M0004 line may still be billed for QUALITY_LEFT_OFF_REREAD days after it was called left off - its clinician gets no new M0004 line until then
+            w_ = lon.get(cof(M)) if isinstance(lon.get(cof(M)), dict) else {}; d_ = _mdy_day(str(w_.get("on") or "")) or _mdy_day(str(w_.get("billed") or ""))
+            if d_ is None or (day - d_).days < QUALITY_LEFT_OFF_REREAD: m["done"].add((M["prof"], M["dos"][-4:]))
     yr = max(MVP_YEARS); cl = {}
     for p_ in sorted(set(PROFILE.values())):      # for the report: each clinician's M0004 line of the year it is registered for
         mine = [M for M in lines if M["prof"] == p_ and M["dos"][-4:] == yr]; b_ = [M for M in mine if final(M) == "billed"]; w_ = [M for M in mine if not final(M)]; l_ = [M for M in mine if final(M) == "left"]
@@ -1778,6 +1842,7 @@ def main():
                 _fee0 = info.get("quality_fee"); _yr = str(info.get("quality_dos") or info["dos"])[-4:]; info["quality_codes"] = []; info["quality_tried"] = _fee0
                 QUALITY["refused"].add((pid, _yr)); QUALITY["done"].add((pid, _yr)); QUALITY["off"] = QUALITY["off"] or "this run: a call that carried the code ended in an error (%s)" % type(e).__name__
                 quality_probe_now("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart %s, visit %s, %s)" % (pid, vm.group(1), __import__("os").path.basename(REG)))
+                quality_fault_visit(pid, vm.group(1), _fee0, info.get("quality_dos") or info["dos"], "error", str(e))      # K11: listed as stuck at once - this run's inspector step looks whether the Claim Inspector holds it
                 stats["error"] += 1; stats["QUALITY CODE: a call that carried the line ended in an error - William looks at that visit"] += 1
                 reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "quality_unknown": _fee0, "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
                 json.dump(reg, open(REG, "w"), indent=1); continue
@@ -1805,6 +1870,7 @@ def main():
                         _fee0 = info.get("quality_fee"); _yr = str(info.get("quality_dos") or info["dos"])[-4:]; info["quality_codes"] = []; info["quality_tried"] = _fee0
                         QUALITY["refused"].add((pid, _yr)); QUALITY["done"].add((pid, _yr)); QUALITY["off"] = QUALITY["off"] or "this run: a call that carried the code ended in an error (%s)" % type(e).__name__
                         quality_probe_now("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart %s, visit %s, %s)" % (pid, _vid, _wreg))
+                        quality_fault_visit(pid, _vid, _fee0, info.get("quality_dos") or info["dos"], "error", str(e))      # K11: listed as stuck at once
                         MVP["off"] = MVP["off"] or "this run: a visit with M0004 was refused"
                         mvp_probe_now("AdvancedMD refused a visit that carried M0004, and the same visit sent with the 1123F line only ended in an error - William looks (chart %s, visit %s, %s)" % (pid, _vid, _wreg))
                         stats["error"] += 1; stats["QUALITY CODE: a call that carried the line ended in an error - William looks at that visit"] += 1
@@ -1832,6 +1898,8 @@ def main():
                     QUALITY["off"] = QUALITY["off"] or "this run: a visit with the code was refused and the chart could not be shown free of it"
                     quality_probe_now(("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart %s, visit %s, %s)"
                         if any(isinstance(x, str) for x in _stored) else "AdvancedMD answered a fault but kept the visit - William looks (chart %s, visit %s, %s)") % (pid, vm.group(1), __import__("os").path.basename(REG)))
+                    quality_fault_visit(pid, vm.group(1), _fee0, info.get("quality_dos") or info["dos"], "unread" if any(isinstance(x, str) for x in _stored) else "kept",
+                                        "refused with the quality line; not sent again because the chart shows %s - William looks at that visit: %s" % (_stored, _why))      # K11: listed as stuck at once
                     stats["FAULT"] += 1; stats["QUALITY CODE: visit refused and NOT sent again (the chart shows part of it, or could not be read)"] += 1
                     _unprov(); reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "stored": [list(x) if isinstance(x, tuple) else x for x in _stored],
                                           "err": "refused with the quality line; not sent again because the chart shows %s - William looks at that visit: %s" % (_stored, _why)})

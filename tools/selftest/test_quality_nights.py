@@ -335,8 +335,12 @@ def cases(root, check):
           and g3["fee"] == "0.00" and g3["confirmed"] is True, g3)
     m, o4, r4, e = night(ws, p, "20261125T1240Z", visits((1, 2, 3), "20261124"))
     for r in qrows(r3) + qrows(r4): p.bill_visit(r["visit"], "11/25/2026")
-    check("SM-1 (E2x), 11/25, the next visits of the three: the patient whose line was left off gets the code again; the two whose $0.00 line went out are NOT coded a second time - nobody has two billed quality lines in 2026",
-          [(r["pid"], r["quality_fee"]) for r in qrows(r4)] == [("pat7001", "0.00")] and max(per_year(p, billed=True).values()) == 1 and all(per_year(p, billed=True)[("pat70%02d" % k, "2026")] == 1 for k in (1, 2, 3, 5, 6)), dict(per_year(p, billed=True)))
+    m, o5, r5, e = night(ws, p, "20261214T1240Z", visits((1,), "20261213"))      # 30 days after the line was called left off (11/14)
+    for r in qrows(r5): p.bill_visit(r["visit"], "12/14/2026")
+    check("SM-1 (E2x), 11/25 and 12/14, the next visits of the three: the patient whose line was left off gets NO line while AdvancedMD may still bill it - until 30 days after it was called left off (K12, November 12, 2026 - fix round 1) - and the code on 12/14; "
+          "the two whose $0.00 line went out are NOT coded a second time - nobody has two billed quality lines in 2026",
+          qrows(r4) == [] and [(r["pid"], r["quality_fee"]) for r in qrows(r5)] == [("pat7001", "0.00")] and max(per_year(p, billed=True).values()) == 1 and all(per_year(p, billed=True)[("pat70%02d" % k, "2026")] == 1 for k in (1, 2, 3, 5, 6)),
+          ([r["pid"] for r in qrows(r4)], [r["pid"] for r in qrows(r5)], dict(per_year(p, billed=True))))
     ws, p = mk(root, "B2"); m, o1, r1, e = night(ws, p, "20261110T0121Z", visits((1, 2, 3, 4, 5), "20261109")); q = qrows(r1)
     p.bill_visit(q[0]["visit"], "11/10/2026", lines=False); p.bill_visit(q[1]["visit"], "11/10/2026")      # visit 1's 99309 billed; visit 2's 99309 AND its 1123F line billed; visit 3 not yet
     m, o2, r2, e = night(ws, p, "20261111T0121Z", visits((2, 6, 7, 8), "20261110"))
@@ -415,8 +419,8 @@ def cases(root, check):
           and [(r["pid"], r["quality_fee"]) for r in qrows(r6)] == [("pat7001", "0.00"), ("pat7013", "0.00"), ("pat7014", "0.00")], (gate(r6), [(r["pid"], r["quality_fee"]) for r in qrows(r6)]))
     # -- SM-5 / NH-11: a fault although AdvancedMD kept the visit; a time-out around the line ---------------------------------------------------------
     ws, p = mk(root, "E5", n=16, fault_but_store=True); regs = []
-    for n_ in range(5):
-        day = D(2026, 11, 11) + n_ * DAY; m, o, r, e = night(ws, p, stamp_of(day), visits((3 * n_ + 1, 3 * n_ + 2, 3 * n_ + 3), ymd(day - DAY))); regs.append(r)
+    for n_ in range(5):      # (K11, fix round 1: each night's inspector step finds the fault visit not held - it is free, and the next night probes)
+        day = D(2026, 11, 11) + n_ * DAY; m, o, r, e = night(ws, p, stamp_of(day), visits((3 * n_ + 1, 3 * n_ + 2, 3 * n_ + 3), ymd(day - DAY))); regs.append(r); insp(ws, stamp_of(day), ffree(r, stamp_of(day)))
     check("SM-5 (E5) / N8 (K2e, the fault that repeats - stated, not solved): AdvancedMD answers a fault to a call that carries the line but stores the charges, every time; five nights, three eligible visits each - the code is not off, "
           "it probes: ONE visit a night is registered as failed and left for a person while this lasts (failed rows 1, 1, 1, 1, 1; until 11/12/2026: 1, 0, 0, 0, 0 and OFF); no gate says off-until-reset; all fifteen visits are in AdvancedMD once",
           [len(r["failed"]) for r in regs] == [1, 1, 1, 1, 1] and [len(r["created"]) for r in regs] == [2, 2, 2, 2, 2] and len(p.q()) == 5 and sum(p.own().values()) == 15 and max(p.own().values()) == 1
@@ -424,14 +428,15 @@ def cases(root, check):
           and "AdvancedMD answered a fault but kept the visit - William looks (chart pat7001" in gate(regs[0])["probe"] and regs[0]["failed"][0]["stored"] == [["1123F", "11/10/2026"], ["99309", "11/10/2026"]]
           and not any(l[0].startswith("SECOND WRITE") for l in p.log), ([len(r["failed"]) for r in regs], gate(regs[1])["probe"]))
     ws, p = mk(root, "S5", n=16, fault_but_store="own"); regs = []
-    for n_ in range(4):
-        day = D(2026, 11, 11) + n_ * DAY; m, o, r, e = night(ws, p, stamp_of(day), visits((3 * n_ + 1, 3 * n_ + 2, 3 * n_ + 3), ymd(day - DAY))); regs.append(r)
+    for n_ in range(4):      # (K11: each night's inspector step finds the fault visit not held)
+        day = D(2026, 11, 11) + n_ * DAY; m, o, r, e = night(ws, p, stamp_of(day), visits((3 * n_ + 1, 3 * n_ + 2, 3 * n_ + 3), ymd(day - DAY))); regs.append(r); insp(ws, stamp_of(day), ffree(r, stamp_of(day)))
     check("S5 (the operations reviewer's input): AdvancedMD answers a fault to a call that carries the line and keeps the visit's 99309 on the chart; four nights - the code probes: one visit a night is left for William while this lasts "
           "(N8: stated, not solved - a person sets AdvancedMD right, or William stops the code); no gate says off-until-reset, and every visit is in AdvancedMD once",
           [len(r["failed"]) for r in regs] == [1, 1, 1, 1] and regs[0]["failed"][0]["stored"] == [["99309", "11/10/2026"]] and len(p.q()) == 0 and all("AdvancedMD answered a fault but kept the visit" in gate(r)["probe"] and gate(r)["off_until_reset"] == "" for r in regs)
           and sum(p.own().values()) == 12 and max(p.own().values()) == 1, ([len(r["failed"]) for r in regs], gate(regs[-1])["probe"]))
     ws, p = mk(root, "T1", timeout_line=1)
-    m, o1, r1, e1 = night(ws, p, "20261111T1240Z", visits((1, 2, 3, 4), "20261110")); m, o2, r2, e2 = night(ws, p, "20261112T1240Z", visits((5, 6, 7, 8), "20261111"))
+    m, o1, r1, e1 = night(ws, p, "20261111T1240Z", visits((1, 2, 3, 4), "20261110")); insp(ws, "20261111T1240Z", ffree(r1, "20261111T1240Z"))      # (K11: that night's step finds the visit not held)
+    m, o2, r2, e2 = night(ws, p, "20261112T1240Z", visits((5, 6, 7, 8), "20261111"))
     check("NH-11 (T1): the first charge call - it carries the line - times out after AdvancedMD stored it. One line exists that no created row knows: the import tries no further line that night, the failed row remembers it (that visit "
           "is for William), and from the next night the code probes: ONE line (it used to add three more lines the next night; until 11/12/2026 it went off); the other visits all go in",
           len(p.q()) == 2 and len(r1["failed"]) == 1 and r1["failed"][0].get("quality_unknown") == "0.00" and len(r1["created"]) == 3 and qrows(r1) == [] and len(qrows(r2)) == 1 and len(r2["created"]) == 4 and e1 is None
@@ -703,6 +708,10 @@ def held_row(r, why="error TimeoutError", **kw): return dict({"visit": digits(r[
 def freed(r, of, code="1123F", why="error TimeoutError"):      # the step's retry found the visit no longer listed: nothing was done to it ("listed": false)
     return {"visit": digits(r["visit"]), "pid": r["pid"], "charge": r["mvp_charge"] if code == "M0004" else r["quality_charge"], "code": code, "fee": r.get("mvp_fee" if code == "M0004" else "quality_fee"), "why": why, "void_ok": False,
             "released": True, "listed": False, "retry_of": of, "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": "2026-11-12T12:59:20"}
+def ffree(reg, stamp, **kw):      # November 12, 2026 - fix round 1 (K11): that run's inspector step looks at each visit of a fault run (a fault, a time-out, a cut run while the call that carried the line was out); not held = free ("listed": false, "fault": true)
+    return [dict({"visit": digits(f["empty_visit"]), "pid": f["pid"], "charge": "", "code": "1123F", "fee": str(f.get("quality_unknown") or (f.get("info") or {}).get("quality_tried") or "0.00"), "why": str(f.get("err") or "")[:140], "void_ok": False,
+                  "released": True, "listed": False, "retry_of": "feed_import_%s.json" % stamp, "fault": True, "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": "2026-11-12T12:59:20"}, **kw)
+            for f in (reg or {}).get("failed", []) if isinstance(f, dict) and f.get("empty_visit") and not f.get("quality_sent") and (f.get("quality_unknown") or (f.get("stored") and "quality_tried" in (f.get("info") or {})))]
 def never_off(*regs): return all(gate(r).get("off_until_reset") == "" and mgate(r).get("off_until_reset", "") == "" for r in regs if r is not None)
 def to_probing(root, name, n=60, **opts):
     """The live shape: three $0.00 lines on night 1, each stopped by the claim check and taken off (the visits go out); one cent from night 2, ONE line,
@@ -836,6 +845,7 @@ def keep_on(root, check):
     for n_ in range(6):
         day = D(2026, 11, 11) + n_ * DAY; p.o["fault_but_store"] = (n_ == 2)
         m, o, r, e = night(ws, p, st39(day), visits(range(3 * n_ + 1, 3 * n_ + 4), ymd(day - DAY))); rs.append(r); p.claim_run(day + DAY)
+        if ffree(r, st39(day)): insp(ws, st39(day), ffree(r, st39(day)))      # (K11, fix round 1: that night's inspector step finds the fault visit not held)
     G = [gate(r) for r in rs]
     check("N7 (K2e, a fault while the chart shows the visit, once, after proof): night 3 - one failed row (that visit is for a person, as before), no line, and the gate ALREADY says the code probes: 'AdvancedMD answered a fault but kept the visit "
           "- William looks (chart, visit, register)', not proven, off-until-reset empty",
@@ -848,6 +858,7 @@ def keep_on(root, check):
     ws, p = mk(root, "N7a", n=40, bill=NEXT_DAY, timeout_line=1); rs = []
     for n_ in range(3):
         day = D(2026, 11, 11) + n_ * DAY; m, o, r, e = night(ws, p, st39(day), visits(range(4 * n_ + 1, 4 * n_ + 5), ymd(day - DAY))); rs.append(r); p.claim_run(day + DAY)
+        if ffree(r, st39(day)): insp(ws, st39(day), ffree(r, st39(day)))      # (K11: that night's step finds the visit not held)
     check("N7 (K2e, a call that carried the line ended in a time-out after AdvancedMD stored it): lines 0, 1, 4 - night 1 one failed row and no line; night 2 exactly one line, the gate says 'a call that carried the quality line ended in an "
           "error; nobody knows whether AdvancedMD kept that visit - William looks (...)'; night 3 proven by night 2's line. No gate says off-until-reset",
           [len(qrows(r)) for r in rs] == [0, 1, 4] and [len(r["failed"]) for r in rs] == [1, 0, 0] and gate(rs[1])["probe"].startswith("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart pat7001")
@@ -860,14 +871,18 @@ def keep_on(root, check):
             return orig(body, timeout)
         m_.amd.post = post
     m, o1, r1, e1 = night(ws, p, S1, visits((1, 2, 3, 4), "20261110"), hook=cut_line); m, o2, r2, e2 = night(ws, p, S2, visits((5, 6, 7, 8), "20261111"))
-    check("N7 (K2e, the run is cut while that call is out - no gate written, the provisional row stays): the next night adds exactly one line, and the gate says 'the run was cut while a call that carried the quality line was out; ...'",
-          isinstance(e1, KeyboardInterrupt) and "quality_gate" not in r1 and [(x.get("provisional"), x.get("quality_unknown")) for x in r1["failed"]] == [(True, "0.00")] and len(qrows(r2)) == 1
-          and gate(r2)["probe"].startswith("the run was cut while a call that carried the quality line was out; nobody knows whether AdvancedMD kept that visit and its line - William looks (chart pat7001") and gate(r2)["probe_kind"] == "fault"
-          and never_off(r2), (repr(e1), gate(r2).get("probe"), qline(o2)))
+    insp(ws, S2, ffree(r1, S1))      # (K11) night 2's inspector step finds the visit of the cut run (night 1's failed row) not held: free
+    m, o3, r3, e3 = night(ws, p, S3, visits((9, 10, 11, 12), "20261112"))
+    check("N7 (K2e, the run is cut while that call is out - no gate written, the provisional row stays): the next night PAUSES - no inspector step looked at that visit on the cut night, so it is listed under 'stuck' with fault true (K11, November 12, 2026 - fix round 1) and the gate says "
+          "'the run was cut while a call that carried the quality line was out; ...'; once that night's step found it not held, the night after adds exactly one line",
+          isinstance(e1, KeyboardInterrupt) and "quality_gate" not in r1 and [(x.get("provisional"), x.get("quality_unknown")) for x in r1["failed"]] == [(True, "0.00")] and qrows(r2) == [] and gate(r2)["paused"].startswith("paused this run: visit %s (chart pat7001) came from a fault" % r1["failed"][0]["empty_visit"])
+          and [(x["visit"], x.get("fault")) for x in gate(r2)["stuck"]] == [(r1["failed"][0]["empty_visit"], True)] and len(qrows(r3)) == 1 and gate(r3)["stuck"] == []
+          and gate(r3)["probe"].startswith("the run was cut while a call that carried the quality line was out; nobody knows whether AdvancedMD kept that visit and its line - William looks (chart pat7001") and gate(r3)["probe_kind"] == "fault"
+          and never_off(r2, r3), (repr(e1), gate(r2).get("paused"), gate(r3).get("probe"), qline(o3)))
     for name, two in (("N7c", False), ("N7d", True)):      # the proof is found at the start of the VERY run in which the fault happens (N7d: and that run's import is started a second time under its stamp)
         ws, p = mk(root, name, n=40, bill=NEXT_DAY)
         m, o, r1, e = night(ws, p, S1, visits((1, 2, 3), "20261110")); p.claim_run(D(2026, 11, 12)); p.o["fault_but_store"] = True
-        m, o, r2, e = night(ws, p, S2, visits((4, 5, 6), "20261111")); p.o["fault_but_store"] = False; g2 = gate(r2)
+        m, o, r2, e = night(ws, p, S2, visits((4, 5, 6), "20261111")); p.o["fault_but_store"] = False; g2 = gate(r2); insp(ws, S2, ffree(r2, S2))      # (K11: that run's step finds the fault visit not held)
         if two: m, o, r2, e = night(ws, p, S2, visits((4, 5, 6), "20261111")); p.claim_run(D(2026, 11, 13))
         else: p.claim_run(D(2026, 11, 13))
         m, o3, r3, e = night(ws, p, st39(D(2026, 11, 13)), visits((7, 8, 9), "20261112")); p.claim_run(D(2026, 11, 14)); m, o4, r4, e = night(ws, p, st39(D(2026, 11, 14)), visits((10, 11, 12), "20261113"))
@@ -1014,12 +1029,12 @@ def keep_on(root, check):
     m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)]); p.claim_run(D(2026, 12, 3))
     m, o2, r2, e = night(ws, p, "20261207T1240Z", [both(3, "20261206"), both(4, "20261206", NP_NPI)]); p.claim_run(D(2026, 12, 7))
     m, o3, r3, e = night(ws, p, "20261208T1240Z", [both(5, "20261207"), both(6, "20261207", NP_NPI)])
-    check("N15 (M0004, two lines left off their claims): M0004 probes - 'AdvancedMD left the M0004 line off 2 claims ...' - with ONE M0004 line in all the night it is found (two clinicians lack one), and none the night after while that line "
-          "is not decided", len(mrows(r1)) == 2 and mgate(r2)["probe"].startswith("AdvancedMD left the M0004 line off 2 claims since the option code was last started (visits ") and len(mgate(r2)["left_off_lines"]) == 2
-          and m_who(r2) == [("pat7003", "prof13")] and mrows(r3) == [] and mgate(r3)["probe"] != "" and len(qrows(r2)) == 2 and len(qrows(r3)) == 2 and never_off(r1, r2, r3), (mgate(r2).get("probe"), m_who(r2), m_who(r3)))
+    check("N15 (M0004, two lines left off their claims): M0004 probes - 'AdvancedMD left the M0004 line off 2 claims ...' - but adds no M0004 line: both clinicians' left-off lines may still be billed, so neither gets a new one for 30 days after it was "
+          "called left off (K12, November 12, 2026 - fix round 1: once per clinician and year also across a left-off line); the 1123F lines go on", len(mrows(r1)) == 2 and mgate(r2)["probe"].startswith("AdvancedMD left the M0004 line off 2 claims since the option code was last started (visits ")
+          and len(mgate(r2)["left_off_lines"]) == 2 and m_who(r2) == [] and mrows(r3) == [] and mgate(r3)["probe"] != "" and len(qrows(r2)) == 2 and len(qrows(r3)) == 2 and never_off(r1, r2, r3), (mgate(r2).get("probe"), m_who(r2), m_who(r3)))
     # V3: a fault to a visit that carried both lines, and nobody knows what AdvancedMD kept
     ws, p = proven_dec(root, "N15e", n=20); p.o["fault_but_store"] = True
-    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)]); p.o["fault_but_store"] = False; p.claim_run(D(2026, 12, 3))
+    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)]); p.o["fault_but_store"] = False; p.claim_run(D(2026, 12, 3)); insp(ws, D3, ffree(r1, D3))      # (K11: that night's step finds the visit not held)
     m, o2, r2, e = night(ws, p, D4, [both(3, "20261203"), both(4, "20261203", NP_NPI)])
     check("N15 (M0004, a fault to a visit that carried both lines while the chart shows it): that visit is for a person; both gates say why and neither says off-until-reset - the 1123F line probes from the next night (one line), "
           "and M0004 waits for it (it rides only with a PROVEN 1123F line - never while that line probes)", len(r1["failed"]) == 1 and r1["failed"][0]["info"].get("mvp_tried") and mrows(r1) == [] and qrows(r1) == []
@@ -1066,7 +1081,7 @@ def keep_on(root, check):
           and mgate(rs[2])["paused"] == "" and mgate(rs[2])["wrong_code_text"] == "" and mgate(rs[2])["probe"] == "" and [len(qrows(r)) for r in rs] == [1, 1, 1] and never_off(r1, *rs), ([len(mrows(r)) for r in rs], mgate(rs[0]).get("paused")))
     # V13: the call that carries both lines ends in a time-out
     ws, p = proven_dec(root, "N15l", n=20); p.o["timeout_line"] = 1
-    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)]); m, o2, r2, e = night(ws, p, D4, [both(3, "20261203"), both(4, "20261203", NP_NPI)])
+    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)]); insp(ws, D3, ffree(r1, D3)); m, o2, r2, e = night(ws, p, D4, [both(3, "20261203"), both(4, "20261203", NP_NPI)])      # (K11: that night's step finds the visit not held)
     check("N15 (M0004, the call that carries both lines ends in a time-out): nobody knows what AdvancedMD kept - that visit is for a person; M0004 probes and the 1123F line probes too; neither gate says off-until-reset",
           len(r1["failed"]) == 1 and mgate(r1)["probe"].startswith("a call that carried M0004 ended in an error; nobody knows what AdvancedMD kept of that visit - William looks (chart pat7001")
           and gate(r1)["probe"].startswith("a call that carried the quality line ended in an error") and mgate(r2)["probe"] != "" and gate(r2)["probe"] != "" and len(qrows(r2)) == 1 and mrows(r2) == [] and never_off(r1, r2),
@@ -1079,7 +1094,7 @@ def keep_on(root, check):
             if 'action="updvisitwithnewcharges"' in body and QP in body and MP not in body: raise TimeoutError("read timed out")
             return orig(body, timeout)
         m_.amd.post = post
-    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)], hook=second_send_fails); p.o["refuse_mvp"] = False
+    m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)], hook=second_send_fails); p.o["refuse_mvp"] = False; insp(ws, D3, ffree(r1, D3))      # (K11: that night's step finds the visit not held)
     m, o2, r2, e = night(ws, p, D4, [both(3, "20261203"), both(4, "20261203", NP_NPI)])
     check("N15 (M0004, refused with both lines, and the same visit sent with the 1123F line only ends in a time-out): both gates say why, neither says off-until-reset, and both codes probe from the next night",
           len(r1["failed"]) == 1 and mgate(r1)["probe"].startswith("AdvancedMD refused a visit that carried M0004, and the same visit sent with the 1123F line only ended in an error - William looks (chart pat7001")
@@ -1094,6 +1109,46 @@ def keep_on(root, check):
           and "off until William restarts it" not in mline(o1), (mgate(r1).get("standing_restart"), mgate(r1).get("probe"), m_who(r1)))
     ws, p = proven_dec(root, "N15r", n=20); m, o1, r1, e = night(ws, p, D3, [both(1, "20261202"), both(2, "20261202", NP_NPI)], menv="reset")
     check("N15 (M0004): MVP_CODE=reset has nothing left to restart - NOTHING TO RESTART, and M0004 rides as if no switch were set", "NOTHING TO RESTART - MVP_CODE=reset was ignored" in mline(o1) and len(mrows(r1)) == 2 and mgate(r1)["reset"] is False, mline(o1))
+    # -- November 12, 2026 - fix round 1: the lead's decisions K10, K11 and K12 after the two reviews ------------------------------------------------------------
+    # K10: the inspector step is cut right after its void of a held visit's line - its entry was written to disk BEFORE the void and says void_ok false
+    ws, p = mk(root, "K10", n=40, bill=NEXT_DAY)
+    m, o1, r1, e = night(ws, p, S1, visits((1, 2, 3, 4), "20261110")); q = qrows(r1); p.held = {q[0]["visit"]}
+    cut = ent(p, q[0], released=False, void_ok=False); p.void(q[0]["quality_charge"])      # what the step wrote before the void - then the void worked and the process was cut before the re-save: the visit stays held
+    insp(ws, S1, [cut] + [ent(p, x) for x in q[1:]]); p.claim_run(D(2026, 11, 12))
+    m, o2, r2, e = night(ws, p, S2, visits((5, 6, 7, 8), "20261111")); g2 = gate(r2)
+    insp(ws, S2, [ent(p, q[0], retry_of="feed_inspector_%s.json" % S1)]); p.held = set(); p.claim_run(D(2026, 11, 13))      # night 2's retry pass finds the line void already, re-saves the visit, and it goes out
+    m, o3, r3, e = night(ws, p, S3, visits((9, 10, 11, 12), "20261112")); g3 = gate(r3)
+    check("K10 (fix round 1, a cut right after the routine's own void): the step's entry was on disk before the void (void_ok false) - night 2 PAUSES with that visit stuck ('the routine could not take the line off') and adds no line, and the routine's void is NOT "
+          "called a person's decision (the patient is not marked for it, the line is no taken line, the note says the routine took it off); night 2's retry pass re-saves the visit, and night 3 goes on by itself, probing with one line - lines 3, 0, 1",
+          [len(qrows(r)) for r in (r1, r2, r3)] == [3, 0, 1] and g2["paused"].startswith("paused this run: visit %s (chart %s) is held with its quality line - the routine could not take the line off" % (q[0]["visit"], q[0]["pid"]))
+          and [x["visit"] for x in g2["stuck"]] == [q[0]["visit"]] and g2["taken_lines"] == [] and [q[0]["pid"], "2026"] not in g2["refused_charts"] and any("the routine took it off, not a person" in n_ for n_ in g2["notes"])
+          and not any("a person decided" in n_ for n_ in g2["notes"]) and g3["stuck"] == [] and g3["paused"] == "" and g3["probe"] != "" and [q[0]["pid"], "2026"] in g3["refused_charts"] and never_off(r1, r2, r3),
+          (g2.get("paused"), g2.get("notes"), [len(qrows(r)) for r in (r1, r2, r3)]))
+    # K11: a visit of a fault run that the Claim Inspector holds for its line is a stuck visit too - no new line while it is held, and the inspector step's retry pass takes its line off
+    ws, p = mk(root, "K11", n=40, bill=NEXT_DAY); p.o["fault_but_store"] = True
+    m, o1, r1, e = night(ws, p, S1, visits((1, 2, 3), "20261110")); p.o["fault_but_store"] = False; f1 = r1["failed"][0]; fv = f1["empty_visit"]; g1 = gate(r1)
+    fq = next(c_ for c_ in p.visits[fv]["charges"] if p.charges[c_]["quality"]); p.held = {fv}      # AdvancedMD kept the visit WITH its line, and the claim check holds it for that line
+    insp(ws, S1, ffree(r1, S1, listed=None, released=False, note="no live 1123F line of at most one cent on that visit in the chart's history - nothing voided; a person looks at that visit")); p.claim_run(D(2026, 11, 12))
+    m, o2, r2, e = night(ws, p, S2, visits((4, 5, 6), "20261111")); g2 = gate(r2)
+    p.void(fq); p.held = set(); insp(ws, S2, ffree(r1, S1, charge=fq, void_ok=True, released=True, resave_ok=True, listed=None, note="")); p.claim_run(D(2026, 11, 13))      # night 2's retry pass finds the line on that visit, voids it, re-saves: it goes out
+    m, o3, r3, e = night(ws, p, S3, visits((7, 8, 9), "20261112")); g3 = gate(r3)
+    check("K11 (fix round 1, a fault while AdvancedMD kept the visit WITH its line, and the claim check holds it for that line): that visit is for a person and its patient is marked, AND that very night's gate lists it under 'stuck' (fault true, the charge "
+          "number not known) so that night's inspector step looks at it; while it is held no new line is added (night 2 paused, the state names the visit); once the step took its line off and it went out, night 3 goes on by itself - lines 0, 0, 1; no visit waits for ever",
+          [len(qrows(r)) for r in (r1, r2, r3)] == [0, 0, 1] and [(x["visit"], x.get("fault"), x["charge"]) for x in g1["stuck"]] == [(fv, True, "")] and [f1["pid"], "2026"] in g1["refused_charts"]
+          and g2["paused"].startswith("paused this run: visit %s (chart %s) came from a fault while the call that carried its quality line was out - the Claim Inspector holds it and its line did not come off" % (fv, f1["pid"]))
+          and [x["visit"] for x in g2["stuck"]] == [fv] and g2["budget"] == 0 and g3["stuck"] == [] and g3["paused"] == "" and g3["probe_kind"] == "claim_check" and fq not in [c_ for c_, x_ in p.q(live=True)] and never_off(r1, r2, r3),
+          (g1.get("stuck"), g2.get("paused"), [len(qrows(r)) for r in (r1, r2, r3)], g3.get("probe")))
+    # K12: once per patient and year also across a left-off line - AdvancedMD may still bill a line called left off (it is read again for 30 days), so its patient gets no new line until then
+    ws, p, k, _r = to_probing(root, "K12"); X = k
+    m, o3, r3, e = night(ws, p, st39(D(2026, 11, 13)), visits((X,), "20261112")); x3 = qrows(r3)[0]; p.bill_visit(x3["visit"], "11/13/2026", lines=False)      # AdvancedMD bills the visit WITHOUT its one-cent line
+    m, o4, r4, e = night(ws, p, st39(D(2026, 11, 14)), visits((X + 1,), "20261113")); m, o5, r5, e = night(ws, p, st39(D(2026, 11, 15)), visits((X + 2,), "20261114"))
+    m, o6, r6, e = night(ws, p, st39(D(2026, 11, 16)), visits((X, X + 3), "20261115")); g6 = gate(r6)      # the line is called left off today (3 days after its visit was billed) - and its patient comes back today
+    p.charges[x3["quality_charge"]]["billed"].append("11/17/2026"); p.claim_run(D(2026, 11, 17))      # then AdvancedMD bills that first line after all, on a claim of its own
+    m, o7, r7, e = night(ws, p, st39(D(2026, 11, 18)), visits((X,), "20261117")); g7 = gate(r7)
+    check("K12 (fix round 1, once per patient and year also across a left-off line): a one-cent line is called left off and its patient comes back that very night - he gets NO second line (AdvancedMD may still bill the first for 30 days), the probe's one line goes to the "
+          "next eligible visit; AdvancedMD then bills the first line late - it counts as coded, and nobody has two lines, or two billed lines, in 2026",
+          [r_["pid"] for r_ in qrows(r6)] == ["pat70%02d" % (X + 3)] and x3["quality_charge"] in g6["left_off_lines"] and g6["probe_kind"] == "left_off" and qrows(r7) == [] and x3["quality_charge"] in g7["billed_lines"]
+          and per_year(p)[("pat70%02d" % X, "2026")] == 1 and max(per_year(p, billed=True).values()) == 1 and max(per_year(p).values()) == 1, ([r_["pid"] for r_ in qrows(r6)], g6.get("left_off_lines"), dict(per_year(p))))
 
 # ---- NIGHTS: a population of invented patients under ONE behaviour of the stand-in AdvancedMD ------------------------------------------------------
 def lag(v): return 1 + (int(digits(v["pid"]) or 0) + int(v["date"][3:5])) % 2        # a visit goes out one or two days after entry, fixed per visit
@@ -1364,8 +1419,11 @@ def simulate(root, behaviour, nights=14, seed=1, n_pat=40):
         # the stand-in also plays the inspector step's RETRY PASS (11/12/2026): for each visit the gate lists under "stuck" it writes an entry with "retry_of" once
         # the person has released the visit - the step finds it no longer listed ("listed": false, nothing done to the line); while the visit is held it records nothing
         retried = [{"visit": digits(it["visit"]), "pid": it["chart"], "charge": it["charge"], "code": "1123F", "fee": it["fee"], "why": it["why"], "void_ok": False, "released": True, "listed": False, "retry_of": it.get("since") or it["register"],
-                    "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": str(day)} for it in (g.get("stuck") or []) if holds == "inspector" and it["visit"] not in still]
-        wc.put("feed_inspector_%s.json" % stamp, dict({"fixed": [], "bypassed": [], "laterality": [], "held": held_rows}, **({"quality_removed": retried} if holds == "inspector" else {})))
+                    "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": str(day)} for it in (g.get("stuck") or []) if holds == "inspector" and not it.get("fault") and it["visit"] not in still]
+        # November 12, 2026 - fix round 1 (K11): the step's retry pass also looks at each visit of a fault run the gate lists under "stuck" ("fault": true); this stand-in's Claim Inspector never holds such a visit - it is free
+        retried += [{"visit": digits(it["visit"]), "pid": it["chart"], "charge": it.get("charge") or "", "code": "1123F", "fee": it["fee"], "why": it["why"], "void_ok": False, "released": True, "listed": False, "retry_of": it.get("since") or it["register"], "fault": True,
+                     "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": str(day)} for it in (g.get("stuck") or []) if it.get("fault") is True and it["visit"] not in cand.held]
+        wc.put("feed_inspector_%s.json" % stamp, dict({"fixed": [], "bypassed": [], "laterality": [], "held": held_rows}, **({"quality_removed": retried} if (holds == "inspector" or retried) else {})))
         cand.held = still
         for pr in (cand, base): pr.claim_run(day)
         if after == "void_lines": cand.void(*[c for c, _ in new])
