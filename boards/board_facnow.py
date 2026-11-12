@@ -22,7 +22,9 @@ def kind_of(name):
     n = re.sub(r"\s+", " ", str(name or "").upper().replace("&", " AND "))
     if not n: return "OTHER"
     if re.search(r"\bALF\b|ASSISTED|MEMORY CARE|BROOKDALE|ALLEGRO|AZALEA|CANTERFIELD|CAPITAL SQUARE|GROVE AT CANOPY|HARBOR ?CHASE|PACIFICA|SODALIS|TAPESTRY|PARRY", n): return "ALF"
-    if re.search(r"BRYNWOOD|OAKES|ASPIRE|AVIATA|CENTRE POINTE|CENTER POINTE|EDEN SPRINGS|LAKE PARK|SEVEN HILLS|ST\.? JASPER|BERTRAND|HEALTH AND REHAB|REHABILITATION CENTER|NURSING", n): return "SNF"
+    # 11/12: SOUTHWOOD, not the facility's first word - the privacy gate took two facility names for patient names and rewrote them
+    # here (the other is caught by HEALTH AND REHAB / REHABILITATION CENTER). Same words as the page and tools/db/board_chargefac.py.
+    if re.search(r"BRYNWOOD|SOUTHWOOD|ASPIRE|AVIATA|CENTRE POINTE|CENTER POINTE|EDEN SPRINGS|LAKE PARK|SEVEN HILLS|BERTRAND|HEALTH AND REHAB|REHABILITATION CENTER|NURSING", n): return "SNF"
     if re.search(r"HCA REHAB|INPATIENT REHAB|\bIRF\b", n): return "IRF"
     if re.search(r"HOSPITAL|\bHCA\b|\bTMH\b|MEMORIAL|MEDICAL CENTER|\bER\b|EMERGENCY", n): return "HOSP"
     if re.search(r"INDEPENDENT LIVING|\bIL\b", n): return "IL"
