@@ -7,7 +7,8 @@
     "build:client": "node scripts/bundle-client.mjs",
     "dev": "npm run build:client && neon dev",
     "deploy": "npm run build:client && neon deploy",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/test-boardview.mjs"
   },
   "dependencies": {
     "@neon/config": "^1.13.0",

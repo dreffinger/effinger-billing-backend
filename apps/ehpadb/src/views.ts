@@ -1,12 +1,14 @@
 // Every view the app shows, as read-only SQL over the ehpa.* views (tools/db/neon_schema.sql) and the ops.* tables. One view =
 // one title, one note, and sections of {heading, columns, rows, kinds}; the browser renders them generically. Chart ids, dates of
-// service, codes and dollars only - the queries never select a patient name, date of birth or member id.
+// service, codes and dollars only - the queries here never select a patient name, date of birth or member id. The one exception is
+// the Insurance Refresh view: it is the board's cards (src/board.ts), and a card is a patient.
 import type { Pool } from "pg";
+import { runBoard } from "./board";
 
 export type Kind = "text" | "int" | "money" | "when";
 export type SectionSpec = { heading: string; note?: string; sql: string; kinds?: Record<string, Kind> };
 export type ChartSpec = { id: string; kind: "days" | "pairs"; title: string; note?: string; fill?: string; sql: string };
-export type ViewSpec = { title: string; note?: string; sections: SectionSpec[]; charts?: ChartSpec[] };
+export type ViewSpec = { title: string; note?: string; sections: SectionSpec[]; charts?: ChartSpec[]; board?: boolean };
 
 // the feed's per-day rollups: one row per calendar day with the entered visits, their charge lines, dollars and distinct charts,
 // plus the encounters NOT entered (diagnosis, CPT, deceased, skipped, failed, no chart) - the artifact page's day charts, in SQL
@@ -52,6 +54,12 @@ export const VIEWS: Record<string, ViewSpec> = {
       { heading: "Recent loads", note: "ops.load_log", kinds: { inserted: "int", updated: "int", unchanged: "int", at: "when" },
         sql: `select at, command, source, inserted, updated, unchanged, loaded_by from ops.load_log order by at desc limit 15` },
     ],
+  },
+  insurance_refresh: {
+    title: "Insurance Refresh Board",
+    note: "Every card on the board, read from the practice's own copy: whose turn it is, what is needed, where the patient is, and the notes.",
+    board: true,
+    sections: [],
   },
   ar: {
     title: "Accounts receivable",
@@ -185,5 +193,6 @@ export async function runView(pool: Pool, name: string) {
     const r = await pool.query(ch.sql);
     charts.push({ id: ch.id, kind: ch.kind, title: ch.title, note: ch.note, fill: ch.fill, rows: r.rows });
   }
-  return { title: spec.title, note: spec.note, charts, sections, generated_at: new Date().toISOString() };
+  const board = spec.board ? await runBoard(pool) : undefined;
+  return { title: spec.title, note: spec.note, charts, sections, board, generated_at: new Date().toISOString() };
 }
