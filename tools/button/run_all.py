@@ -484,6 +484,11 @@ class Run:
             return ids
 
         audited = set()
+        co45_left = {}   # check -> its latest CO-45 review count this run (a re-audit overwrites); one waiting line at the end of the step
+
+        def checks_text(pairs, cap=10):
+            pairs = list(pairs)
+            return ", ".join("%s (%d)" % kv for kv in pairs[:cap]) + (", ... +%d more" % (len(pairs) - cap) if len(pairs) > cap else "")
 
         def co45(ids, why, text=""):
             """11/7/2026: the CO-45 correction pass after every Post-button press (lessons 10/6, 10/13, 10/17, 10/21 - the Post button leaves the contractual
@@ -500,7 +505,6 @@ class Run:
                 self.warn(s, "no check list with check numbers - the CO-45 pass after %s was skipped" % why)
                 return
             fixed = s["counts"].get("co45 lines corrected", 0)
-            left = s["counts"].get("co45 lines for review", 0)
             for cid in ids:
                 if cid not in full_rows:
                     self.warn(s, "check %s has no live check row this run (arrived and left between list reads) - the CO-45 pass skipped it; the next run's audit sees it in era_details" % cid)
@@ -535,11 +539,16 @@ class Run:
                                 self.waiting.append("CO-45 relink check %s visit %s $%.2f: re-posted, the after-read did not verify - read the visit (payreasons.visit_state) before touching it, do NOT post again" % (cid, ln.get("vid"), money(ln.get("paid"))))
                     except (OSError, ValueError, AttributeError):
                         pass
-                left += left_c
+                co45_left[cid] = left_c
             s["counts"]["co45 lines corrected"] = fixed
-            s["counts"]["co45 lines for review"] = left
-            if left and self.live:
-                self.waiting.append("ERA CO-45 pass after %s: %d line(s) left for review (registers/era_co45_relink_*)" % (why, left))
+            s["counts"]["co45 lines for review"] = sum(co45_left.values())
+            # one line for the whole step, rewritten on every pass so a later crash in the step cannot lose it; it names the checks
+            # (11/12/2026: a routine on another machine cannot open this workspace's registers)
+            self.waiting[:] = [w for w in self.waiting if not w.startswith("ERA CO-45 pass: ")]
+            review = sorted((k, v) for k, v in co45_left.items() if v)   # sorted, so a persisting set of checks reads the same in every pass
+            if review and self.live:
+                self.waiting.append("ERA CO-45 pass: %d line(s) left for review on check(s) %s (registers/era_co45_relink_<check>_%s[_dry].json on the machine that ran this engine pass)" % (
+                    sum(v for _, v in review), checks_text(review), self.stamp))
 
         # (c) the Post button over every check with money
         posted_ids = []
@@ -599,7 +608,11 @@ class Run:
                     s["dollars"]["fallback posted"] = fb_posted
                 orph = [r for r in fb_rows if str(r.get("outcome")) == "orphan"]
                 if orph:
-                    self.waiting.append("ERA fallback: %d money line(s) with no matching live charge ($%.2f) - registers/%s" % (len(orph), sum(money(r.get("era_paid") or r.get("amt")) for r in orph), os.path.basename(regf)))
+                    by_check = {}
+                    for r in orph:
+                        by_check[str(r.get("checkid"))] = by_check.get(str(r.get("checkid")), 0) + 1
+                    self.waiting.append("ERA fallback: %d money line(s) with no matching live charge ($%.2f) on check(s) %s - registers/%s" % (
+                        len(orph), sum(money(r.get("era_paid") or r.get("amt")) for r in orph), checks_text(sorted(by_check.items())), os.path.basename(regf)))
             except (OSError, ValueError, TypeError, AttributeError) as ex:
                 self.warn(s, "fallback register unreadable: %s" % ex)
         elif fb_checks:
@@ -722,6 +735,10 @@ class Run:
                     self.waiting.append("ERA check %s %s $%.2f still unposted after this run" % (cid, payer, unp))
         else:
             self.waiting.extend(hold_lines.values())
+        if self.live and self.login_locked():
+            # 11/12/2026: run_all checks the lock between steps; a lock that tripped inside this step means its posting is not complete -
+            # a failed step is what tools/button/era_waiting.py passes over, so the nightly cascade does not take this pass as done
+            self.fail(s, "the AMD login lock tripped during the era step - its posting is not complete")
         seen_w = set()
         self.waiting = [w for w in self.waiting if not (w in seen_w or seen_w.add(w))]   # the same held check or review line is said once
         pay = round(max(0.0, cb["unposted"] - ca["unposted"]), 2) if self.live else 0.0
