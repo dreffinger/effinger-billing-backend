@@ -39,18 +39,40 @@
 #   python3 tools/db/practice_db.py build --all [--since YYYYMMDD]           -> every batch, run, ERA run, cascade night and snapshot on hand the register lacks
 #                                                                               (never older than the register's 45-day memory; an older --since is raised to it)
 #   python3 tools/db/practice_db.py build --practice                          -> the practice master-data snapshots only
+# 11/12/2026 (William: "eras are being posted should be green ... everything billable is in advanced md ... put a box ... referencing the
+#   neon database and ... the webapp, both functional and up to date, with links"): three more sources.
+#   (1) ERA RUNS FROM THE ENGINE'S REPORTS: the GitHub Actions engine posts ERAs every two hours but keeps its era_* registers in its own
+#       workspace - main gets the run's report and nothing else - so every era_runs document since 10/16 had 0 lines and the page read the
+#       posting as stopped. A stamp with a report and no era_* register now gets its era_runs document from the report's `era` step
+#       (era_doc_from_report: schema practice-era-run/2, engine=true, checks before/after from summary.era, the check rows the step listed,
+#       checks_posted = the Post button's check presses, fallback_lines, co45_corrected (re-posts, never added to a total), dollars posted;
+#       line_count null - the report counts no lines). A register-based document with no posted line on file takes the same fields from its
+#       run's report (report_merged=true); a register's checks before/after total is the sum of the checks' unposted amounts when the register
+#       kept no total (documents sent before 11/12/2026 and not resent still read 0 or null there). Only a run that did something, or left
+#       checks unposted, gets a document; a quiet look is already in billing_runs.summary.era, which the page reads for "the newest run
+#       looked at the ERA center".
+#   (2) RETRY BATCHES: feed_recon_<stamp>R.json (claimocity_retry_dx.py - the visits an earlier batch skipped, entered later) are swept
+#       into feed_batches too, with retry=true and no feed_checks row (a retry looks at no bucket); the page ranks what AdvancedMD got
+#       above an earlier skip of the same encounter.
+#   (3) SERVICE SNAPSHOTS, every build: snapshots/neon-<stamp> (tools/db/neon_db.py health --json: documents, last load, last routine run,
+#       the web app's own access log) and snapshots/webapp-<stamp> (GET https://app.ehpa.dev/health and the home page's title, timed).
+#       The page's "Permanent store and web app" box reads the newest of each that got through. --no-services skips them;
+#       --neon-url-file <path> hands the connection-string file to neon_db.py (a laptop session) - this script never reads it. Both probes run
+#       at once and answer within about a minute from a container that reaches neither host; a stored error is redacted and never a URL.
+#   --resend <collection>/<doc_id> (repeatable): a document the database holds that this script now builds differently is rebuilt whatever
+#       the register says and goes in writes_resend_N.json - every entry there REPLACES a document, so the sender adds its version (if_version).
 #   python3 tools/db/practice_db.py trim --out <dir> --file <writes file> --exists <collection>/<doc_id> [--exists ...]
 #        -> the ArtifactData answer said that document ALREADY EXISTS (the register had fallen behind the database): the entry leaves
 #           the writes file (the register keeps it); send the same file again, repeat while another is named - never `unsent` for this
 #   python3 tools/db/practice_db.py unsent --out <dir> [--file <writes file>] [--exists <collection>/<doc_id> ...]
 #        -> the ArtifactData call was refused, asked for an approval, answered quota_exceeded / invalid_argument or any other error:
 #           its ids leave the register so the next run resends them (--exists keeps the ones the answer said the database already holds)
-# Options: --repo /home/claude/effinger-billing-backend  --ws /home/claude/unbilled  --out <dir>  --max-doc-kb 200
+# Options: --repo /home/claude/effinger-billing-backend  --ws /home/claude/unbilled  --out <dir>  --max-doc-kb 200  --no-services  --neon-url-file <path>  --resend <collection>/<doc_id>
 #          --register <file> (default <repo>/practices/ehpa/registers/practice_db_written.jsonl)  --no-register (emit, record nothing - a dry look)
 import os, sys, re, json, glob, datetime, collections
 
 a = sys.argv[1:]
-def opt(name, default=None): return a[a.index(name) + 1] if name in a else default
+def opt(name, default=None): return a[a.index(name) + 1] if name in a and a.index(name) + 1 < len(a) else default
 def opts(name): return [a[i + 1] for i, x in enumerate(a[:-1]) if x == name]
 CMD = a[0] if a and not a[0].startswith("--") else "build"
 REPO = opt("--repo", "/home/claude/effinger-billing-backend"); WS = opt("--ws", "/home/claude/unbilled")
@@ -59,18 +81,21 @@ MAXKB = int(opt("--max-doc-kb", "200"))
 URL = "https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk"
 NOW = datetime.datetime.now(datetime.timezone.utc)
 BUILD = NOW.strftime("%Y%m%dT%H%MZ")
-OUT = opt("--out", os.path.join(WS, "outbox", "practice_db", RUN or ("all_" + BUILD if ALL else ("sweep_" + BUILD if SWEEP_ONLY else BUILD))))
+BUILDS = NOW.strftime("%Y%m%dT%H%M%SZ")   # 11/12/2026: a build that is not a run names itself (BY, default --out) to the second - two sweeps in one minute must not take each other's documents or folder
+OUT = opt("--out", os.path.join(WS, "outbox", "practice_db", RUN or ("all_" + BUILDS if ALL else ("sweep_" + BUILDS if SWEEP_ONLY else BUILDS))))
 REG = os.path.join(REPO, "practices", "ehpa", "registers")
 REGF = opt("--register", os.path.join(REG, "practice_db_written.jsonl"))
 NOREG = "--no-register" in a
 SWEEP_DAYS = max(0, min(40, int(opt("--sweep-days", "7"))))
 NO_SWEEP = "--no-sweep" in a or ALL or PRACTICE
 NO_FEED_CHECK = "--no-feed-check" in a
+NO_SERVICES = "--no-services" in a
 KEEP_DAYS = 45                                   # register entries older than this are dropped - no build ever looks back that far
 FLOOR45 = (NOW - datetime.timedelta(days=KEEP_DAYS)).strftime("%Y%m%d")
 SINCE = opt("--since", ""); SINCE_NOTE = ""
 if ALL and SINCE < FLOOR45: SINCE_NOTE = " (--since raised to %s: the register remembers %d days, an older backfill would resend what the database holds)" % (FLOOR45, KEEP_DAYS); SINCE = FLOOR45
-BY = RUN or ("sweep " + BUILD if SWEEP_ONLY else ("all " + BUILD if ALL else "practice " + BUILD))   # who is sending: a rebuild of the same run re-emits its own files
+RESEND = set(opts("--resend"))          # <collection>/<doc_id> the database holds and the builder now builds differently: rebuilt, sent from writes_resend_N.json with if_version
+BY = RUN or ("sweep " + BUILDS if SWEEP_ONLY else ("all " + BUILDS if ALL else "practice " + BUILDS))   # who is sending: a rebuild of the same run re-emits its own files
 def load(p, default=None):
     try: return json.load(open(p, encoding="utf-8"))
     except Exception: return default
@@ -80,9 +105,12 @@ def money(x):
 def clip(s, n): s = "" if s is None else str(s); return s if len(s) <= n else s[:n - 1] + "…"
 def norm_stamp(s): return re.sub(r"[^0-9TZR]", "", s or "")
 def stamp_day(s):
-    """YYYYMMDD of a plain run stamp (2026-11-06T0535Z / 20261106T0535Z); None for anything else - a suffixed re-run register
-    such as feed_recon_20261102T1904ZR.json is never swept in by itself (its rows may repeat another batch's)"""
+    """YYYYMMDD of a plain run stamp (2026-11-06T0535Z / 20261106T0535Z); None for anything else. A retry register such as
+    feed_recon_20261102T1904ZR.json fails this test on purpose: sweep() takes those in its own loop (retry_day strips the R)"""
     m = re.fullmatch(r"(\d{8})T\d{4}Z", norm_stamp(s)); return m.group(1) if m else None
+def retry_day(s):
+    """YYYYMMDD of a retry stamp (20261102T1904ZR, claimocity_retry_dx.py); None for anything else"""
+    m = re.fullmatch(r"(\d{8})T\d{4}ZR", norm_stamp(s)); return m.group(1) if m else None
 def iso_now(): return NOW.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 # ---- the written register: what the database already holds ---------------------------------------------------------------------------
@@ -101,14 +129,16 @@ if os.path.exists(REGF):                                  # fail CLOSED: an unre
     except Exception as ex:
         sys.exit("practice_db: the register %s is unreadable (%s) - restore it before building: git checkout origin/main -- practices/ehpa/registers/practice_db_written.jsonl" % (REGF, str(ex)[:90]))
 def written(coll, did):
-    """True when ANOTHER run already sent this document (this run's own earlier build does not count - a rebuild re-emits it)"""
+    """True when ANOTHER run already sent this document (this run's own earlier build does not count - a rebuild re-emits it).
+    An id named with --resend is rebuilt whatever the register says."""
+    if "%s/%s" % (coll, did) in RESEND: return False
     rec = reg["docs"].get("%s/%s" % (coll, did)); return bool(rec) and rec.get("by") != BY
 def save_register():
     if NOREG: return
     for k in list(reg["docs"]):
         coll, did = k.split("/", 1)
         base = re.sub(r"\.p\d+$", "", did)                                                                   # a split part: <id>.p2
-        d = stamp_day(base) or stamp_day(base.split("-", 1)[1] if "-" in base and base.split("-", 1)[0].isalpha() else "")   # snapshots/approvals-<stamp>
+        d = stamp_day(base) or retry_day(base) or stamp_day(base.split("-", 1)[1] if "-" in base and base.split("-", 1)[0].isalpha() else "")   # snapshots/approvals-<stamp>, feed_batches/<stamp>R
         if coll != "practice" and d and d < FLOOR45: del reg["docs"][k]
     os.makedirs(os.path.dirname(os.path.abspath(REGF)), exist_ok=True)
     with open(REGF, "w", encoding="utf-8", newline="\n") as fh:          # one sorted line per document: git's union merge keeps two runs' additions
@@ -203,7 +233,8 @@ def feed_batch_body(stamp):
     rec = load(os.path.join(REG, "feed_recon_%s.json" % stamp)) or load(os.path.join(WS, "registers", "feed_recon_%s.json" % stamp))
     if not rec: return None
     facs = sorted({r.get("fac") for r in rec["rows"] if r.get("fac")}); cars = sorted({r.get("lead") for r in rec["rows"] if r.get("lead")}); provs = sorted({r.get("prov") for r in rec["rows"] if r.get("prov")})
-    return {"schema": "practice-feed-batch/1", "stamp": stamp, "at": rec.get("at"), "built": rec.get("built"), "live": rec.get("live"), "files": rec.get("files", []),
+    return {"schema": "practice-feed-batch/1", "stamp": stamp, "at": rec.get("at") or rec.get("built"), "built": rec.get("built"), "live": rec.get("live"), "files": rec.get("files", []),
+            "retry": bool(retry_day(stamp)),                                                                     # a retry batch (claimocity_retry_dx.py): visits an earlier batch skipped
             "dmin": rec.get("dmin"), "dmax": rec.get("dmax"), "counts": rec.get("counts", {}), "rows": rec["rows"],
             "lookups": {"fac": {f: fac_name(f) for f in facs}, "car": {c: CODE2NAME.get(c, c) for c in cars}, "prov": {p: clin(p) for p in provs}},
             "source": "practices/ehpa/registers/feed_recon_%s.json" % stamp}
@@ -253,17 +284,85 @@ def era_doc(stamp, swept=False):
     def chk(x):
         if isinstance(x, list): x = {"count": len(x), "total": None, "checks": x}
         if not isinstance(x, dict): return None
-        return {"count": x.get("count"), "total": x.get("total"), "checks": [c if isinstance(c, str) else {k: v for k, v in c.items() if k in ("id", "check", "checkid", "payer", "amount", "total", "date", "carrier")} for c in (x.get("checks") or [])[:60] if isinstance(c, (str, dict))]}
+        tot = x.get("total")
+        if not tot:                                   # review round 2: a register that kept each check's unposted amount but no total
+            amts = [money(c.get("unpostedamount")) for c in (x.get("checks") or []) if isinstance(c, dict) and c.get("unpostedamount") is not None]
+            if amts: tot = round(sum(amts), 2)
+        return {"count": x.get("count"), "total": tot, "checks": [c if isinstance(c, str) else {k: v for k, v in c.items() if k in ("id", "check", "checkid", "payer", "amount", "total", "date", "carrier")} for c in (x.get("checks") or [])[:60] if isinstance(c, (str, dict))]}
     body = {"schema": "practice-era-run/1", "stamp": stamp, "at": None, "checks_before": chk(before), "checks_after": chk(after), "lines": lines[:800],
-            "line_count": len(lines), "paid_total": round(sum(l["paid"] for l in lines), 2), "outcomes": dict(outcomes),
+            "line_count": len(lines) if isinstance(new, dict) else None, "paid_total": round(sum(l["paid"] for l in lines), 2), "outcomes": dict(outcomes),
             "audit": {"checks": audit.get("checks", [])[:60], "rows": len(audit.get("rows", [])), "flags": [[clip(x, 60) for x in (f if isinstance(f, list) else [f])] for f in audit.get("flags", [])[:80]]} if isinstance(audit, dict) else None,
             "fallback": {"keys": sorted((fb or {}).keys())[:20]} if isinstance(fb, dict) else None, "dry": bool(new.get("dry")) if isinstance(new, dict) else False,
             "source": "practices/ehpa/registers/era_*_%s.json" % stamp}
     m = re.match(r"(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z", stamp)
     if m: body["at"] = "%s-%s-%sT%s:%s:00Z" % m.groups()
+    if not lines:                                    # review round 1 (11/12/2026): no posted line on file (a run that left only checks before/after) - its report
+        rep = rb = None                              # says what the era step did; 17 such runs of 10/19-10/31 read "0 lines" while checks were posted
+        for st in report_twins(stamp):               # review round 2: the register's own report first, then its twins - only one whose checks-before count agrees
+            r = report_era(st)
+            if not r or not (r["touched"] or r["paid"]): continue
+            se = r["j"].get("summary", {}).get("era") if isinstance(r["j"].get("summary"), dict) else None
+            b4 = se.get("before") if isinstance(se, dict) and isinstance(se.get("before"), dict) else {}
+            cnt = (body.get("checks_before") or {}).get("count")
+            if cnt is None or b4.get("checks") is None or int(float(b4.get("checks") or 0)) == int(float(cnt or 0)): rep, rb = r, b4; break
+        if rep:
+            body.update(rep["fields"]); body["report_merged"] = True
+            if not body["paid_total"]: body["paid_total"] = rep["paid"]
+            body["outcomes"] = dict(rep["outcomes"], **body["outcomes"])
+            cb = body.get("checks_before")
+            if isinstance(cb, dict) and not cb.get("total") and money(rb.get("unposted")): cb["total"] = money(rb.get("unposted"))
+            body["source"] += " + reports/button/%s.json (the era step)" % rep["stamp"]
     add("era_runs", norm_stamp(stamp), body, swept); return body
 def era_stamps():
     return sorted({re.sub(r"^era_(new|checks_before|checks_after|audit|fallback_live)_|\.json$", "", os.path.basename(p)) for p in glob.glob(os.path.join(REG, "era_*_20*.json")) if "_dry" not in p})
+ERA_OUTCOMES = (("posted (Post button)", "era_post lines"), ("posted (fallback)", "fallback posted"), ("CO-45 corrected", "co45 lines corrected"),
+                ("CO-45 for review", "co45 lines for review"), ("checks dismissed", "checks dismissed"), ("checks held", "checks held"), ("denial lines recorded", "denial lines recorded"))
+def report_era(stamp):
+    """the `era` step of reports/button/<stamp>.json - what the run's own report says its ERA work was - or None (no report, no era step).
+    checks_posted = the Post button's presses: era_post.py prints one POST line per check, and the engine counts those lines as 'era_post
+    lines'; the report holds no count of the visit lines those checks paid. fallback_lines = lines the fallback posted one by one.
+    co45_corrected = lines the Post button had already posted that the CO-45 relink voided and posted again - never added to a posted
+    total (review round 1, 11/12/2026: an earlier build summed the three as 'lines posted')."""
+    j = load(os.path.join(REPO, "reports", "button", "%s.json" % stamp))
+    if not j: return None
+    st = next((s for s in (j.get("steps") or []) if isinstance(s, dict) and s.get("name") == "era"), None)
+    if not st: return None
+    c = st.get("counts") if isinstance(st.get("counts"), dict) else {}; d = st.get("dollars") if isinstance(st.get("dollars"), dict) else {}
+    def n(x):
+        try: return int(float(x or 0))
+        except Exception: return 0
+    f = {"checks_posted": n(c.get("era_post lines")), "fallback_lines": n(c.get("fallback posted")), "co45_corrected": n(c.get("co45 lines corrected")),
+         "run_url": j.get("run_url") or None, "status": st.get("status"), "summary": clip(st.get("summary"), 300), "errors": [clip(e, 240) for e in (st.get("errors") or [])[:4]]}
+    touched = f["checks_posted"] + f["fallback_lines"] + f["co45_corrected"] + n(c.get("checks dismissed")) + n(c.get("checks held")) + n(c.get("co45 lines for review"))
+    return {"stamp": stamp, "j": j, "st": st, "c": c, "d": d, "n": n, "fields": f, "touched": touched, "paid": money(d.get("posted this run")),
+            "outcomes": {label: n(c.get(k)) for label, k in ERA_OUTCOMES if n(c.get(k))}}
+def era_doc_from_report(stamp, swept=False):
+    """11/12/2026: the ERA document of a run that left no era_* register on main (the GitHub Actions engine - its registers stay in its own
+    workspace), built from the report's `era` step (report_era): checks before/after from summary.era with the check rows the step listed,
+    checks posted, fallback lines, CO-45 corrections and dollars posted. line_count stays null - the report does not count posted lines.
+    A run that did nothing and left no unposted check gets no document (its quiet look is in billing_runs.summary.era)."""
+    rep = report_era(stamp)
+    if not rep: return None
+    j, st, c, d, n = rep["j"], rep["st"], rep["c"], rep["d"], rep["n"]
+    se = j.get("summary", {}).get("era") if isinstance(j.get("summary"), dict) else None
+    before = se.get("before") if isinstance(se, dict) and isinstance(se.get("before"), dict) else None
+    after = se.get("after") if isinstance(se, dict) and isinstance(se.get("after"), dict) else None
+    left = n((after or {}).get("checks"))
+    if not rep["touched"] and not left and not money((before or {}).get("unposted")) and not n((before or {}).get("checks")): return None
+    rows = [{"check": l.get("check"), "payer": clip(l.get("payer"), 30), "checknumber": l.get("checknumber"), "amount": money(l.get("amount")), "unposted": money(l.get("unposted"))}
+            for l in (st.get("lines") or []) if isinstance(l, dict) and l.get("stage") == "before"][:60]
+    def chk(x, checks):
+        return {"count": n(x.get("checks")), "total": money(x.get("unposted")), "checks": checks} if isinstance(x, dict) else None
+    body = {"schema": "practice-era-run/2", "stamp": j.get("stamp") or stamp, "at": st.get("ended") or st.get("started") or j.get("ended") or j.get("started"),
+            "checks_before": chk(before, rows), "checks_after": chk(after, []), "lines": [], "line_count": None, "paid_total": rep["paid"],
+            "outcomes": rep["outcomes"], "counts": {k: v for k, v in c.items() if isinstance(v, (int, float))}, "dollars": {k: money(v) for k, v in d.items()},
+            "audit": None, "fallback": None, "dry": (j.get("mode") or "live") != "live", "engine": True,
+            "source": "reports/button/%s.json - the era step (the engine keeps its era_* registers in its own workspace)" % stamp}
+    body.update(rep["fields"])
+    if not body["at"]:
+        m = re.match(r"(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z", stamp)
+        if m: body["at"] = "%s-%s-%sT%s:%s:00Z" % m.groups()
+    add("era_runs", norm_stamp(stamp), body, swept); return body
 
 # ---- the nightly insurance cascade (tools/db/cascade_record.py writes the register file at the end of every night) ---------------------
 def cascade_doc(stamp, swept=False):
@@ -303,15 +402,120 @@ def practice_snapshots():
         if j is None: continue
         add("practice", name, {"schema": "practice-master/1", "name": name, "data": j, "source": "practices/ehpa/%s" % path})
 
+# ---- the permanent store and the practice web app (11/12/2026 - the page's "Permanent store and web app" box) ----------------------------
+NEON_PROJECT = "steep-rain-79347575"                                    # the Neon project id (tools/mirror/phi_gate.py knows it is not a name)
+NEON_CONSOLE = "https://console.neon.tech/app/projects/" + NEON_PROJECT
+WEBAPP = {"url": "https://app.ehpa.dev/", "health_url": "https://app.ehpa.dev/health", "alt": "https://ehpa.dev/",
+          "host": "Neon Functions - the function ehpadb in the project ehpa-database (not Vercel); custom domains app.ehpa.dev and ehpa.dev"}
+def redact(s):
+    """driver and OS text can echo a connection string (libpq does for some malformed URIs): nothing stored here or shown on the page carries one"""
+    s = re.sub(r"(?i)postgres(?:ql)?://\S*", "postgres://[redacted]", str(s or ""))
+    s = re.sub(r"://[^/\s@]*@", "://[redacted]@", s)
+    s = re.sub(r"[^\s\x22\x27/@]+:[^\s\x22\x27/@]+@", "[redacted]@", s)                 # user:password@ with or without a scheme (review round 2)
+    s = re.sub(r'(percent-encoded (?:token|value): )"[^"]*"', r'\1"[redacted]"', s)    # libpq names the bad token - from inside the password
+    return re.sub(r"(?i)\b(password|passwd|pwd)\s*=\s*\S+", r"\1=[redacted]", s)
+NEON_PROBE_S = 90         # the whole health call; neon_db.py gets 15 s per wire driver and 30 s for the HTTPS route (NEON_CONNECT_TIMEOUT / NEON_HTTP_TIMEOUT),
+                          # so a container that reaches nothing answers in about a minute - inside one shell command's two minutes, with the web probe beside it
+def neon_body(stamp):
+    """what `neon_db.py health --json` sees: documents, pairs, last load, last routine run, the web app's own access log. reachable=False with a
+    short reason when the database cannot be reached from here (no connection string, no path, no answer in time) - redacted, never a URL."""
+    import subprocess
+    cmd = [sys.executable, os.path.join(REPO, "tools", "db", "neon_db.py"), "health", "--json", "--repo", REPO, "--ws", WS]
+    if opt("--neon-url-file"): cmd += ["--url-file", opt("--neon-url-file")]
+    body = {"schema": "practice-snapshot/1", "kind": "neon", "stamp": stamp, "at": iso_now(), "reachable": False, "project": NEON_PROJECT, "console": NEON_CONSOLE,
+            "source": "tools/db/neon_db.py health --json"}
+    env = dict(os.environ, PYTHONUTF8="1", NEON_CONNECT_TIMEOUT="15", NEON_HTTP_TIMEOUT="30")
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=NEON_PROBE_S, env=env)
+        line = next((l for l in reversed((r.stdout or "").splitlines()) if l.startswith("{")), "")
+        if r.returncode == 0 and line:
+            body.update(json.loads(line)); body["reachable"] = True
+        else:                                     # review rounds 2-3: a stored document gets a fixed phrase, never driver text; blocked = this environment cannot reach Neon
+            said = (r.stderr or "") + "\n" + (r.stdout or "")
+            if "no connection string" in said:
+                body["error"] = "no connection string in this environment (NEON_DATABASE_URL or the git-ignored secrets file)"; body["blocked"] = True
+            elif "does not read as a URL" in said:
+                body["error"] = "the connection string in this environment does not read as a URL - tools/db/neon_db.py health says how to fix it"
+            elif re.search(r"password authentication failed|28P01|HTTP Error 40[13]|is disabled|exceeded|quota|role \S+ does not exist|database \S+ does not exist", said, re.I):
+                body["error"] = "the database refused this build's connection (credentials, a disabled endpoint or a quota) - tools/db/neon_db.py health shows the drivers' answers"
+            elif "no path to the database" in said:
+                body["error"] = "no path to the database from here - tools/db/neon_db.py health shows the drivers' answers"
+                body["blocked"] = bool(re.search(r"timed out|timeout|refused|getaddrinfo|Name or service not known|nodename nor servname|Temporary failure in name resolution|failed to resolve host|could not translate host name|Tunnel connection failed|Network is unreachable|No route to host", said, re.I))
+            else: body["error"] = "neon_db.py health failed (exit %s) - tools/db/neon_db.py health shows why" % r.returncode
+    except subprocess.TimeoutExpired: body["error"] = "neon_db.py did not answer within %d s" % NEON_PROBE_S; body["blocked"] = True
+    except Exception as ex: body["error"] = "neon_db.py could not be run (%s)" % type(ex).__name__
+    return body
+def webapp_body(stamp):
+    """does the practice web app answer? GET /health (200 'ok') timed, then GET / for the title. A redirect (a sign-in page, another host) is
+    said, never read as the app's 'ok'. From a container whose egress policy refuses the host the probe says blocked=True instead of
+    reachable, and the page falls back to the newest probe that got through."""
+    import urllib.request, urllib.error, time as _t
+    body = {"schema": "practice-snapshot/1", "kind": "webapp", "stamp": stamp, "at": iso_now(), "reachable": False, "blocked": False, "ok": False, "source": "GET %s" % WEBAPP["health_url"]}
+    body.update(WEBAPP); hdr = {"User-Agent": "ehpa-practice-db/1 (health probe)"}
+    try:
+        t0 = _t.time()
+        with urllib.request.urlopen(urllib.request.Request(WEBAPP["health_url"], headers=hdr), timeout=15) as r:
+            txt = r.read(200).decode("utf-8", "replace"); final = r.geturl(); body.update({"status": r.status, "body": clip(txt.strip(), 40)})
+        body["ms"] = int((_t.time() - t0) * 1000); body["reachable"] = True
+        if final and final.rstrip("/") != WEBAPP["health_url"].rstrip("/"):
+            body["final_url"] = clip(final, 160); body["error"] = clip("redirected to %s" % final, 160)
+        body["ok"] = body["status"] == 200 and body["body"].lower().startswith("ok") and not body.get("final_url")
+        try:
+            with urllib.request.urlopen(urllib.request.Request(WEBAPP["url"], headers=hdr), timeout=15) as r: html = r.read(80000).decode("utf-8", "replace"); body["home_status"] = r.status
+            m = re.search(r"<title>(.*?)</title>", html, re.S | re.I); body["title"] = clip(re.sub(r"\s+", " ", m.group(1)).strip(), 80) if m else None
+        except Exception as ex: body["home_error"] = clip(redact(ex), 160)
+    except urllib.error.HTTPError as ex:
+        body.update({"status": ex.code, "reachable": True, "error": clip("HTTP %s %s" % (ex.code, ex.reason), 160)})
+    except Exception as ex:
+        s = redact(ex); body["error"] = clip(s, 200)
+        if re.search(r"403|Forbidden|proxy|Tunnel connection failed|policy|Name or service not known|nodename nor servname", s, re.I): body["blocked"] = True
+    return body
+def service_snapshots(stamp):
+    """snapshots/neon-<stamp> and snapshots/webapp-<stamp>, both probes at once"""
+    if NO_SERVICES: return
+    import threading
+    got = {}
+    t = threading.Thread(target=lambda: got.__setitem__("neon", neon_body(stamp)), daemon=True); t.start()
+    w = webapp_body(stamp); t.join(NEON_PROBE_S + 15)
+    n = got.get("neon") or {"schema": "practice-snapshot/1", "kind": "neon", "stamp": stamp, "at": iso_now(), "reachable": False, "project": NEON_PROJECT, "console": NEON_CONSOLE,
+                            "source": "tools/db/neon_db.py health --json", "error": "neon_db.py did not answer within %d s" % NEON_PROBE_S}
+    add("snapshots", "neon-%s" % stamp, n); add("snapshots", "webapp-%s" % stamp, w)
+
+def report_groups():
+    """reports/button/<stamp>[-engine|-routine|-sweep].json grouped by document id (norm_stamp drops the suffix), the plain name first -
+    '-' sorts before '.', so a suffixed twin used to take the id by glob order (review round 1, 11/12/2026)"""
+    by = collections.OrderedDict()
+    for p in sorted(glob.glob(os.path.join(REPO, "reports", "button", "20*.json"))):
+        st = os.path.basename(p)[:-5]; by.setdefault(norm_stamp(st), []).append(st)
+    return [sorted(v, key=lambda s: (bool(re.search(r"-[a-z]+$", s)), s)) for v in by.values()]
+_RG = None
+def report_twins(stamp):
+    """the reports that share this stamp's document id: the stamp's own first, then the plain name, then suffixed twins"""
+    global _RG
+    if _RG is None: _RG = {norm_stamp(g[0]): g for g in report_groups()}
+    g = _RG.get(norm_stamp(stamp)) or []
+    return ([stamp] if stamp in g else []) + [s for s in g if s != stamp]
+
 # ---- the sweep: what main holds and the database does not yet (the last SWEEP_DAYS days) -------------------------------------------------
 def sweep():
     floor = (NOW - datetime.timedelta(days=SWEEP_DAYS)).strftime("%Y%m%d")
-    for p in sorted(glob.glob(os.path.join(REPO, "reports", "button", "20*.json"))):
-        st = os.path.basename(p)[:-5]; d = stamp_day(st)
-        if d and d >= floor and not written("billing_runs", norm_stamp(st)): run_doc(st, swept=True)
+    for group in report_groups():
+        d = stamp_day(group[0])
+        if d and d >= floor and not written("billing_runs", norm_stamp(group[0])): run_doc(group[0], swept=True)
     for st in era_stamps():
         d = stamp_day(st)
         if d and d >= floor and not written("era_runs", norm_stamp(st)): era_doc(st, swept=True)
+    have_reg = {norm_stamp(s) for s in era_stamps()}                                   # 11/12: the engine's postings - a report on main, no era_* register
+    for group in report_groups():
+        d = stamp_day(group[0]); nid = norm_stamp(group[0])
+        if d and d >= floor and nid not in have_reg and not written("era_runs", nid):
+            for st in group:                                                            # twins: the first whose era step did something
+                if era_doc_from_report(st, swept=True): break
+    for p in sorted(glob.glob(os.path.join(REG, "feed_recon_*R.json"))):               # 11/12: retry batches (claimocity_retry_dx.py) - skipped visits of earlier batches, entered later
+        st = re.sub(r"^feed_recon_|\.json$", "", os.path.basename(p)); d = retry_day(st)
+        if d and d >= floor and not written("feed_batches", st):
+            body = feed_batch_body(st)
+            if body: add("feed_batches", st, body, True)
     for p in sorted(glob.glob(os.path.join(REG, "feed_recon_*.json"))):
         st = re.sub(r"^feed_recon_|\.json$", "", os.path.basename(p)); d = stamp_day(st)
         if not (d and d >= floor): continue
@@ -337,28 +541,36 @@ if RUN:
         result = opt("--check-result") or ("ingested" if b else "nothing_new")
         feed_check_doc(st, result, opt("--check-line", ""), b)
     r = run_doc(RUN) or run_doc(st)
-    e = era_doc(RUN) or era_doc(re.sub(r"(\d{4})(\d{2})(\d{2})T", r"\1-\2-\3T", st))
+    e = era_doc(RUN) or era_doc(re.sub(r"(\d{4})(\d{2})(\d{2})T", r"\1-\2-\3T", st)) or era_doc_from_report(RUN) or era_doc_from_report(re.sub(r"(\d{4})(\d{2})(\d{2})T", r"\1-\2-\3T", st))
     cascade_doc(RUN)
-    approvals_snapshot(st); repo_snapshot(st)
+    approvals_snapshot(st); repo_snapshot(st); service_snapshots(st)
     if not NO_SWEEP: sweep()
 elif SWEEP_ONLY:
-    sweep()
+    sweep(); service_snapshots(BUILD)
 elif ALL:
     for p in sorted(glob.glob(os.path.join(REG, "feed_recon_*.json"))) or sorted(glob.glob(os.path.join(WS, "registers", "feed_recon_*.json"))):
         st = re.sub(r"^feed_recon_|\.json$", "", os.path.basename(p))
         if not stamp_day(st) or stamp_day(st) < SINCE: continue
         b = feed_batch_doc(st); feed_check_doc(st, "ingested", "backfill from registers", b or feed_batch_body(st))
-    for p in sorted(glob.glob(os.path.join(REPO, "reports", "button", "20*.json"))):
-        st = os.path.basename(p)[:-5]
-        if not stamp_day(st) or stamp_day(st) < SINCE: continue
-        run_doc(st)
+    for group in report_groups():
+        if not stamp_day(group[0]) or stamp_day(group[0]) < SINCE: continue
+        run_doc(group[0])
     for st in era_stamps():
         if not stamp_day(st) or stamp_day(st) < SINCE: continue
         era_doc(st)
+    have_reg = {norm_stamp(s) for s in era_stamps()}
+    for group in report_groups():
+        if not stamp_day(group[0]) or stamp_day(group[0]) < SINCE or norm_stamp(group[0]) in have_reg: continue
+        for st in group:
+            if era_doc_from_report(st): break
+    for p in sorted(glob.glob(os.path.join(REG, "feed_recon_*R.json"))):
+        st = re.sub(r"^feed_recon_|\.json$", "", os.path.basename(p))
+        if not retry_day(st) or retry_day(st) < SINCE: continue
+        feed_batch_doc(st)
     for stem in cascade_stems():
         if not stamp_day(stem) or stamp_day(stem) < SINCE: continue
         cascade_doc(stem)
-    approvals_snapshot(BUILD); repo_snapshot(BUILD); practice_snapshots()
+    approvals_snapshot(BUILD); repo_snapshot(BUILD); practice_snapshots(); service_snapshots(BUILD)
 elif PRACTICE:
     practice_snapshots()
 else:
@@ -387,28 +599,35 @@ def doc_day(coll, did, body):
         d = stamp_day(str(s)) if s else None
         if d: return d
     return "other"
-own = [d for d in docs if not d[3]]; swept = [d for d in docs if d[3]]
+resend = [d for d in docs if "%s/%s" % (d[0], d[1]) in RESEND]; docs_new = [d for d in docs if "%s/%s" % (d[0], d[1]) not in RESEND]
+own = [d for d in docs_new if not d[3]]; swept = [d for d in docs_new if d[3]]
 for coll, _, _, _ in own: made[coll] += 1
 for coll, _, _, _ in swept: made_swept[coll] += 1
 own_names, own_batches = pack(own, "")
 sw_names, sw_batches = [], []
+rs_names, rs_batches = pack(resend, "resend_") if resend else ([], [])
 for day in sorted({doc_day(c, i, b) for c, i, b, _ in swept}, reverse=True):
     n, bb = pack([x for x in swept if doc_day(x[0], x[1], x[2]) == day], "sweep_%s_" % day); sw_names += n; sw_batches += bb
 for coll, did, _, _ in docs: reg["docs"]["%s/%s" % (coll, did)] = {"at": iso_now(), "by": BY}
+unreached = sorted(RESEND - {"%s/%s" % (c, i) for c, i, _, _ in docs})
+for k in unreached: print("practice_db: --resend %s was NOT rebuilt - this build never reached it (outside --sweep-days, a typo, or no record of it on main); widen --sweep-days or use --all" % k, file=sys.stderr)
 save_register()
 calls = ["# ehpa Practice Database - calls for this build (%s%s)" % (BUILD, SINCE_NOTE), "",
          "This run's documents: " + (", ".join("%s %d" % kv for kv in sorted(made.items())) or "none"),
          "Swept from main (other runs' records the database did not have yet): " + (", ".join("%s %d" % kv for kv in sorted(made_swept.items())) or "none"),
          "Already in the database, not sent again: " + (", ".join("%s %d" % kv for kv in sorted(skipped.items())) or "none"), "",
-         "For each writes file below make ONE ArtifactData call: action \"batch\", url \"%s\", writes = the file's JSON array verbatim (each entry is {op, collection, doc_id, file_path}; every doc_id is new as far as the register knows, so no if_version)." % URL,
+         "For each writes file below make ONE ArtifactData call: action \"batch\", url \"%s\", writes = the file's JSON array verbatim (each entry is {op, collection, doc_id, file_path}; every doc_id is new as far as the register knows, so no if_version - writes_resend_N.json, below, is the one exception)." % URL,
          "Two answers need a hand: (a) the answer names a document that ALREADY EXISTS (the register had fallen behind the database): `python3 tools/db/practice_db.py trim --out %s --file <that writes file> --exists <collection>/<doc_id>` drops that one entry (the register keeps it) - send the same file again, and repeat while the answer names another document; never `unsent` for this. (b) the call was refused, asked for an approval, answered quota_exceeded / invalid_argument or any other error: do not retry it - `python3 tools/db/practice_db.py unsent --out %s --file <that writes file>` takes its ids back out of the register so the next run resends them; report it (quota_exceeded / invalid_argument verbatim) and go on." % (OUT, OUT),
-         "The register %s now lists every document above as sent. Commit and push it RIGHT AFTER the batch calls (every run, before any later rebase or mirror step): `cd %s && git add practices/ehpa/registers/practice_db_written.jsonl && git commit -q -m \"practice db register %s\" && git pull -q --rebase --autostash origin main && git push origin HEAD:main` (nothing to commit = fine; a rejected push is reported, never forced; the file merges line by line with another run's)." % (REGF, REPO, RUN or BUILD),
+         (("DRY BUILD (--no-register): nothing was recorded in the register %s - do not send these files; build again without --no-register to send them." % REGF) if NOREG else "The register %s now lists every document above as sent. Commit and push it RIGHT AFTER the batch calls (every run, before any later rebase or mirror step): `cd %s && git add practices/ehpa/registers/practice_db_written.jsonl && git commit -q -m \"practice db register %s\" && git pull -q --rebase --autostash origin main && git push origin HEAD:main` (nothing to commit = fine; a rejected push is reported, never forced; the file merges line by line with another run's)." % (REGF, REPO, RUN or BUILD)),
          "Run the build ONCE per run. A second build of the same stamp re-emits this run's own files (and sweeps again); send only what was not sent before.",
          "PERMANENT STORE (Neon Postgres - William 11/6/2026: \"have all the routines send the outputs and all to this database as well\"): right after the batch calls, ONE plain command copies the same documents (this run's and the swept ones) into the practice's HIPAA database: `cd %s && python3 tools/db/neon_db.py load-writes --out %s`, then `python3 tools/db/neon_db.py run-log --routine \"<this routine's name>\" --stamp %s --status ok|partial|failed --headline \"<the report's one line>\"` records the run in ops.routine_runs. Each prints one line for the report. The connection string is NEON_DATABASE_URL (an environment credential of the ehpa cloud environment) or, when absent, secrets/neon_database_url written once per container from the Gmail thread 'neon database url' (like the other keys; never Drive, never committed); 'no connection string', 'no path to the database' (the egress policy blocks the Neon hosts) or 'REFUSED' is reported verbatim and never retried - the artifact batches above stand on their own; when it failed, run the same command again next run with this --out." % (REPO, OUT, RUN or BUILD), ""]
 for name, b in zip(own_names, own_batches): calls.append("- %s : %d documents (%s)" % (name, len(b), ", ".join(sorted({e['collection'] for e in b}))))
 for name, b in zip(sw_names, sw_batches): calls.append("- %s : %d swept documents (%s)" % (name, len(b), ", ".join(sorted({e['collection'] for e in b}))))
+for name, b in zip(rs_names, rs_batches): calls.append("- %s : %d RESENT documents (%s) - each REPLACES a document the database holds: read it (ArtifactData get) and add its version to the entry as if_version before the batch call. Never trim or unsent this file: if the answer names a changed version, read that document again, fix its if_version and send the file again; if this folder is lost, build again with the same --resend ids" % (name, len(b), ", ".join(sorted({e['collection'] for e in b}))))
+if unreached: calls.append("- --resend NOT rebuilt (this build never reached them - widen --sweep-days or use --all): " + ", ".join(unreached))
 if not docs: calls.append("- nothing to write: every document is already in the database")
 open(os.path.join(OUT, "CALLS.md"), "w", encoding="utf-8").write("\n".join(calls) + "\n")
-print("practice_db build %s -> %s : %d document(s) in %d batch file(s) [%s] + %d swept in %d sweep file(s) [%s]; %d already in the database%s%s" % (
+print("practice_db build %s -> %s : %d document(s) in %d batch file(s) [%s] + %d swept in %d sweep file(s) [%s]%s; %d already in the database%s%s" % (
     BUILD, OUT, len(own), len(own_names), ", ".join("%s %d" % kv for kv in sorted(made.items())) or "-", len(swept), len(sw_names),
-    ", ".join("%s %d" % kv for kv in sorted(made_swept.items())) or "-", sum(skipped.values()), "" if NOREG else "; register updated", SINCE_NOTE))
+    ", ".join("%s %d" % kv for kv in sorted(made_swept.items())) or "-", (" + %d resent in %d file(s) (need if_version)" % (len(resend), len(rs_names))) if resend else "",
+    sum(skipped.values()), "" if NOREG else "; register updated", SINCE_NOTE))

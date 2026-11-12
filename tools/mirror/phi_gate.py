@@ -221,6 +221,7 @@ CODE_HINT = re.compile(r"^(import |from \S+ import |def |class |#!/|#!)", re.M)
 STR_OR_COMMENT = re.compile(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|#[^\n]*)')
 # board-row slugs built from real names ("last-first-<amdid>", the BOARD ACCESS RULE's id form, with an optional initial)
 NOT_SLUG = {"ehpa", "project", "claimocity", "pull", "drive", "run", "job", "cloud", "us", "east", "west", "central"}
+NOT_SLUG_IDS = {"steep-rain-79347575", "sparkling-silence-16346164"}   # the Neon project id and org id (11/12/2026) - kept whole, matched exactly, not as two loose words
 SLUG_NAME = re.compile(r"\b([a-z][a-z']+)-([a-z][a-z']+)((?:-[a-z])?)-(\d{5,9})\b")
 # file names built from a name and a date of birth (patient_db/pending_admits/<last>_<first>_<yyyymmdd>.json)
 FILE_SLUG = re.compile(r"\b([a-z][a-z']+)_([a-z][a-z']+)_((?:19|20)\d{6})\b")
@@ -294,7 +295,7 @@ def redact(text, names, code=None):
     t = PROSE_NAME.sub(lambda m: _bare(m, vals_up), t)
     def slug(m):
         last, first, ini, pid = m.group(1), m.group(2), m.group(3), m.group(4)
-        if last in NOT_SLUG or first in NOT_SLUG:        # ehpa-project-50717 (GCP project id), claimocity-pull-<n> (Cloud Run execution) - not a board row slug (10/29)
+        if m.group(0) in NOT_SLUG_IDS or last in NOT_SLUG or first in NOT_SLUG:        # ehpa-project-50717 (GCP project id), claimocity-pull-<n> (Cloud Run execution) - not a board row slug (10/29)
             return m.group(0)
         if last not in vals_lo:
             return "[name]-" + pid

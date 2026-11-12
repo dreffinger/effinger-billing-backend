@@ -372,6 +372,10 @@ else: check("records the import cannot key: each is skipped and named", False, p
 
 # ------------------------------------------------------------------ the retry of visits that waited on a diagnosis code
 ws = workspace("retry"); EARLIER = "20261109T0000Z"
+# 11/12/2026 (merge of main's 99349 / unknown-CPT retry): the retry enters a visit only when every code of it is in BOTH the PCODE and the FEE table of
+# the import copy beside it (it reads them as text, never runs it) - the sandbox gets those two tables of the importer, read from it here, and nothing else
+_isrc = open(IMPORT, encoding="utf-8").read()
+open(os.path.join(ws, "claimocity_import.py"), "w", encoding="utf-8").write("".join(re.search(r"^%s\s*=\s*\{.*?\}\n" % t_, _isrc, re.S | re.M).group(0) for t_ in ("PCODE", "FEE")))
 json.dump({"created": [], "failed": [], "skipped": [{"feed_id": fid(2), "pid": chart(2), "why": "no usable dx for 99308"}]}, open(os.path.join(ws, "registers", "feed_import_%s.json" % EARLIER), "w"))
 family, given, born, member = person(2)
 json.dump([{"file": FILE, "FT1": [], "IN1": [], "DG1": [], "facility": "", "msgtime": "", "pid": fid(2), "name": family + ", " + given, "dob": born, "provider": "", "admit": ""},      # the same patient's message with no charge line, read first

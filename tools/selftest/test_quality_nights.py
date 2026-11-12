@@ -42,7 +42,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_import.py")
 QP = "pcode65441"; MP = "pcode692183"                                   # AdvancedMD's ids for the 1123F line and the option code's M0004 line
 PCODE = {"99487": "pcode492676", "99489": "pcode492677", "99223": "pcode65084", "99232": "pcode65089", "99233": "pcode65090", "99239": "pcode65095", "99497": "pcode492667", "99498": "pcode492668",
-         "99306": "pcode65116", "99308": "pcode65118", "99309": "pcode65119", "99316": "pcode65122", "99344": "pcode601053"}      # the helper's own table (checked against it in the cases)
+         "99306": "pcode65116", "99308": "pcode65118", "99309": "pcode65119", "99316": "pcode65122", "99344": "pcode601053", "99349": "pcode65142"}      # the helper's own table (checked against it in the cases; 99349 since 11/12/2026)
 CPT_OF = dict({v: k for k, v in PCODE.items()}, **{QP: "1123F", MP: "M0004"})
 PROF_OF = {"1225327380": "prof13", "1235128869": "prof15"}             # my own copy of the helper's profile table: the clinician an M0004 line belongs to
 MCHG_RE = re.compile(r'<charge id=""(?:(?!</charge>).)*proccode="pcode692183"(?:(?!</charge>).)*</charge>')
