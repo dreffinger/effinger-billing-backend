@@ -439,7 +439,7 @@ button.btn:disabled{opacity:.5;cursor:default}
   const RES_KIND=/^(SNF|ALF|IL|ICF)$/;
   function facInfo(it){
     // 11/12 (William): the facility the card's CHARGE came from comes first - written by tools/db/board_chargefac.py from the practice
-    // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res, chart_from}
+    // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res, chart, chart_from}
     // 11/12 review: `res` (where a hospital patient lives) never shows under a home's own badge - a guard in case a store merge kept an
     // earlier hospital badge's res (the helper now writes every key, res null / also [] when they do not apply).
     const cf=it.chargefac;
@@ -739,6 +739,23 @@ button.btn:disabled{opacity:.5;cursor:default}
     // The registry is small; always write the whole document.
     await withRetry(()=>db.doc(REG_PATH).set(reg));
   }
+  // 11/12 second review: a charge-facility badge found by a stronger rule is never replaced by a guess - checked HERE, against the badge
+  // the row really holds, whatever the file's maker could see (a run's stamp --items may be partial, empty or wrongly shaped; a build
+  // file may come from an older copy of the board). Same rule as tools/db/board_chargefac.py _keeps - keep the two in step: the op's
+  // badge is only a guess (open balance, dos in notes, newest charge) from a weaker rule than the stored badge's, and the card still has
+  // every chart the stored badge was worked out on (its `chart`). A corrected chart number lets the new chart's badge through, and so
+  // does a badge that does not say its chart. A card with no chart number of its own is matched through its id / text by the helper, so
+  // its chart is the one the op's badge was worked out on.
+  const CF_RANK={'visit':1,'dos':2,'facility id':3,'open balance':4,'dos in notes':5,'newest charge':6}, CF_GUESS=['open balance','dos in notes','newest charge'];
+  const chartList=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const chartNums=row=>{ const out=[]; for(const k of ['amdid','pid','chart']) for(const n of String((row||{})[k]||'').split(/\D+/)) if(n.length>=4&&n.length<=9&&!out.includes(n)) out.push(n); return out; };
+  function keepsBadge(old, neu, row){
+    if(!isObj(old)||!old.name||!isObj(neu)||!CF_GUESS.includes(String(neu.how||''))) return false;
+    if(!(CF_RANK[String(neu.how)] > (CF_RANK[String(old.how||'')]||99))) return false;
+    if(typeof old.chart!=='string') return false;
+    const has=chartNums(row), nowCharts=has.length?has:chartList(neu.chart);
+    return chartList(old.chart).every(c=>nowCharts.includes(c));
+  }
   async function applyOp(op, now, fileCreated){
     if(!isObj(op)) throw new Error('op is not an object');
     const col=String(op.collection||'items'), id=String(op.id||''), kind=String(op.op||'upsert').toLowerCase();
@@ -750,7 +767,9 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(!isObj(op.data)) throw new Error('replace needs data');
       const cur0=await withRetry(()=>ref.get());
       if(cur0.exists && fileCreated && String((cur0.data()||{}).updated||'')>String(fileCreated)) return 'stale';   // the row moved on after this file was written
-      await withRetry(()=>ref.set(Object.assign({},op.data,{updated:op.data.updated||now}))); return;
+      const data=Object.assign({}, op.data), old0=cur0.exists?(cur0.data()||{}).chargefac:null;
+      if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=old0;   // a stronger stored badge stays (see keepsBadge)
+      await withRetry(()=>ref.set(Object.assign({},data,{updated:data.updated||now}))); return;
     }
     if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
     const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
@@ -761,6 +780,8 @@ button.btn:disabled{opacity:.5;cursor:default}
     // Post → Claude, a chat update), its status, need and why are newer than the file's — keep them; the file's appends still land.
     const stale = !!(cur && fileCreated && String(cur.updated||'')>String(fileCreated));
     if(stale){ for(const k of ['status','need','why','updated']) delete patch[k]; }
+    // 11/12 second review: a stronger stored charge-facility badge stays (keepsBadge) - the row as it will be after this op decides the chart
+    if(cur && isObj(patch.chargefac) && keepsBadge(cur.chargefac, patch.chargefac, Object.assign({}, cur, patch))) delete patch.chargefac;
     // 11/2 (William): a run file carries its own 'updated' in set{}, and writing it verbatim rolled the row's stamp BACKWARDS past
     // William's Post - the card then read "updated <this morning>" and, worse, the stale guard above compares the row's stamp with
     // the file's created time, so the next file looked newer than his answer and its status/need/why overwrote it. The stamp only
@@ -778,6 +799,7 @@ button.btn:disabled{opacity:.5;cursor:default}
     const setKeys=Object.keys(set);
     const displayOnly=!!cur && setKeys.length>0 && setKeys.every(k=>k==='chargefac') && !Object.keys(app).length;
     if(!('updated' in patch) && !displayOnly) patch.updated=now;
+    if(cur && !Object.keys(patch).length) return 'kept';   // the op only carried a badge the row keeps: nothing to write
     if(cur){ await withRetry(()=>ref.update(patch)); }
     else{
       const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);
@@ -834,7 +856,7 @@ button.btn:disabled{opacity:.5;cursor:default}
           if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
           else{
             const now=new Date().toISOString(); const errs=[];
-            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; else if(r==='kept') entry.kept=(entry.kept||0)+1; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
             if(errs.length) entry.error=errs.join('; ');
           }
         }

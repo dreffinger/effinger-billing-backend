@@ -19,16 +19,23 @@
 #   4. open balance  the chart's newest live charge that still owes money (insurance or patient balance above zero) - the lines of the
 #                    NEWEST such date, never the facility most of the owing lines came from (a patient who moved shows where they are now)
 #   5. dos in notes  a date of service named in the lookup trail, the API blocks or the notes
-#   6. newest charge the chart's newest live charge (the lines of its newest date of service)
+#   6. newest charge the chart's newest LIVE charge (the lines of its newest date of service). A voided charge's facility is never named
+#                    here: a chart none of whose live charges has a facility stays generic, as it did before 11/12 (second review).
 #   The chart number is amdid (pid / chart are older spellings). A card with none falls back to the number its id ends with (the prompts'
-#   id form last-first-<amdid>; a date-shaped ending - a sweep's -1031 or -20261112 - is never taken for a chart), then to pat<n> written
-#   in its text; the badge then says so (chart_from "card id" / "card text").
+#   id form last-first-<amdid>), then to pat<n> written in its text; the badge then says so (chart_from "card id" / "card text"). A
+#   date-shaped id ending is never taken for a chart: mmdd (-1031), a year (-2026), mmddyy / yymmdd (-111226, -261112), yyyymmdd /
+#   mmddyyyy (-20261112, -11122026), years 2020-2039.
 #   A card whose named charge (rule 1 or 2) has no facility in AdvancedMD stays generic (William: "if no facility ok to put generic").
 #   Several named charges at different facilities: the facility most of them came from is named (the newer one on a tie, shown with its
 #   newest charge), the others are listed under `also`. A hospital (or other non-home) charge also carries `res`, the newest SNF / ALF /
 #   IL / ICF facility on the chart - where the patient lives.
 #   Every chargefac carries EVERY key of CF_KEYS (also [] and res / chart_from null when they do not apply): the board writes a set with
-#   update(), which merges a nested object key by key, so a key left out would keep the earlier badge's value.
+#   update(), which merges a nested object key by key, so a key left out would keep the earlier badge's value. `chart` is the card's AMD
+#   chart number(s) the badge was worked out on (comma-separated, "" when the card had none).
+# A stronger badge stays (_keeps, and the board page's applyOp makes the same check against the badge the row really holds when it
+#   applies ANY file): a guess (open balance, dos in notes, newest charge) never replaces a badge found by a stronger rule - a visit match
+#   is never replaced by the chart's newest charge - while the card still has the chart(s) that badge was worked out on. A corrected
+#   chart number lets the new chart's result through.
 # Reads (SELECT only - anything else is refused before it leaves; Neon's HTTPS SQL route with NEON_DATABASE_URL, the way
 #   tools/db/neon_db.py reaches it when port 5432 is closed): the board's copy (raw.documents source insurance_refresh_board, collection
 #   items - as fresh as the last practice database sync) unless --items gives the rows; amd.charges (AdvancedMD history, pulled
@@ -43,15 +50,21 @@
 #        ONE board_updates_<stamp>.json (schema irb-board-updates/1): {"op":"update","collection":"items","id":...,"set":{"chargefac":{...}}}
 #        for every open card whose charge facility is new or changed (--all: done cards too - applying stamps their `updated`, which the
 #        page's "Also on this chart: ... (done <date>)" line reads, so they are left out by default). "update" never re-creates a card that
-#        has left the board since the copy was made (that op fails and is listed by the page's sync log).
+#        has left the board since the copy was made (that op fails and is listed by the page's sync log). A card whose badge stays
+#        (_keeps) gets no op - the page would keep that badge anyway, and the file would re-send it on every build.
 #   python3 tools/db/board_chargefac.py stamp --file <board_updates_<stamp>.json> [--items <file|dir>]
 #        for a run, after board_ops.clean_file and before the upload: adds `chargefac` to every row the file creates or whose facility /
-#        amdid it sets. --items = the board's rows as the run read them inline: a card already on the board is worked out from the whole
-#        card (its stored text plus the op's set and appends) and keeps the badge it has when that came from a stronger rule - a visit
-#        match is never replaced by an open-balance or newest-charge guess. Without --items a card's badge is unknown, so only a charge
-#        the card names (visit, dos, facility id) is stamped. Prints counts by rule only (row ids are patient-name slugs). When the
-#        database cannot be read the file is left exactly as it was (exit 0) - the run goes on.
-#   --items: a JSON list of rows (each with "id"), a JSON object {id: row}, or the folder an ArtifactData list wrote (<dir>/items/<id>.json).
+#        amdid it sets. --items = the stored rows, from the run's inline board read, of the cards on the board that the file's ops touch
+#        (only those): such a card is worked out from the whole card (its stored text plus the op's set and appends) and keeps the badge
+#        it has (_keeps). A card stamp cannot see whole - not among the --items rows (second review 11/12: the rows given may be partial,
+#        empty or wrongly shaped), or no --items - gets only a charge it names (visit, dos, facility id), with its chart number read from
+#        the op's own amdid / pid / chart only (the stored card may carry an amdid the op does not repeat); a new card - its set carries
+#        `created`, as board_ops.plan_new_row writes it, or patient and dob - gets even a guess. The page's applyOp keeps a stronger
+#        badge whatever the file holds. Prints counts only (row ids are patient-name slugs). When the database cannot be read the file is
+#        left exactly as it was (exit 0) - the run goes on.
+#   --items: a JSON list of rows (each with "id") or of ArtifactData documents ({id or doc_id, version, data}), either list under "items"
+#        or "documents", a JSON object {id: row}, or the folder an ArtifactData list wrote (<dir>/items/<id>.json). stamp reads a file
+#        that gives no row as no --items, and prints how many rows it gave.
 # Self-test: python3 tools/selftest/test_board_chargefac.py
 import os, sys, re, json, datetime, collections, urllib.request, urllib.parse
 
@@ -137,30 +150,39 @@ def kind_of(name):
 # ---- what a card says about its charge ---------------------------------------------------------------------------------------------
 ID_CHART_RE = re.compile(r"-(\d{4,9})$")
 PAT_RE = re.compile(r"\bpat(\d{4,9})\b")
+def _recent(y, m, d):
+    try: datetime.date(y, m, d)
+    except ValueError: return False
+    return 2020 <= y <= 2039
 def _date_shaped(n):
-    """a 4-digit mmdd or an 8-digit 20yymmdd - the date a sweep's card id ends with (...-1031), never a chart number (the 4-digit chart
-    numbers in the repository's records start with 7 or 9, the 8-digit ones with 12 or 17)"""
-    if len(n) == 4: return 1 <= int(n[:2]) <= 12 and 1 <= int(n[2:]) <= 31
-    if len(n) == 8 and n.startswith("20"): return _iso(n[:4], n[4:6], n[6:]) is not None
+    """the date a sweep's card id ends with, never a chart number: mmdd (-1031), a year (-2026), mmddyy / yymmdd (-111226 / -261112),
+    yyyymmdd / mmddyyyy (-20261112 / -11122026) - years 2020-2039 (the second review 11/12 added the year, the 6-digit forms and
+    mmddyyyy). The chart numbers in the repository's records are 4 digits starting with 7 or 9, 5 digits, or 8 digits starting with 12
+    or 17 - none of them date-shaped by this test."""
+    if not n.isdigit(): return False
+    if len(n) == 4: return (1 <= int(n[:2]) <= 12 and 1 <= int(n[2:]) <= 31) or 2020 <= int(n) <= 2039
+    if len(n) == 6: return _recent(2000 + int(n[4:]), int(n[:2]), int(n[2:4])) or _recent(2000 + int(n[:2]), int(n[2:4]), int(n[4:]))
+    if len(n) == 8: return _recent(int(n[:4]), int(n[4:6]), int(n[6:])) or _recent(int(n[4:]), int(n[:2]), int(n[2:4]))
     return False
 
-def chart_ids_found(row):
+def chart_ids_found(row, fallback=True):
     """(['pat<n>', ...], where) - every chart number on the card and where it was read. "": amdid (it may list several: '45447,
     17476874'; pid / chart are older spellings). A card with none of those (review 11/12: 37 of the 42 open cards left generic carried
     their chart elsewhere): "card id" - the number the id ends with (the prompts' id form last-first-<amdid>; a date-shaped ending is
-    passed over), then "card text" - pat<n> written on the card."""
+    passed over), then "card text" - pat<n> written on the card. fallback=False reads amdid / pid / chart only: stamp passes it for a
+    card it cannot see whole (an op's set alone - the stored card may carry an amdid the op does not repeat)."""
     out = []
     for k in ("amdid", "pid", "chart"):
         for n in re.findall(r"(?<!\d)(\d{4,9})(?!\d)", str((row or {}).get(k) or "")):
             if "pat" + n not in out: out.append("pat" + n)
-    if out: return out, ""
+    if out or not fallback: return out, ""
     m = ID_CHART_RE.search(str((row or {}).get("id") or ""))
     if m and not _date_shaped(m.group(1)): return ["pat" + m.group(1)], "card id"
     for n in PAT_RE.findall(all_text(row)):
         if "pat" + n not in out: out.append("pat" + n)
     return out, ("card text" if out else "")
 
-def chart_ids(row): return chart_ids_found(row)[0]
+def chart_ids(row, fallback=True): return chart_ids_found(row, fallback)[0]
 
 def _texts(row, keys):
     out = []
@@ -248,16 +270,17 @@ def load_charges(select, charts, fac_codes, fac_names):
 def _mdy(iso): return "%s/%s/%s" % (iso[5:7], iso[8:10], iso[:4]) if len(iso or "") >= 10 else ""
 def _mm_yy(iso): return "%d/%s" % (int(iso[5:7]), iso[2:4]) if len(iso or "") >= 10 else ""
 
-CF_KEYS = ("name", "kind", "label", "dos", "cpt", "visit", "code", "how", "src", "at", "also", "res", "chart_from")
-def _cf(name, kind, how, src, at, dos="", cpt="", visit="", code="", also=(), res=None, chart_from=None):
+CF_KEYS = ("name", "kind", "label", "dos", "cpt", "visit", "code", "how", "src", "at", "also", "res", "chart", "chart_from")
+def _cf(name, kind, how, src, at, dos="", cpt="", visit="", code="", also=(), res=None, chart="", chart_from=None):
     """one chargefac with EVERY key of CF_KEYS, every time (review 11/12): the board applies a set with update(), which merges a nested
     object key by key, so a key left out keeps the earlier badge's value - a nursing-home badge written over a hospital one kept its
     'resident at' / 'also billed at' lines and `build` re-sent it forever. also [] and res / chart_from None say "none" outright
-    (update() replaces anything that is not an object - a list, null - wholesale)."""
+    (update() replaces anything that is not an object - a list, null - wholesale). chart: the card's chart number(s) the badge was worked
+    out on (second review 11/12 - a badge stays over a weaker guess only while the card still has them)."""
     return {"name": name, "kind": kind, "label": KIND_LABEL.get(kind, ""), "dos": dos, "cpt": cpt, "visit": visit, "code": code,
-            "how": how, "src": src, "at": at, "also": list(also)[:3], "res": res, "chart_from": chart_from}
+            "how": how, "src": src, "at": at, "also": list(also)[:3], "res": res, "chart": chart, "chart_from": chart_from}
 
-def _pick(lines, how, all_lines, now, chart_from=None):
+def _pick(lines, how, all_lines, now, chart_from=None, chart=""):
     """the facility most of the card's named charges came from (the newer one on a tie; live lines before void ones), shown with its
     newest charge; None when none of them has a facility"""
     named = [c for c in lines if c["name"]]
@@ -280,7 +303,7 @@ def _pick(lines, how, all_lines, now, chart_from=None):
             last = max(c["dos"] for c in homes if short(c["name"]) == hn)
             res = {"name": hn, "kind": kind_of(h["name"]), "thru": _mm_yy(last)}
     return _cf(nm, k, how, "neon " + ("feed" if best["src"] == "feed" else "amd.charges"), now, dos=_mdy(best["dos"]), cpt=best["cpt"],
-               visit=best["visit"], code=best["code"], also=also, res=res, chart_from=chart_from)
+               visit=best["visit"], code=best["code"], also=also, res=res, chart=chart, chart_from=chart_from)
 
 def _newest(cs):
     """the lines of the newest date of service among those with a facility - rules 4 and 6 speak for the chart's NEWEST charge, not
@@ -289,49 +312,58 @@ def _newest(cs):
     d = max((c["dos"] for c in cs), default=None)
     return [c for c in cs if c["dos"] == d]
 
-def charge_facility(row, charges, fac_codes, fac_names, now=None):
-    """(chargefac or None, why). charges: chart -> lines (load_charges)."""
+def charge_facility(row, charges, fac_codes, fac_names, now=None, fallback=True):
+    """(chargefac or None, why). charges: chart -> lines (load_charges). fallback: see chart_ids_found."""
     now = now or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    charts, chart_from = chart_ids_found(row)
+    charts, chart_from = chart_ids_found(row, fallback)
     chart_from = chart_from or None
+    chart = ",".join(c[3:] for c in charts)                                       # the card's chart numbers, without 'pat'
     lines = [c for ch in charts for c in charges.get(ch, [])]
     ftext, ntext, ttext = facility_text(row), need_text(row), trail_text(row)
     if lines:
         vis = visit_numbers(all_text(row))
         hit = [c for c in lines if c["visit"] and c["visit"] in vis]
         if hit:
-            cf = _pick(hit, "visit", lines, now, chart_from)
+            cf = _pick(hit, "visit", lines, now, chart_from, chart)
             return (cf, "visit") if cf else (None, "the card's charge has no facility in AdvancedMD")
         for how, text in (("dos", ftext), ("dos", ntext)):
             spans = date_spans(text)
             hit = [c for c in lines if c["dos"] and any(a <= c["dos"] <= b for a, b in spans)]
             if hit:
-                cf = _pick(hit, how, lines, now, chart_from)
+                cf = _pick(hit, how, lines, now, chart_from, chart)
                 return (cf, how) if cf else (None, "the card's charge has no facility in AdvancedMD")
     ids = [i for i in facility_ids(ftext + " \n " + ntext) if i != "1"]          # fac1 is AdvancedMD's "no facility"
     codes = sorted({fac_codes.get("fac" + i, "") for i in ids} - {""})
     if len(codes) == 1 and fac_names.get(codes[0]):
         nm = fac_names[codes[0]]
-        return _cf(short(nm), kind_of(nm), "facility id", "neon chargedetail", now, code=codes[0]), "facility id"
+        return _cf(short(nm), kind_of(nm), "facility id", "neon chargedetail", now, code=codes[0], chart=chart), "facility id"
     if not charts: return None, "no chart number on the card"
     if not lines: return None, "no charge of the chart in the practice database"
     owed = _newest([c for c in lines if c["live"] and c["owed"]])
-    cf = _pick(owed, "open balance", lines, now, chart_from) if owed else None
+    cf = _pick(owed, "open balance", lines, now, chart_from, chart) if owed else None
     if cf: return cf, "open balance"
     spans = date_spans(ttext)
     hit = [c for c in lines if c["dos"] and any(a <= c["dos"] <= b for a, b in spans)]
-    cf = _pick(hit, "dos in notes", lines, now, chart_from) if hit else None
+    cf = _pick(hit, "dos in notes", lines, now, chart_from, chart) if hit else None
     if cf: return cf, "dos in notes"
-    cf = _pick(_newest([c for c in lines if c["live"]]) or _newest(lines), "newest charge", lines, now, chart_from)
-    return (cf, "newest charge") if cf else (None, "no charge of the chart has a facility in AdvancedMD")
+    # second review 11/12: the chart's newest LIVE charge only - never a voided one, not even when no live charge has a facility (000d983c
+    # fell back to all lines there and named a voided charge's facility as "the chart's newest charge"); the card then stays generic
+    cf = _pick(_newest([c for c in lines if c["live"]]), "newest charge", lines, now, chart_from, chart)
+    return (cf, "newest charge") if cf else (None, "no live charge of the chart has a facility in AdvancedMD")
 
 
 # ---- the board rows ----------------------------------------------------------------------------------------------------------------
+ROW_KEYS = {"amdid", "pid", "chart", "facility", "patient", "status", "need", "why", "notes", "chargefac"}
 def _unwrap(d):
-    if isinstance(d, dict) and isinstance(d.get("data"), dict) and ("version" in d or "id" in d) and len(d) <= 4: return d["data"]
+    """a board row: an ArtifactData document {id or doc_id, version, data} gives its data under the DOCUMENT's id (second review 11/12:
+    a list of such documents lost every row - the id is outside data); anything else is taken as the row itself"""
+    if isinstance(d, dict) and isinstance(d.get("data"), dict) and ({"version", "id", "doc_id"} & set(d)) and not (ROW_KEYS & set(d)):
+        rid = d.get("id") or d.get("doc_id") or d["data"].get("id")
+        return dict(d["data"], id=rid) if rid else dict(d["data"])
     return d
 def rows_from_items(path):
-    """--items: a list of rows, an {id: row} object, or the folder an ArtifactData list wrote (<dir>/items/<id>.json or <dir>/<id>.json)"""
+    """--items: a list of rows or of ArtifactData documents (also under "items" / "documents"), an {id: row} object, or the folder an
+    ArtifactData list wrote (<dir>/items/<id>.json or <dir>/<id>.json)"""
     if os.path.isdir(path):
         base = os.path.join(path, "items") if os.path.isdir(os.path.join(path, "items")) else path
         out = []
@@ -341,7 +373,9 @@ def rows_from_items(path):
                 if isinstance(d, dict): out.append(dict(d, id=d.get("id") or f[:-5]))
         return out
     d = json.load(open(path, encoding="utf-8"))
-    if isinstance(d, dict) and isinstance(d.get("items"), list): d = d["items"]
+    if isinstance(d, dict):
+        for k in ("items", "documents"):
+            if isinstance(d.get(k), list): d = d[k]; break
     if isinstance(d, dict): return [dict(_unwrap(v), id=k) for k, v in d.items() if isinstance(_unwrap(v), dict)]
     return [dict(_unwrap(r)) for r in d if isinstance(_unwrap(r), dict) and _unwrap(r).get("id")]
 
@@ -357,12 +391,14 @@ def _same(a, b):
     strip = lambda x: {k: v for k, v in (x or {}).items() if k != "at"} if isinstance(x, dict) else x
     return json.dumps(strip(a), sort_keys=True) == json.dumps(strip(b), sort_keys=True)
 
-def compute(rows, select, now=None):
-    """[(row, chargefac or None, why)] for every row"""
+def compute(rows, select, now=None, fallback=None):
+    """[(row, chargefac or None, why)] for every row. fallback: per row, whether its chart number may be read from its id / text
+    (default: yes for every row - see chart_ids_found)"""
+    fb = list(fallback) if fallback is not None else [True] * len(rows)
     fac_codes, fac_names = load_facilities(select)
-    charts = sorted({c for r in rows for c in chart_ids(r)})
+    charts = sorted({c for r, f in zip(rows, fb) for c in chart_ids(r, f)})
     charges = load_charges(select, charts, fac_codes, fac_names)
-    return [(r,) + charge_facility(r, charges, fac_codes, fac_names, now) for r in rows]
+    return [(r,) + charge_facility(r, charges, fac_codes, fac_names, now, f) for r, f in zip(rows, fb)]
 
 GENERIC_RE = re.compile(r"^(SNF|ALF|NF|HCA|TMH)(\b|[\s/(])", re.I)          # the page's test for a place-of-service guess
 def badge_source(row, cf):
@@ -397,31 +433,45 @@ def counts(results, include_done=False):
 def _inside_repo(p): p = os.path.abspath(p); return p == REPO or p.startswith(REPO + os.sep)
 def _now(): return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+STRONG = ("visit", "dos", "facility id")              # rules that find a charge the card itself names
+GUESS = ("open balance", "dos in notes", "newest charge")
+RANK = {"visit": 1, "dos": 2, "facility id": 3, "open balance": 4, "dos in notes": 5, "newest charge": 6}
+def _charts_of(v): return [c.strip() for c in str(v or "").split(",") if c.strip()]
+def _keeps(old, new):
+    """True when a card's badge `old` stays and `new` is not written: `new` is only a guess (open balance / dos in notes / newest charge)
+    from a weaker rule than the one that found `old` - a visit-matched badge is never replaced by the chart's newest charge - and the
+    card still has every chart `old` was worked out on (new["chart"] is the card's charts now). A corrected chart number lets the new
+    chart's result through (second review 11/12), and so does a badge that does not say its chart (no badge this helper writes). The
+    board page's applyOp (keepsBadge) makes the same check with the row it holds when it applies the file - keep the two in step."""
+    if not (isinstance(old, dict) and old.get("name")) or not isinstance(new, dict) or new.get("how") not in GUESS: return False
+    if RANK[new["how"]] <= RANK.get(old.get("how"), 99): return False
+    if not isinstance(old.get("chart"), str): return False
+    now = _charts_of(new.get("chart"))
+    return all(c in now for c in _charts_of(old["chart"]))
+
 def build_file(results, stamp, now, include_done=False):
     ops = []
     for r, cf, _ in results:
         if not cf or (not include_done and str(r.get("status") or "") == "done"): continue
-        if _same(cf, r.get("chargefac")): continue
+        if _same(cf, r.get("chargefac")) or _keeps(r.get("chargefac"), cf): continue
         ops.append({"op": "update", "collection": "items", "id": r["id"], "set": {"chargefac": cf}})
     doc = {"schema": "irb-board-updates/1", "source": "tools/db/board_chargefac.py build %s (read-only on Neon)" % stamp, "created": now, "ops": ops}
     return board_ops.clean_file(doc)
 
-STRONG = ("visit", "dos", "facility id")              # rules that find a charge the card itself names
-RANK = {"visit": 1, "dos": 2, "facility id": 3, "open balance": 4, "dos in notes": 5, "newest charge": 6}
-def _keeps(old, new):
-    """True when a card's badge `old` stays and `new` is not written: `new` is only a guess (open balance / dos in notes / newest charge)
-    and a weaker rule than the one that found `old` - a visit-matched badge is never replaced by the chart's newest charge"""
-    if not (isinstance(old, dict) and old.get("name")) or new.get("how") in STRONG: return False
-    return RANK.get(new.get("how"), 99) > RANK.get(old.get("how"), 99)
+def _creates(body):
+    """the op creates its card: board_ops.plan_new_row's set carries `created`; the BOARD ACCESS RULE's new row carries patient and dob"""
+    return "created" in body or ("patient" in body and "dob" in body)
 
 def stamp_file(doc, select, now=None, items=None):
     """adds chargefac to every items row the run's file creates or whose facility / amdid it sets; returns [(id, chargefac written or
-    None, why)]. items: the board's rows as the run read them (--items; None = not given). Review 11/12: an op alone is not the card -
-    a card already on the board is worked out from the whole card (its stored row, the op's set over it, notes / checks / api with the
-    op's appends, as the page applies them) and keeps the badge it has when that came from a stronger rule (_keeps). Without items a
-    card's badge is unknown, so only a charge the card names (STRONG) is stamped; the same for an `update` of a card missing from items.
-    A `replace` writes the whole row - the card's old badge goes with it - so it is always stamped."""
-    board = None if items is None else {str(r.get("id")): r for r in items if isinstance(r, dict) and r.get("id")}
+    None, why)]. items: the board's stored rows of the cards the file touches, as the run read them (--items; None or [] = not given).
+    Review 11/12: an op alone is not the card - a card found in items is worked out from the whole card (its stored row, the op's set
+    over it, notes / checks / api with the op's appends, as the page applies them) and keeps the badge it has (_keeps). Second review
+    11/12: a card NOT found in items is not taken for a new card - items may be partial, empty or wrongly shaped - so its stored badge is
+    unknown: it gets only a charge it names (STRONG), worked out on the op's own amdid / pid / chart (never its id's number: the stored
+    card may carry an amdid the op does not repeat), unless the op creates it (_creates). A `replace` writes the whole row - the card's
+    old badge goes with it - so it is always stamped. Whatever is written, the page keeps a stronger badge when it applies the file."""
+    board = {str(r.get("id")): r for r in (items or []) if isinstance(r, dict) and r.get("id")}
     targets = []
     for o in doc.get("ops") or []:
         if not isinstance(o, dict) or str(o.get("collection") or "items") != "items": continue
@@ -429,7 +479,9 @@ def stamp_file(doc, select, now=None, items=None):
         body = o.get("data") if kind == "replace" else o.get("set")
         if not isinstance(body, dict) or not ({"amdid", "facility", "pid"} & set(body)) or body.get("chargefac"): continue
         rid = str(o.get("id") or "")
-        cur = (board or {}).get(rid) if kind != "replace" else None
+        cur = board.get(rid) if kind != "replace" else None
+        whole = kind == "replace" or cur is not None              # the whole card is in hand: the replace's data, or the stored row
+        new = not whole and kind != "update" and _creates(body)
         row = dict(cur or {}); row.update(body); row["id"] = rid
         if kind != "replace":
             app = o.get("append") if isinstance(o.get("append"), dict) else {}
@@ -439,15 +491,14 @@ def stamp_file(doc, select, now=None, items=None):
                 for e in add:
                     if e not in base: base.append(e)
                 row[k] = base
-        known = kind == "replace" or (board is not None and (cur is not None or kind != "update"))
-        targets.append((body, row, cur, known))
+        targets.append((body, row, cur, whole, new))
     if not targets: return []
-    results = compute([row for _, row, _, _ in targets], select, now)
+    results = compute([t[1] for t in targets], select, now, fallback=[t[3] for t in targets])
     out = []
-    for (body, row, cur, known), (_, cf, why) in zip(targets, results):
+    for (body, row, cur, whole, new), (_, cf, why) in zip(targets, results):
         old = (cur or {}).get("chargefac")
-        if cf and not known and cf["how"] not in STRONG:
-            out.append((row["id"], None, "kept as it is: only a guess (%s) and the card's own badge is not known without --items" % cf["how"]))
+        if cf and not (whole or new) and cf["how"] not in STRONG:
+            out.append((row["id"], None, "kept as it is: only a guess (%s), and the card's own badge is not known (the card is not among the --items rows)" % cf["how"]))
         elif cf and _keeps(old, cf):
             out.append((row["id"], None, "kept the card's badge: found by a stronger rule (%s) than this guess (%s)" % (old.get("how"), cf["how"])))
         elif cf and _same(cf, old):
@@ -469,9 +520,13 @@ def main(argv, select=None):
         doc = json.load(open(path, encoding="utf-8"))
         items = None
         if opt("--items"):
-            try: items = rows_from_items(opt("--items"))
+            try:
+                items = rows_from_items(opt("--items"))
+                # second review 11/12: say how many rows --items gave (a count only) - a file that gives none is read as no --items
+                print("board_chargefac stamp: --items gave %d row(s)%s" % (len(items), "" if items else " - read as no --items"))
             except Exception as e:
-                print("board_chargefac stamp: --items could not be read (%s) - only a charge a card names is stamped" % type(e).__name__)
+                print("board_chargefac stamp: --items could not be read (%s) - read as no --items" % type(e).__name__)
+            items = items or None
         try: got = stamp_file(doc, select, now, items)
         except Exception as e:
             print("board_chargefac stamp: the practice database could not be read (%s) - %s left exactly as it was" % (str(e)[:160], os.path.basename(path)))
@@ -480,7 +535,7 @@ def main(argv, select=None):
             with open(path, "w", encoding="utf-8") as f: json.dump(doc, f, indent=1, ensure_ascii=False)
         # counts only (review 11/12): a row id is a patient-name slug (last-first-<amdid>), and this output lands in the run's transcript
         print("board_chargefac stamp %s: %d row(s) looked at, %d given the charge's facility%s" % (os.path.basename(path), len(got),
-              sum(1 for _, cf, _ in got if cf), "" if items is not None else " (no --items: only a charge a card names)"))
+              sum(1 for _, cf, _ in got if cf), "" if items is not None else " (no --items rows: a card already on the board gets only a charge it names)"))
         print("  by rule: %s" % json.dumps(dict(collections.Counter(why for _, cf, why in got if cf).most_common())))
         print("  not given: %s" % json.dumps(dict(collections.Counter(why for _, cf, why in got if not cf).most_common())))
         return 0
@@ -505,9 +560,11 @@ def main(argv, select=None):
     if cmd == "plan": return 0
     stamp = re.sub(r"[^0-9A-Za-z\-]", "", opt("--stamp") or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H%MZ"))
     doc = build_file(results, stamp, now, include_done="--all" in a)
+    kept = sum(1 for r, cf, _ in results if cf and _keeps(r.get("chargefac"), cf) and ("--all" in a or str(r.get("status") or "") != "done"))
     os.makedirs(out, exist_ok=True)
     name = os.path.join(out, "board_updates_%s.json" % stamp)
     with open(name, "w", encoding="utf-8") as f: json.dump(doc, f, indent=1, ensure_ascii=False)
+    if kept: print("  %d card(s) keep the badge they have: found by a stronger rule than this guess, on a chart they still have" % kept)
     print("board_chargefac build: %d card(s) get the charge's facility -> %s (not delivered: the board applies it once it is in the Drive folder 'board inbox')" % (len(doc["ops"]), name))
     return 0
 
