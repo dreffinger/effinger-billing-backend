@@ -28,4 +28,5 @@ node_modules/
 !apps/ehpadb/package-lock.json
 !apps/ehpadb/tsconfig.json
 apps/ehpadb/src/generated/
+apps/ehpadb/dist/
 *.tmp
