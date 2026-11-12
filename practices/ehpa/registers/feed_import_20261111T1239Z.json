@@ -1,0 +1,494 @@
+{
+ "created": [
+  {
+   "feed_id": "62a89608a4ea93d62b490ff1",
+   "pid": "pat24368",
+   "visit": "vst19460833",
+   "charges": [
+    "charge23373644",
+    "charge23373645"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:56:58.792392",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 12 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260821",
+   "missing_dx": [],
+   "quality_codes": [
+    "1123F"
+   ],
+   "quality_fee": "0.00",
+   "quality_dos": "11/09/2026",
+   "quality_pos": "31",
+   "quality_pos_stored": "31",
+   "pos_stored": [
+    "31"
+   ],
+   "quality_charge": "charge23373645",
+   "chart_insorder": "1,2,4",
+   "open_plans_at_entry": 4,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "6ad3fa344519af75c88e792e",
+   "pid": "pat17478265",
+   "visit": "vst19460834",
+   "charges": [
+    "charge23373646"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:03.149369",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261017",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6887500621a707b0bfc6b144",
+   "pid": "pat17473571",
+   "visit": "vst19460835",
+   "charges": [
+    "charge23373647",
+    "charge23373648"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:07.821627",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "32",
+   "pos_feed": "31",
+   "pos_lines": [
+    "32"
+   ],
+   "pos_why": [
+    "32 by rule: 34 days since the previous nursing visit (the monthly visit)"
+   ],
+   "pos_kind": [
+    "monthly"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20250902",
+   "missing_dx": [],
+   "quality_codes": [
+    "1123F"
+   ],
+   "quality_fee": "0.00",
+   "quality_dos": "11/09/2026",
+   "quality_pos": "32",
+   "quality_pos_stored": "32",
+   "pos_stored": [
+    "32"
+   ],
+   "quality_charge": "charge23373648",
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "689e74e3d4e5e6b93b72051b",
+   "pid": "pat17473962",
+   "visit": "vst19460836",
+   "charges": [
+    "charge23373649",
+    "charge23373650"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:12.539634",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 11 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20250814",
+   "missing_dx": [],
+   "quality_codes": [
+    "1123F"
+   ],
+   "quality_fee": "0.00",
+   "quality_dos": "11/09/2026",
+   "quality_pos": "31",
+   "quality_pos_stored": "31",
+   "pos_stored": [
+    "31"
+   ],
+   "quality_charge": "charge23373650",
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "63e73dde9793d2942308da3c",
+   "pid": "pat12181827",
+   "visit": "vst19460837",
+   "charges": [
+    "charge23373651"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:17.187557",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261009",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "641c1ae337f7e6422b759e5e",
+   "pid": "pat12182776",
+   "visit": "vst19460838",
+   "charges": [
+    "charge23373652"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:22.213302",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "32",
+   "pos_feed": "31",
+   "pos_lines": [
+    "32"
+   ],
+   "pos_why": [
+    "32 by rule: 34 days since the previous nursing visit (the monthly visit)"
+   ],
+   "pos_kind": [
+    "monthly"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20240516",
+   "missing_dx": [],
+   "pos_stored": [
+    "32"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6284343f81f139179daccdce",
+   "pid": "pat20937",
+   "visit": "vst19460839",
+   "charges": [
+    "charge23373653"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-11T12:57:27.002538",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "32",
+   "pos_feed": "31",
+   "pos_lines": [
+    "32"
+   ],
+   "pos_why": [
+    "32 by rule: 34 days since the previous nursing visit (the monthly visit)"
+   ],
+   "pos_kind": [
+    "monthly"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20251121",
+   "missing_dx": [],
+   "pos_stored": [
+    "32"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "64eed8c3e9abd1e559917c0c",
+   "pid": "pat17469476",
+   "visit": "vst19460840",
+   "charges": [
+    "charge23373654",
+    "charge23373655"
+   ],
+   "fees": [
+    "256.00",
+    "133.00"
+   ],
+   "at": "2026-11-11T12:57:31.700646",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026",
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31",
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: initial visit",
+    "same place of service as the visit line of that day"
+   ],
+   "pos_kind": [
+    "initial",
+    "with-visit"
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261109",
+   "missing_dx": [],
+   "pos_stored": [
+    "31",
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  }
+ ],
+ "skipped": [],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.00",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 1,
+   "fee": "0.00",
+   "since": "feed_import_20261111T1239Z.json",
+   "lines": 3,
+   "void": 0,
+   "open": 3
+  },
+  "budget": 3,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 0,
+  "unread": [],
+  "unread_prev": [],
+  "notes": []
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "notes": []
+ }
+}

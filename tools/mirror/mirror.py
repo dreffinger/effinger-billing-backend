@@ -103,24 +103,30 @@ SKIP = {"vocab_seed.json"}
 # 10/6/2026: the repository is the record for these seven. A workspace copy overlaid from Drive carries a fresh
 # mtime but can be OLDER code (the pre-10/6 move_to_ins ignores --no-rebill; the old freq1_visit has no reroute);
 # a copy that lacks its marker never overwrites scripts/helpers/, whatever its mtime says.
-PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder reads the visit's insurance-order LIST", "freq1_visit.py": "def reroute",
+PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a save when the visit's charges could not all be read", "freq1_visit.py": "def reroute",
              "move_to_ins.py": "--no-rebill", "ins_update.py": "_set_order", "dx_primary_fix.py": "--visits",
              "approval_submit.py": "LASTFIRST", "payreasons.py": "10/6: no patient name", "columns_scan.py": "NAMEKEY",
              # 11/10/2026: the feed import carries William's place-of-service rule (CCM in a nursing building = 32, visits by frequency);
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-11.1"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-11.1"',
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-12.1"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-12.1"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-11.1"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-11.1"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-12.1"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-12.1"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
              # 11/10/2026 (round 7): the insurance check and resave.py read each visit's insurance-order LIST - a copy from before that skipped the visits
              # entered with no plan (84 never billed) and must not come back over them; their markers are sentences only the round-7 versions have
              # (resave.py above). feed_order_sweep.py is new that day: the daily listing and the owner-approved save
-             "claimocity_inspector.py": "the step takes BOTH no-charge lines off", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
-             "feed_order_sweep.py": 'STANDING = "standing word, William 11/10/2026"',
+             # 11/12/2026 (rule version 2026-11-10.8 - since the same day 2026-11-12.1, with the skipped-message change -, the quality code never switches itself off): the inspector step tries a visit stuck with its no-charge line again in
+             # every run - a copy from before that leaves such a visit held for ever now that nothing switches the code off; its marker is the sentence only that version has
+             "claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
+             # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
+             # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out
+             # of a full-visit save is voided: such a copy must not come back over them. Their markers (resave.py's above, the sweep's here) are now
+             # sentences only the round-8 versions have - a round-7 copy is refused too; the insurance check keeps its round-7 sentence
+             "feed_order_sweep.py": "NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ",
              # the denial table exists twice (boards/ and here); the workspace copy the bootstrap lays out first is this one - an older
              # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
              "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',

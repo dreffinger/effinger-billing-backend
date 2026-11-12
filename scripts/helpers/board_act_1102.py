@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Insurance Refresh Board answers of 11/2/2026 - William's words on 16 rows, chat run 2026-11-02T0855Z)
 # Decides: nothing new - it carries out what William wrote on each board row this morning, one lettered section per chart:
-#   A HUNTER 25558 'restore'   - void the twelve 2025 Medicare-$0 write-offs (3/3-8/1/2025), move the balances back to insurance,
+#   A HUNTLEY 25558 'restore'   - void the twelve 2025 Medicare-$0 write-offs (3/3-8/1/2025), move the balances back to insurance,
 #                                re-send every one plus the three still-open 9/8-10/25/2025 visits to UHC Dual Complete (seq 4) as originals.
 #   B PAVLO 17475837 'restore' - void the seven 2026 WOINS write-offs ($1,986) and send the visits to AARP MA (seq 2) as originals.
 #   C GOMER 17472519           - add the Florida Blue Medicare Advantage plan William pasted (BCBS1 car303217, 8/1/2024), end the dead

@@ -6,7 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-11.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-12.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -129,8 +129,13 @@ try:
 except Exception as _e:
     L("- Initial visits under the physician: this line could not be built (%s) - read prof_feed in the import register." % type(_e).__name__)
 # quality code (William 11/10/2026, rules.md): the advance-care-plan code 1123F that rides, at no charge, with Medicare visits of patients 65 and older.
-# Everything that needs William is ONE line that starts "  - TOP OF THE REPORT - ", said in the run where it began; a state that only still
-# stands (the code still OFF, a fact already reported) is a plain line - the previous import register's gate tells the two apart.
+# Everything that needs William is ONE line that starts "  - TOP OF THE REPORT - ", said in the run where it began; the state of the code is ONE
+# top line in every batch ("QUALITY CODE: ...") - the previous import register's gate tells what is new in this run.
+# 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the code never switches itself off. The state line says
+# one of: stopped on William's word (his own QUALITY_CODE=stop) / paused this run / probing (one line a run) / going.
+# November 12, 2026 - fix round 2 (K14-K17): a visit of a fault run held for its own reason (no 1123F line on it) is named in the state line for William
+# but pauses nothing; after a cut or a fault the state line says what is known (a try cut off, a line that could not be looked for, a line found off
+# already, what this run's inspector step found); a held visit this run's retry pass freed is said free under Claim Inspector pass.
 try:
     _qg = reg.get("quality_gate") if isinstance(reg.get("quality_gate"), dict) else {}
     _qc = lambda x: isinstance(x, dict) and isinstance(x.get("quality_codes"), list) and bool(x.get("quality_codes"))
@@ -163,8 +168,11 @@ try:
     _unread = [str(u) for u in _lst("unread")]; _late = [r_ for r_ in _lst("late_rows") if isinstance(r_, list) and len(r_) >= 4]
     _ans = _qg.get("medicare_answer") if isinstance(_qg.get("medicare_answer"), dict) else None; _mw = _qg.get("medicare_wait") if isinstance(_qg.get("medicare_wait"), dict) else None
     _pw = _qg.get("proof_wait") if isinstance(_qg.get("proof_wait"), dict) else None; _nr = _qg.get("not_renewed") if isinstance(_qg.get("not_renewed"), dict) else {}
+    # 11/12/2026 - the code never switches itself off: why it probes, why this run is paused, the visits stuck held with their line, an older register's own OFF, what a person wrote about N620
+    _probe = str(_qg.get("probe") or ""); _paused = str(_qg.get("paused") or ""); _stuck = [x for x in _lst("stuck") if isinstance(x, dict)]
+    _stand = _qg.get("standing_restart") if isinstance(_qg.get("standing_restart"), dict) else None; _seen = str(_qg.get("n620_seen") or "")[:40]
     if (_qa or _qn or _qr or _qf or _off or _notes or _qg.get("proof") or _qg.get("wait") or _dead or _qg.get("reset") or _rem or _skip_h or _unread or _late or _nr
-            or (_qg.get("confirmed") is True and (_ans or _mw)) or _qh or _moved):
+            or (_qg.get("confirmed") is True and (_ans or _mw)) or _qh or _moved or _qg):
         _pf = _qg.get("proof") if isinstance(_qg.get("proof"), dict) else {}
         _days = None
         try:
@@ -173,7 +181,9 @@ try:
         except Exception: _days = None
         L("- Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on %d visit(s) in this batch, line amount $%s; %s." % (
             len(_qa), _qg.get("fee") or "0.00",
-            "OFF until William restarts it (one run with QUALITY_CODE=reset, once the cause is fixed)" if _lasting else
+            "stopped on William's word - no line is added until one run with QUALITY_CODE=reset" if _lasting else
+            "paused this run - no line was added (the top line says why)" if _paused else
+            "PROBING - one line a run until one such line is seen billed to insurance in AdvancedMD" if _probe else
             ("no line in this run (%s)" % _off[:120]) if _off else
             ("every eligible visit carries it - a quality line was seen billed to insurance (visit %s, %s)%s" % (_pf.get("visit"), _pf.get("billed"),
              "; no cap" if (_qg.get("n620") or _ans) else "; at most 10 a run until Medicare's own answer is on file")) if _qg.get("confirmed") is True and _pf else
@@ -182,41 +192,127 @@ try:
             "PILOT - at most %s visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD" % (_qg.get("pilot_cap") or 3)))
         T = lambda s_: L("  - TOP OF THE REPORT - " + s_)
         if _qa: L("  - carried by: %s%s" % ("; ".join("%s %s %s" % (x.get("pid"), x.get("visit"), x.get("quality_charge") or "?") for x in _qa[:30]), (" (+%d more)" % (len(_qa) - 30)) if len(_qa) > 30 else ""))
-        # OFF: in the run where it began at the top, afterwards a plain line; William's own switch is a plain line
-        if _lasting and _lasting != str(_pg.get("off_until_reset") or ""): T("the quality code is OFF until William restarts it: %s. To start again (once the cause is fixed): one run with QUALITY_CODE=reset in front of the import's command." % _lasting[:220])
-        elif _lasting: L("  - the quality code is still OFF (since an earlier run): %s - to start again: one run with QUALITY_CODE=reset." % _lasting[:200])
-        elif _off.startswith("this run: switched off"): L("  - switched off for this run by William's QUALITY_CODE=off - no line was added.")
-        elif "cannot be read - the state of the quality code is not known" in _off and _unread and not (set(_unread) & set(str(u) for u in (_qg.get("unread_prev") or []) if isinstance(_qg.get("unread_prev"), list))):
-            L("  - no line in this run: the import register %s cannot be read (the visits went in as always) - if the next run says the same, it goes to the top." % ", ".join(_unread[:3]))
-        elif _off and not ("cannot be read - the state of the quality code is not known" in _off and _unread): T("the quality code is OFF: %s" % _off[:220])
+        # ONCE, before the state line: Medicare's own answer (the first run whose gate carries it while the gate before carried neither), and the restart on William's standing word
+        _acc_before = (isinstance(_pg.get("medicare_answer"), dict) and bool(_pg["medicare_answer"].get("charge"))) or _pg.get("n620") is True
+        if (_ans or _qg.get("n620") is True) and not _acc_before:
+            if _ans: T("QUALITY CODE ACCEPTED BY MEDICARE - Medicare's remittance shows the 1123F line on visit %s, a Medicare payment line of $%s posted %s: the code reached Medicare on the claim and came back on its remittance; whether the measure is met shows only in the feedback on the Medicare quality-program site. The cap of ten a run is lifted." % (
+                _ans.get("visit"), _ans.get("amount"), _ans.get("date")))
+            else: T("QUALITY CODE ACCEPTED BY MEDICARE - a person saw remark N620 on a 1123F line of a Medicare remittance (registers/quality_n620_seen.json%s): remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site. The cap of ten a run is lifted." % (
+                (", seen %s" % _seen) if _seen else ""))
+        if _stand: T("QUALITY CODE: restarted on William's standing word of November 11, 2026 (\"dont stop this dont let it stop make sure this suceeds\") - an earlier run had switched it off (%s). No restart by William is needed any more; the code goes on by itself." % str(_stand.get("was") or "")[:220])
+        # THE STATE LINE (11/12/2026): ONE line in every batch - stopped on William's word / paused this run / probing (one line a run) / going. Copied to the top of the report word for word.
+        _fee = str(_qg.get("fee") or "0.00"); _vst = lambda v: str(v) if str(v or "").startswith("vst") else "vst%s" % _num(v)
+        if _lasting: T("QUALITY CODE: stopped on William's word (QUALITY_CODE=stop) - no line is added until one run with QUALITY_CODE=reset in front of the import's command.")
+        # November 12, 2026 - fix round 2 (K15, K16): a visit of a fault run held for its own reason ("own": no 1123F line on it, or after the proof words that name
+        # no line) pauses nothing - it is named in the state line for a person until it is free; what this run's step found is said from its NEWEST retry entry
+        _stp = [x for x in _stuck if x.get("own") is not True]; _own = [x for x in _stuck if x.get("own") is True]
+        def _newtry(x):
+            _t = [e for e in _rem if e.get("retry_of") and _num(e.get("visit")) == _num(x.get("visit"))]; return _t[-1] if _t else None
+        def _didof(_e, x):
+            _nt = str((_e or {}).get("note") or ""); _flt = x.get("fault") is True
+            return ("This run's inspector step recorded no new try for that visit; the next run %s again." % ("looks at it" if _flt else "tries the void and the re-save") if _e is None else
+                    "This run found the visit free (%s): nothing was done to it, and the next run goes on by itself, probing." % (
+                        "no longer listed by the Claim Inspector" if "no longer listed" in _nt else "only advisories remained - bypassed" if "only advisories" in _nt else "the visit was billed" if "was billed" in _nt else (_nt[:80] or "no longer held")) if _e.get("listed") is False else
+                    "This run found it held for its own reason, not because of this code (%s) - a person fixes the visit; it does not pause the code." % (_nt[:140] or "its hold names no quality line") if _e.get("own_reason") is True else
+                    "This run's step could not look for its quality line (%s); the next run looks again." % (_nt[:140] or "a read failed") if _e.get("looked") is False else
+                    "This run's try was cut off before it ended; the next run's step looks again." if (_e.get("void_ok") is not True and not _nt) else
+                    "This run tried again and could not take the line off (%s); every run tries again, and a person can take the line off that visit at any time." % (_nt[:120] or "the void failed") if _e.get("void_ok") is not True else
+                    "This run found the line off already, re-saved the visit and it went out; the next run goes on by itself, probing." if (_e.get("released") is True and _e.get("was_void") is True) else
+                    "This run took the line off, re-saved the visit and it went out; the next run goes on by itself, probing." if _e.get("released") is True else
+                    "This run re-saved the visit again, but the listing after it failed, so the visit is not shown free; the next run lists it again." if "the listing after the re-save failed" in _nt else
+                    "This run re-saved the visit again and it is still listed for the edit about the line%s; every run tries again." % ("; the re-save failed" if _e.get("resave_ok") is False else "") if (_e.get("still_named") is True or _e.get("resave_ok") is False) else
+                    "This run took the line off; the visit is still held for its own reason (%s), which is not this code's; the next run goes on by itself, probing." % str(_e.get("why") or "")[:100])
+        _ownsay = "".join((" Visit %s (chart %s) was found free by this run's inspector step." % (_vst(x.get("visit")), x.get("chart"))) if (_newtry(x) or {}).get("listed") is False else
+                          " Visit %s (chart %s) came from a fault run and is held for its own reason, not because of this code: %s (%s: \"%s\") - it stays on this report until it is free; it does not pause the code." % (
+                              _vst(x.get("visit")), x.get("chart"), x.get("what"), x.get("register"), str(x.get("why") or "")[:140]) for x in _own[:3])
+        if _lasting: pass
+        elif _paused and _stp:
+            _s0 = _stp[0]; _e = _newtry(_s0); _did = _didof(_e, _s0)
+            T("QUALITY CODE: paused this run - visit %s (chart %s) %s: %s (%s: \"%s\")%s. No new line was added. %s%s" % (
+                _vst(_s0.get("visit")), _s0.get("chart"), "came from a fault run" if _s0.get("fault") is True else "may still be held with its quality line" if str(_s0.get("what") or "").startswith("the routine's last try was cut off") else "is held with its quality line",      # K11, K16: a visit of a fault run; a try that was cut off
+                _s0.get("what"), _s0.get("register"), str(_s0.get("why") or "")[:140], ("; %d more visit(s) the same way" % (len(_stp) - 1)) if len(_stp) > 1 else "", _did, _ownsay))
+        elif _paused.startswith("paused this run: AdvancedMD shows procedure id"):
+            T("QUALITY CODE: paused this run - AdvancedMD shows procedure id pcode65441 as %s, not 1123F. No line is added while that is so; every run reads it again and goes on by itself when it reads 1123F. To end it: the code text of that procedure in AdvancedMD's procedure list must be 1123F (a person, or AdvancedMD's support).%s" % (_qg.get("wrong_code_text") or "another code", _ownsay))
+        elif _paused or _off:
+            _why = _paused or _off; _why = _why[len("paused this run: "):] if _why.startswith("paused this run: ") else _why[len("this run: "):] if _why.startswith("this run: ") else _why
+            _fx = "".join(" Visit %s (chart %s) came from a fault run: %s. %s" % (_vst(x.get("visit")), x.get("chart"), str(x.get("what") or "")[:200], _didof(_newtry(x), x)) for x in _stp[:3] if x.get("fault") is True)      # K16 (fix round 2): what this run's step found
+            T("QUALITY CODE: paused this run - %s.%s%s" % (_why[:300].rstrip("."), _fx.rstrip(), _ownsay))
+        elif _probe:
+            _kind = str(_qg.get("probe_kind") or ""); _pwords = str(_qg.get("probe_words") or ""); _cent = [str(v) for v in _lst("left_off_cent")]
+            # November 12, 2026 - fix round 1 (K8): the newest cause is the move from $0.00 to one cent, or the one-cent fallback - no ONE-CENT line has been stopped
+            # or refused yet, so nothing needs changing in AdvancedMD; the advice on what must change (or which bypass William must approve) comes only after that
+            _fall = _probe.startswith("new lines carry $0.01 and no one-cent line is seen billed yet")
+            _from_zero = _fall or (" at $0.00 (" in _probe and "new lines carry $0.01" in _probe and _kind in ("claim_check", "refused", "not_stored"))
+            _adv = ("%s: ONE line of one cent a run is tried until one is billed, and nothing needs changing in AdvancedMD yet - if a one-cent line is stopped or refused too, this line will quote AdvancedMD's words and say what must change." % (
+                        "No one-cent line has been stopped or refused" if _fall else "That stop was of the $0.00 line, not of a one-cent line") if _from_zero else
+                    "To let the line pass, one of two things must change: in AdvancedMD the Claim Inspector edit quoted here is set so that it lets a 1123F line of $%s through (a person, or AdvancedMD's support), or William approves a standing bypass of exactly that edit for 1123F lines - no routine bypasses it without his word." % _fee if _kind == "claim_check" else
+                    "To let the line pass, AdvancedMD's charge entry must take procedure 1123F at $%s on a visit - a person asks AdvancedMD's support why it does not." % _fee if _kind in ("refused", "not_stored") else
+                    "AdvancedMD leaves the reporting line off the claim: %d one-cent line(s) sit unbilled (%s). This needs a setting in AdvancedMD - a person or AdvancedMD's support makes it send a line of one cent for procedure 1123F." % (len(_cent), ", ".join(_cent[:6])) if (_kind == "left_off" and _cent) else
+                    "AdvancedMD left the $0.00 reporting line off the claim (%d line(s) sit unbilled); new lines carry one cent, which CMS allows. If it leaves a one-cent line off too, that needs a setting in AdvancedMD (a person or AdvancedMD's support)." % len(_dead) if _kind == "left_off" else
+                    "Nothing to change in AdvancedMD is known; the visit named here is for a person to check, and the first probe line that is billed ends the probing." if _kind in ("fault", "order") else
+                    "Nothing to change in AdvancedMD is known; the first probe line that is billed ends the probing.")
+            _now = (" This run's probe line: visit %s (chart %s)." % (_qa[0].get("visit"), _qa[0].get("pid"))) if _qa else (" The probe line of visit %s is not decided yet - no new line in this run." % (_pend[0] if _pend else "an earlier run")) if _qg.get("wait") else ""
+            T("QUALITY CODE: probing (one line a run) - %s%s. %s%s" % (
+                ("AdvancedMD's own words: \"%s\" - %s" % (_pwords[:140], _probe[:400])) if _pwords else _probe[:400],
+                "" if _from_zero else " (stopped %s time(s) since %s)" % (_qg.get("probe_tries") or 1, _qg.get("probe_since") or "an earlier run"), _adv, _now + _ownsay))      # K8: the move's own sentence names the register; a count of stops would mislead there
+        else:
+            _ansv = "; ".join(x for x in (("Medicare's payment line posted %s on visit %s" % (_ans.get("date"), _ans.get("visit"))) if _ans else "",
+                                         ("remark N620 seen on %s" % _seen) if (_qg.get("n620") is True and _seen) else "remark N620 seen (registers/quality_n620_seen.json names no date)" if _qg.get("n620") is True else "") if x) or "not yet"
+            _rd = _qg.get("round") if isinstance(_qg.get("round"), dict) else {}
+            if _qg.get("confirmed") is True: T("QUALITY CODE: going - %d line(s) billed (read in AdvancedMD; lines added after the proof are not read back), Medicare's answer: %s.%s" % (len(_lst("billed_lines")), _ansv, _ownsay))
+            else: T("QUALITY CODE: going - first round at $%s: %d line(s) entered, none billed yet (at most 3 until one is seen billed), Medicare's answer: %s.%s" % (
+                _fee, max(0, (_rd.get("lines") if isinstance(_rd.get("lines"), int) else 0) - (_rd.get("void") if isinstance(_rd.get("void"), int) else 0)), _ansv, _ownsay))
         for u_ in (_unread if set(_unread) & set(str(u) for u in (_qg.get("unread_prev") or []) if isinstance(_qg.get("unread_prev"), list)) else []):
             T("the import register %s cannot be read - the quality code waits until it is restored from the repository (git checkout of practices/ehpa/registers/%s, then copy it to the workspace's registers/)." % (u_, u_))
         if any(n_.startswith("NOTHING TO RESTART") for n_ in _notes): T(next(n_ for n_ in _notes if n_.startswith("NOTHING TO RESTART"))[:220])
         if _qg.get("fee") == "0.01" and _pg.get("fee") != "0.01" and not _qg.get("reset"):
-            T("new quality lines now carry ONE CENT ($0.01, which CMS allows): %s. The patients whose $0.00 line was left off are due again; they get the code with a later visit of the same year%s, once the one-cent round has room (a pilot of three)." % (
-                next((n_ for n_ in _notes if "$0.01" in n_ or "one cent" in n_), "AdvancedMD did not send a $0.00 line")[:180], " once William restarts the code (it is OFF)" if _lasting else ""))      # never a promise while the code is OFF, nor one for the next year (confirm review F2)
+            # November 12, 2026 - fix round 1 (review note F5, with K8 and K12): the import's note is said whole, and who is due again follows from what moved the amount
+            _mv = next((n_ for n_ in _notes if "$0.01" in n_ or "one cent" in n_), "")
+            _who = (" The patients whose $0.00 line was left off are due again 30 days after it was called left off (AdvancedMD may still bill it until then); they get the code with a later visit of the same year" if "off its claim" in _mv else
+                    " The patients whose visit was stored without its $0.00 line are due again; they get the code with a later visit of the same year" if "stored a visit without its quality line" in _mv else
+                    " The patients whose $0.00 line was stopped get no line again this year (a patient whose visit the claim check or the charge entry stopped with the line is not tried again that year)" if _mv else "")
+            T("new quality lines now carry ONE CENT ($0.01, which CMS allows): %s.%s%s - one line a run until a one-cent line is seen billed (at one cent the code probes)." % (
+                (_mv or "AdvancedMD did not send a $0.00 line")[:400].rstrip("."), _who, " once William restarts the code (it is OFF)" if (_lasting and "due again" in _who) else ""))      # never a promise while the code is OFF, nor one for the next year (confirm review F2)
         if _qg.get("reset"): L("  - the pilot was started again in this run (QUALITY_CODE=reset): a new round at $0.00.")
         if _qa and _qg.get("confirmed") is not True: L("  - first lines: when Medicare's remittance for one of these visits arrives, remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site (reason 246 with it is not a denial: nothing to do, never bill the patient).")
         if _qg.get("wait") and _days is not None and _days >= 3:
-            T("the quality-code pilot has waited %d days: the outcome of its first line(s) is still not decided (%s) - a visit not billed yet, a line not billed yet although its visit was, or a billed line whose code text AdvancedMD does not show (the lines below say which). Look at them in AdvancedMD and tell William - nobody takes a line off by hand (a line taken off by a person switches the code off until William restarts it)." % (_days, ", ".join(_pend[:6])))
+            T("the quality-code pilot has waited %d days: the outcome of its first line(s) is still not decided (%s) - a visit not billed yet, a line not billed yet although its visit was, or a billed line whose code text AdvancedMD does not show (the lines below say which). Look at them in AdvancedMD and tell William - nobody takes a line off by hand (the patient of a line taken off by a person gets no line again this year)." % (_days, ", ".join(_pend[:6])))
         if _pw and isinstance(_pw.get("days"), int) and _pw["days"] >= 3:
             T("the quality line of visit %s is billed, but for %d days neither its charge detail nor the chart's history shows the code text 1123F - the pilot is not proven and waits; William looks whether AdvancedMD stores procedure id pcode65441 as 1123F." % (_pw.get("visit"), _pw["days"]))
         if _qh: T("%d visit(s) that carry the quality line are HELD by the Claim Inspector for a reason that does not name the line (the line stays on: after proof it comes off by itself only when the edit names it; the visit's own charge waits for its hold): %s" % (
             len(_qh), "; ".join("%s %s - %s" % (x.get("pid"), x.get("visit") if str(x.get("visit") or "").startswith("vst") else "vst%s" % x.get("visit"), w) for x, w in _qh[:10])))
+        _stuckv = {_num(x.get("visit")) for x in _stuck}
+        # November 12, 2026 - fix round 1 (K9; specification 2.5): in the digest too the NEWEST entry for a line decides. An entry that a later entry of the SAME
+        # register replaces (same visit and code - e.g. the normal pass's void failed and this run's retry pass then took the line off) is not a top line of its
+        # own: it is said once, with the newest one ("then freed by this run's retry pass"), or the newest entry's own words stand. The held row stays.
+        _insids = {id(e) for e in (insp.get("quality_removed") if isinstance(insp, dict) and isinstance(insp.get("quality_removed"), list) else [])}
+        _rkey = lambda e: (id(e) in _insids, _num(e.get("visit")), str(e.get("code") or "1123F").upper())
+        _newest = {}
+        for e in _rem: _newest[_rkey(e)] = e
+        _older = {}
+        for e in _rem:
+            if _newest[_rkey(e)] is not e: _older.setdefault(_rkey(e), []).append(e)
         for e in _rem:      # William 11/10/2026: the routine takes the line off a held visit by itself
-            _wv = "vst%s" % _num(e.get("visit"))
-            if e.get("void_ok") is not True: T("the routine could not take the quality line off held visit %s (%s: %s) - the visit is held WITH its line; William looks. The next run switches the code off until he restarts it." % (_wv, e.get("pid"), str(e.get("note") or e.get("why") or "")[:120]))
-            elif e.get("released") is True: T("the routine took the quality line %s off held visit %s (%s; the hold: %s) and the visit went through without it. That is one refusal of the line: %s" % (
-                e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100], ("after proof one changes nothing; a second in a row moves new lines to one cent" if _qg.get("fee") != "0.01" else "after proof one changes nothing; a second in a row switches the code off until William restarts it") if _qg.get("confirmed") is True else
-                ("the next run moves new lines to one cent and starts a new round" if _qg.get("fee") != "0.01" else "the next run switches the code off until William restarts it")))
-            elif e.get("still_named") is True or e.get("resave_ok") is False: T("the routine took the quality line %s off held visit %s (%s), but the visit is still listed for the edit about the line (%s)%s - William looks: one re-save of the visit should release it. The next run switches the code off until he restarts it." % (
+            if _newest[_rkey(e)] is not e: continue      # K9: replaced by a later entry of the same register - said once with that one
+            _wv = "vst%s" % _num(e.get("visit")); _was = _older.get(_rkey(e)) or []
+            _how = (str(_was[-1].get("note") or ("its try ended before the void reported back" if _was[-1].get("void_ok") is not True else "still listed for the edit about the line" if (_was[-1].get("still_named") is True or _was[-1].get("resave_ok") is False) else "held for its own reason"))[:100]) if _was else ""      # what the replaced entry said
+            _then = (" - its first try in this run did not free it (%s), then freed by this run's retry pass" % _how) if _was else ""
+            if e.get("retry_of") and (_num(e.get("visit")) in _stuckv or e.get("listed") is False):      # the step's retry of a stuck visit: the state line above says what this run did
+                if _was and _num(e.get("visit")) not in _stuckv:      # ... unless the visit's first try was in THIS run, which the state line does not know: said once here
+                    T("held visit %s (%s): the routine's first try in this run did not free it (%s), then freed by this run's retry pass (%s) - nothing more was done to it." % (_wv, e.get("pid"), _how, str(e.get("note") or "no longer held")[:100]))
+                continue
+            if e.get("void_ok") is not True: T("the routine could not take the quality line off held visit %s (%s: %s) - the visit is held WITH its line. No new line is added while that is so; every run tries the void and the re-save again, and a person can take the line off that visit at any time." % (_wv, e.get("pid"), str(e.get("note") or e.get("why") or "")[:120]))
+            elif e.get("released") is True: T("the routine took the quality line %s off held visit %s (%s; the hold: %s) and the visit went through without it%s. That is one refusal of the line: %s" % (
+                e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100], _then, ("after proof one changes nothing; a second in a row moves new lines to one cent" if _qg.get("fee") != "0.01" else "after proof one changes nothing; a second in a row sets the proof aside and the code probes: one line a run") if _qg.get("confirmed") is True else
+                ("the next run moves new lines to one cent: one line a run until one is billed" if _qg.get("fee") != "0.01" else "the code goes on probing: one line a run until one is billed")))
+            elif e.get("still_named") is True or e.get("resave_ok") is False: T("the routine took the quality line %s off held visit %s (%s), but the visit is still listed for the edit about the line (%s)%s - no new line is added while that is so; every run re-saves the visit again (one re-save should release it)." % (
                 e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100], "; the re-save after the void failed" if e.get("resave_ok") is False else ""))      # not the visit's own reason (confirm review NH2-2)
-            else: T("the routine took the quality line %s off held visit %s (%s), but the visit is still held for its own reason (%s) - its place in the round is free and the patient is due again; the visit's own hold is listed under Claim Inspector pass." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
+            else: T("the routine took the quality line %s off held visit %s (%s)%s, but the visit is still held for its own reason (%s) - its place in the round is free and the patient is due again; the visit's own hold is listed under Claim Inspector pass." % (e.get("charge"), _wv, e.get("pid"), _then, str(e.get("why") or "")[:100]))
         if _qr: T("QUALITY CODE NOT ACCEPTED by AdvancedMD on %d visit(s); each visit was entered without it: %s - these patients are not tried again this year." % (len(_qr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("quality_refused"))[:80]) for x in _qr[:10])))
         if _qn: T("AdvancedMD stored %d visit(s) WITHOUT the quality line that was sent with it (the visit itself is entered): %s" % (len(_qn), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _qn[:10])))
         if _qf: T("%d visit(s) were refused with the quality line and NOT sent again, because the chart shows part of the visit or could not be read - check that visit (for William; no routine sends it again): %s" % (
             len(_qf), "; ".join("%s %s %s (visit %s; the chart shows %s)" % (x.get("pid"), x["info"].get("dos") or "?", "+".join(str(c) for c in (x["info"].get("cpts") or [])), x.get("empty_visit"), str(x.get("stored"))[:80]) for x in _qf[:10]))
-            + " - the insurance check and the Claim Inspector step did not look at these visits.")      # never "empty": the chart shows what it holds (confirm review NH2-5)
+            + " - the insurance check did not look at these visits; the Claim Inspector step looks at each of them in every run until it is free (no new line while one is held - November 12, 2026).")      # never "empty": the chart shows what it holds (confirm review NH2-5); K11: the retry pass looks at them
         _qs = [x for x in (reg.get("failed") or []) if isinstance(x, dict) and x.get("quality_sent")]      # refused with the line, and the send WITHOUT it ended in an error (confirm review NH2-4)
         if _qs: T("%d visit(s) were refused with the quality line and the send without it ended in an error - such a visit may NOT be entered: William checks it (no routine sends it again): %s" % (
             len(_qs), "; ".join("%s %s %s (visit %s)" % (x.get("pid"), _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])), x.get("empty_visit")) for x in _qs[:10])))
@@ -225,9 +321,7 @@ try:
         for _y, _n in sorted(_nr.items()): T("the quality code is not added to %s visits until William renews it (%s visit(s) of this batch would otherwise carry it)." % (_y, _n))
         if _moved: L("  - %d quality line(s) of this batch rode on visits the insurance check moved to another payer than Medicare: %s - that line went to that payer; nothing to do (such a line is never the pilot's proof)." % (
             len(_moved), "; ".join("%s %s -> %s" % (x.get("pid"), x.get("visit"), c_) for x, c_ in _moved[:10])))
-        if _ans and not (isinstance(_pg.get("medicare_answer"), dict) and _pg["medicare_answer"].get("charge") == _ans.get("charge")):
-            L("  - Medicare's remittance shows the 1123F line on visit %s, paid $%s on %s: the code reached Medicare on the claim and came back on its remittance (whether the measure is met shows only in the feedback on the Medicare quality-program site); the daily cap is lifted." % (_ans.get("visit"), _ans.get("amount"), _ans.get("date")))
-        elif _qg.get("confirmed") is True and not _ans and not _qg.get("n620") and _mw:
+        if _qg.get("confirmed") is True and not _ans and not _qg.get("n620") and _mw:
             # say exactly what is known (confirm reviews F6, W-3): only the pilot's lines are read back, and the import sees Medicare's answer only as a payment line AdvancedMD posts on such a line
             _t = "%s of the pilot's quality lines are read as billed (lines added after proof are not read back); no Medicare payment line is posted on them yet (the oldest billed %s, %s day(s) ago) - the import reads up to six of them each run for a Medicare payment line and lifts the cap of ten a run when one shows. A second way: when a Medicare remittance for one of these visits shows the 1123F line (reason 246, remark N620), tell William, then: echo '{\"seen\": \"<date>\"}' > registers/quality_n620_seen.json" % (
                 _mw.get("lines"), _mw.get("oldest") or "?", _mw.get("days") if _mw.get("days") is not None else "?")
@@ -246,6 +340,7 @@ except Exception as _e:                                    # never stops the dig
 # the option code M0004 (William 11/10/2026, about M0004: "use it"; rules.md): its own no-charge line, once per clinician per year, on a visit that carries the
 # 1123F line once that line is proven. Its ledger is the import register's "mvp_gate". Everything that needs William is ONE line "  - TOP OF THE REPORT - ",
 # said in the run where it began (the previous import register's mvp_gate tells); from December 1 a clinician without an M0004 line is at the top every run.
+# 11/12/2026: M0004 never switches itself off either - where it used to go off it probes (one M0004 line a run in all) or pauses for one run.
 try:
     _mg = reg.get("mvp_gate") if isinstance(reg.get("mvp_gate"), dict) else {}
     _qg2 = reg.get("quality_gate") if isinstance(reg.get("quality_gate"), dict) else {}
@@ -264,43 +359,47 @@ try:
     _mrem += [e for v in ver.values() if isinstance(v, dict) for e in (v.get("quality_removed") if isinstance(v.get("quality_removed"), list) else []) if isinstance(e, dict) and str(e.get("code") or "").upper() == "M0004"]
     _mcl = {k: v for k, v in (_mg.get("clinicians").items() if isinstance(_mg.get("clinicians"), dict) else ()) if isinstance(v, dict)}
     _moff = str(_mg.get("off") or ""); _mlast = str(_mg.get("off_until_reset") or ""); _mnotes = [str(n) for n in _mlst("notes")]
+    _mprobe = str(_mg.get("probe") or ""); _mpaused = str(_mg.get("paused") or ""); _mstand = _mg.get("standing_restart") if isinstance(_mg.get("standing_restart"), dict) else None      # 11/12/2026: M0004 probes or pauses where it used to go off
     _mans = {k: v for k, v in (_mg.get("answer").items() if isinstance(_mg.get("answer"), dict) else ()) if isinstance(v, dict)}
     _mlo = [str(c) for c in _mlst("left_off_lines")]; _mlate = [r_ for r_ in _mlst("late_rows") if isinstance(r_, list) and len(r_) >= 5]
     _WHO = {"prof13": "prof13 (the physician)", "prof15": "prof15 (the nurse practitioner)"}
     _st = lambda p_: str((_mcl.get(p_) or {}).get("state") or "not yet")
     _dec = bool(re.match(r"^\d{8}T", _st8)) and _st8[4:6] == "12"      # a batch of December: the registration year ends on the 31st
-    if _mg and (_ma or _mr or _mns or _mrem or _mlast or _moff or _mnotes or _mlo or _mlate or _qg2.get("confirmed") is True or any(_st(p_) != "not yet" for p_ in _mcl)):
+    if _mg and (_ma or _mr or _mns or _mrem or _mlast or _moff or _mnotes or _mlo or _mlate or _mprobe or _mstand or _qg2.get("confirmed") is True or any(_st(p_) != "not yet" for p_ in _mcl)):
         L("- Option code M0004 (Quality Care for Patients with Neurological Conditions - the option the group and both clinicians are registered for; William 11/10/2026: \"use it\"; a line that pays nothing, once per clinician, on a claim that carries 1123F): on %d visit(s) in this batch; %s; %s." % (
             len(_ma), "; ".join("%s: %s" % (_WHO.get(p_, p_), _st(p_)) for p_ in sorted(_mcl)) or "no clinician known yet",
-            "OFF until William restarts it (one run with MVP_CODE=reset, once the cause is fixed)" if _mlast else ("no M0004 line in this run (%s)" % _moff[:120]) if _moff else
+            "paused this run - no M0004 line was added" if _mpaused else "probing - one M0004 line a run in all until one is billed" if _mprobe else ("no M0004 line in this run (%s)" % _moff[:120]) if _moff else
             "it rides with the next eligible visit of a clinician who has none" if _qg2.get("confirmed") is True else "it rides only once the quality code is proven"))
         T2 = lambda s_: L("  - TOP OF THE REPORT - " + s_)
         if _ma: L("  - M0004 carried by: %s" % "; ".join("%s %s %s (%s)" % (x.get("pid"), x.get("visit"), x.get("mvp_charge"), x.get("mvp_prof") or "?") for x in _ma[:10]))
-        if _mlast and _mlast != str(_mpg.get("off_until_reset") or ""): T2("the option code M0004 is OFF until William restarts it: %s. The 1123F line goes on as before. To start M0004 again (once the cause is fixed): one run with MVP_CODE=reset in front of the import's command." % _mlast[:220])
-        elif _mlast: L("  - the option code M0004 is still OFF (since an earlier run): %s - to start it again: one run with MVP_CODE=reset." % _mlast[:200])
-        elif _moff.startswith("this run: switched off (MVP_CODE=off)"): L("  - M0004 switched off for this run by William's MVP_CODE=off - no M0004 line was added.")
+        if _mstand: T2("the option code M0004: restarted on William's standing word of November 11, 2026 - an earlier run had switched it off (%s)." % str(_mstand.get("was") or "")[:220])
+        if _mpaused: T2("the option code M0004 is paused this run: %s." % (_mpaused[len("paused this run: "):] if _mpaused.startswith("paused this run: ") else _mpaused)[:300].rstrip("."))
+        if _mprobe and not str(_mpg.get("probe") or ""): T2("the option code M0004 probes (one M0004 line a run in all until one is billed): %s. The 1123F line goes on as before." % _mprobe[:260].rstrip("."))
+        elif _mprobe: L("  - the option code M0004 still probes (since an earlier run): %s." % _mprobe[:240].rstrip("."))
+        if _moff.startswith("this run: switched off (MVP_CODE=off)"): L("  - M0004 switched off for this run by William's MVP_CODE=off - no M0004 line was added.")
         elif "MVP_CODE=" in _moff: T2("the option code M0004 is off in this run: %s" % _moff[:220])
         if any(n_.startswith("NOTHING TO RESTART") for n_ in _mnotes): T2(next(n_ for n_ in _mnotes if n_.startswith("NOTHING TO RESTART"))[:220])
         if _mg.get("reset") is True: L("  - the option code M0004 was started again in this run (MVP_CODE=reset).")
-        if _mr: T2("AdvancedMD refused %d visit(s) that carried M0004; each was entered with the 1123F line only: %s - M0004 is OFF until William restarts it (no second try)." % (len(_mr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("mvp_refused"))[:80]) for x in _mr[:5])))
-        if _mns: T2("AdvancedMD stored %d visit(s) WITHOUT the M0004 line that was sent with it (the visit itself is entered): %s - M0004 is OFF until William restarts it." % (len(_mns), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _mns[:5])))
+        if _mr: T2("AdvancedMD refused %d visit(s) that carried M0004; each was entered with the 1123F line only: %s - M0004 goes on probing: one M0004 line a run in all until one is billed." % (len(_mr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("mvp_refused"))[:80]) for x in _mr[:5])))
+        if _mns: T2("AdvancedMD stored %d visit(s) WITHOUT the M0004 line that was sent with it (the visit itself is entered): %s - M0004 goes on probing." % (len(_mns), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _mns[:5])))
         for e in _mrem:      # William 11/10/2026: the routine takes a no-charge line off a held visit by itself (11.6)
             _wv = "vst%s" % _mnum(e.get("visit"))
-            if e.get("void_ok") is not True: T2("the routine could not take the M0004 line off held visit %s (%s: %s) - the visit is held WITH that line; William looks. The next run switches M0004 off until he restarts it." % (_wv, e.get("pid"), str(e.get("note") or e.get("why") or "")[:120]))
+            if e.get("listed") is False: L("  - visit %s (%s), which was held with its M0004 line, is free again (%s) - nothing was done to it; M0004 goes on by itself, probing." % (_wv, e.get("pid"), str(e.get("note") or "no longer held")[:100]))      # the inspector step's retry (11/12/2026)
+            elif e.get("void_ok") is not True: T2("the routine could not take the M0004 line off held visit %s (%s: %s) - the visit is held WITH that line. No new M0004 line is added while that is so; every run tries the void and the re-save again." % (_wv, e.get("pid"), str(e.get("note") or e.get("why") or "")[:120]))
             elif e.get("with") == "1123F": L("  - the M0004 line %s of visit %s (%s) came off together with its 1123F line (M0004 never rides without it) - that clinician may get M0004 again." % (e.get("charge"), _wv, e.get("pid")))      # confirm review NH2-1
-            elif e.get("released") is not True and (e.get("still_named") is True or e.get("resave_ok") is False): T2("the routine took the M0004 line %s off held visit %s (%s), but the visit is still listed for the edit about the line (%s)%s - William looks: one re-save of the visit should release it. The next run switches M0004 off until he restarts it." % (
+            elif e.get("released") is not True and (e.get("still_named") is True or e.get("resave_ok") is False): T2("the routine took the M0004 line %s off held visit %s (%s), but the visit is still listed for the edit about the line (%s)%s - no new M0004 line is added while that is so; every run re-saves the visit again (one re-save should release it)." % (
                 e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100], "; the re-save after the void failed" if e.get("resave_ok") is False else ""))      # confirm review NH2-2, the same for M0004 (8.6)
-            elif e.get("released") is True: T2("the routine took the M0004 line %s off held visit %s (%s; the hold: %s) and the visit went through without it: M0004 is OFF until William restarts it (no second try); this does not count against the 1123F line." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
+            elif e.get("released") is True: T2("the routine took the M0004 line %s off held visit %s (%s; the hold: %s) and the visit went through without it: M0004 probes: one M0004 line a run in all until one is billed; this does not count against the 1123F line." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
             else: T2("the routine took the M0004 line %s off held visit %s (%s), but the visit is still held for its own reason (%s) - its clinician may get M0004 again; the visit's own hold is listed under Claim Inspector pass." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
         _billed = [p_ for p_ in sorted(_mcl) if _st(p_) == "billed"]
         if _billed: L("  - Medicare's answer for M0004: %s (a posted Medicare payment line on the M0004 line shows the code reached Medicare on the claim; whether the measure is met shows only in the feedback on the Medicare quality-program site)." % "; ".join(
             ("Medicare's remittance shows the M0004 line for %s (visit %s, $%s on %s)" % (p_, (_mans[p_].get("visit") or "?"), _mans[p_].get("amount") or "?", _mans[p_].get("date") or "?")) if p_ in _mans else ("not yet for %s (its line billed %s)" % (p_, (_mcl.get(p_) or {}).get("billed") or "?")) for p_ in _billed))
-        if _mlo: L("  - %d M0004 line(s) were read as left off their claims (each visit went out without it, still so three days later; such a line is read again for 30 days): %s - listed for William; no routine voids them. That clinician gets M0004 once more; a second left-off line switches M0004 off until William restarts it." % (len(_mlo), ", ".join(_mlo[:6])))
+        if _mlo: L("  - %d M0004 line(s) were read as left off their claims (each visit went out without it, still so three days later; such a line is read again for 30 days): %s - listed for William; no routine voids them. That clinician gets M0004 once more; after a second left-off line M0004 probes: AdvancedMD leaves the line off the claim, which needs a setting in AdvancedMD (a person or AdvancedMD's support)." % (len(_mlo), ", ".join(_mlo[:6])))
         for r_ in _mlate: L("  - an M0004 line read as left off on %s was billed later: %s counts as done for %s%s." % (r_[4], r_[0], r_[6] if len(r_) > 6 else "the year", ("; %s carries two billed M0004 lines (the later one on %s); nothing to do" % (r_[0], r_[5])) if len(r_) > 5 and r_[5] else ""))
         if _dec:
             for p_ in sorted(_mcl):
                 if _st(p_) not in ("billed", "waiting"): T2("%s has no M0004 line billed or waiting for %s - the year ends December 31 (M0004 must be on at least one of that clinician's Medicare claims that carries 1123F)%s." % (
-                    _WHO.get(p_, p_), (_mcl.get(p_) or {}).get("year") or "the year", (": M0004 is OFF until William restarts it - " + _mlast[:120]) if _mlast else ""))
+                    _WHO.get(p_, p_), (_mcl.get(p_) or {}).get("year") or "the year", (": M0004 probes - " + _mprobe[:120]) if _mprobe else ""))
         for _n in [n_ for n_ in _mnotes if not n_.startswith("NOTHING TO RESTART") and "started again in this run" not in n_][:5]: L("  - %s" % _n[:220])
 except Exception as _e:                                    # never stops the digest
     L("- Option code M0004: this line could not be built (%s) - read mvp_gate in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
@@ -334,7 +433,14 @@ for pid, h in holds.items(): L("  - %s: %s%s%s" % (pid, "; ".join(str(x).replace
 L("")
 L("## Claim Inspector pass")
 L("- fixed %d visits, advisories bypassed on %d, laterality logged %d, held %d (Pattern 24078 CCI: 99309 same day as the 10/22 CCM)." % (len(insp.get("fixed", [])), len(insp.get("bypassed", [])), len(insp.get("laterality", [])), len(insp.get("held", []))))
-for h in insp.get("held", []): L("  - vst%s %s: %s" % (h["visit"], h["pid"], h["why"][:120]))
+# November 12, 2026 - fix round 2 (K17, review note G5): a held row whose visit a LATER retry entry of the same register freed (no longer listed, or the line
+# came off and the visit went out) is said to be free; the held row itself stays in the register (the import's never-held proof rule reads it)
+_freedv = {}
+try:
+    for _e2 in (insp.get("quality_removed") if isinstance(insp, dict) and isinstance(insp.get("quality_removed"), list) else []):
+        if isinstance(_e2, dict) and re.sub(r"\D", "", str(_e2.get("visit") or "")): _freedv[re.sub(r"\D", "", str(_e2["visit"]))] = bool(_e2.get("retry_of")) and (_e2.get("listed") is False or (_e2.get("void_ok") is True and _e2.get("released") is True))
+except Exception: _freedv = {}
+for h in insp.get("held", []): L("  - vst%s %s: %s%s" % (h["visit"], h["pid"], h["why"][:120], " - then freed by this run's retry pass: the visit is free" if _freedv.get(re.sub(r"\D", "", str(h.get("visit") or ""))) else ""))
 L("")
 L("## Next")
 L("- AMD's automatic claim run (~17:00 ET) sends every clean approved claim; the submission wizard sends sooner.")

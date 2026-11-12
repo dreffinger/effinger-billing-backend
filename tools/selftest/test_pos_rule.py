@@ -17,9 +17,12 @@
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
 #       whose first plan is Medicare Part B and whose last insurance check showed Medicare first - never on a care-management-only message,
-#       never twice; a pilot round holds at most three lines and adds none while one of them is not decided; the code is off until William
-#       restarts it when a person, a hold or a refusal shows the line is in the way; a refused visit is entered again without it
-#       (section 4c here, and the nights of tools/selftest/test_quality_nights.py);
+#       never twice; a pilot round holds at most three lines and adds none while one of them is not decided; a refused visit is entered
+#       again without it. Since 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds") the code never
+#       switches itself off: where a person, a hold or a refusal showed the line in the way it PROBES (one line a run until one is billed)
+#       or PAUSES for one run (a visit stuck held with its line - the inspector step tries it again in every run - or another code text);
+#       only William's own QUALITY_CODE=stop lasts; the option code M0004 the same; the digest says the state at its top in every batch
+#       (sections 4c, 4d, 6 and the inspector's retry pass here, and the nights of tools/selftest/test_quality_nights.py);
 #     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
 #       feed helpers without the rule back onto main; the runbook copies them (and the parser) from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
@@ -882,22 +885,28 @@ check("ledger: the history of the proof's chart does NOT list the line - recorde
       s["confirmed"] is True and s["history_shows_line"] is False and any("invisible to the import" in n and "quality_exceptions.json" in n for n in s["notes"]), s["notes"])
 # the state-machine reviewer's mixed outcome (SM-1): visit A billed WITHOUT its $0.00 line, B's line billed, C open
 world(c11=["11/11/2026"], c22=BILLED); s = state([R1])
-check("ledger (SM-1): a visit billed without its $0.00 line while ANOTHER $0.00 line of the round is billed - $0.00 is proven; only the line READ as left off is dead and its patient due again; nobody else is touched",
+check("ledger (SM-1): a visit billed without its $0.00 line while ANOTHER $0.00 line of the round is billed - $0.00 is proven; only the line READ as left off is dead - its patient is due again only 30 days after it was called left off "
+      "(K12, November 12, 2026 - fix round 1: AdvancedMD may still bill it until then, and once per patient and year holds across a left-off line too); nobody else is touched",
       s["confirmed"] is True and s["fee"] == "0.00" and s["zero_not_billed"] is False and s["left_off_lines"] == ["charge12"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]] and s["dead"] == {("pat7001", "1123F", "11/10/2026")}
-      and s["done"] == {("pat7002", "2026"), ("pat7003", "2026")} and s["proof"]["charge"] == "charge22", s)
+      and s["done"] == {("pat7001", "2026"), ("pat7002", "2026"), ("pat7003", "2026")} and s["proof"]["charge"] == "charge22" and s["left_off_on"] == {"charge12": {"on": "11/20/2026", "billed": "11/11/2026"}}, s)
 s_rev = state([(RN("20261111T1240Z"), {"created": [C_, B_, A_]})])
 check("ledger (SM-1): ... the same whatever the order of the rows", (s_rev["confirmed"], s_rev["fee"], s_rev["left_off_lines"], s_rev["done"], s_rev["proof"]["charge"]) == (True, "0.00", ["charge12"], s["done"], "charge22"), s_rev)
+_NX = nextreg("20261120T1240Z"); RUN_DAY[0] = _dt.date(2026, 12, 19); s29 = state([R1, _NX]); RUN_DAY[0] = _dt.date(2026, 12, 20); s30 = state([R1, _NX]); RUN_DAY[0] = _dt.date(2026, 11, 20)
+check("ledger (K12, fix round 1): ... the patient of the left-off line stays not due 29 days after it was called left off, and is due again on the 30th day (as before: a left-off line was never reported); the others still count",
+      ("pat7001", "2026") in s29["done"] and ("pat7001", "2026") not in s30["done"] and {("pat7002", "2026"), ("pat7003", "2026")} <= s30["done"] and s30["left_off_lines"] == ["charge12"], (s29["done"], s30["done"]))
 world(c11=["11/11/2026"]); s = state([R1])
-check("ledger: a visit billed without its $0.00 line and NO line of the round billed - new lines carry one cent, a new round of three; only that one line is dead, the two lines not decided yet keep counting as reported",
-      s["fee"] == "0.01" and s["zero_not_billed"] is True and s["confirmed"] is False and s["wait"] is False and s["budget"] == 3 and s["left_off_lines"] == ["charge12"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]]
-      and s["done"] == {("pat7002", "2026"), ("pat7003", "2026")} and s["round"]["n"] == 2 and s["round"]["fee"] == "0.01" and s["round"]["lines"] == 0 and any("without its $0.00 quality line" in n for n in s["notes"]), s)
+check("ledger: a visit billed without its $0.00 line and NO line of the round billed - new lines carry one cent and the code PROBES from there: one line a run until one is billed (11/12/2026; before, a new round of three); only that one line is dead "
+      "(its patient is due again 30 days after it was called left off - K12, fix round 1), the two lines not decided yet keep counting as reported",
+      s["fee"] == "0.01" and s["zero_not_billed"] is True and s["confirmed"] is False and s["wait"] is False and s["budget"] == 1 and s["left_off_lines"] == ["charge12"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]]
+      and s["done"] == {("pat7001", "2026"), ("pat7002", "2026"), ("pat7003", "2026")} and s["round"]["n"] == 2 and s["round"]["fee"] == "0.01" and s["round"]["lines"] == 0 and any("without its $0.00 quality line" in n for n in s["notes"]) and s["off"] == "" and s["off_until_reset"] == ""
+      and s["probe"] == "new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst1 off its claim and no $0.00 line of the round is billed - one line a run until one is billed" and (s["probe_kind"], s["probe_since"], s["probe_tries"]) == ("left_off", "feed_import_20261111T1240Z.json", 1), s)
 world(c11=["11/11/2026"], c22=BILLED); s3 = state([R1], files={"checks": {"20261111T1240Z": {"pat7002": ("RELEASE", "HUM01")}}})
 check("ledger: a visit billed without its $0.00 line while another $0.00 line of the round IS billed, though on a claim that cannot be the proof - the amount does NOT move to one cent (AdvancedMD does send a $0.00 line); the round waits for its third line",
       s3["fee"] == "0.00" and s3["zero_not_billed"] is False and s3["confirmed"] is False and s3["wait"] is True and s3["pending"] == ["vst3"] and s3["left_off_lines"] == ["charge12"] and s3["billed_lines"] == ["charge22"], s3)
 world(c11=["11/11/2026"]); state([R1])
 world(c11=["11/11/2026"], c22=BILLED); s2 = state([R1, nextreg("20261112T1240Z")])
 check("ledger: once at one cent it stays there - a $0.00 line found billed LATER is counted for its patient but changes nothing; the other two are read until decided, and the line read as left off is read again (13.1b: still not billed, so it stays left off)",
-      s2["fee"] == "0.01" and s2["confirmed"] is False and s2["billed_lines"] == ["charge22"] and s2["left_off_lines"] == ["charge12"] and DETAILS.count("12") == 1 and "22" in DETAILS and "32" in DETAILS and s2["budget"] == 3
+      s2["fee"] == "0.01" and s2["confirmed"] is False and s2["billed_lines"] == ["charge22"] and s2["left_off_lines"] == ["charge12"] and DETAILS.count("12") == 1 and "22" in DETAILS and "32" in DETAILS and s2["budget"] == 1 and (s2["probe_kind"], s2["probe_tries"]) == ("left_off", 1)
       and DETAILS.index("12") > max(DETAILS.index("22"), DETAILS.index("32")) and s2["left_off_on"] == {"charge12": {"on": "11/20/2026", "billed": "11/11/2026"}}, (s2, DETAILS))
 world(c11=["11/11/2026"], c32="RAISE"); s = state([R1])
 check("ledger: a line whose read FAILS is never called dead - it is not decided (the reviewer's case: one visit billed without its line, another line's read raises)", s["left_off_lines"] == ["charge12"] and ("pat7003", "2026") in s["done"] and s["dead_rows"] == [["pat7001", "vst1", "charge12"]], s)
@@ -911,8 +920,10 @@ world(c12="MISSING"); s = state([R1])
 check("ledger: a charge that is not in AdvancedMD's answer at all is not decided", s["wait"] is True and s["void_lines"] == [] and s["pending"] == ["vst1", "vst2", "vst3"], s)
 # VOID: taken off by a person / the whole visit gone / not known
 world(c12=VOID); s = state([R1])
-check("ledger: a line is void while its visit's own charge is still live - a person took it off: the code is OFF until William restarts it, the sentence names the visit, no new line",
-      "1 earlier quality line(s) were taken off their visits" in s["off"] and "vst1" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["void_lines"] == ["charge12"] and s["wait"] is False and ("pat7001", "2026") not in s["done"], s)
+check("ledger: a line is void while its visit's own charge is still live - a person took it off: that patient gets NO line again this year, the charge is kept as taken, and the code STAYS ON (11/12/2026; before, off until a restart). Before proof it probes - one line a run - instead of filling the free place; here the round still waits for its two other lines",
+      s["off"] == "" and s["off_until_reset"] == "" and s["probe"] == "1 earlier quality line(s) were taken off their visits (void) while the visits are still there (vst1) - William looks" and s["probe_kind"] == "voided" and s["budget"] == 0 and s["wait"] is True and s["pending"] == ["vst2", "vst3"]
+      and s["void_lines"] == ["charge12"] and s["taken_lines"] == ["charge12"] and ("pat7001", "2026") in s["refused"] and ("pat7001", "2026") in s["done"] and ci.quality_gate()["refused_charts"] == [["pat7001", "2026"]]
+      and any("a person decided: pat7001 gets no line again this year; the code stays on" in n for n in s["notes"]), s)
 world(c12=VOID, c11=VOID); s = state([R1])
 check("ledger: a line is void and its visit's own charge too - the visit is gone: no outcome either way, its patient is due again, the round still waits for the two other lines", s["off"] == "" and s["void_lines"] == ["charge12"] and s["wait"] is True
       and s["pending"] == ["vst2", "vst3"] and ("pat7001", "2026") not in s["done"] and s["round"]["void"] == 1, s)
@@ -923,8 +934,8 @@ R1b = (RN("20261112T1240Z"), {"created": [qrow("pat7004", "vst4", "charge42", "c
 for c_ in ("42", "52", "62"): chg(c_, VOID)
 for c_ in ("41", "51", "61"): chg(c_, VOID, "pcode65119")
 s = state([R1, R1b])
-check("ledger: the replacement lines are voided too - a round never holds more than six lines: the code is OFF ('the pilot's lines keep being voided') until William restarts it",
-      "the pilot's lines keep being voided" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["round"]["lines"] == 6 and not any(c_ in DETAILS for c_ in ("12", "22", "32")), (s, DETAILS))
+check("ledger: the replacement lines are voided too - a round never holds more than six lines: the code PROBES ('the pilot's lines keep being voided'), one line a run - it no longer switches itself off (11/12/2026)",
+      s["probe"] == "the pilot's lines keep being voided (6 lines in this round, none billed) - William looks" and s["probe_kind"] == "voided" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1 and s["round"]["lines"] == 6 and not any(c_ in DETAILS for c_ in ("12", "22", "32")), (s, DETAILS))
 chg("62", []); chg("61", []); s = state([R1, R1b])
 check("ledger: ... while one of the six is still open the round only waits", s["off"] == "" and s["wait"] is True and s["pending"] == ["vst6"] and s["budget"] == 0, s)
 world(c12=BILLED, c22=VOID, c21=VOID, c32=VOID, c31=VOID); s = state([R1], files={"checks": {"20261111T1240Z": {"pat7001": ("RELEASE", "HUM01")}}})
@@ -941,17 +952,17 @@ check("ledger: the visit's own charge is void while its quality line is still li
 D1C = qrow("pat7004", "vst4", "charge42", "charge41", fee="0.01")
 world(c11=["11/11/2026"]); state([R1]); ONEC = nextreg("20261112T1240Z", created=[D1C])      # A's visit went out without its $0.00 line: one cent, and a one-cent line D is entered
 chg("42", []); chg("41", [], "pcode65119"); chg("22", VOID); s = state([R1, ONEC])               # D is not decided yet; B's $0.00 line is void while B's own charge is still live
-check("ledger: an earlier $0.00 line is read later and found taken off its visit by a person while the one-cent round is NOT proven - the code is OFF until William restarts it, and the sentence names that visit",
-      s["off"] == "the quality line of visit vst2 was taken off the visit (void) while the visit is still there - William looks" and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["wait"] is False
-      and s["void_lines"] == ["charge22"] and s["fee"] == "0.01" and ("pat7002", "2026") not in s["done"], s)
+check("ledger: an earlier $0.00 line is read later and found taken off its visit by a person while the one-cent round is NOT proven - an OLDER line starts nothing: the code goes on as it stood (probing since the move to one cent, waiting for its one-cent line); that patient gets no line again this year",
+      s["off"] == "" and s["off_until_reset"] == "" and (s["probe_kind"], s["probe_tries"]) == ("left_off", 1) and s["budget"] == 0 and s["wait"] is True and s["pending"] == ["vst4"]
+      and s["void_lines"] == ["charge22"] and s["taken_lines"] == ["charge22"] and s["fee"] == "0.01" and ("pat7002", "2026") in s["refused"] and ("pat7002", "2026") in s["done"], s)
 chg("42", BILLED); chg("41", BILLED, "pcode65119"); s = state([R1, ONEC])                        # the same, but the one-cent line D is billed: one cent is proven in this very run
-check("ledger: ... the same $0.00 line found taken off once one cent IS proven - the line is just void (its patient is due again); the proven code is not switched off by an old line of the other amount",
-      s["off"] == "" and s["confirmed"] is True and s["fee"] == "0.01" and s["budget"] == 10 and s["void_lines"] == ["charge22"] and s["billed_lines"] == ["charge42"] and ("pat7002", "2026") not in s["done"]
+check("ledger: ... the same $0.00 line found taken off once one cent IS proven - the proven code goes on as it stood; the patient of the line a person took off gets no line again this year (11/12/2026; before, due again)",
+      s["off"] == "" and s["confirmed"] is True and s["fee"] == "0.01" and s["budget"] == 10 and s["probe"] == "" and s["void_lines"] == ["charge22"] and s["billed_lines"] == ["charge42"] and ("pat7002", "2026") in s["done"] and ("pat7002", "2026") in s["refused"]
       and any("taken off the visit" in n for n in s["notes"]), s)
 world(c12=VOID); chg("42", []); chg("41", [], "pcode65119")                                      # A's $0.00 line was taken off by a person; nobody had read it before William restarted the code
 s = state([R1, (RN("20261112T1240Z"), {"created": [qrow("pat7004", "vst4", "charge42", "charge41")], "quality_gate": {"reset": True, "fee": "0.00"}})])
-check("ledger: a line from BEFORE William's restart that is read only now and found taken off - it is just void (he has looked, and said to start again): the new round is not switched off, it waits for its own line",
-      s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["void_lines"] == ["charge12"] and s["round"]["lines"] == 1 and ("pat7001", "2026") not in s["done"] and any("taken off the visit" in n for n in s["notes"]), s)
+check("ledger: a line from BEFORE William's restart that is read only now and found taken off - an older line starts nothing: the new round waits for its own line; that patient gets no line again this year",
+      s["off"] == "" and s["probe"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["void_lines"] == ["charge12"] and s["round"]["lines"] == 1 and ("pat7001", "2026") in s["done"] and ("pat7001", "2026") in s["refused"] and any("taken off the visit" in n for n in s["notes"]), s)
 # what proves the code: a billed line whose visit was never held and whose own batch's insurance check did not hold the chart or name another payer
 world(c12=BILLED)
 for _chk, _ok in ((None, True), (OKCHK, True), (("HOLD", ""), False), (("RELEASE", "HUM01"), False), (("RELEASE", ""), False)):
@@ -961,47 +972,74 @@ for _chk, _ok in ((None, True), (OKCHK, True), (("HOLD", ""), False), (("RELEASE
 s = state([R1], files={"checks": {"20261109T0000Z": {"pat7001": ("HOLD", "")}}})
 check("ledger: ... the check of ANOTHER batch does not matter for the proof", s["confirmed"] is True, s)
 world(c12=BILLED, c22=BILLED, c32=BILLED); s = state([R1], files={"checks": {"20261111T1240Z": {p_: ("RELEASE", "HUM01") for p_ in ("pat7001", "pat7002", "pat7003")}}})
-check("ledger: the round is full, every line is decided and none can be the proof - OFF until William has looked (otherwise the pilot would stand still for ever without a word)", "the pilot round is full (3 lines) and none of them can be the proof" in s["off"] and s["off_until_reset"] == s["off"] and s["confirmed"] is False, s)
+check("ledger: the round is full, every line is decided and none can be the proof - the code PROBES, one line a run (otherwise the pilot would stand still for ever without a word); it no longer switches itself off", s["probe"] == "the pilot round is full (3 lines) and none of them can be the proof - William looks" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1 and s["confirmed"] is False, s)
 # HELD VISITS (the Medicare reviewer's M1): a visit that carries the line and is held
 INS = lambda why, **kw: {"held": {"1": [("feed_inspector_20261111T1240Z.json", why, kw.get("marked", False))]}}
+STUCK_ = lambda why, what="the Claim Inspector holds it and the line was not taken off": 'paused this run: visit vst1 (chart pat7001) is held with its quality line - %s (feed_inspector_20261111T1240Z.json: "%s"); no new line while that is so - every run\'s inspector step tries the void and the re-save again' % (what, why)
 world(); s = state([R1], files=INS("Relationship of Subscriber to Patient is invalid"))
-check("ledger (M1): BEFORE proof any Claim Inspector hold on a visit that carries the line switches the code OFF until William restarts it - the sentence names the visit and quotes the hold; nothing is read",
-      "the Claim Inspector holds visit vst1, which carries the quality line" in s["off"] and '"Relationship of Subscriber to Patient is invalid"' in s["off"] and "feed_inspector_20261111T1240Z.json" in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0 and DETAILS == [], (s, DETAILS))
+check("ledger (M1): BEFORE proof any Claim Inspector hold on a visit that carries the line makes that visit STUCK (11/12/2026; before, the code went off until a restart) - PAUSED for this run: no line, the sentence names the visit and quotes the hold, the gate lists the visit for the inspector step's retry pass, and nothing is off until a restart",
+      s["off"] == STUCK_("Relationship of Subscriber to Patient is invalid") and s["paused"] == s["off"] and s["off_until_reset"] == "" and s["probe"] == "" and s["budget"] == 0 and ci.quality_gate()["stuck"] == s["stuck"]
+      and s["stuck"] == [{"chart": "pat7001", "visit": "vst1", "charge": "charge12", "own": "charge11", "code": "1123F", "fee": "0.00", "with": "", "why": "Relationship of Subscriber to Patient is invalid", "register": "feed_inspector_20261111T1240Z.json",
+                          "what": "the Claim Inspector holds it and the line was not taken off", "since": "feed_inspector_20261111T1240Z.json"}], s)
+world(c12=BILLED); s = state([R1], files=INS("Pattern 990001: procedure 1123F - line item charge amount is zero"))
+check("ledger (M1): a held visit that a person released and that is billed afterwards is NEVER the proof - and until a newer entry says the visit is free it stays listed as stuck (the next inspector step finds it no longer listed)",
+      s["confirmed"] is False and s["proof"] is None and s["billed_lines"] == ["charge12"] and s["paused"] == STUCK_("Pattern 990001: procedure 1123F - line item charge amount is zero") and s["budget"] == 0 and any("cannot be the proof" in n for n in s["notes"]), s)
 world(c12=BILLED, c22=BILLED); s = state([R1], files=INS("Pattern 990001: procedure 1123F - line item charge amount is zero"))
-check("ledger (M1): a held visit that a person released and that is billed afterwards is NEVER the proof - the code stays off", s["confirmed"] is False and "the Claim Inspector holds visit vst1" in s["off"] and s["budget"] == 0, s)
+check("ledger (M1): ... a line of the same round whose visit was never held IS the proof; the stuck visit still pauses this run and no more", s["confirmed"] is True and s["proof"]["charge"] == "charge22" and s["paused"] != "" and s["budget"] == 0 and s["off_until_reset"] == "", s)
 PROVEN = (RN("20261112T1240Z"), {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00", "proof": {"visit": "vst2", "charge": "charge22"}}})
 world(); s = state([R1, PROVEN], files=INS("Relationship of Subscriber to Patient is invalid"))
-check("ledger (M1): AFTER proof a hold whose words do not name the line changes nothing", s["off"] == "" and s["confirmed"] is True and s["budget"] == 10, s)
+check("ledger (M1): AFTER proof a hold whose words do not name the line changes nothing", s["off"] == "" and s["confirmed"] is True and s["budget"] == 10 and s["stuck"] == [], s)
 for _w in ("Pattern 990001: procedure 1123F - line item charge amount is zero", "edit on pcode65441", "charge 12 cannot be billed", "Pattern 88001: Charge amount is zero for this procedure"):
     s = state([R1, PROVEN], files=INS(_w))
-    check("ledger (M1): AFTER proof a hold whose words name the line (%s) switches the code OFF until William restarts it" % _w[:40], "the Claim Inspector holds visit vst1" in s["off"] and _w[:30] in s["off"] and s["off_until_reset"] == s["off"] and s["budget"] == 0, s)
+    check("ledger (M1): AFTER proof a hold whose words name the line (%s) makes the visit STUCK - paused this run, the proof stays, never off until a restart" % _w[:40],
+          s["paused"] == STUCK_(_w) and s["off"] == s["paused"] and s["off_until_reset"] == "" and s["confirmed"] is True and s["budget"] == 0 and [i_["visit"] for i_ in s["stuck"]] == ["vst1"], s)
 s = state([R1, PROVEN], files=INS("Pattern 24078: something else", marked=True))
-check("ledger (M1): ... and so does a hold the inspector step itself marked as naming the line", "the Claim Inspector holds visit vst1" in s["off"], s)
+check("ledger (M1): ... and so does a hold the inspector step itself marked as naming the line", s["paused"] == STUCK_("Pattern 24078: something else") and s["budget"] == 0 and s["off_until_reset"] == "", s)
 s = state([R1, PROVEN], files={"held": {"9": [("feed_inspector_20261111T1240Z.json", "procedure 1123F - zero", False)]}})
 check("ledger: a hold on a visit that does not carry the line is not the quality code's business", s["off"] == "" and s["confirmed"] is True, s)
-world(); s = state([R1, (RN("20261112T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})], files=INS("Pattern 990001: procedure 1123F - line item charge amount is zero"))
-check("ledger (M1): a hold on a visit from BEFORE William's restart no longer switches the code off (he has looked, and said to start again)", s["off"] == "" and s["budget"] == 3 and s["round"]["lines"] == 0, s)
+_w = "Pattern 990001: procedure 1123F - line item charge amount is zero"; _old = (RN("20261112T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})
+world(); s = state([R1, _old], files=INS(_w))
+check("ledger (M1): a visit held with its line from BEFORE William's restart is STILL stuck after it (11/12/2026: his reset is no word about that visit, which must still be tried again; before, the hold stopped counting) - the gate lists it, no line is added, the new round holds nothing",
+      [i_["visit"] for i_ in s["stuck"]] == ["vst1"] and s["paused"] == STUCK_(_w) and s["budget"] == 0 and s["round"]["lines"] == 0 and s["round"]["n"] == 2 and s["off_until_reset"] == "", s)
+_free = {"removed": {"20261113T1240Z": [("feed_inspector_20261113T1240Z.json", {"visit": "vst1", "pid": "pat7001", "charge": "charge12", "code": "1123F", "fee": "0.00", "why": _w, "void_ok": False, "released": True, "listed": False,
+                                         "retry_of": "feed_inspector_20261111T1240Z.json", "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": "x"})]}}
+s = state([R1, _old, (RN("20261113T1240Z"), {"created": []})], files=dict(INS(_w), **_free))
+check("ledger (M1): ... only a NEWER entry ends a stuck mark: the retry's entry 'no longer listed' frees the visit and counts nothing more (no refusal, the patient is not marked, the line is not called void by it); from there the code probes, one line a run",
+      s["stuck"] == [] and s["paused"] == "" and s["off"] == "" and s["probe"] == 'visit vst1 was held with its quality line until the routine could free it (feed_inspector_20261113T1240Z.json: "%s")' % _w and s["probe_kind"] == "stuck" and s["probe_words"] == _w
+      and s["budget"] == 1 and s["refused"] == set() and s["void_lines"] == [] and s["fee"] == "0.00", s)
 CHK = lambda *words: {"check_holds": {"1": [("feed_verify_20261111T1240Z.json", list(words))]}}
+PROVEN0 = (RN("20261110T1240Z"), {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00", "proof": {"visit": "vst0", "charge": "charge02"}}})      # the code was proven BEFORE the batch of A, B, C
 for _w in ("insorder not applied on vst1", "vst1 insorder 2: detail read mismatch (1 of 2 charges live)", "vst1 insorder 2: resave FAULT <Fault>x</Fault>", "insorder not applied"):
-    for _regs, _when in (([R1], "before"), ([R1, PROVEN], "after")):
-        world(); s = state(_regs, files=CHK("no active plan: discovery found nothing", _w))
-        check("ledger (M1): %s proof, the insurance check could not set the order of a visit that carries the line (%s) - OFF until William restarts it, the sentence names the visit and quotes the hold" % (_when, _w[:34]),
-              "the insurance check could not set the order of visit vst1, which carries the quality line" in s["off"] and _w[:30] in s["off"] and s["off_until_reset"] == s["off"], s)
+    _why = 'the insurance check could not set the order of visit vst1, which carries the quality line (feed_verify_20261111T1240Z.json: "%s") - William looks' % _w
+    world(); s = state([R1], files=CHK("no active plan: discovery found nothing", _w))
+    check("ledger (M1): before proof, the insurance check could not set the order of a visit that carries the line (%s) - that visit is for a person and the code PROBES (11/12/2026; before, off until a restart): the sentence names the visit and quotes the hold; no line while the round's lines are not decided" % _w[:34],
+          s["probe"] == _why and (s["probe_kind"], s["probe_since"], s["probe_tries"]) == ("order", "feed_verify_20261111T1240Z.json", 1) and s["off"] == "" and s["off_until_reset"] == "" and s["wait"] is True and s["budget"] == 0, s)
+    world(); s = state([PROVEN0, R1], files=CHK("no active plan: discovery found nothing", _w))
+    check("ledger (M1): after proof, the insurance check could not set the order of a visit that carries the line (%s) - the proof in place is SET ASIDE there: the lines entered up to that point can no longer be the proof, and the code probes with ONE line" % _w[:34],
+          s["probe"] == _why and s["probe_kind"] == "order" and s["confirmed"] is False and s["proof"] is None and s["off"] == "" and s["off_until_reset"] == "" and s["wait"] is False and s["budget"] == 1 and s["round"]["lines"] == 0, s)
+world(); s = state([R1, PROVEN], files=CHK("no active plan: discovery found nothing", "insorder not applied on vst1"))
+check("ledger (M1): ... a proof recorded AFTER that cause ends the probe - the code is proven and adds ten a run", s["confirmed"] is True and s["probe"] == "" and s["budget"] == 10 and s["off"] == "", s)
 world(c12=BILLED); s = state([R1], files=CHK("insorder not applied on vst9", "no active plan: discovery found nothing"))
 check("ledger (M1): another insurance-check HOLD on a pilot visit (or one that names another visit) does not switch the code off - but that visit can never be the proof, and the round waits for the others",
       s["off"] == "" and s["confirmed"] is False and s["billed_lines"] == ["charge12"] and s["wait"] is True and s["pending"] == ["vst2", "vst3"], s)
-# an OFF that only William's restart ends is REMEMBERED (SM-4), and the switches (SM-8)
-world(c12=VOID); s = state([R1]); _off = s["off"]; LATER = nextreg("20261112T1240Z")
+# a PROBE is REMEMBERED by the gate (SM-4), and the switches (SM-8). 11/12/2026: the code never switches itself off - only William's own stop lasts, and only his stop is ended by his reset
+world(c12=VOID); s = state([R1]); _why = s["probe"]; LATER = nextreg("20261112T1240Z")
 world(c12=VOID, c11=VOID, c22=VOID, c21=VOID, c32=VOID, c31=VOID); s = state([R1, LATER])
-check("ledger (SM-4): an OFF that needs William's word is carried forward by the gate - the next run is still OFF with the same sentence although everything now reads void (voiding the lines does not start a new pilot), and reads nothing",
-      s["off"] == _off and s["off_until_reset"] == _off and s["budget"] == 0 and DETAILS == [] and s["reset"] is False, (s, DETAILS))
+check("ledger (SM-4): a probe is carried forward by the gate - the next run still probes with the same sentence although everything now reads void (voiding the lines does not start a new pilot of three): ONE line, the cause counted once, and the patient of the line a person took off still gets none",
+      s["probe"] == _why and "taken off their visits" in _why and (s["probe_kind"], s["probe_tries"], s["probe_since"]) == ("voided", 1, "feed_import_20261111T1240Z.json") and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1 and s["reset"] is False
+      and s["taken_lines"] == ["charge12"] and ("pat7001", "2026") in s["done"], (s, DETAILS))
 s = state([R1, LATER, nextreg("20261113T1240Z"), nextreg("20261114T1240Z")])
-check("ledger (SM-4): ... and the run after, and the one after that", s["off"] == _off and s["budget"] == 0, s)
+check("ledger (SM-4): ... and the run after, and the one after that", s["probe"] == _why and s["probe_tries"] == 1 and s["budget"] == 1 and s["off"] == "", s)
 s = state([R1, LATER], reset=True)
-check("switch reset (William's word) with the code OFF: a new round at $0.00, the OFF is gone, the restart is recorded - the old lines are no longer this round's, but a line that exists still counts once a year",
-      s["off"] == "" and s["off_until_reset"] == "" and s["reset"] is True and s["fee"] == "0.00" and s["budget"] == 3 and s["round"]["lines"] == 0 and s["round"]["n"] == 2 and any("started again" in n for n in s["notes"]) and s["loud"] == "", s)
-RESET = nextreg("20261113T1240Z", created=[qrow("pat7004", "vst4", "charge42", "charge41")]); chg("42", []); chg("41", [], "pcode65119")
-s = state([R1, LATER, RESET])
+check("switch reset while the code PROBES is ignored, loudly (only William's own stop is ended by his reset) - the code goes on probing in its round",
+      s["reset"] is False and s["probe"] == _why and s["budget"] == 1 and s["round"]["n"] == 1 and "NOTHING TO RESTART" in s["loud"] and "NOTHING TO RESTART" in ci.quality_log(0, False), s)
+s = state([R1, LATER], stop=True); STOP1 = nextreg("20261113T1240Z")
+check("switch stop while the code probes: STOPPED on William's word - off_until_reset holds his sentence, and nothing else ever; no line", s["off"] == s["off_until_reset"] and s["off"].startswith("stopped on William's word (QUALITY_CODE=stop)") and s["budget"] == 0, s)
+s = state([R1, LATER, STOP1], reset=True)
+check("switch reset (William's word) after his stop: a new round at $0.00, the stop is gone, the probe is over, the restart is recorded - the old lines are no longer this round's, but a line that exists still counts once a year",
+      s["off"] == "" and s["off_until_reset"] == "" and s["reset"] is True and s["fee"] == "0.00" and s["budget"] == 3 and s["probe"] == "" and s["round"]["lines"] == 0 and s["round"]["n"] == 2 and any("started again" in n for n in s["notes"]) and s["loud"] == "", s)
+RESET = nextreg("20261114T1240Z", created=[qrow("pat7004", "vst4", "charge42", "charge41")]); chg("42", []); chg("41", [], "pcode65119")
+s = state([R1, LATER, STOP1, RESET])
 check("ledger: after the restart the next run waits for the NEW round's line only; the lines from before the restart are not this round's", s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["reset"] is False and s["round"]["lines"] == 1, s)
 world(); s0 = state([R1]); s = state([R1], reset=True)
 check("switch reset with NOTHING switched off is ignored, loudly - a switch left in a routine cannot start a new round every night (the round still waits for its three lines)",
@@ -1013,15 +1051,19 @@ check("switch stop: ... the next run, without any switch, is still off", "stoppe
 s = state([R1, STOPPED], reset=True)
 check("switch stop then reset: the code starts again", s["off"] == "" and s["reset"] is True and s["budget"] == 3, s)
 world(c12=VOID); state([R1]); TAKEN = nextreg("20261112T1240Z"); s = state([R1, TAKEN], stop=True)
-check("switch stop when the code is already off keeps the first sentence", "taken off their visits" in s["off"] and any("already off" in n for n in s["notes"]), s)
+check("switch stop while the code probes keeps what the probe was about in the gate - the stop sentence alone is what is off", s["off"].startswith("stopped on William's word (QUALITY_CODE=stop)") and s["off_until_reset"] == s["off"] and "taken off their visits" in s["probe"], s)
+world(); state([R1], stop=True); s = state([R1, nextreg("20261112T1240Z")], stop=True)
+check("switch stop when the code is already stopped keeps his sentence and says so", s["off"].startswith("stopped on William's word (QUALITY_CODE=stop)") and s["off_until_reset"] == s["off"] and any("already off" in n for n in s["notes"]), s)
 # REFUSALS in a row at one amount (SM-11): before proof ONE is enough, after proof TWO; a stored line clears the count; the refused patient gets no second try that year
 REF = lambda pid, fee="0.00", **kw: dict({"pid": pid, "visit": "vst9", "quality_codes": [], "quality_refused": "Fault: no", "quality_refused_fee": fee, "quality_tried": fee, "quality_dos": "11/10/2026", "dos": "11/10/2026", "charges": ["charge91"]}, **kw)
 world(); s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009")]})])
-check("refusals: BEFORE proof one refused visit at $0.00 moves the amount to one cent (a new round); the refused patient gets no second try that year",
-      s["fee"] == "0.01" and s["off"] == "" and s["budget"] == 3 and s["round"]["n"] == 2 and s["refused"] == {("pat7009", "2026")} and ("pat7009", "2026") in s["done"] and ci.quality_gate()["refused_charts"] == [["pat7009", "2026"]], s)
+check("refusals: BEFORE proof one refused visit at $0.00 moves the amount to one cent, and that move itself begins a probe - one line a run, AdvancedMD's own words kept (11/12/2026; before, a new round of three); the refused patient gets no second try that year",
+      s["fee"] == "0.01" and s["off"] == "" and s["budget"] == 1 and s["round"]["n"] == 2 and s["refused"] == {("pat7009", "2026")} and ("pat7009", "2026") in s["done"] and ci.quality_gate()["refused_charts"] == [["pat7009", "2026"]]
+      and s["probe"] == "AdvancedMD refused a visit that carried the code at $0.00 (feed_import_20261111T1240Z.json) - new lines carry $0.01, one line a run until one is billed" and (s["probe_kind"], s["probe_words"], s["probe_tries"]) == ("refused", "Fault: no", 1), s)
 s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009")]}), (RN("20261112T1240Z"), {"created": [REF("pat7010", "0.01")]})])
-check("refusals: refused at one cent too - OFF until William restarts it, and the sentence says where", s["off"] == "AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261112T1240Z.json) - William looks" and s["off_until_reset"] == s["off"]
-      and s["refused"] == {("pat7009", "2026"), ("pat7010", "2026")}, s)
+check("refusals: refused at one cent too - the code goes on PROBING, one line a run (11/12/2026; before, off until a restart): the newest cause is the sentence, it says where, and the causes are counted",
+      s["probe"] == "AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261112T1240Z.json) - William looks" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1
+      and (s["probe_kind"], s["probe_since"], s["probe_tries"]) == ("refused", "feed_import_20261111T1240Z.json", 2) and s["refused"] == {("pat7009", "2026"), ("pat7010", "2026")}, s)
 s = state([(RN("20261111T1240Z"), {"created": [REF("pat7009", "0.01")]})])
 check("refusals: refusals are counted in a row at ONE amount - a refusal recorded at one cent while the code stands at $0.00 (the registers before it never reached this machine) does not move the amount; that patient still gets no second try",
       s["fee"] == "0.00" and s["off"] == "" and s["budget"] == 3 and s["round"]["n"] == 1 and ("pat7009", "2026") in s["done"], s)
@@ -1034,34 +1076,56 @@ check("refusals (SM-11): AFTER proof ONE refused visit changes nothing - the pro
 s = after_proof([REF("pat7009")], [qrow("pat7010", "vst10", "charge102", "charge101")], [REF("pat7011")])
 check("refusals (SM-11): ... a line stored in between clears the count: a second refused visit days later still changes nothing", s["fee"] == "0.00" and s["confirmed"] is True and s["off"] == "", s)
 s = after_proof([REF("pat7009")], [REF("pat7011")])
-check("refusals (SM-11): after proof TWO refused visits in a row with no line stored in between move the amount to one cent - a new round that needs its own proof", s["fee"] == "0.01" and s["confirmed"] is False and s["budget"] == 3 and s["off"] == "", s)
+check("refusals (SM-11): after proof TWO refused visits in a row with no line stored in between move the amount to one cent - the proof at $0.00 no longer counts and the code probes there, one line a run",
+      s["fee"] == "0.01" and s["confirmed"] is False and s["budget"] == 1 and s["off"] == "" and (s["probe_kind"], s["probe_since"], s["probe_tries"]) == ("refused", "feed_import_20261114T1240Z.json", 1), s)
 chg("102", []); chg("101", [], "pcode65119")      # a line entered AFTER proof (its register's gate says proven), then the same two refusals
 s = state([R1, (RN("20261112T1240Z"), {"created": [qrow("pat7010", "vst10", "charge102", "charge101")], "quality_gate": {"confirmed": True, "fee": "0.00", "billed_lines": ["charge12"]}}),
            (RN("20261113T1240Z"), {"created": [REF("pat7009")]}), (RN("20261114T1240Z"), {"created": [REF("pat7011")]})])
 check("ledger: a line entered AFTER proof is never read back - not even when two refusals later move the amount to one cent; only the pilot's own lines that are not decided yet are still read, and a line already decided is not read again",
       s["fee"] == "0.01" and s["confirmed"] is False and "102" not in DETAILS and "101" not in DETAILS and "22" in DETAILS and "32" in DETAILS and "12" not in DETAILS and ("pat7010", "2026") in s["done"], (s, DETAILS))
 s = after_proof([REF("pat7009")], [REF("pat7011")], [REF("pat7012", "0.01")])
-check("refusals: ... and one refused visit at one cent, before that round is proven, switches the code OFF", "with a one-cent charge too" in s["off"] and s["off_until_reset"] == s["off"], s)
+check("refusals: ... and one refused visit at one cent, before that amount is proven, keeps the code probing - never off", "with a one-cent charge too" in s["probe"] and s["probe_tries"] == 2 and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1, s)
 FAILED = lambda **kw: dict({"feed_id": "f1", "pid": "pat7009", "empty_visit": "vst70", "info": {"quality_tried": "0.00", "quality_dos": "11/10/2026", "dos": "11/10/2026", "cpts": ["99309"]}, "err": "x"}, **kw)
-world(); s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=[["99309", "11/10/2026"], ["1123F", "11/10/2026"]])]})])
-check("refusals (SM-5): a fault although the chart shows the visit - from the next run the code is OFF until William has looked; the sentence names the chart, the visit and the register; that patient gets no second try",
-      s["off"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat7009, visit vst70, feed_import_20261111T1240Z.json)" and s["off_until_reset"] == s["off"] and s["budget"] == 0 and ("pat7009", "2026") in s["done"], s)
-s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=["chart not read: TimeoutError"])]})])
-check("refusals (SM-5): ... and the same when the chart could not be read after the fault (the sentence says that)", s["off"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat7009") and s["budget"] == 0, s)
+# November 12, 2026 - fix round 1 (K11): the inspector step of the same run looks at a visit of a fault run - not held by the Claim Inspector = free (its entry: "listed": false, "fault": true); only then does the next run probe
+FREE70 = lambda st="20261111T1240Z", **kw: {"removed": {st: [("feed_inspector_%s.json" % st, dict({"visit": "70", "pid": "pat7009", "charge": "", "code": "1123F", "fee": "0.00", "why": "x", "void_ok": False, "released": True, "listed": False,
+                                                                                                   "retry_of": "feed_import_%s.json" % st, "fault": True, "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": "x"}, **kw))]}}
+def step_frees(stamp, failed, since):      # K11: that run's inspector step found each visit of a fault run NOT held by the Claim Inspector - its register says so (the live plays below write it; each play removes it again)
+    wreg("feed_inspector_%s.json" % stamp, {"fixed": [], "bypassed": [], "held": [], "laterality": [], "quality_removed": [
+        {"visit": num(f_["empty_visit"]), "pid": f_["pid"], "charge": "", "code": "1123F", "fee": "0.00", "why": "x", "void_ok": False, "released": True, "listed": False, "retry_of": since, "fault": True,
+         "note": "the visit is no longer listed by the Claim Inspector - nothing done", "at": "x"} for f_ in failed if isinstance(f_, dict) and f_.get("empty_visit")]})
+_F70 = (RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=[["99309", "11/10/2026"], ["1123F", "11/10/2026"]])]})
+world(); s0 = state([_F70]); s = state([_F70], files=FREE70())
+check("refusals (SM-5, K11 - fix round 1): a fault although the chart shows the visit - that visit is for a person and its patient gets no second try, AND until the inspector step has looked at it the visit is STUCK: paused (no new line), "
+      "listed under 'stuck' with fault true and what the import knows (visit, chart, amount, date - the charge number of its line is not known); the code is not off",
+      s0["budget"] == 0 and s0["paused"].startswith("paused this run: visit vst70 (chart pat7009) came from a fault run - AdvancedMD answered a fault but kept the visit - nobody has seen yet whether the Claim Inspector holds it")
+      and [(x_["visit"], x_["chart"], x_["charge"], x_["fee"], x_["dos"], x_.get("fault")) for x_ in s0["stuck"]] == [("vst70", "pat7009", "", "0.00", "11/10/2026", True)] and s0["probe_kind"] == "fault" and s0["off_until_reset"] == "" and ("pat7009", "2026") in s0["done"], s0)
+check("refusals (SM-5): ... once the step found it not held (listed false), from the next run the code PROBES with one line (11/12/2026; before, off until William had looked); the sentence names the chart, the visit and the register; that patient gets no second try",
+      s["probe"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat7009, visit vst70, feed_import_20261111T1240Z.json)" and s["probe_kind"] == "fault" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1 and ("pat7009", "2026") in s["done"] and s["stuck"] == [], s)
+s = state([_F70], files=FREE70(charge="charge701", void_ok=True, released=True, resave_ok=True, listed=None, note=""))
+check("refusals (K11): ... the step found it held, took its line off (the charge it found) and the visit went through: free, and that is ONE refusal at its amount ($0.00 before proof moves new lines to one cent) - its patient was marked already",
+      s["stuck"] == [] and s["paused"] == "" and s["fee"] == "0.01" and s["probe_kind"] == "claim_check" and "held visit vst70 because of its quality line" in s["probe"] and ("pat7009", "2026") in s["refused"] and s["budget"] == 1, s)
+s = state([_F70], files=FREE70(released=False, listed=None, note="no live 1123F line of at most one cent on that visit in the chart's history - nothing voided; a person looks at that visit"))
+check("refusals (K11): ... the step found it held and no live 1123F line of that visit to take off: it stays STUCK for a person - paused, no new line meanwhile, the state names the visit and what the step found",
+      [(x_["visit"], x_.get("fault"), x_["register"]) for x_ in s["stuck"]] == [("vst70", True, "feed_inspector_20261111T1240Z.json")] and s["budget"] == 0 and s["stuck"][0]["what"].startswith("the Claim Inspector holds it and its line did not come off (no live 1123F line")
+      and s["paused"].startswith("paused this run: visit vst70 (chart pat7009) came from a fault"), s)
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=["chart not read: TimeoutError"])]})], files=FREE70())
+check("refusals (SM-5): ... and the same when the chart could not be read after the fault (the sentence says that)", s["probe"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat7009") and s["probe_kind"] == "fault" and s["off"] == "" and s["budget"] == 1, s)
 s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_sent="0.00")]})])
-check("refusals (NH-11): a visit refused with the line whose send WITHOUT the line then failed is counted like a refusal by the next run (one cent before proof), and that patient gets no second try", s["fee"] == "0.01" and s["off"] == "" and ("pat7009", "2026") in s["done"], s)
-s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_unknown="0.00")]})])
-check("refusals: a call that carried the line and ended in an error (nobody knows what AdvancedMD kept) - OFF until William has looked", s["off"].startswith("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart pat7009, visit vst70") and s["off_until_reset"] == s["off"], s)
+check("refusals (NH-11): a visit refused with the line whose send WITHOUT the line then failed is counted like a refusal by the next run (one cent before proof), and that patient gets no second try (it carries no line: no stuck visit)", s["fee"] == "0.01" and s["off"] == "" and ("pat7009", "2026") in s["done"] and s["stuck"] == [], s)
+s0 = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_unknown="0.00")]})]); s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(quality_unknown="0.00")]})], files=FREE70())
+check("refusals: a call that carried the line and ended in an error (nobody knows what AdvancedMD kept) - that visit is for a person; stuck until the step has looked (K11), then the code probes",
+      s0["budget"] == 0 and [x_.get("fault") for x_ in s0["stuck"]] == [True] and "the call that carried the line ended in an error" in s0["stuck"][0]["what"]
+      and s["probe"].startswith("a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart pat7009, visit vst70") and s["probe_kind"] == "fault" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1, (s0, s))
 s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(), FAILED(stored=[]), {"err": "x"}, 7]})])
 check("refusals: a visit refused with AND without the line is an ordinary fault - it says nothing about the code (a plain pilot the next run)", s["fee"] == "0.00" and s["off"] == "" and s["budget"] == 3 and s["refused"] == set(), s)
 # a restart inside a stamp that already holds rows: what was written before the restart stays in the old round
 world(); chg("42", []); chg("41", [], "pcode65119")
 SAME = (RN("20261111T1240Z"), {"created": [A_, qrow("pat7004", "vst4", "charge42", "charge41")], "failed": [FAILED(stored=[["99309", "11/10/2026"]])], "quality_gate": {"reset": True, "reset_after": [1, 1], "fee": "0.00"}})
-s = state([SAME])
+s = state([SAME], files=FREE70())      # (K11: that run's inspector step found the fault visit not held)
 check("restart under a stamp that already held rows: the fault and the line from BEFORE the restart do not switch the code off again or sit in the new round - the new round holds only the line entered after it",
       s["off"] == "" and s["wait"] is True and s["pending"] == ["vst4"] and s["round"]["lines"] == 1 and ("pat7001", "2026") in s["done"], s)
-s = state([(SAME[0], dict(SAME[1], quality_gate={"reset": True, "fee": "0.00"}))])
-check("restart: ... (without the mark of where the restart happened, the whole register counts as after it - the fault would switch the code off again)", "AdvancedMD answered a fault but kept the visit" in s["off"], s)
+s = state([(SAME[0], dict(SAME[1], quality_gate={"reset": True, "fee": "0.00"}))], files=FREE70())
+check("restart: ... (without the mark of where the restart happened, the whole register counts as after it - the fault is met in the new round and begins a probe there)", "AdvancedMD answered a fault but kept the visit" in s["probe"] and s["probe_kind"] == "fault" and s["off"] == "", s)
 # registers in odd shapes, out of order, copied, with words where a yes / no is expected (the state-machine reviewer's list): never an error, never a wrong 'proven'
 world(c11=["11/11/2026"], c22=BILLED)
 ZNB = {"created": [], "quality_gate": {"zero_not_billed": True, "fee": "0.01"}}; CONF0 = {"created": [], "quality_gate": {"confirmed": True, "fee": "0.00"}}
@@ -1128,11 +1192,17 @@ s = state([R1, G14b, D9], day=D_(11, 21))
 check("ledger (13.1b, F4 - the confirm review's case D5): ... when that patient got a second line meanwhile (its one-cent line of 11/15) that is NOT billed, the late row names no second billed line", s["late_rows"] == [["pat7001", "vst1", "charge12", "11/14/2026", "", "2026"]], s["late_rows"])
 chg("92", ["11/16/2026"]); s = state([R1, G14b, D9], day=D_(11, 21)); chg("92", [])
 check("ledger (13.1b): ... when that second line IS billed, the late row names it - two billed lines for 2026, nothing to do", s["late_rows"] == [["pat7001", "vst1", "charge12", "11/14/2026", "vst9", "2026"]], s["late_rows"])
-chg("12", []); s = state([R1, G14], day=D_(12, 12))
-check("ledger (13.1b): ... a left-off line is read again only until 30 days after its visit was billed", "12" not in DETAILS and s["left_off_lines"] == ["charge12"], (s["left_off_lines"], DETAILS))
-world(c12=BILLED); TEXTOF["12"] = "99497"; s = state([R1]); TEXTOF.clear()
-check("ledger (13.4): the charge detail names procedure id pcode65441 with another code text - NOT the proof: OFF until William restarts it, the sentence says what AdvancedMD stores, the gate records the text",
-      s["confirmed"] is False and s["off"] == "AdvancedMD stores procedure id pcode65441 as 99497, not 1123F - William looks" and s["wrong_code_text"] == "99497" and s["off_until_reset"] == s["off"] and s["budget"] == 0, s)
+chg("12", []); s = state([R1, G14], day=D_(12, 12)); _d12 = list(DETAILS); s15 = state([R1, G14], day=D_(12, 15))
+check("ledger (13.1b; K13, fix round 2): ... a left-off line is read again until 30 days after it was CALLED left off (11/14) - the K12 block's own clock: still read on 12/12 (31 days after its visit was billed), no longer on 12/15",
+      "12" in _d12 and "12" not in DETAILS and s["left_off_lines"] == ["charge12"] and s15["left_off_lines"] == ["charge12"], (s["left_off_lines"], _d12, DETAILS))
+world(c12=BILLED); TEXTOF["12"] = "99497"; s = state([R1]); G_TXT = nextreg("20261112T1240Z")
+check("ledger (13.4): the charge detail names procedure id pcode65441 with another code text - NOT the proof: PAUSED for this run (11/12/2026; before, off until a restart) - the sentence says what AdvancedMD shows, the gate records the text and the charge, and no probe starts from it",
+      s["confirmed"] is False and s["off"] == "paused this run: AdvancedMD shows procedure id pcode65441 as 99497, not 1123F - no line while that is so; every run reads it again" and s["paused"] == s["off"] and s["wrong_code_text"] == "99497" and s["wrong_code_charge"] == "charge12"
+      and s["off_until_reset"] == "" and s["probe"] == "" and s["budget"] == 0, s)
+s = state([R1, G_TXT])
+check("ledger (13.4): ... the next run reads THAT charge again first and is paused while it still shows the other text", s["paused"].startswith("paused this run: AdvancedMD shows procedure id pcode65441 as 99497") and DETAILS[:1] == ["12"] and s["budget"] == 0 and s["confirmed"] is False and s["off_until_reset"] == "", (s, DETAILS))
+TEXTOF.clear(); s = state([R1, G_TXT])
+check("ledger (13.4): ... and the first run that reads 1123F there goes on by itself where it stood - here that billed line is the proof; nobody restarts anything", s["paused"] == "" and s["off"] == "" and s["wrong_code_text"] == "" and s["confirmed"] is True and s["proof"]["charge"] == "charge12" and s["budget"] == 10 and s["probe"] == "", s)
 TEXTOF["12"] = "99497"; _sn = {}; _r = ci._line("charge12", QP, "1123F", _sn); TEXTOF.clear(); _sn2 = {}; _r2 = ci._line("charge12", QP, "1123F", _sn2)
 check("_line (13.4): another code text for pcode65441 = unknown with the text named; the code text 1123F = read as it is, and seen['text'] says so", _r == ("unknown", ["AdvancedMD stores procedure id pcode65441 as 99497, not 1123F"]) and _sn == {"text": "99497", "wrong": "99497"}
       and _r2 == ("billed", ["11/12/2026"]) and _sn2 == {"text": "1123F"}, (_r, _sn, _r2, _sn2))
@@ -1143,24 +1213,53 @@ check("ledger (13.4): neither the detail nor the history shows 1123F (this chart
       s["confirmed"] is False and s["wait"] is True and s["proof_wait"] == {"since": "11/20/2026", "visit": "vst2", "charge": "charge22", "days": 0} and s2["proof_wait"] == {"since": "11/20/2026", "visit": "vst2", "charge": "charge22", "days": 3} and s2["confirmed"] is False, (s["proof_wait"], s2["proof_wait"]))
 REM = lambda st_="20261111T1240Z", reg_="feed_inspector_20261111T1240Z.json", **e: {"removed": {st_: [(reg_, dict({"visit": "vst1", "pid": "pat7001", "charge": "charge12", "fee": "0.00", "why": "Pattern 77002: Claim line requires review", "void_ok": True, "released": True, "at": "x"}, **e))]}}
 world(); s = state([R1], files=REM())
-check("ledger (11.3): a line the inspector step took off a held visit that then went through (released) - void and final, NOT read, NOT 'taken off by a person'; it is ONE refusal: before proof one is enough - at $0.00 new lines carry one cent (a new round) - and that patient gets no second try this year",
-      s["void_lines"] == ["charge12"] and "12" not in DETAILS and s["off"] == "" and s["fee"] == "0.01" and ("pat7001", "2026") in s["refused"] and ("pat7001", "2026") in s["done"] and s["round"]["n"] == 2 and any("held visit vst1 because of its quality line" in n_ for n_ in s["notes"]), s)
+check("ledger (11.3): a line the inspector step took off a held visit that then went through (released) - void and final, NOT read, NOT 'taken off by a person'; it is ONE refusal: before proof one is enough - at $0.00 new lines carry one cent and the code PROBES there with the claim check's own words kept (11/12/2026; before, a new round of three) - and that patient gets no second try this year",
+      s["void_lines"] == ["charge12"] and "12" not in DETAILS and s["off"] == "" and s["fee"] == "0.01" and ("pat7001", "2026") in s["refused"] and ("pat7001", "2026") in s["done"] and s["round"]["n"] == 2 and any("held visit vst1 because of its quality line" in n_ for n_ in s["notes"])
+      and (s["probe_kind"], s["probe_words"], s["probe_since"], s["probe_tries"]) == ("claim_check", "Pattern 77002: Claim line requires review", "feed_inspector_20261111T1240Z.json", 1) and s["probe"].endswith(" - new lines carry $0.01, one line a run until one is billed"), s)
+_nov11 = {"removed": {"20261111T1240Z": [("feed_inspector_20261111T1240Z.json", {"visit": v_, "pid": p_, "charge": c_, "fee": "0.00", "why": "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT", "void_ok": True, "released": True, "at": "x"})
+                                         for v_, p_, c_ in (("vst1", "pat7001", "charge12"), ("vst2", "pat7002", "charge22"), ("vst3", "pat7003", "charge32"))]}}
+world(); s = state([R1], files=_nov11)
+check("ledger (the shape of November 11, 2026): the claim check stopped all three $0.00 pilot lines, the step took them off and the visits went out - the next import puts ONE one-cent line, not three (open point 1, way c: at one cent the code probes from its first line); the three patients get no second try this year; nothing is read",
+      s["fee"] == "0.01" and s["budget"] == 1 and s["wait"] is False and s["off"] == "" and s["off_until_reset"] == "" and (s["probe_kind"], s["probe_tries"], s["probe_words"]) == ("claim_check", 1, "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT")
+      and s["refused"] == {("pat7001", "2026"), ("pat7002", "2026"), ("pat7003", "2026")} and s["void_lines"] == ["charge12", "charge22", "charge32"] and DETAILS == [] and "probing: one line a run until one is seen billed" in ci.quality_log(0, False), (s, DETAILS, ci.quality_log(0, False)))
 world(); s = state([R1], files=REM(released=False))
 check("ledger (11.3): ... the visit was held anyway (not released) - void and final, nothing counts: the place in the round is free, the patient is due again, the amount stays $0.00",
       s["void_lines"] == ["charge12"] and s["fee"] == "0.00" and s["off"] == "" and ("pat7001", "2026") not in s["done"] and s["round"]["void"] == 1 and s["wait"] is True and "12" not in DETAILS, s)
-world(); s = state([R1], files=REM(void_ok=False, released=False))
-check("ledger (11.3): ... the void failed - the visit is held WITH its line: OFF until William restarts it, the sentence names the visit and quotes the hold", "the Claim Inspector holds visit vst1 and the routine could not take its quality line off" in s["off"] and "Pattern 77002" in s["off"]
-      and s["off_until_reset"] == s["off"] and s["budget"] == 0 and s["void_lines"] == [], s)
+world(); s = state([R1], files=REM(void_ok=False, released=False, note="the void failed: Fault"))
+check("ledger (11.3): ... the void failed - the visit is held WITH its line: it is STUCK - paused this run (no line), listed for the inspector step's retry pass, and the cause is kept for the probing that follows; never off until a restart (11/12/2026)",
+      s["paused"] == STUCK_("Pattern 77002: Claim line requires review", "the routine could not take the line off") and s["off"] == s["paused"] and s["off_until_reset"] == "" and s["budget"] == 0 and s["void_lines"] == []
+      and [(i_["visit"], i_["what"], i_["register"]) for i_ in s["stuck"]] == [("vst1", "the routine could not take the line off", "feed_inspector_20261111T1240Z.json")]
+      and s["probe"] == 'the Claim Inspector holds visit vst1 and the routine could not take its quality line off (feed_inspector_20261111T1240Z.json: "Pattern 77002: Claim line requires review") - William looks' and s["probe_kind"] == "stuck", s)
 world(); s = state([R1], files=dict(INS("Pattern 77002: Claim line requires review"), **REM(released=False)))
-check("ledger (11.3): a Claim Inspector hold on a visit whose line the routine took off is the visit's own business - no OFF (the OFF for any hold before proof stays only for a line that could NOT be taken off)", s["off"] == "" and s["void_lines"] == ["charge12"] and s["wait"] is True, s)
+check("ledger (11.3): a Claim Inspector hold on a visit whose line the routine took off is the visit's own business - no pause and nothing stuck (a visit is stuck only while its line could NOT be taken off)", s["off"] == "" and s["paused"] == "" and s["stuck"] == [] and s["void_lines"] == ["charge12"] and s["wait"] is True, s)
 world(); s = state([R1], files=REM(st_="20261111T1240Z", reg_="feed_verify_20261111T1240Z.json"))
 check("ledger (11.3): a removal by the insurance check (released, the echo sent once more without the line) counts the same way", s["void_lines"] == ["charge12"] and s["fee"] == "0.01" and ("pat7001", "2026") in s["refused"], s)
 world(); s = state([R1], files=REM(released=False, still_named=True, resave_ok=True)); s2 = state([R1], files=REM(released=False, resave_ok=False))
-check("ledger (NH2-2): the line is gone but the visit is still listed for the edit about it (the re-save after the void failed, or AdvancedMD did not inspect it again) - NOT the visit's own reason: OFF until William restarts it, the sentence says one re-save should release it",
-      "still listed for the edit about the line" in s["off"] and "one re-save of the visit should release it" in s["off"] and s["off_until_reset"] == s["off"] and s["void_lines"] == ["charge12"] and "still listed for the edit about the line" in s2["off"] and s2["budget"] == 0, (s["off"], s2["off"]))
+check("ledger (NH2-2): the line is gone but the visit is still listed for the edit about it (the re-save after the void failed, or AdvancedMD did not inspect it again) - NOT the visit's own reason: the visit is STUCK - paused this run, every run's step re-saves it again; the cause's sentence still says one re-save should release it",
+      [(i_["visit"], i_["what"]) for i_ in s["stuck"]] == [("vst1", "the line is off, but the visit is still listed for the edit about it")] and s["paused"] == STUCK_("Pattern 77002: Claim line requires review", "the line is off, but the visit is still listed for the edit about it")
+      and "still listed for the edit about the line" in s["probe"] and "one re-save of the visit should release it" in s["probe"] and s["probe_kind"] == "stuck" and s["off_until_reset"] == "" and s["void_lines"] == ["charge12"]
+      and [i_["visit"] for i_ in s2["stuck"]] == ["vst1"] and s2["budget"] == 0 and s2["off_until_reset"] == "", (s, s2))
 _two = {"removed": {"20261112T1240Z": [("feed_inspector_20261112T1240Z.json", {"visit": v_, "pid": p_, "charge": c_, "fee": "0.00", "why": "x", "void_ok": True, "released": True}) for v_, p_, c_ in (("vst1", "pat7001", "charge12"), ("vst2", "pat7002", "charge22"))]}}
 world(); s1 = state([R1, PROVEN], files={"removed": {"20261112T1240Z": _two["removed"]["20261112T1240Z"][:1]}}); s2 = state([R1, PROVEN], files=_two)
-check("ledger (11.3): after proof ONE line taken off a released visit changes nothing; TWO in a row move new lines to one cent (a new round)", s1["fee"] == "0.00" and s1["confirmed"] is True and s1["off"] == "" and s2["fee"] == "0.01" and s2["confirmed"] is False and s2["off"] == "", (s1, s2))
+check("ledger (11.3): after proof ONE line taken off a released visit changes nothing; TWO in a row move new lines to one cent, where the code probes - one line a run",
+      s1["fee"] == "0.00" and s1["confirmed"] is True and s1["off"] == "" and s1["probe"] == "" and s2["fee"] == "0.01" and s2["confirmed"] is False and s2["off"] == "" and s2["probe_kind"] == "claim_check" and s2["budget"] == 1, (s1, s2))
+# 11/12/2026 - four rules that only the checks below pin (each was broken once in a throwaway copy, and a check had to fail)
+world(); s = state([R1, PROVEN, (RN("20261113T1240Z"), {"created": [REF("pat7009")]}), (RN("20261114T1240Z"), {"created": [REF("pat7011")]})], files=CHK("no active plan: discovery found nothing", "insorder not applied on vst1"))
+check("ledger (2.3 point 6): a probe that began before the proof has ENDED with it - a cause met later begins a NEW period: its own register in probe_since, counted from one",
+      s["fee"] == "0.01" and s["confirmed"] is False and (s["probe_kind"], s["probe_since"], s["probe_tries"]) == ("refused", "feed_import_20261114T1240Z.json", 1), s)
+_fq = "AdvancedMD answered a fault but kept the visit - William looks (chart pat7009, visit vst70, feed_import_20261111T1240Z.json)"
+s = state([(RN("20261111T1240Z"), {"created": [], "failed": [FAILED(stored=[["99309", "11/10/2026"], ["1123F", "11/10/2026"]])], "quality_gate": {"fee": "0.00", "probe": _fq, "probe_kind": "fault", "probe_since": "feed_import_20261111T1240Z.json", "probe_tries": 1}})], files=FREE70())
+check("ledger (2.4): the run that met a fault wrote the cause into its own gate, and the next run reads the same failed row again - the same sentence is the same cause: counted ONCE", s["probe"] == _fq and s["probe_tries"] == 1 and s["probe_kind"] == "fault" and s["budget"] == 1, s)
+s = state([(RN("20261112T1240Z"), {"created": [], "quality_gate": {"zero_not_billed": True, "fee": "0.01"}})]); s2 = state([(RN("20261112T1240Z"), {"created": [], "quality_gate": {"fee": "0.01"}})])
+check("ledger (open point 1, way c): at one cent with nothing proven the code ALWAYS probes - also when no register shows what moved the amount (a gate written before 11/12/2026, or a register that never arrived): one line a run, never a round of three",
+      all(x_["fee"] == "0.01" and x_["budget"] == 1 and x_["probe"] == "new lines carry $0.01 and no one-cent line is seen billed yet - one line a run until one is billed" and x_["probe_tries"] == 1 and x_["off"] == "" for x_ in (s, s2))
+      and (s["probe_kind"], s2["probe_kind"]) == ("left_off", "refused"), (s, s2))
+world(c12=BILLED); s = state([R1], files={"n620": True, "n620_seen": "11/30/2026"}); _g1 = ci.quality_gate(); s2 = state([R1], files={"n620": True}); s3 = state([R1], files={"n620_seen": "11/30/2026"})
+check("ledger (2.4): n620_seen - the date a person wrote into the remittance file is carried in the gate (for the report's 'remark N620 seen on ...'); empty when the file names none, and when the file is not there",
+      s["n620"] is True and s["n620_seen"] == "11/30/2026" and _g1["n620_seen"] == "11/30/2026" and s2["n620_seen"] == "" and s3["n620"] is False and s3["n620_seen"] == "", (s["n620_seen"], s2["n620_seen"], s3["n620_seen"]))
+open(os.path.join(REGDIR, "quality_n620_seen.json"), "w").write('{"seen": " 11/30/2026 "}'); _f1 = ci.quality_files("x"); open(os.path.join(REGDIR, "quality_n620_seen.json"), "w").write("[1]"); _f2 = ci.quality_files("x"); rmreg("quality_n620_seen.json")
+check("remittance file (2.4): what a person wrote as 'seen' is read (spaces trimmed, 40 characters); a file that names no date gives none - and reading it is never a problem file",
+      _f1["n620"] is True and _f1["n620_seen"] == "11/30/2026" and _f1["problems"] == [] and _f2["n620"] is True and _f2["n620_seen"] == "" and _f2["problems"] == [], (_f1["n620_seen"], _f1["problems"], _f2["n620_seen"], _f2["problems"]))
 world(c12=BILLED, c22=BILLED, c32=BILLED); PAYS.clear()
 PAYS["12"] = [{"id": "pay1", "amount": "0.00", "carrierfid": "6085", "date": "11/24/2026", "void": "1", "paymentcode": "PE"}, {"id": "pay2", "amount": "0.00", "carrierfid": "6404", "date": "11/24/2026", "void": "0"}]
 PAYS["22"] = [{"id": "pay3", "amount": "0.00", "carrierfid": "6085", "date": "11/25/2026", "void": "0", "paymentcode": "PE"}]
@@ -1246,11 +1345,12 @@ clear_regs(); charts0()
 out, reg = live(QB); qrows = qrows_of(reg)
 check("live run 1: three visits carry the line; each row keeps the line's charge number last in its charge list and its codes unchanged", len(qrows) == 3 and all(r["cpts"] == ["99309"] and len(r["charges"]) == 2
       and r["quality_charge"] == r["charges"][-1] and r["fees"] == ["1.00"] for r in qrows) and len(reg["created"]) == 5 and "QUALITY 1123F: on x3 visit(s), line amount $0.00, pilot: at most 3 visit(s) until one is seen billed" in out, (reg["created"], out[-300:]))
-check("live run 1: the register records where the quality code stands (round 1 at $0.00, three lines entered and not decided, nothing known yet)", reg["quality_gate"] == {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False,
+check("live run 1: the register records where the quality code stands (round 1 at $0.00, three lines entered and not decided, nothing known yet; not probing, not paused, no visit stuck)", reg["quality_gate"] == {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False,
       "off": "", "off_until_reset": "", "wait": False, "pending": [], "pending_since": "", "billed_lines": [], "void_lines": [], "left_off_lines": [], "dead_zero_lines": [], "reset": False, "reset_after": None,
       "round": {"n": 1, "fee": "0.00", "since": "feed_import_SELFTEST.json", "lines": 3, "void": 0, "open": 3}, "budget": 3, "pilot_cap": 3, "n620": False, "history_shows_line": None, "refused_charts": [], "not_renewed": {},
       "billed_on": {}, "code_text_lines": [], "left_off_seen": {}, "left_off_on": {}, "late_billed": {}, "late_rows": [], "wrong_code_text": "", "proof_wait": None, "medicare_answer": None, "medicare_wait": None,
-      "quality_skipped_hospital": 0, "unread": [], "unread_prev": [], "notes": []}, reg.get("quality_gate"))
+      "quality_skipped_hospital": 0, "unread": [], "unread_prev": [], "probe": "", "probe_kind": "", "probe_since": "", "probe_words": "", "probe_tries": 0, "paused": "", "stuck": [], "open_lines": [], "standing_restart": None,
+      "taken_lines": [], "wrong_code_charge": "", "n620_seen": "", "left_off_cent": [], "proof_aside": None, "notes": []}, reg.get("quality_gate"))
 out, regp = live(visits("20261103", (4,)), proccode=True); rp_ = qrows_of(regp)
 check("the line's charge number is taken from AdvancedMD's answer by its procedure when the answer names it; the fee list stays one amount per message code", len(rp_) == 1 and rp_[0]["quality_charge"] == rp_[0]["charges"][-1] and rp_[0]["fees"] == ["1.00"] and "charge lines': 1" in out, (regp["created"], out[-200:]))
 RUN1 = reg; keep(RUN1, "20261111T0100Z"); PIL = [num(r["quality_charge"]) for r in qrows]; FIRST = [num(r["charges"][0]) for r in qrows]
@@ -1296,45 +1396,56 @@ check("second start under ONE stamp (--limit 3, then the rest): the lines the fi
 clear_regs(); charts0()
 for _k in range(4): out, rs3 = live(S7, argv=("--all", "--limit", "1"), keep_own=(_k < 3))
 check("four starts of one visit each under ONE stamp: the cap is per ROUND, not per start - one line, then every start waits for it", len(qrows_of(rs3)) == 1 and len(rs3["created"]) == 4 and rs3["quality_gate"]["wait"] is True, (len(qrows_of(rs3)), rs3["quality_gate"]))
-# AdvancedMD bills a visit but leaves its $0.00 line off the claim, and no $0.00 line of the round is billed -> one cent, a new round
+# AdvancedMD bills a visit but leaves its $0.00 line off the claim, and no $0.00 line of the round is billed -> one cent, and there the code PROBES: one line a run until one is billed (11/12/2026; before, a new round of three)
 clear_regs(); keep(RUN1, "20261111T0100Z"); BILLS.clear(); BILLS[FIRST[0]] = ["11/11/2026"]
 CHART.update({r["pid"][3:]: [("99309", "10/03/2026"), ("99309", "11/02/2026"), ("1123F", "11/02/2026")] for r in qrows})      # the chart history lists the $0.00 lines
 out, regz = live(visits("20261109", (1, 2, 3, 4))); qz = qrows_of(regz); gz = regz["quality_gate"]
-check("a visit was billed WITHOUT its $0.00 quality line and no $0.00 line is billed -> new lines carry one cent, a new round; the register says why and lists ONLY the line that was read as left off (SM-1)", gz["fee"] == "0.01" and gz["zero_not_billed"] is True
+check("a visit was billed WITHOUT its $0.00 quality line and no $0.00 line is billed -> new lines carry one cent and the code probes; the register says why and lists ONLY the line that was read as left off (SM-1)", gz["fee"] == "0.01" and gz["zero_not_billed"] is True
       and gz["confirmed"] is False and gz["wait"] is False and gz["dead_zero_lines"] == [[qrows[0]["pid"], qrows[0]["visit"], qrows[0]["quality_charge"]]] and gz["left_off_lines"] == [qrows[0]["quality_charge"]]
-      and any("without its $0.00 quality line" in n for n in gz["notes"]) and gz["round"]["n"] == 2 and gz["round"]["fee"] == "0.01", gz)
-check("... the patient whose $0.00 line was read as left off gets the code AGAIN at one cent (the dead line on the chart does not count); the two patients whose $0.00 lines are not decided yet are not coded a second time", {r["pid"] for r in qz} == {qrows[0]["pid"], "pat404"}
-      and all(r["quality_fee"] == "0.01" for r in qz), [r["pid"] for r in qz])
-check("... and the one-cent line is what was sent", sum(1 for b_ in POSTS if re.search(r'proccode="pcode65441" cobcode="" pos="\d+" tos="01" units="1" netfee="0" fee="0.01" allowed="0.01"', b_)) == 2, [b_[-300:] for b_ in POSTS if "pcode65441" in b_])
+      and any("without its $0.00 quality line" in n for n in gz["notes"]) and gz["round"]["n"] == 2 and gz["round"]["fee"] == "0.01" and gz["probe_kind"] == "left_off" and gz["off"] == "" and gz["off_until_reset"] == ""
+      and "probing: one line a run until one is seen billed" in qline(out) and "pilot" not in qline(out), (gz, qline(out)))
+check("... ONE one-cent line in that run, not three: the patient whose $0.00 line was read as left off gets NO line for 30 days after it was called left off (K12, November 12, 2026 - fix round 1: AdvancedMD may still bill that line); "
+      "the two patients whose $0.00 lines are not decided yet are not coded a second time; the fourth, who never had one, carries the run's one line",
+      [r["pid"] for r in qz] == ["pat404"] and qz[0]["quality_fee"] == "0.01" and gz["round"]["lines"] == 1 and len(regz["created"]) == 4, [r["pid"] for r in qz])
+check("... and the one-cent line is what was sent", sum(1 for b_ in POSTS if re.search(r'proccode="pcode65441" cobcode="" pos="\d+" tos="01" units="1" netfee="0" fee="0.01" allowed="0.01"', b_)) == 1 and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1, [b_[-300:] for b_ in POSTS if "pcode65441" in b_])
 keep(regz, "20261112T0100Z"); PZ = [num(r["quality_charge"]) for r in qz]; FZ = [num(r["charges"][0]) for r in qz]
 out, regz2 = live(visits("20261116", (1, 2, 3, 4)))
-check("one cent, nothing billed yet: the new round waits too. The two other $0.00 lines are read until they are decided (every $0.00 line is read in the end), and the line read as left off is read again after them (13.1b), still left off", qrows_of(regz2) == [] and regz2["quality_gate"]["wait"] is True
-      and regz2["quality_gate"]["fee"] == "0.01" and len(regz2["quality_gate"]["pending"]) == 2 and regz2["quality_gate"]["pending_since"] == "feed_import_20261112T0100Z.json" and DETAILS.count(PIL[0]) == 1 and PIL[1] in DETAILS and PIL[2] in DETAILS
-      and DETAILS.index(PIL[0]) > max(DETAILS.index(PIL[1]), DETAILS.index(PIL[2])) and regz2["quality_gate"]["left_off_lines"] == ["charge" + PIL[0]] and all(c in DETAILS for c in PZ), (regz2["quality_gate"], DETAILS))
-keep(regz2, "20261116T0100Z"); BILLS[PZ[1]] = ["11/17/2026"]; BILLS[FIRST[1]] = ["11/17/2026"]; BILLS[PIL[2]] = ["11/17/2026"]      # a one-cent line billed; of the two $0.00 lines one visit went out without its line, the other with it
+check("one cent, nothing billed yet: the probe waits for its ONE line - no new line. The two other $0.00 lines are read until they are decided (every $0.00 line is read in the end), and the line read as left off is read again after them (13.1b), still left off", qrows_of(regz2) == [] and regz2["quality_gate"]["wait"] is True
+      and regz2["quality_gate"]["fee"] == "0.01" and len(regz2["quality_gate"]["pending"]) == 1 and regz2["quality_gate"]["pending_since"] == "feed_import_20261112T0100Z.json" and DETAILS.count(PIL[0]) == 1 and PIL[1] in DETAILS and PIL[2] in DETAILS
+      and DETAILS.index(PIL[0]) > max(DETAILS.index(PIL[1]), DETAILS.index(PIL[2])) and regz2["quality_gate"]["left_off_lines"] == ["charge" + PIL[0]] and all(c in DETAILS for c in PZ)
+      and "probing: waiting for the outcome of 1 earlier line(s) - none added" in qline(out), (regz2["quality_gate"], DETAILS, qline(out)))
+keep(regz2, "20261116T0100Z"); BILLS[PZ[0]] = ["11/17/2026"]; BILLS[FIRST[1]] = ["11/17/2026"]; BILLS[PIL[2]] = ["11/17/2026"]      # the one-cent line billed; of the two $0.00 lines one visit went out without its line, the other with it
 out, regz3 = live(visits("20261123", (1, 2, 3, 4)))
-check("a one-cent line is billed: proven at one cent. The $0.00 line read as left off frees its patient, who gets a one-cent line; the $0.00 line read as billed counts for its patient; nobody is coded twice", regz3["quality_gate"]["confirmed"] is True
-      and regz3["quality_gate"]["fee"] == "0.01" and {r["pid"] for r in qrows_of(regz3)} == {qrows[1]["pid"]} and sorted(regz3["quality_gate"]["left_off_lines"]) == sorted([qrows[0]["quality_charge"], qrows[1]["quality_charge"]])
+check("the one-cent line is billed: proven at one cent, the probe is over. The patients of the two $0.00 lines read as left off get no line for 30 days after that (K12, fix round 1: AdvancedMD may still bill them); the $0.00 line read as billed counts for its patient; the patient of the proven line is coded; nobody is coded twice", regz3["quality_gate"]["confirmed"] is True
+      and regz3["quality_gate"]["probe"] == "" and regz3["quality_gate"]["fee"] == "0.01" and qrows_of(regz3) == [] and sorted(regz3["quality_gate"]["left_off_lines"]) == sorted([qrows[0]["quality_charge"], qrows[1]["quality_charge"]])
       and qrows[2]["quality_charge"] in regz3["quality_gate"]["billed_lines"] and len(regz3["quality_gate"]["dead_zero_lines"]) == 2, ([r["pid"] for r in qrows_of(regz3)], regz3["quality_gate"]))
 clear_regs(); keep(RUN1, "20261111T0100Z"); keep(regz, "20261112T0100Z"); BILLS.clear(); BILLS[FZ[0]] = ["11/13/2026"]
-out, regz4 = live(visits("20261116", (4,)))
-check("a visit is billed without its ONE-CENT line too: the code is switched off until William restarts it and the register says why", qrows_of(regz4) == [] and "without its one-cent quality line too" in regz4["quality_gate"]["off"] and len(regz4["created"]) == 1
-      and regz4["quality_gate"]["off_until_reset"] == regz4["quality_gate"]["off"] and "OFF - AdvancedMD billed visit" in out and "off until William restarts it" in qline(out) and "pilot" not in qline(out), (regz4["quality_gate"], out[-300:]))
-keep(regz4, "20261116T0100Z"); BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + PZ]
+out, regz4 = live(visits("20261116", (4, 5))); gz4 = regz4["quality_gate"]
+check("a visit is billed without its ONE-CENT line too: the code goes on PROBING - it no longer switches itself off (11/12/2026). The register says why (AdvancedMD leaves the line off the claim: that needs a setting in AdvancedMD); the left-off line is decided, so this run adds its one line "
+      "- not to the patient of the left-off line (K12, fix round 1: no line for him for 30 days, AdvancedMD may still bill it) but to the next eligible visit",
+      [r["pid"] for r in qrows_of(regz4)] == ["pat405"] and "without its one-cent quality line too" in gz4["probe"] and gz4["probe_kind"] == "left_off" and gz4["off"] == "" and gz4["off_until_reset"] == "" and len(regz4["created"]) == 2
+      and gz4["left_off_cent"] == [qz[0]["visit"]] and "PROBING - AdvancedMD billed visit" in out and "probing: one line a run until one is seen billed" in qline(out) and "off until William restarts it" not in qline(out) and "pilot" not in qline(out), (gz4, out[-300:]))
+keep(regz4, "20261116T0100Z"); BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + PZ + [num(r["quality_charge"]) for r in qrows_of(regz4)]]
 out, regz5 = live(visits("20261117", (5, 6, 7)))
-_lo4 = [num(c) for c in regz4["quality_gate"]["left_off_lines"]]
-check("... (SM-4) the OFF is remembered: after somebody has voided the lines the next run does NOT start a new pilot by itself - no line, the same sentence; only the lines read as left off are read again (13.1b) - found void, they are no longer listed as left off",
-      qrows_of(regz5) == [] and len(regz5["created"]) == 3 and regz5["quality_gate"]["off_until_reset"] == regz4["quality_gate"]["off_until_reset"] and _lo4 and set(DETAILS) & set(PIL + PZ) == set(_lo4)
-      and regz5["quality_gate"]["left_off_lines"] == [] and set(regz5["quality_gate"]["void_lines"]) >= set("charge" + c for c in _lo4), (regz5["quality_gate"], DETAILS))
+_lo4 = [num(c) for c in gz4["left_off_lines"]]
+check("... (SM-4) the probe is remembered: after somebody has voided the lines the next run does NOT start a new pilot of three by itself - ONE line, still at one cent, still probing; the lines read as left off are read again (13.1b) - found void, they are no longer listed as left off",
+      len(qrows_of(regz5)) == 1 and qrows_of(regz5)[0]["quality_fee"] == "0.01" and len(regz5["created"]) == 3 and regz5["quality_gate"]["probe"] != "" and regz5["quality_gate"]["off_until_reset"] == "" and _lo4 and set(_lo4) <= set(DETAILS)
+      and regz5["quality_gate"]["left_off_lines"] == [] and set(regz5["quality_gate"]["void_lines"]) >= set("charge" + c for c in _lo4) and "probing: one line a run until one is seen billed" in qline(out), (regz5["quality_gate"], DETAILS, qline(out)))
 # somebody takes the pilot's lines off / the whole visits are voided
 BILLS.clear(); BILLS[PIL[0]] = {"void": "1"}; BILLS[PIL[1]] = {"void": "1"}; BILLS[PIL[2]] = {"void": "1"}; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
-out, regv = live(visits("20261109", (4,)))
-check("somebody took the pilot's lines off their visits (void) while the visits are still there: NO new pilot - the code is off until William restarts it", qrows_of(regv) == [] and len(regv["created"]) == 1 and regv["quality_gate"]["wait"] is False
-      and "3 earlier quality line(s) were taken off their visits" in regv["quality_gate"]["off"] and sum("taken off the visit" in n for n in regv["quality_gate"]["notes"]) == 3
-      and sorted(regv["quality_gate"]["void_lines"]) == sorted(r["quality_charge"] for r in qrows) and regv["quality_gate"]["off_until_reset"] == regv["quality_gate"]["off"], regv["quality_gate"])
+out, regv = live(visits("20261109", (4,))); gv = regv["quality_gate"]
+check("somebody took the pilot's lines off their visits (void) while the visits are still there: those three patients get no line again this year and the code STAYS ON (11/12/2026; before, off until a restart) - no new pilot of three: it probes, ONE line",
+      [r["pid"] for r in qrows_of(regv)] == ["pat404"] and len(regv["created"]) == 1 and gv["off"] == "" and gv["off_until_reset"] == "" and gv["probe"].startswith("3 earlier quality line(s) were taken off their visits") and gv["probe_kind"] == "voided"
+      and sum("a person decided" in n for n in gv["notes"]) == 3 and sorted(gv["void_lines"]) == sorted(r["quality_charge"] for r in qrows) and sorted(gv["taken_lines"]) == sorted(r["quality_charge"] for r in qrows)
+      and sorted(gv["refused_charts"]) == sorted([r["pid"], "2026"] for r in qrows) and "probing: one line a run until one is seen billed" in qline(out), (gv, qline(out)))
 keep(regv, "20261112T0100Z"); out, regv2 = live(visits("20261110", (1, 4)), env="reset")
-check("... after QUALITY_CODE=reset the pilot starts again, and a patient whose line was taken off is due again", {r["pid"] for r in qrows_of(regv2)} == {"pat401", "pat404"} and regv2["quality_gate"]["off"] == "" and regv2["quality_gate"]["reset"] is True
-      and regv2["quality_gate"]["reset_after"] == [0, 0] and regv2["quality_gate"]["round"]["n"] == 2, (regv2["quality_gate"], [r["pid"] for r in qrows_of(regv2)]))
+check("... QUALITY_CODE=reset while the code probes is ignored, loudly (only William's own stop is ended by his reset): no new round, the probe waits for its one line, and the patient whose line a person took off is NOT due again",
+      qrows_of(regv2) == [] and len(regv2["created"]) == 2 and regv2["quality_gate"]["reset"] is False and regv2["quality_gate"]["wait"] is True and regv2["quality_gate"]["round"]["n"] == 1 and "NOTHING TO RESTART" in qline(out), (regv2["quality_gate"], qline(out)))
+keep(regv2, "20261113T0100Z"); out, regv3 = live(visits("20261114", (5,)), env="stop")
+keep(regv3, "20261114T0100Z"); out, regv4 = live(visits("20261115", (1, 5, 6)), env="reset")
+check("... after William's own stop, QUALITY_CODE=reset starts the pilot again at $0.00 (a round of up to three); the patient whose line a person took off still gets none this year",
+      qrows_of(regv3) == [] and "stopped on William's word" in regv3["quality_gate"]["off_until_reset"] and {r["pid"] for r in qrows_of(regv4)} == {"pat405", "pat406"} and regv4["quality_gate"]["off"] == "" and regv4["quality_gate"]["reset"] is True
+      and regv4["quality_gate"]["reset_after"] == [0, 0] and regv4["quality_gate"]["round"]["n"] == 2 and regv4["quality_gate"]["probe"] == "" and regv4["quality_gate"]["budget"] == 3, (regv4["quality_gate"], [r["pid"] for r in qrows_of(regv4)]))
 BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + FIRST]; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
 out, regw = live(visits("20261109", (1, 2, 3, 4)))
 check("the pilot's whole visits were voided: no outcome either way - their places are free, the round carries on with three more visits, and those patients are due again", len(qrows_of(regw)) == 3 and regw["quality_gate"]["off"] == "" and regw["quality_gate"]["wait"] is False
@@ -1342,8 +1453,8 @@ check("the pilot's whole visits were voided: no outcome either way - their place
       and regw["quality_gate"]["round"] == {"n": 1, "fee": "0.00", "since": "feed_import_20261111T0100Z.json", "lines": 6, "void": 3, "open": 3} and regw["quality_gate"]["budget"] == 3, regw["quality_gate"])
 keep(regw, "20261112T0100Z"); [BILLS.__setitem__(num(c), {"void": "1"}) for r in qrows_of(regw) for c in r["charges"]]; charts0()
 out, regw2 = live(visits("20261113", (5, 6, 7)))
-check("... and when the three replacement visits are voided as well, the round has had its six lines: the code is OFF ('the pilot's lines keep being voided') until William restarts it", qrows_of(regw2) == [] and len(regw2["created"]) == 3
-      and "the pilot's lines keep being voided" in regw2["quality_gate"]["off_until_reset"] and "OFF - the pilot's lines keep being voided" in qline(out), regw2["quality_gate"])
+check("... and when the three replacement visits are voided as well, the round has had its six lines: the code PROBES ('the pilot's lines keep being voided') - ONE line a run; it no longer switches itself off", [r["pid"] for r in qrows_of(regw2)] == ["pat405"] and len(regw2["created"]) == 3
+      and "the pilot's lines keep being voided" in regw2["quality_gate"]["probe"] and regw2["quality_gate"]["off_until_reset"] == "" and "PROBING - the pilot's lines keep being voided" in qline(out), (regw2["quality_gate"], qline(out)))
 swap = json.loads(json.dumps(RUN1)); [r.update(charges=[r["quality_charge"], r["charges"][0]]) for r in swap["created"] if r.get("quality_charge")]
 BILLS.clear(); BILLS[FIRST[0]] = ["11/11/2026"]; clear_regs(); keep(swap, "20261111T0100Z"); charts0()
 out, regx = live(visits("20261109", (4,)))
@@ -1386,7 +1497,8 @@ ci._ctx.clear(); DETAILS.clear()
 clear_regs()
 # F5 (confirm review, attack A2): the run is cut right after the first pilot visit's charge call came back with its line stored, before the register was
 # written; then the same command again under the same stamp. The provisional row written before that call tells the second start that a line may exist
-# that no row records: the code is OFF until William has looked at that visit - never a fourth unproven line. The visits themselves still go in.
+# that no row records: that visit is for a person, this stamp has had its try - the second start adds NO line - and from the next run the code probes
+# (11/12/2026; before, off until William had looked at that visit). Never a fourth unproven line. The visits themselves still go in.
 class _Cut(BaseException): pass
 _CUT = {"chart": "", "n": 0}; _post_real = amd.post
 def _cut_post(body, timeout=0):
@@ -1401,11 +1513,19 @@ except _Cut: _was_cut = True
 finally: amd.post = _post_real
 _creg = os.path.join(REGDIR, "feed_import_SELFTEST.json"); _reg_cut = json.load(open(_creg)) if os.path.exists(_creg) else {}
 out, reg_c2 = live(QB)
-check("F5 (confirm review A2): a run cut while the first pilot visit's call was out leaves a provisional row; the second start under the same stamp adds NO line (OFF until William has looked at that visit) - never four unproven lines; the other visits go in",
-      _was_cut is True and [r_.get("provisional") for r_ in _reg_cut.get("failed", [])] == [True] and qrows_of(reg_c2) == [] and "the run was cut while a call that carried the quality line was out" in reg_c2["quality_gate"]["off_until_reset"]
-      and len(reg_c2["created"]) == 4 and any(r_.get("why") == "all lines already in AMD" for r_ in reg_c2["skipped"]), (_was_cut, _reg_cut.get("failed"), reg_c2.get("quality_gate", {}).get("off_until_reset"), [r_.get("pid") for r_ in reg_c2["created"]]))
+check("F5 (confirm review A2): a run cut while the first pilot visit's call was out leaves a provisional row; the second start under the same stamp adds NO line (this stamp has had its try, and that visit is for a person) - never four unproven lines; the other visits go in",
+      _was_cut is True and [r_.get("provisional") for r_ in _reg_cut.get("failed", [])] == [True] and qrows_of(reg_c2) == [] and "the run was cut while a call that carried the quality line was out" in reg_c2["quality_gate"]["probe"]
+      and reg_c2["quality_gate"]["probe_kind"] == "fault" and reg_c2["quality_gate"]["off_until_reset"] == "" and reg_c2["quality_gate"]["budget"] == 0
+      and len(reg_c2["created"]) == 4 and any(r_.get("why") == "all lines already in AMD" for r_ in reg_c2["skipped"]), (_was_cut, _reg_cut.get("failed"), reg_c2.get("quality_gate"), [r_.get("pid") for r_ in reg_c2["created"]]))
 out, reg_c3 = live(visits("20261103", (2,)))
 check("F5: ... and a run that is NOT cut leaves no provisional row behind (the row goes once the answer is recorded)", len(qrows_of(reg_c3)) == 1 and not any(r_.get("provisional") for r_ in reg_c3.get("failed", [])), (qrows_of(reg_c3), reg_c3.get("failed")))
+keep(_reg_cut, "20261102T0100Z"); out, reg_c4p = live(visits("20261104", (5,)))
+check("F5 (K11, fix round 1): ... the run AFTER the cut pauses - the visit whose call was out may carry the line, and no inspector step has looked at it yet: it is listed under 'stuck' with fault true, no line is added, nothing is off",
+      qrows_of(reg_c4p) == [] and [x_.get("fault") for x_ in reg_c4p["quality_gate"]["stuck"]] == [True] and reg_c4p["quality_gate"]["off_until_reset"] == "" and "paused: no line in this run" in qline(out)
+      and reg_c4p["quality_gate"]["paused"].startswith("paused this run: visit %s (chart pat401) came from a fault run - the run was cut" % _reg_cut["failed"][0]["empty_visit"]), (reg_c4p["quality_gate"], qline(out)))
+keep(reg_c4p, "20261104T0100Z"); step_frees("20261104T0100Z", _reg_cut["failed"], "feed_import_20261102T0100Z.json"); out, reg_c4 = live(visits("20261105", (3, 4))); rmreg("feed_inspector_20261104T0100Z.json")
+check("F5: ... and once that run's inspector step found the visit not held, the run after it probes by itself: one line on its first eligible visit, and the sentence says the run was cut - nobody restarts anything", [r_["pid"] for r_ in qrows_of(reg_c4)] == ["pat403"] and len(reg_c4["created"]) == 2
+      and "the run was cut while a call that carried the quality line was out" in reg_c4["quality_gate"]["probe"] and reg_c4["quality_gate"]["off_until_reset"] == "" and "probing: one line a run until one is seen billed" in qline(out) and reg_c4["quality_gate"]["stuck"] == [], (reg_c4["quality_gate"], qline(out)))
 clear_regs(); charts0()
 # AdvancedMD refuses a visit that carries the line
 clear_regs(); BILLS.clear(); charts0()
@@ -1421,13 +1541,17 @@ check("refused: the register names the refused patient - no second try for that 
 keep(reg5, "20261113T0100Z"); ci.PARSED[:] = visits("20261117", (2,)); out, dry = run_dry()
 check("refused at $0.00: the next run tries one cent", ci.QUALITY["fee"] == "0.01" and ci.QUALITY["off"] == "" and any(v[0].get("quality_fee") == "0.01" for v in dry.values()), (ci.QUALITY, dry))
 ci.PARSED[:] = [Q_("n2", "q%d" % int(ref[0]["pid"][-1]), [("99309", "20261117")])]; out, dry = run_dry()
-check("refused: ... but the refused patient's own next visit this year carries no line (one try per patient and year)", lined(dry) == [] and ("pat40%s" % ref[0]["pid"][-1], "2026") in ci.QUALITY["done"] and ci.QUALITY["budget"] == 3, (dry, ci.QUALITY["done"]))
+check("refused: ... but the refused patient's own next visit this year carries no line (one try per patient and year); at one cent the code probes, one line a run", lined(dry) == [] and ("pat40%s" % ref[0]["pid"][-1], "2026") in ci.QUALITY["done"] and ci.QUALITY["budget"] == 1 and ci.QUALITY["probe_kind"] == "refused", (dry, ci.QUALITY["done"]))
 reg6 = json.loads(json.dumps(reg5)); [r.update(quality_refused_fee="0.01") for r in reg6["created"] if r.get("quality_refused")]
 keep(reg6, "20261114T0100Z"); ci.PARSED[:] = visits("20261117", (2,)); out, dry = run_dry()
-check("refused at one cent too: the code stays off until William says to start again, and every run says so", ci.QUALITY["off"] != "" and not any(v[0].get("quality_codes") for v in dry.values())
-      and "OFF - AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261114T0100Z.json)" in out and ci.QUALITY["off_until_reset"] == ci.QUALITY["off"], out[-400:])
+check("refused at one cent too: the code goes on PROBING - one line a run, and every run says why (11/12/2026; before, off until William said to start again)", ci.QUALITY["off"] == "" and ci.QUALITY["off_until_reset"] == "" and lined(dry) == ["pat402"] and ci.QUALITY["budget"] == 1
+      and "PROBING - AdvancedMD refused a visit that carried the code with a one-cent charge too (feed_import_20261114T0100Z.json)" in out and "probing: one line a run until one is seen billed" in qline(out), out[-400:])
+out, regr0 = live(visits("20261117", (6,)), env="reset")
+check("QUALITY_CODE=reset while the code probes: ignored, loudly - the probe goes on at one cent with its one line", regr0["quality_gate"]["reset"] is False and regr0["quality_gate"]["fee"] == "0.01" and [r["quality_fee"] for r in qrows_of(regr0)] == ["0.01"]
+      and "NOTHING TO RESTART" in qline(out), (regr0["quality_gate"], qline(out)))
+out, regs0 = live(visits("20261116", (9,)), env="stop"); keep(regs0, "20261116T0100Z")
 out, regr = live(visits("20261117", (2,)), env="reset")
-check("QUALITY_CODE=reset (William's word): the pilot starts again at $0.00 and the register records the restart", regr["quality_gate"]["reset"] is True and regr["quality_gate"]["off"] == "" and regr["quality_gate"]["fee"] == "0.00"
+check("QUALITY_CODE=reset (William's word) after his own stop: the pilot starts again at $0.00 and the register records the restart", qrows_of(regs0) == [] and regr["quality_gate"]["reset"] is True and regr["quality_gate"]["off"] == "" and regr["quality_gate"]["fee"] == "0.00"
       and len(qrows_of(regr)) == 1 and any("started again" in n for n in regr["quality_gate"]["notes"]), regr["quality_gate"])
 keep(regr, "20261117T0100Z"); out, regr2 = live(visits("20261118", (3,)))
 check("after a restart the earlier refusals no longer count: the pilot waits for its new first line", regr2["quality_gate"]["off"] == "" and regr2["quality_gate"]["fee"] == "0.00" and regr2["quality_gate"]["wait"] is True
@@ -1468,19 +1592,24 @@ f = regq["failed"]
 check("refused and the chart now shows a line of that visit: NOT sent again (it would double the charge) - the visit is named for a person, the next visit goes in without the code",
       len(f) == 1 and f[0]["pid"] == "pat401" and f[0]["stored"] == [["99309", "11/02/2026"]] and f[0]["empty_visit"].startswith("vst") and "not sent again" in f[0]["err"] and f[0]["info"]["quality_tried"] == "0.00"
       and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 2 and len(regq["created"]) == 1 and qrows_of(regq) == [] and "could not be shown free of it" in regq["quality_gate"]["off"], (f, regq["created"]))
-check("... (SM-5) and the code is OFF from then on until William has looked at that visit: the register says so with the chart and the visit", regq["quality_gate"]["off_until_reset"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_SELFTEST.json)" % f[0]["empty_visit"]
-      and regq["quality_gate"]["refused_charts"] == [["pat401", "2026"]], regq["quality_gate"])
-keep(regq, "20261103T0100Z"); charts0(); out, regq3 = live(visits("20261104", (3, 4, 5)))
-check("... (SM-5) the next run adds no line and registers no further failed visit: one such visit, then the code waits for William", qrows_of(regq3) == [] and regq3["failed"] == [] and len(regq3["created"]) == 3 and not any("pcode65441" in b_ for b_ in POSTS)
-      and regq3["quality_gate"]["off_until_reset"] == regq["quality_gate"]["off_until_reset"] and "OFF - AdvancedMD answered a fault but kept the visit" in qline(out), (regq3["quality_gate"], qline(out)))
+check("... (SM-5) that visit is for a person, and from the next run the code PROBES (11/12/2026; before, off until William had looked): the register says so with the chart and the visit, and nothing is off until a restart",
+      regq["quality_gate"]["probe"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_SELFTEST.json)" % f[0]["empty_visit"] and regq["quality_gate"]["probe_kind"] == "fault"
+      and regq["quality_gate"]["off_until_reset"] == "" and regq["quality_gate"]["confirmed"] is False and regq["quality_gate"]["refused_charts"] == [["pat401", "2026"]], regq["quality_gate"])
+keep(regq, "20261103T0100Z"); charts0(); step_frees("20261103T0100Z", regq["failed"], "feed_import_20261103T0100Z.json"); out, regq3 = live(visits("20261104", (3, 4, 5))); rmreg("feed_inspector_20261103T0100Z.json")      # (K11) that run's step found the visit not held
+check("... (SM-5) the next run probes: ONE line on its first eligible visit, no further failed visit, and the log line says what the probe is about", [r["pid"] for r in qrows_of(regq3)] == ["pat403"] and regq3["failed"] == [] and len(regq3["created"]) == 3
+      and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "AdvancedMD answered a fault but kept the visit - William looks (chart pat401" in regq3["quality_gate"]["probe"] and regq3["quality_gate"]["off_until_reset"] == ""
+      and "PROBING - AdvancedMD answered a fault but kept the visit" in qline(out) and "probing: one line a run until one is seen billed" in qline(out), (regq3["quality_gate"], qline(out)))
 keep({k_: v_ for k_, v_ in regq.items() if k_ != "quality_gate"}, "20261103T0100Z"); charts0(); out, regq5 = live(visits("20261104", (3, 4, 5)))
-check("... (SM-5) also when that run was cut off before it wrote its gate: the failed row alone switches the code off, and the sentence names the register it stands in", qrows_of(regq5) == [] and len(regq5["created"]) == 3
-      and regq5["quality_gate"]["off_until_reset"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_20261103T0100Z.json)" % f[0]["empty_visit"], regq5["quality_gate"])
+check("... (SM-5) also when that run was cut off before it wrote its gate (and so before its inspector step could look): the failed row alone begins the probe, the sentence names the register it stands in, and the visit is listed as stuck "
+      "(K11, fix round 1) - this run pauses until a step has looked at it",
+      qrows_of(regq5) == [] and len(regq5["created"]) == 3 and [x_["visit"] for x_ in regq5["quality_gate"]["stuck"]] == [f[0]["empty_visit"]] and regq5["quality_gate"]["budget"] == 0
+      and regq5["quality_gate"]["probe"] == "AdvancedMD answered a fault but kept the visit - William looks (chart pat401, visit %s, feed_import_20261103T0100Z.json)" % f[0]["empty_visit"] and regq5["quality_gate"]["probe_tries"] == 1
+      and regq5["quality_gate"]["off_until_reset"] == "", regq5["quality_gate"])
 clear_regs(); charts0(); _cl = ci.chart_lines_now; _tries = []
 def _never(pid): _tries.append(pid); raise RuntimeError("history down")
 ci.chart_lines_now = _never; out, regq2 = live(visits("20261102", (1,)), refuse_quality=True); ci.chart_lines_now = _cl
-check("refused and the chart cannot be read in three tries: not sent again either", len(regq2["failed"]) == 1 and regq2["created"] == [] and "chart not read" in str(regq2["failed"][0]["stored"]) and len(_tries) == 3
-      and regq2["quality_gate"]["off_until_reset"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat401"), (regq2["failed"], _tries, regq2["quality_gate"]))
+check("refused and the chart cannot be read in three tries: not sent again either - that visit is for a person, and the code probes from the next run", len(regq2["failed"]) == 1 and regq2["created"] == [] and "chart not read" in str(regq2["failed"][0]["stored"]) and len(_tries) == 3
+      and regq2["quality_gate"]["probe"].startswith("AdvancedMD answered a fault to a visit that carried the quality line and the chart could not be read afterwards - William looks (chart pat401") and regq2["quality_gate"]["off_until_reset"] == "", (regq2["failed"], _tries, regq2["quality_gate"]))
 charts0(); _tries = []
 def _once(pid):
     _tries.append(pid)
@@ -1510,11 +1639,17 @@ out, regu = live(visits("20261102", (1, 2, 3)), line_raises=True)
 fu = regu["failed"]
 check("the call that CARRIES the line ends in an error (a time-out): nothing is sent again, no further line in that run, the other visits go in, and the failed row says that nobody knows what AdvancedMD kept",
       len(fu) == 1 and fu[0].get("quality_unknown") == "0.00" and fu[0]["info"]["quality_codes"] == [] and fu[0]["empty_visit"].startswith("vst") and len(regu["created"]) == 2 and qrows_of(regu) == []
-      and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "ended in an error (TimeoutError)" in regu["quality_gate"]["off"] and "nobody knows whether AdvancedMD kept that visit - William looks (chart pat401" in regu["quality_gate"]["off_until_reset"], (fu, regu["quality_gate"]))
-keep(regu, "20261103T0100Z"); ci.PARSED[:] = visits("20261104", (4,)); out, dry = run_dry()
-check("... and the code is OFF until William has looked at that visit", lined(dry) == [] and "nobody knows whether AdvancedMD kept that visit" in ci.QUALITY["off_until_reset"] and ci.QUALITY["budget"] == 0, ci.QUALITY["off_until_reset"])
+      and sum(1 for b_ in POSTS if "pcode65441" in b_) == 1 and "ended in an error (TimeoutError)" in regu["quality_gate"]["off"] and "nobody knows whether AdvancedMD kept that visit - William looks (chart pat401" in regu["quality_gate"]["probe"]
+      and regu["quality_gate"]["off_until_reset"] == "", (fu, regu["quality_gate"]))
+check("... (K11; K17, fix round 2) and THIS run's own gate lists that visit under 'stuck' at once (fault true, the visit, the chart, the amount, nobody has seen it yet), so this run's inspector step already looks at it",
+      [(x_.get("fault"), x_.get("visit"), x_.get("chart"), x_.get("fee")) for x_ in regu["quality_gate"].get("stuck") or []] == [(True, fu[0]["empty_visit"], "pat401", "0.00")]
+      and regu["quality_gate"]["stuck"][0]["what"].startswith("the call that carried the line ended in an error - nobody has seen yet"), regu["quality_gate"].get("stuck"))
+keep(regu, "20261103T0100Z"); ci.PARSED[:] = visits("20261104", (4,)); step_frees("20261103T0100Z", regu["failed"], "feed_import_20261103T0100Z.json"); out, dry = run_dry(); rmreg("feed_inspector_20261103T0100Z.json")      # (K11) that run's step found the visit not held
+check("... that visit is for a person, and the next run PROBES with one line (11/12/2026; before, off until William had looked at that visit)", lined(dry) == ["pat404"] and "nobody knows whether AdvancedMD kept that visit" in ci.QUALITY["probe"] and ci.QUALITY["probe_kind"] == "fault"
+      and ci.QUALITY["budget"] == 1 and ci.QUALITY["off_until_reset"] == "", ci.QUALITY)
 keep({k_: v_ for k_, v_ in regu.items() if k_ != "quality_gate"}, "20261103T0100Z"); out, dry = run_dry()
-check("... also from the failed row alone (that run cut off before it wrote its gate)", lined(dry) == [] and "feed_import_20261103T0100Z.json" in ci.QUALITY["off_until_reset"] and "chart pat401" in ci.QUALITY["off_until_reset"], ci.QUALITY["off_until_reset"])
+check("... also from the failed row alone (that run cut off before it wrote its gate, so before its step could look): the probe names the register, and the visit is listed as stuck - no line until a step has looked at it (K11, fix round 1)",
+      lined(dry) == [] and "feed_import_20261103T0100Z.json" in ci.QUALITY["probe"] and "chart pat401" in ci.QUALITY["probe"] and ci.QUALITY["off_until_reset"] == "" and [x_.get("fault") for x_ in ci.QUALITY["stuck"]] == [True], ci.QUALITY)
 clear_regs(); charts0(); out, regu2 = live([P_("n1", "one", [("99487", "20261031")])] + visits("20261102", (1,)), all_raise=True)
 check("... a visit WITHOUT the line whose call raises is handled exactly as before: a plain error row, nothing about the code, and the code is not switched off by it", len(regu2["failed"]) == 2 and sorted(regu2["failed"][0]) == ["err", "feed_id", "lines", "pid"]
       and regu2["failed"][1].get("quality_unknown") == "0.00" and regu2["created"] == [], regu2["failed"])
@@ -1635,12 +1770,20 @@ mworld(c711=["11/18/2026"]); s = mstate([M1], day=D_(11, 20))
 check("M0004 ledger (13.1d): the visit billed two days ago without its M0004 line - not decided yet (a line can be billed a day after its visit): the clinician still waits, nothing is left off",
       s["left_off_lines"] == [] and ("prof13", "2026") in s["wait"] and any("not decided before 11/21/2026" in n_ for n_ in s["notes"]), s)
 s = mstate([M1], day=D_(11, 21))
-check("M0004 ledger (13.1d): three days after - LEFT OFF: listed, that clinician gets it once more (neither done nor waiting), and one left-off line does not switch M0004 off",
-      s["left_off_lines"] == ["charge713"] and ("prof13", "2026") not in s["wait"] and ("prof13", "2026") not in s["done"] and s["off"] == "" and s["left_off_on"] == {"charge713": {"on": "11/21/2026", "billed": "11/18/2026"}} and s["clinicians"]["prof13"]["state"] == "left off", s)
+check("M0004 ledger (13.1d): three days after - LEFT OFF: listed, that clinician gets it once more - 30 days after it was called left off (K12, November 12, 2026 - fix round 1: it may still be billed until then; not waiting, but no new M0004 line before), and one left-off line does not switch M0004 off",
+      s["left_off_lines"] == ["charge713"] and ("prof13", "2026") not in s["wait"] and ("prof13", "2026") in s["done"] and s["off"] == "" and s["left_off_on"] == {"charge713": {"on": "11/21/2026", "billed": "11/18/2026"}} and s["clinicians"]["prof13"]["state"] == "left off", s)
+_G21k = mnext("20261121T1240Z"); s29 = mstate([M1, _G21k], day=D_(12, 20)); s30 = mstate([M1, _G21k], day=D_(12, 21))
+_sf = mstate([M1], day=D_(11, 21), files={"removed": {"20261116T1240Z": [("feed_inspector_20261116T1240Z.json", {"visit": "75", "pid": "pat7105", "charge": "charge752", "code": "M0004", "void_ok": True, "released": True, "fault": True, "with": "1123F", "why": "x"})]}})
+s = mstate([M1], day=D_(11, 21))      # (the state the checks below go on from)
+check("M0004 ledger (K11, fix round 1): an M0004 entry about a visit of a fault run (fault true) is the 1123F ledger's business - the M0004 ledger reads nothing from it (no note about a charge no row carries, no probe)",
+      not any("passed over" in n_ for n_ in _sf["notes"]) and _sf["probe"] == s["probe"], _sf["notes"])
+check("M0004 ledger (K12, fix round 1): ... 29 days after it was called left off that clinician still gets no new M0004 line; on the 30th day he gets it once more, as before",
+      ("prof13", "2026") in s29["done"] and ("prof13", "2026") not in s30["done"] and ("prof13", "2026") not in s30["wait"] and s30["left_off_lines"] == ["charge713"], (s29["done"], s30["done"]))
 G21 = mnext("20261121T1240Z"); MA2 = mrow("pat7103", "vst73", "charge731", "charge732", "charge733"); chg("731", ["11/22/2026"], "pcode65119"); chg("733", [], MP); chg("732", [], QP)
 s = mstate([M1, G21, (RN("20261122T1240Z"), {"created": [MA2]})], day=D_(11, 26))
-check("M0004 ledger (8.3): the physician's second M0004 line is left off too - TWO left-off lines since the last start: M0004 is OFF until William restarts it, the sentence names the visits",
-      sorted(s["left_off_lines"]) == ["charge713", "charge733"] and s["off"].startswith("AdvancedMD left the M0004 line off 2 claims since the option code was last started (visits vst71, vst73)") and s["off_until_reset"] == s["off"], s)
+check("M0004 ledger (8.3): the physician's second M0004 line is left off too - TWO left-off lines since the last start: M0004 PROBES (11/12/2026; before, off until a restart) - the sentence names the visits; no M0004 line while the other clinician's line is not decided",
+      sorted(s["left_off_lines"]) == ["charge713", "charge733"] and s["probe"].startswith("AdvancedMD left the M0004 line off 2 claims since the option code was last started (visits vst71, vst73)") and s["off"] == "" and s["off_until_reset"] == ""
+      and s["probe_since"] == "feed_import_20261122T1240Z.json" and s["budget"] == 0 and s["wait"] == {("prof15", "2026")}, s)
 mworld(c711=["11/18/2026"]); mstate([M1], day=D_(11, 21)); G21 = mnext("20261121T1240Z"); chg("713", ["11/25/2026"], MP); s = mstate([M1, G21], day=D_(11, 27))
 check("M0004 ledger (13.1b): a left-off M0004 line is read again - billed later, it moves to the billed lines: that clinician is done for the year, and the gate's late row says so",
       s["billed_lines"] == ["charge713"] and s["left_off_lines"] == [] and ("prof13", "2026") in s["done"] and s["late_billed"] == {"charge713": "11/27/2026"} and s["late_rows"] == [["prof13", "pat7101", "vst71", "charge713", "11/21/2026", "", "2026"]], s)
@@ -1650,15 +1793,20 @@ check("M0004 ledger (13.1b, F3 - the confirm review's behaviour om): ... the NEX
 MA3 = mrow("pat7106", "vst76", "charge761", "charge762", "charge763"); chg("761", [], "pcode65119"); chg("762", [], QP); chg("763", [], MP)
 s = mstate([M1, G21, (RN("20261122T1240Z"), {"created": [MA3]})], day=D_(11, 27))
 check("M0004 ledger (13.1b, F4): a left-off M0004 line billed later while that clinician's LATER M0004 line is not billed - the late row names no second billed line", s["late_rows"] == [["prof13", "pat7101", "vst71", "charge713", "11/21/2026", "", "2026"]], s["late_rows"])
-chg("713", [], MP); s = mstate([M1, G21], day=D_(12, 19))
-check("M0004 ledger (13.1b): ... read again only until 30 days after its visit was billed", "713" not in DETAILS and s["left_off_lines"] == ["charge713"], (s["left_off_lines"], DETAILS))
+chg("713", [], MP); s = mstate([M1, G21], day=D_(12, 19)); _d19 = list(DETAILS); s22 = mstate([M1, G21], day=D_(12, 22))
+check("M0004 ledger (13.1b; K13, fix round 2): ... read again until 30 days after it was CALLED left off (11/21): still read on 12/19, no longer on 12/22",
+      "713" in _d19 and "713" not in DETAILS and s["left_off_lines"] == ["charge713"] and s22["left_off_lines"] == ["charge713"], (s["left_off_lines"], _d19, DETAILS))
 mworld(c711=["not a date"]); s = mstate([M1], day=D_(11, 18)); G18 = mnext("20261118T1240Z")
 check("M0004 ledger (13.1d): a visit listed as billed whose billed date cannot be read - the gate remembers the day the import first saw it billed and counts from that day", s["left_off_lines"] == [] and s["left_off_seen"] == {"charge713": "11/18/2026"} and ("prof13", "2026") in s["wait"], s)
 s = mstate([M1, G18], day=D_(11, 20)); s3 = mstate([M1, G18], day=D_(11, 21))
 check("M0004 ledger (13.1d): ... two days later still not decided (the first day seen is kept, not moved to each run's day), three days later left off", s["left_off_lines"] == [] and s["left_off_seen"] == {"charge713": "11/18/2026"} and s3["left_off_lines"] == ["charge713"] and s3["left_off_seen"] == {}, (s, s3))
-mworld(); TEXTOF["713"] = "99497"; s = mstate([M1], day=D_(11, 20)); TEXTOF.clear()
-check("M0004 ledger (13.4): the charge detail names procedure id pcode692183 with another code text - OFF until William restarts it, the sentence says what AdvancedMD stores, the gate records the text",
-      s["off"] == "AdvancedMD stores procedure id pcode692183 as 99497, not M0004 - William looks" and s["wrong_code_text"] == "99497" and s["off_until_reset"] == s["off"], s)
+mworld(); TEXTOF["713"] = "99497"; s = mstate([M1], day=D_(11, 20)); GTXT = mnext("20261120T1240Z")
+check("M0004 ledger (13.4): the charge detail names procedure id pcode692183 with another code text - M0004 is PAUSED for this run (11/12/2026; before, off until a restart): the sentence says what AdvancedMD shows, the gate records the text and the charge, and nothing probes",
+      s["off"] == "paused this run: AdvancedMD shows procedure id pcode692183 as 99497, not M0004 - no M0004 line while that is so; every run reads it again" and s["paused"] == s["off"] and s["wrong_code_text"] == "99497" and s["wrong_code_charge"] == "charge713"
+      and s["off_until_reset"] == "" and s["probe"] == "", s)
+s = mstate([M1, GTXT], day=D_(11, 21)); _d = list(DETAILS); TEXTOF.clear(); s2 = mstate([M1, GTXT], day=D_(11, 21))
+check("M0004 ledger (13.4): ... the next run reads THAT charge again first and is paused while it still shows the other text; the first run that reads M0004 there goes on by itself where it stood",
+      s["paused"] != "" and s["paused"] == s["off"] and _d[:1] == ["713"] and s2["paused"] == "" and s2["off"] == "" and s2["wrong_code_text"] == "" and s2["wait"] == {("prof13", "2026"), ("prof15", "2026")}, (s, _d, s2))
 SW = mrow("pat7104", "vst74", "charge741", "charge743", "charge742")       # the row recorded the two no-charge lines the other way round (the answer named no procedures)
 BILLS.clear(); PROC.clear(); chg("741", [], "pcode65119"); chg("742", [], QP); chg("743", ["11/18/2026"], MP)
 s = mstate([(RN("20261116T1240Z"), {"created": [SW]})], day=D_(11, 20))
@@ -1672,8 +1820,9 @@ s = mstate([(RN("20261116T1240Z"), {"created": [OW]})], day=D_(11, 20))
 check("M0004 ledger (8.5): the row took the visit's own charge for the M0004 line - nothing is decided on that charge: the M0004 line is found among the visit's charges and read instead", s["swaps"] == {"charge751": "charge753"} and ("prof13", "2026") in s["wait"] and s["billed_lines"] == [] and s["void_lines"] == [], s)
 MREM = lambda code="M0004", charge="charge713", **e: {"removed": {"20261116T1240Z": [("feed_inspector_20261116T1240Z.json", dict({"visit": "vst71", "pid": "pat7101", "charge": charge, "code": code, "fee": "0.00", "why": "Pattern 88001: procedure M0004 is not payable", "void_ok": True, "released": True, "at": "x"}, **e))]}}
 mworld(); s = mstate([M1], files=MREM(), day=D_(11, 20))
-check("M0004 ledger (11.6): the inspector step took the M0004 line off a held visit that then went through - void and final, NOT read; M0004 is OFF until William restarts it (no second try)",
-      s["void_lines"] == ["charge713"] and "713" not in DETAILS and s["off"].startswith("the routine took the M0004 line off held visit vst71 and the visit went through without it - no second try") and s["off_until_reset"] == s["off"], s)
+check("M0004 ledger (11.6): the inspector step took the M0004 line off a held visit that then went through - void and final, NOT read; M0004 PROBES (11/12/2026; before, off until a restart, no second try): the claim check's own words are kept; no M0004 line while the other clinician's line is not decided",
+      s["void_lines"] == ["charge713"] and "713" not in DETAILS and s["probe"] == 'the routine took the M0004 line off held visit vst71 and the visit went through without it (feed_inspector_20261116T1240Z.json: "Pattern 88001: procedure M0004 is not payable")'
+      and s["probe_words"] == "Pattern 88001: procedure M0004 is not payable" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 0, s)
 _RM = (RN("20261116T1240Z"), {"created": [MA_]})
 s = state([_RM], files=MREM()); s2 = state([_RM], files={"removed": {"20261116T1240Z": MREM()["removed"]["20261116T1240Z"] + MREM(code="1123F", charge="charge712")["removed"]["20261116T1240Z"]}})
 check("M0004 (11.6): an M0004 line taken off with released does NOT count against 1123F (no refusal, the amount stays, the patient is not marked refused); taken off WITH the 1123F line, the 1123F entry counts as one refusal",
@@ -1683,51 +1832,75 @@ check("M0004 ledger (11.6): ... the visit stayed held anyway (not released) - th
 mworld(); s = mstate([M1], files=MREM(**{"with": "1123F"}), day=D_(11, 20))
 check("M0004 ledger (NH2-1): an M0004 line taken off only because its 1123F line came off ('with': '1123F', the visit went through) - just void: M0004 is NOT switched off and that clinician may get M0004 again",
       s["void_lines"] == ["charge713"] and s["off"] == "" and ("prof13", "2026") not in s["wait"] and ("prof13", "2026") not in s["done"] and any("came off with its 1123F line" in n_ for n_ in s["notes"]), s)
+MSTUCK = lambda what, why="Pattern 88001: procedure M0004 is not payable": 'paused this run: visit vst71 (chart pat7101) is held with its M0004 line - %s (feed_inspector_20261116T1240Z.json: "%s"); no new M0004 line while that is so - every run\'s inspector step tries the void and the re-save again' % (what, why)
 mworld(); s = mstate([M1], files=MREM(released=False, still_named=True), day=D_(11, 20))
-check("M0004 ledger (NH2-2, 8.6): the M0004 line is gone but the visit is still listed for the edit about it - OFF until William restarts it (one re-save should release it)", "still listed for the edit about the line" in s["off"] and s["off_until_reset"] == s["off"], s["off"])
+check("M0004 ledger (NH2-2, 8.6): the M0004 line is gone but the visit is still listed for the edit about it - the visit is STUCK with its M0004 line: M0004 is paused this run, the step re-saves the visit again in every run (one re-save should release it), and M0004 probes afterwards",
+      s["paused"] == MSTUCK("the line is off, but the visit is still listed for the edit about it") and s["off"] == s["paused"] and s["off_until_reset"] == "" and [(i_["visit"], i_["code"], i_["charge"]) for i_ in s["stuck"]] == [("vst71", "M0004", "charge713")]
+      and "still listed for the edit about the line" in s["probe"], s)
 s = mstate([M1], files=MREM(void_ok=False, released=False), day=D_(11, 20))
-check("M0004 ledger (11.6): ... the void failed - the visit is held WITH its M0004 line: OFF until William restarts it", s["off"].startswith("the Claim Inspector holds visit vst71 and the routine could not take its M0004 line off") and s["void_lines"] == [], s)
+check("M0004 ledger (11.6): ... the void failed - the visit is held WITH its M0004 line: STUCK - M0004 paused this run, the visit listed in the gate for the inspector step's retry pass; never off until a restart",
+      s["paused"] == MSTUCK("the routine could not take the line off") and s["off_until_reset"] == "" and s["void_lines"] == [] and [(i_["visit"], i_["what"]) for i_ in s["stuck"]] == [("vst71", "the routine could not take the line off")] and ci.mvp_gate()["stuck"] == s["stuck"]
+      and s["probe"].startswith("the Claim Inspector holds visit vst71 and the routine could not take its M0004 line off"), s)
+_mfree = dict(MREM(void_ok=False, released=False)["removed"], **{"20261117T1240Z": [("feed_inspector_20261117T1240Z.json", {"visit": "vst71", "pid": "pat7101", "charge": "charge713", "code": "M0004", "fee": "0.00", "why": "Pattern 88001: procedure M0004 is not payable",
+                                                                                     "void_ok": True, "resave_ok": True, "released": True, "retry_of": "feed_inspector_20261116T1240Z.json", "at": "x"})]})
+s = mstate([M1, (RN("20261117T1240Z"), {"created": []})], files={"removed": _mfree}, day=D_(11, 20))
+check("M0004 ledger (11.6): ... only a NEWER entry ends that stuck mark: the retry pass took the line off and the visit went out - not stuck, not paused; the line is void and M0004 goes on probing",
+      s["stuck"] == [] and s["paused"] == "" and s["off"] == "" and s["void_lines"] == ["charge713"] and s["probe"] != "" and s["off_until_reset"] == "" and ("prof13", "2026") not in s["wait"], s)
 s = mstate([M1], files=MREM(charge="charge712"), day=D_(11, 20))
-check("M0004 ledger (11.6, 8.5): an M0004 entry whose charge the row recorded as its 1123F line (the two were swapped) is still this row's M0004 line - and the swap is kept", s["void_lines"] == ["charge712"] and s["swaps"] == {"charge713": "charge712"} and "no second try" in s["off"], s)
+check("M0004 ledger (11.6, 8.5): an M0004 entry whose charge the row recorded as its 1123F line (the two were swapped) is still this row's M0004 line - and the swap is kept", s["void_lines"] == ["charge712"] and s["swaps"] == {"charge713": "charge712"}
+      and s["probe"].startswith("the routine took the M0004 line off held visit vst71 and the visit went through without it"), s)
 _HELD = lambda why_: {"held": {"71": [("feed_inspector_20261116T1240Z.json", why_, False)]}}
 mworld(); s = mstate([M1], files=_HELD("Pattern 88001: procedure M0004 is not payable"), day=D_(11, 20))
-check("M0004 ledger (8.6): a Claim Inspector hold whose words name M0004 on a visit that carries it, with no removal recorded (the line could not be taken off) - M0004 OFF until William restarts it",
-      s["off"].startswith("the Claim Inspector holds visit vst71, which carries the M0004 line, for words that name it") and "procedure M0004 is not payable" in s["off"], s)
+check("M0004 ledger (8.6): a Claim Inspector hold whose words name M0004 on a visit that carries it, with no removal recorded (the line could not be taken off) - the visit is STUCK with its M0004 line: M0004 paused this run; nothing probes from the held row itself",
+      s["paused"] == MSTUCK("the Claim Inspector holds it and the line was not taken off") and s["off"] == s["paused"] and s["off_until_reset"] == "" and s["probe"] == "" and [i_["visit"] for i_ in s["stuck"]] == ["vst71"], s)
 s = mstate([M1], files=_HELD("Pattern 990001: procedure 1123F - line item charge amount is zero"), day=D_(11, 20)); s2 = mstate([M1], files=_HELD("Charge amount is zero for this procedure"), day=D_(11, 20))
-check("M0004 ledger (8.6): ... a hold whose words name only the 1123F line is not M0004's business; words about a zero amount that name no code name both lines - M0004 OFF", s["off"] == "" and "which carries the M0004 line" in s2["off"], (s["off"], s2["off"]))
+check("M0004 ledger (8.6): ... a hold whose words name only the 1123F line is not M0004's business; words about a zero amount that name no code name both lines - M0004 paused", s["off"] == "" and s["stuck"] == []
+      and s2["paused"] == MSTUCK("the Claim Inspector holds it and the line was not taken off", "Charge amount is zero for this procedure"), (s["off"], s2["off"]))
 _RP = (RN("20261116T1240Z"), {"created": [MA_], "quality_gate": {"confirmed": True, "fee": "0.00", "proof": {"visit": "vst2", "charge": "charge22"}}})
 s = state([_RP], files=_HELD("Pattern 88001: procedure M0004 is not payable")); s2 = state([_RP], files=_HELD("Pattern 990001: procedure 1123F - charge amount is zero")); s3 = state([_RP], files=_HELD("Pattern 88003: M0004 charge amount is zero"))
-check("M0004 (8.6): an edit that names only M0004 switches M0004 off, NOT 1123F - after proof the 1123F ledger does not switch off for it (also when its words speak of a zero amount: that amount is M0004's); an edit that names 1123F still does",
-      s["off"] == "" and s["confirmed"] is True and s3["off"] == "" and "the Claim Inspector holds visit vst71, which carries the quality line" in s2["off"], (s["off"], s2["off"], s3["off"]))
+check("M0004 (8.6): an edit that names only M0004 pauses M0004, NOT 1123F - after proof the 1123F ledger is not paused for it (also when its words speak of a zero amount: that amount is M0004's); an edit that names 1123F still makes the visit stuck for the 1123F line",
+      s["off"] == "" and s["confirmed"] is True and s3["off"] == "" and s2["paused"].startswith("paused this run: visit vst71 (chart pat7101) is held with its quality line - the Claim Inspector holds it and the line was not taken off") and s2["confirmed"] is True, (s["off"], s2["off"], s3["off"]))
 s = mstate([M1], files=dict(_HELD("Pattern 88001: procedure M0004 is not payable"), **MREM(released=False)), day=D_(11, 20))
 check("M0004 ledger (11.6): a hold that names M0004 on a visit whose M0004 line the routine took off is the visit's own business - no OFF; the line is just void", s["off"] == "" and s["void_lines"] == ["charge713"], s)
 s = state([_RM], files={"removed": {"20261116T1240Z": MREM(code="1123F", charge="charge713")["removed"]["20261116T1240Z"]}})
 check("M0004 (11.3, 8.5): a 1123F entry whose charge the row recorded as its M0004 line (the two were swapped) is that row's 1123F line - void, and one refusal", s["void_lines"] == ["charge712"] and s["fee"] == "0.01" and ("pat7101", "2026") in s["refused"], s)
 mworld(c711=["11/18/2026"]); chg("731", ["11/18/2026"], "pcode65119"); chg("733", [], MP); chg("732", [], QP)
 _M2 = (RN("20261116T1240Z"), {"created": [MA_, MA2]}); s = mstate([_M2], day=D_(11, 22)); G22 = mnext("20261122T1240Z"); s2 = mstate([_M2, G22], reset=True, day=D_(11, 23))
-check("M0004 ledger (8.3, 8.7): two lines left off - OFF; MVP_CODE=reset starts M0004 again and the left-off lines from before the restart no longer count towards a new OFF",
-      s["off"].startswith("AdvancedMD left the M0004 line off 2 claims") and s2["off"] == "" and s2["reset"] is True and sorted(s2["left_off_lines"]) == ["charge713", "charge733"], (s["off"], s2["off"]))
+check("M0004 ledger (8.3, 8.7): two lines left off - M0004 probes; MVP_CODE=reset has nothing left to restart (M0004 never switches itself off): ignored, loudly - the probe goes on",
+      s["probe"].startswith("AdvancedMD left the M0004 line off 2 claims") and s["off"] == "" and s2["off"] == "" and s2["reset"] is False and "NOTHING TO RESTART - MVP_CODE=reset was ignored" in s2["loud"] and s2["probe"] == s["probe"]
+      and sorted(s2["left_off_lines"]) == ["charge713", "charge733"] and s2["budget"] == 1, (s, s2))
+MA4 = mrow("pat7107", "vst77", "charge771", "charge772", "charge773"); chg("771", ["11/24/2026"], "pcode65119"); chg("772", ["11/24/2026"], QP); chg("773", ["11/24/2026"], MP)
+s3 = mstate([_M2, G22, (RN("20261123T1240Z"), {"created": [MA4]})], day=D_(11, 25))
+check("M0004 ledger (8.3): ... the probe ends when an M0004 line entered AFTER the newest cause is read billed - from then on each clinician who has none gets one, as before", s3["probe"] == "" and "charge773" in s3["billed_lines"] and ("prof13", "2026") in s3["done"] and s3["budget"] is None, s3)
 s = mstate([M1], files={"check_holds": {"71": [("feed_verify_20261116T1240Z.json", ["insorder not applied on vst71 (the visit carries the quality line charge712 and the M0004 line charge713: resave FAULT)"])]}}, day=D_(11, 20))
-check("M0004 ledger (8.6): the insurance check could not set the order of a visit that carries M0004 - OFF until William restarts it", s["off"].startswith("the insurance check could not set the order of visit vst71, which carries the M0004 line"), s)
+check("M0004 ledger (8.6): the insurance check could not set the order of a visit that carries M0004 - that visit is for a person, and M0004 probes (11/12/2026; before, off until a restart)", s["probe"].startswith("the insurance check could not set the order of visit vst71, which carries the M0004 line") and s["off"] == "" and s["off_until_reset"] == "", s)
 mworld(); s = mstate([(RN("20261116T1240Z"), {"created": [dict(MA_, mvp_codes=[], mvp_charge="", mvp_refused="Fault: no", mvp_tried="0.00")]})], day=D_(11, 20))
-check("M0004 ledger (8.4): a visit refused with M0004 and taken with the 1123F line only - M0004 is OFF until William restarts it (no second try); the sentence names chart, visit and register",
-      s["off"] == "AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only - no second try (chart pat7101, visit vst71, feed_import_20261116T1240Z.json)" and s["lines"] == 0, s)
+check("M0004 ledger (8.4): a visit refused with M0004 and taken with the 1123F line only - M0004 PROBES: one M0004 line a run in all (11/12/2026; before, off until a restart - the sentence has lost its words 'no second try'); it names chart, visit and register and keeps AdvancedMD's own words",
+      s["probe"] == "AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only (chart pat7101, visit vst71, feed_import_20261116T1240Z.json)" and s["probe_words"] == "Fault: no" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1 and s["lines"] == 0, s)
 s = mstate([(RN("20261116T1240Z"), {"created": [dict(MA_, mvp_codes=[], mvp_charge="", mvp_not_stored="0.00")]})], day=D_(11, 20))
-check("M0004 ledger: a visit stored without its M0004 line - OFF until William restarts it", s["off"].startswith("AdvancedMD stored a visit without its M0004 line - William looks (chart pat7101"), s)
+check("M0004 ledger: a visit stored without its M0004 line - M0004 probes", s["probe"].startswith("AdvancedMD stored a visit without its M0004 line - William looks (chart pat7101") and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1, s)
 def _FM(info=None, **kw): return dict({"feed_id": "f1", "pid": "pat7101", "empty_visit": "vst79", "info": dict({"quality_tried": "0.00", "mvp_tried": "0.00", "quality_dos": "11/16/2026", "dos": "11/16/2026", "cpts": ["99309"]}, **(info or {})), "err": "x"}, **kw)
 s = mstate([(RN("20261116T1240Z"), {"created": [], "failed": [_FM(stored=[["99309", "11/16/2026"]])]})]); s2 = mstate([(RN("20261116T1240Z"), {"created": [], "failed": [_FM(quality_unknown="0.00")]})])
 s3 = mstate([(RN("20261116T1240Z"), {"created": [], "failed": [_FM(stored=[["99309", "11/16/2026"]], info={"mvp_form_refused": True})]})]); s4 = mstate([(RN("20261116T1240Z"), {"created": [], "failed": [_FM()]})])
-check("M0004 ledger (8.4): a visit that carried M0004 got a fault or an error and nobody knows what AdvancedMD kept (the chart showed part of it, or a call ended in an error) - OFF; when the 1123F-only form was refused too, M0004 is not blamed; an ordinary failed row says nothing",
-      s["off"].startswith("AdvancedMD answered a visit that carried M0004 with a fault or an error and nobody knows what it kept of it - William looks (chart pat7101, visit vst79") and s2["off"] == s["off"] and s3["off"] == "" and s4["off"] == "", (s["off"], s2["off"], s3["off"], s4["off"]))
-mworld(); TEXTOF["713"] = "99497"; mstate([M1], day=D_(11, 20)); TEXTOF.clear(); GOFF = mnext("20261120T1240Z")
-s = mstate([M1, GOFF], day=D_(11, 21))
-check("M0004 ledger: its OFF is carried forward by its gate - the next run is still OFF with the same sentence, and reads nothing for it", s["off"] == "AdvancedMD stores procedure id pcode692183 as 99497, not M0004 - William looks" and s["off_until_reset"] == s["off"], s)
-s = mstate([M1, GOFF], reset=True, day=D_(11, 21))
-check("M0004 ledger (8.7): MVP_CODE=reset with M0004 OFF - started again: the OFF is gone and the restart recorded; a line that exists still counts for its clinician", s["off"] == "" and s["reset"] is True and any("started again" in n_ for n_ in s["notes"]) and ("prof15", "2026") in s["wait"], s)
+check("M0004 ledger (8.4): a visit that carried M0004 got a fault or an error and nobody knows what AdvancedMD kept (the chart showed part of it, or a call ended in an error) - that visit is for a person and M0004 probes; when the 1123F-only form was refused too, M0004 is not blamed; an ordinary failed row says nothing",
+      s["probe"].startswith("AdvancedMD answered a visit that carried M0004 with a fault or an error and nobody knows what it kept of it - William looks (chart pat7101, visit vst79") and s2["probe"] == s["probe"] and s["off"] == "" and s["off_until_reset"] == ""
+      and s3["probe"] == "" and s4["probe"] == "" and s3["off"] == "" and s4["off"] == "", (s["probe"], s2["probe"], s3["probe"], s4["probe"]))
+_MR = (RN("20261116T1240Z"), {"created": [dict(MA_, mvp_codes=[], mvp_charge="", mvp_refused="Fault: no", mvp_tried="0.00")]})
+mworld(); _s0 = mstate([_MR], day=D_(11, 20)); GPRB = mnext("20261120T1240Z"); s = mstate([_MR, GPRB], day=D_(11, 21))
+check("M0004 ledger: its probe is carried forward by its gate - the next run still probes with the same sentence: one M0004 line a run in all", s["probe"] == _s0["probe"] and s["probe"] != "" and s["off"] == "" and s["off_until_reset"] == "" and s["budget"] == 1, s)
+s = mstate([_MR, GPRB], reset=True, day=D_(11, 21))
+check("M0004 ledger (8.7): MVP_CODE=reset while M0004 probes - nothing to restart (M0004 never switches itself off): ignored, loudly; the probe goes on", s["reset"] is False and "NOTHING TO RESTART - MVP_CODE=reset was ignored" in s["loud"] and s["probe"] == _s0["probe"], s)
 s = mstate([M1], reset=True, day=D_(11, 21))
 check("M0004 ledger (8.7): MVP_CODE=reset with nothing switched off is ignored, loudly", s["reset"] is False and "NOTHING TO RESTART - MVP_CODE=reset was ignored" in s["loud"], s)
-s = mstate([M1, GOFF, (RN("20261121T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})], day=D_(11, 22))
-check("M0004 (8.7): a restart of the 1123F line (QUALITY_CODE=reset, written in the 1123F gate) does not restart a lasting M0004 OFF", s["off"].startswith("AdvancedMD stores procedure id pcode692183 as 99497"), s["off"])
+s = mstate([_MR, GPRB, (RN("20261121T1240Z"), {"created": [], "quality_gate": {"reset": True, "fee": "0.00"}})], day=D_(11, 22))
+check("M0004 (8.7): a restart of the 1123F line (QUALITY_CODE=reset, written in the 1123F gate) changes nothing for M0004 - its probe goes on", s["probe"] == _s0["probe"] and s["off"] == "", s)
+_was = "AdvancedMD stores procedure id pcode692183 as 99497, not M0004 - William looks"; GOLD = (RN("20261120T1240Z"), {"created": [], "mvp_gate": {"off": _was, "off_until_reset": _was, "wrong_code_text": "99497"}})
+mworld(); s = mstate([M1, GOLD], day=D_(11, 21))
+check("M0004 ledger (section 3): an OLDER gate that says 'off until reset' (written before 11/12/2026) is not kept - every such sentence was the code's own: M0004 goes on by itself, probing, and the run right after that gate records the standing restart",
+      s["off"] == "" and s["off_until_reset"] == "" and s["probe"] == "the option code M0004 had switched itself off (%s) - William's standing word of November 11, 2026 restarts it" % _was
+      and s["standing_restart"] == {"was": _was, "register": "feed_import_20261120T1240Z.json"} and s["wrong_code_text"] == "", s)
+s2 = mstate([M1, GOLD, mnext("20261121T1240Z")], day=D_(11, 22))
+check("M0004 ledger (section 3): ... every later run finds a gate of this version before it and says nothing more; the probe goes on", s2["standing_restart"] is None and s2["probe"] == s["probe"] and s2["off_until_reset"] == "", s2)
 mworld(c713=["11/12/2026"], c723=["11/12/2026"]); PAYS["713"] = [{"amount": "0.00", "carrierfid": "6085", "date": "11/24/2026", "void": "1"}, {"amount": "0.00", "carrierfid": "6404", "date": "11/24/2026", "void": "0"}]
 PAYS["723"] = [{"amount": "0.00", "carrierfid": "6085", "date": "11/25/2026", "void": "0"}]; s = mstate([M1], day=D_(11, 30))
 check("M0004 ledger (11.6): Medicare's answer per clinician - a void Medicare payment line or another carrier's is no answer (prof13 waits for it), a live Medicare Part B line is (prof15 recorded)",
@@ -1744,6 +1917,7 @@ for odd in ([("a", {"created": "x", "mvp_gate": 7})], [("b", None)], [("c", {"cr
     check("M0004 ledger: odd registers (%s) are read without an error, never switch M0004 off, and its gate can still be written" % str(odd)[:40], okm, dict(ci.MVP))
 BILLS.clear(); PROC.clear(); TEXTOF.clear(); PAYS.clear(); DETAILS.clear(); mreset()
 # 4d.5 through main(): the 1123F pilot proven (an earlier register says so), then visits of both clinicians whose own messages name them
+def mline(out): return next((l for l in out.splitlines() if l.startswith("QUALITY M0004:")), "")
 for i in range(10, 20): ci.MATCH[NAME("q%d" % i).upper().strip() + "|" + "19400215"] = {"resolved": "pat4%d" % i}
 def charts1(): charts0(); CHART.update({"4%d" % i: [("99309", "10/03/2026")] for i in range(10, 20)})
 def mvisit(k, day, npi=NPI):      # made-up patient q<k> (chart pat4<k>) whose raw message names its own building and clinician
@@ -1793,47 +1967,57 @@ check("M0004 refused (8.4): AdvancedMD refuses the visit that carries 1123F + M0
       len(_rr) == 2 and rr["failed"] == [] and len(_ref) == 1 and _ref[0]["quality_codes"] == ["1123F"] and bool(_ref[0]["quality_charge"]) and _ref[0]["mvp_codes"] == [] and _ref[0]["mvp_tried"] == "0.00" and len(_ref[0]["charges"]) == 2, (_rr, rr["failed"]))
 check("M0004 refused (8.4): ... what goes in the second time is the first request with nothing but the M0004 line taken out, and no further M0004 line is tried in that run (the second visit carries 1123F only)",
       len(_with) == 1 and len(_q1) == 1 and re.sub(MCHG, "", _with[0]) == _q1[0] and _rr[1].get("mvp_codes") is None and len([r for r in _rr if r.get("quality_codes")]) == 2, (len(_with), len(_q1)))
-check("M0004 refused (8.4): ... M0004 is OFF until William restarts it - no second try (the register's mvp_gate, the log line); the 1123F line is not blamed (no refusal counted, the patient is not marked refused)",
-      rr["mvp_gate"]["off_until_reset"].startswith("AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only - no second try (chart pat414") and "OPTION CODE M0004 REFUSED" in out
-      and rr["quality_gate"]["refused_charts"] == [] and rr["quality_gate"]["off"] == "" and "off until William restarts it (one run with MVP_CODE=reset)" in out, (rr["mvp_gate"], rr["quality_gate"]))
-keep(rr, "20261116T0100Z"); out, rr2 = live([mvisit(16, "20261117", NP_NPI)])
-check("M0004 refused (8.4): ... the next run, no switch: still OFF - the other clinician gets no M0004 line either; the 1123F line as usual", [r.get("mvp_codes") for r in rr2["created"]] == [None] and rr2["created"][0].get("quality_codes") == ["1123F"] and rr2["mvp_gate"]["off_until_reset"] == rr["mvp_gate"]["off_until_reset"], rr2["mvp_gate"])
-keep(rr2, "20261117T0100Z"); out, rr3 = live([mvisit(17, "20261118", NP_NPI)], menv="reset")
-check("M0004 (8.7): MVP_CODE=reset (William's word) - M0004 starts again: the nurse practitioner's visit carries her M0004 line; the restart is recorded",
-      [r.get("mvp_prof") for r in rr3["created"]] == ["prof15"] and rr3["mvp_gate"]["reset"] is True and rr3["mvp_gate"]["off_until_reset"] == "" and rr3["mvp_gate"]["reset_after"] == [0, 0], rr3["mvp_gate"])
+check("M0004 refused (8.4): ... M0004 PROBES from the next run (11/12/2026; before, off until a restart, no second try) - the register's mvp_gate says why and the log line says probing; the 1123F line is not blamed (no refusal counted, the patient is not marked refused)",
+      rr["mvp_gate"]["probe"].startswith("AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only (chart pat414") and "no second try" not in rr["mvp_gate"]["probe"] and rr["mvp_gate"]["off_until_reset"] == "" and "OPTION CODE M0004 REFUSED" in out
+      and rr["quality_gate"]["refused_charts"] == [] and rr["quality_gate"]["off"] == "" and "off until William restarts it" not in mline(out) and "PROBING - AdvancedMD refused a visit that carried M0004" in mline(out), (rr["mvp_gate"], rr["quality_gate"], mline(out)))
+keep(rr, "20261116T0100Z"); out, rr2 = live([mvisit(16, "20261117", NP_NPI), mvisit(17, "20261117")])
+check("M0004 refused (8.4): ... the next run, no switch: M0004 probes - ONE M0004 line in all, on the first visit that carries the 1123F line and whose clinician still needs M0004 (here the nurse practitioner's), none on the second (the physician's); the 1123F line as usual",
+      [r.get("mvp_prof") for r in rr2["created"]] == ["prof15", None] and all(r.get("quality_codes") == ["1123F"] for r in rr2["created"]) and rr2["mvp_gate"]["probe"] != "" and rr2["mvp_gate"]["off_until_reset"] == ""
+      and "probing: one M0004 line a run until one is seen billed" in mline(out), (rr2["mvp_gate"], mline(out)))
+keep(rr2, "20261117T0100Z"); out, rr3 = live([mvisit(17, "20261118", NP_NPI), mvisit(18, "20261118")], menv="reset")
+check("M0004 (8.7): MVP_CODE=reset has nothing left to restart (M0004 never switches itself off): ignored, loudly - and while the probe's one line is not decided, no M0004 line is added for anybody",
+      [r.get("mvp_prof") for r in rr3["created"]] == [None, None] and rr3["mvp_gate"]["reset"] is False and "NOTHING TO RESTART - MVP_CODE=reset was ignored" in out and rr3["mvp_gate"]["off_until_reset"] == "", (rr3["mvp_gate"], mline(out)))
+_mp = [num(r["mvp_charge"]) for r in rr2["created"] if r.get("mvp_codes")]; keep(rr3, "20261118T0100Z"); BILLS[_mp[0]] = ["11/19/2026"]; out, rr4 = live([mvisit(10, "20261119"), mvisit(19, "20261119", NP_NPI)])
+check("M0004 probe: ... the probe line is billed - the probe is over: each clinician who has none gets one again (the physician now; the nurse practitioner is done for the year)",
+      [r.get("mvp_prof") for r in rr4["created"]] == ["prof13", None] and rr4["mvp_gate"]["probe"] == "" and rr4["mvp_gate"]["clinicians"]["prof15"]["state"] == "billed", (rr4["mvp_gate"], mline(out)))
+BILLS.clear()
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, rb = live([mvisit(14, "20261116")], refuse_quality=True); _rb = rb["created"]
-check("M0004 refused with the 1123F line only too (8.4): the visit goes in without either line, the refusal counts against 1123F (the patient is marked refused); M0004 is NOT switched off",
-      len(_rb) == 1 and bool(_rb[0].get("quality_refused")) and _rb[0].get("mvp_form_refused") is True and _rb[0]["mvp_tried"] == "0.00" and len(_rb[0]["charges"]) == 1 and rb["mvp_gate"]["off_until_reset"] == ""
+check("M0004 refused with the 1123F line only too (8.4): the visit goes in without either line, the refusal counts against 1123F (the patient is marked refused); M0004 is NOT blamed - it neither probes nor pauses",
+      len(_rb) == 1 and bool(_rb[0].get("quality_refused")) and _rb[0].get("mvp_form_refused") is True and _rb[0]["mvp_tried"] == "0.00" and len(_rb[0]["charges"]) == 1 and rb["mvp_gate"]["off_until_reset"] == "" and rb["mvp_gate"]["probe"] == ""
       and rb["quality_gate"]["refused_charts"] == [["pat414", "2026"]] and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 3, (_rb, rb["mvp_gate"]))
 keep(rb, "20261116T0100Z"); ci.PARSED[:] = [mvisit(15, "20261117")]; out, dry = run_dry()
 check("M0004 refused with the 1123F line only too: the next run - one refusal after proof changes nothing for 1123F, and the clinician's M0004 line can still ride", ci.QUALITY["fee"] == "0.00" and ci.QUALITY["confirmed"] is True and ci.MVP["off_until_reset"] == "" and dry.get("pat415", [{}])[0].get("mvp_codes") == ["M0004"], (ci.QUALITY["fee"], dry))
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, rpart = live([mvisit(14, "20261116")], refuse_mvp=True, partial=("414", "99309", "11/16/2026"))
-check("M0004 refused and the chart then shows part of the visit (8.4): nothing is tried with the 1123F line only - the visit is left for William as before, and M0004 is OFF until restarted",
-      len(rpart["failed"]) == 1 and rpart["failed"][0]["stored"] == [["99309", "11/16/2026"]] and rpart["created"] == [] and rpart["mvp_gate"]["off_until_reset"].startswith("AdvancedMD refused a visit that carried M0004 and the chart did not show it free of that visit")
-      and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 1, (rpart["failed"], rpart["mvp_gate"]))
+check("M0004 refused and the chart then shows part of the visit (8.4): nothing is tried with the 1123F line only - the visit is left for William as before, and M0004 probes from the next run",
+      len(rpart["failed"]) == 1 and rpart["failed"][0]["stored"] == [["99309", "11/16/2026"]] and rpart["created"] == [] and rpart["mvp_gate"]["probe"].startswith("AdvancedMD refused a visit that carried M0004 and the chart did not show it free of that visit")
+      and rpart["mvp_gate"]["off_until_reset"] == "" and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 1, (rpart["failed"], rpart["mvp_gate"]))
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, rpm = live([mvisit(14, "20261116")], refuse_mvp=True, partial=("414", "M0004", "11/16/2026"))
-check("M0004 refused and the chart then shows only an M0004 line of that date: the visit is NOT sent again in any form (it would carry a stray M0004 line) - left for William, M0004 OFF",
-      len(rpm["failed"]) == 1 and rpm["failed"][0]["stored"] == [["M0004", "11/16/2026"]] and rpm["created"] == [] and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 1 and rpm["mvp_gate"]["off_until_reset"] != "", (rpm["failed"], rpm["mvp_gate"]))
+check("M0004 refused and the chart then shows only an M0004 line of that date: the visit is NOT sent again in any form (it would carry a stray M0004 line) - left for William; M0004 probes from the next run",
+      len(rpm["failed"]) == 1 and rpm["failed"][0]["stored"] == [["M0004", "11/16/2026"]] and rpm["created"] == [] and sum(1 for b_ in POSTS if "updvisitwithnewcharges" in b_) == 1 and rpm["mvp_gate"]["probe"] != "" and rpm["mvp_gate"]["off_until_reset"] == "", (rpm["failed"], rpm["mvp_gate"]))
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, rt = live([mvisit(14, "20261116")], refuse_mvp=True, plain_raises=True)
-check("M0004 refused, and the visit sent with the 1123F line only ends in an error (8.4): nothing is sent again - a failed row that says nobody knows what AdvancedMD kept; the 1123F code and M0004 are both OFF until William has looked",
+check("M0004 refused, and the visit sent with the 1123F line only ends in an error (8.4): nothing is sent again - a failed row that says nobody knows what AdvancedMD kept; that visit is for a person, and both the 1123F code and M0004 probe from the next run (the 1123F proof in place is set aside)",
       len(rt["failed"]) == 1 and rt["failed"][0].get("quality_unknown") == "0.00" and rt["failed"][0]["info"]["mvp_tried"] == "0.00" and rt["created"] == []
-      and "nobody knows whether AdvancedMD kept that visit" in rt["quality_gate"]["off_until_reset"] and rt["mvp_gate"]["off_until_reset"].startswith("AdvancedMD refused a visit that carried M0004, and the same visit sent with the 1123F line only ended in an error"), (rt["failed"], rt["mvp_gate"]))
+      and "nobody knows whether AdvancedMD kept that visit" in rt["quality_gate"]["probe"] and rt["quality_gate"]["off_until_reset"] == "" and rt["quality_gate"]["confirmed"] is False and rt["quality_gate"]["proof_aside"] is not None
+      and rt["mvp_gate"]["probe"].startswith("AdvancedMD refused a visit that carried M0004, and the same visit sent with the 1123F line only ended in an error") and rt["mvp_gate"]["off_until_reset"] == "", (rt["failed"], rt["mvp_gate"], rt["quality_gate"]))
+check("... (K11; K17, fix round 2) and THIS run's own gate lists that visit under 'stuck' at once (fault true, what the import knows), so this run's inspector step already looks at it",
+      [(x_.get("fault"), x_.get("chart"), x_.get("fee")) for x_ in rt["quality_gate"].get("stuck") or []] == [(True, "pat414", "0.00")] and rt["quality_gate"]["stuck"][0]["what"].startswith("the call that carried the line ended in an error"), rt["quality_gate"].get("stuck"))
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, ru = live([mvisit(14, "20261116")], line_raises=True)
-check("M0004: the call that carries both lines ends in an error - nothing is sent again; the failed row remembers both lines were tried; the 1123F code and M0004 are OFF until William has looked",
+check("M0004: the call that carries both lines ends in an error - nothing is sent again; the failed row remembers both lines were tried; that visit is for a person, and the 1123F code and M0004 probe from the next run",
       len(ru["failed"]) == 1 and ru["failed"][0].get("quality_unknown") == "0.00" and ru["failed"][0]["info"]["mvp_tried"] == "0.00" and ru["failed"][0]["info"]["mvp_codes"] == []
-      and ru["mvp_gate"]["off_until_reset"].startswith("a call that carried M0004 ended in an error"), (ru["failed"], ru["mvp_gate"]))
+      and ru["mvp_gate"]["probe"].startswith("a call that carried M0004 ended in an error") and ru["mvp_gate"]["off_until_reset"] == "" and "nobody knows whether AdvancedMD kept that visit" in ru["quality_gate"]["probe"], (ru["failed"], ru["mvp_gate"]))
 keep({k_: v_ for k_, v_ in ru.items() if k_ != "mvp_gate"}, "20261116T0100Z"); ci.PARSED[:] = [mvisit(15, "20261117")]; out, dry = run_dry()
-check("M0004: ... also from the failed row alone (that run cut off before it wrote its gates)", ci.MVP["off_until_reset"].startswith("AdvancedMD answered a visit that carried M0004 with a fault or an error and nobody knows what it kept of it") and not any(v[0].get("mvp_codes") for v in dry.values()), ci.MVP["off_until_reset"])
+check("M0004: ... also from the failed row alone (that run cut off before it wrote its gates)", ci.MVP["probe"].startswith("AdvancedMD answered a visit that carried M0004 with a fault or an error and nobody knows what it kept of it") and ci.MVP["off_until_reset"] == ""
+      and not any(v[0].get("mvp_codes") for v in dry.values()), ci.MVP)
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 out, rd = live([mvisit(14, "20261116"), mvisit(15, "20261116", NP_NPI)], drop_mvp=True, proccode=True)
-check("M0004: AdvancedMD stores the visit and its 1123F line but not the M0004 line - said at once, M0004 OFF until William restarts it (no further M0004 line in that run); the 1123F line counts as stored",
+check("M0004: AdvancedMD stores the visit and its 1123F line but not the M0004 line - said at once, no further M0004 line in that run, and M0004 probes from the next run; the 1123F line counts as stored",
       rd["created"][0].get("mvp_not_stored") == "0.00" and rd["created"][0]["mvp_codes"] == [] and bool(rd["created"][0]["quality_charge"]) and rd["created"][1].get("mvp_codes") is None
-      and rd["mvp_gate"]["off_until_reset"].startswith("AdvancedMD stored a visit without its M0004 line") and rd["quality_gate"]["off"] == "", (rd["created"], rd["mvp_gate"]))
+      and rd["mvp_gate"]["probe"].startswith("AdvancedMD stored a visit without its M0004 line") and rd["mvp_gate"]["off_until_reset"] == "" and rd["quality_gate"]["off"] == "", (rd["created"], rd["mvp_gate"]))
 clear_regs(); keep(PRV, "20261111T0100Z"); mreset(); charts1()
 for _val, _expect in (("off", "switched off (MVP_CODE=off)"), ("OFF ", "switched off (MVP_CODE=off)"), ("stop", "MVP_CODE='stop' is not a value the import knows"), ("0", "MVP_CODE='0' is not a value the import knows")):
     out, rs_ = live([mvisit(14, "20261116")], menv=_val)
@@ -1867,9 +2051,10 @@ for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspe
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
 check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
-check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either; mirror.py's marker for the inspector is a sentence only the current version has - since 11.6 the version that takes BOTH no-charge lines off (11/10/2026)",
-      'not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):' in insp and "is never moved to HCA REHAB either" in insp and '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' in mir and "the step takes BOTH no-charge lines off" in insp
-      and "THIS STEP TAKES THE LINE OFF BY ITSELF" in insp)
+check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either; mirror.py's marker for the inspector is a sentence only the current version has - since 11/12/2026 the version that tries a stuck visit again in every run (before, since 11.6: the one that takes BOTH no-charge lines off), so that an older copy of the step never comes back over the retry pass",
+      'not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):' in insp and "is never moved to HCA REHAB either" in insp
+      and '"claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line"' in mir and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp
+      and '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' not in mir and "the step takes BOTH no-charge lines off" in insp and "THIS STEP TAKES THE LINE OFF BY ITSELF" in insp)
 step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
 ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
 ingest = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
@@ -1978,29 +2163,40 @@ r, ql = qdigest([qrow, rows[4]], G0)
 check("digest: the quality code has its own line with the visits under it, says it is a pilot and what proves a line", r.returncode == 0 and "Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on 1 visit(s) in this batch, line amount $0.00; PILOT - at most 3 visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD." in ql
       and "carried by: pat9 vst1 charge77" in ql and "remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site" in r.stdout
       and "counted" not in r.stdout and "2 visits / 2 charge lines created" in r.stdout, (ql, r.stdout[:400], r.stderr[-300:]))
-r, ql = qdigest([rows[4]], dict(G0, wait=True, pending=["vst5", "vst6"], pending_since="feed_import_20261110T0100Z.json"))
-check("digest (W-1): a waiting pilot says so - the outcome of its first lines is not decided yet (never 'not billed yet': the visits may be billed, their lines not yet) - names the visits it waits for, and is not yet at the top of the report",
-      "PILOT, waiting - no line was added in this run: the outcome of the first line(s) is not decided yet (vst5, vst6) - the lines below say why" in ql and "not billed yet" not in ql and "TOP OF THE REPORT" not in ql, ql)
+# 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the state of the code is ONE top line in every batch whose register carries a gate -
+# "TOP OF THE REPORT - QUALITY CODE: stopped on William's word / paused this run / probing (one line a run) / going". _TOPQ = those lines, _TOPX = every other top line
+_TOP = lambda out_: [l_ for l_ in out_.splitlines() if "TOP OF THE REPORT" in l_]
+_TOPQ = lambda out_: [l_ for l_ in _TOP(out_) if "TOP OF THE REPORT - QUALITY CODE:" in l_]
+_TOPX = lambda out_: [l_ for l_ in _TOP(out_) if "TOP OF THE REPORT - QUALITY CODE:" not in l_]
+r, ql = qdigest([rows[4]], dict(G0, wait=True, pending=["vst5", "vst6"], pending_since="feed_import_20261110T0100Z.json", round={"n": 1, "fee": "0.00", "since": "feed_import_20261110T0100Z.json", "lines": 2, "void": 0, "open": 2}))
+check("digest (W-1): a waiting pilot says so - the outcome of its first lines is not decided yet (never 'not billed yet': the visits may be billed, their lines not yet) - names the visits it waits for; its only top line is the state line of every batch: going, first round",
+      "PILOT, waiting - no line was added in this run: the outcome of the first line(s) is not decided yet (vst5, vst6) - the lines below say why" in ql and "not billed yet" not in ql
+      and _TOP(ql) == ["  - TOP OF THE REPORT - QUALITY CODE: going - first round at $0.00: 2 line(s) entered, none billed yet (at most 3 until one is seen billed), Medicare's answer: not yet."], ql)
 r, ql = qdigest([rows[4]], dict(G0, wait=True, pending=["vst5"], pending_since="feed_import_2026-11-07T0100Z.json"))
-check("digest (W-1): after three days of waiting the pilot goes to the top of the report - saying the outcome is still not decided, and what that can be", "TOP OF THE REPORT - the quality-code pilot has waited 4 days: the outcome of its first line(s) is still not decided (vst5)" in ql
-      and "a line not billed yet although its visit was" in ql and "still not billed" not in ql, ql)
+check("digest (W-1): after three days of waiting the pilot goes to the top of the report - saying the outcome is still not decided, and what that can be; nobody takes a line off by hand (the patient of such a line gets none again this year)",
+      "TOP OF THE REPORT - the quality-code pilot has waited 4 days: the outcome of its first line(s) is still not decided (vst5)" in ql and "a line not billed yet although its visit was" in ql and "still not billed" not in ql
+      and "nobody takes a line off by hand (the patient of a line taken off by a person gets no line again this year)" in ql and "switches the code off" not in ql, ql)
 r, ql = qdigest([qrow], dict(G0, fee="0.01", confirmed=True, proof={"visit": "vst5", "billed": "11/11/2026"}, pilot_cap=None, zero_not_billed=True, dead_zero_lines=[["pat1", "vst2", "charge3"], ["pat4", "vst5", "charge6"]],
                              notes=["visit vst4 was billed 11/10/2026 without its $0.00 quality line - new lines carry $0.01"]))
 check("digest: says when every visit carries it, why the amount changed (at the top, in the run it changed), and lists the lines read as left off - for William, no routine voids them (M9)", "line amount $0.01; every eligible visit carries it - a quality line was seen billed to insurance (visit vst5, 11/11/2026)" in ql
       and "without its $0.00 quality line" in r.stdout and "2 quality line(s) were read as left off their claims" in ql and "pat1 vst2 charge3; pat4 vst5 charge6 - listed for William; no routine voids them" in ql
       and "TOP OF THE REPORT - new quality lines now carry ONE CENT" in ql and "voided in AdvancedMD" not in r.stdout and "remark N620" not in r.stdout, ql)
 r, ql = qdigest([dict(qrow, quality_codes=[], quality_refused="Fault: no", quality_refused_fee="0.00")], dict(G0, off="this run: AdvancedMD refused a visit that carried the code"))
-check("digest: a refusal and the switch-off go to the top of the report", "TOP OF THE REPORT - QUALITY CODE NOT ACCEPTED by AdvancedMD on 1 visit(s); each visit was entered without it: pat9 vst1 (Fault: no)" in r.stdout and "TOP OF THE REPORT - the quality code is OFF: this run" in r.stdout, r.stdout[-700:])
+check("digest: a refusal goes to the top of the report, and the state line says this run was paused by it (no further line in that run) - nothing says OFF", "TOP OF THE REPORT - QUALITY CODE NOT ACCEPTED by AdvancedMD on 1 visit(s); each visit was entered without it: pat9 vst1 (Fault: no)" in r.stdout
+      and "  - TOP OF THE REPORT - QUALITY CODE: paused this run - AdvancedMD refused a visit that carried the code." in r.stdout and "the quality code is OFF" not in r.stdout, r.stdout[-700:])
 r, ql = qdigest([dict(qrow, quality_codes=[], quality_charge="", quality_not_stored="0.00")], dict(G0, off="this run: AdvancedMD stored a visit without its quality line"))
 check("digest: a visit stored without its line goes to the top of the report", "TOP OF THE REPORT - AdvancedMD stored 1 visit(s) WITHOUT the quality line that was sent with it (the visit itself is entered): pat9 vst1" in r.stdout, r.stdout[-500:])
 r, ql = qdigest([rows[4]], dict(G0, off="this run: a visit with the code was refused and the chart could not be shown free of it"), failed=[{"feed_id": "n2", "pid": "pat7", "empty_visit": "vst70", "stored": [["99309", "11/02/2026"]], "err": "x", "info": {"quality_tried": "0.00", "cpts": ["99309"]}}])
 check("digest: a refused visit that was NOT sent again is named at the top with its codes - check that visit, no routine sends it again (S10, M9)", "TOP OF THE REPORT - 1 visit(s) were refused with the quality line and NOT sent again" in r.stdout
-      and "check that visit (for William; no routine sends it again): pat7 ? 99309 (visit vst70; the chart shows [['99309', '11/02/2026']]) - the insurance check and the Claim Inspector step did not look at these visits." in r.stdout
+      and "check that visit (for William; no routine sends it again): pat7 ? 99309 (visit vst70; the chart shows [['99309', '11/02/2026']]) - the insurance check did not look at these visits; the Claim Inspector step looks at each of them in every run until it is free (no new line while one is held - November 12, 2026)." in r.stdout
       and "empty visit" not in r.stdout and "by hand" not in r.stdout, r.stdout[-600:])
 r, ql = qdigest([rows[4]], dict(G0, reset=True, notes=["the pilot was started again in this run (QUALITY_CODE=reset)"]))
 check("digest: a restart of the pilot is said - once (S10: it used to be said twice)", r.stdout.count("the pilot was started again in this run (QUALITY_CODE=reset)") == 1, r.stdout[-400:])
 r, ql = qdigest([rows[4], rows[5]], G0)
-check("digest: no quality line when no visit carried the code and nothing happened", r.returncode == 0 and ql == "", ql)
+check("digest (11/12/2026): the state of the code is ONE top line in EVERY batch whose register carries a gate - also when no visit carried the code and nothing happened", r.returncode == 0 and len(_TOP(ql)) == 1 and "QUALITY CODE: going - first round at $0.00" in ql
+      and "on 0 visit(s) in this batch" in ql, ql)
+r, ql = qdigest([rows[4], rows[5]], None)
+check("digest: ... and no quality line at all for a register that carries no gate", r.returncode == 0 and ql == "", ql)
 for oddg in ("odd", {"pending": 5, "dead_zero_lines": "x", "notes": 3, "proof": "p", "wait": True, "pending_since": 9}, None):
     r, ql = qdigest([dict(qrow, quality_codes="x", quality_charge=None), dict(qrow, quality_codes=None, quality_refused=1, quality_not_stored=2, visit=None)], oddg, failed=[{"stored": 1, "info": {"quality_tried": 0}}, {"stored": [1], "info": "x"}])
     check("digest: odd quality values (%s) never stop the report" % type(oddg).__name__, r.returncode == 0 and "could not be built" not in ql, (ql, r.stderr[-300:]))
@@ -2016,33 +2212,39 @@ def qdig2(rows, gate, prev=None, insp_=None, ver_=None, failed=()):
     finally:
         for f_ in (pf, inf, vf):
             if os.path.exists(f_): os.remove(f_)
-_TOP = lambda out_: [l_ for l_ in out_.splitlines() if "TOP OF THE REPORT" in l_]
-OFFS = "AdvancedMD billed visit vst9 (11/12/2026) without its one-cent quality line too - William looks"
-r, o = qdig2([rows[4]], dict(G0, off=OFFS, off_until_reset=OFFS), prev=dict(G0))
-check("digest (S10): a lasting OFF that began in this run is at the top, with its sentence and how to start again; the headline says OFF", "TOP OF THE REPORT - the quality code is OFF until William restarts it: " + OFFS in o
-      and "one run with QUALITY_CODE=reset" in o and "line amount $0.00; OFF until William restarts it" in o and "PILOT" not in o, o[-900:])
-r, o = qdig2([rows[4]], dict(G0, off=OFFS, off_until_reset=OFFS), prev=dict(G0, off=OFFS, off_until_reset=OFFS))
-check("digest (S10): ... the same OFF in the next batch is ONE plain line (not the top), still saying how to start again", _TOP(o) == [] and "the quality code is still OFF (since an earlier run): " + OFFS in o and "QUALITY_CODE=reset" in o, o[-700:])
+STOPS = "stopped on William's word (QUALITY_CODE=stop) - off until he says to start again"; _STOPL = "  - TOP OF THE REPORT - QUALITY CODE: stopped on William's word (QUALITY_CODE=stop) - no line is added until one run with QUALITY_CODE=reset in front of the import's command."
+r, o = qdig2([rows[4]], dict(G0, off=STOPS, off_until_reset=STOPS), prev=dict(G0))
+check("digest (S10; 11/12/2026): William's own stop is the ONLY lasting off - the state line says it at the top with how to start again; the headline says stopped", _TOP(o) == [_STOPL]
+      and "line amount $0.00; stopped on William's word - no line is added until one run with QUALITY_CODE=reset." in o and "PILOT" not in o and "is OFF" not in o, o[-900:])
+r, o = qdig2([rows[4]], dict(G0, off=STOPS, off_until_reset=STOPS), prev=dict(G0, off=STOPS, off_until_reset=STOPS))
+check("digest (S10): ... the same stop in the next batch: the same ONE line again - every batch says where the code stands", _TOP(o) == [_STOPL], o[-700:])
 r, o = qdig2([rows[4]], dict(G0, off="this run: switched off (QUALITY_CODE=off)"), prev=dict(G0))
-check("digest (S10): William's own QUALITY_CODE=off is a plain line, not the top", _TOP(o) == [] and "switched off for this run by William's QUALITY_CODE=off - no line was added." in o, o[-600:])
+check("digest (S10): William's own QUALITY_CODE=off - the state line says the run was paused by the switch; nothing else at the top", _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: paused this run - switched off (QUALITY_CODE=off)."], o[-600:])
 r, o = qdig2([rows[4]], dict(G0, off="this run: QUALITY_CODE='0ff' is not a value the import knows (off, stop, reset) - no line added"), prev=dict(G0))
-check("digest (SM-8, M8): a switch value the import does not know is at the top, named", any("TOP OF THE REPORT - the quality code is OFF: this run: QUALITY_CODE='0ff' is not a value the import knows" in l_ for l_ in _TOP(o)), o[-600:])
+check("digest (SM-8, M8): a switch value the import does not know is at the top, named - in the state line", _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: paused this run - QUALITY_CODE='0ff' is not a value the import knows (off, stop, reset) - no line added."], o[-600:])
 _UOFF = "this run: the import register feed_import_20261110T0000Z.json cannot be read - the state of the quality code is not known; no line until it is restored from the repository"
 r, o = qdig2([rows[4]], dict(G0, off=_UOFF, unread=["feed_import_20261110T0000Z.json"], unread_prev=[]), prev=dict(G0))
-check("digest (13.5): the first run that cannot read an import register says so in a plain line", _TOP(o) == [] and "no line in this run: the import register feed_import_20261110T0000Z.json cannot be read (the visits went in as always)" in o, o[-600:])
+check("digest (13.5): the first run that cannot read an import register says so in the state line - paused this run, nothing more at the top",
+      _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: paused this run - the import register feed_import_20261110T0000Z.json cannot be read - the state of the quality code is not known; no line until it is restored from the repository."], o[-600:])
 r, o = qdig2([rows[4]], dict(G0, off=_UOFF, unread=["feed_import_20261110T0000Z.json"], unread_prev=["feed_import_20261110T0000Z.json"]), prev=dict(G0))
-check("digest (13.5): ... from the second run in a row it is at the top - the quality code waits until the register is restored from the repository",
-      any(l_.startswith("  - TOP OF THE REPORT - the import register feed_import_20261110T0000Z.json cannot be read - the quality code waits until it is restored from the repository") for l_ in _TOP(o)) and len(_TOP(o)) == 1, _TOP(o))
+check("digest (13.5): ... from the second run in a row a second top line says what to do - the quality code waits until the register is restored from the repository",
+      [l_ for l_ in _TOPX(o) if l_.startswith("  - TOP OF THE REPORT - the import register feed_import_20261110T0000Z.json cannot be read - the quality code waits until it is restored from the repository")] == _TOPX(o) and len(_TOPX(o)) == 1 and len(_TOPQ(o)) == 1, _TOP(o))
 r, o = qdig2([rows[4]], dict(G0, notes=["NOTHING TO RESTART - QUALITY_CODE=reset was ignored (the code is not switched off; take the switch out of the routine)"]), prev=dict(G0))
 check("digest (SM-8): a reset that had nothing to restart is at the top (a switch left in a routine)", any("NOTHING TO RESTART - QUALITY_CODE=reset was ignored" in l_ for l_ in _TOP(o)), o[-500:])
-_CENT = dict(G0, fee="0.01", zero_not_billed=True, notes=["new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst4 off its claim and no $0.00 line of the round is billed"])
+_CENT = dict(G0, fee="0.01", zero_not_billed=True, notes=["new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst4 off its claim and no $0.00 line of the round is billed"], dead_zero_lines=[["pat4", "vst4", "charge44"]],
+             probe="new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst4 off its claim and no $0.00 line of the round is billed - one line a run until one is billed", probe_kind="left_off", probe_since="feed_import_20261111T0000Z.json", probe_tries=1)
 r, o = qdig2([rows[4]], _CENT, prev=dict(G0)); r2_, o2 = qdig2([rows[4]], _CENT, prev=dict(G0, fee="0.01"))
-check("digest (S10): the switch to one cent is at the top in the run it happened, and says the patients are due again once the one-cent round has room; the next batch does not repeat it at the top",
-      any("TOP OF THE REPORT - new quality lines now carry ONE CENT" in l_ and "AdvancedMD left the $0.00 line of visit vst4 off its claim" in l_ and "once the one-cent round has room" in l_ for l_ in _TOP(o)) and not any("ONE CENT" in l_ for l_ in _TOP(o2)), (_TOP(o), _TOP(o2)))
+check("digest (S10): the switch to one cent is at the top in the run it happened, and says the patients are due again - one line a run until a one-cent line is seen billed (at one cent the code probes); the next batch does not repeat it at the top, and both say probing in the state line",
+      any("TOP OF THE REPORT - new quality lines now carry ONE CENT" in l_ and "AdvancedMD left the $0.00 line of visit vst4 off its claim" in l_ and "one line a run until a one-cent line is seen billed (at one cent the code probes)" in l_ for l_ in _TOPX(o)) and _TOPX(o2) == []
+      and all(len(_TOPQ(x_)) == 1 and "QUALITY CODE: probing (one line a run) - new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst4 off its claim" in _TOPQ(x_)[0]
+              and "AdvancedMD left the $0.00 reporting line off the claim (1 line(s) sit unbilled); new lines carry one cent, which CMS allows." in _TOPQ(x_)[0] for x_ in (o, o2)), (_TOP(o), _TOP(o2)))
 r, o = qdig2([rows[4]], dict(G0, wait=True, pending=["vst2"], proof_wait={"since": "11/08/2026", "visit": "vst2", "charge": "charge22", "days": 3}), prev=dict(G0))
 check("digest (13.4b): a billed line whose code text nothing shows for three days is at the top", any("the quality line of visit vst2 is billed, but for 3 days neither its charge detail nor the chart's history shows the code text 1123F" in l_ for l_ in _TOP(o)), o[-600:])
-r, o = qdig2([rows[4]], dict(G0, off="AdvancedMD stores procedure id pcode65441 as 99497, not 1123F - William looks", off_until_reset="AdvancedMD stores procedure id pcode65441 as 99497, not 1123F - William looks", wrong_code_text="99497"), prev=dict(G0))
-check("digest (13.4a): AdvancedMD's id read with another code text is at the top", any("AdvancedMD stores procedure id pcode65441 as 99497, not 1123F - William looks" in l_ for l_ in _TOP(o)), o[-500:])
+_WT = "paused this run: AdvancedMD shows procedure id pcode65441 as 99497, not 1123F - no line while that is so; every run reads it again"
+r, o = qdig2([rows[4]], dict(G0, off=_WT, paused=_WT, wrong_code_text="99497", wrong_code_charge="charge12"), prev=dict(G0))
+check("digest (13.4a; K2d): AdvancedMD's id read with another code text - the state line says paused this run, that every run reads it again and goes on by itself, and what ends it (the code text in AdvancedMD's procedure list)",
+      _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: paused this run - AdvancedMD shows procedure id pcode65441 as 99497, not 1123F. No line is added while that is so; every run reads it again and goes on by itself when it reads 1123F. "
+                  "To end it: the code text of that procedure in AdvancedMD's procedure list must be 1123F (a person, or AdvancedMD's support)."] and "paused this run - no line was added (the top line says why)" in o, o[-500:])
 _INS = lambda held_, rem_: {"fixed": [], "bypassed": [], "laterality": [], "held": held_, "quality_removed": rem_}
 r, o = qdig2([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0, prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review", "quality": True}, {"visit": "7", "pid": "pat7", "why": "Pattern 24078: else"}], []))
 check("digest (section 7): a held visit that still carries the line (the inspector marks it 'quality') is at the top; a held visit without it is not named there",
@@ -2050,55 +2252,207 @@ check("digest (section 7): a held visit that still carries the line (the inspect
 r, o = qdig2([dict(qrow)], G0, prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review"}], [{"visit": "1", "pid": "pat9", "charge": "charge77", "fee": "0.00", "why": "Pattern 77002: review", "void_ok": True, "released": False, "at": "x"}]))
 check("digest (11.5): the line taken off a visit that stays held - at the top: the visit is still held for its own reason, its place in the round is free, the patient is due again; not also named as 'held with the line'",
       any("the routine took the quality line charge77 off held visit vst1 (pat9), but the visit is still held for its own reason" in l_ and "its place in the round is free and the patient is due again" in l_ for l_ in _TOP(o)) and not any("carry the quality line are HELD" in l_ for l_ in _TOP(o)), _TOP(o))
-for _fee_, _conf_, _next_ in (("0.00", False, "the next run moves new lines to one cent and starts a new round"), ("0.01", False, "the next run switches the code off until William restarts it"), ("0.00", True, "after proof one changes nothing; a second in a row moves new lines to one cent")):
+for _fee_, _conf_, _next_ in (("0.00", False, "the next run moves new lines to one cent: one line a run until one is billed"), ("0.01", False, "the code goes on probing: one line a run until one is billed"),
+                              ("0.00", True, "after proof one changes nothing; a second in a row moves new lines to one cent"), ("0.01", True, "after proof one changes nothing; a second in a row sets the proof aside and the code probes: one line a run")):
     r, o = qdig2([dict(qrow)], dict(G0, fee=_fee_, confirmed=_conf_), prev=dict(G0), insp_=_INS([], [{"visit": "1", "pid": "pat9", "charge": "charge77", "fee": _fee_, "why": "Pattern 77002: review", "void_ok": True, "released": True}]))
     check("digest (11.5): the line taken off a held visit that then went through (at $%s, %s) - at the top, with what happens next: %s" % (_fee_, "proven" if _conf_ else "before proof", _next_),
-          any("the routine took the quality line charge77 off held visit vst1 (pat9; the hold: Pattern 77002: review) and the visit went through without it. That is one refusal of the line: " + _next_ in l_ for l_ in _TOP(o)), _TOP(o))
+          any(l_.endswith("the routine took the quality line charge77 off held visit vst1 (pat9; the hold: Pattern 77002: review) and the visit went through without it. That is one refusal of the line: " + _next_) for l_ in _TOPX(o))
+          and "switches the code off" not in o, _TOP(o))
 r, o = qdig2([dict(qrow)], G0, prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review", "quality": True}], [{"visit": "1", "pid": "pat9", "charge": "charge77", "fee": "0.00", "why": "Pattern 77002: review", "void_ok": False, "released": False, "note": "the void failed: Fault"}]))
-check("digest (11.5): a void that failed - at the top: the visit is held WITH its line, William looks, the code switches off", any("the routine could not take the quality line off held visit vst1 (pat9: the void failed: Fault) - the visit is held WITH its line; William looks" in l_ for l_ in _TOP(o))
-      and not any("carry the quality line are HELD" in l_ for l_ in _TOP(o)), _TOP(o))
+check("digest (11.5): a void that failed - at the top: the visit is held WITH its line; no new line while that is so, every run tries the void and the re-save again, and a person can take the line off at any time (11/12/2026; before, 'the code switches off')",
+      any("the routine could not take the quality line off held visit vst1 (pat9: the void failed: Fault) - the visit is held WITH its line. No new line is added while that is so; every run tries the void and the re-save again, and a person can take the line off that visit at any time." in l_ for l_ in _TOPX(o))
+      and not any("carry the quality line are HELD" in l_ for l_ in _TOP(o)) and "switches the code off" not in o, _TOP(o))
 r, o = qdig2([dict(qrow)], G0, prev=dict(G0), ver_={"pat9": {"decision": "RELEASE", "visits": ["vst1"], "lead": {"code": "FLO02"}, "hold": [], "quality_removed": [{"visit": "vst1", "pid": "pat9", "charge": "charge77", "fee": "0.00", "why": "Fault: zero amount", "void_ok": True, "released": True}]}})
 check("digest (11.5): a line the insurance check took off is reported the same way", any("the routine took the quality line charge77 off held visit vst1" in l_ for l_ in _TOP(o)), _TOP(o))
 r, o = qdig2([dict(qrow)], G0, prev=dict(G0), ver_={"pat9": {"decision": "RELEASE", "visits": ["vst1"], "lead": {"code": "HUM01"}, "hold": []}})
-check("digest (NH-3): a quality line whose visit the insurance check moved to another payer - one plain line: that line went to that payer, nothing to do", _TOP(o) == [] and "pat9 vst1 -> HUM01 - that line went to that payer; nothing to do" in o, o[-600:])
+check("digest (NH-3): a quality line whose visit the insurance check moved to another payer - one plain line: that line went to that payer, nothing to do", _TOPX(o) == [] and "pat9 vst1 -> HUM01 - that line went to that payer; nothing to do" in o, o[-600:])
 _PRV = dict(G0, confirmed=True, proof={"visit": "vst5", "billed": "11/11/2026"}, pilot_cap=None)
 r, o = qdig2([dict(qrow)], dict(_PRV, history_shows_line=False), prev=dict(G0)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, history_shows_line=False), prev=dict(_PRV, history_shows_line=False))
 check("digest (SM-7): the chart history that does not list the proven line is at the top once - in the run that found it", any("does NOT list the proven quality line" in l_ for l_ in _TOP(o)) and not any("does NOT list" in l_ for l_ in _TOP(o2)), (_TOP(o), _TOP(o2)))
 r, o = qdig2([rows[4]], dict(G0, not_renewed={"2027": 4}), prev=dict(G0))
 check("digest (M10): in January, visits of a year the rule was not renewed for - at the top", any("the quality code is not added to 2027 visits until William renews it (4 visit(s) of this batch would otherwise carry it)" in l_ for l_ in _TOP(o)), _TOP(o))
 _ANS = {"charge": "charge22", "visit": "vst2", "date": "11/25/2026", "amount": "0.00", "register": "feed_import_20261111T1240Z.json"}
-r, o = qdig2([dict(qrow)], dict(_PRV, medicare_answer=_ANS), prev=dict(_PRV)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, medicare_answer=_ANS), prev=dict(_PRV, medicare_answer=_ANS))
-check("digest (11.4): Medicare's answer when it first arrives - one plain line, not the top; the next batch does not repeat it", _TOP(o) == [] and "Medicare's remittance shows the 1123F line on visit vst2, paid $0.00 on 11/25/2026" in o and "no cap" in o
-      and "Medicare's remittance shows" not in o2 and "counted" not in o, o[-700:])
-r, o = qdig2([dict(qrow)], dict(_PRV, medicare_wait={"lines": 2, "oldest": "11/11/2026", "days": 12}), prev=dict(_PRV)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, medicare_wait={"lines": 2, "oldest": "10/01/2026", "days": 45}), prev=dict(_PRV))
-check("digest (11.4, section 7): from proof until Medicare's answer: one plain sentence (how many lines are billed, since when the oldest waits, the remittance file as the second way); after 45 days at the top",
-      _TOP(o) == [] and "2 of the pilot's quality lines are read as billed (lines added after proof are not read back); no Medicare payment line is posted on them yet (the oldest billed 11/11/2026, 12 day(s) ago)" in o and "(reason 246, remark N620)" in o and "> registers/quality_n620_seen.json" in o
+r, o = qdig2([dict(qrow)], dict(_PRV, medicare_answer=_ANS, billed_lines=["charge22"]), prev=dict(_PRV)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, medicare_answer=_ANS, billed_lines=["charge22"]), prev=dict(_PRV, medicare_answer=_ANS))
+check("digest (11.4; K5): Medicare's answer when it first arrives - ONCE at the top, before the state line: QUALITY CODE ACCEPTED BY MEDICARE, with what a posted line shows and that the measure is met only by the quality-program site's feedback; the next batch does not repeat it, and the state line carries the answer from then on",
+      len(_TOP(o)) == 2 and _TOP(o)[0].startswith("  - TOP OF THE REPORT - QUALITY CODE ACCEPTED BY MEDICARE - Medicare's remittance") and _TOP(o)[1].startswith("  - TOP OF THE REPORT - QUALITY CODE: going - 1 line(s) billed")
+      and "  - TOP OF THE REPORT - QUALITY CODE ACCEPTED BY MEDICARE - Medicare's remittance shows the 1123F line on visit vst2, a Medicare payment line of $0.00 posted 11/25/2026: the code reached Medicare on the claim and came back on its remittance; whether the measure is met shows only in the feedback on the Medicare quality-program site. The cap of ten a run is lifted." in o
+      and not any("ACCEPTED BY MEDICARE" in l_ for l_ in _TOP(o2)) and all(_TOPQ(x_)[-1] == "  - TOP OF THE REPORT - QUALITY CODE: going - 1 line(s) billed (read in AdvancedMD; lines added after the proof are not read back), Medicare's answer: Medicare's payment line posted 11/25/2026 on visit vst2." for x_ in (o, o2))
+      and "no cap" in o and "counted" not in o and "is acceptance" not in o and "Medicare accepted" not in o, (_TOP(o), _TOP(o2)))
+r, o = qdig2([dict(qrow)], dict(_PRV, n620=True, n620_seen="11/30/2026"), prev=dict(_PRV)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, n620=True, n620_seen="11/30/2026"), prev=dict(_PRV, n620=True))
+check("digest (11.4; K5): ... the same ONCE when a person wrote the remittance file: remark N620 seen, with the date the file names; the state line says 'remark N620 seen on <date>' from then on",
+      any(l_ == "  - TOP OF THE REPORT - QUALITY CODE ACCEPTED BY MEDICARE - a person saw remark N620 on a 1123F line of a Medicare remittance (registers/quality_n620_seen.json, seen 11/30/2026): remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; "
+                    "whether the measure is met shows only in the feedback on the Medicare quality-program site. The cap of ten a run is lifted." for l_ in _TOP(o))
+      and not any("ACCEPTED BY MEDICARE" in l_ for l_ in _TOP(o2)) and all(_TOPQ(x_)[-1].endswith("Medicare's answer: remark N620 seen on 11/30/2026.") for x_ in (o, o2)), (_TOP(o), _TOP(o2)))
+r, o = qdig2([dict(qrow)], dict(_PRV, medicare_wait={"lines": 2, "oldest": "11/11/2026", "days": 12}, billed_lines=["charge12", "charge22"]), prev=dict(_PRV)); r2_, o2 = qdig2([dict(qrow)], dict(_PRV, medicare_wait={"lines": 2, "oldest": "10/01/2026", "days": 45}), prev=dict(_PRV))
+check("digest (11.4, section 7): from proof until Medicare's answer: one plain sentence (how many lines are billed, since when the oldest waits, the remittance file as the second way) and the state line 'going ... Medicare's answer: not yet'; after 45 days at the top",
+      _TOPX(o) == [] and "2 of the pilot's quality lines are read as billed (lines added after proof are not read back); no Medicare payment line is posted on them yet (the oldest billed 11/11/2026, 12 day(s) ago)" in o and "(reason 246, remark N620)" in o and "> registers/quality_n620_seen.json" in o
+      and _TOPQ(o) == ["  - TOP OF THE REPORT - QUALITY CODE: going - 2 line(s) billed (read in AdvancedMD; lines added after the proof are not read back), Medicare's answer: not yet."]
       and any(l_.startswith("  - TOP OF THE REPORT - no Medicare payment line is posted on the pilot's billed 1123F lines after 45 days - William looks at one remittance.") for l_ in _TOP(o2)) and "Medicare has not yet shown" not in o + o2 and "Medicare has shown no" not in o2, (o[-500:], _TOP(o2)))
 r, o = qdig2([rows[4]], dict(_PRV, late_rows=[["pat7001", "vst1", "charge12", "11/14/2026", "", "2026"], ["pat7002", "vst2", "charge22", "11/14/2026", "vst9", "2026"]]), prev=dict(_PRV))
-check("digest (13.1b): a left-off line billed later - one plain line each; with a second line meanwhile: two billed lines for 2026, nothing to do", _TOP(o) == [] and "a quality line read as left off on 11/14/2026 was billed later: pat7001 counts as coded." in o
+check("digest (13.1b): a left-off line billed later - one plain line each; with a second line meanwhile: two billed lines for 2026, nothing to do", _TOPX(o) == [] and "a quality line read as left off on 11/14/2026 was billed later: pat7001 counts as coded." in o
       and "a quality line read as left off on 11/14/2026 was billed later: pat7002 counts as coded; pat7002 carries two billed quality lines for 2026 (the later one on vst9); nothing to do." in o, o[-700:])
 r, o = qdig2([rows[4]], dict(G0, quality_skipped_hospital=2), prev=dict(G0))
-check("digest (13.2): hospital visits left out - one plain line", _TOP(o) == [] and "2 hospital visit(s) of Medicare patients 65 and older did not get the quality line: hospital visits are not coded in this version (William decides for 2027)." in o, o[-500:])
-_DL = [["pat1", "vst2", "charge3"]]; _OFF2 = "AdvancedMD billed visit vst2 (11/11/2026) without its one-cent quality line too - William looks"
-r, o = qdig2([rows[4]], dict(G0, fee="0.01", dead_zero_lines=_DL, off=_OFF2, off_until_reset=_OFF2), prev=dict(G0, fee="0.01", off=_OFF2, off_until_reset=_OFF2)); r2_, o2 = qdig2([rows[4]], dict(_PRV, dead_zero_lines=_DL), prev=dict(_PRV))
-check("digest (F2, W-1): lines read as left off while the code is OFF - no promise of a line: no line is added before William restarts it; with the code on, the promise is for a later visit of the SAME year only",
+check("digest (13.2): hospital visits left out - one plain line", _TOPX(o) == [] and "2 hospital visit(s) of Medicare patients 65 and older did not get the quality line: hospital visits are not coded in this version (William decides for 2027)." in o, o[-500:])
+_DL = [["pat1", "vst2", "charge3"]]
+r, o = qdig2([rows[4]], dict(G0, fee="0.01", dead_zero_lines=_DL, off=STOPS, off_until_reset=STOPS), prev=dict(G0, fee="0.01", off=STOPS, off_until_reset=STOPS)); r2_, o2 = qdig2([rows[4]], dict(_PRV, dead_zero_lines=_DL), prev=dict(_PRV))
+check("digest (F2, W-1): lines read as left off while William has stopped the code - no promise of a line: no line is added before he restarts it; with the code on, the promise is for a later visit of the SAME year only",
       "Their patients are due again: the code is OFF until William restarts it - no line is added before then; after the restart a later eligible visit of the same year carries the code." in o and "a later eligible visit carries the code." not in o + o2
       and "Their patients are due again: a later eligible visit of the same year carries the code (a line of an earlier year is not replaced by a visit of the new year)." in o2, (o[-600:], o2[-600:]))
-r, o = qdig2([rows[4]], dict(_CENT, off=_OFF2, off_until_reset=_OFF2), prev=dict(G0)); r2_, o2 = qdig2([rows[4]], _CENT, prev=dict(G0))
-check("digest (F2): the switch to one cent promises the left-off patients a later visit of the same year - and, while the code is OFF, only once William restarts it",
-      any("they get the code with a later visit of the same year once William restarts the code (it is OFF), once the one-cent round has room" in l_ for l_ in _TOP(o)) and any("they get the code with a later visit of the same year, once the one-cent round has room" in l_ for l_ in _TOP(o2)), (_TOP(o), _TOP(o2)))
+r, o = qdig2([rows[4]], dict(_CENT, off=STOPS, off_until_reset=STOPS), prev=dict(G0)); r2_, o2 = qdig2([rows[4]], _CENT, prev=dict(G0))
+check("digest (F2): the switch to one cent promises the left-off patients a later visit of the same year - and, while William has stopped the code, only once he restarts it",
+      any("they get the code with a later visit of the same year once William restarts the code (it is OFF) - one line a run until a one-cent line is seen billed" in l_ for l_ in _TOPX(o))
+      and any("they get the code with a later visit of the same year - one line a run until a one-cent line is seen billed" in l_ for l_ in _TOPX(o2)), (_TOP(o), _TOP(o2)))
 r, o = qdig2([dict(qrow)], G0, prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 88001: Charge amount is zero for procedure 1123F"}], [{"visit": "1", "pid": "pat9", "charge": "charge77", "fee": "0.00", "why": "Pattern 88001: Charge amount is zero for procedure 1123F", "void_ok": True, "released": False, "resave_ok": False, "still_named": True, "at": "x"}]))
-check("digest (NH2-2): the line taken off, but the visit still listed for the edit about the line (the re-save after the void failed) - at the top it says so and that William looks, never 'held for its own reason'",
-      any("the routine took the quality line charge77 off held visit vst1 (pat9), but the visit is still listed for the edit about the line (Pattern 88001: Charge amount is zero for procedure 1123F); the re-save after the void failed - William looks: one re-save of the visit should release it. The next run switches the code off until he restarts it." in l_ for l_ in _TOP(o))
-      and not any("still held for its own reason" in l_ for l_ in _TOP(o)), _TOP(o))
+check("digest (NH2-2): the line taken off, but the visit still listed for the edit about the line (the re-save after the void failed) - at the top it says so, that no new line is added while that is so and that every run re-saves the visit again; never 'held for its own reason', never 'switches the code off'",
+      any("the routine took the quality line charge77 off held visit vst1 (pat9), but the visit is still listed for the edit about the line (Pattern 88001: Charge amount is zero for procedure 1123F); the re-save after the void failed - no new line is added while that is so; every run re-saves the visit again (one re-save should release it)." in l_ for l_ in _TOPX(o))
+      and not any("still held for its own reason" in l_ for l_ in _TOP(o)) and "switches the code off" not in o, _TOP(o))
 r, o = qdig2([rows[4]], dict(G0, off="this run: a visit refused with the code could not be sent without it either (TimeoutError)"), prev=dict(G0), failed=[{"feed_id": "fb1", "pid": "pat9301", "empty_visit": "vst700001", "quality_sent": "0.00", "err": "read timed out", "info": {"dos": "11/02/2026", "cpts": ["99309"], "quality_tried": "0.00"}}])
 check("digest (NH2-4, the confirm review's exact input): a visit refused with the line whose send WITHOUT it ended in an error is named at the top - it may not be entered, William checks it, no routine sends it again",
       any("1 visit(s) were refused with the quality line and the send without it ended in an error - such a visit may NOT be entered: William checks it (no routine sends it again): pat9301 11/02/2026 99309 (visit vst700001)" in l_ for l_ in _TOP(o)), _TOP(o))
+# 11/12/2026 - THE STATE LINE (K5), said from the gate as the import writes it: probing (with AdvancedMD's own words and what must change), paused (with what THIS run's inspector step did), the standing restart
+_PRB = dict(G0, fee="0.01", round={"n": 2, "fee": "0.01", "since": "", "lines": 0, "void": 0, "open": 0}, probe_kind="claim_check", probe_since="feed_inspector_20261111T0100Z.json", probe_words="[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT", probe_tries=1,
+            probe="AdvancedMD held visit vst4 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T0100Z.json) - new lines carry $0.01, one line a run until one is billed")
+r, o = qdig2([dict(qrow, quality_fee="0.01")], _PRB, prev=dict(G0, fee="0.01"))
+# November 12, 2026 - fix round 1 (K8): THE FIRST ONE-CENT RUN TELLS THE TRUTH - while the newest cause is the move from $0.00 to one cent (or the one-cent fallback), no one-cent line has been stopped: the $0.00 stop is quoted, ONE one-cent line is tried, and nothing needs changing in AdvancedMD yet
+_K8END = ": ONE line of one cent a run is tried until one is billed, and nothing needs changing in AdvancedMD yet - if a one-cent line is stopped or refused too, this line will quote AdvancedMD's words and say what must change."
+check("digest (K8, fix round 1): the first one-cent run after the CLAIM CHECK stopped the $0.00 line - ONE top line: AdvancedMD's own words of the $0.00 stop, the move to one cent, that this stop was of the $0.00 line, ONE one-cent line a run, nothing needs changing in AdvancedMD yet "
+      "(no 'one of two things must change', no bypass to approve, no count of stops), and this run's probe line; the headline says PROBING",
+      _TOP(o) == ['  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - AdvancedMD\'s own words: "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT" - ' + _PRB["probe"] + ". That stop was of the $0.00 line, not of a one-cent line" + _K8END
+                  + " This run's probe line: visit vst1 (chart pat9)."]
+      and "one of two things must change" not in o and "bypass" not in _TOP(o)[0] and "line amount $0.01; PROBING - one line a run until one such line is seen billed to insurance in AdvancedMD." in o and "PILOT" not in o, _TOP(o))
+_PRR = dict(_PRB, probe_kind="refused", probe_since="feed_import_20261111T0100Z.json", probe_words="<Fault>the charge amount is not accepted</Fault>", probe="AdvancedMD refused a visit that carried the code at $0.00 (feed_import_20261111T0100Z.json) - new lines carry $0.01, one line a run until one is billed")
+r, o = qdig2([dict(qrow, quality_fee="0.01")], _PRR, prev=dict(G0, fee="0.01"))
+check("digest (K8): ... the first one-cent run after AdvancedMD's charge entry REFUSED the $0.00 line - the same: the refusal's words, that it was the $0.00 line, nothing needs changing yet (no 'AdvancedMD's charge entry must take procedure 1123F at $0.01')",
+      _TOPQ(o) == ['  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - AdvancedMD\'s own words: "<Fault>the charge amount is not accepted</Fault>" - ' + _PRR["probe"] + ". That stop was of the $0.00 line, not of a one-cent line" + _K8END
+                   + " This run's probe line: visit vst1 (chart pat9)."] and "must take procedure 1123F" not in o, _TOPQ(o))
+_PRF = dict(G0, fee="0.01", probe="new lines carry $0.01 and no one-cent line is seen billed yet - one line a run until one is billed", probe_kind="refused", probe_since="feed_import_20261112T0100Z.json", probe_tries=1)
+r, o = qdig2([dict(qrow, quality_fee="0.01")], _PRF, prev=dict(G0, fee="0.01"))
+check("digest (K8): ... the one-cent FALLBACK (an older gate at one cent, no register shows what moved it) - no one-cent line has been stopped or refused, nothing needs changing yet; no count of stops (none was seen)",
+      _TOPQ(o) == ["  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - " + _PRF["probe"] + ". No one-cent line has been stopped or refused" + _K8END + " This run's probe line: visit vst1 (chart pat9)."] and "stopped 1 time" not in o, _TOPQ(o))
+# November 12, 2026 - fix round 2 (K14, review G1): K8's flag no longer overwrites the list of lines that rode on visits the insurance check moved to another payer -
+# the K8 digests build their whole quality block, and the "moved to another payer" line still prints while the code probes
+_MVV = {"pat9": {"decision": "RELEASE", "visits": ["vst1"], "lead": {"code": "HUM01"}, "hold": []}}; _k14 = []
+for _g14 in (_PRB, _PRR, _PRF, dict(_PRB, probe="the code had switched itself off (x) - William's standing word of November 11, 2026 restarts it", probe_kind="standing", probe_words="")):
+    for _v14 in (None, _MVV):
+        r, o = qdig2([dict(qrow, quality_fee="0.01")], _g14, prev=dict(G0, fee="0.01"), ver_=_v14); _k14.append((o, _v14))
+check("digest (K14, fix round 2): no K8 digest says 'could not be built' - the first one-cent run's quality block is built whole (with and without a line on a visit moved to another payer)",
+      not any("could not be built" in o_ for o_, _v in _k14) and all("- first lines:" in o_ for o_, _v in _k14), [l_ for o_, _v in _k14 for l_ in o_.splitlines() if "could not be built" in l_][:2])
+check("digest (K14, fix round 2): ... and the 'moved to another payer' line still prints while the code probes - after the move to one cent, after a refusal, in the fallback and for another cause",
+      all(("1 quality line(s) of this batch rode on visits the insurance check moved to another payer than Medicare: pat9 vst1 -> HUM01" in o_) == (_v is not None) for o_, _v in _k14), [(_v is not None, "moved to another payer" in o_) for o_, _v in _k14])
+r, o = qdig2([dict(qrow, quality_fee="0.01")], dict(_PRB, notes=[_PRB["probe"]]), prev=dict(G0))
+_l = [l_ for l_ in _TOPX(o) if "new quality lines now carry ONE CENT" in l_]
+check("digest (review note F5 with K8 and K12, fix round 1): the run in which new lines move to one cent says the import's note WHOLE, and - the $0.00 line was stopped by the claim check - that those patients get no line again this year (not that they are due again)",
+      len(_l) == 1 and _PRB["probe"] in _l[0] and "The patients whose $0.00 line was stopped get no line again this year" in _l[0] and "due again" not in _l[0], _l)
+_lon = "new lines carry $0.01: AdvancedMD left the $0.00 line of visit vst4 off its claim and no $0.00 line of the round is billed"
+r, o = qdig2([dict(qrow, quality_fee="0.01")], dict(_PRB, probe_kind="left_off", probe=_lon + " - one line a run until one is billed", probe_words="", notes=[_lon]), prev=dict(G0))
+_l = [l_ for l_ in _TOPX(o) if "new quality lines now carry ONE CENT" in l_]
+check("digest (F5, K12): ... and when a $0.00 line LEFT OFF its claim moved the amount, those patients are due again 30 days after it was called left off (AdvancedMD may still bill it until then)",
+      len(_l) == 1 and _lon in _l[0] and "due again 30 days after it was called left off" in _l[0], _l)
+_PR1 = dict(_PRB, probe_tries=2, probe="AdvancedMD held visit vst1 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261112T0100Z.json) - William looks")
+r, o = qdig2([dict(qrow, quality_fee="0.01")], _PR1, prev=dict(_PRB))
+check("digest (K8): ... once a ONE-CENT line was stopped by the claim check, the line says what must change in AdvancedMD or which bypass William must approve (no routine bypasses it), with how often and since when",
+      _TOPQ(o) == ['  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - AdvancedMD\'s own words: "[Pattern 2049] Per Medicare guidelines the...; Zero dollar CPT" - ' + _PR1["probe"] + " (stopped 2 time(s) since feed_inspector_20261111T0100Z.json). "
+                   "To let the line pass, one of two things must change: in AdvancedMD the Claim Inspector edit quoted here is set so that it lets a 1123F line of $0.01 through (a person, or AdvancedMD's support), or William approves a standing bypass of exactly that edit for 1123F lines - "
+                   "no routine bypasses it without his word. This run's probe line: visit vst1 (chart pat9)."], _TOPQ(o))
+r, o = qdig2([rows[4]], dict(_PRB, wait=True, pending=["vst8"]), prev=dict(_PRB))
+check("digest (K5): ... while the probe line of an earlier run is not decided the line says so - no new line in this run", len(_TOP(o)) == 1 and "QUALITY CODE: probing (one line a run) - " in _TOP(o)[0]
+      and _TOP(o)[0].endswith(" The probe line of visit vst8 is not decided yet - no new line in this run."), _TOP(o))
+_LO = dict(G0, fee="0.01", probe="AdvancedMD billed visit vst9 (11/12/2026) without its one-cent quality line too - William looks", probe_kind="left_off", probe_since="feed_import_20261111T0000Z.json", probe_tries=2, left_off_cent=["vst9", "vst12"])
+r, o = qdig2([rows[4]], _LO, prev=dict(_LO))
+check("digest (K2b): PROBING after a one-cent line was left off its claim - the top line says AdvancedMD leaves the reporting line off the claim, how many one-cent lines sit unbilled, and that this needs a setting in AdvancedMD (a person or its support)",
+      _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - AdvancedMD billed visit vst9 (11/12/2026) without its one-cent quality line too - William looks (stopped 2 time(s) since feed_import_20261111T0000Z.json). "
+                  "AdvancedMD leaves the reporting line off the claim: 2 one-cent line(s) sit unbilled (vst9, vst12). This needs a setting in AdvancedMD - a person or AdvancedMD's support makes it send a line of one cent for procedure 1123F."], _TOP(o))
+for _k_, _adv_ in (("refused", "To let the line pass, AdvancedMD's charge entry must take procedure 1123F at $0.01 on a visit - a person asks AdvancedMD's support why it does not."), ("not_stored", "To let the line pass, AdvancedMD's charge entry must take procedure 1123F at $0.01 on a visit - a person asks AdvancedMD's support why it does not."),
+                   ("fault", "Nothing to change in AdvancedMD is known; the visit named here is for a person to check, and the first probe line that is billed ends the probing."), ("order", "Nothing to change in AdvancedMD is known; the visit named here is for a person to check, and the first probe line that is billed ends the probing."),
+                   ("voided", "Nothing to change in AdvancedMD is known; the first probe line that is billed ends the probing."), ("stuck", "Nothing to change in AdvancedMD is known; the first probe line that is billed ends the probing."), ("standing", "Nothing to change in AdvancedMD is known; the first probe line that is billed ends the probing.")):
+    r, o = qdig2([rows[4]], dict(G0, fee="0.01", probe="the cause", probe_kind=_k_, probe_since="feed_import_20261111T0000Z.json", probe_tries=3), prev=dict(G0, fee="0.01"))
+    check("digest (K5): probing, a cause of kind %s - the top line ends with the advice of that kind" % _k_, _TOP(o) == ["  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - the cause (stopped 3 time(s) since feed_import_20261111T0000Z.json). " + _adv_], _TOP(o))
+_SK = {"chart": "pat9", "visit": "vst1", "charge": "charge77", "own": "charge1", "code": "1123F", "fee": "0.00", "with": "", "why": "Pattern 77002: review", "register": "feed_inspector_20261110T0100Z.json", "what": "the routine could not take the line off", "since": "feed_inspector_20261110T0100Z.json"}
+_PS = 'paused this run: visit vst1 (chart pat9) is held with its quality line - the routine could not take the line off (feed_inspector_20261110T0100Z.json: "Pattern 77002: review"); no new line while that is so - every run\'s inspector step tries the void and the re-save again'
+_GP = dict(G0, off=_PS, paused=_PS, stuck=[_SK])
+_HEAD = '  - TOP OF THE REPORT - QUALITY CODE: paused this run - visit vst1 (chart pat9) is held with its quality line: the routine could not take the line off (feed_inspector_20261110T0100Z.json: "Pattern 77002: review"). No new line was added. '
+_RT = lambda **e: dict({"visit": "1", "pid": "pat9", "charge": "charge77", "code": "1123F", "fee": "0.00", "why": "Pattern 77002: review", "void_ok": True, "released": True, "retry_of": "feed_inspector_20261110T0100Z.json", "at": "x"}, **e)
+for _lbl_, _ent_, _did_ in (
+        ("no new try recorded", None, "This run's inspector step recorded no new try for that visit; the next run tries the void and the re-save again."),
+        ("no longer listed", _RT(void_ok=False, listed=False, note="the visit is no longer listed by the Claim Inspector - nothing done"), "This run found the visit free (no longer listed by the Claim Inspector): nothing was done to it, and the next run goes on by itself, probing."),
+        ("only advisories remained", _RT(void_ok=False, listed=False, note="only advisories remained - bypassed, nothing voided"), "This run found the visit free (only advisories remained - bypassed): nothing was done to it, and the next run goes on by itself, probing."),
+        ("the visit was billed", _RT(void_ok=False, listed=False, note="the visit was billed - nothing done"), "This run found the visit free (the visit was billed): nothing was done to it, and the next run goes on by itself, probing."),
+        ("the void failed again", _RT(void_ok=False, released=False, note="the void failed: Fault"), "This run tried again and could not take the line off (the void failed: Fault); every run tries again, and a person can take the line off that visit at any time."),
+        ("taken off, re-saved, gone out", _RT(resave_ok=True), "This run took the line off, re-saved the visit and it went out; the next run goes on by itself, probing."),
+        ("still listed for the edit", _RT(released=False, resave_ok=True, still_named=True), "This run re-saved the visit again and it is still listed for the edit about the line; every run tries again."),
+        ("the re-save failed", _RT(released=False, resave_ok=False, still_named=True), "This run re-saved the visit again and it is still listed for the edit about the line; the re-save failed; every run tries again."),
+        ("the listing after the re-save failed", _RT(released=False, resave_ok=True, still_named=True, note="the listing after the re-save failed"), "This run re-saved the visit again, but the listing after it failed, so the visit is not shown free; the next run lists it again."),
+        ("held for its own reason", _RT(released=False, resave_ok=True, why="Pattern 24078: else"), "This run took the line off; the visit is still held for its own reason (Pattern 24078: else), which is not this code's; the next run goes on by itself, probing.")):
+    r, o = qdig2([rows[4]], _GP, prev=dict(G0), insp_=_INS([], [_ent_] if _ent_ else []))
+    check("digest (K5, K2c): PAUSED, a visit stuck held with its line - the top line names the visit, what holds it and what THIS run's inspector step did (%s); the retry's entry is not said a second time" % _lbl_,
+          _TOP(o) == [_HEAD + _did_] and "paused this run - no line was added (the top line says why)" in o, _TOP(o))
+r, o = qdig2([rows[4]], dict(_GP, stuck=[_SK, dict(_SK, visit="vst5", chart="pat5")]), prev=dict(G0))
+check("digest (K2c): ... with a second stuck visit the line says how many more", len(_TOP(o)) == 1 and '(feed_inspector_20261110T0100Z.json: "Pattern 77002: review"); 1 more visit(s) the same way. No new line was added.' in _TOP(o)[0], _TOP(o))
+# November 12, 2026 - fix round 1 (K9; specification 2.5): in the digest too the NEWEST entry for a line decides - the same-start corner says ONE top line about the visit
+_NOR = lambda e_: {k_: v_ for k_, v_ in e_.items() if k_ != "retry_of"}      # an entry of the step's NORMAL pass (no retry_of)
+r, o = qdig2([rows[4]], dict(G0), prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review", "quality": True}], [_NOR(_RT(void_ok=False, released=False, note="the void failed: time-out")), _RT(resave_ok=True)]))
+check("digest (K9, fix round 1): the same-start corner - the normal pass could not take the line off (a time-out) and the retry pass of the SAME start then took it off and the visit went out: ONE top line about that visit, the newest entry's (it went through), "
+      "saying once that the first try did not free it and this run's retry pass did - never also 'held WITH its line'; the held row stays (the import's proof rule reads it) and is still listed in the Claim Inspector pass",
+      [l_ for l_ in _TOPX(o) if "vst1" in l_] == ["  - TOP OF THE REPORT - the routine took the quality line charge77 off held visit vst1 (pat9; the hold: Pattern 77002: review) and the visit went through without it - its first try in this run did not free it (the void failed: time-out), then freed by this run's retry pass. "
+                                                   "That is one refusal of the line: the next run moves new lines to one cent: one line a run until one is billed"]
+      and not any("held WITH its line" in l_ for l_ in _TOP(o)) and "vst1 pat9: Pattern 77002: review" in o, _TOP(o))
+r, o = qdig2([rows[4]], dict(G0), prev=dict(G0), insp_=_INS([], [_NOR(_RT(released=False, resave_ok=True, still_named=True)), _RT(void_ok=False, listed=False, note="the visit is no longer listed by the Claim Inspector - nothing done")]))
+check("digest (K9): ... and when the first entry said 'still listed for the edit' and the retry of the same start found the visit no longer listed: ONE line says so - never also 'still listed'",
+      [l_ for l_ in _TOPX(o) if "vst1" in l_] == ["  - TOP OF THE REPORT - held visit vst1 (pat9): the routine's first try in this run did not free it (still listed for the edit about the line), then freed by this run's retry pass (the visit is no longer listed by the Claim Inspector - nothing done) - nothing more was done to it."], _TOP(o))
+r, o = qdig2([rows[4]], dict(G0), prev=dict(G0), insp_=_INS([], [_NOR(_RT(void_ok=False, released=False, note="the void failed: time-out")), _RT(void_ok=False, released=False, note="the void failed: Fault")]))
+check("digest (K9): ... when the retry of the same start failed too, the newest entry's own words stand - ONE line, 'held WITH its line', with the newest reason",
+      [l_ for l_ in _TOPX(o) if "vst1" in l_] == ["  - TOP OF THE REPORT - the routine could not take the quality line off held visit vst1 (pat9: the void failed: Fault) - the visit is held WITH its line. No new line is added while that is so; every run tries the void and the re-save again, and a person can take the line off that visit at any time."], _TOP(o))
+# fix round 1 (K11): PAUSED by a visit of a fault run - the state line says so in its own words
+_FS = {"chart": "pat9", "visit": "vst70", "charge": "", "own": "", "code": "1123F", "fee": "0.00", "with": "", "dos": "11/10/2026", "fault": True, "why": "read timed out", "register": "feed_import_20261110T0100Z.json",
+       "what": "the call that carried the line ended in an error - nobody has seen yet whether the Claim Inspector holds it", "since": "feed_import_20261110T0100Z.json"}
+r, o = qdig2([rows[4]], dict(G0, off="paused this run: visit vst70", paused="paused this run: visit vst70", stuck=[_FS]), prev=dict(G0),
+             insp_=_INS([], [dict(_RT(void_ok=False, listed=False, note="the visit is no longer listed by the Claim Inspector - nothing done"), visit="70", charge="", fault=True, retry_of="feed_import_20261110T0100Z.json")]))
+check("digest (K11, fix round 1): PAUSED by a visit of a fault run (a fault, an error or a cut run while the call that carried the line was out) - the state line names the visit, says it came from a fault, what the import knows, and what THIS run's inspector step did",
+      _TOP(o) == ['  - TOP OF THE REPORT - QUALITY CODE: paused this run - visit vst70 (chart pat9) came from a fault run: the call that carried the line ended in an error - nobody has seen yet whether the Claim Inspector holds it '
+                  '(feed_import_20261110T0100Z.json: "read timed out"). No new line was added. This run found the visit free (no longer listed by the Claim Inspector): nothing was done to it, and the next run goes on by itself, probing.'], _TOP(o))
+# November 12, 2026 - fix round 2 (K15, K16, K17): what the state line says after a cut or a fault, and of a fault visit held for its own reason
+_FO = dict(_FS, own=True, register="feed_inspector_20261110T0100Z.json", what="held for its own reason; no 1123F line is on it - a person fixes the visit", why="Pattern 31001: diagnosis pointer missing")
+r, o = qdig2([dict(qrow, quality_fee="0.01")], dict(_PRB, stuck=[_FO]), prev=dict(G0, fee="0.01"))
+check("digest (K15, fix round 2): a fault visit held for its own reason (no 1123F line on it) pauses nothing - the ONE state line says the code probes AND names that visit for a person, with why",
+      len(_TOPQ(o)) == 1 and _TOPQ(o)[0].startswith("  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run)") and _TOPQ(o)[0].endswith(
+          " Visit vst70 (chart pat9) came from a fault run and is held for its own reason, not because of this code: held for its own reason; no 1123F line is on it - a person fixes the visit "
+          '(feed_inspector_20261110T0100Z.json: "Pattern 31001: diagnosis pointer missing") - it stays on this report until it is free; it does not pause the code.') and "paused" not in _TOPQ(o)[0], _TOPQ(o))
+_SK2 = {"chart": "pat8", "visit": "vst8", "charge": "charge88", "own": "charge80", "code": "1123F", "fee": "0.01", "with": "", "why": "Pattern 77002: review", "register": "feed_inspector_20261110T0100Z.json", "what": "the routine could not take the line off", "since": "feed_inspector_20261110T0100Z.json"}
+r, o = qdig2([rows[4]], dict(G0, off="paused this run: visit vst8", paused="paused this run: visit vst8", stuck=[_FO, _SK2]), prev=dict(G0))
+check("digest (K15, fix round 2): ... when ANOTHER visit pauses the code, the state line names THAT visit (the one held with its line), not the fault visit held for its own reason - which it names last, as pausing nothing",
+      len(_TOPQ(o)) == 1 and _TOPQ(o)[0].startswith("  - TOP OF THE REPORT - QUALITY CODE: paused this run - visit vst8 (chart pat8) is held with its quality line: the routine could not take the line off") and "more visit(s) the same way" not in _TOPQ(o)[0]
+      and _TOPQ(o)[0].endswith("it stays on this report until it is free; it does not pause the code."), _TOPQ(o))
+r, o = qdig2([rows[4]], dict(G0, off="this run: a visit with the code was refused and the chart could not be shown free of it", stuck=[_FS]), prev=dict(G0),
+             insp_=_INS([], [dict(_RT(void_ok=False, released=False, note="its line could not be looked for: the chart's history could not be read (RuntimeError)", looked=False), visit="70", charge="", fault=True, retry_of="feed_import_20261110T0100Z.json")]))
+check("digest (K16, fix round 2): the fault run's OWN digest - the generic state line names the fault visit, what the import knows and what THIS run's inspector step found (its newest retry entry): here its line could not be looked for",
+      _TOPQ(o) == ['  - TOP OF THE REPORT - QUALITY CODE: paused this run - a visit with the code was refused and the chart could not be shown free of it. Visit vst70 (chart pat9) came from a fault run: the call that carried the line ended in an error - nobody has seen yet whether the Claim Inspector holds it. '
+                   "This run's step could not look for its quality line (its line could not be looked for: the chart's history could not be read (RuntimeError)); the next run looks again."], _TOPQ(o))
+r, o = qdig2([rows[4]], dict(G0, off="this run: x", stuck=[_FS]), prev=dict(G0), insp_=_INS([], [dict(_RT(void_ok=False, released=False, own_reason=True, note="held for its own reason; no 1123F line is on it - a person fixes the visit"), visit="70", charge="", fault=True, retry_of="feed_import_20261110T0100Z.json")]))
+check("digest (K16, fix round 2): ... and when this run's step found NO 1123F line on it: held for its own reason - a person fixes the visit; it does not pause the code (never 'a person can take the line off')",
+      len(_TOPQ(o)) == 1 and _TOPQ(o)[0].endswith("This run found it held for its own reason, not because of this code (held for its own reason; no 1123F line is on it - a person fixes the visit) - a person fixes the visit; it does not pause the code.") and "take the line off" not in _TOPQ(o)[0], _TOPQ(o))
+_SC = {"chart": "pat9", "visit": "vst1", "charge": "charge77", "own": "charge1", "code": "1123F", "fee": "0.00", "with": "", "why": "Pattern 77002: review", "register": "feed_inspector_20261110T0100Z.json",
+       "what": "the routine's last try was cut off before it ended; this run's step looks again", "since": "feed_inspector_20261110T0100Z.json"}
+r, o = qdig2([rows[4]], dict(G0, off="paused this run: visit vst1", paused="paused this run: visit vst1", stuck=[_SC]), prev=dict(G0), insp_=_INS([], [_RT(was_void=True)]))
+check("digest (K16, fix round 2; review G4 a): after a run cut after the void - the state line says the visit MAY still be held and that the routine's last try was cut off; this run's step found the line off already and re-saved the visit (never 'could not take the line off' nor 'took the line off')",
+      _TOPQ(o) == ['  - TOP OF THE REPORT - QUALITY CODE: paused this run - visit vst1 (chart pat9) may still be held with its quality line: the routine\'s last try was cut off before it ended; this run\'s step looks again (feed_inspector_20261110T0100Z.json: "Pattern 77002: review"). '
+                   "No new line was added. This run found the line off already, re-saved the visit and it went out; the next run goes on by itself, probing."], _TOPQ(o))
+r, o = qdig2([rows[4]], dict(G0), prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review", "quality": True}], [_NOR(_RT(void_ok=False, released=False, note="the void failed: time-out")), _RT(void_ok=True, released=True)]))
+check("digest (K17, fix round 2; review G5): the Claim Inspector section says that a held visit THIS run's retry pass freed is free - one line, the held row itself stays (and is still counted as written)",
+      "  - vst1 pat9: Pattern 77002: review - then freed by this run's retry pass: the visit is free" in r.stdout and "held 1" in r.stdout, r.stdout[-500:])
+r, o = qdig2([rows[4]], dict(G0), prev=dict(G0), insp_=_INS([{"visit": "1", "pid": "pat9", "why": "Pattern 77002: review", "quality": True}], [_NOR(_RT(void_ok=False, released=False, note="the void failed: time-out")), _RT(void_ok=False, released=False, note="the void failed: Fault")]))
+check("digest (K17, G5): ... a held visit the retry pass did NOT free is listed as held, without that sentence", "  - vst1 pat9: Pattern 77002: review" in r.stdout and "then freed by this run's retry pass: the visit is free" not in r.stdout, r.stdout[-500:])
+_SR = {"was": "AdvancedMD billed visit vst9 (11/12/2026) without its one-cent quality line too - William looks", "register": "feed_import_20261111T0000Z.json"}
+_GS = dict(G0, fee="0.01", probe="the code had switched itself off (%s) - William's standing word of November 11, 2026 restarts it" % _SR["was"], probe_kind="standing", probe_since="feed_import_20261111T0000Z.json", probe_tries=1)
+r, o = qdig2([rows[4]], dict(_GS, standing_restart=_SR), prev=dict(G0, fee="0.01", off=_SR["was"], off_until_reset=_SR["was"])); r2_, o2 = qdig2([rows[4]], _GS, prev=dict(_GS, standing_restart=_SR))
+check("digest (section 3): the run that reads an older register's own 'off until reset' says ONCE, before the state line, that William's standing word restarted the code and that no restart by him is needed any more; the state line says probing; the next batch does not repeat it",
+      len(_TOP(o)) == 2 and _TOP(o)[0] == '  - TOP OF THE REPORT - QUALITY CODE: restarted on William\'s standing word of November 11, 2026 ("dont stop this dont let it stop make sure this suceeds") - an earlier run had switched it off (%s). No restart by William is needed any more; the code goes on by itself.' % _SR["was"]
+      and _TOP(o)[1].startswith("  - TOP OF THE REPORT - QUALITY CODE: probing (one line a run) - the code had switched itself off (") and _TOP(o)[1].endswith("Nothing to change in AdvancedMD is known; the first probe line that is billed ends the probing.")
+      and len(_TOP(o2)) == 1 and "restarted on William's standing word" not in o2, (_TOP(o), _TOP(o2)))
 r, o = qdig2([rows[4]], G0, prev=dict(G0), failed=[{"feed_id": "n2", "pid": "pat7", "info": {"dos": "11/02/2026", "cpts": ["99309"]}, "err": "x"}])
 check("digest (N3): failed visits are counted and named in the Import line (it used to say '0 faults' always)", "1 visit(s) FAILED - not entered or not finished, see the import register's failed rows: pat7 11/02/2026 99309" in o and "0 faults" not in o, o[:600])
-_busy = dict(G0, off=OFFS, off_until_reset=OFFS, not_renewed={"2027": 1}, quality_skipped_hospital=1, notes=["NOTHING TO RESTART - QUALITY_CODE=reset was ignored (x)"])
+_busy = dict(G0, off=STOPS, off_until_reset=STOPS, not_renewed={"2027": 1}, quality_skipped_hospital=1, notes=["NOTHING TO RESTART - QUALITY_CODE=reset was ignored (x)"])
 r, o = qdig2([dict(qrow, quality_codes=[], quality_refused="Fault: no", quality_refused_fee="0.00")], _busy, prev=dict(G0), insp_=_INS([], [{"visit": "1", "pid": "pat9", "charge": "charge77", "void_ok": False, "released": False, "note": "x"}]))
-check("digest: every line for William starts '  - TOP OF THE REPORT - ' and is one line (a busy batch: five of them)", len(_TOP(o)) == 5 and all(l_.startswith("  - TOP OF THE REPORT - ") for l_ in _TOP(o)), _TOP(o))
+check("digest: every line for William starts '  - TOP OF THE REPORT - ' and is one line (a busy batch: five of them, the state line among them)", len(_TOP(o)) == 5 and all(l_.startswith("  - TOP OF THE REPORT - ") for l_ in _TOP(o)), _TOP(o))
 import importlib.util as _iu
 wd = open(os.path.join(ROOT, "boards", "working_denials.py")).read()
 check("denial table: Medicare's acceptance of a reporting code (reason 246) is information, never work", '"246": ("INFO"' in wd and "N620" in wd)
@@ -2188,6 +2542,77 @@ _cc = open(os.path.join(ROOT, "docs", "captured_calls.md")).read(); _sl = open(o
 check("captured calls (13.4c, section 7): the look-up answers - 1123F = pcode65441 'ACP DISCUSS/DSCN MKR DOCD', 1124F not in the list, M0004 = pcode692183 'QUAL CARE NEUROLOGIC CND MVP' (place of service 11, type of service 01)",
       'procedure id `pcode65441`, name "ACP DISCUSS/DSCN MKR DOCD"' in _cc and "1124F is NOT in the practice's procedure list" in _cc and 'procedure id `pcode692183`, name "QUAL CARE NEUROLOGIC CND MVP", units 1.0, default place of service 11, type of service 01' in _cc and "read 11/10/2026 09:43Z" in _cc)
 check("lessons: one dated line records the owner's decision on held visits and the rule version (since step 4 a later line follows it: William's initial-visit rule)", sum(1 for l_ in _sl if l_.startswith("- 2026-11-10T1435Z | chat (quality code 1123F, version 2, step 2) | RULE |") and "just deal with it" in l_ and "2026-11-10.6" in l_) == 1)
+# 11/12/2026 (specification 5.1 to 5.3; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the words say what the code does - it never switches itself off
+_QR = _qrun.replace("\n", " "); _STEP1 = step.replace("\n", " "); _W1112 = "dont stop this dont let it stop make sure this suceeds"
+check("rulebook (5.1, R0-R5): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence and the date it is in force - where the code went off it probes (one new line a run, none while a probe line is not decided, until the proof), it pauses one run at a time, a line taken off by a person costs that patient the year, his own switches stay his, and an older register's own 'off' is a pause that has ended",
+      all(x_ in _qrb for x_ in ('THE CODE NEVER SWITCHES ITSELF OFF - William 11/11/2026, about the line "if stopped again the code switches off until the owner restarts it": "%s" (in force since November 12, 2026). No state of the code needs William\'s restart any more.' % _W1112,
+          "Where the code used to go off it PROBES: ONE new line a run, on the first eligible visit, at the amount the code stands at, none while an earlier probe line is not decided, until a line is billed to insurance and AdvancedMD shows 1123F for it",
+          "It PAUSES one run at a time - every run looks again - while a visit is stuck held with its line, while a visit of a fault run may still carry its line and is not yet seen free of it (November 12, 2026 - fix rounds 1 and 2), and while AdvancedMD shows another code text for pcode65441.", "A line taken off by a person: that patient gets no line again that year (a person decided) and the code stays on.",
+          "no routine bypasses an edit for this line", '"QUALITY CODE: probing (one line a run) - ..."', '"QUALITY CODE: paused this run - ..."', '"QUALITY CODE: going - ..."', '"QUALITY CODE ACCEPTED BY MEDICARE"',
+          "WILLIAM'S OWN SWITCHES STAY HIS: QUALITY_CODE=stop = off until he restarts it with one run of QUALITY_CODE=reset (honoured only after his stop; a new round at $0.00)",
+          'An older register that still says "off until William restarts it" by the code\'s own doing is read as a pause that has ended: his standing word restarts it once, and the report says so.',
+          "could set the code back to probing for every setting", "(another code text pauses the code while AdvancedMD shows it: every run reads it again)", "a one-cent line left off does not switch the code off: the code probes (THE CODE NEVER SWITCHES ITSELF OFF, below)",
+          "then the visit is stuck, no new line is added in that run - a real claim must never wait because of this code - and every run's inspector step tries the void and the re-save again until the visit is free; the first run that finds no visit stuck goes on by itself, probing.",
+          "move new lines to one cent, and at one cent the code probes; a fault while the chart shows the visit (or cannot be read): the visit is not sent again, William enters or checks it, and the code probes from the next run.")),
+      [x_ for x_ in ("THE CODE NEVER SWITCHES ITSELF OFF", "It PAUSES one run at a time", "WILLIAM'S OWN SWITCHES STAY HIS") if x_ not in _qrb])
+check("rulebook (open points 1 and 11, as built): at one cent the code probes from its first line - one cent never begins with a round of three - and the inspector step also looks at a coded visit of an earlier batch whose line is not decided yet",
+      "It probes from its first one-cent line on (the amount only moves to one cent after something stopped a $0.00 line, so one cent never begins with a round of three)" in _qrb
+      and "The same step also looks at a coded visit of an earlier batch whose line is not decided yet: when the claim check holds such a visit and no step ever looked at it, its line comes off there, a run late." in _qrb)
+check("rulebook (5.1): nothing in the line says any more that the code switches itself off, goes off or waits for William's restart - the phrases of the earlier versions are gone (William's own stop is the one 'off until he restarts it' left)",
+      not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
+                                    "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
+      [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
+check("runbook (5.2, B1-B3): the version check greps rule version 2026-11-12.1 (11/12/2026: one version for this change, .8, and the skipped-message change, 2026-11-11.1 - neither of them, nor .7, anywhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+      "grep -c 'POS_RULE_VERSION = \"2026-11-12.1\"'" in _STEP1 and not any(v_ + '"' in step for v_ in ("2026-11-10.7", "2026-11-10.8", "2026-11-11.1")) and 'The same when the line says "probing:" or "paused:".' in _STEP1
+      and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
+check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
+      all(x_ in _QR for x_ in ('THE CODE NEVER SWITCHES ITSELF OFF - William 11/11/2026: "%s" (in force since November 12, 2026). No state of the code waits for William. The digest carries ONE line that starts "TOP OF THE REPORT - QUALITY CODE:" in every batch; copy it to the top of the report word for word, every run:' % _W1112,
+          '"QUALITY CODE: probing (one line a run) - ..." = something stopped a line', "The import puts ONE line a run on the first eligible visit until one is billed - at one cent from its first line on (the amount only moves to one cent after something stopped a $0.00 line).", "one void and one re-save a run, no visit waits. Do nothing by hand, and bypass nothing.",
+          '"QUALITY CODE: paused this run - ..." = no line was added in this run', "The next run looks again by itself.", '"QUALITY CODE: going - ..." = the normal flow', '"QUALITY CODE ACCEPTED BY MEDICARE - ..." = said once, in the first run that sees Medicare\'s answer.',
+          '"QUALITY CODE: stopped on William\'s word ..." = only after his own QUALITY_CODE=stop.', '"QUALITY CODE: restarted on William\'s standing word ..." = said once',
+          "(while William has stopped it, no line is added before his restart)", "a one-cent line left off does not switch the code off: it probes (THE CODE NEVER SWITCHES ITSELF OFF below), and the digest says at the top that AdvancedMD leaves the line off the claim and how many lines sit unbilled.",
+          "then the visit is stuck: no new line is added in that run, and every run's inspector step re-saves it again (one re-save should release it). A void that failed = the visit is held WITH its line: the same - no new line in that run, and every run tries the void and the re-save again. The first run that finds no visit stuck goes on by itself, probing.",
+          "at one cent the code probes. If the chart then shows part of the refused visit, or cannot be read, nothing is sent again and the digest names that visit at the top with its date and codes: William enters or checks that visit; no routine sends it again. The code probes from the next run.",
+          "new lines carry one cent (one line a run from then on: at one cent the code probes, below)")),
+      [x_ for x_ in ("THE CODE NEVER SWITCHES ITSELF OFF - William 11/11/2026", "Do nothing by hand, and bypass nothing.", "The next run looks again by itself.") if x_ not in _QR])
+check("runbook (5.2, B8-B10): the M0004 paragraph and both switch paragraphs in the new words - M0004 probes where it went off, QUALITY_CODE=reset works only after William's own stop, MVP_CODE=reset has nothing left to restart",
+      all(x_ in _QR for x_ in ("(that M0004 line is just void: nothing follows for M0004, and that clinician may get M0004 again)", "(after a second left-off line M0004 probes: one M0004 line a run in all until one is billed)", "taken that way, M0004 probes.",
+          "an M0004 line taken off that way from a visit that then went through makes M0004 probe, and it does not count against the 1123F line.",
+          '`QUALITY_CODE=reset` (on the ingest command only) starts a new round at $0.00 after William\'s own stop - only then; while the code probes, is paused or is going it does nothing and the log says "NOTHING TO RESTART" (take it out of the routine).',
+          '`MVP_CODE=reset` (on the ingest command only) has nothing left to restart - M0004 never switches itself off any more - and the log says "NOTHING TO RESTART" (take it out of the routine); any other value adds no M0004 line and the log names it. `QUALITY_CODE=off` or `stop` stops M0004 too (it never rides without the 1123F line).',
+          "`QUALITY_CODE=stop` = OFF until William restarts it", 'for stop it must say "stopped on William\'s word"')), [x_ for x_ in ("taken that way, M0004 probes.", "has nothing left to restart") if x_ not in _QR])
+check("runbook (5.2): nothing in it says any more that the code goes OFF by itself or waits for William's restart (his own stop is the one OFF left); the one-cent round of three is gone with it",
+      not any(x_ in _STEP1 for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes OFF until William has looked", "at one cent the code goes OFF.", "a one-cent line left off switches the code OFF.", "switches M0004 off", "M0004 is OFF until William restarts it",
+                                      "does not restart M0004", "(a new round of 3)", 'after "the quality code is OFF"')), [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches M0004 off", "(a new round of 3)") if x_ in _STEP1])
+check("rulebook and runbook (fix round 1, November 12, 2026): one sentence each says that until the next change a person looks at a visit held after the proof (known gaps B4, B5); and they say what K10 to K12 and K8 made true - the left-off line's patient is due "
+      "again only 30 days after it was called left off, the step writes its entry before the void and a void line is a person's decision only without an entry of the routine's, a visit of a fault run is stuck and looked at in every run, the bypass advice comes only after a one-cent stop",
+      all(x_ in _qrb for x_ in ("Until the next change a person looks at a visit held after the proof: after the proof the step takes the line off only when the edit's words name it, and it does not go back to a batch whose inspector step failed or was cut.",
+                                 "November 12, 2026 - fix round 1: that patient is due again only once the line was called left off 30 days ago or more", "a line found void while its visit is still there is a person's decision only when no entry of the routine's is on record for it",
+                                 "A visit of a fault, a time-out or a cut run while the call that carried the line was out is listed as stuck too", "that advice only once a ONE-CENT line was stopped or refused"))
+      and all(x_ in _QR for x_ in ("Until the next change a person looks at a visit held AFTER the proof: after the proof the step takes the line off only when the edit's words name it, and it does not go back to a batch whose inspector step failed or was cut.",
+                                    "November 12, 2026 - fix round 1: that patient is due again only once the line was called left off 30 days ago or more",
+                                    "a line found void while its visit is still there is a person's decision (that patient gets no line again that year) only when no entry of the routine's is on record for it",
+                                    "A visit of a fault, a time-out or a cut run while the call that carried the line was out (REFUSED below) is listed as stuck too", "that advice only once a ONE-CENT line was stopped or refused",
+                                    'or "paused:" - no line is added in a paused run anyway')),
+      [x_ for x_ in ("Until the next change a person looks at a visit held", "called left off 30 days ago or more", "is listed as stuck too") if x_ not in _qrb or x_.lower() not in _QR.lower()])
+# November 12, 2026 - fix round 2 (K13, K15, K16, K17 - review notes G2, G4): the sentences of round 2, and the two runbook sentences of round 1 no check proved
+_LS = open(os.path.join(ROOT, "docs", "SHARED_LESSONS.md")).read()
+check("rulebook, runbook and lessons (fix round 2, November 12, 2026): a left-off line is read again until 30 days after it was CALLED left off (K13); a fault visit pauses the code only while it is held WITH its 1123F line that cannot be taken off - "
+      "one held for its own reason stays on the report for William and the code goes on (K15); a cut try is said as cut off (K16); the PAUSES sentence and the lessons line name the fault visit (G4); the runbook's REFUSED and paused sentences (G2)",
+      all(x_ in _qrb for x_ in ("it is read again until 30 days after it was called left off (billed after all = it counts; November 12, 2026 - fix round 2", "(still not billed three days after its visit was billed; read again until 30 days after it was called left off)",
+                                 "such a visit pauses the code only while it is held WITH its 1123F line and the line cannot be taken off - when the step finds no 1123F line on it, or after the proof the hold's words do not name the line, it is held for its own reason: it stays on the report for William in every run until it is free, its patient stays marked, and the code goes on.",
+                                 "a try the step had begun when the run was cut is said as cut off"))
+      and all(x_ in _QR for x_ in ("the import reads it again until 30 days after it was called left off (November 12, 2026 - fix round 2;", "such a visit pauses the code only while it is held WITH its 1123F line and the line cannot be taken off",
+                                    "\"the routine's last try was cut off before it ended; this run's step looks again\" (never \"could not take the line off\")",
+                                    "November 12, 2026 - fix round 1: only once the inspector step has seen that visit free - until then it is stuck (THE HELD VISIT above); fix round 2: a visit the step finds held for its own reason with no 1123F line on it does not hold the probing back",
+                                    "a visit of a fault run is not seen free yet (the line says it came from a fault - November 12, 2026; one the step found held for its own reason with no 1123F line on it pauses nothing"))
+      and "while a visit of a fault run may still carry its line and is not yet seen free of it (November 12, 2026 - fix rounds 1 and 2: one held for its own reason with no 1123F line on it pauses nothing)" in _LS
+      and "until 30 days after the visit was billed" not in _qrb and "until 30 days after the visit was billed" not in _QR and "no such line = it stays for William" not in _qrb and "no such line = it stays for William" not in _QR,
+      [x_ for x_ in ("read again until 30 days after it was called left off", "pauses the code only while it is held WITH its 1123F line") if x_ not in _qrb or x_ not in _QR])
+check("lessons (5.3): ONE dated line records William's standing word, rule version 2026-11-10.8 and what replaces 'off until William restarts it' - it is the newest line of the file, and the two older lines about the quality code stay as they are",
+      sum(1 for l_ in _sl if re.match(r"- 2026-11-12T\d{4}Z \| chat \(quality code 1123F never switches itself off, rule version 2026-11-10\.8\) \| RULE \| ", l_) and _W1112 in l_ and "PROBES" in l_ and "PAUSES" in l_ and "QUALITY CODE ACCEPTED BY MEDICARE" in l_
+          and l_.endswith("| practices/ehpa/rules.md (QUALITY CODE 1123F), scripts/helpers/claimocity_import.py (quality_state, mvp_state), claimocity_inspector.py (stuck visits), claimocity_report.py, nightly/claimocity_feed_step.md")) == 1
+      and re.match(r"- 2026-11-12T\d{4}Z \| chat \(quality code 1123F never switches itself off", _sl[-1]) is not None and sum(1 for l_ in _sl if l_.startswith("- 2026-11-10T1200Z | ")) >= 1 and sum(1 for l_ in _sl if l_.startswith("- 2026-11-10T1435Z | ")) == 1, _sl[-1][:200])
 # the insurance-check step: a void quality line never holds the visit (its function is run here with stand-ins; the rest of that helper is not loaded)
 _vsrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _vsrc = _vsrc[_vsrc.index("def fast_set_insorder(v, order, removed=None, info=None):"):_vsrc.index("def main():")]
 # 11/10/2026 (round 7): AdvancedMD builds a visit's insurance-order LIST from its order - the stand-ins show it, and give every live charge (visit_charges)
@@ -2322,14 +2747,14 @@ check("insurance check step (11.2): the echo with the line refused, the echo wit
       _ve == "" and _vr and _vr["decision"] == "RELEASE" and len(_vr.get("quality_removed") or []) == 1 and _vr["quality_removed"][0]["charge"] == "charge11" and _vr["quality_removed"][0]["released"] is True
       and any("the quality line charge11 was taken off" in f_ for f_ in _vr["fixes"]), (_ve, _vr))
 _vr, _vo, _ve = vf_run(_qrow, "always")
-check("insurance check step (section 7): refused with and without the line - HOLD, and the hold says 'insorder not applied' with the quality line named (the words the import switches the code off on)",
+check("insurance check step (section 7): refused with and without the line - HOLD, and the hold says 'insorder not applied' with the quality line named (the words the import starts probing on; the visit itself is for a person)",
       _ve == "" and _vr and _vr["decision"] == "HOLD" and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: resave FAULT") for h_ in _vr["hold"]) and not _vr.get("quality_removed"), (_ve, _vr))
 _vr, _vo, _ve = vf_run(dict(_qrow, quality_codes=None, quality_charge=None), "always")
 check("insurance check step: a visit without the line whose echo is refused - held in words that say what its list shows (round 7, 4.4: it still bills to its old order 2), under order_differs, and the hold says it is a label in this report only (4.6)",
       _ve == "" and _vr and len(_vr["hold"]) == 1 and _vr["hold"][0].startswith("vst1 still bills to its old insurance order 2 (resave FAULT") and _vr["hold"][0].endswith("HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it")
       and _vr.get("order_differs") == ["vst1"] and not _vr.get("no_order_list"), (_ve, _vr))
 VQ["dfail"] = {"11": 3}; _vr, _vo, _ve = vf_run(_qrow, None); VQ["dfail"] = {}
-check("insurance check step (NH2-3): the quality line cannot be read in three tries - HOLD as before (the words the import switches the code off on), and FIRST in the hold list a plain sentence: the order was NOT set, the claim goes out under the old order unless William changes it",
+check("insurance check step (NH2-3): the quality line cannot be read in three tries - HOLD as before (the words the import starts probing on), and FIRST in the hold list a plain sentence: the order was NOT set, the claim goes out under the old order unless William changes it",
       _ve == "" and _vr and _vr["decision"] == "HOLD" and _vr["hold"][0].startswith("the order of vst1 was NOT set because its no-charge quality line could not be read (three tries) - the claim goes out under the old order") and _vr["hold"][0].endswith("unless William changes it")
       and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: detail read mismatch") for h_ in _vr["hold"]), (_ve, _vr))
 VF_STAND["amd"]["post"] = lambda body, timeout=0: (_ for _ in ()).throw(TimeoutError("read timed out")); _vr, _vo, _ve = vf_run(_qrow, None); VF_STAND["amd"]["post"] = _AM2.post
@@ -2378,13 +2803,17 @@ _ir, _io, _ie = is_run([E_DATA], after=[E_DATA])
 check("inspector (11.1): ... the visit is still listed after the line is gone - held for its own reason as before (no 'quality' mark: it carries no line now), the entry says released: false",
       _ie == "" and len(_ir["held"]) == 1 and "quality" not in _ir["held"][0] and _ir["held"][0]["why"].startswith("Pattern 77002") and _ir["quality_removed"][0]["void_ok"] is True and _ir["quality_removed"][0]["released"] is False, (_ie, _ir))
 check("inspector (NH2-2): ... that entry says the re-save after the void worked (resave_ok) and does not claim the visit is still listed for the line", _ir["quality_removed"][0].get("resave_ok") is True and "still_named" not in _ir["quality_removed"][0], _ir["quality_removed"])
-_ir, _io, _ie = is_run([E_NAME], proven=True, resave_fault=True); _ir2, _io2, _ie2 = is_run([E_NAME], after=[E_NAME], proven=True)
+_ir, _io, _ie = is_run([E_NAME], proven=True, resave_fault=True); _v1, _s1 = list(IS["voided"]), len(IS["resaved"]); _ir2, _io2, _ie2 = is_run([E_NAME], after=[E_NAME], proven=True)
 check("inspector (NH2-2): the line is voided but the re-save after the void is refused (the visit stays listed for the edit about the line), or the re-saved visit is still listed for words that name the line - the entry says resave_ok and still_named, so the import does not take it for the visit's own reason",
       _ie == "" and _ir["quality_removed"][0]["void_ok"] is True and _ir["quality_removed"][0].get("resave_ok") is False and _ir["quality_removed"][0].get("still_named") is True and _ir["quality_removed"][0]["released"] is False and len(_ir["held"]) == 1
       and _ie2 == "" and _ir2["quality_removed"][0].get("resave_ok") is True and _ir2["quality_removed"][0].get("still_named") is True and _ir2["quality_removed"][0]["released"] is False, (_ie, _ir, _ie2, _ir2))
+check("inspector (2.5; 11/12/2026): ... such a visit of this very start is tried once more by the retry pass of the same start - the line is void already, so nothing is voided again: the visit is re-saved a second time and listed again; the second entry says retry_of this batch's own inspector register, and the visit stands ONCE on the held list",
+      _v1 == [("pat1", "1011")] and _s1 == 2 and [(e_["void_ok"], e_.get("resave_ok"), e_.get("still_named"), e_["released"], e_.get("retry_of")) for e_ in _ir["quality_removed"]] == [(True, False, True, False, None), (True, False, True, False, "feed_inspector_T3.json")]
+      and len(_ir["held"]) == 1 and len(_ir2["quality_removed"]) == 2 and _ir2["quality_removed"][1].get("retry_of") == "feed_inspector_T3.json" and len(_ir2["held"]) == 1, (_ir, _ir2, _v1, _s1))
 _ir, _io, _ie = is_run([E_DATA], void_ok=False)
-check("inspector (11.1): ... the void fails - nothing else is tried (no re-save): the visit is held WITH its line ('quality': true), the entry says void_ok: false",
-      _ie == "" and len(_ir["held"]) == 1 and _ir["held"][0].get("quality") is True and IS["resaved"] == [] and _ir["quality_removed"][0]["void_ok"] is False and "cannot be voided" in _ir["quality_removed"][0]["note"], (_ie, _ir))
+check("inspector (11.1): ... the void fails - no re-save is sent: the visit is held WITH its line ('quality': true), the entry says void_ok: false; the retry pass of the same start tries the void once more (11/12/2026) and records that try too - still ONE held row",
+      _ie == "" and len(_ir["held"]) == 1 and _ir["held"][0].get("quality") is True and IS["resaved"] == [] and IS["voided"] == [("pat1", "1011"), ("pat1", "1011")] and _ir["quality_removed"][0]["void_ok"] is False and "cannot be voided" in _ir["quality_removed"][0]["note"]
+      and [(e_["void_ok"], e_.get("retry_of")) for e_ in _ir["quality_removed"]] == [(False, None), (False, "feed_inspector_T3.json")], (_ie, _ir, IS["voided"]))
 _ir, _io, _ie = is_run([E_DATA], proven=True)
 check("inspector (11.1): AFTER proof a hold whose words do not name the line - nothing is voided: held as before, with 'quality': true", _ie == "" and IS["voided"] == [] and _ir["quality_removed"] == [] and _ir["held"][0].get("quality") is True and "names_line" not in _ir["held"][0], (_ie, _ir))
 _ir, _io, _ie = is_run([E_NAME], proven=True)
@@ -2468,28 +2897,45 @@ r, o = mdig([_mrow], _MW, prev_m=dict(_MG0))
 check("digest (8.6): the option code has its own line - on how many visits, per clinician billed / waiting / not yet; the visit that carries it is named; M0004 lines are not counted as charge lines",
       "Option code M0004 (Quality Care for Patients with Neurological Conditions" in o and "on 1 visit(s) in this batch; prof13 (the physician): waiting; prof15 (the nurse practitioner): not yet; it rides with the next eligible visit of a clinician who has none." in o
       and "M0004 carried by: pat9 vst1 charge78 (prof13)" in o and "1 visits / 1 charge lines created" in o and not any("M0004" in l_ for l_ in _TOP(o)), o[-1500:] + r.stderr[-300:])
-_MOFF = dict(_MG0, off="AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only - no second try (chart pat9, visit vst1, feed_import_20261111T0100Z.json)"); _MOFF["off_until_reset"] = _MOFF["off"]
-r, o = mdig([dict(qrow, mvp_codes=[], mvp_refused="Fault: no", mvp_tried="0.00")], _MOFF, prev_m=dict(_MG0)); r2_, o2 = mdig([qrow], _MOFF, prev_m=dict(_MOFF))
-check("digest (8.4, 8.6): a refused visit with M0004 - at the top: the visit named, entered with the 1123F line only, M0004 OFF until William restarts it; and the OFF itself at the top in the run it began, with MVP_CODE=reset",
-      any("AdvancedMD refused 1 visit(s) that carried M0004; each was entered with the 1123F line only: pat9 vst1 (Fault: no)" in l_ for l_ in _TOP(o)) and any("the option code M0004 is OFF until William restarts it: AdvancedMD refused a visit" in l_ and "MVP_CODE=reset" in l_ for l_ in _TOP(o))
-      and "OFF until William restarts it (one run with MVP_CODE=reset" in o, _TOP(o))
-check("digest (8.6): ... the same M0004 OFF in the next batch is ONE plain line, not the top", not any("M0004" in l_ for l_ in _TOP(o2)) and "the option code M0004 is still OFF (since an earlier run)" in o2, _TOP(o2))
+_MPR = dict(_MG0, probe="AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only (chart pat9, visit vst1, feed_import_20261111T0100Z.json)", probe_since="feed_import_20261111T0100Z.json", probe_words="Fault: no")
+r, o = mdig([dict(qrow, mvp_codes=[], mvp_refused="Fault: no", mvp_tried="0.00")], dict(_MPR, off="this run: AdvancedMD refused a visit that carried M0004"), prev_m=dict(_MG0)); r2_, o2 = mdig([qrow], _MPR, prev_m=dict(_MPR))
+check("digest (8.4, 8.6; D9): a refused visit with M0004 - at the top: the visit named, entered with the 1123F line only, M0004 goes on probing; and the probe itself at the top in the run it began (one M0004 line a run in all; the 1123F line goes on as before) - never 'OFF until William restarts it', never a restart switch",
+      any("AdvancedMD refused 1 visit(s) that carried M0004; each was entered with the 1123F line only: pat9 vst1 (Fault: no) - M0004 goes on probing: one M0004 line a run in all until one is billed." in l_ for l_ in _TOP(o))
+      and any(l_ == "  - TOP OF THE REPORT - the option code M0004 probes (one M0004 line a run in all until one is billed): AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only (chart pat9, visit vst1, feed_import_20261111T0100Z.json). The 1123F line goes on as before." for l_ in _TOP(o))
+      and "probing - one M0004 line a run in all until one is billed." in o and "OFF until William restarts it" not in o and "MVP_CODE=reset" not in o, _TOP(o))
+check("digest (8.6; D9): ... the same M0004 probe in the next batch is ONE plain line, not the top", not any("M0004" in l_ for l_ in _TOP(o2)) and "  - the option code M0004 still probes (since an earlier run): AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only" in o2
+      and "probing - one M0004 line a run in all until one is billed." in o2, (_TOP(o2), o2[-600:]))
+_MPS = "paused this run: AdvancedMD shows procedure id pcode692183 as 99497, not M0004 - no M0004 line while that is so; every run reads it again"
+r, o = mdig([qrow], dict(_MG0, off=_MPS, paused=_MPS, wrong_code_text="99497"), prev_m=dict(_MG0)); r2_, o2 = mdig([qrow], dict(_MG0, off=_MPS, paused=_MPS, wrong_code_text="99497"), prev_m=dict(_MG0, off=_MPS, paused=_MPS))
+check("digest (D9): an M0004 pause is at the top EVERY run - 'the option code M0004 is paused this run: ...' - and the headline says paused",
+      all(any(l_ == "  - TOP OF THE REPORT - the option code M0004 is paused this run: AdvancedMD shows procedure id pcode692183 as 99497, not M0004 - no M0004 line while that is so; every run reads it again." for l_ in _TOP(x_)) and "paused this run - no M0004 line was added." in x_ for x_ in (o, o2)), (_TOP(o), _TOP(o2)))
+_MSR = {"was": "AdvancedMD stores procedure id pcode692183 as 99497, not M0004 - William looks", "register": "feed_import_20261111T0000Z.json"}; _MSP = "the option code M0004 had switched itself off (%s) - William's standing word of November 11, 2026 restarts it" % _MSR["was"]
+r, o = mdig([qrow], dict(_MG0, probe=_MSP, standing_restart=_MSR), prev_m=dict(_MG0, off=_MSR["was"], off_until_reset=_MSR["was"])); r2_, o2 = mdig([qrow], dict(_MG0, probe=_MSP), prev_m=dict(_MG0, probe=_MSP, standing_restart=_MSR))
+check("digest (D9, section 3): M0004's restart on William's standing word is said ONCE at the top - in the run that reads the older register's own 'off until reset'; the next batch does not repeat it",
+      any(l_ == "  - TOP OF THE REPORT - the option code M0004: restarted on William's standing word of November 11, 2026 - an earlier run had switched it off (%s)." % _MSR["was"] for l_ in _TOP(o)) and not any("standing word" in l_ for l_ in _TOP(o2)) and "still probes (since an earlier run)" in o2, (_TOP(o), _TOP(o2)))
 r, o = mdig([qrow], dict(_MG0, off="this run: switched off (MVP_CODE=off)"), prev_m=dict(_MG0))
 check("digest (8.7): William's own MVP_CODE=off is a plain line", not any("M0004" in l_ for l_ in _TOP(o)) and "M0004 switched off for this run by William's MVP_CODE=off" in o, o[-600:])
 r, o = mdig([qrow], dict(_MG0, off="this run: MVP_CODE='stop' is not a value the import knows (off, reset) - no M0004 line added"), prev_m=dict(_MG0))
 check("digest (8.7): an MVP_CODE value the import does not know is at the top, named", any("the option code M0004 is off in this run: this run: MVP_CODE='stop' is not a value the import knows" in l_ for l_ in _TOP(o)), _TOP(o))
 r, o = mdig([qrow], dict(_MG0, notes=["NOTHING TO RESTART - MVP_CODE=reset was ignored (M0004 is not switched off; take the switch out of the routine)"]), prev_m=dict(_MG0))
 check("digest (8.7): an MVP_CODE=reset that had nothing to restart is at the top", any("NOTHING TO RESTART - MVP_CODE=reset was ignored" in l_ for l_ in _TOP(o)), _TOP(o))
-r, o = mdig([dict(qrow, mvp_codes=[], mvp_charge="", mvp_not_stored="0.00")], dict(_MG0, off="x", off_until_reset="x"), prev_m=dict(_MG0, off="x", off_until_reset="x"))
-check("digest: a visit stored without its M0004 line is at the top", any("AdvancedMD stored 1 visit(s) WITHOUT the M0004 line that was sent with it" in l_ for l_ in _TOP(o)), _TOP(o))
+r, o = mdig([dict(qrow, mvp_codes=[], mvp_charge="", mvp_not_stored="0.00")], dict(_MPR), prev_m=dict(_MPR))
+check("digest: a visit stored without its M0004 line is at the top - M0004 goes on probing", any(l_.startswith("  - TOP OF THE REPORT - AdvancedMD stored 1 visit(s) WITHOUT the M0004 line that was sent with it (the visit itself is entered): pat9 vst1 - M0004 goes on probing.") for l_ in _TOP(o)), _TOP(o))
 _MRE = lambda **e: dict({"visit": "1", "pid": "pat9", "charge": "charge78", "code": "M0004", "fee": "0.00", "why": "Pattern 88001: procedure M0004 is not payable", "void_ok": True, "released": True, "at": "x"}, **e)
 r, o = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE()]))
-check("digest (11.6): the M0004 line taken off a held visit that went through - at the top: M0004 OFF until restarted, no second try, it does not count against 1123F; the 1123F block does not report it as its own",
-      any("the routine took the M0004 line charge78 off held visit vst1 (pat9; the hold: Pattern 88001: procedure M0004 is not payable) and the visit went through without it: M0004 is OFF until William restarts it (no second try); this does not count against the 1123F line." in l_ for l_ in _TOP(o))
-      and not any("took the quality line" in l_ for l_ in _TOP(o)), _TOP(o))
+check("digest (11.6; D9): the M0004 line taken off a held visit that went through - at the top: M0004 probes (one M0004 line a run in all until one is billed), and it does not count against 1123F; the 1123F block does not report it as its own",
+      any("the routine took the M0004 line charge78 off held visit vst1 (pat9; the hold: Pattern 88001: procedure M0004 is not payable) and the visit went through without it: M0004 probes: one M0004 line a run in all until one is billed; this does not count against the 1123F line." in l_ for l_ in _TOP(o))
+      and not any("took the quality line" in l_ for l_ in _TOP(o)) and "OFF until William restarts it" not in o, _TOP(o))
 r, o = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE(released=False)])); r2_, o2 = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE(void_ok=False, released=False, note="the void failed: Fault")]))
-check("digest (11.6): ... the visit still held - at the top, its clinician may get M0004 again; a void that failed - at the top, the visit is held WITH that line, William looks",
-      any("but the visit is still held for its own reason" in l_ and "its clinician may get M0004 again" in l_ for l_ in _TOP(o)) and any("the routine could not take the M0004 line off held visit vst1 (pat9: the void failed: Fault)" in l_ for l_ in _TOP(o2)), (_TOP(o), _TOP(o2)))
+r3_, o3 = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE(released=False, resave_ok=False, still_named=True)]))
+check("digest (11.6; D9): ... the visit still held - at the top, its clinician may get M0004 again; a void that failed - at the top: the visit is held WITH that line, no new M0004 line while that is so, every run tries the void and the re-save again; still listed for the edit about the line - every run re-saves the visit again",
+      any("but the visit is still held for its own reason" in l_ and "its clinician may get M0004 again" in l_ for l_ in _TOP(o))
+      and any("the routine could not take the M0004 line off held visit vst1 (pat9: the void failed: Fault) - the visit is held WITH that line. No new M0004 line is added while that is so; every run tries the void and the re-save again." in l_ for l_ in _TOP(o2))
+      and any("the routine took the M0004 line charge78 off held visit vst1 (pat9), but the visit is still listed for the edit about the line (Pattern 88001: procedure M0004 is not payable); the re-save after the void failed - no new M0004 line is added while that is so; every run re-saves the visit again (one re-save should release it)." in l_ for l_ in _TOP(o3))
+      and "William looks" not in "".join(_TOP(o2) + _TOP(o3)) and "switches M0004 off" not in o2 + o3, (_TOP(o), _TOP(o2), _TOP(o3)))
+r, o = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE(void_ok=False, listed=False, retry_of="feed_inspector_20261110T0100Z.json", note="the visit is no longer listed by the Claim Inspector - nothing done")]))
+check("digest (D9): the step's retry found a visit that was held with its M0004 line free again - one plain line, nothing about M0004 at the top",
+      not any("M0004" in l_ for l_ in _TOP(o)) and "  - visit vst1 (pat9), which was held with its M0004 line, is free again (the visit is no longer listed by the Claim Inspector - nothing done) - nothing was done to it; M0004 goes on by itself, probing." in o, (_TOP(o), o[-700:]))
 r, o = mdig([_mrow], _MG0, prev_m=dict(_MG0), insp_=_INS([], [_MRE(**{"with": "1123F"})]))
 check("digest (NH2-1): an M0004 line that came off only with its 1123F line - one plain line (that clinician may get M0004 again), never 'M0004 is OFF'", "the M0004 line charge78 of visit vst1 (pat9) came off together with its 1123F line (M0004 never rides without it) - that clinician may get M0004 again." in o
       and not any("M0004" in l_ for l_ in _TOP(o)), (o[-700:], _TOP(o)))
@@ -2541,12 +2987,13 @@ check("inspector (11.6): a charge recorded as the M0004 line that shows another 
 _ir, _io, _ie = is_run([E_MN], proven=True, row=MROW, ids=M3, mproc=("pcode65119", "0.00"))
 check("inspector (11.6): ... also at $0.00 - a charge recorded as the M0004 line is voided only when its own detail shows the M0004 procedure", _ie == "" and IS["voided"] == [] and _ir["quality_removed"][0]["void_ok"] is False, (_ie, _ir))
 _ir, _io, _ie = is_run([E_Z2], proven=True, row=MROW, ids=M3, mproc=("pcode65119", "0.00"))
-check("inspector (11.6): both lines to come off, and one of them cannot be shown live - NOTHING is voided (not even the line that could be): held with both lines", _ie == "" and IS["voided"] == [] and IS["resaved"] == []
-      and [(e_["code"], e_["void_ok"]) for e_ in _ir["quality_removed"]] == [("1123F", False), ("M0004", False)] and _ir["held"][0].get("quality") is True and _ir["held"][0].get("mvp") is True, (_ie, _ir))
+check("inspector (11.6): both lines to come off, and one of them cannot be shown live - NOTHING is voided (not even the line that could be): held with both lines - also in the retry pass's second try of the same start (11/12/2026), which records its two entries beside the first two", _ie == "" and IS["voided"] == [] and IS["resaved"] == []
+      and [(e_["code"], e_["void_ok"], bool(e_.get("retry_of"))) for e_ in _ir["quality_removed"]] == [("1123F", False, False), ("M0004", False, False), ("1123F", False, True), ("M0004", False, True)]
+      and len(_ir["held"]) == 1 and _ir["held"][0].get("quality") is True and _ir["held"][0].get("mvp") is True, (_ie, _ir))
 _ir, _io, _ie = is_run([E_Z2], proven=True, row=MROW, ids=M3, void_fails="1011")
-check("inspector (11.6): the first void fails - nothing else is tried (the M0004 line is not voided, no re-save): held WITH both lines, both entries void_ok false (the second says it was not tried)",
-      _ie == "" and IS["voided"] == [("pat1", "1011")] and IS["resaved"] == [] and [(e_["code"], e_["void_ok"]) for e_ in _ir["quality_removed"]] == [("1123F", False), ("M0004", False)] and "not tried" in _ir["quality_removed"][1]["note"]
-      and _ir["held"][0].get("quality") is True and _ir["held"][0].get("mvp") is True, (_ie, _ir))
+check("inspector (11.6): the first void fails - nothing else is tried (the M0004 line is not voided, no re-save): held WITH both lines, both entries void_ok false (the second says it was not tried); the retry pass's second try of the same start ends the same way",
+      _ie == "" and IS["voided"] == [("pat1", "1011"), ("pat1", "1011")] and IS["resaved"] == [] and [(e_["code"], e_["void_ok"], bool(e_.get("retry_of"))) for e_ in _ir["quality_removed"]] == [("1123F", False, False), ("M0004", False, False), ("1123F", False, True), ("M0004", False, True)]
+      and "not tried" in _ir["quality_removed"][1]["note"] and "not tried" in _ir["quality_removed"][3]["note"] and len(_ir["held"]) == 1 and _ir["held"][0].get("quality") is True and _ir["held"][0].get("mvp") is True, (_ie, _ir))
 _ir, _io, _ie = is_run([E_MN], proven=True, row=MROW, ids=M3, void_ok=False)
 check("inspector (11.6): the held row says names_mvp when the words name the M0004 line", _ie == "" and _ir["held"][0].get("names_mvp") is True and _ir["held"][0].get("mvp") is True and "names_line" not in _ir["held"][0], (_ie, _ir))
 _ir, _io, _ie = is_run([E_MN], after=[E_DATA], proven=True, row=MROW, ids=M3)
@@ -2562,6 +3009,248 @@ _ir, _io, _ie = is_run([E_MN], proven=True, row=MROW, ids=M3); json.dump(_ir, op
 check("inspector -> import (11.6): the M0004 entry the inspector step writes is what the import reads (quality_files: removed, with its code)", [(e_[1]["code"], e_[1]["charge"]) for e_ in (_F3["removed"].get("T3") or [])] == [("M0004", "charge1012")], _F3["removed"])
 _ins_ns.update(MVP_CODE="M0004", MVP_PCODE="pcode692183")
 check("inspector and import: the same test for which no-charge line the words name (names_lines, every phrase both ways)", all(_ins_ns["names_lines"](w_, "charge7000011", "charge7000012") == ci.names_lines(w_, "charge7000011", "charge7000012") for w_, _r in _NL))
+# 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds") - THE RETRY PASS of the inspector step (specification 2.5), run INSIDE this process with
+# stand-ins, never as a program: the visits the import register's gates list under "stuck" (tried again until free) and under "open_lines" (only looked at), of this batch or an earlier one.
+# Visit N has the charges N0 (its own 99309), N1 (the 1123F line) and N2 (the M0004 line); RT says what the stand-in AdvancedMD shows and records what the step did.
+RT = {}
+QR = lambda r_: (r_ or {}).get("quality_removed") or []; HL = lambda r_: (r_ or {}).get("held") or []      # the step's register as the checks read it (no register = nothing recorded)
+def _rt_detail(cid):
+    cid = re.sub(r"\D", "", str(cid)); vid = cid[:-1]
+    if cid in RT["unread"]: raise RuntimeError("detail read failed")
+    pc, fee = RT["proc"].get(cid, ("pcode65119", "141.00")); bill = '<insbilllist><insbill billeddate="11/12/2026"/></insbilllist>' if cid in RT["billed"] else ""
+    return '<r><patient id="pat%s"/><visit id="vst%s" episode="e1"/><charge id="charge%s" proccode="%s" fee="%s" pos="32" void="%s">%s</charge></r>' % (vid, vid, cid, pc, fee, "1" if cid in RT["void"] else "0", bill)
+def _rt_vc(cid):
+    cid = re.sub(r"\D", "", str(cid)); vid = cid[:-1]; ids_ = RT["vc"].get(vid) or [vid + "0"] + sorted(c_ for c_ in RT["proc"] if c_[:-1] == vid and c_ != vid + "0")
+    r_ = ET.fromstring(_rt_detail(ids_[0])); return r_.find(".//visit"), r_.find(".//patient"), [ET.fromstring(_rt_detail(c_)).find(".//charge") for c_ in ids_ if c_ not in RT["void"]]
+def _rt_post(body, timeout=0):
+    if "getclaiminspectorcharges" in body:      # the listing: call number RT["lists"]; a call named in list_fault is answered with a fault
+        RT["lists"] += 1
+        if RT["lists"] in RT["list_fault"]: return "<r><Fault><description>the listing is not available</description></Fault></r>"
+        return "<r>%s</r>" % "".join('<visit id="vst%s" patientid="pat%s">%s</visit>' % (v_, v_, "".join('<error id="%s" number="%s" name="%s"/>' % (e_["id"], e_["number"], e_["text"]) for e_ in es)) for v_, es in RT["listed"].items() if es)
+    if "bypassclaimedits" in body: RT["bypassed"].append(re.findall(r'claimedit id="([^"]+)"', body)); return "<r><Fault><description>no</description></Fault></r>" if RT["bypass_fault"] else "<r/>"
+    if "updvisitwithnewcharges" in body:
+        v_ = re.search(r'<visit [^>]*\bid="vst(\d+)"', body).group(1); RT["resaved"].append(body)
+        if v_ in RT["resave_fault"]: return "<r><Fault><description>resave not accepted</description></Fault></r>"      # AdvancedMD does not inspect the visit again: it stays listed as it was
+        if v_ in RT["after"]: RT["listed"][v_] = list(RT["after"][v_])      # the visit re-saved: AdvancedMD lists what `after` says for it
+    return "<r/>"
+def _rt_void(pid, cid):
+    cid = re.sub(r"\D", "", str(cid)); RT["voided"].append(cid)
+    if cid in RT["void_raises"]: raise RuntimeError("the void call broke")
+    if cid in RT["void_fails"] or cid in RT["void_fail_once"]: RT["void_fail_once"].discard(cid); return False, "<Fault><description>the charge cannot be voided</description></Fault>"
+    RT["void"].add(cid)
+    if cid in RT["void_cuts"]: raise _RTCut("the process is cut off right after the void")      # November 12, 2026 - fix round 1 (K10)
+    return True, "ok"
+class _RTCut(BaseException): pass      # the step's process is cut off (a killed session): nothing after this moment runs
+def _rt_hist(pid):      # fix round 1 (K11): the chart's history as gettxhistory shows it - the code TEXT in proccode - for the charges RT["hist"] lists for that chart
+    r_ = ET.Element("r")
+    for a_ in RT.get("hist") or []:
+        if re.sub(r"\D", "", str(pid)) == re.sub(r"\D", "", a_.get("pid", "")): ET.SubElement(r_, "charge", {k_: v_ for k_, v_ in a_.items() if k_ != "pid"})
+    return r_
+RT_STAND = {"amd": {"login_cached": lambda *a: None, "msg": lambda action, cls, attrs=None, children="": '<ppmdmsg action="%s">%s</ppmdmsg>' % (action, children), "post": _rt_post},
+            "resave": {"detail": _rt_detail, "visit_charges": _rt_vc, "CHG_FIELDS": ["fee", "pos"], "_extins_xml": lambda vis, h: ""}, "txh": {"fetch": _rt_hist},
+            "dx_primary_fix": {"plan": lambda codes, pc: ("ok", codes), "save_visit_dx": lambda cid, d: ("ok", None), "I10_DCODE": "dcode1"}, "void_tx": {"void_charge": _rt_void}}
+def rt_run(created=(), qgate=None, mgate=None, listed=None, after=None, prev=None, **kw):
+    RT.clear(); RT.update(listed={k_: list(v_) for k_, v_ in (listed or {}).items()}, after=dict(after or {}), voided=[], resaved=[], bypassed=[], lists=0, proc=dict(kw.get("proc") or {}), vc=dict(kw.get("vc") or {}), hist=list(kw.get("hist") or []),
+                          bypass_fault=bool(kw.get("bypass_fault")), **{k_: set(kw.get(k_) or ()) for k_ in ("void", "billed", "unread", "void_fails", "void_fail_once", "void_raises", "resave_fault", "list_fault", "void_cuts")})
+    reg_ = {"created": list(created), "quality_gate": dict({"confirmed": False, "fee": "0.00"}, **(qgate or {}))}
+    if mgate is not None: reg_["mvp_gate"] = mgate
+    json.dump(reg_, open(os.path.join(isd, "registers", "feed_import_T5.json"), "w")); f_ = os.path.join(isd, "registers", "feed_inspector_T5.json")
+    if prev is not None: json.dump(prev, open(f_, "w"))
+    elif os.path.exists(f_): os.remove(f_)
+    try: o_, e_ = run_inside(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py"), RT_STAND, isd, env={"FEED_STAMP": "T5", "FEED_DX_CACHE": os.path.join(isd, "dx.json")})
+    except _RTCut: o_, e_ = "", "cut"      # the process was cut off: what is on disk is all the next run will read
+    res = json.load(open(f_)) if os.path.exists(f_) else None      # None = the step wrote no register
+    if os.path.exists(f_): os.remove(f_)
+    return res, o_, e_
+def ROW_(vid, q=True, m=False):      # a row of this batch's import register for visit vid
+    r_ = {"visit": "vst%s" % vid, "pid": "pat%s" % vid, "charges": ["charge%s0" % vid] + (["charge%s1" % vid] if q else []) + (["charge%s2" % vid] if m else []), "cpts": ["99309"], "dos": "11/10/2026", "fac": "fac32"}
+    if q: r_.update(quality_charge="charge%s1" % vid, quality_codes=["1123F"], quality_fee="0.00")
+    if m: r_.update(mvp_charge="charge%s2" % vid, mvp_codes=["M0004"], mvp_fee="0.00", mvp_prof="prof13")
+    return r_
+def SK(vid, code="1123F", what="the routine could not take the line off", why="Pattern 77002: Claim line requires review before submission", reg="feed_inspector_T4.json", **kw):      # an item of a gate's "stuck" list, as the import writes it
+    return dict({"chart": "pat%s" % vid, "visit": "vst%s" % vid, "charge": "charge%s%s" % (vid, "2" if code == "M0004" else "1"), "own": "charge%s0" % vid, "code": code, "fee": "0.00", "with": "", "why": why, "register": reg, "what": what, "since": reg}, **kw)
+OL = lambda vid, **kw: {k_: v_ for k_, v_ in SK(vid, why="", reg="feed_import_T4.json", **kw).items() if k_ not in ("what", "since")}      # an item of a gate's "open_lines" list
+PR = lambda vid, m=False: dict({"%s1" % vid: (QP, "0.00")}, **({"%s2" % vid: (MP, "0.00")} if m else {}))                                   # what the stand-in stores for the no-charge lines of visit vid
+_NOQ = [ROW_(101, q=False)]      # this batch's own visit carries no line and is not listed: the normal pass has nothing to do
+_PRV0 = {"fixed": [], "bypassed": [], "held": [], "laterality": []}
+_e0 = {"visit": "901", "pid": "pat901", "charge": "charge9011", "code": "1123F", "fee": "0.00", "why": "Pattern 77002: x", "void_ok": True, "released": True, "at": "x"}
+_ir, _io, _ie = rt_run(created=_NOQ, listed={"101": [E_DATA]}, prev=dict(_PRV0, quality_removed=[_e0, "odd"]))
+check("inspector (2.5, point 1): a second start of the step under one stamp KEEPS what the first start recorded about no-charge lines (until 11/12/2026 those entries were lost with the register the second start wrote anew)",
+      _ie == "" and QR(_ir) == [_e0] and len(HL(_ir)) == 1 and RT["voided"] == [], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, after={"201": []}, proc=PR(201))
+check("inspector (2.5, K2c): the retry pass reads the visits stuck held with their line from this batch's gates - a visit of an EARLIER batch whose void had failed: the line is voided now, the visit re-saved on its own first charge and listed again - released. The entry says retry_of (the register that first recorded the visit), "
+      "and the step's register is written although the normal pass listed no visit of this batch (such a run wrote no register until now)",
+      _ie == "" and RT["voided"] == ["2011"] and len(RT["resaved"]) == 1 and 'id="charge2010"' in RT["resaved"][0] and "charge2011" not in RT["resaved"][0] and HL(_ir) == [] and (_ir or {}).get("fixed") == []
+      and [{k_: e_.get(k_) for k_ in ("visit", "pid", "charge", "code", "fee", "void_ok", "resave_ok", "released", "retry_of")} for e_ in QR(_ir)]
+          == [{"visit": "201", "pid": "pat201", "charge": "charge2011", "code": "1123F", "fee": "0.00", "void_ok": True, "resave_ok": True, "released": True, "retry_of": "feed_inspector_T4.json"}]
+      and QR(_ir)[0]["why"].startswith("Pattern 77002") and "still_named" not in QR(_ir)[0] and "listed" not in QR(_ir)[0], (_ie, _ir, RT["voided"], _io[-300:]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={}, proc=PR(201)); _ir2, _io2, _ie2 = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={}, proc=PR(201), void=("2011",))
+check("inspector (2.5 b): a stuck visit that the Claim Inspector no longer lists is FREE - one entry with listed: false, released, retry_of and the note (void_ok = whether the line reads void: no while it is still on the visit, yes when it was voided before); NOTHING is voided or saved",
+      _ie == "" and RT["voided"] == [] and RT["resaved"] == [] and HL(_ir) == [] and len(QR(_ir)) == 1
+      and {k_: QR(_ir)[0].get(k_) for k_ in ("visit", "charge", "code", "listed", "released", "void_ok", "retry_of", "note")}
+          == {"visit": "201", "charge": "charge2011", "code": "1123F", "listed": False, "released": True, "void_ok": False, "retry_of": "feed_inspector_T4.json", "note": "the visit is no longer listed by the Claim Inspector - nothing done"}
+      and _ie2 == "" and [(e_["listed"], e_["void_ok"]) for e_ in QR(_ir2)] == [(False, True)], (_ie, _ir, _ir2))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201, what="the line is off, but the visit is still listed for the edit about it", why="Pattern 88001: Charge amount is zero for procedure 1123F")]}, listed={"201": [E_NAME]}, after={"201": []}, proc=PR(201), void=("2011",))
+check("inspector (2.5 c, d): a stuck visit whose line is void ALREADY (the re-save after the void had failed) - there is nothing to void, and that is no reason to stop: the visit is re-saved again and listed again - released",
+      _ie == "" and RT["voided"] == [] and len(RT["resaved"]) == 1 and [(e_["void_ok"], e_.get("resave_ok"), e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [(True, True, True, "feed_inspector_T4.json")] and HL(_ir) == [], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201, what="the line is off, but the visit is still listed for the edit about it", why="Pattern 88001: Charge amount is zero for procedure 1123F")]}, listed={"201": [E_NAME]}, proc=PR(201), void=("2011",), resave_fault=("201",))
+check("inspector (2.5 d, e): ... the re-save is refused again - the entry says resave_ok false and still_named true (not released), and the visit goes on this batch's held list; the next run re-saves it again",
+      _ie == "" and len(RT["resaved"]) == 1 and [(e_["void_ok"], e_.get("resave_ok"), e_.get("still_named"), e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [(True, False, True, False, "feed_inspector_T4.json")]
+      and [(h_["visit"], h_["pid"]) for h_ in HL(_ir)] == [("201", "pat201")] and "quality" not in HL(_ir)[0], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, proc=PR(201), void_fails=("2011",))
+check("inspector (2.5 c): the void fails AGAIN - the entry says void_ok false with the reason, NO re-save is sent, and the visit goes on this batch's held list with its line ('quality': true); the next run tries again",
+      _ie == "" and RT["voided"] == ["2011"] and RT["resaved"] == [] and [(e_["void_ok"], e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [(False, False, "feed_inspector_T4.json")] and "the void failed" in QR(_ir)[0]["note"]
+      and [(h_["visit"], h_["pid"], h_.get("quality")) for h_ in HL(_ir)] == [("201", "pat201", True)], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, proc={"2011": ("pcode65119", "141.00")})
+check("inspector (2.5 c): a recorded charge that does not show itself as the no-charge line (another procedure, a real amount) is NEVER voided by the retry either: one entry with void_ok false and the reason; nothing else is tried for that visit",
+      _ie == "" and RT["voided"] == [] and RT["resaved"] == [] and [(e_["void_ok"], e_.get("retry_of")) for e_ in QR(_ir)] == [(False, "feed_inspector_T4.json")] and "not voided" in QR(_ir)[0]["note"], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=[ROW_(101)], listed={"101": [E_DATA]}, after={"101": []}, proc=PR(101), void_fail_once=("1011",))
+check("inspector (2.5): a visit of THIS very start that the normal pass could not free (its void failed) is tried once more by the retry pass of the same start - here the second void works: the line is off, the visit re-saved and released. Both tries are on record; the second says retry_of this batch's own inspector register",
+      _ie == "" and RT["voided"] == ["1011", "1011"] and len(RT["resaved"]) == 1 and [(e_["void_ok"], e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [(False, False, None), (True, True, "feed_inspector_T5.json")] and len(HL(_ir)) == 1, (_ie, _ir))
+_e1 = {"visit": "101", "pid": "pat101", "charge": "charge1011", "code": "1123F", "fee": "0.00", "why": "Pattern 77002: x", "void_ok": False, "released": False, "note": "the void failed: x", "at": "x"}
+_ir, _io, _ie = rt_run(created=[ROW_(101)], listed={}, proc=PR(101), prev=dict(_PRV0, quality_removed=[_e1]))
+check("inspector (2.5): a second start under the same stamp tries the visit the FIRST start could not free (its carried entry says stuck) - here the Claim Inspector no longer lists it: free, recorded beside the first start's entry",
+      _ie == "" and [(e_.get("listed"), e_.get("retry_of")) for e_ in QR(_ir)] == [(None, None), (False, "feed_inspector_T5.json")] and RT["voided"] == [] and RT["resaved"] == [], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"confirmed": True}, mgate={"stuck": [SK(201, code="M0004", why="Pattern 88002: procedure M0004 is not payable", **{"with": "charge2011"})]}, listed={"201": [E_MN]}, after={"201": []}, proc=PR(201, m=True))
+check("inspector (2.5, 2.6): the same for a visit stuck with its M0004 line (the mvp_gate's list) - only the M0004 line is voided (the 1123F line stays on the visit and in the re-save), the visit re-saved and released; the entry says code M0004 and retry_of",
+      _ie == "" and RT["voided"] == ["2012"] and len(RT["resaved"]) == 1 and "charge2011" in RT["resaved"][0] and "charge2012" not in RT["resaved"][0]
+      and [(e_["code"], e_["charge"], e_["void_ok"], e_["released"], e_.get("retry_of"), e_.get("with")) for e_ in QR(_ir)] == [("M0004", "charge2012", True, True, "feed_inspector_T4.json", None)], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"confirmed": True, "stuck": [SK(201, **{"with": "charge2012"})]}, mgate={"stuck": [SK(201, code="M0004", **{"with": "charge2011"})]}, listed={"201": [E_Z2]}, after={"201": []}, proc=PR(201, m=True))
+check("inspector (2.5): a visit stuck with BOTH no-charge lines (named by both gates) - both are voided, ONE re-save on the visit's own charge, one entry per line, each with retry_of",
+      _ie == "" and RT["voided"] == ["2011", "2012"] and len(RT["resaved"]) == 1 and [(e_["code"], e_["void_ok"], e_["released"], e_.get("retry_of"), e_.get("with")) for e_ in QR(_ir)]
+          == [("1123F", True, True, "feed_inspector_T4.json", None), ("M0004", True, True, "feed_inspector_T4.json", None)], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"confirmed": True, "stuck": [SK(201, **{"with": "charge2012"})]}, listed={"201": [E_QN]}, after={"201": []}, proc=PR(201, m=True))
+check("inspector (2.5, NH2-1): a visit stuck with its 1123F line that also carries the M0004 line - the M0004 line comes off WITH it (it never rides without the 1123F line), and its entry says so (not M0004's fault)",
+      _ie == "" and RT["voided"] == ["2011", "2012"] and [(e_["code"], e_.get("with"), e_["released"]) for e_ in QR(_ir)] == [("1123F", None, True), ("M0004", "1123F", True)], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={}, proc=PR(201), list_fault=(2,))
+check("inspector (2.5 a): a listing AdvancedMD answers with a fault shows NOTHING - the pass frees nobody on it (read as an empty list it would say 'no visit is listed'): no entry, no register, nothing voided or saved; the next run tries again",
+      _ie == "" and _ir is None and RT["voided"] == [] and RT["resaved"] == [] and "the Claim Inspector listing was not answered - 1 visit(s) not looked at" in _io, (_ie, _ir, _io[-300:]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, after={"201": []}, proc=PR(201), list_fault=(3,))
+check("inspector (2.5 e): the listing AFTER the re-save is a fault - the visit is not shown free: the entry says void_ok true, released false, still_named true and 'the listing after the re-save failed'; the next run lists it again",
+      _ie == "" and RT["voided"] == ["2011"] and len(RT["resaved"]) == 1 and [(e_["void_ok"], e_.get("resave_ok"), e_["released"], e_.get("still_named"), e_.get("note"), e_.get("retry_of")) for e_ in QR(_ir)]
+          == [(True, True, False, True, "the listing after the re-save failed", "feed_inspector_T4.json")], (_ie, _ir))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_ADV]}, proc=PR(201)); _b1 = list(RT["bypassed"]); _ir2, _io2, _ie2 = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_ADV]}, proc=PR(201), bypass_fault=True)
+check("inspector (2.5 b2): a stuck visit listed with advisories ONLY - they are bypassed as the step always does and the visit is free: nothing voided, nothing saved (the hold is gone, so the line stays); the entry is the 'free' one with its own note. When the bypass itself is answered with a fault, no entry is written and the next run tries again",
+      _ie == "" and _b1 == [["e4"]] and [(e_.get("listed"), e_.get("released"), e_.get("note"), e_.get("retry_of")) for e_ in QR(_ir)] == [(False, True, "only advisories remained - bypassed, nothing voided", "feed_inspector_T4.json")]
+      and _ie2 == "" and _ir2 is None and RT["voided"] == [] and RT["resaved"] == [], (_ie, _ir, _b1, _ir2))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, proc=PR(201), billed=("2010",)); _v1, _s1 = list(RT["voided"]), list(RT["resaved"])
+_ir2, _io2, _ie2 = rt_run(created=_NOQ, qgate={"stuck": [SK(201)]}, listed={"201": [E_DATA]}, proc=PR(201), unread=("2010",))
+check("inspector (2.5 c): a stuck visit still listed with a data error whose own first charge reads BILLED has gone out - a claim that was sent is never changed: nothing voided, nothing saved, and the entry is the 'free' one with the note 'the visit was billed - nothing done'. "
+      "When that charge cannot be read, nothing is done and nothing recorded for the visit in this run - the next run tries again",
+      _ie == "" and _v1 == [] and _s1 == [] and [(e_.get("listed"), e_.get("released"), e_.get("note")) for e_ in QR(_ir)] == [(False, True, "the visit was billed - nothing done")]
+      and _ie2 == "" and _ir2 is None and RT["voided"] == [] and RT["resaved"] == [], (_ie, _ir, _ir2))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": [SK(201), SK(301)]}, listed={"201": [E_DATA], "301": [E_DATA]}, after={"201": [], "301": []}, proc=dict(PR(201), **PR(301)), void_raises=("2011",))
+check("inspector (2.5): an error while ONE stuck visit is tried is caught - what was recorded for it stays (its entry, void_ok false) - and the pass goes on with the next visit, which is freed",
+      _ie == "" and RT["voided"] == ["2011", "3011"] and [(e_["visit"], e_["void_ok"], e_["released"]) for e_ in QR(_ir)] == [("201", False, False), ("301", True, True)] and "ERR retry 201" in _io, (_ie, _ir, _io[-400:]))
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"stuck": ["odd", {"visit": 5}, {"visit": "vst201", "charge": "charge2011", "chart": 7}, None], "open_lines": "x"}, mgate="odd", listed={"201": [E_DATA]}, proc=PR(201))
+check("inspector (2.5): odd items in the gates' lists are passed over - never an error, nothing done, no register", _ie == "" and _ir is None and RT["voided"] == [] and RT["resaved"] == [], (_ie, _ir))
+# open point 11 (decided YES): a visit of an EARLIER batch whose line is not decided (the gates' "open_lines") and that no inspector step ever looked at
+_ir, _io, _ie = rt_run(created=_NOQ, qgate={"open_lines": [OL(201)]}, listed={"201": [E_DATA]}, after={"201": []}, proc=PR(201))
+check("inspector (open point 11): a visit of an EARLIER batch whose line is not decided and that the Claim Inspector lists with a data error - the line comes off by the same sequence (void, re-save on its own charge, list again) and the visit goes out; the entry says retry_of = the import register of the line",
+      _ie == "" and RT["voided"] == ["2011"] and len(RT["resaved"]) == 1 and [(e_["visit"], e_["pid"], e_["charge"], e_["void_ok"], e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [("201", "pat201", "charge2011", True, True, "feed_import_T4.json")], (_ie, _ir))
+for _lbl_, _kw_ in (("is NOT listed - it simply waits for its claim run", dict(listed={})), ("is listed with advisories only (nothing is bypassed for it either)", dict(listed={"201": [E_ADV]})),
+                    ("was billed (a claim that was sent is never changed)", dict(listed={"201": [E_DATA]}, billed=("2010",))), ("is held, after proof, for words that do not name the line (the normal pass's own test)", dict(listed={"201": [E_DATA]}, qgate={"confirmed": True, "open_lines": [OL(201)]})),
+                    ("names no own first charge in its item", dict(listed={"201": [E_DATA]}, qgate={"open_lines": [OL(201, own="")]})), ("is listed, but the listing is answered with a fault", dict(listed={"201": [E_DATA]}, list_fault=(2,)))):
+    _ir, _io, _ie = rt_run(created=_NOQ, **dict(dict(qgate={"open_lines": [OL(201)]}, proc=PR(201)), **_kw_))
+    check("inspector (open point 11): ... such a visit that %s is left alone - nothing voided, nothing saved, nothing bypassed, no entry, no register" % _lbl_, _ie == "" and _ir is None and RT["voided"] == [] and RT["resaved"] == [] and RT["bypassed"] == [], (_ie, _ir, _io[-300:]))
+_ir, _io, _ie = rt_run(created=[ROW_(101)], qgate={"open_lines": [OL(101)]}, listed={"101": [E_DATA]}, after={"101": []}, proc=PR(101))
+check("inspector (open point 11): this batch's OWN visits are the normal pass's - an open_lines item for one of them adds nothing: one void, one entry, without retry_of", _ie == "" and RT["voided"] == ["1011"] and [(e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [(True, None)], (_ie, _ir))
+# the whole circle: the import's gate lists the stuck visit -> the step's retry pass frees it -> the next import reads the entry
+world(); state([R1], files=REM(void_ok=False, released=False)); _g = ci.quality_gate()
+_ir, _io, _ie = rt_run(created=_NOQ, qgate=_g, listed={"1": [E_DATA]}, after={"1": []}, proc={"12": (QP, "0.00")}, vc={"1": ["11", "12"]})
+_fr = {"removed": dict(REM(void_ok=False, released=False)["removed"], **{"20261112T1240Z": [("feed_inspector_20261112T1240Z.json", e_) for e_ in ((_ir or {}).get("quality_removed") or [])]})}
+world(); s = state([R1, (RN("20261112T1240Z"), {"created": []})], files=_fr)
+check("import -> inspector -> import (K2c, whole circle): the gate the import writes for a visit whose void failed is what the step's retry pass reads (visit, chart, line, own first charge); the pass voids the line and re-saves the visit on its own charge, and the entry it writes is what the next import reads: "
+      "the visit is no longer stuck, the code is not paused, the line is void, that patient is not tried again this year, and the code probes at one cent with ONE line - nobody restarted anything",
+      _ie == "" and [i_["visit"] for i_ in _g["stuck"]] == ["vst1"] and RT["voided"] == ["12"] and len(RT["resaved"]) == 1 and 'id="charge11"' in RT["resaved"][0] and "charge12" not in RT["resaved"][0]
+      and [(e_["visit"], e_["pid"], e_["charge"], e_["void_ok"], e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [("1", "pat7001", "charge12", True, True, "feed_inspector_20261111T1240Z.json")]
+      and s["stuck"] == [] and s["paused"] == "" and s["off"] == "" and s["off_until_reset"] == "" and s["void_lines"] == ["charge12"] and ("pat7001", "2026") in s["refused"] and s["fee"] == "0.01" and s["probe_kind"] == "claim_check" and s["probe_tries"] == 2 and s["budget"] == 1, (_ie, _ir, s))
+# November 12, 2026 - fix round 1 (the lead's decision K10): THE ROUTINE'S OWN VOID IS NEVER LOST - the step writes its register BEFORE the first void, so a process cut right after the void leaves the entry on disk saying void_ok false
+_ir, _io, _ie = rt_run(created=[ROW_(1)], listed={"1": [E_DATA]}, proc={"11": (QP, "0.00")}, void_cuts={"11"})
+check("inspector (K10, fix round 1): the normal pass is cut right after the void of a held visit's line - the step's register is already on disk with that entry saying void_ok false (written before the void), so the next import knows the visit is stuck",
+      _ie == "cut" and RT["voided"] == ["11"] and RT["resaved"] == [] and [(e_["visit"], e_["charge"], e_["void_ok"], e_["released"]) for e_ in QR(_ir)] == [("1", "charge11", False, False)], (_ie, _ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [SK(5)]}, listed={"5": [E_DATA]}, proc={"51": (QP, "0.00")}, void_cuts={"51"})
+check("inspector (K10, fix round 1): the retry pass is cut right after its void - on disk the retry entry says void_ok false and resave_ok false (written before the void), so the visit stays stuck and the next run re-saves it",
+      _ie == "cut" and RT["voided"] == ["51"] and [(e_["visit"], e_["void_ok"], e_.get("resave_ok"), e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [("5", False, False, False, "feed_inspector_T4.json")], (_ie, _ir))
+_e10 = {"visit": "1", "pid": "pat7001", "charge": "charge12", "code": "1123F", "fee": "0.00", "why": "Pattern 77002: review", "void_ok": False, "released": False, "at": "x"}      # the entry such a cut leaves on disk
+world(c12=VOID); s = state([R1], files={"removed": {"20261111T1240Z": [("feed_inspector_20261111T1240Z.json", _e10)]}}); s0 = state([R1])
+check("import (K10, fix round 1): the line reads void while its visit is still there, and the routine's own entry (void_ok false - the cut came after the void) is on record - the routine took it off, not a person: the visit is STUCK "
+      "(paused, listed for the retry pass), that patient is not marked as a person's decision, the line is not a taken line; WITHOUT any entry of the routine's the same void line is a person's decision, as before (K2f)",
+      [x_["visit"] for x_ in s["stuck"]] == ["vst1"] and s["paused"].startswith("paused this run: visit vst1 (chart pat7001) may still be held with its quality line - the routine's last try was cut off before it ended; this run's step looks again") and s["budget"] == 0 and s["taken_lines"] == [] and ("pat7001", "2026") not in s["refused"]
+      and any("the routine took it off, not a person" in n_ for n_ in s["notes"]) and not any("a person decided" in n_ for n_ in s["notes"])
+      and s0["taken_lines"] == ["charge12"] and ("pat7001", "2026") in s0["refused"] and any("a person decided" in n_ for n_ in s0["notes"]), (s, s0["taken_lines"]))
+# November 12, 2026 - fix round 1 (the lead's decision K11): A VISIT OF A FAULT RUN that the Claim Inspector holds is a stuck visit too - the retry pass looks at it in every run
+FK = lambda vid, **kw: dict({"chart": "pat%s" % vid, "visit": "vst%s" % vid, "charge": "", "own": "", "code": "1123F", "fee": "0.00", "with": "", "dos": "11/10/2026", "fault": True, "why": "provisional: the call that carries the quality line was sent",
+                             "register": "feed_import_T4.json", "what": "the run was cut while the call that carried the line was out - nobody has seen yet whether the Claim Inspector holds it", "since": "feed_import_T4.json"}, **kw)      # a gate's "stuck" item for a visit of a fault run, as the import writes it
+HIST6 = [{"pid": "pat6", "id": "charge60", "proccode": "99309", "dos": "11/10/2026", "fee": "141.00", "void": "0"}, {"pid": "pat6", "id": "charge61", "proccode": "1123F", "dos": "11/10/2026", "fee": "0.00", "void": "0"}]
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_DATA]}, after={"6": []}, proc={"61": (QP, "0.00")}, hist=HIST6)
+check("inspector (K11, fix round 1): a visit of a fault run (its line's charge number not known) that the Claim Inspector holds with a data error - the step finds its live 1123F line on THAT visit (chart history, then the line's own detail: procedure, at most one cent, this visit), "
+      "voids it, re-saves the visit on its own charge, and the visit goes out; the entry says fault true, the charge it found and retry_of; no other charge is touched",
+      _ie == "" and RT["voided"] == ["61"] and len(RT["resaved"]) == 1 and 'id="charge60"' in RT["resaved"][0] and "charge61" not in RT["resaved"][0]
+      and [(e_["visit"], e_["charge"], e_.get("fault"), e_["void_ok"], e_["released"], e_.get("retry_of")) for e_ in QR(_ir)] == [("6", "charge61", True, True, True, "feed_import_T4.json")], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={}, proc={"61": (QP, "0.00")}, hist=HIST6)
+check("inspector (K11): ... not listed by the Claim Inspector = free: one entry (listed false, fault true), nothing voided or saved",
+      _ie == "" and RT["voided"] == [] and RT["resaved"] == [] and [(e_["visit"], e_.get("listed"), e_.get("fault"), e_["void_ok"]) for e_ in QR(_ir)] == [("6", False, True, False)], (_ie, _ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_DATA]}, proc={"61": (QP, "0.00")}, hist=HIST6[:1])
+check("inspector (K11; K15, fix round 2): ... held with a data error and no live 1123F line of that visit in the chart's history: nothing is voided - the entry says so (void_ok false, own_reason true: held for its own reason) and the visit stays for a person - it does not pause the code",
+      _ie == "" and RT["voided"] == [] and RT["resaved"] == [] and [(e_["visit"], e_.get("fault"), e_["void_ok"], e_.get("own_reason")) for e_ in QR(_ir)] == [("6", True, False, True)]
+      and QR(_ir)[0].get("note") == "held for its own reason; no 1123F line is on it - a person fixes the visit", (_ie, _ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_DATA]}, proc={"71": (QP, "0.00")}, hist=HIST6[:1] + [{"pid": "pat6", "id": "charge71", "proccode": "1123F", "dos": "11/10/2026", "fee": "0.00", "void": "0"}])
+check("inspector (K11): ... never a line of ANOTHER visit: a live 1123F line of the same chart and date whose own detail names another visit is left alone - for a person",
+      _ie == "" and RT["voided"] == [] and [(e_.get("fault"), e_["void_ok"]) for e_ in QR(_ir)] == [(True, False)], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)], "confirmed": True}, listed={"6": [E_DATA]}, proc={"61": (QP, "0.00")}, hist=HIST6)
+check("inspector (K11): ... after the proof, a hold whose words name no no-charge line: the line is left alone (the normal pass's own test) - the entry says so and the visit stays for a person",
+      _ie == "" and RT["voided"] == [] and [(e_.get("fault"), e_["void_ok"]) for e_ in QR(_ir)] == [(True, False)] and "after the proof" in QR(_ir)[0].get("note", ""), (_ie, _ir))
+# November 12, 2026 - fix round 2 (the lead's decisions K15-K17; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds")
+check("inspector (K15, fix round 2): ... that after-proof entry says own_reason true - the visit is held for its own reason, not because of this code (the import does not pause for it)",
+      QR(_ir)[0].get("own_reason") is True and QR(_ir)[0].get("note", "").startswith("held for its own reason"), QR(_ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_DATA]}, proc={"61": (QP, "0.00")}, hist=HIST6, unread={"61"})
+check("inspector (K16, fix round 2): a fault visit held with a data error whose 1123F line cannot be read - nothing is voided, and an entry SAYS so (looked false, void_ok false, the reason) so the state line can say its line could not be looked for",
+      _ie == "" and RT["voided"] == [] and [(e_["visit"], e_.get("fault"), e_["void_ok"], e_.get("looked")) for e_ in QR(_ir)] == [("6", True, False, False)]
+      and QR(_ir)[0].get("note", "").startswith("its line could not be looked for: charge 61 could not be read"), (_ie, _ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_ADV]}, proc={"61": (QP, "0.00")}, hist=HIST6)
+check("inspector (K11; K17, fix round 2): a fault visit listed with advisories only - they are bypassed as always, nothing voided, and ONE entry says it is free (listed false, fault true)",
+      _ie == "" and RT["voided"] == [] and [(e_["visit"], e_.get("listed"), e_.get("fault"), e_.get("note")) for e_ in QR(_ir)] == [("6", False, True, "only advisories remained - bypassed, nothing voided")], (_ie, _ir))
+_ir, _io, _ie = rt_run(qgate={"stuck": [FK(6)]}, listed={"6": [E_DATA]}, after={"6": []}, proc={"61": (QP, "0.00"), "62": (MP, "0.00")}, hist=HIST6)
+check("inspector (K11; K17, fix round 2): a fault visit that also carries an M0004 line - the M0004 line comes off with its 1123F line (M0004 never rides without it); two entries, both fault true",
+      _ie == "" and sorted(RT["voided"]) == ["61", "62"] and sorted((e_["code"], e_["charge"], e_.get("fault"), e_["void_ok"]) for e_ in QR(_ir)) == [("1123F", "charge61", True, True), ("M0004", "charge62", True, True)], (_ie, _ir, RT["voided"]))
+_ir, _io, _ie = rt_run(qgate={"stuck": [SK(5)]}, listed={"5": [E_DATA]}, after={"5": []}, proc={"51": (QP, "0.00")}, void={"51"})
+check("inspector (K16, fix round 2): the retry of a stuck visit whose line reads void already (a cut came after the void) - nothing is voided again, the visit is re-saved and goes out; the entry says was_void true (the digest says the line was found off)",
+      _ie == "" and RT["voided"] == [] and len(RT["resaved"]) == 1 and [(e_["visit"], e_["void_ok"], e_.get("was_void"), e_["released"]) for e_ in QR(_ir)] == [("5", True, True, True)], (_ie, _ir))
+world()
+s = state([_F70], files=FREE70(released=False, listed=None, own_reason=True, note="held for its own reason; no 1123F line is on it - a person fixes the visit"))
+check("refusals (K15, fix round 2): the step found the fault visit held for its own reason (no 1123F line on it) - it does NOT pause the code: it stays listed under 'stuck' (own true, so every run's step looks again) and its patient stays marked; the code probes on",
+      s["paused"] == "" and s["off"] == "" and s["budget"] == 1 and [(x_["visit"], x_.get("fault"), x_.get("own"), x_["what"]) for x_ in s["stuck"]] == [("vst70", True, True, "held for its own reason; no 1123F line is on it - a person fixes the visit")]
+      and ("pat7009", "2026") in s["done"] and s["probe_kind"] == "fault", s)
+s = state([_F70], files=FREE70(released=False, listed=None, own_reason=True, note="held for its own reason - after the proof its words name no no-charge line, so the line stays; a person fixes the visit"))
+check("refusals (K15): ... the same after the proof when the hold's words name no line - no pause, listed for a person", s["paused"] == "" and s["budget"] == 1 and [x_.get("own") for x_ in s["stuck"]] == [True], s)
+s = state([_F70], files=FREE70(released=False, listed=None, looked=False, note="its line could not be looked for: the chart's history could not be read (RuntimeError)"))
+check("refusals (K16, fix round 2): ... the step could not look for its line - the visit is held and may carry it: paused, and the state says its line could not be looked for",
+      s["budget"] == 0 and [(x_["visit"], x_.get("own")) for x_ in s["stuck"]] == [("vst70", False)] and s["stuck"][0]["what"] == "the Claim Inspector holds it and its line could not be looked for: the chart's history could not be read (RuntimeError)"
+      and s["paused"].startswith("paused this run: visit vst70 (chart pat7009) came from a fault run - the Claim Inspector holds it and its line could not be looked for"), s)
+s = state([_F70], files=FREE70(charge="charge701", released=False, listed=None, note=""))
+check("refusals (K16, fix round 2): ... an entry with void_ok false and NO note (written before a void that never reported back) - the state says the routine's last try was cut off and this run's step looks again; paused",
+      s["budget"] == 0 and s["stuck"][0]["what"] == "the routine's last try was cut off before it ended; this run's step looks again" and s["stuck"][0]["charge"] == "charge701", s)
+s = state([_F70], files=FREE70(charge="charge701", void_ok=True, released=False, listed=None, still_named=True, resave_ok=True, note=""))
+check("refusals (K11; K17, fix round 2): ... the line came off but the visit is still listed for the edit about it - it stays STUCK (paused): never read as free while the claim check holds it for the line",
+      s["budget"] == 0 and [(x_["visit"], x_["what"]) for x_ in s["stuck"]] == [("vst70", "the line is off, but the visit is still listed for the edit about it")] and s["paused"].startswith("paused this run: visit vst70"), s)
+_eC = {"visit": "vst1", "pid": "pat7001", "charge": "charge12", "fee": "0.00", "why": "Pattern 77002: Claim line requires review", "void_ok": False, "released": False, "at": "x"}
+_eF = dict(_eC, listed=False, released=True, retry_of="feed_inspector_20261111T1240Z.json", note="the visit is no longer listed by the Claim Inspector - nothing done")
+world(); s = state([R1], files={"removed": {"20261111T1240Z": [("feed_inspector_20261111T1240Z.json", _eC)]}})
+s2 = state([R1], files={"removed": {"20261111T1240Z": [("feed_inspector_20261111T1240Z.json", _eC), ("feed_inspector_20261112T1240Z.json", _eF)]}})
+check("ledger (K16, fix round 2): an entry the step wrote before a void that never reported back (void_ok false, no note) - the visit MAY still be held with its line: paused, and the words say the routine's last try was cut off (never 'could not take the line off')",
+      s["budget"] == 0 and [(x_["visit"], x_["what"]) for x_ in s["stuck"]] == [("vst1", "the routine's last try was cut off before it ended; this run's step looks again")]
+      and s["paused"].startswith("paused this run: visit vst1 (chart pat7001) may still be held with its quality line - the routine's last try was cut off") and "cut off before it ended" in s["probe"] and "could not take" not in s["probe"], s)
+check("ledger (K16, fix round 2): ... once a newer entry says the visit is free, the cause that cut entry began is not left behind: no pause, and the probe no longer says the try was cut off",
+      s2["stuck"] == [] and s2["paused"] == "" and "cut off" not in s2["probe"] and s2["probe"].startswith("visit vst1 was held with its quality line until the routine could free it"), s2)
+_NXu = (_NX[0], json.loads(json.dumps(_NX[1]))); _NXu[1]["quality_gate"]["left_off_on"] = {"charge12": {"on": "x", "billed": "y"}}
+_rd0 = RUN_DAY[0]; world(c11=["11/11/2026"], c22=BILLED); RUN_DAY[0] = _dt.date(2026, 12, 30); s = state([R1, _NXu]); RUN_DAY[0] = _rd0
+check("ledger (K12; K17, fix round 2): a left-off line whose dates cannot be read - not shown that 30 days have passed, so its patient gets no second line (once per patient and year)", ("pat7001", "2026") in s["done"], s["done"])
+_R1f = (RN("20261111T1240Z"), {"created": [dict(A_, feed_id="f7001"), B_, C_], "failed": [], "skipped": []})
+world(c11=["11/11/2026"], c22=BILLED); RUN_DAY[0] = _dt.date(2026, 11, 20); s = state([_R1f]); RUN_DAY[0] = _rd0
+check("ledger (K12; K17, fix round 2): ... the block holds by the feed's own patient id too - the same feed patient on a second chart gets no line while the left-off line may still be billed",
+      s["left_off_lines"] == ["charge12"] and ("feed:f7001", "2026") in s["done"], s["done"])
+BILLS.clear(); PROC.clear(); DETAILS.clear(); qreset()      # the stand-in chart as the checks below expect it
 # 11.6: the insurance check with the M0004 line beside the 1123F line (fast_set_insorder, run here with stand-ins)
 _mvq = {"visit": "vst1", "pid": "pat1", "charges": ["charge10", "charge11", "charge12"], "quality_charge": "charge11", "quality_codes": ["1123F"], "quality_fee": "0.00", "mvp_charge": "charge12", "mvp_codes": ["M0004"], "mvp_fee": "0.00"}
 _P3 = {"10": ("pcode65119", "141.00"), "11": ("pcode65441", "0.00"), "12": (MP, "0.00")}; _P2 = dict(VQ["proc"])
@@ -2590,16 +3279,21 @@ check("insurance check step (8.6): refused with and without the lines - HOLD, an
       _ve == "" and _vr and _vr["decision"] == "HOLD" and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11 and the M0004 line charge12: resave FAULT") for h_ in _vr["hold"]), (_ve, _vr))
 VQ.update(proc=_P2, text="Charge amount is zero")
 # the words (8, 11.6): the owner's words, the whole rule, the switches; the look-up; the mirror markers
-check("rulebook (section 8): the owner's words for M0004 (in the procedure list as pcode692183 'QUAL CARE NEUROLOGIC CND MVP', \"use it\") and the whole rule in plain words - when it rides, its ledger, refusals, held visits, Medicare's answer, December, the switches",
+check("rulebook (section 8; 5.1 R6, R7): the owner's words for M0004 (in the procedure list as pcode692183 'QUAL CARE NEUROLOGIC CND MVP', \"use it\") and the whole rule in plain words - when it rides, its ledger, refusals, held visits, Medicare's answer, December, the switches; since 11/12/2026 M0004 never switches itself off either: it probes",
       all(x_ in _qrb for x_ in ('William 11/10/2026, about M0004 - it is in AdvancedMD\'s procedure list as procedure id pcode692183, "QUAL CARE NEUROLOGIC CND MVP": "use it".', "THE BACK END ADDS M0004: ONE no-charge M0004 line per clinician per calendar year",
-          "only once the 1123F pilot is proven", "never on a hospital visit", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "does not count against 1123F unless the 1123F line was taken off with it",
-          "Medicare's own answer is read per clinician", "the year ends December 31", "MVP_CODE=reset", "MVP_CODE=off", "a restart of 1123F does not restart it")), [x_ for x_ in ("THE BACK END ADDS M0004", "MVP_CODE=reset") if x_ not in _qrb])
+          "only once the 1123F pilot is proven", "never on a hospital visit", "- after a second left-off line M0004 probes;", "taken that way, M0004 probes;", "does not count against 1123F unless the 1123F line was taken off with it",
+          "that M0004 line is just void - nothing follows for M0004, and its clinician may get M0004 again", "(another code text pauses M0004 while AdvancedMD shows it)",
+          "an M0004 line taken off a visit that then went through makes M0004 probe and does not count against 1123F unless the 1123F line was taken off with it; a visit stored without its M0004 line or an insurance check unable to set such a visit's order makes it probe too; a void that fails leaves that visit stuck with its M0004 line - no new M0004 line while that is so, and every run tries the void and the re-save again.",
+          "M0004 NEVER SWITCHES ITSELF OFF EITHER (William 11/11/2026, as above; in force since November 12, 2026): where it used to go off it probes - ONE M0004 line a run in all, none while an M0004 line is not decided, until an M0004 line is billed; then each clinician who has none gets one as before.",
+          "MVP_CODE=reset has nothing left to restart and the log says so", "QUALITY_CODE=off or stop stops M0004 too, since it never rides without the 1123F line",
+          "Medicare's own answer is read per clinician", "the year ends December 31", "MVP_CODE=reset", "MVP_CODE=off")), [x_ for x_ in ("THE BACK END ADDS M0004", "MVP_CODE=reset", "M0004 NEVER SWITCHES ITSELF OFF EITHER", "taken that way, M0004 probes;") if x_ not in _qrb])
 check("runbook (section 8): the M0004 paragraph with the owner's words, the switches (off in front of both commands, reset on the ingest only), the December line, and the QUALITY M0004 grep - in the section and in step (f)",
       all(x_ in _qrun.replace("\n", " ") for x_ in ('THE OPTION CODE M0004 - William 11/10/2026: M0004 is in AdvancedMD\'s procedure list (procedure id pcode692183, "QUAL CARE NEUROLOGIC CND MVP") and "use it".', "ONE no-charge M0004 line per clinician per year",
           "`MVP_CODE=off` in front of both commands", "`MVP_CODE=reset` (on the ingest command only)", "the year ends December 31", "grep -h '^QUALITY M0004' logs/claimocity_<stamp>_*.log")) and "grep -h '^QUALITY M0004'" in step[:step.index("## Place of service")]
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
-check("mirror.py (8.6, 11.6; round 7): the inspector's marker is a sentence only the version that knows the M0004 line has; since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines", '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' in mir and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in mir
+check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
+      '"claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line"' in mir and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in mir
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 
 # ---- 6b2. the confirm reviews (11/10/2026 evening): the words of their fixes, and the privacy gate's tree mode ------------------------------------------
@@ -2610,11 +3304,12 @@ check("runbook (W-6): the commit of the import register while a pilot round is o
 check("runbook and rulebook (W-7): William's exception list lives on main, every run copies it over the workspace copy before the ingest (step c), and step (e) carries it",
       "cp -p /home/claude/effinger-billing-backend/practices/ehpa/registers/quality_exceptions.json /home/claude/unbilled/registers/" in _para and "William's quality_exceptions.json -> practices/ehpa/registers/ on main" in _para
       and "WILLIAM'S EXCEPTION LIST (the patients who never get the automatic line - rules.md) lives ON MAIN" in _qrun and "whose home is main (practices/ehpa/registers/quality_exceptions.json" in _qrb)
-check("runbook (W-1): the left-off paragraph promises no line while the code is OFF, and only a visit of the same year", "a later eligible visit of the same year carries the code while the code is on" in _qrun.replace("\n", " ") and "its patient gets the code with a later visit" not in _qrun)
+check("runbook (W-1): the left-off paragraph promises no line while William has stopped the code, and only a visit of the same year", "a later eligible visit of the same year carries the code while the code is on" in _qrun.replace("\n", " ") and "its patient gets the code with a later visit" not in _qrun
+      and "(while William has stopped it, no line is added before his restart)" in _qrun.replace("\n", " "))
 check("rulebook (W-5): 'NEVER a reason to hold, edit, resend or bypass' is said of a person or a routine acting by hand - the inspector step and the insurance check do their own part (HELD VISITS)",
       "NEVER a reason for a person or a routine to hold, edit, resend or bypass a visit by hand - what the inspector step and the insurance check do with the line on a held visit (HELD VISITS below) is their own, and nothing more." in _qrb and "NEVER a reason to hold, edit, resend or bypass a visit." not in _qrb)
 check("lessons (W-4, M3's fifth place): no lesson line says N620 is 'Medicare's acceptance'; the older line says what N620 shows", not any("is Medicare's acceptance" in l_ for l_ in _sl) and any("shows Medicare received a code valid for the year (not that the measure is met" in l_ for l_ in _sl))
-check("rulebook and runbook (NH2-1, NH2-2): words that name 1123F alone take BOTH no-charge lines off; a visit still listed for the edit about the line after the void switches the code off",
+check("rulebook and runbook (NH2-1, NH2-2): words that name 1123F alone take BOTH no-charge lines off; a visit still listed for the edit about the line after the void is stuck - no new line in that run, and every run tries again (11/12/2026; before, the code switched off)",
       "and also when it names 1123F alone (M0004 never rides without the 1123F line" in _qrb and "also when the edit names 1123F alone, because M0004 never rides without the 1123F line" in _qrun.replace("\n", " ")
       and "unless it is still listed for the edit about the line" in _qrb and "unless it is still listed for the edit about the line" in _qrun.replace("\n", " "))
 _gate = os.path.join(ROOT, "tools", "mirror", "phi_gate.py")

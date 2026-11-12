@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-12T05:42:56Z",
+ "at": "2026-11-12T05:36:00Z",
+ "changed": 0,
+ "checked": 8,
+ "commit": "e221be9",
+ "date": "2026-11-12",
+ "dollars": 0,
+ "done": "No AdvancedMD change needed; the ERA engine step (run_all.py --steps era) was refused by the permission system, ERA Center stood at 0 checks after the 05:19Z engine run",
+ "era_posted": 0.0,
+ "finished": "2026-11-12T05:42:56Z",
+ "flagged": 0,
+ "kind": "nightly cascade",
+ "lookups": 6,
+ "note": "8 visit-and-plan pairs checked (6 new Stedi lookups: 5 plain Medicare, 1 CHP eligibility), 0 flagged; void rules 1 open, 0 voided; cred check nothing new",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-12T0536Z.json",
+ "stamp": "2026-11-12T0536Z",
+ "stedi_cost": 1.8,
+ "writeoffs": 0.0
+}
