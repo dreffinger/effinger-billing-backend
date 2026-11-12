@@ -1,19 +1,26 @@
 // PLAIN ENGLISH: the ehpa applications, a Neon Function next to the practice's Postgres. It serves ONE page ("/", no data in
-// it), the browser script (/app.js), and JSON (/api/*): the dashboard views read from ehpa.* (views.ts) and the Universal
-// Practice Optimization bundles read from upo.* (upo.ts). Every /api request must carry a Neon Auth JWT (Authorization: Bearer)
-// that verifies against the branch's JWKS AND belong to an email in ALLOWED_EMAILS; anything else is 401/403 before a query
-// runs. Each allowed request is written to ops.app_access_log (who, what, when, status) - the access trail HIPAA asks for.
-// The database role is the one Neon injects (DATABASE_URL, pooled); the code SELECTs from ehpa.*/ops.*/upo.*, INSERTs into
-// ops.app_access_log, and UPDATEs one thing: the status and note of a work-list row (upo.ts). The function's native URL is
-// public by design; auth is the gate.
+// it), two browser scripts (/theme.js - the remembered color scheme, applied before the first paint - and /app.js), and JSON
+// (/api/*): the dashboard views read from ehpa.* (views.ts), the Practice Database page's views read from ehpa.*/ops.*/raw.*
+// (pdb.ts), the CCM notes read from ccm.* (ccm.ts), the Universal Practice Optimization bundles read from upo.* (upo.ts), and
+// the header buttons (links.ts). Every /api request must carry a Neon Auth JWT (Authorization: Bearer) that verifies against the
+// branch's JWKS AND belong to an email in ALLOWED_EMAILS whose owner confirmed it; anything else is 401/403 before a query runs.
+// Each allowed request is written to ops.app_access_log (who, what, when, status) - the access trail HIPAA asks for.
+// The database role is the one Neon injects (DATABASE_URL, pooled); the code SELECTs from ehpa.*/ops.*/raw.*/ccm.*/upo.*,
+// INSERTs into ops.app_access_log, and UPDATEs one thing: the status and note of a work-list row (upo.ts). The CCM routes carry
+// patient names and birth dates, so they exist only behind that gate; nothing a patient owns is in "/", /theme.js or /app.js.
+// The function's native URL is public by design; auth is the gate.
 import { Hono } from "hono";
 import { Pool } from "pg";
 import { attachDatabasePool, waitUntil } from "@neon/functions";
 import { createRemoteJWKSet, jwtVerify, decodeJwt } from "jose";
 import { CLIENT_JS } from "./generated/client-bundle";
 import { pageHtml } from "./page";
+import { themeJs } from "./palettes";
 import { VIEWS, runView } from "./views";
 import { registerUpo } from "./upo";
+import { registerPdb } from "./pdb";
+import { registerCcm } from "./ccm";
+import { HEADER_LINKS } from "./links";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 5 });
 attachDatabasePool(pool);
@@ -44,6 +51,8 @@ app.use("*", async (c, next) => {
 app.get("/health", (c) => c.text("ok"));
 app.get("/", (c) => c.html(pageHtml(AUTH_BASE, IDLE, PRACTICE)));
 app.get("/app.js", (c) => c.body(CLIENT_JS, 200, { "content-type": "text/javascript; charset=utf-8" }));
+const THEME_JS = themeJs();
+app.get("/theme.js", (c) => c.body(THEME_JS, 200, { "content-type": "text/javascript; charset=utf-8" }));
 
 // ---- the gate: a verified Neon Auth JWT, an allowed email, and an account whose owner has confirmed that email --------------------------------------------------------------
 // Who is asking. The account row is the authority for the address and for whether its owner has confirmed it. A token by itself only
@@ -124,6 +133,11 @@ app.get("/api/view/:name", async (c) => {
 });
 
 registerUpo(app, pool, PRACTICE);
+
+// the header buttons to the practice's claude.ai pages (links.ts) - served here, behind the gate, so "/" and /app.js name none
+app.get("/api/links", (c) => c.json(HEADER_LINKS));
+registerPdb(app, pool);   // the Practice Database page's views, from ehpa.* / ops.* / raw.* (source practice_db)
+registerCcm(app, pool);   // the CCM notes, from ccm.* - patient names and birth dates, so only ever behind this gate
 
 app.notFound((c) => c.text("not found", 404));
 export default app;

@@ -1,6 +1,8 @@
 // The ehpa Practice Database (the dashboard): every view the server defines in views.ts, rendered from the generic
 // {title, note, charts[], sections[]} shape, plus the three first-look charts. This is the page the app opened on before the
-// applications hub existed; it is unchanged apart from living under "#db/<view>" (the old "#<view>" links still work).
+// applications hub existed; it lives under "#db/<view>" (the old "#<view>" links still work). The Practice Database page's
+// richer views (pdb.ts) draw their own content and add the generic tables of the same name underneath (genericInto), and use
+// the chart drawing here (drawDays, drawPairs).
 import { $, esc, api, say } from "./core";
 
 type Section = { heading: string; note?: string; columns: string[]; rows: unknown[][]; kinds?: string[] };
@@ -25,6 +27,17 @@ export async function showDashboard(name: string) {
   return view;
 }
 
+// the generic view's charts and tables drawn into a box of a richer page (no title of its own); nothing when the view does not exist
+export async function genericInto(name: string, box: HTMLElement | null, opts: { charts?: boolean } = {}) {
+  if (!box) return;
+  const all = await dashboardViews();
+  if (!all.includes(name)) { box.innerHTML = ""; return; }
+  const v = await api<View>("/api/view/" + encodeURIComponent(name));
+  if (opts.charts !== false) lastCharts = v.charts || [];
+  box.innerHTML = (opts.charts !== false && lastCharts.length ? `<div id="charts">${chartsHtml(lastCharts)}</div>` : "") + sectionsHtml(v.sections) +
+    `<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.* views).</p>`;
+}
+
 function fmtCell(v: unknown, kind?: string): string {
   if (v === null || v === undefined || v === "") return "<span class=dim>·</span>";
   if (kind === "money") { const n = Number(v); return isNaN(n) ? esc(v) : "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -36,15 +49,15 @@ function fmtCell(v: unknown, kind?: string): string {
 }
 
 // ---- the three first-look charts (ported from the Practice Database artifact's feed view) ---------------------------------------
-type DayRow = { date: string; visits: number; lines: number; dollars: number; patients: number; notin: number };
-type NightRow = { date: string; run: { checked: number; changed: number; dollars: number; done?: string; at?: string } | null };
+export type DayRow = { date: string; visits: number; lines: number; dollars: number; patients: number; notin: number };
+export type NightRow = { date: string; run: { checked: number; changed: number; dollars: number; done?: string; at?: string } | null };
 const num = (v: unknown) => Number(v || 0) || 0;
 const fmt = (n: number) => n.toLocaleString("en-US");
 const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
-const isoDay = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);   // the viewer's calendar day
-const fdate = (s: string) => { const d = new Date(s + "T12:00:00"); return isNaN(d.getTime()) ? s : d.toLocaleDateString("en-US", { month: "short", day: "numeric" }); };
-const longDay = (s: string) => { const d = new Date(s + "T12:00:00"); return isNaN(d.getTime()) ? s : d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }); };
-const daysAgo = (n: number) => { const d = new Date(); d.setDate(d.getDate() - n); return isoDay(d); };
+export const isoDay = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);   // the viewer's calendar day
+export const fdate = (s: string) => { const d = new Date(s + "T12:00:00"); return isNaN(d.getTime()) ? s : d.toLocaleDateString("en-US", { month: "short", day: "numeric" }); };
+export const longDay = (s: string) => { const d = new Date(s + "T12:00:00"); return isNaN(d.getTime()) ? s : d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }); };
+export const daysAgo = (n: number) => { const d = new Date(); d.setDate(d.getDate() - n); return isoDay(d); };
 const ls = { get: (k: string) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k: string, v: string) => { try { localStorage.setItem(k, v); } catch {} } };
 let win = ls.get("ehpa-win") || "week";
 let lastCharts: Chart[] = [];
@@ -56,7 +69,7 @@ function windowRange(dates: string[]): [string, string] {
   const ds = dates.slice().sort();
   return [ds[0] || today, (ds[ds.length - 1] || today) > today ? ds[ds.length - 1] : today];
 }
-function eachDay(lo: string, hi: string): string[] {
+export function eachDay(lo: string, hi: string): string[] {
   const out: string[] = [];
   for (let d = new Date(lo + "T12:00:00"); isoDay(d) <= hi && out.length < 400; d.setDate(d.getDate() + 1)) out.push(isoDay(d));
   return out;
@@ -76,7 +89,7 @@ function nightSeries(rows: Record<string, unknown>[]): NightRow[] {
   return eachDay(lo, hi).map((k) => ({ date: k, run: by[k] || null }));
 }
 
-function drawDays(days: DayRow[], o: { fill: string; label: string; verb: string; what: string }): { svg: string; note: string } {
+export function drawDays(days: DayRow[], o: { fill: string; label: string; verb: string; what: string }): { svg: string; note: string } {
   if (!days.length) return { svg: `<p class="note">No days in this window.</p>`, note: "" };
   const W = 960, H = 230, L = 38, R = 12, T = 18, B = 34, n = days.length;
   const max = Math.max(1, ...days.map((d) => d.visits + d.notin)); const step = (W - L - R) / n; const bw = Math.max(3, Math.min(26, step - 3));
@@ -95,7 +108,7 @@ function drawDays(days: DayRow[], o: { fill: string; label: string; verb: string
   return { svg: s, note: `${busy} of ${n} days ${o.what} · peak ${fmt(peak.visits)} on ${fdate(peak.date)} · amber = not entered` };
 }
 
-function drawPairs(nights: NightRow[]): { svg: string; note: string } {
+export function drawPairs(nights: NightRow[]): { svg: string; note: string } {
   if (!nights.length) return { svg: `<p class="note">No nightly cascade run is recorded yet.</p>`, note: "" };
   const W = 960, H = 240, L = 38, R = 12, T = 22, B = 34, ph = H - T - B, n = nights.length;
   const max = Math.max(1, ...nights.map((d) => (d.run ? Math.max(d.run.checked, d.run.changed) : 0))); const step = (W - L - R) / n; const bw = Math.max(3, Math.min(24, (step - 10) / 2)); const lab = step >= 40;
@@ -108,7 +121,7 @@ function drawPairs(nights: NightRow[]): { svg: string; note: string } {
     if (r) {
       ([[r.checked, "var(--cascade)"], [r.changed, "var(--cascade-2)"]] as [number, string][]).forEach(([v, fill], j) => {
         const x = cx + (j ? 1 : -bw - 1); const h = v ? Math.max(2, (ph * v) / max) : 2; const y = T + ph - h;
-        s += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${fill}"><title>${esc(tip)}</title></rect>`;
+        s += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${fill}" stroke="var(--cascade-edge)" stroke-width="1"><title>${esc(tip)}</title></rect>`;
         if (lab) s += `<text x="${(x + bw / 2).toFixed(1)}" y="${(y - 5).toFixed(1)}" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="var(--mono)">${fmt(v)}</text>`;
       });
     } else s += `<rect x="${(cx - bw - 1).toFixed(1)}" y="${T + ph - 2}" width="${(2 * bw + 2).toFixed(1)}" height="2" rx="1" fill="var(--line-strong)"><title>${esc(tip)}</title></rect>`;
@@ -131,13 +144,9 @@ function chartsHtml(charts: Chart[]): string {
   return `<div class="bar">${seg}<span class="note">The three first-look charts, as on the Practice Database page.</span></div>` + blocks.join("");
 }
 
-function render(v: View) {
-  const main = $("#main");
-  const parts = [`<h1>${esc(v.title)}</h1>`];
-  if (v.note) parts.push(`<p class="lead">${esc(v.note)}</p>`);
-  lastCharts = v.charts || [];
-  if (lastCharts.length) parts.push(`<div id="charts">${chartsHtml(lastCharts)}</div>`);
-  for (const s of v.sections) {
+function sectionsHtml(sections: Section[]): string {
+  const parts: string[] = [];
+  for (const s of sections) {
     const kinds = s.kinds || [];
     parts.push(`<section class="block"><header><h2>${esc(s.heading)}</h2>${s.note ? `<span class="note">${esc(s.note)}</span>` : ""}</header>`);
     if (!s.rows.length) { parts.push(`<p class="note">Nothing here.</p></section>`); continue; }
@@ -145,6 +154,16 @@ function render(v: View) {
     for (const r of s.rows) parts.push(`<tr>${r.map((c, i) => `<td class="${kinds[i] === "money" || kinds[i] === "int" ? "num" : ""}">${fmtCell(c, kinds[i])}</td>`).join("")}</tr>`);
     parts.push(`</tbody></table></div></section>`);
   }
+  return parts.join("");
+}
+
+function render(v: View) {
+  const main = $("#main");
+  const parts = [`<h1>${esc(v.title)}</h1>`];
+  if (v.note) parts.push(`<p class="lead">${esc(v.note)}</p>`);
+  lastCharts = v.charts || [];
+  if (lastCharts.length) parts.push(`<div id="charts">${chartsHtml(lastCharts)}</div>`);
+  parts.push(sectionsHtml(v.sections));
   parts.push(`<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.* views). Chart ids, dates of service, codes and dollars only.</p>`);
   main.innerHTML = parts.join("");
 }

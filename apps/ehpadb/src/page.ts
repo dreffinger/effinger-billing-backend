@@ -1,24 +1,33 @@
-// The one HTML page the Function serves at "/". It carries no data: a sign-in gate, the application bar, an empty main area,
-// and the bundled client script at /app.js. Colors follow the practice's Lapis palette (lapis-lazuli ground, bronze accent).
+// The one HTML page the Function serves at "/". It carries no data: a sign-in gate, the color scheme switcher, the application
+// bar, an empty main area, and the bundled client script at /app.js. Colors: the five ehpa color schemes of the Practice
+// Database page (palettes.ts - Lapis, Midnight, Navy, Plum, Light), Light unless the viewer picked another; /theme.js applies
+// the remembered pick before the first paint. The header buttons to the practice's claude.ai pages are filled in after
+// sign-in from /api/links, so this page names none of them.
 // The same shell holds every application: the hub, Universal Practice Optimization, Practice Optimization for this practice,
-// the ehpa Practice Database (the dashboard) and Learn; client.ts decides which one the address asks for.
+// the ehpa Practice Database (the dashboard and the Practice Database page's views), the CCM notes and Learn; client.ts
+// decides which one the address asks for.
+import { paletteCss, PALETTES, DEFAULT_PALETTE } from "./palettes";
+
 export function pageHtml(authUrl: string, idleMinutes: string, practice: string): string {
+  const pal = PALETTES.map(([k, label, ground, edge]) => `<button type="button" data-pal="${k}" aria-pressed="${k === DEFAULT_PALETTE}"><i style="background:${ground};border-color:${edge}"></i>${label}</button>`).join("");
   return `<!doctype html>
-<html lang="en" data-auth-url="${attr(authUrl)}" data-idle-minutes="${attr(idleMinutes)}" data-practice="${attr(practice)}">
+<html lang="en" data-ehpa="${DEFAULT_PALETTE}" data-auth-url="${attr(authUrl)}" data-idle-minutes="${attr(idleMinutes)}" data-practice="${attr(practice)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>ehpa Practice Applications</title>
+<script src="/theme.js"></script>
 <style>
-:root{--bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
-  --accent:#cf9544;--on-accent:#0b1f4d;--accent-2:#79a6ff;--ok:#5fd394;--bad:#ff7b8a;--warn:#f5b84d;--pulled:#8fc7a6;--cascade:#d9ccfa;--cascade-2:#b9a2f2;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--font:system-ui,-apple-system,"Segoe UI",sans-serif}
+${paletteCss()}
+:root{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--font:system-ui,-apple-system,"Segoe UI",sans-serif;--pill:999px;--r:14px;--r-lg:18px}
 .chart svg{display:block;width:100%;height:auto}.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
 .seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;gap:3px;background:var(--surface);flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:var(--muted);font:600 13px var(--font);padding:7px 14px;border-radius:999px;cursor:pointer}.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:0 0 6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
-a{color:var(--accent-2)}a:hover{color:var(--ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:0 0 6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;box-shadow:inset 0 0 0 1px var(--cascade-edge)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
+a{color:var(--accent)}a:hover{color:var(--ink)}:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;border-radius:6px}
 .wrap{max-width:1180px;margin:0 auto;padding:18px 16px 90px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 .brand{font:700 12px/1 var(--font);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}.brand a{color:inherit;text-decoration:none}
@@ -61,7 +70,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--bg-deep);border:1px
 .chip i{width:8px;height:8px;border-radius:50%;background:var(--dim);flex:none}.chip.soft{color:var(--muted);border-color:var(--line)}
 .st-green i,.vd-supported i{background:var(--ok)}.st-amber i,.vd-partly i{background:var(--warn)}.st-red i,.vd-contradicted i,.vd-outdated i{background:var(--bad)}
 .st-red,.sev-critical,.sev-high,.vd-contradicted,.vd-outdated{border-color:var(--bad)}.st-amber,.sev-medium,.vd-partly{border-color:var(--warn)}.st-green,.vd-supported{border-color:var(--ok)}
-.sev-critical i,.sev-high i{background:var(--bad)}.sev-medium i{background:var(--warn)}.sev-low i{background:var(--dim)}.sev-critical{background:#4a1626}
+.sev-critical i,.sev-high i{background:var(--bad)}.sev-medium i{background:var(--warn)}.sev-low i{background:var(--dim)}.sev-critical{background:var(--bad-soft)}
 .ap-core{border-color:var(--accent);color:var(--accent)}.ap-not_applicable{color:var(--dim);border-style:dashed}
 .kind-revenue{border-color:var(--ok);color:var(--ok)}.kind-risk{border-color:var(--bad);color:var(--bad)}.kind-cost{border-color:var(--accent-2);color:var(--accent-2)}.kind-value{border-color:var(--accent);color:var(--accent)}.kind-capability{border-color:var(--cascade);color:var(--cascade)}
 .score{font-family:var(--mono);letter-spacing:.08em;color:var(--accent);white-space:nowrap}
@@ -97,21 +106,77 @@ select,input[type=search],textarea{background:var(--bg-deep);color:var(--ink);bo
 .vtrack{position:relative;height:18px;background:var(--bg-deep);border-radius:999px}.vband{position:absolute;top:4px;bottom:4px;background:var(--accent-2);border-radius:999px;opacity:.75}.vrow.strong .vband{background:var(--accent);opacity:1;top:2px;bottom:2px}
 .vdot{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--ink);border:2px solid var(--bg)}.vnum{font:700 14px var(--mono);text-align:right}.vnum .note{font-weight:500;font-family:var(--font)}
 @media (max-width:700px){.vrow{grid-template-columns:1fr}.vnum{text-align:left}}
+/* the header: the color scheme switcher (the Practice Database page's, lines 66-69 there) and the buttons to the practice's pages */
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;min-width:0;max-width:100%}
+.pal{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;background:var(--surface);flex-wrap:wrap;max-width:100%}
+.pal button{border:0;background:transparent;color:var(--muted);font:600 12.5px var(--font);padding:6px 10px;border-radius:var(--pill);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.pal button i{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid rgba(255,255,255,.35)}
+.pal button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)} .pal button[aria-pressed="true"] i{border-color:var(--on-accent)}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.links .btn{display:inline-flex;align-items:center;gap:6px}.btn .ext{font-size:12px;opacity:.75}
+/* the Practice Database page's pieces (tools/db/practice_db_page.html): pills, bar rows, health checks, page cards, census sections */
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.eyebrow{font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em;white-space:nowrap}
+.pill.ok,.pill.signed{background:var(--ok-soft);color:var(--ok)}.pill.warn,.pill.flagged{background:var(--warn-soft);color:var(--warn)}.pill.bad{background:var(--bad-soft);color:var(--bad)}.pill.run,.pill.ready{background:var(--accent-soft);color:var(--accent)}.pill.dim,.pill.noname{background:var(--surface-2);color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-bottom:14px}.grid2>.block{margin-bottom:0}@media (max-width:420px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.hbars{display:grid;gap:7px}.hb{display:grid;grid-template-columns:minmax(120px,46%) minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13.5px;min-width:0}
+.hb .nm{color:var(--ink-2);line-height:1.25;overflow-wrap:anywhere}.hb .tr{height:12px;background:var(--surface-2);border-radius:6px;overflow:hidden;position:relative}
+.hb .tr i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:6px;min-width:4px}.hb .tr i.alt{background:var(--accent-2)}.hb .tr i.ok{background:var(--ok)}.hb .tr i.warn{background:var(--warn)}.hb .tr i.bad{background:var(--bad)}.hb .tr i.dim{background:var(--line-strong)}
+.hb .vl{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);font-size:13px;white-space:nowrap}.hb .vl small{color:var(--dim);font:500 11.5px var(--mono);margin-left:6px}
+.health{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}@media (max-width:420px){.health{grid-template-columns:minmax(0,1fr)}}
+.hc{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.hc .dot{width:12px;height:12px;border-radius:50%;margin-top:5px;background:var(--dim)}.hc.ok .dot{background:var(--ok)}.hc.warn .dot{background:var(--warn)}.hc.bad .dot{background:var(--bad)}
+.hc b{display:block;font-size:13.5px}.hc span{color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.pages a{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.pages a:hover{border-color:var(--accent)}.pages .nm{display:flex;justify-content:space-between;gap:8px;font-weight:700;font-size:13.5px}.pages .kd{font:600 10.5px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.pages .nt{color:var(--muted);font-size:12.5px}
+.censuscat{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:12px 14px;margin:0 0 14px;display:grid;gap:9px}
+.csecs{display:flex;gap:7px;flex-wrap:wrap}.csec{border:1px dashed var(--line-strong);color:var(--muted);border-radius:var(--pill);padding:5px 11px;font:600 12.5px var(--font)}.csec.cur{border-style:solid;border-color:var(--accent);background:var(--accent);color:var(--on-accent)}
+.chipbtn{border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);border-radius:var(--pill);padding:5px 11px;font:600 12.5px var(--font);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chipbtn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}.chipbtn .n{font-family:var(--mono)}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--accent-soft)}tr.exp td{background:var(--bg-deep)!important;color:var(--ink-2);font-size:13px}
+.weeknote{margin:12px 0 0;max-width:78ch;color:var(--ink-2);font-size:14px;line-height:1.55}
+details.more{margin:0 0 14px}details.more>summary{cursor:pointer;color:var(--accent);font:600 13.5px var(--font);padding:8px 0}
+.browser{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:14px}@media (max-width:760px){.browser{grid-template-columns:minmax(0,1fr)}}
+.doclist{display:flex;flex-direction:column;gap:4px;max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg-deep)}
+.doclist button{text-align:left;border:1px solid transparent;background:transparent;color:var(--ink-2);font:500 13px var(--mono);padding:7px 9px;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;overflow-wrap:anywhere}
+.doclist button:hover{border-color:var(--line-strong)}.doclist button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}.doclist button small{color:var(--dim);font-size:11.5px;white-space:nowrap}
+pre.json{margin:0;background:var(--bg-deep);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:500 12.5px/1.45 var(--mono);color:var(--ink-2);overflow:auto;max-height:560px;white-space:pre}
+pre.json .k{color:var(--accent-2)}pre.json .s{color:var(--ok)}pre.json .nn{color:var(--accent)}pre.json .b{color:var(--warn)}
+/* CCM notes: months beside the month's notes, and the note itself as on paper (white in every color scheme - it is the printed note) */
+.ccm{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}@media (max-width:820px){.ccm{grid-template-columns:minmax(0,1fr)}}
+.months{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:auto;max-height:72vh}@media (max-width:820px){.months{max-height:none}}
+.months a{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 14px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)}.months a:first-child{border-top:0}
+.months a:hover{background:var(--surface-2)}.months a[aria-current]{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.months .mn{font-weight:700}.months .mc{font:500 12.5px var(--mono);color:var(--muted);text-align:right}.months .ms{grid-column:1/-1;font-size:12px;color:var(--dim)}
+.flagtext{font-size:12.5px;color:var(--warn);margin-top:3px;max-width:52ch}
+.paper{background:#fff;color:#111;border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,.18);padding:26px 26px 30px 64px;position:relative;font:12.5px/1.42 Arial,Helvetica,sans-serif;overflow:hidden;margin:0 0 14px;color-scheme:light}
+.paper .side{position:absolute;left:16px;top:50%;writing-mode:vertical-rl;transform:rotate(180deg) translateY(50%);font-size:13.5px;white-space:nowrap;color:#111}.paper .side.draft{color:#b14d00;font-weight:700;letter-spacing:.06em}
+.paper .ptop{display:flex;justify-content:space-between;gap:12px;font-size:11.5px;flex-wrap:wrap}.paper .head{text-align:center;margin:6px 0 14px}.paper .head h2{font:400 22px Arial,Helvetica,sans-serif;color:#666;margin:0 0 4px}
+.paper .pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 18px;margin-bottom:14px}.paper .pgrid b{display:inline-block;min-width:74px}
+.paper h3{font:700 15px Arial,Helvetica,sans-serif;margin:18px 0 6px;color:#111}.paper table{border-collapse:collapse;width:100%;font-size:12px}.paper .tablewrap table{min-width:0}
+.paper td,.paper th{text-align:left;padding:3px 8px 3px 0;border-bottom:1px solid #ddd;font:400 12px Arial,Helvetica,sans-serif;color:#111;background:#fff!important;letter-spacing:0;text-transform:none;white-space:normal}.paper th{font-weight:700}
+.paper .late{border:1px solid #999;padding:10px 12px;margin-top:6px}.paper .late p{margin:0 0 8px;color:#111}.paper .late p:last-child{margin:0}.paper ul{padding-left:18px;margin:4px 0}.paper li{color:#111}
+.paper .sig{margin-top:38px;border-top:1px solid #333;width:min(280px,100%);padding-top:4px;font-size:11.5px}.paper .pfoot{margin-top:26px;text-align:center;font-size:11px;color:#444}
+@media (max-width:640px){.paper{padding:20px 16px 24px 46px}.paper .pgrid{grid-template-columns:minmax(0,1fr)}.hb{grid-template-columns:minmax(100px,40%) minmax(0,1fr) auto}.pal,.seg{border-radius:14px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <div><div class="brand"><a href="#home">ehpa · Practice Applications</a></div><div class="note">Runs inside the practice's Neon project · sign-in required</div></div>
-    <div id="session" hidden style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span id="who" class="note"></span><button class="btn" id="refresh" type="button">Refresh</button><button class="btn" id="signout" type="button">Sign out</button></div>
+    <div class="tools">
+      <div class="pal" role="group" aria-label="Color scheme" id="pal">${pal}</div>
+      <div id="session" hidden style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span id="who" class="note"></span><button class="btn" id="refresh" type="button">Refresh</button><button class="btn" id="signout" type="button">Sign out</button></div>
+    </div>
   </header>
+  <nav class="links" id="links" aria-label="The practice's pages on claude.ai" hidden></nav>
   <nav class="appbar" id="appbar" aria-label="Applications" hidden></nav>
   <div class="status" id="status" role="status" aria-live="polite"></div>
 
   <section id="gate" class="gate" hidden>
     <h1>Sign in to the practice applications</h1>
     <p class="note">One sign-in opens everything the practice runs here. The session ends after ${attr(idleMinutes)} minutes without activity.</p>
-    <ul><li>Universal Practice Optimization</li><li>Practice Optimization for this practice</li><li>ehpa Practice Database (the billing dashboard)</li><li>Learn</li></ul>
+    <ul><li>Universal Practice Optimization</li><li>Practice Optimization for this practice</li><li>ehpa Practice Database (the billing dashboard and the Practice Database page's views)</li><li>CCM notes (read-only; signing stays on the CCM Documentation Hub)</li><li>Learn</li></ul>
     <button class="btn primary" id="google" type="button" style="width:100%;margin:14px 0 6px;padding:12px">Continue with Google</button>
     <p class="small" style="text-align:center;margin:0 0 6px">or use an email and password</p>
     <form id="form-signin">
