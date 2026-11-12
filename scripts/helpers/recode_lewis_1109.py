@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (Lewis 5/22/2026 initial-NF recode, William 11/9/2026)
-# Decides: Nothing on its own. William's board answer on row lewis-james-23083 was "try to rebill it as a 99309 and see if
+# PLAIN ENGLISH (Lisle 5/22/2026 initial-NF recode, William 11/9/2026)
+# Decides: Nothing on its own. William's board answer on row lisle-jasper-23083 was "try to rebill it as a 99309 and see if
 #          that pays": WellCare finalized the 5/22/2026 99306 (initial nursing-facility care) + 99497 at $0 while it PAID the
 #          5/28/2026 99309 on the same chart, so the denial is the initial-visit code, not coverage. This swaps the 99306
 #          (pcode65116) for a 99309 (pcode65119) on visit vst19443011 and rebills the visit to WellCare (sequence 3) as an
@@ -7,7 +7,7 @@
 # Rules it uses: Full-visit echo (recode.swap_proc). A proccode change is a RECODE: AMD voids the charge and re-creates it
 #          under a NEW id, so the new fee is re-read and reported. Neither charge carries a payment, so nothing to re-post.
 # Never touches: Paid charges - it refuses if a payment is posted on the visit.
-# Register: registers/recode_lewis_1109.json
+# Register: registers/recode_lisle_1109.json
 import json, os, re, sys
 import xml.etree.ElementTree as ET
 import amd, resave, recode, txh
@@ -49,5 +49,5 @@ for c in after.iter("charge"):
 os.makedirs("registers", exist_ok=True)
 json.dump({"pid": PID, "visit": VID, "swap": {OLD: NEW}, "seq": SEQ, "result": msg, "after": rows,
            "why": "William 11/9/2026 board answer: try to rebill it as a 99309 and see if that pays"},
-          open("registers/recode_lewis_1109.json", "w"), indent=1)
-print("register -> registers/recode_lewis_1109.json")
+          open("registers/recode_lisle_1109.json", "w"), indent=1)
+print("register -> registers/recode_lisle_1109.json")

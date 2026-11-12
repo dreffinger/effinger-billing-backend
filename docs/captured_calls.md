@@ -6024,3 +6024,22 @@ No new call shapes this run (docs/api_vocabulary.json unchanged). Lessons:
 2. AMD slow at 00:47-00:50Z 11/12: `getclaimexclusioncharges` for one of the 127 claim runs the engine's columns_scan walks read-timed out at 120 s (providerapi.advancedmd.com) and the engine's columns step ended rc 1 (ERA, outstanding and denials steps ran on); the feed order sweep had one charge-detail ReadTimeout the same minute (chart pat17478199). `getclaimexclusionclaimruns` (totalcount 1) + one `getclaimexclusioncharges` answered in seconds right after - the exclusion runs are listed from that call, not from walking getclaimrunstatus (11/11 lesson), and a 150 s timeout with one re-read is enough.
 3. Stedi insurance discovery used as the TRAIL for the round-7 sweep's "for William" charts (no chart write): pat17478204 -> 1 coverage, CIGNA Dental Health HMO only (no medical payer); pat17478219 -> CMS Active (MBI) + WellCare Dividend HMO-POS inactive since 2016, no CHP record; pat17478260 -> CMS Active + WellCare PDP inactive 2024, no Humana record; pat17478332 -> CMS Active + two inactive UnitedHealthcare records, no Florida Blue record. Medicare's dated 271 naming "another primary payer" (CHP / Humana / Florida Blue) is not answered by discovery when the MA/MSP payer is CHP (needs the member id) - the card photo is the source. $6.00 spent.
 4. Evening-run board rule applied: the ten zero-plan F1028 feed charts and the five payer-question charts had NO board card although the sweep had listed them for William since 10/28 and 11/10 - fifteen cards on William's turn created through board_updates_2026-11-12T0039Z.json (board_ops.plan_new_row; DOBs/names from secrets/run_0039_ids.json, never in the helper source).
+
+# captured_calls additions - nightly cascade 2026-11-12T0536Z
+
+No new AMD or Stedi call shapes were learned tonight (vocabulary +0). Helpers run: precheck.py, void_rules.py, cred_check.py, build_money.py, cascade_record.py, practice_db.py, neon_db.py. The ERA engine step (tools/button/run_all.py --mode live --steps era) was refused by the permission system and left for William.
+
+# captured_calls additions - nightly cascade 2026-11-12T0329Z
+
+No new AMD or Stedi call shapes were learned tonight (vocabulary +0). Calls used: massrebillsearch (unpaid list, via precheck.py), getdemographic (precheck --dry chart reads), ERA Center GET /api/era/checks (empty), NPPES registry API (cred_check). Postman: unchanged.
+
+Lesson (no call shape): the nightly cascade fired at 03:29Z instead of its 05:35Z slot; the unpaid list's newest date of service was 11/8, so `precheck.py --days 3` had nothing to ask. No nightly cascade digest exists for 11/11 (nightly/runs newest = 2026-11-10T0535Z).
+
+# captured_calls additions - backend billing run 2026-11-12T0640Z (1:39 AM ET 11/12, ehpa cloud)
+
+No new AMD or Stedi call shapes were learned this run (vocabulary +0; Postman collection unchanged). Calls used: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (engine columns_scan), GET /api/era/checks, posterapayments (0 checks), getdemographic, gettxhistory, getchargedetaildataicd10 (resave.visit_charges), GET/PATCH /api/demographic/patients/{id} (family_address), hideunbillablevisits.
+
+Lessons (no call shape):
+- An Unbilled 'Patient address is incomplete' row on a feed chart whose address1 / address2 / city / state / zip are ALL empty (pat17472729, Brookdale Hermitage ALF CCM): the standing ALF placeholder saves only with the text on BOTH address lines - patient_patch.family_address(pid, "ALF", "ALF", "32308-4486", "TALLAHASSEE", "FL") -> HTTP 200; the same call with address2="" answered 500 'Address is required.' first (the 11/5/2026 lesson holds). GET readback then hideunbillablevisits -> Unbilled totalcount 0.
+- Pam's admit threads can carry a SECOND photo of the same PCC Clinical Resident Profile hours later (Westminster Oaks, 17:49Z then 03:03Z): read it, compare to the chart live, and append a check on the existing card - never a second card (one card per work item).
+- The engine's columns_scan walked all 127 claim runs in 92 s this run (no ReadTimeout at 06:46Z; the 00:46Z run timed out) - AMD is fast at this hour.
