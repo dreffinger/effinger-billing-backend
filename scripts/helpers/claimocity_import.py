@@ -41,11 +41,17 @@ PARSED = json.load(open(("feed_parsed_%s.json" % STAMP)))
 MATCH = json.load(open(("feed_match_%s.json" % STAMP)))
 DX = json.load(open(DXCACHE))
 REG = ("registers/feed_import_%s.json" % STAMP)
+# 11/12/2026 (William: "fix everything billable to put them in advanced md"): 99349, the established-patient home / assisted-living visit, was
+#   not in these two tables, so three feed visits (9/1, 9/2 and 11/3/2026) were skipped as "unknown CPT 99349". It goes in under pcode65142
+#   (the id the 10/15 recode and the 10/20 GV rebill used) at the practice's $198.00 (the fee of every natively entered 99349 on the ERA
+#   registers - era_audit, era_dual, era_true_residual, era_denials; a 99344 recoded to 99349 keeps its $300). claimocity_retry_dx.py enters
+#   the skipped visits once this file is on main; a visit the chart already carries is answered by the live-charge dedupe below - "already",
+#   never a second visit.
 PCODE = {"99487": "pcode492676", "99489": "pcode492677", "99223": "pcode65084", "99232": "pcode65089", "99233": "pcode65090",
          "99239": "pcode65095", "99497": "pcode492667", "99498": "pcode492668", "99306": "pcode65116", "99308": "pcode65118",
-         "99309": "pcode65119", "99316": "pcode65122", "99344": "pcode601053"}
+         "99309": "pcode65119", "99316": "pcode65122", "99344": "pcode601053", "99349": "pcode65142"}
 FEE = {"99223": "310.00", "99232": "111.00", "99233": "160.00", "99239": "163.00", "99306": "256.00", "99308": "107.00", "99309": "141.00",
-       "99487": "206.00", "99489": "109.00", "99497": "133.00", "99344": "300.00", "99316": "207.00", "99498": "115.00"}
+       "99487": "206.00", "99489": "109.00", "99497": "133.00", "99344": "300.00", "99316": "207.00", "99498": "115.00", "99349": "198.00"}
 PROFILE = {"1225327380": "prof13", "1235128869": "prof15"}          # Effinger DO / Garland-G ARNP
 # INITIAL NURSING-FACILITY VISIT (William 11/10/2026, STANDING - practices/ehpa/rules.md): "going forward the 99306 should always be billed under
 # effinger npi and group npi as i am the one who is doing the initial hps 99306 and 99497". A message that carries one of these codes is entered under

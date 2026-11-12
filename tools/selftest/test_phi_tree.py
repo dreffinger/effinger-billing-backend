@@ -29,6 +29,9 @@ phi_gate.MAP_CANDIDATES[:] = [fake_map.name]
 
 # --- redact() unit checks ---
 r = phi_gate.redact
+NEON_P = "steep-rain-" + "79347575"; NEON_O = "sparkling-silence-" + "16346164"   # the Neon project and org ids, built at run time
+check("the Neon project and org ids are kept whole (exact ids, 11/12/2026)", r("projects/%s org-%s" % (NEON_P, NEON_O), {}) == "projects/%s org-%s" % (NEON_P, NEON_O))
+check("a board row slug whose name is Rain or Steep is still scrubbed", r("testlast-rain-" + "12345678 steep-testfirst-" + "12345678", {}) == "[name]-12345678 [name]-12345678")
 check("map name -> pseudonym, AMD caps form too", r("Annika Zorbaz / %s (pat 1)" % lf("ZORBAZ", "ANNIKA"), names) == "Annika Simcoe / %s (pat 1)" % lf("SIMCOE", "ANNIKA"))
 check("unknown LAST,FIRST in a data file -> [name], the AMD % wildcard stays", r('"name": "%s", note %s D (pat 77) and %s%%' % (lf("VANTABLE", "OTTO"), lf("QUARREL", "KENDREW"), lf("XANTHER", "RUFFORD")), names, code=False) == '"name": "[name]", note [name] (pat 77) and [name]%')
 check("billing vocabulary is not a name", r("DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED", names, code=False) == "DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED")

@@ -47,6 +47,8 @@
 #   python3 tools/db/neon_db.py run-log --routine <name> --stamp <stamp> --status <ok|partial|failed> --headline "<one line>" [--summary <json file>] [--started <ISO>] [--session <url>] [--commit <sha>]
 #   python3 tools/db/neon_db.py set --key hipaa_enabled --value true   write an ops.settings row (the HIPAA marker, or anything else small)
 #   python3 tools/db/neon_db.py health                                 rows per source/collection, newest document, last loads and runs
+#   python3 tools/db/neon_db.py health --json                          the same as ONE JSON line, plus the web app's own access log (ops.app_access_log) - tools/db/practice_db.py
+#                                                                      stores it as snapshots/neon-<stamp> for the practice database page's "Permanent store and web app" box (11/12/2026)
 #   python3 tools/db/neon_db.py sql "select ..."                       one read-only statement, rows as JSON (for a quick look; writes are refused here)
 # Options: --repo /home/claude/effinger-billing-backend  --ws /home/claude/unbilled  --by "<who is loading>" (default: $CLAUDE_SESSION_URL or the user name)  --dry (count, write nothing)
 import os, sys, re, json, glob, hashlib, time, socket, ssl, datetime, getpass, urllib.request, urllib.parse
@@ -63,44 +65,88 @@ def iso_now(): return NOW.strftime("%Y-%m-%dT%H:%M:%SZ")
 def sha(s): return hashlib.sha256(s.encode("utf-8") if isinstance(s, str) else s).hexdigest()
 def dumps(x): return json.dumps(x, separators=(",", ":"), sort_keys=True, default=str)
 STAMP_RE = re.compile(r"(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z")
+def _env_s(k, d):
+    try: return max(1, int(os.environ.get(k) or d))
+    except ValueError: return d
+CONNECT_TIMEOUT = _env_s("NEON_CONNECT_TIMEOUT", 20); HTTP_TIMEOUT = _env_s("NEON_HTTP_TIMEOUT", 120)   # 11/12/2026: practice_db.py's health probe asks for 15 / 30
+def _redact(s):
+    """driver text can echo the connection string - libpq repeats a string it cannot parse, with or without its scheme, and names a bad
+    percent token from inside the password (review round 2, 11/12/2026): never print or store one"""
+    s = re.sub(r"(?i)postgres(?:ql)?:/*\S*", "postgres://[redacted]", str(s or ""))
+    s = re.sub(r"://[^/\s@]*@", "://[redacted]@", s)
+    s = re.sub(r"[^\s\x22\x27/@]+:[^\s\x22\x27/@]+@", "[redacted]@", s)
+    s = re.sub(r'(percent-encoded (?:token|value): )"[^"]*"', r'\1"[redacted]"', s)
+    return re.sub(r"(?i)\b(password|passwd|pwd)\s*=\s*\S+", r"\1=[redacted]", s)
+_SECRETS = []      # the connection string and its password once database_url() has them: replaced wherever anything echoes them
+def _scrub(s):
+    s = str(s or "")
+    for x in _SECRETS: s = s.replace(x, "[redacted]")
+    return _redact(s)
+class _ScrubStream:
+    """stdout and stderr lose the exact secrets whatever prints them; stderr (messages, tracebacks) also goes through the pattern rules, stdout
+    (data: sql rows, JSON lines) does not - review round 3: a mailto:, a CSS @media or a fonts URL in a stored text must come out unchanged"""
+    def __init__(self, st, rules): self._st = st; self._rules = rules
+    def write(self, s):
+        s = str(s)
+        for x in _SECRETS: s = s.replace(x, "[redacted]")
+        return self._st.write(_redact(s) if self._rules else s)
+    def flush(self): return self._st.flush()
+    def __getattr__(self, k): return getattr(self._st, k)
+sys.stdout = _ScrubStream(sys.stdout, False); sys.stderr = _ScrubStream(sys.stderr, True)
+BADURL = "neon_db: the connection string does not read as a URL (not printed) - write / ? # @ [ ] inside the password %-encoded"
 
 # ---- the connection string ----------------------------------------------------------------------------------------------------------
-def database_url():
+def _find_url():
     for k in ("NEON_DATABASE_URL", "DATABASE_URL"):
         v = re.sub(r"\s+", "", os.environ.get(k) or "")                 # a value pasted across several lines (or with stray spaces) is still one URL
         if v.startswith("postgres"): return v
     for p in (opt("--url-file"), os.path.join(REPO, "secrets", "neon_database_url"), os.path.join(WS, "secrets", "neon_database_url"), os.path.expanduser("~/.config/ehpa/neon_database_url")):
         if p and os.path.isfile(p):
-            v = re.sub(r"\s+", "", open(p, encoding="utf-8").read())
+            raw = open(p, "rb").read()                                   # review round 3: a file PowerShell saved (UTF-8 with a BOM, or UTF-16) still reads
+            txt = raw.decode("utf-16") if raw[:2] in (b"\xff\xfe", b"\xfe\xff") else raw.decode("utf-8-sig", "replace")
+            v = re.sub(r"\s+", "", txt)
             if v.startswith("postgres"): return v
     sys.exit("neon_db: no connection string - set NEON_DATABASE_URL, or write it to %s (chmod 600; the file is git-ignored)" % os.path.join(REPO, "secrets", "neon_database_url"))
+def database_url():
+    """the connection string; it and its password join _SECRETS first, so nothing printed afterwards can show them"""
+    v = _find_url()
+    m = re.search(r":/*([^/:@\s]+):([^@\s]+)@", v)
+    rest = re.sub(r"(?i)^[a-z0-9+.-]*:/*", "", v); ui = rest.rsplit("@", 1)[0] if "@" in rest else rest.split("/", 1)[0]
+    pw = ui.split(":", 1)[1] if ":" in ui else ""                      # review round 3: the password as urlparse / pg8000 read it (to the LAST @), or the netloc's tail when the @ is missing
+    cand = [v, m.group(2) if m else "", pw] + re.split(r"[@/?#:]", pw)
+    for x in cand + [urllib.parse.unquote(c) for c in cand]:
+        if x and len(x) >= 6 and x not in _SECRETS: _SECRETS.append(x)
+    _SECRETS.sort(key=len, reverse=True)
+    return v
 
 # ---- the three ways to reach Postgres -----------------------------------------------------------------------------------------------
 class DB:
     """execute(sql, params) with %s placeholders in every mode; rows come back as lists"""
     def __init__(self, url, mode=None):
         self.url = url; self.mode = (mode or os.environ.get("NEON_DB_MODE") or "auto").lower(); self.kind = None; self.conn = None; self.tried = []
-        u = urllib.parse.urlparse(url); self.host = u.hostname; self.port = u.port or 5432; self.user = urllib.parse.unquote(u.username or ""); self.password = urllib.parse.unquote(u.password or ""); self.dbname = (u.path or "/neondb").lstrip("/").split("?")[0] or "neondb"
+        try: u = urllib.parse.urlparse(url); self.host = u.hostname; self.port = u.port or 5432
+        except ValueError: raise SystemExit(BADURL)                   # review round 3: urlparse's 'Port could not be cast' message carries a piece of the password
+        self.user = urllib.parse.unquote(u.username or ""); self.password = urllib.parse.unquote(u.password or ""); self.dbname = (u.path or "/neondb").lstrip("/").split("?")[0] or "neondb"
     def connect(self):
         if self.mode in ("auto", "pg"):
             try:
                 import psycopg
-                self.conn = psycopg.connect(self.url, connect_timeout=20, autocommit=True); self.kind = "psycopg"; return self
+                self.conn = psycopg.connect(self.url, connect_timeout=CONNECT_TIMEOUT, autocommit=True); self.kind = "psycopg"; return self
             except ImportError: self.tried.append("psycopg not installed")
             except Exception as e:
-                self.tried.append("psycopg: " + str(e)[:120])
-                if self.mode == "pg": raise
+                self.tried.append("psycopg: " + _scrub(e)[:120])
+                if self.mode == "pg": raise SystemExit("neon_db: no path to the database (%s)" % "; ".join(self.tried))
             try:
                 import pg8000.dbapi as pg
-                self.conn = pg.connect(user=self.user, password=self.password, host=self.host, port=self.port, database=self.dbname, ssl_context=ssl.create_default_context(), timeout=20)
+                self.conn = pg.connect(user=self.user, password=self.password, host=self.host, port=self.port, database=self.dbname, ssl_context=ssl.create_default_context(), timeout=CONNECT_TIMEOUT)
                 self.conn.autocommit = True; self.kind = "pg8000"; return self
             except ImportError: self.tried.append("pg8000 not installed")
             except Exception as e:
-                self.tried.append("pg8000: " + str(e)[:120])
-                if self.mode == "pg": raise
+                self.tried.append("pg8000: " + _scrub(e)[:120])
+                if self.mode == "pg": raise SystemExit("neon_db: no path to the database (%s)" % "; ".join(self.tried))
         self.kind = "http"
         try: self.execute("select 1")
-        except Exception as e: raise SystemExit("neon_db: no path to the database (%s; http: %s)" % ("; ".join(self.tried) or "wire protocol not tried", str(e)[:160]))
+        except Exception as e: raise SystemExit("neon_db: no path to the database (%s; http: %s)" % ("; ".join(self.tried) or "wire protocol not tried", _scrub(e)[:160]))
         return self
     def _http(self, sql, params):
         n = [0]
@@ -108,7 +154,7 @@ class DB:
         q = re.sub(r"%s", repl, sql) if params else sql             # %s is a place for a value only when values are sent; with none the text goes out as written (like '%sent%' in a view used to leave as '$1ent%')
         body = json.dumps({"query": q, "params": [p if (p is None or isinstance(p, (int, float, bool))) else str(p) for p in (params or [])]}).encode("utf-8")
         req = urllib.request.Request("https://%s/sql" % self.host, data=body, method="POST", headers={"Neon-Connection-String": self.url, "Content-Type": "application/json", "Neon-Array-Mode": "true", "Neon-Raw-Text-Output": "true"})
-        with urllib.request.urlopen(req, timeout=120) as r: j = json.loads(r.read().decode("utf-8"))
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r: j = json.loads(r.read().decode("utf-8"))
         return j.get("rows") or [], j.get("rowCount")
     def execute(self, sql, params=None, fetch=None):
         if self.kind == "http":
@@ -253,19 +299,22 @@ def load_json(p):
 
 # ---- commands -----------------------------------------------------------------------------------------------------------------------
 if CMD == "egress-test":
-    url = database_url(); u = urllib.parse.urlparse(url); host = u.hostname; out = {}
+    url = database_url()
+    try: u = urllib.parse.urlparse(url); host = u.hostname; u.port
+    except ValueError: raise SystemExit(BADURL)
+    out = {}
     t = time.perf_counter()
     try: s = socket.create_connection((host, u.port or 5432), timeout=10); s.close(); out["tcp_5432"] = {"ok": True, "ms": int((time.perf_counter() - t) * 1000)}
-    except Exception as e: out["tcp_5432"] = {"ok": False, "err": str(e)[:100]}
+    except Exception as e: out["tcp_5432"] = {"ok": False, "err": _scrub(e)[:100]}
     t = time.perf_counter()
     try: s = ssl.create_default_context().wrap_socket(socket.create_connection((host, 443), timeout=10), server_hostname=host); s.close(); out["tls_443"] = {"ok": True, "ms": int((time.perf_counter() - t) * 1000)}
-    except Exception as e: out["tls_443"] = {"ok": False, "err": str(e)[:100]}
+    except Exception as e: out["tls_443"] = {"ok": False, "err": _scrub(e)[:100]}
     for mode in ("pg", "http"):
         t = time.perf_counter()
         try:
             db = DB(url, mode).connect(); r = db.execute("select current_database(), current_user, version()"); db.close()
             out[mode] = {"ok": True, "ms": int((time.perf_counter() - t) * 1000), "driver": db.kind, "db": r[0][0], "role": r[0][1], "server": str(r[0][2]).split(" on ")[0][:32]}
-        except BaseException as e: out[mode] = {"ok": False, "err": str(e)[:160]}
+        except BaseException as e: out[mode] = {"ok": False, "err": _scrub(e)[:160]}
     ok = any(v.get("ok") for k, v in out.items() if k in ("pg", "http"))
     print("neon egress-test %s: %s" % ("OK" if ok else "BLOCKED", json.dumps(out, separators=(",", ":"))))
     sys.exit(0 if ok else 3)
@@ -397,8 +446,31 @@ elif CMD == "health":
     runs = db.execute("select count(*), max(finished_at) from ops.routine_runs")[0]
     loads = db.execute("select count(*), max(at) from ops.load_log")[0]
     hip = hipaa_ok(db)
-    print("neon health via %s: %d documents (%d MB) in %d source/collection pairs; %s page versions of %s pages; %s routine runs (last %s); %s loads (last %s); hipaa marker %s" % (db.kind, tot, nb // 1048576, len(rows), pages[0], pages[1], runs[0], runs[1], loads[0], loads[1], "set" if hip else "NOT set"))
-    for r in rows: print("  %-26s %-40s %6s docs  newest %s" % (r[0], r[1][:40], r[2], str(r[3])[:19] if r[3] else "-"))
+    if "--json" in a:                                                   # 11/12/2026: one JSON line for tools/db/practice_db.py (snapshots/neon-<stamp>)
+        def ts(x):
+            """an ISO UTC stamp whatever the session's time zone: a datetime with its offset, or the HTTPS route's text (2026-11-12 05:44:27.123+00)"""
+            if not x: return None
+            if isinstance(x, datetime.datetime):
+                if x.tzinfo: x = x.astimezone(datetime.timezone.utc)
+                return x.strftime("%Y-%m-%dT%H:%M:%SZ")
+            s = str(x).strip().replace(" ", "T")
+            m = re.match(r"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.\d+)?(Z|[+-]\d{2}(?::?\d{2})?)?$", s)
+            if not m: return s
+            t = datetime.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%S"); off = (m.group(2) or "Z").replace(":", "")
+            if off != "Z": t -= (1 if off[0] == "+" else -1) * datetime.timedelta(hours=int(off[1:3]), minutes=int(off[3:5] or 0))
+            return t.strftime("%Y-%m-%dT%H:%M:%SZ")
+        try:
+            r = db.execute("select count(*), max(at), count(*) filter (where at > now() - interval '7 days') from ops.app_access_log")[0]
+            app = {"requests": int(r[0] or 0), "last_at": ts(r[1]), "requests_7d": int(r[2] or 0)}        # the practice web app writes one row per signed-in request
+        except Exception as ex: app = {"error": str(ex)[:120]}
+        srcs = {}
+        for r in rows: srcs[r[0]] = srcs.get(r[0], 0) + int(r[2] or 0)
+        print(json.dumps({"via": db.kind, "documents": tot, "mb": round(nb / 1048576, 1), "pairs": len(rows), "newest_document_at": max((ts(r[3]) for r in rows if r[3]), default=None),
+                          "page_versions": int(pages[0] or 0), "pages": int(pages[1] or 0), "routine_runs": int(runs[0] or 0), "last_run_at": ts(runs[1]), "loads": int(loads[0] or 0),
+                          "last_load_at": ts(loads[1]), "hipaa": bool(hip), "app": app, "by_source": srcs}, default=str, sort_keys=True))
+    else:
+        print("neon health via %s: %d documents (%d MB) in %d source/collection pairs; %s page versions of %s pages; %s routine runs (last %s); %s loads (last %s); hipaa marker %s" % (db.kind, tot, nb // 1048576, len(rows), pages[0], pages[1], runs[0], runs[1], loads[0], loads[1], "set" if hip else "NOT set"))
+        for r in rows: print("  %-26s %-40s %6s docs  newest %s" % (r[0], r[1][:40], r[2], str(r[3])[:19] if r[3] else "-"))
 
 elif CMD == "sql":
     q = (a[1] if len(a) > 1 else "").strip()
