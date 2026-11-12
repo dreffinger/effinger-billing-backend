@@ -125,9 +125,15 @@ begin
     end if;
     return old;
   end if;
-  -- an update that leaves what the record holds as it was (the same body, fingerprint and keys) goes through
-  if new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256
-     and new.source is not distinct from old.source and new.collection is not distinct from old.collection and new.doc_id is not distinct from old.doc_id then
+  -- a CCM record never changes its keys: moving an unsigned draft into 'signed' / 'addenda_signed' by hand would make a signing nobody
+  -- made (and, being final, it could never be removed), and moving a signed record out would unsign it. The one door (neon_db.py
+  -- load-docs) only ever inserts or upserts by key, so a key change can only come from a hand-typed UPDATE (11/12/2026 check).
+  if new.source is distinct from old.source or new.collection is distinct from old.collection or new.doc_id is distinct from old.doc_id then
+    raise notice 'ccm: % keeps its source, collection and id - the change was skipped', old.doc_id;
+    return null;
+  end if;
+  -- an update that leaves what the record holds as it was (the same body and fingerprint) goes through
+  if new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256 then
     return new;
   end if;
   if old.collection in ('signed', 'addenda_signed')

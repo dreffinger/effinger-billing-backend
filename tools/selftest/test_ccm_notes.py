@@ -207,8 +207,8 @@ check("3 (11/12/2026) the ICD-10 descriptions, every chart's diagnosis list over
 TRG = SQL[SQL.find("create or replace function ccm.keep_signed_final()"):SQL.find("end $$;")]
 TRGW = (("old.collection in ('signed', 'addenda_signed')", 2), ("(old.collection = 'addenda' and exists (select 1 from raw.documents s where s.source = 'ccm' and s.collection = 'addenda_signed' and s.doc_id = old.doc_id))", 2),
         ("(old.collection = 'months' and exists (select 1 from raw.documents s where s.source = 'ccm' and s.collection = 'signed' and s.doc_id = old.doc_id))", 2),
-        ("new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256", 1), ("new.source is not distinct from old.source and new.collection is not distinct from old.collection and new.doc_id is not distinct from old.doc_id", 1))
-check("3 the trigger keeps a signed addendum and its draft final exactly like a signed note and its month - on removal and on any change of body, fingerprint or keys",
+        ("new.body is not distinct from old.body and new.body_sha256 is not distinct from old.body_sha256", 1), ("new.source is distinct from old.source or new.collection is distinct from old.collection or new.doc_id is distinct from old.doc_id", 1), ("keeps its source, collection and id - the change was skipped", 1))
+check("3 the trigger keeps a signed addendum and its draft final exactly like a signed note and its month - on removal and on any change of body or fingerprint - and no CCM record ever changes its keys (a draft moved into signed by hand would be a signing nobody made)",
       all(TRG.count(w) == k for w, k in TRGW) and "when (old.source = 'ccm')" in SQL, [(w[:50], TRG.count(w), k) for w, k in TRGW])
 # ---- 4. the hub page agrees with this helper on what a signature covers
 import json as _json, shutil as _shutil, subprocess as _subprocess
