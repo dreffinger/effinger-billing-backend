@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-12T1319Z",
+ "stamp": "2026-11-12T1519Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 1 checks $159.70 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43226117597",
- "started": "2026-11-12T13:19:12Z",
- "ended": "2026-11-12T13:26:20Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43246488618",
+ "started": "2026-11-12T15:19:23Z",
+ "ended": "2026-11-12T15:27:53Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 159.7
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 159.7,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 300938.17,
-   "visits": 2582,
+   "total": 300628.17,
+   "visits": 2581,
    "charts": 487,
    "over_365": {
     "n": 546,
@@ -65,7 +65,7 @@
    "visits": 7843,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-12 13:26 UTC"
+   "asof": "2026-11-12 15:27 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-12T13:19:12Z",
-   "ended": "2026-11-12T13:19:12Z"
+   "started": "2026-11-12T15:19:23Z",
+   "ended": "2026-11-12T15:19:24Z"
   },
   {
    "name": "columns",
@@ -115,31 +115,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T13:19:12Z",
-   "ended": "2026-11-12T13:21:23Z"
+   "started": "2026-11-12T15:19:24Z",
+   "ended": "2026-11-12T15:21:38Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $159.70 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
     "checks dismissed": 0,
     "checks held": 0,
     "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 159.7,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 159.7
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053509,
+     "payer": "OPTUM VA CCN",
+     "checknumber": "3009739963",
+     "amount": 0.0,
+     "unposted": 159.7,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-12T13:21:23Z",
-   "ended": "2026-11-12T13:21:25Z"
+   "started": "2026-11-12T15:21:38Z",
+   "ended": "2026-11-12T15:21:48Z"
   },
   {
    "name": "packages",
@@ -150,21 +161,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-12T13:21:25Z",
-   "ended": "2026-11-12T13:21:25Z"
+   "started": "2026-11-12T15:21:48Z",
+   "ended": "2026-11-12T15:21:48Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2582 visits on 487 charts, $300938.17 open; 546 over a year ($25175.48)",
+   "summary": "2581 visits on 487 charts, $300628.17 open; 546 over a year ($25175.48)",
    "counts": {
-    "visits": 2582,
+    "visits": 2581,
     "charts": 487,
     "over 365 days": 546
    },
    "dollars": {
-    "open insurance balance": 300938.17,
+    "open insurance balance": 300628.17,
     "over 365 days": 25175.48
    },
    "lines": [
@@ -220,8 +231,8 @@
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
-     "visits": 33,
-     "dollars": 6184.22,
+     "visits": 32,
+     "dollars": 5874.22,
      "oldest_days": 978
     },
     {
@@ -254,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T13:21:25Z",
-   "ended": "2026-11-12T13:21:27Z"
+   "started": "2026-11-12T15:21:48Z",
+   "ended": "2026-11-12T15:21:50Z"
   },
   {
    "name": "denials",
@@ -342,8 +353,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-12T13:21:27Z",
-   "ended": "2026-11-12T13:26:20Z"
+   "started": "2026-11-12T15:21:50Z",
+   "ended": "2026-11-12T15:27:53Z"
   }
  ],
  "packages": [],
