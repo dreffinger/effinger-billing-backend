@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Fee correction after a procedure recode, 11/9/2026)
 # Decides: Nothing on its own. A recode done with recode.swap_proc keeps the OLD code's fee, because the full-visit echo
-#          carries fee / allowed / expected / insportion / insbalance unchanged (found 11/9/2026 on Lewis chg23351281:
+#          carries fee / allowed / expected / insportion / insbalance unchanged (found 11/9/2026 on Lisle chg23351281:
 #          99306 -> 99309 left the charge at the 99306 fee of 256.00 while every real 99309 on the chart is 141.00).
 #          This sets one charge's fee to the correct fee-schedule amount and rebills the visit as an original claim, so the
 #          claim and the A/R carry the right number.

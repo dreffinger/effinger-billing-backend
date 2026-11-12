@@ -9,13 +9,13 @@ import amd, txh, resave
 
 CHARTS = {
     "LEE (write off)":        ("17477829", ["19456472", "19456474"]),
-    "LEWIS (recode 99309)":   ("23083",    ["19443011"]),
-    "OLSEN (WOBAD)":          ("17473501", ["19442733", "19442744", "19442953"]),
-    "SMITH placeholder":      ("17478345", ["19460486"]),
-    "FRITZ (facesheet)":      ("17478346", []),
-    "SNYDER (facesheet)":     ("17478319", []),
+    "LISLE (recode 99309)":   ("23083",    ["19443011"]),
+    "OLNEY (WOBAD)":          ("17473501", ["19442733", "19442744", "19442953"]),
+    "SMYTHE placeholder":      ("17478345", ["19460486"]),
+    "FROBEL (facesheet)":      ("17478346", []),
+    "SUTCLIFFE (facesheet)":     ("17478319", []),
 }
-SMITH_CANDIDATES = ["21798", "17469615", "17472040", "17477383", "17477933", "12180395"]
+SMYTHE_CANDIDATES = ["21798", "17469615", "17472040", "17477383", "17477933", "12180395"]
 
 def demo(pid):
     body = amd.msg("getdemographic", "demographics", {"patientid": str(pid), "nocookie": "1"})
@@ -65,8 +65,8 @@ for label, (pid, vids) in CHARTS.items():
     except Exception as e: print("ERROR on", label, pid, repr(e))
 
 print("=" * 92)
-print("### SMITH,MYRTLE candidate charts - which one is live?")
-for pid in SMITH_CANDIDATES:
+print("### SMYTHE,MYRA candidate charts - which one is live?")
+for pid in SMYTHE_CANDIDATES:
     try:
         d = demo(pid)
         p = d.find(".//patient"); a = p.attrib if p is not None else {}

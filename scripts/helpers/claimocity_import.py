@@ -1669,10 +1669,10 @@ def main():
     except Exception as e: print("QUALITY M0004: this line could not be built (%s) - read mvp_gate in the import register" % type(e).__name__)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
-        # one SHORT line, like the next one (90 characters with one-digit counts, 110 with six-digit counts in all four places)
+        # one SHORTALL line, like the next one (90 characters with one-digit counts, 110 with six-digit counts in all four places)
         print("POS CHECK: stored another POS x%d; not own message x%d; clinician unknown x%d; no facility x%d" % (
             _pk("ADVANCEDMD DID NOT KEEP"), _pk("feed message not matched"), _pk("clinician id of the feed message"), _pk("visit entered with NO facility")))
-    # one SHORT line (the ingest shows 110 characters of each of the last three log lines): 91 characters with one-digit counts
+    # one SHORTALL line (the ingest shows 110 characters of each of the last three log lines): 91 characters with one-digit counts
     print("POS RULE: CCM 32 x%d, CCM 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown bldg x%d" % (
         _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))
     print("DONE", dict(stats))
