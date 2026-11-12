@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-12T03:42:31Z",
+ "at": "2026-11-12T03:29:00Z",
+ "changed": 0,
+ "checked": 0,
+ "commit": "419534a",
+ "date": "2026-11-12",
+ "dollars": 0,
+ "done": "No AdvancedMD change needed",
+ "era_posted": 0.0,
+ "finished": "2026-11-12T03:42:31Z",
+ "flagged": 0,
+ "kind": "nightly cascade",
+ "lookups": 0,
+ "note": "0 visit-and-plan pairs in the 3-day window (unpaid list newest date of service 11/8, feed lag), 0 flagged, 0 Stedi lookups; ERA Center empty; void rules nothing",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-12T0329Z.json",
+ "stamp": "2026-11-12T0329Z",
+ "stedi_cost": 0.0,
+ "writeoffs": 0.0
+}
