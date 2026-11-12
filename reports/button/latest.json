@@ -1,27 +1,17 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-11T2318Z",
+ "stamp": "2026-11-12T0039Z-engine",
  "mode": "live",
- "status": "ok",
- "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43118814832",
- "started": "2026-11-11T23:18:47Z",
- "ended": "2026-11-11T23:25:19Z",
+ "status": "warn",
+ "headline": "ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled columns routine (live, 00:39Z evening slot)",
+ "run_url": "",
+ "started": "2026-11-12T00:47:27Z",
+ "ended": "2026-11-12T01:02:55Z",
  "summary": {
   "columns": {
-   "before": {
-    "charge_review": 0,
-    "claim_inspector": 2,
-    "unbilled": 0,
-    "exclusions": 1
-   },
-   "after": {
-    "charge_review": 0,
-    "claim_inspector": 2,
-    "unbilled": 0,
-    "exclusions": 1
-   }
+   "before": {},
+   "after": {}
   },
   "era": {
    "before": {
@@ -57,15 +47,15 @@
    "visits": 2512,
    "charts": 463,
    "over_365": {
-    "n": 544,
-    "dollars": 25147.93
+    "n": 546,
+    "dollars": 25175.48
    }
   },
   "denials": {
    "visits": 7841,
    "actionable": 76,
    "actionable_amt": 13875.0,
-   "asof": "2026-11-11 23:25 UTC"
+   "asof": "2026-11-12 01:02 UTC"
   }
  },
  "steps": [
@@ -76,53 +66,28 @@
    "summary": "1383 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1383,
-    "registers": 1847,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "registers": 1846,
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T23:18:47Z",
-   "ended": "2026-11-11T23:18:48Z"
+   "started": "2026-11-12T00:47:27Z",
+   "ended": "2026-11-12T00:47:27Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
-   "status": "ok",
-   "summary": "CR 0->0, CI 2->2, Unbilled 0->0, Exclusions 1->1",
-   "counts": {
-    "charge review": 0,
-    "claim inspector": 2,
-    "unbilled": 0,
-    "exclusions": 1,
-    "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 2,
-    "inspector bypasses sent": 0,
-    "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 0,
-    "unbilled released": 0,
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
-   },
+   "status": "failed",
+   "summary": "",
+   "counts": {},
    "dollars": {},
-   "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "missing data / dx",
-     "visits": 2,
-     "ids": "v19460539 v19460546"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    }
+   "lines": [],
+   "errors": [
+    "columns_scan before failed (rc 1):         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/dist-packages/requests/adapters.py\", line 742, in send\n    raise ReadTimeout(e, request=request)\nrequests.exceptions.ReadTimeout: HTTPSConnectionPool(host='providerapi.advancedmd.com', port=443): Read timed out. (read timeout=120)"
    ],
-   "errors": [],
-   "started": "2026-11-11T23:18:48Z",
-   "ended": "2026-11-11T23:20:58Z"
+   "started": "2026-11-12T00:47:27Z",
+   "ended": "2026-11-12T00:49:57Z"
   },
   {
    "name": "era",
@@ -144,8 +109,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T23:20:58Z",
-   "ended": "2026-11-11T23:21:00Z"
+   "started": "2026-11-12T00:49:57Z",
+   "ended": "2026-11-12T00:50:00Z"
   },
   {
    "name": "packages",
@@ -156,126 +121,126 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-11T23:21:00Z",
-   "ended": "2026-11-11T23:21:00Z"
+   "started": "2026-11-12T00:50:00Z",
+   "ended": "2026-11-12T00:50:00Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2512 visits on 463 charts, $285707.17 open; 544 over a year ($25147.93)",
+   "summary": "2512 visits on 463 charts, $285707.17 open; 546 over a year ($25175.48)",
    "counts": {
     "visits": 2512,
     "charts": 463,
-    "over 365 days": 544
+    "over 365 days": 546
    },
    "dollars": {
     "open insurance balance": 285707.17,
-    "over 365 days": 25147.93
+    "over 365 days": 25175.48
    },
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1320,
      "dollars": 136534.28,
-     "oldest_days": 1092
+     "oldest_days": 1093
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 143,
      "dollars": 30007.07,
-     "oldest_days": 1188
+     "oldest_days": 1189
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 157,
      "dollars": 26780.58,
-     "oldest_days": 429
+     "oldest_days": 430
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 89,
      "dollars": 17848.4,
-     "oldest_days": 1161
+     "oldest_days": 1162
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 298,
      "dollars": 17398.48,
-     "oldest_days": 1059
+     "oldest_days": 1060
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 54,
      "dollars": 8791.05,
-     "oldest_days": 665
+     "oldest_days": 666
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 33,
      "dollars": 6184.22,
-     "oldest_days": 977
+     "oldest_days": 978
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 20,
      "dollars": 4562.0,
-     "oldest_days": 361
+     "oldest_days": 362
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 32,
      "dollars": 4409.1,
-     "oldest_days": 373
+     "oldest_days": 374
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 26,
      "dollars": 4031.01,
-     "oldest_days": 177
+     "oldest_days": 178
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 15,
      "dollars": 3764.0,
-     "oldest_days": 204
+     "oldest_days": 205
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 35,
      "dollars": 3671.06,
-     "oldest_days": 51
+     "oldest_days": 52
     }
    ],
    "errors": [],
-   "started": "2026-11-11T23:21:00Z",
-   "ended": "2026-11-11T23:21:02Z"
+   "started": "2026-11-12T00:50:00Z",
+   "ended": "2026-11-12T00:50:02Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7841 denied visits on 849 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); RESOLVED 4529, WRITTEN-OFF 2978, RESUBMITTED 194, OPEN 140",
+   "summary": "7841 denied visits on 849 charts; 76 actionable $13875.00 (73 inside 12 months $13356.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 140",
    "counts": {
     "charts read": 849,
     "denial lines": 13323,
     "visits": 7841,
     "actionable": 76,
     "inside 12 months": 73,
-    "status RESOLVED": 4529,
     "status WRITTEN-OFF": 2978,
+    "status RESOLVED": 4529,
     "status RESUBMITTED": 194,
     "status OPEN": 140
    },
@@ -348,13 +313,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-11T23:21:02Z",
-   "ended": "2026-11-11T23:25:19Z"
+   "started": "2026-11-12T00:50:02Z",
+   "ended": "2026-11-12T01:02:55Z"
   }
  ],
  "packages": [],
- "waiting": [
-  "Claim Inspector: 2 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
- ],
- "errors": []
+ "waiting": [],
+ "errors": [
+  "columns: columns_scan before failed (rc 1):         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/dist-packages/requests/adapters.py\", line 742, in send\n    raise ReadTimeout(e, request=request)\nrequests.exceptions.ReadTimeout: HTTPSConnectionPool(host='providerapi.advancedmd.com', port=443): Read timed out. (read timeout=120)"
+ ]
 }
