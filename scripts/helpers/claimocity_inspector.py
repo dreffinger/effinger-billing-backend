@@ -41,6 +41,10 @@
 #   the retry pass looks at it in every run (retry_fault) - not listed = free; listed with a data error (before the proof any, after the proof only
 #   words that name the line) = its live 1123F line is found on THAT visit by its own procedure and amount (fault_lines) and taken off by the retry
 #   sequence, with the M0004 line beside it; none found = it stays for a person, and no new line meanwhile. No other charge of the visit is touched.
+#   November 12, 2026 - fix round 2 (K15, K16; William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the visit pauses the code
+#   ONLY while it is held WITH its 1123F line and the line cannot be taken off. No 1123F line on the visit, or (after the proof) words that name no
+#   line: held for its own reason - the entry says "own_reason": true, the visit stays on the report for a person until it is free, the code goes
+#   on. The chart or a charge could not be read: an entry says so ("looked": false) and the visit stays stuck. A line found void already: "was_void".
 # THE OPTION CODE M0004 (William 11/10/2026: "use it"; it rides once per clinician with the 1123F line, after proof): the same for its no-charge
 #   line - an edit that names M0004 / pcode692183 is never bypassed, and the step takes BOTH no-charge lines off when the edits name neither or
 #   both, and also when they name 1123F alone (the 1123F line never leaves the M0004 line behind: M0004 rides only with 1123F; that M0004 entry
@@ -362,7 +366,7 @@ def retry_one(vid, t, info):
     for k, x in which:
         e = entry(k, x, why=words)
         if k == MVP_CODE and take_q and ((MVP_CODE not in t["act"]) if stuck else (nq and not nm)): e["with"] = QUALITY_CODE      # it comes off only because the 1123F line comes off (M0004 never rides without it): not M0004's fault
-        if live[k][0] == "gone": e["void_ok"] = True; gone.add(k)      # void already: nothing to void - go on to the re-save
+        if live[k][0] == "gone": e["void_ok"] = True; e["was_void"] = True; gone.add(k)      # void already: nothing to void - go on to the re-save (was_void: fix round 2, K16 - the digest says the line was found off)
     bad = [(k, live[k][1]) for k, _ in which if live[k][0] == "unsure"]
     if bad:      # a line that cannot be shown to be the no-charge line: nothing is voided, nothing else is tried for this visit
         for k, e in entries:
@@ -405,7 +409,8 @@ def fault_lines(vid, t):
     history for a live 1123F line of at most one cent on the line's date (on this visit, when the history names visits). Each candidate's OWN detail must
     show procedure pcode65441, at most one cent, and THIS visit - the visit the feed import itself created (its failed row names it); a line that is
     being looked for must be live. Then the visit's live charges (resave.visit_charges): its own first charge, and a live M0004 line of at most one cent
-    (it comes off with the 1123F line - M0004 never rides without it). -> ("found", {code: charge}, own) | ("none", why, "") | ("unsure", why, "")."""
+    (it comes off with the 1123F line - M0004 never rides without it). -> ("found", {code: charge}, own) | ("noline", why, "") (no 1123F line on that
+    visit - fix round 2, K15) | ("none", why, "") | ("unsure", why, "")."""
     known = re.sub(r"\D", "", str(t["act"].get(QUALITY_CODE) or "")); cands = [known] if known else []
     if not known:
         try: hist = txh.fetch(re.sub(r"\D", "", t["pid"]))
@@ -427,7 +432,8 @@ def fault_lines(vid, t):
         try: small = float(ch.get("fee") or "0") <= 0.01
         except Exception: small = False
         if small and (known or ch.get("void") != "1"): good.append(cid)
-    if not good: return "none", ("charge %s is not shown as that visit's 1123F line" % known) if known else "no live 1123F line of at most one cent on that visit in the chart's history", ""
+    if not good and not known: return "noline", "no live 1123F line of at most one cent on that visit in the chart's history", ""      # fix round 2 (K15): the visit carries no line of this code
+    if not good: return "none", "charge %s is not shown as that visit's 1123F line" % known, ""
     if len(good) > 1: return "none", "%d live 1123F lines on that visit (%s) - not told apart" % (len(good), ", ".join(good)), ""
     try: _v, _p, allc = resave.visit_charges(good[0])
     except Exception as e: return "unsure", "the visit's charges could not be read (%s)" % type(e).__name__, ""
@@ -442,8 +448,11 @@ def retry_fault(vid, t, info):
     """ONE visit of a fault run (K11). info = how the Claim Inspector lists it now (None = not listed). Not listed = free. Listed with advisories only =
     they are bypassed as the step always does, free. Listed with a data error - before the proof any, after the proof only words that name a no-charge
     line - its no-charge lines are found (fault_lines) and taken off by the retry sequence (retry_one: the line read live first, the void, the re-save on
-    the visit's own first charge, the listing; a visit that reads billed is never changed). No such line found = it stays listed for a person, and no
-    new line meanwhile. Every entry says "fault": true (the import finds the visit by its number) and "retry_of". -> a note for the step's log line."""
+    the visit's own first charge, the listing; a visit that reads billed is never changed). A line that cannot be told apart = it stays listed for a
+    person, and no new line meanwhile. November 12, 2026 - fix round 2 (K15, K16): NO 1123F line on the visit, or (after the proof) words that name no
+    line = the visit is held for its own reason, not because of this code: the entry says "own_reason": true - the visit stays on the report for a
+    person until it is free, and the code goes on (no pause); the chart or a charge could not be read = an entry says so ("looked": false) and the
+    visit stays stuck. Every entry says "fault": true (the import finds the visit by its number) and "retry_of". -> a note for the step's log line."""
     at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat()
     def entry(**kw):
         e = dict({"visit": vid, "pid": t["pid"], "charge": re.sub(r"\D", "", str(t["act"].get(QUALITY_CODE) or "")) and str(t["act"].get(QUALITY_CODE)), "code": QUALITY_CODE, "fee": t["fee"].get(QUALITY_CODE),
@@ -458,9 +467,11 @@ def retry_fault(vid, t, info):
         entry(released=True, listed=False, note="only advisories remained - bypassed, nothing voided"); return "free: only advisories remained"
     words = "; ".join(e["text"][:80] for e in data)
     if QUALITY_PROVEN and not any(named(e) for e in data):      # after the proof only words that name a no-charge line take it off (the normal pass's own test): this hold is the visit's own - a person looks
-        entry(why=words, note="held after the proof for words that name no no-charge line - left alone; a person looks at that visit"); return "held after the proof for words that name no line - for a person"
+        entry(why=words, own_reason=True, note="held for its own reason - after the proof its words name no no-charge line, so the line stays; a person fixes the visit"); return "held after the proof for words that name no line - for a person; no pause"
     st, found, own = fault_lines(vid, t)
-    if st == "unsure": return "%s - nothing done, the next run tries again" % found
+    if st == "unsure":      # K16: recorded, so the state line can say the visit is held and its line could not be looked for
+        entry(why=words, looked=False, note="its line could not be looked for: %s" % found); return "%s - nothing done, the next run tries again" % found
+    if st == "noline": entry(why=words, own_reason=True, note="held for its own reason; no 1123F line is on it - a person fixes the visit"); return "for a person (no pause): %s" % found
     if st == "none": entry(why=words, note="%s - nothing voided; a person looks at that visit" % found); return "for a person: %s" % found
     q = found[QUALITY_CODE]; mv = found.get(MVP_CODE, ""); fee = t["fee"].get(QUALITY_CODE)
     c = {"visit": "vst" + vid, "pid": t["pid"], "cpts": [], "charges": [x for x in (own, q, mv) if x], "quality_codes": [QUALITY_CODE], "quality_charge": q, "quality_fee": fee,
