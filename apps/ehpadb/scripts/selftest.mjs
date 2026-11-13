@@ -12,12 +12,15 @@
 //      tokens (tools/db/practice_db_page.html), and /theme.js applies a remembered pick, ignores an unknown one and survives a browser
 //      that refuses localStorage;
 //   6. (review of 11/12/2026) a failed query on a Practice Database or CCM route answers 500 with a fixed sentence and is logged by its
-//      route pattern and SQLSTATE only - never the error's message, where Postgres repeats the stored value it choked on;
+//      route pattern and SQLSTATE only - never the error's message, where Postgres repeats the stored value it choked on. (11/13/2026)
+//      The same for every other route that reads the database - every generic view (insurance_refresh, the Insurance Refresh Board's
+//      patient list, among them), one board card by POST, the Universal Practice Optimization routes - and for the gate's own two
+//      queries, the account lookup and the access-trail insert;
 //   7. (review of 11/12/2026) the browser tab title - also what browser history keeps - never carries a patient's name: the real
 //      browser code opens a CCM note and a patient with a stand-in document, and after the idle sign-out (and the Sign out button) the
 //      title is the page's own again. (11/13/2026, with the Insurance Refresh Board page and the session handling of PR #28's 4ddfa291)
-//      the header buttons as /api/links serves them - the board's opens #db/insurance_refresh on this site, in place - and a CCM note
-//      whose answer arrives after Sign out, or after the page was left, is not drawn.
+//      the header buttons as /api/links serves them - each opens its claude.ai page in a new tab, the Insurance Refresh Board's the
+//      board itself - and a CCM note whose answer arrives after Sign out, or after the page was left, is not drawn.
 // Never touches: Neon, the Auth server, the network (fetch is replaced by a refusal; the database address is made up). No patient
 // data: the one "patient" below is invented here. Writes only src/generated/client-bundle.ts (the bundle it checks; git-ignored).
 // Run: node scripts/selftest.mjs   (from apps/ehpadb; exit 1 on any failure) - tools/selftest/test_ehpadb_app.py runs it too.
@@ -50,10 +53,12 @@ globalThis.__SELFTEST__ = { sql: [], users: USERS, invented: INVENTED, pending: 
 const PG_STUB = `export class Pool { constructor() {}
   async query(q, params = []) {
     const S = globalThis.__SELFTEST__; const text = typeof q === "string" ? q : q.text; S.sql.push({ text, params });
-    if (/from neon_auth\\."user"/.test(text)) { const u = S.users[params[0]]; return { rows: u ? [{ email: u[0], verified: u[1] }] : [], fields: [] }; }
-    if (/^\\s*insert into ops\\.app_access_log/i.test(text)) return { rows: [], fields: [], rowCount: 1 };
     // part 6: the database refuses the way Postgres does - the stored value it choked on is repeated in the message and the detail
-    if (S.failing) { const e = new Error('invalid input syntax for type date: "' + S.invented + '"'); e.code = "22007"; e.detail = S.invented; throw e; }
+    // (failing: every data query; failLookup: the gate's account lookup; failTrail: the access-trail insert)
+    const refuse = () => { const e = new Error('invalid input syntax for type date: "' + S.invented + '"'); e.code = "22007"; e.detail = S.invented; throw e; };
+    if (/from neon_auth\\."user"/.test(text)) { if (S.failLookup) refuse(); const u = S.users[params[0]]; return { rows: u ? [{ email: u[0], verified: u[1] }] : [], fields: [] }; }
+    if (/^\\s*insert into ops\\.app_access_log/i.test(text)) { if (S.failTrail) refuse(); return { rows: [], fields: [], rowCount: 1 }; }
+    if (S.failing) refuse();
     if (/^\\s*update /i.test(text)) return { rows: [{ id: params[1], status: params[2] }], fields: [], rowCount: 1 };
     if (typeof q === "object" && q.rowMode === "array") return { rows: [], fields: [] };
     // every other question gets one answer document holding the invented patient, so a leak would show
@@ -162,20 +167,52 @@ check("/theme.js: a browser that refuses localStorage -> Light", runTheme("navy"
 // can be a birth date or a name, and PHI must never reach the Function's logs. Every query now fails with the invented name in its message
 // and detail. Each Practice Database and CCM route must answer 500 with its fixed sentence and log only its route pattern and the
 // SQLSTATE - not the name, and not the chart, note or run asked for. The log is captured the way Node prints it (util.format).
+// (11/13/2026) Every other route that reads the database is asked the same way: every generic view /api/views lists - insurance_refresh is
+// the Insurance Refresh Board's patient list (names, dates of birth, insurance ids) - one board card by POST with an invented id in the
+// body (an id can spell a name, so it must not reach the log either), and the Universal Practice Optimization routes. Then the gate's own
+// two queries fail in turn.
 const logged = [], realError = console.error;
 console.error = (...a) => { logged.push(format(...a)); };
+const viewNames = JSON.parse((await ask("GET", "/api/views", owner)).text);
+check("/api/views lists the eleven views of src/views.ts, the board's insurance_refresh and overview among them", viewNames.length === 11 && viewNames.includes("insurance_refresh") && viewNames.includes("overview"), viewNames.join(","));
+const CARD = "zyxwv-invented-card";
+const fill = (p) => p.replace(/:([a-z]+)/g, (_m, k) => SAMPLE[k] || "x");
+// label: the check's name; names: what the log line must name (the route pattern; the board card's line says "board item")
+const asks = [
+  ...routes.filter((r) => r.method === "GET" && /^\/api\/(pdb|ccm)\//.test(r.path)).map((r) => ({ label: "GET " + r.path, method: "GET", pattern: r.path, path: fill(r.path), names: r.path })),
+  ...viewNames.map((v) => ({ label: "GET /api/view/" + v, method: "GET", pattern: "/api/view/:name", path: "/api/view/" + v, names: "/api/view/:name" })),
+  { label: "POST /api/board/item", method: "POST", pattern: "/api/board/item", path: "/api/board/item", body: { id: CARD }, names: "board item" },
+  ...routes.filter((r) => /^\/api\/upo\//.test(r.path)).map((r) => ({ label: r.method + " " + r.path, method: r.method, pattern: r.path, path: fill(r.path), body: r.method === "POST" ? { status: "done" } : undefined, names: r.path })),
+];
+const count = (f) => asks.filter(f).length;
+check("every route that reads the database is asked with a failing database: 17 Practice Database and CCM, 11 views, the board's card, 6 Universal Practice Optimization (35)",
+  asks.length === 35 && count((a) => /^\/api\/(pdb|ccm)\//.test(a.pattern)) === 17 && count((a) => a.pattern === "/api/view/:name") === 11 && count((a) => /^\/api\/upo\//.test(a.pattern)) === 6,
+  asks.map((a) => a.label).join(", "));
 globalThis.__SELFTEST__.failing = true;
-const newRoutes = routes.filter((r) => r.method === "GET" && /^\/api\/(pdb|ccm)\//.test(r.path));
-check("the Practice Database and CCM routes are all asked with a failing database (17)", newRoutes.length === 17, newRoutes.length);
-for (const r of newRoutes) {
-  const path = r.path.replace(/:([a-z]+)/g, (_m, k) => SAMPLE[k] || "x");
+for (const a of asks) {
   const before = logged.length;
-  const res = await ask("GET", path, owner);
+  const res = await ask(a.method, a.path, owner, a.body);
   const lines = logged.slice(before);
-  check(`GET ${r.path} - a failed query: 500 with the fixed sentence, no data in it`, res.status === 500 && res.text.includes("the database answered with an error for ") && !res.text.includes(INVENTED), res.status + " " + res.text.slice(0, 120));
-  check(`GET ${r.path} - logged with its route pattern and SQLSTATE 22007 only`, lines.length > 0 && lines.every((l) => !l.includes(INVENTED) && l.includes(r.path) && l.includes("22007") && (path === r.path || !l.includes(path))), lines.join(" | ").slice(0, 300) || "nothing logged");
+  const asked = a.body?.id || (a.path === a.pattern ? "" : a.path);   // the card, chart, note, run or view asked for
+  check(`${a.label} - a failed query: 500 with the fixed sentence, no data in it`, res.status === 500 && res.text.includes("the database answered with an error for ") && !res.text.includes(INVENTED) && !(a.body?.id && res.text.includes(a.body.id)), res.status + " " + res.text.slice(0, 120));
+  check(`${a.label} - logged with ${a.names === a.pattern ? "its route pattern" : '"' + a.names + '"'} and SQLSTATE 22007 only`, lines.length > 0 && lines.every((l) => !l.includes(INVENTED) && l.includes(a.names) && l.includes("22007") && !(asked && l.includes(asked))), lines.join(" | ").slice(0, 300) || "nothing logged");
 }
-globalThis.__SELFTEST__.failing = false; console.error = realError;
+globalThis.__SELFTEST__.failing = false;
+// the gate's own two queries. An account lookup that fails refuses the request (403, no data) and logs the SQLSTATE only - asked with a
+// session the account cache (one minute) has not seen, so the lookup really runs. An access-trail insert that fails leaves the answer as it
+// was and logs the SQLSTATE only.
+const unseen = await token("u-not-looked-up-yet", "owner@invalid.test");
+globalThis.__SELFTEST__.failLookup = true;
+let from = logged.length;
+const lookup = await ask("GET", "/api/links", unseen);
+let gateLines = logged.slice(from);
+check("a failed account lookup: refused (403), logged with SQLSTATE 22007 only", lookup.status === 403 && !lookup.text.includes(INVENTED) && gateLines.length > 0 && gateLines.every((l) => !l.includes(INVENTED) && l.includes("22007")), lookup.status + " " + (gateLines.join(" | ").slice(0, 300) || "nothing logged"));
+globalThis.__SELFTEST__.failLookup = false; globalThis.__SELFTEST__.failTrail = true;
+from = logged.length;
+const trail = await ask("GET", "/api/links", owner);
+gateLines = logged.slice(from);
+check("a failed access-trail insert: the answer stands (200), the failure is logged with SQLSTATE 22007 only", trail.status === 200 && gateLines.length > 0 && gateLines.every((l) => !l.includes(INVENTED) && l.includes("22007")), trail.status + " " + (gateLines.join(" | ").slice(0, 300) || "nothing logged"));
+globalThis.__SELFTEST__.failTrail = false; console.error = realError;
 
 // ---- 7. the browser tab title never carries a patient's name, and sign-out resets it --------------------------------------------------
 // The tab title is also what browser history keeps, and the tab stays open after a sign-out (the idle sign-out included). The real browser
@@ -239,14 +276,15 @@ check("after Sign out (the button) on a CCM note the tab title is the page's own
 const tab3 = openBrowser("#home"); await settle();
 check("a page with no patient data keeps its heading as the tab title (Practice applications · ehpa)", tab3.document.title === "Practice applications · ehpa", tab3.document.title);
 
-// the header buttons, exactly as /api/links serves them to the owner: the Insurance Refresh Board's opens the board's page on this site in
-// place; the claude.ai pages open in a new tab
+// the header buttons, exactly as /api/links serves them to the owner: each opens its claude.ai page in a new tab - the Insurance Refresh
+// Board's opens the board itself, where notes are posted and patients handed to Claude (the board's read-only page on this site stays in
+// the Practice Database rail, #db/insurance_refresh)
 ANSWERS["/api/links"] = JSON.parse((await ask("GET", "/api/links", owner)).text);
 const tab4 = openBrowser("#home"); await settle();
 const linksHtml = tab4.el("#links").innerHTML;
 const irb = (linksHtml.match(/<a [^>]*data-link="irb"[^>]*>/) || [""])[0];
-check("the header's Insurance Refresh Board button opens #db/insurance_refresh on this site, in place (no new tab)", /href="#db\/insurance_refresh"/.test(irb) && !/target=/.test(irb) && !tab4.el("#links").hidden, irb || linksHtml.slice(0, 300));
-check("the other header buttons open their claude.ai page in a new tab", ANSWERS["/api/links"].length === 4 && (linksHtml.match(/<a [^>]*target="_blank"/g) || []).length === 3, linksHtml.slice(0, 300));
+check("the header's Insurance Refresh Board button opens the board on claude.ai (artifact NXKjnsha2dTyGHsiB4k6zg) in a new tab", /href="https:\/\/claude\.ai\/artifact\/NXKjnsha2dTyGHsiB4k6zg"/.test(irb) && /target="_blank"/.test(irb) && /rel="noopener noreferrer"/.test(irb) && !tab4.el("#links").hidden, irb || linksHtml.slice(0, 300));
+check("all four header buttons open their claude.ai page in a new tab", ANSWERS["/api/links"].length === 4 && (linksHtml.match(/<a [^>]*target="_blank"/g) || []).length === 4, linksHtml.slice(0, 300));
 // a CCM note whose answer arrives after Sign out is dropped: the name never comes back onto the signed-out page
 const late = openBrowser("#ccm/note/pat1_2026-10", "/api/ccm/note/pat1_2026-10"); await settle();
 for (const f of late.el("#signout").on.click || []) await f();

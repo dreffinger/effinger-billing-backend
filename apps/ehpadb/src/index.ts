@@ -22,6 +22,7 @@ import { CLIENT_JS } from "./generated/client-bundle";
 import { pageHtml } from "./page";
 import { themeJs } from "./palettes";
 import { VIEWS, runView } from "./views";
+import { dbFail, sqlState } from "./sql";
 import { boardItem } from "./board";
 import { registerUpo } from "./upo";
 import { registerPdb } from "./pdb";
@@ -82,8 +83,8 @@ async function accountOf(payload: Record<string, unknown>): Promise<Account> {
     const out: Account = { email: String(row.email).toLowerCase(), verified: row.verified === true, at: Date.now() };
     if (sub) accounts.set(sub, out);
     return out;
-  } catch (e: any) {
-    console.error("account lookup:", e?.message);
+  } catch (e) {
+    console.error("account lookup:", sqlState(e));   // the SQLSTATE only: a message could quote the address or id asked for (sql.ts)
     return none;
   }
 }
@@ -122,7 +123,7 @@ app.use("/api/*", async (c, next) => {
   await next();
   const audit = audits.get(c.req.raw);
   const status = c.res.status, route = c.req.path + (audit ? " " + audit : ""), ms = Date.now() - started;
-  waitUntil(pool.query("insert into ops.app_access_log (user_email, user_id, route, status, ms) values ($1, $2, $3, $4, $5)", [email, String(payload.sub || ""), route, status, ms]).catch((err) => console.error("access log:", err?.message)));
+  waitUntil(pool.query("insert into ops.app_access_log (user_email, user_id, route, status, ms) values ($1, $2, $3, $4, $5)", [email, String(payload.sub || ""), route, status, ms]).catch((err) => console.error("access log:", sqlState(err))));
 });
 
 app.get("/api/me", (c) => c.json(c.get("user")));
@@ -134,9 +135,8 @@ app.get("/api/view/:name", async (c) => {
     const v = await runView(pool, name);
     if (!v) return c.json({ error: "no such view" }, 404);
     return c.json(v);
-  } catch (e: any) {
-    console.error("view", name, e?.message);
-    return c.json({ error: "the database answered with an error for this view" }, 500);
+  } catch (e) {
+    return dbFail(c, "this view", e);   // the route pattern and SQLSTATE only: insurance_refresh is the board's patient list (sql.ts)
   }
 });
 

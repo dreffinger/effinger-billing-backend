@@ -26,9 +26,9 @@ const APPS: [string, string][] = [["home", "Home"], ["upo", "Universal Practice 
 type CcmTotals = { totals?: { notes: number; ready: number; flagged: number; signed: number; patients: number } };
 
 // ---- the header buttons: the practice's pages on claude.ai, asked for after sign-in so the public page names none of them ------
-// A button whose address is a page of this site ("#db/insurance_refresh": the Insurance Refresh Board's own page here) opens it in
-// place; the others open the claude.ai page in a new tab. An answer that comes back after a sign-out is not drawn (the sign-in page
-// shows no buttons).
+// A button whose address is a page of this site (a "#..." address) opens it in place; a claude.ai page opens in a new tab - every
+// button /api/links serves today, the Insurance Refresh Board's included (the board itself; its read-only page here is in the Practice
+// Database rail). An answer that comes back after a sign-out is not drawn (the sign-in page shows no buttons).
 const SITE_PAGE = /^#[a-z0-9_]+(\/[a-z0-9_-]+)*$/;
 async function showLinks() {
   const box = $("#links");

@@ -12,6 +12,7 @@
 // The practice tables hold aggregates only (dollars, counts, rates) - never a patient name, date of birth or member id.
 import type { Hono } from "hono";
 import type { Pool } from "pg";
+import { dbFail } from "./sql";
 
 const PRACTICE_RE = /^[a-z0-9]{2,20}$/;
 const ITEM_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,79}$/;
@@ -89,7 +90,7 @@ type AppVars = { Variables: { user: { id: string; email: string } } };
 
 export function registerUpo(app: Hono<AppVars>, pool: Pool, defaultPractice: string) {
   const one = async (sql: string, params: unknown[] = []) => (await pool.query(sql, params)).rows[0]?.doc ?? null;
-  const fail = (c: any, what: string, e: any) => { console.error(what, e?.message); return c.json({ error: "the database answered with an error for " + what }, 500); };
+  const fail = dbFail;   // logs the route pattern and SQLSTATE only, never the error's message (sql.ts); the same answer sentence as before
 
   app.get("/api/upo/summary", async (c) => {
     const code = c.req.query("practice") || defaultPractice;

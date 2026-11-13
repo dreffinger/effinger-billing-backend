@@ -37,8 +37,8 @@ billing dashboard and the Practice Database page's views), the **CCM notes** and
     this one; once the file is here, `tools/selftest/test_ehpadb_app.py` checks that it builds every view `src/ccm.ts` reads.
   - `/api/upo/...` (`src/upo.ts`): Universal Practice Optimization; its work-list POST is the app's one write.
   - `/api/links`: the header buttons - Practice Database page, Insurance Refresh Board, CCM Documentation Hub, CCM Hub Build
-    (`src/links.ts`). The Insurance Refresh Board button opens this site's own board page (`#db/insurance_refresh`); the others
-    open the claude.ai page in a new tab.
+    (`src/links.ts`). Each opens its claude.ai page in a new tab; the Insurance Refresh Board button opens the board itself,
+    where notes are posted (the board's read-only page on this site is in the Practice Database rail, `#db/insurance_refresh`).
 - **The Insurance Refresh Board** (`#db/insurance_refresh`) is the one dashboard page that shows patients: the board's cards
   from `ehpa.insurance_refresh_cards` (names, dates of birth, insurance ids), read-only, as fresh as the last nightly copy
   (`nightly/practice_db_sync_prompt_v1.txt`). `src/board.ts` reads it, `src/boardview.ts` draws the cards with the board's own
@@ -76,9 +76,9 @@ neon logs query --source function --since 1h     # the function's logs
 
 After a deploy, check: `curl -s https://app.ehpa.dev/health` says ok; `/` has `data-ehpa="light"` and loads `/theme.js`;
 `curl -s -o /dev/null -w '%{http_code}' https://app.ehpa.dev/api/ccm/summary` (and `/api/pdb/overview`, `/api/links`) answers
-401 without a session; `/app.js` contains no `claude.ai/artifact`; signed in, the four header buttons show (Insurance Refresh
-Board opens `#db/insurance_refresh` on the site), a picked scheme survives a reload, every Practice Database view, the board and
-the CCM notes open, and the requests appear in `ops.app_access_log`.
+401 without a session; `/app.js` contains no `claude.ai/artifact`; signed in, the four header buttons show (each opens its
+claude.ai page in a new tab, Insurance Refresh Board the board itself), a picked scheme survives a reload, every Practice Database
+view, the board (`#db/insurance_refresh`) and the CCM notes open, and the requests appear in `ops.app_access_log`.
 
 Custom domain: `neon functions domains register app.ehpa.dev --slug ehpadb --output json` prints the CNAME target; create
 the CNAME (DNS only, no proxy), then `neon functions domains list` until `active`, and add `https://app.ehpa.dev` as a trusted

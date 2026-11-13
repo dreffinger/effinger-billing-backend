@@ -3,8 +3,7 @@
 // (the Mandatory Approvals page, the CCM Documentation Hub). They are served only from /api routes (index.ts: a verified Neon
 // Auth session for an allowed, confirmed email), so the public shell ("/") and the browser script (/app.js) carry no page
 // addresses. The lists follow tools/db/practice_db_page.html (PAGES, LINKS, ROUTINES) with the in-page anchors pointed at this
-// site's own views. One header button is a page of this site: the Insurance Refresh Board opens #db/insurance_refresh (the
-// board's cards, read-only), which links on to the board on claude.ai for posting (BOARD_URL in board.ts).
+// site's own views.
 export type Link = { key: string; label: string; url: string; note: string };
 
 const REPO = "https://github.com/dreffinger/effinger-billing-backend";
@@ -12,16 +11,15 @@ const art = (id: string) => "https://claude.ai/artifact/" + id;
 
 export const PRACTICE_DB_PAGE = art("QrLJpUcpFv3cFRB9xHfLyk");
 export const INSURANCE_REFRESH_BOARD = art("NXKjnsha2dTyGHsiB4k6zg");
-export const INSURANCE_REFRESH_PAGE = "#db/insurance_refresh";   // the board's cards on this site (views.ts insurance_refresh)
 export const CCM_HUB = art("GSd9jcvXoBmxc9NkX2mWmR");
 export const CCM_HUB_BUILD = art("Fsc6yZZLxuumAiJG9FAp8K");
 export const APPROVALS_PAGE = art("HuYd2bSm2NxkFgYRqra7wR");
 
 // the header buttons (William 11/12/2026: "add a button that goes to the insurance refresh board"; the CCM pages and the
-// Practice Database page beside it). The board's button opens the board's page on this site; that page links to the board itself.
+// Practice Database page beside it)
 export const HEADER_LINKS: Link[] = [
   { key: "pdb", label: "Practice Database", url: PRACTICE_DB_PAGE, note: "The Practice Database page on claude.ai: its own database, the census inputs, every billing run" },
-  { key: "irb", label: "Insurance Refresh Board", url: INSURANCE_REFRESH_PAGE, note: "Patients whose coverage is being resolved, as of the nightly copy; the page links to the board for posting" },
+  { key: "irb", label: "Insurance Refresh Board", url: INSURANCE_REFRESH_BOARD, note: "Patients whose coverage is being resolved, refreshed daily" },
   { key: "ccm", label: "CCM Documentation Hub", url: CCM_HUB, note: "Read and sign the CCM late-entry notes (signing happens there)" },
   { key: "ccmbuild", label: "CCM Hub Build", url: CCM_HUB_BUILD, note: "How the CCM Documentation Hub was built" },
 ];
