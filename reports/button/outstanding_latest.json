@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-13T13:21:05Z",
+ "at": "2026-11-13T15:21:10Z",
  "as_of": "2026-11-13",
- "total": 296146.05,
- "visits": 2585,
+ "total": 295619.05,
+ "visits": 2582,
  "charts": 485,
  "over_365": {
   "n": 547,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 663,
-   "dollars": 116413.55
+   "n": 660,
+   "dollars": 115886.55
   },
   "31-60": {
    "n": 286,
@@ -144,10 +144,10 @@
   {
    "carrier": "VACCN",
    "name": "OPTUM VA CCN",
-   "n": 33,
-   "dollars": 6037.22,
+   "n": 31,
+   "dollars": 5717.22,
    "buckets": {
-    "0-30": 2393.0,
+    "0-30": 2073.0,
     "31-60": 1593.0,
     "61-90": 640.0,
     "91-180": 913.0,
@@ -309,10 +309,10 @@
   {
    "carrier": "TRI00",
    "name": "TRICARE EAST",
-   "n": 7,
-   "dollars": 1747.0,
+   "n": 6,
+   "dollars": 1540.0,
    "buckets": {
-    "0-30": 822.0,
+    "0-30": 615.0,
     "31-60": 0.0,
     "61-90": 0.0,
     "91-180": 204.0,
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 352,
-   "dollars": 62064.0
+   "n": 349,
+   "dollars": 61537.0
   }
  ],
  "oldest": [
@@ -20099,14 +20099,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460541,
-   "patientid": 17477946,
-   "carriercode": "TRI00",
-   "insbalance": 207.0,
-   "days": 9,
-   "dos": "2026-11-04"
-  },
-  {
    "visitid": 19460223,
    "patientid": 17478261,
    "carriercode": "BCBS",
@@ -21131,14 +21123,6 @@
    "dos": "2026-11-07"
   },
   {
-   "visitid": 19460667,
-   "patientid": 17477352,
-   "carriercode": "VACCN",
-   "insbalance": 160.0,
-   "days": 6,
-   "dos": "2026-11-07"
-  },
-  {
    "visitid": 19460531,
    "patientid": 17478346,
    "carriercode": "AET07",
@@ -21318,14 +21302,6 @@
    "visitid": 19460693,
    "patientid": 17472228,
    "carriercode": "UNI20",
-   "insbalance": 160.0,
-   "days": 5,
-   "dos": "2026-11-08"
-  },
-  {
-   "visitid": 19460681,
-   "patientid": 17477352,
-   "carriercode": "VACCN",
    "insbalance": 160.0,
    "days": 5,
    "dos": "2026-11-08"
