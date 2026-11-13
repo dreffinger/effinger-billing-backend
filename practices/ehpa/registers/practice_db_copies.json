@@ -11,7 +11,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-12T08:42:21Z",
+"last_checked": "2026-11-13T08:41:15Z",
 "last_index": {
 "doc": "billing_button-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -22,12 +22,12 @@
 "credentialing_board": {
 "collections": {
 "cred": {
-"bytes": 156916,
+"bytes": 157787,
 "count": 45,
-"doc": "credentialing_board-cred-20261111T0838Z",
+"doc": "credentialing_board-cred-20261113T0838Z",
 "parts": 1,
-"sha": "8f0ae572a3eef3828e1cff7995d0910c1b969affe52d7285fa7f6437684db81b",
-"stamp": "20261111T0838Z"
+"sha": "9fca072a29145286e7e2168976c85846a1fb11c26d3a7e6a4dec40aa0cb2385d",
+"stamp": "20261113T0838Z"
 },
 "meta": {
 "bytes": 335,
@@ -38,10 +38,10 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-12T08:41:57Z",
+"last_checked": "2026-11-13T08:41:03Z",
 "last_index": {
-"doc": "credentialing_board-20261111T0838Z",
-"stamp": "20261111T0838Z"
+"doc": "credentialing_board-20261113T0838Z",
+"stamp": "20261113T0838Z"
 },
 "title": "Credentialing Board",
 "url": "https://claude.ai/artifact/CmAo5e3hAouWyFEqwbdo4M"
@@ -73,7 +73,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-12T08:42:09Z",
+"last_checked": "2026-11-13T08:41:09Z",
 "last_index": {
 "doc": "ehpa_home-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -92,26 +92,26 @@
 "stamp": "20261102T0440Z"
 },
 "items": {
-"bytes": 2014878,
+"bytes": 2029748,
 "count": 520,
-"doc": "insurance_refresh_board-items-20261112T0838Z",
+"doc": "insurance_refresh_board-items-20261113T0838Z",
 "parts": 11,
-"sha": "20c00605213944dc28999fe3326363d88b3a3bb7bae6a92b114c937817ca5751",
-"stamp": "20261112T0838Z"
+"sha": "25b1e5f94271337e2b3efb7bed31a248922dcc63ad54cef84e3dbb7049fa160a",
+"stamp": "20261113T0838Z"
 },
 "meta": {
 "bytes": 29740,
 "count": 1,
-"doc": "insurance_refresh_board-meta-20261112T0838Z",
+"doc": "insurance_refresh_board-meta-20261113T0838Z",
 "parts": 1,
-"sha": "5d6321dc178a9ddbd44d297ac49f04d3bad252746cdd232b5dc265f8a4ccfdda",
-"stamp": "20261112T0838Z"
+"sha": "73d89a62f32b6c8be5e863b54e6799338d09ffd759a294f65c911abdccd35853",
+"stamp": "20261113T0838Z"
 }
 },
-"last_checked": "2026-11-12T08:39:40Z",
+"last_checked": "2026-11-13T08:39:51Z",
 "last_index": {
-"doc": "insurance_refresh_board-20261112T0838Z",
-"stamp": "20261112T0838Z"
+"doc": "insurance_refresh_board-20261113T0838Z",
+"stamp": "20261113T0838Z"
 },
 "title": "Insurance Refresh Board",
 "url": "https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg"
@@ -127,7 +127,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-12T08:39:14Z",
+"last_checked": "2026-11-13T08:39:34Z",
 "last_index": {
 "doc": "mandatory_approvals-20261102T0440Z",
 "stamp": "20261102T0440Z"
@@ -146,7 +146,7 @@
 "stamp": "20261112T0838Z"
 }
 },
-"last_checked": "2026-11-12T08:42:18Z",
+"last_checked": "2026-11-13T08:41:14Z",
 "last_index": {
 "doc": "money_ledger-20261112T0838Z",
 "stamp": "20261112T0838Z"
@@ -165,7 +165,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-12T08:42:16Z",
+"last_checked": "2026-11-13T08:41:13Z",
 "last_index": {
 "doc": "outstanding_claims-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -192,7 +192,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-12T08:41:54Z",
+"last_checked": "2026-11-13T08:41:02Z",
 "last_index": {
 "doc": "treasury_payments-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -227,7 +227,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-12T08:41:51Z",
+"last_checked": "2026-11-13T08:41:00Z",
 "last_index": {
 "doc": "working_denials-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -691,6 +691,46 @@
 "index": "money_ledger-20261112T0838Z",
 "slug": "money_ledger",
 "stamp": "20261112T0838Z"
+},
+{
+"at": "2026-11-13T08:39:51Z",
+"coll": "items",
+"docs": [
+"insurance_refresh_board-items-20261113T0838Z",
+"insurance_refresh_board-items-20261113T0838Z.p2",
+"insurance_refresh_board-items-20261113T0838Z.p3",
+"insurance_refresh_board-items-20261113T0838Z.p4",
+"insurance_refresh_board-items-20261113T0838Z.p5",
+"insurance_refresh_board-items-20261113T0838Z.p6",
+"insurance_refresh_board-items-20261113T0838Z.p7",
+"insurance_refresh_board-items-20261113T0838Z.p8",
+"insurance_refresh_board-items-20261113T0838Z.p9",
+"insurance_refresh_board-items-20261113T0838Z.p10",
+"insurance_refresh_board-items-20261113T0838Z.p11"
+],
+"index": "insurance_refresh_board-20261113T0838Z",
+"slug": "insurance_refresh_board",
+"stamp": "20261113T0838Z"
+},
+{
+"at": "2026-11-13T08:39:51Z",
+"coll": "meta",
+"docs": [
+"insurance_refresh_board-meta-20261113T0838Z"
+],
+"index": "insurance_refresh_board-20261113T0838Z",
+"slug": "insurance_refresh_board",
+"stamp": "20261113T0838Z"
+},
+{
+"at": "2026-11-13T08:41:03Z",
+"coll": "cred",
+"docs": [
+"credentialing_board-cred-20261113T0838Z"
+],
+"index": "credentialing_board-20261113T0838Z",
+"slug": "credentialing_board",
+"stamp": "20261113T0838Z"
 }
 ],
 "runs": {
@@ -1423,6 +1463,116 @@
 },
 "index": "money_ledger-20261112T0838Z",
 "unchanged": []
+},
+"outstanding_claims": {
+"changed": [],
+"counts": {
+"embedded": 3
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"treasury_payments": {
+"changed": [],
+"counts": {
+"embedded": 1,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta"
+]
+},
+"working_denials": {
+"changed": [],
+"counts": {
+"commands": 5,
+"embedded": 5,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"commands",
+"embedded",
+"meta"
+]
+}
+},
+"20261113T0838Z": {
+"billing_button": {
+"changed": [],
+"counts": {
+"embedded": 1
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"credentialing_board": {
+"changed": [
+"cred"
+],
+"counts": {
+"cred": 45,
+"meta": 1
+},
+"index": "credentialing_board-20261113T0838Z",
+"unchanged": [
+"meta"
+]
+},
+"ehpa_home": {
+"changed": [],
+"counts": {
+"embedded": 2,
+"meta": 1,
+"questions": 20
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta",
+"questions"
+]
+},
+"insurance_refresh_board": {
+"changed": [
+"items",
+"meta"
+],
+"counts": {
+"drops": 6,
+"items": 520,
+"meta": 1
+},
+"index": "insurance_refresh_board-20261113T0838Z",
+"unchanged": [
+"drops"
+]
+},
+"mandatory_approvals": {
+"changed": [],
+"counts": {
+"approvals": 97
+},
+"index": null,
+"unchanged": [
+"approvals"
+]
+},
+"money_ledger": {
+"changed": [],
+"counts": {
+"embedded": 1
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
 },
 "outstanding_claims": {
 "changed": [],
