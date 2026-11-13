@@ -19,7 +19,8 @@
 #   only charge line is two fields long), a message with one good and one short charge line is skipped whole, a batch with nothing
 #   wrong gets no line and no register key, a dry run writes nothing, a readable message is still read exactly as before, the same
 #   batch seen again under a later stamp enters nothing, and the retry of visits that waited on a diagnosis code is not stopped by a
-#   message with no FT1 line either. The words the runbook gives the routine are tied to the code's.
+#   message with no FT1 line either (an empty FT1 list, or a parsed record with no FT1 key at all). The words the runbook gives the
+#   routine are tied to the code's.
 # Never touches: AMD, Gmail, Drive, the workspace. NOTHING IS STARTED AS A PROGRAM: scripts/helpers holds the real amd / resave / txh /
 #   void_tx modules, and a helper started as a program from that folder loads them (docs/SHARED_LESSONS.md, 2026-11-10T1030Z). The
 #   parser, the importer, the digest and the retry driver are run INSIDE this process - the importer with stand-in amd / resave / txh
@@ -378,7 +379,11 @@ _isrc = open(IMPORT, encoding="utf-8").read()
 open(os.path.join(ws, "claimocity_import.py"), "w", encoding="utf-8").write("".join(re.search(r"^%s\s*=\s*\{.*?\}\n" % t_, _isrc, re.S | re.M).group(0) for t_ in ("PCODE", "FEE")))
 json.dump({"created": [], "failed": [], "skipped": [{"feed_id": fid(2), "pid": chart(2), "why": "no usable dx for 99308"}]}, open(os.path.join(ws, "registers", "feed_import_%s.json" % EARLIER), "w"))
 family, given, born, member = person(2)
+# 11/13/2026: that message comes twice, both before the visit - as the parser writes it (an empty FT1 list) and as an older or damaged parsed file
+# can hold it (no FT1 key at all). An empty list is passed over by the retry's code filter as well (review round 2: a visit is retried only when it
+# carries a code its skip names); a record WITHOUT the key is kept from stopping the retry (KeyError 'FT1') by the retry's no-FT1 guard alone.
 json.dump([{"file": FILE, "FT1": [], "IN1": [], "DG1": [], "facility": "", "msgtime": "", "pid": fid(2), "name": family + ", " + given, "dob": born, "provider": "", "admit": ""},      # the same patient's message with no charge line, read first
+           {"file": FILE, "IN1": [], "DG1": [], "facility": "", "msgtime": "", "pid": fid(2), "name": family + ", " + given, "dob": born, "provider": "", "admit": ""},                 # ... and the same with no FT1 key at all
            {"file": FILE, "FT1": [{"dos": day(0), "posted": day(1), "units": "1", "dx": "M5117", "cpt": "99308"}], "IN1": [], "DG1": [], "facility": "", "msgtime": "", "pid": fid(2), "name": family + ", " + given, "dob": born, "provider": "", "admit": ""}],
           open(os.path.join(ws, "feed_parsed_%s.json" % EARLIER), "w"))
 json.dump({"M5117": None}, open(os.path.join(ws, "dx_cache_feed.json"), "w")); json.dump({fid(2): chart(2)}, open(os.path.join(ws, "registers", "claimocity_patient_map.json"), "w"))
@@ -398,7 +403,7 @@ def run_retry(ws):
     path = os.path.join(ws, "claimocity_retry_dx.py"); open(path, "w", encoding="utf-8").write(src)
     return run_script(path, ws, ("--stamp", "2026-11-11T0100Z"), extra={"subprocess": programs})
 os.environ["FEED_DX_CACHE"] = "dx_cache_feed.json"; rout, rerr = run_retry(ws)
-check("retry: a message with no FT1 line of a patient whose visit waits on a diagnosis code does not stop the retry - it reads on and reports the visit that still waits",
+check("retry: a message with no FT1 line of a patient whose visit waits on a diagnosis code does not stop the retry - neither an empty FT1 list nor a parsed record with no FT1 key at all - it reads on and reports the visit that still waits",
       rerr == "" and "1 visit(s) still wait on codes not in AMD's diagnosis list: M5117" in rout and [c[1] for c in STARTED] == ["claimocity_dx.py"], (rerr, rout[-300:], STARTED))
 
 # ------------------------------------------------------------------ the words: the mirror's guard, the shared helper, the runbook
