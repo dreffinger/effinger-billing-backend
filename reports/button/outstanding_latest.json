@@ -1,10 +1,10 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-13T21:21:31Z",
+ "at": "2026-11-13T23:20:57Z",
  "as_of": "2026-11-13",
- "total": 295158.13,
- "visits": 2579,
- "charts": 485,
+ "total": 294561.77,
+ "visits": 2575,
+ "charts": 484,
  "over_365": {
   "n": 547,
   "dollars": 25190.89
@@ -15,8 +15,8 @@
    "dollars": 115745.55
   },
   "31-60": {
-   "n": 284,
-   "dollars": 40786.27
+   "n": 280,
+   "dollars": 40189.91
   },
   "61-90": {
    "n": 147,
@@ -39,11 +39,11 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1310,
-   "dollars": 131134.16,
+   "n": 1306,
+   "dollars": 130537.8,
    "buckets": {
     "0-30": 50315.58,
-    "31-60": 12234.93,
+    "31-60": 11638.57,
     "61-90": 10111.62,
     "91-180": 19774.55,
     "181-365": 29569.94,
@@ -735,8 +735,8 @@
   },
   {
    "month": "2026-09",
-   "n": 216,
-   "dollars": 30089.02
+   "n": 212,
+   "dollars": 29492.66
   },
   {
    "month": "2026-10",
@@ -14707,14 +14707,6 @@
    "dos": "2026-09-17"
   },
   {
-   "visitid": 19455913,
-   "patientid": 17476032,
-   "carriercode": "FLO02",
-   "insbalance": 152.22,
-   "days": 56,
-   "dos": "2026-09-18"
-  },
-  {
    "visitid": 19455921,
    "patientid": 17471333,
    "carriercode": "FLO02",
@@ -15611,14 +15603,6 @@
    "dos": "2026-09-29"
   },
   {
-   "visitid": 19456892,
-   "patientid": 17477557,
-   "carriercode": "FLO02",
-   "insbalance": 74.54,
-   "days": 45,
-   "dos": "2026-09-29"
-  },
-  {
    "visitid": 19455721,
    "patientid": 17473343,
    "carriercode": "FLO02",
@@ -15639,22 +15623,6 @@
    "patientid": 17477966,
    "carriercode": "BCBS",
    "insbalance": 230.44,
-   "days": 44,
-   "dos": "2026-09-30"
-  },
-  {
-   "visitid": 19456872,
-   "patientid": 17477557,
-   "carriercode": "FLO02",
-   "insbalance": 184.8,
-   "days": 44,
-   "dos": "2026-09-30"
-  },
-  {
-   "visitid": 19456898,
-   "patientid": 17477974,
-   "carriercode": "FLO02",
-   "insbalance": 184.8,
    "days": 44,
    "dos": "2026-09-30"
   },
