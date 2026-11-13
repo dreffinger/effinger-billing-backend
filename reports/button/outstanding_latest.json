@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-13T18:45:37Z",
+ "at": "2026-11-13T19:20:56Z",
  "as_of": "2026-11-13",
- "total": 295619.05,
- "visits": 2582,
+ "total": 295319.05,
+ "visits": 2581,
  "charts": 485,
  "over_365": {
   "n": 547,
@@ -15,8 +15,8 @@
    "dollars": 115886.55
   },
   "31-60": {
-   "n": 286,
-   "dollars": 41106.19
+   "n": 285,
+   "dollars": 40806.19
   },
   "61-90": {
    "n": 147,
@@ -38,7 +38,7 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-   "name": "[name]",
+   "name": "FLORIDA MEDICARE",
    "n": 1310,
    "dollars": 131134.16,
    "buckets": {
@@ -53,7 +53,7 @@
   },
   {
    "carrier": "UNI20",
-   "name": "[name]",
+   "name": "UNITED HEALTHCARE",
    "n": 174,
    "dollars": 36668.07,
    "buckets": {
@@ -68,7 +68,7 @@
   },
   {
    "carrier": "FLO99",
-   "name": "[name]",
+   "name": "FLORIDA COMMUNITY CARE AVAILITY",
    "n": 157,
    "dollars": 26780.58,
    "buckets": {
@@ -83,7 +83,7 @@
   },
   {
    "carrier": "BCBS",
-   "name": "[name]",
+   "name": "FLORIDA BLUE",
    "n": 312,
    "dollars": 19848.48,
    "buckets": {
@@ -98,7 +98,7 @@
   },
   {
    "carrier": "UHCMA",
-   "name": "[name]",
+   "name": "UNITEDHEALTHCARE DUAL COMPLETE",
    "n": 90,
    "dollars": 18281.4,
    "buckets": {
@@ -113,7 +113,7 @@
   },
   {
    "carrier": "HUM01",
-   "name": "[name]",
+   "name": "HUMANA",
    "n": 63,
    "dollars": 10237.05,
    "buckets": {
@@ -128,7 +128,7 @@
   },
   {
    "carrier": "CAP07",
-   "name": "[name]",
+   "name": "CAPITAL HEALTH PLAN",
    "n": 31,
    "dollars": 6494.0,
    "buckets": {
@@ -143,7 +143,7 @@
   },
   {
    "carrier": "VACCN",
-   "name": "[name]",
+   "name": "OPTUM VA CCN",
    "n": 31,
    "dollars": 5717.22,
    "buckets": {
@@ -158,7 +158,7 @@
   },
   {
    "carrier": "SUN01",
-   "name": "[name]",
+   "name": "SUNSHINE STATE HEALTH PLAN",
    "n": 45,
    "dollars": 5661.06,
    "buckets": {
@@ -173,7 +173,7 @@
   },
   {
    "carrier": "MCAD",
-   "name": "[name]",
+   "name": "FLORIDA MEDICAID",
    "n": 32,
    "dollars": 4409.1,
    "buckets": {
@@ -203,12 +203,12 @@
   },
   {
    "carrier": "RET01",
-   "name": "[name]",
-   "n": 15,
-   "dollars": 3764.0,
+   "name": "RETIRED RAILROAD MEDICARE",
+   "n": 14,
+   "dollars": 3464.0,
    "buckets": {
     "0-30": 1019.0,
-    "31-60": 1103.0,
+    "31-60": 803.0,
     "61-90": 206.0,
     "91-180": 923.0,
     "181-365": 513.0,
@@ -218,7 +218,7 @@
   },
   {
    "carrier": "SIM01",
-   "name": "[name]",
+   "name": "SIMPLY HEALTHCARE MCD PLANS",
    "n": 14,
    "dollars": 2934.0,
    "buckets": {
@@ -233,7 +233,7 @@
   },
   {
    "carrier": "WEL04",
-   "name": "[name]",
+   "name": "WELLCARE",
    "n": 12,
    "dollars": 2887.0,
    "buckets": {
@@ -248,7 +248,7 @@
   },
   {
    "carrier": "AET07",
-   "name": "[name]",
+   "name": "AETNA",
    "n": 17,
    "dollars": 2544.04,
    "buckets": {
@@ -263,7 +263,7 @@
   },
   {
    "carrier": "TRI05",
-   "name": "[name]",
+   "name": "TRICARE FOR LIFE",
    "n": 73,
    "dollars": 2478.72,
    "buckets": {
@@ -278,7 +278,7 @@
   },
   {
    "carrier": "UMR",
-   "name": "[name]",
+   "name": "UMR CHOICE",
    "n": 16,
    "dollars": 2471.0,
    "buckets": {
@@ -293,7 +293,7 @@
   },
   {
    "carrier": "AET12",
-   "name": "[name]",
+   "name": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
    "n": 50,
    "dollars": 1854.51,
    "buckets": {
@@ -308,7 +308,7 @@
   },
   {
    "carrier": "TRI00",
-   "name": "[name]",
+   "name": "TRICARE EAST",
    "n": 6,
    "dollars": 1540.0,
    "buckets": {
@@ -323,7 +323,7 @@
   },
   {
    "carrier": "FIR07",
-   "name": "[name]",
+   "name": "FIRST HEALTH NETWORK",
    "n": 8,
    "dollars": 1087.0,
    "buckets": {
@@ -338,7 +338,7 @@
   },
   {
    "carrier": "AMB03",
-   "name": "[name]",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
    "n": 9,
    "dollars": 845.2,
    "buckets": {
@@ -353,7 +353,7 @@
   },
   {
    "carrier": "BCBS1",
-   "name": "[name]",
+   "name": "FLORIDABLUE MEDICARE",
    "n": 3,
    "dollars": 736.0,
    "buckets": {
@@ -368,7 +368,7 @@
   },
   {
    "carrier": "WEL07",
-   "name": "[name]",
+   "name": "WELLCARE HEALTH PLAN ENCOUNTERS",
    "n": 4,
    "dollars": 704.0,
    "buckets": {
@@ -383,7 +383,7 @@
   },
   {
    "carrier": "CHA03",
-   "name": "[name]",
+   "name": "CHAMPVA",
    "n": 29,
    "dollars": 565.05,
    "buckets": {
@@ -398,7 +398,7 @@
   },
   {
    "carrier": "GEH04",
-   "name": "[name]",
+   "name": "GEHA HIGH OPTION",
    "n": 46,
    "dollars": 471.05,
    "buckets": {
@@ -443,7 +443,7 @@
   },
   {
    "carrier": "LAN",
-   "name": "[name]",
+   "name": "LANTERN",
    "n": 1,
    "dollars": 310.0,
    "buckets": {
@@ -473,7 +473,7 @@
   },
   {
    "carrier": "CON08",
-   "name": "[name]",
+   "name": "CONTINENTAL GENERAL INSURANCE",
    "n": 2,
    "dollars": 67.35,
    "buckets": {
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-10",
-   "n": 448,
-   "dollars": 72333.51
+   "n": 447,
+   "dollars": 72033.51
   },
   {
    "month": "2026-11",
@@ -15686,14 +15686,6 @@
    "visitid": 19457092,
    "patientid": 44953,
    "carriercode": "HUM01",
-   "insbalance": 300.0,
-   "days": 43,
-   "dos": "2026-10-01"
-  },
-  {
-   "visitid": 19457097,
-   "patientid": 17473431,
-   "carriercode": "RET01",
    "insbalance": 300.0,
    "days": 43,
    "dos": "2026-10-01"
