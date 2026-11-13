@@ -1,0 +1,44 @@
+{
+ "created": [
+  {
+   "pid": "pat17478398",
+   "chart": "F261113-04",
+   "feed_ids": [
+    "6aefa185be3277d754625fa0"
+   ],
+   "plans": [],
+   "respparty": "resp21479953",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478399",
+   "chart": "F261113-05",
+   "feed_ids": [
+    "6acd340664f981045f3d1eca",
+    "6acd340664f981045f3d1eca"
+   ],
+   "plans": [],
+   "respparty": "resp21479954",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478400",
+   "chart": "F261113-06",
+   "feed_ids": [
+    "6af3ede461e0db5fa9342356",
+    "6af3ede461e0db5fa9342356",
+    "6af3ede461e0db5fa9342356"
+   ],
+   "plans": [],
+   "respparty": "resp21479955",
+   "respparty_named": true
+  }
+ ],
+ "failed": [
+  {
+   "key": "EDWIN",
+   "chart": "F261113-04",
+   "err": "Duplicate chart number found"
+  }
+ ]
+}

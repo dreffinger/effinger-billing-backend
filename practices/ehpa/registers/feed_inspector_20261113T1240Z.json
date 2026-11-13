@@ -1,0 +1,215 @@
+{
+ "fixed": [
+  {
+   "visit": "19461099",
+   "pid": "pat17470875",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23373928 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19461100",
+   "pid": "pat12179706",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461102",
+   "pid": "pat22758",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461109",
+   "pid": "pat17478273",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461112",
+   "pid": "pat17478398",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461144",
+   "pid": "pat17471673",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461148",
+   "pid": "pat17475713",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461154",
+   "pid": "pat17476681",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461155",
+   "pid": "pat25266",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461156",
+   "pid": "pat47979",
+   "patterns": [],
+   "note": [
+    "HELD: 117065068"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19461100",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461102",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461109",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461112",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461144",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461148",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461154",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461155",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19461156",
+   "pid": "pat47979",
+   "why": "Hospitalization From Date in the Extra Info..."
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19461100",
+   "pid": "pat12179706",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M25569..."
+  },
+  {
+   "visit": "19461102",
+   "pid": "pat22758",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19461109",
+   "pid": "pat17478273",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S91309A..."
+  },
+  {
+   "visit": "19461112",
+   "pid": "pat17478398",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I82409..."
+  },
+  {
+   "visit": "19461144",
+   "pid": "pat17471673",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19461148",
+   "pid": "pat17475713",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M24559..."
+  },
+  {
+   "visit": "19461154",
+   "pid": "pat17476681",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S7000XA..."
+  },
+  {
+   "visit": "19461155",
+   "pid": "pat25266",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  }
+ ],
+ "quality_removed": [
+  {
+   "visit": "19461099",
+   "pid": "pat17470875",
+   "charge": "charge23373928",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-13T13:10:10.198092",
+   "resave_ok": true
+  }
+ ]
+}
