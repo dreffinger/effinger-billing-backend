@@ -1,0 +1,54 @@
+{
+ "what": "eligibility checks dated to the service date (feed_order_sweep.py --coverage, round 7) - no name, birth date or member id",
+ "stamp": "20261113T131116Z",
+ "price_per_check": 0.3,
+ "checks": 3,
+ "cost": 0.9,
+ "answers": [
+  {
+   "visit": "vst19461088",
+   "chart": "pat17478394",
+   "dos": "11/09/2026",
+   "plan_id": "ins9521247",
+   "code": "BCBS",
+   "seq": "1",
+   "at": "2026-11-13T13:13:30.516755",
+   "payer": "BCBSF",
+   "bought": true,
+   "active": "yes",
+   "words": "Active Coverage BLUEOPTIONS STANDARD PPO; Active Coverage NA",
+   "plan_begin": "07/01/2026",
+   "plan_end": ""
+  },
+  {
+   "visit": "vst19461016",
+   "chart": "pat17478394",
+   "dos": "11/10/2026",
+   "plan_id": "ins9521247",
+   "code": "BCBS",
+   "seq": "1",
+   "at": "2026-11-13T13:13:34.392883",
+   "payer": "BCBSF",
+   "bought": true,
+   "active": "yes",
+   "words": "Active Coverage BLUEOPTIONS STANDARD PPO; Active Coverage NA",
+   "plan_begin": "07/01/2026",
+   "plan_end": ""
+  },
+  {
+   "visit": "vst19461013",
+   "chart": "pat17478394",
+   "dos": "11/11/2026",
+   "plan_id": "ins9521247",
+   "code": "BCBS",
+   "seq": "1",
+   "at": "2026-11-13T13:13:38.167530",
+   "payer": "BCBSF",
+   "bought": true,
+   "active": "yes",
+   "words": "Active Coverage BLUEOPTIONS STANDARD PPO; Active Coverage NA",
+   "plan_begin": "07/01/2026",
+   "plan_end": ""
+  }
+ ]
+}
