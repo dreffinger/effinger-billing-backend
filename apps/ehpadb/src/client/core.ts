@@ -14,9 +14,11 @@ export const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({
 
 // ---- the session token ----------------------------------------------------------------------------------------------------------
 let tokenCache: { token: string; at: number } | null = null;
-export function forgetToken() { tokenCache = null; }
+let tokenEra = 0;   // goes up at every sign-out and sign-in: a token asked for under an older number serves its one request and is never kept
+export function forgetToken() { tokenCache = null; tokenEra++; }
 async function token(): Promise<string> {
   if (tokenCache && Date.now() - tokenCache.at < 9 * 60_000) return tokenCache.token;
+  const era = tokenEra;
   let t: string | undefined;
   if (typeof auth.token === "function") {
     const r = await auth.token();
@@ -27,9 +29,16 @@ async function token(): Promise<string> {
     if (r.ok) t = (await r.json())?.token;
   }
   if (!t) throw new Error("Could not get a session token; sign in again.");
-  tokenCache = { token: t, at: Date.now() };
+  if (era === tokenEra) tokenCache = { token: t, at: Date.now() };
   return t;
 }
+
+// ---- which page is wanted ---------------------------------------------------------------------------------------------------------
+// Goes up with every page the router starts and with every sign-out. A page that waits for the server remembers the number it
+// started under and draws nothing once the number has moved on: the answer belongs to a page that was left or a session that ended.
+let pageSeq = 0;
+export const nextPage = () => ++pageSeq;
+export const pageNow = () => pageSeq;
 
 async function answer<T>(r: Response): Promise<T> {
   if (r.status === 401) { tokenCache = null; throw new Error("Session expired - sign in again."); }

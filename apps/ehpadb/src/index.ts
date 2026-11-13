@@ -9,14 +9,20 @@
 // INSERTs into ops.app_access_log, and UPDATEs one thing: the status and note of a work-list row (upo.ts). The CCM routes carry
 // patient names and birth dates, so they exist only behind that gate; nothing a patient owns is in "/", /theme.js or /app.js.
 // The function's native URL is public by design; auth is the gate.
+// One dashboard view carries patient identifiers: the Insurance Refresh Board (board.ts). Its list comes with
+// /api/view/insurance_refresh; one card's notes and lookup trail come from POST /api/board/item - the card id travels in the body,
+// never in the address, and the access trail records the chart number that was opened (for a card without one, a short one-way
+// tag of its id), never the id itself.
 import { Hono } from "hono";
 import { Pool } from "pg";
 import { attachDatabasePool, waitUntil } from "@neon/functions";
 import { createRemoteJWKSet, jwtVerify, decodeJwt } from "jose";
+import { createHash } from "node:crypto";
 import { CLIENT_JS } from "./generated/client-bundle";
 import { pageHtml } from "./page";
 import { themeJs } from "./palettes";
 import { VIEWS, runView } from "./views";
+import { boardItem } from "./board";
 import { registerUpo } from "./upo";
 import { registerPdb } from "./pdb";
 import { registerCcm } from "./ccm";
@@ -37,6 +43,7 @@ const PRACTICE = /^[a-z0-9]{2,20}$/.test(process.env.PRACTICE_CODE || "") ? (pro
 
 type Vars = { user: { id: string; email: string } };
 const app = new Hono<{ Variables: Vars }>();
+const audits = new WeakMap<Request, string>();   // what a handler wants added to its line in the access trail (a chart number, never a name)
 
 // security headers on everything: the page may only talk to itself and to the Neon Auth origin
 app.use("*", async (c, next) => {
@@ -113,7 +120,8 @@ app.use("/api/*", async (c, next) => {
   }
   c.set("user", { id: String(payload.sub || ""), email });
   await next();
-  const status = c.res.status, route = c.req.path, ms = Date.now() - started;
+  const audit = audits.get(c.req.raw);
+  const status = c.res.status, route = c.req.path + (audit ? " " + audit : ""), ms = Date.now() - started;
   waitUntil(pool.query("insert into ops.app_access_log (user_email, user_id, route, status, ms) values ($1, $2, $3, $4, $5)", [email, String(payload.sub || ""), route, status, ms]).catch((err) => console.error("access log:", err?.message)));
 });
 
@@ -129,6 +137,24 @@ app.get("/api/view/:name", async (c) => {
   } catch (e: any) {
     console.error("view", name, e?.message);
     return c.json({ error: "the database answered with an error for this view" }, 500);
+  }
+});
+
+// one card of the Insurance Refresh Board: its notes, lookup trail and API results (the list itself comes with the view)
+app.post("/api/board/item", async (c) => {
+  let id = "";
+  try { const b = await c.req.json(); if (b && typeof b.id === "string") id = b.id; } catch { /* not JSON: no such card */ }
+  if (!id || id.length > 200) return c.json({ error: "no such card" }, 404);
+  try {
+    const item = await boardItem(pool, id);
+    if (!item) return c.json({ error: "no such card" }, 404);
+    // the trail always says which card was opened, without spelling its id (an id can be a name)
+    const chart = item.chart.trim();
+    audits.set(c.req.raw, /^[0-9]{1,12}$/.test(chart) ? "chart " + chart : "card " + createHash("sha256").update(id).digest("hex").slice(0, 12));
+    return c.json(item);
+  } catch (e: any) {
+    console.error("board item:", e?.code || "error");   // the code only: a message could quote a value
+    return c.json({ error: "the database answered with an error for this card" }, 500);
   }
 });
 

@@ -3,8 +3,10 @@
 // newest month's notes), #ccm/m/<YYYY-MM>, #ccm/note/<chart>_<YYYY-MM>, #ccm/patients, #ccm/p/<chart>, #ccm/signed.
 // PATIENT DATA: names and birth dates are shown here, as on the hub. They arrive only from /api/ccm/* (a verified session for an
 // allowed, confirmed email; every request logged in ops.app_access_log) and are never kept in the browser beyond this page's
-// memory (no localStorage); Refresh and Sign out drop them.
-import { $, esc, cached, crumbs, safeUrl } from "./core";
+// memory (no localStorage); Refresh and Sign out drop them. Each page remembers the router's page number when it starts (core.ts
+// pageNow) and draws nothing once that number has moved on, so an answer that arrives after a sign-out (or after the page was left)
+// never puts a name back on the page.
+import { $, esc, cached, crumbs, safeUrl, pageNow } from "./core";
 
 export const CCM_NAV: [string, string][] = [["ccm", "Months"], ["ccm/patients", "Patients"], ["ccm/signed", "Signed notes"]];
 
@@ -37,7 +39,9 @@ export async function showCcm(parts: string[]): Promise<string> {
 }
 
 async function showMonths(main: HTMLElement, wanted: string) {
+  const mine = pageNow();
   const s = await cached<Summary>("/api/ccm/summary");
+  if (mine !== pageNow()) return;
   const months = s.months || [];
   const month = months.some((m) => m.month === wanted) ? wanted : months[0]?.month || "";
   const t = s.totals || ({} as Summary["totals"]);
@@ -49,6 +53,7 @@ async function showMonths(main: HTMLElement, wanted: string) {
     <div style="min-width:0" id="month-notes"><p class="note">Reading the notes for ${esc(monthName(month))}…</p></div></div>`;
   const box = $("#month-notes");
   const d = await cached<{ notes: Note[]; hub: string }>("/api/ccm/month/" + encodeURIComponent(month));
+  if (mine !== pageNow()) return;
   const notes = d.notes || [];
   const matches = (n: Note) => {
     if (filter === "ready" && n.status !== "ready to sign") return false;
@@ -76,7 +81,9 @@ async function showMonths(main: HTMLElement, wanted: string) {
 
 // one note, read-only, laid out like the hub's paper note (the hub adds the letterhead and is where it is signed)
 async function showNote(main: HTMLElement, id: string) {
+  const mine = pageNow();
   const d = await cached<{ note: Note & { month: string; sha: string | null }; draft: { fields: any; statement: string; built_at: string } | null; signed: { fields: any; signed_by: string; signed_at: string; written_on: string; sha: string; via: string; recorded_at: string } | null; hub: string }>("/api/ccm/note/" + encodeURIComponent(id));
+  if (mine !== pageNow()) return;
   const n = d.note, signed = d.signed;
   const f = Object.assign({}, d.draft?.fields || {}, signed?.fields || {});
   if (!signed && d.draft && !f.statement) f.statement = d.draft.statement || "";
@@ -105,7 +112,9 @@ async function showNote(main: HTMLElement, id: string) {
 }
 
 async function showPatients(main: HTMLElement) {
+  const mine = pageNow();
   const d = await cached<{ patients: any[]; hub: string }>("/api/ccm/patients");
+  if (mine !== pageNow()) return;
   const all = d.patients || [];
   main.innerHTML = `<h1>CCM patients</h1><p class="lead">Every patient with a chronic care management charge, with the months on the chart and where their notes stand.</p>
     <div class="filters"><input type="search" id="pt-q" placeholder="Find a patient or chart" aria-label="Find a patient or chart" value="${esc(query)}"></div><div id="pt-list"></div>`;
@@ -118,7 +127,9 @@ async function showPatients(main: HTMLElement) {
 }
 
 async function showPatient(main: HTMLElement, chart: string) {
+  const mine = pageNow();
   const d = await cached<{ patient: any; notes: any[]; chart: string; hub: string }>("/api/ccm/patient/" + encodeURIComponent(chart));
+  if (mine !== pageNow()) return;
   const p = d.patient || {}, notes = d.notes || [];
   main.innerHTML = `${crumbs([["CCM notes", "#ccm"], ["Patients", "#ccm/patients"], [p.name || d.chart]])}
     <h1>${esc(p.name || d.chart)}</h1>
@@ -127,7 +138,9 @@ async function showPatient(main: HTMLElement, chart: string) {
 }
 
 async function showSigned(main: HTMLElement) {
+  const mine = pageNow();
   const d = await cached<{ signed: any[]; hub: string }>("/api/ccm/signed");
+  if (mine !== pageNow()) return;
   const rows = d.signed || [];
   main.innerHTML = `<h1>Signed notes</h1><p class="lead">The newest signings recorded in the practice database. A signing made on the hub appears here once it is verified against the stored draft and recorded (scripts/helpers/ccm_build.py signatures); a signed note is final.</p>
     <div class="bar"><span class="note">${fmt(rows.length)} newest signings</span>${hubBtn(d.hub, "Open the CCM Documentation Hub")}</div>

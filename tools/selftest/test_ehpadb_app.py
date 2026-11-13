@@ -7,6 +7,8 @@
 #      Content-Security-Policy refuses inline scripts);
 #   2. the header buttons go to the Practice Database page, the Insurance Refresh Board, the CCM Documentation Hub and the CCM Hub
 #      Build, and no claude.ai page address is written into the public page or the browser script (they come from /api/links);
+#      the Insurance Refresh Board's button opens the board's own page on this site (#db/insurance_refresh, read-only, from PR #28's
+#      4ddfa291), and that page links on to the board on claude.ai for posting;
 #   3. every route group (the old ones, links, the Practice Database views, the CCM notes) is registered AFTER the sign-in gate in
 #      src/index.ts, and the new route files send only SELECT statements - the CCM section is read-only (signing stays on the hub);
 #   3b. (review of 11/12/2026) a CCM page's heading - a patient's name - never becomes the tab title (which browser history keeps) and
@@ -62,11 +64,19 @@ check("the Content-Security-Policy still refuses inline scripts (script-src 'sel
 
 # ---- 2. the header buttons ----------------------------------------------------------------------------------------------------------
 links = read(APP, "src", "links.ts")
-for label, art in [("Practice Database", "QrLJpUcpFv3cFRB9xHfLyk"), ("Insurance Refresh Board", "NXKjnsha2dTyGHsiB4k6zg"), ("CCM Documentation Hub", "GSd9jcvXoBmxc9NkX2mWmR"), ("CCM Hub Build", "Fsc6yZZLxuumAiJG9FAp8K")]:
-    head = links.split("export const HEADER_LINKS", 1)[-1].split("];", 1)[0]
+head = links.split("export const HEADER_LINKS", 1)[-1].split("];", 1)[0]
+for label, art in [("Practice Database", "QrLJpUcpFv3cFRB9xHfLyk"), ("CCM Documentation Hub", "GSd9jcvXoBmxc9NkX2mWmR"), ("CCM Hub Build", "Fsc6yZZLxuumAiJG9FAp8K")]:
     m = re.search(r'label: "%s", url: ([A-Z_]+)' % re.escape(label), head)
     const = m and re.search(r'export const %s = art\("([A-Za-z0-9]+)"\)' % m.group(1), links)
     check("header button: %s -> claude.ai/artifact/%s" % (label, art), bool(const) and const.group(1) == art)
+# the Insurance Refresh Board's button opens the board's page on this site; the page links on to the board itself (posting stays there)
+m = re.search(r'label: "Insurance Refresh Board", url: ([A-Z_]+)', head)
+const = m and re.search(r'export const %s = "([^"]+)"' % m.group(1), links)
+check("header button: Insurance Refresh Board -> this site's own board page (#db/insurance_refresh)", bool(const) and const.group(1) == "#db/insurance_refresh", const.group(1) if const else head[:200])
+check("that page is the board's view (views.ts insurance_refresh, board: true)", re.search(r"\binsurance_refresh: \{[^}]*\bboard: true", read(APP, "src", "views.ts")) is not None)
+board_ts, boardview_ts = read(APP, "src", "board.ts"), read(APP, "src", "boardview.ts")
+check("and it links on to the board on claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg for posting (BOARD_URL, drawn by src/boardview.ts)",
+      'BOARD_URL = "https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg"' in board_ts and "url: BOARD_URL" in board_ts and 'href="${esc(b.url)}"' in boardview_ts)
 client_src = "".join(read(APP, "src", f) for f in ["client.ts", "page.ts"]) + "".join(read(APP, "src", "client", f) for f in sorted(os.listdir(os.path.join(APP, "src", "client"))) if os.path.isdir(os.path.join(APP, "src", "client")))
 check("no claude.ai page, Drive folder or scheduled-task id is written into the public page or the browser code", not re.search(r"claude\.ai/artifact|drive\.google\.com|trig_0", client_src), re.findall(r"claude\.ai/artifact/\w+|trig_\w+", client_src)[:3])
 check("the browser asks /api/links for the buttons after sign-in", '"/api/links"' in read(APP, "src", "client.ts"))

@@ -8,7 +8,7 @@
     "dev": "npm run build:client && neon dev",
     "deploy": "npm run build:client && neon deploy",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/selftest.mjs"
+    "test": "node scripts/selftest.mjs && node scripts/test-boardview.mjs"
   },
   "dependencies": {
     "@neon/config": "^1.13.0",

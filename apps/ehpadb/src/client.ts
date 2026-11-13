@@ -1,13 +1,14 @@
 // The browser side of the ehpa applications. One sign-in (Neon Auth, Managed Better Auth) opens a hub with the practice's
 // applications: Universal Practice Optimization (the framework for any practice), Practice Optimization for this practice
 // (the framework applied to it), the ehpa Practice Database (the dashboard this app started as, with the Practice Database
-// page's views), the CCM notes (read-only) and Learn. Every page is drawn in the browser from JSON the Function returns after
-// checking the session; nothing is embedded in the HTML the server sends - the header buttons to the practice's claude.ai pages
-// included (/api/links). The color scheme switcher works before sign-in too (it holds no data).
+// page's views and the Insurance Refresh Board), the CCM notes (read-only) and Learn. Every page is drawn in the browser from JSON
+// the Function returns after checking the session; nothing is embedded in the HTML the server sends - the header buttons to the
+// practice's claude.ai pages included (/api/links). The color scheme switcher works before sign-in too (it holds no data).
 // Routes are the part of the address after "#": home | upo/... | practice/... | db/<view> | ccm/... | learn/.... The
-// dashboard's old links ("#overview", "#ar", ...) still work.
-import { $, esc, auth, say, cached, clearCache, forgetToken, IDLE_MINUTES, PRACTICE, usdK, range, plural, safeUrl } from "./client/core";
+// dashboard's old links ("#overview", "#ar", "#insurance_refresh", ...) still work.
+import { $, esc, auth, say, cached, clearCache, forgetToken, nextPage, pageNow, IDLE_MINUTES, PRACTICE, usdK, range, plural, safeUrl } from "./client/core";
 import { showDashboard, dashboardViews, forgetDashboard } from "./client/dashboard";
+import { forgetBoard } from "./client/board";
 import { showUpo, UPO_NAV } from "./client/upo";
 import { showPractice, PRACTICE_NAV } from "./client/practice";
 import { showLearn, learnNav } from "./client/learn";
@@ -25,27 +26,81 @@ const APPS: [string, string][] = [["home", "Home"], ["upo", "Universal Practice 
 type CcmTotals = { totals?: { notes: number; ready: number; flagged: number; signed: number; patients: number } };
 
 // ---- the header buttons: the practice's pages on claude.ai, asked for after sign-in so the public page names none of them ------
+// A button whose address is a page of this site ("#db/insurance_refresh": the Insurance Refresh Board's own page here) opens it in
+// place; the others open the claude.ai page in a new tab. An answer that comes back after a sign-out is not drawn (the sign-in page
+// shows no buttons).
+const SITE_PAGE = /^#[a-z0-9_]+(\/[a-z0-9_-]+)*$/;
 async function showLinks() {
   const box = $("#links");
   try {
     const links = await cached<{ key: string; label: string; url: string; note: string }[]>("/api/links");
-    box.innerHTML = links.map((l) => { const u = safeUrl(l.url); return u ? `<a class="btn" href="${esc(u)}" target="_blank" rel="noopener noreferrer" title="${esc(l.note)}" data-link="${esc(l.key)}">${esc(l.label)} <span class="ext" aria-hidden="true">↗</span></a>` : ""; }).join("");
+    if ($("#app").hidden) return;
+    box.innerHTML = links.map((l) => {
+      if (SITE_PAGE.test(l.url)) return `<a class="btn" href="${esc(l.url)}" title="${esc(l.note)}" data-link="${esc(l.key)}">${esc(l.label)}</a>`;
+      const u = safeUrl(l.url); return u ? `<a class="btn" href="${esc(u)}" target="_blank" rel="noopener noreferrer" title="${esc(l.note)}" data-link="${esc(l.key)}">${esc(l.label)} <span class="ext" aria-hidden="true">↗</span></a>` : "";
+    }).join("");
     box.hidden = !box.innerHTML;
   } catch { box.hidden = true; box.innerHTML = ""; }
 }
 
 // ---- idle sign-out (HIPAA asks for a session timeout) ------------------------------------------------------------------------
+// The limit is counted on the wall clock as well as by a timer: a sleeping laptop or a background tab can hold a timer back for
+// hours, so the first activity after the limit has passed (or the tab coming back into view) signs out instead of starting a new count.
 let idleTimer: number | undefined;
+let lastActive = Date.now();
+const IDLE_MS = IDLE_MINUTES * 60_000;
+const idleOut = () => { void signOut("Signed out after " + IDLE_MINUTES + " minutes without activity."); };
 function armIdle() {
+  lastActive = Date.now();
   if (idleTimer) window.clearTimeout(idleTimer);
-  idleTimer = window.setTimeout(async () => { await signOut("Signed out after " + IDLE_MINUTES + " minutes without activity."); }, IDLE_MINUTES * 60_000);
+  idleTimer = window.setTimeout(idleOut, IDLE_MS);
 }
-["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((ev) => addEventListener(ev, () => { if ($("#app").hidden === false) armIdle(); }, { passive: true }));
+const idleFor = () => Date.now() - lastActive;
+["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((ev) => addEventListener(ev, () => { if ($("#app").hidden) return; if (idleFor() > IDLE_MS) idleOut(); else armIdle(); }, { passive: true }));
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !$("#app").hidden && idleFor() > IDLE_MS) idleOut(); });
 
+// ---- signing out -------------------------------------------------------------------------------------------------------------------
+// The page is emptied FIRST and the sign-in service is told second: what a page showed must not stay on screen while a request
+// hangs (a dropped VPN, Wi-Fi coming back after sleep). When the service does not confirm, the browser may still hold the session,
+// so that is said out loud and remembered in a flag (the word "1" - nothing a page showed): the next load, the next sign-in or
+// the connection coming back finishes the sign-out before anything else happens. Other open tabs of the app clear themselves too.
+const PENDING = "ehpa-signout-pending";
+const pending = {
+  get: () => { try { return localStorage.getItem(PENDING) === "1"; } catch { return false; } },
+  set: (on: boolean) => { try { if (on) localStorage.setItem(PENDING, "1"); else localStorage.removeItem(PENDING); } catch { /* storage is off: the page is cleared all the same */ } },
+};
+const tabs: BroadcastChannel | null = typeof BroadcastChannel === "function" ? new BroadcastChannel("ehpa-session") : null;
+
+function clearPage(msg?: string) {
+  nextPage();   // an answer still on its way belongs to the session that just ended
+  if (idleTimer) { window.clearTimeout(idleTimer); idleTimer = undefined; }
+  forgetToken(); clearCache(); forgetDashboard(); forgetBoard(true);
+  showSignIn(msg);   // which also puts the page's own title back (a CCM page's heading is a patient's name)
+}
+async function endSession(): Promise<boolean> {
+  let ended = false;
+  try {
+    // the service gets ten seconds: a request that hangs counts as not confirmed, so it is said out loud and remembered like a refusal
+    const r: any = await Promise.race([auth.signOut(), new Promise((res) => window.setTimeout(() => res({ error: "no answer" }), 10_000))]);
+    ended = !r?.error;
+  } catch { /* offline, or the sign-in service refused */ }
+  forgetToken();   // a token that was on its way while the page was being cleared is not kept
+  pending.set(!ended);
+  return ended;
+}
 async function signOut(reason?: string) {
-  try { await auth.signOut(); } catch { /* already signed out */ }
-  forgetToken(); clearCache(); forgetDashboard();
-  showSignIn(reason);
+  clearPage(reason);
+  pending.set(true);
+  try { tabs?.postMessage("out"); } catch { /* no other tab to tell */ }
+  if (!(await endSession()) && $("#app").hidden) say("This page is cleared, but the sign-in service did not confirm the sign-out, so this browser may still hold the session. It is closed as soon as the service can be reached. Close the browser if you are leaving this computer.", "err");
+}
+tabs?.addEventListener("message", (ev) => { if (ev.data === "out" && !$("#app").hidden) clearPage("Signed out in another tab."); });
+addEventListener("online", () => { if ($("#app").hidden && pending.get()) void endSession().then((ok) => { if (ok && $("#app").hidden) say("Signed out.", ""); }); });
+// a sign-out the service never confirmed is finished before a new sign-in starts (otherwise the return from Google would be signed out again)
+async function settled(): Promise<boolean> {
+  if (!pending.get() || (await endSession())) return true;
+  say("The sign-in service cannot be reached right now. Check the connection and try again.", "err");
+  return false;
 }
 
 // ---- screens ------------------------------------------------------------------------------------------------------------------
@@ -59,6 +114,8 @@ function showSignIn(msg?: string) {
   if (msg) say(msg, "");
 }
 async function showApp(user: { email?: string; name?: string }) {
+  pending.set(false); forgetToken();   // a completed sign-in replaces whatever session the browser held; its first token is asked for fresh
+  $("#main").innerHTML = "";           // the app is shown before the server has said the account is allowed, so it starts empty
   $("#gate").hidden = true; $("#app").hidden = false; $("#appbar").hidden = false; $("#session").hidden = false;
   $("#who").textContent = user.name || user.email || "";
   $("#appbar").innerHTML = APPS.map(([k, label]) => `<a href="#${k}" data-app="${k}">${esc(label)}</a>`).join("");
@@ -98,6 +155,8 @@ async function showHome() {
 }
 
 async function route() {
+  if ($("#app").hidden) return;   // signed out: a change of address has nothing to load
+  const mine = nextPage();        // an answer that comes back after the page moved on (another page, Refresh, a sign-out) is dropped
   const raw = (location.hash || "").replace(/^#\/?/, "");
   const parts = raw.split("/").filter(Boolean).map((x) => decodeURIComponent(x));
   let app = parts[0] || "home";
@@ -122,10 +181,11 @@ async function route() {
       rail(nav.map(([k, l]) => ["db/" + k, l] as [string, string]), "db/" + view);
       if (isRichView(view)) await showDb(view); else await showDashboard(view);
     }
+    if (mine !== pageNow()) return;
     say("");
     document.title = (app === "ccm" ? "CCM notes" : main.querySelector("h1")?.textContent || "Practice applications") + " · ehpa";   // a CCM heading is a patient's name
     window.scrollTo(0, 0);
-  } catch (e: any) { main.innerHTML = ""; say(e.message || String(e), "err"); }
+  } catch (e: any) { if (mine !== pageNow()) return; main.innerHTML = ""; say(e.message || String(e), "err"); }
 }
 addEventListener("hashchange", route);
 
@@ -137,6 +197,7 @@ $("#form-signin").addEventListener("submit", async (ev) => {
   const password = (f.elements.namedItem("password") as HTMLInputElement).value;
   say("Signing in…");
   try {
+    if (!(await settled())) return;
     const { data, error } = await auth.signIn.email({ email, password });
     if (error) throw new Error(error.message || "Sign-in failed");
     await showApp(data?.user || { email });
@@ -150,6 +211,7 @@ $("#form-signup").addEventListener("submit", async (ev) => {
   const password = (f.elements.namedItem("password") as HTMLInputElement).value;
   say("Creating the account…");
   try {
+    if (!(await settled())) return;
     const { data, error } = await auth.signUp.email({ email, password, name });
     if (error) throw new Error(error.message || "Sign-up failed");
     await showApp(data?.user || { email, name });
@@ -158,6 +220,7 @@ $("#form-signup").addEventListener("submit", async (ev) => {
 $("#google").addEventListener("click", async () => {
   say("Opening Google sign-in…");
   try {
+    if (!(await settled())) return;
     const { error } = await auth.signIn.social({ provider: "google", callbackURL: location.origin + "/" });
     if (error) throw new Error(error.message || "Google sign-in failed");
   } catch (e: any) { say(e.message || String(e), "err"); }
@@ -169,6 +232,8 @@ $("#refresh").addEventListener("click", () => { clearCache(); forgetDashboard();
 // ---- boot: restore the session if the browser still has one ------------------------------------------------------------------
 (async () => {
   try {
+    // a sign-out that was never confirmed is finished first; while it cannot be, the session is not restored
+    if (pending.get() && !(await endSession())) { showSignIn(); say("The last sign-out could not be confirmed with the sign-in service, so this page stays signed out. Check the connection and reload.", "err"); return; }
     const { data } = await auth.getSession();
     if (data?.user) await showApp(data.user); else showSignIn();
   } catch { showSignIn(); }

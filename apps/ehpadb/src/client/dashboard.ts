@@ -2,37 +2,48 @@
 // {title, note, charts[], sections[]} shape, plus the three first-look charts. This is the page the app opened on before the
 // applications hub existed; it lives under "#db/<view>" (the old "#<view>" links still work). The Practice Database page's
 // richer views (pdb.ts) draw their own content and add the generic tables of the same name underneath (genericInto), and use
-// the chart drawing here (drawDays, drawPairs).
-import { $, esc, api, say } from "./core";
+// the chart drawing here (drawDays, drawPairs). One view has its own look: the Insurance Refresh Board (cards, filters, a search
+// box) - ./board.ts keeps its state.
+import { $, esc, api, say, pageNow } from "./core";
+import { boardBlock, forgetBoard } from "./board";
+import type { Board } from "../boardview";
 
 type Section = { heading: string; note?: string; columns: string[]; rows: unknown[][]; kinds?: string[] };
 type Chart = { id: string; kind: "days" | "pairs"; title: string; note?: string; fill?: string; rows: Record<string, unknown>[] };
-type View = { title: string; note?: string; charts?: Chart[]; sections: Section[]; generated_at: string };
+type View = { title: string; note?: string; charts?: Chart[]; sections: Section[]; board?: Board; generated_at: string };
 
 let views: string[] | null = null;
 export async function dashboardViews(): Promise<string[]> {
   if (!views) views = await api<string[]>("/api/views");
   return views;
 }
-export function forgetDashboard() { views = null; }
+export function forgetDashboard() { views = null; lastCharts = []; forgetBoard(); }
 export const isDashboardView = (name: string) => !!views && views.includes(name);
 
 export async function showDashboard(name: string) {
+  const mine = pageNow();   // the router's number for this page: once it has moved on (another page, Refresh, a sign-out) nothing is drawn or kept
   const main = $("#main");
   const all = await dashboardViews();
+  if (mine !== pageNow()) return name;
   const view = all.includes(name) ? name : all[0] || "overview";
   main.innerHTML = `<p class="note">Loading ${esc(view)}…</p>`;
-  const v = await api<View>("/api/view/" + encodeURIComponent(view));
+  let v: View;
+  try { v = await api<View>("/api/view/" + encodeURIComponent(view)); } catch (e) { if (mine !== pageNow()) return view; throw e; }
+  if (mine !== pageNow()) return view;
   render(v);
   return view;
 }
 
 // the generic view's charts and tables drawn into a box of a richer page (no title of its own); nothing when the view does not exist
+// (the same page check as showDashboard: once the router's number has moved on, nothing is drawn or kept)
 export async function genericInto(name: string, box: HTMLElement | null, opts: { charts?: boolean } = {}) {
   if (!box) return;
+  const mine = pageNow();
   const all = await dashboardViews();
+  if (mine !== pageNow()) return;
   if (!all.includes(name)) { box.innerHTML = ""; return; }
   const v = await api<View>("/api/view/" + encodeURIComponent(name));
+  if (mine !== pageNow()) return;
   if (opts.charts !== false) lastCharts = v.charts || [];
   box.innerHTML = (opts.charts !== false && lastCharts.length ? `<div id="charts">${chartsHtml(lastCharts)}</div>` : "") + sectionsHtml(v.sections) +
     `<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.* views).</p>`;
@@ -163,8 +174,12 @@ function render(v: View) {
   if (v.note) parts.push(`<p class="lead">${esc(v.note)}</p>`);
   lastCharts = v.charts || [];
   if (lastCharts.length) parts.push(`<div id="charts">${chartsHtml(lastCharts)}</div>`);
+  const board = boardBlock(v.board);   // "" for every view but the Insurance Refresh Board
+  if (board) parts.push(board);
   parts.push(sectionsHtml(v.sections));
-  parts.push(`<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.* views). Chart ids, dates of service, codes and dollars only.</p>`);
+  parts.push(board
+    ? `<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.insurance_refresh_cards). This page shows patient names, dates of birth and insurance ids, and is served only to the signed-in account.</p>`
+    : `<p class="foot">Generated ${esc(new Date(v.generated_at).toLocaleString("en-US"))} from the practice's Neon Postgres (ehpa.* views). Chart ids, dates of service, codes and dollars only.</p>`);
   main.innerHTML = parts.join("");
 }
 // the window toggle redraws the charts from the rows already on hand (no new request)

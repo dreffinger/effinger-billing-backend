@@ -15,7 +15,9 @@
 //      route pattern and SQLSTATE only - never the error's message, where Postgres repeats the stored value it choked on;
 //   7. (review of 11/12/2026) the browser tab title - also what browser history keeps - never carries a patient's name: the real
 //      browser code opens a CCM note and a patient with a stand-in document, and after the idle sign-out (and the Sign out button) the
-//      title is the page's own again.
+//      title is the page's own again. (11/13/2026, with the Insurance Refresh Board page and the session handling of PR #28's 4ddfa291)
+//      the header buttons as /api/links serves them - the board's opens #db/insurance_refresh on this site, in place - and a CCM note
+//      whose answer arrives after Sign out, or after the page was left, is not drawn.
 // Never touches: Neon, the Auth server, the network (fetch is replaced by a refusal; the database address is made up). No patient
 // data: the one "patient" below is invented here. Writes only src/generated/client-bundle.ts (the bundle it checks; git-ignored).
 // Run: node scripts/selftest.mjs   (from apps/ehpadb; exit 1 on any failure) - tools/selftest/test_ehpadb_app.py runs it too.
@@ -192,8 +194,10 @@ const NOTE = { note: { note_id: "pat1_2026-10", chart_id: "pat1", month: "2026-1
   status: "ready to sign", written_on: null, signed_by: null, signed_at: null, sha: null }, draft: null, signed: null, hub: "" };
 const ANSWERS = { "/api/links": [], "/api/ccm/note/pat1_2026-10": NOTE, "/api/ccm/patient/pat1": { patient: { chart_id: "pat1", name: INVENTED, birth_date: null, sex: "" }, notes: [], chart: "pat1", hub: "" },
   "/api/ccm/summary": { totals: { notes: 1, ready: 1, flagged: 0, noname: 0, signed: 0, patients: 1, months: 1 }, months: [], hub: "" } };
-function openBrowser(hash) {
+function openBrowser(hash, hold = "") {   // hold: one address whose answer waits until release() is called
   const els = new Map(), timers = [], on = {};
+  let release = () => {};
+  const held = hold ? new Promise((r) => { release = r; }) : null;
   class El {
     constructor() { this.html = ""; this.textContent = ""; this.hidden = false; this.className = ""; this.dataset = {}; this.value = ""; this.on = {}; this.classList = { toggle() {}, add() {}, remove() {} }; }
     get innerHTML() { return this.html; }
@@ -208,14 +212,14 @@ function openBrowser(hash) {
   const document = { title: PAGE_TITLE, querySelector: el, querySelectorAll: () => [], addEventListener() {},
     documentElement: { getAttribute: (k) => attrs[k] ?? null, setAttribute: (k, v) => { attrs[k] = String(v); } } };
   const auth = { getSession: async () => ({ data: { user: { email: "owner@invalid.test", name: "Owner" } } }), signOut: async () => ({}), token: async () => ({ data: { token: "stand-in" } }) };
-  const fetch = async (url) => { const body = ANSWERS[String(url)]; return new Response(JSON.stringify(body ?? { error: "not in the stand-in's table" }), { status: body === undefined ? 404 : 200, headers: { "content-type": "application/json" } }); };
+  const fetch = async (url) => { if (held && String(url) === hold) await held; const body = ANSWERS[String(url)]; return new Response(JSON.stringify(body ?? { error: "not in the stand-in's table" }), { status: body === undefined ? 404 : 200, headers: { "content-type": "application/json" } }); };
   const ctx = { document, location: { hash, origin: "http://app.invalid" }, fetch, Response, __AUTH__: auth, console: { log() {}, warn() {}, error() {} },
     setTimeout: (f, ms) => timers.push({ f, ms }), clearTimeout() {}, scrollTo() {}, addEventListener: (t, f) => { (on[t] ||= []).push(f); },
     localStorage: { getItem: () => null, setItem() {} } };
   ctx.window = ctx;
   vm.createContext(ctx);
   vm.runInContext(CLIENT, ctx);
-  return { document, el, timers, on, ctx, heading: () => unhtml((/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(el("#main").innerHTML) || [])[1] || "") };
+  return { document, el, timers, on, ctx, release: () => release(), heading: () => unhtml((/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(el("#main").innerHTML) || [])[1] || "") };
 }
 const settle = async () => { for (let i = 0; i < 200; i++) await new Promise((r) => setImmediate(r)); };
 check("the page's own <title> is known (" + PAGE_TITLE + ")", PAGE_TITLE !== "");
@@ -234,6 +238,25 @@ await settle();
 check("after Sign out (the button) on a CCM note the tab title is the page's own again", tab2.heading() === "" && tab2.document.title === PAGE_TITLE, tab2.document.title);
 const tab3 = openBrowser("#home"); await settle();
 check("a page with no patient data keeps its heading as the tab title (Practice applications · ehpa)", tab3.document.title === "Practice applications · ehpa", tab3.document.title);
+
+// the header buttons, exactly as /api/links serves them to the owner: the Insurance Refresh Board's opens the board's page on this site in
+// place; the claude.ai pages open in a new tab
+ANSWERS["/api/links"] = JSON.parse((await ask("GET", "/api/links", owner)).text);
+const tab4 = openBrowser("#home"); await settle();
+const linksHtml = tab4.el("#links").innerHTML;
+const irb = (linksHtml.match(/<a [^>]*data-link="irb"[^>]*>/) || [""])[0];
+check("the header's Insurance Refresh Board button opens #db/insurance_refresh on this site, in place (no new tab)", /href="#db\/insurance_refresh"/.test(irb) && !/target=/.test(irb) && !tab4.el("#links").hidden, irb || linksHtml.slice(0, 300));
+check("the other header buttons open their claude.ai page in a new tab", ANSWERS["/api/links"].length === 4 && (linksHtml.match(/<a [^>]*target="_blank"/g) || []).length === 3, linksHtml.slice(0, 300));
+// a CCM note whose answer arrives after Sign out is dropped: the name never comes back onto the signed-out page
+const late = openBrowser("#ccm/note/pat1_2026-10", "/api/ccm/note/pat1_2026-10"); await settle();
+for (const f of late.el("#signout").on.click || []) await f();
+await settle(); late.release(); await settle();
+check("a CCM note that answers after Sign out is not drawn (no name on the page, the page's own title)", !late.el("#main").innerHTML.includes(INVENTED) && late.document.title === PAGE_TITLE, late.el("#main").innerHTML.slice(0, 160) + " / " + late.document.title);
+// ... and one that answers after the page was left is not drawn over the next page
+const left = openBrowser("#ccm/note/pat1_2026-10", "/api/ccm/note/pat1_2026-10"); await settle();
+left.ctx.location.hash = "#home"; for (const f of left.on.hashchange || []) f(); await settle();
+left.release(); await settle();
+check("a CCM note that answers after the page was left is not drawn over the next page", !left.el("#main").innerHTML.includes(INVENTED) && left.heading() === "Practice applications", left.heading());
 
 console.log(`\nehpadb selftest: ${RAN} checks, ${FAILS.length} failed`);
 process.exit(FAILS.length ? 1 : 0);

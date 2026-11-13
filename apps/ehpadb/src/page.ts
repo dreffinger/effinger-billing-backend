@@ -158,6 +158,44 @@ pre.json .k{color:var(--accent-2)}pre.json .s{color:var(--ok)}pre.json .nn{color
 .paper .late{border:1px solid #999;padding:10px 12px;margin-top:6px}.paper .late p{margin:0 0 8px;color:#111}.paper .late p:last-child{margin:0}.paper ul{padding-left:18px;margin:4px 0}.paper li{color:#111}
 .paper .sig{margin-top:38px;border-top:1px solid #333;width:min(280px,100%);padding-top:4px;font-size:11.5px}.paper .pfoot{margin-top:26px;text-align:center;font-size:11px;color:#444}
 @media (max-width:640px){.paper{padding:20px 16px 24px 46px}.paper .pgrid{grid-template-columns:minmax(0,1fr)}.hb{grid-template-columns:minmax(100px,40%) minmax(0,1fr) auto}.pal,.seg{border-radius:14px}}
+/* the Insurance Refresh Board in the dashboard (read-only cards; every class starts with rb-). Palette tokens only, so it follows the
+   five schemes like every other page. Its Stedi lookups and API results share --accent-2, as on the board they share one blue
+   (--cascade is a pale chart fill on Light and does not read as text there) */
+.rb-asof{font-size:13px;color:var(--muted);max-width:90ch;margin:0 0 12px}.rb-asof.stale{color:var(--warn)}
+.rb-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 10px}.rb-tools input{flex:1 1 260px;border-radius:999px;padding:9px 14px;font-size:16px;-webkit-appearance:none;appearance:none}.rb-tools input::placeholder{color:var(--muted)}
+.rb-count{font-size:12.5px;color:var(--dim);margin:0 0 8px}.rb-empty{color:var(--muted);padding:18px 4px}
+.rb-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 10px;display:grid;grid-template-columns:minmax(190px,1.1fr) minmax(240px,2fr) 84px 132px;gap:12px 18px;align-items:start}
+.rb-card>*{min-width:0}.rb-card.t-done{opacity:.8}.rb-card.is-new{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}.rb-wide{grid-column:1/-1}
+.rb-who{font-weight:700;font-size:16px;overflow-wrap:anywhere}
+.rb-fac{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 8px}
+.rb-fac .fname{font:700 12.5px/1.2 var(--font);background:var(--bg-deep);border:1px solid var(--line);border-radius:6px;padding:4px 8px;max-width:100%;overflow-wrap:anywhere}
+.rb-fac .fkind{font:700 10.5px/1 var(--font);letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:5px 8px;white-space:nowrap;background:var(--surface-2);color:var(--muted)}
+.rb-fac .fkind.snf{color:var(--accent-2)}.rb-fac .fkind.alf{color:var(--accent)}.rb-fac .fkind.hosp,.rb-fac .fkind.irf{color:var(--bad)}
+.rb-fac .fdos{font:11.5px var(--mono);color:var(--muted)}.rb-fac .fres{flex:1 1 100%;font-size:12px;color:var(--muted);margin-top:-3px}.rb-fac .fres b{font-weight:600;color:var(--ink)}
+.rb-fac.unknown .fname{color:var(--muted);font-weight:600;border-style:dashed}
+.rb-idline{margin-top:5px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink-2)}.rb-idline .part{display:inline-block;max-width:100%;overflow-wrap:anywhere}
+.rb-idline .k{color:var(--dim);font-family:var(--font);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-right:4px}
+.rb-idline .sep{color:var(--line-strong);margin:0 6px}.rb-idline .car{color:var(--muted);font-family:var(--font);font-size:12px}
+.rb-lead{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:3px}.rb-card.is-new .rb-lead{color:var(--accent)}
+.rb-ask{font-size:16px;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.rb-need .rest,.rb-need .why,.rb-need .facs{margin-top:6px;font-size:13.5px;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}.rb-need .why,.rb-need .facs{color:var(--muted)}
+.rb-amt{font:600 15px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.rb-pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid transparent}
+.rb-pill.william{color:var(--accent);border-color:var(--accent)}.rb-pill.claude{color:var(--accent-2);border-color:var(--accent-2)}.rb-pill.done{color:var(--ok);border-color:var(--ok)}
+.rb-pill.new{background:var(--accent);color:var(--on-accent);margin-right:6px}.rb-upd{margin-top:6px;font-size:12px;color:var(--dim)}
+.rb-last{font-size:13px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:10px;overflow-wrap:anywhere}
+.rb-by{font-weight:700;margin-right:8px}.rb-by.w{color:var(--accent)}.rb-by.c{color:var(--accent-2)}.rb-at{color:var(--dim);font-size:12px;margin-left:8px}
+.rb-more .btn{padding:6px 12px;font-size:12.5px}.rb-detail{border-top:1px dashed var(--line);padding-top:4px}
+.rb-thread,.rb-trail,.rb-api{display:flex;flex-direction:column;gap:6px;margin-top:10px}.rb-th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.rb-tnote{font-size:13.5px;white-space:pre-wrap;overflow-wrap:anywhere}.rb-trail{border-left:2px solid var(--line-strong);padding-left:10px}
+.rb-trail .tr{display:grid;grid-template-columns:16px minmax(90px,170px) 1fr;gap:6px;font-size:12.5px;line-height:1.4;align-items:baseline}
+.rb-trail .src{font-weight:600;overflow-wrap:anywhere}.rb-trail .res{color:var(--muted);overflow-wrap:anywhere}.rb-trail .ic{font-weight:700;text-align:center;color:var(--dim)}
+.rb-trail .tr.ok .ic{color:var(--ok)}.rb-trail .tr.no .ic{color:var(--bad)}.rb-trail .tr.human .ic{color:var(--accent)}.rb-trail .tr.stedi .ic{color:var(--accent-2)}.rb-th .rb-key{color:var(--accent-2)}
+.rb-api .ab{background:var(--bg-deep);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:8px;padding:8px 12px}
+.rb-api .ah{display:flex;justify-content:space-between;gap:10px;font:700 12px var(--font);letter-spacing:.05em;text-transform:uppercase;color:var(--accent-2);margin-bottom:3px}
+.rb-api .ax{font-family:var(--mono);font-size:12.5px;white-space:pre-wrap;word-break:break-word;color:var(--ink-2)}
+@media (max-width:860px){.rb-card{grid-template-columns:1fr}.rb-amt{text-align:left}}
+@media (max-width:560px){.rb-trail .tr{grid-template-columns:16px 1fr}.rb-trail .res{grid-column:2}}
 </style>
 </head>
 <body>

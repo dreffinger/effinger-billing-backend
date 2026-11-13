@@ -4,7 +4,9 @@
 // cascade, Credentialing, Treasury, Routines) stay the generic tables of views.ts; where a generic view of the same name exists, its
 // tables are kept underneath a richer view ("The same data as plain tables"). Pages: #db/<view>.
 // Chart ids, dates of service, codes and dollars only - no patient name, birth date or member id is asked for here.
-import { $, esc, api, cached, safeUrl } from "./core";
+// Like the dashboard, a view remembers the router's page number when it starts (core.ts pageNow) and draws nothing once that
+// number has moved on: an answer that arrives after the page was left, refreshed or signed out of is dropped.
+import { $, esc, api, cached, safeUrl, pageNow } from "./core";
 import { genericInto, drawDays, drawPairs, isoDay, fdate, longDay, daysAgo, eachDay, type DayRow, type NightRow } from "./dashboard";
 
 export const DB_NAV: [string, string][] = [
@@ -62,7 +64,9 @@ type Ov = {
   copies: { pages: number; last_sync: any }; pages: [string, string, string, string][];
 };
 async function showOverview(main: HTMLElement) {
+  const mine = pageNow();
   const o = await api<Ov>("/api/pdb/overview");
+  if (mine !== pageNow()) return;
   const docs = Object.values(o.docs || {}).reduce((a, n) => a + Number(n || 0), 0);
   const lc = o.last_check, lr = o.last_run, appr = o.approvals, waiting = Number(appr?.counts?.waiting || 0);
   const tiles = [
@@ -171,8 +175,10 @@ function dayRows(rows: FRow[], dayOfRow: (r: FRow) => string, lo: string, hi: st
 }
 
 async function showFeed(main: HTMLElement) {
+  const mine = pageNow();
   const r = feedRange();
   const doc = await cached<Feed>("/api/pdb/feed" + (r ? `?from=${r[0]}&to=${r[1]}` : ""));
+  if (mine !== pageNow()) return;
   const cols = doc.columns || [];
   const all: FRow[] = (doc.rows || []).map((a) => { const o: any = {}; cols.forEach((c, i) => { o[c] = a[i]; }); o.d = dayOf(o.d); o.pd = dayOf(o.pd); o.c = Array.isArray(o.c) ? o.c : []; o.dx = Array.isArray(o.dx) ? o.dx : []; return o as FRow; });
   const L = doc.lookups || { fac: {}, car: {}, prov: {} };
@@ -299,7 +305,7 @@ async function showFeed(main: HTMLElement) {
   document.querySelectorAll<HTMLElement>("#fwin button").forEach((b) => b.addEventListener("click", async () => {
     if (!b.dataset.win || b.dataset.win === fwin) return; fwin = b.dataset.win; ls.set("ehpa-feed-win", fwin); reconShown = 200;
     main.querySelectorAll("#fwin button").forEach((x) => x.setAttribute("aria-pressed", String((x as HTMLElement).dataset.win === fwin)));
-    try { await showFeed(main); } catch (e: any) { main.insertAdjacentHTML("afterbegin", `<p class="status err">${esc(e.message || String(e))}</p>`); }
+    try { await showFeed(main); } catch (e: any) { if (mine === pageNow()) main.insertAdjacentHTML("afterbegin", `<p class="status err">${esc(e.message || String(e))}</p>`); }
   }));
   wirePlain("feed");
 }
@@ -310,7 +316,9 @@ let runsQ = "";
 const colsTxt = (c: any) => { if (!c || !c.before) return ""; const f = (x: any) => [x.charge_review, x.claim_inspector, x.unbilled, x.exclusions].map((v) => (v == null ? "·" : v)).join("/"); return f(c.before) + " → " + f(c.after || c.before); };
 const isBad = (s: unknown) => /fail|error|refused/i.test(String(s || ""));
 async function showRuns(main: HTMLElement) {
+  const mine = pageNow();
   const doc = await cached<{ totals: any; runs: Run[] }>("/api/pdb/runs");
+  if (mine !== pageNow()) return;
   const t = doc.totals || {}, runs = doc.runs || [], last = runs[0];
   main.innerHTML = `<h1>Billing runs</h1><p class="lead">Every Billing Button press, scheduled billing run and engine report that reached the database: what it found, what it did, and what is waiting on William.</p>
     <section class="tiles" aria-label="Billing run figures">${[
@@ -358,7 +366,9 @@ function expandable(tbody: string, span: number, detail: (key: string) => Promis
 
 // ==== ERA ==========================================================================================================================
 async function showEra(main: HTMLElement) {
+  const mine = pageNow();
   const doc = await cached<{ totals: any; last_posting: any; unposted_now: any; runs: any[] }>("/api/pdb/era");
+  if (mine !== pageNow()) return;
   const t = doc.totals || {}, last = doc.last_posting, after = doc.unposted_now, rs = doc.runs || [];
   main.innerHTML = `<h1>ERA posting</h1><p class="lead">Remittances the runs posted: unposted checks before and after each run, the lines posted, paid dollars and the adjustment codes on every line.</p>
     <section class="tiles" aria-label="ERA figures">${[
@@ -382,7 +392,9 @@ async function showEra(main: HTMLElement) {
 // ==== APPROVALS ====================================================================================================================
 let apprFilter = "all";
 async function showApprovals(main: HTMLElement) {
+  const mine = pageNow();
   const doc = await cached<{ snapshot: any; rows: any[]; page: string }>("/api/pdb/approvals");
+  if (mine !== pageNow()) return;
   const rows = doc.rows || [], s = doc.snapshot;
   const c: Record<string, number> = {}; rows.forEach((r) => { c[r.status] = (c[r.status] || 0) + 1; });
   const waitingDollars = rows.filter((r) => r.status === "waiting").reduce((a, r) => a + Number(r.dollars || 0), 0);
@@ -411,7 +423,9 @@ async function showApprovals(main: HTMLElement) {
 
 // ==== MIRROR & SOURCES =============================================================================================================
 async function showMirror(main: HTMLElement) {
+  const mine = pageNow();
   const d = await cached<any>("/api/pdb/mirror");
+  if (mine !== pageNow()) return;
   const card = (t: string, u: string, k: string, n: string) => { const href = safeUrl(u); return href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer"><span class="nm"><span>${esc(t)}</span><span class="kd">${esc(k)}</span></span><span class="nt">${esc(n)}</span></a>` : ""; };
   const repo = d.repo, sy = d.last_sync;
   main.innerHTML = `<h1>Mirror &amp; sources</h1><p class="lead">Where each copy of the practice's records lives, the copies of the other billing pages, the routines that write, and the master data.</p>
@@ -434,7 +448,9 @@ function hl(json: string): string {
   return esc(json).replace(/(&quot;(?:(?!&quot;).)*?&quot;(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (m) => { let c = "nn"; if (/^&quot;/.test(m)) c = /:$/.test(m) ? "k" : "s"; else if (/true|false|null/.test(m)) c = "b"; return `<span class="${c}">${m}</span>`; });
 }
 async function showData(main: HTMLElement) {
+  const mine = pageNow();
   const meta = await cached<{ collections: [string, string][]; counts: Record<string, { documents: number; newest: string; bytes: number }> }>("/api/pdb/data");
+  if (mine !== pageNow()) return;
   const colls = meta.collections || [];
   if (!colls.some(([c]) => c === dataColl)) dataColl = colls[0]?.[0] || "feed_batches";
   main.innerHTML = `<h1>Raw data</h1><p class="lead">Every document of the practice database, exactly as stored in Neon (<code>raw.documents</code>, source <code>practice_db</code>), newest first. The copies of the other boards (<code>artifact_copies</code>) are left out here: they can carry patient names.</p>
@@ -450,7 +466,8 @@ async function showData(main: HTMLElement) {
   };
   const load = async () => {
     $("#coll-note").textContent = "Loading…";
-    try { docs = (await cached<{ docs: any[] }>("/api/pdb/data/" + encodeURIComponent(dataColl))).docs || []; } catch (e: any) { docs = []; $("#coll-note").textContent = e.message || String(e); return; }
+    try { docs = (await cached<{ docs: any[] }>("/api/pdb/data/" + encodeURIComponent(dataColl))).docs || []; } catch (e: any) { docs = []; if (mine === pageNow()) $("#coll-note").textContent = e.message || String(e); return; }
+    if (mine !== pageNow()) return;
     $("#coll-note").textContent = plural(docs.length, "document", "documents") + (docs.length >= 500 ? " (newest 500)" : "");
     list(); if (dataDoc && docs.some((d) => d.doc_id === dataDoc)) open();
   };
@@ -458,13 +475,14 @@ async function showData(main: HTMLElement) {
     if (!dataDoc) return; const pre = $("#doc-json"); pre.textContent = "Loading…";
     try {
       const d = await cached<any>("/api/pdb/doc/" + encodeURIComponent(dataColl) + "/" + encodeURIComponent(dataDoc));
+      if (mine !== pageNow()) return;
       const txt = JSON.stringify(d.body, null, 2);
       pre.innerHTML = hl(txt.length > 400000 ? txt.slice(0, 400000) + "\n… (cut short in view; Download for the whole document)" : txt);
       ($("#doc-tools") as HTMLElement).hidden = false; $("#doc-path").textContent = dataColl + "/" + dataDoc + (d.written_at ? " · written " + when(d.written_at) : "");
       const src = $("#doc-src") as HTMLAnchorElement; if (d.source_url) { src.href = d.source_url; src.hidden = false; } else src.hidden = true;
       ($("#doc-copy") as HTMLButtonElement).onclick = async () => { try { await navigator.clipboard.writeText(txt); $("#coll-note").textContent = "Copied " + dataColl + "/" + dataDoc + "."; } catch { const rg = document.createRange(); rg.selectNodeContents(pre); const sel = getSelection(); sel?.removeAllRanges(); sel?.addRange(rg); $("#coll-note").textContent = "Selected - press Ctrl+C / Cmd+C."; } };
       ($("#doc-dl") as HTMLButtonElement).onclick = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([txt], { type: "application/json" })); a.download = dataColl + "__" + dataDoc.replace(/[^A-Za-z0-9._-]/g, "_") + ".json"; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); };
-    } catch (e: any) { pre.textContent = e.message || String(e); }
+    } catch (e: any) { if (mine === pageNow()) pre.textContent = e.message || String(e); }
   };
   $("#coll").addEventListener("change", (ev) => { dataColl = (ev.target as HTMLSelectElement).value; ls.set("ehpa-db-coll", dataColl); dataDoc = ""; ($("#doc-tools") as HTMLElement).hidden = true; $("#doc-json").textContent = "Pick a document."; load(); });
   $("#doc-q").addEventListener("input", (ev) => { dataQ = (ev.target as HTMLInputElement).value; list(); });
