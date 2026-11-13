@@ -3329,6 +3329,9 @@ HC_FILES = {f_: "# %s - the repository's copy\n" % f_ for f_ in HC.FEED_HELPERS}
 for f_ in HC.RULE_HELPERS: HC_FILES[f_] += ver + "\n"
 for f_, m_ in HC.VERSION_LINES.items(): HC_FILES[f_] += m_ + "\n"
 HC_OLD = "# an old copy without this rule's version line\n"
+# since 11/12/2026 the retry driver enters a skipped visit only when its codes are in BOTH tables PCODE and FEE of the claimocity_import.py beside it
+# (claimocity_retry_dx._known_cpts reads that file's text): every copy of the import helper here, the repository's and the old one, carries the helper's own tables
+HC_TABLES = "PCODE = %s\nFEE = %s\n" % (json.dumps(ci.PCODE), json.dumps(ci.FEE)); HC_FILES["claimocity_import.py"] += HC_TABLES; HC_OLD += HC_TABLES
 def hc_dirs(ws_over=None, repo_drop=(), no_repo=False):
     """(workspace, clone) folders: the clone holds every feed helper; the workspace the same, except ws_over {name: text, or None = missing}."""
     w_ = tempfile.mkdtemp(prefix="posrule_hcw_", dir=tmp); r_ = tempfile.mkdtemp(prefix="posrule_hcr_", dir=tmp)
