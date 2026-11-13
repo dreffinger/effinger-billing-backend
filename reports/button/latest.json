@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-13T1718Z",
+ "stamp": "2026-11-13T1840Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43471468102",
- "started": "2026-11-13T17:18:34Z",
- "ended": "2026-11-13T17:25:13Z",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 1 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled columns run",
+ "run_url": "",
+ "started": "2026-11-13T18:42:23Z",
+ "ended": "2026-11-13T18:51:19Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 0.0
    },
    "after": {
     "checks": 0,
@@ -65,7 +65,7 @@
    "visits": 7849,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-13 17:25 UTC"
+   "asof": "2026-11-13 18:51 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1388 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1388,
-    "registers": 1869,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "registers": 3,
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T17:18:34Z",
-   "ended": "2026-11-13T17:18:35Z"
+   "started": "2026-11-13T18:42:23Z",
+   "ended": "2026-11-13T18:42:23Z"
   },
   {
    "name": "columns",
@@ -115,31 +115,40 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T17:18:35Z",
-   "ended": "2026-11-13T17:20:40Z"
+   "started": "2026-11-13T18:42:23Z",
+   "ended": "2026-11-13T18:45:27Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 0,
     "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 1
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 0.0,
     "unposted after": 0,
     "posted this run": 0.0
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053519,
+     "payer": "RETIRED RAILROAD MEDICARE",
+     "checknumber": "321478300",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-13T17:20:40Z",
-   "ended": "2026-11-13T17:20:42Z"
+   "started": "2026-11-13T18:45:27Z",
+   "ended": "2026-11-13T18:45:35Z"
   },
   {
    "name": "packages",
@@ -150,8 +159,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T17:20:42Z",
-   "ended": "2026-11-13T17:20:42Z"
+   "started": "2026-11-13T18:45:35Z",
+   "ended": "2026-11-13T18:45:35Z"
   },
   {
    "name": "outstanding",
@@ -170,70 +179,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1310,
      "dollars": 131134.16,
      "oldest_days": 1094
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 174,
      "dollars": 36668.07,
      "oldest_days": 1190
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 431
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 312,
      "dollars": 19848.48,
      "oldest_days": 1061
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 90,
      "dollars": 18281.4,
      "oldest_days": 1163
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 63,
      "dollars": 10237.05,
      "oldest_days": 667
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 31,
      "dollars": 6494.0,
      "oldest_days": 363
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 31,
      "dollars": 5717.22,
      "oldest_days": 979
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 45,
      "dollars": 5661.06,
      "oldest_days": 53
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 375
@@ -247,15 +256,15 @@
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 206
     }
    ],
    "errors": [],
-   "started": "2026-11-13T17:20:42Z",
-   "ended": "2026-11-13T17:20:44Z"
+   "started": "2026-11-13T18:45:35Z",
+   "ended": "2026-11-13T18:45:37Z"
   },
   {
    "name": "denials",
@@ -342,8 +351,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T17:20:44Z",
-   "ended": "2026-11-13T17:25:13Z"
+   "started": "2026-11-13T18:45:37Z",
+   "ended": "2026-11-13T18:51:19Z"
   }
  ],
  "packages": [],
