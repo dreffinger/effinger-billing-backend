@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-13T02:01:56Z",
+ "generated": "2026-11-13T06:55:04Z",
  "as_of": "2026-11-13",
  "coverage": {
   "files": [
@@ -399,21 +399,21 @@
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 108,
-     "visits": 105,
-     "dollars": 16713.0
+     "lines": 65,
+     "visits": 64,
+     "dollars": 9819.0
     },
     {
      "name": "Clinician on file",
-     "lines": 11,
-     "visits": 10,
-     "dollars": 1527.0
+     "lines": 51,
+     "visits": 48,
+     "dollars": 7941.0
     },
     {
      "name": "Pamela G.",
-     "lines": 3,
-     "visits": 3,
-     "dollars": 423.0
+     "lines": 6,
+     "visits": 6,
+     "dollars": 903.0
     }
    ],
    "payer": [
@@ -457,23 +457,7 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 24
-    },
-    {
-     "code": "E785",
-     "patients": 9
-    },
-    {
-     "code": "M17.12",
-     "patients": 9
-    },
-    {
-     "code": "M1712",
-     "patients": 9
-    },
-    {
-     "code": "R55",
-     "patients": 8
+     "patients": 20
     },
     {
      "code": "F319",
@@ -488,20 +472,36 @@
      "patients": 8
     },
     {
-     "code": "M17.11",
-     "patients": 8
-    },
-    {
-     "code": "M1711",
-     "patients": 8
-    },
-    {
      "code": "N390",
      "patients": 7
     },
     {
-     "code": "K219",
+     "code": "M1712",
      "patients": 7
+    },
+    {
+     "code": "M17.12",
+     "patients": 7
+    },
+    {
+     "code": "E785",
+     "patients": 6
+    },
+    {
+     "code": "F32A",
+     "patients": 6
+    },
+    {
+     "code": "R55",
+     "patients": 5
+    },
+    {
+     "code": "J449",
+     "patients": 5
+    },
+    {
+     "code": "M4802",
+     "patients": 5
     }
    ],
    "days": [
@@ -831,21 +831,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 776,
-     "visits": 553,
-     "dollars": 129150.0
+     "lines": 816,
+     "visits": 591,
+     "dollars": 135564.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 409,
-     "visits": 365,
-     "dollars": 67942.0
+     "lines": 366,
+     "visits": 324,
+     "dollars": 61048.0
     },
     {
      "name": "Pamela G.",
-     "lines": 76,
-     "visits": 76,
-     "dollars": 11223.0
+     "lines": 79,
+     "visits": 79,
+     "dollars": 11703.0
     }
    ],
    "payer": [
@@ -889,35 +889,35 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 140
+     "patients": 132
     },
     {
      "code": "E785",
-     "patients": 85
-    },
-    {
-     "code": "E039",
-     "patients": 45
+     "patients": 78
     },
     {
      "code": "N390",
      "patients": 44
     },
     {
-     "code": "E119",
-     "patients": 42
-    },
-    {
      "code": "I639",
      "patients": 40
+    },
+    {
+     "code": "E039",
+     "patients": 38
     },
     {
      "code": "J449",
      "patients": 35
     },
     {
-     "code": "F0390",
+     "code": "E119",
      "patients": 34
+    },
+    {
+     "code": "F0390",
+     "patients": 30
     },
     {
      "code": "F32A",
@@ -1424,21 +1424,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 923,
-     "visits": 684,
-     "dollars": 149040.0
+     "lines": 963,
+     "visits": 722,
+     "dollars": 155454.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 409,
-     "visits": 365,
-     "dollars": 67942.0
+     "lines": 366,
+     "visits": 324,
+     "dollars": 61048.0
     },
     {
      "name": "Pamela G.",
-     "lines": 77,
-     "visits": 77,
-     "dollars": 11523.0
+     "lines": 80,
+     "visits": 80,
+     "dollars": 12003.0
     }
    ],
    "payer": [
@@ -1482,35 +1482,35 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 140
+     "patients": 132
     },
     {
      "code": "E785",
-     "patients": 85
-    },
-    {
-     "code": "E039",
-     "patients": 45
+     "patients": 78
     },
     {
      "code": "N390",
      "patients": 44
     },
     {
-     "code": "E119",
-     "patients": 42
-    },
-    {
      "code": "I639",
      "patients": 40
+    },
+    {
+     "code": "E039",
+     "patients": 38
     },
     {
      "code": "J449",
      "patients": 35
     },
     {
-     "code": "F0390",
+     "code": "E119",
      "patients": 34
+    },
+    {
+     "code": "F0390",
+     "patients": 30
     },
     {
      "code": "F32A",
