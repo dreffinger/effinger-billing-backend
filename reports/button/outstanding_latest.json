@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-13T19:20:56Z",
+ "at": "2026-11-13T21:21:31Z",
  "as_of": "2026-11-13",
- "total": 295319.05,
- "visits": 2581,
+ "total": 295158.13,
+ "visits": 2579,
  "charts": 485,
  "over_365": {
   "n": 547,
@@ -11,12 +11,12 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 660,
-   "dollars": 115886.55
+   "n": 659,
+   "dollars": 115745.55
   },
   "31-60": {
-   "n": 285,
-   "dollars": 40806.19
+   "n": 284,
+   "dollars": 40786.27
   },
   "61-90": {
    "n": 147,
@@ -114,11 +114,11 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 63,
-   "dollars": 10237.05,
+   "n": 62,
+   "dollars": 10217.13,
    "buckets": {
     "0-30": 7286.0,
-    "31-60": 2597.06,
+    "31-60": 2577.14,
     "61-90": 0.0,
     "91-180": 56.49,
     "181-365": 231.79,
@@ -337,21 +337,6 @@
    "oldest_days": 42
   },
   {
-   "carrier": "AMB03",
-   "name": "AMBETTER FROM SUNSHINE HEALTH",
-   "n": 9,
-   "dollars": 845.2,
-   "buckets": {
-    "0-30": 141.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 0.0,
-    "181-365": 641.54,
-    "over 365": 62.66
-   },
-   "oldest_days": 765
-  },
-  {
    "carrier": "BCBS1",
    "name": "FLORIDABLUE MEDICARE",
    "n": 3,
@@ -365,6 +350,21 @@
     "over 365": 0.0
    },
    "oldest_days": 95
+  },
+  {
+   "carrier": "AMB03",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
+   "n": 8,
+   "dollars": 704.2,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 0.0,
+    "181-365": 641.54,
+    "over 365": 62.66
+   },
+   "oldest_days": 765
   },
   {
    "carrier": "WEL07",
@@ -740,13 +740,13 @@
   },
   {
    "month": "2026-10",
-   "n": 447,
-   "dollars": 72033.51
+   "n": 446,
+   "dollars": 72013.59
   },
   {
    "month": "2026-11",
-   "n": 349,
-   "dollars": 61537.0
+   "n": 348,
+   "dollars": 61396.0
   }
  ],
  "oldest": [
@@ -16171,14 +16171,6 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19458734,
-   "patientid": 17469466,
-   "carriercode": "HUM01",
-   "insbalance": 19.92,
-   "days": 39,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19457343,
    "patientid": 17475697,
    "carriercode": "FLO02",
@@ -20615,14 +20607,6 @@
    "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
-   "days": 8,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460487,
-   "patientid": 17471792,
-   "carriercode": "AMB03",
-   "insbalance": 141.0,
    "days": 8,
    "dos": "2026-11-05"
   },
