@@ -1,0 +1,103 @@
+{
+ "fixed": [
+  {
+   "visit": "19461035",
+   "pid": "pat17478346",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/06/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461054",
+   "pid": "pat17478318",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/10/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461059",
+   "pid": "pat17478346",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/06/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461074",
+   "pid": "pat17473197",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/27/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461082",
+   "pid": "pat17478346",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/06/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461090",
+   "pid": "pat17477851",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 09/08/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461091",
+   "pid": "pat25994",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23373913 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19461092",
+   "pid": "pat21772",
+   "patterns": [],
+   "note": []
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": [],
+ "quality_removed": [
+  {
+   "visit": "19461091",
+   "pid": "pat25994",
+   "charge": "charge23373913",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-13T01:57:30.568455",
+   "resave_ok": true
+  }
+ ]
+}
