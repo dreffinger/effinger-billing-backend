@@ -34,7 +34,8 @@ import xml.etree.ElementTree as ET
 # and could void, real charges. So: (1) helpers that talk to AdvancedMD are only ever run INSIDE this process with stand-in modules (see
 # run_inside); (2) since 11/13/2026 no program is started at all (the owner's rule for tests: never start a helper from scripts/helpers or
 # core as a program in a test) - the feed report and the audit tool, which load none of those modules, run inside this process too
-# (run_program, section 6), and section 6b checks that this file starts none; (3) the network is shut either way.
+# (run_program, section 6), section 6b checks that this file starts none, and an audit hook refuses any program start in this process;
+# (3) the network is shut either way.
 import socket as _socket
 def _no_network(*a, **k): raise RuntimeError("the self-test must not use the network")
 _socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
@@ -42,7 +43,11 @@ for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy"
 os.environ.update(NO_PROXY="", no_proxy="")
 AMD_MODULES = ("amd", "resave", "txh", "void_tx", "deceased_guard", "freq1_visit", "move_to_ins", "ins_update")
 PROC_MOD = "sub" "process"      # the standard library's module that starts programs, named in two pieces: section 6b checks that the word stands nowhere in this file - only the drivers' stand-in for it (driver_run) takes its place
-ROOT =os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROGRAM_STARTS = {PROC_MOD + ".Popen", "pty.spawn"} | {"os." + n for n in ("system", "exec", "posix_spawn", "spawn", "fork", "forkpty")}      # the audit events of a program start
+def _no_program(event, args):      # 11/13/2026: and no program can be started from this process at all - by this file or by any code it loads or runs inside it
+    if event in PROGRAM_STARTS: raise RuntimeError("this self-test starts no program (%s)" % event)
+sys.addaudithook(_no_program)
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_import.py")
 FAILS = []
 def check(name, cond, extra=""):
@@ -2088,26 +2093,24 @@ def loads(src):
             n = n.strip().split()[0].split(".")[0] if n.strip() else ""
             if n: out_.add(n)
     return out_
-def run_program(path, cwd=None, env=None, argv=(), standins=None):
+def run_program(path, cwd=None, env=None, argv=()):
     """Run one program of the checkout INSIDE this process - what `python3 <path> <argv>` would do in folder `cwd` with `env` added to the
-    environment - and start nothing: its file is executed here as __main__ with sys.argv, the folder, the environment and sys.path set for
-    the run and put back after it, and what it prints is captured. It ends the way a program ends: sys.exit(n) is the return code n,
-    sys.exit("words") is 1 with the words on stderr, an error is 1 with its traceback on stderr. A program that loads a module of
-    AMD_MODULES runs only with a stand-in for each (standins, as run_inside takes them) - refused otherwise; the report and the audit tool
-    load none. Returns what the checks read of a finished program: returncode, stdout, stderr."""
-    src = open(path).read(); missing = sorted((loads(src) & set(AMD_MODULES)) - set(standins or {}))
-    if missing: raise RuntimeError("no stand-in for %s - %s is not run" % (missing, os.path.basename(path)))
-    old_mod = {k: sys.modules.get(k) for k in (standins or {})}; old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); old_path = list(sys.path)
+    environment - and start nothing: its file is executed here as __main__ with sys.argv, the folder and the environment set for the run,
+    what it prints is captured, and all of it is put back after the run (sys.path too, should the program change it). sys.path is NOT given
+    the program's own folder, as `python3 <path>` would give it - on purpose: for the report that folder is scripts/helpers, which holds the
+    live amd / resave / txh / void_tx modules, so an import from it fails here instead of loading one (never "fix" that). It ends the way a
+    program ends: sys.exit(n) is the return code n, sys.exit("words") is 1 with the words on stderr, an error is 1 with its traceback on
+    stderr. A program that loads a module of AMD_MODULES is refused (such a helper runs with run_inside and its stand-ins); the report and
+    the audit tool load none. Returns what the checks read of a finished program: returncode, stdout, stderr."""
+    src = open(path).read(); live = sorted(loads(src) & set(AMD_MODULES))
+    if live: raise RuntimeError("%s loads %s - it is not run here (run_inside gives such a helper its stand-ins)" % (os.path.basename(path), live))
+    old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); old_path = list(sys.path)
     out, err, code = io.StringIO(), io.StringIO(), 0
     try:
-        for k, v in (standins or {}).items():
-            m = types.ModuleType(k); m.STAND_IN = True
-            for n, f in v.items(): setattr(m, n, f)
-            sys.modules[k] = m
         if cwd: os.chdir(cwd)
         os.environ.update(env or {}); sys.argv = [path] + list(argv)
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path})
+            try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path, "__doc__": None})
             except SystemExit as e:
                 if e.code is None or isinstance(e.code, int): code = e.code or 0
                 else: code = 1; err.write("%s\n" % (e.code,))
@@ -2117,11 +2120,8 @@ def run_program(path, cwd=None, env=None, argv=(), standins=None):
         for k in list(os.environ):
             if k not in old_env: del os.environ[k]
         os.environ.update(old_env)
-        for k, v in old_mod.items():
-            if v is None: sys.modules.pop(k, None)
-            else: sys.modules[k] = v
     return types.SimpleNamespace(returncode=code, stdout=out.getvalue(), stderr=err.getvalue())
-rep_dir =tempfile.mkdtemp(prefix="posrule_rep_"); os.makedirs(os.path.join(rep_dir, "registers"))
+rep_dir = tempfile.mkdtemp(prefix="posrule_rep_"); os.makedirs(os.path.join(rep_dir, "registers"))
 def reg_row(cpts, fac, feed, lines, kinds=None, err=""):
     return {"feed_id": "x", "pid": "pat9", "visit": "vst1", "charges": ["charge%d" % i for i in range(len(cpts))], "fees": ["1.00"] * len(cpts), "dos": "11/02/2026",
             "cpts": cpts, "fac": fac, "pos": lines[0], "pos_feed": feed, "pos_lines": lines, "pos_why": [""] * len(cpts), "pos_kind": kinds or [""] * len(cpts), "pos_err": err}
@@ -2737,7 +2737,8 @@ check("the report and the audit tool, run INSIDE this process with no stand-in, 
       and loads("import os as _os\nimport %s as a, %s.x\n    import %s\nfrom %s import fetch_visit\n" % ("amd", "resave", "void_tx", "txh")) == {"os", "amd", "resave", "void_tx", "txh"}, _names)
 # 11/13/2026: this check used to ALLOW two programs (the report and the audit tool, started with the process module's run); both run inside
 # this process now, and the check says the opposite - nothing at all is started from this file (the patterns are written in pieces so that
-# they do not find themselves), and no module that talks to AdvancedMD is imported here
+# they do not find themselves), and no module that talks to AdvancedMD is imported here; at run time the audit hook (_no_program, top of
+# the file) refuses a program start by any code this process runs
 _me = open(os.path.abspath(__file__)).read()
 _starts = "|".join(("sub" "process", "os" r"\.system\(", "os" r"\.popen\(", "os" r"\.exec", "os" r"\.spawn", "os" r"\.posix_spawn", "run" r"py\."))
 check("... and this self-test starts no program: no program start of any kind in this file (the drivers' stand-in for the process module is named in two pieces) and no module that talks to AdvancedMD imported here",

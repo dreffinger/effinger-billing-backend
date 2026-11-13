@@ -11,7 +11,7 @@
 #   version 2026-11-10.7 (never-billed feed visits) had been delivered without running it - set_insorder had started to READ each charge's
 #   detail, and this file's stand-in still took every call for a save and crashed. Run it before delivering ANY change to amd.py,
 #   resave.py, freq1_visit.py, move_to_ins.py, ins_update.py, approval_submit.py or deceased_guard.py - offline as the header above says, or in a sandbox
-#   with no network (deceased_guard stands in here: what is proved is amd.rebill_charge's answer to it).
+#   with no network (deceased_guard.py itself is not read here: a stand-in takes its place, and what is proved is amd.rebill_charge's answer to it).
 #   Since that day it also proves, on the real modules, what that rule version added (sections B2 and C2): set_insorder reads the visit's
 #   insurance-order LIST, refuses a visit already billed unless the caller passes allow_billed=True (freq1_visit.reroute does), echoes
 #   every live charge and looks for each again, and puts back an admission date the save wiped - or says "admission date lost on save".
@@ -24,12 +24,15 @@
 # 11/13/2026 - THE OWNER'S RULE FOR TESTS: never start a helper from scripts/helpers or core as a program in a test and never import the real
 #   amd, resave, txh or void_tx modules there (they talk to the practice's live billing system); tests load helpers with stand-in modules and
 #   the network shut. So this file no longer puts scripts/helpers or core on the path and imports none of the billing modules: every function
-#   it proves is LIFTED out of its module's text (lift and sandbox below, which list the names - of amd.py only the one-rebill guard and the
-#   message builder, never its login, post or REST calls) into a sandbox module that stands where the module would, whose amd / resave /
-#   requests / deceased_guard are this file's own sandboxes and stand-ins. An import of a billing module, of `requests` or of any module of
-#   the checkout is refused (a lifted function that reached for the real thing fails here, it never reaches it), and every network route is
-#   closed. The checks are the same, word for word, and so is their number.
-import os, sys, json, re, tempfile, time, types, ast, datetime, importlib.abc, importlib.machinery
+#   it proves is LIFTED out of its module's text (lift and sandbox below, which list the names - of amd.py only the message builder and
+#   rebill_charge, the chargerebill call with its one-rebill guard, whose `requests` is a stand-in; never its login, post or the other REST
+#   calls) into a sandbox module that stands where the module would, whose amd / resave / requests / deceased_guard are this file's own
+#   sandboxes and stand-ins. A lifted function that reads a module-level name its sandbox does not give it stops the test by that name (it
+#   would otherwise fail only when that line runs - inside amd.rebill_charge's fail-closed guard, as the very 409 a check expects). An import
+#   of a billing module, of `requests` or of any module of the checkout is refused, no program can be started from this process, and every
+#   network route is closed. The files are parsed whole (a syntax error anywhere stops the test), but only the lifted names run: an error
+#   elsewhere in them, which the old import would have raised, is not seen here. The checks are the same, word for word, and so is their number.
+import os, sys, json, re, tempfile, time, types, ast, dis, builtins, datetime, importlib.abc, importlib.machinery
 import html as _html
 import xml.etree.ElementTree as ET
 import socket as _socket      # 11/11/2026: no network route is open in this process - a call no stand-in answers fails here, it never reaches a host
@@ -37,6 +40,10 @@ def _no_network(*a, **k): raise RuntimeError("this self-test must not use the ne
 _socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
 for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"): os.environ[_k] = "http://127.0.0.1:9"
 os.environ.update(NO_PROXY="", no_proxy="")
+PROGRAM_STARTS = {"sub" "process.Popen", "pty.spawn"} | {"os." + n for n in ("system", "exec", "posix_spawn", "spawn", "fork", "forkpty")}      # the audit events of a program start (the module's name in two pieces: a search of this file for it finds nothing)
+def _no_program(event, args):      # 11/13/2026: nor is any program started from this process - by this file or by any code it runs
+    if event in PROGRAM_STARTS: raise RuntimeError("this self-test starts no program (%s)" % event)
+sys.addaudithook(_no_program)
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HELPERS = os.path.join(ROOT, "scripts", "helpers")
 TMP = tempfile.mkdtemp(prefix="selftest_ws_")
@@ -59,12 +66,19 @@ def lift(path, names):
     got = {n.name for n in keep if isinstance(n, ast.FunctionDef)} | {t.id for n in keep if isinstance(n, ast.Assign) for t in n.targets if isinstance(t, ast.Name)}
     if set(names) - got: raise RuntimeError("%s has no %s - the code under test is not lifted" % (os.path.basename(path), sorted(set(names) - got)))
     return compile(ast.Module(body=keep, type_ignores=[]), path, "exec")
+def reads(code):
+    """Every global name a piece of compiled Python reads (LOAD_GLOBAL / LOAD_NAME), its nested functions included."""
+    return {i.argval for i in dis.get_instructions(code) if i.opname in ("LOAD_GLOBAL", "LOAD_NAME")} | {n for c in code.co_consts if isinstance(c, types.CodeType) for n in reads(c)}
 def sandbox(name, file, names, **env):
     """A module that stands where the billing module `name` would: first `env` - what its own imports give it (the standard library, and
     this file's sandboxes and stand-ins for the billing modules) - then the code lifted out of scripts/helpers/<file>. It is never put in
-    sys.modules: the test hands it on by hand, so nothing else can import it."""
+    sys.modules: the test hands it on by hand, so nothing else can import it. A name the lifted code reads that is neither lifted, nor in
+    `env`, nor a builtin stops the test here, by its name: it would otherwise raise only when that line runs, and inside a guard that fails
+    closed (amd.rebill_charge's date-of-death guard answers 409 to any error) that error looks exactly like the guard working."""
     m = types.ModuleType(name); m.__file__ = os.path.join(HELPERS, file); m.UNDER_TEST = True; m.__dict__.update(env)
-    exec(lift(m.__file__, names), m.__dict__)
+    code = lift(m.__file__, names); stray = reads(code) - set(names) - set(env) - set(dir(builtins)) - {"__file__", "__name__"}
+    if stray: raise RuntimeError("the code lifted out of %s reads %s, which its sandbox neither lifts nor is given - nothing is run" % (file, sorted(stray)))
+    exec(code, m.__dict__)
     return m
 def standin(name, **attrs):
     m = types.ModuleType(name); m.STAND_IN = True
