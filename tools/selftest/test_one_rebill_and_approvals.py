@@ -4,13 +4,14 @@
 #   without a rebill (resave.set_insorder), the patient order verified and carried by an active plan (ins_update.update), and the
 #   approval email/push carrying links to the approval buttons (approval_submit). Run: python3 tools/selftest/test_one_rebill_and_approvals.py
 # Never touches: AMD, Gmail, Drive, the page. Writes only to a temp directory.
-# 11/11/2026 - RUN THIS TEST BEFORE A DELIVERY. It loads the REAL billing modules (amd, resave, freq1_visit, move_to_ins, ins_update,
-#   approval_submit) and puts its own stand-ins where they would call AdvancedMD, so the delivery sessions' guarded test runner refuses it
-#   and it is NOT run with the other self-tests. On November 11, 2026 it stood RED on the live branch: the change to resave.py of rule
+# 11/11/2026 - RUN THIS TEST BEFORE A DELIVERY. It runs the REAL code of the billing modules (amd, resave, freq1_visit, move_to_ins,
+#   ins_update, approval_submit) with its own stand-ins where that code would call AdvancedMD. Until 11/13/2026 it imported the modules
+#   themselves, so the delivery sessions' guarded test runner refused it and it was NOT run with the other self-tests (11/13/2026 below).
+#   On November 11, 2026 it stood RED on the live branch: the change to resave.py of rule
 #   version 2026-11-10.7 (never-billed feed visits) had been delivered without running it - set_insorder had started to READ each charge's
 #   detail, and this file's stand-in still took every call for a save and crashed. Run it before delivering ANY change to amd.py,
 #   resave.py, freq1_visit.py, move_to_ins.py, ins_update.py, approval_submit.py or deceased_guard.py - offline as the header above says, or in a sandbox
-#   with no network.
+#   with no network (deceased_guard stands in here: what is proved is amd.rebill_charge's answer to it).
 #   Since that day it also proves, on the real modules, what that rule version added (sections B2 and C2): set_insorder reads the visit's
 #   insurance-order LIST, refuses a visit already billed unless the caller passes allow_billed=True (freq1_visit.reroute does), echoes
 #   every live charge and looks for each again, and puts back an admission date the save wiped - or says "admission date lost on save".
@@ -20,17 +21,73 @@
 #   rebilled") - also when no live charge was read or the asked charge is not among them, also for a dry run - and a read-back that could not
 #   read all the charges is not trusted. move_to_ins.move and freq1_visit.run do NOT look at that note yet (a known, older gap): section H
 #   pins the very calls they make on a failed read, so that this round is seen to change nothing in them.
-import os, sys, json, re, tempfile, time, types
+# 11/13/2026 - THE OWNER'S RULE FOR TESTS: never start a helper from scripts/helpers or core as a program in a test and never import the real
+#   amd, resave, txh or void_tx modules there (they talk to the practice's live billing system); tests load helpers with stand-in modules and
+#   the network shut. So this file no longer puts scripts/helpers or core on the path and imports none of the billing modules: every function
+#   it proves is LIFTED out of its module's text (lift and sandbox below, which list the names - of amd.py only the one-rebill guard and the
+#   message builder, never its login, post or REST calls) into a sandbox module that stands where the module would, whose amd / resave /
+#   requests / deceased_guard are this file's own sandboxes and stand-ins. An import of a billing module, of `requests` or of any module of
+#   the checkout is refused (a lifted function that reached for the real thing fails here, it never reaches it), and every network route is
+#   closed. The checks are the same, word for word, and so is their number.
+import os, sys, json, re, tempfile, time, types, ast, datetime, importlib.abc, importlib.machinery
+import html as _html
 import xml.etree.ElementTree as ET
 import socket as _socket      # 11/11/2026: no network route is open in this process - a call no stand-in answers fails here, it never reaches a host
 def _no_network(*a, **k): raise RuntimeError("this self-test must not use the network")
 _socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
+for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"): os.environ[_k] = "http://127.0.0.1:9"
+os.environ.update(NO_PROXY="", no_proxy="")
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+HELPERS = os.path.join(ROOT, "scripts", "helpers")
 TMP = tempfile.mkdtemp(prefix="selftest_ws_")
 os.environ["BILLING_WORKSPACE"] = TMP
-sys.path.insert(0, os.path.join(ROOT, "scripts", "helpers")); sys.path.insert(1, os.path.join(ROOT, "core"))
-import amd, resave, freq1_visit, move_to_ins, ins_update, approval_submit
-REAL_VISIT_CHARGES, REAL_DETAIL = resave.visit_charges, resave.detail      # 11/11/2026 (round 8): the REAL history read and charge detail, kept for section H (sections B-D put stand-ins in their place)
+LIVE = {"amd", "resave", "txh", "void_tx", "deceased_guard", "freq1_visit", "move_to_ins", "ins_update", "approval_submit", "requests", "stedi", "elig_amd", "add_ins", "era_post", "medicare_store"}
+class _Refuse(importlib.abc.MetaPathFinder):      # 11/13/2026: what is not a stand-in or a sandbox of this file is never imported
+    def find_spec(self, name, path=None, target=None):
+        if name.split(".")[0] in LIVE: raise ImportError("refused: %s is a live-system module - only this file's stand-ins and sandboxes are used here" % name)
+        spec = importlib.machinery.PathFinder.find_spec(name, path)
+        if spec is not None and spec.origin and os.path.abspath(spec.origin).startswith(ROOT + os.sep):
+            raise ImportError("refused: %s would be loaded from the checkout (%s)" % (name, spec.origin))
+        return None
+sys.meta_path.insert(0, _Refuse())
+def lift(path, names):
+    """The top-level functions and assignments of `path` named in `names` - nothing else of the file: no import, no other function, no
+    `if __name__` block - compiled under the file's own name (a traceback points at its lines). A name the file no longer has stops the
+    test here, by its name."""
+    tree = ast.parse(open(path).read(), path)
+    keep = [n for n in tree.body if (isinstance(n, ast.FunctionDef) and n.name in names) or (isinstance(n, ast.Assign) and any(getattr(t, "id", None) in names for t in n.targets))]
+    got = {n.name for n in keep if isinstance(n, ast.FunctionDef)} | {t.id for n in keep if isinstance(n, ast.Assign) for t in n.targets if isinstance(t, ast.Name)}
+    if set(names) - got: raise RuntimeError("%s has no %s - the code under test is not lifted" % (os.path.basename(path), sorted(set(names) - got)))
+    return compile(ast.Module(body=keep, type_ignores=[]), path, "exec")
+def sandbox(name, file, names, **env):
+    """A module that stands where the billing module `name` would: first `env` - what its own imports give it (the standard library, and
+    this file's sandboxes and stand-ins for the billing modules) - then the code lifted out of scripts/helpers/<file>. It is never put in
+    sys.modules: the test hands it on by hand, so nothing else can import it."""
+    m = types.ModuleType(name); m.__file__ = os.path.join(HELPERS, file); m.UNDER_TEST = True; m.__dict__.update(env)
+    exec(lift(m.__file__, names), m.__dict__)
+    return m
+def standin(name, **attrs):
+    m = types.ModuleType(name); m.STAND_IN = True
+    for k, v in attrs.items(): setattr(m, k, v)
+    return m
+def unanswered(what):      # a stand-in's answer until a section gives it its own: every call is refused, so nothing goes anywhere
+    def refuse_call(*a, **k): raise RuntimeError("the stand-in %s has no answer for this call yet - nothing leaves this test" % what)
+    return refuse_call
+deceased_guard = standin("deceased_guard", check_charge=unanswered("deceased_guard.check_charge")); sys.modules["deceased_guard"] = deceased_guard      # amd.rebill_charge imports it by name
+amd = sandbox("amd", "amd.py", ("OFFICE", "USER", "_msgtime", "msg", "WS_DIR", "REBILL_LOG", "_REBILLED", "_visit_of", "_rebill_log", "rebill_charge"),
+              re=re, os=os, json=json, sys=sys, time=time, datetime=datetime, ET=ET, post=unanswered("amd.post"), login_cached=unanswered("amd.login_cached"),
+              requests=standin("requests", post=unanswered("requests.post"), get=unanswered("requests.get")))
+resave = sandbox("resave", "resave.py", ("detail", "CHG_FIELDS", "READ_NOTE", "_fault_text", "visit_charges", "DATE_ATTRS", "clean_extins", "order_list", "billed_reasons",
+                                         "HOSP_CODES", "admit_of", "admit_codes", "restore_admit", "admit_back", "set_insorder"), amd=amd, re=re, sys=sys, ET=ET)
+freq1_visit = sandbox("freq1_visit", "freq1_visit.py", ("run", "reroute"), amd=amd, resave=resave, sys=sys, time=time)
+move_to_ins = sandbox("move_to_ins", "move_to_ins.py", ("move",), amd=amd, resave=resave, re=re, sys=sys, time=time, ET=ET)
+ins_update = sandbox("ins_update", "ins_update.py", ("KEYS", "_plans", "_active", "_send", "_norm", "_set_order", "update"), amd=amd, re=re, sys=sys, datetime=datetime)
+approval_submit = sandbox("approval_submit", "approval_submit.py", ("PAGE", "CASCADE", "SSN", "MBI", "IDWORD", "IDWORD2", "DOB", "VAICN", "NAMEFIELD", "LASTFIRST", "ADDINS", "now",
+                                                                   "privacy_hit", "repo_safe", "build_items", "collisions", "register", "email", "total_dollars", "card_link",
+                                                                   "push_text", "title", "html_email"),
+                          json=json, os=os, re=re, sys=sys, datetime=datetime, html=_html)      # it never talks to AdvancedMD; lifted all the same - without its git and gate steps
+if (LIVE & set(sys.modules)) != {"deceased_guard"}: raise RuntimeError("a live module is loaded in this process (%s) - the test does not run" % sorted(LIVE & set(sys.modules)))
+REAL_VISIT_CHARGES, REAL_DETAIL = resave.visit_charges, resave.detail      # 11/11/2026 (round 8): the REAL history read and charge detail (lifted out of resave.py), kept for section H (sections B-D put stand-ins in their place)
 FAILS = []
 def check(name, cond, extra=""):
     print(("ok   " if cond else "FAIL ") + name + ("" if cond else "  " + str(extra)))
@@ -70,8 +127,7 @@ c10 = amd.rebill_charge("801", 1, dod_guard=False)
 check("a LATER run is never blocked (corrected rebill after a claim-run rejection goes out)", c10[0] == 204 and len(CALLS) == 8 and not c10[1].startswith("SKIPPED"), c10)
 log = [json.loads(l) for l in open(amd.REBILL_LOG)]
 check("every sent 2xx rebill is in the audit log (7), skips and 500s are not", len(log) == 7 and all(e["status"] == 204 for e in log), len(log))
-import deceased_guard
-deceased_guard.check_charge = lambda cid, seq: (True, "DOS after date of death")
+deceased_guard.check_charge = lambda cid, seq: (True, "DOS after date of death")      # the guard's stand-in (top of the file): amd.rebill_charge imports it by name
 c11 = amd.rebill_charge("803", 3)
 check("deceased guard still blocks (409) and is not recorded", c11[0] == 409 and "v901:3" not in amd._REBILLED and len(CALLS) == 8, c11)
 
