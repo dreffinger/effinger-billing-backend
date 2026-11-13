@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-13T1518Z",
+ "stamp": "2026-11-13T1718Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 2 checks $218.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43451270823",
- "started": "2026-11-13T15:18:37Z",
- "ended": "2026-11-13T15:25:59Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43471468102",
+ "started": "2026-11-13T17:18:34Z",
+ "ended": "2026-11-13T17:25:13Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 2,
-    "unposted": 218.0
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 218.0,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7849,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-13 15:25 UTC"
+   "asof": "2026-11-13 17:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T15:18:37Z",
-   "ended": "2026-11-13T15:18:38Z"
+   "started": "2026-11-13T17:18:34Z",
+   "ended": "2026-11-13T17:18:35Z"
   },
   {
    "name": "columns",
@@ -115,50 +115,31 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T15:18:38Z",
-   "ended": "2026-11-13T15:20:56Z"
+   "started": "2026-11-13T17:18:35Z",
+   "ended": "2026-11-13T17:20:40Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $218.00 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks the Post button posted or was offered": 1,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 0,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0,
     "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 218.0,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 218.0
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053516,
-     "payer": "OPTUM VA CCN",
-     "checknumber": "3009748193",
-     "amount": 0.0,
-     "unposted": 218.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053517,
-     "payer": "TRICARE EAST",
-     "checknumber": "R36061112008233",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-13T15:20:56Z",
-   "ended": "2026-11-13T15:21:08Z"
+   "started": "2026-11-13T17:20:40Z",
+   "ended": "2026-11-13T17:20:42Z"
   },
   {
    "name": "packages",
@@ -169,8 +150,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T15:21:08Z",
-   "ended": "2026-11-13T15:21:08Z"
+   "started": "2026-11-13T17:20:42Z",
+   "ended": "2026-11-13T17:20:42Z"
   },
   {
    "name": "outstanding",
@@ -273,22 +254,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T15:21:08Z",
-   "ended": "2026-11-13T15:21:10Z"
+   "started": "2026-11-13T17:20:42Z",
+   "ended": "2026-11-13T17:20:44Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7849 denied visits on 874 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); RESOLVED 4529, WRITTEN-OFF 2978, RESUBMITTED 194, OPEN 148",
+   "summary": "7849 denied visits on 874 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 148",
    "counts": {
     "charts read": 874,
     "denial lines": 13323,
     "visits": 7849,
     "actionable": 78,
     "inside 12 months": 75,
-    "status RESOLVED": 4529,
     "status WRITTEN-OFF": 2978,
+    "status RESOLVED": 4529,
     "status RESUBMITTED": 194,
     "status OPEN": 148
    },
@@ -361,8 +342,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T15:21:10Z",
-   "ended": "2026-11-13T15:25:59Z"
+   "started": "2026-11-13T17:20:44Z",
+   "ended": "2026-11-13T17:25:13Z"
   }
  ],
  "packages": [],
