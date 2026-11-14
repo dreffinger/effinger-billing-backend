@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-13T2318Z",
+ "stamp": "2026-11-14T0040Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 1 checks $156.60 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43526128200",
- "started": "2026-11-13T23:18:58Z",
- "ended": "2026-11-13T23:24:44Z",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled columns run (evening)",
+ "run_url": "",
+ "started": "2026-11-14T00:42:15Z",
+ "ended": "2026-11-14T00:50:25Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 156.6
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 156.6,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -57,15 +57,15 @@
    "visits": 2575,
    "charts": 484,
    "over_365": {
-    "n": 547,
-    "dollars": 25190.89
+    "n": 549,
+    "dollars": 25462.21
    }
   },
   "denials": {
    "visits": 7849,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-13 23:24 UTC"
+   "asof": "2026-11-14 00:50 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1389 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1389,
-    "registers": 1869,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "registers": 3,
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T23:18:58Z",
-   "ended": "2026-11-13T23:18:58Z"
+   "started": "2026-11-14T00:42:15Z",
+   "ended": "2026-11-14T00:42:15Z"
   },
   {
    "name": "columns",
@@ -115,42 +115,31 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T23:18:58Z",
-   "ended": "2026-11-13T23:20:42Z"
+   "started": "2026-11-14T00:42:15Z",
+   "ended": "2026-11-14T00:45:13Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $156.60 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks the Post button posted or was offered": 1,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 6,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0,
-    "denial lines recorded": 1
+    "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 156.6,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 156.6
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053523,
-     "payer": "AARP",
-     "checknumber": "00149667093",
-     "amount": 0.0,
-     "unposted": 156.6,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-13T23:20:42Z",
-   "ended": "2026-11-13T23:20:56Z"
+   "started": "2026-11-14T00:45:13Z",
+   "ended": "2026-11-14T00:45:16Z"
   },
   {
    "name": "packages",
@@ -161,112 +150,112 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-13T23:20:56Z",
-   "ended": "2026-11-13T23:20:56Z"
+   "started": "2026-11-14T00:45:16Z",
+   "ended": "2026-11-14T00:45:16Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2575 visits on 484 charts, $294561.77 open; 547 over a year ($25190.89)",
+   "summary": "2575 visits on 484 charts, $294561.77 open; 549 over a year ($25462.21)",
    "counts": {
     "visits": 2575,
     "charts": 484,
-    "over 365 days": 547
+    "over 365 days": 549
    },
    "dollars": {
     "open insurance balance": 294561.77,
-    "over 365 days": 25190.89
+    "over 365 days": 25462.21
    },
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1306,
      "dollars": 130537.8,
-     "oldest_days": 1094
+     "oldest_days": 1095
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 174,
      "dollars": 36668.07,
-     "oldest_days": 1190
+     "oldest_days": 1191
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 157,
      "dollars": 26780.58,
-     "oldest_days": 431
+     "oldest_days": 432
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 312,
      "dollars": 19848.48,
-     "oldest_days": 1061
+     "oldest_days": 1062
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 90,
      "dollars": 18281.4,
-     "oldest_days": 1163
+     "oldest_days": 1164
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 62,
      "dollars": 10217.13,
-     "oldest_days": 667
+     "oldest_days": 668
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 31,
      "dollars": 6494.0,
-     "oldest_days": 363
+     "oldest_days": 364
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 31,
      "dollars": 5717.22,
-     "oldest_days": 979
+     "oldest_days": 980
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 45,
      "dollars": 5661.06,
-     "oldest_days": 53
+     "oldest_days": 54
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 32,
      "dollars": 4409.1,
-     "oldest_days": 375
+     "oldest_days": 376
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 26,
      "dollars": 4031.01,
-     "oldest_days": 179
+     "oldest_days": 180
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 14,
      "dollars": 3464.0,
-     "oldest_days": 206
+     "oldest_days": 207
     }
    ],
    "errors": [],
-   "started": "2026-11-13T23:20:56Z",
-   "ended": "2026-11-13T23:20:57Z"
+   "started": "2026-11-14T00:45:16Z",
+   "ended": "2026-11-14T00:45:18Z"
   },
   {
    "name": "denials",
@@ -353,13 +342,11 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-13T23:20:57Z",
-   "ended": "2026-11-13T23:24:44Z"
+   "started": "2026-11-14T00:45:18Z",
+   "ended": "2026-11-14T00:50:25Z"
   }
  ],
  "packages": [],
- "waiting": [
-  "ERA CO-45 pass after the Post button: 6 line(s) left for review (registers/era_co45_relink_*)"
- ],
+ "waiting": [],
  "errors": []
 }
