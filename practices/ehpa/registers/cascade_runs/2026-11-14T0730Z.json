@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-14T07:35:31Z",
+ "at": "2026-11-14T07:30:00Z",
+ "changed": 0,
+ "checked": 26,
+ "commit": "c9296d6",
+ "date": "2026-11-14",
+ "dollars": 0,
+ "done": "No AdvancedMD change needed - second firing; the 2 flags are the CHP Advantage charts already on William's turn from 05:36Z",
+ "era_posted": 0.0,
+ "finished": "2026-11-14T07:35:31Z",
+ "flagged": 2,
+ "kind": "nightly cascade",
+ "lookups": 0,
+ "note": "26 visit-and-plan pairs checked (0 new Stedi lookups, all cached), 2 flagged",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-14T0730Z.json",
+ "stamp": "2026-11-14T0730Z",
+ "stedi_cost": 0.0,
+ "writeoffs": 0.0
+}
