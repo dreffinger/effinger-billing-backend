@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-14T12:44:24Z",
+ "at": "2026-11-14T13:21:08Z",
  "as_of": "2026-11-14",
- "total": 303903.15,
- "visits": 2635,
+ "total": 303629.15,
+ "visits": 2634,
  "charts": 496,
  "over_365": {
   "n": 549,
@@ -23,8 +23,8 @@
    "dollars": 18198.74
   },
   "91-180": {
-   "n": 340,
-   "dollars": 31198.82
+   "n": 339,
+   "dollars": 30924.82
   },
   "181-365": {
    "n": 604,
@@ -217,21 +217,6 @@
    "oldest_days": 207
   },
   {
-   "carrier": "WEL04",
-   "name": "WELLCARE",
-   "n": 14,
-   "dollars": 3207.0,
-   "buckets": {
-    "0-30": 2288.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 919.0,
-    "181-365": 0.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 176
-  },
-  {
    "carrier": "SIM01",
    "name": "SIMPLY HEALTHCARE MCD PLANS",
    "n": 14,
@@ -245,6 +230,21 @@
     "over 365": 0.0
    },
    "oldest_days": 55
+  },
+  {
+   "carrier": "WEL04",
+   "name": "WELLCARE",
+   "n": 13,
+   "dollars": 2933.0,
+   "buckets": {
+    "0-30": 2288.0,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 645.0,
+    "181-365": 0.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 145
   },
   {
    "carrier": "AET07",
@@ -715,8 +715,8 @@
   },
   {
    "month": "2026-05",
-   "n": 111,
-   "dollars": 8924.01
+   "n": 110,
+   "dollars": 8650.01
   },
   {
    "month": "2026-06",
@@ -10687,14 +10687,6 @@
    "patientid": 17475338,
    "carriercode": "BCBS",
    "insbalance": 443.0,
-   "days": 176,
-   "dos": "2026-05-22"
-  },
-  {
-   "visitid": 19443011,
-   "patientid": 23083,
-   "carriercode": "WEL04",
-   "insbalance": 274.0,
    "days": 176,
    "dos": "2026-05-22"
   },
