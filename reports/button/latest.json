@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-14T0040Z",
+ "stamp": "2026-11-14T0119Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled columns run (evening)",
- "run_url": "",
- "started": "2026-11-14T00:42:15Z",
- "ended": "2026-11-14T00:50:25Z",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43539829531",
+ "started": "2026-11-14T01:19:04Z",
+ "ended": "2026-11-14T01:25:18Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7849,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-14 00:50 UTC"
+   "asof": "2026-11-14 01:25 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1389 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1389,
-    "registers": 3,
-    "python": "/usr/local/bin/python3"
+    "registers": 1869,
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T00:42:15Z",
-   "ended": "2026-11-14T00:42:15Z"
+   "started": "2026-11-14T01:19:04Z",
+   "ended": "2026-11-14T01:19:05Z"
   },
   {
    "name": "columns",
@@ -115,8 +115,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T00:42:15Z",
-   "ended": "2026-11-14T00:45:13Z"
+   "started": "2026-11-14T01:19:05Z",
+   "ended": "2026-11-14T01:21:07Z"
   },
   {
    "name": "era",
@@ -138,8 +138,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T00:45:13Z",
-   "ended": "2026-11-14T00:45:16Z"
+   "started": "2026-11-14T01:21:07Z",
+   "ended": "2026-11-14T01:21:09Z"
   },
   {
    "name": "packages",
@@ -150,8 +150,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T00:45:16Z",
-   "ended": "2026-11-14T00:45:16Z"
+   "started": "2026-11-14T01:21:09Z",
+   "ended": "2026-11-14T01:21:09Z"
   },
   {
    "name": "outstanding",
@@ -170,70 +170,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1306,
      "dollars": 130537.8,
      "oldest_days": 1095
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 174,
      "dollars": 36668.07,
      "oldest_days": 1191
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 432
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 312,
      "dollars": 19848.48,
      "oldest_days": 1062
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 90,
      "dollars": 18281.4,
      "oldest_days": 1164
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 62,
      "dollars": 10217.13,
      "oldest_days": 668
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 31,
      "dollars": 6494.0,
      "oldest_days": 364
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 31,
      "dollars": 5717.22,
      "oldest_days": 980
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 45,
      "dollars": 5661.06,
      "oldest_days": 54
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 376
@@ -247,29 +247,29 @@
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 14,
      "dollars": 3464.0,
      "oldest_days": 207
     }
    ],
    "errors": [],
-   "started": "2026-11-14T00:45:16Z",
-   "ended": "2026-11-14T00:45:18Z"
+   "started": "2026-11-14T01:21:09Z",
+   "ended": "2026-11-14T01:21:11Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7849 denied visits on 873 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); RESOLVED 4529, WRITTEN-OFF 2978, RESUBMITTED 194, OPEN 148",
+   "summary": "7849 denied visits on 873 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 148",
    "counts": {
     "charts read": 873,
     "denial lines": 13323,
     "visits": 7849,
     "actionable": 78,
     "inside 12 months": 75,
-    "status RESOLVED": 4529,
     "status WRITTEN-OFF": 2978,
+    "status RESOLVED": 4529,
     "status RESUBMITTED": 194,
     "status OPEN": 148
    },
@@ -342,8 +342,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T00:45:18Z",
-   "ended": "2026-11-14T00:50:25Z"
+   "started": "2026-11-14T01:21:11Z",
+   "ended": "2026-11-14T01:25:18Z"
   }
  ],
  "packages": [],
