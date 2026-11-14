@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-14T0319Z",
+ "stamp": "2026-11-14T0519Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/28/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43551008366",
- "started": "2026-11-14T03:19:22Z",
- "ended": "2026-11-14T03:25:23Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43560928278",
+ "started": "2026-11-14T05:19:09Z",
+ "ended": "2026-11-14T05:26:23Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 0,
+    "unbilled": 28,
     "exclusions": 1
    },
    "after": {
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 294561.77,
-   "visits": 2575,
-   "charts": 484,
+   "total": 305946.15,
+   "visits": 2646,
+   "charts": 497,
    "over_365": {
     "n": 549,
     "dollars": 25462.21
    }
   },
   "denials": {
-   "visits": 7849,
+   "visits": 7876,
    "actionable": 78,
    "actionable_amt": 14097.0,
-   "asof": "2026-11-14 03:25 UTC"
+   "asof": "2026-11-14 05:26 UTC"
   }
  },
  "steps": [
@@ -82,24 +82,24 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T03:19:22Z",
-   "ended": "2026-11-14T03:19:23Z"
+   "started": "2026-11-14T05:19:09Z",
+   "ended": "2026-11-14T05:19:10Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 28->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 0,
+    "unbilled": 28,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 26,
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
@@ -108,6 +108,18 @@
    "dollars": {},
    "lines": [
     {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 26,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -115,8 +127,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T03:19:23Z",
-   "ended": "2026-11-14T03:21:17Z"
+   "started": "2026-11-14T05:19:10Z",
+   "ended": "2026-11-14T05:21:47Z"
   },
   {
    "name": "era",
@@ -138,8 +150,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T03:21:17Z",
-   "ended": "2026-11-14T03:21:19Z"
+   "started": "2026-11-14T05:21:47Z",
+   "ended": "2026-11-14T05:21:49Z"
   },
   {
    "name": "packages",
@@ -150,36 +162,36 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T03:21:19Z",
-   "ended": "2026-11-14T03:21:19Z"
+   "started": "2026-11-14T05:21:49Z",
+   "ended": "2026-11-14T05:21:49Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2575 visits on 484 charts, $294561.77 open; 549 over a year ($25462.21)",
+   "summary": "2646 visits on 497 charts, $305946.15 open; 549 over a year ($25462.21)",
    "counts": {
-    "visits": 2575,
-    "charts": 484,
+    "visits": 2646,
+    "charts": 497,
     "over 365 days": 549
    },
    "dollars": {
-    "open insurance balance": 294561.77,
+    "open insurance balance": 305946.15,
     "over 365 days": 25462.21
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1306,
-     "dollars": 130537.8,
+     "visits": 1343,
+     "dollars": 136287.8,
      "oldest_days": 1095
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 174,
-     "dollars": 36668.07,
+     "visits": 179,
+     "dollars": 37610.07,
      "oldest_days": 1191
     },
     {
@@ -192,50 +204,50 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 312,
-     "dollars": 19848.48,
+     "visits": 318,
+     "dollars": 20860.48,
      "oldest_days": 1062
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 90,
-     "dollars": 18281.4,
+     "visits": 91,
+     "dollars": 18724.4,
      "oldest_days": 1164
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 62,
-     "dollars": 10217.13,
+     "visits": 66,
+     "dollars": 10800.13,
      "oldest_days": 668
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
-     "visits": 31,
-     "dollars": 6494.0,
+     "visits": 34,
+     "dollars": 7388.0,
      "oldest_days": 364
     },
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
-     "visits": 31,
-     "dollars": 5717.22,
+     "visits": 32,
+     "dollars": 5877.22,
      "oldest_days": 980
     },
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 45,
-     "dollars": 5661.06,
+     "visits": 48,
+     "dollars": 5815.66,
      "oldest_days": 54
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
-     "visits": 32,
-     "dollars": 4409.1,
+     "visits": 34,
+     "dollars": 4594.19,
      "oldest_days": 376
     },
     {
@@ -248,28 +260,28 @@
     {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
-     "visits": 14,
-     "dollars": 3464.0,
+     "visits": 15,
+     "dollars": 3764.0,
      "oldest_days": 207
     }
    ],
    "errors": [],
-   "started": "2026-11-14T03:21:19Z",
-   "ended": "2026-11-14T03:21:21Z"
+   "started": "2026-11-14T05:21:49Z",
+   "ended": "2026-11-14T05:21:51Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7849 denied visits on 873 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); WRITTEN-OFF 2978, RESOLVED 4529, RESUBMITTED 194, OPEN 148",
+   "summary": "7876 denied visits on 880 charts; 78 actionable $14097.00 (75 inside 12 months $13578.00); WRITTEN-OFF 3000, RESOLVED 4534, RESUBMITTED 194, OPEN 148",
    "counts": {
-    "charts read": 873,
-    "denial lines": 13323,
-    "visits": 7849,
+    "charts read": 880,
+    "denial lines": 13389,
+    "visits": 7876,
     "actionable": 78,
     "inside 12 months": 75,
-    "status WRITTEN-OFF": 2978,
-    "status RESOLVED": 4529,
+    "status WRITTEN-OFF": 3000,
+    "status RESOLVED": 4534,
     "status RESUBMITTED": 194,
     "status OPEN": 148
    },
@@ -277,14 +289,14 @@
     "actionable": 14097.0,
     "inside 12 months": 13578.0,
     "resubmitted": 33312.37,
-    "resolved since": 684926.33
+    "resolved since": 685792.33
    },
    "lines": [
     {
      "disposition": "UNCLASSIFIED",
-     "visits": 1928,
-     "dollars": 319836.0,
-     "patients": 227
+     "visits": 1954,
+     "dollars": 323714.0,
+     "patients": 228
     },
     {
      "disposition": "FIX",
@@ -306,9 +318,9 @@
     },
     {
      "disposition": "DUPLICATE",
-     "visits": 500,
-     "dollars": 95230.0,
-     "patients": 224
+     "visits": 501,
+     "dollars": 95436.0,
+     "patients": 225
     },
     {
      "disposition": "INFO",
@@ -342,8 +354,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T03:21:21Z",
-   "ended": "2026-11-14T03:25:23Z"
+   "started": "2026-11-14T05:21:51Z",
+   "ended": "2026-11-14T05:26:23Z"
   }
  ],
  "packages": [],
