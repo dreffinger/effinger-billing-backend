@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-14T1845Z",
+ "stamp": "2026-11-14T1918Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 2 checks $366.31 -> 0 checks $0.00",
- "note": "columns routine (cloud)",
- "run_url": "",
- "started": "2026-11-14T18:41:00Z",
- "ended": "2026-11-14T18:49:19Z",
+ "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43631356430",
+ "started": "2026-11-14T19:18:26Z",
+ "ended": "2026-11-14T19:24:57Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 2,
-    "unposted": 366.31
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 366.31,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-14 18:49 UTC"
+   "asof": "2026-11-14 19:24 UTC"
   }
  },
  "steps": [
@@ -77,13 +77,13 @@
    "counts": {
     "helpers copied": 1390,
     "registers": 1875,
-    "python": "/usr/local/bin/python3"
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T18:41:00Z",
-   "ended": "2026-11-14T18:41:01Z"
+   "started": "2026-11-14T19:18:26Z",
+   "ended": "2026-11-14T19:18:27Z"
   },
   {
    "name": "columns",
@@ -121,50 +121,31 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T18:41:01Z",
-   "ended": "2026-11-14T18:43:57Z"
+   "started": "2026-11-14T19:18:27Z",
+   "ended": "2026-11-14T19:20:42Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $366.31 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks the Post button posted or was offered": 1,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 0,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
     "fallback posted": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0,
-    "denial lines recorded": 6
+    "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 366.31,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 366.31
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053529,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "350207928",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053530,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "820183876",
-     "amount": 0.0,
-     "unposted": 366.31,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-14T18:43:57Z",
-   "ended": "2026-11-14T18:44:17Z"
+   "started": "2026-11-14T19:20:42Z",
+   "ended": "2026-11-14T19:20:44Z"
   },
   {
    "name": "packages",
@@ -175,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-14T18:44:17Z",
-   "ended": "2026-11-14T18:44:17Z"
+   "started": "2026-11-14T19:20:44Z",
+   "ended": "2026-11-14T19:20:44Z"
   },
   {
    "name": "outstanding",
@@ -279,14 +260,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T18:44:17Z",
-   "ended": "2026-11-14T18:44:19Z"
+   "started": "2026-11-14T19:20:44Z",
+   "ended": "2026-11-14T19:20:45Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7877 denied visits on 878 charts; 77 actionable $13841.00 (74 inside 12 months $13322.00); WRITTEN-OFF 3000, RESUBMITTED 194, RESOLVED 4536, OPEN 147",
+   "summary": "7877 denied visits on 878 charts; 77 actionable $13841.00 (74 inside 12 months $13322.00); WRITTEN-OFF 3000, RESOLVED 4536, RESUBMITTED 194, OPEN 147",
    "counts": {
     "charts read": 878,
     "denial lines": 13390,
@@ -294,8 +275,8 @@
     "actionable": 77,
     "inside 12 months": 74,
     "status WRITTEN-OFF": 3000,
-    "status RESUBMITTED": 194,
     "status RESOLVED": 4536,
+    "status RESUBMITTED": 194,
     "status OPEN": 147
    },
    "dollars": {
@@ -367,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-14T18:44:19Z",
-   "ended": "2026-11-14T18:49:19Z"
+   "started": "2026-11-14T19:20:45Z",
+   "ended": "2026-11-14T19:24:57Z"
   }
  ],
  "packages": [],
