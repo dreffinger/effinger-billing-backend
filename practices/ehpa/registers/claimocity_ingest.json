@@ -207,6 +207,12 @@
    "sha256": "9893bada00792314a7f5a088b64719d4f25802299c1d2f5834c98b5df7255db6",
    "messages": 61,
    "at": "2026-11-13T13:10:34.015094Z"
+  },
+  "20261114626627aa54d52f67a80d586a.hl7": {
+   "stamp": "20261114T1240Z",
+   "sha256": "8a0b515b9aa2cc1caa18939721208599d6be70970dc1a1078bfa87ba136b43e9",
+   "messages": 7,
+   "at": "2026-11-14T12:55:54.253547Z"
   }
  },
  "runs": [
@@ -389,6 +395,24 @@
    ],
    "exit": 0,
    "note": "verify/inspector/report/recon resumed after the ingest wrapper was cut off by a 590s command cap"
+  },
+  {
+   "stamp": "20261114T1240Z",
+   "at": "2026-11-14T12:52:23.988911Z",
+   "live": true,
+   "files": [
+    "20261114626627aa54d52f67a80d586a.hl7"
+   ],
+   "exit": 2
+  },
+  {
+   "stamp": "20261114T1240Z",
+   "at": "2026-11-14T12:55:54.253583Z",
+   "live": true,
+   "files": [
+    "20261114626627aa54d52f67a80d586a.hl7"
+   ],
+   "exit": 0
   }
  ]
 }
