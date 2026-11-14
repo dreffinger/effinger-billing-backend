@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-14T13:21:08Z",
+ "at": "2026-11-14T15:21:02Z",
  "as_of": "2026-11-14",
- "total": 303629.15,
- "visits": 2634,
- "charts": 496,
+ "total": 302092.15,
+ "visits": 2627,
+ "charts": 493,
  "over_365": {
   "n": 549,
   "dollars": 25462.21
  },
  "by_bucket": {
   "0-30": {
-   "n": 708,
-   "dollars": 123579.86
+   "n": 701,
+   "dollars": 122042.86
   },
   "31-60": {
    "n": 284,
@@ -129,10 +129,10 @@
   {
    "carrier": "CAP07",
    "name": "CAPITAL HEALTH PLAN",
-   "n": 34,
-   "dollars": 7388.0,
+   "n": 28,
+   "dollars": 6294.0,
    "buckets": {
-    "0-30": 5080.0,
+    "0-30": 3986.0,
     "31-60": 315.0,
     "61-90": 738.0,
     "91-180": 204.0,
@@ -232,21 +232,6 @@
    "oldest_days": 55
   },
   {
-   "carrier": "WEL04",
-   "name": "WELLCARE",
-   "n": 13,
-   "dollars": 2933.0,
-   "buckets": {
-    "0-30": 2288.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 645.0,
-    "181-365": 0.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 145
-  },
-  {
    "carrier": "AET07",
    "name": "AETNA",
    "n": 17,
@@ -260,6 +245,21 @@
     "over 365": 0.0
    },
    "oldest_days": 284
+  },
+  {
+   "carrier": "WEL04",
+   "name": "WELLCARE",
+   "n": 12,
+   "dollars": 2490.0,
+   "buckets": {
+    "0-30": 1845.0,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 645.0,
+    "181-365": 0.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 145
   },
   {
    "carrier": "TRI05",
@@ -740,13 +740,13 @@
   },
   {
    "month": "2026-10",
-   "n": 454,
-   "dollars": 73246.37
+   "n": 453,
+   "dollars": 72857.37
   },
   {
    "month": "2026-11",
-   "n": 400,
-   "dollars": 69504.6
+   "n": 394,
+   "dollars": 68356.6
   }
  ],
  "oldest": [
@@ -1257,14 +1257,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460352,
-   "patientid": 17476739,
-   "carriercode": "WEL04",
-   "insbalance": 443.0,
-   "days": 9,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460672,
    "patientid": 17477851,
    "carriercode": "FLO02",
@@ -1391,6 +1383,14 @@
    "insbalance": 389.0,
    "days": 347,
    "dos": "2025-12-02"
+  },
+  {
+   "visitid": 19427050,
+   "patientid": 17474516,
+   "carriercode": "BCBS",
+   "insbalance": 389.0,
+   "days": 334,
+   "dos": "2025-12-15"
   }
  ],
  "rows": [
@@ -18499,14 +18499,6 @@
    "dos": "2026-10-26"
   },
   {
-   "visitid": 19460389,
-   "patientid": 17478343,
-   "carriercode": "CAP07",
-   "insbalance": 389.0,
-   "days": 19,
-   "dos": "2026-10-26"
-  },
-  {
    "visitid": 19459579,
    "patientid": 17478258,
    "carriercode": "SUN01",
@@ -19531,14 +19523,6 @@
    "dos": "2026-11-02"
   },
   {
-   "visitid": 19460423,
-   "patientid": 17478343,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 12,
-   "dos": "2026-11-02"
-  },
-  {
    "visitid": 19460724,
    "patientid": 24330,
    "carriercode": "FLO02",
@@ -20187,30 +20171,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460437,
-   "patientid": 17475993,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 10,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460432,
-   "patientid": 46973,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 10,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460430,
-   "patientid": 17476680,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 10,
-   "dos": "2026-11-04"
-  },
-  {
    "visitid": 19460521,
    "patientid": 17477496,
    "carriercode": "FLO02",
@@ -20499,14 +20459,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460352,
-   "patientid": 17476739,
-   "carriercode": "WEL04",
-   "insbalance": 443.0,
-   "days": 9,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460671,
    "patientid": 17476928,
    "carriercode": "CAP07",
@@ -20646,14 +20598,6 @@
    "visitid": 19461153,
    "patientid": 17475198,
    "carriercode": "AMB03",
-   "insbalance": 141.0,
-   "days": 9,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460422,
-   "patientid": 17478343,
-   "carriercode": "CAP07",
    "insbalance": 141.0,
    "days": 9,
    "dos": "2026-11-05"
