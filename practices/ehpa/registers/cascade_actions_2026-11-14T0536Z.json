@@ -1,0 +1,19 @@
+{
+ "run": "2026-11-14T0536Z",
+ "routine": "nightly cascade",
+ "precheck": {"args": "--days 3 --max 120", "pairs": 29, "new_lookups": 13, "flagged": 5, "rule": "a - ADVANTAGE PLAN on DOS"},
+ "actions": [
+  {"pid": "17472826", "payer_found": "BCBS OF MICHIGAN MUTUAL INSURANCE COMPANY (H9572, Medicare Plus Blue PPO, BlueCard via car6062)", "plan_edit": "ins9512375 enddate 04/13/2026 cleared; chart insorder 1 (verified)", "order": "1", "visits": ["19460695", "19460674", "19461076", "19461046", "19461031", "19461120"], "dos": "11/07-11/12/2026", "result": "204 x6", "dollars": 1243, "william": "4/14-4/15/2026 visits (421 dollars) written off WOINS 9/9 - reverse and resend or leave"},
+  {"pid": "17474611", "payer_found": "CARE IMPROVEMENT PLUS SOUTH CENTRAL INSURANCE CO. (H1889, UHC MA, chart UNI20 seq 1 ACTIVE)", "plan_edit": "none", "order": "1,3", "visits": ["19461044", "19461027", "19461126"], "dos": "11/10-11/12/2026", "result": "204 x3", "dollars": 480},
+  {"pid": "17473090", "payer_found": "HEALTH CARE SERVICE CORPORATION (H0107, HCSC MA, chart BCBS seq 1 ACTIVE)", "plan_edit": "none", "order": "1", "visits": ["19461045", "19461030"], "dos": "11/10-11/11/2026", "result": "204 x2", "dollars": 320},
+  {"pid": "17478395", "payer_found": "CAPITAL HEALTH PLAN (H5938) - chart has only FLO02; discovery = Medicare only; no facesheet/email/drop", "plan_edit": "none", "result": "board row, William's turn (CHP member number)", "dollars": 643},
+  {"pid": "17478396", "payer_found": "CAPITAL HEALTH PLAN (H5938) - chart has only FLO02; discovery = Medicare only; no facesheet/email/drop", "plan_edit": "none", "result": "board row, William's turn (CHP member number)", "dollars": 421}
+ ],
+ "dx_primary_fix": "dry on 17472826 / 17474611 / 17473090: every primary dx acceptable",
+ "void_rules": "1 open rule, nothing matched",
+ "era": {"before": "0 checks $0.00", "after": "0 checks $0.00", "posted": 0},
+ "cred_check": "NPPES 0 changed; revalidation TBD x3; LEIE 0 matches; no cred file",
+ "stedi": {"calls": 15, "cost": 6.90, "by_kind": {"plain Medicare": 6, "eligibility": 7, "discovery": 2}, "unpriced_http_errors": 1},
+ "board_file": "board_updates_2026-11-14T0536Z.json (6 ops) -> Drive board inbox 1q9x01gkfNhSPRm7ueazCnRgqDqNNwFDp",
+ "practice_db": "cascade_runs 1 + billing_runs 1 + snapshots 4 written; swept 3 engine reports; 0 refused; Neon: 9 documents copied"
+}
