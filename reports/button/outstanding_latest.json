@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-15T00:44:44Z",
+ "at": "2026-11-15T01:20:59Z",
  "as_of": "2026-11-15",
- "total": 301281.15,
- "visits": 2622,
+ "total": 300820.31,
+ "visits": 2618,
  "charts": 493,
  "over_365": {
   "n": 550,
@@ -11,12 +11,12 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 690,
-   "dollars": 120536.05
+   "n": 688,
+   "dollars": 120115.05
   },
   "31-60": {
-   "n": 286,
-   "dollars": 41069.66
+   "n": 284,
+   "dollars": 41029.82
   },
   "61-90": {
    "n": 153,
@@ -39,11 +39,11 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1327,
-   "dollars": 133433.8,
+   "n": 1325,
+   "dollars": 133393.96,
    "buckets": {
     "0-30": 52853.99,
-    "31-60": 11950.39,
+    "31-60": 11910.55,
     "61-90": 10262.13,
     "91-180": 17399.08,
     "181-365": 31546.43,
@@ -114,10 +114,10 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 66,
-   "dollars": 10800.13,
+   "n": 64,
+   "dollars": 10379.13,
    "buckets": {
-    "0-30": 7869.0,
+    "0-30": 7448.0,
     "31-60": 2577.14,
     "61-90": 0.0,
     "91-180": 56.49,
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-10",
-   "n": 450,
-   "dollars": 72260.37
+   "n": 446,
+   "dollars": 71799.53
   },
   {
    "month": "2026-11",
@@ -16115,14 +16115,6 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19458756,
-   "patientid": 20716,
-   "carriercode": "FLO02",
-   "insbalance": 19.92,
-   "days": 41,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19457343,
    "patientid": 17475697,
    "carriercode": "FLO02",
@@ -16471,14 +16463,6 @@
    "patientid": 17478030,
    "carriercode": "FLO02",
    "insbalance": 54.63,
-   "days": 38,
-   "dos": "2026-10-08"
-  },
-  {
-   "visitid": 19458765,
-   "patientid": 45008,
-   "carriercode": "FLO02",
-   "insbalance": 19.92,
    "days": 38,
    "dos": "2026-10-08"
   },
@@ -18651,14 +18635,6 @@
    "dos": "2026-10-27"
   },
   {
-   "visitid": 19459635,
-   "patientid": 17476538,
-   "carriercode": "HUM01",
-   "insbalance": 310.0,
-   "days": 19,
-   "dos": "2026-10-27"
-  },
-  {
    "visitid": 19459620,
    "patientid": 21491,
    "carriercode": "CAP07",
@@ -18903,14 +18879,6 @@
    "patientid": 17478013,
    "carriercode": "VACCN",
    "insbalance": 160.0,
-   "days": 18,
-   "dos": "2026-10-28"
-  },
-  {
-   "visitid": 19459588,
-   "patientid": 17476538,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
    "days": 18,
    "dos": "2026-10-28"
   },
