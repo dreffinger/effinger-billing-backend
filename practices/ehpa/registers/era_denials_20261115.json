@@ -1,0 +1,38 @@
+[
+ {
+  "checkid": 1053538,
+  "check": "X320009191",
+  "carrier": "SUN01",
+  "deposit": "2026-11-16",
+  "visitid": 19460493,
+  "chart": "1724",
+  "dos": "2026-11-05",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "M56",
+   "#AM"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99309",
+    "chargedetailid": 23373199,
+    "paid": 0.0,
+    "adj": 141.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO16",
+      "amt": 141.0
+     }
+    ],
+    "rarc": [
+     "M56",
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-15T13:00:33Z"
+ }
+]
