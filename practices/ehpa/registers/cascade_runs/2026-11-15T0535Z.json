@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-15T05:53:43Z",
+ "at": "2026-11-15T05:35:00Z",
+ "changed": 3,
+ "checked": 24,
+ "commit": "4c8c7f4",
+ "date": "2026-11-15",
+ "dollars": 480,
+ "done": "3 hospital visits re-pointed from Medicare to the chart's BCBS Medicare Advantage plan and re-sent (480 dollars, chart 17473090); chart 17478395 still needs a CHP member number; chart 17477375 duplicate visit v19455316 (256 dollars) for void decision",
+ "era_posted": 0.0,
+ "finished": "2026-11-15T05:53:43Z",
+ "flagged": 2,
+ "kind": "nightly cascade",
+ "lookups": 88,
+ "note": "24 visit-and-plan pairs checked (5 new Stedi lookups), 2 flagged; Sunday claim-status sweep 83 checks (run cap hit, 46 not asked), 7 paid-not-posted, 30 hand-offs; ERA 0 checks; no write-offs",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-15T0535Z.json",
+ "stamp": "2026-11-15T0535Z",
+ "stedi_cost": 26.4,
+ "writeoffs": 0.0
+}
