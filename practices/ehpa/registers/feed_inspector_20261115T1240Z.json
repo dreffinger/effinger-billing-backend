@@ -1,0 +1,61 @@
+{
+ "fixed": [
+  {
+   "visit": "19461230",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/12/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461254",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/12/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461260",
+   "pid": "pat22322",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/09/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461270",
+   "pid": "pat17478210",
+   "patterns": [
+    "20389",
+    "2049"
+   ],
+   "note": [
+    "charge23374159: delete ['W19.XXXA', 'S01.112A'] -> ['S01.112A']",
+    "charge23374160: add-i10 ['W19.XXXA'] -> ['I10', 'W19.XXXA']",
+    "saved: 2 live charges (was 2)",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461271",
+   "pid": "pat17478415",
+   "patterns": [],
+   "note": []
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": [],
+ "quality_removed": []
+}
