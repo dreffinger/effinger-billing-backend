@@ -1,25 +1,25 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-15T0640Z",
+ "stamp": "2026-11-15T0718Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/3/1 -> 0/1/3/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled columns routine 06:39Z slot",
- "run_url": "",
- "started": "2026-11-15T06:43:28Z",
- "ended": "2026-11-15T06:51:52Z",
+ "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43689378514",
+ "started": "2026-11-15T07:18:57Z",
+ "ended": "2026-11-15T07:25:17Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 3,
+    "unbilled": 0,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 3,
+    "unbilled": 0,
     "exclusions": 1
    }
   },
@@ -65,7 +65,7 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-15 06:51 UTC"
+   "asof": "2026-11-15 07:25 UTC"
   }
  },
  "steps": [
@@ -76,31 +76,31 @@
    "summary": "1391 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1391,
-    "registers": 3,
-    "python": "/usr/local/bin/python3"
+    "registers": 1875,
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T06:43:28Z",
-   "ended": "2026-11-15T06:43:28Z"
+   "started": "2026-11-15T07:18:57Z",
+   "ended": "2026-11-15T07:18:58Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 1->1, Unbilled 3->3, Exclusions 1->1",
+   "summary": "CR 0->0, CI 1->1, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 1,
-    "unbilled": 3,
+    "unbilled": 0,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 1,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 3,
+    "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
     "exclusions crossover run 1700294": "see log"
@@ -114,12 +114,6 @@
      "ids": "v19461189"
     },
     {
-     "column": "unbilled",
-     "kind": "Date of service is outside insurance coverage effective dates",
-     "visits": 3,
-     "ids": "v19461027 v19461044 v19461126"
-    },
-    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -127,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-15T06:43:28Z",
-   "ended": "2026-11-15T06:46:32Z"
+   "started": "2026-11-15T07:18:58Z",
+   "ended": "2026-11-15T07:21:12Z"
   },
   {
    "name": "era",
@@ -150,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T06:46:32Z",
-   "ended": "2026-11-15T06:46:36Z"
+   "started": "2026-11-15T07:21:12Z",
+   "ended": "2026-11-15T07:21:14Z"
   },
   {
    "name": "packages",
@@ -162,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T06:46:36Z",
-   "ended": "2026-11-15T06:46:36Z"
+   "started": "2026-11-15T07:21:14Z",
+   "ended": "2026-11-15T07:21:14Z"
   },
   {
    "name": "outstanding",
@@ -182,70 +176,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1326,
      "dollars": 133937.96,
      "oldest_days": 1096
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 180,
      "dollars": 38053.07,
      "oldest_days": 1192
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 433
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 326,
      "dollars": 22423.48,
      "oldest_days": 1063
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 91,
      "dollars": 18724.4,
      "oldest_days": 1165
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 65,
      "dollars": 10822.13,
      "oldest_days": 669
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 28,
      "dollars": 6294.0,
      "oldest_days": 365
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 5877.22,
      "oldest_days": 981
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 51,
      "dollars": 5876.16,
      "oldest_days": 345
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 34,
      "dollars": 4594.19,
      "oldest_days": 377
@@ -259,15 +253,15 @@
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 208
     }
    ],
    "errors": [],
-   "started": "2026-11-15T06:46:36Z",
-   "ended": "2026-11-15T06:46:38Z"
+   "started": "2026-11-15T07:21:14Z",
+   "ended": "2026-11-15T07:21:16Z"
   },
   {
    "name": "denials",
@@ -354,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-15T06:46:38Z",
-   "ended": "2026-11-15T06:51:52Z"
+   "started": "2026-11-15T07:21:16Z",
+   "ended": "2026-11-15T07:25:17Z"
   }
  ],
  "packages": [],
