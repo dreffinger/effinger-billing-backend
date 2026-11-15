@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-15T1718Z",
+ "stamp": "2026-11-15T1840Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43740356675",
- "started": "2026-11-15T17:18:35Z",
- "ended": "2026-11-15T17:25:16Z",
+ "note": "scheduled columns routine 1:39 PM ET slot",
+ "run_url": "",
+ "started": "2026-11-15T18:43:17Z",
+ "ended": "2026-11-15T18:51:19Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-15 17:25 UTC"
+   "asof": "2026-11-15 18:51 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1391 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1391,
-    "registers": 1882,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "registers": 4,
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T17:18:35Z",
-   "ended": "2026-11-15T17:18:36Z"
+   "started": "2026-11-15T18:43:17Z",
+   "ended": "2026-11-15T18:43:17Z"
   },
   {
    "name": "columns",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-15T17:18:36Z",
-   "ended": "2026-11-15T17:20:55Z"
+   "started": "2026-11-15T18:43:17Z",
+   "ended": "2026-11-15T18:46:08Z"
   },
   {
    "name": "era",
@@ -144,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T17:20:55Z",
-   "ended": "2026-11-15T17:20:57Z"
+   "started": "2026-11-15T18:46:08Z",
+   "ended": "2026-11-15T18:46:11Z"
   },
   {
    "name": "packages",
@@ -156,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-15T17:20:57Z",
-   "ended": "2026-11-15T17:20:57Z"
+   "started": "2026-11-15T18:46:11Z",
+   "ended": "2026-11-15T18:46:11Z"
   },
   {
    "name": "outstanding",
@@ -176,70 +176,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1326,
      "dollars": 133937.96,
      "oldest_days": 1096
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 180,
      "dollars": 38053.07,
      "oldest_days": 1192
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 433
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 326,
      "dollars": 22423.48,
      "oldest_days": 1063
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 91,
      "dollars": 18724.4,
      "oldest_days": 1165
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 65,
      "dollars": 10822.13,
      "oldest_days": 669
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 28,
      "dollars": 6294.0,
      "oldest_days": 365
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 32,
      "dollars": 5877.22,
      "oldest_days": 981
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 51,
      "dollars": 5876.16,
      "oldest_days": 345
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 34,
      "dollars": 4594.19,
      "oldest_days": 377
@@ -253,15 +253,15 @@
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 208
     }
    ],
    "errors": [],
-   "started": "2026-11-15T17:20:57Z",
-   "ended": "2026-11-15T17:20:59Z"
+   "started": "2026-11-15T18:46:11Z",
+   "ended": "2026-11-15T18:46:13Z"
   },
   {
    "name": "denials",
@@ -348,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-15T17:20:59Z",
-   "ended": "2026-11-15T17:25:16Z"
+   "started": "2026-11-15T18:46:13Z",
+   "ended": "2026-11-15T18:51:19Z"
   }
  ],
  "packages": [],
