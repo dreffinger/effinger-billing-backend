@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-16T1249Z",
+ "stamp": "2026-11-16T1339Z",
  "mode": "live",
- "status": "warn",
+ "status": "ok",
  "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "",
- "run_url": "",
- "started": "2026-11-16T12:49:54Z",
- "ended": "2026-11-16T12:58:21Z",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/43877893441",
+ "started": "2026-11-16T13:39:44Z",
+ "ended": "2026-11-16T13:46:26Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,27 +65,25 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-16 12:58 UTC"
+   "asof": "2026-11-16 13:46 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
+   "status": "ok",
    "summary": "1396 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1396,
-    "registers": 4,
-    "python": "/usr/local/bin/python3"
+    "registers": 1890,
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-16T12:49:54Z",
-   "ended": "2026-11-16T12:49:54Z"
+   "errors": [],
+   "started": "2026-11-16T13:39:44Z",
+   "ended": "2026-11-16T13:39:45Z"
   },
   {
    "name": "columns",
@@ -123,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-16T12:49:54Z",
-   "ended": "2026-11-16T12:52:52Z"
+   "started": "2026-11-16T13:39:45Z",
+   "ended": "2026-11-16T13:41:52Z"
   },
   {
    "name": "era",
@@ -146,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-16T12:52:52Z",
-   "ended": "2026-11-16T12:52:55Z"
+   "started": "2026-11-16T13:41:52Z",
+   "ended": "2026-11-16T13:41:54Z"
   },
   {
    "name": "packages",
@@ -158,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-16T12:52:55Z",
-   "ended": "2026-11-16T12:52:55Z"
+   "started": "2026-11-16T13:41:54Z",
+   "ended": "2026-11-16T13:41:54Z"
   },
   {
    "name": "outstanding",
@@ -178,77 +176,77 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1346,
      "dollars": 137081.96,
      "oldest_days": 1097
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 189,
      "dollars": 39747.07,
      "oldest_days": 1193
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 157,
      "dollars": 26780.58,
      "oldest_days": 434
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 334,
      "dollars": 23703.48,
      "oldest_days": 1064
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 93,
      "dollars": 19044.4,
      "oldest_days": 1166
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 71,
      "dollars": 12084.13,
      "oldest_days": 670
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 33,
      "dollars": 7094.0,
      "oldest_days": 366
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 52,
      "dollars": 5987.16,
      "oldest_days": 346
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 5877.22,
      "oldest_days": 982
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 34,
      "dollars": 4594.19,
      "oldest_days": 378
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 17,
      "dollars": 4367.0,
      "oldest_days": 209
@@ -262,22 +260,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-16T12:52:55Z",
-   "ended": "2026-11-16T12:52:56Z"
+   "started": "2026-11-16T13:41:54Z",
+   "ended": "2026-11-16T13:41:56Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7877 denied visits on 881 charts; 77 actionable $13841.00 (74 inside 12 months $13322.00); RESOLVED 4536, WRITTEN-OFF 3000, RESUBMITTED 194, OPEN 147",
+   "summary": "7877 denied visits on 881 charts; 77 actionable $13841.00 (74 inside 12 months $13322.00); WRITTEN-OFF 3000, RESOLVED 4536, RESUBMITTED 194, OPEN 147",
    "counts": {
     "charts read": 881,
     "denial lines": 13388,
     "visits": 7877,
     "actionable": 77,
     "inside 12 months": 74,
-    "status RESOLVED": 4536,
     "status WRITTEN-OFF": 3000,
+    "status RESOLVED": 4536,
     "status RESUBMITTED": 194,
     "status OPEN": 147
    },
@@ -350,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-16T12:52:56Z",
-   "ended": "2026-11-16T12:58:21Z"
+   "started": "2026-11-16T13:41:56Z",
+   "ended": "2026-11-16T13:46:26Z"
   }
  ],
  "packages": [],
