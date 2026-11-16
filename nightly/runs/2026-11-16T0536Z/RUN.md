@@ -1,0 +1,12 @@
+# nightly cascade 2026-11-16T0536Z (Monday)
+- precheck --days 3 --max 120: 29 pairs, 3 new Stedi lookups (2 plain Medicare, 1 payer eligibility; 0.90 dollars), 5 flagged - all Medicare Advantage on DOS.
+- chart 17472826: v19461263 11/13 + v19461233 11/14 (99233 x2, 320 dollars) insorder 2 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204 x2.
+- chart 17473090: v19461255 + v19461232 (99233 x2, 320 dollars) insorder 2,1 -> 1 (BCBS / HCSC MA) -> 204 x2.
+- chart 17474611: v19460694 11/08, v19461071 11/09, v19461253 11/13, v19461229 11/14 (99233 x4, 640 dollars) insorder 2,4 -> 1 (UNI20 UHC MA) -> 204 x4. 11/08 and 11/09 had already gone to Medicare 11/10 and 11/12 (outside the 3-day precheck window on their nights).
+- all 8 read back insbilled 0, insorder 1; primary dx L03.90 / R55 acceptable (dx_primary_fix plan).
+- chart 17472491: RET01 (C and O retiree plan) = the payer Medicare names; already billed RET01 first - no change.
+- chart 17478395: still waiting on a CHP member number (William's turn; 5 visits 754 dollars).
+- Step 2 skipped (Monday). void_rules: 1 open rule, no VOID lines. ERA step: 0 checks before/after (engine report warn = its own 'no STEDI_API_KEY' bootstrap note; proxy injects the key).
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; new reminder window grp-malpractice (90 days to 2/14/2027) -> cred file, turn william.
+- practice_db: 6 + 2 swept documents committed; Neon 8 new, run logged ok.
+- Lesson: the precheck's 3-day window lets visits that were billed earlier in a stay slip past (chart 17474611 11/08, 11/09) - reading the whole open stay on a flagged chart catches them.

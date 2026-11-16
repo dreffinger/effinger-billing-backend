@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-16T05:45:10Z",
+ "at": "2026-11-16T05:36:00Z",
+ "changed": 8,
+ "checked": 29,
+ "commit": "d296aed",
+ "date": "2026-11-16",
+ "dollars": 1280,
+ "done": "8 hospital visits re-pointed from Medicare to the charts' Medicare Advantage plans, freq-1, re-sent (1280 dollars): charts 17472826 x2 BCBS, 17473090 x2 BCBS, 17474611 x4 UHC",
+ "era_posted": 0.0,
+ "finished": "2026-11-16T05:45:10Z",
+ "flagged": 5,
+ "kind": "nightly cascade",
+ "lookups": 3,
+ "note": "29 visit-and-plan pairs checked (3 new Stedi lookups), 5 flagged - all Medicare Advantage on DOS; 1 already billed right (RET01), 1 waiting on a CHP member number",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-16T0536Z.json",
+ "stamp": "2026-11-16T0536Z",
+ "stedi_cost": 0.9,
+ "writeoffs": 0.0
+}
