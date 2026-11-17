@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-17T0321Z",
+ "stamp": "2026-11-17T0519Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/1/28/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/44009573284",
- "started": "2026-11-17T03:21:14Z",
- "ended": "2026-11-17T03:27:25Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/44023216635",
+ "started": "2026-11-17T05:19:02Z",
+ "ended": "2026-11-17T05:24:53Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 0,
+    "unbilled": 28,
     "exclusions": 1
    },
    "after": {
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 313339.41,
-   "visits": 2683,
+   "total": 318139.41,
+   "visits": 2713,
    "charts": 498,
    "over_365": {
     "n": 568,
@@ -65,7 +65,7 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-17 03:27 UTC"
+   "asof": "2026-11-17 05:24 UTC"
   }
  },
  "steps": [
@@ -82,24 +82,24 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-17T03:21:14Z",
-   "ended": "2026-11-17T03:21:14Z"
+   "started": "2026-11-17T05:19:02Z",
+   "ended": "2026-11-17T05:19:03Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 1->1, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 1->1, Unbilled 28->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 1,
-    "unbilled": 0,
+    "unbilled": 28,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 1,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 26,
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
@@ -114,6 +114,18 @@
      "ids": "v19461189"
     },
     {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 26,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -121,8 +133,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T03:21:14Z",
-   "ended": "2026-11-17T03:23:20Z"
+   "started": "2026-11-17T05:19:03Z",
+   "ended": "2026-11-17T05:21:13Z"
   },
   {
    "name": "era",
@@ -144,8 +156,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-17T03:23:20Z",
-   "ended": "2026-11-17T03:23:22Z"
+   "started": "2026-11-17T05:21:13Z",
+   "ended": "2026-11-17T05:21:15Z"
   },
   {
    "name": "packages",
@@ -156,36 +168,36 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-17T03:23:22Z",
-   "ended": "2026-11-17T03:23:22Z"
+   "started": "2026-11-17T05:21:15Z",
+   "ended": "2026-11-17T05:21:15Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2683 visits on 498 charts, $313339.41 open; 568 over a year ($28196.04)",
+   "summary": "2713 visits on 498 charts, $318139.41 open; 568 over a year ($28196.04)",
    "counts": {
-    "visits": 2683,
+    "visits": 2713,
     "charts": 498,
     "over 365 days": 568
    },
    "dollars": {
-    "open insurance balance": 313339.41,
+    "open insurance balance": 318139.41,
     "over 365 days": 28196.04
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1344,
-     "dollars": 137042.12,
+     "visits": 1353,
+     "dollars": 138482.12,
      "oldest_days": 1098
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 189,
-     "dollars": 39747.07,
+     "visits": 195,
+     "dollars": 40707.07,
      "oldest_days": 1194
     },
     {
@@ -198,36 +210,36 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 334,
-     "dollars": 23703.48,
+     "visits": 340,
+     "dollars": 24663.48,
      "oldest_days": 1065
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 93,
-     "dollars": 19044.4,
+     "visits": 94,
+     "dollars": 19204.4,
      "oldest_days": 1167
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 71,
-     "dollars": 12084.13,
+     "visits": 74,
+     "dollars": 12564.13,
      "oldest_days": 671
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
-     "visits": 33,
-     "dollars": 7094.0,
+     "visits": 35,
+     "dollars": 7414.0,
      "oldest_days": 367
     },
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 50,
-     "dollars": 5958.6,
+     "visits": 51,
+     "dollars": 6118.6,
      "oldest_days": 57
     },
     {
@@ -247,8 +259,8 @@
     {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
-     "visits": 17,
-     "dollars": 4367.0,
+     "visits": 18,
+     "dollars": 4527.0,
      "oldest_days": 210
     },
     {
@@ -260,8 +272,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T03:23:22Z",
-   "ended": "2026-11-17T03:23:24Z"
+   "started": "2026-11-17T05:21:15Z",
+   "ended": "2026-11-17T05:21:16Z"
   },
   {
    "name": "denials",
@@ -348,8 +360,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T03:23:24Z",
-   "ended": "2026-11-17T03:27:25Z"
+   "started": "2026-11-17T05:21:16Z",
+   "ended": "2026-11-17T05:24:53Z"
   }
  ],
  "packages": [],
