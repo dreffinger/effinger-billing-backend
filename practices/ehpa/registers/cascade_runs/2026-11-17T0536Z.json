@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-17T05:42:42Z",
+ "at": "2026-11-17T05:36:00Z",
+ "changed": 1,
+ "checked": 26,
+ "commit": "78b7fe4",
+ "date": "2026-11-17",
+ "dollars": 160,
+ "done": "1 hospital visit re-pointed from Medicare to the chart's UHC Medicare Advantage plan (160 dollars, chart 17474611); chart 17472491 already billed to the payer Medicare names - no change",
+ "era_posted": 0.0,
+ "finished": "2026-11-17T05:42:42Z",
+ "flagged": 2,
+ "kind": "nightly cascade",
+ "lookups": 1,
+ "note": "26 visit-and-plan pairs checked (1 new Stedi lookup), 2 flagged, both Medicare Advantage on DOS",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-17T0536Z.json",
+ "stamp": "2026-11-17T0536Z",
+ "stedi_cost": 0.3,
+ "writeoffs": 0.0
+}
