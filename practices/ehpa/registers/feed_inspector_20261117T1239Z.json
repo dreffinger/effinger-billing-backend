@@ -1,0 +1,86 @@
+{
+ "fixed": [
+  {
+   "visit": "19461437",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/12/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461451",
+   "pid": "pat21915",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23374348 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19461456",
+   "pid": "pat20452",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19461470",
+   "pid": "pat22758",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19461456",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19461470",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19461456",
+   "pid": "pat20452",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19461470",
+   "pid": "pat22758",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  }
+ ],
+ "quality_removed": [
+  {
+   "visit": "19461451",
+   "pid": "pat21915",
+   "charge": "charge23374348",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-17T13:03:10.092131",
+   "resave_ok": true
+  }
+ ]
+}

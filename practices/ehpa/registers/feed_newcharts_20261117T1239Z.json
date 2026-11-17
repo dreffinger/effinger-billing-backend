@@ -1,0 +1,32 @@
+{
+ "created": [
+  {
+   "pid": "pat17478434",
+   "chart": "F261117-01",
+   "feed_ids": [
+    "65d64419b78e42196e835c6c"
+   ],
+   "plans": [],
+   "respparty": "resp21479989",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478435",
+   "chart": "F261117-02",
+   "feed_ids": [
+    "6af64271dae9c85b86af8582"
+   ],
+   "plans": [
+    {
+     "code": "CAP07",
+     "ins": "ins9521279",
+     "seq": "1",
+     "from": "Capital Health Plan (HMO)"
+    }
+   ],
+   "respparty": "resp21479990",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}

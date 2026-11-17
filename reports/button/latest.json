@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-17T0640Z",
+ "stamp": "2026-11-17T1304Z",
  "mode": "live",
- "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "columns routine 06:39Z slot",
+ "status": "warn",
+ "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 2 checks $146.78 -> 1 checks $101.58",
+ "note": "",
  "run_url": "",
- "started": "2026-11-17T06:43:36Z",
- "ended": "2026-11-17T06:51:43Z",
+ "started": "2026-11-17T13:04:35Z",
+ "ended": "2026-11-17T13:13:42Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,16 +25,16 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 2,
+    "unposted": 146.78
    },
    "after": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 101.58
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 45.2,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 317979.41,
-   "visits": 2712,
-   "charts": 498,
+   "total": 317956.81,
+   "visits": 2711,
+   "charts": 497,
    "over_365": {
     "n": 568,
     "dollars": 28196.04
@@ -65,25 +65,27 @@
    "visits": 7877,
    "actionable": 77,
    "actionable_amt": 13841.0,
-   "asof": "2026-11-17 06:51 UTC"
+   "asof": "2026-11-17 13:13 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "ok",
-   "summary": "1402 helpers into /home/claude/unbilled",
+   "status": "warn",
+   "summary": "1403 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1402,
-    "registers": 3,
+    "helpers copied": 1403,
+    "registers": 4,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [],
-   "started": "2026-11-17T06:43:36Z",
-   "ended": "2026-11-17T06:43:37Z"
+   "errors": [
+    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
+   ],
+   "started": "2026-11-17T13:04:35Z",
+   "ended": "2026-11-17T13:04:35Z"
   },
   {
    "name": "columns",
@@ -121,31 +123,51 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T06:43:37Z",
-   "ended": "2026-11-17T06:46:39Z"
+   "started": "2026-11-17T13:04:35Z",
+   "ended": "2026-11-17T13:07:34Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "2 checks / $146.78 -> 1 checks / $101.58",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
-    "fallback posted": 0,
-    "checks dismissed": 0,
-    "checks held": 0,
-    "denial lines recorded": 0
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 7,
+    "fallback secondary-unposted": 5,
+    "fallback already-posted": 2,
+    "checks dismissed": 1,
+    "checks held": 1,
+    "denial lines recorded": 17
    },
    "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
+    "unposted before": 146.78,
+    "unposted after": 101.58,
+    "posted this run": 45.2
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053544,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "00149732354",
+     "amount": 0.0,
+     "unposted": 146.78,
+     "stage": "before"
+    },
+    {
+     "check": 1053545,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350213184",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-17T06:46:39Z",
-   "ended": "2026-11-17T06:46:42Z"
+   "started": "2026-11-17T13:07:34Z",
+   "ended": "2026-11-17T13:08:14Z"
   },
   {
    "name": "packages",
@@ -156,29 +178,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-17T06:46:42Z",
-   "ended": "2026-11-17T06:46:42Z"
+   "started": "2026-11-17T13:08:14Z",
+   "ended": "2026-11-17T13:08:14Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2712 visits on 498 charts, $317979.41 open; 568 over a year ($28196.04)",
+   "summary": "2711 visits on 497 charts, $317956.81 open; 568 over a year ($28196.04)",
    "counts": {
-    "visits": 2712,
-    "charts": 498,
+    "visits": 2711,
+    "charts": 497,
     "over 365 days": 568
    },
    "dollars": {
-    "open insurance balance": 317979.41,
+    "open insurance balance": 317956.81,
     "over 365 days": 28196.04
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "[name]",
-     "visits": 1352,
-     "dollars": 138322.12,
+     "visits": 1351,
+     "dollars": 138299.52,
      "oldest_days": 1098
     },
     {
@@ -260,8 +282,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T06:46:42Z",
-   "ended": "2026-11-17T06:46:44Z"
+   "started": "2026-11-17T13:08:14Z",
+   "ended": "2026-11-17T13:08:16Z"
   },
   {
    "name": "denials",
@@ -270,7 +292,7 @@
    "summary": "7877 denied visits on 881 charts; 77 actionable $13841.00 (74 inside 12 months $13322.00); WRITTEN-OFF 3000, RESOLVED 4536, RESUBMITTED 194, OPEN 147",
    "counts": {
     "charts read": 881,
-    "denial lines": 13388,
+    "denial lines": 13379,
     "visits": 7877,
     "actionable": 77,
     "inside 12 months": 74,
@@ -283,7 +305,7 @@
     "actionable": 13841.0,
     "inside 12 months": 13322.0,
     "resubmitted": 33312.37,
-    "resolved since": 686181.33
+    "resolved since": 686004.33
    },
    "lines": [
     {
@@ -319,7 +341,7 @@
     {
      "disposition": "INFO",
      "visits": 500,
-     "dollars": 84472.35,
+     "dollars": 84295.35,
      "patients": 56
     },
     {
@@ -348,13 +370,15 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-17T06:46:44Z",
-   "ended": "2026-11-17T06:51:43Z"
+   "started": "2026-11-17T13:08:16Z",
+   "ended": "2026-11-17T13:13:42Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA CO-45 pass after the Post button: 7 line(s) left for review (registers/era_co45_relink_*)",
+  "ERA check 1053544 held by era_clear: FLO02 00149732354 $146.78: 5 paid by another check only (secondary line: move_to_ins + ERA-linked post) - left on the list"
  ],
  "errors": []
 }
