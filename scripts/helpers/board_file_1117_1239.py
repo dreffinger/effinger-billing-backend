@@ -20,7 +20,7 @@ row = {"id": "garland-g-mercy-[first]-17478434", "patient": "GARLAND-G,MERCY", "
                 "retry step enters it."),
        "why": "Claimocity feed 2026-11-17 (file 20261117): name matched two same-name charts with DOB <chart DOB>, feed DOB <feed DOB> -> new chart created",
        "notes": [{"who": "Claude", "at": NOW, "text": "Created by the 7:39 AM ET 11/17 run. Duplicate chart from the feed's stale DOB - merge/inactivate it; the map is already fixed."}],
-       "checks": [{"ok": "no", "src": "claimocity_resolve (feed DOB [DOB] vs charts 17471238 / 17471333 at 19341129)", "result": "MISSING -> claimocity_newcharts created pat17478434 F261117-01 (no IN1, no plan)", "when": WHEN},
+       "checks": [{"ok": "no", "src": "claimocity_resolve (feed DOB [DOB] vs charts 17471238 / 17471333 at [DOB])", "result": "MISSING -> claimocity_newcharts created pat17478434 F261117-01 (no IN1, no plan)", "when": WHEN},
                   {"ok": "ok", "src": "registers/claimocity_patient_map.json (this run)", "result": "Claimocity id 65d64419... repointed pat17478434 -> pat17471238", "when": WHEN},
                   {"ok": "no", "src": "claimocity_import (feed_recon_20261117T1239Z)", "result": "11/09/2026 G0439 + 99309 not entered: unknown CPT G0439", "when": WHEN}]}
 ops = plan_new_row(items, row, now=NOW)
