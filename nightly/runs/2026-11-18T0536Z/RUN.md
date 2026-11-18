@@ -1,0 +1,11 @@
+# nightly cascade 2026-11-18T0536Z (Wednesday)
+- precheck --days 3 --max 120: 27 pairs, 2 new Stedi lookups (plain Medicare 1 + eligibility 1, 0.60 dollars), 4 flagged - all Medicare Advantage on DOS.
+- chart 17472826: v19461426 11/15 + v19461440 11/16 (99233, 160 dollars each) insorder 2,1 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204 x2.
+- chart 17473090: v19461425 11/15 + v19461438 11/16 (99233) insorder 2 -> 1 (BCBS / HCSC MA), freq 1, rebill seq 1 -> 204 x2.
+- chart 17474611: v19461436 11/16 (99233) insorder 2,4 -> 1 (UNI20 UHC MA), freq 1, rebill seq 1 -> 204.
+- read back: all 5 insbilled 0, insorder 1; primary dx acceptable (dx_primary_fix plan). 800 dollars re-sent.
+- chart 17472491: RET01 (C and O retiree plan) = the payer Medicare names; already billed RET01 first - no change.
+- Step 2 skipped (Wednesday). void_rules: 1 open rule, no VOID lines. ERA step: 0 checks before/after (engine warn = no STEDI_API_KEY env only).
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; new reminder window: pay-centene (Relias courses due 11/25) -> cred file 1 op.
+- board: 3 append ops on the three MA cards (Drive board inbox); no drops; no inbox file in either applied map.
+- practice_db: 6 documents committed (0 swept); Neon 6 new, run logged ok.
