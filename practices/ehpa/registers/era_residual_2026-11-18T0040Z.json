@@ -1,0 +1,455 @@
+{
+ "stamp": "2026-11-18T0040Z",
+ "dry": false,
+ "lines": [
+  {
+   "pid": "17472791",
+   "visitid": "19459162",
+   "chargedetailid": "23371570",
+   "before": {
+    "insbal": 9.71,
+    "patbal": 0.0,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:54:29\"><Results success=\"1\" paymentid=\"10179503\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472791",
+   "visitid": "19458960",
+   "chargedetailid": "23371248",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "MCAD",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '3,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:54:38\"><Results success=\"1\" paymentid=\"10179504\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472791",
+   "visitid": "19458777",
+   "chargedetailid": "23370997",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "MCAD",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '3,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:54:47\"><Results success=\"1\" paymentid=\"10179505\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "12179706",
+   "visitid": "19458771",
+   "chargedetailid": "23370991",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:54:57\"><Results success=\"1\" paymentid=\"10179506\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17470875",
+   "visitid": "19458770",
+   "chargedetailid": "23370990",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:55:06\"><Results success=\"1\" paymentid=\"10179507\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "25266",
+   "visitid": "19458750",
+   "chargedetailid": "23370970",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "MCAD",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,1'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:55:15\"><Results success=\"1\" paymentid=\"10179508\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17471131",
+   "visitid": "19458861",
+   "chargedetailid": "23371090",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "FLO02",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:55:24\"><Results success=\"1\" paymentid=\"10179509\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472429",
+   "visitid": "19458759",
+   "chargedetailid": "23370979",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '4,5'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:55:33\"><Results success=\"1\" paymentid=\"10179510\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472286",
+   "visitid": "19458867",
+   "chargedetailid": "23371099",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:55:41\"><Results success=\"1\" paymentid=\"10179511\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20670",
+   "visitid": "19458763",
+   "chargedetailid": "23370983",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:55:50\"><Results success=\"1\" paymentid=\"10179512\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17473346",
+   "visitid": "19458857",
+   "chargedetailid": "23371084",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:55:59\"><Results success=\"1\" paymentid=\"10179513\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20729",
+   "visitid": "19459269",
+   "chargedetailid": "23371696",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:56:08\"><Results success=\"1\" paymentid=\"10179514\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20729",
+   "visitid": "19459298",
+   "chargedetailid": "23371743",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:56:17\"><Results success=\"1\" paymentid=\"10179515\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20729",
+   "visitid": "19459272",
+   "chargedetailid": "23371699",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:56:27\"><Results success=\"1\" paymentid=\"10179516\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20729",
+   "visitid": "19458737",
+   "chargedetailid": "23370957",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:56:36\"><Results success=\"1\" paymentid=\"10179517\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "20729",
+   "visitid": "19459275",
+   "chargedetailid": "23371702",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '1,2'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-m4g25\" lst=\"11/17/2026 16:56:45\"><Results success=\"1\" paymentid=\"10179518\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472286",
+   "visitid": "19458847",
+   "chargedetailid": "23371072",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:56:54\"><Results success=\"1\" paymentid=\"10179519\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  },
+  {
+   "pid": "17472286",
+   "visitid": "19458891",
+   "chargedetailid": "23371128",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 9.71,
+    "cpt": "99309",
+    "carrier": "SUN01",
+    "wos": [
+     [
+      "WOINS",
+      "-43.01",
+      "0"
+     ]
+    ]
+   },
+   "move": "moved 9.71 -> {'patbalance': '0.00', 'insbalance': '9.71', 'insorder': '2,3'}",
+   "resp": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-zhvxz\" lst=\"11/17/2026 16:57:02\"><Results success=\"1\" paymentid=\"10179520\" /><Error />",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   },
+   "outcome": "posted"
+  }
+ ]
+}
