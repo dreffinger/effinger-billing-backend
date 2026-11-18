@@ -1,17 +1,27 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-18T0536Z",
+ "stamp": "2026-11-18T0642Z",
  "mode": "live",
  "status": "warn",
- "headline": "ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/5/28/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "",
  "run_url": "",
- "started": "2026-11-18T05:39:44Z",
- "ended": "2026-11-18T05:39:47Z",
+ "started": "2026-11-18T06:42:49Z",
+ "ended": "2026-11-18T06:51:59Z",
  "summary": {
   "columns": {
-   "before": {},
-   "after": {}
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 5,
+    "unbilled": 28,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   }
   },
   "era": {
    "before": {
@@ -41,6 +51,21 @@
    "applied": 0,
    "refused": 0,
    "skipped": 0
+  },
+  "outstanding": {
+   "total": 322823.56,
+   "visits": 2743,
+   "charts": 506,
+   "over_365": {
+    "n": 575,
+    "dollars": 28745.79
+   }
+  },
+  "denials": {
+   "visits": 7880,
+   "actionable": 82,
+   "actionable_amt": 14869.0,
+   "asof": "2026-11-18 06:51 UTC"
   }
  },
  "steps": [
@@ -48,9 +73,9 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "warn",
-   "summary": "1408 helpers into /home/claude/unbilled",
+   "summary": "1411 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1408,
+    "helpers copied": 1411,
     "registers": 3,
     "python": "/usr/local/bin/python3"
    },
@@ -59,8 +84,65 @@
    "errors": [
     "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
    ],
-   "started": "2026-11-18T05:39:44Z",
-   "ended": "2026-11-18T05:39:44Z"
+   "started": "2026-11-18T06:42:49Z",
+   "ended": "2026-11-18T06:42:49Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 5->1, Unbilled 28->0, Exclusions 1->1",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 5,
+    "unbilled": 28,
+    "exclusions": 1,
+    "inspector advisories to bypass": 4,
+    "inspector held (not advisory)": 1,
+    "inspector bypasses sent": 4,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 26,
+    "unbilled rows left alone": 0,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "advisory",
+     "visits": 4,
+     "ids": "v19458750 v19458771 v19458857 v19459298"
+    },
+    {
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 1,
+     "ids": "v19461189"
+    },
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 26,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-18T06:42:49Z",
+   "ended": "2026-11-18T06:46:26Z"
   },
   {
    "name": "era",
@@ -82,11 +164,217 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-18T05:39:44Z",
-   "ended": "2026-11-18T05:39:47Z"
+   "started": "2026-11-18T06:46:26Z",
+   "ended": "2026-11-18T06:46:30Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-18T06:46:30Z",
+   "ended": "2026-11-18T06:46:30Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2743 visits on 506 charts, $322823.56 open; 575 over a year ($28745.79)",
+   "counts": {
+    "visits": 2743,
+    "charts": 506,
+    "over 365 days": 575
+   },
+   "dollars": {
+    "open insurance balance": 322823.56,
+    "over 365 days": 28745.79
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1373,
+     "dollars": 142091.2,
+     "oldest_days": 1099
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 200,
+     "dollars": 41469.07,
+     "oldest_days": 1195
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 159,
+     "dollars": 27062.58,
+     "oldest_days": 436
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 342,
+     "dollars": 24983.48,
+     "oldest_days": 1066
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 96,
+     "dollars": 19505.4,
+     "oldest_days": 1168
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 77,
+     "dollars": 13044.13,
+     "oldest_days": 672
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 38,
+     "dollars": 8322.0,
+     "oldest_days": 368
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 31,
+     "dollars": 5714.22,
+     "oldest_days": 984
+    },
+    {
+     "carrier": "SUN01",
+     "name": "SUNSHINE STATE HEALTH PLAN",
+     "visits": 45,
+     "dollars": 4825.6,
+     "oldest_days": 58
+    },
+    {
+     "carrier": "RET01",
+     "name": "RETIRED RAILROAD MEDICARE",
+     "visits": 19,
+     "dollars": 4687.0,
+     "oldest_days": 211
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 36,
+     "dollars": 4656.26,
+     "oldest_days": 380
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 184
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-18T06:46:30Z",
+   "ended": "2026-11-18T06:46:32Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7880 denied visits on 879 charts; 82 actionable $14869.00 (78 inside 12 months $14144.00); WRITTEN-OFF 3000, RESOLVED 4537, RESUBMITTED 191, OPEN 152",
+   "counts": {
+    "charts read": 879,
+    "denial lines": 13388,
+    "visits": 7880,
+    "actionable": 82,
+    "inside 12 months": 78,
+    "status WRITTEN-OFF": 3000,
+    "status RESOLVED": 4537,
+    "status RESUBMITTED": 191,
+    "status OPEN": 152
+   },
+   "dollars": {
+    "actionable": 14869.0,
+    "inside 12 months": 14144.0,
+    "resubmitted": 32696.37,
+    "resolved since": 686137.33
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1954,
+     "dollars": 323714.0,
+     "patients": 228
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1266,
+     "dollars": 196969.23,
+     "patients": 202
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1126,
+     "dollars": 175344.95,
+     "patients": 217
+    },
+    {
+     "disposition": "COB",
+     "visits": 1032,
+     "dollars": 171703.61,
+     "patients": 107
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 501,
+     "dollars": 95436.0,
+     "patients": 225
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84295.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 446,
+     "dollars": 64213.3,
+     "patients": 75
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 511,
+     "dollars": 36062.36,
+     "patients": 73
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 321,
+     "dollars": 28313.76,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-18T06:46:32Z",
+   "ended": "2026-11-18T06:51:59Z"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+ ],
  "errors": []
 }
