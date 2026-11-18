@@ -5,10 +5,10 @@ sys.path.insert(0, "/home/user/effinger-billing-backend/scripts/helpers")
 from board_ops import clean_file
 STAMP = "2026-11-18T0536Z"; AT = "2026-11-18T05:45:00Z"; WHEN = "11/18"
 CARDS = [
-    ("karnes-chester-dougal-denials", "BCBS OF MICHIGAN MUTUAL INSURANCE COMPANY (coordinationOfBenefits 20260101)", "BCBS / BCBS-MI Medicare Plus Blue MA",
+    ("[name]-denials", "BCBS OF MICHIGAN MUTUAL INSURANCE COMPANY (coordinationOfBenefits 20260101)", "BCBS / BCBS-MI Medicare Plus Blue MA",
      [("19461426", "23374321", "11/15", "2,1"), ("19461440", "23374336", "11/16", "2,1")],
      "11/18 nightly: two more hospital visits (11/15, 11/16, 320 dollars) came in Medicare-first; both now at the BCBS (Medicare Plus Blue MA) plan as original claims. Your April reverse-or-leave question above still stands."),
-    ("marsh-[name]-17473090", "HEALTH CARE SERVICE CORPORATION (coordinationOfBenefits 20240101)", "BCBS / HCSC MA",
+    ("[name]-17473090", "HEALTH CARE SERVICE CORPORATION (coordinationOfBenefits 20240101)", "BCBS / HCSC MA",
      [("19461425", "23374320", "11/15", "2"), ("19461438", "23374334", "11/16", "2")],
      "11/18 nightly: two more hospital visits (11/15, 11/16, 320 dollars) came in Medicare-first; both now at the BCBS (HCSC Medicare Advantage) plan as original claims. Nothing for you here."),
     ("[name]-17474611-ma", "CARE IMPROVEMENT PLUS SOUTH CENTRAL INSURANCE CO. (coordinationOfBenefits 20260801)", "UNI20 UHC MA",
