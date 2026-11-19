@@ -28,6 +28,8 @@ messages arrive with no insurance.
       the census - the member number then rides the feed.
 - [x] **BUILT** `scripts/helpers/adt_ingest.py` reads every insurance block of a feed or admission message and marks the ones
       that are not a medical payer (patient liability, coinsurance rows, pending, dental, vision, life).
+- [x] **BUILT and run 11/19** the feed's insurance now reaches EXISTING charts too (`feed_in1_intake.py`, feed step c3): 17
+      Medicaid plans and 3 Medigap plans were added on the first run. Details: docs/INSURANCE_INTAKE.md.
 
 ## 2. Availity API - Florida Blue and Humana eligibility and claim status
 

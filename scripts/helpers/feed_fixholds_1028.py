@@ -13,7 +13,12 @@ NAME_MAP = [(r"HUMANA", "HUM01"), (r"UNITED ?HEALTH|UHC|AARP MEDICARE", "UNI20")
             (r"SIMPLY", "SIM01"), (r"AMBETTER", "AMB03"), (r"FLORIDA COMMUNITY", "FLO99"), (r"^CMS$|MEDICARE", "FLO02"), (r"MEDICAI", "MCAD"),
             (r"TRICARE FOR LIFE", "TRI05"), (r"TRICARE", "TRI00"), (r"CHAMPVA", "CHA03")]
 SKIP_IN1 = r"LIABILITY|SELF PAY|PRIVATE PAY|PENDING|COINS|CO-INS|THERAPY|VACCINE|LAB\b|PART D|PDP|PRESCRIPTION|HOSPICE"
+try:
+    import feed_payer_map as _fpm      # 11/19/2026: ONE payer-name table for every feed helper (feed_payer_map.py)
+except Exception:
+    _fpm = None
 def map_name(n):
+    if _fpm: return None if (_fpm.skip(n) or _fpm.kind(n) == "ltc") else _fpm.code(n)
     for pat, c in NAME_MAP:
         if re.search(pat, (n or "").upper()): return c
     return None

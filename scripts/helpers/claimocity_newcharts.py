@@ -14,6 +14,10 @@ import amd, add_ins, re, json, glob, time, collections
 amd.login_cached()
 MATCH = json.load(open(("feed_match_%s.json" % STAMP)))
 CARRIERS = json.load(open("carriers_rich.json")); CODE2CAR = {v[0]: k for k, v in CARRIERS.items()}
+try:
+    import feed_payer_map as _fpm      # 11/19/2026 (William: "fix it for the insurance intake for sure"): ONE payer-name table for every feed helper
+except Exception:
+    _fpm = None                        # an old workspace without the table keeps the list below
 PAYER_MAP = [
     (r"MEDICARE A\b|FCSO|MEDICARE PART A|MEDICARE B\b|TRADITIONAL MEDICARE|^MEDICARE$|^MCA-|^MCB", "FLO02"),
     (r"SUNSHINE", "SUN01"), (r"SIMPLY", "SIM01"), (r"WELLCARE", "WEL04"), (r"HUMANA", "HUM01"),
@@ -99,8 +103,8 @@ for k, v in MATCH.items():
     for fid in v["feed_ids"]:
         for payer, member in IN1.get(fid, []):
             up = payer.upper()
-            if re.search(SKIP_IN1, up): continue
-            code = next((c for pat, c in PAYER_MAP if re.search(pat, up)), None)
+            if re.search(SKIP_IN1, up) or (_fpm and (_fpm.skip(payer) or _fpm.kind(payer) == "ltc")): continue      # 11/19/2026: the shared table - a long-term-care-only plan is never the physician's payer
+            code = _fpm.code(payer) if _fpm else next((c for pat, c in PAYER_MAP if re.search(pat, up)), None)
             if not code or code in seen or code not in CODE2CAR or not member: continue
             seen.add(code)
             try:

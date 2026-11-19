@@ -1,0 +1,226 @@
+{
+ "47039|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17472491|SIM01": {
+  "outcome": "added SIM01 as ins9521338 seq 4 (Medicaid active; the state names SMMC MMA Capitated Medicaid SIMPLY HEALTHCARE PLANS INC); order 3,2 -> 3,2,4 (ok)",
+  "ins": "ins9521338",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17476032|MCAD": {
+  "outcome": "added MCAD as ins9521339 seq 2 (Medicaid active; no managed medical plan named (SMMC DENTAL Medicaid DENTAQUES)); order 1 -> 1,2 (ok)",
+  "ins": "ins9521339",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17476032|AAR01": {
+  "outcome": "added AAR01 as ins9521340 seq 3 (feed block 'AARP Healthcare Options'); AdvancedMD 271 ACTIVE; order 1 -> 1,3 (ok)",
+  "ins": "ins9521340",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "21483|FLO99": {
+  "outcome": "added FLO99 as ins9521341 seq 3 (Medicaid active; the state names SMMC MMA Capitated Medicaid FLORIDA COMMUNITY CARE); order 2 -> 2,3 (ok)",
+  "ins": "ins9521341",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "20625|HUM01": {
+  "outcome": "listed - the feed names another primary plan (HUM01); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "24139|FLO99": {
+  "outcome": "added FLO99 as ins9521342 seq 2 (Medicaid active; the state names SMMC MMA Capitated Medicaid FLORIDA COMMUNITY CARE); order 1 -> 1,2 (ok)",
+  "ins": "ins9521342",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "22546|HUM01": {
+  "outcome": "listed - the feed names another primary plan (HUM01); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17470743|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23171|HUM01": {
+  "outcome": "listed - the feed names another primary plan (HUM01); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "44935|HUM01": {
+  "outcome": "listed - the feed names another primary plan (HUM01); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17477830|MCAD": {
+  "outcome": "added HUM01 as ins9521343 seq 2 (Medicaid active; the state names SMMC MMA Capitated Medicaid HUMANA MEDICAL PLAN INC); order 1 -> 1,2 (ok)",
+  "ins": "ins9521343",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17477650|MCAD": {
+  "outcome": "added MCAD as ins9521344 seq 2 (Medicaid active; no managed medical plan named (fee-for-service)); order 1 -> 1,2 (ok)",
+  "ins": "ins9521344",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17476874|AAR01": {
+  "outcome": "added AAR01 as ins9521345 seq 2 (feed block 'AARP UHC Medicare Supplement'); AdvancedMD 271 ACTIVE; order 1 -> 1,2 (ok)",
+  "ins": "ins9521345",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "25558|FLO99": {
+  "outcome": "added MCAD as ins9521346 seq 5 (Medicaid active; no managed medical plan named (SMMC Long-Term Care (LTCC) Med; Dual-Special Needs Plan Medica; MEDICARE SPECIAL NEED PLAN Com)); order 4 -> 4,5 (ok)",
+  "ins": "ins9521346",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17477496|MCAD": {
+  "outcome": "added MCAD as ins9521347 seq 3 (Medicaid active; no managed medical plan named (SMMC Long-Term Care (LTCC) Med; Capitated Transportation CNET ; SMMC DENTAL Medicaid LIBERTY D)); order 2 -> 2,3 (ok)",
+  "ins": "ins9521347",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17473477|SUN01": {
+  "outcome": "not active - Medicaid: no active coverage",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17477851|MCAD": {
+  "outcome": "added MCAD as ins9521348 seq 3 (Medicaid active; no managed medical plan named (fee-for-service)); order 2 -> 2,3 (ok)",
+  "ins": "ins9521348",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17476036|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17473222|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17477010|HUM01": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says HUM01",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "21172|STA03": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says STA03",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "21308|MCAD": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says MCAD",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23177|HUM01": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says HUM01",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17472594|SIM01": {
+  "outcome": "added SIM01 as ins9521349 seq 3 (Medicaid active; the state names SMMC MMA Capitated Medicaid SIMPLY HEALTHCARE PLANS INC); order 2 -> 2,3 (ok)",
+  "ins": "ins9521349",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17471673|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "20670|UNI20": {
+  "outcome": "listed - the feed names another primary plan (UNI20); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23204|FLO99": {
+  "outcome": "added FLO99 as ins9521350 seq 2 (Medicaid active; the state names SMMC Long-Term Care (LTCC) Medicaid FLORIDA COMMUNITY CARE); order 1 -> 1,2 (ok)",
+  "ins": "ins9521350",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "12232005|FLO99": {
+  "outcome": "added FLO99 as ins9521351 seq 2 (Medicaid active; the state names SMMC MMA Capitated Medicaid FLORIDA COMMUNITY CARE); order 1 -> 1,2 (ok)",
+  "ins": "ins9521351",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17475697|MCAD": {
+  "outcome": "added HUM01 as ins9521352 seq 2 (Medicaid active; the state names SMMC MMA Capitated Medicaid HUMANA MEDICAL PLAN INC); order 1 -> 1,2 (ok)",
+  "ins": "ins9521352",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "44962|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17472436|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17473962|HUM01": {
+  "outcome": "listed - the feed names another primary plan (HUM01); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "12182776|SUN01": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says SUN01",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17475536|BCBS": {
+  "outcome": "listed - the feed names another primary plan (BCBS); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "46973|MCAD": {
+  "outcome": "not active - Medicaid: no active coverage",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17471131|SUN01": {
+  "outcome": "added SUN01 as ins9521353 seq 3 (Medicaid active; the state names SMMC MMA Capitated Medicaid SUNSHINE STATE HEALTH PLAN INC); order 2,1 -> 2,1,3 (ok)",
+  "ins": "ins9521353",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17471131|BCBS": {
+  "outcome": "listed - the feed names another primary plan (BCBS); the dated check decides",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17475993|MCAD": {
+  "outcome": "added MCAD as ins9521354 seq 2 (Medicaid active; no managed medical plan named (Capitated Transportation CNET ; SMMC DENTAL Medicaid LIBERTY D; MEDICARE SUPPLEMENT Commercial)); order 1 -> 1,2 (ok)",
+  "ins": "ins9521354",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "45447|AAR01": {
+  "outcome": "added AAR01 as ins9521355 seq 2 (feed block 'AARP UHC Medicare Supplement'); AdvancedMD 271 ACTIVE; order 1 -> 1,2 (ok)",
+  "ins": "ins9521355",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "45520|SUN01": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says SUN01",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "45010|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17478220|FLO99": {
+  "outcome": "added MCAD as ins9521356 seq 2 (Medicaid active; no managed medical plan named (SMMC DENTAL Medicaid LIBERTY D)); order 1 -> 1,2 (ok)",
+  "ins": "ins9521356",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17472285|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "17469525|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "20399|FLO99": {
+  "outcome": "added FLO99 as ins9521357 seq 3 (Medicaid active; the state names SMMC MMA Capitated Medicaid FLORIDA COMMUNITY CARE); order 1,2 -> 1,2,3 (ok)",
+  "ins": "ins9521357",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "25561|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23832|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23617|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "23162|SUN01": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says SUN01",
+  "stamp": "2026-11-19T0755Z"
+ },
+ "24208|FLO99": {
+  "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
+  "stamp": "2026-11-19T0755Z"
+ }
+}

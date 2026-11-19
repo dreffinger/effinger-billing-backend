@@ -13,6 +13,12 @@
 # Never touches: AdvancedMD, Stedi, the feed import. A later step (the insurance cascade, or a person) decides what goes on a chart.
 # Usage: python3 adt_ingest.py <file or folder> [...] [--out patient_db/adt/<name>.json]      python3 adt_ingest.py selftest
 import os, re, sys, json, glob, collections
+try:
+    from feed_payer_map import skip as _skip      # the one table of names that are not a plan to bill (11/19/2026)
+except Exception:                                 # the reader still works alone
+    def _skip(name):
+        t = (name or "").upper().replace("TRICARE FOR LIFE", "TRICARE"); m = re.search(NOT_A_PAYER, t)
+        return m.group(0).lower() if m else ""
 NOT_A_PAYER = r"LIABILITY|RESLIAB|PRIVATE PAY|SELF.?PAY|COINSURANCE|CO-INS|PENDING|DENTAL|VISION|\bLIFE\b|PATIENT RESOURCES|HOSPICE"
 def _f(seg, i, comp=0):
     """Field i of a segment (already split on |), component comp; '' when absent."""
@@ -33,10 +39,9 @@ def parse_message(text):
             rec["visit"] = {"class": _f(s, 2), "location": " ".join(x for x in (s[3].split("^") if len(s) > 3 else []) if x)[:60], "admit": _date(_f(s, 44)), "discharge": _date(_f(s, 45))}
         elif t == "IN1":
             name = _f(s, 4); member = _f(s, 36) or _f(s, 49) or (_f(s, 2) if re.search(r"\d{5,}", _f(s, 2)) else "")
-            m = re.search(NOT_A_PAYER, name.upper())
-            if m and m.group(0) == "LIFE" and "HEALTH" in name.upper(): m = None      # 'Health and Life Insurance Company' is a medical insurer's name
+            why = _skip(name)
             rec["insurance"].append({"order": _f(s, 1), "name": name, "member": member, "begin": _date(_f(s, 12)), "end": _date(_f(s, 13)), "group": _f(s, 8),
-                                     "skip": m.group(0).lower() if m else ("no member number" if not member else "")})
+                                     "skip": why or ("no member number" if not member else "")})
     return rec
 def read(paths):
     out = []

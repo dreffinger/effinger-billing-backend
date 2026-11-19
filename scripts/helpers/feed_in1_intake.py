@@ -1,0 +1,116 @@
+# PLAIN ENGLISH (Insurance intake from the feed for charts that already exist - the secondaries the import never entered)
+# Decides: which insurance blocks the Claimocity feed carried are worth putting on an EXISTING chart, and does it. Built 11/19/2026
+#   (William: "fix it for the insurance intake for sure ... optimize getting the correct insurances for billing on the back end using
+#   apis first") after the comparison of all 31 feed files with the charts: the import enters feed insurance only when it CREATES a
+#   chart, so on existing charts 74 usable blocks (55 charts) never arrived - nearly all the Medicaid side of a nursing-home resident
+#   (Florida Community Care, Medicaid, Sunshine, Simply) and a few Medigap plans.
+# What it does, per chart, cheapest source first:
+#   1. the feed block: payer name -> carrier and kind through the ONE table (feed_payer_map.py); rows that are not a plan to bill
+#      (liability, coinsurance rows, pending, dental ...) and long-term-care-only plans are dropped;
+#   2. the chart (free): a carrier the chart already holds, open or ended, is never added again; a chart that already has an open
+#      Medicaid-family plan is left to the nightly cascade (listed, not changed);
+#   3. a block that names a different PRIMARY plan is never entered here - the feed only informs; the dated eligibility check of the
+#      import / the cascade decides who is primary (listed for it);
+#   4. Medicaid side: ONE Florida Medicaid eligibility check through Stedi with the feed's Medicaid number (the ordinary eligibility
+#      price) - active or not, and WHICH managed plan the state names; the plan the STATE names wins over the feed's wording. Not
+#      active = nothing added. Medicaid cannot answer (an error, an outage) = nothing added, tried again next run;
+#   5. Medigap / TRICARE For Life / CHAMPVA: the plan is added and AdvancedMD's free eligibility check is run on it; a clear
+#      'inactive' or 'not found' ends the plan again the same minute;
+#   6. the plan is added with no group number and, when the chart's insurance order holds no Medicaid-family / secondary plan yet,
+#      appended as the LAST plan of the order (Medicare or the Advantage plan stays first - William's standing order).
+# Never touches: visits, claims, balances, the primary plan, a chart's existing plans. Nothing is re-billed here.
+# Usage: python3 feed_in1_intake.py [--hl7-dir inbox/claimocity] [--live] [--max 60] [--stamp <run stamp>]
+# Register: registers/feed_in1_intake.json (chart + carrier + outcome; one entry per chart and carrier - never asked twice)
+import amd, add_ins, ins_update, elig_amd, stedi, adt_ingest, feed_payer_map as fpm, json, os, re, sys, time, datetime, collections
+def opt(n, d=None): return sys.argv[sys.argv.index(n) + 1] if n in sys.argv else d
+LIVE = "--live" in sys.argv; DIR = opt("--hl7-dir", "inbox/claimocity"); MAX = int(opt("--max", "60")); STAMP = opt("--stamp", datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H%MZ"))
+CAR = json.load(open("carriers_rich.json")); CODE2CAR = {v[0]: k for k, v in CAR.items()}; CAR2CODE = {k: v[0] for k, v in CAR.items()}
+PMAP = json.load(open("registers/claimocity_patient_map.json"))
+REGF = "registers/feed_in1_intake.json"; REG = json.load(open(REGF)) if os.path.exists(REGF) else {}
+STATE_PLAN = [(r"FLORIDA COMMUNITY", "FLO99"), (r"SUNSHINE", "SUN01"), (r"SIMPLY", "SIM01"), (r"HUMANA", "HUM01"), (r"MOLINA", "MOL10"), (r"STAYWELL|WELLCARE", "STA03")]
+norm = lambda s: re.sub(r"[^A-Z0-9]", "", (s or "").upper())
+def medicaid_answer(first, last, dob8, medicaid_id, pid):
+    """('active'|'inactive'|'unknown', carrier code the state names or 'MCAD', short text). One Stedi eligibility check (payer 77027)."""
+    try: j = stedi.elig("77027", first, last, dob8, medicaid_id, datetime.date.today().strftime("%Y%m%d"), pid=pid)
+    except Exception as e: return "unknown", None, "Medicaid check failed (%s)" % type(e).__name__
+    os.makedirs("patient_db/%s" % pid, exist_ok=True); json.dump(j, open("patient_db/%s/stedi_medicaid_%s.json" % (pid, datetime.date.today().strftime("%Y%m%d")), "w"))
+    errs = [str(e.get("code")) for e in j.get("errors") or []]
+    if errs: return "unknown", None, "Medicaid answered error %s" % ",".join(errs)
+    ben = j.get("benefitsInformation") or []
+    if not any(b.get("code") == "1" for b in ben): return "inactive", None, "Medicaid: no active coverage"
+    names = []
+    for b in ben:
+        if b.get("code") in ("MC", "1", "R", "U"):
+            for e in b.get("benefitsRelatedEntities") or []:
+                if e.get("entityName"): names.append((b.get("code"), " ".join(str(x) for x in (b.get("planCoverage"), b.get("insuranceType"), e.get("entityName")) if x)))
+    mma = [t for c, t in names if c == "MC" and not re.search(r"\bLTC\b|LONG.?TERM|DENTAL|TRANSPORT", t.upper())] or [t for c, t in names if c == "MC" and re.search(r"FLORIDA COMMUNITY", t.upper())]
+    for t in mma:
+        for pat, code in STATE_PLAN:
+            if re.search(pat, t.upper()): return "active", code, "Medicaid active; the state names %s" % t[:60]
+    return "active", "MCAD", "Medicaid active; no managed medical plan named (%s)" % ("; ".join(t[:30] for c, t in names[:3]) or "fee-for-service")
+recs = adt_ingest.read([DIR]); feed = collections.defaultdict(dict); who = {}
+for r in recs:
+    fid = r["patient"].get("id"); who[fid] = r["patient"]
+    for b in r["insurance"]:
+        if not b["skip"] and b["member"]: feed[fid][(b["name"], b["member"])] = b
+amd.login_cached(); done = 0; tally = collections.Counter()
+print("feed files in %s: %d messages, %d patients with a usable insurance block%s" % (DIR, len(recs), len(feed), "" if LIVE else "  (DRY RUN - nothing is written)"))
+for fid, blocks in feed.items():
+    pid = re.sub(r"\D", "", PMAP.get(fid, ""))
+    if not pid: tally["no chart yet"] += 1; continue
+    r, plans, order = ins_update._plans(pid); plans = list(plans.values())
+    have = {p.get("carrier") for p in plans}; live_codes = {CAR2CODE.get(p.get("carrier")) for p in plans if not p.get("enddate")}
+    live_medicaid = bool((live_codes & fpm.MEDICAID_FAMILY) or any(CAR2CODE.get(p.get("carrier")) == "HUM01" and len(norm(p.get("subscribernum"))) == 10 and norm(p.get("subscribernum")).isdigit() for p in plans if not p.get("enddate")))
+    asked_medicaid = False
+    for (name, member), b in blocks.items():
+        code = fpm.code(name); kind = fpm.kind(name, code)
+        if not code or code not in CODE2CAR: tally["name not in the table"] += 1; continue
+        if kind == "ltc": tally["long-term-care-only plan (not the physician's payer)"] += 1; continue
+        if CODE2CAR[code] in have: tally["already on the chart"] += 1; continue
+        key = "%s|%s" % (pid, code)
+        if key in REG and REG[key].get("outcome", "").startswith(("added", "not active", "listed")): tally["settled by an earlier run"] += 1; continue
+        if kind == "primary":
+            REG[key] = {"outcome": "listed - the feed names another primary plan (%s); the dated check decides" % code, "stamp": STAMP}; tally["another PRIMARY named by the feed (listed for the cascade)"] += 1
+            print("  pat%s: feed names %s as a plan the chart does not hold - primary plans are decided by the dated eligibility check, not entered here" % (pid, code)); continue
+        if kind == "medicaid":
+            if live_medicaid: REG[key] = {"outcome": "listed - the chart already has an open Medicaid-family plan; feed says %s" % code, "stamp": STAMP}; tally["chart already has a Medicaid plan (listed)"] += 1; continue
+            if asked_medicaid: continue
+            if not re.fullmatch(r"\d{10}", norm(member)): tally["Medicaid row without a 10-digit Medicaid number"] += 1; continue
+            if done >= MAX: tally["over this run's limit (next run)"] += 1; continue
+            p = who.get(fid, {}); asked_medicaid = True; done += 1
+            status, scode, text = medicaid_answer(p.get("first", "").split()[0] if p.get("first") else "", p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), norm(member), pid)
+            if status == "unknown": print("  pat%s: %s - nothing added, asked again next run" % (pid, text)); tally["Medicaid could not answer (next run)"] += 1; continue
+            if status == "inactive": REG[key] = {"outcome": "not active - " + text, "stamp": STAMP}; print("  pat%s: %s - nothing added" % (pid, text)); tally["Medicaid not active (nothing added)"] += 1; continue
+            use = scode if scode in CODE2CAR else code
+            if CODE2CAR[use] in have: REG[key] = {"outcome": "listed - the state names %s, already on the chart" % use, "stamp": STAMP}; tally["already on the chart"] += 1; continue
+            fin = "MD"
+        else:
+            use = code; text = "feed block '%s'" % name[:30]; fin = "CC"
+            if done >= MAX: tally["over this run's limit (next run)"] += 1; continue
+            done += 1
+        if LIVE: _r, _pl, order = ins_update._plans(pid); plans = list(_pl.values())      # 11/19/2026: read the order again - a second plan added on the same chart must not drop the first from it
+        seqs = [s for s in (order or "").replace(" ", "").split(",") if s]
+        if not LIVE:
+            print("  pat%s: DRY would add %s (%s) and %s" % (pid, use, text, "append it to the order %s" % order if 1 <= len(seqs) <= 2 else "leave the order %r" % order)); tally["would add %s" % ("a Medicaid plan" if kind == "medicaid" else "a secondary plan")] += 1; continue
+        insid, seq = add_ins.add(pid, CODE2CAR[use], norm(member) if kind == "medicaid" else member, "01/01/%d" % datetime.date.today().year, "1", fin)
+        if not insid: print("  pat%s: add %s FAILED %s" % (pid, use, str(seq)[:100])); tally["add failed"] += 1; continue
+        time.sleep(0.4); msg = "added %s as %s seq %s (%s)" % (use, insid, seq, text)
+        if kind != "medicaid":
+            try: s = elig_amd.run_plan(pid, insid.replace("ins", ""), True); st = str(s.get("status") or "")
+            except Exception as e: st = "check failed %s" % type(e).__name__
+            if st.upper().startswith(("INACTIVE", "REJECTED")):
+                ins_update.update(pid, insid, enddate="01/01/%d" % datetime.date.today().year)
+                REG[key] = {"outcome": "not active - AdvancedMD's check on the feed's %s answered %s; plan ended again" % (use, st[:40]), "ins": insid, "stamp": STAMP}
+                print("  pat%s: %s - but AdvancedMD's check answered %s: ended again" % (pid, msg, st[:40])); tally["secondary not active (ended again)"] += 1; continue
+            msg += "; AdvancedMD 271 %s" % st[:30]
+        if 1 <= len(seqs) <= 3 and seq not in seqs:
+            first = [p["id"] for p in plans if p.get("sequence") == seqs[0]]
+            medicaid_seqs = [x for x in seqs[1:] if any(p.get("sequence") == x and CAR2CODE.get(p.get("carrier")) in fpm.MEDICAID_FAMILY for p in plans)]
+            new = [x for x in seqs if x not in medicaid_seqs] + ([str(seq)] + medicaid_seqs if kind != "medicaid" else medicaid_seqs + [str(seq)])      # Medicare / Advantage, then Medigap, Medicaid last
+            if first:
+                ok, m2 = ins_update.update(pid, first[0], sequence=",".join(new)); msg += "; order %s -> %s (%s)" % (order, ",".join(new), "ok" if ok else "NOT set: " + m2[:60])
+        REG[key] = {"outcome": msg, "ins": insid, "stamp": STAMP}; print("  pat%s: %s" % (pid, msg)); tally["added %s" % ("a Medicaid plan" if kind == "medicaid" else "a secondary plan")] += 1
+        json.dump(REG, open(REGF, "w"), indent=1); time.sleep(0.3)
+    time.sleep(0.1)
+if LIVE: json.dump(REG, open(REGF, "w"), indent=1)
+print("RESULT feed insurance intake %s: %s" % (STAMP, "; ".join("%s %d" % (k, v) for k, v in sorted(tally.items()))))
