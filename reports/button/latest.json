@@ -69,7 +69,7 @@
    "name": "board",
    "title": "Board input (items on Claude's turn, drops, denials queue)",
    "status": "ok",
-   "summary": "27 cards William answered 06:57-07:50Z were worked by the 0755Z chat session (its digest); this run: Kousser CHP eligibility with the MBI -> AAA 72 (CHP number still needed), Keilty chart 21992 CHP member number updated from the sheet pasted on Meyer's card (CHP active); drops 0; denials queue 0; board_updates_2026-11-19T0756Z.json (3 ops) in board inbox",
+   "summary": "27 cards William answered 06:57-07:50Z were worked by the 0755Z chat session (its digest); this run: chart 17478219 CHP eligibility with the MBI -> AAA 72 (CHP number still needed), chart 21992 CHP member number updated from the sheet pasted on card 24197 (CHP active); drops 0; denials queue 0; board_updates_2026-11-19T0756Z.json (3 ops) in board inbox",
    "counts": {
     "cards_read": 33,
     "ops": 3,
@@ -157,7 +157,7 @@
    "name": "cascade",
    "title": "Cascade pre-check + void rules",
    "status": "ok",
-   "summary": "precheck --days 3 --max 120: 31 pairs, 0 new look-ups, 4 flagged (HATHERLEY FLO99 no Stedi payer; BLACKWOOD + DANIEL CHP member numbers - carded; LAWHORN COL07 retiree secondary false positive); void_rules 1 open, 0 voided; Stedi this run 4 calls",
+   "summary": "precheck --days 3 --max 120: 31 pairs, 0 new look-ups, 4 flagged (HATHERLEY FLO99 no Stedi payer; charts 17478452 + 17478455 CHP member numbers - carded; chart 17472491 COL07 retiree secondary false positive); void_rules 1 open, 0 voided; Stedi this run 4 calls",
    "counts": {
     "pairs": 31,
     "flagged": 4,
