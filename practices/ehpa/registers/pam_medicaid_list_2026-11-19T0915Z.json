@@ -1,0 +1,526 @@
+[
+{
+"pid": 17472397,
+"vid": 19400082,
+"dos": "02/03/2025",
+"cpts": "99308",
+"carrier": "HUM01",
+"billdate": "10/13/2026",
+"last_answer": "09/09/2026 AMB03 -39.44 0923731548",
+"dollars": 21.24,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 25558,
+"vid": 19401676,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19403764,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19404463,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19405093,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19405522,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19407634,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19411235,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19416035,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19418998,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19422673,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19424019,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19426937,
+"kind": "NO-LIVE"
+},
+{
+"pid": 20407,
+"vid": 19425635,
+"dos": "12/01/2025",
+"cpts": "99309",
+"carrier": "HUM01",
+"billdate": "10/14/2026",
+"last_answer": "05/30/2026 FLO02 0.00 176345603260114",
+"dollars": 17.65,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17469549,
+"vid": 19425178,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19428136,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471172,
+"vid": 19428469,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471688,
+"vid": 19429010,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19430029,
+"kind": "NO-LIVE"
+},
+{
+"pid": 12232001,
+"vid": 19430028,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471172,
+"vid": 19430965,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19432987,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19433034,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19435323,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19435854,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19437732,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19438165,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473065,
+"vid": 19438955,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19441040,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19443034,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19444481,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19444991,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19447164,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19448714,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17472124,
+"vid": 19449437,
+"dos": "07/20/2026",
+"cpts": "99309",
+"carrier": "FLO99",
+"billdate": "10/11/2026",
+"last_answer": "09/19/2026 FLO02 -66.36 819814877(0)",
+"dollars": 74.64,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17469549,
+"vid": 19451182,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471172,
+"vid": 19451525,
+"dos": "08/06/2026",
+"cpts": "99309",
+"carrier": "FLO99",
+"billdate": "10/05/2026",
+"last_answer": "08/28/2026 FLO02 -66.36 819683171",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17477375,
+"vid": 19455316,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19451204,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471688,
+"vid": 19451551,
+"dos": "08/10/2026",
+"cpts": "99309",
+"carrier": "FLO99",
+"billdate": "10/05/2026",
+"last_answer": "09/01/2026 FLO02 -66.36 819699061",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 25558,
+"vid": 19453808,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471688,
+"vid": 19454663,
+"dos": "09/02/2026",
+"cpts": "99309",
+"carrier": "FLO99",
+"billdate": "10/06/2026",
+"last_answer": "09/29/2026 FLO02 -66.36 819872046",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17477184,
+"vid": 19455906,
+"dos": "09/18/2026",
+"cpts": "99316",
+"carrier": "MCAD",
+"billdate": "10/07/2026",
+"last_answer": "10/07/2026 FLO02 -79.42 819928855",
+"dollars": 20.26,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17476036,
+"vid": 19456171,
+"dos": "09/20/2026",
+"cpts": "99489+99487",
+"carrier": "MCAD",
+"billdate": "10/16/2026",
+"last_answer": "10/16/2026 FLO02 -29.70 819988060",
+"dollars": 21.3,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17471017,
+"vid": 19456216,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19456192,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17471462,
+"vid": 19456207,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25266,
+"vid": 19456219,
+"dos": "09/21/2026",
+"cpts": "99309",
+"carrier": "SUN01",
+"billdate": "10/09/2026",
+"last_answer": "10/09/2026 FLO02 -66.36 819948282",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17472834,
+"vid": 19456053,
+"dos": "09/22/2026",
+"cpts": "99309",
+"carrier": "SUN01",
+"billdate": "10/08/2026",
+"last_answer": "10/08/2026 FLO02 -66.36 819938228",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17469541,
+"vid": 19456313,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473748,
+"vid": 19456196,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473190,
+"vid": 19456198,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17472286,
+"vid": 19456468,
+"dos": "09/24/2026",
+"cpts": "99309",
+"carrier": "SUN01",
+"billdate": "10/10/2026",
+"last_answer": "10/10/2026 FLO02 -66.36 819960772",
+"dollars": 16.93,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17477829,
+"vid": 19456749,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17477851,
+"vid": 19456751,
+"kind": "NO-LIVE"
+},
+{
+"pid": 44953,
+"vid": 19457092,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17477851,
+"vid": 19456910,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17474614,
+"vid": 19457364,
+"kind": "NO-LIVE"
+},
+{
+"pid": 23161,
+"vid": 19457362,
+"kind": "NO-LIVE"
+},
+{
+"pid": 24208,
+"vid": 19457363,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17472397,
+"vid": 19460517,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469541,
+"vid": 19457347,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17477851,
+"vid": 19457350,
+"kind": "NO-LIVE"
+},
+{
+"pid": 21020,
+"vid": 19460515,
+"kind": "NO-LIVE"
+},
+{
+"pid": 22075,
+"vid": 19458778,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473568,
+"vid": 19458886,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473269,
+"vid": 19459166,
+"dos": "10/21/2026",
+"cpts": "99349",
+"carrier": "MCAD",
+"billdate": "11/18/2026",
+"last_answer": "11/18/2026 FLO02 -88.61 820201800",
+"dollars": 22.6,
+"prov": "GARLAND-G, PAMELA",
+"plan": "SETTLING - a payment is posted, never re-rendered"
+},
+{
+"pid": 17473568,
+"vid": 19459184,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469512,
+"vid": 19459674,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469549,
+"vid": 19460710,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473568,
+"vid": 19460485,
+"kind": "NO-LIVE"
+},
+{
+"pid": 20709,
+"vid": 19461459,
+"kind": "NO-LIVE"
+},
+{
+"pid": 22546,
+"vid": 19461463,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473748,
+"vid": 19460714,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17477638,
+"vid": 19460177,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17477353,
+"vid": 19460187,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17472397,
+"vid": 19460516,
+"kind": "NO-LIVE"
+},
+{
+"pid": 21020,
+"vid": 19460514,
+"kind": "NO-LIVE"
+},
+{
+"pid": 25558,
+"vid": 19460510,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473568,
+"vid": 19460484,
+"kind": "NO-LIVE"
+},
+{
+"pid": 46048,
+"vid": 19460494,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469446,
+"vid": 19460489,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17475713,
+"vid": 19461148,
+"kind": "NO-LIVE"
+},
+{
+"pid": 20060,
+"vid": 19461147,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17469541,
+"vid": 19460493,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17478019,
+"vid": 19460701,
+"kind": "NO-LIVE"
+},
+{
+"pid": 22075,
+"vid": 19461453,
+"kind": "NO-LIVE"
+},
+{
+"pid": 17473568,
+"vid": 19461464,
+"kind": "NO-LIVE"
+}
+]
