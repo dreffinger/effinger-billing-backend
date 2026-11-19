@@ -1,0 +1,12 @@
+# nightly cascade 2026-11-19T0536Z (Thursday)
+- precheck --days 3 --max 120: 34 pairs, 6 new Stedi lookups (plain Medicare 3 + eligibility 3, 1.80 dollars), 6 flagged.
+- chart 17472826: v19461618 11/17 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204.
+- chart 17473090: v19461619 11/17 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / HCSC MA), freq 1, rebill seq 1 -> 204.
+- read back: both insbilled 0, insorder 1; primary dx acceptable (dx_primary_fix plan L03.90 / R55). 320 dollars re-sent.
+- charts 17478452 (421 dollars, 2 visits) and 17478455 (310 dollars, 1 visit): Medicare + AMD 271 name CAPITAL HEALTH PLAN MA (H5938); chart has only Medicare; CHP needs its own member number -> new board cards on William's turn (same as chart 17478395).
+- chart 17472491: RET01 = the payer Medicare names; already billed RET01 first - no change.
+- chart 17469549: FLO99 has no Stedi route; AMD 271 = Full Medicaid with SMMC MMA + LTC Florida Community Care -> FCC is the right payer, no change.
+- Step 2 skipped (Thursday). void_rules: 1 open rule, no VOID lines. ERA step: 0 checks before/after (engine warn = no STEDI_API_KEY env only).
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; new reminder window: pay-optum (UHC/Optum directory attestation ~11/26) -> cred file 1 op.
+- board: 2 append ops (MA cards) + 2 new CHP cards (Drive board inbox); no drops; no inbox file in either applied map.
+- practice_db: the db tools default to /home/claude/effinger-billing-backend, which did not exist - the build ran against that empty path (repo snapshot repo-20261119T0536Z has blank head/counts; sweep saw nothing). Fixed by copying cascade_runs + register lines into the clone and one --sweep build with --repo <clone> (1 billing_runs + 2 snapshots). 7 documents committed; Neon 7 new, run logged ok.
