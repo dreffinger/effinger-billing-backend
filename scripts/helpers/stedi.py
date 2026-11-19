@@ -123,6 +123,7 @@ def disc_not_medical(it):
     words = [(it.get("payer") or {}).get("name") or ""] + [str(x.get(k) or "") for x in b if isinstance(x, dict) for k in ("planCoverage", "insuranceType")]
     t = " ".join(words).upper().replace("TRICARE FOR LIFE", "TRICARE")
     m = re.search(NOT_MEDICAL_WORDS, t)
+    if m and m.group(0) == "LIFE" and "HEALTH" in t: m = re.search(r"DENTAL|VISION|METLIFE|EYEMED|\bVSP\b", t)      # 'HEALTH AND LIFE INSURANCE COMPANY' is a medical insurer's name
     return m.group(0) if m else ""
 def disc_summ(j):
     import re as _re      # self-contained on purpose: tools/selftest/test_feed_order.py runs this one function alone
@@ -130,6 +131,7 @@ def disc_summ(j):
         b = it.get("benefitsInformation") or []
         t = " ".join([(it.get("payer") or {}).get("name") or ""] + [str(x.get(k) or "") for x in b if isinstance(x, dict) for k in ("planCoverage", "insuranceType")]).upper().replace("TRICARE FOR LIFE", "TRICARE")
         m = _re.search(r"DENTAL|VISION|\bLIFE\b|METLIFE|EYEMED|\bVSP\b", t)
+        if m and m.group(0) == "LIFE" and "HEALTH" in t: m = _re.search(r"DENTAL|VISION|METLIFE|EYEMED|\bVSP\b", t)      # 'HEALTH AND LIFE INSURANCE COMPANY' is a medical insurer's name (a Medicare Advantage carrier), not a life policy
         return m.group(0) if m else ""
     out = []
     for it in j.get("items") or []:
