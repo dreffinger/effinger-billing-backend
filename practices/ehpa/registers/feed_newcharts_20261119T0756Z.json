@@ -1,0 +1,37 @@
+{
+ "created": [
+  {
+   "pid": "pat17478470",
+   "chart": "F261119-01",
+   "feed_ids": [
+    "6afd00880efd2006ad96eece",
+    "6afd00880efd2006ad96eece"
+   ],
+   "plans": [],
+   "respparty": "resp21480025",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478471",
+   "chart": "F261119-02",
+   "feed_ids": [
+    "6afcad56149b6669be9239d9"
+   ],
+   "plans": [],
+   "respparty": "resp21480026",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478472",
+   "chart": "F261119-03",
+   "feed_ids": [
+    "6afc938e523e5b0f4f2096ab",
+    "6afc938e523e5b0f4f2096ab"
+   ],
+   "plans": [],
+   "respparty": "resp21480027",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}

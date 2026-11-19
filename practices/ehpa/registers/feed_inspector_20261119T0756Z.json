@@ -1,0 +1,25 @@
+{
+ "fixed": [
+  {
+   "visit": "19461856",
+   "pid": "pat17471471",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/13/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19461863",
+   "pid": "pat17478472",
+   "patterns": [],
+   "note": []
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": [],
+ "quality_removed": []
+}
