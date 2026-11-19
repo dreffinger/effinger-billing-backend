@@ -1,0 +1,216 @@
+{
+ "run": "2026-11-19T0648Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "17469423",
+   "vid": "19364723",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:31\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364735",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:31\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364840",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:32\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369676",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:33\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369706",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:34\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369726",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:35\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370060",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:36\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370081",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:36\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370099",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:37\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384132",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:38\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384238",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:39\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388904",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:40\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388905",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:41\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17472098",
+   "vid": "19389211",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:41\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:42\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:43\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:44\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19452223",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:45\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:45\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:46\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:47\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:48\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:48\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:49\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-ngjrx\" lst=\"11/18/2026 22:48:50\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5bcb8f9b9f-p5z48\" lst=\"11/18/2026 22:48:52\"><Results success=\"1\" /><E"
+   ]
+  }
+ ],
+ "left": []
+}
