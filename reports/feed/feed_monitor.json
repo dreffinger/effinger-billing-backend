@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-19T09:07:01Z",
+ "generated": "2026-11-19T18:42:35Z",
  "as_of": "2026-11-19",
  "coverage": {
   "files": [
@@ -467,22 +467,10 @@
    ],
    "clinician": [
     {
-     "name": "Dr. Effinger (DO)",
-     "lines": 134,
-     "visits": 130,
-     "dollars": 21889.0
-    },
-    {
      "name": "Clinician on file",
-     "lines": 37,
-     "visits": 31,
-     "dollars": 7187.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 6,
-     "visits": 6,
-     "dollars": 941.0
+     "lines": 177,
+     "visits": 167,
+     "dollars": 30017.0
     }
    ],
    "payer": [
@@ -517,56 +505,7 @@
      "dollars": 4202.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 28
-    },
-    {
-     "code": "N390",
-     "patients": 13
-    },
-    {
-     "code": "G20A1",
-     "patients": 12
-    },
-    {
-     "code": "E119",
-     "patients": 12
-    },
-    {
-     "code": "N10",
-     "patients": 12
-    },
-    {
-     "code": "R079",
-     "patients": 12
-    },
-    {
-     "code": "R627",
-     "patients": 11
-    },
-    {
-     "code": "R55",
-     "patients": 11
-    },
-    {
-     "code": "I639",
-     "patients": 10
-    },
-    {
-     "code": "D649",
-     "patients": 9
-    },
-    {
-     "code": "N189",
-     "patients": 9
-    },
-    {
-     "code": "J9621",
-     "patients": 8
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-11-13",
@@ -895,21 +834,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 761,
-     "visits": 536,
-     "dollars": 127604.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 537,
-     "visits": 487,
-     "dollars": 89375.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 129,
-     "visits": 127,
-     "dollars": 19113.0
+     "lines": 1427,
+     "visits": 1150,
+     "dollars": 236092.0
     }
    ],
    "payer": [
@@ -950,56 +877,7 @@
      "dollars": 24556.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 183
-    },
-    {
-     "code": "E785",
-     "patients": 103
-    },
-    {
-     "code": "N390",
-     "patients": 64
-    },
-    {
-     "code": "I639",
-     "patients": 63
-    },
-    {
-     "code": "E119",
-     "patients": 59
-    },
-    {
-     "code": "E039",
-     "patients": 52
-    },
-    {
-     "code": "J449",
-     "patients": 45
-    },
-    {
-     "code": "M6281",
-     "patients": 43
-    },
-    {
-     "code": "F32A",
-     "patients": 42
-    },
-    {
-     "code": "F0390",
-     "patients": 39
-    },
-    {
-     "code": "R55",
-     "patients": 36
-    },
-    {
-     "code": "G20A1",
-     "patients": 34
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-10-21",
@@ -1489,21 +1367,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1026,
-     "visits": 776,
-     "dollars": 166885.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 539,
-     "visits": 488,
-     "dollars": 89690.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 134,
-     "visits": 130,
-     "dollars": 20191.0
+     "lines": 1699,
+     "visits": 1394,
+     "dollars": 276766.0
     }
    ],
    "payer": [
@@ -1544,56 +1410,7 @@
      "dollars": 29517.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 185
-    },
-    {
-     "code": "E785",
-     "patients": 105
-    },
-    {
-     "code": "N390",
-     "patients": 65
-    },
-    {
-     "code": "I639",
-     "patients": 64
-    },
-    {
-     "code": "E119",
-     "patients": 60
-    },
-    {
-     "code": "E039",
-     "patients": 52
-    },
-    {
-     "code": "J449",
-     "patients": 46
-    },
-    {
-     "code": "F32A",
-     "patients": 43
-    },
-    {
-     "code": "M6281",
-     "patients": 43
-    },
-    {
-     "code": "F0390",
-     "patients": 40
-    },
-    {
-     "code": "R55",
-     "patients": 36
-    },
-    {
-     "code": "G20A1",
-     "patients": 34
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-09-01",

@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-19T1240Z",
+ "stamp": "2026-11-19T1840Z",
  "mode": "live",
- "status": "warn",
+ "status": "ok",
  "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "",
+ "note": "backend billing run 18:40Z",
  "run_url": "",
- "started": "2026-11-19T12:44:20Z",
- "ended": "2026-11-19T12:53:19Z",
+ "started": "2026-11-19T18:42:35Z",
+ "ended": "2026-11-19T18:51:40Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,27 +65,25 @@
    "visits": 7869,
    "actionable": 74,
    "actionable_amt": 13485.0,
-   "asof": "2026-11-19 12:53 UTC"
+   "asof": "2026-11-19 18:51 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
-   "summary": "1438 helpers into /home/claude/unbilled",
+   "status": "ok",
+   "summary": "1440 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1438,
-    "registers": 4,
+    "helpers copied": 1440,
+    "registers": 3,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-19T12:44:20Z",
-   "ended": "2026-11-19T12:44:20Z"
+   "errors": [],
+   "started": "2026-11-19T18:42:35Z",
+   "ended": "2026-11-19T18:42:35Z"
   },
   {
    "name": "columns",
@@ -123,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-19T12:44:20Z",
-   "ended": "2026-11-19T12:47:22Z"
+   "started": "2026-11-19T18:42:35Z",
+   "ended": "2026-11-19T18:45:47Z"
   },
   {
    "name": "era",
@@ -146,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-19T12:47:22Z",
-   "ended": "2026-11-19T12:47:26Z"
+   "started": "2026-11-19T18:45:47Z",
+   "ended": "2026-11-19T18:45:50Z"
   },
   {
    "name": "packages",
@@ -158,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-19T12:47:26Z",
-   "ended": "2026-11-19T12:47:26Z"
+   "started": "2026-11-19T18:45:50Z",
+   "ended": "2026-11-19T18:45:50Z"
   },
   {
    "name": "outstanding",
@@ -178,77 +176,77 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1347,
      "dollars": 137362.48,
      "oldest_days": 1100
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 205,
      "dollars": 42419.07,
      "oldest_days": 1196
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 132,
      "dollars": 23911.7,
      "oldest_days": 437
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 326,
      "dollars": 21549.48,
      "oldest_days": 1067
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 65,
      "dollars": 14711.4,
      "oldest_days": 1169
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 68,
      "dollars": 11279.13,
      "oldest_days": 673
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 39,
      "dollars": 8482.0,
      "oldest_days": 369
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 5874.22,
      "oldest_days": 985
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 20,
      "dollars": 4847.0,
      "oldest_days": 212
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 37,
      "dollars": 4743.86,
      "oldest_days": 381
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 39,
      "dollars": 4088.6,
      "oldest_days": 59
@@ -262,22 +260,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-19T12:47:26Z",
-   "ended": "2026-11-19T12:47:27Z"
+   "started": "2026-11-19T18:45:50Z",
+   "ended": "2026-11-19T18:45:52Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7869 denied visits on 879 charts; 74 actionable $13485.00 (70 inside 12 months $12760.00); RESOLVED 4557, WRITTEN-OFF 3000, RESUBMITTED 167, OPEN 145",
+   "summary": "7869 denied visits on 879 charts; 74 actionable $13485.00 (70 inside 12 months $12760.00); WRITTEN-OFF 3000, RESOLVED 4557, RESUBMITTED 167, OPEN 145",
    "counts": {
     "charts read": 879,
     "denial lines": 13322,
     "visits": 7869,
     "actionable": 74,
     "inside 12 months": 70,
-    "status RESOLVED": 4557,
     "status WRITTEN-OFF": 3000,
+    "status RESOLVED": 4557,
     "status RESUBMITTED": 167,
     "status OPEN": 145
    },
@@ -350,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-19T12:47:27Z",
-   "ended": "2026-11-19T12:53:19Z"
+   "started": "2026-11-19T18:45:52Z",
+   "ended": "2026-11-19T18:51:40Z"
   }
  ],
  "packages": [],
