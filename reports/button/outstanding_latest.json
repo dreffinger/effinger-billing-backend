@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-19T06:50:20Z",
+ "at": "2026-11-19T08:08:01Z",
  "as_of": "2026-11-19",
- "total": 319777.24,
- "visits": 2729,
- "charts": 504,
+ "total": 319134.24,
+ "visits": 2725,
+ "charts": 502,
  "over_365": {
   "n": 579,
   "dollars": 28920.24
  },
  "by_bucket": {
   "0-30": {
-   "n": 788,
-   "dollars": 139324.83
+   "n": 784,
+   "dollars": 138681.83
   },
   "31-60": {
    "n": 269,
@@ -38,11 +38,11 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-   "name": "[name]",
-   "n": 1351,
-   "dollars": 138005.48,
+   "name": "",
+   "n": 1347,
+   "dollars": 137362.48,
    "buckets": {
-    "0-30": 58626.56,
+    "0-30": 57983.56,
     "31-60": 11289.99,
     "61-90": 10512.31,
     "91-180": 18116.03,
@@ -53,7 +53,7 @@
   },
   {
    "carrier": "UNI20",
-   "name": "[name]",
+   "name": "",
    "n": 205,
    "dollars": 42419.07,
    "buckets": {
@@ -68,7 +68,7 @@
   },
   {
    "carrier": "FLO99",
-   "name": "[name]",
+   "name": "",
    "n": 160,
    "dollars": 27505.58,
    "buckets": {
@@ -83,7 +83,7 @@
   },
   {
    "carrier": "BCBS",
-   "name": "[name]",
+   "name": "",
    "n": 336,
    "dollars": 23432.48,
    "buckets": {
@@ -98,7 +98,7 @@
   },
   {
    "carrier": "UHCMA",
-   "name": "[name]",
+   "name": "",
    "n": 96,
    "dollars": 19505.4,
    "buckets": {
@@ -113,7 +113,7 @@
   },
   {
    "carrier": "HUM01",
-   "name": "[name]",
+   "name": "",
    "n": 79,
    "dollars": 13364.13,
    "buckets": {
@@ -128,7 +128,7 @@
   },
   {
    "carrier": "CAP07",
-   "name": "[name]",
+   "name": "",
    "n": 39,
    "dollars": 8482.0,
    "buckets": {
@@ -143,7 +143,7 @@
   },
   {
    "carrier": "VACCN",
-   "name": "[name]",
+   "name": "",
    "n": 32,
    "dollars": 5874.22,
    "buckets": {
@@ -158,7 +158,7 @@
   },
   {
    "carrier": "MCAD",
-   "name": "[name]",
+   "name": "",
    "n": 38,
    "dollars": 4884.86,
    "buckets": {
@@ -173,7 +173,7 @@
   },
   {
    "carrier": "RET01",
-   "name": "[name]",
+   "name": "",
    "n": 20,
    "dollars": 4847.0,
    "buckets": {
@@ -188,7 +188,7 @@
   },
   {
    "carrier": "SUN01",
-   "name": "[name]",
+   "name": "",
    "n": 43,
    "dollars": 4652.6,
    "buckets": {
@@ -203,7 +203,7 @@
   },
   {
    "carrier": "CIG09",
-   "name": "CIGNA HEALTH PLANS HMO/PPO/OTR",
+   "name": "",
    "n": 26,
    "dollars": 4031.01,
    "buckets": {
@@ -218,7 +218,7 @@
   },
   {
    "carrier": "SIM01",
-   "name": "[name]",
+   "name": "",
    "n": 14,
    "dollars": 2934.0,
    "buckets": {
@@ -233,7 +233,7 @@
   },
   {
    "carrier": "AET07",
-   "name": "[name]",
+   "name": "",
    "n": 17,
    "dollars": 2544.04,
    "buckets": {
@@ -248,7 +248,7 @@
   },
   {
    "carrier": "TRI05",
-   "name": "[name]",
+   "name": "",
    "n": 73,
    "dollars": 2478.72,
    "buckets": {
@@ -263,7 +263,7 @@
   },
   {
    "carrier": "UMR",
-   "name": "[name]",
+   "name": "",
    "n": 16,
    "dollars": 2471.0,
    "buckets": {
@@ -278,7 +278,7 @@
   },
   {
    "carrier": "WEL04",
-   "name": "[name]",
+   "name": "",
    "n": 13,
    "dollars": 2405.0,
    "buckets": {
@@ -293,7 +293,7 @@
   },
   {
    "carrier": "AET12",
-   "name": "[name]",
+   "name": "",
    "n": 50,
    "dollars": 1854.51,
    "buckets": {
@@ -308,7 +308,7 @@
   },
   {
    "carrier": "TRI00",
-   "name": "[name]",
+   "name": "",
    "n": 6,
    "dollars": 1540.0,
    "buckets": {
@@ -323,7 +323,7 @@
   },
   {
    "carrier": "AMB03",
-   "name": "[name]",
+   "name": "",
    "n": 11,
    "dollars": 1375.2,
    "buckets": {
@@ -338,7 +338,7 @@
   },
   {
    "carrier": "FIR07",
-   "name": "[name]",
+   "name": "",
    "n": 8,
    "dollars": 1087.0,
    "buckets": {
@@ -353,7 +353,7 @@
   },
   {
    "carrier": "BCBS1",
-   "name": "[name]",
+   "name": "",
    "n": 3,
    "dollars": 736.0,
    "buckets": {
@@ -368,7 +368,7 @@
   },
   {
    "carrier": "WEL07",
-   "name": "[name]",
+   "name": "",
    "n": 4,
    "dollars": 704.0,
    "buckets": {
@@ -383,7 +383,7 @@
   },
   {
    "carrier": "CHA03",
-   "name": "[name]",
+   "name": "",
    "n": 34,
    "dollars": 697.54,
    "buckets": {
@@ -398,7 +398,7 @@
   },
   {
    "carrier": "GEH04",
-   "name": "[name]",
+   "name": "",
    "n": 46,
    "dollars": 471.05,
    "buckets": {
@@ -428,7 +428,7 @@
   },
   {
    "carrier": "AAR01",
-   "name": "AARP",
+   "name": "",
    "n": 3,
    "dollars": 318.0,
    "buckets": {
@@ -443,7 +443,7 @@
   },
   {
    "carrier": "LAN",
-   "name": "[name]",
+   "name": "",
    "n": 1,
    "dollars": 310.0,
    "buckets": {
@@ -473,7 +473,7 @@
   },
   {
    "carrier": "CON08",
-   "name": "[name]",
+   "name": "",
    "n": 2,
    "dollars": 67.35,
    "buckets": {
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 543,
-   "dollars": 94469.35
+   "n": 539,
+   "dollars": 93826.35
   }
  ],
  "oldest": [
@@ -21459,14 +21459,6 @@
    "dos": "2026-11-10"
   },
   {
-   "visitid": 19461087,
-   "patientid": 17478396,
-   "carriercode": "FLO02",
-   "insbalance": 310.0,
-   "days": 9,
-   "dos": "2026-11-10"
-  },
-  {
    "visitid": 19461086,
    "patientid": 23303,
    "carriercode": "UNI20",
@@ -21819,14 +21811,6 @@
    "dos": "2026-11-11"
   },
   {
-   "visitid": 19461019,
-   "patientid": 17478396,
-   "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 8,
-   "dos": "2026-11-11"
-  },
-  {
    "visitid": 19461025,
    "patientid": 17471478,
    "carriercode": "FLO02",
@@ -22123,14 +22107,6 @@
    "dos": "2026-11-12"
   },
   {
-   "visitid": 19461123,
-   "patientid": 17478395,
-   "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 7,
-   "dos": "2026-11-12"
-  },
-  {
    "visitid": 19461116,
    "patientid": 17478400,
    "carriercode": "FLO02",
@@ -22383,14 +22359,6 @@
    "patientid": 12182947,
    "carriercode": "WEL04",
    "insbalance": 160.0,
-   "days": 6,
-   "dos": "2026-11-13"
-  },
-  {
-   "visitid": 19461266,
-   "patientid": 17478395,
-   "carriercode": "FLO02",
-   "insbalance": 111.0,
    "days": 6,
    "dos": "2026-11-13"
   },

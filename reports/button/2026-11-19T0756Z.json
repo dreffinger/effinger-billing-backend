@@ -1,0 +1,260 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-19T0756Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns CR/CI/Unb/Exc 0/1/0/1 -> 0/1/0/1 (two standing holds); ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0; feed 32 visits / $6,454 entered (3 new charts, 1 new no-plan card)",
+ "note": "no BUTTON PRESS brief received - live, all steps, every approved package; fired 07:55Z alongside William's 0755Z chat session (board answers + cascade), AMD writes waited for its RUN COMPLETE (50 min)",
+ "run_url": "https://claude.ai/code/session_01HHfWRBiCmSTHa6mnqjF7Dz",
+ "started": "2026-11-19T07:55:00Z",
+ "ended": "2026-11-19T09:05:47Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 319134.24,
+   "visits": 2725,
+   "charts": 502,
+   "over_365": {
+    "n": 579,
+    "dollars": 28920.24
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "board",
+   "title": "Board input (items on Claude's turn, drops, denials queue)",
+   "status": "ok",
+   "summary": "27 cards William answered 06:57-07:50Z were worked by the 0755Z chat session (its digest); this run: Kousser CHP eligibility with the MBI -> AAA 72 (CHP number still needed), Keilty chart 21992 CHP member number updated from the sheet pasted on Meyer's card (CHP active); drops 0; denials queue 0; board_updates_2026-11-19T0756Z.json (3 ops) in board inbox",
+   "counts": {
+    "cards_read": 33,
+    "ops": 3,
+    "drops": 0,
+    "denials_commands": 0
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "chart": "17478219",
+     "visits": "19459226,19459521",
+     "dollars": 639,
+     "result": "CHP member number needed"
+    },
+    {
+     "chart": "21992",
+     "result": "CAP07 ins5996 subscribernum updated; no open charges"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-19T08:00:00Z",
+   "ended": "2026-11-19T09:04:00Z"
+  },
+  {
+   "name": "columns",
+   "title": "Feed + Charge Review / Claim Inspector / Unbilled / Exclusions",
+   "status": "ok",
+   "summary": "feed: 1 new file, 32 visits / $6,454 entered, 3 new charts, 4 cascade holds (chart 17478470 no plan -> card; 17478455 CHP; 17472491, 12182947 standing); retry-dx waits on S82.843D; order sweep 7 empty-order visits, 0 saved; columns 0/1/0/1 -> 0/1/0/1: inspector chart 17478413 v19461189 Pattern 28158 (William's hold), exclusion AET12 chart 24750 v19455937 PREF0288 (carrier master)",
+   "counts": {
+    "feed_visits": 32,
+    "feed_new_charts": 3,
+    "feed_holds": 4,
+    "sweep_empty_order": 7,
+    "sweep_saved": 0
+   },
+   "dollars": {
+    "feed_entered": 6454.0
+   },
+   "lines": [
+    {
+     "column": "claim_inspector",
+     "chart": "17478413",
+     "visit": "19461189",
+     "error": "Pattern 28158",
+     "action": "held"
+    },
+    {
+     "column": "exclusions",
+     "chart": "24750",
+     "visit": "19455937",
+     "error": "PREF0288",
+     "action": "held"
+    },
+    {
+     "column": "feed",
+     "chart": "17478470",
+     "visits": "19461860,19461854",
+     "dollars": 603,
+     "action": "no plan - board card"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-19T08:47:00Z",
+   "ended": "2026-11-19T09:02:00Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting + Availity",
+   "status": "ok",
+   "summary": "ERA Center 0 unposted checks before and after; no Availity PDF / 835 / Check-EFT export newer than the registers",
+   "counts": {
+    "checks_before": 0,
+    "checks_after": 0
+   },
+   "dollars": {
+    "before": 0.0,
+    "after": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:40:00Z",
+   "ended": "2026-11-19T09:01:00Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check + void rules",
+   "status": "ok",
+   "summary": "precheck --days 3 --max 120: 31 pairs, 0 new look-ups, 4 flagged (HATHERLEY FLO99 no Stedi payer; BLACKWOOD + DANIEL CHP member numbers - carded; LAWHORN COL07 retiree secondary false positive); void_rules 1 open, 0 voided; Stedi this run 4 calls",
+   "counts": {
+    "pairs": 31,
+    "flagged": 4,
+    "voided": 0
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "chart": "17478452",
+     "dollars": 421,
+     "flag": "ADVANTAGE PLAN CHP"
+    },
+    {
+     "chart": "17478455",
+     "dollars": 310,
+     "flag": "ADVANTAGE PLAN CHP"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-19T08:58:00Z",
+   "ended": "2026-11-19T08:59:00Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "skipped",
+   "summary": "none approved (register: 94 done)",
+   "counts": {
+    "approved": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T09:05:47Z",
+   "ended": "2026-11-19T09:05:47Z"
+  },
+  {
+   "name": "cred",
+   "title": "cred_check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; LEIE 84,224 rows 0 matches; reminders none - no cred_updates file",
+   "counts": {
+    "nppes_changed": 0,
+    "leie_matches": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:08:00Z",
+   "ended": "2026-11-19T08:10:00Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims",
+   "status": "ok",
+   "summary": "2725 visits on 502 charts, $319134.24 open (579 over 365 days $28920.24)",
+   "counts": {
+    "visits": 2725,
+    "charts": 502
+   },
+   "dollars": {
+    "total": 319134.24
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:08:00Z",
+   "ended": "2026-11-19T08:09:00Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working denials refresh",
+   "status": "ok",
+   "summary": "879 charts read, 7886 visits, 74 actionable $13485.0",
+   "counts": {
+    "visits": 7886,
+    "actionable": 74
+   },
+   "dollars": {
+    "actionable": 13485.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:10:00Z",
+   "ended": "2026-11-19T08:16:00Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "chart 17478470 (feed, HCA 11/17 admission): facesheet or card - $603",
+  "chart 17478219: CHP member number - $639",
+  "chart 17478332: Florida Blue member number - $433",
+  "chart 17478200: Detego Health carrier in Master Files - $421",
+  "charts 17478452 / 17478455: CHP member numbers - $731",
+  "chart 17478413 v19461189: Pattern 28158 O24.419 coding call",
+  "AET12 carrier master (chart 24750 v19455937, $315)",
+  "chart 17472729 v19458775: clinician move (chat session)",
+  "retry-dx: S82.843D not in AMD's diagnosis list"
+ ],
+ "errors": []
+}

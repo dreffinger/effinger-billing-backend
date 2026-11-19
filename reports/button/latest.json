@@ -1,15 +1,15 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-19T0755Z",
+ "stamp": "2026-11-19T0756Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; board answers: 35 visits sent; feed holds 51 -> 5; 75 Medicaid-plan visits re-rendered and re-sent; re-sent 134 visits $22,899",
- "note": "chat session, William-requested: billing routine + insurance cascade with the board's insurance answers",
- "run_url": "https://claude.ai/code/session_01HHfWRBPyeFfvM7JdPwYxtJ",
+ "headline": "Columns CR/CI/Unb/Exc 0/1/0/1 -> 0/1/0/1 (two standing holds); ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0; feed 32 visits / $6,454 entered (3 new charts, 1 new no-plan card)",
+ "note": "no BUTTON PRESS brief received - live, all steps, every approved package; fired 07:55Z alongside William's 0755Z chat session (board answers + cascade), AMD writes waited for its RUN COMPLETE (50 min)",
+ "run_url": "https://claude.ai/code/session_01HHfWRBiCmSTHa6mnqjF7Dz",
  "started": "2026-11-19T07:55:00Z",
- "ended": "2026-11-19T09:40:00Z",
+ "ended": "2026-11-19T09:05:47Z",
  "engine": "claude",
- "trigger": "chat",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
   "columns": {
    "before": {
@@ -28,26 +28,26 @@
   "era": {
    "before": {
     "checks": 0,
-    "unposted": 0
+    "unposted": 0.0
    },
    "after": {
     "checks": 0,
-    "unposted": 0
+    "unposted": 0.0
    }
   },
   "posted": {
-   "pay": 433.0,
-   "woins": 630.0,
+   "pay": 0.0,
+   "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
   },
   "resent": {
-   "visits": 134,
-   "dollars": 22898.88
+   "visits": 0,
+   "dollars": 0.0
   },
   "written_off": {
-   "count": 6,
-   "dollars": 945.0
+   "count": 0,
+   "dollars": 0.0
   },
   "packages": {
    "applied": 0,
@@ -55,272 +55,206 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 319777.24,
-   "visits": 2729,
-   "charts": 504,
+   "total": 319134.24,
+   "visits": 2725,
+   "charts": 502,
    "over_365": {
     "n": 579,
     "dollars": 28920.24
    }
-  },
-  "denials": {
-   "visits": 7886,
-   "actionable": 74,
-   "actionable_amt": 13485.0,
-   "asof": "2026-11-19 06:55 UTC"
   }
  },
  "steps": [
   {
-   "name": "bootstrap",
-   "title": "Workspace and login",
-   "status": "ok",
-   "summary": "repository main a1d4f4d; state files from Drive workspace mirror; one AdvancedMD login; Stedi through the environment credential",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-19T07:55:00Z",
-   "ended": "2026-11-19T08:02:00Z"
-  },
-  {
-   "name": "feed",
-   "title": "Claimocity feed",
-   "status": "ok",
-   "summary": "31 objects, 0 new (newest 20261118); retry-dx: 1 visit still waits on a diagnosis code not in AdvancedMD's list (S82.843D)",
-   "counts": {
-    "new_files": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-19T08:03:00Z",
-   "ended": "2026-11-19T08:05:00Z"
-  },
-  {
    "name": "board",
-   "title": "Insurance Refresh Board answers",
+   "title": "Board input (items on Claude's turn, drops, denials queue)",
    "status": "ok",
-   "summary": "27 cards answered by William 11/19 worked: 13 charts insured or corrected and 35 visits sent (6859 dollars); 3 charges voided on his word; 2 charts back on his turn (member number needed), 1 carrier to add; 17 older answers checked live, 2 write-offs and 1 patient check posted",
+   "summary": "27 cards William answered 06:57-07:50Z were worked by the 0755Z chat session (its digest); this run: Kousser CHP eligibility with the MBI -> AAA 72 (CHP number still needed), Keilty chart 21992 CHP member number updated from the sheet pasted on Meyer's card (CHP active); drops 0; denials queue 0; board_updates_2026-11-19T0756Z.json (3 ops) in board inbox",
    "counts": {
-    "cards": 44,
-    "plans_added": 14,
-    "visits_sent": 35,
-    "charges_voided": 3
+    "cards_read": 33,
+    "ops": 3,
+    "drops": 0,
+    "denials_commands": 0
    },
-   "dollars": {
-    "sent": 6859.0
-   },
+   "dollars": {},
    "lines": [
     {
-     "chart": "17478204",
-     "visits": 1,
-     "sent": 111.0,
-     "payer": "BCBS"
+     "chart": "17478219",
+     "visits": "19459226,19459521",
+     "dollars": 639,
+     "result": "CHP member number needed"
     },
     {
-     "chart": "17478396",
-     "visits": 2,
-     "sent": 421.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478215",
-     "visits": 2,
-     "sent": 421.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478212",
-     "visits": 2,
-     "sent": 421.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478201",
-     "visits": 2,
-     "sent": 421.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478205",
-     "visits": 5,
-     "sent": 901.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478203",
-     "visits": 1,
-     "sent": 111.0,
-     "payer": "CAP07"
-    },
-    {
-     "chart": "17478216",
-     "visits": 1,
-     "sent": 315.0,
-     "payer": "FLO02"
-    },
-    {
-     "chart": "17478260",
-     "visits": 2,
-     "sent": 421.0,
-     "payer": "BCBS"
-    },
-    {
-     "chart": "17478214",
-     "visits": 4,
-     "sent": 643.0,
-     "payer": "AMB03"
-    },
-    {
-     "chart": "17478224",
-     "visits": 1,
-     "sent": 315.0,
-     "payer": "FLO02"
-    },
-    {
-     "chart": "17478221",
-     "visits": 1,
-     "sent": 315.0,
-     "payer": "UNI20"
-    },
-    {
-     "chart": "17472826",
-     "visits": 11,
-     "sent": 2043.0,
-     "payer": "BCBS"
-    },
-    {
-     "chart": "17478228",
-     "action": "visit 19459258 voided",
-     "dollars": 389.0
-    },
-    {
-     "chart": "17477375",
-     "action": "duplicate charge 23366554 voided",
-     "dollars": 256.0
-    },
-    {
-     "chart": "44944",
-     "action": "99344 of visit 19460446 voided; 99349 entered on visit 19461756",
-     "dollars": 198.0
-    },
-    {
-     "chart": "17473383",
-     "action": "WOINS 4 lines",
-     "dollars": 630.0
-    },
-    {
-     "chart": "17477639",
-     "action": "patient check posted 433.00; WOBAD 315.00",
-     "dollars": 748.0
+     "chart": "21992",
+     "result": "CAP07 ins5996 subscribernum updated; no open charges"
     }
    ],
    "errors": [],
-   "started": "2026-11-19T08:05:00Z",
-   "ended": "2026-11-19T09:10:00Z"
+   "started": "2026-11-19T08:00:00Z",
+   "ended": "2026-11-19T09:04:00Z"
   },
   {
    "name": "columns",
-   "title": "Claims Center columns",
+   "title": "Feed + Charge Review / Claim Inspector / Unbilled / Exclusions",
    "status": "ok",
-   "summary": "Charge Review 0 -> 0; Claim Inspector 1 -> 1 (one new CCM add-on advisory bypassed; chart 17478413 diagnosis hold stays); Unbilled 0 -> 0; Exclusions 1 -> 1 (carrier AET12 hold). Never-billed feed visits with an empty insurance order: 51 -> 5 (23 sent after a dated eligibility check, 14 of them after the admission-date rule)",
+   "summary": "feed: 1 new file, 32 visits / $6,454 entered, 3 new charts, 4 cascade holds (chart 17478470 no plan -> card; 17478455 CHP; 17472491, 12182947 standing); retry-dx waits on S82.843D; order sweep 7 empty-order visits, 0 saved; columns 0/1/0/1 -> 0/1/0/1: inspector chart 17478413 v19461189 Pattern 28158 (William's hold), exclusion AET12 chart 24750 v19455937 PREF0288 (carrier master)",
    "counts": {
-    "feed_order_sent": 23,
-    "feed_order_left": 5,
-    "inspector_bypassed": 1
+    "feed_visits": 32,
+    "feed_new_charts": 3,
+    "feed_holds": 4,
+    "sweep_empty_order": 7,
+    "sweep_saved": 0
    },
    "dollars": {
-    "sent": 4664.0
+    "feed_entered": 6454.0
    },
    "lines": [
     {
-     "rule": "admission date = most recent initial hospital visit on or before the visit",
-     "visits": 14,
-     "dollars": 2944.0
+     "column": "claim_inspector",
+     "chart": "17478413",
+     "visit": "19461189",
+     "error": "Pattern 28158",
+     "action": "held"
     },
     {
-     "rule": "kept under the physician on William's word",
-     "visits": 9,
-     "dollars": 1720.0
+     "column": "exclusions",
+     "chart": "24750",
+     "visit": "19455937",
+     "error": "PREF0288",
+     "action": "held"
+    },
+    {
+     "column": "feed",
+     "chart": "17478470",
+     "visits": "19461860,19461854",
+     "dollars": 603,
+     "action": "no plan - board card"
     }
    ],
    "errors": [],
-   "started": "2026-11-19T08:15:00Z",
-   "ended": "2026-11-19T09:30:00Z"
+   "started": "2026-11-19T08:47:00Z",
+   "ended": "2026-11-19T09:02:00Z"
   },
   {
-   "name": "rerender",
-   "title": "Medicaid-plan claims re-rendered to the physician",
+   "name": "era",
+   "title": "ERA posting + Availity",
    "status": "ok",
-   "summary": "75 visits (77 lines, 11178 dollars) moved from the nurse practitioner to the physician with the group as billing provider and re-sent as originals: FLO99 28, UHCMA 31, HUM01 11, SUN01 4, MCAD 1; 12 visits (279 dollars) carry a payment and were not touched",
+   "summary": "ERA Center 0 unposted checks before and after; no Availity PDF / 835 / Check-EFT export newer than the registers",
    "counts": {
-    "visits": 75,
-    "settling_skipped": 12
+    "checks_before": 0,
+    "checks_after": 0
    },
    "dollars": {
-    "sent": 11177.88
+    "before": 0.0,
+    "after": 0.0
    },
    "lines": [],
    "errors": [],
    "started": "2026-11-19T08:40:00Z",
-   "ended": "2026-11-19T09:25:00Z"
-  },
-  {
-   "name": "era",
-   "title": "ERA posting",
-   "status": "ok",
-   "summary": "ERA Center 0 checks 0.00 -> 0 checks 0.00",
-   "counts": {
-    "checks": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-19T08:15:00Z",
-   "ended": "2026-11-19T08:15:30Z"
+   "ended": "2026-11-19T09:01:00Z"
   },
   {
    "name": "cascade",
-   "title": "Insurance cascade pre-check",
+   "title": "Cascade pre-check + void rules",
    "status": "ok",
-   "summary": "32 patient/payer pairs checked (0 new look-ups), 4 flagged - all four already carded by the 05:36Z nightly cascade (2 Capital Health Plan member numbers needed: charts 17478452 and one more; 2 no change); void-on-arrival rules: 1 open, 0 voided; Stedi this run: 27 calls, 10.00 dollars at list price",
+   "summary": "precheck --days 3 --max 120: 31 pairs, 0 new look-ups, 4 flagged (HATHERLEY FLO99 no Stedi payer; BLACKWOOD + DANIEL CHP member numbers - carded; LAWHORN COL07 retiree secondary false positive); void_rules 1 open, 0 voided; Stedi this run 4 calls",
    "counts": {
-    "pairs": 32,
+    "pairs": 31,
     "flagged": 4,
-    "stedi_calls": 27
+    "voided": 0
    },
-   "dollars": {
-    "stedi": 10.0
-   },
-   "lines": [],
+   "dollars": {},
+   "lines": [
+    {
+     "chart": "17478452",
+     "dollars": 421,
+     "flag": "ADVANTAGE PLAN CHP"
+    },
+    {
+     "chart": "17478455",
+     "dollars": 310,
+     "flag": "ADVANTAGE PLAN CHP"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-19T08:28:00Z",
-   "ended": "2026-11-19T08:33:00Z"
+   "started": "2026-11-19T08:58:00Z",
+   "ended": "2026-11-19T08:59:00Z"
   },
   {
    "name": "packages",
    "title": "Approved packages",
    "status": "skipped",
-   "summary": "none approved",
-   "counts": {},
+   "summary": "none approved (register: 94 done)",
+   "counts": {
+    "approved": 0
+   },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "",
-   "ended": ""
+   "started": "2026-11-19T09:05:47Z",
+   "ended": "2026-11-19T09:05:47Z"
+  },
+  {
+   "name": "cred",
+   "title": "cred_check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; LEIE 84,224 rows 0 matches; reminders none - no cred_updates file",
+   "counts": {
+    "nppes_changed": 0,
+    "leie_matches": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:08:00Z",
+   "ended": "2026-11-19T08:10:00Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims",
+   "status": "ok",
+   "summary": "2725 visits on 502 charts, $319134.24 open (579 over 365 days $28920.24)",
+   "counts": {
+    "visits": 2725,
+    "charts": 502
+   },
+   "dollars": {
+    "total": 319134.24
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:08:00Z",
+   "ended": "2026-11-19T08:09:00Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working denials refresh",
+   "status": "ok",
+   "summary": "879 charts read, 7886 visits, 74 actionable $13485.0",
+   "counts": {
+    "visits": 7886,
+    "actionable": 74
+   },
+   "dollars": {
+    "actionable": 13485.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-19T08:10:00Z",
+   "ended": "2026-11-19T08:16:00Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "chart 17478332: Florida Blue member number (433 dollars) - Humana is inactive on the visit date",
-  "chart 17478219: Capital Health Plan member number (639 dollars)",
-  "chart 17478200: carrier Detego Health is not in AdvancedMD - add it in Master Files (421 dollars)",
-  "chart 17472729 visit 19458775 (300 dollars): Medicare names Florida Blue as another payer on the visit date - member number needed",
-  "chart 17478452 and one more new hospital chart: Capital Health Plan member numbers (nightly cascade cards)",
-  "chart 17472826: the 4/14-4/15/2026 visits written off 9/9 (421 dollars) - reverse and resend, or leave",
-  "chart 17477225: the 16.93 dollar supplement payment waits for the new carrier's id",
-  "outstanding claims and denials pages were not refreshed by this run (last refresh 06:55Z)"
+  "chart 17478470 (feed, HCA 11/17 admission): facesheet or card - $603",
+  "chart 17478219: CHP member number - $639",
+  "chart 17478332: Florida Blue member number - $433",
+  "chart 17478200: Detego Health carrier in Master Files - $421",
+  "charts 17478452 / 17478455: CHP member numbers - $731",
+  "chart 17478413 v19461189: Pattern 28158 O24.419 coding call",
+  "AET12 carrier master (chart 24750 v19455937, $315)",
+  "chart 17472729 v19458775: clinician move (chat session)",
+  "retry-dx: S82.843D not in AMD's diagnosis list"
  ],
  "errors": []
 }
