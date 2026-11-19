@@ -111,12 +111,32 @@ def med_summ(j):
             o["other"].append({"code": x.get("code"), "type": x.get("insuranceTypeCode"), "typeName": x.get("insuranceType"), "plan": x.get("planCoverage"),
                                "dates": x.get("benefitsDateInformation"), "entity": [(e.get("entityName"), e.get("entityIdentifierValue")) for e in x.get("benefitsRelatedEntities") or []]})
     return o
+# 11/19/2026 (William, board row grantham-carlotta-17478318: "clearly you should be billing chp here ... not a dental plan put something into effect
+#   here to fix that reasoning during the insurance cascade"): a discovery hit is a MEDICAL payer only when nothing in its own words says dental,
+#   vision or life. The feed's first-insurance step has refused such hits since 11/9 (claimocity_verify.disc_refusal); this puts the same test where
+#   EVERY caller reads a discovery answer, so the pre-claim check, the hold fixer and any hand look-up see 'not_medical' on the item and never offer
+#   or add it as the plan to bill. The words are read from the payer name, every plan-coverage text and every insurance-type text of the item.
+NOT_MEDICAL_WORDS = r"DENTAL|VISION|\bLIFE\b|METLIFE|EYEMED|\bVSP\b"
+def disc_not_medical(it):
+    """The dental / vision / life word that makes a discovery item NOT a medical payer, "" when none is found (TRICARE FOR LIFE is medical)."""
+    b = it.get("benefitsInformation") or []
+    words = [(it.get("payer") or {}).get("name") or ""] + [str(x.get(k) or "") for x in b if isinstance(x, dict) for k in ("planCoverage", "insuranceType")]
+    t = " ".join(words).upper().replace("TRICARE FOR LIFE", "TRICARE")
+    m = re.search(NOT_MEDICAL_WORDS, t)
+    return m.group(0) if m else ""
 def disc_summ(j):
+    import re as _re      # self-contained on purpose: tools/selftest/test_feed_order.py runs this one function alone
+    def _nm(it):
+        b = it.get("benefitsInformation") or []
+        t = " ".join([(it.get("payer") or {}).get("name") or ""] + [str(x.get(k) or "") for x in b if isinstance(x, dict) for k in ("planCoverage", "insuranceType")]).upper().replace("TRICARE FOR LIFE", "TRICARE")
+        m = _re.search(r"DENTAL|VISION|\bLIFE\b|METLIFE|EYEMED|\bVSP\b", t)
+        return m.group(0) if m else ""
     out = []
     for it in j.get("items") or []:
         b = it.get("benefitsInformation") or []; act = next((x for x in b if x.get("code") == "1"), b[0] if b else {})
         out.append({"payer": (it.get("payer") or {}).get("name"), "payerId": it.get("payerId"), "member": (it.get("subscriber") or {}).get("memberId"),
-                    "dates": it.get("planDateInformation"), "status": act.get("name"), "plan": act.get("planCoverage"), "conf": it.get("confidence")})
+                    "dates": it.get("planDateInformation"), "status": act.get("name"), "plan": act.get("planCoverage"), "conf": it.get("confidence"),
+                    "not_medical": _nm(it)})
     return {"found": j.get("coveragesFound"), "items": out, "errors": j.get("errors")}
 
 # 9/22/2026 DECEASED GUARD: every Medicare 271 feeds the date-of-death cache (core/deceased_guard.py) when the caller passes pid=.

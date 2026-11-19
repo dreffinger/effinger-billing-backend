@@ -1351,6 +1351,27 @@
    "status": "proven",
    "tags": [],
    "id": "demographics/patch-patient-name-names-list"
+  },
+  {
+   "id": "paymententry/addpayments-patient-check",
+   "folder": "Payments",
+   "name": "addpayments - patient check (Payment Entry, patient tab)",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml",
+    "Cookie": "token={{token}}"
+   },
+   "body": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"1\" postingmethod=\"\" amount=\"{{amount}}\" paycode=\"PE\" woamount=\"0.00\" paymethod=\"11\" carrierid=\"\" depositdate=\"{{depositdate}}\" case_note=\"{{note}}\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"{{username}}\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"{{allowed}}\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"{{profile}}\"><paymentlist><payment amount=\"{{share}}\" id=\"\" status=\"B\"/></paymentlist><writeofflist/></charge></chargelist></patient></ppmdmsg>",
+   "body_language": "text",
+   "description": "Posts a patient or guardian check to one or more charges (one <charge> per line, each with its share). First used 11/19/2026: success=\"1\" paymentid returned; gettxhistory shows the payment with source 1 and the check number, patient balance 0.",
+   "helper": "patient_pay_1119.py <check> <deposit> <chargeid>=<amount> ... [--live]",
+   "captured": "11/19/2026",
+   "status": "proven",
+   "tags": [
+    "payment",
+    "patient"
+   ]
   }
  ]
 }

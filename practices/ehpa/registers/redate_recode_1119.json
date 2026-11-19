@@ -1,0 +1,32 @@
+[
+ {
+  "pid": "44944",
+  "old_charge": "23373129",
+  "old_visit": "19460446",
+  "new_visit": "vst19461756",
+  "new_dos": "11/06/2026",
+  "new_code": "pcode65142",
+  "fee": "198.00",
+  "new_charges": [
+   "23374700"
+  ],
+  "voids": [
+   [
+    "writeoff",
+    "wo22508805",
+    true
+   ],
+   [
+    "payment",
+    "pay24673290",
+    true
+   ],
+   [
+    "charge",
+    "23373129",
+    true
+   ]
+  ],
+  "why": "William 11/19/2026 chat: void the 99344, bill 99349 on the next date"
+ }
+]

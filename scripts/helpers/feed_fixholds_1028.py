@@ -57,6 +57,7 @@ for pid, rec in prev.items():
                 for it in ds.get("items") or []:
                     txt = ((it.get("plan") or "") + " " + (it.get("payer") or "")).upper()
                     if re.search(r"PDP|PRESCRIPTION|PART D", txt): continue
+                    if it.get("not_medical"): continue      # 11/19/2026: never take a dental / vision / life hit's member number for a medical plan
                     if map_name(it.get("payer")) == code and it.get("member"): member = it["member"]; break
             add(code, member, "CMS names it the MA/primary payer; member id from %s" % src)
         m = re.search(r"Medicaid 271 names SMMC MMA plan (\w+) but the chart has no", holds)
@@ -90,7 +91,7 @@ for pid, rec in prev.items():
                 ds = stedi.disc_summ(stedi.disc(first, last, msg.get("dob", "")[:8], "FL"))
                 for it in ds.get("items") or []:
                     txt = ((it.get("plan") or "") + " " + (it.get("payer") or "")).upper()
-                    if re.search(r"PDP|PRESCRIPTION|PART D", txt) or not (it.get("status") or "").upper().startswith("ACTIVE") or not it.get("member"): continue
+                    if re.search(r"PDP|PRESCRIPTION|PART D", txt) or it.get("not_medical") or not (it.get("status") or "").upper().startswith("ACTIVE") or not it.get("member"): continue      # 11/19/2026: not_medical = a dental / vision / life hit (stedi.disc_not_medical) - the path that insured chart 17478318 from a dental HMO
                     code = map_name(it.get("payer"))
                     if code and code not in chart_codes:
                         add(code, it["member"], "Stedi discovery '%s' %s" % ((it.get("payer") or "")[:25], it.get("plan") or "")); chart_codes.add(code); added = True

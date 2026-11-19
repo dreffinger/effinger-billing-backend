@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-11-19, 70 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-11-19, 71 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1952,6 +1952,40 @@
       "body": {
        "mode": "raw",
        "raw": "{\"file_id\": \"{{drive_file_id}}\", \"start\": \"{{byte_offset}}\", \"length\": \"4000000\"}  -> results.data.data {name, size, md5Checksum, start, length_returned, chunk_sha256, eof, data(base64)}",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "3d8214c0-c529-5e4f-b10c-73c14eeda102",
+   "name": "Payments",
+   "item": [
+    {
+     "id": "ac31dd84-ceb0-5a8f-b042-8efdc6743609",
+     "name": "addpayments - patient check (Payment Entry, patient tab)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Posts a patient or guardian check to one or more charges (one <charge> per line, each with its share). First used 11/19/2026: success=\"1\" paymentid returned; gettxhistory shows the payment with source 1 and the check number, patient balance 0.\n\nHelper: patient_pay_1119.py <check> <deposit> <chargeid>=<amount> ... [--live]\nCaptured: 11/19/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"1\" postingmethod=\"\" amount=\"{{amount}}\" paycode=\"PE\" woamount=\"0.00\" paymethod=\"11\" carrierid=\"\" depositdate=\"{{depositdate}}\" case_note=\"{{note}}\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"{{username}}\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"{{allowed}}\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"{{profile}}\"><paymentlist><payment amount=\"{{share}}\" id=\"\" status=\"B\"/></paymentlist><writeofflist/></charge></chargelist></patient></ppmdmsg>",
        "options": {
         "raw": {
          "language": "text"

@@ -51,8 +51,7 @@
    "decision": "send_if_active_on_dos",
    "order": "1",
    "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459088": {
    "chart": "pat17472729",
@@ -165,8 +164,7 @@
    "decision": "send_if_active_on_dos",
    "order": "1",
    "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459224": {
    "chart": "pat17478202",
@@ -358,8 +356,7 @@
     "2"
    ],
    "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459232": {
    "chart": "pat17478209",
@@ -406,8 +403,7 @@
     "2"
    ],
    "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459212": {
    "chart": "pat17478210",
@@ -424,8 +420,7 @@
    "decision": "send_if_active_on_dos",
    "order": "1",
    "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459240": {
    "chart": "pat17478210",
@@ -491,8 +486,7 @@
    "decision": "send_if_active_on_dos",
    "order": "1",
    "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459223": {
    "chart": "pat17478217",
@@ -1198,8 +1192,7 @@
    "order": "1",
    "evidence": "feed insurance block (plan added 10/29)",
    "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459211": {
    "chart": "pat17478208",
@@ -1217,8 +1210,7 @@
    "order": "1",
    "evidence": "feed insurance block (plan added 10/29)",
    "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459209": {
    "chart": "pat17478208",
@@ -1236,8 +1228,7 @@
    "order": "1",
    "evidence": "feed insurance block (plan added 10/29)",
    "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19459230": {
    "chart": "pat17478208",
@@ -1272,8 +1263,7 @@
    "order": "1",
    "evidence": "feed insurance block (plan added 10/29)",
    "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
-   "clinician": "prof15",
-   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+   "clinician_note": "the feed names the nurse practitioner: William, November 19, 2026 about 08:50 UTC, in chat, asked who these 10 visits bill under: \"bill them under me\" - it stays under the physician (prof13); no clinician change"
   },
   "vst19460175": {
    "chart": "pat17478273",
@@ -1446,6 +1436,24 @@
  },
  "answers": [
   "November 10, 2026 about 15:15 UTC: \"yes to all your recommendations\"",
-  "November 10, 2026 about 15:18 UTC, on the two initial visits: \"i saw those patients\""
+  "November 10, 2026 about 15:18 UTC, on the two initial visits: \"i saw those patients\"",
+  {
+   "when": "2026-11-19T08:50Z",
+   "who": "William (owner), in chat",
+   "word": "bill them under me",
+   "about": "the 10 never-billed feed visits entered under the physician whose feed message names the nurse practitioner (the 11/10 Q4 move is withdrawn for these visits)",
+   "visits": [
+    "vst19458775",
+    "vst19459190",
+    "vst19459208",
+    "vst19459211",
+    "vst19459209",
+    "vst19459210",
+    "vst19459212",
+    "vst19459256",
+    "vst19459257",
+    "vst19459259"
+   ]
+  }
  ]
 }

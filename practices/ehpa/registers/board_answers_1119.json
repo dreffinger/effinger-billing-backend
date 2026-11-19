@@ -1,0 +1,158 @@
+{
+ "A": {
+  "pid": "17478204",
+  "plans": {
+   "car6062": "ins9521323"
+  },
+  "visits": {
+   "19459195": "9195 insorder 1 -> 2, list [] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  },
+  "order": "2"
+ },
+ "B": {
+  "pid": "17478332",
+  "plans": {
+   "car6285": "ins9521324"
+  },
+  "visits": {},
+  "order": "2"
+ },
+ "C": {
+  "pid": "17478396",
+  "plans": {
+   "car41826": "ins9521325"
+  },
+  "visits": {
+   "19461019": "019 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19461087": "087 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  },
+  "order": "2"
+ },
+ "D": {
+  "pid": "17478215",
+  "plans": {
+   "car41826": "ins9521326"
+  },
+  "visits": {
+   "19459221": "9221 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459234": "9234 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "E": {
+  "pid": "17478212",
+  "plans": {
+   "car41826": "ins9521327"
+  },
+  "visits": {
+   "19459215": "9215 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459217": "9217 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "F": {
+  "pid": "17478201",
+  "plans": {
+   "car41826": "ins9521328"
+  },
+  "visits": {
+   "19459189": "9189 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459192": "9192 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "G": {
+  "pid": "17478205",
+  "plans": {
+   "car41826": "ins9521329"
+  },
+  "visits": {
+   "19459197": "9197 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459200": "9200 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459198": "9198 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459202": "9202 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459206": "9206 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "H": {
+  "pid": "17478203",
+  "plans": {
+   "car41826": "ins9521330"
+  },
+  "visits": {
+   "19459191": "9191 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "I": {
+  "pid": "17478216",
+  "plans": {
+   "car6085": "ins9521331",
+   "car6062": "ins9521332"
+  },
+  "visits": {
+   "19459222": " insorder 1 -> 1,2, list [] -> [1,2], 2 live charges (was 2) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1,2"
+ },
+ "J": {
+  "pid": "17478260",
+  "plans": {
+   "car6062": "ins9521333"
+  },
+  "visits": {
+   "19459589": "9589 insorder 1 -> 2, list [] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19459636": "9636 insorder 1 -> 2, list [] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  },
+  "order": "2"
+ },
+ "K": {
+  "pid": "17478214",
+  "plans": {
+   "car6802": "ins9521334"
+  },
+  "visits": {
+   "19459220": "9220 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459235": "9235 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459246": "9246 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "19459241": "9241 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "L": {
+  "pid": "17478224",
+  "plans": {},
+  "visits": {
+   "19459239": "9239 insorder 1 -> 1, list [] -> [1], 2 live charges (was 2) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "M": {
+  "pid": "17478221",
+  "plans": {
+   "car6404": "ins9521335"
+  },
+  "visits": {
+   "19459228": "9228 insorder 1 -> 1, list [] -> [1], 2 live charges (was 2) | freq1 + rebill seq 1 -> 204"
+  },
+  "order": "1"
+ },
+ "N": {
+  "pid": "17472826",
+  "plans": {},
+  "visits": {
+   "19460674": "it vst19460674 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19460695": "it vst19460695 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461031": "it vst19461031 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461046": "it vst19461046 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461076": "it vst19461076 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461120": "it vst19461120 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461233": "it vst19461233 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461263": "it vst19461263 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461426": "it vst19461426 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461440": "it vst19461440 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204",
+   "19461618": "it vst19461618 insorder already 1, list [1] - resave skipped | freq1 + rebill seq 1 -> 204"
+  }
+ }
+}

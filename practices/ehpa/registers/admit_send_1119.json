@@ -1,0 +1,16 @@
+{
+ "19459204": "admission 10/20/2026 -> 10/19/2026 (['99223']) | resave vst19459204 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459830": "admission 10/27/2026 ok | resave vst19459830 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459829": "admission 10/27/2026 ok | resave vst19459829 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459834": "admission 10/27/2026 ok | resave vst19459834 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459833": "admission 10/27/2026 ok | resave vst19459833 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459832": "admission 10/27/2026 ok | resave vst19459832 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459716": "admission 10/30/2026 ok | resave vst19459716 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19459724": "admission 10/30/2026 ok | resave vst19459724 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460207": "admission 11/04/2026 -> 11/03/2026 (['99223']) | resave vst19460207 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460210": "admission 11/03/2026 ok | resave vst19460210 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460213": "admission 11/03/2026 ok | resave vst19460213 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460327": "admission 11/05/2026 -> 11/03/2026 (['99232']) | resave vst19460327 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460403": "admission 11/05/2026 -> 11/03/2026 (['99232']) | resave vst19460403 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+ "19460540": "admission 11/07/2026 -> 11/06/2026 (['99223']) | resave vst19460540 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+}

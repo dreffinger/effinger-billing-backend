@@ -109,7 +109,7 @@ def main():
                     rec["result"] = "INACTIVE on DOS (%s)" % (st.get("status") or "?")
                     try:
                         d = stedi.disc_summ(stedi.disc(first, last, dobc, pa.get("state") or "FL", dos))
-                        act = [i for i in d["items"] if (i["status"] or "").startswith("Active")]
+                        act = [i for i in d["items"] if (i["status"] or "").startswith("Active") and not i.get("not_medical")]      # 11/19/2026: a dental / vision / life hit is never offered as the plan to bill (stedi.disc_not_medical)
                         rec["discovery"] = [(i["payer"], i["member"], i["plan"], i["dates"]) for i in act][:4] or "nothing active found"
                     except Exception as e: rec["discovery"] = "discovery error %s" % str(e)[:80]
             if not (payer == "MEDICARE" and how == "failed"):          # a failed Medicare call (own, or another helper's today) is not kept for the month
