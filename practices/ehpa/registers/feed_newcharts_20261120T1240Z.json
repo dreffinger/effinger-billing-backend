@@ -1,0 +1,16 @@
+{
+ "created": [
+  {
+   "pid": "pat17478487",
+   "chart": "F261120-01",
+   "feed_ids": [
+    "6afddf3139d9402b9ebb6a54",
+    "6afddf3139d9402b9ebb6a54"
+   ],
+   "plans": [],
+   "respparty": "resp21480042",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}

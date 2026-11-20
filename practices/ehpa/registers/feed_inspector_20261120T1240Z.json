@@ -1,0 +1,24 @@
+{
+ "fixed": [
+  {
+   "visit": "19461966",
+   "pid": "pat17478350",
+   "patterns": [
+    "692"
+   ],
+   "note": [
+    "HELD: 692"
+   ]
+  }
+ ],
+ "bypassed": [],
+ "held": [
+  {
+   "visit": "19461966",
+   "pid": "pat17478350",
+   "why": "[Pattern 692] Initial hospital care code 99223..."
+  }
+ ],
+ "laterality": [],
+ "quality_removed": []
+}

@@ -1,0 +1,1688 @@
+{
+ "pat17478350": {
+  "v": 4,
+  "visits": [
+   "vst19461966",
+   "vst19461989"
+  ],
+  "dos": [
+   "11/14/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521196",
+    "car": "SUN01",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461966 insorder 1: already 1, list [1] - nothing sent",
+   "vst19461989 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521196",
+    "car": "SUN01",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "SUN01",
+   "seq": "1",
+   "why": "Medicaid/LTC plan SUN01 only (271 ACTIVE, no MMA plan)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461966": "1",
+   "vst19461989": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17469549": {
+  "v": 4,
+  "visits": [
+   "vst19461967",
+   "vst19461970",
+   "vst19461984"
+  ],
+  "dos": [
+   "11/17/2026",
+   "11/18/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99232",
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520829",
+    "car": "MCAD",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9520833",
+    "car": "FLO99",
+    "seq": "2",
+    "status": "REJECTED  "
+   }
+  ],
+  "fixes": [
+   "vst19461967 insorder 2: insorder 1,2 -> 2, list [1,2] -> [2], 1 of 1 echoed charges live",
+   "vst19461970 insorder 2: insorder 1,2 -> 2, list [1,2] -> [2], 1 of 1 echoed charges live",
+   "vst19461984 insorder 2: insorder 1,2 -> 2, list [1,2] -> [2], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520829",
+    "car": "MCAD",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9520833",
+    "car": "FLO99",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO99"
+  ],
+  "lead": {
+   "code": "FLO99",
+   "seq": "2",
+   "why": "Medicaid 271: SMMC MMA plan is FLO99 - physician claims go to the MMA plan",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19461967": "2",
+   "vst19461970": "2",
+   "vst19461984": "2"
+  },
+  "saved": [
+   "vst19461967",
+   "vst19461970",
+   "vst19461984"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478455": {
+  "v": 4,
+  "visits": [
+   "vst19461968",
+   "vst19461990"
+  ],
+  "dos": [
+   "11/17/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521306",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521306",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat22322": {
+  "v": 4,
+  "visits": [
+   "vst19461969",
+   "vst19461988"
+  ],
+  "dos": [
+   "11/17/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461969 insorder 2: already 2, list [2] - nothing sent",
+   "vst19461988 insorder 2: already 2, list [2] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins499",
+    "car": "CAP07",
+    "seq": "1",
+    "end": "12/31/2025"
+   },
+   {
+    "id": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19461969": "2",
+   "vst19461988": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477310": {
+  "v": 4,
+  "visits": [
+   "vst19461971",
+   "vst19461974"
+  ],
+  "dos": [
+   "11/18/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519018",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461971 insorder 1: already 1, list [1] - nothing sent",
+   "vst19461974 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9519018",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "UNI20 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461971": "1",
+   "vst19461974": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477352": {
+  "v": 4,
+  "visits": [
+   "vst19461972"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519011",
+    "car": "VACCN",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461972 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9519011",
+    "car": "VACCN",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "VACCN",
+   "seq": "1",
+   "why": "VACCN ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461972": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478487": {
+  "v": 4,
+  "visits": [
+   "vst19461973",
+   "vst19462000"
+  ],
+  "dos": [
+   "11/18/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521367 seq 1",
+   "chart order -> 1: insorder 1 via ins9521367 -> '1'",
+   "vst19461973 insorder 1: insorder 1 -> 1, list [] -> [1], 1 of 1 echoed charges live",
+   "vst19462000 insorder 1: insorder 1 -> 1, list [] -> [1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461973": "1",
+   "vst19462000": "1"
+  },
+  "saved": [
+   "vst19461973",
+   "vst19462000"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478471": {
+  "v": 4,
+  "visits": [
+   "vst19461975"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521336",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9521366",
+    "car": "UNI20",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461975 insorder 1,2: insorder 2 -> 1,2, list [2] -> [1,2], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521336",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521366",
+    "car": "UNI20",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1,2",
+  "applied": {
+   "vst19461975": "1,2"
+  },
+  "saved": [
+   "vst19461975"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17476042": {
+  "v": 4,
+  "visits": [
+   "vst19461976"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517362",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461976 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517362",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9519327",
+    "car": "FLO02",
+    "seq": "2",
+    "end": "09/30/2026"
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "UNI20 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461976": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477638": {
+  "v": 4,
+  "visits": [
+   "vst19461977"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519232",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9519233",
+    "car": "MCAD",
+    "seq": "2",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9521164",
+    "car": "HUM01",
+    "seq": "4",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461977 insorder 4,2: insorder 4 -> 4,2, list [4] -> [4,2], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "4",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9519232",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9519233",
+    "car": "MCAD",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9520665",
+    "car": "UNI20",
+    "seq": "3",
+    "end": "11/02/2026"
+   },
+   {
+    "id": "ins9521164",
+    "car": "HUM01",
+    "seq": "4",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "HUM01",
+   "seq": "4",
+   "why": "CMS: HUMANA INSURANCE COMPANY is the Medicare Advantage/primary payer",
+   "qmb": false
+  },
+  "order": "4,2",
+  "applied": {
+   "vst19461977": "4,2"
+  },
+  "saved": [
+   "vst19461977"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17471471": {
+  "v": 4,
+  "visits": [
+   "vst19461978"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9510750",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461978 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9510750",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "UNI20 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461978": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17469476": {
+  "v": 4,
+  "visits": [
+   "vst19461979"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9508494",
+    "car": "CAP07",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461979 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9508494",
+    "car": "CAP07",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "CAP07"
+  ],
+  "lead": {
+   "code": "CAP07",
+   "seq": "1",
+   "why": "CAP07 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461979": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat25541": {
+  "v": 4,
+  "visits": [
+   "vst19461980"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins6579",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins3015",
+    "car": "STA03",
+    "seq": "2",
+    "status": "INACTIVE"
+   },
+   {
+    "plan": "ins9519166",
+    "car": "FLO99",
+    "seq": "3",
+    "status": "REJECTED  "
+   }
+  ],
+  "fixes": [
+   "vst19461980 insorder 1,3: insorder 1,2,3 -> 1,3, list [1,2,3] -> [1,3], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1,2,3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins6579",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins3015",
+    "car": "STA03",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9519166",
+    "car": "FLO99",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO99",
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1,3",
+  "applied": {
+   "vst19461980": "1,3"
+  },
+  "saved": [
+   "vst19461980"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17473090": {
+  "v": 4,
+  "visits": [
+   "vst19461981"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9512646",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9521080",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461981 insorder 2,1: insorder 1 -> 2,1, list [1] -> [2,1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9512646",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521080",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "BCBS"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2,1",
+  "applied": {
+   "vst19461981": "2,1"
+  },
+  "saved": [
+   "vst19461981"
+  ],
+  "note": "feed IN1 says ['BCBS'], chart bills FLO02 first (traditional Medicare ACTIVE, no MA replacement on the CMS 271)",
+  "decision": "RELEASE"
+ },
+ "pat17472826": {
+  "v": 4,
+  "visits": [
+   "vst19461982"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9512375",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9519316",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461982 insorder 2,1: insorder 1 -> 2,1, list [1] -> [2,1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9512375",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9519316",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9519317",
+    "car": "AAR01",
+    "seq": "3",
+    "end": "01/01/2026"
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2,1",
+  "applied": {
+   "vst19461982": "2,1"
+  },
+  "saved": [
+   "vst19461982"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478454": {
+  "v": 4,
+  "visits": [
+   "vst19461983"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521305",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461983 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521305",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "BCBS",
+   "seq": "1",
+   "why": "BCBS ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461983": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17476583": {
+  "v": 4,
+  "visits": [
+   "vst19461985"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517901",
+    "car": "MCAD",
+    "seq": "1",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9517902",
+    "car": "HUM01",
+    "seq": "2",
+    "status": "INACTIVE"
+   },
+   {
+    "plan": "ins9518077",
+    "car": "FLO02",
+    "seq": "3",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461985 insorder 3,1: insorder 3 -> 3,1, list [3] -> [3,1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517901",
+    "car": "MCAD",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9517902",
+    "car": "HUM01",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9518077",
+    "car": "FLO02",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "HUM01",
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "3",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": true
+  },
+  "order": "3,1",
+  "applied": {
+   "vst19461985": "3,1"
+  },
+  "saved": [
+   "vst19461985"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478261": {
+  "v": 4,
+  "visits": [
+   "vst19461986"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521094",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461986 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521094",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "BCBS",
+   "seq": "1",
+   "why": "BCBS ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461986": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17475638": {
+  "v": 4,
+  "visits": [
+   "vst19461987"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517113",
+    "car": "HUM01",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9517114",
+    "car": "BCBS",
+    "seq": "2",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9517115",
+    "car": "FLO02",
+    "seq": "3",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461987 insorder 3,1: already 3,1, list [3,1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "3,1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517113",
+    "car": "HUM01",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9517114",
+    "car": "BCBS",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9517115",
+    "car": "FLO02",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "3",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "3,1",
+  "applied": {
+   "vst19461987": "3,1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478472": {
+  "v": 4,
+  "visits": [
+   "vst19461991"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521337",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461991 insorder 1: already 1, list [1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521337",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461991": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477405": {
+  "v": 4,
+  "visits": [
+   "vst19461992"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9518833",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9518834",
+    "car": "UNI01",
+    "seq": "2",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9519020",
+    "car": "HUM01",
+    "seq": "3",
+    "status": "UNKNOWN"
+   }
+  ],
+  "fixes": [
+   "vst19461992 insorder 1: insorder 1,2 -> 1, list [1,2] -> [1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9518833",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9518834",
+    "car": "UNI01",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9519020",
+    "car": "HUM01",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19461992": "1"
+  },
+  "saved": [
+   "vst19461992"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat12182947": {
+  "v": 4,
+  "visits": [
+   "vst19461993"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins6009417",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins6009418",
+    "car": "MCAD",
+    "seq": "2",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9507427",
+    "car": "SUN01",
+    "seq": "3",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9518598",
+    "car": "WEL04",
+    "seq": "4",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "CMS reports MA/other primary 'SUNSHINE STATE HEALTH PLAN, INC.' (SUN01) but no ACTIVE SUN01 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it"
+  ],
+  "insorder": "4,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins6009417",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins6009418",
+    "car": "MCAD",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9507427",
+    "car": "SUN01",
+    "seq": "3",
+    "end": ""
+   },
+   {
+    "id": "ins9518598",
+    "car": "WEL04",
+    "seq": "4",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "SUN01",
+   "FLO02"
+  ],
+  "decision": "HOLD"
+ },
+ "pat17477945": {
+  "v": 4,
+  "visits": [
+   "vst19461994"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520690",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "INACTIVE"
+   },
+   {
+    "plan": "ins9521005",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461994 insorder 2: already 2, list [2] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520690",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521005",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19461994": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17472228": {
+  "v": 4,
+  "visits": [
+   "vst19461995"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520546",
+    "car": "UNI20",
+    "seq": "3",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461995 insorder 3: already 3, list [3] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9511589",
+    "car": "SUN01",
+    "seq": "1",
+    "end": "10/02/2026"
+   },
+   {
+    "id": "ins9511598",
+    "car": "WEL04",
+    "seq": "2",
+    "end": "06/30/2026"
+   },
+   {
+    "id": "ins9520546",
+    "car": "UNI20",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "3",
+   "why": "UNI20 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "3",
+  "applied": {
+   "vst19461995": "3"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477774": {
+  "v": 4,
+  "visits": [
+   "vst19461996",
+   "vst19461999"
+  ],
+  "dos": [
+   "11/18/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519461",
+    "car": "UMR",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9519462",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461996 insorder 2,1: already 2,1, list [2,1] - nothing sent",
+   "vst19461999 insorder 2,1: already 2,1, list [2,1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2,1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9519461",
+    "car": "UMR",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9519462",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2,1",
+  "applied": {
+   "vst19461996": "2,1",
+   "vst19461999": "2,1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17472491": {
+  "v": 4,
+  "visits": [
+   "vst19461997"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9511957",
+    "car": "COL07",
+    "seq": "2",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9521143",
+    "car": "RET01",
+    "seq": "3",
+    "status": "REJECTED  "
+   },
+   {
+    "plan": "ins9521338",
+    "car": "SIM01",
+    "seq": "4",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461997 insorder 4: insorder 3,2,4 -> 4, list [3,2,4] -> [4], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "3,2,4",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9511956",
+    "car": "FLO02",
+    "seq": "1",
+    "end": "09/17/2026"
+   },
+   {
+    "id": "ins9511957",
+    "car": "COL07",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9521143",
+    "car": "RET01",
+    "seq": "3",
+    "end": ""
+   },
+   {
+    "id": "ins9521338",
+    "car": "SIM01",
+    "seq": "4",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "SIM01",
+   "seq": "4",
+   "why": "Medicaid/LTC plan SIM01 only (271 ACTIVE, no MMA plan)",
+   "qmb": false
+  },
+  "order": "4",
+  "applied": {
+   "vst19461997": "4"
+  },
+  "saved": [
+   "vst19461997"
+  ],
+  "note": "feed IN1 says ['FLO02'], chart bills SIM01 first (Medicaid/LTC plan SIM01 only (271 ACTIVE, no MMA plan))",
+  "decision": "RELEASE"
+ },
+ "pat47039": {
+  "v": 4,
+  "visits": [
+   "vst19461998"
+  ],
+  "dos": [
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins11240",
+    "car": "MCAD",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9508480",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9511187",
+    "car": "HUM01",
+    "seq": "3",
+    "status": "INACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19461998 insorder 2,1: already 2,1, list [2,1] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2,1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins11240",
+    "car": "MCAD",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9508480",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9511187",
+    "car": "HUM01",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO99"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": true
+  },
+  "order": "2,1",
+  "applied": {
+   "vst19461998": "2,1"
+  },
+  "note": "feed IN1 says ['FLO99'], chart bills FLO02 first (traditional Medicare ACTIVE, no MA replacement on the CMS 271)",
+  "decision": "RELEASE"
+ },
+ "pat17478395": {
+  "v": 4,
+  "visits": [
+   "vst19462001"
+  ],
+  "dos": [
+   "11/16/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521241",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9521322",
+    "car": "CAP07",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19462001 insorder 2: already 2, list [2] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521241",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521322",
+    "car": "CAP07",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "CAP07"
+  ],
+  "lead": {
+   "code": "CAP07",
+   "seq": "2",
+   "why": "CMS: CAPITAL HEALTH PLAN is the Medicare Advantage/primary payer",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19462001": "2"
+  },
+  "decision": "RELEASE"
+ }
+}

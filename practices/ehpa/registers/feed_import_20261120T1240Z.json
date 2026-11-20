@@ -1,0 +1,1874 @@
+{
+ "created": [
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "visit": "vst19461966",
+   "charges": [
+    "charge23374993"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-20T12:44:21.977841",
+   "dos": "11/14/2026",
+   "dos_lines": [
+    "11/14/2026"
+   ],
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261114",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "651e40e8e9abd1e559c2cfc9",
+   "pid": "pat17469549",
+   "visit": "vst19461967",
+   "charges": [
+    "charge23374994"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-20T12:44:27.289269",
+   "dos": "11/17/2026",
+   "dos_lines": [
+    "11/17/2026"
+   ],
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [
+    "S69.91XD"
+   ],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6afb721a7e1a661134648f8d",
+   "pid": "pat17478455",
+   "visit": "vst19461968",
+   "charges": [
+    "charge23374995"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:44:32.097269",
+   "dos": "11/17/2026",
+   "dos_lines": [
+    "11/17/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6536ab03b626dc96365fc8de",
+   "pid": "pat22322",
+   "visit": "vst19461969",
+   "charges": [
+    "charge23374996",
+    "charge23374997"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-20T12:44:37.327508",
+   "dos": "11/17/2026",
+   "dos_lines": [
+    "11/17/2026",
+    "11/17/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21",
+    "21"
+   ],
+   "pos_why": [
+    "",
+    ""
+   ],
+   "pos_kind": [
+    "",
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21",
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "651e40e8e9abd1e559c2cfc9",
+   "pid": "pat17469549",
+   "visit": "vst19461970",
+   "charges": [
+    "charge23374998"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:44:39.396038",
+   "dos": "11/18/2026",
+   "dos_lines": [
+    "11/18/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [
+    "S69.91XD"
+   ],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a6fae686e3c815954f72728",
+   "pid": "pat17477310",
+   "visit": "vst19461971",
+   "charges": [
+    "charge23374999"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:44:43.713874",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261119",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a7327dd61ec913eee3a837e",
+   "pid": "pat17477352",
+   "visit": "vst19461972",
+   "charges": [
+    "charge23375000"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-20T12:44:47.973685",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [
+    "T84.011A"
+   ],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6afddf3139d9402b9ebb6a54",
+   "pid": "pat17478487",
+   "visit": "vst19461973",
+   "charges": [
+    "charge23375001"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-20T12:44:51.382216",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "",
+   "open_plans_at_entry": 0,
+   "open_plan_seqs_at_entry": []
+  },
+  {
+   "feed_id": "6a6fae686e3c815954f72728",
+   "pid": "pat17477310",
+   "visit": "vst19461974",
+   "charges": [
+    "charge23375002",
+    "charge23375003"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-20T12:44:54.141685",
+   "dos": "11/18/2026",
+   "dos_lines": [
+    "11/18/2026",
+    "11/18/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21",
+    "21"
+   ],
+   "pos_why": [
+    "",
+    ""
+   ],
+   "pos_kind": [
+    "",
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21",
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6afcad56149b6669be9239d9",
+   "pid": "pat17478471",
+   "visit": "vst19461975",
+   "charges": [
+    "charge23375004"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:44:58.920419",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "69d282a0f1610f19d2a18f0c",
+   "pid": "pat17476042",
+   "visit": "vst19461976",
+   "charges": [
+    "charge23375005"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:03.280569",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261119",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a992b2525c3fd4e06093385",
+   "pid": "pat17477638",
+   "visit": "vst19461977",
+   "charges": [
+    "charge23375006"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:07.842547",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "4",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "661dc2f59c41f43a070433e2",
+   "pid": "pat17471471",
+   "visit": "vst19461978",
+   "charges": [
+    "charge23375007"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:12.200267",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "64eed8c3e9abd1e559917c0c",
+   "pid": "pat17469476",
+   "visit": "vst19461979",
+   "charges": [
+    "charge23375008"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:16.673584",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "62a89604a4ea93d62b490434",
+   "pid": "pat25541",
+   "visit": "vst19461980",
+   "charges": [
+    "charge23375009"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:21.059620",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2,3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "669ad9a71d003b595a81631c",
+   "pid": "pat17473090",
+   "visit": "vst19461981",
+   "charges": [
+    "charge23375010"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:25.475390",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20240719",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "67994d49fde1f815791b4594",
+   "pid": "pat17472826",
+   "visit": "vst19461982",
+   "charges": [
+    "charge23375011"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:30.135661",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261107",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6afadf9c5e751b3a1d64a920",
+   "pid": "pat17478454",
+   "visit": "vst19461983",
+   "charges": [
+    "charge23375012"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-20T12:45:34.868973",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "651e40e8e9abd1e559c2cfc9",
+   "pid": "pat17469549",
+   "visit": "vst19461984",
+   "charges": [
+    "charge23375013"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:36.900390",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [
+    "S69.91XD"
+   ],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a0772e8dbd2a23f6bc38ff3",
+   "pid": "pat17476583",
+   "visit": "vst19461985",
+   "charges": [
+    "charge23375014"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:41.209247",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261105",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19461986",
+   "charges": [
+    "charge23375015"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:45.570326",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261028",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "698d0f960a760cb970c279a9",
+   "pid": "pat17475638",
+   "visit": "vst19461987",
+   "charges": [
+    "charge23375016"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:50.279366",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3,1",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6536ab03b626dc96365fc8de",
+   "pid": "pat22322",
+   "visit": "vst19461988",
+   "charges": [
+    "charge23375017"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:52.365417",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "visit": "vst19461989",
+   "charges": [
+    "charge23375018"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:54.317652",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261114",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6afb721a7e1a661134648f8d",
+   "pid": "pat17478455",
+   "visit": "vst19461990",
+   "charges": [
+    "charge23375019"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:45:56.266651",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6afc938e523e5b0f4f2096ab",
+   "pid": "pat17478472",
+   "visit": "vst19461991",
+   "charges": [
+    "charge23375020"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-20T12:46:00.822157",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a7bb16984e4e2e2720c4a8b",
+   "pid": "pat17477405",
+   "visit": "vst19461992",
+   "charges": [
+    "charge23375021"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:04.929609",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6422b24a9f164d322725a97c",
+   "pid": "pat12182947",
+   "visit": "vst19461993",
+   "charges": [
+    "charge23375022"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:09.323877",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261109",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "4,2",
+   "open_plans_at_entry": 4,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "6ab6f367e2c808b010c25970",
+   "pid": "pat17477945",
+   "visit": "vst19461994",
+   "charges": [
+    "charge23375023"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:13.239534",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6ae94ba0a0e552e64deaf124",
+   "pid": "pat17472228",
+   "visit": "vst19461995",
+   "charges": [
+    "charge23375024"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:17.513529",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261103",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6aa81af1483c042382312fb8",
+   "pid": "pat17477774",
+   "visit": "vst19461996",
+   "charges": [
+    "charge23375025"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:21.765425",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2,1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "65faff4c1cca8e4ee23ff239",
+   "pid": "pat17472491",
+   "visit": "vst19461997",
+   "charges": [
+    "charge23375026"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:25.914887",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261114",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3,2,4",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "635a0b52080aab6d371b29f7",
+   "pid": "pat47039",
+   "visit": "vst19461998",
+   "charges": [
+    "charge23375027"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-20T12:46:30.015404",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261116",
+   "missing_dx": [],
+   "quality_skipped": "hospital",
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2,1",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6aa81af1483c042382312fb8",
+   "pid": "pat17477774",
+   "visit": "vst19461999",
+   "charges": [
+    "charge23375028"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-20T12:46:32.291405",
+   "dos": "11/18/2026",
+   "dos_lines": [
+    "11/18/2026"
+   ],
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2,1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6afddf3139d9402b9ebb6a54",
+   "pid": "pat17478487",
+   "visit": "vst19462000",
+   "charges": [
+    "charge23375029"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-20T12:46:34.556095",
+   "dos": "11/18/2026",
+   "dos_lines": [
+    "11/18/2026"
+   ],
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "",
+   "open_plans_at_entry": 0,
+   "open_plan_seqs_at_entry": []
+  },
+  {
+   "feed_id": "6af20b111d36478cb5666bb4",
+   "pid": "pat17478395",
+   "visit": "vst19462001",
+   "charges": [
+    "charge23375030",
+    "charge23375031"
+   ],
+   "fees": [
+    "256.00",
+    "133.00"
+   ],
+   "at": "2026-11-20T12:46:38.563975",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026",
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31",
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: initial visit",
+    "same place of service as the visit line of that day"
+   ],
+   "pos_kind": [
+    "initial",
+    "with-visit"
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "pos_stored": [
+    "31",
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  }
+ ],
+ "skipped": [],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.01",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [
+   "charge23373645",
+   "charge23373648",
+   "charge23373650",
+   "charge23373913",
+   "charge23373928",
+   "charge23374160",
+   "charge23374348"
+  ],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 2,
+   "fee": "0.01",
+   "since": "feed_import_20261113T0135Z.json",
+   "lines": 4,
+   "void": 4,
+   "open": 0
+  },
+  "budget": 1,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [
+   [
+    "pat17470875",
+    "2026"
+   ],
+   [
+    "pat17473571",
+    "2026"
+   ],
+   [
+    "pat17473962",
+    "2026"
+   ],
+   [
+    "pat17478210",
+    "2026"
+   ],
+   [
+    "pat21915",
+    "2026"
+   ],
+   [
+    "pat24368",
+    "2026"
+   ],
+   [
+    "pat25994",
+    "2026"
+   ]
+  ],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [
+   "charge23374160",
+   "charge23374348"
+  ],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 8,
+  "unread": [],
+  "unread_prev": [],
+  "probe": "AdvancedMD held visit vst19461451 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261117T1239Z.json) - William looks",
+  "probe_kind": "claim_check",
+  "probe_since": "feed_inspector_20261111T1239Z.json",
+  "probe_words": "[Pattern 2049] Per Medicare guidelines the...",
+  "probe_tries": 5,
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "taken_lines": [],
+  "wrong_code_charge": "",
+  "n620_seen": "",
+  "left_off_cent": [],
+  "proof_aside": null,
+  "notes": [
+   "AdvancedMD held visit vst19460833 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T1239Z.json) - new lines carry $0.01, one line a run until one is billed"
+  ]
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "probe": "",
+  "probe_since": "",
+  "probe_words": "",
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "wrong_code_charge": "",
+  "notes": []
+ }
+}
