@@ -6044,6 +6044,7 @@ Lessons (no call shape):
 - Pam's admit threads can carry a SECOND photo of the same PCC Clinical Resident Profile hours later (Westminster Oaks, 17:49Z then 03:03Z): read it, compare to the chart live, and append a check on the existing card - never a second card (one card per work item).
 - The engine's columns_scan walked all 127 claim runs in 92 s this run (no ReadTimeout at 06:46Z; the 00:46Z run timed out) - AMD is fast at this hour.
 
+
 ## 11/19/2026 - patient check posting (first use; William: "for whitlow just post them anyway you can")
 - `addpayments` class=paymententry with `paysource="1"` (patient), `paymethod="11"` (check), `carrierid=""`, `amount=<check total>`, `woamount="0.00"`, `checknumber`, `depositdate`; `<chargelist>` holds one `<charge id="chargeN" allowed insportion patportion insbalance patbalance profile>` per line with `<paymentlist><payment amount="<share>" id="" status="B"/></paymentlist><writeofflist/>`. Proven on pat17477639 charges 23364604 / 23364605 (300.00 + 133.00, check 9301): success="1" paymentid 10179765; gettxhistory shows each payment with source 1 and the check number, patbal 0.00. Helper `patient_pay_1119.py` (refuses a share above the live patient balance; reads back).
 - Re-entering a denied line on another date / code: `redate_recode_1119.py` = addvisit + updvisitwithnewcharges on the same chart (the feed's two-step create), then void write-off, void $0 payment, void charge on the old line (pat44944: 99344 11/05 -> 99349 11/06, new vst19461756).

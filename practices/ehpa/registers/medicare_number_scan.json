@@ -1,0 +1,1738 @@
+{
+ "17473343": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 3638.0
+ },
+ "21885": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 11,
+  "open": 3247.0
+ },
+ "22322": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 16,
+  "open": 3215.0
+ },
+ "17476021": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 20,
+  "open": 3119.89
+ },
+ "23617": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 2877.0
+ },
+ "17476583": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 17,
+  "open": 2676.49
+ },
+ "46673": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 9,
+  "open": 2283.49
+ },
+ "17477851": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 15,
+  "open": 2223.92
+ },
+ "17473197": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 2080.0
+ },
+ "44997": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 31,
+  "open": 2049.86
+ },
+ "17476220": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 15,
+  "open": 1962.0
+ },
+ "17470950": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 12,
+  "open": 1920.0
+ },
+ "17475638": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 16,
+  "open": 1853.02
+ },
+ "20709": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 8,
+  "open": 1778.0
+ },
+ "17469446": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 40,
+  "open": 1626.21
+ },
+ "17475970": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 9,
+  "open": 1440.0
+ },
+ "17471478": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 1421.74
+ },
+ "17477313": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 16,
+  "open": 1373.17,
+  "died": true
+ },
+ "17477945": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 1243.0
+ },
+ "20752": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 6,
+  "open": 1225.0
+ },
+ "12182505": {
+  "day": "2026-11-20",
+  "answer": "NO OPEN MEDICARE PLAN",
+  "visits": 6,
+  "open": 1210.0
+ },
+ "17476544": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 1093.0
+ },
+ "17469028": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 1088.95
+ },
+ "46439": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 5,
+  "open": 1083.0
+ },
+ "12182946": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 14,
+  "open": 1034.88
+ },
+ "17473601": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 1034.0
+ },
+ "17473462": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 4,
+  "open": 1017.0,
+  "died": true
+ },
+ "17478265": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 5,
+  "open": 953.0
+ },
+ "24750": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 951.37
+ },
+ "17477125": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 5,
+  "open": 929.56
+ },
+ "22603": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 918.0
+ },
+ "20925": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 5,
+  "open": 910.0,
+  "died": true
+ },
+ "47039": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 904.0
+ },
+ "17474911": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 900.0
+ },
+ "17478316": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 8,
+  "open": 888.0
+ },
+ "20729": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 25,
+  "open": 861.74
+ },
+ "17476089": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 842.0
+ },
+ "17473422": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 13,
+  "open": 791.59
+ },
+ "17477650": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 15,
+  "open": 791.56
+ },
+ "17472517": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 5,
+  "open": 780.59
+ },
+ "17472553": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 3,
+  "open": 771.0,
+  "died": true
+ },
+ "25541": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 758.0
+ },
+ "17475536": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 32,
+  "open": 756.23
+ },
+ "20407": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 24,
+  "open": 747.48
+ },
+ "17472931": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 9,
+  "open": 730.52
+ },
+ "17477719": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 8,
+  "open": 706.58
+ },
+ "21577": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 18,
+  "open": 700.62,
+  "died": true
+ },
+ "17473460": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 73",
+  "visits": 23,
+  "open": 690.59
+ },
+ "17478273": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 671.0
+ },
+ "17478400": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 643.0
+ },
+ "17478206": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 643.0
+ },
+ "17478229": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 637.34
+ },
+ "17470939": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 12,
+  "open": 635.86
+ },
+ "45210": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 630.0
+ },
+ "17477497": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 629.53
+ },
+ "20379": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 620.55
+ },
+ "17477225": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 618.71
+ },
+ "17478210": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 615.0
+ },
+ "17476503": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 615.0
+ },
+ "44987": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 597.0
+ },
+ "20716": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 18,
+  "open": 577.49
+ },
+ "17472594": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 21,
+  "open": 566.27
+ },
+ "17477830": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 564.0
+ },
+ "17473245": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 563.0
+ },
+ "17477227": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 549.0,
+  "died": true
+ },
+ "23162": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 14,
+  "open": 544.87
+ },
+ "17471773": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 29,
+  "open": 541.35,
+  "died": true
+ },
+ "17478209": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 530.0
+ },
+ "17478399": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 530.0
+ },
+ "17476032": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 529.0
+ },
+ "17473346": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 19,
+  "open": 521.92
+ },
+ "23832": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 521.0
+ },
+ "17472420": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 521.0
+ },
+ "12231909": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 521.0
+ },
+ "21308": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 5,
+  "open": 504.69
+ },
+ "17472436": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 488.0
+ },
+ "44962": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 488.0
+ },
+ "17473661": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 472.93
+ },
+ "17474200": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 10,
+  "open": 463.32,
+  "died": true
+ },
+ "17477496": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 456.0
+ },
+ "21839": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 456.0,
+  "died": true
+ },
+ "17477190": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 456.0
+ },
+ "17476348": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 454.0
+ },
+ "20863": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 443.8
+ },
+ "25994": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 435.45
+ },
+ "17476438": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 433.0
+ },
+ "17478219": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 433.0
+ },
+ "17473004": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 11,
+  "open": 430.88
+ },
+ "17478452": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 421.0
+ },
+ "17478227": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 421.0
+ },
+ "17478412": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 421.0
+ },
+ "17477057": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 421.0
+ },
+ "17476094": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 413.37
+ },
+ "17471238": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 2,
+  "open": 410.0
+ },
+ "17476869": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 15,
+  "open": 406.67
+ },
+ "23069": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 389.0
+ },
+ "25160": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 14,
+  "open": 384.28
+ },
+ "20670": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 383.17
+ },
+ "17477267": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 369.3,
+  "died": true
+ },
+ "46679": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 354.02
+ },
+ "45052": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 350.93
+ },
+ "17476264": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 344.09
+ },
+ "17478217": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 340.04
+ },
+ "17477516": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 332.37,
+  "died": true
+ },
+ "17474614": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 329.54
+ },
+ "17474080": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 8,
+  "open": 328.24
+ },
+ "17473160": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 71",
+  "visits": 1,
+  "open": 315.0
+ },
+ "12232559": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17475362": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 315.0,
+  "died": true
+ },
+ "17472729": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17471496": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "20399": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17478220": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17478218": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "48449": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "20933": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17471843": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 315.0,
+  "died": true
+ },
+ "17472839": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "24214": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17476865": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 71",
+  "visits": 1,
+  "open": 315.0
+ },
+ "17478455": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 310.0
+ },
+ "17474611": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 310.0
+ },
+ "17477168": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 73",
+  "visits": 1,
+  "open": 310.0
+ },
+ "17474798": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "17470824": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 300.0,
+  "died": true
+ },
+ "17471174": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "17474542": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "23969": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "17473208": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "17474541": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "17477499": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 300.0
+ },
+ "22047": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 300.0,
+  "died": true
+ },
+ "46051": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 13,
+  "open": 295.69,
+  "died": true
+ },
+ "17478030": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 294.06
+ },
+ "17469397": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 293.49,
+  "died": true
+ },
+ "25592": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 293.09
+ },
+ "22758": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 282.0
+ },
+ "17477128": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 282.0
+ },
+ "17470743": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 282.0
+ },
+ "17475778": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 282.0
+ },
+ "45724": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 3,
+  "open": 281.06,
+  "died": true
+ },
+ "17471333": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 12,
+  "open": 275.48
+ },
+ "17475972": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 16,
+  "open": 272.41,
+  "died": true
+ },
+ "24330": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 266.29
+ },
+ "12182776": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 266.29
+ },
+ "17471968": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 253.67
+ },
+ "17473282": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 8,
+  "open": 253.56
+ },
+ "12179706": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 248.0
+ },
+ "17471462": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 248.0
+ },
+ "17475795": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 10,
+  "open": 247.92,
+  "died": true
+ },
+ "17469466": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 244.74
+ },
+ "17478062": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 239.43
+ },
+ "17478014": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 239.43
+ },
+ "17478060": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 239.43
+ },
+ "17473191": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 6,
+  "open": 238.32,
+  "died": true
+ },
+ "17477533": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 234.19
+ },
+ "17477843": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 3,
+  "open": 232.57,
+  "died": true
+ },
+ "17472043": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 228.2
+ },
+ "17472061": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 224.32
+ },
+ "17469429": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 220.45
+ },
+ "17473440": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 220.45
+ },
+ "17476874": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 219.25
+ },
+ "17471643": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 2,
+  "open": 218.0
+ },
+ "17477842": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 216.77
+ },
+ "20452": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 215.05
+ },
+ "17476855": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 206.0
+ },
+ "17472582": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 206.0
+ },
+ "17472732": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 206.0
+ },
+ "21378": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 206.0
+ },
+ "17471979": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 5,
+  "open": 203.29,
+  "died": true
+ },
+ "17475697": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 199.92
+ },
+ "22880": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 199.33
+ },
+ "17477405": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 9,
+  "open": 195.99
+ },
+ "44984": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 6,
+  "open": 193.43,
+  "died": true
+ },
+ "45447": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 185.98
+ },
+ "17473747": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 7,
+  "open": 175.88
+ },
+ "17478018": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 166.06
+ },
+ "21483": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 166.06
+ },
+ "45008": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 166.06
+ },
+ "17476917": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 166.06
+ },
+ "17472396": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 11,
+  "open": 160.43
+ },
+ "17474741": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 160.0,
+  "died": true
+ },
+ "17471349": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 160.0
+ },
+ "24039": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 157.93
+ },
+ "17473571": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 157.93
+ },
+ "17470697": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 7,
+  "open": 156.28,
+  "died": true
+ },
+ "23122": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 154.08
+ },
+ "17477557": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 149.08,
+  "died": true
+ },
+ "25423": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 9,
+  "open": 144.81
+ },
+ "23177": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "20937": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17473190": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "23159": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17472285": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17473222": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17470899": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "45010": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17470875": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17477651": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "45520": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21692": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17473432": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "25266": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17476681": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17470874": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17476036": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17472849": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17471131": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17472124": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21172": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17473962": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21238": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "42092": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21411": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "25869": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "12232001": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17471793": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17477010": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17472286": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21798": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "24368": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17471172": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "17472429": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "23721": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "45001": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "20728": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21915": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "45024": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 141.0
+ },
+ "21564": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 125.29,
+  "died": true
+ },
+ "20879": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 125.29,
+  "died": true
+ },
+ "46354": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 113.02
+ },
+ "17472491": {
+  "day": "2026-11-20",
+  "answer": "NO OPEN MEDICARE PLAN",
+  "visits": 1,
+  "open": 111.0
+ },
+ "12235552": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 110.78
+ },
+ "12179890": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 7,
+  "open": 109.08,
+  "died": true
+ },
+ "48458": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 1,
+  "open": 107.0
+ },
+ "17472910": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 6,
+  "open": 104.13,
+  "died": true
+ },
+ "17471061": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 2,
+  "open": 101.16
+ },
+ "17472176": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 6,
+  "open": 94.2
+ },
+ "23847": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 93.57
+ },
+ "17473150": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 84.33
+ },
+ "17475602": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 4,
+  "open": 75.85,
+  "died": true
+ },
+ "17476873": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 75.08
+ },
+ "17471791": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 3,
+  "open": 71.59
+ },
+ "47216": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 67.72
+ },
+ "17475601": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 4,
+  "open": 67.72
+ },
+ "17472606": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 65.88
+ },
+ "17477980": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 65.19
+ },
+ "17473302": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 64.57
+ },
+ "17474646": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 3,
+  "open": 64.57,
+  "died": true
+ },
+ "22023": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 4,
+  "open": 57.5,
+  "died": true
+ },
+ "17475222": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 53.54
+ },
+ "17476018": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 53.53
+ },
+ "17476251": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 53.53
+ },
+ "21263": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 2,
+  "open": 50.12,
+  "died": true
+ },
+ "25903": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 49.46
+ },
+ "17474021": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 2,
+  "open": 49.16
+ },
+ "17474558": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 49.16
+ },
+ "17470804": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 47.21
+ },
+ "17475907": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 46.32
+ },
+ "17475699": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 46.32
+ },
+ "17475599": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 46.32
+ },
+ "17475538": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 2,
+  "open": 46.32
+ },
+ "17473518": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 3,
+  "open": 46.23
+ },
+ "12179688": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 44.09
+ },
+ "24537": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 44.09
+ },
+ "17476479": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 71",
+  "visits": 1,
+  "open": 44.09
+ },
+ "17474537": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 72",
+  "visits": 1,
+  "open": 43.26
+ },
+ "17476789": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 31.94
+ },
+ "20903": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 30.97,
+  "died": true
+ },
+ "17475363": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 28.6
+ },
+ "25561": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 25.06
+ },
+ "17477280": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 25.04
+ },
+ "17477530": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 21.8
+ },
+ "42200": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 21.76,
+  "died": true
+ },
+ "20796": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 17.65
+ },
+ "17473945": {
+  "day": "2026-11-20",
+  "answer": "REJECTED 73",
+  "visits": 1,
+  "open": 17.65
+ },
+ "17476458": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 17.37
+ },
+ "17475528": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 16.93
+ },
+ "17474405": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 15.41
+ },
+ "17474102": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 15.41
+ },
+ "17473401": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 15.41
+ },
+ "17470802": {
+  "day": "2026-11-20",
+  "answer": "ACTIVE",
+  "visits": 1,
+  "open": 13.35
+ },
+ "17469078": {
+  "day": "2026-11-20",
+  "answer": "INACTIVE",
+  "visits": 1,
+  "open": 12.14,
+  "died": true
+ }
+}

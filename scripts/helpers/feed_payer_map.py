@@ -15,7 +15,8 @@ TABLE = [
     (r"TRICARE FOR LIFE|\bTFL\b", "TRI05"), (r"TRICARE", "TRI00"), (r"CHAMPVA", "CHA03"),
     (r"VA CCN|VA COMMUNITY|VACCN|VETERAN", "VACCN"),
     (r"FLORIDA COMMUNITY|\bFCC\b", "FLO99"),                                     # before MEDICAID: 'Medicaid MMA Florida Community' is FCC
-    (r"SUNSHINE", "SUN01"), (r"SIMPLY", "SIM01"), (r"STAYWELL", "STA03"), (r"MOLINA", "MOL10"), (r"AMBETTER", "AMB03"),
+    (r"AMBETTER", "AMB03"),                                                      # before SUNSHINE: 'Ambetter - Sunshine Health' is the marketplace plan, not Medicaid (11/20/2026, chart 17476739)
+    (r"SUNSHINE", "SUN01"), (r"SIMPLY", "SIM01"), (r"STAYWELL", "STA03"), (r"MOLINA", "MOL10"),
     (r"AARP.*(SUPP|MEDIGAP|HEALTHCARE OPTIONS)|MEDICARE SUPP.*(AARP|UHC|UNITED)|^AARP$", "AAR01"),   # before UHC: the AARP Medigap plan
     (r"UNITED AMERICAN", "UNI01"),                                               # before UNITED HEALTH: a Medigap company
     (r"UNITED ?HEALTH|\bUHC\b|AARP MEDICARE ADV|AARP", "UNI20"),
@@ -52,7 +53,7 @@ if __name__ == "__main__":
          "AARP UHC Medicare Supplement": "AAR01", "AARP Healthcare Options": "AAR01", "United Healthcare": "UNI20", "AARP Medicare Advantage": "UNI20",
          "United American Ins Co": "UNI01", "Medicaid MMA Florida Community": "FLO99", "FLORIDA COMMUNITY CARE MCO": "FLO99", "Medicaid-FL": "MCAD", "MCD-Medicaid Florida": "MCAD",
          "VA CCN Optum - 100% PDPM": "VACCN", "Staywell HMO": "STA03", "Tricare for Life": "TRI05", "BC/BS of FL": "BCBS", "Humana LTC MCD FL": "HUM01",
-         "Medicaid Sunshine State Health Plan": "SUN01", "Capital Health Plan": "CAP07", "American Elder Care": None}
+         "Medicaid Sunshine State Health Plan": "SUN01", "Ambetter - Sunshine Health Care": "AMB03", "Capital Health Plan": "CAP07", "American Elder Care": None}
     bad = [(n, code(n), w) for n, w in T.items() if code(n) != w]
     assert not bad, bad
     assert skip("Patient Liability") == "liability" and skip("Tricare for Life") == "" and skip("COINS-Medicaid HMO B") == "coins" and skip("Sierra Health and Life Insurance Company") == "" and skip("Constitution Life") == "life"

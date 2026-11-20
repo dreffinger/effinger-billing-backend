@@ -1,0 +1,99 @@
+{
+ "17476021": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "20709": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "21839": {
+  "visits": {
+   "19423656": "older than 12 months - not sent, not written off (11/15/2025, 315.00)",
+   "19423852": "older than 12 months - not sent, not written off (11/07/2025, 141.00)",
+   "19427005": "12/11/2025 141.00 freq1 + rebill seq 1 -> 204",
+   "19427275": "12/20/2025 315.00 freq1 + rebill seq 1 -> 204",
+   "19429860": "01/05/2026 107.00 freq1 + rebill seq 1 -> 204",
+   "19430760": "01/27/2026 315.00 freq1 + rebill seq 1 -> 204"
+  },
+  "number": "corrected from Medicare's look-up; Medicare knows the number, patient died [DOB]",
+  "dod": "[DOB]",
+  "day": "2026-11-20"
+ },
+ "20752": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17474826": {
+  "visits": {
+   "19425236": "12/02/2025 389.00 freq1 + rebill seq 1 -> 204",
+   "19427545": "12/09/2025 141.00 freq1 + rebill seq 1 -> 204",
+   "19430832": "01/27/2026 315.00 freq1 + rebill seq 1 -> 204"
+  },
+  "number": "corrected from Medicare's look-up; AdvancedMD 271 ACTIVE",
+  "day": "2026-11-20"
+ },
+ "17469591": {
+  "visits": {
+   "19445385": "06/18/2026 111.00 freq1 + rebill seq 1 -> 204",
+   "19445451": "06/19/2026 111.00 freq1 + rebill seq 1 -> 204",
+   "19445489": "06/20/2026 111.00 freq1 + rebill seq 1 -> 204",
+   "19445699": "06/21/2026 111.00 freq1 + rebill seq 1 -> 204",
+   "19445707": "06/22/2026 111.00 freq1 + rebill seq 1 -> 204",
+   "19445849": "06/23/2026 163.00 freq1 + rebill seq 1 -> 204"
+  },
+  "number": "corrected from Medicare's look-up; AdvancedMD 271 ACTIVE",
+  "day": "2026-11-20"
+ },
+ "17474336": {
+  "visits": {
+   "19446035": "06/23/2026 310.00 freq1 + rebill seq 1 -> 204",
+   "19446047": "06/24/2026 111.00 freq1 + rebill seq 1 -> 204"
+  },
+  "number": "corrected from Medicare's look-up; AdvancedMD 271 ACTIVE",
+  "day": "2026-11-20"
+ },
+ "17471238": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17471643": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "48458": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17471061": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17471791": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17474021": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ },
+ "17475907": {
+  "visits": {},
+  "number": "corrected from Medicare's look-up; AdvancedMD 271 ACTIVE",
+  "day": "2026-11-20"
+ },
+ "17474537": {
+  "visits": {},
+  "number": "no other number found (feed, look-up) - listed for a person",
+  "day": "2026-11-20"
+ }
+}

@@ -17,6 +17,7 @@ William 11/19/2026: "optimize getting the correct insurances for billing on the 
 | Piece | Change |
 |---|---|
 | `feed_payer_map.py` | ONE payer-name table for every feed helper. Unknown names 29 -> 13 (what is left: blank names and long-term-care plans AdvancedMD has no carrier for). Fixed: 'AARP UHC Medicare Supplement' is the AARP Medigap plan, 'Medicaid ... Florida Community' is Florida Community Care. |
+| `medicare_number_scan.py` / `medicare_number_fix.py` | Sunday cascade step 2a (11/20/2026): finds every chart whose Medicare number Medicare rejects (free check) and corrects it from the feed or Medicare's look-up; re-sends the unpaid visits once. |
 | `feed_in1_intake.py` | New feed step (c3): existing charts get the Medicaid side and the Medigap / TRICARE For Life plans the feed carries. First run: 17 Medicaid plans and 3 Medigap plans added on 19 charts, each put last in the chart's order. |
 | `stedi.disc_summ` | A dental / vision / life look-up hit is marked not medical everywhere it is read. |
 | `adt_ingest.py` | Reads every insurance block of a feed message or an admission notice. |
