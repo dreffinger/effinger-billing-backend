@@ -919,6 +919,44 @@
      "outcome": "sent 2026-11-02T0951Z"
     }
    ]
+  },
+  {
+   "id": "medicare-22075-2026-11-20T0230Z",
+   "status": "open",
+   "carrier": "FLO02",
+   "pid": "22075",
+   "created": "2026-11-20T0230Z",
+   "about": "William 11/20/2026 in chat: 'Four older visits ($769) are past the twelve-month window rebill'. The chart's Medicare number was invalid from 9/2025 (Medicare answered $0 on every claim); the number was corrected from the facility's feed on 11/20/2026 (Medicare ACTIVE) and these four visits, 12-14 months old, were sent ONCE to Medicare as originals. A CARC 29 from Medicare = WOLATE write-off under this watch; any other answer by the denial rules; never re-sent by a routine.",
+   "visits": [
+    {
+     "visitid": "19416194",
+     "chargeid": "23319779",
+     "dollars": 206.0,
+     "dos": "2025-09-08",
+     "outcome": "sent 2026-11-20T0230Z"
+    },
+    {
+     "visitid": "19418283",
+     "chargeid": "23322127",
+     "dollars": 107.0,
+     "dos": "2025-09-22",
+     "outcome": "sent 2026-11-20T0230Z"
+    },
+    {
+     "visitid": "19423644",
+     "chargeid": "23329288",
+     "dollars": 315.0,
+     "dos": "2025-11-15",
+     "outcome": "sent 2026-11-20T0230Z"
+    },
+    {
+     "visitid": "19423848",
+     "chargeid": "23329579",
+     "dollars": 141.0,
+     "dos": "2025-11-07",
+     "outcome": "sent 2026-11-20T0230Z"
+    }
+   ]
   }
  ]
 }
