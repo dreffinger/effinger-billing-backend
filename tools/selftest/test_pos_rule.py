@@ -26,19 +26,27 @@
 #     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
 #       feed helpers without the rule back onto main; the runbook copies them (and the parser) from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
-import os, sys, json, types, tempfile, importlib.util, io, re, contextlib
+import os, sys, json, types, tempfile, importlib.util, io, re, contextlib, traceback
 import xml.etree.ElementTree as ET
-# THIS SELF-TEST NEVER REACHES ADVANCEDMD OR ANY OTHER HOST. Every network route is closed here, for this process and for every program it
-# starts, before anything else is loaded: scripts/helpers holds the real amd / resave / txh / void_tx modules, and a helper STARTED AS A
-# PROGRAM from that folder loads them (Python puts the program's own folder first on its path) - with them a "test" would read, and could
-# void, real charges. So: (1) helpers that talk to AdvancedMD are only ever run INSIDE this process with stand-in modules (see run_inside);
-# (2) the only helpers started as programs are ones that load none of those modules (checked below); (3) the network is shut either way.
+# THIS SELF-TEST NEVER REACHES ADVANCEDMD OR ANY OTHER HOST. Every network route is closed here before anything else is loaded (the proxy
+# variables too, should anything ever start a program): scripts/helpers holds the real amd / resave / txh / void_tx modules, and a helper
+# STARTED AS A PROGRAM from that folder loads them (Python puts the program's own folder first on its path) - with them a "test" would read,
+# and could void, real charges. So: (1) helpers that talk to AdvancedMD are only ever run INSIDE this process with stand-in modules (see
+# run_inside); (2) since 11/13/2026 no program is started at all (the owner's rule for tests: never start a helper from scripts/helpers or
+# core as a program in a test) - the feed report and the audit tool, which load none of those modules, run inside this process too
+# (run_program, section 6), section 6b checks that this file starts none, and an audit hook refuses any program start in this process;
+# (3) the network is shut either way.
 import socket as _socket
 def _no_network(*a, **k): raise RuntimeError("the self-test must not use the network")
 _socket.socket.connect = _no_network; _socket.socket.connect_ex = _no_network; _socket.create_connection = _no_network
 for _k in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"): os.environ[_k] = "http://127.0.0.1:9"
 os.environ.update(NO_PROXY="", no_proxy="")
 AMD_MODULES = ("amd", "resave", "txh", "void_tx", "deceased_guard", "freq1_visit", "move_to_ins", "ins_update")
+PROC_MOD = "sub" "process"      # the standard library's module that starts programs, named in two pieces: section 6b checks that the word stands nowhere in this file - only the drivers' stand-in for it (driver_run) takes its place
+PROGRAM_STARTS = {PROC_MOD + ".Popen", "pty.spawn"} | {"os." + n for n in ("system", "exec", "posix_spawn", "spawn", "fork", "forkpty")}      # the audit events of a program start
+def _no_program(event, args):      # 11/13/2026: and no program can be started from this process at all - by this file or by any code it loads or runs inside it
+    if event in PROGRAM_STARTS: raise RuntimeError("this self-test starts no program (%s)" % event)
+sys.addaudithook(_no_program)
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_import.py")
 FAILS = []
@@ -2075,7 +2083,44 @@ retry = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py"))
 check("retry: every batch's feed files go into one folder, and a batch without files waits (never entered without a building)", "never entered without a building" in retry and 'env["FEED_HL7_DIR"] = os.path.abspath(hdir)' in retry)
 
 # ---- 6. the feed digest says what the rule did (claimocity_report.py over a made-up import register) ---------------------------------------
-import subprocess
+# 11/13/2026: the report and the audit tool run INSIDE this process (run_program) - this self-test starts no program
+REPORT = os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py"); AUDIT = os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py")
+def loads(src):
+    """The names a piece of Python loads with import / from, first name of each (import a.b as c -> a)."""
+    out_ = set()
+    for kind, rest in re.findall(r"^[ \t]*(import|from)[ \t]+([^\n#]+)", src, re.M):
+        for n in (rest.split(",") if kind == "import" else [rest]):
+            n = n.strip().split()[0].split(".")[0] if n.strip() else ""
+            if n: out_.add(n)
+    return out_
+def run_program(path, cwd=None, env=None, argv=()):
+    """Run one program of the checkout INSIDE this process - what `python3 <path> <argv>` would do in folder `cwd` with `env` added to the
+    environment - and start nothing: its file is executed here as __main__ with sys.argv, the folder and the environment set for the run,
+    what it prints is captured, and all of it is put back after the run (sys.path too, should the program change it). sys.path is NOT given
+    the program's own folder, as `python3 <path>` would give it - on purpose: for the report that folder is scripts/helpers, which holds the
+    live amd / resave / txh / void_tx modules, so an import from it fails here instead of loading one (never "fix" that). It ends the way a
+    program ends: sys.exit(n) is the return code n, sys.exit("words") is 1 with the words on stderr, an error is 1 with its traceback on
+    stderr. A program that loads a module of AMD_MODULES is refused (such a helper runs with run_inside and its stand-ins); the report and
+    the audit tool load none. Returns what the checks read of a finished program: returncode, stdout, stderr."""
+    src = open(path).read(); live = sorted(loads(src) & set(AMD_MODULES))
+    if live: raise RuntimeError("%s loads %s - it is not run here (run_inside gives such a helper its stand-ins)" % (os.path.basename(path), live))
+    old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); old_path = list(sys.path)
+    out, err, code = io.StringIO(), io.StringIO(), 0
+    try:
+        if cwd: os.chdir(cwd)
+        os.environ.update(env or {}); sys.argv = [path] + list(argv)
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path, "__doc__": None})
+            except SystemExit as e:
+                if e.code is None or isinstance(e.code, int): code = e.code or 0
+                else: code = 1; err.write("%s\n" % (e.code,))
+            except Exception: code = 1; err.write(traceback.format_exc())
+    finally:
+        os.chdir(old_cwd); sys.argv = old_argv; sys.path[:] = old_path
+        for k in list(os.environ):
+            if k not in old_env: del os.environ[k]
+        os.environ.update(old_env)
+    return types.SimpleNamespace(returncode=code, stdout=out.getvalue(), stderr=err.getvalue())
 rep_dir = tempfile.mkdtemp(prefix="posrule_rep_"); os.makedirs(os.path.join(rep_dir, "registers"))
 def reg_row(cpts, fac, feed, lines, kinds=None, err=""):
     return {"feed_id": "x", "pid": "pat9", "visit": "vst1", "charges": ["charge%d" % i for i in range(len(cpts))], "fees": ["1.00"] * len(cpts), "dos": "11/02/2026",
@@ -2086,7 +2131,7 @@ rows = [reg_row(["99487", "99489"], "fac34", "31", ["32", "32"], ["ccm", "ccm"])
         reg_row(["99487"], "fac37", "13", ["13"]), reg_row(["99232"], "fac29", "21", ["21"])]
 def digest(rows, stamp="20261110T1319Z"):
     json.dump({"created": rows, "skipped": [], "failed": []}, open(os.path.join(rep_dir, "registers", "feed_import_%s.json" % stamp), "w"))
-    r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP=stamp), capture_output=True, text=True)
+    r = run_program(REPORT, rep_dir, env={"FEED_STAMP": stamp})
     return r, next((l for l in r.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
 r, line = digest(rows)
 check("digest: the report still runs with the new register fields", r.returncode == 0, r.stderr[-300:])
@@ -2124,8 +2169,8 @@ r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lin
 check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
 
 aud = tempfile.mkdtemp(prefix="posrule_aud_")
-_r1 = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", os.path.join(aud, "nowhere")], capture_output=True, text=True)
-_r2 = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud, "--csv"], capture_output=True, text=True)
+_r1 = run_program(AUDIT, argv=("--registers", os.path.join(aud, "nowhere")))
+_r2 = run_program(AUDIT, argv=("--registers", aud, "--csv"))
 check("audit tool: a registers folder that is not there, or --csv without a file name, ends with a plain sentence - not with a zero count or a traceback", _r1.returncode != 0 and "registers folder not found" in _r1.stderr
       and _r2.returncode != 0 and "needs a file or folder name" in _r2.stderr and "Traceback" not in _r1.stderr + _r2.stderr, (_r1.stderr[-200:], _r2.stderr[-200:]))
 json.dump({"created": [{"visit": "vst1", "pid": "pat1", "prof": "prof13", "fac": "fac29", "cpts": ["99309"], "dos": "10/05/2026", "charges": ["charge1"]},
@@ -2134,13 +2179,13 @@ json.dump({"created": [{"visit": "vst1", "pid": "pat1", "prof": "prof13", "fac":
                        {"visit": "vst4", "pid": "pat3", "prof": "prof13", "fac": "fac29", "cpts": ["99232"], "dos": "10/20/2026", "charges": ["charge4"]}]}, open(os.path.join(aud, "feed_import_20261101T0000Z.json"), "w"))
 json.dump({"stamp": "20261101T0000Z", "rows": [{"v": "vst1", "p": "pat1", "d": "2026-10-05", "c": ["99309"], "prov": "Pamela G."}, {"v": "vst2", "p": "pat1", "d": "2026-10-12", "c": ["99309"], "prov": "Pamela G. (ARNP)"},
                                               {"v": "vst3", "p": "pat2", "d": "2026-10-31", "c": ["99487"], "prov": "Dr. Effinger (DO)"}, {"v": "vst4", "p": "pat3", "d": "2026-10-20", "c": ["99232"], "prov": "Dr. Effinger (DO)"}]}, open(os.path.join(aud, "feed_recon_20261101T0000Z.json"), "w"))
-r = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud], capture_output=True, text=True)
+r = run_program(AUDIT, argv=("--registers", aud))
 check("audit tool: lists the visit entered under the other clinician and the visits whose codes do not fit the building they were entered in", r.returncode == 0 and "entered under a different clinician: 1" in r.stdout
       and "2 visit(s) whose codes do not fit the building" in r.stdout and "'nursing code at the hospital': 1" in r.stdout and "'care management at the hospital': 1" in r.stdout
       and "charts with a nursing code entered at the hospital AND visits entered in a nursing building: 1" in r.stdout and "not compared" not in r.stdout, r.stdout[-700:] + r.stderr[-300:])
 def qdigest(rows, gate, stamp="20261111T0100Z", failed=()):
     json.dump({"created": rows, "skipped": [], "failed": list(failed), "quality_gate": gate}, open(os.path.join(rep_dir, "registers", "feed_import_%s.json" % stamp), "w"))
-    r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP=stamp), capture_output=True, text=True)
+    r = run_program(REPORT, rep_dir, env={"FEED_STAMP": stamp})
     return r, "\n".join(l for l in r.stdout.splitlines() if "uality code" in l or l.startswith("  - carried by") or "QUALITY CODE" in l or "quality line" in l or "quality-code" in l)
 G0 = {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False, "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "reset": False, "pilot_cap": 3, "notes": []}
 qrow = dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), quality_codes=["1123F"], quality_fee="0.00", quality_charge="charge77", charges=["charge1", "charge77"], fees=["1.00"])
@@ -2685,24 +2730,19 @@ finally: _tm.sleep = _sl0; VQ["dfail"] = {}
 check("insurance check (NH2-3): the quality line's detail fails twice and answers the third time - the visit's own order is still set (a failed read never keeps it from being set at once), both charges echoed",
       okd1 is True and len(_sent1) == 1 and 'id="charge10"' in _sent1[0] and 'id="charge11"' in _sent1[0], (okd1, md1, _sent1))
 check("insurance check (NH2-3): ... three failed reads - held as before (nothing is echoed without a line nobody could check), and the message names that line", okd2 is False and "the no-charge line charge11 could not be read in three tries" in md2 and md2.startswith("detail read mismatch"), (okd2, md2))
-# the programs this self-test starts as programs load no module that talks to AdvancedMD (those are only ever run inside this process)
-_started = [os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py"), os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py")]
-def loads(src):
-    """The names a piece of Python loads with import / from, first name of each (import a.b as c -> a)."""
-    out_ = set()
-    for kind, rest in re.findall(r"^[ \t]*(import|from)[ \t]+([^\n#]+)", src, re.M):
-        for n in (rest.split(",") if kind == "import" else [rest]):
-            n = n.strip().split()[0].split(".")[0] if n.strip() else ""
-            if n: out_.add(n)
-    return out_
-_names = {os.path.basename(f): loads(open(f).read()) for f in _started}
-check("the helpers this self-test starts as programs load none of the modules that talk to AdvancedMD", all(not (v & set(AMD_MODULES)) for v in _names.values()) and len(_names) == 2
-      and loads("import os as _os\nimport amd as a, resave.x\n    import void_tx\nfrom txh import fetch_visit\n") == {"os", "amd", "resave", "void_tx", "txh"}, _names)
+# the report and the audit tool run INSIDE this process with no stand-in (run_program, section 6): they load no module that talks to AdvancedMD
+_inside = [REPORT, AUDIT]
+_names = {os.path.basename(f): loads(open(f).read()) for f in _inside}
+check("the report and the audit tool, run INSIDE this process with no stand-in, load none of the modules that talk to AdvancedMD", all(not (v & set(AMD_MODULES)) for v in _names.values()) and len(_names) == 2
+      and loads("import os as _os\nimport %s as a, %s.x\n    import %s\nfrom %s import fetch_visit\n" % ("amd", "resave", "void_tx", "txh")) == {"os", "amd", "resave", "void_tx", "txh"}, _names)
+# 11/13/2026: this check used to ALLOW two programs (the report and the audit tool, started with the process module's run); both run inside
+# this process now, and the check says the opposite - nothing at all is started from this file (the patterns are written in pieces so that
+# they do not find themselves), and no module that talks to AdvancedMD is imported here; at run time the audit hook (_no_program, top of
+# the file) refuses a program start by any code this process runs
 _me = open(os.path.abspath(__file__)).read()
-_runs = re.findall(r"subprocess\.\w+\(", _me)
-_known = re.findall(r'subprocess\.run\(\[sys\.executable,(?: "-B",)? os\.path\.join\(ROOT, (?:"scripts", "helpers", "claimocity_report\.py"|"tools", "feed", "feed_clinician_audit\.py")\)', _me)
-check("... and nothing else is started as a program from here (every program start in this file is one of those two)", len(_runs) == len(_known) and len(_runs) >= 5
-      and not re.search(r"os\.system\(|os\.popen\(|runpy\.", _me.replace('r"os\\.system\\(|os\\.popen\\(|runpy\\."', "")), (len(_runs), len(_known)))
+_starts = "|".join(("sub" "process", "os" r"\.system\(", "os" r"\.popen\(", "os" r"\.exec", "os" r"\.spawn", "os" r"\.posix_spawn", "run" r"py\."))
+check("... and this self-test starts no program: no program start of any kind in this file (the drivers' stand-in for the process module is named in two pieces) and no module that talks to AdvancedMD imported here",
+      not re.search(_starts, _me) and not (loads(_me) & set(AMD_MODULES)), ([m_.group(0) for m_ in re.finditer(_starts, _me)][:5], sorted(loads(_me) & set(AMD_MODULES))))
 def run_inside(path, standins, cwd, env=None, argv=()):
     """Run a helper that talks to AdvancedMD INSIDE this process: its amd / resave / ... are the stand-in modules given here, put in
     sys.modules for the run and taken out again. Refuses to run unless every module of AMD_MODULES the helper loads is a stand-in."""
@@ -2885,7 +2925,7 @@ def mdig(rows, mgate, qgate=None, prev_m=None, insp_=None, ver_=None, stamp="202
         else: json.dump(o2_, open(f_, "w"))
     json.dump({"created": rows, "skipped": [], "failed": [], "quality_gate": qgate or dict(G0, confirmed=True, proof={"visit": "vst5", "billed": "11/11/2026"}, pilot_cap=None), "mvp_gate": mgate}, open(cf, "w"))
     try:
-        r_ = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP=stamp), capture_output=True, text=True); return r_, r_.stdout
+        r_ = run_program(REPORT, rep_dir, env={"FEED_STAMP": stamp}); return r_, r_.stdout
     finally:
         for f_ in (pf, inf, vf, cf):
             if os.path.exists(f_): os.remove(f_)
@@ -3329,6 +3369,9 @@ HC_FILES = {f_: "# %s - the repository's copy\n" % f_ for f_ in HC.FEED_HELPERS}
 for f_ in HC.RULE_HELPERS: HC_FILES[f_] += ver + "\n"
 for f_, m_ in HC.VERSION_LINES.items(): HC_FILES[f_] += m_ + "\n"
 HC_OLD = "# an old copy without this rule's version line\n"
+# since 11/12/2026 the retry driver enters a skipped visit only when its codes are in BOTH tables PCODE and FEE of the claimocity_import.py beside it
+# (claimocity_retry_dx._known_cpts reads that file's text): every copy of the import helper here, the repository's and the old one, carries the helper's own tables
+HC_TABLES = "PCODE = %s\nFEE = %s\n" % (json.dumps(ci.PCODE), json.dumps(ci.FEE)); HC_FILES["claimocity_import.py"] += HC_TABLES; HC_OLD += HC_TABLES
 def hc_dirs(ws_over=None, repo_drop=(), no_repo=False):
     """(workspace, clone) folders: the clone holds every feed helper; the workspace the same, except ws_over {name: text, or None = missing}."""
     w_ = tempfile.mkdtemp(prefix="posrule_hcw_", dir=tmp); r_ = tempfile.mkdtemp(prefix="posrule_hcr_", dir=tmp)
@@ -3375,21 +3418,24 @@ def driver_run(name, w_, r_, argv, on_step):
     src = src.replace('WS = "/home/claude/unbilled"', "WS = %r" % w_, 1).replace('REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"', "REPO_HELPERS = %r" % r_, 1)
     _live = [ln_ for ln_ in src.split("\n") if ("/home/claude/unbilled" in ln_ or "/home/claude/effinger-billing-backend" in ln_) and not ln_.lstrip().startswith("#")]
     if _live: raise RuntimeError("the sandbox copy still names a live folder outside a comment - not run: %r" % _live[:2])
-    calls_ = []; sub_ = types.ModuleType("subprocess"); sub_.STDOUT = -2; sub_.PIPE = -1
+    calls_ = []; sub_ = types.ModuleType(PROC_MOD); sub_.STDOUT = -2; sub_.PIPE = -1
     def _run(cmd, **k):
         calls_.append([os.path.basename(str(x_)) for x_ in cmd]); txt_ = on_step(cmd) or "DONE {}"
         if hasattr(k.get("stdout"), "write"): k["stdout"].write(txt_ + "\n")
         return types.SimpleNamespace(returncode=0, stdout=txt_ if k.get("capture_output") else "", stderr="")
     sub_.run = _run
-    old_sub = sys.modules.get("subprocess"); old_cwd = os.getcwd(); old_argv = sys.argv[:]; old_env = dict(os.environ); out_ = io.StringIO(); err_ = ""
+    old_sub = sys.modules.get(PROC_MOD); old_cwd = os.getcwd(); old_argv = sys.argv[:]; old_env = dict(os.environ); out_ = io.StringIO(); err_ = ""
     try:
         for k_ in ("FEED_STAMP", "FEED_HL7_DIR", "FEED_DX_CACHE", "FEED_CHART_PREFIX", "QUALITY_CODE", "MVP_CODE"): os.environ.pop(k_, None)      # a routine's environment, not this test's
-        sys.modules["subprocess"] = sub_; sys.argv = [os.path.join(w_, name)] + list(argv)
+        sys.modules[PROC_MOD] = sub_; sys.argv = [os.path.join(w_, name)] + list(argv)
         with contextlib.redirect_stdout(out_):
             try: exec(compile(src, os.path.join(w_, name), "exec"), {"__name__": "__main__", "__file__": os.path.join(w_, name)})
             except SystemExit: pass
             except Exception as e: err_ = "%s: %s" % (type(e).__name__, e)
-    finally: sys.modules["subprocess"] = old_sub; os.chdir(old_cwd); sys.argv = old_argv; os.environ.clear(); os.environ.update(old_env)
+    finally:      # the stand-in goes again; the real module is put back only if something had loaded it (this file never does) - never a None in its place
+        if old_sub is None: sys.modules.pop(PROC_MOD, None)
+        else: sys.modules[PROC_MOD] = old_sub
+        os.chdir(old_cwd); sys.argv = old_argv; os.environ.clear(); os.environ.update(old_env)
     return out_.getvalue(), calls_, err_
 # W1's exact input: workspace = current helpers except an old claimocity_import.py, clone = current; two earlier batches whose visits waited on code M5117
 _w, _r = hc_dirs({"claimocity_import.py": HC_OLD}); os.makedirs(os.path.join(_w, "registers")); _seen_import = []
@@ -3432,7 +3478,7 @@ for _drv in ("claimocity_ingest.py", "claimocity_retry_dx.py"):
 check("mirror.py protects the shared helper with a sentence only its current version has", '"claimocity_helpers_current.py": "compared byte for byte with the clone\'s copy"' in mir and "compared byte for byte with the clone's copy" in _hcsrc)
 # the rulebook's merge (second ops-and-text reviewer): a bullet rewritten in place REPLACES its old copy instead of coming back beside it
 _rmp = os.path.join(ROOT, "tools", "mirror", "rules_merge.py"); _rms = open(_rmp).read()
-check("the rulebook's merge driver loads nothing that talks to AdvancedMD (sys and subprocess, for git's own union merge)", loads(_rms) == {"sys", "subprocess"}, loads(_rms))
+check("the rulebook's merge driver loads nothing that talks to AdvancedMD (sys and %s, for git's own union merge)" % PROC_MOD, loads(_rms) == {"sys", PROC_MOD}, loads(_rms))
 _rsp = importlib.util.spec_from_file_location("rules_merge_t", _rmp); RMG = importlib.util.module_from_spec(_rsp); _rsp.loader.exec_module(RMG)
 _HEAD = "- (11/10/2026, William in chat, STANDING for the charge feed and every billing task) PLACE OF SERVICE IN THE NURSING BUILDINGS (Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood). "
 _OLD = _HEAD + "(7) ... a returned line is resubmitted at 31; boards/working_denials.py classes reason 58 as FIX."
@@ -3495,7 +3541,7 @@ check("digest (W5 d): even when AdvancedMD's answer echoed the place of service 
 json.dump({"created": [{"visit": "vst11", "pid": "pat11", "prof": "prof13", "prof_feed": "prof15", "prof_why": "initial nursing-facility visit: always the physician (William 11/10/2026)", "fac": "fac32", "cpts": ["99306"], "dos": "11/11/2026", "charges": ["charge11"]}]},
           open(os.path.join(aud, "feed_import_20261111T0000Z.json"), "w"))
 json.dump({"stamp": "20261111T0000Z", "rows": [{"v": "vst11", "p": "pat11", "d": "2026-11-11", "c": ["99306"], "prov": "Pamela G. (ARNP)"}]}, open(os.path.join(aud, "feed_recon_20261111T0000Z.json"), "w"))
-r = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud], capture_output=True, text=True)
+r = run_program(AUDIT, argv=("--registers", aud))
 check("audit tool (12.3): an initial nursing-facility visit entered under the physician by William's rule is counted apart and not listed as entered under the wrong clinician; the earlier visit still is",
       r.returncode == 0 and "entered under a different clinician: 1" in r.stdout and "entered under the physician by William's initial-visit rule (11/10/2026, register field prof_why - not a fault, not listed): 1" in r.stdout and "vst11" not in r.stdout, r.stdout[-500:])
 # the words: rulebook, runbook, lessons
