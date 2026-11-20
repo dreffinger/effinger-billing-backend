@@ -2562,8 +2562,8 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps rule version .8 (and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
-      "grep -c 'POS_RULE_VERSION = \"2026-11-10.8\"'" in _STEP1 and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
+check("runbook (5.2, B1-B3): the version check greps rule version 2026-11-12.2 (11/12/2026: one version for this change, .8, the skipped-message change, 2026-11-11.1, and main's 99349 / unknown-CPT retry - none of them, nor .7, nor the first merge's 2026-11-12.1, anywhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+      "grep -c 'POS_RULE_VERSION = \"2026-11-12.2\"'" in _STEP1 and not any(v_ + '"' in step for v_ in ("2026-11-10.7", "2026-11-10.8", "2026-11-11.1", "2026-11-12.1")) and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
       all(x_ in _QR for x_ in ('THE CODE NEVER SWITCHES ITSELF OFF - William 11/11/2026: "%s" (in force since November 12, 2026). No state of the code waits for William. The digest carries ONE line that starts "TOP OF THE REPORT - QUALITY CODE:" in every batch; copy it to the top of the report word for word, every run:' % _W1112,
@@ -3329,6 +3329,11 @@ HC_FILES = {f_: "# %s - the repository's copy\n" % f_ for f_ in HC.FEED_HELPERS}
 for f_ in HC.RULE_HELPERS: HC_FILES[f_] += ver + "\n"
 for f_, m_ in HC.VERSION_LINES.items(): HC_FILES[f_] += m_ + "\n"
 HC_OLD = "# an old copy without this rule's version line\n"
+# 11/12/2026 (merge of main's 99349 / unknown-CPT retry): the retry enters a visit only when every code of it is in BOTH the PCODE and the FEE table of
+# the import copy beside it (claimocity_retry_dx._known_cpts reads them as text) - every real copy carries those tables, an old copy too (it lacks this
+# rule's version line, not its code tables): the stand-in copies carry the helper's own two tables, read from it here
+_ITAB = "".join(re.search(r"^%s\s*=\s*\{.*?\}\n" % t_, open(HELPER).read(), re.S | re.M).group(0) for t_ in ("PCODE", "FEE"))
+HC_FILES["claimocity_import.py"] += _ITAB; HC_OLD += _ITAB
 def hc_dirs(ws_over=None, repo_drop=(), no_repo=False):
     """(workspace, clone) folders: the clone holds every feed helper; the workspace the same, except ws_over {name: text, or None = missing}."""
     w_ = tempfile.mkdtemp(prefix="posrule_hcw_", dir=tmp); r_ = tempfile.mkdtemp(prefix="posrule_hcr_", dir=tmp)

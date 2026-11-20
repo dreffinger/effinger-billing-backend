@@ -110,16 +110,16 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.8"',
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-12.2"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-12.2"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.8"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-12.2"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-12.2"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
              # 11/10/2026 (round 7): the insurance check and resave.py read each visit's insurance-order LIST - a copy from before that skipped the visits
              # entered with no plan (84 never billed) and must not come back over them; their markers are sentences only the round-7 versions have
              # (resave.py above). feed_order_sweep.py is new that day: the daily listing and the owner-approved save
-             # 11/12/2026 (rule version 2026-11-10.8, the quality code never switches itself off): the inspector step tries a visit stuck with its no-charge line again in
+             # 11/12/2026 (rule version 2026-11-10.8 - since the same day 2026-11-12.1, with the skipped-message change, and 2026-11-12.2, with main's 99349 and unknown-CPT retry -, the quality code never switches itself off): the inspector step tries a visit stuck with its no-charge line again in
              # every run - a copy from before that leaves such a visit held for ever now that nothing switches the code off; its marker is the sentence only that version has
              "claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
              # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
@@ -134,6 +134,10 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")',
              # the one function the ingest and the retry share to make the feed helpers the repository's on every run (11/10/2026, reviewers C2 / W1)
              "claimocity_helpers_current.py": "compared byte for byte with the clone's copy",
+             # 11/11/2026: the feed parser skips and names a message it cannot read (no PID or PV1 segment, a short FT1 line) instead of ending with no
+             # parsed file - one such message stopped a whole batch, and every later run with it. A workspace copy from before that must never come back
+             # over it; the marker is a sentence only that parser has (the import, the report, the ingest and the retry changed their version lines that day)
+             "feed_parse_dft_1028.py": "a message this parser cannot read is skipped and named",
              # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
              "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",

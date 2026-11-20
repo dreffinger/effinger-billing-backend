@@ -28,6 +28,12 @@
 # 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the code never switches itself off. Where it
 #   used to go off it probes - one line a run until one is billed - or pauses for one run; only William's own QUALITY_CODE=stop lasts. See
 #   THE CODE NEVER SWITCHES ITSELF OFF below.
+# A feed message that cannot be read never stops the batch (11/11/2026): a message with no FT1 line (no date of service, no code - nothing to
+#   enter) used to stop main() at the line that builds the visit's key: the visits before it were entered, the ones after it were not, and every
+#   re-run stopped at the same message. Such a message is now skipped, and so is everything the parser could not read (no PID or PV1 segment, a
+#   short FT1 line - its list feed_skipped_<stamp>.json). Each is named in the import register under "skipped_messages" (message control id,
+#   file, place in the file, reason, who skipped it - never a name, a date of birth or a member id), printed as a SKIPPED MESSAGE line and put
+#   at the top of the report by the digest: a person must look at the feed file. See unreadable / skipped_rows below.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -93,7 +99,7 @@ def mdy(yyyymmdd):
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.8"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-12.2"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -1565,6 +1571,43 @@ for f in sorted(glob.glob((HL7_DIR + "/*.hl7"))):       # sorted: "the last mess
         try:
             if pid: MSGOF.setdefault(msg_key(pid, _ft), set()).add((fac, _npi, _adm)); MSGLAST[msg_key(pid, _ft)] = (fac, _npi, _adm)      # ... and the last raw copy of THIS message
         except Exception: pass
+# ---- FEED MESSAGES THAT COULD NOT BE READ (11/11/2026) ---------------------------------------------------------------------------------------
+# Two readers can find a message they cannot use: the parser (feed_parse_dft_1028.py: no PID segment, no PV1 segment, an FT1 line with fewer
+# fields than it reads, anything that fails while the message is read - it writes them to feed_skipped_<stamp>.json and leaves them out of the
+# parsed file) and this import (a parsed message with no FT1 line: nothing to enter and nothing to build the visit's key from). Neither stops the
+# batch any more: the message is skipped, every other visit of the batch is entered, and the message is named - by its control id (MSH-10), its
+# file and its place in the file, never by a name, a date of birth or a member id - in the import register ("skipped_messages"), in a SKIPPED
+# MESSAGE line of the import log and at the top of the report (claimocity_report.py). No routine enters such a message: a person looks at the
+# feed file. A list that is there but cannot be read is said the same way ("skipped_messages_unread") - never taken as "nothing was skipped".
+SKIPPED_FILE = "feed_skipped_%s.json" % STAMP       # the parser's list of the messages it could not read, beside the parsed file
+NO_FT1 = "no FT1 line - no charge to enter"
+def unreadable(msg):
+    """Why this import cannot enter a parsed message at all ("" = it can): main() builds each visit's key from the message's patient id, its first
+    FT1 line's date and its codes, and finds the chart by name and date of birth - a record without them is skipped and named, never a stop."""
+    if not isinstance(msg, dict): return "not a message record"
+    if not (isinstance(msg.get("FT1"), list) and msg["FT1"]): return NO_FT1
+    if not all(isinstance(c, dict) and isinstance(c.get("dos"), str) and isinstance(c.get("cpt"), str) for c in msg["FT1"]): return "an FT1 line without a date of service or a code"
+    if not all(isinstance(msg.get(k), str) for k in ("pid", "name", "dob")): return "no patient id, name or date of birth in the parsed record"
+    return ""
+def _skip_row(x, why, by):
+    """One register row for a skipped message: control id, file, place in the file, reason, who skipped it - and nothing else of the message."""
+    x = x if isinstance(x, dict) else {}
+    return {"ctl": re.sub(r"[^A-Za-z0-9._:\-]", "", str(x.get("ctl") or ""))[:40], "file": re.sub(r"[^A-Za-z0-9._\-]", "", str(x.get("file") or ""))[:8],
+            "msg": x.get("msg") if isinstance(x.get("msg"), int) and not isinstance(x.get("msg"), bool) else None, "why": re.sub(r"[^A-Za-z0-9 ()\-;,.:]", "", str(why or ""))[:200], "by": by}
+def skipped_rows(parsed, path=None):
+    """(rows, unread): the messages of this batch that are not entered because they could not be read - the parser's list first, then the parsed
+    messages this import cannot key; unread = why the parser's list could not be read ("" when it was read, or when there is none: a parsed file
+    written before 11/11/2026 has no list). The same batch gives the same rows at every start, so a re-run names each message once."""
+    path = path or SKIPPED_FILE; rows = []; unread = ""
+    try:
+        if _os.path.exists(path):
+            for x in json.load(open(path)): rows.append(_skip_row(x, x.get("why"), "parser"))
+    except Exception as e:
+        rows = []; unread = "%s could not be read (%s) - read logs/claimocity_%s_parse.log" % (_os.path.basename(path), type(e).__name__, STAMP)
+    for msg in parsed:
+        w = unreadable(msg)
+        if w: rows.append(_skip_row(msg, w, "import"))
+    return rows, unread
 _ctx = {}
 def chart_ctx(pid):
     """episode, respparty, refplan, insorder, live {(cpt,dos)} from the chart's own history/detail."""
@@ -1725,6 +1768,14 @@ def main():
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
     amd.login_cached()
     reg = json.load(open(REG)) if __import__("os").path.exists(REG) else {"created": [], "skipped": [], "failed": []}
+    # feed messages that could not be read (11/11/2026): named here, before anything is entered - in the register (written with the first visit and
+    # at the end of a live run; a dry run writes nothing), in the log and, by the digest, at the top of the report. The loop below passes them over.
+    _skm, _sku = skipped_rows(PARSED)
+    for _k, _v in (("skipped_messages", _skm), ("skipped_messages_unread", _sku)):
+        if _v: reg[_k] = _v
+        else: reg.pop(_k, None)
+    for _x in _skm: print("SKIPPED MESSAGE %s (file %s, message %s): %s - not entered; a person must look at the feed file" % (_x["ctl"] or "no control id", _x["file"] or "?", "?" if _x["msg"] is None else _x["msg"], _x["why"]))
+    if _sku: print("SKIPPED MESSAGES NOT KNOWN: %s - a person must look at the feed file" % _sku)
     # a feed id is the PATIENT (PID-3), not the message: dedupe on (patient, DOS, CPT set) - the live-charge check is the backstop.
     # EVERY earlier batch register counts (a visit re-dated after its import, e.g. the CCI 24078 re-dates, no longer matches the feed DOS
     # in AMD, so the live check alone would create it again - 10/29/2026 dry run).
@@ -1761,6 +1812,7 @@ def main():
     # so the result does not depend on the order the messages are entered in
     try:
         for _m in PARSED:
+            if unreadable(_m): continue                              # a message that is not entered (skipped_messages) shows no visit
             _p = MATCH.get(_m["name"].upper().strip() + "|" + _m["dob"][:8], {}).get("resolved")
             if not _p: continue
             for _bn in msg_buildings(_m):                        # the message's own building - every building its copies name (review C1): a visit in another building is then seen as a move
@@ -1808,6 +1860,8 @@ def main():
     if MVP.get("reset"): MVP["reset_after"] = [len(reg["created"]), len(reg["failed"])]
     elif _mg0.get("reset") is True: MVP["reset"] = True; MVP["reset_after"] = _mg0.get("reset_after")
     n = 0; stats = collections.Counter()
+    if _skm: stats["FEED MESSAGE SKIPPED - could not be read; a person must look at the feed file"] += len(_skm)
+    if _sku: stats["FEED MESSAGES SKIPPED NOT KNOWN - the parser's list could not be read"] += 1
     if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31"] += 1
     # A PROVISIONAL ROW (confirm review F5): before the call that carries the quality line, a failed row {quality_unknown, provisional} is written to
     # the register. When the answer comes and the visit's outcome is recorded, that row goes again (_unprov). When the run is cut while the call is
@@ -1818,7 +1872,9 @@ def main():
     def _unprov():
         if _prov[0] is not None: reg["failed"][:] = [x for x in reg["failed"] if x is not _prov[0]]; _prov[0] = None
     for msg in PARSED:
-        fid = msg["pid"]; _prov[0] = None
+        _prov[0] = None
+        if unreadable(msg): continue      # named above under skipped_messages: nothing of it is entered, and the batch goes on
+        fid = msg["pid"]
         if one and fid != one: continue
         mkey = (fid, mdy(msg["FT1"][0]["dos"][:8]), tuple(sorted(c["cpt"] for c in msg["FT1"])))
         if mkey in done or (fid, None, None) in done: stats["already created"] += 1; continue

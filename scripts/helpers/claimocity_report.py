@@ -6,7 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-10.8"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-12.2"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -40,6 +40,20 @@ _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
 L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]),
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
+# feed messages that could not be read (11/11/2026): the parser's list (no PID or PV1 segment, a short FT1 line) and the import's own (no FT1
+# line) reach this digest through the import register's "skipped_messages" - control id, file, place in the file, reason; never a name. ONE line
+# that starts "  - TOP OF THE REPORT - ": how many, which, and that a person must look at the feed file. None of them was entered, and no routine
+# enters one. "skipped_messages_unread" = the parser's list was there but could not be read: said in the same line, never taken as "none".
+try:
+    _sk = [x for x in reg["skipped_messages"] if isinstance(x, dict)] if isinstance(reg.get("skipped_messages"), list) else []
+    _sku = str(reg.get("skipped_messages_unread") or "")[:300]
+    _skn = lambda x: "%s (file %s%s: %s)" % (str(x.get("ctl") or "")[:40] or "no control id", str(x.get("file") or "?")[:8], (", message %s" % x.get("msg")) if isinstance(x.get("msg"), int) else "", str(x.get("why") or "?")[:200])
+    if _sk: L("  - TOP OF THE REPORT - FEED MESSAGES SKIPPED: %d message(s) of this batch could not be read and were NOT entered - a person must look at the feed file: %s%s%s" % (
+        len(_sk), "; ".join(_skn(x) for x in _sk[:30]), (" (+%d more - see skipped_messages in the import register)" % (len(_sk) - 30)) if len(_sk) > 30 else "",
+        (" - and the parser's list of skipped messages is not complete: %s" % _sku) if _sku else ""))
+    elif _sku: L("  - TOP OF THE REPORT - FEED MESSAGES SKIPPED: not known - %s; a person must look at the feed file" % _sku)
+except Exception as _e:                                    # a register edited by hand must never stop the digest
+    L("  - TOP OF THE REPORT - FEED MESSAGES SKIPPED: this line could not be built (%s) - read skipped_messages in the import register; a person must look at the feed file." % type(_e).__name__)
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}

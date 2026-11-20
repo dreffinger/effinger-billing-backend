@@ -31,7 +31,7 @@ def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0
 # helpers here the repository's copies exactly as the ingest does - the one shared function claimocity_helpers_current.make_current: with the clone
 # there, every helper that differs is replaced by the clone's copy; without one, each is checked by its version line. It never holds a visit for
 # this (rules.md part 6): what could not be made current is said at the end of the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.8"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-12.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 REPO_REGS = os.path.join(os.path.dirname(os.path.dirname(REPO_HELPERS)), "practices", "ehpa", "registers")   # the recon registers on main (the workspace copies come first); derived, so the selftest sandbox moves it too
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
@@ -120,6 +120,7 @@ msgs = []
 for stamp, ids in sorted(want.items()):
     for m in parsed_for(stamp):
         if m["pid"] not in ids: continue
+        if not m.get("FT1"): continue      # 11/11/2026: a message with no FT1 line has no visit to retry (the import named it under skipped_messages) - it never stops the retry
         cpts = {c["cpt"] for c in m["FT1"]}
         if not cpts & ids[m["pid"]]: continue                                    # another visit of that patient - not the one the skip names
         if cpts - KNOWN_CPTS: unknown_cpts.update(c for c in cpts - KNOWN_CPTS if c); continue   # review round 3: a second code the import does not know yet

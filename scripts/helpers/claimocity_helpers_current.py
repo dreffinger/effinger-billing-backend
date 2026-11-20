@@ -15,9 +15,11 @@ REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py",
                 "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py")
 # the version lines mirror.py protects (the self-test checks that the two lists agree); the import helper and the two drivers carry the
-# driver's own POS_RULE line. The parser has not changed since 10/28/2026 and carries none: without a clone it is not checked.
-VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.8"', "claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line",
-                 "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST"}      # 11/10/2026 (round 7): a sentence only the list-aware version has
+# driver's own POS_RULE line. Since 11/11/2026 the parser carries a sentence too: a parser from before that day stops a whole batch at one
+# message it cannot read (no PV1 segment, a short FT1 line), so without a clone it is checked like the others.
+VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-12.2"', "claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line",
+                 "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",      # 11/10/2026 (round 7): a sentence only the list-aware version has
+                 "feed_parse_dft_1028.py": "a message this parser cannot read is skipped and named"}                                       # 11/11/2026: a sentence only the parser that skips and names an unreadable message has
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):
     try: return open(p, "rb").read()

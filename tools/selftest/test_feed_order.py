@@ -15,7 +15,7 @@
 #     - (sections 8 and 9, step 2) feed_order_sweep.py, run INSIDE this process with stand-ins: the read-only listing (TOP lines with the clinician
 #       and admission-date problems), the eligibility checks dated to the service date (one per chart, date and plan; capped; no name, birth date
 #       or member id written), the clinician moves of the owner's file, the save through set_insorder only for the approved and standing-word
-#       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version 2026-11-10.8, the mirror's markers,
+#       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version (2026-11-10.7 for round 7; 2026-11-12.2 since 11/12/2026, one version for the skipped-message change of 11/11/2026, the quality code that never switches itself off and main's 99349 / unknown-CPT retry), the mirror's markers,
 #       the owner's approved file unchanged, and the words of the runbook, the rulebook, the lessons and the captured calls.
 #   The import's new register fields (section 7) are proved in tools/selftest/test_pos_rule.py, where the import runs with its stand-ins.
 #   11/11/2026 (round 8, the echo guard) - section R8: the sweep's own read before its own save (--resave) and its own clinician move
@@ -517,9 +517,10 @@ check("mirror.py protects resave.py and the sweep with sentences only their roun
       all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()) and not any(x_ in MIR for x_ in _mk7)
       and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in HCS and "def set_insorder" not in MIR, {f_: m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()})
 _vc = {p_: open(os.path.join(ROOT, p_)).read() for p_ in ("scripts/helpers/claimocity_import.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_retry_dx.py", "scripts/helpers/claimocity_report.py", "scripts/helpers/claimocity_helpers_current.py", "tools/mirror/mirror.py", "nightly/claimocity_feed_step.md")}
-check("the rule version is 2026-11-10.8 in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and 2026-11-10.7 in none of them (11/12/2026: the quality code never switches itself off)",
-      all('VERSION = "2026-11-10.8"' in s_ and '"2026-11-10.7"' not in s_ and '"2026-11-10.6"' not in s_ for s_ in _vc.values()) and MIR.count('POS_RULE_VERSION = "2026-11-10.8"') == 3
-      and "grep -c 'POS_RULE_VERSION = \"2026-11-10.8\"' /home/claude/unbilled/claimocity_import.py" in _vc["nightly/claimocity_feed_step.md"], [p_ for p_, s_ in _vc.items() if 'VERSION = "2026-11-10.8"' not in s_ or '"2026-11-10.7"' in s_])
+_OLDV = ("2026-11-12.1", "2026-11-11.1", "2026-11-10.8", "2026-11-10.7", "2026-11-10.6")      # every earlier version string: none of them may be left in a place that carries the version
+check("the rule version is 2026-11-12.2 (11/12/2026: one version for the skipped-message change of 11/11/2026, 2026-11-11.1, the quality code that never switches itself off, 2026-11-10.8, and main's 99349 / unknown-CPT retry - the first merge of the two was 2026-11-12.1; round 7 was 2026-11-10.7) in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and no earlier version (2026-11-12.1, 2026-11-11.1, 2026-11-10.8, 2026-11-10.7, 2026-11-10.6) in any of them",
+      all('VERSION = "2026-11-12.2"' in s_ and not any('"%s"' % v_ in s_ for v_ in _OLDV) for s_ in _vc.values()) and MIR.count('POS_RULE_VERSION = "2026-11-12.2"') == 3
+      and "grep -c 'POS_RULE_VERSION = \"2026-11-12.2\"' /home/claude/unbilled/claimocity_import.py" in _vc["nightly/claimocity_feed_step.md"], [p_ for p_, s_ in _vc.items() if 'VERSION = "2026-11-12.2"' not in s_ or any('"%s"' % v_ in s_ for v_ in _OLDV)])
 _apf = os.path.join(ROOT, "practices", "ehpa", "registers", "feed_order_approved.json")
 check("8.8 the owner's approved file is in the repository unchanged (the very bytes of 11/10/2026): 84 visits, his answers, no 'william' visit left after his second answer",
       __import__("hashlib").sha256(open(_apf, "rb").read()).hexdigest() == "cb96a8d0ee76af6e4ffc20dba1efe051e5baa71bf38f6e7e4ff668e4ddbee3dc" and len(json.load(open(_apf))["visits"]) == 84
