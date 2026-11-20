@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-20T05:45:26Z",
+ "at": "2026-11-20T05:36:00Z",
+ "changed": 3,
+ "checked": 32,
+ "commit": "bb1b790",
+ "date": "2026-11-20",
+ "dollars": 763,
+ "done": "3 visits re-pointed to Medicare Advantage plans (763 dollars): chart 17472826 and 17473090 11/18 visits to BCBS MA (160 dollars each); chart 17478471 UHC AARP MA plan found by discovery and added, 11/17 admission sent to UHC (443 dollars)",
+ "era_posted": 0.0,
+ "finished": "2026-11-20T05:45:26Z",
+ "flagged": 6,
+ "kind": "nightly cascade",
+ "lookups": 5,
+ "note": "32 visit-and-plan pairs checked (4 new Stedi lookups + 1 discovery), 6 flagged; 2 CHP charts wait on member numbers; no write-offs, ERA 0 checks",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-20T0536Z.json",
+ "stamp": "2026-11-20T0536Z",
+ "stedi_cost": 2.7,
+ "writeoffs": 0.0
+}

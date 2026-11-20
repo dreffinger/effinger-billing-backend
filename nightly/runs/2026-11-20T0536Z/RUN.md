@@ -1,0 +1,12 @@
+# nightly cascade 2026-11-20T0536Z (Friday)
+- precheck --days 3 --max 120: 32 pairs, 4 new Stedi lookups, 6 flagged.
+- chart 17472826: v19461846 11/18 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204.
+- chart 17473090: v19461844 11/18 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / HCSC MA), freq 1, rebill seq 1 -> 204.
+- chart 17478471 (new HCA chart, only Medicare): Medicare + AMD 271 name Care Improvement Plus (UHC MA, H2406); Stedi discovery (1.50) -> UHC 87726 AARP MA Patriot active 9/1-12/31/2026; add_ins UNI20 car6404 begin 09/01/2026 -> ins9521366 seq 2; chart order 2; v19461861 11/17 (99223+99497, 443 dollars) freq 1, rebill seq 2 -> 204.
+- read back: all three insbilled 0 at the new order; primary dx acceptable (dx_primary_fix plan L03.90 / R55 / M48.02). 763 dollars re-sent.
+- chart 17478455: a new 11/18 visit (160) also at Medicare; CHP member number still needed (470 now). chart 17478452 unchanged (421). chart 17472491 RET01 known false positive.
+- Step 2/2a skipped (Friday). void_rules: 1 open rule, no VOID lines. ERA step: 0 checks before/after.
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; no new reminder window (past-due cards already on William's turn) -> no cred file.
+- board: 3 append ops + 1 new card (Drive board inbox); no drops; no inbox file in the applied map.
+- Stedi: 5 calls 2.70 dollars (plain Medicare 3, eligibility 1, discovery 1).
+- practice_db: 6 documents committed (billing_runs 1, cascade_runs 1, snapshots 4), 0 swept; Neon 6 new, run logged ok.
