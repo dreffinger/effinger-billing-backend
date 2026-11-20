@@ -1,12 +1,16 @@
-// Every view the app shows, as read-only SQL over the ehpa.* views (tools/db/neon_schema.sql) and the ops.* tables. One view =
+// Every view the app shows, as read-only SQL over the ehpa.* views (tools/db/neon_schema.sql) and the ops.* tables (Approvals reads
+// its two documents from raw.documents directly - see there why). One view =
 // one title, one note, and sections of {heading, columns, rows, kinds}; the browser renders them generically. Chart ids, dates of
-// service, codes and dollars only - the queries never select a patient name, date of birth or member id.
+// service, codes and dollars only - the queries here never select a patient name, date of birth or member id. The one exception is
+// the Insurance Refresh view: it is the board's cards (src/board.ts), and a card is a patient.
 import type { Pool } from "pg";
+import { SAFE_NUM, NEWEST_APPROVALS } from "./sql";
+import { runBoard } from "./board";
 
 export type Kind = "text" | "int" | "money" | "when";
 export type SectionSpec = { heading: string; note?: string; sql: string; kinds?: Record<string, Kind> };
 export type ChartSpec = { id: string; kind: "days" | "pairs"; title: string; note?: string; fill?: string; sql: string };
-export type ViewSpec = { title: string; note?: string; sections: SectionSpec[]; charts?: ChartSpec[] };
+export type ViewSpec = { title: string; note?: string; sections: SectionSpec[]; charts?: ChartSpec[]; board?: boolean };
 
 // the feed's per-day rollups: one row per calendar day with the entered visits, their charge lines, dollars and distinct charts,
 // plus the encounters NOT entered (diagnosis, CPT, deceased, skipped, failed, no chart) - the artifact page's day charts, in SQL
@@ -20,8 +24,8 @@ const DAY_ROLLUP = (dayExpr: string) => `
   from (select ${dayExpr} as day, status, cpts, fee, chart_id from ehpa.feed_charges) f
   where day is not null group by day order by day`;
 // the day (Eastern time) a batch was pulled into AdvancedMD: the batch's recorded time, else its run stamp (20261031T0312Z -> Oct 30
-// 11:12 PM ET), else the 10/28 backlog (stamp 1028)
-const PULLED_DAY = `coalesce((batch_at at time zone 'America/New_York')::date,
+// 11:12 PM ET), else the 10/28 backlog (stamp 1028). pdb.ts uses the same expression for the Census inputs view.
+export const PULLED_DAY = `coalesce((batch_at at time zone 'America/New_York')::date,
   case when batch_stamp ~ '^[0-9]{8}T[0-9]{4}Z' then (((substr(batch_stamp, 1, 4) || '-' || substr(batch_stamp, 5, 2) || '-' || substr(batch_stamp, 7, 2) || ' ' || substr(batch_stamp, 10, 2) || ':' || substr(batch_stamp, 12, 2) || ':00+00')::timestamptz) at time zone 'America/New_York')::date
        when batch_stamp ~ '^[0-9]{4}$' then make_date(extract(year from now())::int, substr(batch_stamp, 1, 2)::int, substr(batch_stamp, 3, 2)::int) end)`;
 
@@ -52,6 +56,12 @@ export const VIEWS: Record<string, ViewSpec> = {
       { heading: "Recent loads", note: "ops.load_log", kinds: { inserted: "int", updated: "int", unchanged: "int", at: "when" },
         sql: `select at, command, source, inserted, updated, unchanged, loaded_by from ops.load_log order by at desc limit 15` },
     ],
+  },
+  insurance_refresh: {
+    title: "Insurance Refresh Board",
+    note: "Every card on the board, read from the practice's own copy: whose turn it is, what is needed, where the patient is, and the notes.",
+    board: true,
+    sections: [],
   },
   ar: {
     title: "Accounts receivable",
@@ -129,14 +139,21 @@ export const VIEWS: Record<string, ViewSpec> = {
         sql: `select night, at, checked, flagged, lookups, changed, dollars_resent, era_posted, writeoffs, stedi_cost, done, note from ehpa.cascade_nights order by night desc limit 60` },
     ],
   },
+  // Read from the documents themselves: ehpa.approvals and ehpa.approval_cards cast each dollars text to a number and fail when a
+  // package names several amounts (found 11/12/2026: 31 of the 94 packages do), so these two tables answered with an error. Here an
+  // amount counts only when its text is one number (SAFE_NUM); the text itself stays in the Approvals view's own table.
   approvals: {
     title: "Approvals",
     note: "The Mandatory Approvals packages as the newest snapshot recorded them, and the board's own cards.",
     sections: [
-      { heading: "Packages, waiting first", kinds: { dollars: "money", at: "when" },
-        sql: `select package_id, at, status, dollars, left(what, 140) as what, left(answer, 60) as answer, left(reason, 80) as reason from ehpa.approvals order by (status = 'waiting') desc, at desc limit 100` },
-      { heading: "Board cards by status", kinds: { cards: "int", dollars: "money" },
-        sql: `select status, count(*) as cards, round(sum(dollars),2) as dollars from ehpa.approval_cards group by status order by cards desc` },
+      { heading: "Packages, waiting first", note: "dollars only where a package names one amount", kinds: { dollars: "money", at: "when" },
+        sql: `select r.value->>'id' as package_id, (r.value->>'at')::timestamptz as at, r.value->>'status' as status, ${SAFE_NUM("r.value->>'dollars'")} as dollars,
+                     left(r.value->>'what', 140) as what, left(r.value->>'answer', 60) as answer, left(r.value->>'reason', 80) as reason
+              from ${NEWEST_APPROVALS} d cross join lateral jsonb_array_elements(case when jsonb_typeof(d.body->'rows') = 'array' then d.body->'rows' else '[]'::jsonb end) r(value)
+              order by (r.value->>'status' = 'waiting') desc, (r.value->>'at')::timestamptz desc nulls last limit 100` },
+      { heading: "Board cards by status", note: "dollars only where a card names one amount", kinds: { cards: "int", dollars: "money" },
+        sql: `select body->>'status' as status, count(*) as cards, round(sum(${SAFE_NUM("body->>'dollars'")}), 2) as dollars
+              from raw.documents where source = 'mandatory_approvals' and collection = 'approvals' group by 1 order by cards desc` },
     ],
   },
   routines: {
@@ -185,5 +202,6 @@ export async function runView(pool: Pool, name: string) {
     const r = await pool.query(ch.sql);
     charts.push({ id: ch.id, kind: ch.kind, title: ch.title, note: ch.note, fill: ch.fill, rows: r.rows });
   }
-  return { title: spec.title, note: spec.note, charts, sections, generated_at: new Date().toISOString() };
+  const board = spec.board ? await runBoard(pool) : undefined;
+  return { title: spec.title, note: spec.note, charts, sections, board, generated_at: new Date().toISOString() };
 }

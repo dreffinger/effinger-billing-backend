@@ -1,0 +1,300 @@
+// PLAIN ENGLISH (offline self-test of the ehpa applications Function, 11/12/2026). Builds src/index.ts exactly as it is deployed,
+// with three stand-ins - Postgres (pg), Neon's function hooks (@neon/functions) and the Auth server's key set (jose's remote JWKS) -
+// and asks it every question a browser can ask. It proves:
+//   1. every /api route the app registers (the old ones and the new pdb / ccm / links routes, GET and POST) answers 401 with no
+//      session, 401 for a token signed by another key, 403 for a signed-in account whose email is not allowed and 403 for an
+//      allowed address whose owner never confirmed it - and in all four cases no data query runs and nothing is logged;
+//   2. for the allowed, confirmed account every route runs, and every request is written to ops.app_access_log with its route;
+//   3. every statement a GET route sends is a SELECT (the access-log INSERT aside) - the CCM and Practice Database routes write nothing;
+//   4. the public answers ("/", /theme.js, /app.js, /health) carry no patient data and no claude.ai page address, and every answer
+//      carries the Content-Security-Policy and no-store headers;
+//   5. the color schemes: "/" is Light before any script runs, offers the five ehpa schemes with the Practice Database page's exact
+//      tokens (tools/db/practice_db_page.html), and /theme.js applies a remembered pick, ignores an unknown one and survives a browser
+//      that refuses localStorage;
+//   6. (review of 11/12/2026) a failed query on a Practice Database or CCM route answers 500 with a fixed sentence and is logged by its
+//      route pattern and SQLSTATE only - never the error's message, where Postgres repeats the stored value it choked on. (11/13/2026)
+//      The same for every other route that reads the database - every generic view (insurance_refresh, the Insurance Refresh Board's
+//      patient list, among them), one board card by POST, the Universal Practice Optimization routes - and for the gate's own two
+//      queries, the account lookup and the access-trail insert;
+//   7. (review of 11/12/2026) the browser tab title - also what browser history keeps - never carries a patient's name: the real
+//      browser code opens a CCM note and a patient with a stand-in document, and after the idle sign-out (and the Sign out button) the
+//      title is the page's own again. (11/13/2026, with the Insurance Refresh Board page and the session handling of PR #28's 4ddfa291)
+//      the header buttons as /api/links serves them - each opens its claude.ai page in a new tab, the Insurance Refresh Board's the
+//      board itself - and a CCM note whose answer arrives after Sign out, or after the page was left, is not drawn.
+// Never touches: Neon, the Auth server, the network (fetch is replaced by a refusal; the database address is made up). No patient
+// data: the one "patient" below is invented here. Writes only src/generated/client-bundle.ts (the bundle it checks; git-ignored).
+// Run: node scripts/selftest.mjs   (from apps/ehpadb; exit 1 on any failure) - tools/selftest/test_ehpadb_app.py runs it too.
+import { build } from "esbuild";
+import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { format } from "node:util";
+import vm from "node:vm";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const repo = resolve(root, "..", "..");
+const FAILS = []; let RAN = 0;
+const check = (name, cond, extra = "") => { RAN++; console.log((cond ? "ok   " : "FAIL ") + name + (cond ? "" : "  -> " + String(extra).slice(0, 500))); if (!cond) FAILS.push(name); };
+
+// ---- no network: any fetch is refused (the remote key set is replaced below; pg is a stand-in) ------------------------------------
+globalThis.fetch = async () => { throw new Error("the self-test must not use the network"); };
+// the Function's own refusal notes ("jwt rejected", "forbidden email" ...) are expected here by the dozen; count them instead
+let refusalNotes = 0; console.warn = () => { refusalNotes++; };
+
+// ---- the browser bundle, built the way npm run build:client builds it ---------------------------------------------------------------
+const b = spawnSync(process.execPath, [resolve(root, "scripts/bundle-client.mjs")], { cwd: root, encoding: "utf8" });
+check("the browser bundle builds (scripts/bundle-client.mjs)", b.status === 0, b.stderr || b.stdout);
+
+// ---- the stand-ins ---------------------------------------------------------------------------------------------------------------------
+const INVENTED = "Zyxwv Testpatient";   // an invented name: it must never leave a route that is not behind the gate
+const USERS = { "u-owner": ["owner@invalid.test", true], "u-stranger": ["stranger@invalid.test", true], "u-unconfirmed": ["late@invalid.test", false] };
+globalThis.__SELFTEST__ = { sql: [], users: USERS, invented: INVENTED, pending: [] };
+const PG_STUB = `export class Pool { constructor() {}
+  async query(q, params = []) {
+    const S = globalThis.__SELFTEST__; const text = typeof q === "string" ? q : q.text; S.sql.push({ text, params });
+    // part 6: the database refuses the way Postgres does - the stored value it choked on is repeated in the message and the detail
+    // (failing: every data query; failLookup: the gate's account lookup; failTrail: the access-trail insert)
+    const refuse = () => { const e = new Error('invalid input syntax for type date: "' + S.invented + '"'); e.code = "22007"; e.detail = S.invented; throw e; };
+    if (/from neon_auth\\."user"/.test(text)) { if (S.failLookup) refuse(); const u = S.users[params[0]]; return { rows: u ? [{ email: u[0], verified: u[1] }] : [], fields: [] }; }
+    if (/^\\s*insert into ops\\.app_access_log/i.test(text)) { if (S.failTrail) refuse(); return { rows: [], fields: [], rowCount: 1 }; }
+    if (S.failing) refuse();
+    if (/^\\s*update /i.test(text)) return { rows: [{ id: params[1], status: params[2] }], fields: [], rowCount: 1 };
+    if (typeof q === "object" && q.rowMode === "array") return { rows: [], fields: [] };
+    // every other question gets one answer document holding the invented patient, so a leak would show
+    return { rows: [{ doc: { note: { note_id: "pat1_2026-10", patient_name: S.invented }, patients: [{ name: S.invented }], months: [], totals: {}, rows: [], runs: [] } }], fields: [] };
+  } }`;
+const FN_STUB = `export function attachDatabasePool() {} export function waitUntil(p) { globalThis.__SELFTEST__.pending.push(p); }`;
+const josePath = resolve(root, "node_modules/jose/dist/webapi/index.js");
+const JOSE_SHIM = `export * from ${JSON.stringify(josePath)}; import { createLocalJWKSet } from ${JSON.stringify(josePath)};
+  export function createRemoteJWKSet() { return createLocalJWKSet(globalThis.__SELFTEST__.jwks); }`;
+const stubs = { name: "stand-ins", setup(bd) {
+  bd.onResolve({ filter: /^(pg|@neon\/functions|jose)$/ }, (a) => ({ path: a.path, namespace: "stub" }));
+  bd.onLoad({ filter: /.*/, namespace: "stub" }, (a) => ({ contents: a.path === "pg" ? PG_STUB : a.path === "jose" ? JOSE_SHIM : FN_STUB, loader: "js", resolveDir: root }));
+} };
+
+// ---- the environment the Function reads at start ------------------------------------------------------------------------------
+Object.assign(process.env, { DATABASE_URL: "postgres://selftest:selftest@db.invalid/neondb", NEON_AUTH_BASE_URL: "https://auth.invalid/neondb/auth",
+  // the allowed list in mixed case: the Function compares it case-blind. late@ is allowed but never confirmed its address.
+  NEON_AUTH_JWKS_URL: "https://auth.invalid/neondb/auth/.well-known/jwks.json", ALLOWED_EMAILS: "Owner@invalid.test, late@invalid.test", SESSION_IDLE_MINUTES: "30",
+  NEON_BRANCH: "production", TEST_UNVERIFIED_EMAILS: "late@invalid.test" });   // ignored on the production branch, as it must be
+const jose = await import(pathToFileURL(josePath).href);
+const { publicKey, privateKey } = await jose.generateKeyPair("ES256");
+const { privateKey: otherKey } = await jose.generateKeyPair("ES256");
+globalThis.__SELFTEST__.jwks = { keys: [{ ...(await jose.exportJWK(publicKey)), kid: "k1", alg: "ES256" }] };
+const token = (sub, email, key = privateKey) => new jose.SignJWT({ email }).setProtectedHeader({ alg: "ES256", kid: "k1" }).setIssuer("https://auth.invalid").setSubject(sub).setIssuedAt().setExpirationTime("15m").sign(key);
+
+const out = await build({ entryPoints: [resolve(root, "src/index.ts")], bundle: true, platform: "node", format: "esm", write: false, plugins: [stubs], logLevel: "silent" });
+const app = (await import("data:text/javascript;base64," + Buffer.from(out.outputFiles[0].text).toString("base64"))).default;
+
+const ask = async (method, path, auth, body) => {
+  const S = globalThis.__SELFTEST__; const before = S.sql.length;
+  const headers = auth ? { authorization: "Bearer " + auth } : {};
+  if (body) headers["content-type"] = "application/json";
+  const res = await app.fetch(new Request("http://app.invalid" + path, { method, headers, body: body ? JSON.stringify(body) : undefined }));
+  await Promise.all(S.pending.splice(0));
+  const text = await res.text();
+  return { status: res.status, text, headers: res.headers, sql: S.sql.slice(before) };
+};
+
+// ---- 1-3. every /api route, under every kind of caller ---------------------------------------------------------------------------
+const SAMPLE = { stamp: "20261112T0119Z", id: "pat1_2026-10", collection: "billing_runs", month: "2026-10", chart: "pat1", code: "ehpa", name: "overview" };
+const routes = [...new Map(app.routes.filter((r) => r.path.startsWith("/api/") && r.method !== "ALL").map((r) => [r.method + " " + r.path, r])).values()];
+const paths = routes.map((r) => r.path);
+for (const want of ["/api/links", "/api/pdb/overview", "/api/pdb/feed", "/api/pdb/runs", "/api/pdb/run/:stamp", "/api/pdb/era", "/api/pdb/era/:stamp", "/api/pdb/approvals", "/api/pdb/mirror",
+  "/api/pdb/data", "/api/pdb/data/:collection", "/api/pdb/doc/:collection/:id", "/api/ccm/summary", "/api/ccm/month/:month", "/api/ccm/note/:id", "/api/ccm/patients", "/api/ccm/patient/:chart", "/api/ccm/signed"])
+  check("route registered: " + want, paths.includes(want));
+const owner = await token("u-owner", "owner@invalid.test"), stranger = await token("u-stranger", "stranger@invalid.test");
+const unconfirmed = await token("u-unconfirmed", "late@invalid.test"), forged = await token("u-owner", "owner@invalid.test", otherKey);
+let leaks = 0, writes = [];
+for (const r of routes) {
+  const path = r.path.replace(/:([a-z]+)/g, (_m, k) => SAMPLE[k] || "x");
+  const body = r.method === "POST" ? { status: "done" } : undefined;
+  const label = r.method + " " + r.path;
+  const none = await ask(r.method, path, null, body);
+  check(label + " - no session: 401, no query", none.status === 401 && none.sql.length === 0, none.status + " " + none.sql.length);
+  const bad = await ask(r.method, path, forged, body);
+  check(label + " - token from another key: 401, no query", bad.status === 401 && bad.sql.length === 0, bad.status + " " + bad.sql.length);
+  const out1 = await ask(r.method, path, stranger, body);
+  check(label + " - email not allowed: 403, only the account lookup ran", out1.status === 403 && out1.sql.every((s) => /neon_auth\."user"/.test(s.text)), out1.status + " " + out1.sql.map((s) => s.text.slice(0, 40)).join(" | "));
+  const out2 = await ask(r.method, path, unconfirmed, body);
+  check(label + " - allowed address never confirmed: 403, only the account lookup ran", out2.status === 403 && out2.sql.every((s) => /neon_auth\."user"/.test(s.text)), out2.status + " " + out2.sql.length);
+  for (const x of [none, bad, out1, out2]) if (x.text.includes(INVENTED)) leaks++;
+  const ok = await ask(r.method, path, owner, body);
+  const log = ok.sql.find((s) => /^\s*insert into ops\.app_access_log/i.test(s.text));
+  check(label + " - allowed and confirmed: runs and is logged with its route", ![401, 403].includes(ok.status) && log && log.params[0] === "owner@invalid.test" && log.params[2] === path, ok.status + " " + JSON.stringify(log?.params || null));
+  for (const s of ok.sql) if (!/^\s*(select|with)\b/i.test(s.text) && !/^\s*insert into ops\.app_access_log/i.test(s.text)) writes.push(label + ": " + s.text.trim().slice(0, 60));
+}
+check("no answer to a caller without a good session or an allowed, confirmed email carried patient data", leaks === 0, leaks);
+check("every statement a GET route sends is a SELECT (the one write is the owner's work-list POST)", writes.every((w) => w.startsWith("POST /api/upo/practice/:code/worklist/:id")), writes.join(" || "));
+check("an unknown /api path is behind the gate too (401 without a session)", (await ask("GET", "/api/ccm/anything", null)).status === 401);
+check("the Function noted every refusal in its log (" + refusalNotes + " notes)", refusalNotes >= routes.length * 3, refusalNotes);
+
+// ---- 4. the public answers ---------------------------------------------------------------------------------------------------------
+const PAGE_RE = /claude\.ai\/artifact|drive\.google\.com|trig_0/;
+for (const p of ["/", "/theme.js", "/app.js", "/health"]) {
+  const r = await ask("GET", p, null);
+  check(p + " answers 200 with no query", r.status === 200 && r.sql.length === 0, r.status);
+  check(p + " carries no patient data and no page address", !r.text.includes(INVENTED) && !PAGE_RE.test(r.text), (r.text.match(PAGE_RE) || [""])[0]);
+  check(p + " carries the Content-Security-Policy and no-store", /script-src 'self'/.test(r.headers.get("content-security-policy") || "") && r.headers.get("cache-control") === "no-store");
+}
+
+// ---- 5. the color schemes ---------------------------------------------------------------------------------------------------------
+const home = (await ask("GET", "/", null)).text;
+check('"/" starts Light (data-ehpa="light" on <html>, Light tokens on :root)', /<html[^>]* data-ehpa="light"/.test(home) && /:root\{--bg:#ffffff;/.test(home));
+check('"/" loads /theme.js in <head>, before the styles and the body', home.indexOf('<script src="/theme.js"></script>') > 0 && home.indexOf('<script src="/theme.js"></script>') < home.indexOf("<style>"));
+const offered = [...home.matchAll(/data-pal="([a-z]+)"/g)].map((m) => m[1]);
+check("the switcher offers the five ehpa schemes in the page's order", offered.join(",") === "lapis,midnight,navy,plum,light", offered.join(","));
+const switcher = (home.match(/<div class="pal"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || "";
+check("Light is the pressed button before any script runs", /data-pal="light" aria-pressed="true"/.test(switcher) && (switcher.match(/aria-pressed="true"/g) || []).length === 1, switcher.slice(0, 200));
+const norm = (s) => s.replace(/\s+/g, " ").trim();
+const pdbPage = readFileSync(resolve(repo, "tools/db/practice_db_page.html"), "utf8");
+for (const k of ["lapis", "midnight", "navy", "plum", "light"]) {
+  const want = (pdbPage.match(new RegExp(`:root\\[data-ehpa="${k}"\\]\\{([^}]*)\\}`)) || [])[1];
+  const got = (home.match(new RegExp(`:root\\[data-ehpa="${k}"\\]\\{([^}]*)\\}`)) || [])[1];
+  check(`the ${k} tokens are the Practice Database page's`, want && got && norm(got).startsWith(norm(want)), norm(got || "").slice(0, 120));
+}
+const themeJs = (await ask("GET", "/theme.js", null)).text;
+const runTheme = (stored, throws = false) => { const attrs = {}; const ctx = { document: { documentElement: { setAttribute: (k, v) => { attrs[k] = v; } } },
+  localStorage: { getItem: (k) => { if (throws) throw new Error("blocked"); return k === "ehpa-palette" ? stored : null; } } }; vm.runInNewContext(themeJs, ctx); return attrs["data-ehpa"]; };
+check("/theme.js: nothing remembered -> Light", runTheme(null) === "light");
+check("/theme.js: a remembered pick is applied before the first paint", runTheme("plum") === "plum" && runTheme("lapis") === "lapis");
+check("/theme.js: an unknown value -> Light", runTheme("<b>x</b>") === "light");
+check("/theme.js: a browser that refuses localStorage -> Light", runTheme("navy", true) === "light");
+
+// ---- 6. a failed query is logged by its route and SQLSTATE only -------------------------------------------------------------------------
+// Postgres repeats the value it choked on in an error's message ("invalid input syntax for type date: ..."); on the CCM routes that value
+// can be a birth date or a name, and PHI must never reach the Function's logs. Every query now fails with the invented name in its message
+// and detail. Each Practice Database and CCM route must answer 500 with its fixed sentence and log only its route pattern and the
+// SQLSTATE - not the name, and not the chart, note or run asked for. The log is captured the way Node prints it (util.format).
+// (11/13/2026) Every other route that reads the database is asked the same way: every generic view /api/views lists - insurance_refresh is
+// the Insurance Refresh Board's patient list (names, dates of birth, insurance ids) - one board card by POST with an invented id in the
+// body (an id can spell a name, so it must not reach the log either), and the Universal Practice Optimization routes. Then the gate's own
+// two queries fail in turn.
+const logged = [], realError = console.error;
+console.error = (...a) => { logged.push(format(...a)); };
+const viewNames = JSON.parse((await ask("GET", "/api/views", owner)).text);
+check("/api/views lists the eleven views of src/views.ts, the board's insurance_refresh and overview among them", viewNames.length === 11 && viewNames.includes("insurance_refresh") && viewNames.includes("overview"), viewNames.join(","));
+const CARD = "zyxwv-invented-card";
+const fill = (p) => p.replace(/:([a-z]+)/g, (_m, k) => SAMPLE[k] || "x");
+// label: the check's name; names: what the log line must name (the route pattern; the board card's line says "board item")
+const asks = [
+  ...routes.filter((r) => r.method === "GET" && /^\/api\/(pdb|ccm)\//.test(r.path)).map((r) => ({ label: "GET " + r.path, method: "GET", pattern: r.path, path: fill(r.path), names: r.path })),
+  ...viewNames.map((v) => ({ label: "GET /api/view/" + v, method: "GET", pattern: "/api/view/:name", path: "/api/view/" + v, names: "/api/view/:name" })),
+  { label: "POST /api/board/item", method: "POST", pattern: "/api/board/item", path: "/api/board/item", body: { id: CARD }, names: "board item" },
+  ...routes.filter((r) => /^\/api\/upo\//.test(r.path)).map((r) => ({ label: r.method + " " + r.path, method: r.method, pattern: r.path, path: fill(r.path), body: r.method === "POST" ? { status: "done" } : undefined, names: r.path })),
+];
+const count = (f) => asks.filter(f).length;
+check("every route that reads the database is asked with a failing database: 17 Practice Database and CCM, 11 views, the board's card, 6 Universal Practice Optimization (35)",
+  asks.length === 35 && count((a) => /^\/api\/(pdb|ccm)\//.test(a.pattern)) === 17 && count((a) => a.pattern === "/api/view/:name") === 11 && count((a) => /^\/api\/upo\//.test(a.pattern)) === 6,
+  asks.map((a) => a.label).join(", "));
+globalThis.__SELFTEST__.failing = true;
+for (const a of asks) {
+  const before = logged.length;
+  const res = await ask(a.method, a.path, owner, a.body);
+  const lines = logged.slice(before);
+  const asked = a.body?.id || (a.path === a.pattern ? "" : a.path);   // the card, chart, note, run or view asked for
+  check(`${a.label} - a failed query: 500 with the fixed sentence, no data in it`, res.status === 500 && res.text.includes("the database answered with an error for ") && !res.text.includes(INVENTED) && !(a.body?.id && res.text.includes(a.body.id)), res.status + " " + res.text.slice(0, 120));
+  check(`${a.label} - logged with ${a.names === a.pattern ? "its route pattern" : '"' + a.names + '"'} and SQLSTATE 22007 only`, lines.length > 0 && lines.every((l) => !l.includes(INVENTED) && l.includes(a.names) && l.includes("22007") && !(asked && l.includes(asked))), lines.join(" | ").slice(0, 300) || "nothing logged");
+}
+globalThis.__SELFTEST__.failing = false;
+// the gate's own two queries. An account lookup that fails refuses the request (403, no data) and logs the SQLSTATE only - asked with a
+// session the account cache (one minute) has not seen, so the lookup really runs. An access-trail insert that fails leaves the answer as it
+// was and logs the SQLSTATE only.
+const unseen = await token("u-not-looked-up-yet", "owner@invalid.test");
+globalThis.__SELFTEST__.failLookup = true;
+let from = logged.length;
+const lookup = await ask("GET", "/api/links", unseen);
+let gateLines = logged.slice(from);
+check("a failed account lookup: refused (403), logged with SQLSTATE 22007 only", lookup.status === 403 && !lookup.text.includes(INVENTED) && gateLines.length > 0 && gateLines.every((l) => !l.includes(INVENTED) && l.includes("22007")), lookup.status + " " + (gateLines.join(" | ").slice(0, 300) || "nothing logged"));
+globalThis.__SELFTEST__.failLookup = false; globalThis.__SELFTEST__.failTrail = true;
+from = logged.length;
+const trail = await ask("GET", "/api/links", owner);
+gateLines = logged.slice(from);
+check("a failed access-trail insert: the answer stands (200), the failure is logged with SQLSTATE 22007 only", trail.status === 200 && gateLines.length > 0 && gateLines.every((l) => !l.includes(INVENTED) && l.includes("22007")), trail.status + " " + (gateLines.join(" | ").slice(0, 300) || "nothing logged"));
+globalThis.__SELFTEST__.failTrail = false; console.error = realError;
+
+// ---- 7. the browser tab title never carries a patient's name, and sign-out resets it --------------------------------------------------
+// The tab title is also what browser history keeps, and the tab stays open after a sign-out (the idle sign-out included). The real browser
+// code (src/client.ts and every page it imports, bundled as for /app.js) runs here against a small stand-in document, a stand-in for the
+// Neon Auth client (signed in as the owner) and answers that hold the invented patient. No network: fetch answers from the table below.
+const AUTH_STUB = "export function createAuthClient() { return globalThis.__AUTH__; }";
+const cb = await build({ entryPoints: [resolve(root, "src/client.ts")], bundle: true, format: "iife", platform: "browser", target: ["es2022"], write: false, logLevel: "silent",
+  plugins: [{ name: "auth stand-in", setup(bd) {
+    bd.onResolve({ filter: /^@neon\/auth$/ }, (a) => ({ path: a.path, namespace: "auth-stub" }));
+    bd.onLoad({ filter: /.*/, namespace: "auth-stub" }, () => ({ contents: AUTH_STUB, loader: "js" }));
+  } }] });
+const CLIENT = cb.outputFiles[0].text;
+const PAGE_TITLE = (home.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
+const unhtml = (s) => s.replace(/<[^>]*>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+const NOTE = { note: { note_id: "pat1_2026-10", chart_id: "pat1", month: "2026-10", patient_name: INVENTED, birth_date: null, codes: ["99490"], minutes: 20, flag: "", insurance: "",
+  status: "ready to sign", written_on: null, signed_by: null, signed_at: null, sha: null }, draft: null, signed: null, hub: "" };
+const ANSWERS = { "/api/links": [], "/api/ccm/note/pat1_2026-10": NOTE, "/api/ccm/patient/pat1": { patient: { chart_id: "pat1", name: INVENTED, birth_date: null, sex: "" }, notes: [], chart: "pat1", hub: "" },
+  "/api/ccm/summary": { totals: { notes: 1, ready: 1, flagged: 0, noname: 0, signed: 0, patients: 1, months: 1 }, months: [], hub: "" } };
+function openBrowser(hash, hold = "") {   // hold: one address whose answer waits until release() is called
+  const els = new Map(), timers = [], on = {};
+  let release = () => {};
+  const held = hold ? new Promise((r) => { release = r; }) : null;
+  class El {
+    constructor() { this.html = ""; this.textContent = ""; this.hidden = false; this.className = ""; this.dataset = {}; this.value = ""; this.on = {}; this.classList = { toggle() {}, add() {}, remove() {} }; }
+    get innerHTML() { return this.html; }
+    set innerHTML(v) { this.html = String(v); }
+    addEventListener(t, f) { (this.on[t] ||= []).push(f); }
+    querySelector(sel) { if (sel !== "h1") return el(sel); const m = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(this.html); return m ? { textContent: unhtml(m[1]) } : null; }
+    querySelectorAll() { return []; }
+    setAttribute() {} getAttribute() { return null; } toggleAttribute() {} focus() {} setSelectionRange() {} closest() { return null; }
+  }
+  const el = (sel) => { if (!els.has(sel)) els.set(sel, new El()); return els.get(sel); };
+  const attrs = { "data-auth-url": "https://auth.invalid/neondb/auth", "data-idle-minutes": "30", "data-practice": "ehpa", "data-ehpa": "light" };
+  const document = { title: PAGE_TITLE, querySelector: el, querySelectorAll: () => [], addEventListener() {},
+    documentElement: { getAttribute: (k) => attrs[k] ?? null, setAttribute: (k, v) => { attrs[k] = String(v); } } };
+  const auth = { getSession: async () => ({ data: { user: { email: "owner@invalid.test", name: "Owner" } } }), signOut: async () => ({}), token: async () => ({ data: { token: "stand-in" } }) };
+  const fetch = async (url) => { if (held && String(url) === hold) await held; const body = ANSWERS[String(url)]; return new Response(JSON.stringify(body ?? { error: "not in the stand-in's table" }), { status: body === undefined ? 404 : 200, headers: { "content-type": "application/json" } }); };
+  const ctx = { document, location: { hash, origin: "http://app.invalid" }, fetch, Response, __AUTH__: auth, console: { log() {}, warn() {}, error() {} },
+    setTimeout: (f, ms) => timers.push({ f, ms }), clearTimeout() {}, scrollTo() {}, addEventListener: (t, f) => { (on[t] ||= []).push(f); },
+    localStorage: { getItem: () => null, setItem() {} } };
+  ctx.window = ctx;
+  vm.createContext(ctx);
+  vm.runInContext(CLIENT, ctx);
+  return { document, el, timers, on, ctx, release: () => release(), heading: () => unhtml((/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(el("#main").innerHTML) || [])[1] || "") };
+}
+const settle = async () => { for (let i = 0; i < 200; i++) await new Promise((r) => setImmediate(r)); };
+check("the page's own <title> is known (" + PAGE_TITLE + ")", PAGE_TITLE !== "");
+const tab = openBrowser("#ccm/note/pat1_2026-10"); await settle();
+check("a CCM note is drawn with the invented patient's name as its heading (so the next check means something)", tab.heading().includes(INVENTED), tab.heading() || tab.el("#status").textContent);
+check("a CCM note: the tab title holds no patient name (CCM notes · ehpa)", tab.document.title === "CCM notes · ehpa", tab.document.title);
+tab.ctx.location.hash = "#ccm/p/pat1"; for (const f of tab.on.hashchange || []) f(); await settle();
+check("a CCM patient: drawn with the name as its heading, and the tab title holds no name", tab.heading().includes(INVENTED) && tab.document.title === "CCM notes · ehpa", tab.document.title);
+const idle = tab.timers.filter((t) => t.ms === 30 * 60_000).pop();
+check("the idle sign-out is armed (30 minutes)", Boolean(idle), tab.timers.map((t) => t.ms).join(","));
+if (idle) { await idle.f(); await settle(); }
+check("after the idle sign-out the tab title is the page's own again, and the page holds no name", tab.document.title === PAGE_TITLE && !tab.el("#main").innerHTML.includes(INVENTED), tab.document.title);
+const tab2 = openBrowser("#ccm/note/pat1_2026-10"); await settle();
+for (const f of tab2.el("#signout").on.click || []) await f();
+await settle();
+check("after Sign out (the button) on a CCM note the tab title is the page's own again", tab2.heading() === "" && tab2.document.title === PAGE_TITLE, tab2.document.title);
+const tab3 = openBrowser("#home"); await settle();
+check("a page with no patient data keeps its heading as the tab title (Practice applications · ehpa)", tab3.document.title === "Practice applications · ehpa", tab3.document.title);
+
+// the header buttons, exactly as /api/links serves them to the owner: each opens its claude.ai page in a new tab - the Insurance Refresh
+// Board's opens the board itself, where notes are posted and patients handed to Claude (the board's read-only page on this site stays in
+// the Practice Database rail, #db/insurance_refresh)
+ANSWERS["/api/links"] = JSON.parse((await ask("GET", "/api/links", owner)).text);
+const tab4 = openBrowser("#home"); await settle();
+const linksHtml = tab4.el("#links").innerHTML;
+const irb = (linksHtml.match(/<a [^>]*data-link="irb"[^>]*>/) || [""])[0];
+check("the header's Insurance Refresh Board button opens the board on claude.ai (artifact NXKjnsha2dTyGHsiB4k6zg) in a new tab", /href="https:\/\/claude\.ai\/artifact\/NXKjnsha2dTyGHsiB4k6zg"/.test(irb) && /target="_blank"/.test(irb) && /rel="noopener noreferrer"/.test(irb) && !tab4.el("#links").hidden, irb || linksHtml.slice(0, 300));
+check("all four header buttons open their claude.ai page in a new tab", ANSWERS["/api/links"].length === 4 && (linksHtml.match(/<a [^>]*target="_blank"/g) || []).length === 4, linksHtml.slice(0, 300));
+// a CCM note whose answer arrives after Sign out is dropped: the name never comes back onto the signed-out page
+const late = openBrowser("#ccm/note/pat1_2026-10", "/api/ccm/note/pat1_2026-10"); await settle();
+for (const f of late.el("#signout").on.click || []) await f();
+await settle(); late.release(); await settle();
+check("a CCM note that answers after Sign out is not drawn (no name on the page, the page's own title)", !late.el("#main").innerHTML.includes(INVENTED) && late.document.title === PAGE_TITLE, late.el("#main").innerHTML.slice(0, 160) + " / " + late.document.title);
+// ... and one that answers after the page was left is not drawn over the next page
+const left = openBrowser("#ccm/note/pat1_2026-10", "/api/ccm/note/pat1_2026-10"); await settle();
+left.ctx.location.hash = "#home"; for (const f of left.on.hashchange || []) f(); await settle();
+left.release(); await settle();
+check("a CCM note that answers after the page was left is not drawn over the next page", !left.el("#main").innerHTML.includes(INVENTED) && left.heading() === "Practice applications", left.heading());
+
+console.log(`\nehpadb selftest: ${RAN} checks, ${FAILS.length} failed`);
+process.exit(FAILS.length ? 1 : 0);

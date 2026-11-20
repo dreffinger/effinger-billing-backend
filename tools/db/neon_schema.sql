@@ -4,7 +4,8 @@
 -- billing run, per run step, per ERA line, per CARC code on a line, per feed charge, per cascade night, per approval package,
 -- per routine run. Views, not copies: a reload of raw.documents is immediately visible, and nothing here can drift from the source.
 -- Applied by `python3 tools/db/neon_db.py init` (idempotent: every statement is CREATE OR REPLACE). No PHI in names or comments;
--- the rows carry chart ids, dates of service, codes and dollars - the same fields the registers on main carry.
+-- the rows carry chart ids, dates of service, codes and dollars - the same fields the registers on main carry. One exception,
+-- marked where it is defined: ehpa.insurance_refresh_cards (the board's cards for the signed-in app) carries patient identifiers.
 create schema if not exists ehpa;
 
 -- ---- the practice database's own collections (source practice_db) ------------------------------------------------------------
@@ -162,13 +163,46 @@ select d.doc_id as snapshot, nullif(d.body->>'asof', '')::date as as_of, v.value
 from (select * from raw.documents where source = 'working_denials' and collection = 'embedded' order by loaded_at desc limit 1) d
 cross join lateral jsonb_array_elements(coalesce(d.body->'visits', '[]'::jsonb)) v(value);
 
--- the Insurance Refresh Board rows (who needs a coverage check); identifiers and names stay in raw
+-- the Insurance Refresh Board rows (who needs a coverage check); identifiers and names stay in raw. amount = the first number
+-- in the card's amount (a card can carry text such as a dollar figure followed by a claim number; stripping every non-digit
+-- glued the two together)
 create or replace view ehpa.insurance_refresh_items as
 select doc_id, body->>'amdid' as chart_id, body->>'status' as status, body->>'need' as need, body->>'why' as why, body->>'inscarrier' as carrier,
-       body->'insplans' as insplans, nullif(regexp_replace(body->>'amount', '[^0-9.\-]', '', 'g'), '')::numeric as amount,
+       body->'insplans' as insplans, (regexp_match(replace(body->>'amount', ',', ''), '-?[0-9]+(?:\.[0-9]+)?'))[1]::numeric as amount,
        nullif(body->>'lastdos', '')::date as last_dos, body->>'lastfac' as last_facility, body->>'facility' as facility, body->'checks' as checks,
        body->>'created' as created, body->>'updated' as updated, written_at, loaded_at
 from raw.documents where source = 'insurance_refresh_board' and collection = 'items';
+
+-- THE ONE VIEW HERE THAT CARRIES IDENTIFIERS: the board's cards as the board itself shows them, for the signed-in app
+-- (apps/ehpadb, the Insurance Refresh view). A card is a patient, so this view has the name, the date of birth and the insurance
+-- id; it is read only by the app's gated /api routes and by roles that can already read raw.documents. turn and is_new follow the
+-- board's own rules (boards/templates/tracker.html turnOf / newness): done, william, anything else is Claude's; new = William's
+-- turn and no note of his after the newest note from anyone else (timestamps compared as text, byte order, as the board does).
+create or replace view ehpa.insurance_refresh_cards as
+select c.doc_id, c.patient, c.chart_id, c.dob, c.turn, c.need, c.why, c.amount, c.insid, c.inscarrier, c.mbi, c.insplans,
+       c.facnow, c.facilities, c.lastfac, c.lastdos, c.facility, c.created, c.updated,
+       jsonb_array_length(c.notes) as notes_n, jsonb_array_length(c.checks) as checks_n, jsonb_array_length(c.api) as api_n,
+       (c.turn = 'william' and (coalesce(c.last_william_at, '') = '' or (coalesce(c.last_other_at, '') collate "C") > (c.last_william_at collate "C"))) as is_new,
+       c.notes->-1->>'who' as last_note_who, c.notes->-1->>'at' as last_note_at, c.notes->-1->>'text' as last_note_text,
+       c.notes, c.checks, c.api, c.written_at, c.loaded_at
+from (
+  select d.doc_id, d.body->>'patient' as patient, coalesce(nullif(d.body->>'amdid', ''), nullif(d.body->>'pid', '')) as chart_id, d.body->>'dob' as dob,
+         case d.body->>'status' when 'done' then 'done' when 'william' then 'william' else 'claude' end as turn,
+         d.body->>'need' as need, d.body->>'why' as why,
+         (regexp_match(replace(d.body->>'amount', ',', ''), '-?[0-9]+(?:\.[0-9]+)?'))[1]::numeric as amount,
+         d.body->>'insid' as insid, d.body->>'inscarrier' as inscarrier, d.body->>'mbi' as mbi, d.body->>'insplans' as insplans,
+         case when jsonb_typeof(d.body->'facnow') = 'object' then d.body->'facnow' end as facnow,
+         d.body->>'facilities' as facilities, d.body->>'lastfac' as lastfac, d.body->>'lastdos' as lastdos, d.body->>'facility' as facility,
+         d.body->>'created' as created, d.body->>'updated' as updated, n.notes, k.checks, a.api,
+         (select max((x->>'at') collate "C") filter (where x->>'who' = 'William') from jsonb_array_elements(n.notes) x) as last_william_at,
+         (select max((x->>'at') collate "C") filter (where x->>'who' is distinct from 'William') from jsonb_array_elements(n.notes) x) as last_other_at,
+         d.written_at, d.loaded_at
+  from raw.documents d
+  cross join lateral (select case when jsonb_typeof(d.body->'notes') = 'array' then d.body->'notes' else '[]'::jsonb end as notes) n
+  cross join lateral (select case when jsonb_typeof(d.body->'checks') = 'array' then d.body->'checks' else '[]'::jsonb end as checks) k
+  cross join lateral (select case when jsonb_typeof(d.body->'api') = 'array' then d.body->'api' else '[]'::jsonb end as api) a
+  where d.source = 'insurance_refresh_board' and d.collection = 'items'
+) c;
 
 create or replace view ehpa.approval_cards as
 select doc_id as package_id, body->>'at' as at, body->>'status' as status, body->>'what' as what,

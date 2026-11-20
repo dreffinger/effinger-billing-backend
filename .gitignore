@@ -28,4 +28,8 @@ node_modules/
 !apps/ehpadb/package-lock.json
 !apps/ehpadb/tsconfig.json
 apps/ehpadb/src/generated/
+apps/ehpadb/dist/
+# apps/ehpadb/scripts/deploy-api.sh preview reads the preview branch id from here (per container, not a secret)
+optimization/.preview_branch
+optimization/.preview_host
 *.tmp
