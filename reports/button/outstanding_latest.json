@@ -1,34 +1,34 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-20T12:56:25Z",
+ "at": "2026-11-20T18:47:53Z",
  "as_of": "2026-11-20",
- "total": 314295.45,
- "visits": 2688,
- "charts": 511,
+ "total": 303225.69,
+ "visits": 2640,
+ "charts": 502,
  "over_365": {
   "n": 569,
   "dollars": 27217.12
  },
  "by_bucket": {
   "0-30": {
-   "n": 791,
-   "dollars": 141191.72
+   "n": 751,
+   "dollars": 132465.4
   },
   "31-60": {
-   "n": 209,
-   "dollars": 26837.5
+   "n": 204,
+   "dollars": 25981.02
   },
   "61-90": {
-   "n": 219,
-   "dollars": 30890.36
+   "n": 217,
+   "dollars": 30055.88
   },
   "91-180": {
    "n": 340,
-   "dollars": 29932.22
+   "dollars": 29712.74
   },
   "181-365": {
-   "n": 560,
-   "dollars": 58226.53
+   "n": 559,
+   "dollars": 57793.53
   },
   "over 365": {
    "n": 569,
@@ -38,22 +38,22 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-   "name": "FLORIDA MEDICARE",
-   "n": 1348,
-   "dollars": 137847.6,
+   "name": "[name]",
+   "n": 1300,
+   "dollars": 126777.84,
    "buckets": {
-    "0-30": 59084.28,
-    "31-60": 5756.62,
-    "61-90": 15130.08,
-    "91-180": 18416.03,
-    "181-365": 28431.08,
+    "0-30": 50357.96,
+    "31-60": 4900.14,
+    "61-90": 14295.6,
+    "91-180": 18196.55,
+    "181-365": 27998.08,
     "over 365": 11029.51
    },
    "oldest_days": 1101
   },
   {
    "carrier": "UNI20",
-   "name": "UNITED HEALTHCARE",
+   "name": "[name]",
    "n": 212,
    "dollars": 44079.07,
    "buckets": {
@@ -68,7 +68,7 @@
   },
   {
    "carrier": "BCBS",
-   "name": "FLORIDA BLUE",
+   "name": "[name]",
    "n": 352,
    "dollars": 26483.48,
    "buckets": {
@@ -83,7 +83,7 @@
   },
   {
    "carrier": "FLO99",
-   "name": "FLORIDA COMMUNITY CARE AVAILITY",
+   "name": "[name]",
    "n": 132,
    "dollars": 23911.7,
    "buckets": {
@@ -98,7 +98,7 @@
   },
   {
    "carrier": "UHCMA",
-   "name": "UNITEDHEALTHCARE DUAL COMPLETE",
+   "name": "[name]",
    "n": 65,
    "dollars": 14711.4,
    "buckets": {
@@ -113,7 +113,7 @@
   },
   {
    "carrier": "CAP07",
-   "name": "CAPITAL HEALTH PLAN",
+   "name": "[name]",
    "n": 67,
    "dollars": 13299.0,
    "buckets": {
@@ -128,7 +128,7 @@
   },
   {
    "carrier": "HUM01",
-   "name": "HUMANA",
+   "name": "[name]",
    "n": 62,
    "dollars": 10414.13,
    "buckets": {
@@ -143,7 +143,7 @@
   },
   {
    "carrier": "VACCN",
-   "name": "OPTUM VA CCN",
+   "name": "[name]",
    "n": 31,
    "dollars": 5714.22,
    "buckets": {
@@ -158,7 +158,7 @@
   },
   {
    "carrier": "MCAD",
-   "name": "FLORIDA MEDICAID",
+   "name": "[name]",
    "n": 37,
    "dollars": 4743.86,
    "buckets": {
@@ -173,7 +173,7 @@
   },
   {
    "carrier": "SUN01",
-   "name": "SUNSHINE STATE HEALTH PLAN",
+   "name": "[name]",
    "n": 42,
    "dollars": 4699.6,
    "buckets": {
@@ -203,7 +203,7 @@
   },
   {
    "carrier": "SIM01",
-   "name": "SIMPLY HEALTHCARE MCD PLANS",
+   "name": "[name]",
    "n": 14,
    "dollars": 2934.0,
    "buckets": {
@@ -218,7 +218,7 @@
   },
   {
    "carrier": "AET07",
-   "name": "AETNA",
+   "name": "[name]",
    "n": 17,
    "dollars": 2544.04,
    "buckets": {
@@ -233,7 +233,7 @@
   },
   {
    "carrier": "TRI05",
-   "name": "TRICARE FOR LIFE",
+   "name": "[name]",
    "n": 73,
    "dollars": 2478.72,
    "buckets": {
@@ -248,7 +248,7 @@
   },
   {
    "carrier": "UMR",
-   "name": "UMR CHOICE",
+   "name": "[name]",
    "n": 16,
    "dollars": 2471.0,
    "buckets": {
@@ -263,7 +263,7 @@
   },
   {
    "carrier": "AMB03",
-   "name": "AMBETTER FROM SUNSHINE HEALTH",
+   "name": "[name]",
    "n": 15,
    "dollars": 2018.2,
    "buckets": {
@@ -278,7 +278,7 @@
   },
   {
    "carrier": "RET01",
-   "name": "RETIRED RAILROAD MEDICARE",
+   "name": "[name]",
    "n": 9,
    "dollars": 1939.0,
    "buckets": {
@@ -293,7 +293,7 @@
   },
   {
    "carrier": "AET12",
-   "name": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
+   "name": "[name]",
    "n": 50,
    "dollars": 1854.51,
    "buckets": {
@@ -308,7 +308,7 @@
   },
   {
    "carrier": "TRI00",
-   "name": "TRICARE EAST",
+   "name": "[name]",
    "n": 6,
    "dollars": 1540.0,
    "buckets": {
@@ -323,7 +323,7 @@
   },
   {
    "carrier": "WEL04",
-   "name": "WELLCARE",
+   "name": "[name]",
    "n": 7,
    "dollars": 1349.0,
    "buckets": {
@@ -338,7 +338,7 @@
   },
   {
    "carrier": "FIR07",
-   "name": "FIRST HEALTH NETWORK",
+   "name": "[name]",
    "n": 8,
    "dollars": 1087.0,
    "buckets": {
@@ -353,7 +353,7 @@
   },
   {
    "carrier": "CHA03",
-   "name": "CHAMPVA",
+   "name": "[name]",
    "n": 36,
    "dollars": 741.14,
    "buckets": {
@@ -368,7 +368,7 @@
   },
   {
    "carrier": "BCBS1",
-   "name": "FLORIDABLUE MEDICARE",
+   "name": "[name]",
    "n": 3,
    "dollars": 736.0,
    "buckets": {
@@ -383,7 +383,7 @@
   },
   {
    "carrier": "WEL07",
-   "name": "WELLCARE HEALTH PLAN ENCOUNTERS",
+   "name": "[name]",
    "n": 4,
    "dollars": 704.0,
    "buckets": {
@@ -398,7 +398,7 @@
   },
   {
    "carrier": "GEH04",
-   "name": "GEHA HIGH OPTION",
+   "name": "[name]",
    "n": 46,
    "dollars": 471.05,
    "buckets": {
@@ -443,7 +443,7 @@
   },
   {
    "carrier": "LAN",
-   "name": "LANTERN",
+   "name": "[name]",
    "n": 1,
    "dollars": 310.0,
    "buckets": {
@@ -473,7 +473,7 @@
   },
   {
    "carrier": "CON08",
-   "name": "CONTINENTAL GENERAL INSURANCE",
+   "name": "[name]",
    "n": 2,
    "dollars": 67.35,
    "buckets": {
@@ -715,8 +715,8 @@
   },
   {
    "month": "2026-05",
-   "n": 107,
-   "dollars": 7914.01
+   "n": 106,
+   "dollars": 7481.01
   },
   {
    "month": "2026-06",
@@ -730,23 +730,23 @@
   },
   {
    "month": "2026-08",
-   "n": 144,
-   "dollars": 15311.92
+   "n": 143,
+   "dollars": 14653.37
   },
   {
    "month": "2026-09",
-   "n": 194,
-   "dollars": 26241.66
+   "n": 193,
+   "dollars": 25846.25
   },
   {
    "month": "2026-10",
-   "n": 433,
-   "dollars": 71205.85
+   "n": 428,
+   "dollars": 70349.37
   },
   {
    "month": "2026-11",
-   "n": 537,
-   "dollars": 93462.44
+   "n": 497,
+   "dollars": 84736.12
   }
  ],
  "oldest": [
@@ -1385,12 +1385,12 @@
    "dos": "2026-03-16"
   },
   {
-   "visitid": 19441388,
-   "patientid": 17476438,
+   "visitid": 19459521,
+   "patientid": 17478219,
    "carriercode": "FLO02",
    "insbalance": 433.0,
-   "days": 197,
-   "dos": "2026-05-07"
+   "days": 80,
+   "dos": "2026-09-01"
   }
  ],
  "rows": [
@@ -9867,14 +9867,6 @@
    "dos": "2026-05-06"
   },
   {
-   "visitid": 19441388,
-   "patientid": 17476438,
-   "carriercode": "FLO02",
-   "insbalance": 433.0,
-   "days": 197,
-   "dos": "2026-05-07"
-  },
-  {
    "visitid": 19441615,
    "patientid": 17473422,
    "carriercode": "FLO02",
@@ -12931,14 +12923,6 @@
    "dos": "2026-08-14"
   },
   {
-   "visitid": 19452691,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 98,
-   "dos": "2026-08-14"
-  },
-  {
    "visitid": 19451587,
    "patientid": 17477267,
    "carriercode": "BCBS",
@@ -12951,6 +12935,14 @@
    "patientid": 17477313,
    "carriercode": "FLO02",
    "insbalance": 54.63,
+   "days": 98,
+   "dos": "2026-08-14"
+  },
+  {
+   "visitid": 19452691,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 11.59,
    "days": 98,
    "dos": "2026-08-14"
   },
@@ -13059,14 +13051,6 @@
    "dos": "2026-08-17"
   },
   {
-   "visitid": 19452690,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 94,
-   "dos": "2026-08-18"
-  },
-  {
    "visitid": 19452858,
    "patientid": 17476021,
    "carriercode": "FLO02",
@@ -13095,6 +13079,14 @@
    "patientid": 17471600,
    "carriercode": "UNI20",
    "insbalance": 22.2,
+   "days": 94,
+   "dos": "2026-08-18"
+  },
+  {
+   "visitid": 19452690,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
    "days": 94,
    "dos": "2026-08-18"
   },
@@ -13315,14 +13307,6 @@
    "dos": "2026-08-23"
   },
   {
-   "visitid": 19452589,
-   "patientid": 17476503,
-   "carriercode": "FLO02",
-   "insbalance": 315.0,
-   "days": 89,
-   "dos": "2026-08-23"
-  },
-  {
    "visitid": 19452596,
    "patientid": 17476748,
    "carriercode": "UNI20",
@@ -13523,18 +13507,18 @@
    "dos": "2026-08-27"
   },
   {
-   "visitid": 19453362,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 84,
-   "dos": "2026-08-28"
-  },
-  {
    "visitid": 19453099,
    "patientid": 17477572,
    "carriercode": "CAP07",
    "insbalance": 111.0,
+   "days": 84,
+   "dos": "2026-08-28"
+  },
+  {
+   "visitid": 19453362,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
    "days": 84,
    "dos": "2026-08-28"
   },
@@ -13595,14 +13579,6 @@
    "dos": "2026-09-01"
   },
   {
-   "visitid": 19459520,
-   "patientid": 17474798,
-   "carriercode": "FLO02",
-   "insbalance": 300.0,
-   "days": 80,
-   "dos": "2026-09-01"
-  },
-  {
    "visitid": 19459519,
    "patientid": 17478222,
    "carriercode": "UNI20",
@@ -13631,14 +13607,6 @@
    "patientid": 22858,
    "carriercode": "FLO99",
    "insbalance": 141.0,
-   "days": 80,
-   "dos": "2026-09-01"
-  },
-  {
-   "visitid": 19453821,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
    "days": 80,
    "dos": "2026-09-01"
   },
@@ -13711,6 +13679,14 @@
    "patientid": 17478217,
    "carriercode": "FLO02",
    "insbalance": 25.04,
+   "days": 80,
+   "dos": "2026-09-01"
+  },
+  {
+   "visitid": 19453821,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 11.59,
    "days": 80,
    "dos": "2026-09-01"
   },
@@ -15395,14 +15371,6 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19460519,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19458748,
    "patientid": 44987,
    "carriercode": "FLO02",
@@ -15411,32 +15379,8 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19460507,
-   "patientid": 17472436,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19458739,
    "patientid": 12182946,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
-   "visitid": 19460504,
-   "patientid": 44962,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
-   "visitid": 19460500,
-   "patientid": 17473343,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 46,
@@ -15491,30 +15435,6 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19460512,
-   "patientid": 17472517,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
-   "visitid": 19460506,
-   "patientid": 17476348,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
-   "visitid": 19460502,
-   "patientid": 44997,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 46,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19460498,
    "patientid": 17472741,
    "carriercode": "UNI20",
@@ -15547,6 +15467,14 @@
    "dos": "2026-10-05"
   },
   {
+   "visitid": 19460519,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 46,
+   "dos": "2026-10-05"
+  },
+  {
    "visitid": 19457343,
    "patientid": 17475697,
    "carriercode": "FLO02",
@@ -15559,6 +15487,14 @@
    "patientid": 17477843,
    "carriercode": "FLO02",
    "insbalance": 16.93,
+   "days": 46,
+   "dos": "2026-10-05"
+  },
+  {
+   "visitid": 19460502,
+   "patientid": 44997,
+   "carriercode": "FLO02",
+   "insbalance": 11.59,
    "days": 46,
    "dos": "2026-10-05"
   },
@@ -18795,14 +18731,6 @@
    "dos": "2026-11-02"
   },
   {
-   "visitid": 19460415,
-   "patientid": 17477851,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
    "visitid": 19460722,
    "patientid": 17473190,
    "carriercode": "FLO02",
@@ -18813,30 +18741,6 @@
   {
    "visitid": 19460715,
    "patientid": 20716,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19460421,
-   "patientid": 17477128,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19460419,
-   "patientid": 17478229,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19460413,
-   "patientid": 17472285,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 18,
@@ -18907,22 +18811,6 @@
    "dos": "2026-11-02"
   },
   {
-   "visitid": 19460490,
-   "patientid": 17469446,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19460412,
-   "patientid": 17477830,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
    "visitid": 19461456,
    "patientid": 20452,
    "carriercode": "FLO02",
@@ -18979,14 +18867,6 @@
    "dos": "2026-11-02"
   },
   {
-   "visitid": 19460496,
-   "patientid": 17478209,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 18,
-   "dos": "2026-11-02"
-  },
-  {
    "visitid": 19460721,
    "patientid": 20863,
    "carriercode": "FLO02",
@@ -19023,6 +18903,30 @@
    "patientid": 17476458,
    "carriercode": "CHA03",
    "insbalance": 21.8,
+   "days": 18,
+   "dos": "2026-11-02"
+  },
+  {
+   "visitid": 19460415,
+   "patientid": 17477851,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 18,
+   "dos": "2026-11-02"
+  },
+  {
+   "visitid": 19460419,
+   "patientid": 17478229,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 18,
+   "dos": "2026-11-02"
+  },
+  {
+   "visitid": 19460496,
+   "patientid": 17478209,
+   "carriercode": "FLO02",
+   "insbalance": 11.59,
    "days": 18,
    "dos": "2026-11-02"
   },
@@ -19195,14 +19099,6 @@
    "dos": "2026-11-03"
   },
   {
-   "visitid": 19460323,
-   "patientid": 17471478,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 17,
-   "dos": "2026-11-03"
-  },
-  {
    "visitid": 19460206,
    "patientid": 17474798,
    "carriercode": "SUN01",
@@ -19238,6 +19134,14 @@
    "visitid": 19460205,
    "patientid": 17476458,
    "carriercode": "CHA03",
+   "insbalance": 21.8,
+   "days": 17,
+   "dos": "2026-11-03"
+  },
+  {
+   "visitid": 19460323,
+   "patientid": 17471478,
+   "carriercode": "FLO02",
    "insbalance": 21.8,
    "days": 17,
    "dos": "2026-11-03"
@@ -19279,14 +19183,6 @@
    "patientid": 17478320,
    "carriercode": "UHCMA",
    "insbalance": 433.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460351,
-   "patientid": 23069,
-   "carriercode": "FLO02",
-   "insbalance": 389.0,
    "days": 16,
    "dos": "2026-11-04"
   },
@@ -19343,206 +19239,6 @@
    "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460521,
-   "patientid": 17477496,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460520,
-   "patientid": 23159,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460444,
-   "patientid": 45052,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460518,
-   "patientid": 17476544,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460443,
-   "patientid": 45010,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460441,
-   "patientid": 45520,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460439,
-   "patientid": 17473432,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460438,
-   "patientid": 45447,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460513,
-   "patientid": 17473661,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460436,
-   "patientid": 17471131,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460511,
-   "patientid": 17472517,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460435,
-   "patientid": 21238,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460509,
-   "patientid": 17477190,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460434,
-   "patientid": 42092,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460433,
-   "patientid": 21411,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460508,
-   "patientid": 17472436,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460431,
-   "patientid": 22880,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460429,
-   "patientid": 17473346,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460428,
-   "patientid": 17476874,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460427,
-   "patientid": 17475536,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460505,
-   "patientid": 17476348,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460503,
-   "patientid": 44962,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460501,
-   "patientid": 44997,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460499,
-   "patientid": 17473343,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 16,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460426,
-   "patientid": 17476917,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
    "days": 16,
    "dos": "2026-11-04"
   },
@@ -19611,6 +19307,70 @@
    "dos": "2026-11-04"
   },
   {
+   "visitid": 19460521,
+   "patientid": 17477496,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460518,
+   "patientid": 17476544,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460438,
+   "patientid": 45447,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460436,
+   "patientid": 17471131,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460431,
+   "patientid": 22880,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460428,
+   "patientid": 17476874,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460427,
+   "patientid": 17475536,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
+   "visitid": 19460501,
+   "patientid": 44997,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 16,
+   "dos": "2026-11-04"
+  },
+  {
    "visitid": 19460671,
    "patientid": 17476928,
    "carriercode": "CAP07",
@@ -19631,14 +19391,6 @@
    "patientid": 12183340,
    "carriercode": "UNI20",
    "insbalance": 389.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460388,
-   "patientid": 17476583,
-   "carriercode": "FLO02",
-   "insbalance": 310.0,
    "days": 15,
    "dos": "2026-11-05"
   },
@@ -19691,30 +19443,6 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460337,
-   "patientid": 17470950,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460333,
-   "patientid": 17473197,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460330,
-   "patientid": 17471478,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460331,
    "patientid": 44953,
    "carriercode": "HUM01",
@@ -19757,38 +19485,6 @@
   {
    "visitid": 19461102,
    "patientid": 22758,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460414,
-   "patientid": 17477851,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460495,
-   "patientid": 17478209,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460420,
-   "patientid": 17477128,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460418,
-   "patientid": 17478229,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 15,
@@ -19859,14 +19555,6 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460492,
-   "patientid": 17472849,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19461151,
    "patientid": 44987,
    "carriercode": "FLO02",
@@ -19891,32 +19579,8 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460425,
-   "patientid": 17478018,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460700,
    "patientid": 25869,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460491,
-   "patientid": 17475697,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460411,
-   "patientid": 17477830,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 15,
@@ -19933,14 +19597,6 @@
   {
    "visitid": 19461146,
    "patientid": 20670,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460488,
-   "patientid": 17472286,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 15,
@@ -19981,14 +19637,6 @@
   {
    "visitid": 19461141,
    "patientid": 23721,
-   "carriercode": "FLO02",
-   "insbalance": 141.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460483,
-   "patientid": 20728,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 15,
@@ -20043,14 +19691,6 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460326,
-   "patientid": 17478316,
-   "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 15,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460329,
    "patientid": 17473113,
    "carriercode": "UNI20",
@@ -20059,10 +19699,66 @@
    "dos": "2026-11-05"
   },
   {
+   "visitid": 19460388,
+   "patientid": 17476583,
+   "carriercode": "FLO02",
+   "insbalance": 31.94,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
    "visitid": 19460352,
    "patientid": 17476739,
    "carriercode": "SUN01",
    "insbalance": 31.94,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460330,
+   "patientid": 17471478,
+   "carriercode": "FLO02",
+   "insbalance": 21.8,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460414,
+   "patientid": 17477851,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460495,
+   "patientid": 17478209,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460418,
+   "patientid": 17478229,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460425,
+   "patientid": 17478018,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 15,
+   "dos": "2026-11-05"
+  },
+  {
+   "visitid": 19460491,
+   "patientid": 17475697,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
    "days": 15,
    "dos": "2026-11-05"
   },
@@ -20139,48 +19835,8 @@
    "dos": "2026-11-06"
   },
   {
-   "visitid": 19460410,
-   "patientid": 22322,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 14,
-   "dos": "2026-11-06"
-  },
-  {
-   "visitid": 19460400,
-   "patientid": 17476583,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 14,
-   "dos": "2026-11-06"
-  },
-  {
    "visitid": 19460390,
    "patientid": 46439,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 14,
-   "dos": "2026-11-06"
-  },
-  {
-   "visitid": 19460408,
-   "patientid": 17470950,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 14,
-   "dos": "2026-11-06"
-  },
-  {
-   "visitid": 19460396,
-   "patientid": 17473197,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 14,
-   "dos": "2026-11-06"
-  },
-  {
-   "visitid": 19460392,
-   "patientid": 17471478,
    "carriercode": "FLO02",
    "insbalance": 160.0,
    "days": 14,
@@ -20227,10 +19883,18 @@
    "dos": "2026-11-06"
   },
   {
-   "visitid": 19460402,
-   "patientid": 17478316,
+   "visitid": 19460400,
+   "patientid": 17476583,
    "carriercode": "FLO02",
-   "insbalance": 111.0,
+   "insbalance": 21.8,
+   "days": 14,
+   "dos": "2026-11-06"
+  },
+  {
+   "visitid": 19460392,
+   "patientid": 17471478,
+   "carriercode": "FLO02",
+   "insbalance": 21.8,
    "days": 14,
    "dos": "2026-11-06"
   },
@@ -20291,14 +19955,6 @@
    "dos": "2026-11-07"
   },
   {
-   "visitid": 19460530,
-   "patientid": 17476583,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 13,
-   "dos": "2026-11-07"
-  },
-  {
    "visitid": 19459908,
    "patientid": 17470950,
    "carriercode": "FLO02",
@@ -20334,22 +19990,6 @@
    "visitid": 19460531,
    "patientid": 17478346,
    "carriercode": "AET07",
-   "insbalance": 111.0,
-   "days": 13,
-   "dos": "2026-11-07"
-  },
-  {
-   "visitid": 19460527,
-   "patientid": 17471478,
-   "carriercode": "FLO02",
-   "insbalance": 111.0,
-   "days": 13,
-   "dos": "2026-11-07"
-  },
-  {
-   "visitid": 19460524,
-   "patientid": 17478316,
-   "carriercode": "FLO02",
    "insbalance": 111.0,
    "days": 13,
    "dos": "2026-11-07"
@@ -21411,14 +21051,6 @@
    "dos": "2026-11-12"
   },
   {
-   "visitid": 19461136,
-   "patientid": 17475970,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 8,
-   "dos": "2026-11-12"
-  },
-  {
    "visitid": 19461134,
    "patientid": 17477851,
    "carriercode": "FLO02",
@@ -21707,14 +21339,6 @@
    "dos": "2026-11-13"
   },
   {
-   "visitid": 19461269,
-   "patientid": 17475970,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 7,
-   "dos": "2026-11-13"
-  },
-  {
    "visitid": 19461267,
    "patientid": 17477851,
    "carriercode": "FLO02",
@@ -21902,14 +21526,6 @@
    "visitid": 19461223,
    "patientid": 17478319,
    "carriercode": "CAP07",
-   "insbalance": 160.0,
-   "days": 6,
-   "dos": "2026-11-14"
-  },
-  {
-   "visitid": 19461242,
-   "patientid": 17475970,
-   "carriercode": "FLO02",
    "insbalance": 160.0,
    "days": 6,
    "dos": "2026-11-14"

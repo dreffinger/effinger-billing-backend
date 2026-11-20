@@ -1,0 +1,155 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-20T1840Z-denials",
+ "mode": "live",
+ "status": "ok",
+ "headline": "nothing ran",
+ "note": "",
+ "run_url": "",
+ "started": "2026-11-20T18:53:15Z",
+ "ended": "2026-11-20T18:58:52Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "denials": {
+   "visits": 7876,
+   "actionable": 55,
+   "actionable_amt": 10475.0,
+   "asof": "2026-11-20 18:58 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1452 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1452,
+    "registers": 3,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-20T18:53:15Z",
+   "ended": "2026-11-20T18:53:15Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7876 denied visits on 892 charts; 55 actionable $10475.00 (53 inside 12 months $10063.00); WRITTEN-OFF 3002, RESOLVED 4567, RESUBMITTED 176, OPEN 131",
+   "counts": {
+    "charts read": 892,
+    "denial lines": 13333,
+    "visits": 7876,
+    "actionable": 55,
+    "inside 12 months": 53,
+    "status WRITTEN-OFF": 3002,
+    "status RESOLVED": 4567,
+    "status RESUBMITTED": 176,
+    "status OPEN": 131
+   },
+   "dollars": {
+    "actionable": 10475.0,
+    "inside 12 months": 10063.0,
+    "resubmitted": 30417.49,
+    "resolved since": 691467.33
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1959,
+     "dollars": 324541.0,
+     "patients": 228
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1257,
+     "dollars": 195596.23,
+     "patients": 202
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1126,
+     "dollars": 175417.95,
+     "patients": 216
+    },
+    {
+     "disposition": "COB",
+     "visits": 1036,
+     "dollars": 172490.61,
+     "patients": 109
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 501,
+     "dollars": 95436.0,
+     "patients": 225
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84295.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 446,
+     "dollars": 64213.3,
+     "patients": 75
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 511,
+     "dollars": 36062.36,
+     "patients": 73
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 317,
+     "dollars": 28001.88,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-20T18:53:15Z",
+   "ended": "2026-11-20T18:58:52Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
