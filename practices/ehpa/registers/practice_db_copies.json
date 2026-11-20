@@ -11,7 +11,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-19T08:41:31Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "billing_button-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -38,7 +38,7 @@
 "stamp": "20261116T0839Z"
 }
 },
-"last_checked": "2026-11-19T08:41:17Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "credentialing_board-20261119T0838Z",
 "stamp": "20261119T0838Z"
@@ -73,7 +73,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-19T08:41:24Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "ehpa_home-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -108,7 +108,7 @@
 "stamp": "20261119T0838Z"
 }
 },
-"last_checked": "2026-11-19T08:40:02Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "insurance_refresh_board-20261119T0838Z",
 "stamp": "20261119T0838Z"
@@ -127,7 +127,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-19T08:39:47Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "mandatory_approvals-20261102T0440Z",
 "stamp": "20261102T0440Z"
@@ -138,18 +138,18 @@
 "money_ledger": {
 "collections": {
 "embedded": {
-"bytes": 9343,
+"bytes": 9345,
 "count": 1,
-"doc": "money_ledger-embedded-20261119T0838Z",
+"doc": "money_ledger-embedded-20261120T0838Z",
 "parts": 1,
-"sha": "b09b687e29450997986bf76166a26e5be6c0f0ba8bb4ee464adc3e7263a073d5",
-"stamp": "20261119T0838Z"
+"sha": "df891b5747d718d511f2e7e9831999997a1dd3c5755badecf976f5ac9c2aeb2f",
+"stamp": "20261120T0838Z"
 }
 },
-"last_checked": "2026-11-19T08:41:29Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
-"doc": "money_ledger-20261119T0838Z",
-"stamp": "20261119T0838Z"
+"doc": "money_ledger-20261120T0838Z",
+"stamp": "20261120T0838Z"
 },
 "title": "Effinger Money Ledger",
 "url": "https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN"
@@ -165,7 +165,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-19T08:41:28Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "outstanding_claims-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -192,7 +192,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-19T08:41:16Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "treasury_payments-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -227,7 +227,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-19T08:41:14Z",
+"last_checked": "2026-11-20T08:39:35Z",
 "last_index": {
 "doc": "working_denials-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -961,6 +961,16 @@
 "index": "money_ledger-20261119T0838Z",
 "slug": "money_ledger",
 "stamp": "20261119T0838Z"
+},
+{
+"at": "2026-11-20T08:39:35Z",
+"coll": "embedded",
+"docs": [
+"money_ledger-embedded-20261120T0838Z"
+],
+"index": "money_ledger-20261120T0838Z",
+"slug": "money_ledger",
+"stamp": "20261120T0838Z"
 }
 ],
 "runs": {
@@ -2457,6 +2467,114 @@
 "embedded": 1
 },
 "index": "money_ledger-20261119T0838Z",
+"unchanged": []
+},
+"outstanding_claims": {
+"changed": [],
+"counts": {
+"embedded": 3
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"treasury_payments": {
+"changed": [],
+"counts": {
+"embedded": 1,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta"
+]
+},
+"working_denials": {
+"changed": [],
+"counts": {
+"commands": 5,
+"embedded": 5,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"commands",
+"embedded",
+"meta"
+]
+}
+},
+"20261120T0838Z": {
+"billing_button": {
+"changed": [],
+"counts": {
+"embedded": 1
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"credentialing_board": {
+"changed": [],
+"counts": {
+"cred": 45,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"cred",
+"meta"
+]
+},
+"ehpa_home": {
+"changed": [],
+"counts": {
+"embedded": 2,
+"meta": 1,
+"questions": 20
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta",
+"questions"
+]
+},
+"insurance_refresh_board": {
+"changed": [],
+"counts": {
+"drops": 6,
+"items": 530,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"drops",
+"items",
+"meta"
+]
+},
+"mandatory_approvals": {
+"changed": [],
+"counts": {
+"approvals": 97
+},
+"index": null,
+"unchanged": [
+"approvals"
+]
+},
+"money_ledger": {
+"changed": [
+"embedded"
+],
+"counts": {
+"embedded": 1
+},
+"index": "money_ledger-20261120T0838Z",
 "unchanged": []
 },
 "outstanding_claims": {
