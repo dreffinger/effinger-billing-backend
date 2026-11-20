@@ -72,6 +72,18 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
    the plans/facilities lines, the lookup trail, the copy-paste blocks and every note are now simply listed out. */
 .detail{margin-top:2px}
 .detail .api{margin-top:8px}
+/* 11/7 (William): one fold per card. Default card = patient, facility, the ask. Everything else lives in here, and which cards
+   you have opened is remembered across the re-render the store fires on every change (see `opens`). */
+.more{grid-column:1 / -1;margin-top:2px}
+.more>summary{cursor:pointer;font:600 12px var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);list-style:none;display:inline-flex;align-items:center;gap:6px;padding:4px 0}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::before{content:'\25B8';font-size:11px;color:var(--muted);transition:transform .12s}
+.more[open]>summary::before{transform:rotate(90deg)}
+.more>summary:hover{color:var(--accent)}
+.more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.morein{display:flex;flex-direction:column;gap:6px;padding-top:4px}
+.morein .thread{border-top:1px dashed var(--line);padding-top:8px}
+@media (prefers-reduced-motion:reduce){.more>summary::before{transition:none}}
 .idline{margin-top:5px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink)}
 .idline .part{display:inline-block;white-space:nowrap;max-width:100%}
 .idline .k{color:var(--muted);font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-right:3px}
@@ -93,7 +105,9 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
 @media (prefers-reduced-motion:no-preference){ .fab{transition:box-shadow .15s} }
 .who{font-weight:700;font-size:16px}
 /* 10/3 (William): the ACTUAL facility at the top-left of every card, with the residence type (ALF resident / SNF resident).
-   Source order: facnow (written by the backend from the chart's visits) → the newest entry of the facilities line → lastfac → the row's facility text. */
+   11/12 (William: "there should always be a facility to list there where the charge came from"): source order chargefac (the facility
+   AMD billed the card's charge from - tools/db/board_chargefac.py, out of the practice database) → facnow (the chart's newest visit)
+   → the newest entry of the facilities line → lastfac → the row's facility text. A generic SNF / ALF only when none of them names one. */
 .facbadge{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 8px}
 .facbadge .fname{font:700 12.5px/1.2 var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px;max-width:100%;overflow-wrap:anywhere}
 .facbadge .fkind{font:700 10.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:5px 8px;white-space:nowrap}
@@ -127,6 +141,7 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
 .trail .tr.ok .ic{color:var(--claude)} .trail .tr.no .ic{color:var(--open)} .trail .tr.na .ic{color:var(--muted)} .trail .tr.human .ic{color:var(--william)}
 .trail .tr.stedi .ic{color:#2F6FDD} :root:not([data-theme="light"]) .trail .tr.stedi .ic{color:#7FA8F0} @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .trail .tr.stedi .ic{color:#2F6FDD}} :root[data-theme="dark"] .trail .tr.stedi .ic{color:#7FA8F0}
 .facs{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.facs.twins{color:var(--william);font-weight:600}
 .trail .tr.human .src{color:var(--william)}
 .amt{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;font-size:14px}
 .pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
@@ -213,6 +228,20 @@ button.btn:disabled{opacity:.5;cursor:default}
 .pal button{font:600 12px var(--sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .pal button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
 .pal .sw{display:inline-flex;gap:2px}
+.topact{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:4px}
+.topact .btn,.topact a.btn{font:600 12px var(--sans);border-radius:999px;padding:5px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.topact .btn:hover,.topact a.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.topact svg{width:14px;height:14px}
+.topact .spin svg{animation:irbspin .8s linear infinite}
+@keyframes irbspin{to{transform:rotate(360deg)}}
+.send2 .btn.donebtn{border-color:var(--done);color:var(--done)}
+.send2 .btn.donebtn:hover{background:var(--done-soft)}
+/* 11/2 (William): on a "Your turn" card the hand-off is the only coloured button - Post and Done go quiet there,
+   so a note typed and merely Posted (which by design keeps the patient on his list) can't be mistaken for an answer handed over. */
+.item.william .btn.primary{background:var(--done);border-color:var(--done);color:var(--surface)}
+.item.william .btn.primary:hover{filter:brightness(1.08);background:var(--done);border-color:var(--done)}
+.item.william .send2 .btn.donebtn{border-color:var(--line);color:var(--muted)}
+.item.william .send2 .btn.donebtn:hover{background:var(--bg);border-color:var(--line)}
 .pal .sw i{width:9px;height:9px;border-radius:50%;display:inline-block}
 </style>
 
@@ -220,10 +249,14 @@ button.btn:disabled{opacity:.5;cursor:default}
   <header>
     <div>
       <h1>Insurance Refresh Board</h1>
-      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. Each card starts top-left with the patient's actual facility and where they live (<b>ALF resident</b> / <b>SNF resident</b>; hospital stays show the hospital and the home facility underneath), then leads with the one thing needed now, then lists the full details, the lookup trail and every note underneath — nothing to click open. <b>New</b> = Claude added something since your last note on that row. The floating button (bottom right) opens a billing chat that can log into AMD and work the board live with you.</p>
+      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. Each card starts top-left with the facility the card's charge came from and where the patient lives (<b>ALF resident</b> / <b>SNF resident</b>; hospital stays show the hospital and the home facility underneath; a plain SNF / ALF only when no facility is on file), then leads with the one thing needed now. Everything else — the rest of the need, the lookup trail, the API results and every note — sits behind the <b>Details</b> fold on the card; a card you open stays open while you work. <b>New</b> = Claude added something since your last note on that row. The floating button (bottom right) opens a billing chat that can log into AMD and work the board live with you.</p>
     </div>
     <div>
       <div class="pal" aria-label="Color palette">
+        <div class="topact">
+          <button class="btn" id="refresh" type="button" title="Reloads every card from the board store and checks the Drive inbox for new run updates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>Refresh</button>
+          <a class="btn" id="newwin" href="https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg" target="_blank" rel="noopener" title="Opens the board in its own browser window"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Open in new window</a>
+        </div>
         <span class="lbl">Colors</span>
         <div class="row">
           <button data-pal="ehpa" aria-pressed="false"><span class="sw"><i style="background:#253e59"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>ehpa</button>
@@ -285,6 +318,7 @@ button.btn:disabled{opacity:.5;cursor:default}
 </div>
 
 <div class="fab" id="fab" role="complementary" aria-label="Open a billing chat">
+  <a class="fab-main fab-run" id="fab-run" href="https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ#trigger" target="_blank" rel="noopener" title="Opens the ehpa Billing Button page at its trigger: one tap there starts a Claude billing run by the standing prompts; the run may ask for an approval."><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span class="txt">Run all billing<small>Claude · columns · ERA · cascade · packages</small></span></a>
   <a class="fab-main" id="fab-open" href="https://claude.ai/project/01a083fd-4e9a-75fc-be20-7d5bcd7ddbd9" target="_blank" rel="noopener" title="Opens the ehpa cloud project in a new tab. Start a new chat there and say 'work the Insurance Refresh Board' — that chat has the billing repo, the skills, the captured-calls vocabulary and the AMD login. The Chrome side panel cannot log into AMD.">
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>
     <span class="txt">Open a billing chat<small>ehpa cloud · repo, skills, vocabulary, AMD login</small></span>
@@ -319,10 +353,15 @@ button.btn:disabled{opacity:.5;cursor:default}
   document.querySelectorAll('.pal [data-theme]').forEach(b=>b.addEventListener('click',()=>{ savedTheme=b.dataset.theme; applyPal(savedPal, savedTheme); }));
   let items=[]; let filter='william'; let db=null; let unsub=null;
   const drafts={};   // row id -> the note William has typed but not yet posted (survives the re-render on every store change)
+  const opens={};    // row id -> true while its Details fold is open (same idea: survives the re-render, which is what killed the 9/24 attempt)
   const money=n=>'$'+Math.round(Number(n)||0).toLocaleString();
   const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?'':d.toLocaleString([], {month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const turnOf=it=> it.status==='done'?'done':(it.status==='william'?'william':'claude');
+  // 11/2 (William): other cards carrying the same AMD chart number. Computed live, so it covers every card already on the board.
+  const CHART=/^\d{4,}$/;
+  const chartSibs=(amd,selfId)=>{ const a=String(amd||'').trim(); if(!CHART.test(a)) return []; return items.filter(x=>x&&x.id!==selfId&&String(x.amdid||'').trim()===a); };
+  const sibsLine=sibs=>sibs.map(x=>x.id+' ('+(x.status==='done'?'done '+String(x.updated||'').slice(0,10):x.status==='william'?'your turn':'open')+')').join(' · ');
 
   const TIC={ok:'✓',no:'✗',na:'○',human:'→'};
   // The one thing needed now: the first sentence of the need (its 'WILLIAM:' / 'DONE 9/14:' prefix dropped); the rest is listed right under it.
@@ -375,8 +414,10 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(!n) return 'OTHER';
     // 1. assisted living (every ALF in the AMD facility list carries 'ALF' in its name)
     if(/\bALF\b|ASSISTED|MEMORY CARE|BROOKDALE|ALLEGRO|AZALEA|CANTERFIELD|CAPITAL SQUARE|GROVE AT CANOPY|HARBOR ?CHASE|PACIFICA|SODALIS|TAPESTRY|PARRY/.test(n)) return 'ALF';
-    // 2. the nursing facilities by name - before the hospital check, so 'Aviata (admit 9/25 from TMH)' stays the SNF
-    if(/BRYNWOOD|OAKES|ASPIRE|AVIATA|CENTRE POINTE|CENTER POINTE|EDEN SPRINGS|LAKE PARK|SEVEN HILLS|ST\.? JASPER|BERTRAND|HEALTH AND REHAB|REHABILITATION CENTER|NURSING/.test(n)) return 'SNF';
+    // 2. the nursing facilities by name - before the hospital check, so 'Aviata (admit 9/25 from TMH)' stays the SNF.
+    //    11/12: matched by words the repository's privacy gate leaves alone - it took two facility names for patient names and
+    //    rewrote them in the saved page source. SOUTHWOOD names the one; the other is caught by HEALTH AND REHAB / REHABILITATION CENTER.
+    if(/BRYNWOOD|SOUTHWOOD|ASPIRE|AVIATA|CENTRE POINTE|CENTER POINTE|EDEN SPRINGS|LAKE PARK|SEVEN HILLS|BERTRAND|HEALTH AND REHAB|REHABILITATION CENTER|NURSING/.test(n)) return 'SNF';
     if(/HCA REHAB|INPATIENT REHAB|\bIRF\b/.test(n)) return 'IRF';
     if(/HOSPITAL|\bHCA\b|\bTMH\b|MEMORIAL|MEDICAL CENTER|\bER\b|EMERGENCY/.test(n)) return 'HOSP';
     if(/INDEPENDENT LIVING|\bIL\b/.test(n)) return 'IL';
@@ -396,7 +437,30 @@ button.btn:disabled{opacity:.5;cursor:default}
     });
   }
   const RES_KIND=/^(SNF|ALF|IL|ICF)$/;
+  // 11/12 third review: a charge badge belongs to the chart(s) it was worked out on (its `chart`, comma-separated). It is shown - and
+  // applyOp writes a file's badge - only while the card still has EVERY one of them: a chart number corrected with no new badge left
+  // the old chart's facility, visit and date on the card (and in the worksheet). A card with no chart number of its own (the helper
+  // matched it through its id / text) and a badge that names no chart pass. Same test as tools/db/board_chargefac.py _on_card.
+  const chartList=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const chartNums=row=>{ const out=[]; for(const k of ['amdid','pid','chart']) for(const n of String((row||{})[k]||'').split(/\D+/)) if(n.length>=4&&n.length<=9&&!out.includes(n)) out.push(n); return out; };
+  function cfOnCard(cf, row){
+    const was=chartList(cf&&typeof cf==='object'&&typeof cf.chart==='string'?cf.chart:''), now=chartNums(row);
+    return !(was.length&&now.length) || was.every(c=>now.includes(c));
+  }
   function facInfo(it){
+    // 11/12 (William): the facility the card's CHARGE came from comes first - written by tools/db/board_chargefac.py from the practice
+    // database (AMD's own facility on the visit the card names, or on the chart's charge still owing): {name, kind, dos, cpt, visit, how, also, res, chart, chart_from}
+    // 11/12 review: `res` (where a hospital patient lives) never shows under a home's own badge - a guard in case a store merge kept an
+    // earlier hospital badge's res (the helper now writes every key, res null / also [] when they do not apply).
+    // 11/12 third review: a badge worked out on a chart the card no longer has falls through to facnow / the facilities line / lastfac /
+    // the facility text (cfOnCard).
+    const cf=it.chargefac;
+    if(cf&&typeof cf==='object'&&cf.name&&cfOnCard(cf, it)){
+      const k=String(cf.kind||kindOf(cf.name)).toUpperCase();
+      const res=(!RES_KIND.test(k)&&cf.res&&typeof cf.res==='object'&&cf.res.name&&cf.res.name!==cf.name)?{name:String(cf.res.name),kind:String(cf.res.kind||kindOf(cf.res.name)).toUpperCase()}:null;
+      const also=(Array.isArray(cf.also)?cf.also:[]).map(String).filter(x=>x&&x!==cf.name);
+      return {name:String(cf.name),kind:k,dos:String(cf.dos||''),cpt:String(cf.cpt||''),visit:String(cf.visit||''),how:String(cf.how||''),chartFrom:String(cf.chart_from||''),also,res,src:'charge'};
+    }
     const fn=it.facnow;
     if(fn&&typeof fn==='object'&&fn.name){
       const k=String(fn.kind||kindOf(fn.name)).toUpperCase();
@@ -421,8 +485,14 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(!f) return (it.amdid&&/^\d+$/.test(String(it.amdid).trim()))?`<div class="facbadge unknown" title="No facility on this row yet — the backend fills it from the chart's visits"><span class="fname">facility not on file yet</span></div>`:'';
     const lbl=KIND_LABEL[f.kind]||''; const cls=String(f.kind||'other').toLowerCase();
     const res=f.res?`<span class="fres">resident at <b>${esc(f.res.name)}</b> · ${esc(KIND_LABEL[f.res.kind]||f.res.kind)}</span>`:'';
-    const title=f.src==='guess'?'Place-of-service type from the visit codes — the actual facility name lands when the backend reads the chart':'From the AMD chart: the facility of the newest visit, with where the patient lives';
-    return `<div class="facbadge${f.src==='guess'?' unknown':''}" title="${title}"><span class="fname">${esc(f.name)}</span>${lbl?`<span class="fkind ${cls}">${esc(lbl)}</span>`:''}${f.dos?`<span class="fdos">${esc(f.dos)}</span>`:''}${res}</div>`;
+    const also=(f.also&&f.also.length)?`<span class="fres">also billed at <b>${esc(f.also.join(', '))}</b></span>`:'';
+    const dos=f.src==='charge'?[f.dos,f.cpt].filter(Boolean).join(' · '):f.dos;
+    const HOW={'visit':'the visit named on this card','dos':'the date of service named on this card','facility id':'the facility id named on this card','open balance':"the chart's newest charge still owing",'dos in notes':'a date of service in the notes','newest charge':"the chart's newest charge"};
+    // 11/12 review: a card with no AMD chart number of its own is matched through the number its id ends with, or pat<n> in its text - say so
+    const CHART_FROM={'card id':" - the chart number was read from the end of this card's id (the card has no AMD chart number)",'card text':" - the chart number was read from pat<n> in this card's text (the card has no AMD chart number)"};
+    const title=f.src==='charge'?('Where this card\'s charge came from: AMD\'s facility on '+(HOW[f.how]||'the charge')+(f.visit?' (visit '+f.visit+(f.dos?', '+f.dos:'')+')':'')+' - from the practice database'+(CHART_FROM[f.chartFrom]||''))
+      :f.src==='guess'?'Place-of-service type from the visit codes — the actual facility name lands when the backend reads the chart':'From the AMD chart: the facility of the newest visit, with where the patient lives';
+    return `<div class="facbadge${f.src==='guess'?' unknown':''}" title="${esc(title)}"><span class="fname">${esc(f.name)}</span>${lbl?`<span class="fkind ${cls}">${esc(lbl)}</span>`:''}${dos?`<span class="fdos">${esc(dos)}</span>`:''}${res}${also}</div>`;
   }
   function render(){
     const show=items.filter(it=>{
@@ -444,6 +514,7 @@ button.btn:disabled{opacity:.5;cursor:default}
     // is typing - each row's unsent draft, and the caret in the box he is in - across the rebuild instead of wiping it.
     let focus=null;
     list.querySelectorAll('textarea[data-id]').forEach(ta=>{ const v=ta.value; if(v.trim()) drafts[ta.dataset.id]=v; else delete drafts[ta.dataset.id]; if(ta===document.activeElement) focus={id:ta.dataset.id, s:ta.selectionStart, e:ta.selectionEnd}; });
+    list.querySelectorAll('details[data-more]').forEach(d=>{ if(d.open) opens[d.dataset.more]=true; else delete opens[d.dataset.more]; });
     const restore=()=>{
       list.querySelectorAll('textarea[data-id]').forEach(ta=>{ const v=drafts[ta.dataset.id]; if(v!==undefined && ta.value!==v) ta.value=v; });
       if(focus){ const ta=list.querySelector(`textarea[data-id="${CSS.escape(focus.id)}"]`); if(ta){ try{ ta.focus({preventScroll:true}); ta.setSelectionRange(focus.s, focus.e); }catch(e){} } }
@@ -472,9 +543,15 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(it.why) extras.push(`<div class="why">${esc(it.why)}</div>`);
       if(morePlans) extras.push(`<div class="facs" title="Other plans on the chart, in billing order">Also on the chart: ${esc(morePlans)}</div>`);
       if(moreFacs) extras.push(`<div class="facs" title="Every facility where the patient was seen (from AMD visits), newest first">Seen at: ${esc(moreFacs)}</div>`);
+      const sibs=chartSibs(it.amdid, it.id);
+      if(sibs.length) extras.push(`<div class="facs twins" title="Other cards on this AMD chart number — the answer you are being asked for may already be on one of them">Also on this chart: ${esc(sibsLine(sibs))}</div>`);
       const tr=trail(it), ab=apiBlocks(it);
-      // 9/24 (William): listed out in full, always - no <details> toggle, so a re-render can't fold it back up
-      const details=(extras.length||tr||ab)?`<div class="detail">${extras.join('')}${tr}${ab}</div>`:'';
+      // 11/7 (William): far less on the card - the patient, the facility and the ask, and nothing else. The 9/24 reason for listing
+      // everything out (a fold he had opened snapped shut on each re-render) is handled by `opens` instead of by removing the fold.
+      const nChecks=(Array.isArray(it.checks)?it.checks:[]).length;
+      const moreBits=[extras.join(''),tr,ab,thread].filter(Boolean).join('');
+      const moreLbl=['Details',nChecks?nChecks+' check'+(nChecks===1?'':'s'):'',allNotes.length?allNotes.length+' note'+(allNotes.length===1?'':'s'):''].filter(Boolean).join(' · ');
+      const more=moreBits?`<details class="more" data-more="${esc(it.id)}"${opens[it.id]?' open':''}><summary title="The rest of the need, the lookup trail, API results and every note">${esc(moreLbl)}</summary><div class="morein">${moreBits}</div></details>`:'';
       const controls = db ? `
         <div class="compose">
           <textarea data-id="${esc(it.id)}" placeholder="Post what you found — plan name + dates, member #, MBI, or a decision" aria-label="Note for ${esc(it.patient)}"></textarea>
@@ -483,13 +560,13 @@ button.btn:disabled{opacity:.5;cursor:default}
           ${t!=='done'?`<button class="btn" data-act="done" data-id="${esc(it.id)}">Mark done</button>`:`<button class="btn" data-act="reopen" data-id="${esc(it.id)}">Reopen</button>`}
         </div>
         <label class="fdrop" data-drop="${esc(it.id)}" title="Saves the sheet on this card like a Post - the patient stays on your list until you Post → Claude"><span class="plus">+</span> Facesheet drop <span class="fst" id="fst-${esc(it.id)}">${esc((dropState[it.id]||{}).st||'PDF — drag here or click')}</span><input type="file" accept="application/pdf,.pdf" multiple data-dropfile="${esc(it.id)}"></label>
-        <div class="send2"><button class="btn" data-act="post" data-id="${esc(it.id)}" title="Saves the note here but keeps this patient on your list">Post</button><button class="btn primary" data-act="note" data-id="${esc(it.id)}" title="Saves the note and hands the patient to Claude">Post → Claude</button></div>` : '';
+        <div class="send2"><button class="btn" data-act="post" data-id="${esc(it.id)}" title="Saves the note here but keeps this patient on your list">Post</button><button class="btn primary" data-act="note" data-id="${esc(it.id)}" title="Saves the note and hands the patient to Claude">Post → Claude</button>${t!=='done'?`<button class="btn donebtn" data-act="done" data-id="${esc(it.id)}" title="Marks this patient done (any note typed in the box is saved with it)">✓ Done</button>`:`<button class="btn" data-act="reopen" data-id="${esc(it.id)}">Reopen</button>`}</div>` : '';
       return `<article class="item ${t}${isNew?' new':''}" id="it-${esc(it.id)}">
         <div>${facBadge(it)}<div class="who">${esc(it.patient)}</div>${idline}</div>
-        <div class="need"><span class="lead">${lead}</span><div class="ask">${esc(hl.h)||'<span class="why">(nothing written yet)</span>'}</div>${details}</div>
+        <div class="need"><span class="lead">${lead}</span><div class="ask">${esc(hl.h)||'<span class="why">(nothing written yet)</span>'}</div></div>
         <div class="amt">${Number(it.amount)>0?money(it.amount):''}</div>
         <div>${isNew?'<span class="pill new" title="Claude added something after your last note on this row">New</span>':''}<span class="pill ${t}">${label}</span><div class="ids" style="margin-top:6px">${it.updated?'updated '+when(it.updated):''}</div></div>
-        ${thread}
+        ${more}
         ${controls}
       </article>`;
     }).join('');
@@ -499,6 +576,11 @@ button.btn:disabled{opacity:.5;cursor:default}
   document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
     filter=b.dataset.f; document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed', x===b?'true':'false')); render();
   }));
+  // remember an opened Details fold the moment it is opened, not only at the next re-render
+  document.addEventListener('toggle', ev=>{
+    const d=ev.target; if(!d||d.tagName!=='DETAILS'||!d.dataset||!d.dataset.more) return;
+    if(d.open) opens[d.dataset.more]=true; else delete opens[d.dataset.more];
+  }, true);
 
   async function withRetry(fn){ try{ return await fn(); }catch(e){ if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,400+Math.random()*600)); return await fn(); } throw e; } }
 
@@ -599,6 +681,13 @@ button.btn:disabled{opacity:.5;cursor:default}
   //   {"op":"update", ...same, but the row must already exist},  {"op":"replace","collection":"items","id":"...","data":{...whole row...}},
   //   {"op":"delete","collection":"drops","id":"..."} ]}
   const INBOX_ID='1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8', DRIVE='Google Drive', REG_PATH='meta/drive_sync', LEASE_PATH='meta/drive_sync_lease';
+  // 11/7 (William): two guards for the way Mark done kept coming undone. The 11/2 registry note traced the last recurrence to a stale
+  // open tab running pre-9/15 code, re-applying old inbox files on every open and overwriting his answers with their stale status/need.
+  //  - CODE_REV: every sync stamps the registry with this page's revision. A tab older than the revision the registry has already seen
+  //    refuses to apply anything and says to reload. (It cannot discipline a tab that predates this build - only reloading does that.)
+  //  - MAX_AGE_DAYS: a run file speaks for the day it was written. One left behind in the inbox past this is recorded and skipped,
+  //    never applied, so a September file can never again rewrite a November row.
+  const CODE_REV=20261112, MAX_AGE_DAYS=10;   // 20261112: the charge's facility badge (chargefac); an older open tab is asked to reload
   const COLL_OK=/^(items|drops|commands)$/, ID_OK=/^[A-Za-z0-9_\-.~:@+]{1,200}$/;
   const TAB='tab-'+Math.random().toString(36).slice(2,10);
   let mcp=null, syncing=false, lastSyncAt=0;
@@ -607,7 +696,8 @@ button.btn:disabled{opacity:.5;cursor:default}
   function renderSyncLog(reg){
     const ul=$('#sync-log'); if(!ul) return;
     const rows=Object.entries((reg&&reg.applied)||{}).map(([id,v])=>Object.assign({id},v||{})).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,10);
-    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
+    // 11/12 third review: ops the page kept (nothing to write - the card's badge stays) are shown as kept, not as changes
+    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.kept?` · ${Number(r.kept)} kept (the card's badge stays)`:''}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
   }
   function b64utf8(b64){ const bin=atob(String(b64).replace(/\s/g,'')); const bytes=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(bytes); }
   const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -656,10 +746,28 @@ button.btn:disabled{opacity:.5;cursor:default}
     for(const k of ids){ const e=applied[k]; if(isObj(e)&&typeof e.error==='string'&&e.error.length>80) e.error=e.error.slice(0,80); }
     if(ids.length>120){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-120).forEach(k=>delete applied[k]); full=true; }   // 9/14: 300 entries with long error text outgrew the doc and the save failed silently, so files were re-applied on every open
     reg.applied=applied;
+    reg.codeRev=Math.max(CODE_REV, Number(reg.codeRev)||0);   // only ever moves forward
     // 9/14 9 PM: a merge-style update() was NOT persisting the applied map (the registry kept only two 9/12 entries while lastCheck
     // moved), so every inbox file re-applied on every sync and their stale status/need overwrote William's Mark done / Post → Claude.
     // The registry is small; always write the whole document.
     await withRetry(()=>db.doc(REG_PATH).set(reg));
+  }
+  // 11/12 second review: a charge-facility badge found by a stronger rule is never replaced by a guess - checked HERE, against the badge
+  // the row really holds, whatever the file's maker could see (a run's stamp --items may be partial, empty or wrongly shaped; a build
+  // file may come from an older copy of the board). Same rule as tools/db/board_chargefac.py _keeps - keep the two in step: the op's
+  // badge is only a guess (open balance, dos in notes, newest charge) from a weaker rule than the stored badge's, and the card still has
+  // every chart the stored badge was worked out on (its `chart`). A corrected chart number lets the new chart's badge through, and so
+  // does a badge that does not say its chart. A card with no chart number of its own is matched through its id / text by the helper, so
+  // its chart is the one the op's badge was worked out on. 11/12 third review: before that, a file's badge worked out on a chart the card
+  // will not have after the op (cfOnCard - chartList / chartNums / cfOnCard sit with the badge code above) is never written, on the merge
+  // and the replace path alike: the card keeps its own badge.
+  const CF_RANK={'visit':1,'dos':2,'facility id':3,'open balance':4,'dos in notes':5,'newest charge':6}, CF_GUESS=['open balance','dos in notes','newest charge'];
+  function keepsBadge(old, neu, row){
+    if(!isObj(old)||!old.name||!isObj(neu)||!CF_GUESS.includes(String(neu.how||''))) return false;
+    if(!(CF_RANK[String(neu.how)] > (CF_RANK[String(old.how||'')]||99))) return false;
+    if(typeof old.chart!=='string') return false;
+    const has=chartNums(row), nowCharts=has.length?has:chartList(neu.chart);
+    return chartList(old.chart).every(c=>nowCharts.includes(c));
   }
   async function applyOp(op, now, fileCreated){
     if(!isObj(op)) throw new Error('op is not an object');
@@ -672,7 +780,12 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(!isObj(op.data)) throw new Error('replace needs data');
       const cur0=await withRetry(()=>ref.get());
       if(cur0.exists && fileCreated && String((cur0.data()||{}).updated||'')>String(fileCreated)) return 'stale';   // the row moved on after this file was written
-      await withRetry(()=>ref.set(Object.assign({},op.data,{updated:op.data.updated||now}))); return;
+      const data=Object.assign({}, op.data), old0=cur0.exists?(cur0.data()||{}).chargefac:null;
+      if(isObj(data.chargefac) && !cfOnCard(data.chargefac, data)){   // 11/12 third review: the file's badge is another chart's - the card's own goes over, if it fits
+        if(isObj(old0) && old0.name && cfOnCard(old0, data)) data.chargefac=old0; else delete data.chargefac;
+      }
+      else if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=old0;   // a stronger stored badge stays (see keepsBadge)
+      await withRetry(()=>ref.set(Object.assign({},data,{updated:data.updated||now}))); return;
     }
     if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
     const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
@@ -682,17 +795,48 @@ button.btn:disabled{opacity:.5;cursor:default}
     // Stale-file guard (9/14): a run file only speaks for the moment it was written. If the row changed after that (William's Mark done /
     // Post → Claude, a chat update), its status, need and why are newer than the file's — keep them; the file's appends still land.
     const stale = !!(cur && fileCreated && String(cur.updated||'')>String(fileCreated));
-    if(stale){ for(const k of ['status','need','why']) delete patch[k]; }
+    if(stale){ for(const k of ['status','need','why','updated']) delete patch[k]; }
+    // 11/12 second review: a stronger stored charge-facility badge stays (keepsBadge) - the row as it will be after this op decides the chart.
+    // 11/12 third review: and a badge worked out on a chart the card will not have after this op is never written (cfOnCard) - a new row's too.
+    // A clear (chargefac null - the helper's for a badge worked out on another chart) removes only a badge that is not on the card's charts:
+    // a file from an older copy of the board never wipes a badge the card's chart still supports.
+    if(isObj(patch.chargefac) || patch.chargefac===null){
+      const after=Object.assign({}, cur||{}, patch);
+      if(patch.chargefac===null){ if(cur && isObj(cur.chargefac) && cur.chargefac.name && cfOnCard(cur.chargefac, after)) delete patch.chargefac; }
+      else if(!cfOnCard(patch.chargefac, after) || (cur && keepsBadge(cur.chargefac, patch.chargefac, after))) delete patch.chargefac;
+    }
+    // 11/2 (William): a run file carries its own 'updated' in set{}, and writing it verbatim rolled the row's stamp BACKWARDS past
+    // William's Post - the card then read "updated <this morning>" and, worse, the stale guard above compares the row's stamp with
+    // the file's created time, so the next file looked newer than his answer and its status/need/why overwrote it. The stamp only
+    // ever moves forward now; an append that lands today stamps the row today (patch.updated=now below).
+    if(cur && patch.updated && String(patch.updated) < String(cur.updated||'')) delete patch.updated;
     for(const k of Object.keys(app)){
       const add=Array.isArray(app[k])?app[k]:[app[k]];
       const base=Array.isArray(patch[k])?patch[k].slice():(cur&&Array.isArray(cur[k])?cur[k].slice():[]);
       for(const e of add){ if(!base.some(x=>same(x,e))) base.push(e); }
       patch[k]=base;
     }
-    if(!('updated' in patch)) patch.updated=now;
+    // 11/12 review: an op on an existing row that only sets the charge's facility badge (chargefac - tools/db/board_chargefac.py build)
+    // is display-only and leaves `updated` alone. Stamping it made every later run file in the same sync look stale to the 9/14 guard
+    // above on every card the badge file touched (their status / need / why were dropped), and moved a done card's "done <date>".
+    const setKeys=Object.keys(set);
+    const displayOnly=!!cur && setKeys.length>0 && setKeys.every(k=>k==='chargefac') && !Object.keys(app).length;
+    if(!('updated' in patch) && !displayOnly) patch.updated=now;
+    if(cur && !Object.keys(patch).length) return 'kept';   // the op only carried a badge the row keeps: nothing to write
     if(cur){ await withRetry(()=>ref.update(patch)); }
     else{
       const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);
+      // 11/2 (William): the sweeps mint a new row id for a chart that already has a card (…-denials, …-open, a chart-number variant),
+      // so a question he had already answered on the old card came back on a brand-new one. The cards are NOT merged - a chart can
+      // carry several real work items - but a new card now says which other cards exist for the chart and how they ended, so the
+      // next run (and William) can see the answer is already on file. The board shows the same line on every card, live.
+      if(col==='items' && CHART.test(String(doc.amdid||'').trim())){
+        const sibs=chartSibs(doc.amdid, id);
+        if(sibs.length){
+          doc.twins=sibs.map(x=>x.id);
+          doc.notes=(Array.isArray(doc.notes)?doc.notes.slice():[]).concat([{who:'Claude',text:'Chart '+String(doc.amdid).trim()+' already has '+(sibs.length===1?'a card':sibs.length+' cards')+': '+sibsLine(sibs)+'. Check there before asking again — the answer may already be on file.',at:now}]);
+        }
+      }
       await withRetry(()=>ref.set(doc));
     }
   }
@@ -703,15 +847,29 @@ button.btn:disabled{opacity:.5;cursor:default}
       let lease=null; try{ lease=await db.doc(LEASE_PATH).acquire({holder:TAB, ttlMs:120000}); }catch(e){ lease=null; }
       if(lease && lease.acquired===false){ setSync('Another window is applying run updates right now — this one checks again later.'); return; }
       let reg=await loadReg(); let existed=!!reg; reg=reg||{}; reg.applied=isObj(reg.applied)?reg.applied:{};
+      if(Number(reg.codeRev||0) > CODE_REV){
+        setSync('This tab is running an out-of-date copy of the board, so it will not apply run updates — reload the page.','err'); return;
+      }
       const files=await listInbox();
-      const todo=files.filter(f=>!reg.applied[f.id]);
+      const cutoff=Date.now()-MAX_AGE_DAYS*864e5;
+      const todo=[], expired=[];
+      for(const f of files){
+        if(reg.applied[f.id]) continue;
+        const t=Date.parse(f.createdTime||'');
+        if(isFinite(t) && t<cutoff) expired.push(f); else todo.push(f);
+      }
+      if(expired.length){
+        const nowIso=new Date().toISOString();
+        for(const f of expired) reg.applied[f.id]={title:f.title, at:nowIso, ops:0, failed:0, error:'skipped — older than '+MAX_AGE_DAYS+' days, so it cannot speak for a row now'};
+        try{ await saveReg(reg, existed); existed=true; }catch(e){}
+      }
       lastSyncAt=Date.now();
       if(!todo.length){
         reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); }catch(e){}
         renderSyncLog(reg);
         setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+').','ok'); return;
       }
-      let nFiles=0, nOps=0, nFail=0, regErr='';
+      let nFiles=0, nOps=0, nFail=0, nKept=0, regErr='';
       for(const f of todo){
         setSync('Applying '+f.title+' ('+(nFiles+1)+' of '+todo.length+')…','busy');
         let body=null; const entry={title:f.title, at:new Date().toISOString(), ops:0, failed:0};
@@ -721,21 +879,23 @@ button.btn:disabled{opacity:.5;cursor:default}
           if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
           else{
             const now=new Date().toISOString(); const errs=[];
-            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            // 11/12 third review: an op applyOp kept (it returns 'kept': nothing to write, the card's badge stays) is counted as kept, never as a change
+            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); if(r==='kept') entry.kept=(entry.kept||0)+1; else{ entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; } }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
             if(errs.length) entry.error=errs.join('; ');
           }
         }
-        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed;
+        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed; nKept+=Number(entry.kept||0);
         try{ await saveReg(reg, existed); existed=true; regErr=''; }catch(e){ regErr=String(e&&e.code||e&&e.message||'error'); }
       }
       reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); regErr=''; }catch(e){ regErr=regErr||String(e&&e.code||e&&e.message||'error'); }
       renderSyncLog(reg);
-      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
+      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nKept?' ('+nKept+' kept: the card\'s badge stays)':'')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
     }catch(e){
       setSync(mcpMsg(e),'err');
     }finally{ syncing=false; const g=goEl(); if(g) g.disabled=false; }
   }
-  async function initSync(){
+  window.__ehpaRefresh=async function(){ if(!db) return 'reload'; const snap=await withRetry(()=>db.collection('items').get()); items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data())); render(); subscribe(); $('#conn').textContent='Live · refreshed '+when(new Date().toISOString()); if(mcp) await runSync('manual'); };
+async function initSync(){
     try{ mcp = window.claude && window.claude.use ? await window.claude.use('mcp') : null; }catch(e){ mcp=null; }
     if(!mcp){ setSync('Drive sync is not available in this view — run updates apply when the board is opened in claude.ai.'); const g=goEl(); if(g) g.disabled=true; return; }
     try{ renderSyncLog(await loadReg()); }catch(e){}
@@ -744,6 +904,31 @@ button.btn:disabled{opacity:.5;cursor:default}
     setInterval(()=>{ if(document.visibilityState==='visible') runSync('timer'); }, 10*60*1000);
     document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible' && Date.now()-lastSyncAt>5*60*1000) runSync('visible'); });
   }
+  // ---- top-right actions: open in a new window, refresh
+  $('#newwin').addEventListener('click', ev=>{
+    const w=window.open(ev.currentTarget.href, 'irb-board', 'popup,width=1280,height=900');
+    if(w){ ev.preventDefault(); try{ w.focus(); }catch(e){} }   // if popups are blocked, the link still opens a new tab
+  });
+  function subscribe(){
+    if(unsub){ try{ unsub(); }catch(e){} unsub=null; }
+    unsub = db.collection('items').onSnapshot(snap=>{
+      items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data()));
+      $('#conn').textContent = snap.metadata && snap.metadata.fromCache ? 'Live (cached)' : 'Live';
+      render();
+    }, err=>{ $('#conn').textContent='Connection lost ('+(err&&err.code||'error')+') — press Refresh to reconnect.'; });
+  }
+  $('#refresh').addEventListener('click', async ()=>{
+    const b=$('#refresh'); if(b.disabled) return; b.disabled=true; b.classList.add('spin');
+    try{
+      if(!db){ location.reload(); return; }
+      const snap=await withRetry(()=>db.collection('items').get());
+      items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data()));
+      render(); subscribe();
+      $('#conn').textContent='Live · refreshed '+when(new Date().toISOString());
+      runSync('manual');
+    }catch(e){ $('#conn').textContent='Refresh failed ('+(e&&e.code||'error')+') — try again.'; }
+    finally{ setTimeout(()=>{ b.disabled=false; b.classList.remove('spin'); }, 500); }
+  });
   render();
   (async ()=>{
     try{ downloads = window.claude && window.claude.use ? await window.claude.use('downloads') : null; }catch(e){ downloads=null; }
@@ -752,11 +937,53 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(!db){ $('#conn').textContent='Read-only view (board storage not available here).'; setSync('Drive sync needs the board store — not available in this view.'); const g=goEl(); if(g) g.disabled=true; render(); return; }
     $('#conn').textContent='Live';
     initSync();
-    unsub = db.collection('items').onSnapshot(snap=>{
-      items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data()));
-      $('#conn').textContent = snap.metadata && snap.metadata.fromCache ? 'Live (cached)' : 'Live';
-      render();
-    }, err=>{ $('#conn').textContent='Connection lost ('+(err&&err.code||'error')+') — reload to reconnect.'; });
+    subscribe();
   })();
+})();
+</script>
+
+<style id="ehpa-run-fab-css">.fab a.fab-run{background:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%)!important;color:#082f35!important;border-right:1px solid rgba(8,47,53,.25)}</style>
+
+<style id="ehpa-refresh-irb">.topact #refresh{display:none}</style>
+<style id="ehpa-refresh-css">
+/* the Refresh control (top right): re-fetches the page's live data through window.__ehpaRefresh, or reloads the page when it has no loader - Midnight colours, independent of the page's own styles */
+.ehpa-refresh-top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:2147483001;display:flex;align-items:center;gap:8px;font-family:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;pointer-events:none}
+.ehpa-refresh-top>*{pointer-events:auto}
+.ehpa-refresh{display:inline-flex;align-items:center;gap:6px;font:700 13px/1 'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;color:#082f35;background:#70d6f8;border:1px solid rgba(8,47,53,.35);border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);white-space:nowrap}
+.ehpa-refresh:hover{filter:brightness(1.07)}
+.ehpa-refresh:focus-visible{outline:3px solid #f841e0;outline-offset:2px}
+.ehpa-refresh[disabled]{opacity:.75;cursor:wait}
+.ehpa-refresh .ico{display:inline-block;font-size:15px;line-height:1}
+.ehpa-refresh.spin .ico{animation:ehpaspin .8s linear infinite}
+.ehpa-rf-stamp{display:none;font:600 12px/1.2 'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;color:#fff;background:rgba(8,47,53,.94);border:1px solid #70d6f8;border-radius:999px;padding:6px 10px;white-space:nowrap;max-width:min(62vw,340px);overflow:hidden;text-overflow:ellipsis}
+.ehpa-rf-stamp.show{display:inline-block}
+.ehpa-rf-stamp.err{border-color:#ff8a80;color:#ffd2cf}
+@keyframes ehpaspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ehpa-refresh.spin .ico{animation:none}}
+@media (max-width:520px){.ehpa-refresh .txt{display:none} .ehpa-refresh{padding:7px 10px}}
+</style>
+<style id="ehpa-refresh-nudge">@media (min-width:761px){.pal{padding-top:42px}}</style>
+<div class="ehpa-refresh-top" id="ehpa-refresh-top" role="group" aria-label="Refresh this page">
+  <span class="ehpa-rf-stamp" id="ehpa-rf-stamp" role="status" aria-live="polite"></span>
+  <button type="button" class="ehpa-refresh" id="ehpa-rf-btn" aria-label="Refresh" title="Re-fetches this page's live data (or reloads the page when it has nothing to re-fetch)"><span class="ico" aria-hidden="true">↻</span><span class="txt">Refresh</span></button>
+</div>
+<script id="ehpa-refresh-js">
+(function(){
+  var btn=document.getElementById('ehpa-rf-btn'), st=document.getElementById('ehpa-rf-stamp'); if(!btn||!st) return;
+  var busy=false, timer=null, KEY='ehpa-refreshed-at';
+  function hhmm(d){ try{ return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }catch(e){ return d.getHours()+':'+('0'+d.getMinutes()).slice(-2); } }
+  function stamp(text,cls,ms){ st.textContent=text; st.className='ehpa-rf-stamp show'+(cls?' '+cls:''); clearTimeout(timer); if(ms!==0) timer=setTimeout(function(){ st.className='ehpa-rf-stamp'; }, ms||12000); }
+  function reload(){ try{ sessionStorage.setItem(KEY, String(Date.now())); }catch(e){} location.reload(); }
+  try{ var t=sessionStorage.getItem(KEY); if(t){ sessionStorage.removeItem(KEY); if(Date.now()-Number(t)<30000) stamp('refreshed '+hhmm(new Date())); } }catch(e){}
+  btn.addEventListener('click', function(){
+    if(busy) return; var hook=window.__ehpaRefresh;
+    if(typeof hook!=='function'){ stamp('reloading\u2026',null,0); reload(); return; }
+    busy=true; btn.disabled=true; btn.classList.add('spin'); stamp('refreshing\u2026',null,0);
+    Promise.resolve().then(function(){ return hook(); }).then(function(r){
+      if(r==='reload'){ reload(); return; }
+      stamp('refreshed '+hhmm(new Date()));
+    }).catch(function(e){ stamp('could not refresh ('+((e&&(e.code||e.message))||'error')+')','err',15000); })
+    .then(function(){ busy=false; btn.disabled=false; btn.classList.remove('spin'); });
+  });
 })();
 </script>
