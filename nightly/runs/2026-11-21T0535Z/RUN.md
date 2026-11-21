@@ -1,0 +1,13 @@
+# nightly cascade 2026-11-21T0535Z (Saturday)
+- precheck --days 3 --max 120: 34 pairs, 4 new Stedi lookups, 6 flagged.
+- chart 17472826: v19461982 11/19 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204.
+- chart 17473090: v19461981 11/19 (99233, 160 dollars) insorder 2,1 -> 1 (BCBS / HCSC MA), freq 1, rebill seq 1 -> 204.
+- chart 17478471: v19461975 11/19 (99233, 160 dollars) insorder 1,2 -> 2 (UNI20 / UHC AARP MA), freq 1, rebill seq 2 -> 204.
+- read back: all three insbilled 0 at the new order; primary dx acceptable (dx_primary_fix plan L03.90 / R55 / M48.02). 480 dollars re-sent.
+- chart 17478455: two more visits (11/17, 11/19) at Medicare; CHP member number still needed (790 dollars now). chart 17469549 FLO99 no Stedi route; chart 17472491 RET01 known false positive.
+- Step 2/2a skipped (Saturday). void_rules: 1 open rule, no VOID lines.
+- ERA step: 6 checks 405.76 dollars -> 0 (Post button 3 checks, 4 dismissed, 10 denial lines recorded). CO-45 review lines: chart 17477557 v19457462 + v19457485 (Medicare 21.80 each, 52.74 patient balance each), chart 17470940 v19456320 (AAR01 26.59 on a charge already paid 300) - report only.
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; reminder hits are past-due cards already on William's turn -> no cred file.
+- board: 4 append ops (Drive board inbox); no drops; no inbox file in the applied map.
+- Stedi: 4 calls 1.20 dollars (plain Medicare 2, eligibility 2).
+- practice_db: 7 documents committed (billing_runs 1, cascade_runs 1, era_runs 1, snapshots 4), 0 swept; Neon 7 new, run logged ok.
