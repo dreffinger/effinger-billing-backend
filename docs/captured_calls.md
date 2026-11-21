@@ -6051,3 +6051,7 @@ Lessons (no call shape):
 
 # captured calls additions - nightly cascade 2026-11-20T0536Z
 No new AMD or Stedi call shapes learned tonight. Calls used: precheck (plain Medicare check + payer eligibility), elig_amd (AMD free 271), Stedi insurance discovery (disc_lookup_1016_1510.py), addinsurance (add_ins), updateinsurance sequence (ins_update), freq-1 + chargerebill (rebill_patient_year), ERA list/post/clear (engine), all already in the registry.
+
+## 2026-11-21T0640Z backend billing run (1:39 AM ET six-hourly slot)
+- BEHAVIOUR (pat17478224): `PATCH /api/demographic/patients/{id}` (patient_patch.patch) with a corrected `names` list (middlename '(RITA)' -> 'RITA') also rewrote the responsible party's name (getdemographic respparty name = 'LAST,FIRST MIDDLE' right after; the follow-up `updaterespparty` echo was a no-op). Fixes Change Health 'CH 59 PNM10500 INVALID SUBSCRIBER MIDDLE NAME' (parentheses in the name) on a self-subscriber plan; then freq1_visit.run + excl_complete.py. No new call shape; vocabulary unchanged.
+- The engine's columns_scan reads getclaimrunstatus only; William's EFFINGER-user claim run 1700396 surfaced only through getclaimexclusionclaimruns (excl_list by hand) - keep the by-hand exclusion read every run.
