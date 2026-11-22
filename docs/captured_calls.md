@@ -6055,3 +6055,6 @@ No new AMD or Stedi call shapes learned tonight. Calls used: precheck (plain Med
 ## 2026-11-21T0640Z backend billing run (1:39 AM ET six-hourly slot)
 - BEHAVIOUR (pat17478224): `PATCH /api/demographic/patients/{id}` (patient_patch.patch) with a corrected `names` list (middle name in parentheses -> same name without parentheses) also rewrote the responsible party's name (getdemographic respparty name = 'LAST,FIRST MIDDLE' right after; the follow-up `updaterespparty` echo was a no-op). Fixes Change Health 'CH 59 PNM10500 INVALID SUBSCRIBER MIDDLE NAME' (parentheses in the name) on a self-subscriber plan; then freq1_visit.run + excl_complete.py. No new call shape; vocabulary unchanged.
 - The engine's columns_scan reads getclaimrunstatus only; William's EFFINGER-user claim run 1700396 surfaced only through getclaimexclusionclaimruns (excl_list by hand) - keep the by-hand exclusion read every run.
+
+# captured_calls additions - nightly cascade 2026-11-22T0535Z
+No new AMD or Stedi call shapes were learned tonight. Calls used: freq1_visit reroute (resave + chargerebill), AMD free 271 (elig_amd), Stedi plain Medicare / payer eligibility (precheck), Stedi claim status (claim_status_sweep), AMD free 271 sweep (medicare_number_scan). Postman: unchanged.
