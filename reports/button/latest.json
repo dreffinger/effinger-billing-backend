@@ -1,32 +1,32 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-22T0643Z",
+ "stamp": "2026-11-22T1258Z",
  "mode": "live",
  "status": "warn",
- "headline": "Columns 0/2/34/1 -> 0/2/3/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/4/0/11 -> 0/4/0/4; ERA 3 checks $413.14 -> 0 checks $0.00",
  "note": "",
  "run_url": "",
- "started": "2026-11-22T06:43:46Z",
- "ended": "2026-11-22T06:52:25Z",
+ "started": "2026-11-22T12:58:10Z",
+ "ended": "2026-11-22T13:06:44Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 2,
-    "unbilled": 34,
-    "exclusions": 1
+    "claim_inspector": 4,
+    "unbilled": 0,
+    "exclusions": 11
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 2,
-    "unbilled": 3,
-    "exclusions": 1
+    "claim_inspector": 4,
+    "unbilled": 0,
+    "exclusions": 4
    }
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 3,
+    "unposted": 413.14
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 413.14,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 326342.62,
-   "visits": 2793,
+   "total": 325682.62,
+   "visits": 2790,
    "charts": 502,
    "over_365": {
     "n": 585,
@@ -65,7 +65,7 @@
    "visits": 7878,
    "actionable": 55,
    "actionable_amt": 10475.0,
-   "asof": "2026-11-22 06:52 UTC"
+   "asof": "2026-11-22 13:06 UTC"
   }
  },
  "steps": [
@@ -76,7 +76,7 @@
    "summary": "1463 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1463,
-    "registers": 60,
+    "registers": 57,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
@@ -84,94 +84,105 @@
    "errors": [
     "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
    ],
-   "started": "2026-11-22T06:43:46Z",
-   "ended": "2026-11-22T06:43:46Z"
+   "started": "2026-11-22T12:58:10Z",
+   "ended": "2026-11-22T12:58:11Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 2->2, Unbilled 34->3, Exclusions 1->1",
+   "summary": "CR 0->0, CI 4->4, Unbilled 0->0, Exclusions 11->4",
    "counts": {
     "charge review": 0,
-    "claim inspector": 2,
-    "unbilled": 34,
-    "exclusions": 1,
+    "claim inspector": 4,
+    "unbilled": 0,
+    "exclusions": 11,
     "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 2,
+    "inspector held (not advisory)": 4,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 29,
-    "unbilled rows left alone": 3,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700397": 1,
+    "exclusions crossover run 1700397": "see log"
    },
    "dollars": {},
    "lines": [
     {
      "column": "claim inspector",
      "kind": "missing data / dx",
-     "visits": 2,
-     "ids": "v19461189 v19461966"
-    },
-    {
-     "column": "unbilled",
-     "kind": "A payment from the prior payor is required before another claim can be",
-     "visits": 29,
-     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935 v19455951 v19461773"
-    },
-    {
-     "column": "unbilled",
-     "kind": "?",
-     "visits": 2,
-     "ids": "v19392347 v19452223"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Date of service is outside insurance coverage effective dates",
-     "visits": 2,
-     "ids": "v19462087 v19462088"
-    },
-    {
-     "column": "unbilled",
-     "kind": "When billing Medicare as the non-primary carrier, the MSP Code on the ",
-     "visits": 1,
-     "ids": "v19462116"
+     "visits": 4,
+     "ids": "v19461189 v19461966 v19462190 v19462192"
     },
     {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700397",
+     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 10,
+     "ids": "v19461785 v19461786 v19461787 v19461788 v19461789 v19461791 v19461792 v19461793 v19461794 v19461795"
     }
    ],
    "errors": [],
-   "started": "2026-11-22T06:43:46Z",
-   "ended": "2026-11-22T06:47:09Z"
+   "started": "2026-11-22T12:58:11Z",
+   "ended": "2026-11-22T13:01:17Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "3 checks / $413.14 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 2,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 12
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 413.14,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 413.14
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053621,
+     "payer": "SUNSHINE STATE HEALTH PLAN",
+     "checknumber": "0935780804",
+     "amount": 0.0,
+     "unposted": 413.14,
+     "stage": "before"
+    },
+    {
+     "check": 1053622,
+     "payer": "SUNSHINE STATE HEALTH PLAN",
+     "checknumber": "T003353691",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053623,
+     "payer": "WELLCARE",
+     "checknumber": "1003594367",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-22T06:47:09Z",
-   "ended": "2026-11-22T06:47:12Z"
+   "started": "2026-11-22T13:01:17Z",
+   "ended": "2026-11-22T13:01:38Z"
   },
   {
    "name": "packages",
@@ -182,21 +193,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-22T06:47:12Z",
-   "ended": "2026-11-22T06:47:12Z"
+   "started": "2026-11-22T13:01:38Z",
+   "ended": "2026-11-22T13:01:38Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2793 visits on 502 charts, $326342.62 open; 585 over a year ($29068.28)",
+   "summary": "2790 visits on 502 charts, $325682.62 open; 585 over a year ($29068.28)",
    "counts": {
-    "visits": 2793,
+    "visits": 2790,
     "charts": 502,
     "over 365 days": 585
    },
    "dollars": {
-    "open insurance balance": 326342.62,
+    "open insurance balance": 325682.62,
     "over 365 days": 29068.28
    },
    "lines": [
@@ -259,8 +270,8 @@
     {
      "carrier": "SUN01",
      "name": "[name]",
-     "visits": 47,
-     "dollars": 5472.6,
+     "visits": 45,
+     "dollars": 5201.6,
      "oldest_days": 62
     },
     {
@@ -286,8 +297,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-22T06:47:12Z",
-   "ended": "2026-11-22T06:47:14Z"
+   "started": "2026-11-22T13:01:38Z",
+   "ended": "2026-11-22T13:01:40Z"
   },
   {
    "name": "denials",
@@ -374,13 +385,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-22T06:47:14Z",
-   "ended": "2026-11-22T06:52:25Z"
+   "started": "2026-11-22T13:01:40Z",
+   "ended": "2026-11-22T13:06:44Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 2 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+  "Claim Inspector: 4 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
  "errors": []
 }
