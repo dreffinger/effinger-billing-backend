@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-22T05:58:52Z",
+ "at": "2026-11-22T05:35:00Z",
+ "changed": 4,
+ "checked": 32,
+ "commit": "c33e90c",
+ "date": "2026-11-22",
+ "dollars": 640,
+ "done": "4 hospital visits re-pointed to the charts' Medicare Advantage plans (640 dollars): chart 17472826 and 17473090 to BCBS, chart 17478471 x2 to UHC AARP MA; Sunday claim-status sweep 83 checks",
+ "era_posted": 0.0,
+ "finished": "2026-11-22T05:58:52Z",
+ "flagged": 5,
+ "kind": "nightly cascade",
+ "lookups": 2,
+ "note": "32 visit-and-plan pairs checked (2 new Stedi lookups), 5 flagged; claim status 83 checks: 5 paid-not-posted, 17 finalized 0 or denied, 3 not eligible (chart 17477648 carded)",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-22T0535Z.json",
+ "stamp": "2026-11-22T0535Z",
+ "stedi_cost": 25.5,
+ "writeoffs": 0.0
+}
