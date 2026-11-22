@@ -222,5 +222,9 @@
  "24208|FLO99": {
   "outcome": "listed - the chart already has an open Medicaid-family plan; feed says FLO99",
   "stamp": "2026-11-19T0755Z"
+ },
+ "17478414|CAP07": {
+  "outcome": "listed - the feed names another primary plan (CAP07); the dated check decides",
+  "stamp": "2026-11-22T1240Z"
  }
 }

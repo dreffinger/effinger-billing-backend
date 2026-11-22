@@ -1,0 +1,96 @@
+{
+ "fixed": [
+  {
+   "visit": "19462152",
+   "pid": "pat17475778",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23375196 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19462170",
+   "pid": "pat22758",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462176",
+   "pid": "pat17477945",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/13/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19462190",
+   "pid": "pat17478349",
+   "patterns": [
+    "117070083"
+   ],
+   "note": [
+    "HELD: 117070083"
+   ]
+  },
+  {
+   "visit": "19462192",
+   "pid": "pat17477311",
+   "patterns": [
+    "4531"
+   ],
+   "note": [
+    "HELD: 4531"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19462170",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19462190",
+   "pid": "pat17478349",
+   "why": "The Source of Payment you have chosen is not..."
+  },
+  {
+   "visit": "19462192",
+   "pid": "pat17477311",
+   "why": "[Pattern 4531] Procedure code 99223 is not..."
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19462170",
+   "pid": "pat22758",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  }
+ ],
+ "quality_removed": [
+  {
+   "visit": "19462152",
+   "pid": "pat17475778",
+   "charge": "charge23375196",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-22T12:54:56.934919",
+   "resave_ok": true
+  }
+ ]
+}

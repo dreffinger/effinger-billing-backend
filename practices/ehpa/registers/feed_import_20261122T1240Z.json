@@ -1,0 +1,2527 @@
+{
+ "created": [
+  {
+   "feed_id": "6ad3fa344519af75c88e792e",
+   "pid": "pat17478265",
+   "visit": "vst19462143",
+   "charges": [
+    "charge23375186"
+   ],
+   "fees": [
+    "207.00"
+   ],
+   "at": "2026-11-22T12:43:34.167546",
+   "dos": "11/17/2026",
+   "dos_lines": [
+    "11/17/2026"
+   ],
+   "cpts": [
+    "99316"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: discharge visit (kept at the feed's place of service)"
+   ],
+   "pos_kind": [
+    "dischargeday"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261017",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "670d9db12f359165ded58527",
+   "pid": "pat21772",
+   "visit": "vst19462144",
+   "charges": [
+    "charge23375187"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:38.773772",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261105",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "3,2",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "670d9db12f359165ded58527",
+   "pid": "pat21772",
+   "visit": "vst19462145",
+   "charges": [
+    "charge23375188"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:40.487397",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261105",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "3,2",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6887bc67b3648c1a29cf5df4",
+   "pid": "pat17473568",
+   "visit": "vst19462146",
+   "charges": [
+    "charge23375189"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:44.751295",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2,3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6887bc67b3648c1a29cf5df4",
+   "pid": "pat17473568",
+   "visit": "vst19462147",
+   "charges": [
+    "charge23375190"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:46.454435",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2,3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6af64271dae9c85b86af8582",
+   "pid": "pat17478435",
+   "visit": "vst19462148",
+   "charges": [
+    "charge23375191"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:50.233792",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6af64271dae9c85b86af8582",
+   "pid": "pat17478435",
+   "visit": "vst19462149",
+   "charges": [
+    "charge23375192"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:52.225297",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6adb89029de368df36b7ab89",
+   "pid": "pat17478343",
+   "visit": "vst19462150",
+   "charges": [
+    "charge23375193"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:56.096991",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261023",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6adb89029de368df36b7ab89",
+   "pid": "pat17478343",
+   "visit": "vst19462151",
+   "charges": [
+    "charge23375194"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:43:57.509948",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261023",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "69ab9927f8da36198cc92934",
+   "pid": "pat17475778",
+   "visit": "vst19462152",
+   "charges": [
+    "charge23375195",
+    "charge23375196"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:01.458426",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261029",
+   "missing_dx": [],
+   "quality_codes": [
+    "1123F"
+   ],
+   "quality_fee": "0.01",
+   "quality_dos": "11/19/2026",
+   "quality_pos": "31",
+   "quality_pos_stored": "31",
+   "pos_stored": [
+    "31"
+   ],
+   "quality_charge": "charge23375196",
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "69ab9927f8da36198cc92934",
+   "pid": "pat17475778",
+   "visit": "vst19462153",
+   "charges": [
+    "charge23375197"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:03.326534",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261029",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6ae51216b81e99e56d2de4c2",
+   "pid": "pat17478292",
+   "visit": "vst19462154",
+   "charges": [
+    "charge23375198"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:06.489021",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261030",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6ae51216b81e99e56d2de4c2",
+   "pid": "pat17478292",
+   "visit": "vst19462155",
+   "charges": [
+    "charge23375199"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:08.069877",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261030",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a99c120e1c62cc55fea54fc",
+   "pid": "pat17477830",
+   "visit": "vst19462156",
+   "charges": [
+    "charge23375200"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:11.515696",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260903",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a99c120e1c62cc55fea54fc",
+   "pid": "pat17477830",
+   "visit": "vst19462157",
+   "charges": [
+    "charge23375201"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:13.136455",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260903",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "64ffe67cee1304ab155e8a24",
+   "pid": "pat17469446",
+   "visit": "vst19462158",
+   "charges": [
+    "charge23375202"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:21.483601",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260905",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "64ffe67cee1304ab155e8a24",
+   "pid": "pat17469446",
+   "visit": "vst19462159",
+   "charges": [
+    "charge23375203"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:23.732792",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260905",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "65485098449bae5f795d6c43",
+   "pid": "pat17470743",
+   "visit": "vst19462160",
+   "charges": [
+    "charge23375204"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:27.807509",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20250401",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "4,2",
+   "open_plans_at_entry": 4,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "6aefa185be3277d754625fa0",
+   "pid": "pat17478398",
+   "visit": "vst19462161",
+   "charges": [
+    "charge23375205"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:31.698201",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261107",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6aefa185be3277d754625fa0",
+   "pid": "pat17478398",
+   "visit": "vst19462162",
+   "charges": [
+    "charge23375206"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:33.261327",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261107",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6af0e046a948578bfd62c4f8",
+   "pid": "pat17478414",
+   "visit": "vst19462163",
+   "charges": [
+    "charge23375207"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:36.441952",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: no earlier nursing visit on the chart (read as a new admission)"
+   ],
+   "pos_kind": [
+    "first"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261108",
+   "missing_dx": [
+    "I66.22"
+   ],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "",
+   "open_plans_at_entry": 0,
+   "open_plan_seqs_at_entry": []
+  },
+  {
+   "feed_id": "6ae7bc02f5e52405e42de8e0",
+   "pid": "pat17478273",
+   "visit": "vst19462164",
+   "charges": [
+    "charge23375208"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:40.343706",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261101",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6ae7bc02f5e52405e42de8e0",
+   "pid": "pat17478273",
+   "visit": "vst19462165",
+   "charges": [
+    "charge23375209"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:42.197444",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261101",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6ad69d3bb507c0a789078810",
+   "pid": "pat17478229",
+   "visit": "vst19462166",
+   "charges": [
+    "charge23375210"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:45.574436",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 3 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261019",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6ad69d3bb507c0a789078810",
+   "pid": "pat17478229",
+   "visit": "vst19462167",
+   "charges": [
+    "charge23375211"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:47.435428",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261019",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6acfdddc83d0c9ba480e8a5f",
+   "pid": "pat17478209",
+   "visit": "vst19462168",
+   "charges": [
+    "charge23375212"
+   ],
+   "fees": [
+    "207.00"
+   ],
+   "at": "2026-11-22T12:44:53.422545",
+   "dos": "11/17/2026",
+   "dos_lines": [
+    "11/17/2026"
+   ],
+   "cpts": [
+    "99316"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: discharge visit (kept at the feed's place of service)"
+   ],
+   "pos_kind": [
+    "dischargeday"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261014",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6acfdddc83d0c9ba480e8a5f",
+   "pid": "pat17478209",
+   "visit": "vst19462169",
+   "charges": [
+    "charge23375213"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:55.259141",
+   "dos": "11/16/2026",
+   "dos_lines": [
+    "11/16/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261014",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "627a3dfe53431d27ed7eb23c",
+   "pid": "pat22758",
+   "visit": "vst19462170",
+   "charges": [
+    "charge23375214"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:44:59.484409",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit, no admission visit at the start of this run of visits (an extra visit on a monthly resident?)"
+   ],
+   "pos_kind": [
+    "extra"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20241201",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "63e73dde9793d2942308da3c",
+   "pid": "pat12181827",
+   "visit": "vst19462171",
+   "charges": [
+    "charge23375215"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:45:03.186408",
+   "dos": "11/20/2026",
+   "dos_lines": [
+    "11/20/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261009",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6af20b111d36478cb5666bb4",
+   "pid": "pat17478395",
+   "visit": "vst19462172",
+   "charges": [
+    "charge23375216"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-22T12:45:06.413031",
+   "dos": "11/20/2026",
+   "dos_lines": [
+    "11/20/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6aa0a6014a9455ee8c0bef81",
+   "pid": "pat17477851",
+   "visit": "vst19462173",
+   "charges": [
+    "charge23375217",
+    "charge23375218"
+   ],
+   "fees": [
+    "256.00",
+    "133.00"
+   ],
+   "at": "2026-11-22T12:45:10.003441",
+   "dos": "11/20/2026",
+   "dos_lines": [
+    "11/20/2026",
+    "11/20/2026"
+   ],
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fac": "fac33",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31",
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: initial visit",
+    "same place of service as the visit line of that day"
+   ],
+   "pos_kind": [
+    "initial",
+    "with-visit"
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260908",
+   "missing_dx": [],
+   "pos_stored": [
+    "31",
+    "31"
+   ],
+   "chart_insorder": "2,3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6ae94ba0a0e552e64deaf124",
+   "pid": "pat17472228",
+   "visit": "vst19462174",
+   "charges": [
+    "charge23375219"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:14.394234",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261103",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6a6fae686e3c815954f72728",
+   "pid": "pat17477310",
+   "visit": "vst19462175",
+   "charges": [
+    "charge23375220"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:18.574709",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261119",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6ab6f367e2c808b010c25970",
+   "pid": "pat17477945",
+   "visit": "vst19462176",
+   "charges": [
+    "charge23375221"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:23.075740",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261113",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "64eed8c3e9abd1e559917c0c",
+   "pid": "pat17469476",
+   "visit": "vst19462177",
+   "charges": [
+    "charge23375222"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:27.488652",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "62a89604a4ea93d62b490434",
+   "pid": "pat25541",
+   "visit": "vst19462178",
+   "charges": [
+    "charge23375223"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:31.721041",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2,3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "68074b247da49c456a5ae036",
+   "pid": "pat17473197",
+   "visit": "vst19462179",
+   "charges": [
+    "charge23375224"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:35.722883",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261027",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "669ad9a71d003b595a81631c",
+   "pid": "pat17473090",
+   "visit": "vst19462180",
+   "charges": [
+    "charge23375225"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:40.189232",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20240719",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6aa81af1483c042382312fb8",
+   "pid": "pat17477774",
+   "visit": "vst19462181",
+   "charges": [
+    "charge23375226"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:44.161834",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "2,1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "67994d49fde1f815791b4594",
+   "pid": "pat17472826",
+   "visit": "vst19462182",
+   "charges": [
+    "charge23375227"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:48.608065",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261107",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "651e40e8e9abd1e559c2cfc9",
+   "pid": "pat17469549",
+   "visit": "vst19462183",
+   "charges": [
+    "charge23375228"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:53.343790",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261121",
+   "missing_dx": [
+    "S69.91XD"
+   ],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a0772e8dbd2a23f6bc38ff3",
+   "pid": "pat17476583",
+   "visit": "vst19462184",
+   "charges": [
+    "charge23375229"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:45:57.688398",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261105",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "698d0f960a760cb970c279a9",
+   "pid": "pat17475638",
+   "visit": "vst19462185",
+   "charges": [
+    "charge23375230"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:02.097295",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261112",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3,1",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "visit": "vst19462186",
+   "charges": [
+    "charge23375231"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:06.386482",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261114",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6afb721a7e1a661134648f8d",
+   "pid": "pat17478455",
+   "visit": "vst19462187",
+   "charges": [
+    "charge23375232"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:10.108616",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261117",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a7bb16984e4e2e2720c4a8b",
+   "pid": "pat17477405",
+   "visit": "vst19462188",
+   "charges": [
+    "charge23375233"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:14.248172",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261118",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 3,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6422b24a9f164d322725a97c",
+   "pid": "pat12182947",
+   "visit": "vst19462189",
+   "charges": [
+    "charge23375234"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:18.432403",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261109",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "4,2",
+   "open_plans_at_entry": 4,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ]
+  },
+  {
+   "feed_id": "6aee0d33813a9039cc51ebc8",
+   "pid": "pat17478349",
+   "visit": "vst19462190",
+   "charges": [
+    "charge23375235"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-22T12:46:22.555197",
+   "dos": "11/21/2026",
+   "dos_lines": [
+    "11/21/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261120",
+   "missing_dx": [],
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "667576c11f601b81217df953",
+   "pid": "pat17471778",
+   "visit": "vst19462191",
+   "charges": [
+    "charge23375236",
+    "charge23375237"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-22T12:46:26.604391",
+   "dos": "11/20/2026",
+   "dos_lines": [
+    "11/20/2026",
+    "11/20/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21",
+    "21"
+   ],
+   "pos_why": [
+    "",
+    ""
+   ],
+   "pos_kind": [
+    "",
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261120",
+   "missing_dx": [],
+   "pos_stored": [
+    "21",
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6a6f8a15dde66f45e6ff187f",
+   "pid": "pat17477311",
+   "visit": "vst19462192",
+   "charges": [
+    "charge23375238",
+    "charge23375239"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-22T12:46:31.029422",
+   "dos": "08/27/2026",
+   "dos_lines": [
+    "08/27/2026",
+    "08/27/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac58",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31",
+    "31"
+   ],
+   "pos_why": [
+    "",
+    ""
+   ],
+   "pos_kind": [
+    "",
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260807",
+   "missing_dx": [
+    "M47.816"
+   ],
+   "pos_stored": [
+    "31",
+    "31"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "feed_id": "6a565f774b95b38f0194a2c7",
+   "pid": "pat17477128",
+   "why": "no usable dx for 99309",
+   "lines": [
+    [
+     "99309",
+     "11/19/2026",
+     "BRYNWOOD OPERATIONS LLC"
+    ]
+   ]
+  }
+ ],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.01",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [
+   "charge23373645",
+   "charge23373648",
+   "charge23373650",
+   "charge23373913",
+   "charge23373928",
+   "charge23374160",
+   "charge23374348",
+   "charge23375086"
+  ],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 2,
+   "fee": "0.01",
+   "since": "feed_import_20261113T0135Z.json",
+   "lines": 6,
+   "void": 5,
+   "open": 1
+  },
+  "budget": 1,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [
+   [
+    "pat17470875",
+    "2026"
+   ],
+   [
+    "pat17473571",
+    "2026"
+   ],
+   [
+    "pat17473962",
+    "2026"
+   ],
+   [
+    "pat17478210",
+    "2026"
+   ],
+   [
+    "pat21915",
+    "2026"
+   ],
+   [
+    "pat24368",
+    "2026"
+   ],
+   [
+    "pat25994",
+    "2026"
+   ],
+   [
+    "pat45010",
+    "2026"
+   ]
+  ],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [
+   "charge23374160",
+   "charge23374348",
+   "charge23375086"
+  ],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 0,
+  "unread": [],
+  "unread_prev": [],
+  "probe": "AdvancedMD held visit vst19462071 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261121T1240Z.json) - William looks",
+  "probe_kind": "claim_check",
+  "probe_since": "feed_inspector_20261111T1239Z.json",
+  "probe_words": "[Pattern 2049] Per Medicare guidelines the...",
+  "probe_tries": 6,
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "taken_lines": [],
+  "wrong_code_charge": "",
+  "n620_seen": "",
+  "left_off_cent": [],
+  "proof_aside": null,
+  "notes": [
+   "AdvancedMD held visit vst19460833 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T1239Z.json) - new lines carry $0.01, one line a run until one is billed"
+  ]
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "probe": "",
+  "probe_since": "",
+  "probe_words": "",
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "wrong_code_charge": "",
+  "notes": []
+ }
+}

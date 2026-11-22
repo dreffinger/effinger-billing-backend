@@ -255,6 +255,12 @@
    "sha256": "ded48483e7b7b445ad84e14a7d9ebc0a3bf617e98e518eb92ba9f33cbbb81bf6",
    "messages": 84,
    "at": "2026-11-21T18:42:35.795015Z"
+  },
+  "20261122626627aa54d52f67a80d586a.hl7": {
+   "stamp": "20261122T1240Z",
+   "sha256": "9bf0cf73e88deb15772faeaaa852eb347ef693eda9b5de191198b693525683af",
+   "messages": 51,
+   "at": "2026-11-22T12:55:12.804950Z"
   }
  },
  "runs": [
@@ -526,6 +532,16 @@
     "20261121626627aa54d52f67a80d586a.hl7"
    ],
    "exit": 0
+  },
+  {
+   "stamp": "20261122T1240Z",
+   "at": "2026-11-22T12:55:12.805010Z",
+   "live": true,
+   "files": [
+    "20261122626627aa54d52f67a80d586a.hl7"
+   ],
+   "exit": 0,
+   "note": "steps 6-8 resumed after a command timeout"
   }
  ]
 }
