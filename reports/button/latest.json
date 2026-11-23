@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-23T1240Z",
+ "stamp": "2026-11-23T1844Z",
  "mode": "live",
- "status": "ok",
- "headline": "Columns 0/3/0/1 -> 0/3/0/1; ERA 1 checks $83.13 -> 0 checks $0.00",
+ "status": "warn",
+ "headline": "Columns 0/3/0/1 -> 0/3/0/1; ERA 1 checks $10.21 -> 0 checks $0.00",
  "note": "",
  "run_url": "",
- "started": "2026-11-23T12:43:38Z",
- "ended": "2026-11-23T12:52:39Z",
+ "started": "2026-11-23T18:44:09Z",
+ "ended": "2026-11-23T18:53:53Z",
  "summary": {
   "columns": {
    "before": {
@@ -26,7 +26,7 @@
   "era": {
    "before": {
     "checks": 1,
-    "unposted": 83.13
+    "unposted": 10.21
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 83.13,
+   "pay": 10.21,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,25 +65,27 @@
    "visits": 7885,
    "actionable": 55,
    "actionable_amt": 10475.0,
-   "asof": "2026-11-23 12:52 UTC"
+   "asof": "2026-11-23 18:53 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "ok",
-   "summary": "1472 helpers into /home/claude/unbilled",
+   "status": "warn",
+   "summary": "1474 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1472,
+    "helpers copied": 1474,
     "registers": 65,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [],
-   "started": "2026-11-23T12:43:38Z",
-   "ended": "2026-11-23T12:43:38Z"
+   "errors": [
+    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
+   ],
+   "started": "2026-11-23T18:44:09Z",
+   "ended": "2026-11-23T18:44:09Z"
   },
   {
    "name": "columns",
@@ -121,42 +123,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-23T12:43:38Z",
-   "ended": "2026-11-23T12:46:49Z"
+   "started": "2026-11-23T18:44:09Z",
+   "ended": "2026-11-23T18:47:21Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $83.13 -> 0 checks / $0.00",
+   "summary": "1 checks / $10.21 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 1,
     "checks the Post button posted or was offered": 1,
     "co45 lines corrected": 0,
-    "co45 lines for review": 0,
+    "co45 lines for review": 1,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 35
    },
    "dollars": {
-    "unposted before": 83.13,
+    "unposted before": 10.21,
     "unposted after": 0,
-    "posted this run": 83.13
+    "posted this run": 10.21
    },
    "lines": [
     {
-     "check": 1053624,
-     "payer": "HUMANA",
-     "checknumber": "207389160261122",
+     "check": 1053625,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "153082494",
      "amount": 0.0,
-     "unposted": 83.13,
+     "unposted": 10.21,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-23T12:46:49Z",
-   "ended": "2026-11-23T12:47:01Z"
+   "started": "2026-11-23T18:47:21Z",
+   "ended": "2026-11-23T18:47:40Z"
   },
   {
    "name": "packages",
@@ -167,8 +169,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-23T12:47:01Z",
-   "ended": "2026-11-23T12:47:01Z"
+   "started": "2026-11-23T18:47:40Z",
+   "ended": "2026-11-23T18:47:40Z"
   },
   {
    "name": "outstanding",
@@ -271,8 +273,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-23T12:47:01Z",
-   "ended": "2026-11-23T12:47:03Z"
+   "started": "2026-11-23T18:47:40Z",
+   "ended": "2026-11-23T18:47:42Z"
   },
   {
    "name": "denials",
@@ -359,13 +361,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-23T12:47:03Z",
-   "ended": "2026-11-23T12:52:39Z"
+   "started": "2026-11-23T18:47:42Z",
+   "ended": "2026-11-23T18:53:53Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 3 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+  "Claim Inspector: 3 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA CO-45 pass after the Post button: 1 line(s) left for review (registers/era_co45_relink_*)"
  ],
  "errors": []
 }
