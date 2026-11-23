@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-22T1843Z",
+ "stamp": "2026-11-23T0040Z",
  "mode": "live",
- "status": "warn",
+ "status": "ok",
  "headline": "Columns 0/3/0/1 -> 0/3/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "",
  "run_url": "",
- "started": "2026-11-22T18:43:12Z",
- "ended": "2026-11-22T18:51:20Z",
+ "started": "2026-11-23T00:43:33Z",
+ "ended": "2026-11-23T00:51:59Z",
  "summary": {
   "columns": {
    "before": {
@@ -57,35 +57,33 @@
    "visits": 2790,
    "charts": 502,
    "over_365": {
-    "n": 585,
-    "dollars": 29068.28
+    "n": 586,
+    "dollars": 29091.16
    }
   },
   "denials": {
    "visits": 7878,
    "actionable": 55,
    "actionable_amt": 10475.0,
-   "asof": "2026-11-22 18:51 UTC"
+   "asof": "2026-11-23 00:51 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
+   "status": "ok",
    "summary": "1466 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1466,
-    "registers": 65,
+    "registers": 3,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-22T18:43:12Z",
-   "ended": "2026-11-22T18:43:12Z"
+   "errors": [],
+   "started": "2026-11-23T00:43:33Z",
+   "ended": "2026-11-23T00:43:33Z"
   },
   {
    "name": "columns",
@@ -123,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-22T18:43:12Z",
-   "ended": "2026-11-22T18:46:09Z"
+   "started": "2026-11-23T00:43:33Z",
+   "ended": "2026-11-23T00:46:43Z"
   },
   {
    "name": "era",
@@ -146,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-22T18:46:09Z",
-   "ended": "2026-11-22T18:46:12Z"
+   "started": "2026-11-23T00:46:43Z",
+   "ended": "2026-11-23T00:46:46Z"
   },
   {
    "name": "packages",
@@ -158,22 +156,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-22T18:46:12Z",
-   "ended": "2026-11-22T18:46:12Z"
+   "started": "2026-11-23T00:46:46Z",
+   "ended": "2026-11-23T00:46:46Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2790 visits on 502 charts, $325682.62 open; 585 over a year ($29068.28)",
+   "summary": "2790 visits on 502 charts, $325682.62 open; 586 over a year ($29091.16)",
    "counts": {
     "visits": 2790,
     "charts": 502,
-    "over 365 days": 585
+    "over 365 days": 586
    },
    "dollars": {
     "open insurance balance": 325682.62,
-    "over 365 days": 29068.28
+    "over 365 days": 29091.16
    },
    "lines": [
     {
@@ -181,103 +179,103 @@
      "name": "[name]",
      "visits": 1359,
      "dollars": 136583.76,
-     "oldest_days": 1103
+     "oldest_days": 1104
     },
     {
      "carrier": "UNI20",
      "name": "[name]",
      "visits": 227,
      "dollars": 46969.07,
-     "oldest_days": 1199
+     "oldest_days": 1200
     },
     {
      "carrier": "FLO99",
      "name": "[name]",
      "visits": 163,
      "dollars": 28207.7,
-     "oldest_days": 440
+     "oldest_days": 441
     },
     {
      "carrier": "BCBS",
      "name": "[name]",
      "visits": 360,
      "dollars": 27695.48,
-     "oldest_days": 1070
+     "oldest_days": 1071
     },
     {
      "carrier": "UHCMA",
      "name": "[name]",
      "visits": 96,
      "dollars": 19505.4,
-     "oldest_days": 1172
+     "oldest_days": 1173
     },
     {
      "carrier": "HUM01",
      "name": "[name]",
      "visits": 65,
      "dollars": 10979.13,
-     "oldest_days": 676
+     "oldest_days": 677
     },
     {
      "carrier": "CAP07",
      "name": "[name]",
      "visits": 50,
      "dollars": 9783.0,
-     "oldest_days": 372
+     "oldest_days": 373
     },
     {
      "carrier": "VACCN",
      "name": "[name]",
      "visits": 40,
      "dollars": 7255.22,
-     "oldest_days": 988
+     "oldest_days": 989
     },
     {
      "carrier": "SUN01",
      "name": "[name]",
      "visits": 45,
      "dollars": 5201.6,
-     "oldest_days": 62
+     "oldest_days": 63
     },
     {
      "carrier": "MCAD",
      "name": "[name]",
      "visits": 45,
      "dollars": 5037.46,
-     "oldest_days": 384
+     "oldest_days": 385
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 27,
      "dollars": 4048.38,
-     "oldest_days": 188
+     "oldest_days": 189
     },
     {
      "carrier": "SIM01",
      "name": "[name]",
      "visits": 16,
      "dollars": 3254.0,
-     "oldest_days": 63
+     "oldest_days": 64
     }
    ],
    "errors": [],
-   "started": "2026-11-22T18:46:12Z",
-   "ended": "2026-11-22T18:46:14Z"
+   "started": "2026-11-23T00:46:46Z",
+   "ended": "2026-11-23T00:46:48Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7878 denied visits on 893 charts; 55 actionable $10475.00 (53 inside 12 months $10063.00); WRITTEN-OFF 3002, RESOLVED 4568, RESUBMITTED 179, OPEN 129",
+   "summary": "7878 denied visits on 893 charts; 55 actionable $10475.00 (53 inside 12 months $10063.00); RESOLVED 4568, WRITTEN-OFF 3002, RESUBMITTED 179, OPEN 129",
    "counts": {
     "charts read": 893,
     "denial lines": 13322,
     "visits": 7878,
     "actionable": 55,
     "inside 12 months": 53,
-    "status WRITTEN-OFF": 3002,
     "status RESOLVED": 4568,
+    "status WRITTEN-OFF": 3002,
     "status RESUBMITTED": 179,
     "status OPEN": 129
    },
@@ -350,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-22T18:46:14Z",
-   "ended": "2026-11-22T18:51:20Z"
+   "started": "2026-11-23T00:46:48Z",
+   "ended": "2026-11-23T00:51:59Z"
   }
  ],
  "packages": [],
