@@ -1,0 +1,13 @@
+# nightly cascade 2026-11-23T0536Z (Monday)
+- precheck --days 3 --max 120: 32 pairs, 2 new Stedi lookups, 4 flagged (3 Medicare Advantage on DOS, 1 FLO99 no Stedi route).
+- chart 17472826: v19462182 11/21 (99233, 160 dollars) insorder 2 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204.
+- chart 17473090: v19462180 11/21 (99233, 160 dollars) insorder 2 -> 1 (BCBS / HCSC MA), freq 1, rebill seq 1 -> 204.
+- read back: both insbilled 0 at insorder 1; primary dx acceptable (dx_primary_fix plan). 320 dollars re-sent.
+- chart 17478455: one more visit (11/21) at Medicare; CHP member number still needed (1110 dollars, 6 visits). chart 17469549 FLO99 known.
+- Step 2/2a skipped (Monday). void_rules: 1 open rule, no VOID lines. ERA step: 0 checks before/after (bootstrap warn = no STEDI_API_KEY env; proxy injects it).
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; we-board 7-day reminder (AOBFP LA due 11/30) -> cred file 1 op.
+- board: 3 append ops -> Drive board inbox; no drops; 0 inbox files in the applied map.
+- money ledger rebuilt (unpaid 334,199 dollars) and republished.
+- Stedi: 2 calls 0.60 dollars (eligibility 2).
+- practice_db: 6 documents committed (billing_runs 1, cascade_runs 1, snapshots 4), 0 swept; Neon 6 new, run logged ok.
+- /home/claude/effinger-billing-backend symlinked to the attached clone so the 5b commands run verbatim (fixes the 11/22 --repo lesson).
