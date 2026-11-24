@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-24T05:41:32Z",
+ "at": "2026-11-24T05:36:00Z",
+ "changed": 0,
+ "checked": 17,
+ "commit": "d514615",
+ "date": "2026-11-24",
+ "dollars": 0,
+ "done": "No AdvancedMD change needed; ERA: 1 UHC check posted (1449.05 dollars, 10 visits); chart 17478455 still waits on the CHP member number",
+ "era_posted": 1449.05,
+ "finished": "2026-11-24T05:41:32Z",
+ "flagged": 2,
+ "kind": "nightly cascade",
+ "lookups": 0,
+ "note": "17 visit-and-plan pairs checked (0 new Stedi lookups, all cached), 2 flagged (both known: chart 17478455 CHP, chart 17469549 FLO99)",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-24T0536Z.json",
+ "stamp": "2026-11-24T0536Z",
+ "stedi_cost": 0.0,
+ "writeoffs": 0.0
+}
