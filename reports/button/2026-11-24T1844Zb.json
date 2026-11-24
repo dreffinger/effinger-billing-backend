@@ -1,0 +1,268 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-24T1844Zb",
+ "mode": "live",
+ "status": "ok",
+ "headline": "nothing ran",
+ "note": "",
+ "run_url": "",
+ "started": "2026-11-24T18:54:29Z",
+ "ended": "2026-11-24T19:00:18Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 325922.62,
+   "visits": 2802,
+   "charts": 494,
+   "over_365": {
+    "n": 587,
+    "dollars": 29114.04
+   }
+  },
+  "denials": {
+   "visits": 7886,
+   "actionable": 55,
+   "actionable_amt": 10475.0,
+   "asof": "2026-11-24 19:00 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1480 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1480,
+    "registers": 1425,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-24T18:54:29Z",
+   "ended": "2026-11-24T18:54:29Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2802 visits on 494 charts, $325922.62 open; 587 over a year ($29114.04)",
+   "counts": {
+    "visits": 2802,
+    "charts": 494,
+    "over 365 days": 587
+   },
+   "dollars": {
+    "open insurance balance": 325922.62,
+    "over 365 days": 29114.04
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "[name]",
+     "visits": 1383,
+     "dollars": 140480.76,
+     "oldest_days": 1105
+    },
+    {
+     "carrier": "UNI20",
+     "name": "[name]",
+     "visits": 228,
+     "dollars": 46167.07,
+     "oldest_days": 1201
+    },
+    {
+     "carrier": "FLO99",
+     "name": "[name]",
+     "visits": 166,
+     "dollars": 28649.7,
+     "oldest_days": 442
+    },
+    {
+     "carrier": "BCBS",
+     "name": "[name]",
+     "visits": 364,
+     "dollars": 28335.48,
+     "oldest_days": 1072
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "[name]",
+     "visits": 97,
+     "dollars": 19646.4,
+     "oldest_days": 1174
+    },
+    {
+     "carrier": "HUM01",
+     "name": "[name]",
+     "visits": 63,
+     "dollars": 10659.13,
+     "oldest_days": 678
+    },
+    {
+     "carrier": "VACCN",
+     "name": "[name]",
+     "visits": 40,
+     "dollars": 7255.22,
+     "oldest_days": 990
+    },
+    {
+     "carrier": "SUN01",
+     "name": "[name]",
+     "visits": 47,
+     "dollars": 5502.6,
+     "oldest_days": 64
+    },
+    {
+     "carrier": "CAP07",
+     "name": "[name]",
+     "visits": 27,
+     "dollars": 5404.0,
+     "oldest_days": 374
+    },
+    {
+     "carrier": "MCAD",
+     "name": "[name]",
+     "visits": 45,
+     "dollars": 5037.46,
+     "oldest_days": 386
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 27,
+     "dollars": 4048.38,
+     "oldest_days": 190
+    },
+    {
+     "carrier": "SIM01",
+     "name": "[name]",
+     "visits": 16,
+     "dollars": 3254.0,
+     "oldest_days": 65
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-24T18:54:29Z",
+   "ended": "2026-11-24T18:54:31Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7886 denied visits on 888 charts; 55 actionable $10475.00 (53 inside 12 months $10063.00); WRITTEN-OFF 3008, RESOLVED 4569, RESUBMITTED 179, OPEN 130",
+   "counts": {
+    "charts read": 888,
+    "denial lines": 13330,
+    "visits": 7886,
+    "actionable": 55,
+    "inside 12 months": 53,
+    "status WRITTEN-OFF": 3008,
+    "status RESOLVED": 4569,
+    "status RESUBMITTED": 179,
+    "status OPEN": 130
+   },
+   "dollars": {
+    "actionable": 10475.0,
+    "inside 12 months": 10063.0,
+    "resubmitted": 30897.49,
+    "resolved since": 691733.33
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1962,
+     "dollars": 324994.0,
+     "patients": 229
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1263,
+     "dollars": 196442.23,
+     "patients": 203
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1127,
+     "dollars": 175550.95,
+     "patients": 217
+    },
+    {
+     "disposition": "COB",
+     "visits": 1036,
+     "dollars": 172490.61,
+     "patients": 109
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 501,
+     "dollars": 95436.0,
+     "patients": 225
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84295.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 446,
+     "dollars": 64213.3,
+     "patients": 75
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 511,
+     "dollars": 36062.36,
+     "patients": 73
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 317,
+     "dollars": 28001.88,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-24T18:54:31Z",
+   "ended": "2026-11-24T19:00:18Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
