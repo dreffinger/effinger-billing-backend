@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-23T1844Z",
+ "stamp": "2026-11-24T0040Z",
  "mode": "live",
- "status": "warn",
- "headline": "Columns 0/3/0/1 -> 0/3/0/1; ERA 1 checks $10.21 -> 0 checks $0.00",
- "note": "",
+ "status": "ok",
+ "headline": "Columns 0/3/0/1 -> 0/3/0/1; ERA 1 checks $83.13 -> 0 checks $0.00",
+ "note": "columns run evening slot",
  "run_url": "",
- "started": "2026-11-23T18:44:09Z",
- "ended": "2026-11-23T18:53:53Z",
+ "started": "2026-11-24T00:42:58Z",
+ "ended": "2026-11-24T00:51:26Z",
  "summary": {
   "columns": {
    "before": {
@@ -26,7 +26,7 @@
   "era": {
    "before": {
     "checks": 1,
-    "unposted": 10.21
+    "unposted": 83.13
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 10.21,
+   "pay": 83.13,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,39 +53,37 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 334038.62,
-   "visits": 2842,
+   "total": 333878.62,
+   "visits": 2841,
    "charts": 507,
    "over_365": {
-    "n": 586,
-    "dollars": 29091.16
+    "n": 587,
+    "dollars": 29114.04
    }
   },
   "denials": {
    "visits": 7885,
    "actionable": 55,
    "actionable_amt": 10475.0,
-   "asof": "2026-11-23 18:53 UTC"
+   "asof": "2026-11-24 00:51 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
-   "summary": "1474 helpers into /home/claude/unbilled",
+   "status": "ok",
+   "summary": "1476 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1474,
-    "registers": 65,
+    "helpers copied": 1476,
+    "registers": 1954,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-23T18:44:09Z",
-   "ended": "2026-11-23T18:44:09Z"
+   "errors": [],
+   "started": "2026-11-24T00:42:58Z",
+   "ended": "2026-11-24T00:42:58Z"
   },
   {
    "name": "columns",
@@ -123,42 +121,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-23T18:44:09Z",
-   "ended": "2026-11-23T18:47:21Z"
+   "started": "2026-11-24T00:42:58Z",
+   "ended": "2026-11-24T00:45:56Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $10.21 -> 0 checks / $0.00",
+   "summary": "1 checks / $83.13 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 1,
     "checks the Post button posted or was offered": 1,
     "co45 lines corrected": 0,
-    "co45 lines for review": 1,
+    "co45 lines for review": 0,
     "fallback posted": 0,
     "checks dismissed": 1,
     "checks held": 0,
-    "denial lines recorded": 35
+    "denial lines recorded": 1
    },
    "dollars": {
-    "unposted before": 10.21,
+    "unposted before": 83.13,
     "unposted after": 0,
-    "posted this run": 10.21
+    "posted this run": 83.13
    },
    "lines": [
     {
-     "check": 1053625,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "153082494",
+     "check": 1053626,
+     "payer": "HUMANA",
+     "checknumber": "207509866261123",
      "amount": 0.0,
-     "unposted": 10.21,
+     "unposted": 83.13,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-23T18:47:21Z",
-   "ended": "2026-11-23T18:47:40Z"
+   "started": "2026-11-24T00:45:56Z",
+   "ended": "2026-11-24T00:46:09Z"
   },
   {
    "name": "packages",
@@ -169,22 +167,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-23T18:47:40Z",
-   "ended": "2026-11-23T18:47:40Z"
+   "started": "2026-11-24T00:46:09Z",
+   "ended": "2026-11-24T00:46:09Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2842 visits on 507 charts, $334038.62 open; 586 over a year ($29091.16)",
+   "summary": "2841 visits on 507 charts, $333878.62 open; 587 over a year ($29114.04)",
    "counts": {
-    "visits": 2842,
+    "visits": 2841,
     "charts": 507,
-    "over 365 days": 586
+    "over 365 days": 587
    },
    "dollars": {
-    "open insurance balance": 334038.62,
-    "over 365 days": 29091.16
+    "open insurance balance": 333878.62,
+    "over 365 days": 29114.04
    },
    "lines": [
     {
@@ -192,89 +190,89 @@
      "name": "[name]",
      "visits": 1384,
      "dollars": 140640.76,
-     "oldest_days": 1104
+     "oldest_days": 1105
     },
     {
      "carrier": "UNI20",
      "name": "[name]",
      "visits": 238,
      "dollars": 48898.07,
-     "oldest_days": 1200
+     "oldest_days": 1201
     },
     {
      "carrier": "FLO99",
      "name": "[name]",
      "visits": 166,
      "dollars": 28649.7,
-     "oldest_days": 441
+     "oldest_days": 442
     },
     {
      "carrier": "BCBS",
      "name": "[name]",
      "visits": 362,
      "dollars": 28015.48,
-     "oldest_days": 1071
+     "oldest_days": 1072
     },
     {
      "carrier": "UHCMA",
      "name": "[name]",
      "visits": 97,
      "dollars": 19646.4,
-     "oldest_days": 1173
-    },
-    {
-     "carrier": "HUM01",
-     "name": "[name]",
-     "visits": 64,
-     "dollars": 10819.13,
-     "oldest_days": 677
+     "oldest_days": 1174
     },
     {
      "carrier": "CAP07",
      "name": "[name]",
      "visits": 57,
      "dollars": 10789.0,
-     "oldest_days": 373
+     "oldest_days": 374
+    },
+    {
+     "carrier": "HUM01",
+     "name": "[name]",
+     "visits": 63,
+     "dollars": 10659.13,
+     "oldest_days": 678
     },
     {
      "carrier": "VACCN",
      "name": "[name]",
      "visits": 40,
      "dollars": 7255.22,
-     "oldest_days": 989
+     "oldest_days": 990
     },
     {
      "carrier": "SUN01",
      "name": "[name]",
      "visits": 47,
      "dollars": 5502.6,
-     "oldest_days": 63
+     "oldest_days": 64
     },
     {
      "carrier": "MCAD",
      "name": "[name]",
      "visits": 45,
      "dollars": 5037.46,
-     "oldest_days": 385
+     "oldest_days": 386
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 27,
      "dollars": 4048.38,
-     "oldest_days": 189
+     "oldest_days": 190
     },
     {
      "carrier": "SIM01",
      "name": "[name]",
      "visits": 16,
      "dollars": 3254.0,
-     "oldest_days": 64
+     "oldest_days": 65
     }
    ],
    "errors": [],
-   "started": "2026-11-23T18:47:40Z",
-   "ended": "2026-11-23T18:47:42Z"
+   "started": "2026-11-24T00:46:09Z",
+   "ended": "2026-11-24T00:46:11Z"
   },
   {
    "name": "denials",
@@ -361,14 +359,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-23T18:47:42Z",
-   "ended": "2026-11-23T18:53:53Z"
+   "started": "2026-11-24T00:46:11Z",
+   "ended": "2026-11-24T00:51:26Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 3 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
-  "ERA CO-45 pass after the Post button: 1 line(s) left for review (registers/era_co45_relink_*)"
+  "Claim Inspector: 3 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
  "errors": []
 }
