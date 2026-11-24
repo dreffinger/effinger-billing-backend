@@ -6058,3 +6058,6 @@ No new AMD or Stedi call shapes learned tonight. Calls used: precheck (plain Med
 
 # captured_calls additions - nightly cascade 2026-11-22T0535Z
 No new AMD or Stedi call shapes were learned tonight. Calls used: freq1_visit reroute (resave + chargerebill), AMD free 271 (elig_amd), Stedi plain Medicare / payer eligibility (precheck), Stedi claim status (claim_status_sweep), AMD free 271 sweep (medicare_number_scan). Postman: unchanged.
+
+# captured_calls additions - nightly cascade 2026-11-24T0536Z
+No new AMD or Stedi call shapes learned tonight. Postman: unchanged.
