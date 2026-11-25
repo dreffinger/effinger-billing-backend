@@ -36,9 +36,12 @@
 #   both as one more batch - 1, 2, 4, 8 messages per run in one workspace, one more stale 'batch(es) <stamp>R ... not on hand' line per run in a fresh container,
 #   and no end once the visit was 'kept out for good'. So: (1) a held row is taken only from a register that is NOT a retry's own; (2) each visit - the feed
 #   patient, its codes, its dates of service - goes to the import at most ONCE per run; (3) it is left alone for good once a LATER register, a retry's own included,
-#   shows that visit entered (a created row), kept out for good ('DOS after date of death ...' - the import writes the visit's codes and dates of service into that
-#   row and into the held row), or answered 'all lines already in AMD' (that row names the feed patient only: it counts when the retry's own batch file shows that
-#   it handed over this visit and no other of the patient, or when the reconciliation register names the visit). The line this step prints about such charts
+#   shows that visit entered (a created row), kept out for good ('DOS after date of death ...'), or answered 'all lines already in AMD' - the import writes
+#   the visit's codes and dates of service into all three rows: the held row, the 'DOS after' row and (since the third round of 11/25/2026) the 'already' row.
+#   Until then the 'already' row named the feed patient only, and it ended the retry only where the retry's own batch file was on hand and named that one
+#   visit, or the reconciliation register named it: in a new container, and after a retry that had handed over two visits of the chart, the visit was handed
+#   over again in every run. A row of a register from before still counts the old way. Only a register LATER than the one that held the visit ends its retry -
+#   never an earlier one (a death can be taken off the record, a charge voided, in between). The line this step prints about such charts
 #   names only the charts whose visit this run really hands over. Nothing here reads the cache of dates of death: the import decides, every run, from what it reads.
 import os, sys, re, json, glob, subprocess, datetime, collections
 WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))
@@ -87,7 +90,8 @@ ALREADY_WHY = "all lines already in AMD"         # the import's answer for a vis
 death_day = set()  # the charts of the held visits THIS run hands over (chart ids only - for the one line this step prints about them)
 held = {}          # stamp -> {feed patient id: [(the row's codes, the visit's lines {(code, MM/DD/YYYY)} - None for a row that names no dates, the chart id)]}: the visits kept out with DEATH_DAY_WHY - from registers that are NOT a retry's own
 ended = []         # (stamp, feed patient id, the visit's lines) of every 'DOS after date of death' row that names its visit: kept out for good
-already_r = []     # (a retry's own stamp, feed patient id) of every 'all lines already in AMD' row in a retry's own register (the row names no visit - _kept_out reads which one from that retry's batch file)
+answered = []      # (stamp, feed patient id, the visit's lines) of every 'all lines already in AMD' row that names its visit - the import writes the visit's codes and dates of service into that row since 11/25/2026 (the third round): the chart carries the visit
+already_r = []     # (a retry's own stamp, feed patient id) of every 'all lines already in AMD' row in a retry's own register that names NO visit (a register from before that day) - _kept_out reads which one from that retry's batch file
 def _norm(stamp): return re.sub(r"[^0-9TZR]", "", str(stamp))      # 2026-11-10T1319Z and 20261110T1319Z are the same batch; a retry's stamp ends with R and sorts behind the batch of its minute
 def _lines(row):
     """The visit a skip row names - {(code, its date of service MM/DD/YYYY)} from its cpts and dos_lines - or None when the row does not name it line by line."""
@@ -127,7 +131,9 @@ for rf in sorted(glob.glob("registers/feed_import_*.json")):
             if row.get("feed_id") and _c: held.setdefault(stamp, {}).setdefault(row["feed_id"], []).append((_c, _lines(row), str(row.get("pid") or "?")))
         elif why.startswith(DEATH_AFTER_WHY):                                 # kept out for good - of ANY register, a retry's own included (the row names its visit since 11/25/2026)
             if row.get("feed_id") and _lines(row): ended.append((_norm(stamp), row["feed_id"], _lines(row)))
-        elif why == ALREADY_WHY and stamp.endswith("R") and row.get("feed_id"): already_r.append((stamp, row["feed_id"]))
+        elif why == ALREADY_WHY and row.get("feed_id"):                       # the chart already carries the visit: of ANY register when the row names its visit; a row that names none counts from a retry's own register only (its batch file says which visit)
+            if _lines(row): answered.append((_norm(stamp), row["feed_id"], _lines(row)))
+            elif stamp.endswith("R"): already_r.append((stamp, row["feed_id"]))
 # review round 1: what AdvancedMD got, from the recon registers - a visit the import answered "already" (the chart carries it) has no created row,
 # and its skip row stays in the old batch for good; without this it was fetched, imported and reconciled again on every run
 for rf in sorted(set(glob.glob("registers/feed_recon_*.json")) | set(glob.glob(os.path.join(REPO_REGS, "feed_recon_*.json")))):
@@ -165,11 +171,14 @@ def parsed_for(stamp):
 def _visit(m): return frozenset((c["cpt"], mdy(c["dos"][:8])) for c in m["FT1"])      # a message's lines: each code under its own date of service
 def _kept_out(stamp, fid, lines):
     """True when a register LATER than the one that held the visit (stamp) - a retry's own included - shows that very visit kept out for good ('DOS after date of
-    death', a row that names its lines), or answered 'all lines already in AMD' by a retry: that row names the feed patient only, so it counts when the retry's own
-    batch file is on hand and shows that it handed over this visit and no other of the patient. (A visit a later register shows ENTERED, or the reconciliation
-    register shows entered or answered 'already', is in `covered` like every retried visit.) Nothing here reads the cache: the import decides, this only reads rows."""
+    death') or answered 'all lines already in AMD': a row that names the visit's lines (the import writes them into both rows; into the 'already' row since
+    11/25/2026, the third round - so that answer ends the retry also in a new container, where the retry's batch file did not travel, and in a retry that handed
+    over two visits of the patient). An 'already' row of a register from before names the feed patient only: it counts when the row is a retry's own and that
+    retry's batch file is on hand and shows that it handed over this visit and no other of the patient. (A visit a later register shows ENTERED, or the
+    reconciliation register shows entered or answered 'already', is in `covered` like every retried visit.) Nothing here reads the cache: the import decides,
+    this only reads rows."""
     s0 = _norm(stamp)
-    if any(st > s0 and f == fid and ln == lines for st, f, ln in ended): return True
+    if any(st > s0 and f == fid and ln == lines for st, f, ln in ended + answered): return True
     for st, f in already_r:
         if f != fid or _norm(st) <= s0: continue
         try: mine = [x for x in json.load(open("feed_parsed_%s.json" % st)) if isinstance(x, dict) and x.get("pid") == fid]

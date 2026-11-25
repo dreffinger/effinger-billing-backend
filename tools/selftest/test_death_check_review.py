@@ -135,7 +135,7 @@ def leaks(text): return [s for s in SECRETS if s in str(text)]
 # ---- the stand-in AdvancedMD and vendor (nothing here can reach either) ------------------------------------------------------------------------
 CALLS = []                     # every call into the stand-ins, in order: ("login",) ("post", action, class, body, timeout) ("detail", charge) ("elig", plan) ("FORBIDDEN", what)
 VENDOR = []                    # every paid Medicare ask the guard made of the stand-in vendor (the chart it was about)
-STATE = {"listing": "", "login": None, "details": {}, "charts": {}, "medicare": {}, "free": {}}
+STATE = {"listing": "", "login": None, "details": {}, "charts": {}, "medicare": {}, "free": {}, "marks": {}}      # marks: chart -> what its AdvancedMD record carries in the attribute 'deceased' (nothing for a chart not named)
 def listing_xml(visits, bare=False, tail=""):
     """The answer of the list call: visits with their charges (the element and attribute names columns_scan.py reads). Every row carries what a
     real answer would carry too - the patient's name, a day, plan numbers - and a code and a date that are NOT the charge's own, so the checks
@@ -163,7 +163,7 @@ def chart_xml(pid):
     """The chart record the REAL guard reads (getdemographic): the patient's name and first day, and the plans with their numbers."""
     plan = "".join('<insplan id="ins%s%d" carrier="%s" begindate="%s" enddate="" subscribernum="%s" sequence="%d"/>' % (pid, i, car, mdy(datetime.date(2015, 1, 1)), n_, i + 1)
                    for i, (car, n_) in enumerate(STATE["charts"][pid]))
-    return '<PPMDResults><Results><patient id="pat%s" name="%s" dob="%s" deceased="" state="FL"/>%s</Results><Error/></PPMDResults>' % (pid, NAME_S, mdy(BORN_S), plan)
+    return '<PPMDResults><Results><patient id="pat%s" name="%s" dob="%s" deceased="%s" state="FL"/>%s</Results><Error/></PPMDResults>' % (pid, NAME_S, mdy(BORN_S), STATE["marks"].get(pid, ""), plan)
 amd = types.ModuleType("amd"); amd.STAND_IN = True
 def _login():
     CALLS.append(("login",))
@@ -798,6 +798,50 @@ check("10y3 ... the second look at the end asks nobody and buys nothing: the gua
 check("10y4 ... with nothing on anybody's record both charges stay clear with no line, and --dry (nothing asked, so no day learned) blocks nothing more than its cache knows",
       lambda: RY3.code == 0 and kind(RY3, "BLOCKED") == [] and [x.get("result") for x in rows(RY3)] == ["clear", "clear"] and not any("late" in x for x in rows(RY3))
       and RY4.code == 0 and kind(RY4, "BLOCKED") == [] and RY4.vendor == [], lambda: (RY3.code, RY3.lines, RY4.code, RY4.lines, RY4.vendor))
+# ---- 10y4b. the second look when the guard RAISES (the third round, 11/25/2026 - R3, new finding 3 of the second independent check) -----------------------------
+# The second look asks the guard's cache once more for every charge that came out clear. When that call RAISED, the helper kept the answer the charge already
+# had - clear. So a chart that BECAME 'a death on record with no day' during the start (its AdvancedMD record says deceased and names no date, Medicare names
+# none: the guard writes that entry and raises DayLost) had its other-payer charge clear when that charge was listed FIRST, and NOT CHECKED when it was listed
+# second. A guard call that raises is never a clearance: that row is NOT CHECKED now - 'the guard raised <kind>' - counted and said as every NOT CHECKED row.
+class LostLater(RuntimeError): pass      # what a scripted guard raises at the second look (a name of its own: the line must show the error's KIND, never its words)
+def two_s(second_look, first=ORD_Y, later=("5303", "pcode65142", "99349", "car6404", "car6113", DOS_A)):
+    scene([("9301", "7301", [first]), ("9302", "7301", [later])]); g = scripted(second=second_look); return run(guard=g), g
+(RS1, GS1) = two_s({"7301": LostLater("no day for " + NAME_S)})      # two ordinary charges of one chart, both clear at first; the second look at the first one raises
+(RS2, GS2) = two_s({})                                             # control: the second look answers 'not blocked'
+check("10y4b the second look RAISES for a charge that came out clear (a scripted guard): that row is NOT CHECKED - one line 'NOT CHECKED: ... (the guard raised <the error's kind>) - could not be checked ...', exit 3 - where the charge stayed 'clear' and the start ended 0; the error's own words are nowhere",
+      lambda: RS1.code == 3 and kind(RS1, "NOT CHECKED") == ["NOT CHECKED: pat7301 visit 9301 charge 5301 (the guard raised LostLater) - %s" % UNCHECKED] and row(RS1, "5301").get("result") == "could not be checked"
+      and row(RS1, "5301").get("why") == "the guard raised LostLater" and row(RS1, "5301").get("words") == UNCHECKED and row(RS1, "5303").get("result") == "clear" and leaks(RS1.out + RS1.raw) == []
+      and GS1.checks == [("7301", iso(DOS_B), None, None, False)], lambda: (RS1.code, RS1.err, RS1.lines, rows(RS1), GS1.checks))
+check("10y4c ... it is COUNTED as every NOT CHECKED row: the summary says 2 listed, 1 checked, 1 could not be checked (the checked charges and the NOT CHECKED lines about a charge still add up to the charges listed), and the register's numbers are the same; with a second look that answers, both charges stay clear and the start ends 0",
+      lambda: summary(RS1, 2, 2, 1, 0, NOT_COUNTED, 0, 1, 0) and (RS1.reg or {}).get("checked") == 1 and (RS1.reg or {}).get("unchecked") == 1 and (RS1.reg or {}).get("exit") == 3
+      and RS2.code == 0 and summary(RS2, 2, 2, 2, 0, NOT_COUNTED, 0, 0, 0) and kind(RS2, "NOT CHECKED") == [], lambda: (RS1.lines[-1:], RS1.reg and {k: RS1.reg.get(k) for k in ("checked", "unchecked", "exit")}, RS2.code, RS2.lines[-1:]))
+(RS3, GS3) = two_s({"7301": LostLater("x")}, first=("5306", "pcode65089", "99232", "car6085", "car6404", DOS_B))      # the charge whose second look raises NEEDED a Medicare answer (straight Medicare) ...
+GS3_ = scripted({"5306": "unverified"}, second={"7301": LostLater("x")}); scene([("9301", "7301", [("5306", "pcode65089", "99232", "car6085", "car6404", DOS_B)]), ("9302", "7301", [("5303", "pcode65142", "99349", "car6404", "car6113", DOS_A)])]); RS3_ = run(guard=GS3_)
+check("10y4d ... a charge that needed a Medicare answer, or whose look-up had failed, leaves those counts too when its second look raises: it is NOT CHECKED and nothing else - not among the checked, not among those that needed an answer, and no UNVERIFIED line is said for it",
+      lambda: summary(RS3, 2, 2, 1, 0, NOT_COUNTED, 0, 1, 0) and RS3_.code == 3 and summary(RS3_, 2, 2, 1, 0, NOT_COUNTED, 0, 1, 0) and kind(RS3_, "UNVERIFIED") == [] and "unverified" not in row(RS3_, "5306")
+      and (RS3_.reg or {}).get("unverified") == 0 and len(kind(RS3_, "NOT CHECKED")) == 1, lambda: (RS3.lines[-1:], RS3_.lines, rows(RS3_)))
+# ... and with the REAL guard, the checker's own case in BOTH orders: chart 7321's AdvancedMD record says deceased and names no date; Medicare names no day either.
+OTHER_M = ("5321", "pcode65142", "99349", "car6404", "car6113", DOS_A)      # a home visit that goes to another payer first: it needs no Medicare answer
+MEDIC_M = ("5322", "pcode65089", "99232", "car6085", "car6404", DOS_B)      # a hospital visit to straight Medicare: the guard looks the chart up - and finds the mark
+def two_mark(first, second, mark="Y"):
+    shutil.rmtree(os.path.dirname(DCACHE), True); os.makedirs(os.path.dirname(DCACHE))
+    with open(DCACHE, "w") as fh: json.dump({"7399": {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record"}}, fh)      # the cache knows another chart only (no line about the cache)
+    scene([("9321", "7321", [first]), ("9322", "7321", [second])]); STATE["charts"] = {"7321": [("car6404", MEM_S), ("car6085", MBI_S)]}; STATE["medicare"] = {}; STATE["free"] = {}; STATE["marks"] = {"7321": mark}
+    del DG.LOG[:]; getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # each start is a process of its own
+    try: return run(guard=DG), dict(cache().get("7321") or {})
+    finally: STATE["marks"] = {}
+RM1 = RM2 = RM3 = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded"); EM1 = EM2 = EM3 = {}
+if DG is not None:
+    (RM1, EM1) = two_mark(OTHER_M, MEDIC_M); (RM2, EM2) = two_mark(MEDIC_M, OTHER_M); (RM3, EM3) = two_mark(OTHER_M, MEDIC_M, mark="N")
+M_LINES = sorted("NOT CHECKED: pat7321 visit %s charge %s (the guard raised DayLost) - %s" % (v, c, UNCHECKED) for v, c in (("9321", "5321"), ("9322", "5322")))
+check("10y4e with the REAL guard, a chart that BECOMES 'a death on record with no day' during the start (its AdvancedMD record says deceased with no date, Medicare names no day): the other-payer charge listed FIRST and the straight-Medicare charge behind it are BOTH NOT CHECKED, exit 3 (the first came out clear and counted as checked) - the guard's entry says 'day not known'",
+      lambda: RM1.code == 3 and sorted(kind(RM1, "NOT CHECKED")) == M_LINES and [x.get("result") for x in rows(RM1)] == ["could not be checked"] * 2 and real_summary(RM1, 2, 2, 0, 0, 0, 2, 0)
+      and EM1.get("dod") == getattr(DG, "NO_DAY", "?") and RM1.vendor == ["7321"] and leaks(RM1.out + RM1.raw) == [], lambda: (RM1.code, RM1.err, RM1.lines, rows(RM1), EM1, RM1.vendor))
+check("10y4f ... the same two charges listed the OTHER way round give the SAME answer - both NOT CHECKED, the same lines but for the visit each stands under, the same numbers in the summary - and Medicare is asked once in either order",
+      lambda: RM2.code == 3 and sorted(kind(RM2, "NOT CHECKED")) == sorted(l.replace("visit 9321 charge 5321", "visit 9322 charge 5321").replace("visit 9322 charge 5322", "visit 9321 charge 5322") for l in M_LINES)
+      and real_summary(RM2, 2, 2, 0, 0, 0, 2, 0) and RM2.vendor == ["7321"] and EM2.get("dod") == EM1.get("dod"), lambda: (RM2.code, RM2.lines, rows(RM2), RM2.vendor))
+check("10y4g ... and a mark that does not mean yes (N) is no mark: Medicare's 'no death on record' clears the straight-Medicare charge, both charges are checked and the start ends 0",
+      lambda: RM3.code == 0 and kind(RM3, "NOT CHECKED") == [] and [x.get("result") for x in rows(RM3)] == ["clear", "clear"] and real_summary(RM3, 2, 2, 2, 1, 0, 0, 0) and EM3.get("dod", "x") is None, lambda: (RM3.code, RM3.lines, rows(RM3), EM3))
 # ---- 10y5. an UNVERIFIED line is dropped only when an answer that COVERS the charge really came (the independent check of the second round, finding 5) ----------
 # The second verification let the line go 'for a charge AFTER which another charge of the same chart needed Medicare's answer and got it'. But 'needed an
 # answer and is not unverified' is also true of a later charge the cache already covered - nobody was asked for it - and then nobody had answered for the first

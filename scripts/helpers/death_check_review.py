@@ -41,23 +41,34 @@
 #   guard makes of it. (The guard itself raises Unreadable on such an answer since the second verification of 11/25/2026; until then it
 #   had nothing to compare and answered 'not blocked', and a guard from before still does - this helper leans on neither.) A block always
 #   stands, with "?" in its line for what could not be read.
+#   (5) THE SECOND LOOK, when the listing is through: every charge that came out clear, and after which another charge of the SAME chart was
+#   looked at, is put to the guard's cache once more (nothing is asked, nothing is bought) - a day the start learned after it blocks it too.
+#   And a guard call that raises there is never a clearance: that row turns into NOT CHECKED, said and counted as every NOT CHECKED row
+#   (11/25/2026, the third round: it stayed 'clear', so a chart that became 'a death on record with no day' during the start had its first
+#   charge clear in one order of the listing and NOT CHECKED in the other). The answer does not depend on which charge is listed first.
 # WHAT IT PRINTS (and keeps word for word in the register under "lines"):
 #   BLOCKED: pat<chart> visit <id> charge <id> DOS <date> code <code> - date of death before the date of service - do NOT approve; void
 #     (William 10/4 and 11/25/2026)                 one line for every charge the guard blocks;
 #   NOT CHECKED: pat<chart> visit <id> charge <id> (<why>) - could not be checked - do not approve this charge on this run
-#                                                   one line for every charge the guard raised on, every charge with nothing to check
-#                                                   in its own detail (4), every visit the listing shows without a charge (a visit
-#                                                   still being entered) and every charge it shows without an id;
+#                                                   one line for every charge the guard raised on - in the walk or at the second look
+#                                                   (5) - every charge with nothing to check in its own detail (4), every visit the
+#                                                   listing shows without a charge (a visit still being entered) and every charge it
+#                                                   shows without an id;
 #   UNVERIFIED: pat<chart> visit <id> charge <id> DOS <date> code <code> - date of death unverified (the look-up failed) - not a block; say
 #     it in the report                              one line for every charge whose look-up failed (the guard's own LOG line is the source):
 #                                                   a failed check blocks nothing - only a date on Medicare's record does. Said when the
-#                                                   listing is through: none for a charge that ended BLOCKED, none for a charge the guard's
-#                                                   cache COVERS by then (the guard's own covered(): a day that can be read, or an answer
-#                                                   checked on or after the charge's date of service) - a guard without covered() drops none;
+#                                                   listing is through: none for a charge that ended BLOCKED or NOT CHECKED, none for a
+#                                                   charge the guard's cache COVERS by then (the guard's own covered(), which goes by
+#                                                   check()'s rule: a day that can be read, or 'no death on record' checked within 30 days
+#                                                   and not before the charge's date of service - an answer checked today covers a date of
+#                                                   service still to come, an answer older than 30 days covers nothing) - a guard without
+#                                                   covered() drops none;
 #   CACHE MISSING: / CACHE UNREADABLE: / CACHE EMPTY: / CACHE: N chart(s) carry a date of death whose day cannot be read here ... - TOP OF
 #     THE REPORT                                    at most one line, the first, about the guard's cache as the guard ANSWERS from it:
-#                                                   its state is asked AFTER the guard has carried the workspace's other cache files in
-#                                                   (the guard's own cache_state() - a guard from before has none and gets no such line);
+#                                                   its state is asked AFTER the guard has carried the workspace's other cache files in.
+#                                                   CACHE MISSING is said from the guard's CACHE path, also for a guard that has no
+#                                                   cache_state() (a guard from before); the other three lines need the guard's own
+#                                                   cache_state() - a guard that has none gets none of those three;
 #   DEATH CHECK - Charge Review: N charge(s) on V visit(s) listed, K checked; M needed a Medicare answer (CCM or straight Medicare) - <free
 #     and bought answers>; B BLOCKED; U could not be checked; X unverified - register <file>
 #                                                   the LAST line, always: a run that sees no such line has no answer from this helper.
@@ -92,7 +103,7 @@
 #   lists by batch id (no request of this call with a batch id is captured - docs/captured_calls.md).
 import os, re, sys, json, time, datetime
 import xml.etree.ElementTree as ET
-DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start; .4 = the second verification: the cache's state in counts, the code's own shape; .5 = the same verification: the UNVERIFIED lines are said when the listing is through, 'went to the vendor'; .6 = the independent check of that round: the cache's state is asked FIRST, so its lines are about the cache after the guard's carry; an UNVERIFIED line goes only when the guard's cache covers the charge - the guard's covered())
+DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start; .4 = the second verification: the cache's state in counts, the code's own shape; .5 = the same verification: the UNVERIFIED lines are said when the listing is through, 'went to the vendor'; .6 = the independent check of that round: the cache's state is asked FIRST, so its lines are about the cache after the guard's carry; an UNVERIFIED line goes only when the guard's cache covers the charge - the guard's covered(); .7 = the third round: a guard call that raises at the second look turns that row into NOT CHECKED - it stayed 'clear')
 BLOCK_WORDS = "date of death before the date of service - do NOT approve; void (William 10/4 and 11/25/2026)"
 UNCHECKED_WORDS = "could not be checked - do not approve this charge on this run"
 UNVERIFIED_WORDS = "date of death unverified (the look-up failed) - not a block; say it in the report"
@@ -259,7 +270,7 @@ def review(argv):
     def say(s): lines.append(s); print(s, flush=True)
     # 11/25/2026 (the second verification): after the bootstrap the file is always THERE - the repository's register is copied in when the
     # state bundle brought none, and that copy holds no day anyone can read. So the helper says, in counts only (the guard's own
-    # cache_state; a guard from before has none and gets no line): a file that cannot be read, a file with no chart at all, and how many
+    # cache_state; a guard from before has none and gets none of these three lines): a file that cannot be read, a file with no chart at all, and how many
     # charts carry a day that cannot be read here. A charge of such a chart is asked about whatever its payer; when nobody answers the
     # guard raises DayLost and the charge is NOT CHECKED - never clear.
     # THE STATE IS ASKED FIRST (the independent check of that round, finding 11): the guard carries what the workspace's other cache files
@@ -352,7 +363,15 @@ def review(argv):
         if row.get("result") != "clear" or not num(row.get("chart")) or not row.get("dos"): continue
         if last_of.get(num(row["chart"])) == i: continue      # nothing of this chart was looked at after this charge: no later answer can have changed its own
         try: late = bool(G.check(num(row["chart"]), row["dos"], None, None, allow_lookup=False)[0])
-        except Exception: continue      # the cache could not be read a second time: the answer the charge already has stands
+        except Exception as e:
+            # A GUARD CALL THAT RAISES IS NEVER A CLEARANCE - here as little as in the walk above (11/25/2026, the third round). Until then the answer the charge
+            # already had stood: 'clear'. So a chart that BECAME 'a death on record with no day' during the start (its AdvancedMD record says deceased and names
+            # no date, Medicare names none - the guard writes that and raises DayLost) had its other-payer charge clear when that charge was listed FIRST and NOT
+            # CHECKED when it was listed second. That row is NOT CHECKED now: said and counted as every NOT CHECKED row - no longer among the checked, nor among
+            # those that needed an answer, nor unverified - with "late" in its register row.
+            checked -= 1; needed -= 1 if row.get("needed") else 0; nx -= 1 if row.pop("unverified", None) else 0; nu += 1; why = "the guard raised " + kind_of(e)
+            row.update(result="could not be checked", why=why, late=True, words=UNCHECKED_WORDS)
+            say("NOT CHECKED: pat%s visit %s charge %s (%s) - " % (num(row["chart"]), row.get("visit") or "?", row.get("charge") or "?", why) + UNCHECKED_WORDS); continue
         if late:
             nb += 1; nx -= 1 if row.pop("unverified", None) else 0
             row.update(result="BLOCKED", late=True, words=BLOCK_WORDS)

@@ -113,7 +113,7 @@ L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
 try:      # (the register cannot say who was asked - a dry run asks nobody, a workspace may hold no guard - so the line says 'nobody named the day', as the import's own does)
     _ddr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY)]
     _ddc = sorted({x.get("pid") for x in _ddr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
-    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again in every later run: %s" % (
+    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
 except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch

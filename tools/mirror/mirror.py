@@ -190,8 +190,8 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (the rounds after the independent checks of the date-of-death work): the guard's marker is a line only the guard of those rounds has (it
              # keeps a death for good, reads a day in every shape, raises DayLost) - the line of before also stood in older guards; the Drive copy helper keeps the
              # earlier of two days and never lets a 'no death' note replace a death on record; the modifier-25 helper leaves the 99489 add-on alone for Humana
-             "dg_drive.py": 'new = day(dod); have = day(cur.get("dod"))', "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
-             "deceased_guard.py": 'def covered(pid, dos):', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"',
+             "dg_drive.py": "deceased_cache_drive v2", "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
+             "deceased_guard.py": 'def _unread(v):', "death_off_record.py": 'DEATH_OFF_RECORD_VERSION = "2026-11-25.1"', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"',
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the

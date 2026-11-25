@@ -128,6 +128,39 @@ def death_day(v):
     if not v or not re.match(r"\d{4}-\d{2}-\d{2}$", s): return None
     try: return datetime.date.fromisoformat(s).isoformat()
     except ValueError: return None
+DEATH_NO_DAY = "day not known"      # the guard's own NO_DAY: what stands in the day's place for a chart whose own record says deceased while nobody named a day (the self-test holds the two together)
+def death_unread(v):
+    """True for a cached dod value that is a death ON RECORD whose day cannot be read: no day, and the privacy gate's placeholder (an upper-case word in square
+    brackets), the guard's 'day not known', or a text with at least four digits in it (a damaged date). False for a day and for every other value - None, '',
+    blanks, the words None / null / unknown, '0', a number: that is NO dod, and the chart is held for nothing. THE GUARD'S OWN READING
+    (deceased_guard._unread), written out here as death_day is; tools/selftest/test_lookup_rules.py holds it, dg_drive.py's and the guard's together over
+    every shape. (11/25/2026, the third round: until then ANY value in a dod field that was no day held every visit of the chart - one word in a stray file.)"""
+    if not isinstance(v, str) or death_day(v) is not None: return False
+    s = v.strip()
+    return bool(re.search(r"\[[A-Z]+\]", s)) or s == DEATH_NO_DAY or len(re.findall(r"\d", s)) >= 4
+def death_read(tables):
+    """What the cache files say, read TOGETHER -> ({chart number: its entry, its dod the EARLIEST day any file holds for the chart}, {the charts with a death on
+    record whose day is in no file}). tables = what each file holds, in the order the files were read; whatever is no table, and a line that is no entry, is
+    passed over. A day (death_day) beats a death on record whose day cannot be read (death_unread); every other value in the day's place is NO dod. Nothing is
+    asked and nothing is written here.
+    AN ENTRY TAKEN OFF THE RECORD ON THE OWNER'S WORD (11/25/2026, the third round - death_off_record.py writes it: no dod, and off_record holds the date of
+    William's word) is 'no death' here - and no other file's older entry stands against it. ONE rule, the guard's own (deceased_guard._beats; the self-test
+    holds this function and the guard's carry together over every pair of entries two files can hold): his word of date D beats every day reported on or
+    before D and a death with no day that was reported - checked - on or before D; a day after D is a new death, and so is a death with no day reported
+    after D. Of two words the later one counts."""
+    days = {}; lost = {}; off = {}
+    for c in tables:
+        for k, v in (c.items() if isinstance(c, dict) else ()):
+            if not isinstance(v, dict): continue
+            k = re.sub(r"\D", "", str(k)); d = death_day(v.get("dod"))
+            if d is not None: days.setdefault(k, []).append(dict(v, dod=d))
+            elif death_unread(v.get("dod")): lost[k] = max(lost.get(k, ""), str(v.get("checked") or "")[:10])      # when the death with no day was last reported
+            elif death_day(v.get("off_record")): off[k] = max(off.get(k, ""), death_day(v.get("off_record")))        # the date of the owner's word
+    out = {}
+    for k, rows in days.items():
+        rows = [r for r in rows if k not in off or r["dod"] > off[k]]      # a day on or before the date of his word does not stand
+        if rows: out[k] = min(rows, key=lambda r: r["dod"])                # of the days that stand the EARLIEST counts
+    return out, {k for k, at in lost.items() if k not in out and (k not in off or at > off[k])}      # a death with no day stands unless his word is of the day it was last reported, or later (no word: it always stands, check date or none)
 # 11/12/2026 (William: "fix everything billable to put them in advanced md"): 99349, the established-patient home / assisted-living visit, was
 #   not in these two tables, so three feed visits (9/1, 9/2 and 11/3/2026) were skipped as "unknown CPT 99349". It goes in under pcode65142
 #   (the id the 10/15 recode and the 10/20 GV rebill used) at the practice's $198.00 (the fee of every natively entered 99349 on the ERA
@@ -2437,7 +2470,9 @@ def main():
     # environment names, the guard's own (CACHE), every file on the guard's own list of other cache files (_others - it only looks whether each is a file) when
     # the guard can be loaded, the two relative names of before, and the old path seen from this helper's own folder. Nothing here writes: the guard's _load, which
     # carries, is not called for this - a dry run still writes nothing.
-    _dc = {}; _dc_lost = set(); _dcf = set(); _osm = __import__("os"); _dcg = ""; _dco = []
+    # 11/25/2026 (the third round): what the files say TOGETHER is worked out by ONE function, death_read (above) - it holds the rules: which value is a death on
+    # record whose day cannot be read (death_unread), and what an entry taken off the record on the owner's word means for the other files' entries.
+    _dcf = set(); _osm = __import__("os"); _dcg = ""; _dco = []; _dct = []
     try:
         _dgm = __import__("deceased_guard"); _dcg = getattr(_dgm, "CACHE", "") or ""
         _dco = [_x for _x in (getattr(_dgm, "_others")() or [])] if callable(getattr(_dgm, "_others", None)) else []
@@ -2447,14 +2482,9 @@ def main():
     for _p in [_osm.environ.get("DECEASED_CACHE", ""), _dcg] + _dco + ["deceased_cache_local.json", "registers/deceased_cache.json", _dcold]:
         if not isinstance(_p, str) or not _p or not _osm.path.isfile(_p) or _osm.path.realpath(_p) in _dcf: continue
         _dcf.add(_osm.path.realpath(_p))
-        try: _c = json.load(open(_p))
+        try: _dct.append(json.load(open(_p)))
         except Exception: continue
-        for _k, _v in (_c.items() if isinstance(_c, dict) else ()):
-            if not (isinstance(_v, dict) and _v.get("dod")): continue
-            _d = death_day(_v.get("dod")); _k = re.sub(r"\D", "", str(_k))
-            if _d is None: _dc_lost.add(_k)
-            elif _k not in _dc or _d < _dc[_k]["dod"]: _dc[_k] = dict(_v, dod=_d)
-    _dc_lost -= set(_dc)
+    _dc, _dc_lost = death_read(_dct)
     def _dod(pid):
         return (_dc.get(re.sub(r"\D", "", pid)) or {}).get("dod") or None
     # CCM AND A PATIENT WHO HAS PASSED AWAY - William's word of 11/25/2026: ("run a death check on all ccm charges to make sure there is no date of death prior to billing the ccm charges, there
@@ -2488,7 +2518,7 @@ def main():
             d = death_day(v.get("dod"))
             if d:
                 _dc[num] = dict(v, dod=d); _dc_lost.discard(num); return d, False
-            if lost or v.get("dod"): return None, True      # a death on record without a day that can be read is never 'no death'
+            if lost or death_unread(v.get("dod")): return None, True      # a death on record without a day that can be read is never 'no death' (death_unread says what such a value is; any other value in the day's place is no dod)
             # the guard answered 'not blocked' and its own log says nobody answered the look-up: the charge goes in (only a date of death keeps one out) and the
             # run SAYS so - until 11/25/2026 (the second verification) only a look-up that raised was counted, and this one went in with no word
             if isinstance(_lg, list) and any(isinstance(x, str) and "UNVERIFIED" in x for x in _lg[_n0:]):
@@ -2606,7 +2636,7 @@ def main():
             if body is None:
                 stats["skip: " + info] += 1
                 if info != "all lines already in AMD": stay_not_entered(ctx, [(c["cpt"], mdy(c["dos"][:8])) for c in msg["FT1"]])      # (verification) an initial hospital visit the import could not build is NOT entered: no follow-up of its stay goes in at 61 behind it
-                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **({} if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue
+                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **(_vis if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue      # (11/25/2026, the third round: the 'already' row names the VISIT too - its codes and dates of service, as the two rows above do: claimocity_retry_dx.py ends the retry of a held visit by it, also where the retry's own batch file did not travel)
             n += 1
             if not dry: _built = (ctx, list(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))))      # a dry run sends nothing: what it built stands as what a live run would enter
             if info.get("dob_note"): _dobs.setdefault(pid, set()).add(info["dob_note"])      # for the BIRTH DATES line; the row itself carries the words
@@ -2842,8 +2872,9 @@ def main():
     if _dl: print(_dl)
     # 11/25/2026 (the second verification): the visits kept out because a death is on record for the chart and nobody can name its day - chart ids and counts only.
     # (The independent check of that round, finding 13: the line said 'Medicare named none either' - also when nobody had been asked: a dry run, a workspace with no
-    # guard module. 'nobody named the day' is true of every such visit.)
-    if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again in every later run: %s" % (
+    # guard module. 'nobody named the day' is true of every such visit. The third round: it said the retry hands the visit over 'in every later run' - the retry
+    # stops once a register shows the visit entered or kept out for good.)
+    if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         stats[DEATH_DAY_WHY], len(_dd_held), DEATH_DAY_WHY, ", ".join(sorted(_dd_held))))
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):

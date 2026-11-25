@@ -989,8 +989,8 @@ try:
           and ("723", "11/20/2026", None, None, True) in c_ and s4d.DEATH_DAY_WHY in o_ and "TOP OF THE REPORT" in o_, (r_, c_, o_[-400:]))
     _ddl = [l_ for l_ in o_.splitlines() if l_.startswith("DEATH DAY UNKNOWN: ")]
     check("death day lost: ... the import's line says what is true of every such visit - 'nobody named the day' (the independent check of that round, finding 13: it said 'Medicare named none either', also when nobody had been asked - a dry run, a workspace with no guard) - with the count, the chart and what a run does",
-          _ddl == ["DEATH DAY UNKNOWN: 1 visit(s) on 1 chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again in every later run: pat723" % s4d.DEATH_DAY_WHY]
-          and "Medicare named none" not in o_, _ddl)
+          _ddl == ["DEATH DAY UNKNOWN: 1 visit(s) on 1 chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: pat723" % s4d.DEATH_DAY_WHY]
+          and "Medicare named none" not in o_ and "in every later run" not in _ddl[0], _ddl)      # (the third round, R7e: the line said 'in every later run' - the retry stops once a register shows the visit entered or kept out for good)
     o_, r_, c_ = ccm_death_run({"723": D_BEFORE}, cache={"723": {"dod": LOSTD}})
     check("death day lost: ... when Medicare names the day and it is BEFORE the visit, the visit is kept out for good ('never billed'), as for every known death - and its row says where the day came from: Medicare, asked because the day on record could not be read (never 'deceased cache': the cache did not hold it)",
           [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"] and [x_["why"] for x_ in _why(r_, "pat723")] == ["DOS after date of death %s (Medicare, asked because the day on record could not be read) - never billed" % D_BEFORE], r_)
@@ -1101,6 +1101,41 @@ try:
               _old1 == (True, True, True), (_old1, r_))
         check("one cache: ... a dry run reads it too and writes nothing - no register, nothing in that folder, the copy as it was; and with NO guard module at all the import still reads it (the care-management charts go in and the run says their check could not be made, as before)",
               _old2 == (True, True, True, True) and _old3 == (True, True, True) and "CCM death check could not be made before the entry (ImportError)" in o3_, (_old2, _old3, o3_[-300:]))
+        # ---- the third round (11/25/2026, the second independent check), R2a on the import's side: WHAT COUNTS as 'a death on record whose day cannot be read'. Any
+        # value in a cache file's dod field that was no day held every visit of the chart - the word unknown, one blank, the text 0. Only the privacy gate's
+        # placeholder, the guard's own 'day not known' and a damaged date are that (death_unread - the guard's own reading; tools/selftest/test_lookup_rules.py holds
+        # the two together). Every other value is NO dod: the chart's visits are entered as any chart's.
+        _made = lambda r: [x_["pid"] for x_ in (r or {}).get("created", [])]; _r2a = []
+        for _odd in ("unknown", "None", "null", " ", "0", 0, True, ["x"]):
+            o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": _odd, "checked": "2026-11-" + "24"}}); _r2a.append((repr(_odd), _made(r_), "723" in [x_[0] for x_ in c_], s4d.DEATH_DAY_WHY in o_))
+        check("death on record (R2a, the import): a cache entry whose dod is a value that is no day and no death on record - the word unknown, None or null as text, a blank, the text 0, a number, true, a list - holds NO visit: the ordinary visit of that chart is entered with no question to the guard (each of them held it: '... its day cannot be read - not entered')",
+              all(r_[1:] == (["pat721", "pat722", "pat723"], False, False) for r_ in _r2a), _r2a)
+        _DG.before = True; _DG.more = {"721": {"dod": "unknown", "src": "an odd value the guard's cache holds"}}
+        try: o_, r_, c_ = ccm_death_run({})
+        finally: del _DG.before; del _DG.more
+        check("death on record (R2a, the import): ... also when such a value stands only in the GUARD's cache: the care-management message is asked about as always, the guard answers 'not blocked', and the message is entered (it was held)",
+              _made(r_) == ["pat721", "pat722", "pat723"] and ("721", "11/22/2026", None, "99487", True) in c_ and s4d.DEATH_DAY_WHY not in o_, (r_, c_))
+        _r2a = []
+        for _bad in ("2026-02-" + "31", "2026", "day not known", LOSTD + " 00:00:00"):
+            o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": _bad}}); _r2a.append((_bad, _made(r_), [x_["why"] for x_ in _why(r_, "pat723")] == [s4d.DEATH_DAY_WHY]))
+        check("death on record (R2a, the import): ... while a damaged date (a text with four digits or more that is no calendar date), the guard's own 'day not known' and a placeholder with a time left behind it ARE a death on record - the visit is held as before",
+              all(r_[1:] == (["pat721", "pat722"], True) for r_ in _r2a), _r2a)
+        # ---- the third round, R2d on the import's side: AN ENTRY TAKEN OFF THE RECORD ON THE OWNER'S WORD (death_off_record.py writes it: dod null, off_record = the
+        # date of his word). The import reads the cache files itself; it treats such an entry as 'no death' and never lets ANOTHER file's older day stand against
+        # it - one rule with the guard (tools/selftest/test_lookup_rules.py holds the two together over every pair of entries): his word of date D beats every day
+        # reported on or before D and a death with no day reported on or before D; a day after D is a new death. The visit here is dated 11/20.
+        _offw = lambda d_, c_=None: {"dod": None, "checked": "2026-11-" + (c_ or d_), "src": "off the record on the owner's word", "off_record": "2026-11-" + d_, "approved_by": "William 11/" + d_ + "/2026 (board)"}
+        _r2d = {}
+        for _nm, _other in (("an earlier day in another file", {"dod": D_BEFORE, "checked": "2026-11-" + "11"}), ("a day after his word in another file", {"dod": "2026-11-" + "17", "checked": "2026-11-" + "18"}),
+                            ("no day, reported before his word", {"dod": LOSTD, "checked": "2026-10-" + "01"}), ("no day, reported after his word", {"dod": "day not known", "checked": "2026-11-" + "18"})):
+            json.dump({"723": _other}, open(_f1, "w")); o_, r_, c_ = ccm_death_run({}, cache={"723": _offw("15")})
+            _r2d[_nm] = (_made(r_), [x_["why"] for x_ in _why(r_, "pat723")], "723" in [x_[0] for x_ in c_])
+        os.remove(_f1)
+        check("off the record (R2d, the import): the cache holds the owner's word for the chart and ANOTHER cache file still holds the day his word was about (a day on or before its date): the visit is ENTERED, with no question (the other file's day kept it out: 'DOS after date of death ... never billed') - and so with a death on record with no day that file's entry was checked before his word (it held the visit)",
+              _r2d["an earlier day in another file"] == (["pat721", "pat722", "pat723"], [], False) and _r2d["no day, reported before his word"] == (["pat721", "pat722", "pat723"], [], False), _r2d)
+        check("off the record (R2d, the import): ... a day AFTER the date of his word in another file is a new death - the visit after it is kept out ('never billed'); a death with no day reported after his word holds the visit",
+              _r2d["a day after his word in another file"][0] == ["pat721", "pat722"] and [w_.startswith("DOS after date of death 2026-11-" + "17") for w_ in _r2d["a day after his word in another file"][1]] == [True]
+              and _r2d["no day, reported after his word"][:2] == (["pat721", "pat722"], [s4d.DEATH_DAY_WHY]), _r2d)
     finally:
         for _f in (_f1, _f2):
             if os.path.exists(_f): os.remove(_f)
@@ -5548,6 +5583,8 @@ check("digest (the second verification of the death check): the visits the impor
 _il2 = [l_ for l_ in _d.splitlines() if l_.startswith("- 1 visits / ")]
 check("digest (the independent check of that round, finding 13): the first Import line does not call those visits 'skipped as already in AMD' - its count is of the other skip rows (here 2 of 5: three rows are visits held for a lost day), the sentence's words are as they were; and the line about the held visits says 'nobody named the day', not 'Medicare named none' (the import's register cannot say who was asked)",
       len(_il2) == 1 and "; 2 encounters skipped as already in AMD; 0 faults." in _il2[0] and "nobody named the day" in _dl2[0] and "Medicare named none" not in _d, (_il2, _dl2))
+check("digest (the third round, R7e): that line says how the retry of such a visit ENDS - 'the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good' (it said 'in every later run'; the retry stops by its own rules)",
+      len(_dl2) == 1 and "the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: pat5" in _dl2[0] and "in every later run" not in _d, _dl2)
 _r0, _d0 = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s4", "pid": "pat6", "why": "all lines already in AMD"}, {"feed_id": "s5", "pid": "pat7", "why": "unknown CPT 99999"}])
 check("... and with no held visit that count is every skip row, as before", "; 2 encounters skipped as already in AMD; 0 faults." in _d0 and "DEATH DAY UNKNOWN" not in _d0, _d0[:400])
 _r, _d = mdig([_mrow], dict(_MG0))
@@ -6191,16 +6228,18 @@ def held_ws():
     json.dump({"I10": "dcode1"}, open(os.path.join(w_, "dx_cache_feed.json"), "w")); json.dump({f_: p_ for f_, p_, _l in vis_}, open(os.path.join(w_, "registers", "claimocity_patient_map.json"), "w"))
     CHART["9301"] = []; CHART["9302"] = []; held_cache(w_, {"dod": _HLOST, "checked": "2026-10-" + "01", "src": "x"}); POSTS.clear(); held_import(w_, _HS0)
     return w_, r_
+_HANDED = []      # the visits the LAST retry handed to the import (held_retry fills it): [(feed patient, ((code, YYYYMMDD), ...))]
 def held_retry(w_, r_, stamp_arg, fresh=False):
     """ONE live retry in that workspace -> (what the driver printed, its error, the messages it handed to the import, its stamp, what the import printed, its import
     register). fresh: before the run only the registers are there of what earlier retries left (a new container: their batch files and raw folders did not travel)."""
-    rs_ = re.sub(r"[^0-9TZ]", "", stamp_arg) + "R"; seen_ = {"handed": 0, "out": ""}
+    rs_ = re.sub(r"[^0-9TZ]", "", stamp_arg) + "R"; seen_ = {"handed": 0, "out": ""}; _HANDED[:] = []
     if fresh:
         for f_ in _hglob(os.path.join(w_, "feed_parsed_*R.json")) + _hglob(os.path.join(w_, "feed_match_*R.json")): os.remove(f_)
         for d_ in _hglob(os.path.join(w_, "hl7", "*R")): _hrm(d_)
     def step_(cmd):
         if os.path.basename(str(cmd[1])) == "claimocity_import.py":
-            seen_["handed"] = len(json.load(open(os.path.join(w_, "feed_parsed_%s.json" % rs_)))); seen_["out"] = held_import(w_, rs_, cmd[2:]); return seen_["out"]
+            _ms = json.load(open(os.path.join(w_, "feed_parsed_%s.json" % rs_))); _HANDED[:] = sorted((m_["pid"], tuple(sorted((c_["cpt"], c_["dos"][:8]) for c_ in m_["FT1"]))) for m_ in _ms)      # WHICH visits this retry handed over: the feed patient and each line's code and date
+            seen_["handed"] = len(_ms); seen_["out"] = held_import(w_, rs_, cmd[2:]); return seen_["out"]
     POSTS.clear(); ci._ctx.clear()
     o_, calls_, e_ = driver_run("claimocity_retry_dx.py", w_, r_, ("--live", "--no-stedi", "--stamp", stamp_arg), step_)
     return o_, e_, seen_["handed"], rs_, seen_["out"], (_rd(w_, "registers", "feed_import_%s.json" % rs_) or {"created": [], "skipped": [], "failed": []})
@@ -6231,9 +6270,9 @@ _od, _ed, _nd, _rsd, _iod, _rgd = held_retry(_hw3, _hr3, "2026-11-26T0040Z"); _o
 _of, _ef, _nf, _rsf, _iof, _rgf = held_retry(_hw3, _hr3, "2026-11-26T1240Z", fresh=True)      # a new container: the retries' own batch files did not travel, and no reconciliation register says which visit was answered
 json.dump({"rows": [{"f": "Z1", "d": "2026-11-20", "c": ["99309"], "s": "already", "why": "all lines already in AMD"}]}, open(os.path.join(_hw3, "registers", "feed_recon_%s.json" % _rsd), "w"))      # what the reconciliation step of that retry writes (a stand-in here starts nothing)
 _og, _eg, _ng, _rsg, _iog, _rgg = held_retry(_hw3, _hr3, "2026-11-26T1840Z", fresh=True); CHART["9301"] = []
-check("THREE RUNS: ... a held visit the chart carries by then is answered 'all lines already in AMD' by the import - in the retry's own register - and is not handed over again: 0. That row names the feed patient only; which visit it answers is read from that retry's own batch file (it handed over this visit and no other of the patient), or from the reconciliation register of the retry, which names the visit. With neither on hand the visit is handed over once more - once a run, never twice - and answered 'already' again",
-      (_ed, _ee, _ef, _eg) == ("", "", "", "") and _nd == 1 and [(x_.get("feed_id"), x_.get("why")) for x_ in _rgd["skipped"]] == [("Z1", "all lines already in AMD")] and not _rgd["created"] and _ne == 0 and _nf == 1 and _ng == 0
-      and not any("addvisit" in b_ for b_ in POSTS), (_nd, _rgd, _ne, _nf, _ng))
+check("THREE RUNS: ... a held visit the chart carries by then is answered 'all lines already in AMD' by the import - in the retry's own register - and is not handed over again: 0. (The third round, R4: that row names the VISIT now - its codes and its dates of service, like the two other rows - so it ends the retry also in a NEW container, where the retry's own batch file did not travel and no reconciliation register names the visit: 0, where the visit was handed over once more in every run)",
+      (_ed, _ee, _ef, _eg) == ("", "", "", "") and _nd == 1 and [(x_.get("feed_id"), x_.get("why"), x_.get("cpts"), x_.get("dos_lines")) for x_ in _rgd["skipped"]] == [("Z1", "all lines already in AMD", ["99309"], ["11/20/2026"])]
+      and not _rgd["created"] and (_ne, _nf, _ng) == (0, 0, 0) and not any("addvisit" in b_ for b_ in POSTS), (_nd, _rgd, _ne, _nf, _ng))
 _hw4, _hr4 = held_ws(); _hf = [held_retry(_hw4, _hr4, _st, fresh=True) for _st in ("2026-11-25T1840Z", "2026-11-26T0040Z", "2026-11-26T0640Z", "2026-11-26T1240Z")]
 check("THREE RUNS: ... in a FRESH container every run (only the registers travel): still ONE message per run, and no line of the retry names a retry's own batch as one whose feed files are not on hand or cannot be read again (that line grew by one batch per run)",
       [(x_[1], x_[2]) for x_ in _hf] == [("", 1)] * 4 and not any(re.search(r"\d{8}T\d{4}ZR[^\n]*(?:not on hand|cannot re-read)|(?:batch|batch\(es\)) [^\n]*\d{8}T\d{4}ZR", x_[0]) for x_ in _hf)
@@ -6245,6 +6284,47 @@ os.makedirs(os.path.join(_hw5, "hl7", _S1)); open(os.path.join(_hw5, "hl7", _S1,
 _oh, _eh, _nh, _rsh, _ioh, _rgh = held_retry(_hw5, _hr5, "2026-11-25T1840Z")
 check("THREE RUNS: ... each visit is handed over at most ONCE per run: the same held visit named by two rows of one register and by a second batch that carries it again goes to the import once",
       _eh == "" and _nh == 1 and len([x_ for x_ in (_rd(_hw5, "registers", "feed_import_%s.json" % _S1) or {}).get("skipped", []) if x_.get("why") == _DDW]) == 1, (_eh, _nh, _oh[:300]))
+# ---- the third round (11/25/2026, the second independent check). R4 (its new finding 4): the import's 'all lines already in AMD' row names the visit now, and the
+# retry's stop rule matches it by that - in a long-lived workspace too, where one retry handed over TWO visits of a chart and its batch file could not say which
+# of them was answered. R6: five one-line changes of _kept_out and of the held row's visit that passed every check (m49, m50, m51, m52, m54) - each has its check.
+def held_more(w_, fid, pid, lines, held=True, stamp=_HS0):
+    """ONE more message of that batch - appended to its batch file and its raw file - and, when held, its held row in the batch's import register (the import's own shape)"""
+    pf_ = os.path.join(w_, "feed_parsed_%s.json" % stamp); ms_ = json.load(open(pf_)); ms_.append({"pid": fid, "name": NAME(fid), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": "I10", "units": "1"} for c_, d_ in lines]})
+    json.dump(ms_, open(pf_, "w")); open(os.path.join(w_, "hl7", stamp, "a.hl7"), "a").write(hl7(fid, B["n1"], "", list(lines), NP_NPI))
+    if held:
+        rf_ = os.path.join(w_, "registers", "feed_import_%s.json" % stamp); r_ = json.load(open(rf_))
+        r_["skipped"].append({"feed_id": fid, "pid": pid, "why": _DDW, "cpts": [c_ for c_, d_ in lines], "dos_lines": [ci.mdy(d_) for c_, d_ in lines], "lines": []}); json.dump(r_, open(rf_, "w"))
+def held_reg(w_, stamp, skipped=(), msgs=None):
+    """A hand-made import register of ANOTHER start (a retry's own stamp ends with R) and, when given, that start's own batch file."""
+    json.dump({"created": [], "skipped": list(skipped), "failed": []}, open(os.path.join(w_, "registers", "feed_import_%s.json" % stamp), "w"))
+    if msgs is not None: json.dump(msgs, open(os.path.join(w_, "feed_parsed_%s.json" % stamp), "w"))
+_V1, _V2, _V3 = [("99309", "20261120")], [("99309", "20261121")], [("99309", "20261118")]      # the visit held_ws holds, a second visit of that chart a day later, a third two days earlier - one code, three dates
+_vis = lambda l_: ("Z1", tuple(sorted(l_))); _msg = lambda l_: {"pid": "Z1", "name": NAME("Z1"), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": "I10", "units": "1"} for c_, d_ in l_]}
+_row = lambda why_, l_=None: dict({"feed_id": "Z1", "pid": "pat9301", "why": why_}, **({} if l_ is None else {"cpts": [c_ for c_, d_ in l_], "dos_lines": [ci.mdy(d_) for c_, d_ in l_]}))
+_AFTER = "DOS after date of " + "death 2026-11-" + "20 (deceased cache) - never billed"; _ALR = "all lines already in AMD"
+_hw6, _hr6 = held_ws(); held_more(_hw6, "Z1", "pat9301", _V2); held_cache(_hw6, {"dod": "2026-11-" + "24", "checked": "2026-11-" + "26", "src": "x"}); CHART["9301"] = [("99309", "11/20/2026")]      # TWO held visits of one chart; the day is known and lies after both; the chart already carries the first
+_o1, _e1, _n1, _rs1, _io1, _rg1 = held_retry(_hw6, _hr6, "2026-11-26T0040Z"); _o2, _e2, _n2, _rs2, _io2, _rg2 = held_retry(_hw6, _hr6, "2026-11-26T0640Z"); CHART["9301"] = []
+check("R4 (finding 4): ONE retry hands over two held visits of a chart - the import answers 'all lines already in AMD' for the one the chart carries (a row with that visit's code and date of service) and ENTERS the other: the next retry hands over NOTHING (the 'already' one was handed over once more - the retry's batch file named two visits of the patient and could not say which was answered)",
+      (_e1, _e2) == ("", "") and _n1 == 2 and [(x_.get("why"), x_.get("cpts"), x_.get("dos_lines")) for x_ in _rg1["skipped"]] == [(_ALR, ["99309"], ["11/20/2026"])] and [x_.get("dos_lines") for x_ in _rg1["created"]] == [["11/21/2026"]]
+      and _n2 == 0 and "retry-dx: nothing to retry" in _o2, (_e1, _n1, _rg1, _e2, _n2, _o2[:300]))
+_hw7, _hr7 = held_ws(); held_more(_hw7, "Z1", "pat9301", _V2); held_reg(_hw7, "20261125T1300ZR", skipped=[_row(_AFTER, _V2)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw7, _hr7, "2026-11-25T1840Z"); _h7 = (_e, _n, list(_HANDED))
+check("R6 (m49): a 'DOS after date of death' row ends the retry of THAT visit only - a chart with two held visits, a later register shows the second kept out for good: the first is still handed over (any such row of the patient ended every held visit of the patient: a visit on or before the day that had not been entered was never handed over again)",
+      _h7 == ("", 1, [_vis(_V1)]), _h7)
+_hw8, _hr8 = held_ws(); held_reg(_hw8, "20261124T0600Z", skipped=[_row(_AFTER, _V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw8, _hr8, "2026-11-25T1840Z"); _h8 = (_e, _n, list(_HANDED))
+_hw9, _hr9 = held_ws(); held_reg(_hw9, "20261124T0600Z", skipped=[_row(_ALR, _V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw9, _hr9, "2026-11-25T1840Z"); _h9 = (_e, _n, list(_HANDED))
+check("R6 (m50): only a LATER register ends the retry of a held visit - a 'DOS after date of death' row of an EARLIER register (the day it went by was taken off the record since, the visit was held anew) leaves it to be handed over; the same for an 'all lines already in AMD' row of an earlier register (charges can be voided between the two)",
+      _h8 == ("", 1, [_vis(_V1)]) and _h9 == ("", 1, [_vis(_V1)]), (_h8, _h9))
+_hw10, _hr10 = held_ws(); held_reg(_hw10, "20261124T0600ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw10, _hr10, "2026-11-25T1840Z"); _h10 = (_e, _n, list(_HANDED))
+_hw10b, _hr10b = held_ws(); held_reg(_hw10b, "20261125T1300ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw10b, _hr10b, "2026-11-25T1840Z"); _h10b = (_e, _n, list(_HANDED))
+check("R6 (m52): an 'already' row of a register from before the third round names the feed patient only - it still counts through that retry's own batch file, but only for a retry LATER than the register that held the visit: the row of an EARLIER retry leaves the visit to be handed over (1), the row of a later one ends it (0)",
+      _h10 == ("", 1, [_vis(_V1)]) and _h10b[:2] == ("", 0), (_h10, _h10b))
+_hw11, _hr11 = held_ws(); held_more(_hw11, "Z1", "pat9301", _V2); held_reg(_hw11, "20261125T1300ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1), _msg(_V2)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw11, _hr11, "2026-11-25T1840Z"); _h11 = (_e, _n, list(_HANDED))
+_hw11b, _hr11b = held_ws(); held_more(_hw11b, "Z1", "pat9301", _V2); held_reg(_hw11b, "20261125T1300ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw11b, _hr11b, "2026-11-25T1840Z"); _h11b = (_e, _n, list(_HANDED))
+check("R6 (m51): ... and such a row counts only when that retry handed over THIS visit and no other of the patient - a retry that handed over two visits of the patient and got ONE 'already' answer ends neither (both are handed over again: the one that was never entered is not dropped); with one visit in its batch file it ends that one, and the other is still handed over",
+      _h11 == ("", 2, [_vis(_V1), _vis(_V2)]) and _h11b == ("", 1, [_vis(_V2)]), (_h11, _h11b))
+_hw12, _hr12 = held_ws(); held_more(_hw12, "Z1", "pat9301", _V3, held=False); _o, _e, _n, _rs, _io, _rg = held_retry(_hw12, _hr12, "2026-11-25T1840Z"); _h12 = (_e, _n, list(_HANDED))
+check("R6 (m54): a held row names its visit line by line - its codes AND its dates of service: ANOTHER message of the same patient with the same code on another date, which no row held, is not handed over with it (a row that named its visit by one of its codes took every message of the patient that carries the code)",
+      _h12 == ("", 1, [_vis(_V1)]), _h12)
 check("... and after these runs the stand-in guard of this section is gone again (no guard module is left loaded for the checks that follow)", sys.modules.get("deceased_guard") is _dg_keep)
 _o, _calls, _e, _w = dx_retry(_DXC); _RS = "20261126T1400ZR"; _rr = _rd(_w, "registers", "feed_import_%s.json" % _RS) or {"created": [], "skipped": [], "failed": []}
 _sent = [re.findall(r'diagcodes="([^"]*)"', b_) for b_ in POSTS if 'action="updvisitwithnewcharges"' in b_]      # per charge call: the diagnosis ids of each of its charges
