@@ -6,7 +6,8 @@
 #   earlier visits look in AMD. Charges enter Charge Review (approval=1, inspector on) like any feed charge.
 # Dedupe: a feed line whose patient already has a live (non-void) charge with the same CPT + DOS is skipped.
 # Modifier 25 and Humana (William 11/25/2026, "yes try that"): the 99489 add-on of a chart whose first plan in billing order is Humana goes in WITHOUT modifier 25 (Humana denies it
-#   with the modifier - CO-4); the row says so (no_mod25). See NO_MOD25 below.
+#   with the modifier - CO-4); the row says so (no_mod25). The order read is the chart's OWN: a chart with no billing order is built as before, with the modifier (the "1" its
+#   visit is created with is a stand-in, not its first plan). The standing CCM gate's helper (mod25_addon.py) reads the same rule from this file. See NO_MOD25 below.
 # Whose chart (11/25/2026, William: a feed patient goes to the chart that patient already has): the match file names a chart for EACH Claimocity id of an entry (by_id - the driver
 #   writes it) and a message is entered on its OWN id's chart (chart_of); an id the entry does not name has no chart and is not entered. Until then the chart came from the
 #   name-and-date key alone, so two feed patients under one name and one birth date shared a chart.
@@ -40,6 +41,15 @@
 #   that carries it: on the initial visit it makes the stay a rehab stay, on one follow-up it never moves the admission and the other visits. A hospital code the same-day
 #   rule passes over is still read by this rule, in every later run too (the register's "same_day" list), and a stay that began on such a day shows no acute stay. What
 #   cannot be prevented is SAID: an initial visit that starts a hospital stay one of whose visits already went in at 61 carries pos_err "PLACE OF SERVICE 61 on <day> ...".
+#   11/25/2026 (verification of the pull request): our own nursing-facility and home / assisted-living visits are read too. An initial visit 1 or 2 days after an acute stay is
+#   NO admission to the rehab unit when one of them lies between the two (the patient had left the hospital), and a stay holds no follow-up behind such a visit; an initial
+#   visit 1 or 2 days behind a hospital visit that no stay holds is entered as before and shows no acute stay; a late initial visit keeps 21 with such visits. A stay that is
+#   visibly going on is not cut at its 46th day (STAY_GOES_ON_DAYS). No follow-up goes in at 61 behind an initial visit that was NOT entered (a code the table does not have, a
+#   visit AdvancedMD did not take), and the stay's initial visit looks ahead at its follow-ups' messages the way a follow-up looks ahead at the initial visit's. A stay that is
+#   no rehab stay but holds visits at HCA REHAB shows no acute stay; a follow-up that goes in at 21 behind such visits SAYS so (pos_err "PLACE OF SERVICE 61 on <days>, 21
+#   here: the stay is MIXED ..."). Every pos_err of this rule says what matters in its first 70 characters (the digest shows no more), the row names the days in a list of its
+#   own (hospital_at61 / mixed_at61), and a day is named ONCE. The counters go by what AdvancedMD stored where it was read back: a rehab visit stored at 21 is not counted as
+#   entered at 61.
 # Quality code (William 11/10/2026, STANDING - practices/ehpa/rules.md): the advance-care-plan code 1123F goes on as a no-charge line, once
 #   per patient per year, with the next nursing-facility, home or assisted-living visit of every patient 65 or older whose first plan is
 #   Medicare Part B and whose last insurance check showed Medicare first (hospital visits are not coded in this version). A pilot first;
@@ -149,13 +159,18 @@ MOD25 = {"99497", "99489"}
 # "yes try that"). Humana answered CO-4 (the procedure code is inconsistent with the modifier) on 24 care-management add-on lines that carried modifier 25 in 2026 ($2,616 billed,
 # nothing paid) and on none of its 43 add-on lines without it (30 paid). A 99489 line of a chart whose FIRST plan in billing order is one of the practice's Humana carrier records
 # goes in without the modifier; the row says so (no_mod25). Every other payer, and the 99497 line, as before. A chart whose plans or billing order cannot be read is built as before.
+# 11/25/2026 (review): the billing order is the CHART's OWN (chart_insorder). A chart that has plans but no billing order gets its new visit created with the order "1" - a stand-in for
+# the create call (chart_ctx). Until this fix that "1" was read as the chart's first plan: when the plan numbered 1 happened to be a Humana record the modifier came off although nothing
+# said that Humana is billed first (the insurance check sets that visit's order afterwards, and may lead with Medicare). Such a chart is built as before - with the modifier.
+# The standing CCM gate of the scheduled runs follows the SAME rule: its helper mod25_addon.py reads the two lines below from this file (keep each on ONE line, in this shape).
 HUMANA = {"car6285", "car302851"}          # HUM01 HUMANA and HUMMA1 HUMANA GOLD PLUS HMO MA PLAN (practices/ehpa/carriers.json)
 NO_MOD25 = {"99489": HUMANA}               # code -> the carriers: when one of them is the chart's first plan in billing order the line carries no modifier 25
 def first_carrier(ctx):
-    """The carrier id of the chart's FIRST plan in billing order - '' when it cannot be told (ctx['insorder'] = the sequences in billing order, ctx['plans'] rows: plan id,
-    carrier, begin date, end date, sequence - the same reading as medicare_first). Never raises."""
+    """The carrier id of the chart's FIRST plan in billing order - '' when it cannot be told (ctx['chart_insorder'] = the chart's OWN billing order, the sequences in order: empty
+    for a chart that has none, None for a chart that could not be read; ctx['plans'] rows: plan id, carrier, begin date, end date, sequence). The order the create call carries
+    (ctx['insorder']) is never read here: for a chart without an order it is the stand-in "1". Never raises."""
     try:
-        order = ctx.get("insorder"); first = (order.replace(" ", "").split(",") or [""])[0] if isinstance(order, str) else ""
+        order = ctx.get("chart_insorder"); first = (order.replace(" ", "").split(",") or [""])[0] if isinstance(order, str) else ""
         if not first: return ""
         for row in ctx.get("plans") or ():
             try: _pid, car, _beg, _end, seq = row[:5]
@@ -197,7 +212,7 @@ def mdy(yyyymmdd):
 # the whole message - its CCM lines 32 all the same - and is counted as "POS RULE NOT APPLIED" - the import never stops for this rule.
 # 11/25/2026: a hospital visit of an INPATIENT REHAB STAY goes in at HCA REHAB (fac67) with every line at 61 - INPATIENT REHAB STAYS below. (Until that
 # day the inspector step moved a nursing-facility code under the hospital building to HCA REHAB at 31; it moves no visit any more.)
-POS_RULE_VERSION = "2026-11-25.3"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it (.3, 11/25/2026: inpatient rehab at 61; the chart's own birth date - dob_note on every row, the 1123F age from the chart, the BIRTH DATES line; the chart of each Claimocity id - chart_of; no modifier 25 on the 99489 add-on of a Humana chart - NO_MOD25)
+POS_RULE_VERSION = "2026-11-25.4"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it (.3, 11/25/2026: inpatient rehab at 61; the chart's own birth date - dob_note on every row, the 1123F age from the chart, the BIRTH DATES line; the chart of each Claimocity id - chart_of; no modifier 25 on the 99489 add-on of a Humana chart - NO_MOD25)
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -225,6 +240,7 @@ MSGLAST = {}               # one feed message -> the LAST raw copy read of it: w
 MSGUNIT = {}               # one feed message -> the PV1 facility number of every raw copy of it (the last ^ component of field 2 of its PV1 line); a number of REHAB_UNIT_NUMBERS names the hospital's rehabilitation unit (11/25/2026, INPATIENT REHAB STAYS)
 SAME_DAY = {}              # chart -> {(code, 'MM/DD/YYYY')}: hospital visit lines the feed sent for a day that already carried ANOTHER hospital code of ours on the chart, so the same-day rule never entered them - this run's and, from the import registers' "same_day" lists, every earlier run's. Only the stay rule reads them (11/25/2026, review of INPATIENT REHAB STAYS)
 SAME_DAY_NEW = {}          # ... the ones THIS run (this batch stamp) passed over: main() writes them into this run's register as "same_day"
+SAID_61 = {}               # chart -> {'MM/DD/YYYY'}: the days of visits at HCA REHAB / 61 that a row of an import register has already NAMED for William (its "hospital_at61" or "mixed_at61" list) - main() reads them from every register, build() adds what this run names: each day is said ONCE (11/25/2026, verification)
 # ---- QUALITY CODE: ADVANCE CARE PLAN, Medicare measure 047 (William 11/10/2026, STANDING - practices/ehpa/rules.md) -------------------------
 # "yes for all: billing adds 1123F automatically, once per patient, to the next Medicare claim for every patient 65 and older." 1123F says an
 # advance care plan or a surrogate decision-maker is documented in the medical record - William's statement for every patient the practice follows.
@@ -773,8 +789,10 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
 # hospital visit a day. The feed names the HOSPITAL building for the unit's visits too, so until this rule they went in at fac29 / 21 (FAC). What the
 # rule reads is the STAY:
 #   A STAY starts at each initial hospital visit of ours (HOSP_INITIAL) and holds every later hospital visit of ours on that chart (HOSP_VISIT - the
-#   same-day rule's hospital family) until the next initial visit, as long as the visit is at most STAY_MAX_DAYS after the stay's initial visit. A
-#   99497 / 99498 line rides with the visit of its own message. A visit no stay holds is in no stay: it goes in exactly as before.
+#   same-day rule's hospital family) until the next initial visit, as long as the visit is at most STAY_MAX_DAYS after the stay's initial visit - or,
+#   past them, at most STAY_GOES_ON_DAYS after the stay's last visit in hand - and none of our own nursing-facility or home / assisted-living visits
+#   lies between the stay's last visit in hand and it (11/25/2026, verification - below). A 99497 / 99498 line rides with the visit of its own
+#   message. A visit no stay holds is in no stay: it goes in exactly as before.
 #   A stay is a REHAB stay when ONE of these is shown, else it is an ACUTE stay:
 #     1. FACILITY NUMBER - the feed message of its INITIAL visit names a number of REHAB_UNIT_NUMBERS in its PV1 line (the last ^ component of field 2
 #        of that line: PV1|1|^^^<number>|...), in every raw copy of the message. If the feed never sends it, this never fires. (11/25/2026, review: the
@@ -783,7 +801,8 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
 #        that stay is an ACUTE stay. The same day is no rehab admission (the same-day rule keeps one hospital visit a day, and Medicare pays one);
 #        3 days or more, or no hospital visit of ours before it, is a new admission to the hospital; a new initial visit 1 or 2 days after the last
 #        visit of a REHAB stay is the patient going back to the hospital. The chain is worked from the oldest visit in hand: the first stay is
-#        ACUTE, the kinds then follow.
+#        ACUTE, the kinds then follow. (11/25/2026, verification: and NOT when one of our own nursing-facility or home / assisted-living visits is
+#        dated from the day of that last visit up to the initial visit's own day - the patient had left the hospital: a hospital admission.)
 #   And a stay whose initial visit already sits on the chart at HCA REHAB - or was built at 61 earlier in this run - is the rehab stay it was entered
 #   as, also when neither sign shows any more (a visit of the stay before it voided or re-dated since, or no longer among the rows read): its
 #   remaining visits follow it, and the stay after it is read against it. Every hospital visit known for the chart is used: the chart's history
@@ -793,13 +812,16 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
 #   the stay was entered before this rule, or as an acute one, and ALL its remaining visits keep 21 - pos_kind rehab-stay-kept-21, the group
 #   pos61_monitor.py compares the 61 visits with. An initial visit that is in this same batch and not on the chart yet: its follow-ups in the batch
 #   follow it - at 61, or, when this run built it at 21 (the rule failed for its message), at 21. A follow-up whose own message names the rehab unit
-#   while no initial visit of ours is in hand for it keeps 21 too (nothing shows where that stay began). A claim already sent is never changed:
-#   nothing here touches a visit that is on the chart.
+#   while no initial visit of ours is in hand for it keeps 21 too (nothing shows where that stay began). And (11/25/2026, verification) a follow-up
+#   whose stay's initial visit is NOT ENTERED - it is not on the chart, and no message of this batch that the import can enter carries it - keeps 21:
+#   no visit goes in at HCA REHAB behind an admission nobody entered. A claim already sent is never changed: nothing here touches a visit that is on
+#   the chart.
 # WHAT IS SENT for a visit of a rehab stay entered under this rule: facility fac67 (HCA REHAB), EVERY charge line of the message at place of service
 #   61; the admission date and everything else as for any hospital visit. Register row: fac fac67, pos 61, pos_lines all 61, pos_kind rehab on every
 #   line, pos_why "inpatient rehab stay: <the sign>", pos_feed still what the building table gave (21), and "stay" {kind rehab | acute, initial =
 #   MM/DD/YYYY of the stay's initial visit or '', sign}. A visit of an acute stay is exactly as before (fac29 / 21, pos_kind '') and carries stay
-#   {kind acute}.
+#   {kind acute}. A row whose pos_err names visits that stand at HCA REHAB carries their days as a list too, 'MM/DD/YYYY' each: hospital_at61 (they
+#   belong to the HOSPITAL stay this initial visit starts) or mixed_at61 (this follow-up went in at 21 behind them) - 11/25/2026, verification.
 # ONLY a message whose OWN building is the hospital (every raw copy of it names that building; FAC gives fac29 / 21) and that carries a hospital visit
 #   line is read. ONE message is ONE visit in AdvancedMD: when its hospital lines belong to different stays and one of them is a rehab stay, it goes
 #   in as before and is said (pos_err).
@@ -833,25 +855,84 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
 #     like one with no stay in hand (rehab-stay-kept-21, stay {rehab, '', facility number}) - and a stay that holds such a visit shows no acute stay either.
 #   THE ORDER OF THE MESSAGES IN A FILE: a follow-up read BEFORE its stay's initial visit went in at 61 although that initial visit's own message was one the rule
 #     steps aside for (hospital lines of two stays in one message; a message whose own building cannot be read) and went in at 21. The batch's own messages that carry
-#     an initial visit are read for it now (batch_initial_messages): such a follow-up is kept at 21 with its initial visit, whichever stands first.
+#     an initial visit are read for it now (batch_hospital_messages): such a follow-up is kept at 21 with its initial visit, whichever stands first.
 #   (The third is the inspector step's: claimocity_inspector.py reads BOTH Claim Inspector listings for an edit about the place of service of a visit entered at 61.)
+# 11/25/2026 (the independent verification of the pull request - each finding reproduced first with a stand-in AdvancedMD that keeps the chart from run to run):
+#   OUR OWN NURSING-FACILITY OR HOME VISIT BETWEEN TWO HOSPITAL STAYS: the rule read hospital codes only. An initial hospital visit 1 or 2 days after an acute stay went in
+#     at HCA REHAB / 61 although the chart, or the same file, showed one of our own nursing-facility visits (99304-99310, 99315, 99316) or home / assisted-living visits
+#     (99341-99350) between the two: that day the patient was NOT in the hospital, so the new initial visit is a hospital admission. And a hospital follow-up with no new
+#     initial visit of ours kept following a rehab stay to 61 after our own initial nursing-facility visit had shown that the stay was over. Now such a visit - dated from
+#     the day of the acute stay's last visit up to the admission's own day - keeps the admission at the hospital (pos_why says why; that stay SHOWS an acute stay, it is not
+#     a withheld sign), and a stay holds a follow-up only while no such visit is dated on or after the stay's last visit in hand and before that follow-up. Two days are
+#     read for the stay, not against it: a nursing visit on the stay's own FIRST day (the resident came to the hospital from the nursing building that day), and a hospital
+#     visit on the very day of such a visit (the stay's last day: discharged from the unit and admitted to the nursing building on one day) - there the rule reads what it
+#     read before, so a follow-up that reaches the feed ahead of its stay's initial visit still keeps that initial visit at 21 with it. The facility number on the initial
+#     visit's own message, and an initial visit that already stands at HCA REHAB, still make the stay a rehab stay.
+#     A hospital visit that NO stay holds any more is no acute stay in hand: an initial visit 1 or 2 days behind it (the patient not known to have left the hospital since)
+#     is entered as before, with words of its own (REHAB_LOOSE) - it may be the admission to the rehab unit - and the stay it starts shows no acute stay: the admission
+#     after it is not read as a rehab admission either. An admission kept at the hospital because of such a visit of ours shows an acute stay only when it is SURE that the
+#     patient had left the hospital: the visit is dated behind the last hospital visit, or on that very day behind a DISCHARGE visit (99238, 99239). And a LATE initial
+#     visit keeps 21 when hospital visits dated behind it already stand on the chart at the hospital behind one of those visits of ours (REHAB_LATE_LET): the stay does not
+#     hold them, but nothing shows that they are not its visits. (These points came out of the fixer's own comparison of random feeds with the pull request's head: a
+#     visit must not go in at 61 that went in at 21 before unless one of the findings asks for it.)
+#   A STAY LONGER THAN 45 DAYS was cut: from its 46th day the visits of a rehab stay at 61 went in at the hospital / 21 without a word. Now a stay that is visibly going on -
+#     the visit comes at most STAY_GOES_ON_DAYS after the stay's last visit in hand - holds it past the 45 days. A visit that is past the 45 days AND more than that week
+#     after the stay's last visit is in no stay, as before, and pos_why says so when the stay was a rehab stay.
+#   THE INITIAL VISIT OF A REHAB STAY AT 61 WAS VOIDED on the chart (a person's void): the stay's follow-ups at HCA REHAB were then read as visits of the acute stay before
+#     it. The next follow-up went in at 21 without a word, and a hospital admission the day after went in at 61 ('1-2 days after an acute stay'). Now a stay that is no
+#     rehab stay but holds visits at HCA REHAB shows no acute stay - the admission after it goes in as before - and the follow-up that goes in at 21 behind those visits
+#     SAYS so: pos_err REHAB_SPLIT, with the days. It is said ONCE: the row carries the days it names (mixed_at61), every run reads the rows of the registers (SAID_61), and
+#     a day that was named is not named again.
+#   THE SENTENCE ABOUT A HOSPITAL STAY WITH VISITS AT 61 (REHAB_MIXED) listed every day in full: the digest shows the first 70 characters of a pos_err, so from the third
+#     visit on the words 'belongs to this HOSPITAL stay' were cut off and from the fifth a day was missing. Now ONE day stands as before; several stand as their first and
+#     last day ('08/16-08/20/2026') with every day behind the first 70 characters, and the row carries them as a list (hospital_at61).
+#   A REHAB STAY WHOSE INITIAL VISIT THE IMPORT DID NOT ENTER (99221 and 99222 start a stay for this rule but are not in the code table - 'unknown CPT'; or AdvancedMD
+#     answered a fault): its follow-ups went in at 61, file after file, and nothing named the stay for William - the digest names a new rehab stay from the row of its
+#     initial visit. Now a follow-up goes in at 61 only when its stay's initial visit stands on the chart at HCA REHAB, was built so by this run, or is coming in this batch
+#     in a message the import reads and can enter (batch_hospital_messages); else it keeps 21 (rehab-stay-kept-21, pos_why REHAB_NO_INITIAL). main() takes back what build()
+#     noted of a visit that was not entered (stay_not_entered). What cannot be prevented is SAID: a follow-up that stood BEFORE its initial visit in the file went in at 61,
+#     and then that initial visit failed - the next follow-up goes in as before and says that the stay is mixed (REHAB_NO_ADMISSION), once.
+#   THE ORDER OF THE MESSAGES IN A FILE, THE OTHER WAY ROUND: a stay's initial visit read BEFORE a follow-up of it whose own building cannot be read went in at 61, and
+#     at 21 when it was read behind it. The initial visit now looks ahead at every hospital message of the batch that carries a line of its stay, as a follow-up does.
+#   THE COUNTERS: a rehab visit AdvancedMD stored at 21 was counted and printed as entered at 61 ('rehab 61 x1') while the monitor of the same run said that no visit is at
+#     61. count_pos goes by what was stored where it was read back (REHAB_61_LOST); the row keeps what was sent beside what was stored, as before.
 REHAB_UNIT_NUMBERS = {"1083375828"}        # the facility numbers a feed message's PV1 line names the hospital's rehabilitation unit by: the unit's own NPI. ONE constant - a number the feed is seen to send for the unit is added here
 REHAB_FAC = "fac67"; REHAB_POS = "61"      # where a visit of a rehab stay goes in: AdvancedMD facility fac67 (HCA REHAB), every charge line at place of service 61 (inpatient rehabilitation facility)
 REHAB_NAME = "HCA REHAB"                   # how the chart's history names a visit at fac67 (practices/ehpa/facilities.json: "HCA REHAB (TALLAHASSEE)")
 REHAB_HOSPITAL = ("fac29", "21")           # the building whose messages are read: the hospital, as FAC gives it - the feed names it for the rehab unit's visits too
 HOSP_INITIAL = {"99221", "99222", "99223"} # an initial hospital visit: a stay starts with it
+HOSP_DISCHARGE = {"99238", "99239"}        # a hospital discharge visit: behind it the patient is out of the hospital that very day (11/25/2026, verification)
 STAY_MAX_DAYS = 45                         # a stay holds a visit this many days after its initial visit (the window the inspector step and the order sweep use for the admission date)
+STAY_GOES_ON_DAYS = 7                      # ... and past them (11/25/2026, verification) still a visit that comes at most this many days after the stay's LAST visit in hand: a stay that is visibly going on is never cut in two
 REHAB_GAP_DAYS = (1, 2)                    # a new initial visit this many days after the LAST visit of an ACUTE stay = admitted to the rehabilitation unit
 SIGN_NUMBER = "facility number"; SIGN_ADMIT = "new admission 1-2 days after an acute stay"      # the two signs, as the register's stay.sign and pos_why name them
 REHAB_KEPT = "rehab-stay-kept-21"          # pos_kind of a visit of a rehab stay that keeps 21 because its stay's initial visit went in at 21 (the monitor's comparison group)
 REHAB_WHY = "inpatient rehab stay: %s"     # pos_why of a visit of a rehab stay: the sign that shows the stay (the words carry no date)
-# 11/25/2026 (review): the words of the cases the spec is silent on - the first three for pos_why (they carry no date), the last for pos_err (it names the day of the visit at 61)
+# 11/25/2026 (review): the words of the cases the spec is silent on - for pos_why (they carry no date)
 REHAB_LATE = " - kept at 21: another visit of this stay is already on the chart at the hospital - it reached the feed before the stay's initial visit - and a stay is never mixed"
-REHAB_ASIDE = " - kept at 21: its stay's initial visit stands in this batch in a message the rule steps aside for (it goes in as before, at 21), and a stay is never mixed"
+REHAB_LATE_LET = (" - kept at 21: a hospital visit dated behind this stay's initial visit is already on the chart at the hospital - it reached the feed before that initial visit, and one of our own nursing-facility or home / assisted-living "
+                  "visits is dated between the two, so nothing shows whether it is a visit of this stay - and a stay is never 61 beside 21 because its messages came in another order")      # 11/25/2026 (verification)
+REHAB_ASIDE = " - kept at 21: a visit of this stay stands in this batch in a message the rule steps aside for (its own building cannot be read, or it carries hospital lines of another stay too - it goes in as before, at 21), and a stay is never mixed"
 REHAB_SAME_DAY = "as before: this day carries another hospital visit code of ours too - the same day is not read as an admission to the rehab unit (one hospital visit a day)"
-REHAB_NOT_SHOWN = "as before: by its date this would be an admission to the rehab unit, but nothing shows that the stay before it was an acute stay - it began on a day that carries two hospital visit codes, one of its follow-ups names the rehab unit, or it was itself entered as before for this reason"
-REHAB_MIXED = ("PLACE OF SERVICE 61 on %s belongs to this HOSPITAL stay - it went in at HCA REHAB before the stay's initial visit (this one) reached the feed. This visit is entered as before "
-               "(fac29 / 21); nothing was changed on the chart - for William: the visit at 61 is his to correct")
+REHAB_NOT_SHOWN = "as before: by its date this would be an admission to the rehab unit, but nothing shows that the stay before it was an acute stay - it began on a day that carries two hospital visit codes, one of its follow-ups names the rehab unit or stands at HCA REHAB, or it was itself entered as before for this reason"
+# 11/25/2026 (verification): five more for pos_why ...
+REHAB_AWAY = "as before: by its date this would be an admission to the rehab unit, but one of our own nursing-facility or home / assisted-living visits is dated between the last visit of the hospital stay before it and this visit, or on one of those two days - the patient had left the hospital, so this is a new hospital admission"
+REHAB_LEFT = "as before: one of our own nursing-facility or home / assisted-living visits is dated between the last visit of the inpatient rehab stay before it and this visit, or on the day of that last visit - the patient had left the unit, and no initial hospital visit of ours has begun a new stay since: no stay holds this visit"
+REHAB_LOOSE = "as before: by its date this would be an admission to the rehab unit, but the hospital visit 1 or 2 days before it belongs to no stay - it came behind one of our own nursing-facility or home / assisted-living visits, past the days of the stay before it, or with no initial hospital visit of ours in hand - so nothing shows that an acute stay came before it"
+REHAB_PAST = "as before: more than %d days after the initial visit of the inpatient rehab stay before it, and more than %d days after that stay's last visit in hand - no stay holds this visit" % (STAY_MAX_DAYS, STAY_GOES_ON_DAYS)
+REHAB_NO_INITIAL = (" - kept at 21: its stay's initial visit is not entered - it is not on the chart, and no message of this batch that the import can enter carries it (a code the import's table does not have, "
+                    "a visit AdvancedMD did not take, or a message of an earlier batch) - and no visit goes in at HCA REHAB behind an admission that was not entered")
+# ... and the three sentences for pos_err: a visit that goes in as before while other visits of the stay in hand stand at HCA REHAB / 61. Each begins 'PLACE OF SERVICE 61 on <days>' and says
+# what matters in its FIRST 70 CHARACTERS - the digest shows no more of a pos_err: the days (days_words) and what they are. The first: %s = the days, the days once more in full,
+# 'it' / 'they', '' / 's', 'is' / 'are'. The second: the days, in full, 'that visit stands' / 'those visits stand', 'it' / 'them', the day of the stay's initial visit, '' / 's', 'is' / 'are'.
+# The third: the days, in full, the day of the stay's initial visit.
+REHAB_MIXED = ("PLACE OF SERVICE 61 on %s belongs to this HOSPITAL stay%s - %s went in at HCA REHAB before the stay's initial visit (this one) reached the feed. This visit is entered as before "
+               "(fac29 / 21); nothing was changed on the chart - for William: the visit%s at 61 %s his to correct")
+REHAB_SPLIT = ("PLACE OF SERVICE 61 on %s, 21 here: the stay is MIXED%s - %s at HCA REHAB, while the initial visit of the stay in hand for %s (%s) stands at the hospital. This visit is entered as before "
+               "(fac29 / 21); nothing was changed on the chart - for William: the visit%s at 61 %s his to correct")
+REHAB_NO_ADMISSION = ("PLACE OF SERVICE 61 on %s, 21 here: the stay is MIXED%s - the initial visit of this rehab stay (%s) is not entered, and no visit goes in at HCA REHAB behind an admission that was not entered. "
+                      "This visit is entered as before (fac29 / 21); nothing was changed on the chart - for William: once the admission is entered, the visits of this stay at 61 or at 21 are his to correct")
+REHAB_61_LOST = "POS 61 SENT for an inpatient rehab visit - AdvancedMD stored another place of service, so the visit is NOT at 61 (see POS NOT KEPT)"      # (verification) counted INSTEAD of the counter below when the read-back shows no line at 61: the import's numbers go by what was stored, as pos61_monitor.py does
 REHAB_61_COUNT = "POS 61 inpatient rehab visit - entered at HCA REHAB (William 11/25/2026)"      # the DONE-line counters of this rule, one per VISIT (count_pos); the short POS RULE line ends with both
 REHAB_21_COUNT = "POS 21 visit of an inpatient rehab stay kept at 21 (no look-back, no mixing - see pos_why)"
 def at_rehab_unit(facname):
@@ -865,17 +946,35 @@ def rehab_unit_lines(fid):
         if p != str(fid or "") or not units or not units <= REHAB_UNIT_NUMBERS: continue
         out += [(c, mdy(d)) for c, d in pairs if c in HOSP_VISIT and _d8_day(d) is not None]
     return out
-def batch_initial_messages(fid):
-    """{'MM/DD/YYYY': [(hospital visit lines [(code, 'MM/DD/YYYY')], readable)]}: for each day on which this feed patient's messages in the batch's raw files carry an INITIAL
-    hospital visit, the hospital lines of each such message and whether the rule will read it - every raw copy of it names ONE building, the hospital (build() runs the rule
-    for no other message). 11/25/2026 (review): a follow-up that stands in the file BEFORE its stay's initial visit is read with that message (rehab_visit)."""
-    out = {}
+def batch_hospital_messages(fid):
+    """[(hospital visit lines [(code, 'MM/DD/YYYY')], readable, enterable)]: every message of this feed patient in the batch's raw files that carries a hospital visit line.
+    readable = the rule will read it - every raw copy of it names ONE building, the hospital (build() runs the rule for no other message; any other goes in as before);
+    enterable = every code of the message is in the import's code table (a message with a code the table does not have is skipped whole: 'unknown CPT').
+    11/25/2026 (review): a follow-up that stands in the file BEFORE its stay's initial visit is read with that message (rehab_visit). 11/25/2026 (verification): the stay's
+    INITIAL visit is read with its follow-ups' messages the same way - until then only the messages that carry an initial visit were listed."""
+    out = []
     for (p, pairs), own in MSGOF.items():
         if p != str(fid or ""): continue
         hl = [(c, mdy(d)) for c, d in pairs if c in HOSP_VISIT and _d8_day(d) is not None]; names = {o[0] for o in own}
-        for c, d in hl:
-            if c in HOSP_INITIAL: out.setdefault(d, []).append((hl, len(names) == 1 and FAC.get(next(iter(names))) == REHAB_HOSPITAL))
+        if hl: out.append((hl, len(names) == 1 and FAC.get(next(iter(names))) == REHAB_HOSPITAL, all(c in PCODE for c, _d in pairs)))
     return out
+def days_words(days):
+    """(short, full): how the days of some visits stand in a sentence whose FIRST 70 CHARACTERS must carry them (the digest shows no more of a pos_err). ONE day: the day, and ''.
+    Several: their first and last day as '08/16-08/20/2026' (both in full when they lie in two years), and every day in brackets for the rest of the sentence:
+    ' (5 visits: 08/16/2026, ...)'. days = dates."""
+    ds = sorted(set(days))
+    if len(ds) < 2: return (_fmt_day(ds[0]) if ds else ""), ""
+    return "%s-%s" % (ds[0].strftime("%m/%d") if ds[0].year == ds[-1].year else _fmt_day(ds[0]), _fmt_day(ds[-1])), " (%d visits: %s)" % (len(ds), ", ".join(_fmt_day(x) for x in ds))
+def stay_not_entered(ctx, lines):
+    """11/25/2026 (verification): lines = [(code, 'MM/DD/YYYY')] of a message the import did NOT enter - a code its table does not have, no usable diagnosis, a fault, a call that
+    ended in an error. What build() noted of it for the stay rule is taken back (nothing stands on the chart at that place), and the day of an INITIAL hospital visit among them
+    is kept in ctx['stay_gone']: for the rest of this run no follow-up goes in at HCA REHAB behind an admission that was not entered. Never raises."""
+    try:
+        for c, d in lines:
+            if c not in HOSP_VISIT: continue
+            if isinstance(ctx.get("stay_sent" if c in HOSP_INITIAL else "stay_sent_fu"), dict): ctx["stay_sent" if c in HOSP_INITIAL else "stay_sent_fu"].pop(d, None)
+            if c in HOSP_INITIAL: ctx.setdefault("stay_gone", set()).add(d)
+    except Exception: pass
 def hospital_stays(rows, unit_lines=(), chart_rows=(), sent=None, sent_fu=None):
     """The hospital STAYS of ONE chart, oldest first, and the stay that holds each visit. rows = every hospital visit known for the chart - (code, 'MM/DD/YYYY'[, ...]) from
     the chart's history, this batch, the lines the same-day rule passed over (SAME_DAY) and the message itself (other codes and odd rows are passed over); unit_lines = the
@@ -885,14 +984,28 @@ def hospital_stays(rows, unit_lines=(), chart_rows=(), sent=None, sent_fu=None):
     known only by where its initial visit went in), "on_chart": the facility names of the initial visit's rows on the chart, "at_rehab": that visit went in at HCA REHAB (as
     the chart shows it, else as this run built it), "elsewhere" / "at61" (11/25/2026, review): the days of the stay's OTHER visits that are already entered at another place of
     service / at HCA REHAB - on the chart, or built so by this run -, "note": the words for pos_why of an acute stay the spec's plain rule does not explain ('' else)}];
-    holder = {(day, True for an initial visit / False for any other hospital visit): the index of the stay that holds it, None = no stay does}. Pure: no AMD call, no file."""
-    days = {}; names = {}; flagged = set()
+    holder = {(day, True for an initial visit / False for any other hospital visit): the index of the stay that holds it, None = no stay does}. Pure: no AMD call, no file.
+    11/25/2026 (verification): rows may hold our own nursing-facility and home / assisted-living visits too (NF_VISIT, HOME_VISIT - build() hands them over with the chart's
+    history and the batch): on such a day the patient was NOT in the hospital. (a) A stay holds a follow-up only while no such visit is dated on or after the stay's last visit
+    in hand and before that follow-up. Two days are read FOR the stay: a visit on the stay's own first day does not count (the resident came to the hospital from the nursing
+    building that day), and a hospital visit on the very day of such a visit is still the stay's - its last day, as the rule read it before. (b) An initial visit 1 or 2 days
+    after an acute stay is no admission to the rehab unit when such a visit is dated from the day of that stay's last visit up to the initial visit's own day: the patient had
+    left the hospital - a hospital admission, and that stay SHOWS an acute stay. (c) Past STAY_MAX_DAYS a stay still holds a visit that comes at most STAY_GOES_ON_DAYS after its
+    last visit in hand. Each stay also carries "out": {the day of a follow-up it does NOT hold for one of these reasons: "away" (a) | "past" (the days ran out)}; a stay that is
+    no rehab stay but holds visits at HCA REHAB shows no acute stay; (d) "loose": its initial visit comes 1 or 2 days behind a hospital visit that NO stay holds, and the
+    patient is not known to have left the hospital since - nothing shows an acute stay before it: it is entered as before (note REHAB_LOOSE) and shows no acute stay either;
+    (e) "left": it is SURE that the patient had left the hospital between the last hospital visit before this stay and its initial visit - such a visit of ours is dated behind
+    that day, or on that very day behind a discharge visit (HOSP_DISCHARGE); an admission kept at the hospital under (b) shows an acute stay only then; and (f) "let": the days
+    of the visits the stay let go under (a) that already stand on the chart at another place of service - a late initial visit is kept at 21 with them (rehab_visit)."""
+    days = {}; names = {}; flagged = set(); away = set(); free = None
     for row in rows:
         try: c, d = row[0], row[1]
         except Exception: continue
-        if not isinstance(c, str) or c not in HOSP_VISIT or not d: continue
-        try: days.setdefault(_day(d), set()).add(c)
+        if not isinstance(c, str) or not d or not (c in HOSP_VISIT or c in NF_VISIT or c in HOME_VISIT): continue
+        try: dd = _day(d)
         except Exception: continue
+        if c in HOSP_VISIT: days.setdefault(dd, set()).add(c)
+        else: away.add(dd)      # (verification) one of our own nursing-facility or home / assisted-living visits: that day the patient was not in the hospital
     for row in chart_rows or ():      # where each hospital visit on the chart stands: (day, initial visit or not) -> the facility names of its rows
         try:
             if row[0] in HOSP_VISIT: names.setdefault((_day(row[1]), row[0] in HOSP_INITIAL), []).append(row[2] if len(row) > 2 else "")
@@ -903,11 +1016,21 @@ def hospital_stays(rows, unit_lines=(), chart_rows=(), sent=None, sent_fu=None):
     stays = []; holder = {}
     for d in sorted(days):
         ini = bool(days[d] & HOSP_INITIAL); non = bool(days[d] - HOSP_INITIAL); cur = len(stays) - 1
-        if non:      # a follow-up or discharge visit: the stay before it holds it for STAY_MAX_DAYS; past that it belongs to an initial visit of the same day, else to no stay
-            if cur >= 0 and (d - stays[cur]["initial"]).days <= STAY_MAX_DAYS: stays[cur]["last"] = d; holder[(d, False)] = cur
-            else: holder[(d, False)] = (cur + 1) if ini else None
+        if non:      # a follow-up or discharge visit: the stay before it holds it for STAY_MAX_DAYS - and past them while the stay is visibly going on; else it belongs to an initial visit of the same day, else to no stay
+            s = stays[cur] if cur >= 0 else None
+            out = None if s is None else "away" if any(s["last"] <= x < d and x > s["initial"] for x in away) else "past" if ((d - s["initial"]).days > STAY_MAX_DAYS and (d - s["last"]).days > STAY_GOES_ON_DAYS) else ""
+            if out == "": s["last"] = d; holder[(d, False)] = cur
+            else:
+                holder[(d, False)] = (cur + 1) if ini else None
+                if out and not ini: s["out"][d] = out      # (verification) the stay let this visit go, and why - rehab_visit says it in pos_why
+                if not ini: free = d      # (verification) the last hospital visit so far that NO stay holds
         if ini:      # gap: the days since the LAST visit of the stay before (0 = that stay has a visit on this very day); both: this day carries another hospital visit too
-            stays.append({"initial": d, "last": d, "gap": (d - stays[cur]["last"]).days if cur >= 0 else None, "both": non}); holder[(d, True)] = cur + 1
+            before = free if free is not None else (stays[cur]["last"] if cur >= 0 else None)      # (verification) the day of the last hospital visit before this one - the stay before holds it, or no stay does (free)
+            left = before is not None and (any(before < x <= d for x in away) or (before in away and bool(days[before] & HOSP_DISCHARGE)))      # ... and it is SURE that the patient had left the hospital since: one of our nursing or home visits behind that day, or on that very day behind a discharge visit
+            stays.append({"initial": d, "last": d, "gap": (d - stays[cur]["last"]).days if cur >= 0 else None, "both": non, "out": {},
+                          "away": cur >= 0 and any(stays[cur]["last"] <= x <= d for x in away),      # away (verification): one of our nursing-facility or home visits from the day of the last visit of the stay before up to this day
+                          "left": left, "loose": free is not None and (d - free).days in REHAB_GAP_DAYS and not left})      # loose (verification): a hospital visit that no stay holds 1 or 2 days before this day, and the patient is not known to have left the hospital since
+            holder[(d, True)] = cur + 1; free = None
     for k, s in enumerate(stays):      # the kinds, oldest first: each stay is read against the one before it
         # 11/25/2026 (review): the facility number is the sign of the message that carries it. On the stay's INITIAL visit it makes the stay a rehab stay; on a follow-up alone it
         # does not re-label the stay (until then ONE such follow-up sent the acute admission and the acute follow-ups of its batch to 61) - that visit is kept at 21 (rehab_visit)
@@ -918,53 +1041,90 @@ def hospital_stays(rows, unit_lines=(), chart_rows=(), sent=None, sent_fu=None):
         fu = sorted(f[0] for f in holder if holder[f] == k and not f[1]); built = lambda d: str((sent_fu or {}).get(_fmt_day(d)) or "")
         s["elsewhere"] = [d for d in fu if any(not at_rehab_unit(n) for n in names.get((d, False), ())) or built(d) not in ("", REHAB_POS)]
         s["at61"] = [d for d in fu if any(at_rehab_unit(n) for n in names.get((d, False), ())) or built(d) == REHAB_POS]
+        # ... and (verification) the visits the stay LET GO behind one of our nursing or home visits that already stand on the CHART at another place of service: they reached the
+        # feed before the stay's initial visit. The chart alone - what this run builds for a visit that is in no stay must not move the initial visit of the same file
+        s["let"] = [d for d in sorted(s["out"]) if s["out"][d] == "away" and any(not at_rehab_unit(n) for n in names.get((d, False), ()))]
         # ... and (review) the stay before it SHOWS an acute stay only when it did not begin on a day that carries another hospital code too: that one is entered as an acute stay
         # (the same day is no rehab admission) but may as well be the admission to rehab the same-day rule did not enter - an initial visit after it is never 61 on that
         # ... nor (review) when one of its follow-ups names the rehab unit while its initial visit does not: the patient was in the unit during that "acute" stay
         s["unit"] = any((d, False) in flagged for d in fu)
         # ... nor when it is itself an admission that was entered as before for this reason: what is not shown stays not shown along stays that follow each other within 1 or
         # 2 days (else the stay AFTER a withheld admission would be read as the rehab admission - and send a patient back in the hospital to 61). A break of 3 days or more ends it.
-        near = k > 0 and not s["both"] and s["gap"] in REHAB_GAP_DAYS and stays[k - 1]["kind"] == "acute"; admit = near and stays[k - 1]["shown"]
+        # ... (verification) nor when it holds a visit that stands at HCA REHAB although it is no rehab stay: the initial visit of a rehab stay was voided or changed on the chart
+        # since, or a visit of this stay went in at 61 before its initial visit came - the admission after it is entered as before
+        # ... and (verification) an admission 1 or 2 days after an acute stay is NO rehab admission when one of our nursing-facility or home visits lies between the two (s["away"]):
+        # the patient had left the hospital. That is no withheld sign - it is shown - so the stay it starts shows an acute stay like any other
+        # ... and (verification) an admission 1 or 2 days behind a hospital visit that NO stay holds (s["loose"]: that visit came behind one of our nursing or home visits, past the
+        # days of the stay before it, or with no initial visit of ours before it) is read against no stay: it is entered as before - it may be the admission to the rehab unit behind
+        # an acute stay nobody has in hand - and the stay it starts shows no acute stay, like one whose sign was withheld
+        near = k > 0 and not s["both"] and not s["loose"] and s["gap"] in REHAB_GAP_DAYS and stays[k - 1]["kind"] == "acute"; admit = near and stays[k - 1]["shown"] and not s["away"]
         s["kind"] = "rehab" if (number or admit or s["at_rehab"]) else "acute"; s["sign"] = SIGN_NUMBER if number else SIGN_ADMIT if admit else ""
-        s["shown"] = s["kind"] == "acute" and not s["both"] and not s["unit"] and not near      # this stay SHOWS an acute stay (near and still acute = its own admission sign was withheld)
-        s["note"] = "" if s["kind"] != "acute" else REHAB_NOT_SHOWN if near else REHAB_SAME_DAY if (k > 0 and s["both"]) else ""
+        # ... and (verification) an admission that is kept at the hospital because of one of our nursing or home visits (s["away"]) shows an acute stay only when it is SURE that
+        # the patient had left the hospital (s["left"]): on the very day of the stay's last visit such a visit shows it only behind a discharge visit
+        s["shown"] = s["kind"] == "acute" and not s["both"] and not s["unit"] and not (near and not s["left"]) and not s["loose"] and not s["at61"]      # this stay SHOWS an acute stay (near and still acute while the patient is not known to have left the hospital = its own admission sign was withheld)
+        s["note"] = "" if s["kind"] != "acute" else REHAB_AWAY if (near and s["away"]) else REHAB_NOT_SHOWN if near else REHAB_SAME_DAY if (k > 0 and s["both"]) else REHAB_LOOSE if s["loose"] else ""
     return stays, holder
-def rehab_visit(lines, chart_rows, batch_rows, unit_lines=(), sent=None, sent_fu=None, initials=None):
+def rehab_visit(lines, chart_rows, batch_rows, unit_lines=(), sent=None, sent_fu=None, messages=None, gone=None, said61=None):
     """ONE feed message from the hospital building -> None when it carries no hospital visit line, else {"to61": True when the visit goes in at HCA REHAB with every line at 61,
     "stay": {"kind", "initial", "sign"} for the register row, "why": the words for pos_why ('' for a visit of an acute stay the plain rule explains)} - and, only when there is
-    something to SAY (11/25/2026, review), "said": the words for pos_err of an initial visit that starts a hospital stay one of whose visits already went in at HCA REHAB.
+    something to SAY (11/25/2026, review and verification), "said": the words for pos_err of a visit that goes in as before while other visits of the stay in hand stand at HCA
+    REHAB, "at61": the days of those visits as 'MM/DD/YYYY', and "at61_kind": "hospital" (they belong to the HOSPITAL stay this initial visit starts) or "mixed" (a follow-up
+    that goes in at 21 behind them).
     lines = [(code, 'MM/DD/YYYY')] of EVERY charge line of the message, also the ones already on the chart; chart_rows = the chart's history rows (code, date, facility name);
     batch_rows = this batch's visits of the chart (BATCH_NF) and the lines the same-day rule passed over (SAME_DAY); unit_lines = the lines whose own feed message names the
-    rehab unit (rehab_unit_lines); sent / sent_fu = what this run built for the chart's initial / other hospital visits (hospital_stays); initials = the batch's own messages
-    that carry an initial hospital visit, by day (batch_initial_messages).
+    rehab unit (rehab_unit_lines); sent / sent_fu = what this run built for the chart's initial / other hospital visits (hospital_stays); messages = the batch's own messages
+    that carry a hospital visit line (batch_hospital_messages); gone = the days of initial hospital visits this run could not enter (stay_not_entered); said61 = the days of
+    visits at 61 that a row of an import register has already named (SAID_61) - each day is said ONCE.
     Raises when the message's hospital lines belong to different stays and one of them is a rehab stay: one message is one visit - the caller enters it as before and says so.
     Pure: no AMD call, no file."""
     hosp = [(c, d) for c, d in lines if c in HOSP_VISIT]
     if not hosp: return None
     stays, holder = hospital_stays(list(chart_rows or ()) + list(batch_rows or ()) + hosp, unit_lines, chart_rows, sent, sent_fu)
-    named = {(c, d) for c, d in unit_lines or ()}; out = []; said = ""
+    named = {(c, d) for c, d in unit_lines or ()}; out = []; said = ""; at61 = []; kind61 = ""
+    held = lambda c2, d2: holder.get((_day(d2), c2 in HOSP_INITIAL))
+    new61 = lambda s: [x for x in s["at61"] if _fmt_day(x) not in (said61 or ())]      # the visits of a stay that stand at HCA REHAB and that no row has named yet
     for c, d in hosp:
         k = holder.get((_day(d), c in HOSP_INITIAL))
         if k is not None and stays[k]["kind"] != "rehab" and (c, d) in named and c not in HOSP_INITIAL: k = None      # (review) a follow-up that names the rehab unit while the stay that holds it is no rehab stay: its own stay's initial visit is not in hand
         if k is None:      # in no stay: exactly as before - also when its own message names the rehab unit (nothing shows where that stay began: never 61 on a guess)
+            let = next((s for s in stays if _day(d) in s["out"] and s["kind"] == "rehab"), None)      # (verification) a rehab stay that let this visit go: the row says why it is not a visit of that stay
             out.append((None, {"kind": "rehab", "initial": "", "sign": SIGN_NUMBER}, False, REHAB_WHY % SIGN_NUMBER + " - kept at 21: no initial hospital visit of ours that starts a rehab stay is in hand for it (none within %d days before it, or one that does not name the unit), so nothing shows where its stay began" % STAY_MAX_DAYS)
-                       if (c, d) in named else (None, {"kind": "acute", "initial": "", "sign": ""}, False, ""))
+                       if (c, d) in named else (None, {"kind": "acute", "initial": "", "sign": ""}, False, "" if let is None else REHAB_LEFT if let["out"][_day(d)] == "away" else REHAB_PAST))
             continue
         s = stays[k]; st = {"kind": s["kind"], "initial": _fmt_day(s["initial"]), "sign": s["sign"]}
-        if s["kind"] != "rehab":      # a hospital stay: as before. Its INITIAL visit says so when a visit of the stay already went in at HCA REHAB (it reached the feed first and was read as a visit of the rehab stay before - review)
-            if c in HOSP_INITIAL and s["at61"]: said = REHAB_MIXED % ", ".join(_fmt_day(x) for x in s["at61"])
+        if s["kind"] != "rehab":      # a hospital stay: as before - and SAID, once, when a visit of the stay in hand stands at HCA REHAB
+            _n = new61(s); _w = days_words(_n); _pl = len(_n) > 1
+            if c in HOSP_INITIAL and _n:      # (review) its INITIAL visit: a follow-up of this stay reached the feed first and went in as a visit of the rehab stay before
+                said = REHAB_MIXED % (_w[0], _w[1], "they" if _pl else "it", "s" if _pl else "", "are" if _pl else "is"); at61 = _n; kind61 = "hospital"
+            elif c not in HOSP_INITIAL and _n and s["on_chart"]:      # (verification) a FOLLOW-UP of a stay whose initial visit stands on the chart at the hospital, behind visits at HCA REHAB: the initial visit of a rehab stay was voided or changed since. (An initial visit of this stay that is still to be entered says it itself.)
+                said = REHAB_SPLIT % (_w[0], _w[1], "those visits stand" if _pl else "that visit stands", "them" if _pl else "it", st["initial"], "s" if _pl else "", "are" if _pl else "is"); at61 = _n; kind61 = "mixed"
             out.append((k, st, False, s["note"])); continue
         entered = bool(s["on_chart"]) or (sent or {}).get(st["initial"]) is not None
-        # NO LOOK-BACK, NO MIXING: the visit follows its stay's initial visit - on the chart, else as this run built it. Not entered yet: at 61 - unless (review) another visit of the
-        # stay is already entered at another place of service (it reached the feed before the initial visit): then the WHOLE stay keeps 21, its initial visit included
-        # ... or (review) its initial visit stands in this batch in a message the rule steps aside for - one whose own building cannot be read, or one that carries hospital lines
-        # of another stay too: that message goes in as before, at 21, whichever of the two is read first (until then a follow-up read first went in at 61 ahead of it)
-        aside = (not entered) and c not in HOSP_INITIAL and any((not ok) or any(holder.get((_day(d2), c2 in HOSP_INITIAL)) != k for c2, d2 in hl) for hl, ok in (initials or {}).get(st["initial"], ()))
-        to61 = s["at_rehab"] if entered else not (s["elsewhere"] or aside)
-        out.append((k, st, to61, REHAB_WHY % (s["sign"] or "its initial visit went in at HCA REHAB") if to61 else REHAB_WHY % s["sign"] + (" - kept at 21, where its stay's initial visit went in: a stay is never mixed" if entered else REHAB_LATE if s["elsewhere"] else REHAB_ASIDE)))
-    if all(o[1]["kind"] == "acute" for o in out): return dict({"to61": False, "stay": out[0][1], "why": out[0][3]}, **({"said": said} if said else {}))
+        # NO LOOK-BACK, NO MIXING: the visit follows its stay's initial visit - on the chart, else as this run built it. Not entered yet: at 61 - unless
+        #   (review) another visit of the stay is already entered at another place of service (it reached the feed before the initial visit): then the WHOLE stay keeps 21, its
+        #     initial visit included;
+        #   (review, and for the stay's initial visit too since the verification) a visit of the stay stands in this batch in a message the rule steps aside for - one whose own
+        #     building cannot be read, or one that carries hospital lines of another stay too: that message goes in as before, at 21, whichever of them is read first (until
+        #     then a follow-up read first went in at 61 ahead of such an initial visit, and an initial visit read first went in at 61 ahead of such a follow-up);
+        #   (verification) the stay's initial visit is NOT ENTERED and is not coming either - no message of this batch that the import can enter carries it (a code its table does
+        #     not have; a visit AdvancedMD did not take; a message of an earlier batch): no follow-up goes in at HCA REHAB behind an admission nobody entered. Where a visit of
+        #     the stay already stands at 61 (it was read before the initial visit that then failed), that is SAID once (pos_err).
+        mine = [m for m in (messages or ()) if any(held(c2, d2) == k for c2, d2 in m[0])]      # the batch's own messages that carry a hospital line of this stay
+        aside = (not entered) and any((not m[1]) or any(held(c2, d2) != k for c2, d2 in m[0]) for m in mine)
+        coming = c in HOSP_INITIAL or (st["initial"] not in (gone or ()) and any(m[1] and m[2] and (st["initial"] in [d2 for c2, d2 in m[0] if c2 in HOSP_INITIAL]) and all(held(c2, d2) == k for c2, d2 in m[0]) for m in mine))
+        if entered: to61 = s["at_rehab"]; why = REHAB_WHY % (s["sign"] or "its initial visit went in at HCA REHAB") if to61 else REHAB_WHY % s["sign"] + " - kept at 21, where its stay's initial visit went in: a stay is never mixed"
+        elif aside: to61 = False; why = REHAB_WHY % s["sign"] + REHAB_ASIDE
+        elif not coming:
+            to61 = False; why = REHAB_WHY % s["sign"] + REHAB_NO_INITIAL; _n = [] if s["elsewhere"] else new61(s)
+            if _n: said = REHAB_NO_ADMISSION % (days_words(_n)[0], days_words(_n)[1], st["initial"]); at61 = _n; kind61 = "mixed"
+        elif s["elsewhere"]: to61 = False; why = REHAB_WHY % s["sign"] + REHAB_LATE
+        elif s["let"]: to61 = False; why = REHAB_WHY % s["sign"] + REHAB_LATE_LET      # (verification) hospital visits dated behind the initial visit stand on the chart at 21, behind one of our nursing or home visits: the stay does not hold them, but nothing shows that they are not its visits
+        else: to61 = True; why = REHAB_WHY % (s["sign"] or "its initial visit went in at HCA REHAB")
+        out.append((k, st, to61, why))
+    more = dict({"said": said} if said else {}, **({"at61": [_fmt_day(x) for x in sorted(set(at61))], "at61_kind": kind61} if (said and at61) else {}))
+    if all(o[1]["kind"] == "acute" for o in out): return dict({"to61": False, "stay": out[0][1], "why": out[0][3]}, **more)
     if len({(o[0], o[2]) for o in out}) > 1: raise ValueError("the hospital lines of this message belong to different stays, one of them an inpatient rehab stay")
-    return {"to61": out[0][2], "stay": out[0][1], "why": out[0][3]}
+    return dict({"to61": out[0][2], "stay": out[0][1], "why": out[0][3]}, **more)
 def _line(charge_id, pcode=None, code=None, seen=None):
     """ONE read of one charge's own detail in AdvancedMD -> (state, what):
       'billed'   the charge is live and listed as billed to insurance; what = the dates
@@ -1947,7 +2107,11 @@ def count_pos(info, stats):
     if info.get("pos_err"):
         stats["POS RULE NOT APPLIED (entered at the feed's place of service; %s)" % ("ITS CCM LINE AT 31, not William's rule" if any(_at31) else "a CCM line at 32")] += 1; return
     _kinds = info.get("pos_kind") if isinstance(info.get("pos_kind"), list) else []      # 11/25/2026 (inpatient rehab stays): counted per VISIT - entered at HCA REHAB / 61, or a visit of a rehab stay kept at 21 (the group the monitor compares with)
-    if "rehab" in _kinds: stats[REHAB_61_COUNT] += 1
+    # 11/25/2026 (verification): by what AdvancedMD STORED where the import read it back (pos_stored, one per charge line; a dry run and an answer without it have none - then what was
+    # sent counts, as before). A rehab visit whose stored lines hold no 61 was counted and printed as 'entered at HCA REHAB' while the monitor of the same run said that no visit is at 61.
+    _stored = info.get("pos_stored") if isinstance(info.get("pos_stored"), list) and info.get("pos_stored") else None
+    if "rehab" in _kinds and _stored is not None and REHAB_POS not in [str(x) for x in _stored]: stats[REHAB_61_LOST] += 1
+    elif "rehab" in _kinds: stats[REHAB_61_COUNT] += 1
     elif REHAB_KEPT in _kinds: stats[REHAB_21_COUNT] += 1
     for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
         _c31 = cpt in CCM and str(p) == "31"                # counted above, under the value: never again under a kind or under words that say 32
@@ -2107,21 +2271,24 @@ def build(msg, ctx):
     # (every raw copy of it names that building - never the patient's last-read one) and that carries a hospital visit line is read. A visit of a rehab stay entered under the
     # rule: facility fac67, EVERY charge line 61. A visit of a rehab stay whose initial visit went in at 21: as before, pos_kind rehab-stay-kept-21. An acute stay: as before.
     # Any error = exactly as before (fac29 / 21) with pos_err saying so - the import never stops for this rule and never guesses 61.
-    _stay = None
+    _stay = None; _at61 = None
     if not pos_err and (fac, pos) == REHAB_HOSPITAL and _ag[0] is not None and any(c.get("cpt") in HOSP_VISIT for c in msg["FT1"]):
         try:
             if BATCH_NF_ERR[0]: raise ValueError("the visits of this batch could not be listed (%s)" % BATCH_NF_ERR[0])
             _rv = rehab_visit([(c["cpt"], mdy(c["dos"][:8])) for c in msg["FT1"]], ctx["nfrows"] if "nfrows" in ctx else ctx.get("live") or (), list(BATCH_NF.get(ctx.get("pid"), ())) + list(SAME_DAY.get(ctx.get("pid"), ())),
-                              rehab_unit_lines(fid), ctx.get("stay_sent"), ctx.get("stay_sent_fu"), batch_initial_messages(fid))      # 11/25/2026 (review): with the lines the same-day rule passed over, what this run built for the chart's other hospital visits, and the batch's own messages that carry an initial visit
+                              rehab_unit_lines(fid), ctx.get("stay_sent"), ctx.get("stay_sent_fu"), batch_hospital_messages(fid), ctx.get("stay_gone"), SAID_61.get(ctx.get("pid")))      # 11/25/2026 (review): with the lines the same-day rule passed over, what this run built for the chart's other hospital visits, and the batch's own hospital messages; (verification) the initial visits this run could not enter, and the days at 61 that were named already
             _st = {_k: str(_rv["stay"][_k]) for _k in ("kind", "initial", "sign")}; _rw = [str(_rv["why"])] * len(lines)
             if _rv["to61"] is True and _st["kind"] != "rehab": raise ValueError("an answer that sends an acute stay's visit to 61")
             if _rv["to61"] is True: fac, lpos, lwhy, lkind = REHAB_FAC, [REHAB_POS] * len(lines), _rw, ["rehab"] * len(lines)
             elif _st["kind"] == "rehab": lwhy, lkind = _rw, [REHAB_KEPT] * len(lines)
             elif _rv["why"]: lwhy = _rw      # (review) a hospital stay the plain rule does not explain: entered as before, with the words why
             _stay = _st
-            if _rv.get("said"): pos_err = str(_rv["said"])      # (review) entered as a hospital visit, as before - and SAID: a visit of this hospital stay already went in at HCA REHAB (REHAB_MIXED)
+            if _rv.get("said") and _rv["to61"] is not True:      # (review, verification) entered as before - and SAID: other visits of the stay in hand stand at HCA REHAB (REHAB_MIXED / REHAB_SPLIT / REHAB_NO_ADMISSION)
+                pos_err = str(_rv["said"]); _d61 = [str(x) for x in (_rv.get("at61") or []) if _mdy_day(x) is not None]
+                if _d61:      # the days it names go into the row as a list of their own - and are not named again, by this run or by a later one
+                    _at61 = ("hospital_at61" if _rv.get("at61_kind") == "hospital" else "mixed_at61", _d61); SAID_61.setdefault(ctx.get("pid"), set()).update(_d61)
         except Exception as e:      # whatever was set above is taken back: facility, place of service, reason and kind exactly as before the rule
-            fac, lpos, lwhy, lkind, _stay = REHAB_HOSPITAL[0], [pos] * len(lines), ["rule error"] * len(lines), [""] * len(lines), None
+            fac, lpos, lwhy, lkind, _stay, _at61 = REHAB_HOSPITAL[0], [pos] * len(lines), ["rule error"] * len(lines), [""] * len(lines), None, None
             pos_err = "inpatient rehab stay not worked out (%s) - entered as before (fac29 / 21); for William" % (str(e)[:110] or type(e).__name__)
     for _c, _p in zip(lines, lpos):      # what this run built for a hospital visit of the chart - an initial one: its follow-ups later in the run follow it; any other (review): the stay's late initial visit never goes in at another place (a stay is never mixed)
         if _c["cpt"] in HOSP_VISIT: ctx.setdefault("stay_sent" if _c["cpt"] in HOSP_INITIAL else "stay_sent_fu", {})[mdy(_c["dos"][:8])] = _p
@@ -2213,6 +2380,9 @@ def build(msg, ctx):
                             **({"feed_building": " ".join(str(facname).split())[:80]} if (not fac and str(facname or "").strip()) else {}),
                             **({"no_mod25": no_mod25} if no_mod25 else {}),      # 11/25/2026 (William, Humana): the codes of this visit left WITHOUT modifier 25 because Humana is the chart's first plan
                             **({"stay": _stay} if _stay else {}),      # 11/25/2026 (inpatient rehab stays): the stay of a hospital visit from the hospital building - kind rehab | acute, the date of its initial visit ('' when none is in hand), the sign that showed a rehab stay
+                            # 11/25/2026 (verification): the days its pos_err names, 'MM/DD/YYYY'. hospital_at61 = visits that stand at HCA REHAB / 61 and belong to the HOSPITAL stay this initial
+                            # visit starts (pos61_monitor.py takes them out of the rehab visits at 61); mixed_at61 = visits at 61 behind which this follow-up went in at 21. Only on a row that says it
+                            **({_at61[0]: _at61[1]} if _at61 else {}),
                             **({"prof_feed": prof_feed, "prof_why": INITIAL_WHY} if prof_feed else {"prof_why": INITIAL_WHY} if (initial and npi not in PROFILE) else {}),
                             **({"msg_fallback": _fbw} if (own is None and _fbw) else {}), **({"tie_lines": visit_lines(msg, _tb)} if len(_tb) > 1 else {}),
                             **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8]), "quality_pos": lpos[qi]} if qchg else
@@ -2243,6 +2413,9 @@ def main():
             for r in (_rows if isinstance(_rows, list) else []):
                 try: _lns = r.get("lines" if _k != "created" else "tie_lines"); _rp = r.get("pid")      # a created row keeps "tie_lines" when the feed sent its message from two buildings (review C1)
                 except Exception: continue
+                # 11/25/2026 (verification): the days of visits at HCA REHAB / 61 that this row NAMED for William (its pos_err) - no later row names them again. Entry by entry: an odd one is passed over
+                for _d in ([x for _f in ("hospital_at61", "mixed_at61") for x in (r.get(_f) if isinstance(r.get(_f), list) else [])] if _k == "created" else []):
+                    if isinstance(_rp, str) and _rp and isinstance(_d, str) and _mdy_day(_d) is not None: SAID_61.setdefault(_rp, set()).add(_d)
                 for _ln in (_lns if isinstance(_lns, list) else []):
                     if isinstance(_ln, (list, tuple)): prior_seen.append((_rp, list(_ln)))
         # 11/25/2026 (inpatient rehab stays, review): the hospital visit lines that run passed over under the same-day rule (its "same_day": chart -> [[code, DOS]]) are read by
@@ -2393,7 +2566,7 @@ def main():
         # per-message guard below): the ingest ended 'STEP FAILED: import', the file was not registered, and every later run read it again and stopped at the same
         # message. There is nothing to enter in such a message: it is passed over and counted, and the messages after it go in. Where a feed id exists ONE skipped
         # row with the plain reason is kept (never twice; never a reason to pass the patient over - see the same-stamp rule above).
-        fid = msg.get("pid") if isinstance(msg, dict) else None; _prov[0] = None
+        fid = msg.get("pid") if isinstance(msg, dict) else None; _prov[0] = None; _built = None      # _built (verification): the chart and the lines of a visit this run built and has not seen stored yet
         if one and fid != one: continue
         if fid is None: stats[NO_PID_WHY] += 1; continue
         if not msg.get("FT1"):
@@ -2432,8 +2605,10 @@ def main():
             body, info = build(msg, ctx)
             if body is None:
                 stats["skip: " + info] += 1
+                if info != "all lines already in AMD": stay_not_entered(ctx, [(c["cpt"], mdy(c["dos"][:8])) for c in msg["FT1"]])      # (verification) an initial hospital visit the import could not build is NOT entered: no follow-up of its stay goes in at 61 behind it
                 reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **({} if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue
             n += 1
+            if not dry: _built = (ctx, list(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))))      # a dry run sends nothing: what it built stands as what a live run would enter
             if info.get("dob_note"): _dobs.setdefault(pid, set()).add(info["dob_note"])      # for the BIRTH DATES line; the row itself carries the words
             if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
             if info.get("msg_own") is False and not info.get("pos_err"): print("POS CHECK not own message", pid, info["dos"], info["cpts"], "the raw files gave no single answer for this message - where its copies differ: %s; for William" % (info.get("msg_fallback") or "the patient's last-read values"))
@@ -2451,7 +2626,7 @@ def main():
             r0 = amd.post(create, timeout=120)
             vm = re.search(r'<visit id="(vst\d+)"', r0)
             if not vm:
-                quality_undo(info, pid, fid); mvp_undo(info)
+                quality_undo(info, pid, fid); mvp_undo(info); stay_not_entered(*_built); _built = None      # (verification) not entered: what build() noted of it for the stay rule is taken back
                 stats["FAULT create"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "err": "addvisit: " + re.sub(r"\s+", " ", r0[:500])})
                 print("FAULT addvisit", pid, info["dos"], re.sub(r"\s+", " ", r0[:200])); json.dump(reg, open(REG, "w"), indent=1); continue
             if info.get("quality_codes"):      # the provisional row (see above), written before the call that carries the line
@@ -2546,9 +2721,11 @@ def main():
                     QUALITY["off"] = QUALITY["off"] or "this run: AdvancedMD refused a visit that carried the code"
                     stats["QUALITY CODE NOT ACCEPTED by AdvancedMD - the visit was entered without it"] += 1; print("QUALITY CODE REFUSED", pid, info["dos"], _why[:160])
             if "Fault" in r or 'success="0"' in r:
+                stay_not_entered(*_built); _built = None      # (verification) AdvancedMD did not take the visit: nothing of it stands on the chart - the stay rule of this run no longer counts it as built
                 stats["FAULT"] += 1; _unprov(); reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "err": re.sub(r"\s+", " ", r[:600])})
                 print("FAULT", pid, info["dos"], info["cpts"], re.sub(r"\s+", " ", r[:300]))
             else:
+                _built = None      # stored: what build() noted of this visit for the stay rule stands, whatever happens to the calls behind it
                 vid = re.search(r'<visit id="(vst\d+)"', r); cids = re.findall(r'<charge id="(charge\d+)"', r)
                 fees = re.findall(r'<charge [^>]* fee="([^"]*)"', r)
                 # what AdvancedMD stored: its answer echoes the charges - compare their place of service with what was sent (any order).
@@ -2628,6 +2805,7 @@ def main():
             json.dump(reg, open(REG, "w"), indent=1)
             time.sleep(0.6)
         except Exception as e:
+            if _built: stay_not_entered(*_built)      # (verification) a call that ended in an error before the visit was seen stored: nobody knows whether AdvancedMD kept it - for the stay rule it is NOT entered (the safe side: the rest of its stay goes in as before)
             stats["error"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "lines": seen_lines(msg), "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
             if not dry: json.dump(reg, open(REG, "w"), indent=1)      # a dry run writes nothing (see the date-of-death skip above)
         if n % 25 == 0 and n: print("progress", n, dict(stats))

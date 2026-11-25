@@ -24,6 +24,9 @@
 #       the top - not an 'earlier denial' of a paid one; and a field that is not what it says carries nothing in: the sign of a stay is one
 #       of the import's two, an id is the import's own, a carrier code has at most eight characters, a register is known by its stamp;
 #     - a line is said from the day the monitor first sees the visit denied or paid low - whatever date AdvancedMD gives the payment;
+#     - (verification of the pull request, 11/25/2026) a HOSPITAL visit that stands at 61 - the import named it when its stay's initial
+#       visit reached the feed (the row's list hospital_at61) - is not counted among the rehab visits at 61, has a line of its own, and
+#       a denial of it is worded as a visit to correct, never as the payer's answer to 'keep 61 or go back to 21' (section 13);
 #     - the register registers/pos61_monitor.json holds chart ids, visit ids, dates of service, codes, carrier codes, reason codes and
 #       dollars - never a name, a birth date or a member number, also when AdvancedMD's answer and an error's own words carry them.
 # Run: python3 tools/selftest/test_pos61_monitor.py   (exit 1 on any failure)
@@ -846,6 +849,58 @@ check("12 an import register is known by the stamp in its file name: one named o
 check("12 a carrier code is at most eight letters and digits: a plan number or a long word in that field is left out (the denial is still seen, the line says 'carrier not named'); the practice's codes pass",
       lambda: row(reg12, "vst7305")["state"] == "denied" and "carrier" not in row(reg12, "vst7305") and "carrier not named" in line(out12, "TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: vst7305")
       and [M.carrier_code(x) for x in ("FLO02", "MCAD", "UHCMA", "AAR01", "VACCN", "BCBS", MEM_S, LAST_S, MBI_S, "A", "FLO 02", "", None)] == ["FLO02", "MCAD", "UHCMA", "AAR01", "VACCN", "BCBS", "", "", "", "", "", "", ""], lambda: (row(reg12, "vst7305"), tops(out12)))
+
+# ==== 13. a HOSPITAL visit that stands at 61 (verification of the pull request, 11/25/2026) ============================================================
+# A follow-up of a NEW hospital stay can go in at HCA REHAB / 61 before that stay's initial visit reaches the feed - for everything in hand it is a visit of the
+# rehab stay before it. When the initial visit comes the import says so on its row (pos_err 'PLACE OF SERVICE 61 on <day> belongs to this HOSPITAL stay ...') and
+# names the days in the row's list hospital_at61. The monitor never read that: it counted the hospital visit in 'REHAB AT 61', put its payment or its denial into
+# the numbers William asked for, and printed a denial of it - which is what a hospital visit billed at the rehab unit is likely to get - as 'PLACE OF SERVICE 61
+# DENIED ... keep 61 or go back to 21 for this payer?'. The payer did not answer a rehab visit at 61, and the line did not say that the import had already named
+# the visit as one to correct. Every chart, visit and date below is invented.
+def late_initial(visit, chart, dos, days):
+    """The row of a hospital stay's initial visit that reached the feed late: entered at the hospital / 21, with the import's words and its list of the days of that stay's visits that stand at 61."""
+    return dict(acute(visit, chart, dos, ["99223"]), pos_err="PLACE OF SERVICE 61 on %s belongs to this HOSPITAL stay - it went in at HCA REHAB before the stay's initial visit (this one) reached the feed" % days[0], hospital_at61=list(days))
+REG13A = {"created": [rehab("vst7401", "pat9401", "11/11/2026", ["99223"], "11/11/2026"), rehab("vst7402", "pat9401", "11/12/2026", ["99233"], "11/11/2026"),
+                      rehab("vst7403", "pat9401", "11/16/2026", ["99233"], "11/11/2026"),      # the hospital follow-up that went in at 61, read as a visit of the rehab stay before it
+                      rehab("vst7406", "pat9402", "11/16/2026", ["99233"], "11/12/2026"),      # another chart's rehab visit of that same day
+                      rehab("vst7407", "pat9403", "11/20/2026", ["99233"], "11/18/2026"), rehab("vst7409", "pat9404", "11/21/2026", ["99233"], "11/19/2026")], "skipped": [], "failed": []}
+REG13B = {"created": [late_initial("vst7404", "pat9401", "11/15/2026", ["11/16/2026"]), acute("vst7405", "pat9401", "11/17/2026", ["99233"]),
+                      dict(acute("vst7408", "pat9403", "11/21/2026", ["99233"]), pos_err="PLACE OF SERVICE 61 on 11/20/2026, 21 here: the stay is MIXED", mixed_at61=["11/20/2026"]),      # a follow-up that went in at 21 behind a visit at 61: nothing says that the visit at 61 is a hospital visit
+                      late_initial("vst7410", "pat9404", "11/20/2026", ["11/22/2026", "not a day", 7, None, "11/21/2026", NAME_S])], "skipped": [], "failed": []}      # a list with odd entries beside a good one, and a day no visit stands on
+def fill13():
+    HIST.clear(); HIST.update({
+        "7401": [chg("74010", "99223", "310.00", "11/28/2026", [pay("-142.10", "12/10/2026", reasons=[CO45])])], "7402": [chg("74020", "99233", "160.00", "11/28/2026", [pay("-86.00", "12/10/2026", reasons=[("CO45", "74.00")])])],
+        "7403": [chg("74030", "99233", "160.00", "11/28/2026", [pay("0.00", "12/09/2026", reasons=[("CO58", "160.00")])], ins="160.00")],      # the hospital visit billed at the rehab unit: denied for its place of service
+        "7406": [chg("74060", "99233", "160.00", "11/28/2026", [pay("-88.00", "12/10/2026", reasons=[("CO45", "72.00")])])], "7407": [chg("74070", "99233", "160.00", "11/28/2026", [pay("-90.00", "12/10/2026", reasons=[("CO45", "70.00")])])],
+        "7409": [chg("74090", "99233", "160.00", "11/28/2026", [pay("-84.00", "12/10/2026", reasons=[("CO45", "76.00")])])]})
+fill13(); W13 = workspace("hosp61", {"20261117T1240Z": REG13A, "20261118T1240Z": REG13B}); rc13, out13, reg13, calls13 = run(W13)
+H61 = "hospital at 61"; TOP13 = "TOP OF THE REPORT - HOSPITAL VISIT AT PLACE OF SERVICE 61 DENIED: vst7403 pat9401 service date 11/16/2026 99233 carrier FLO02 denied 12/09/2026 with CO-58, balance $160.00"
+check("13 a hospital visit the import named as standing at 61 (hospital_at61 on the row of its stay's late initial visit) is NOT counted among the rehab visits at 61 - 'REHAB AT 61' counts the four rehab visits, all paid, none denied; "
+      "another chart's rehab visit of the same day, and a visit at 61 that a row only calls mixed (mixed_at61), stay rehab visits",
+      lambda: rc13 == 0 and line(out13, "REHAB AT 61:").startswith("REHAB AT 61: 4 visit(s) entered; 4 billed; 4 paid ($406.10, average $142.10 per initial visit - " + BASE + "); 0 denied;")
+      and [row(reg13, v).get("group") for v in ("vst7401", "vst7402", "vst7403", "vst7406", "vst7407", "vst7409")] == ["61", "61", H61, "61", "61", H61] and reg13["counts"]["at 61"]["entered"] == 4 and reg13["counts"]["at 61"]["denied"] == 0,
+      lambda: (rc13, out13, [row(reg13, v).get("group") for v in ("vst7401", "vst7402", "vst7403", "vst7406", "vst7407", "vst7409")]))
+check("13 ... it is still read - one read of its own history, like every visit - and it has a line of its own that says what it is, that the import named it, and that William corrects the visit: both such visits by visit, chart, date of service and what the payer answered",
+      lambda: {"7403", "7409"} <= set(reads(calls13)) and len(reads(calls13)) == 6 and line(out13, "REHAB MONITOR: 2 visit(s) at 61 belong to a HOSPITAL stay") != ""
+      and all(w in line(out13, "REHAB MONITOR: 2 visit(s) at 61 belong to a HOSPITAL stay") for w in ("the import said so", "not counted above", "William corrects", "vst7403 pat9401 service date 11/16/2026 (denied)", "vst7409 pat9404 service date 11/21/2026 (paid)")),
+      lambda: (reads(calls13), [l for l in out13 if l.startswith("REHAB MONITOR")]))
+check("13 a DENIAL of such a visit goes to the top of the report as a visit to correct - with the payer's own codes and the balance - and NOT as the payer's answer to a rehab visit at 61: no 'PLACE OF SERVICE 61 DENIED' line for it, and nobody is asked 'keep 61 or go back to 21 for this payer?'",
+      lambda: tops(out13) == [l for l in tops(out13) if l.startswith(TOP13)] and len(tops(out13)) == 1 and QUESTION not in tops(out13)[0] and "keep 61" not in tops(out13)[0].replace("'keep 61 or go back to 21'", "") and "belongs to a hospital stay" in tops(out13)[0]
+      and "for William" in tops(out13)[0] and "correct the visit" in tops(out13)[0] and reg13["top"] == tops(out13), lambda: tops(out13))
+check("13 its payment is not in the dollars per code either, and the register says for each such visit which batch's import register named it (a stamp, nothing else) and keeps the group's own numbers",
+      lambda: "99233 $88.00 x3" in line(out13, "REHAB PAID PER CODE") and row(reg13, "vst7403").get("named") == "20261118T1240Z" and row(reg13, "vst7409").get("named") == "20261118T1240Z" and "named" not in row(reg13, "vst7401")
+      and (reg13["counts"]["hospital visits at 61"]["entered"], reg13["counts"]["hospital visits at 61"]["paid"], reg13["counts"]["hospital visits at 61"]["denied"]) == (2, 1, 1) and row(reg13, "vst7403")["state"] == "denied" and row(reg13, "vst7409")["state"] == "paid",
+      lambda: (line(out13, "REHAB PAID PER CODE"), row(reg13, "vst7403"), reg13["counts"].get("hospital visits at 61")))
+check("13 only a real day of that chart is taken from the list: an odd entry, a day no visit of the chart stands on and a name carry nothing in - nothing of them is written or printed, and no visit of another chart is touched",
+      lambda: row(reg13, "vst7406")["group"] == "61" and not any(NAME_S in l for l in out13) and NAME_S not in json.dumps(reg13) and "not a day" not in json.dumps(reg13) and len(reg13["visits"]) == 6, lambda: (row(reg13, "vst7406"), len(reg13["visits"])))
+rc13b, out13b, reg13b, calls13b = run(W13, today="2027-01-25")
+check("13 the line of that denied visit is said again in every later run for as long as the visit carries a balance - also five weeks on - like every denied visit; and without the import's word the same registers read as before (five visits at 61, one of them denied, William asked about the payer)",
+      lambda: rc13b == 0 and len(tops(out13b)) == 1 and tops(out13b)[0].startswith(TOP13) and row(reg13b, "vst7403").get("since") == "12/20/2026"
+      and (lambda r: r[0] == 0 and line(r[1], "REHAB AT 61:").startswith("REHAB AT 61: 6 visit(s) entered; 6 billed; 5 paid") and len(tops(r[1])) == 1 and tops(r[1])[0].startswith("TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: vst7403") and tops(r[1])[0].endswith(QUESTION))(
+          run(workspace("hosp61_noword", {"20261117T1240Z": REG13A, "20261118T1240Z": {"created": [dict(r, hospital_at61=None) for r in REG13B["created"]], "skipped": [], "failed": []}}))),
+      lambda: (tops(out13b), row(reg13b, "vst7403")))
+check("13 the helper's header says it: what such a visit is, where the monitor reads it, and what it prints for it",
+      lambda: all(w in SRC.split("\nimport ", 1)[0] for w in ("hospital_at61", "HOSPITAL VISIT AT PLACE OF SERVICE 61 DENIED", "belong to a HOSPITAL stay")), lambda: [w for w in ("hospital_at61", "HOSPITAL VISIT AT PLACE OF SERVICE 61 DENIED", "belong to a HOSPITAL stay") if w not in SRC.split("\nimport ", 1)[0]])
 
 shutil.rmtree(TMP, ignore_errors=True)
 print("\n%d check(s): %d ok, %d FAILED" % (OKS[0] + len(FAILS), OKS[0], len(FAILS)) + ("" if not FAILS else " - " + "; ".join(n[:60] for n in FAILS[:8]) + (" ..." if len(FAILS) > 8 else "")))

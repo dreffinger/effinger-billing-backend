@@ -87,7 +87,7 @@
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
 import re, datetime, unicodedata
-IDENTITY_RULE_VERSION = "2026-11-25.2"      # (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number) the match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
+IDENTITY_RULE_VERSION = "2026-11-25.3"      # (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number) the match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
 NO_DOB_MDY = "01/01/1900"                   # what a NEW chart is written with when Claimocity sent no usable date - never an empty one
 CHART_TRIES = 200                           # how many chart numbers the new-chart step may take for one patient
 SUFFIXES = ("JR", "SR", "II", "III", "IV", "V")

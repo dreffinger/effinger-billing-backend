@@ -131,9 +131,9 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (.3 - William the same day: inpatient rehab goes out at place of service 61; a feed patient with a wrong birth date goes to the chart he already has): the
              # import enters a rehab stay at HCA REHAB / 61, notes the feed's birth date against the chart's and asks for a message's chart by its own Claimocity id; the report says
              # all three - a copy from before must not come back over either
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.3"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.3"',
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.4"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.4"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.3"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.3"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.4"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.4"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
@@ -148,16 +148,16 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # building to HCA REHAB at 31 - his word of 10/31: wrong) and never bypasses a place-of-service edit on a visit entered at 61; a copy from before moves visits again - its
              # marker is now a sentence only that version has (it still carries the Pattern 692 rule and the retry pass). The insurance check asks its paid look-up with the CHART's own
              # name and birth date (a feed patient with a wrong birth date): a copy from before asks with Claimocity's - its marker is now that sentence (it still carries the list rule)
-             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "the paid look-up is bought only for a chart that is KNOWN to be the feed's patient",
+             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "KNOWN ALSO MEANS PROVEN BY A NUMBER",
              # the same word for the insurance intake of existing charts, and the three steps of the identity rule with the rule itself (feed_identity.py): they only work together -
              # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
-             "feed_in1_intake.py": "nothing of the feed's insurance is asked about or entered while nobody knows that the chart is the feed's patient",
+             "feed_in1_intake.py": "A NUMBER IN COMMON MAKES THE CHART KNOWN TOO",
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
              "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.2"',
+             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.3"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
-             "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.3"',
+             "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it
              # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
              # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out
@@ -187,7 +187,11 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (William: "is stedi able to do that for free?"): the guard asks AdvancedMD's free eligibility check before it buys a vendor answer, and finds the
              # workspace's own cache; a workspace copy from before buys an answer for every check and can start with an empty cache - it must not come back over the new
              # one. The marker is the COUNTS line only the new guard has (until that day: "stedi.medicare(", which the old guard holds too).
-             "deceased_guard.py": 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"',
+             # 11/25/2026 (the rounds after the independent checks of the date-of-death work): the guard's marker is a line only the guard of those rounds has (it
+             # keeps a death for good, reads a day in every shape, raises DayLost) - the line of before also stood in older guards; the Drive copy helper keeps the
+             # earlier of two days and never lets a 'no death' note replace a death on record; the modifier-25 helper leaves the 99489 add-on alone for Humana
+             "dg_drive.py": 'new = day(dod); have = day(cur.get("dod"))', "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
+             "deceased_guard.py": 'def covered(pid, dos):', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"',
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the
@@ -199,7 +203,8 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
 # 11/25/2026 (the verification): a SECOND sentence a workspace copy must carry as well, for a helper whose marker above also stands in an older copy.
 # The shared helper list grew that day from 8 to 17 helpers (the identity rule's steps travel with the others) and its marker stayed the same: an
 # older copy with a fresher file time went back over the repository's, and nothing made the identity rule's helpers current in a workspace any more.
-PROTECTED_ALSO = {"claimocity_helpers_current.py": "SINCE 11/25/2026 THE PARSER CARRIES A SENTENCE OF ITS OWN TOO"}
+PROTECTED_ALSO = {"claimocity_helpers_current.py": "SINCE 11/25/2026 THE PARSER CARRIES A SENTENCE OF ITS OWN TOO",
+                  "feed_order_sweep.py": "DEATH_UNCHECKED = "}      # the sweep that refuses ONE visit when the date of death could not be checked and goes on (a copy from before stops at that chart)
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)

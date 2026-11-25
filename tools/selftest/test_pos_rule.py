@@ -40,7 +40,16 @@
 #       'INPATIENT REHAB STAYS AT PLACE OF SERVICE 61'); and, after the review of 11/25/2026, the same feed over SEVERAL runs against a chart the
 #       stand-in keeps between them: a stay is never 61 beside 21 because its initial visit came late or the messages stood in another order,
 #       a hospital code the same-day rule passes over is still read by every later run, the unit's number moves only the stay of the message
-#       that carries it on its initial visit, and the inspector step reads both listings (the sub-section 'review of the rule');
+#       that carries it on its initial visit, and the inspector step reads both listings (the sub-section 'review of the rule'); and, after
+#       the independent verification of 11/25/2026: our own nursing-facility or home visit between two hospital stays makes the next initial
+#       visit a hospital admission and ends a stay, a stay that goes on is not cut at its 46th day, no follow-up goes in at 61 behind an
+#       initial visit that was not entered, a visit that goes in at 21 behind visits at 61 says so once, the sentence about a hospital stay
+#       with visits at 61 says what matters in its first 70 characters, and the counters go by what AdvancedMD stored (the sub-section 'the
+#       independent verification');
+#     - (William 11/25/2026: "yes try that") the 99489 add-on of a chart whose first plan in the chart's OWN billing order is Humana goes in
+#       without modifier 25 - a chart with no billing order is entered with it, as before - and the helper of the standing CCM / modifier-25
+#       gate (mod25_addon.py) follows the same rule, read from the import's own two lines: it never puts the modifier back on such a line
+#       (section 3 and the section 'NO MODIFIER 25 ON THE 99489 ADD-ON FOR HUMANA');
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
 #       whose first plan is Medicare Part B and whose last insurance check showed Medicare first - never on a care-management-only message,
@@ -334,8 +343,10 @@ check("build: fees unchanged (206.00 / 109.00)", 'fee="206.00"' in body and 'fee
 # William 11/25/2026 (asked 'Should I stop putting 25 on 99489 for Humana and re-send the ones still inside the filing limit?': "yes try that"): Humana answered CO-4 (the code is
 # inconsistent with the modifier) on 24 care-management add-on lines that carried modifier 25 in 2026 and on none of its 99489 lines without it. The add-on line of a chart whose FIRST plan in
 # billing order is a Humana plan goes in without the modifier; every other payer, and the 99497 line, as before.
-def built_ctx(fid, lines, **more):
-    c_ = ctx(); c_.update(more); out, info = ci.build(msg(fid, lines), c_)
+def built_ctx(fid, lines, **more):      # insorder = the chart's billing order. chart_ctx hands it over twice: as the order the create call carries (a stand-in "1" when the chart has none) and as chart_insorder, what the chart itself says - the one this rule reads (11/25/2026, review); a call that names chart_insorder says the two apart
+    c_ = ctx(); c_.update(more)
+    if "insorder" in more and "chart_insorder" not in more: c_["chart_insorder"] = more["insorder"]
+    out, info = ci.build(msg(fid, lines), c_)
     return (None, info) if out is None else (out[1], info)
 _H1 = ("ins7", "car6285", "01/01/2020", "", "1"); _HMA = ("ins8", "car302851", "01/01/2020", "", "1"); _M1 = ("ins1", "car6085", "01/01/2020", "", "1"); _M2 = ("ins1", "car6085", "01/01/2020", "", "2"); _H2 = ("ins7", "car6285", "01/01/2020", "", "2")
 _CCM2 = [("99487", "20261031"), ("99489", "20261031")]; _m25 = lambda b_: (b_.count('modcodes="mcode7"'), b_.count('modcodes=""'))
@@ -354,6 +365,26 @@ _hb, _hi = built_ctx("n1", [("99309", "20261102"), ("99497", "20261102")], plans
 check("build (Humana): ... the rule is for the 99489 add-on only: a 99497 beside a visit keeps its modifier 25 on a Humana chart", _hb is not None and _hb.count('modcodes="mcode7"') == 1 and "no_mod25" not in _hi, _hb and _m25(_hb))
 _odd = [built_ctx("n1", _CCM2, plans=x_, insorder=o_) for x_, o_ in ((None, "1"), ("car6285", "1"), ([("ins7", "car6285")], "1"), ([_H1], None), ([_H1], ""), ([7, None, _M1], "1"), ([_H1], ["1"]))]
 check("build (Humana): ... plan rows or a billing order that cannot be read never stop a visit and never take the modifier off - the visit is built as before", all(b_ is not None and _m25(b_) == (1, 1) for b_, _i in _odd), [(_i if b_ is None else _m25(b_)) for b_, _i in _odd])
+# 11/25/2026 (review): the order this rule reads is the CHART's own. A chart with plans but no billing order gets its new visit created with the order "1" - the import's stand-in for the
+# create call. Read as the chart's first plan, that "1" took the modifier off a chart whose plan numbered 1 happened to be Humana, although nothing said that Humana is billed first.
+_hb, _hi = built_ctx("n1", _CCM2, plans=[_H1, _M2], insorder="1", chart_insorder="")
+check("build (Humana, review): a chart that has plans but NO billing order of its own - the '1' its new visit is created with is the import's stand-in, never the chart's first plan: the 99489 keeps its modifier 25 as before although the plan numbered 1 is Humana, and the row carries no no_mod25",
+      _hb is not None and _m25(_hb) == (1, 1) and "no_mod25" not in _hi, (_hb and _m25(_hb), _hi.get("no_mod25") if isinstance(_hi, dict) else _hi))
+_odd2 = [built_ctx("n1", _CCM2, plans=[_H1, _M2], insorder="1", chart_insorder=o_) for o_ in (None, " ", ["1"], 1)] + [(lambda r_: (None, r_[1]) if r_[0] is None else (r_[0][1], r_[1]))(ci.build(msg("n1", _CCM2), dict(ctx(), plans=[_H1, _M2])))]
+check("build (Humana, review): ... the same when the chart could not be read (its order is not known), when its order is blank or is no text, and for a chart context that names no order of the chart at all - built as before; the modifier never comes off on the stand-in's word",
+      all(b_ is not None and _m25(b_) == (1, 1) and "no_mod25" not in i_ for b_, i_ in _odd2), [(i_ if b_ is None else (_m25(b_), i_.get("no_mod25"))) for b_, i_ in _odd2])
+_HUMX = '<insplan id="ins7" carrier="car6285" begindate="01/01/2020" enddate="" x="" sequence="1"/>'; _MEDX = '<insplan id="ins1" carrier="car6085" begindate="01/01/2020" enddate="" x="" sequence="2"/>'
+def _hum_chart(order_):
+    """build() of the CCM message on the chart as chart_ctx READS it from the stand-in AdvancedMD: its own billing order `order_` and two plans - Humana numbered 1, Medicare numbered 2
+    -> (the order the create call carries, the chart's own order as kept, (lines with modifier 25, lines without) or the skip reason, the row's no_mod25)."""
+    _d0 = dict(DEMOG); DEMOG.update(order=order_, plans=_HUMX + _MEDX); ci._ctx.pop("pat9", None)
+    try: c_ = dict(ci.chart_ctx("pat9"), pid="pat9")
+    finally: DEMOG.clear(); DEMOG.update(_d0); ci._ctx.pop("pat9", None)
+    o_, i_ = ci.build(msg("n1", _CCM2), c_)
+    return c_.get("insorder"), c_.get("chart_insorder"), (i_ if o_ is None else _m25(o_[1])), (i_.get("no_mod25") if isinstance(i_, dict) else None)
+check("build (Humana, review - the chart as the import reads it): AdvancedMD answers NO billing order for a chart whose plan 1 is Humana - the visit is still created with order '1' as before, the chart's own order is kept as empty, and the 99489 goes in WITH modifier 25; "
+      "the same chart with the billing order 1,2 (Humana first) goes in without it, and with 2,1 (Medicare first) with it",
+      _hum_chart("") == ("1", "", (1, 1), None) and _hum_chart("1,2") == ("1,2", "1,2", (0, 2), ["99489"]) and _hum_chart("2,1") == ("2,1", "2,1", (1, 1), None), (_hum_chart(""), _hum_chart("1,2"), _hum_chart("2,1")))
 _cj = json.load(open(os.path.join(ROOT, "practices", "ehpa", "carriers.json")))
 check("build (Humana): the two carrier ids are the practice's Humana records in carriers.json (HUM01 and the Gold Plus plan), and the import's header states the rule in William's words",
       getattr(ci, "HUMANA", None) == {"car6285", "car302851"} and all("HUMANA" in " ".join(str(x_) for x_ in _cj.get(c_, [])).upper() for c_ in ci.HUMANA) and "yes try that" in open(HELPER).read().split("\nimport os as _os")[0], (getattr(ci, "HUMANA", None),))
@@ -3369,7 +3400,7 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.3 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule, .3 rehab at 61 and the chart's own birth date; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.4 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule, .3 rehab at 61 and the chart's own birth date, .4 the fixes after the independent verification; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
       ("grep -c '%s'" % ver) in _STEP1 and '2026-11-10.8"' not in step and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
@@ -4504,6 +4535,112 @@ _scan = {"inspector": {"1": [{"vid": "301", "errs": [["e1", E_692["text"], "7707
                              {"vid": "305", "errs": []}]}}
 check("new admission: the engine's report sorts a visit the sweep's way - 692 alone and 4311 alone are advisories (not 'waiting for William'); 692 beside a data edit, an edit that only CONTAINS the digits 692 (the M0004 procedure id, a claim number) and a visit with no edit text are not",
       RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)) == {"advisory": ["v301", "v303"], "missing data / dx": ["v302", "v304", "v305"]}, RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)))
+# ---- NO MODIFIER 25 ON THE 99489 ADD-ON FOR HUMANA: the standing CCM / modifier-25 gate follows the import's rule (William 11/25/2026: "yes try that") ------------
+# The import leaves the modifier off the add-on of a chart whose first plan in billing order is Humana (section 3). Right after the feed step the scheduled runs apply a standing gate -
+# the add-on 99489 "gets modifier 25 = mcode7" - and the gate's own helper, mod25_addon.py, added mcode7 to ANY 99489 it was given: the gate put back what the import had just left
+# off, and Humana would have denied the line again (CO-4; 24 such lines in 2026). The helper now follows the import's rule, read from the import's own two lines. It is run INSIDE this
+# process with stand-ins, like every helper that talks to AdvancedMD, and the full-visit save it calls is the REAL recode._save, loaded with the same stand-ins. The chart, the visit
+# and the two charges below are invented.
+M25_HELPER = os.path.join(ROOT, "scripts", "helpers", "mod25_addon.py"); m25d = tempfile.mkdtemp(prefix="posrule_m25_", dir=tmp)
+M25 = {}      # the stand-in visit: its two charges' procedure ids and modifiers, its insurance-order list [(ordinal, sequence, carrier as the answer writes it)], the chart's own billing order and plans, what was sent
+def m25_world(order, mods=None, plans="", proc=None, noproc=False, corder="1,2"):
+    M25.clear(); M25.update(order=order if isinstance(order, str) else list(order), mods=dict(mods or {"8001": "", "8002": ""}), plans=plans, posts=[], proc=dict(proc or {"8001": "pcode492676", "8002": "pcode492677"}), noproc=noproc, demog=0, corder=corder)
+def _m25_detail(cid):      # the charge's own detail as resave.detail gives it: the patient, the visit with its insurance-order list and the charge, the procedure list (id -> code text)
+    cid = re.sub(r"\D", "", str(cid))
+    if M25["order"] == "NOTXML": return "not an answer"
+    lst = "".join('<insuranceorder ordinal="%s" sequence="%s" carrier="%s"/>' % o_ for o_ in M25["order"])
+    plist = "" if M25["noproc"] else "<proccodelist>%s</proccodelist>" % "".join('<proccode id="%s" code="%s"/>' % (p_, CODE_TEXT.get(p_, "")) for p_ in sorted(set(M25["proc"].values())))
+    chg_ = '<charge id="charge%s" proccode="%s" modcodes="%s" begindate="11/24/2026" fee="109.00" pos="32"/>' % (cid, M25["proc"].get(cid, ""), M25["mods"].get(cid, "")) if cid in M25["mods"] else ""
+    return '<r><patient id="pat8900"/><visit id="vst8901" episode="eps1" date="11/24/2026" profile="prof13" facility="fac34" refplan="" insorder="%s">%s<insuranceorderlist>%s</insuranceorderlist></visit>%s</r>' % (
+        ",".join(o_[1] for o_ in M25["order"]) or "1", chg_, lst, plist)
+def _m25_vc(cid):          # every live charge of the visit, as resave.visit_charges hands them to a full-visit save
+    r_ = ET.fromstring('<r><patient id="pat8900"/><visit id="vst8901" episode="eps1" date="11/24/2026" profile="prof13" facility="fac34" insorder="1"/>%s</r>' % "".join(
+        '<charge id="charge%s" proccode="%s" modcodes="%s" pos="32" fee="1.00"/>' % (c_, M25["proc"].get(c_, ""), m_) for c_, m_ in sorted(M25["mods"].items())))
+    return r_.find("visit"), r_.find("patient"), r_.findall("charge")
+def _m25_post(body, timeout=0):
+    M25["posts"].append(body)
+    if "getdemographic" in body:
+        M25["demog"] += 1
+        if isinstance(M25["plans"], Exception): raise M25["plans"]
+        return '<r><patient id="pat8900" insorder="%s"/>%s</r>' % (M25["corder"], M25["plans"])
+    if 'action="updvisitwithcharges"' in body:      # the stand-in stores the modifiers of the charges the save echoes
+        for c_, m_ in re.findall(r'<charge id="charge(\d+)"[^>]*? modcodes="([^"]*)"', body): M25["mods"][c_] = m_
+    return "<r/>"
+M25_AMD = {"login_cached": lambda *a: None, "msg": lambda action, cls, attrs=None, children="": '<ppmdmsg action="%s" class="%s" %s>%s</ppmdmsg>' % (action, cls, " ".join('%s="%s"' % kv for kv in (attrs or {}).items()), children), "post": _m25_post}
+M25_RS = {"detail": _m25_detail, "visit_charges": _m25_vc, "CHG_FIELDS": re.findall(r'"(\w+)"', re.search(r"(?ms)^CHG_FIELDS = \[(.*?)\]", open(os.path.join(ROOT, "scripts", "helpers", "resave.py")).read()).group(1))}
+def m25_try(f_):      # the answer - or the error as text: a check on something the helper does not have yet fails as a check and never ends this self-test
+    try: return f_()
+    except BaseException as e: return "%s: %s" % (type(e).__name__, e)
+def m25_load(path, name, extra=()):
+    """A helper loaded as a MODULE (its program part does not run) while stand-in modules stand where it loads amd / resave / recode - never the real ones; they are taken out again."""
+    old_ = {k_: sys.modules.get(k_) for k_ in ("amd", "resave", "recode", "freq1_visit") + tuple(extra)}
+    try:
+        for k_ in old_: sys.modules[k_] = types.ModuleType(k_); sys.modules[k_].STAND_IN = True
+        sp_ = importlib.util.spec_from_file_location(name, path); m_ = importlib.util.module_from_spec(sp_); sp_.loader.exec_module(m_); return m_
+    finally:
+        for k_, v_ in old_.items():
+            if v_ is None: sys.modules.pop(k_, None)
+            else: sys.modules[k_] = v_
+M25_REC = m25_load(os.path.join(ROOT, "scripts", "helpers", "recode.py"), "recode_selftest"); M25_REC.amd = types.SimpleNamespace(**M25_AMD); M25_REC.resave = types.SimpleNamespace(**M25_RS)      # the REAL full-visit save, talking to the stand-ins
+def m25_run(*argv):
+    """`python3 mod25_addon.py <argv>` inside this process -> (the lines it printed, its exit code, the full-visit saves it sent, its error text)."""
+    M25["posts"] = []
+    try: o_, e_ = run_inside(M25_HELPER, {"amd": M25_AMD, "resave": M25_RS, "recode": {"_save": M25_REC._save}}, m25d, argv=argv)
+    except BaseException as e: return [], None, [], "%s: %s" % (type(e).__name__, e)
+    return o_.strip().splitlines(), EXIT(), [b_ for b_ in M25["posts"] if "updvisitwithcharges" in b_], e_
+_O_HUM = [("0", "1", "car6285"), ("1", "2", "car6085")]; _O_MED = [("0", "2", "car6085"), ("1", "1", "car6285")]      # the visit's insurance-order list: Humana first / Medicare first
+_m25_no = lambda r_: any(l_.startswith("NO MODIFIER 25 - HUMANA: charge 8002 is a 99489 add-on") for l_ in r_[0])
+m25_world(_O_HUM); _g1 = m25_run("charge8002"); _g1l = m25_run("8002", "--live"); _g1m = dict(M25["mods"])
+check("CCM gate (William 11/25/2026, Humana): the gate's helper no longer puts modifier 25 back on the 99489 add-on of a visit whose claim goes to Humana first - without --live it says 'NO MODIFIER 25 - HUMANA', names the carrier, says that the line passes the gate as it is, and would add nothing; exit 0",
+      _g1[3] == "" and _g1[1] == 0 and _m25_no(_g1) and any("car6285" in l_ and "passes the CCM gate as it is" in l_ and "William 11/25/2026" in l_ for l_ in _g1[0]) and not any("would add" in l_ for l_ in _g1[0]) and _g1[2] == [], _g1)
+check("CCM gate (Humana): ... and with --live NOTHING is sent to AdvancedMD - no save, the add-on line stays without the modifier, no register entry",
+      _g1l[3] == "" and _g1l[1] == 0 and _g1l[2] == [] and _g1m == {"8001": "", "8002": ""} and _m25_no(_g1l) and not os.path.exists(os.path.join(m25d, "registers", "mod25_addon.json")), (_g1l, _g1m))
+m25_world(_O_MED); _g2 = m25_run("8002"); _g2l = m25_run("8002", "--live"); _g2m = dict(M25["mods"])
+_g2r = m25_try(lambda: [r_.get("chargeid") for r_ in json.load(open(os.path.join(m25d, "registers", "mod25_addon.json")))])
+check("CCM gate (Humana, control): Medicare first and Humana second - as before: without --live 'DRY: would add mcode7'; with --live the modifier goes on through ONE full-visit save that echoes BOTH charges of the visit with approval 1 (nothing is voided), the 99487 untouched, and the helper's register keeps the charge number",
+      _g2[3] == "" and "DRY: would add mcode7 to charge 8002" in _g2[0] and _g2[2] == [] and _g2l[3] == "" and _g2l[1] == 0 and len(_g2l[2]) == 1 and 'id="charge8001"' in _g2l[2][0] and 'id="charge8002"' in _g2l[2][0] and 'approval="1"' in _g2l[2][0]
+      and _g2m == {"8001": "", "8002": "mcode7"} and any("modcodes after: mcode7" in l_ for l_ in _g2l[0]) and _g2r == ["8002"], (_g2, _g2l, _g2m, _g2r))
+_g3 = []
+for o_, p_, c_ in (([("0", "1", "car302851")], "", "1,2"), ([("0", "1", "6285")], "", "1,2"), ([("1", "2", "car6085"), ("0", "1", "")], _HUMX + _MEDX, "2,1"), ([("0", "1", "HUM01")], _HUMX, ""), ([], _HUMX + _MEDX, "1,2"), ([], _HUMX + _MEDX, " 1 , 2")):
+    m25_world(o_, plans=p_, corder=c_); r_ = m25_run("8002", "--live"); _g3.append((r_[1], r_[2], M25["mods"]["8002"], M25["demog"], _m25_no(r_), r_[3]))
+check("CCM gate (Humana): the same for the practice's other Humana record (Humana Gold Plus), for a carrier the answer writes as bare digits, and for a first row that names no carrier id of its own (none, or a carrier's code) - then the chart's plan at that row's sequence answers, whatever the chart's own order says; "
+      "the rows are read by their ordinal, not by where they stand in the answer. A visit that shows NO insurance-order list: the first plan of the chart's OWN billing order answers, as in the import. The chart is read once, and only when it is needed",
+      _g3 == [(0, [], "", 0, True, ""), (0, [], "", 0, True, ""), (0, [], "", 1, True, ""), (0, [], "", 1, True, ""), (0, [], "", 1, True, ""), (0, [], "", 1, True, "")], _g3)
+_g4 = []
+for o_, p_, c_ in (([], _HUMX + _MEDX, ""), ([], _HUMX + _MEDX, "2,1"), ([("0", "1", "")], "", "1"), ([("0", "1", "")], _MEDX.replace('sequence="2"', 'sequence="1"'), "1"), ([("0", "", "")], _HUMX, ""), ([("0", "1", "")], RuntimeError("plans down"), "1"), ("NOTXML", _HUMX, "1")):
+    m25_world(o_, plans=p_, corder=c_); r_ = m25_run("8002"); _g4.append(("DRY: would add mcode7 to charge 8002" in r_[0], r_[1], r_[2], r_[3]))
+check("CCM gate (Humana): nothing shows that the claim goes to Humana first - a visit with no insurance-order list on a chart that has NO billing order of its own (the visit's insorder attribute says '1' all the same, and the chart's plan 1 is Humana: that '1' is a stand-in and is never read) or whose order leads with Medicare, "
+      "a first row whose plan the chart does not show or shows as Medicare, a row without a sequence on a chart without an order, a chart that cannot be read, a charge detail that is no answer - the charge is handled exactly as before ('DRY: would add mcode7'): "
+      "the rule never leaves the modifier off on a guess, and no odd answer ends the helper in an error",
+      _g4 == [(True, 0, [], "")] * 7, _g4)
+m25_world(_O_HUM); _g5a = m25_run("8001", "--live")                                                        # the 99487 of that Humana visit
+m25_world(_O_HUM, proc={"8001": ci.PCODE["99309"], "8002": ci.PCODE["99497"]}); _g5b = m25_run("8002")      # a 99497 beside a visit code, Humana first
+check("CCM gate (Humana): the rest of the gate is as before - a 99487 is refused whoever pays (exit 2, nothing sent), and the rule is for the 99489 add-on only: a 99497 of a Humana visit still gets its modifier",
+      _g5a[1] == 2 and "REFUSED: 99487 never carries modifier 25" in _g5a[0] and _g5a[2] == [] and _g5a[3] == "" and "DRY: would add mcode7 to charge 8002" in _g5b[0] and _g5b[3] == "", (_g5a, _g5b))
+m25_world(_O_HUM, mods={"8001": "", "8002": "mcode7"}); _g5c = m25_run("8002", "--live"); _g5m = dict(M25["mods"])
+m25_world(_O_MED, mods={"8001": "", "8002": "mcode7"}); _g5d = m25_run("8002", "--live")
+check("CCM gate (Humana): a 99489 that ALREADY carries modifier 25 while its claim goes to Humana first is not passed as 'nothing to do' - the helper says so in plain words for William, changes nothing (it adds the modifier and takes none off) and ends with exit 3; "
+      "the same charge on a claim that goes to Medicare first is 'already carries mcode7 - nothing to do', exit 0, as before",
+      _g5c[1] == 3 and _g5c[2] == [] and _g5c[3] == "" and _g5m["8002"] == "mcode7" and any(l_.startswith("MODIFIER 25 STANDS ON A HUMANA ADD-ON: charge 8002") and "for William" in l_ and "nothing was changed" in l_ for l_ in _g5c[0])
+      and not any("nothing to do" in l_ for l_ in _g5c[0]) and _g5d[1] == 0 and "already carries mcode7 - nothing to do" in _g5d[0] and _g5d[2] == [], (_g5c, _g5d))
+m25_world(_O_HUM, noproc=True); _g6 = m25_run("8002"); M25H = m25_try(lambda: m25_load(M25_HELPER, "mod25_addon_selftest"))
+check("CCM gate (Humana): a charge detail that names no code text for the procedure id is still read - the helper knows AdvancedMD's ids of the two care-management codes, and they are the import's own (PCODE); loaded as a module, the helper's program part does not run",
+      _m25_no(_g6) and _g6[3] == "" and m25_try(lambda: M25H.CPT_BY_ID) == {ci.PCODE[c_]: c_ for c_ in ("99487", "99489")}, (_g6, M25H if isinstance(M25H, str) else m25_try(lambda: M25H.CPT_BY_ID)))
+_m25f = tempfile.mkdtemp(prefix="posrule_m25rule_", dir=tmp); _m25g = tempfile.mkdtemp(prefix="posrule_m25odd_", dir=tmp); _m25n = tempfile.mkdtemp(prefix="posrule_m25none_", dir=tmp)
+open(os.path.join(_m25f, "claimocity_import.py"), "w").write('x = 1\nHUMANA = {"car11", "car12"}      # invented\nOTHER = {"car13"}\nNO_MOD25 = {"99489": HUMANA, "99497": OTHER}\n')
+open(os.path.join(_m25g, "claimocity_import.py"), "w").write('NO_MOD25 = {"99489": MISSING}\n')
+_m25_ci = {c_: set(v_) for c_, v_ in ci.NO_MOD25.items()}
+check("CCM gate (Humana): ONE rule, read from ONE place - the helper takes the code and the carriers from the import helper's own two lines (HUMANA = {...} and NO_MOD25 = {...}) in the copy that lies beside it: for the repository's import that is exactly the import's own table, and another copy's lines are read as they stand",
+      _m25_ci == {"99489": {"car6285", "car302851"}} and m25_try(lambda: M25H.no_mod25_rule()) == _m25_ci and m25_try(lambda: M25H.no_mod25_rule(_m25f)) == {"99489": {"car11", "car12"}, "99497": {"car13"}},
+      (m25_try(lambda: M25H.no_mod25_rule()), m25_try(lambda: M25H.no_mod25_rule(_m25f))))
+check("CCM gate (Humana): ... only when no such file or no such line is there does the helper's built-in copy answer - and that copy is held equal to the import's table here, so the two can never drift apart unseen; each of the import's two lines stands on ONE line, in the shape the helper reads",
+      m25_try(lambda: M25H.no_mod25_rule(_m25n)) == _m25_ci and m25_try(lambda: M25H.no_mod25_rule(_m25g)) == _m25_ci and m25_try(lambda: {c_: set(v_) for c_, v_ in M25H.NO_MOD25_BUILT_IN.items()}) == _m25_ci
+      and len(re.findall(r'(?m)^HUMANA = \{[^}\n]*\}', open(HELPER).read())) == 1 and len(re.findall(r'(?m)^NO_MOD25 = \{"99489": HUMANA\}', open(HELPER).read())) == 1,
+      (m25_try(lambda: M25H.no_mod25_rule(_m25n)), m25_try(lambda: M25H.no_mod25_rule(_m25g)), m25_try(lambda: M25H.NO_MOD25_BUILT_IN)))
+_m25_src = open(M25_HELPER).read()
+check("CCM gate (Humana): the helper's PLAIN ENGLISH header states the rule in William's words and how it is read; it still saves through the full-visit echo only (recode._save) and calls nothing of AdvancedMD but the charge detail, the chart's plans and that save",
+      "yes try that" in _m25_src.split("\nimport ")[0] and "EXCEPT FOR HUMANA" in _m25_src.split("\nimport ")[0] and "insuranceorderlist" in _m25_src.split("\nimport ")[0] and _m25_src.split("\nimport ", 1)[1].count("recode._save(") == 1
+      and set(re.findall(r'amd\.msg\("(\w+)"', _m25_src)) == {"getdemographic"} and not re.search(r"updvisit|void_charge|chargerebill|bypassclaimedits", _m25_src.split("\nimport ", 1)[1]), sorted(set(re.findall(r'amd\.msg\("(\w+)"', _m25_src))))
 # ---- INPATIENT REHAB STAYS AT PLACE OF SERVICE 61 (William 11/25/2026) ------------------------------------------------------------------------------------
 # "i now follow patients after dc from the inpatient hospital and admit them to inpatient rehab ... many times now i will be following a patient like that the day after dc from
 # the inpatient hospital"; asked "Do you want the rehab visits on 61?": "yes and let us monitor them to make sure they pay and dont deny the ones were already paying with the
@@ -4533,7 +4670,7 @@ def rh_built(m_, fid, lines, rows=(), batch=(), pid="pat8800", c_=None, err=""):
     """build() of a fresh copy for ONE message -> (the calls or None, the register row or the skip reason / the error, [(procedure, place of service)] of the charge lines sent, the facility of the visit).
     rows = the chart's history; batch = the other visits of this batch as main() lists them (code, date, building); c_ = a chart context used as it is (two messages of one run); err = the batch list was not built."""
     try:
-        m_.BATCH_NF.clear(); m_.BATCH_NF[pid] = set(batch); m_.BATCH_NF_ERR[0] = err; getattr(m_, "SAME_DAY", {}).clear(); getattr(m_, "SAME_DAY_NEW", {}).clear()      # each call is its own run: what a run keeps of the lines it passed over (11/25/2026, review) starts empty
+        m_.BATCH_NF.clear(); m_.BATCH_NF[pid] = set(batch); m_.BATCH_NF_ERR[0] = err; getattr(m_, "SAME_DAY", {}).clear(); getattr(m_, "SAME_DAY_NEW", {}).clear(); getattr(m_, "SAID_61", {}).clear()      # each call is its own run: what a run keeps of the lines it passed over (11/25/2026, review) and of the days at 61 it named starts empty
         o_, i_ = m_.build(msg(fid, lines), c_ if c_ is not None else rh_ctx(rows, pid))
     except Exception as e: return None, "%s: %s" % (type(e).__name__, e), [], ""
     finally:
@@ -4547,7 +4684,7 @@ def rh_run(m_, parsed, match, argv=("--all",), stamp=None, post=None):
     batch for the runs after it; post = a stand-in answer function for this run only."""
     m_.PARSED[:] = parsed; m_.MATCH.clear(); m_.MATCH.update({NAME(k_).upper().strip() + "|" + DOBK: {"resolved": v_} for k_, v_ in match.items()})
     POSTS.clear(); buf_ = io.StringIO(); _argv = sys.argv[:]; sys.argv = ["claimocity_import.py"] + list(argv); m_._ctx.clear(); m_.BATCH_NF.clear(); m_.BATCH_NF_ERR[0] = ""; _sl = m_.time.sleep; m_.time.sleep = lambda s: None; _p0 = amd.post
-    getattr(m_, "SAME_DAY", {}).clear(); getattr(m_, "SAME_DAY_NEW", {}).clear()      # a run starts with nothing passed over (in the real import every run is a new process)
+    getattr(m_, "SAME_DAY", {}).clear(); getattr(m_, "SAME_DAY_NEW", {}).clear(); getattr(m_, "SAID_61", {}).clear()      # a run starts with nothing passed over and nothing named (in the real import every run is a new process)
     if post: amd.post = post
     try:
         with contextlib.redirect_stdout(buf_): m_.main()
@@ -4573,8 +4710,8 @@ check("rehab: the rehab unit's facility numbers stand in ONE constant of the imp
 check("rehab: a stay starts at an initial hospital visit 99221-99223; the visits it holds are the same-day rule's hospital family (EM_FAMILY), for 45 days - the window the admission-date steps use; the two signs are named as the register names them",
       getattr(ci, "HOSP_INITIAL", None) == {"99221", "99222", "99223"} and ci.HOSP_VISIT == next(f_ for f_ in ci.EM_FAMILY if "99223" in f_) and getattr(ci, "STAY_MAX_DAYS", None) == 45
       and (getattr(ci, "SIGN_NUMBER", None), getattr(ci, "SIGN_ADMIT", None), getattr(ci, "REHAB_KEPT", None)) == (RH_NUM, RH_SIGN, RH_KEPT), (getattr(ci, "HOSP_INITIAL", None), getattr(ci, "STAY_MAX_DAYS", None), getattr(ci, "SIGN_ADMIT", None)))
-check("rehab: the rule's version line is 2026-11-25.3 in the import helper (and the version before it stands nowhere in it); its PLAIN ENGLISH header states the rule in William's words",
-      ci.POS_RULE_VERSION == "2026-11-25.3" and len(re.findall(r'(?m)^POS_RULE_VERSION = "2026-11-25\.3"', _HNOW)) == 1 and '"2026-11-25.1"' not in _HNOW
+check("rehab: the rule's version line is 2026-11-25.4 in the import helper (and the versions before it stand nowhere in it as a version line); its PLAIN ENGLISH header states the rule in William's words",
+      ci.POS_RULE_VERSION == "2026-11-25.4" and len(re.findall(r'(?m)^POS_RULE_VERSION = "2026-11-25\.4"', _HNOW)) == 1 and '"2026-11-25.1"' not in _HNOW and 'POS_RULE_VERSION = "2026-11-25.3"' not in _HNOW
       and all(w_ in _HNOW.split("\nimport os as _os")[0] for w_ in ("Inpatient rehab stays (William 11/25/2026", "dont deny the ones were already paying", "place of service 61", "HCA REHAB (fac67)", "rehab-stay-kept-21")), ci.POS_RULE_VERSION)
 # -- the stays of a chart, as a pure function --------------------------------------------------------------------------------------------------------------
 _rh_k = lambda rows_, **k_: _rt(lambda: [(ci._fmt_day(s_["initial"])[:5], s_["kind"], s_["sign"]) for s_ in ci.hospital_stays(rows_, **k_)[0]])
@@ -4583,11 +4720,17 @@ _rh_ch = RH_A + [("99223", "08/11/2026"), ("99233", "08/12/2026"), ("99233", "08
 check("rehab (the chain): an acute stay; a new initial visit ONE day after its last visit = a rehab stay; a new initial visit TWO days after the REHAB stay's last visit = the patient back in the hospital (acute); "
       "two days after THAT stay's last visit = a rehab stay again; THREE days after = a new admission (acute); a follow-up and an initial visit on the SAME day = acute (one hospital visit a day)",
       _rh_k(_rh_ch) == [("08/03", "acute", ""), ("08/11", "rehab", RH_SIGN), ("08/22", "acute", ""), ("08/25", "rehab", RH_SIGN), ("08/29", "acute", ""), ("08/30", "acute", "")], _rh_k(_rh_ch))
-check("rehab (the chain): the first stay in hand is acute - an initial visit with no hospital visit of ours before it is a new admission; the order the rows come in does not matter; other codes and odd rows are passed over",
+# 11/25/2026 (verification): the 'other code' of this check was a nursing-facility visit on the admission's own day. Our nursing-facility and home visits are READ by the rule since
+# that day (the sub-section 'the independent verification' below); the codes that are passed over here are an office visit, a care-management line and an advance-care-planning line.
+check("rehab (the chain): the first stay in hand is acute - an initial visit with no hospital visit of ours before it is a new admission; the order the rows come in does not matter; other codes (an office visit, a care-management line, an advance-care-planning line) and odd rows are passed over",
       _rh_k([("99223", "08/11/2026"), ("99233", "08/12/2026")]) == [("08/11", "acute", "")] and _rh_k(list(reversed(_rh_ch))) == _rh_k(_rh_ch)
-      and _rh_k(_rh_ch[:10] + [("99309", "08/11/2026"), ("99487", "08/31/2026"), ("99497", "08/12/2026"), (None, None), ("99223",), 7, ("99223", "not a date"), ("99223", "")]) == _rh_k(_rh_ch[:10]), _rh_k([("99223", "08/11/2026")]))
-_rh_h = _rt(lambda: {(ci._fmt_day(k_[0])[:5], k_[1]): v_ for k_, v_ in ci.hospital_stays([("99223", "08/01/2026"), ("99232", "09/15/2026"), ("99232", "09/16/2026")])[1].items()})
-check("rehab (the chain): a stay holds a visit up to 45 days after its initial visit - the 45th day is in the stay, the 46th is in no stay", _rh_h == {("08/01", True): 0, ("09/15", False): 0, ("09/16", False): None}, _rh_h)
+      and _rh_k(_rh_ch[:10] + [("99213", "08/11/2026"), ("99487", "08/31/2026"), ("99497", "08/12/2026"), (None, None), ("99223",), 7, ("99223", "not a date"), ("99223", ""), ("99309", "not a date"), ("99309",)]) == _rh_k(_rh_ch[:10]), _rh_k([("99223", "08/11/2026")]))
+# 11/25/2026 (verification): this check read "the 45th day is in the stay, the 46th is in no stay" for a stay that is seen on its 45th AND on its 46th day - a rehab stay at 61 was so cut
+# in two at its 46th day without a word. A stay that is visibly going on is no longer cut (the sub-section 'the independent verification' below); with NO visit of the stay in the week
+# before it, a visit past the 45th day is in no stay, as before.
+_rh_h = _rt(lambda: [{(ci._fmt_day(k_[0])[:5], k_[1]): v_ for k_, v_ in ci.hospital_stays([("99223", "08/01/2026")] + [("99232", d_) for d_ in days_])[1].items()} for days_ in (("09/15/2026",), ("09/16/2026",), ("09/15/2026", "09/16/2026"))])
+check("rehab (the chain): a stay holds a visit up to 45 days after its initial visit - the 45th day is in the stay; the 46th is in no stay when no visit of the stay stands in the week before it, and is still in the stay when the 45th day was seen too",
+      _rh_h == [{("08/01", True): 0, ("09/15", False): 0}, {("08/01", True): 0, ("09/16", False): None}, {("08/01", True): 0, ("09/15", False): 0, ("09/16", False): 0}], _rh_h)
 # 11/25/2026 (review): this check read "also when the number stands on a follow-up" - ONE follow-up that named the unit then sent the acute admission and the acute follow-ups of
 # the same batch to 61. The number is the sign of the message that carries it (the spec: "the message's own PV1 facility number"), so the check now says the opposite for a follow-up.
 check("rehab (the chain): the facility number is the sign of the message that carries it - on the stay's INITIAL visit it makes the stay a rehab stay, also the first stay in hand, and the stay after it is acute again; "
@@ -4664,7 +4807,7 @@ _r9 = rh_built(RH, "b2", [("99239", "20260810"), ("99223", "20260811")], RH_AC[:
 check("rehab build: ONE message whose hospital lines belong to two stays, one of them a rehab stay (the discharge of the acute stay and the admission to rehab in one message) cannot go in as one visit at 61 - it goes in exactly as before (fac29, both lines 21), said in pos_err for William, with no stay in its row",
       _r9[3] == "fac29" and [p_ for _c, p_ in _r9[2]] == ["21", "21"] and isinstance(_r9[1], dict) and "different stays" in str(_r9[1].get("pos_err")) and "inpatient rehab stay" in str(_r9[1].get("pos_err")) and "stay" not in _r9[1], (_r9[3], _r9[2], _r9[1]))
 _r10 = [_rb(rh_built(RH, "b1", [("99233", d_)], RH_AC + [("99223", "08/11/2026", REHABN)])) for d_ in ("20260925", "20260926")]
-check("rehab build: the stay holds a visit for 45 days - a follow-up on the 45th day after the rehab stay's initial visit goes in at 61, one on the 46th day is in no stay and goes in exactly as before (fac29 / 21, stay acute with no initial visit)",
+check("rehab build: the stay holds a visit for 45 days - a follow-up on the 45th day after the rehab stay's initial visit goes in at 61; one on the 46th day, with no other visit of the stay in hand in the week before it, is in no stay and goes in exactly as before (fac29 / 21, stay acute with no initial visit)",
       _r10 == [("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))), ("fac29", ["21"], ([""], "", RH_ST("acute", "")))], _r10)
 _r11 = rh_built(RH, "b1", [("99233", "20260925")], [("99223", "08/11/2026", REHABN)]); _r11b = rh_built(RH, "b1", [("99233", "20260925")], [("99223", "08/11/2026", HOSPN)])
 check("rehab build (no mixing, the other way round): a follow-up whose stay's initial visit sits on the chart at HCA REHAB follows it also when nothing else of the structure is in hand any more (the acute stay before it is not among the chart's rows read) - 61, and the words say what was read, no sign is claimed; "
@@ -4846,14 +4989,14 @@ _rv_b = _rv_row(rv2[1][1], "08/15/2026")
 check("review (1b): the late initial visit then shows the patient back in the hospital - it goes in as a hospital visit (fac29 / 21, its stay acute) and the run SAYS that a visit of this hospital stay stands at HCA REHAB / 61: "
       "in the row (pos_err, with the day), on the run's own line 'POS RULE NOT APPLIED ...' and in the short line ('not applied x1') - the way such a visit reaches the top of the report today",
       (_rv_b.get("fac"), _rv_b.get("pos_lines"), _rv_b.get("pos_kind"), _rv_b.get("stay")) == ("fac29", ["21"], [""], RH_ST("acute", "08/15/2026"))
-      and str(_rv_b.get("pos_err")).startswith("PLACE OF SERVICE 61 on 08/16/2026 belongs to this HOSPITAL stay") and "for William" in str(_rv_b.get("pos_err")) and "nothing was changed" in str(_rv_b.get("pos_err"))
+      and str(_rv_b.get("pos_err")).startswith("PLACE OF SERVICE 61 on 08/16/2026 belongs to this HOSPITAL stay") and "for William" in str(_rv_b.get("pos_err")) and "nothing was changed" in str(_rv_b.get("pos_err")) and _rv_b.get("hospital_at61") == ["08/16/2026"]
       and "POS RULE NOT APPLIED pat8812 08/15/2026 ['99223'] PLACE OF SERVICE 61 on 08/16/2026" in rv2[1][0] and "not applied x1" in _rh_pl(rv2[1][0]) and "rehab 61 x0/21 x0" in _rh_pl(rv2[1][0]), (_rv_b, _rh_pl(rv2[1][0])))
 check("review (1b): ... the follow-up in that file is a visit of the same hospital stay - fac29 / 21, stay acute, no word of its own (the initial visit's row carries it once) - and nothing on the chart was changed: 08/16 still stands where it went in",
       rh_rows(rv2[1][1])[1:] == [("08/17/2026", ["99233"], "fac29", ["21"], [""], RH_ST("acute", "08/15/2026"))] and _rv_row(rv2[1][1], "08/17/2026").get("pos_err") == ""
       and _rv_at("8812", "08/15/2026") == [("08/15", "99223", "21"), ("08/16", "99233", "61"), ("08/17", "99233", "21")], (rh_rows(rv2[1][1]), _rv_at("8812", "08/15/2026")))
-_rv_v3 = _rh_v([("99223", "08/15/2026")], CHART["8812"][:len(RH_AC) + 4] + [("99233", "08/16/2026", REHABN)]); _rv_v4 = _rh_v([("99233", "08/17/2026")], CHART["8812"][:len(RH_AC) + 4] + [("99233", "08/16/2026", REHABN), ("99223", "08/15/2026", HOSPN)])
-check("review (one message, pure): the answer for such an initial visit carries the words to say ('said'); a follow-up of that hospital stay carries none, and an answer with nothing to say has no such key (the answers of every other visit are as before)",
-      isinstance(_rv_v3, dict) and _rv_v3.get("to61") is False and _rv_v3.get("stay") == RH_ST("acute", "08/15/2026") and str(_rv_v3.get("said")).startswith("PLACE OF SERVICE 61 on 08/16/2026")
+_rv_v3 = _rh_v([("99223", "08/15/2026")], CHART["8812"][:len(RH_AC) + 4] + [("99233", "08/16/2026", REHABN)]); _rv_v4 = _rh_v([("99233", "08/17/2026")], CHART["8812"][:len(RH_AC) + 4] + [("99233", "08/16/2026", REHABN), ("99223", "08/15/2026", HOSPN)], said61={"08/16/2026"})
+check("review (one message, pure): the answer for such an initial visit carries the words to say ('said') and the days it names; a follow-up of that hospital stay carries none once that day was named (the import register of the initial visit's run holds it - 11/25/2026, verification), and an answer with nothing to say has no such key (the answers of every other visit are as before)",
+      isinstance(_rv_v3, dict) and _rv_v3.get("to61") is False and _rv_v3.get("stay") == RH_ST("acute", "08/15/2026") and str(_rv_v3.get("said")).startswith("PLACE OF SERVICE 61 on 08/16/2026") and _rv_v3.get("at61") == ["08/16/2026"] and _rv_v3.get("at61_kind") == "hospital"
       and _rv_v4 == {"to61": False, "stay": RH_ST("acute", "08/15/2026"), "why": ""}, (_rv_v3, _rv_v4))
 # (2) a hospital code the same-day rule passes over: kept for the stay rule (register "same_day"), in the run that passes it over and in every later one
 RV_R2 = RH_AC + RV_R61 + [("99233", "08/12/2026", REHABN)]                                                                  # an acute stay, then a rehab stay entered at 61: its initial visit and one follow-up
@@ -4946,6 +5089,265 @@ check("review (4, control): a follow-up that stands before a plain initial visit
       rh_rows(rv17[0][1]) == [("08/1%d/2026" % d_, [c_], "fac67", ["61"], ["rehab"], RH_ST("rehab", "08/11/2026", RH_SIGN)) for d_, c_ in ((1, "99223"), (2, "99233"))], rh_rows(rv17[0][1]))
 check("review (privacy): what these runs kept and printed about the passed-over lines and the mixed stay holds chart ids, codes and dates of service only - no name, no date of birth",
       all(NAME(f_) not in json.dumps(g_) + o_ and "zz test" not in json.dumps(g_) + o_ and DOBK not in json.dumps(g_) + o_ for f_, runs_ in (("sd1", rv3), ("sd3", rv5), ("lb1", rv2), ("la1", rv1)) for o_, g_ in runs_ if g_ is not None))
+# -- 11/25/2026, the independent verification of the pull request (reviewer 'pos'): what the stay rule did not read, and what it did not say ------------------------
+# Each finding was reproduced first - a stand-in AdvancedMD that keeps the chart from run to run - and then fixed in the import:
+#   (5)  a hospital ADMISSION dated 1 or 2 days after an acute stay went in at HCA REHAB / 61 although the chart, or the same file, showed one of the practice's OWN nursing-facility
+#        or home / assisted-living visits between the two hospital stays (the patient had left the hospital) - and hospital follow-ups kept going to 61 behind such a visit;
+#   (6)  a rehab stay longer than 45 days was cut: from its 46th day its visits went in at the hospital / 21 without a word;
+#   (7)  after the initial visit of a rehab stay at 61 was voided on the chart, the next follow-up went in at 21 without a word, and a hospital admission the day after went in at 61;
+#   (8)  the sentence about a hospital stay with visits at 61 lost its meaning in the digest's first 70 characters from the third such visit on;
+#   (9)  the follow-ups of a rehab stay went in at 61 although the import had NOT entered the stay's initial visit (a code its table does not have, a visit AdvancedMD refused);
+#   (10) the order of two messages in one file decided where a stay's initial visit went in when a FOLLOW-UP's own building could not be read;
+#   (11) a rehab visit AdvancedMD stored at 21 was counted by the import as entered at 61;
+#   (12) a self-test gap: no check noticed when the run forgot the hospital follow-ups it had built itself.
+# Every chart, feed id and date below is invented.
+NFN = "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC"; ALFN = "AZALEA GARDENS ALF"      # how AdvancedMD's history names a visit in a nursing building / at an assisted-living facility of the practice
+def rw_raw(fid, ms_):
+    """The raw feed text of ONE feed patient's messages [(charge lines, admission date, PV1 facility number or None[, building name])] - from the hospital building when none is named."""
+    return "".join(rh_raw([(fid, m_[0], m_[1], m_[2])]) if len(m_) < 4 or m_[3] is None else hl7(fid, m_[3], m_[1], m_[0], NPI) for m_ in ms_)
+def rw_chart(num, reg_):      # what a batch entered now stands on the chart, each line with the facility name AdvancedMD's history gives it (a nursing building and an assisted-living facility too)
+    for r_ in (reg_ or {}).get("created", []):
+        for c_, d_ in zip(r_["cpts"], r_.get("dos_lines") or [r_["dos"]] * len(r_["cpts"])): CHART.setdefault(num, []).append((c_, d_, {"fac29": HOSPN, "fac67": REHABN, "fac34": NFN, "fac37": ALFN}.get(r_.get("fac"), "")))
+def rw_seq(num, pid, fid, batches, post=None):
+    """batches = [(batch stamp, [message ...])] entered one run after the other, each run a FRESH copy of the import over its own raw file (rw_raw), with the runs before it on the
+    stand-in chart and in this section's registers folder -> [(what the run printed, its register)]. post = a stand-in answer function for these runs only."""
+    out_ = []
+    for st_, ms_ in batches:
+        m_ = s4_fresh({"x.hl7": rw_raw(fid, ms_)}); o_, g_ = rh_run(m_, [P_(fid, fid, m2_[0]) for m2_ in ms_], {fid: pid}, stamp=st_, post=post); rw_chart(num, g_); out_.append((o_, g_))
+    return out_
+_rw_all = lambda runs_: [(r_[0][:5], r_[1], r_[2], r_[3], r_[4], (r_[5] or {}).get("kind"), (r_[5] or {}).get("initial", "")[:5]) for _o, g_ in runs_ for r_ in rh_rows(g_)]      # every row of a sequence: (day, codes, facility, places, kinds, the stay's kind, the day of the stay's initial visit)
+_rw_why = lambda g_, dos_: str((_rv_row(g_, dos_).get("pos_why") or [""])[0])
+_rw_M = lambda code_, d8_, admit_, bld_=None: ([(code_, d8_)], admit_, None, bld_)      # one feed message with one line, from the hospital building or from the building named
+_rw_no61 = lambda runs_: not any(r_[2] == "fac67" or "61" in (r_[3] or []) for r_ in _rw_all(runs_))
+# (5) our own nursing-facility or home visit between two hospital stays
+_rw_a = lambda *away_: _rh_k(RH_A + list(away_) + [("99223", "08/12/2026"), ("99233", "08/13/2026")])
+check("verification (5, the chain): an initial hospital visit two days after an acute stay's last visit is NOT an admission to the rehab unit when one of our own nursing-facility visits (an initial one, a follow-up) or home / assisted-living visits lies between the two - the patient had left the hospital, so it starts a hospital stay; "
+      "the same when that visit stands on the day of the acute stay's last visit or on the admission's own day",
+      [_rw_a(x_) for x_ in (("99306", "08/11/2026", NFN), ("99309", "08/11/2026"), ("99349", "08/11/2026", ALFN), ("99306", "08/10/2026", NFN), ("99306", "08/12/2026", NFN))] == [[("08/03", "acute", ""), ("08/12", "acute", "")]] * 5,
+      [_rw_a(x_) for x_ in (("99306", "08/11/2026", NFN), ("99309", "08/11/2026"), ("99349", "08/11/2026", ALFN), ("99306", "08/10/2026", NFN), ("99306", "08/12/2026", NFN))])
+check("verification (5, the chain): ... a nursing visit dated before the acute stay, or on that stay's own first day (the resident came to the hospital from the nursing building that day), or after the admission changes nothing, and neither does a care-management or advance-care-planning line (no visit in person) - the plain rule: a rehab stay",
+      [_rw_a(*x_) for x_ in ((), (("99309", "08/02/2026", NFN),), (("99309", "08/03/2026", NFN),), (("99309", "08/14/2026", NFN),), (("99487", "08/11/2026"),), (("99497", "08/11/2026"),))] == [[("08/03", "acute", ""), ("08/12", "rehab", RH_SIGN)]] * 6,
+      [_rw_a(*x_) for x_ in ((), (("99309", "08/02/2026", NFN),), (("99309", "08/03/2026", NFN),), (("99309", "08/14/2026", NFN),), (("99487", "08/11/2026"),), (("99497", "08/11/2026"),))])
+_rw_c = _rh_k(RH_A + [("99306", "08/11/2026", NFN), ("99223", "08/12/2026"), ("99233", "08/13/2026"), ("99239", "08/14/2026"), ("99223", "08/15/2026")])
+check("verification (5, the chain): ... and the hospital stay that began behind such a visit is a plain acute stay - it SHOWS an acute stay: the initial visit one day after ITS last visit is an admission to the rehab unit",
+      _rw_c == [("08/03", "acute", ""), ("08/12", "acute", ""), ("08/15", "rehab", RH_SIGN)], _rw_c)
+_rw_hd = lambda rows_: _rt(lambda: {(ci._fmt_day(k_[0])[:5], k_[1]): v_ for k_, v_ in ci.hospital_stays(RH_A + [("99223", "08/11/2026"), ("99233", "08/12/2026"), ("99233", "08/13/2026")] + rows_)[1].items() if k_[0] >= ci._day("08/11/2026")})
+check("verification (5, the chain): a stay holds a follow-up only while none of our nursing-facility or home visits lies between the stay's last visit in hand and that follow-up - behind our own initial nursing-facility visit the rehab stay is over: the hospital follow-ups after it are in NO stay; "
+      "without such a visit the stay holds them all",
+      _rw_hd([("99306", "08/15/2026", NFN), ("99233", "08/20/2026"), ("99233", "08/21/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/20", False): None, ("08/21", False): None}
+      and _rw_hd([("99233", "08/20/2026"), ("99233", "08/21/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/20", False): 1, ("08/21", False): 1},
+      (_rw_hd([("99306", "08/15/2026", NFN), ("99233", "08/20/2026"), ("99233", "08/21/2026")]), _rw_hd([("99233", "08/20/2026"), ("99233", "08/21/2026")])))
+check("verification (5, the chain): the very day of such a visit - a hospital visit of ours that day is still the stay's: its last day (discharged from the unit and admitted to the nursing building on one day), a discharge visit and a follow-up code alike, "
+      "as the pull request read it before - a stay is not split on its last day; the hospital visits BEHIND that day are in no stay",
+      _rw_hd([("99306", "08/14/2026", NFN), ("99239", "08/14/2026"), ("99233", "08/20/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/14", False): 1, ("08/20", False): None}
+      and _rw_hd([("99306", "08/14/2026", NFN), ("99238", "08/14/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/14", False): 1}
+      and _rw_hd([("99309", "08/14/2026", NFN), ("99233", "08/14/2026"), ("99233", "08/15/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/14", False): 1, ("08/15", False): None}
+      and _rw_hd([("99349", "08/14/2026", ALFN), ("99233", "08/14/2026"), ("99239", "08/14/2026")]) == {("08/11", True): 1, ("08/12", False): 1, ("08/13", False): 1, ("08/14", False): 1},
+      (_rw_hd([("99306", "08/14/2026", NFN), ("99239", "08/14/2026"), ("99233", "08/20/2026")]), _rw_hd([("99309", "08/14/2026", NFN), ("99233", "08/14/2026"), ("99233", "08/15/2026")]), _rw_hd([("99349", "08/14/2026", ALFN), ("99233", "08/14/2026"), ("99239", "08/14/2026")])))
+# a hospital visit that NO stay holds, and the initial visit 1 or 2 days behind it: each stay of the chain behind the acute stay 08/03 - 08/10 as (day, kind, sign, shows an acute stay, the words of its note)
+_rw_nt = lambda n_: _rt(lambda: {ci.REHAB_LOOSE: "no stay", ci.REHAB_NOT_SHOWN: "not shown", ci.REHAB_AWAY: "away"}.get(n_, n_))
+_rw_ls = lambda rows_, lead_=RH_A: _rt(lambda: [(ci._fmt_day(s_["initial"])[:5], s_["kind"], s_["sign"], bool(s_["shown"]), _rw_nt(s_["note"])) for s_ in ci.hospital_stays(list(lead_) + list(rows_))[0]][1 if lead_ else 0:])
+_rw_l1 = _rw_ls([("99306", "08/11/2026", NFN), ("99233", "08/12/2026"), ("99239", "08/13/2026"), ("99223", "08/14/2026"), ("99239", "08/15/2026"), ("99223", "08/16/2026")])
+check("verification (5, the chain): the hospital visits behind our nursing visit are in no stay - and the initial visit ONE day behind them is entered as before with words of its own: nothing shows that an acute stay came before it (it may be the admission to the rehab unit). "
+      "The stay it starts SHOWS no acute stay: the initial visit one day after ITS last visit is not read as an admission to the rehab unit either - it would send a patient back in the hospital to 61",
+      _rw_l1 == [("08/14", "acute", "", False, "no stay"), ("08/16", "acute", "", False, "not shown")] and _rt(lambda: ci.REHAB_LOOSE.startswith("as before: by its date this would be an admission to the rehab unit") and "no stay" in ci.REHAB_LOOSE) is True, _rw_l1)
+_rw_l2 = _rw_ls([("99306", "08/11/2026", NFN), ("99233", "08/12/2026"), ("99309", "08/13/2026", NFN), ("99223", "08/14/2026"), ("99239", "08/15/2026"), ("99223", "08/16/2026")])
+_rw_l3 = _rw_ls([("99306", "08/11/2026", NFN), ("99233", "08/12/2026"), ("99223", "08/15/2026"), ("99239", "08/16/2026"), ("99223", "08/17/2026")])
+check("verification (5, the chain): ... but with one of our nursing visits between that hospital visit and the initial visit (the patient had left the hospital again), or with 3 days or more between the two, the initial visit starts a plain hospital stay "
+      "that shows an acute stay: the initial visit one day after ITS last visit is an admission to the rehab unit, as the rule reads it everywhere else",
+      _rw_l2 == [("08/14", "acute", "", True, ""), ("08/16", "rehab", RH_SIGN, False, "")] and _rw_l3 == [("08/15", "acute", "", True, ""), ("08/17", "rehab", RH_SIGN, False, "")], (_rw_l2, _rw_l3))
+_rw_l4 = _rw_ls([("99232", "08/25/2026"), ("99223", "08/26/2026"), ("99239", "08/27/2026"), ("99223", "08/28/2026")], [("99223", "07/01/2026"), ("99232", "07/02/2026")])
+_rw_l5 = _rw_ls([("99232", "08/01/2026"), ("99223", "08/02/2026"), ("99239", "08/03/2026"), ("99223", "08/04/2026")], [])
+check("verification (5, the chain): ... the same for a hospital visit no stay holds because the days of the stay before it ran out, and for one with no initial hospital visit of ours before it at all: the initial visit one day behind it starts a stay that shows no acute stay",
+      _rw_l4 == [("08/26", "acute", "", False, "no stay"), ("08/28", "acute", "", False, "not shown")] and _rw_l5 == [("08/02", "acute", "", False, "no stay"), ("08/04", "acute", "", False, "not shown")], (_rw_l4, _rw_l5))
+_rw_l6 = _rw_ls([("99309", "08/09/2026", NFN), ("99223", "08/11/2026"), ("99239", "08/12/2026"), ("99223", "08/13/2026")], RH_A[:-1])      # the acute stay's last visit in hand is a FOLLOW-UP code (08/09), and our nursing visit is dated that very day
+_rw_l7 = _rw_ls([("99306", "08/10/2026", NFN), ("99223", "08/12/2026"), ("99239", "08/13/2026"), ("99223", "08/14/2026")])                # ... its last visit is a DISCHARGE visit (08/10), and our nursing visit is dated that very day
+check("verification (5, the chain): one of our nursing visits on the very day of the acute stay's LAST visit keeps the admission 2 days later at the hospital either way - but only a DISCHARGE visit that day shows for sure that the patient had left the hospital: "
+      "behind a follow-up code nothing shows which of the two visits came first, so the stay the admission starts shows no acute stay (the admission one day after ITS last visit is entered as before); behind a discharge visit it does (that admission is one to the rehab unit)",
+      _rw_l6 == [("08/11", "acute", "", False, "away"), ("08/13", "acute", "", False, "not shown")] and _rw_l7 == [("08/12", "acute", "", True, "away"), ("08/14", "rehab", RH_SIGN, False, "")], (_rw_l6, _rw_l7))
+_rw_l8 = _rw_ls([("99306", "08/11/2026", NFN), ("99233", "08/12/2026"), ("99309", "08/12/2026", NFN), ("99223", "08/14/2026"), ("99239", "08/15/2026"), ("99223", "08/16/2026")])
+check("verification (5, the chain): ... the same for a hospital visit that no stay holds: one of our nursing visits on ITS very day does not show that the patient had left the hospital again - the initial visit 2 days behind it starts a stay that shows no acute stay",
+      _rw_l8 == [("08/14", "acute", "", False, "no stay"), ("08/16", "acute", "", False, "not shown")], _rw_l8)
+_rw_l9 = _rw_ls([("99306", "08/10/2026", NFN), ("99233", "08/11/2026"), ("99223", "08/12/2026")])                                 # our nursing visit on the day of the discharge visit, a hospital visit the day after (in no stay), the initial visit the day after that
+_rw_l10 = _rw_ls([("99306", "08/11/2026", NFN), ("99233", "08/12/2026"), ("99223", "08/13/2026"), ("99223", "08/14/2026")])        # two initial visits in a row behind one hospital visit that no stay holds
+check("verification (5, the chain): ... an initial visit that is 2 days behind the acute stay's last visit AND one day behind a hospital visit no stay holds carries the words about THAT visit - the patient was back in the hospital, so it is no 'had left the hospital'; "
+      "and of two initial visits in a row behind such a visit the second is read against the stay the first one starts (entered as before: that stay shows no acute stay), not against the old visit once more",
+      _rw_l9 == [("08/12", "acute", "", False, "no stay")] and _rw_l10 == [("08/13", "acute", "", False, "no stay"), ("08/14", "acute", "", False, "not shown")], (_rw_l9, _rw_l10))
+CHART["8840"] = RH_AC + [("99306", "08/11/2026", NFN)]; rw1 = rw_seq("8840", "pat8840", "aw1", [("20260814T1240Z", [_rw_M("99223", "20260812", "20260812"), _rw_M("99233", "20260813", "20260812")])])
+check("verification (5, live): the chart shows our own initial nursing-facility visit on the day between the acute stay's discharge visit and the new 99223 - the admission and its follow-up go in as before (the hospital, 21), the admission's row says why in plain words, and nothing goes in at 61",
+      _rw_all(rw1) == [("08/12", ["99223"], "fac29", ["21"], [""], "acute", "08/12"), ("08/13", ["99233"], "fac29", ["21"], [""], "acute", "08/12")] and _rw_why(rw1[0][1], "08/12/2026").startswith("as before:") and "nursing-facility or home" in _rw_why(rw1[0][1], "08/12/2026")
+      and "rehab 61 x0/21 x0" in _rh_pl(rw1[0][0]) and _rv_row(rw1[0][1], "08/12/2026").get("pos_err") == "", (_rw_all(rw1), _rw_why(rw1[0][1], "08/12/2026"), _rh_pl(rw1[0][0])))
+_rw_nf = _rw_M("99306", "20260811", "", B["n1"])
+CHART["8841"] = list(RH_AC); rw2 = rw_seq("8841", "pat8841", "aw2", [("20260814T1240Z", [_rw_nf, _rw_M("99223", "20260812", "20260812"), _rw_M("99233", "20260813", "20260812")])])
+CHART["8842"] = list(RH_AC); rw3 = rw_seq("8842", "pat8842", "aw3", [("20260814T1240Z", [_rw_M("99233", "20260813", "20260812"), _rw_M("99223", "20260812", "20260812"), _rw_nf])])
+check("verification (5, live): the same when that nursing-facility visit comes in the SAME file, before the hospital messages or behind them - the nursing visit goes in at its building, the two hospital visits at the hospital / 21; the order of the messages does not decide",
+      [r_[:4] for r_ in _rw_all(rw2)] == [("08/11", ["99306"], "fac34", ["31"]), ("08/12", ["99223"], "fac29", ["21"]), ("08/13", ["99233"], "fac29", ["21"])] and _rw_all(rw3) == _rw_all(rw2) and _rw_all(rw2) != [], (_rw_all(rw2), _rw_all(rw3)))
+CHART["8856"] = RH_AC + [("99349", "08/11/2026", ALFN)]; rw3b = rw_seq("8856", "pat8856", "aw7", [("20260813T1240Z", [_rw_M("99223", "20260811", "20260811")])])
+check("verification (5, live): one of our home / assisted-living visits on the admission's OWN day (one day after the acute stay) shows the same - the 99223 goes in at the hospital / 21",
+      _rw_all(rw3b) == [("08/11", ["99223"], "fac29", ["21"], [""], "acute", "08/11")], _rw_all(rw3b))
+_rw_r3 = RH_AC + RV_R61 + [("99233", "08/12/2026", REHABN), ("99233", "08/13/2026", REHABN)]      # an acute stay, then a rehab stay entered at 61: its initial visit and two follow-ups
+CHART["8843"] = _rw_r3 + [("99306", "08/15/2026", NFN)]; rw4 = rw_seq("8843", "pat8843", "aw4", [("20260821T1240Z", [_rw_M("99233", "20260820", "20260819")]), ("20260822T1240Z", [_rw_M("99233", "20260821", "20260819")])])
+CHART["8844"] = list(_rw_r3); rw5 = rw_seq("8844", "pat8844", "aw5", [("20260821T1240Z", [_rw_M("99233", "20260820", "20260819")])])
+check("verification (5, live - the other side): a rehab stay at 61, then our own initial nursing-facility visit, then a hospital follow-up with no new initial visit of ours - that follow-up is in no stay and goes in as before (the hospital, 21; its row says that the patient had left the unit), and so does the next one; "
+      "without the nursing visit the same follow-up still follows the rehab stay to 61",
+      _rw_all(rw4) == [("08/20", ["99233"], "fac29", ["21"], [""], "acute", ""), ("08/21", ["99233"], "fac29", ["21"], [""], "acute", "")] and "left the unit" in _rw_why(rw4[0][1], "08/20/2026") and _rv_row(rw4[0][1], "08/20/2026").get("pos_err") == ""
+      and _rw_all(rw5) == [("08/20", ["99233"], "fac67", ["61"], ["rehab"], "rehab", "08/11")], (_rw_all(rw4), _rw_why(rw4[0][1], "08/20/2026"), _rw_all(rw5)))
+CHART["8845"] = _rw_r3 + [("99306", "08/14/2026", NFN)]; rw6 = rw_seq("8845", "pat8845", "aw6", [("20260815T1240Z", [_rw_M("99239", "20260814", "20260811")])])
+CHART["8860"] = _rw_r3 + [("99309", "08/14/2026", NFN)]; rw6b = rw_seq("8860", "pat8860", "aw8", [("20260815T1240Z", [_rw_M("99233", "20260814", "20260811")]), ("20260816T1240Z", [_rw_M("99233", "20260815", "20260811")])])
+check("verification (5, live): the rehab stay's hospital visit on the very day the patient is seen in the nursing building is still a visit of its stay - a discharge visit and a follow-up code alike go in at 61 with the rest of the stay (a stay is not split on its last day); "
+      "the hospital follow-up of the day AFTER is in no stay: as before (the hospital, 21), and its row says that the patient had left the unit",
+      _rw_all(rw6) == [("08/14", ["99239"], "fac67", ["61"], ["rehab"], "rehab", "08/11")] and _rw_all(rw6b) == [("08/14", ["99233"], "fac67", ["61"], ["rehab"], "rehab", "08/11"), ("08/15", ["99233"], "fac29", ["21"], [""], "acute", "")]
+      and "left the unit" in _rw_why(rw6b[1][1], "08/15/2026"), (_rw_all(rw6), _rw_all(rw6b), _rw_why(rw6b[1][1], "08/15/2026")))
+CHART["8861"] = list(RH_AC); rw6c = rw_seq("8861", "pat8861", "aw9", [("20260813T1240Z", [_rw_M("99309", "20260812", "", B["n1"]), _rw_M("99232", "20260812", "20260811")]), ("20260814T1240Z", [_rw_M("99223", "20260811", "20260811")])])
+check("verification (5, live): a hospital follow-up on the very day of one of our nursing visits reaches the feed BEFORE its stay's initial visit and goes in at the hospital / 21; the initial visit of the next file - one day after the acute stay, by its date an admission to the rehab unit - "
+      "is kept at 21 with it: that follow-up is a visit of its stay, and a stay is never 61 beside 21 (the fixer's random comparison with the pull request's head found this one at 61)",
+      sorted((r_[0], r_[1], r_[2]) for r_ in _rw_all(rw6c[:1])) == [("08/12", ["99232"], "fac29"), ("08/12", ["99309"], "fac34")] and [r_[3] for r_ in _rw_all(rw6c[:1]) if r_[2] == "fac29"] == [["21"]]
+      and _rw_all(rw6c[1:]) == [("08/11", ["99223"], "fac29", ["21"], [RH_KEPT], "rehab", "08/11")] and "kept at 21" in _rw_why(rw6c[1][1], "08/11/2026") and _rw_no61(rw6c), (_rw_all(rw6c), _rw_why(rw6c[1][1], "08/11/2026")))
+CHART["8862"] = RH_AC + [("99306", "08/11/2026", NFN)]
+rw6d = rw_seq("8862", "pat8862", "awa", [("20260814T1240Z", [_rw_M("99233", "20260812", "20260812"), _rw_M("99239", "20260813", "20260812")]), ("20260815T1240Z", [_rw_M("99223", "20260814", "20260814")]),
+                                         ("20260818T1240Z", [_rw_M("99223", "20260816", "20260816"), _rw_M("99233", "20260817", "20260816")])])
+check("verification (5, live): behind our own nursing visit two hospital visits come with no initial visit of ours (in no stay: the hospital, 21); the initial visit one day behind them goes in as before and its row says that the hospital visit before it belongs to no stay; "
+      "the initial visit two days after THAT one and its follow-up go in as before too - nothing at 61 on this chart (the fixer's random comparison with the pull request's head found these two at 61)",
+      [r_[:4] for r_ in _rw_all(rw6d)] == [("08/1%d" % d_, [c_], "fac29", ["21"]) for d_, c_ in ((2, "99233"), (3, "99239"), (4, "99223"), (6, "99223"), (7, "99233"))] and _rw_no61(rw6d)
+      and _rw_why(rw6d[1][1], "08/14/2026").startswith("as before:") and "no stay" in _rw_why(rw6d[1][1], "08/14/2026") and "would be an admission to the rehab unit" in _rw_why(rw6d[2][1], "08/16/2026")
+      and all("rehab 61 x0/21 x0" in _rh_pl(o_) for o_, _g in rw6d), (_rw_all(rw6d), _rw_why(rw6d[1][1], "08/14/2026"), _rw_why(rw6d[2][1], "08/16/2026")))
+_rw_lt = [_rw_M("99306", "20260812", "", B["n1"]), _rw_M("99223", "20260811", "20260811")]      # one file: our nursing visit of 08/12 and the initial hospital visit of 08/11 - one day after the acute stay, by its date an admission to the rehab unit
+CHART["8863"] = RH_AC + [("99232", "08/14/2026", HOSPN), ("99233", "08/15/2026", HOSPN)]; rw6e = rw_seq("8863", "pat8863", "awb", [("20260816T1240Z", _rw_lt)])      # two hospital follow-ups reached the feed first: they stand at the hospital
+CHART["8864"] = list(RH_AC); rw6f = rw_seq("8864", "pat8864", "awc", [("20260816T1240Z", _rw_lt)])                                                               # the control: nothing behind the initial visit is on the chart
+_rw_e = [r_ for r_ in _rw_all(rw6e) if r_[2] != "fac34"]; _rw_f = [r_ for r_ in _rw_all(rw6f) if r_[2] != "fac34"]
+check("verification (5, live): the initial visit comes LATE - two hospital follow-ups dated behind it already stand on the chart at the hospital, and one of our nursing visits is dated between it and them: the stay does not hold those follow-ups any more, "
+      "but nothing shows that they are NOT its visits - the initial visit is kept at 21 with them, as at the head of the pull request, and its row says why (the fixer's random comparison found it at 61). Without those follow-ups on the chart it goes in at 61, as before",
+      _rw_e == [("08/11", ["99223"], "fac29", ["21"], [RH_KEPT], "rehab", "08/11")] and "kept at 21" in _rw_why(rw6e[0][1], "08/11/2026") and "another order" in _rw_why(rw6e[0][1], "08/11/2026") and _rw_no61(rw6e)
+      and _rw_f == [("08/11", ["99223"], "fac67", ["61"], ["rehab"], "rehab", "08/11")], (_rw_e, _rw_why(rw6e[0][1], "08/11/2026"), _rw_f))
+_rw_o1 = [_rw_M("99233", "20260814", "20260811"), _rw_M("99306", "20260812", "", B["n1"]), _rw_M("99223", "20260811", "20260811")]
+CHART["8865"] = list(RH_AC); rw6g = rw_seq("8865", "pat8865", "awd", [("20260816T1240Z", _rw_o1)]); CHART["8866"] = list(RH_AC); rw6h = rw_seq("8866", "pat8866", "awe", [("20260816T1240Z", _rw_o1[::-1])])
+_rw_g = sorted(r_ for r_ in _rw_all(rw6g) if r_[2] != "fac34"); _rw_h = sorted(r_ for r_ in _rw_all(rw6h) if r_[2] != "fac34")
+check("verification (5, live): ... and when such a follow-up comes in the SAME file as the initial visit, the order of the messages does not decide: read before the initial visit or behind it, the follow-up goes in at the hospital / 21 "
+      "(behind our nursing visit it is in no stay) and the initial visit at 61 - what this run builds for a visit that is in no stay never moves the initial visit",
+      _rw_g == [("08/11", ["99223"], "fac67", ["61"], ["rehab"], "rehab", "08/11"), ("08/14", ["99233"], "fac29", ["21"], [""], "acute", "")] and _rw_h == _rw_g, (_rw_g, _rw_h))
+# (6) a rehab stay longer than 45 days
+_rh_h2 = lambda *days_: _rt(lambda: {(ci._fmt_day(k_[0])[:5], k_[1]): v_ for k_, v_ in ci.hospital_stays([("99223", "08/01/2026")] + [("99232", d_) for d_ in days_])[1].items()})
+check("verification (6, the chain): past its 45th day a stay still holds a visit that comes at most 7 days after the stay's last visit in hand - a stay that is visibly going on is never cut in two; a visit more than 45 days after the initial visit AND more than 7 days after the stay's last visit in hand is in no stay, and so is every visit behind it",
+      _rt(lambda: ci.STAY_GOES_ON_DAYS) == 7 and _rh_h2("09/15/2026", "09/16/2026", "09/23/2026") == {("08/01", True): 0, ("09/15", False): 0, ("09/16", False): 0, ("09/23", False): 0} and _rh_h2("09/15/2026", "09/23/2026") == {("08/01", True): 0, ("09/15", False): 0, ("09/23", False): None}
+      and _rh_h2("09/10/2026", "09/17/2026", "09/24/2026", "10/02/2026", "10/03/2026") == {("08/01", True): 0, ("09/10", False): 0, ("09/17", False): 0, ("09/24", False): 0, ("10/02", False): None, ("10/03", False): None},
+      (_rt(lambda: ci.STAY_GOES_ON_DAYS), _rh_h2("09/15/2026", "09/16/2026", "09/23/2026"), _rh_h2("09/15/2026", "09/23/2026"), _rh_h2("09/10/2026", "09/17/2026", "09/24/2026", "10/02/2026", "10/03/2026")))
+RW_AC2 = [("99223", "07/01/2026", HOSPN), ("99232", "07/02/2026", HOSPN), ("99232", "07/03/2026", HOSPN), ("99232", "07/04/2026", HOSPN), ("99239", "07/05/2026", HOSPN)]      # an acute stay 07/01 - 07/05
+CHART["8846"] = RW_AC2 + [("99223", "07/06/2026", REHABN), ("99233", "08/18/2026", REHABN), ("99233", "08/19/2026", REHABN)]      # the rehab stay at 61: admitted 07/06; its 43rd and 44th day stand on the chart
+rw7 = rw_seq("8846", "pat8846", "lg1", [("20260821T1240Z", [_rw_M("99233", "20260820", "20260706")]), ("20260822T1240Z", [_rw_M("99233", "20260821", "20260706")]), ("20260823T1240Z", [_rw_M("99233", "20260822", "20260706")]),
+                                         ("20260901T1240Z", [_rw_M("99233", "20260831", "20260706")])])
+check("verification (6, live): the 45th, the 46th and the 47th day of a rehab stay at 61 that is seen every day all go in at HCA REHAB / 61 - the stay is no longer cut at its 46th day; a hospital follow-up nine days after the stay's last visit, past the 45 days, is in no stay: as before (the hospital, 21), and its row says why",
+      _rw_all(rw7) == [("08/2%d" % d_, ["99233"], "fac67", ["61"], ["rehab"], "rehab", "07/06") for d_ in (0, 1, 2)] + [("08/31", ["99233"], "fac29", ["21"], [""], "acute", "")]
+      and "more than 45 days" in _rw_why(rw7[3][1], "08/31/2026") and _rw_why(rw7[1][1], "08/21/2026") == "inpatient rehab stay: " + RH_SIGN, (_rw_all(rw7), _rw_why(rw7[3][1], "08/31/2026")))
+_rw_p1 = _rh_v([("99223", "07/06/2026")], RW_AC2 + [("99232", "09/20/2026", HOSPN)])                                   # the initial visit comes late; a hospital visit 76 days behind it stands on the chart (past the stay's days: in no stay)
+_rw_p2 = _rh_v([("99223", "08/11/2026")], RH_AC + [("99232", "08/14/2026", HOSPN)], [("99306", "08/12/2026")])         # the initial visit comes late; a hospital visit 3 days behind it stands on the chart, behind our nursing visit of this batch
+check("verification (6, one message, pure): only a hospital visit the stay let go behind one of OUR nursing or home visits keeps a late initial visit at 21 (it may be a visit of this stay); a hospital visit on the chart that is past the stay's days "
+      "was in no stay before this change either - behind it the initial visit goes in at 61, as it did",
+      isinstance(_rw_p1, dict) and _rw_p1.get("to61") is True and isinstance(_rw_p2, dict) and _rw_p2.get("to61") is False and "another order" in str(_rw_p2.get("why")), (_rw_p1, _rw_p2))
+# (7) the initial visit of a rehab stay at 61 was voided on the chart
+_rw_void = RH_AC + [("99233", "08/12/2026", REHABN), ("99233", "08/13/2026", REHABN)]      # an acute stay; then a rehab stay at 61 whose INITIAL visit (08/11) was voided since - the chart no longer shows it; its two follow-ups still stand at HCA REHAB
+CHART["8847"] = list(_rw_void); rw8 = rw_seq("8847", "pat8847", "vd1", [("20260815T1240Z", [_rw_M("99233", "20260814", "20260811")]), ("20260816T1240Z", [_rw_M("99233", "20260815", "20260811")])])
+_rw_v = _rv_row(rw8[0][1], "08/14/2026")
+check("verification (7, live): the initial visit of a rehab stay at 61 was voided on the chart - the next follow-up cannot follow a stay whose beginning is gone: it goes in as before (the hospital, 21) and the run SAYS that the stay is now mixed - "
+      "in the row (pos_err, with the days that stand at 61, and the list mixed_at61), on the run's line 'POS RULE NOT APPLIED ...' and in the short line ('not applied x1'): the way such a visit reaches the top of the report",
+      (_rw_v.get("fac"), _rw_v.get("pos_lines"), _rw_v.get("pos_kind"), _rw_v.get("stay")) == ("fac29", ["21"], [""], RH_ST("acute", "08/03/2026")) and str(_rw_v.get("pos_err")).startswith("PLACE OF SERVICE 61 on 08/12-08/13/2026, 21 here: the stay is MIXED")
+      and "for William" in str(_rw_v.get("pos_err")) and "nothing was changed" in str(_rw_v.get("pos_err")) and _rw_v.get("mixed_at61") == ["08/12/2026", "08/13/2026"] and "hospital_at61" not in _rw_v
+      and "POS RULE NOT APPLIED pat8847 08/14/2026 ['99233'] PLACE OF SERVICE 61 on 08/12-08/13/2026, 21 here" in rw8[0][0] and "not applied x1" in _rh_pl(rw8[0][0]), (_rw_v, _rh_pl(rw8[0][0])))
+check("verification (7, live): ... and it is said ONCE: the follow-up of the next file goes in at the hospital too and carries no word of its own - the import register of the run before holds the days that were named",
+      _rw_all(rw8[1:]) == [("08/15", ["99233"], "fac29", ["21"], [""], "acute", "08/03")] and _rv_row(rw8[1][1], "08/15/2026").get("pos_err") == "" and "mixed_at61" not in _rv_row(rw8[1][1], "08/15/2026") and "not applied x0" in _rh_pl(rw8[1][0]),
+      (_rw_all(rw8[1:]), _rv_row(rw8[1][1], "08/15/2026").get("pos_err"), _rh_pl(rw8[1][0])))
+CHART["8848"] = list(_rw_void); rw9 = rw_seq("8848", "pat8848", "vd2", [("20260815T1240Z", [_rw_M("99223", "20260814", "20260814")])])
+check("verification (7, live): ... and a NEW initial hospital visit the day after that stay's last visit - the patient back in the acute hospital - is no longer read as 'a new admission 1-2 days after an acute stay': a stay that holds visits at HCA REHAB shows no acute stay. It goes in as before (the hospital, 21) and its row says why",
+      _rw_all(rw9) == [("08/14", ["99223"], "fac29", ["21"], [""], "acute", "08/14")] and "would be an admission to the rehab unit" in _rw_why(rw9[0][1], "08/14/2026") and "HCA REHAB" in _rw_why(rw9[0][1], "08/14/2026"), (_rw_all(rw9), _rw_why(rw9[0][1], "08/14/2026")))
+_rw_vs = _rh_v([("99233", "08/14/2026")], _rw_void); _rw_vs2 = _rh_v([("99233", "08/14/2026")], _rw_void, said61={"08/12/2026"}); _rw_vs3 = _rh_v([("99233", "08/14/2026")], _rw_void, said61={"08/12/2026", "08/13/2026"})
+check("verification (7, one message, pure): the answer of such a follow-up carries the words to say and the days it names (kind 'mixed'); a day an earlier row already named is not named again, and with every day named there is nothing left to say",
+      isinstance(_rw_vs, dict) and _rw_vs.get("to61") is False and _rw_vs.get("at61") == ["08/12/2026", "08/13/2026"] and _rw_vs.get("at61_kind") == "mixed" and isinstance(_rw_vs2, dict) and _rw_vs2.get("at61") == ["08/13/2026"]
+      and str(_rw_vs2.get("said")).startswith("PLACE OF SERVICE 61 on 08/13/2026, 21 here: the stay is MIXED") and _rw_vs3 == {"to61": False, "stay": RH_ST("acute", "08/03/2026"), "why": ""}, (_rw_vs, _rw_vs2, _rw_vs3))
+# (8) the sentence about a hospital stay with visits at 61, and the digest's first 70 characters
+CHART["8849"] = RH_AC + RV_R61 + [("99233", "08/1%d/2026" % d_, REHABN) for d_ in (2, 3, 4)]
+rw10 = rw_seq("8849", "pat8849", "mx1", [("202608%dT1240Z" % (d_ + 1), [_rw_M("99233", "202608%d" % d_, "20260815")]) for d_ in (16, 17, 18)] + [("20260820T1240Z", [_rw_M("99223", "20260815", "20260815"), _rw_M("99233", "20260819", "20260815")])])
+_rw_m = _rv_row(rw10[3][1], "08/15/2026"); _rw_e = str(_rw_m.get("pos_err")); _RW_HEAD = "PLACE OF SERVICE 61 on 08/16-08/18/2026 belongs to this HOSPITAL stay"
+check("verification (8, live): the hospital stay's initial visit arrives after THREE of its follow-ups went in at 61 - the sentence still says in its first 70 characters (all the digest shows of it) which days stand at 61 and that they belong to a HOSPITAL stay; "
+      "behind that it names every day, and the row carries the days as a list of their own (hospital_at61) - for the monitor and for the digest",
+      _rw_all(rw10[:3]) == [("08/1%d" % d_, ["99233"], "fac67", ["61"], ["rehab"], "rehab", "08/11") for d_ in (6, 7, 8)] and _rw_e.startswith(_RW_HEAD) and len(_RW_HEAD) <= 70 and "(3 visits: 08/16/2026, 08/17/2026, 08/18/2026)" in _rw_e
+      and "for William" in _rw_e and "nothing was changed" in _rw_e and _rw_m.get("hospital_at61") == ["08/16/2026", "08/17/2026", "08/18/2026"] and "mixed_at61" not in _rw_m and (_rw_m.get("fac"), _rw_m.get("pos_lines"), _rw_m.get("stay")) == ("fac29", ["21"], RH_ST("acute", "08/15/2026"))
+      and _rv_row(rw10[3][1], "08/19/2026").get("pos_err") == "", (_rw_all(rw10[:3]), _rw_m))
+_rw_heads = [str((lambda v_: v_.get("said") if isinstance(v_, dict) else v_)(_rh_v([("99223", "08/15/2026")], RH_AC + RV_R61 + [("99233", "08/%02d/2026" % d_, REHABN) for d_ in days_])))[:70] for days_ in ((16,), (16, 17), (16, 18), (16, 17, 18, 19, 20), tuple(range(16, 31)))]
+check("verification (8, the words): ONE visit at 61 - the sentence as before, with its day; several - the first and the last day; whatever their number, the first 70 characters name the days and say 'belongs to this HOSPITAL stay'",
+      _rw_heads == [("PLACE OF SERVICE 61 on %s belongs to this HOSPITAL stay" % w_ + (" - it went in at HCA REHAB" if w_ == "08/16/2026" else " (%d visits: 08/16/2026, 08/1" % n_))[:70] for w_, n_ in (("08/16/2026", 1), ("08/16-08/17/2026", 2), ("08/16-08/18/2026", 2), ("08/16-08/20/2026", 5), ("08/16-08/30/2026", 15))]
+      and all("belongs to this HOSPITAL stay" in h_ for h_ in _rw_heads), _rw_heads)
+# (9) the stay's initial visit is known and NOT entered
+_rw_bad = lambda body, timeout=0: "<r><Fault>the charge is not accepted</Fault></r>" if ('action="updvisitwithnewcharges"' in body and ci.PCODE["99223"] in body) else _rh_post(body, timeout)      # the stand-in refuses the charge call of an initial hospital visit
+_rw_k21 = lambda d_, c_="99233": (d_, [c_], "fac29", ["21"], [RH_KEPT], "rehab", "08/11")
+CHART["8850"] = list(RH_AC); rw11 = rw_seq("8850", "pat8850", "na1", [("20260813T1240Z", [_rw_M("99222", "20260811", "20260811"), _rw_M("99233", "20260812", "20260811")]), ("20260814T1240Z", [_rw_M("99233", "20260813", "20260811")])])
+CHART["8851"] = list(RH_AC); rw12 = rw_seq("8851", "pat8851", "na2", [("20260813T1240Z", [_rw_M("99233", "20260812", "20260811"), _rw_M("99222", "20260811", "20260811")])])
+check("verification (9, live): the stay's initial visit carries a code the import's table does not have (99222) - it is skipped as before ('unknown CPT 99222') and is NOT entered; its follow-ups no longer go in at HCA REHAB / 61 behind an admission nobody entered: "
+      "kept at 21 (rehab-stay-kept-21, the stay named, the reason in pos_why) in that file - whichever of the two messages stands first - and in the next",
+      _rw_all(rw11) == [_rw_k21("08/12"), _rw_k21("08/13")] and _rw_all(rw12) == [_rw_k21("08/12")] and _rv_skips(rw11[0][1]) == ["unknown CPT 99222"] and "is not entered" in _rw_why(rw11[0][1], "08/12/2026") and "is not entered" in _rw_why(rw12[0][1], "08/12/2026")
+      and "is not entered" in _rw_why(rw11[1][1], "08/13/2026") and "rehab 61 x0/21 x1" in _rh_pl(rw11[0][0]) and _rv_row(rw11[0][1], "08/12/2026").get("pos_err") == "", (_rw_all(rw11), _rw_all(rw12), _rw_why(rw11[0][1], "08/12/2026"), _rh_pl(rw11[0][0])))
+CHART["8852"] = list(RH_AC); rw13 = rw_seq("8852", "pat8852", "na3", [("20260813T1240Z", [_rw_M("99223", "20260811", "20260811"), _rw_M("99233", "20260812", "20260811")]), ("20260814T1240Z", [_rw_M("99233", "20260813", "20260811")])], post=_rw_bad)
+check("verification (9, live): AdvancedMD refuses the stay's initial visit (a fault on its charge call) - the visit is in the failed rows as before, and the follow-up behind it in that file and the one of the next file are kept at 21: nothing of the stay stands at 61 without its admission",
+      _rw_all(rw13) == [_rw_k21("08/12"), _rw_k21("08/13")] and [(r_.get("pid"), (r_.get("info") or {}).get("dos")) for r_ in (rw13[0][1] or {}).get("failed", [])] == [("pat8852", "08/11/2026")] and "is not entered" in _rw_why(rw13[0][1], "08/12/2026"),
+      (_rw_all(rw13), [(r_.get("pid"), (r_.get("info") or {}).get("dos")) for r_ in (rw13[0][1] or {}).get("failed", [])], _rw_why(rw13[0][1], "08/12/2026")))
+CHART["8853"] = list(RH_AC); rw14 = rw_seq("8853", "pat8853", "na4", [("20260813T1240Z", [_rw_M("99233", "20260812", "20260811"), _rw_M("99223", "20260811", "20260811")])], post=_rw_bad)
+rw14 += rw_seq("8853", "pat8853", "na4", [("20260814T1240Z", [_rw_M("99233", "20260813", "20260811")]), ("20260815T1240Z", [_rw_M("99233", "20260814", "20260811")]), ("20260816T1240Z", [_rw_M("99223", "20260811", "20260811")])])
+_rw_n = _rv_row(rw14[1][1], "08/13/2026")
+check("verification (9, live - what cannot be prevented is SAID): the follow-up stands BEFORE its stay's initial visit in the file and goes in at 61 with it, as before - then AdvancedMD refuses that initial visit. The follow-up of the next file does not go in at 61 behind an admission nobody entered: "
+      "as before (the hospital, 21), and the run says that the stay is mixed, with the day that stands at 61 - once",
+      _rw_all(rw14[:1]) == [("08/12", ["99233"], "fac67", ["61"], ["rehab"], "rehab", "08/11")] and (_rw_n.get("fac"), _rw_n.get("pos_lines"), _rw_n.get("pos_kind"), _rw_n.get("stay")) == ("fac29", ["21"], [RH_KEPT], RH_ST("rehab", "08/11/2026", RH_SIGN))
+      and str(_rw_n.get("pos_err")).startswith("PLACE OF SERVICE 61 on 08/12/2026, 21 here: the stay is MIXED") and "is not entered" in str(_rw_n.get("pos_err")) and "for William" in str(_rw_n.get("pos_err")) and _rw_n.get("mixed_at61") == ["08/12/2026"]
+      and "POS RULE NOT APPLIED pat8853 08/13/2026" in rw14[1][0], (_rw_all(rw14[:1]), _rw_n))
+check("verification (9, live): ... the follow-up after it is kept at 21 without a word of its own, and when the admission is entered at last it stays at 21 with them - no further mixing",
+      _rw_all(rw14[2:]) == [_rw_k21("08/14"), _rw_k21("08/11", "99223")] and all(_rv_row(g_, d_).get("pos_err") == "" and "mixed_at61" not in _rv_row(g_, d_) for (_o, g_), d_ in zip(rw14[2:], ("08/14/2026", "08/11/2026"))),
+      (_rw_all(rw14[2:]), [_rv_row(g_, d_).get("pos_err") for (_o, g_), d_ in zip(rw14[2:], ("08/14/2026", "08/11/2026"))]))
+# ... the three other ways an initial visit is not entered: its line carries no diagnosis code; the call that makes the visit is refused; its charge call ends in an error
+_rw_two = [_rw_M("99223", "20260811", "20260811"), _rw_M("99233", "20260812", "20260811")]      # the stay's initial visit, then its follow-up
+CHART["8857"] = list(RH_AC); rh_m = s4_fresh({"x.hl7": rw_raw("na5", _rw_two)})
+rw17o, rw17 = rh_run(rh_m, [dict(P_("na5", "na5", [("99223", "20260811")]), FT1=[{"cpt": "99223", "dos": "20260811", "dx": "", "units": "1"}]), P_("na5", "na5", [("99233", "20260812")])], {"na5": "pat8857"}, stamp="20260813T1241Z")
+CHART["8858"] = list(RH_AC); ECHO["fail_create"] = 1; rw18 = rw_seq("8858", "pat8858", "na6", [("20260813T1242Z", _rw_two)]); ECHO["fail_create"] = 0
+_rw_boom = lambda body, timeout=0: (_ for _ in ()).throw(TimeoutError("read timed out")) if ('action="updvisitwithnewcharges"' in body and ci.PCODE["99223"] in body) else _rh_post(body, timeout)
+CHART["8859"] = list(RH_AC); rw19 = rw_seq("8859", "pat8859", "na7", [("20260813T1243Z", _rw_two)], post=_rw_boom)
+check("verification (9, live): the stay's initial visit is not entered for another reason - its line carries no diagnosis code ('no usable dx', skipped as before), AdvancedMD refuses the call that makes the visit, or its charge call ends in an error (nobody knows what AdvancedMD kept) - "
+      "each time the follow-up read behind it in that file is kept at 21: the run takes back what it had noted of a visit that was not entered, and remembers the initial visits it could not enter",
+      [(r_[0][:5], r_[1], r_[2], r_[3], r_[4], (r_[5] or {}).get("kind")) for r_ in rh_rows(rw17)] == [("08/12", ["99233"], "fac29", ["21"], [RH_KEPT], "rehab")] and _rv_skips(rw17) == ["no usable dx for 99223"]
+      and _rw_all(rw18) == [_rw_k21("08/12")] and "FAULT addvisit pat8858 08/11/2026" in rw18[0][0] and _rw_all(rw19) == [_rw_k21("08/12")] and "ERR pat8859" in rw19[0][0]
+      and all("is not entered" in str((r_.get("pos_why") or [""])[0]) for g_ in (rw17, rw18[0][1], rw19[0][1]) for r_ in (g_ or {}).get("created", [])), (rh_rows(rw17), _rv_skips(rw17), _rw_all(rw18), _rw_all(rw19), rw19[0][0][-300:]))
+# (10) a FOLLOW-UP whose own building cannot be read, and its stay's initial visit, in ONE file
+_rw_I = _rw_M("99223", "20260811", "20260811"); _rw_F2 = [_rw_M("99233", "20260812", "20260811"), _rw_M("99233", "20260812", "20260811", B["a1"])]      # the stay's initial visit; its follow-up sent TWICE - from the hospital and from an assisted-living building
+CHART["8854"] = list(RH_AC); rw15 = rw_seq("8854", "pat8854", "ob1", [("20260814T1240Z", [_rw_I] + _rw_F2)])
+CHART["8855"] = list(RH_AC); rw16 = rw_seq("8855", "pat8855", "ob2", [("20260814T1240Z", _rw_F2 + [_rw_I])])
+_rw_i1, _rw_i2 = _rv_row(rw15[0][1], "08/11/2026"), _rv_row(rw16[0][1], "08/11/2026")
+check("verification (10, live): ONE file holds a rehab stay's initial visit and a follow-up of it whose own building cannot be read (the feed sent its lines from two buildings: the rule steps aside for it and it goes in as before). The initial visit looks ahead - "
+      "it is kept at 21 (rehab-stay-kept-21, the reason in pos_why) whichever of the two messages stands first; until now it went in at 61 when it was read first and at 21 when it was read second",
+      [(r_.get("fac"), r_.get("pos_lines"), r_.get("pos_kind"), r_.get("stay")) for r_ in (_rw_i1, _rw_i2)] == [("fac29", ["21"], [RH_KEPT], RH_ST("rehab", "08/11/2026", RH_SIGN))] * 2 and "the rule steps aside" in str(_rw_i1.get("pos_why")) and "the rule steps aside" in str(_rw_i2.get("pos_why"))
+      and _rw_no61(rw15) and _rw_no61(rw16) and _rv_row(rw15[0][1], "08/12/2026").get("msg_own") is False and "POS CHECK not own message pat8854 08/12/2026" in rw15[0][0] and "POS CHECK not own message pat8855 08/12/2026" in rw16[0][0],
+      (_rw_all(rw15), _rw_all(rw16), _rw_i1.get("pos_why"), _rw_i2.get("pos_why")))
+# (11) the import's own counters when AdvancedMD stored another place of service than the 61 that was sent (the run rh_o7 above)
+_RH61X = "POS 61 SENT for an inpatient rehab visit - AdvancedMD stored another place of service, so the visit is NOT at 61 (see POS NOT KEPT)"
+rh_m = s4_fresh({"a.hl7": rh_raw([("r6", [("99223", "20260811")], "20260811", None)])}); rh_o7d, _g = rh_run(rh_m, rh_parsed([("r6", [("99223", "20260811")], "20260811", None)]), {"r6": "pat8806"}, argv=("--dry",))
+check("verification (11): AdvancedMD stored 21 where 61 was sent - the import's own numbers go by what was STORED where it read it back, as the monitor does: that visit is not counted as entered at 61 (the short line says 'rehab 61 x0/21 x0'), "
+      "the DONE line counts it under words of its own, and the counter of the visits entered at HCA REHAB is not touched; a dry run, which reads nothing back, still counts what it would send ('rehab 61 x1/21 x0')",
+      "rehab 61 x0/21 x0" in _rh_pl(rh_o7) and ("'%s': 1" % _RH61X) in rh_o7.replace('"', "'") and _RH61 not in rh_o7 and len(_rh_pl(rh_o7)) <= 110 and "rehab 61 x1/21 x0" in _rh_pl(rh_o7d) and _RH61X not in rh_o7d, (_rh_pl(rh_o7), _rh_last3(rh_o7), _rh_pl(rh_o7d)))
+# (12) the self-test gap: the run remembers the hospital FOLLOW-UPS it built itself
+_rw_c2 = rh_ctx(RH_AC); _rw_real = getattr(RH, "hospital_stays", None); RH.hospital_stays = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
+_rw_f1 = rh_built(RH, "b1", [("99233", "20260813")], c_=_rw_c2, batch={("99223", "08/11/2026", B["h1"])})
+if _rw_real is not None: RH.hospital_stays = _rw_real
+else: del RH.hospital_stays
+_rw_i3 = rh_built(RH, "b1", [("99223", "20260811")], c_=_rw_c2, batch={("99233", "08/13/2026", B["h1"])})
+check("verification (12, the self-test gap): a hospital follow-up THIS RUN built at 21 (the rule failed for its message) before its stay's initial visit of the same file, with nothing of the stay on the chart - the initial visit is kept at 21 with it: "
+      "the run remembers the hospital follow-ups it built itself (without that the stay would stand at 61 beside 21, and no check noticed)",
+      _rw_f1[3] == "fac29" and [p_ for _c, p_ in _rw_f1[2]] == ["21"] and isinstance(_rw_f1[1], dict) and "inpatient rehab stay" in str(_rw_f1[1].get("pos_err")) and _rb(_rw_i3) == ("fac29", ["21"], ([RH_KEPT], "", RH_ST("rehab", "08/11/2026", RH_SIGN)))
+      and isinstance(_rw_i3[1], dict) and "kept at 21" in str(_rw_i3[1].get("pos_why")), (_rb(_rw_f1), _rb(_rw_i3)))
+# ... and the second gap the verification named: the digest (claimocity_report.py, section 6 above runs it over a made-up register) names a NEW rehab stay from the row of its initial
+# visit only. A change that named every visit at 61 as a new stay - so that the one line William reads for a wrong admission is drowned in follow-ups - left every check as it was.
+_dg_new = lambda rows_: [l_ for l_ in digest(rows_, "20260814T1240Z")[0].stdout.splitlines() if "New rehab stay" in l_]
+_dg_row = lambda dos_, cpts_: dict(reg_row(cpts_, "fac67", "21", ["61"] * len(cpts_), ["rehab"] * len(cpts_)), pid="pat8861", visit="vst8862", dos=dos_, pos_stored=["61"] * len(cpts_), stay={"kind": "rehab", "initial": "08/11/2026", "sign": RH_SIGN})
+_dg1 = _dg_new([_dg_row("08/12/2026", ["99233"])]); _dg2 = _dg_new([_dg_row("08/11/2026", ["99223"]), _dg_row("08/12/2026", ["99233"]), _dg_row("08/13/2026", ["99233", "99497"])])
+check("verification (12, the self-test gap - the digest): a batch that holds only a FOLLOW-UP of a rehab stay at 61 names no 'New rehab stay' at all; with the stay's initial visit in the batch the stay is named ONCE, by its chart and the day of that visit - the follow-ups' own days are not in the line",
+      _dg1 == [] and len(_dg2) == 1 and "pat8861 08/11/2026" in _dg2[0] and "08/12/2026" not in _dg2[0] and "08/13/2026" not in _dg2[0], (_dg1, _dg2))
+check("verification (the words): the import's header and the rule's own comment say what was added - the nursing or home visit between two hospital stays, the stay that goes on past its 45th day, the visit that is not entered at 61 behind an admission nobody entered, and the days named once",
+      all(w_ in open(HELPER).read() for w_ in ("STAY_GOES_ON_DAYS", "hospital_at61", "mixed_at61", "nursing-facility or home / assisted-living visit")) and "verification" in open(HELPER).read().split("\nimport os as _os")[0], [w_ for w_ in ("STAY_GOES_ON_DAYS", "hospital_at61", "mixed_at61", "nursing-facility or home / assisted-living visit") if w_ not in open(HELPER).read()])
+check("verification (privacy): what these runs kept and printed about the days at 61, the stays that are not entered and the visits kept at 21 holds chart ids, codes and dates of service only - no name, no date of birth",
+      all(NAME(f_) not in json.dumps(g_) + o_ and "zz test" not in json.dumps(g_) + o_ and DOBK not in json.dumps(g_) + o_ for f_, runs_ in (("vd1", rw8), ("mx1", rw10), ("na4", rw14), ("aw4", rw4), ("ob1", rw15)) for o_, g_ in runs_ if g_ is not None))
 os.chdir(_rh_cwd); DEMOG.clear(); DEMOG.update(_rh_dm)
 # -- the inspector step (run INSIDE this process with stand-ins, as above) -------------------------------------------------------------------------------------
 # (a) a nursing-facility code under the hospital building: until 11/25/2026 the step MOVED such a visit to HCA REHAB (fac67) at place of service 31. William 10/31/2026: wrong -
@@ -5551,7 +5953,7 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
-      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the paid look-up is bought only for a chart that is KNOWN to be the feed\'s patient"' in mir      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below)
+      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "KNOWN ALSO MEANS PROVEN BY A NUMBER"' in mir and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below)
       and "the paid look-up is asked with the CHART's own name and birth date" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 

@@ -8,7 +8,13 @@
 #   WHAT IT READS: (1) the import registers of the registers folder (feed_import_<stamp>.json, the rows of "created"): a row with a charge
 #   line at place of service 61 - the import writes 61 for a rehab stay only (stay.kind "rehab", pos_kind "rehab") - is the NEW GROUP; a
 #   rehab-stay row that went in at 21 - the import marks it pos_kind "rehab-stay-kept-21" - is the COMPARISON GROUP; every other row is left
-#   alone. A visit named in two registers stands as the later one says. (2) For each such visit at most ONE read of that visit's own history
+#   alone. A visit named in two registers stands as the later one says. ONE KIND OF VISIT AT 61 IS NO REHAB VISIT (11/25/2026, the
+#   verification of the pull request): a follow-up of a NEW hospital stay can go in at HCA REHAB / 61 before that stay's initial visit reaches
+#   the feed. When the initial visit comes, the import says so on its row and names the days in the row's list hospital_at61 ('MM/DD/YYYY'
+#   each). A visit at 61 of that chart on one of those days is a HOSPITAL visit that stands at 61 - William corrects it. It is read like every
+#   visit, but it is not a rehab visit: it is in neither group, in no average and in no 'paid low' test (its group in the register is
+#   "hospital at 61", with the stamp of the register that named it under "named"). Only that list is read - never the words of pos_err - and
+#   only a real day of it. (2) For each such visit at most ONE read of that visit's own history
 #   per run (txh.fetch_visit - the read the runs already use: the charge rows with their bill date, carrier and balances, and their payment
 #   lines with the reason codes). (3) Its own register of the run before.
 #   WHAT A READ SHOWS (the visit is its hospital-visit line; where it has none, every line; a no-charge reporting line never counts):
@@ -51,9 +57,14 @@
 #       run for 14 days from the day this monitor first saw the visit so - whatever date AdvancedMD gives the payment; after that the visit
 #       stays in the count "paid low" and in the register. (Nothing ends such a line by itself, so it is not repeated for ever: --line-days N
 #       changes the 14 days, --line-days 0 keeps every line for as long as the visit is denied or paid low.)
-#     REHAB MONITOR: what the numbers above do not hold - a visit that could not be read, an import register that could not be read, a
-#       line riding with a paid visit (99497 / 99498) that is denied, the reads this run did not get to and why, a run that had no register
-#       of an earlier run to go by, settled visits that were last read more than 30 days ago.
+#     TOP OF THE REPORT - HOSPITAL VISIT AT PLACE OF SERVICE 61 DENIED: one line for every denied hospital visit that stands at 61 (above) -
+#       the visit, the chart, the date of service, the carrier code, the codes, the balance - ending with what it is: a visit that belongs to
+#       a hospital stay, for William to correct (the hospital, 21) and send again. It is NOT the payer's answer to a rehab visit at 61 and
+#       never asks 'keep 61 or go back to 21'. It is repeated like a denied rehab visit's line (for as long as the visit carries a balance).
+#     REHAB MONITOR: what the numbers above do not hold - 'N visit(s) at 61 belong to a HOSPITAL stay ...' with each such visit and what
+#       the payer answered; a visit that could not be read, an import register that could not be read, a line riding with a paid visit
+#       (99497 / 99498) that is denied, the reads this run did not get to and why, a run that had no register of an earlier run to go by,
+#       settled visits that were last read more than 30 days ago.
 #   WHAT IT WRITES: registers/pos61_monitor.json and nothing else - visit ids, chart ids, dates of service, bill and payment dates, codes,
 #   the state, the carrier CODE, reason codes and dollars; never a name, a birth date or a member number. Every value taken from AdvancedMD's
 #   answer or from a register is kept only in the shape of what it is: a chart or visit id as the import writes it (pat123, vst123 - digits
@@ -97,7 +108,7 @@
 #   Exit 0 = it ran (also when visits could not be read: the lines say so); exit 2 = it did not run or could not write its register (one plain line).
 import os, re, sys, json, glob, time, datetime, collections
 import amd, txh
-POS61_MONITOR_VERSION = "2026-11-25.3"      # this helper's own version (not the import's POS_RULE_VERSION): change it with EVERY revision of the monitor - it is written into the register
+POS61_MONITOR_VERSION = "2026-11-25.4"      # this helper's own version (not the import's POS_RULE_VERSION): change it with EVERY revision of the monitor - it is written into the register
 # THE FIXED HISTORY OF PLACE OF SERVICE 21 - what the same kind of visit did before the rule. Constants, not read anywhere at run time.
 BASELINE_21 = {"sent": 121, "paid": 95, "average": 138.67, "denied_unpaid": 10}      # the practice's own AdvancedMD history pulled 11/10/2026: second initial hospital visits within 30 days at place of service 21 since 11/2025 - 121 sent, 95 paid, average $138.67 a paid visit, 10 denied and never paid
 BASELINE_WORDS = "the practice's history of 11/10/2026"
@@ -123,10 +134,12 @@ GOLDEN = 0.6180339887498949 # the golden ratio's part behind the point: the day'
 PAUSE = 0.2                 # seconds between two reads
 CLOCK = time.monotonic      # the clock the time of a run is taken from
 QUESTION = "- for William: keep 61 or go back to 21 for this payer?"
+HOSP61 = "hospital at 61"   # the group of a HOSPITAL visit that stands at 61: the import named its day in a row's hospital_at61 list (11/25/2026, verification) - no rehab visit, in neither group's numbers
+HOSP61_WORDS = "- this visit belongs to a hospital stay and stands at HCA REHAB / 61 (the import named it%s): for William - correct the visit (the hospital, 21) and send it again; it is no answer to 'keep 61 or go back to 21'"
 OUT = "pos61_monitor.json"
 BASE_LINE = "at 21 the average was $%.2f on %d paid of %d sent" % (BASELINE_21["average"], BASELINE_21["paid"], BASELINE_21["sent"])
 FACT_KEYS = ("read", "code", "fee", "carrier", "billed", "paid", "paid_on", "paid_by", "pay_codes", "denial", "remarks", "denied_on", "pending", "resent", "zero_codes", "before", "dup", "balance", "ins_balance", "other", "answer", "void", "closed")
-ROW_ORDER = ("visit", "chart", "dos", "cpts", "group", "batch", "initial", "sign", "state", "days", "said", "since", "read", "stale", "asked", "unread", "code", "fee", "carrier", "billed", "paid", "paid_on", "paid_by", "pay_codes", "low", "low_vs", "low_of",
+ROW_ORDER = ("visit", "chart", "dos", "cpts", "group", "named", "batch", "initial", "sign", "state", "days", "said", "since", "read", "stale", "asked", "unread", "code", "fee", "carrier", "billed", "paid", "paid_on", "paid_by", "pay_codes", "low", "low_vs", "low_of",
              "denial", "remarks", "denied_on", "pending", "resent", "zero_codes", "before", "dup", "balance", "ins_balance", "other", "answer", "void", "closed")
 class Unreadable(Exception):
     """A read that came back without what was asked for. Its words are this helper's own - never AdvancedMD's."""
@@ -200,9 +213,12 @@ def group_of(row):
     if st.get("kind") != "rehab" and "rehab-stay-kept-21" not in kinds(row) and "61" not in sent: return None
     return "21" if (lines and all(x == "21" for x in lines)) else "other"
 def import_rows(regdir):
-    """({key: (row, batch stamp, group)}, [import registers that could not be read]) - the rehab-stay rows of "created" of every import register,
-    oldest register first: a visit named in two registers stands as the later one says."""
-    rows = {}; bad = []
+    """({key: (row, batch stamp, group, named)}, [import registers that could not be read]) - the rehab-stay rows of "created" of every import
+    register, oldest register first: a visit named in two registers stands as the later one says. 11/25/2026 (verification): a visit at 61
+    whose chart and day stand in the hospital_at61 list of ANY created row of these registers is a HOSPITAL visit that stands at 61 - its
+    group is HOSP61 and `named` is the stamp of the register that named it ("" for every other visit). Only that list is read - entry by
+    entry, each a real day or passed over - never the words beside it."""
+    rows = {}; bad = []; named = {}
     for path in sorted(glob.glob(os.path.join(regdir, "feed_import_*.json"))):
         name = os.path.basename(path)
         if name.endswith("_decisions.json"): continue
@@ -216,7 +232,14 @@ def import_rows(regdir):
                 g = group_of(r)
             except Exception: continue
             if g is None: rows.pop(key, None)
-            else: rows[key] = (r, stamp_of(name), g)
+            else: rows[key] = (r, stamp_of(name), g, "")
+            for d in (r.get("hospital_at61") if isinstance(r.get("hospital_at61"), list) else []):      # the days this row names: visits of ITS chart that stand at 61 and belong to its HOSPITAL stay
+                try:
+                    if ident(r.get("pid"), "pat") and isinstance(d, str) and day(d): named[(ident(r.get("pid"), "pat"), mdy(day(d)))] = stamp_of(name)
+                except Exception: continue
+    for key, (r, stamp, g, _by) in list(rows.items()):
+        who_ = (ident(r.get("pid"), "pat"), mdy(day(r.get("dos"))))
+        if g == "61" and who_ in named: rows[key] = (r, stamp, HOSP61, named[who_])
     return rows, bad
 def static(r, stamp, g):
     """What the import register says of the visit - ids, the date of service, the codes, the stay - each in its own shape."""
@@ -411,8 +434,15 @@ def top_lines(rows, today, line_days):
     has its line_days like the others - nothing would end it if the take-back never came - and stays once the balance is back.)"""
     den = []; low = []; fresh = lambda r: line_days == 0 or not day(r.get("since")) or (today - day(r["since"])).days <= line_days
     for r in rows:
-        if r["group"] != "61": continue
+        if r["group"] not in ("61", HOSP61): continue
         head = "%s %s carrier %s" % (who(r), r.get("code") or "+".join(r.get("cpts") or []) or "?", r.get("carrier") or "not named")
+        if r["group"] == HOSP61:      # (verification) a HOSPITAL visit that stands at 61: its denial is a visit to correct - not the payer's answer to a rehab visit at 61, and nobody is asked about the payer
+            if r["state"] == "denied" and ((r.get("balance") or 0) > 0.005 or fresh(r)):
+                rem = r.get("remarks") or []
+                den.append("TOP OF THE REPORT - HOSPITAL VISIT AT PLACE OF SERVICE 61 DENIED: %s denied%s with %s%s, balance %s%s %s" % (head, (" " + r["denied_on"]) if r.get("denied_on") else "", ", ".join(r.get("denial") or ["?"]),
+                           (" (remark%s %s)" % ("s" if len(rem) > 1 else "", ", ".join(rem))) if rem else "", money(r.get("balance")), (", sent again %s - no answer yet" % r["resent"]) if r.get("resent") else "",
+                           HOSP61_WORDS % ((", batch " + r["named"]) if r.get("named") else "")))
+            continue
         if r["state"] == "denied" and ((r.get("balance") or 0) > 0.005 or fresh(r)):
             rem = r.get("remarks") or []; got = (r.get("paid") or 0) > 0.005      # got: dollars stand beside the denial - another payer's, or the denying payer's own (pending)
             den.append("TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: %s denied%s with %s%s, balance %s%s%s%s %s" % (head, (" " + r["denied_on"]) if r.get("denied_on") else "", ", ".join(r.get("denial") or ["?"]),
@@ -531,8 +561,9 @@ def monitor(argv=None):
     if not os.path.isdir(regdir): return stop("registers folder not found: %s (start it in the workspace, or name the folder with --registers)" % regdir)
     path = os.path.join(regdir, OUT); found, bad = import_rows(regdir); prev, memory_day = previous(path)
     rows = []; other = []
-    for key, (r, stamp, g) in found.items():
+    for key, (r, stamp, g, by) in found.items():
         row = static(r, stamp, g)
+        if g == HOSP61 and stamp_of("feed_import_%s.json" % by): row["named"] = by      # which batch's import register named this visit as a hospital visit - a stamp, nothing else
         if g == "other": other.append(row); continue
         old = prev.get(row["visit"]) if row["visit"] else None
         if isinstance(old, dict) and old.get("chart") == row["chart"]:      # what the run before knew of this visit: the facts of its last read, when it was last asked for, since when its line is said
@@ -567,7 +598,7 @@ def monitor(argv=None):
             if avg is not None:
                 r["low_vs"] = avg
                 if (r.get("paid") or 0) < UNDER_SHARE * avg - 1e-9: r["low"] = True
-        kind = "" if r["group"] != "61" else "denied" if r["state"] == "denied" else "paid low" if (r["state"] == "answered $0" or r.get("low")) else ""
+        kind = ("denied" if r["state"] == "denied" else "") if r["group"] == HOSP61 else "" if r["group"] != "61" else "denied" if r["state"] == "denied" else "paid low" if (r["state"] == "answered $0" or r.get("low")) else ""
         if not kind: r.pop("said", None); r.pop("since", None)
         elif r.get("said") != kind or not day(r.get("since")): r["said"] = kind; r["since"] = mdy(today)      # first seen so today
     c61 = tally(rows, "61"); c21 = tally(rows, "21"); n61 = len([r for r in rows if r["group"] == "61"]); n21 = len([r for r in rows if r["group"] == "21"])
@@ -578,7 +609,7 @@ def monitor(argv=None):
     if n21: lines.append("REHAB STAYS KEPT AT 21 (the comparison group): %d visit(s) entered; %d billed; %d paid (%s); %s" % (c21["entered"], c21["billed"], c21["paid"], money(c21["paid_dollars"]), said(c21, False)))
     by = {}
     for r in rows:
-        if r["state"] == "paid" and r.get("code"): by.setdefault(r["code"], {"61": [], "21": []})[r["group"]].append(r.get("paid") or 0)
+        if r["state"] == "paid" and r.get("code") and r["group"] in ("61", "21"): by.setdefault(r["code"], {"61": [], "21": []})[r["group"]].append(r.get("paid") or 0)      # (a hospital visit that stands at 61 is in neither group's dollars)
     by_code = {}
     for code in sorted(by):
         p61 = by[code]["61"]; p21 = by[code]["21"]
@@ -611,12 +642,15 @@ def monitor(argv=None):
     riding = ["%s %s (%s)" % (who(r), o["code"] or "a line", ", ".join(o["denial"]) or "?") for r in rows if r["group"] == "61" and r["state"] == "paid" for o in r.get("other") or [] if o["answer"] == "denied" and o["balance"] > 0.005]
     if riding: noted.append("REHAB MONITOR: %d line(s) riding with a paid visit at 61 are denied - not a place-of-service line of this monitor, the denial work lists carry them: %s" % (len(riding), "; ".join(riding[:20])))
     if other: noted.append("REHAB MONITOR: %d rehab-stay row(s) of the import registers stand at neither 61 nor 21 - not read, not counted: %s" % (len(other), "; ".join(who(r) for r in other[:20])))
+    hosp = [r for r in rows if r["group"] == HOSP61]; ch61 = tally(rows, HOSP61)
+    if hosp: noted.append("REHAB MONITOR: %d visit(s) at 61 belong to a HOSPITAL stay - the import said so when that stay's initial visit reached the feed (hospital_at61 in the import register). They are no rehab visits and are not counted above; William corrects the visit: %s"
+                          % (len(hosp), "; ".join("%s (%s)" % (who(r), r["state"]) for r in hosp[:40]) + (" ... and %d more, each in the register" % (len(hosp) - 40) if len(hosp) > 40 else "")))
     quiet = not rows and not noted      # no rehab-stay visit at all and nothing else to say: ONE printed line, with the register named in it
     for l in ([] if quiet else lines + top + noted): print(l)
     reg = {"what": "read-only payment monitor of the inpatient-rehab visits at place of service 61 (pos61_monitor.py): chart ids, visit ids, dates of service, codes, carrier codes, reason codes and dollars - no name, no birth date and no member number is ever written here",
            "version": POS61_MONITOR_VERSION, "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "today": mdy(today), "mode": "read only - nothing is ever sent to AdvancedMD; --dry and --live are the same run",
            "baseline_21": dict(BASELINE_21), "limits": {"unanswered_days": UNANSWERED_DAYS, "low_share": UNDER_SHARE, "min_compare": MIN_COMPARE, "line_days": line_days, "max_reads": cap, "seconds": seconds},
-           "counts": {"at 61": c61, "kept at 21": c21}, "by_code": by_code, "reads": tried, "ended": ended.split(" ")[0], "memory": mdy(memory_day), "unreadable_registers": bad, "lines": lines + noted, "top": top,
+           "counts": {"at 61": c61, "kept at 21": c21, "hospital visits at 61": ch61}, "by_code": by_code, "reads": tried, "ended": ended.split(" ")[0], "memory": mdy(memory_day), "unreadable_registers": bad, "lines": lines + noted, "top": top,
            "visits": [{k: r[k] for k in ROW_ORDER if k in r and r[k] is not None and r[k] != "" and r[k] != []} for r in rows]}
     tmp = path + ".tmp"
     try:
