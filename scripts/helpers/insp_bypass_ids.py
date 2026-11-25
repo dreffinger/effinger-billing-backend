@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # PLAIN ENGLISH (Claim Inspector - bypass ONE named pattern on ONE visit, on William's word)
 # Decides: nothing on its own. William has looked at a Claim Inspector hold and said the claim is right as coded
-#   (e.g. Pattern 692 "initial hospital care after subsequent care" on a new admission he confirmed on the board).
+#   (e.g. Pattern 692 "initial hospital care after subsequent care" on a new admission he confirmed on the board - since William's standing word of
+#   11/25/2026 the runs bypass 692 themselves, claimocity_inspector.py and insp_bypass_advisories.py; this helper is for a 692 that stands beside a
+#   data error on the same visit, and for any other edit he clears by name).
 #   This helper re-lists every inspector batch, finds the CURRENT error id of that pattern on that visit (error ids
 #   change on every re-inspection), and bypasses exactly that edit with bypassclaimedits. Nothing else is touched.
 # Rules it uses: one visit + one pattern per argument; the board note / William's words are cited in the register.

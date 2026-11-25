@@ -902,6 +902,58 @@ check("R7-REPLAY-2 two different admission dates within 3 days on one chart (10/
 check("8.1 (the builders' rule kept) two admission dates 5 days apart, both on or before both service dates, are still 'two admission dates in one stay'", "two admission dates in one stay: vst9805 10/20/2026, vst9806 10/25/2026" in top(o, "vst9805"), top(o, "vst9805"))
 check("NH7-4 the listing reads each hospital code's admission date from its own charge: a 99497 + 99223 visit whose date sits on the 99223 is not 'a hospital visit with no admission date'", top(o, "vst9804") != "" and "no admission date" not in top(o, "vst9804"), top(o, "vst9804"))
 check("OPS-5 a check only a person can clear says so: 'for William: ...' (here the admission date)", "FEED ORDER SAVE - not saved: pat970 vst9801 10/27/2026 (the owner's approved file (send)) - for William: two admission dates in one stay" in o, o[-900:])
+# NEW ADMISSION (William 11/19/2026: "there will be some 99223 admission dates after follow up dates which will be valid"; 11/25/2026: "i now follow patients after dc from
+# the inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a series of inpatient visits"):
+# a later admission date that has its OWN initial hospital visit (99221-99223) is a new admission, not one stay entered with two dates - neither its visits nor the earlier
+# stay's are kept for William. A later date WITHOUT an initial visit of its own is still one stay with two dates (R7-REPLAY-2 above, unchanged).
+_NA = ("vst9811", "vst9812", "vst9813", "vst9814", "vst9821", "vst9822", "vst9823", "vst9824", "vst9831", "vst9832")
+W[0] = SWorld({"981": med("981", "M981"), "982": med("982", "M982"), "983": med("983", "M983")},
+              # chart 981 - the hospital stay (10/20) and, two days later, the rehab admission (10/22) with its own 99223
+              SW("vst9811", [chg(98111, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9812", [chg(98121, cpt="99232", pcode="pcode65102")], admit="10/20/2026"),
+              SW("vst9813", [chg(98131, cpt="99223", pcode="pcode65101")], admit="10/22/2026"), SW("vst9814", [chg(98141, cpt="99232", pcode="pcode65102")], admit="10/22/2026"),
+              # chart 982 - the same, but one follow-up dated AFTER the new admission's initial visit still carries the earlier date (vst9823), and the hospital stay's
+              # discharge-day visit is on the very day the new admission begins (vst9824)
+              SW("vst9821", [chg(98211, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9822", [chg(98221, cpt="99223", pcode="pcode65101")], admit="10/22/2026"),
+              SW("vst9823", [chg(98231, cpt="99232", pcode="pcode65102")], admit="10/20/2026"), SW("vst9824", [chg(98241, cpt="99232", pcode="pcode65102")], admit="10/20/2026"),
+              # chart 983 - the feed never sent the hospital stay's own initial visit: its follow-up carries 10/20, the rehab admission (10/22) has its 99223
+              SW("vst9831", [chg(98311, cpt="99232", pcode="pcode65102")], admit="10/20/2026"), SW("vst9832", [chg(98321, cpt="99223", pcode="pcode65101")], admit="10/22/2026"))
+ws9([srow("vst9811", "pat981", "10/20/2026", ["99223"], ["charge98111"], admit="20261020"), srow("vst9812", "pat981", "10/21/2026", ["99232"], ["charge98121"], admit="20261020"),
+     srow("vst9813", "pat981", "10/22/2026", ["99223"], ["charge98131"], admit="20261022"), srow("vst9814", "pat981", "10/23/2026", ["99232"], ["charge98141"], admit="20261022"),
+     srow("vst9821", "pat982", "10/20/2026", ["99223"], ["charge98211"], admit="20261020"), srow("vst9822", "pat982", "10/22/2026", ["99223"], ["charge98221"], admit="20261022"),
+     srow("vst9823", "pat982", "10/23/2026", ["99232"], ["charge98231"], admit="20261020"), srow("vst9824", "pat982", "10/22/2026", ["99232"], ["charge98241"], admit="20261020"),
+     srow("vst9831", "pat983", "10/21/2026", ["99232"], ["charge98311"], admit="20261020"), srow("vst9832", "pat983", "10/22/2026", ["99223"], ["charge98321"], admit="20261022")],
+    recon={v_: DOC for v_ in _NA}, approved={v_: _send for v_ in _NA}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("NEW ADMISSION (William 11/25/2026) a hospital stay and, two days later, a rehab admission with its own 99223: no visit of either stay is 'two admission dates in one stay' - all four are saved",
+      e == "" and all(top(o, v_) == "" or "two admission dates" not in top(o, v_) for v_ in ("vst9811", "vst9812", "vst9813", "vst9814"))
+      and all(len(W[0].v[v_].saves) == 1 for v_ in ("vst9811", "vst9812", "vst9813", "vst9814")), (e, [(v_, len(W[0].v[v_].saves), top(o, v_)[-200:]) for v_ in ("vst9811", "vst9812", "vst9813", "vst9814")]))
+check("NEW ADMISSION a follow-up dated AFTER the new admission's initial visit that still carries the earlier date is the one visit kept for William - by name, with both dates; the 99223 that opened the new admission is not held because of it",
+      "two admission dates in one stay: vst9823 10/20/2026, vst9822 10/22/2026" in top(o, "vst9823") and W[0].v["vst9823"].saves == [] and "for William: two admission dates in one stay: vst9823" in o
+      and len(W[0].v["vst9822"].saves) == 1 and len(W[0].v["vst9821"].saves) == 1, (top(o, "vst9823")[-300:], len(W[0].v["vst9822"].saves), len(W[0].v["vst9821"].saves)))
+check("NEW ADMISSION a visit of the earlier stay on the very day the new admission begins (the day of the transfer) keeps its own stay's date and is saved", len(W[0].v["vst9824"].saves) == 1 and "two admission dates" not in top(o, "vst9824"), (len(W[0].v["vst9824"].saves), top(o, "vst9824")[-300:]))
+check("NEW ADMISSION the feed never sent the earlier stay's own initial visit: its follow-up and the rehab admission's 99223 two days later are both saved - the later date has its own initial visit",
+      len(W[0].v["vst9831"].saves) == 1 and len(W[0].v["vst9832"].saves) == 1 and "two admission dates" not in top(o, "vst9831") + top(o, "vst9832"), (len(W[0].v["vst9831"].saves), len(W[0].v["vst9832"].saves), top(o, "vst9831")[-200:]))
+# ... the same rule on the sweep's own function, taken from its source (no AdvancedMD, no files): what it is given is (visit, service date, admission date[, codes]) per visit of the chart
+_asrc = SSRC[SSRC.index("def d8(x):"):SSRC.index("def jload(path):")] + SSRC[SSRC.index("def days_apart(a8, b8):"):SSRC.index("def approved(path):")]
+_ans = {"re": re, "datetime": datetime, "resave": types.SimpleNamespace(HOSP_CODES=set(SRS["HOSP_CODES"]))}; exec(_asrc, _ans); _adm = _ans["admission"]
+_two = lambda r_: [x_ for x_ in r_ if x_.startswith("two admission dates in one stay")]
+check("NEW ADMISSION (the function) a chart list WITHOUT codes (three fields a visit, as before 11/25/2026) is judged as before: two dates a day apart are one stay with two dates",
+      _two(_adm("v1", "20261027", "20261027", ["99232"], [("v1", "20261027", "20261027"), ("v2", "20261028", "20261028")])) == ["two admission dates in one stay: v1 10/27/2026, v2 10/28/2026"])
+check("NEW ADMISSION (the function) the later date is carried by an initial hospital visit of the chart (99221, 99222 or 99223): the earlier stay's visit has no finding",
+      all(_adm("v1", "20261021", "20261020", ["99232"], [("v1", "20261021", "20261020", ["99232"]), ("v2", "20261022", "20261022", [c_])]) == [] for c_ in ("99221", "99222", "99223"))
+      and _two(_adm("v1", "20261021", "20261020", ["99232"], [("v1", "20261021", "20261020", ["99232"]), ("v2", "20261022", "20261022", ["99232"])])) != [])
+check("NEW ADMISSION (the function) the visit asked about is itself the initial visit that opens the later date - known from its OWN codes (the argument), also when the chart list carries no codes",
+      _adm("v2", "20261022", "20261022", ["99497", "99223"], [("v1", "20261021", "20261020"), ("v2", "20261022", "20261022")]) == [])
+check("NEW ADMISSION (the function) a follow-up dated after the initial visit of the new admission that still carries the earlier date keeps the finding; one on that very day, or before it, has none",
+      _two(_adm("v3", "20261023", "20261020", ["99232"], [("v2", "20261022", "20261022", ["99223"]), ("v3", "20261023", "20261020", ["99232"])])) == ["two admission dates in one stay: v3 10/20/2026, v2 10/22/2026"]
+      and _adm("v3", "20261022", "20261020", ["99232"], [("v2", "20261022", "20261022", ["99223"]), ("v3", "20261022", "20261020", ["99232"])]) == []
+      and _adm("v2", "20261022", "20261022", ["99223"], [("v2", "20261022", "20261022", ["99223"]), ("v3", "20261023", "20261020", ["99232"])]) == [])
+check("NEW ADMISSION (the function) the initial visit carries the EARLIER date and only follow-ups carry the later one (no initial visit opens it): one stay with two dates, on both visits, as before",
+      _two(_adm("v1", "20261027", "20261027", ["99223"], [("v1", "20261027", "20261027", ["99223"]), ("v2", "20261028", "20261028", ["99232"])])) == ["two admission dates in one stay: v1 10/27/2026, v2 10/28/2026"]
+      and _two(_adm("v2", "20261028", "20261028", ["99232"], [("v1", "20261027", "20261027", ["99223"]), ("v2", "20261028", "20261028", ["99232"])])) == ["two admission dates in one stay: v2 10/28/2026, v1 10/27/2026"])
+check("NEW ADMISSION (the function) the other two findings are untouched: a hospital visit with no admission date, and an admission date after the service date - also on the initial visit of a new admission",
+      _adm("v2", "20261022", "", ["99223"], [("v1", "20261021", "20261020", ["99232"]), ("v2", "20261022", "", ["99223"])]) == ["a hospital visit with no admission date"]
+      and _adm("v2", "20261022", "20261023", ["99223"], [("v2", "20261022", "20261023", ["99223"])]) == ["its admission date 10/23/2026 is after its service date 10/22/2026"])
 # R7-REPLAY-5 (the reviewer's exact input): a no-plan visit entered 31 days ago, its chart's first plan landed, the dated check active, not in the owner's file -> listed and saved by the standing word
 W[0] = SWorld({"975": [{"id": "ins975", "car": "car300", "seq": "1", "member": "U975"}]}, SW("vst9751", [chg(97511)]), SW("vst9752", [chg(97521)]))
 ws9([srow("vst9751", "pat975", "10/08/2026", ["99309"], ["charge97511"], days_ago=31, open_plans_at_entry=0, chart_insorder=""),

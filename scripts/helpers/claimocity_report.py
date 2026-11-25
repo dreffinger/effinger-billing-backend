@@ -494,6 +494,13 @@ for pid, h in holds.items(): L("  - %s: %s%s%s" % (pid, "; ".join(str(x).replace
 L("")
 L("## Claim Inspector pass")
 L("- fixed %d visits, advisories bypassed on %d, laterality logged %d, held %d (Pattern 24078 CCI: 99309 same day as the 10/22 CCM)." % (len(insp.get("fixed", [])), len(insp.get("bypassed", [])), len(insp.get("laterality", [])), len(insp.get("held", []))))
+# A new admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): the step bypasses Pattern 692; the report
+# says on how many visits, by visit - not held, nothing for William
+try:
+    _na = [b for b in (insp.get("bypassed") if isinstance(insp, dict) and isinstance(insp.get("bypassed"), list) else []) if isinstance(b, dict) and "692" in [str(x) for x in (b.get("patterns") or [])]]
+    if _na: L("- New admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): Pattern 692 bypassed on %d visit(s) - %s. Not held, nothing for William." % (
+        len(_na), ", ".join("vst%s" % re.sub(r"\D", "", str(b.get("visit") or "")) for b in _na)))
+except Exception: pass
 # November 12, 2026 - fix round 2 (K17, review note G5): a held row whose visit a LATER retry entry of the same register freed (no longer listed, or the line
 # came off and the visit went out) is said to be free; the held row itself stays in the register (the import's never-held proof rule reads it)
 _freedv = {}

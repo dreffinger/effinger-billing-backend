@@ -2535,8 +2535,13 @@ check("digest: a visit that carries the quality line and is held by the Claim In
 json.dump({"fixed": [], "bypassed": [], "laterality": [], "held": [{"visit": "7", "pid": "pat7", "why": "Pattern 24078: something else"}]}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
 r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
 check("digest: ... and no such line when none of the held visits carries the quality line", "are HELD by the Claim Inspector" not in r.stdout and "Quality code 1123F" in r.stdout, r.stdout[-600:] + r.stderr[-300:])
+json.dump({"fixed": [], "bypassed": [{"visit": "7", "patterns": ["692"]}, {"visit": "8", "patterns": ["20657", "692"]}, {"visit": "9", "patterns": ["35790"]}], "laterality": [], "held": []}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
+r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
+check("digest (new admission, William 11/25/2026): the report says on how many visits the inspector step bypassed Pattern 692, by visit - and that nothing is held or waits for William; a visit bypassed for another advisory is not counted",
+      r.returncode == 0 and "- New admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): Pattern 692 bypassed on 2 visit(s) - vst7, vst8. Not held, nothing for William." in r.stdout, r.stdout[-700:] + r.stderr[-300:])
 os.remove(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"))
 r, ql = qdigest([qrow, rows[4]], G0)
+check("digest (new admission): ... and no such line in a batch without one", "New admission (William 11/25/2026" not in r.stdout, r.stdout[-300:])
 check("digest: the quality code has its own line with the visits under it, says it is a pilot and what proves a line", r.returncode == 0 and "Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on 1 visit(s) in this batch, line amount $0.00; PILOT - at most 3 visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD." in ql
       and "carried by: pat9 vst1 charge77" in ql and "remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site" in r.stdout
       and "counted" not in r.stdout and "2 visits / 2 charge lines created" in r.stdout, (ql, r.stdout[:400], r.stderr[-300:]))
@@ -3208,6 +3213,49 @@ check("inspector (11.1): a row whose quality charge shows another procedure and 
       _ie == "" and IS["voided"] == [] and _ir["held"][0].get("quality") is True and _ir["quality_removed"][0]["void_ok"] is False and "not voided" in _ir["quality_removed"][0]["note"], (_ie, _ir))
 _ir, _io, _ie = is_run([E_ZERO], row={k_: v_ for k_, v_ in QROW.items() if not k_.startswith("quality_")})
 check("inspector: a visit WITHOUT the quality line is handled exactly as before - an advisory about a zero amount is bypassed, nothing is voided", _ie == "" and IS["bypassed"] == [["e5"]] and IS["voided"] == [] and _ir["held"] == [] and _ir["quality_removed"] == [], (_ie, _ir))
+# ---- A NEW ADMISSION: an initial hospital visit AFTER follow-up hospital visits. William 11/19/2026 ("there will be some 99223 admission dates after follow up dates which will be
+#      valid") and 11/25/2026, about a 99223 the Claim Inspector held on Pattern 692 and the run put on his turn ("i now follow patients after dc from the inpatient hospital and admit
+#      them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a series of inpatient visits"): Pattern 692 is on the list the
+#      runs bypass - in the feed's inspector step, in the general advisory sweep and in the words of both live run prompts. Never a hold, never a card on his turn. ----
+E_692 = {"id": "e692", "number": "692", "text": "Pattern 692 Initial hospital care code 99223 was reported on a date after subsequent hospital care code 99233 on Claim ID 1"}
+HROW = {"visit": "vst101", "pid": "pat1", "charges": ["charge1010"], "cpts": ["99223"], "dos": "11/14/2026", "admit": "20261114", "fac": "fac29"}
+_ir, _io, _ie = is_run([E_692], row=HROW)
+check("new admission (William 11/25/2026): the Claim Inspector's Pattern 692 - a 99223 after follow-up hospital visits - is bypassed by the feed's inspector step: the visit is not held, nothing is voided, nothing is re-saved",
+      _ie == "" and IS["bypassed"] == [["e692"]] and _ir["held"] == [] and _ir["bypassed"] == [{"visit": "101", "patterns": ["692"]}] and IS["voided"] == [] and IS["resaved"] == [], (_ie, _ir, IS["bypassed"]))
+_ir, _io, _ie = is_run([E_692, E_DATA], row=HROW)
+check("new admission: ... beside a real data error only the 692 edit is bypassed - the visit stays held for the data error, and the held row does not name 692",
+      _ie == "" and IS["bypassed"] == [["e692"]] and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith("Pattern 77002") and "692" not in _ir["held"][0]["why"], (_ie, _ir, IS["bypassed"]))
+_ir, _io, _ie = is_run([E_692], row=dict(QROW, cpts=["99223"], fac="fac29"))
+check("new admission: ... on a visit that carries the no-charge quality line the 692 edit is bypassed like any other advisory - the line is NOT taken off for it, before proof or after",
+      _ie == "" and IS["bypassed"] == [["e692"]] and IS["voided"] == [] and _ir["held"] == [] and _ir["quality_removed"] == []
+      and (lambda r_: r_[2] == "" and IS["bypassed"] == [["e692"]] and IS["voided"] == [] and r_[0]["held"] == [])(is_run([E_692], row=dict(QROW, cpts=["99223"], fac="fac29"), proven=True)), (_ie, _ir, IS["bypassed"]))
+import glob as _g692
+_abd = tempfile.mkdtemp(prefix="posrule_adv_"); _abs = os.path.join(_abd, "summary_t.json"); _AB = {"posts": []}
+json.dump({"inspector": {"1": [{"vid": "201", "pid": "1", "errs": [["e1", E_692["text"]]]}, {"vid": "202", "pid": "2", "errs": [["e2", E_692["text"]], ["e3", "Pattern 24078 the procedure is a component of another procedure billed the same day"]]},
+                               {"vid": "203", "pid": "3", "errs": [["e4", E_692["text"]], ["e5", "Pattern 20657 the date of service is more than 12 months old"]]}]}}, open(_abs, "w"))
+_ab_stand = {"amd": {"login_cached": lambda *a: None, "msg": lambda action, cls, attrs=None, children="": '<ppmdmsg action="%s">%s</ppmdmsg>' % (action, children), "post": lambda body, **kw: (_AB["posts"].append(body) or "<r/>")}}
+_abo, _abe = run_inside(os.path.join(ROOT, "scripts", "helpers", "insp_bypass_advisories.py"), _ab_stand, _abd, argv=(_abs,))
+_abr = [json.load(open(p_)) for p_ in _g692.glob(os.path.join(_abd, "registers", "insp_bypass_*_dry.json"))]
+check("new admission: the general advisory sweep (insp_bypass_advisories.py) plans a visit whose only edit is Pattern 692, and one that carries 692 beside another advisory; a visit with 692 beside a real data edit is left whole (the sweep touches a visit only when EVERY edit on it is an advisory) - and a dry run sends nothing",
+      _abe == "" and "plan: 2 visits to bypass, 1 held" in _abo and len(_abr) == 1 and sorted(x_["vid"] for x_ in _abr[0]["planned"]) == ["201", "203"] and [h_["vid"] for h_ in _abr[0]["held"]] == ["202"] and _AB["posts"] == [], (_abe, _abo[:300], _abr))
+_abo, _abe = run_inside(os.path.join(ROOT, "scripts", "helpers", "insp_bypass_advisories.py"), _ab_stand, _abd, argv=(_abs, "--live"))
+check("new admission: ... live, the sweep sends ONE bypass per planned visit with that visit's own edit ids - no edit of the visit it left whole is sent",
+      _abe == "" and len(_AB["posts"]) == 2 and 'visit id="201"' in _AB["posts"][0] and 'claimedit id="e1"' in _AB["posts"][0] and 'visit id="203"' in _AB["posts"][1] and 'claimedit id="e4"' in _AB["posts"][1] and 'claimedit id="e5"' in _AB["posts"][1]
+      and not any('"e2"' in b_ or '"e3"' in b_ or 'visit id="202"' in b_ for b_ in _AB["posts"]), (_abe, _AB["posts"]))
+_w692 = {n_: open(os.path.join(ROOT, *n_.split("/"))).read() for n_ in ("nightly/live/columns.txt", "nightly/live/billing_button.txt", "practices/ehpa/rules.md", "docs/SHARED_LESSONS.md", "nightly/claimocity_feed_step.md",
+                                                                       "skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md", "scripts/helpers/claimocity_inspector.py", "scripts/helpers/insp_bypass_advisories.py")}
+check("new admission: both live run prompts name Pattern 692 among the edits the Claim Inspector step bypasses, and say in capitals that a 99223 after follow-up hospital visits is a new admission - never a hold, never a card, never recoded",
+      all("initial hospital care after subsequent care 692" in _w692[n_] and "A 99223 AFTER FOLLOW-UP HOSPITAL VISITS IS A NEW ADMISSION" in _w692[n_] and "never recoded to a subsequent visit" in _w692[n_] for n_ in ("nightly/live/columns.txt", "nightly/live/billing_button.txt")))
+check("new admission: the rulebook carries William's words of 11/25/2026 beside his word of 11/19/2026, and says what the runs do: Pattern 692 bypassed, the sweep's 'two admission dates in one stay' not raised for a new admission",
+      "that block is no longer valid to block a 99223 after a series of inpatient visits" in _w692["practices/ehpa/rules.md"] and "Pattern 692" in _w692["practices/ehpa/rules.md"] and "there will be some 99223 admission dates after follow up dates which will be valid" in _w692["practices/ehpa/rules.md"]
+      and "insp_bypass_advisories.py" in _w692["practices/ehpa/rules.md"] and "feed_order_sweep.py" in _w692["practices/ehpa/rules.md"])
+check("new admission: the lessons file has the RULE and why the 11/19 word did not hold (it was written in the rulebook and applied once by a dated helper, never coded into the standing steps)",
+      "RULE (11/25/2026" in _w692["docs/SHARED_LESSONS.md"] and "Pattern 692" in _w692["docs/SHARED_LESSONS.md"] and "admit_send_1119.py" in _w692["docs/SHARED_LESSONS.md"])
+check("new admission: the feed runbook and the repository's copy of the Claim Inspector skill say the same (692 = a new admission, bypassed)",
+      "Pattern 692" in _w692["nightly/claimocity_feed_step.md"] and "Pattern 692" in _w692["skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md"])
+check("new admission: the two helpers carry 692 in their own lists (the feed step's ADVISORY and the sweep's ADVISORY), each with William's word beside it",
+      bool(re.search(r'^ADVISORY = \([^\n]*"692"', _w692["scripts/helpers/claimocity_inspector.py"], re.M)) and bool(re.search(r'^ADVISORY = \{[^\n]*"692"', _w692["scripts/helpers/insp_bypass_advisories.py"], re.M))
+      and "William 11/25/2026" in _w692["scripts/helpers/claimocity_inspector.py"] and "William 11/25/2026" in _w692["scripts/helpers/insp_bypass_advisories.py"])
 _ir, _io, _ie = is_run([E_DATA]); json.dump(_ir, open(os.path.join(REGDIR, "feed_inspector_T3.json"), "w")); _F3 = ci.quality_files("T4"); rmreg("feed_inspector_T3.json")
 check("inspector -> import: the entry the inspector step writes is what the import reads (quality_files: removed by batch stamp)", [e_[1]["charge"] for e_ in (_F3["removed"].get("T3") or [])] == ["charge1011"] and _F3["problems"] == [], _F3["removed"])
 _isrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read(); _isrc = _isrc[_isrc.index('def names_line(words, charge=""):'):_isrc.index("def split_errors(")]

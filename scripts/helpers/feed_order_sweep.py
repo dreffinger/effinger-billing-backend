@@ -13,7 +13,11 @@
 #   nursing-facility visit 99304-99306, its 99497 included, is the physician's whatever the feed names - William 11/10/2026 - and the line
 #   still shows the feed's clinician when it differs, so William can confirm who saw the patient), an admission date after the date of
 #   service, two admission dates in one stay (or two different admission dates within 3 days on one chart), a hospital visit with no admission
-#   date (each hospital code's date read from its own charge). A visit an earlier run of this helper saved is read again until it bills: an
+#   date (each hospital code's date read from its own charge). A NEW ADMISSION IS NOT 'TWO DATES IN ONE STAY' (William 11/19/2026 and
+#   11/25/2026 - he follows patients after discharge from the inpatient hospital and admits them to inpatient rehab: "that block is no longer
+#   valid to block a 99223 after a series of inpatient visits"): a later admission date that an initial hospital visit (99221-99223) of the
+#   chart carries began a new admission - its visits and the earlier stay's visits are not kept for William for it; only a visit dated after
+#   the new admission began that still carries the earlier date is (admission()). A visit an earlier run of this helper saved is read again until it bills: an
 #   admission date lost since that save gets a TOP line. A visit a clinician move left on another insurance order than the checked one gets a
 #   TOP line and is saved like the others.
 #   THE OWNER'S APPROVED FILE must be there and carry his recorded word (approved_by and answers) for anything to be bought, moved or saved -
@@ -184,14 +188,32 @@ def days_apart(a8, b8):
     """Days between two YYYYMMDD dates; None when one cannot be read."""
     try: return abs((datetime.date(int(a8[:4]), int(a8[4:6]), int(a8[6:8])) - datetime.date(int(b8[:4]), int(b8[4:6]), int(b8[6:8]))).days)
     except (ValueError, TypeError): return None
+INITIAL_HOSP = {"99221", "99222", "99223"}      # an initial hospital visit OPENS an admission (a new admission - below)
 def admission(vid, dos8, admit8, cpts, others):
     """What is wrong with the visit's admission date: a hospital visit without one, one after the date of service, two admission dates in one
     stay (another visit of the chart carries a different date although both dates are on or before both dates of service, or a different
-    date within 3 days of this one - one stay entered with two dates)."""
+    date within 3 days of this one - one stay entered with two dates).
+    A NEW ADMISSION IS NOT A SECOND DATE FOR ONE STAY - William 11/19/2026 ("i am now discharging from hospital hca to rehab hca inpateint rehab so
+    there will be some 99223 admission dates after follow up dates which will be valid") and 11/25/2026 ("i now follow patients after dc from the
+    inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a
+    series of inpatient visits"): when the LATER of the two dates is carried by an initial hospital visit (99221-99223) of the chart, a new admission
+    began that day. The visits that carry the later date then have no finding, and neither has a visit of the earlier stay dated on or before that
+    day (the day of the transfer belongs to both stays). ONE visit keeps the finding: one dated AFTER the new admission began that still carries
+    the earlier date - its own date looks wrong, and no other visit is held because of it. A later date that NO initial visit carries is one stay
+    entered with two dates, as before.
+    others = (visit, service date, admission date) for every visit of the chart, with the visit's codes as a fourth field when they are known;
+    a list without codes is judged as before 11/25/2026. cpts = this visit's own codes."""
     out = []
     if (set(cpts or ()) & set(resave.HOSP_CODES)) and not admit8: out.append("a hospital visit with no admission date")
     if admit8 and dos8 and admit8 > dos8: out.append("its admission date %s is after its service date %s" % (mdy(admit8), mdy(dos8)))
-    two = [(v, a) for v, d, a in others if v != vid and a and admit8 and a != admit8 and ((d and dos8 and max(a, admit8) <= min(d, dos8)) or (days_apart(a, admit8) or 99) <= 3)] if admit8 else []
+    rows = [(tuple(o) + ((),))[:4] for o in others]
+    opened = {a for v, _d, a, c in rows + [(vid, dos8, admit8, cpts)] if a and (set(cpts or ()) if v == vid else set(c or ())) & INITIAL_HOSP}      # the admission dates an initial hospital visit carries
+    def new_admission(a):
+        """This visit's date and the other date `a` are two ADMISSIONS (not one stay with two dates) - and this visit is on the right side of it."""
+        later = max(a, admit8)
+        return later in opened and (admit8 == later or (bool(dos8) and dos8 <= later))
+    two = [(v, a) for v, d, a, _c in rows if v != vid and a and admit8 and a != admit8 and ((d and dos8 and max(a, admit8) <= min(d, dos8)) or (days_apart(a, admit8) or 99) <= 3)
+           and not new_admission(a)] if admit8 else []
     if two: out.append("two admission dates in one stay: %s %s, %s" % (vid, mdy(admit8), ", ".join("%s %s" % (v, mdy(a)) for v, a in two[:3])))
     return out
 
@@ -390,7 +412,7 @@ def main():
         if not info["checked"] or info["checked"] == info["list"]: info["state"] = "waiting for the claim run"
     INFO = [x for x in INFO if x["state"] != "waiting for the claim run"]
     ADM = {x["visit"]: x["admit8"] for x in INFO}; BYC = {}      # admission dates: every visit of the chart the registers know (what AdvancedMD shows for the visits read now)
-    for v, r in ROWS.items(): BYC.setdefault(r.get("pid"), []).append((v, d8(r.get("dos")), ADM[v] if v in ADM else d8(r.get("admit"))))
+    for v, r in ROWS.items(): BYC.setdefault(r.get("pid"), []).append((v, d8(r.get("dos")), ADM[v] if v in ADM else d8(r.get("admit")), list(r.get("cpts") or [])))      # ... and its codes: an initial hospital visit opens a new admission (William 11/25/2026 - admission())
     for info in INFO: info["admission"] = admission(info["visit"], info["dos8"], info["admit8"], info["cpts"], BYC.get(info["chart"]) or []) if info["state"] in ("EMPTY insurance order", OTHER) else []
     empty = [x for x in INFO if x["state"] in ("EMPTY insurance order", OTHER)]
     for info in empty:

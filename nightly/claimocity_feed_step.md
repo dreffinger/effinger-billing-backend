@@ -99,6 +99,14 @@ the workspace held an OLD claimocity_import.py ... replaced by the repository co
 line that ends in 'PLACE OF SERVICE RULE NOT CURRENT ...' = it did not. Listed by chart for William, not held: CCM lines entered at 32 whose chart shows a skilled-looking month (pos_kind `ccm-skilled-month` -
 since 11/25/2026 every CCM line is 32, so this is a list and nothing else) and visits kept at 31 because the chart shows neither pattern
 (pos_kind `extra` / `between`) - the digest counts them and names the charts.
+A 99223 AFTER FOLLOW-UP HOSPITAL VISITS IS A NEW ADMISSION (William 11/19/2026 and 11/25/2026 - he follows patients after discharge from the
+inpatient hospital and admits them to inpatient rehab: "that block is no longer valid to block a 99223 after a series of inpatient visits").
+The feed's inspector step bypasses the Claim Inspector's Pattern 692 ('initial hospital care reported after subsequent hospital care') by
+itself, like the other advisories: such a visit is not on the "held" list, gets no card on William's turn and is never recoded to a
+subsequent visit; the register lists it under "bypassed" with pattern 692, and the report says how many. A 692 that stays listed beside a
+data error on the same visit is cleared with `python3 insp_bypass_ids.py <visitid>:692 --why 'William 11/25/2026 new admission' --stamp
+<run stamp>` (dry, then --live) once the data error is fixed. The order sweep of step (c2) follows the same word: a later admission date that
+an initial hospital visit (99221-99223) of the chart carries is a new admission, not 'two admission dates in one stay'.
 Never move a 32 back to 31 in Charge Review or the Claim Inspector, and never change the place of service of a claim that was already
 submitted. If the Claim Inspector raises a place-of-service advisory (Pattern 4531 family) on a line the import entered as 32, the feed
 inspector step lists the visit as held and the claim does not go out until it is cleared: `cd /home/claude/unbilled && python3

@@ -3,13 +3,16 @@
 # bypassclaimedits - timely-filing 20657 (bypass + submit, the denial documents any write-off; a secondary is
 # timely from the primary's remit anyway), unspecified-laterality 11256 (bypass + log to laterality_flag_log.md),
 # Medicare MUE 33799, CCM add-on / frequency advisories 35790 7011 3429 35777, mod-25 4426, provider-history 4310,
-# AWV 27261. A visit is touched only when EVERY error on it is one of those patterns.
+# AWV 27261, and Pattern 692 - initial hospital care reported after subsequent hospital care (a 99223 after follow-up hospital visits): A NEW
+# ADMISSION, William 11/25/2026: "i now follow patients after dc from the inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a series of inpatient visits"
+# (and 11/19/2026: "there will be some 99223 admission dates after follow up dates which will be valid") - never a hold, never a card, never recoded.
+# A visit is touched only when EVERY error on it is one of those patterns.
 # Reads the fresh scan summary (python3 columns_scan.py <tag> <dir> run moments before - error ids change on every
 # re-inspection) given as the first argument; --dry (default) prints the plan, --live sends the bypass calls.
 # Never touches: missing-data holds (hospitalization date 117065068, CCI 24078, sequela-first 20389, anything not
 # in the list), paid visits are irrelevant here (bypass changes no money). Register: registers/insp_bypass_<stamp>.json
 import amd, json, re, sys, time, datetime, os
-ADVISORY = {"20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "4311", "27261"}   # 4311 added 10/14 (new-patient-in-history advisory, as insp_1013_1910.py)
+ADVISORY = {"20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "4311", "27261", "692"}   # 4311 added 10/14 (new-patient-in-history advisory, as insp_1013_1910.py); 692 added 11/25/2026 (a new admission - the header)
 summary_path = [a for a in sys.argv[1:] if not a.startswith("--")]
 if not summary_path:
     print("usage: python3 insp_bypass_advisories.py <scan_dir>/summary_<tag>.json [--live]"); sys.exit(2)
