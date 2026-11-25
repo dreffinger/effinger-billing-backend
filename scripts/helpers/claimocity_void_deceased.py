@@ -9,16 +9,18 @@ DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> d
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import amd, resave, txh, re, json, os, sys, time
 import xml.etree.ElementTree as ET
-os.environ.setdefault("DECEASED_CACHE", "/home/claude/unbilled/deceased_cache_local.json")
 import deceased_guard
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP)))
-cache = json.load(open(os.environ["DECEASED_CACHE"]))
+# 11/25/2026 (the second verification of the death check): the guard's ONE cache, read through the guard (it carries the days of the workspace's other cache files
+# in first) - this step named the feed's own cache file before, a file the check before approvals never saw. A day in any shape a helper wrote counts (_day).
+cache = deceased_guard._load()
+_day = getattr(deceased_guard, "_day", None) or (lambda v: v if re.match(r"\d{4}-\d{2}-\d{2}$", str(v or "")) else None)
 dry = "--dry" in sys.argv
 amd.login_cached(); out = []
 for v in reg["created"]:
-    num = re.sub(r"\D", "", v["pid"]); rec = cache.get(num) or {}
-    dod = rec.get("dod")
-    if not dod or not re.match(r"\d{4}-\d{2}-\d{2}$", str(dod)): continue
+    num = re.sub(r"\D", "", v["pid"]); rec = cache.get(num); rec = rec if isinstance(rec, dict) else {}
+    dod = _day(rec.get("dod"))
+    if not dod: continue
     if deceased_guard._iso(v["dos"]) <= dod: continue
     # 11/10/2026: EVERY charge the import recorded for the visit is read and voided (the detail of one charge answers for that charge only;
     # a visit can hold two code lines, and since the quality code 1123F a one-code visit holds a second, no-charge line)

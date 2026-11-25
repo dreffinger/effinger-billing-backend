@@ -56,7 +56,8 @@ DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> d
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 # 11/9/2026 (1:39 PM ET run): discovery items whose plan/payer text says DENTAL / VISION / LIFE are skipped like Part D - a Cigna Dental HMO hit had insured chart 17478318 and its hospital claims bounced 'not eligible'.
 import amd, elig_amd, stedi, add_ins, ins_update, resave, re, json, sys, os, time, collections
-os.environ.setdefault("DECEASED_CACHE", "/home/claude/unbilled/deceased_cache_local.json")
+# (11/25/2026, the second verification of the death check: this step no longer names a cache file of its own - deceased_cache_local.json. The guard keeps ONE cache,
+# the workspace's registers/deceased_cache.json, and carries every day the old file holds into it: what the feed learns, the check before approvals knows.)
 import deceased_guard
 REG = json.load(open(("registers/feed_import_%s.json" % STAMP)))
 PARSED = {m["pid"]: m for m in json.load(open(("feed_parsed_%s.json" % STAMP)))}
@@ -548,14 +549,20 @@ def same_person_yes(path="registers/feed_same_person.json"):
     return out, ""
 def death_check_line(g):
     """The run's date-of-death checks in ONE printed line (11/25/2026, William: "is stedi able to do that for free?"): asked free at AdvancedMD, answered free,
-    bought from the vendor - the deceased guard's own COUNTS (g = the loaded guard module, or None). "" when there is nothing to say: no guard loaded, a guard from
-    before (it has no COUNTS), counts of another shape, or nothing asked. Counts only - never a chart, a name or a date. It never raises."""
+    went to the vendor - the deceased guard's own COUNTS (g = the loaded guard module, or None) - and how many checks ended UNVERIFIED (the guard's own LOG lines:
+    nobody answered, the charge went on), with ' - TOP OF THE REPORT' when there is one. "" when there is nothing to say: no guard loaded, nothing asked and nothing
+    unverified. (The second verification of that day: the line said 'vendor bought' for checks the vendor refused or never answered - the count is the guard's CHECKS
+    that went to the vendor; stedi_usage.py has the requests and the dollars - and nothing on the feed's path said that a chart stayed unverified.) Counts only -
+    never a chart, a name or a date. It never raises."""
     try:
-        c = getattr(g, "COUNTS", None)
-        if not isinstance(c, dict): return ""
-        fa, fn, pa = (int(c.get(k) or 0) for k in ("free asked", "free answered", "paid asked"))
-        if not (fa or pa): return ""
-        return "DEATH CHECK: AdvancedMD free asked x%d, answered x%d; vendor bought x%d%s" % (fa, fn, pa, "; free check off after 3 failures in a row" if getattr(g, "free_down", lambda: False)() else "")
+        c = getattr(g, "COUNTS", None); lg = getattr(g, "LOG", None)
+        u = sum(1 for x in lg if isinstance(x, str) and "UNVERIFIED" in x) if isinstance(lg, list) else 0
+        tail = ("; date of death UNVERIFIED x%d - TOP OF THE REPORT" % u) if u else ""
+        try: fa, fn, pa = [int(c.get(k) or 0) for k in ("free asked", "free answered", "paid asked")] if isinstance(c, dict) else [None] * 3
+        except (TypeError, ValueError): fa = fn = pa = None
+        if fa is None: return ("DEATH CHECK: checks not counted by this guard" + tail) if u else ""
+        if not (fa or pa or u): return ""
+        return "DEATH CHECK: AdvancedMD free asked x%d, answered x%d; went to the vendor x%d%s%s" % (fa, fn, pa, "; free check off after 3 failures in a row" if getattr(g, "free_down", lambda: False)() else "", tail)
     except Exception: return ""
 def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
     """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's

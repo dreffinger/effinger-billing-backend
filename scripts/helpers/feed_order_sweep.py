@@ -75,7 +75,7 @@
 #   The flags combine; one run does the listing, then the dated checks, then the moves, then the saves.
 import os, re, sys, json, glob, time, datetime
 import xml.etree.ElementTree as ET
-os.environ.setdefault("DECEASED_CACHE", "/home/claude/unbilled/deceased_cache_local.json")      # the real dates live in the workspace (as claimocity_verify.py)
+# (11/25/2026: no cache file is named here any more - the deceased guard keeps ONE cache, the workspace's registers/deceased_cache.json, as claimocity_verify.py)
 import amd, resave
 REG = "registers"; APPROVED = os.path.join(REG, "feed_order_approved.json")
 PHYSICIAN, NP = "prof13", "prof15"

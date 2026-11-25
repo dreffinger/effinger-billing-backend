@@ -28,6 +28,9 @@
 #   Codes > New, ICD-10 code + description).
 # Dry by default (prints what would be entered, writes nothing in AMD); --live enters. Exit 0 done (also when nothing to retry), 2 a step failed.
 # Usage: cd /home/claude/unbilled && python3 claimocity_retry_dx.py [--live] [--stamp <UTC stamp>] [--no-stedi]
+# 11/25/2026 (the second verification of the death check): the same for a visit the import kept out with "a date of death is on record for this chart but its
+#   day cannot be read - not entered" (the workspace's cache carried the privacy gate's placeholder and Medicare named no day): every run hands it to the import
+#   again, which asks again - it is entered once a day AFTER the visit is known, kept out for good once a day before it is, and waits until then.
 import os, sys, re, json, glob, subprocess, datetime, collections
 WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(WS)
@@ -69,6 +72,8 @@ def _known_cpts():
         if mp and mf: return set(re.findall(r'"([0-9A-Z]{5})"\s*:\s*"pcode\d+"', mp.group(1))) & set(re.findall(r'"([0-9A-Z]{5})"\s*:\s*"[0-9.]+"', mf.group(1)))
     return set()
 KNOWN_CPTS = _known_cpts(); unknown_cpts = set()
+DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"      # the same line as in claimocity_import.py (the self-test holds the two together)
+death_day = set()  # the charts of such skips (chart ids only - for the one line this step prints about them)
 want = {}          # stamp -> {feed patient id: the CPT codes its skips name} - review round 2: a visit is retried only when it carries one of them
 nocpt = set()      # review round 3: feed ids whose skip named no code at all (a feed line without a CPT) - for William; the import itself keeps out a
                    # visit after a recorded date of death or on a chart flagged deceased, reading both fresh on every run (no guard here can go stale)
@@ -91,6 +96,9 @@ for rf in sorted(glob.glob("registers/feed_import_*.json")):
             if not mc: nocpt.add(str(row.get("feed_id") or "?"))
             elif mc.group(1) in KNOWN_CPTS: want.setdefault(stamp, {}).setdefault(row["feed_id"], set()).add(mc.group(1))
             else: unknown_cpts.add(mc.group(1))
+        elif why.startswith(DEATH_DAY_WHY):                                   # 11/25/2026 (the second verification of the death check): the import kept the visit out because a
+            _c = {c_ for c_ in (row.get("cpts") or []) if isinstance(c_, str) and c_}      # death is on record for the chart and nobody could name its day - it is handed to the import
+            if row.get("feed_id") and _c: want.setdefault(stamp, {}).setdefault(row["feed_id"], set()).update(_c); death_day.add(str(row.get("pid") or "?"))      # again in every run: the import asks again and enters it, keeps it out for good (a day before the visit), or keeps it waiting
 # review round 1: what AdvancedMD got, from the recon registers - a visit the import answered "already" (the chart carries it) has no created row,
 # and its skip row stays in the old batch for good; without this it was fetched, imported and reconciled again on every run
 for rf in sorted(set(glob.glob("registers/feed_recon_*.json")) | set(glob.glob(os.path.join(REPO_REGS, "feed_recon_*.json")))):
@@ -106,7 +114,8 @@ def unknown_note():
     return s + ((" | a feed line without a CPT code (feed ids %s) - for William: Claimocity sent the visit with no code" % ", ".join(sorted(nocpt))) if nocpt else "")
 UNKNOWN_NOTE = unknown_note()
 if not want:
-    print("retry-dx: nothing to retry (no 'no usable dx' skip and no 'unknown CPT' skip the import can enter now in the registers)" + UNKNOWN_NOTE); sys.exit(0)
+    print("retry-dx: nothing to retry (no 'no usable dx' skip, no 'unknown CPT' skip the import can enter now and no visit kept out for a date of death nobody could read in the registers)" + UNKNOWN_NOTE); sys.exit(0)
+if death_day: print("retry-dx: %d chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (%s) - handed to the import again: it asks again and enters the visit, keeps it out for good, or keeps it waiting" % (len(death_day), ", ".join(sorted(death_day))))
 
 # ---- 2 the messages behind those skips ------------------------------------------------------------------------------------------
 def parsed_for(stamp):

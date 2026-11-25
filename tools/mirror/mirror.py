@@ -182,7 +182,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (William: "is stedi able to do that for free?"): the guard asks AdvancedMD's free eligibility check before it buys a vendor answer, and finds the
              # workspace's own cache; a workspace copy from before buys an answer for every check and can start with an empty cache - it must not come back over the new
              # one. The marker is the COUNTS line only the new guard has (until that day: "stedi.medicare(", which the old guard holds too).
-             "deceased_guard.py": 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.3"',
+             "deceased_guard.py": 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.5"',
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the

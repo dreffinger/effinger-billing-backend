@@ -53,8 +53,8 @@
 #   DEATH CHECK - Charge Review: N charge(s) on V visit(s) listed, K checked; M needed a Medicare answer (CCM or straight Medicare) - <free
 #     and bought answers>; B BLOCKED; U could not be checked; X unverified - register <file>
 #                                                   the LAST line, always: a run that sees no such line has no answer from this helper.
-#     <free and bought answers> = "AdvancedMD's free check answered F of A asked, P bought from the vendor" from the guard's own COUNTS
-#     (what this start added to them); "free / bought not counted by this guard" with a guard that has no COUNTS; "none asked" with --dry.
+#     <free and bought answers> = "AdvancedMD's free check answered F of A asked, P went to the vendor" from the guard's own COUNTS
+#     (what this start added to them); "free / vendor checks not counted by this guard" with a guard that has no COUNTS; "none asked" with --dry.
 #     N - the charges LISTED, the line's first number - is the number a run compares with its own listing of Charge Review (taken before
 #     any save): when the two differ the run does not rely on this helper. K is NOT that number: K and the NOT CHECKED lines about a charge
 #     (every NOT CHECKED line but 'no charge listed under this visit', which is about a visit) always add up to N, so K is smaller than N
@@ -83,11 +83,14 @@
 #   lists by batch id (no request of this call with a batch id is captured - docs/captured_calls.md).
 import os, re, sys, json, time, datetime
 import xml.etree.ElementTree as ET
-DEATH_CHECK_REVIEW_VERSION = "2026-11-25.3"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start)
+DEATH_CHECK_REVIEW_VERSION = "2026-11-25.5"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start; .4 = the second verification: the cache's state in counts, the code's own shape)
 BLOCK_WORDS = "date of death before the date of service - do NOT approve; void (William 10/4 and 11/25/2026)"
 UNCHECKED_WORDS = "could not be checked - do not approve this charge on this run"
 UNVERIFIED_WORDS = "date of death unverified (the look-up failed) - not a block; say it in the report"
 NOTHING = "approve NOTHING on this helper's word"
+CACHE_UNREADABLE = "CACHE UNREADABLE: the deceased guard's cache file is there but cannot be read - the guard knows NOTHING the practice holds and can keep nothing it learns beyond this start; merge the copy from Drive (step 0c) and start this helper again before any approval - TOP OF THE REPORT"
+CACHE_EMPTY = "CACHE EMPTY: the deceased guard's cache holds no chart at all - a date of death the practice already holds is unknown to it until Medicare answers again; merge the copy from Drive (step 0c) and start this helper again before any approval - TOP OF THE REPORT"
+CACHE_LOST = "CACHE: %d chart(s) carry a date of death whose day cannot be read here (the scrubbed copy from the repository) - a charge of such a chart is asked about whatever its payer and is NOT CHECKED until somebody names the day; merge the copy from Drive (step 0c) to get the days back - TOP OF THE REPORT"
 CACHE_MISSING = "CACHE MISSING: the deceased guard's cache file is not there - the guard starts with NOTHING: a date of death the practice already holds is unknown to it until Medicare answers again, and a charge that needs no Medicare answer is not asked about at all - TOP OF THE REPORT"
 USAGE = "usage: python3 death_check_review.py [--dry]"
 OUT = "death_check_review_%s%s.json"
@@ -107,8 +110,10 @@ def day(x):
     if re.match(r"\d{8}$", s): return "%s-%s-%s" % (s[:4], s[4:6], s[6:])
     m = re.match(r"\d{4}-\d{2}-\d{2}(?!\d)", s); return m.group(0) if m else ""
 def code_of(x):
-    """A procedure code or a procedure id as it is; "" for anything that does not look like one."""
-    s = str(x or "").strip(); return s if re.match(r"[A-Za-z0-9]{3,12}$", s) else ""
+    """A procedure code or a procedure id as it is - the five characters of a code (99349, G0556, 1123F, M0004) or pcode and digits; "" for
+    anything else. (11/25/2026, the second verification: any one word of 3 to 12 letters and digits passed - a name or a member number
+    standing in the procedure attributes of an answer would have been printed and written to the register.)"""
+    s = str(x or "").strip(); return s if re.match(r"(?:[0-9]{4}[0-9A-Za-z]|[A-Za-z][0-9]{4}|pcode[0-9]{1,12})$", s) else ""
 def car(x):
     """A carrier in the form the guard's own list holds it: car<digits> for an id that comes as bare digits (this answer gives the chart's
     id without its prefix too - docs/captured_calls.md), an id with its prefix or a carrier's code (FLO02) as it is; "" for anything that
@@ -248,6 +253,20 @@ def review(argv):
     # report. (deceased_guard.py finds the workspace's own registers/deceased_cache.json since that day; a guard that names no file gets no line.)
     cpath = getattr(G, "CACHE", None); cache_missing = isinstance(cpath, str) and bool(cpath) and not os.path.isfile(cpath)
     if cache_missing: say(CACHE_MISSING)
+    # 11/25/2026 (the second verification): after the bootstrap the file is always THERE - the repository's register is copied in when the
+    # state bundle brought none, and that copy holds no day anyone can read. So the helper also says, in counts only (the guard's own
+    # cache_state; a guard from before has none and gets no line): a file that cannot be read, a file with no chart at all, and how many
+    # charts carry a day that cannot be read here. A charge of such a chart is asked about whatever its payer; when nobody answers the
+    # guard raises DayLost and the charge is NOT CHECKED - never clear.
+    state = None
+    try:
+        st = getattr(G, "cache_state", None); st = st() if callable(st) else None
+        if isinstance(st, dict): state = {k: (bool(st.get(k)) if k in ("file", "readable") else int(st.get(k) or 0)) for k in ("file", "readable", "charts", "days", "lost")}
+    except Exception: state = None
+    if state and state["file"] and not cache_missing:
+        if not state["readable"]: say(CACHE_UNREADABLE)
+        elif not state["charts"]: say(CACHE_EMPTY)
+        elif state["lost"]: say(CACHE_LOST % state["lost"])
     def unchecked(pid, vid, cid, why):
         rows.append({"chart": ("pat" + pid) if pid else "", "visit": vid, "charge": cid, "result": "could not be checked", "why": why, "words": UNCHECKED_WORDS})
         say("NOT CHECKED: pat%s visit %s charge %s (%s) - " % (pid or "?", vid or "?", cid or "?", why) + UNCHECKED_WORDS)
@@ -304,7 +323,7 @@ def review(argv):
         if blocked:
             nb += 1; row["words"] = BLOCK_WORDS; say("BLOCKED: pat%s visit %s charge %s DOS %s code %s - " % who + BLOCK_WORDS)
         elif unverified:
-            nx += 1; row["unverified"] = True; row["words"] = UNVERIFIED_WORDS; say("UNVERIFIED: pat%s visit %s charge %s DOS %s code %s - " % who + UNVERIFIED_WORDS)
+            nx += 1; row["unverified"] = True; row["words"] = UNVERIFIED_WORDS      # its line is said when the listing is through (below): a later answer of this start can overtake it
         rows.append(row); time.sleep(PAUSE)
     # 11/25/2026 (the integration; found by the review's fixer and left open): ONE START, ONE CHART, TWO CHARGES - the answer must not depend on
     # which of them the listing shows first. An ordinary visit on a plan that is not Medicare needs no Medicare answer: the guard looks into its
@@ -322,16 +341,25 @@ def review(argv):
             nb += 1; nx -= 1 if row.pop("unverified", None) else 0
             row.update(result="BLOCKED", late=True, words=BLOCK_WORDS)
             say("BLOCKED: pat%s visit %s charge %s DOS %s code %s - " % (num(row["chart"]), row.get("visit") or "?", row.get("charge") or "?", row["dos"], row.get("code") or "?") + BLOCK_WORDS)
+    # 11/25/2026 (the second verification): an UNVERIFIED line used to be said during the walk and stayed - in the output and in the register - also when a later
+    # answer of the same start had overtaken it: beside a BLOCKED line for the same charge, or although a later charge of the same chart had brought Medicare's
+    # answer. Now the lines are said when the listing is through: none for a charge that ended BLOCKED (above), and none for a charge AFTER which another charge of
+    # the same chart needed Medicare's answer and got it (that answer is the chart's; had it named a day, the look above would have blocked this charge).
+    for i, row in enumerate(rows):
+        if not row.get("unverified"): continue
+        if any(num(r.get("chart")) == num(row.get("chart")) and r.get("needed") and not r.get("unverified") and r.get("result") in ("clear", "BLOCKED") for r in rows[i + 1:]):
+            nx -= 1; row.pop("unverified", None); row.pop("words", None); row["answered_later"] = True; continue
+        say("UNVERIFIED: pat%s visit %s charge %s DOS %s code %s - " % (num(row.get("chart")) or "?", row.get("visit") or "?", row.get("charge") or "?", row.get("dos") or "?", row.get("code") or "?") + UNVERIFIED_WORDS)
     after = counts(G); added = {k: after[k] - before[k] for k in COUNT_KEYS} if before is not None and after is not None else None
     if dry: how = " - none asked (--dry: the guard's cache only, NOT a clearance to approve)"
-    elif added is not None: how = " - AdvancedMD's free check answered %d of %d asked, %d bought from the vendor" % (added["free answered"], added["free asked"], added["paid asked"])
-    else: how = " - free / bought not counted by this guard"
+    elif added is not None: how = " - AdvancedMD's free check answered %d of %d asked, %d went to the vendor" % (added["free answered"], added["free asked"], added["paid asked"])      # (11/25/2026, the second verification: the count is the guard's CHECKS that went to the vendor, not its paid requests - stedi_usage.py has those and the dollars)
+    else: how = " - free / vendor checks not counted by this guard"
     code = 3 if (nb or nu) else 0
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H%M%SZ"); name = OUT % (stamp, "_dry" if dry else "")
     head = "DEATH CHECK - Charge Review: %d charge(s) on %d visit(s) listed, %d checked; %d needed a Medicare answer (CCM or straight Medicare)%s; %d BLOCKED; %d could not be checked; %d unverified - register " % (
         charges, visits, checked, needed, how, nb, nu, nx)
     reg = {"helper": "death_check_review.py", "version": DEATH_CHECK_REVIEW_VERSION, "stamp": stamp, "dry": dry, "exit": code, "listed": {"visits": visits, "charges": charges},
-           "checked": checked, "needed": needed, "counts": added, "blocked": nb, "unchecked": nu, "unverified": nx, "cache_missing": cache_missing, "rows": rows, "lines": lines + [head + "registers/" + name]}
+           "checked": checked, "needed": needed, "counts": added, "blocked": nb, "unchecked": nu, "unverified": nx, "cache_missing": cache_missing, "cache": state, "rows": rows, "lines": lines + [head + "registers/" + name]}
     try: write(os.path.join("registers", name), reg); last = head + "registers/" + name
     except Exception as e: last = head + "NOT written (%s)" % kind_of(e)
     say(last); return code

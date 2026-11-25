@@ -55,6 +55,15 @@ L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
+# 11/25/2026 (the second verification of the death check): the visits the import kept out because a date of death is on record for the chart and nobody could name
+# its day (claimocity_import.DEATH_DAY_WHY - the same line here; the self-test holds the two together). Chart ids and counts only.
+DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
+try:
+    _ddr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY)]
+    _ddc = sorted({x.get("pid") for x in _ddr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
+    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and Medicare named none. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again in every later run: %s" % (
+        len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
+except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood

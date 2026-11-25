@@ -368,7 +368,7 @@ def reset():
         elif os.path.exists(p): os.remove(p)
     ST.WHO = "test_lookup_rules.py"
     if hasattr(ST, "_PLAIN_OFF"): del ST._PLAIN_OFF[:]           # a refusal of our provider number holds for one run (one process) - each case is a new run
-    if DG is not None: del DG.LOG[:]; DG._ASKED.clear()
+    if DG is not None: del DG.LOG[:]; DG._ASKED.clear(); getattr(DG, "_LOST_ASKED", set()).clear()      # ... and the charts asked about for a lost day (one question per chart per start)
     del FREE_ASKED[:]; FREE.clear(); os.environ.pop("DEATH_CHECK_FREE", None)      # 11/25/2026: the free check - each case is a new run: nothing said about any plan, the switch not set,
     if DG is not None:                                                             # COUNTS at zero and no failure in a row behind it
         for k in getattr(DG, "COUNTS", {}): DG.COUNTS[k] = 0
@@ -983,6 +983,93 @@ def t_guard_charge():
     err = io.StringIO()
     with contextlib.redirect_stderr(err): r = DG.check_charge("555", 1)
     check("guard: check_charge reads the charge and blocks a straight-Medicare claim after a death learned from the plain check", lambda: r[0] is True and kinds() == ["CMS"], r)
+
+# ==== 4a2. the second verification (11/25/2026) of the change that asks AdvancedMD first - each check names its finding ============
+def put_cache(entries):
+    os.makedirs(os.path.dirname(DCACHE), exist_ok=True)
+    with open(DCACHE, "w") as fh: json.dump(entries, fh)
+def t_guard_day_shapes():
+    """guard#1: a day the cache holds in another shape than YYYY-MM-DD was read as 'unknown', and a claim to another payer passed with no word."""
+    reset(); p = newp(death=ago(20)); pid = chart(cid(), p, plans=[("car6404", "", "M" + "5" * 9)])
+    put_cache({pid: {"dod": ymd(ago(20)), "src": "a helper that wrote the day as eight digits"}})
+    r = guard_check(pid, iso(ago(5)), carrier="car6404", proc="99349")
+    check("guard (day shapes): a day the cache holds as EIGHT DIGITS is a day - a claim to any payer dated after it is blocked with no call at all (it used to pass as 'unknown' and was never asked about for a plan that is not Medicare)",
+          lambda: r[0] is True and iso(ago(20)) in r[1] and SENT == [] and FREE_ASKED == [], (r, len(SENT), len(FREE_ASKED)))
+    put_cache({pid: {"dod": mdy(ago(20)), "checked": None, "src": "x"}}); r2 = guard_check(pid, iso(ago(5)), carrier="car6404", proc="99349"); r3 = guard_check(pid, iso(ago(25)), carrier="car6404", proc="99349")
+    check("guard (day shapes): ... the same for a day written MM/DD/YYYY; a date of service BEFORE the day is not blocked; and an entry whose 'checked' is null (the Drive copy writes that) raises nothing",
+          lambda: r2[0] is True and r3 == (False, "") and SENT == [], (r2, r3))
+    put_cache({pid: {"dod": "%d-02-31" % TODAY.year, "checked": "not a day", "src": "x"}})
+    check("guard (day shapes): a 'day' that is no calendar date, and a 'checked' that is no day, raise nothing - the entry is one whose day cannot be read (below)",
+          lambda: _raises(lambda: guard_check(pid, iso(ago(5)), carrier="car6404", proc="99349"), DG.DayLost) or True)
+def t_guard_day_lost():
+    """guard#1 (the scrubbed copy), gate#1: a death on record whose day cannot be read here was asked about only for Medicare and care-management claims."""
+    reset(); p = newp(death=ago(20)); pid = chart(cid(), p, plans=[("car6404", "", "M" + "6" * 9), ("car6085", "", p["number"])])
+    put_cache({pid: {"dod": "[DOB]", "checked": iso(TODAY), "src": "stedi-medicare-271"}}); free_death(pid, p, i=2)
+    r = guard_check(pid, iso(ago(5)), carrier="car6404", proc="99349")
+    check("guard (day lost): a death on record whose day cannot be read here (the scrubbed copy from the repository) is asked about again WHATEVER the payer and the code - AdvancedMD's free check first - and the day it brings blocks the claim",
+          lambda: r[0] is True and iso(ago(20)) in r[1] and len(FREE_ASKED) == 1 and SENT == [] and (cache_json() or {}).get(pid, {}).get("dod") == iso(ago(20)), (r, FREE_ASKED, len(SENT)))
+    reset(); p = newp(death=ago(20)); pid = chart(cid(), p, plans=[("car6404", "", "M" + "6" * 9), ("car6085", "", p["number"])])
+    put_cache({pid: {"dod": "[DOB]", "checked": iso(TODAY), "src": "stedi-medicare-271"}}); FREE[ins(pid, 2)] = ("timeout",); OVERRIDE[("CMS", p["number"])] = ("timeout",); OVERRIDE[("MBILUNOSSN", p["last"])] = ("timeout",)
+    lost = _raises(lambda: guard_check(pid, iso(ago(5)), carrier="car6404", proc="99349"), DG.DayLost)
+    check("guard (day lost): ... and when neither AdvancedMD nor the vendor answers, the claim is NOT cleared: the guard raises DayLost (amd.rebill_charge then answers 409 and sends nothing; the check before approvals says NOT CHECKED) - the entry and its mark stay as they were",
+          lambda: lost and (cache_json() or {}).get(pid, {}).get("dod") == "[DOB]" and issubclass(DG.DayLost, RuntimeError) and any("UNVERIFIED" in x for x in DG.LOG), (lost, cache_json(), DG.LOG))
+    cache_only = _raises(lambda: DG.check(pid, iso(ago(5)), "car6404", "99349", allow_lookup=False), DG.DayLost)
+    check("guard (day lost): ... a question from the cache only (a dry run) is not cleared either; a chart with NO death on record, or with a readable day, is answered from the cache as before",
+          lambda: cache_only and (put_cache({pid: {"dod": None, "checked": iso(TODAY), "src": "stedi: no death on record"}}) or DG.check(pid, iso(ago(5)), "car6404", "99349", allow_lookup=False) == (False, "")), cache_only)
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: {"dod": "[DOB]", "checked": iso(TODAY), "src": "x"}}); free_is(pid, p=p)
+    nolog = len(DG.LOG); r = _raises(lambda: guard_check(pid, iso(ago(5))), DG.DayLost); asked = len(FREE_ASKED) + len(SENT)
+    check("guard (day lost): ... when Medicare answers and shows NO death the claim is STILL not cleared - only a day is an answer for such a chart (a death the practice learned elsewhere is not in Medicare's answer for weeks; the placeholder stands where a real day stood): DayLost, the entry stays as it was, and no 'unverified' line is logged for an answer that came",
+          lambda: r and (cache_json() or {}).get(pid, {}).get("dod") == "[DOB]" and len(DG.LOG) == nolog and asked >= 1, (r, cache_json(), DG.LOG[nolog:]))
+    r2 = _raises(lambda: guard_check(pid, iso(ago(4))), DG.DayLost)
+    check("guard (day lost): ... and a second question about that chart in the same start asks nobody again (one question per chart per start) - it is not cleared either",
+          lambda: r2 and len(FREE_ASKED) + len(SENT) == asked, (r2, len(FREE_ASKED), len(SENT), asked))
+    DG._LOST_ASKED.clear(); DG.record(pid, {"benefitsInformation": [{"code": "1"}], "errors": []})
+    check("guard (day lost): ... the hook that keeps every Medicare answer (record) does not write 'no death on record' over such an entry either - it would clear the chart behind the guard's back in the next start",
+          lambda: (cache_json() or {}).get(pid, {}).get("dod") == "[DOB]", cache_json())
+def t_guard_charge_unreadable():
+    """guard#3: check_charge answered 'not blocked' on a charge whose own read showed nothing to compare - amd.rebill_charge then sent the rebill."""
+    reset(); p = newp(death=ago(30)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: {"dod": iso(ago(30)), "checked": iso(TODAY), "src": "x"}})
+    shapes = {"556": "<Fault><detail>the charge could not be read</detail></Fault>", "557": '<r><patient id="pat%s"/><charge id="charge557" proccode="99309"/></r>' % pid,
+              "558": '<r><visit date=""/><patient id="pat%s"/><charge id="charge558" proccode="99309"/></r>' % pid, "559": '<r><visit date="%s"/><patient id="pat%s"/><charge id="charge000" proccode="99309"/></r>' % (mdy(ago(3)), pid),
+              "560": '<r><visit date="%s"/><charge id="charge560" proccode="99309"/></r>' % mdy(ago(3))}
+    RESAVE.update(shapes)
+    got = {k: _raises(lambda k=k: DG.check_charge(k, 1), DG.Unreadable) for k in shapes}
+    check("guard (charge): a charge whose own read shows nothing to compare - a Fault, no visit, no visit date, no row of that charge, no chart - is NOT cleared: check_charge raises Unreadable in fixed words (amd.rebill_charge answers 409 on it and sends nothing)",
+          lambda: all(got.values()) and issubclass(DG.Unreadable, RuntimeError), got)
+    RESAVE["561"] = '<r><visit date="%s"/><patient id="pat%s"/><charge id="charge561" proccode="99309"/><insplan sequence="1" carrier="car6085"/></r>' % (mdy(ago(3)), pid)
+    RESAVE["562"] = '<r><visit date="%s"/><patient id="pat%s"/><charge id="charge562" proccode="99309"/><insplan sequence="1" carrier="car6085"/></r>' % (mdy(ago(40)), pid)
+    check("guard (charge): ... a charge that can be read is answered as before - blocked after the day, not blocked before it", lambda: DG.check_charge("561", 1)[0] is True and DG.check_charge("562", 1) == (False, ""))
+    def words(k):
+        try: DG.check_charge(k, 1)
+        except DG.Unreadable as e: return str(e)
+        return ""
+    check("guard (charge): ... the words of that error name no chart, no date and no number (their first hundred characters go into the answer a run reads)",
+          lambda: all(words(k) and not re.search(r"\d", words(k)) and pid not in words(k) for k in shapes), {k: words(k)[:80] for k in shapes})
+def t_guard_cache_state():
+    """gate#1: the check before approvals could say only that the cache FILE is missing - not that it is there and knows nothing."""
+    reset(); a, b, c, d = cid(), cid(), cid(), cid()
+    s0 = DG.cache_state()
+    put_cache({a: {"dod": iso(ago(9)), "checked": iso(TODAY)}, b: {"dod": "[DOB]", "checked": iso(TODAY)}, c: {"dod": None, "checked": iso(TODAY)}, d: {"dod": ymd(ago(4))}}); s1 = DG.cache_state()
+    with open(DCACHE, "w") as fh: fh.write("{ cut off")
+    s2 = DG.cache_state()
+    with open(DCACHE, "w") as fh: fh.write("")
+    s3 = DG.cache_state()
+    check("guard (cache state): cache_state() says in counts only whether the cache file is there, whether it can be read, how many charts it holds, how many with a day and how many with a day that cannot be read - never an entry",
+          lambda: s0 == {"file": False, "readable": False, "charts": 0, "days": 0, "lost": 0} and s1 == {"file": True, "readable": True, "charts": 4, "days": 2, "lost": 1}
+          and s2 == {"file": True, "readable": False, "charts": 0, "days": 0, "lost": 0} and s3 == {"file": True, "readable": True, "charts": 0, "days": 0, "lost": 0}, (s0, s1, s2, s3))
+
+def t_drive_copy():
+    """guard#1 / guard#4 (the second verification): the Drive copy left out a day written in eight digits, and its unpack stumbled over an entry whose source is null."""
+    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); a, b, c, d, e = cid(), cid(), cid(), cid(), cid()
+    put_cache({a: {"dod": iso(ago(9)), "checked": iso(ago(1)), "src": "amd-medicare-271"}, b: {"dod": ymd(ago(8)), "src": "a helper that wrote eight digits"}, c: {"dod": "[DOB]", "checked": iso(ago(1))},
+               d: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, e: {"dod": mdy(ago(7)), "checked": None, "src": None}})
+    out = os.path.join(TMP, "drive_copy.json"); n = DD.pack(DCACHE, out); packed = json.load(open(out))
+    check("drive copy: pack keeps every day that can be read - also one a helper wrote in eight digits or as MM/DD/YYYY - as YYYY-MM-DD; a day that cannot be read is in neither list (it is unknown), a chart with no death is in the other",
+          lambda: n == (3, 1) and packed["dated"][a][0] == iso(ago(9)) and packed["dated"][b][0] == iso(ago(8)) and packed["dated"][e][0] == iso(ago(7)) and c not in packed["dated"] and c not in packed["nodeath"] and list(packed["nodeath"]) == [d], (n, packed))
+    target = os.path.join(TMP, "drive_target.json"); json.dump({a: {"dod": "[DOB]", "checked": iso(ago(5)), "src": None}, e: {"dod": None, "checked": None, "src": None}, d: {"dod": iso(ago(30)), "checked": iso(ago(3)), "src": "stedi-medicare-271"}}, open(target, "w"))
+    m = DD.unpack(out, [target]); got = json.load(open(target))
+    check("drive copy: unpack raises nothing on an entry whose source or 'checked' is null, a day that can be read replaces a scrubbed one and an entry with none, the free check's own label is kept, and a real day in the cache is never undone by a 'no death' note",
+          lambda: got[a]["dod"] == iso(ago(9)) and got[e]["dod"] == iso(ago(7)) and got[b]["dod"] == iso(ago(8)) and got[d]["dod"] == iso(ago(30)) and isinstance(got[a].get("src"), str), (m, got))
 
 # ==== 4b. the guard asks AdvancedMD's FREE check first (William 11/25/2026 - rules A1 to A11 of his order) ======================
 BLOCK = "pat%s DOS %s is after date of death %s (%s) - claim must not be submitted; void the charge"
@@ -1662,6 +1749,7 @@ def t_copies():
 TESTS = [t_prices, t_usage_reader, t_shape, t_plain_good, t_not_found, t_wrong_number, t_suffix, t_no_number, t_down, t_other_refusal, t_ssn, t_med_summ,
          t_usage_log, t_cli, t_store]
 GUARD_TESTS = [t_guard_death, t_guard_not_found_failed, t_guard_shared, t_guard_review, t_guard_number, t_guard_flag_cache, t_guard_old_client, t_guard_charge,
+               t_guard_day_shapes, t_guard_day_lost, t_guard_charge_unreadable, t_guard_cache_state, t_drive_copy,      # the second verification's findings (section 4a2)
                t_precheck_args, t_precheck_words, t_precheck_store, t_ten_charts]
 FREE_TESTS = [t_free_was_on, t_free_death, t_free_alive, t_free_unusable, t_free_plan, t_free_order, t_free_switch, t_free_down, t_free_counts, t_free_store, t_free_charge,
               t_free_missing, t_free_privacy, t_free_death_unreadable, t_free_failed_mark, t_free_pins, t_free_texts]      # 11/25/2026: AdvancedMD's free check first (section 4b) and its review the same day (4c)
@@ -1708,10 +1796,46 @@ _wsA = _tree("flat", ["home/ws/registers/deceased_cache.json"]); _wsB = _tree("f
 _clC = _tree("clone", [_REG], ["core", "scripts/helpers"]); _wsE = _tree("flat_new", [], ["home/ws/registers"]); _wsF = _tree("bare", [], ["home/ws"])
 check("guard: with no cache named, the guard of a run's FLAT workspace (the helpers side by side, registers/ beside them) reads the workspace's own registers/deceased_cache.json - it no longer starts empty beside the cache the practice holds",
       lambda: _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py")) == os.path.join(_wsA, "home", "ws", "registers", "deceased_cache.json"), lambda: _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py")))
-check("guard: ... where a run has put a copy at the path the guard always tried first (<folder>/../practices/ehpa/registers/) that copy still answers; in the clone the core/ copy reads the repository's register as before, and the scripts/helpers/ copy now reads the same file",
-      lambda: _cache_of(os.path.join(_wsB, "home", "ws", "deceased_guard.py")) == os.path.join(_wsB, "home", _REG) and _cache_of(os.path.join(_clC, "core", "deceased_guard.py")) == os.path.join(_clC, _REG)
+check("guard: ... the workspace's own register wins also where a run has put a copy at the path the guard used to read (<folder>/../practices/ehpa/registers/ - what the guard learned there missed the pack); in the clone the core/ copy reads the repository's register as before, and the scripts/helpers/ copy reads the same file",
+      lambda: _cache_of(os.path.join(_wsB, "home", "ws", "deceased_guard.py")) == os.path.join(_wsB, "home", "ws", "registers", "deceased_cache.json") and _cache_of(os.path.join(_clC, "core", "deceased_guard.py")) == os.path.join(_clC, _REG)
       and _cache_of(os.path.join(_clC, "scripts", "helpers", "deceased_guard.py")) == os.path.join(_clC, _REG),
       lambda: (_cache_of(os.path.join(_wsB, "home", "ws", "deceased_guard.py")), _cache_of(os.path.join(_clC, "core", "deceased_guard.py")), _cache_of(os.path.join(_clC, "scripts", "helpers", "deceased_guard.py"))))
+# ONE cache (the second verification): the feed helpers kept a file of their own, the check before approvals read the register, a run's hand copy lay at the
+# old path - three files that never met. The guard carries every DAY the other files hold into the cache it uses, once, before its first answer.
+def _guard_at(guard_file, env=None):
+    """the real guard loaded as if its file stood at guard_file, with DECEASED_CACHE as env (None = not set) - a fresh module each time, like a new process"""
+    old = os.environ.pop("DECEASED_CACHE", None)
+    try:
+        if env is not None: os.environ["DECEASED_CACHE"] = env
+        m = types.ModuleType("deceased_guard_probe"); m.__file__ = guard_file; m.UNDER_TEST = True
+        exec(compile(_read("scripts/helpers/deceased_guard.py"), guard_file, "exec"), m.__dict__)
+        return m
+    finally:
+        os.environ.pop("DECEASED_CACHE", None)
+        if old is not None: os.environ["DECEASED_CACHE"] = old
+def _three_files(name):
+    """a flat workspace that holds three cache files: the register (chart A's day; chart D scrubbed), the feed helpers' file of before (chart B's day in eight digits; C with none; D's real day), a hand copy at the old path (chart E's day; A's day LATER than the register's; a line that is no entry)"""
+    root = os.path.join(TMP, "onecache", name); ws = os.path.join(root, "home", "ws"); old_path = os.path.join(root, "home", "practices", "ehpa", "registers")
+    os.makedirs(os.path.join(ws, "registers")); os.makedirs(old_path)
+    json.dump({"7001": {"dod": iso(ago(30)), "checked": iso(ago(3)), "src": "stedi-medicare-271"}, "7004": {"dod": "[DOB]", "checked": iso(ago(3)), "src": "stedi-medicare-271"}}, open(os.path.join(ws, "registers", "deceased_cache.json"), "w"))
+    json.dump({"7002": {"dod": ymd(ago(20)), "src": "amd-medicare-271"}, "7003": {"dod": None, "checked": iso(ago(1)), "src": "amd: no death on record"}, "7004": {"dod": iso(ago(12)), "checked": iso(ago(2)), "src": "amd-medicare-271"}}, open(os.path.join(ws, "deceased_cache_local.json"), "w"))
+    json.dump({"7005": {"dod": iso(ago(8)), "checked": iso(ago(1)), "src": "x"}, "7001": {"dod": iso(ago(25)), "checked": iso(ago(1)), "src": "x"}, "not a chart": "text"}, open(os.path.join(old_path, "deceased_cache.json"), "w"))
+    return ws
+_ws1 = _three_files("default"); _g1 = _guard_at(os.path.join(_ws1, "deceased_guard.py")); _dos = iso(ago(2))
+_a1 = {k: _g1.check(k, _dos, "car6404", "99349", allow_lookup=False) for k in ("7001", "7002", "7003", "7004", "7005")}
+_c1 = json.load(open(os.path.join(_ws1, "registers", "deceased_cache.json")))
+check("guard (one cache): in a workspace that holds three cache files the guard uses the register and knows EVERY day any of them holds - a claim after the day is blocked for the charts only the feed's own file or the hand copy knew, with nobody asked; a chart with no death on record anywhere is not blocked",
+      lambda: _g1.CACHE == os.path.join(_ws1, "registers", "deceased_cache.json") and all(_a1[k][0] is True for k in ("7001", "7002", "7004", "7005")) and _a1["7003"] == (False, ""), _a1)
+check("guard (one cache): ... the days are carried INTO the cache in use (the file the pack uploads), each as YYYY-MM-DD: a day that can be read replaces the scrubbed one, of two days the EARLIER stays, an entry without a day and a line that is no entry are not carried",
+      lambda: _c1["7002"]["dod"] == iso(ago(20)) and _c1["7004"]["dod"] == iso(ago(12)) and _c1["7005"]["dod"] == iso(ago(8)) and _c1["7001"]["dod"] == iso(ago(30)) and "7003" not in _c1 and "not a chart" not in _c1, _c1)
+_ws2 = _three_files("named"); _g2 = _guard_at(os.path.join(_ws2, "deceased_guard.py"), env=os.path.join(_ws2, "deceased_cache_local.json"))
+_a2 = {k: _g2.check(k, _dos, "car6404", "99349", allow_lookup=False) for k in ("7001", "7002", "7005")}
+check("guard (one cache): ... and a helper of before that still names the feed's own file (DECEASED_CACHE) gets the same days carried into THAT file: whichever file a helper names, no day the workspace holds is unknown to it",
+      lambda: _g2.CACHE == os.path.join(_ws2, "deceased_cache_local.json") and all(v[0] is True for v in _a2.values()) and json.load(open(_g2.CACHE))["7001"]["dod"] == iso(ago(30)), _a2)
+_ws3 = _three_files("unreadable"); open(os.path.join(_ws3, "registers", "deceased_cache.json"), "w").write("{ this register cannot be read"); open(os.path.join(_ws3, "deceased_cache_local.json"), "w").write("[1, 2")
+_g3 = _guard_at(os.path.join(_ws3, "deceased_guard.py")); _a3 = _g3.check("7005", _dos, "car6404", "99349", allow_lookup=False)
+check("guard (one cache): ... a cache in use that cannot be read is never written over, a file that cannot be read is passed over, and nothing raises",
+      lambda: _a3 == (False, "") and open(os.path.join(_ws3, "registers", "deceased_cache.json")).read() == "{ this register cannot be read", _a3)
 check("guard: ... with no cache file anywhere yet, a workspace that has a registers folder gets its cache THERE (the folder a run packs), any other place the path of before; and a cache the environment names wins everywhere - an empty name is no name",
       lambda: _cache_of(os.path.join(_wsE, "home", "ws", "deceased_guard.py")) == os.path.join(_wsE, "home", "ws", "registers", "deceased_cache.json")
       and _cache_of(os.path.join(_wsF, "home", "ws", "deceased_guard.py")) == os.path.join(_wsF, "home", _REG)

@@ -2,7 +2,7 @@
 #          medicare deceased person"; check the MBI / Medicare record for a date of death before any claim goes out).
 # Decides: whether a claim may be submitted. BLOCK when the date of service is AFTER the patient's date of death (any payer).
 # Sources, in order: (1) the cache practices/ehpa/registers/deceased_cache.json (pid -> dod / checked date / source) - the GitHub copy is
-#   PHI-scrubbed ('[DOB]' = unknown, re-looked-up; 10/14/2026), the real dates live in the workspace and Drive 'workspace mirror',
+#   PHI-scrubbed ('[DOB]' = a death ON RECORD whose day cannot be read here - see the last paragraph), the real dates live in the workspace and Drive 'workspace mirror',
 #          (2) AMD getdemographic 'deceased', (3) a fresh Medicare answer whose 271 carries the date of death (DTP*442 / dateOfDeath):
 #          AdvancedMD's own FREE eligibility check first, the vendor's paid answer only when the free one gives no usable answer (the
 #          paragraph of 11/25/2026 below).
@@ -64,27 +64,48 @@
 #          and the paid check skipped; three answers in a row that cannot be read had switched the free check off for the run (the
 #          order counts a time-out, an HTTP error and an error only); and the note in the answer store had taken the store's 'asked
 #          and failed today' mark away, so another helper bought that failing chart again the same day.
+# 11/25/2026 (the second verification of that day's change - each rule is shown by tools/selftest/test_lookup_rules.py and test_death_check_review.py):
+#          ONE CACHE: with no DECEASED_CACHE named, the file is the workspace's own registers/deceased_cache.json (a flat workspace: the helpers side by
+#          side with a registers folder), else the repository's register; and once per process every DAY another cache file of the workspace holds is
+#          carried into it (_carry) - the feed's helpers kept a file of their own until then, and the two never met. A DAY IN ANOTHER SHAPE IS A DAY:
+#          eight digits and MM/DD/YYYY are read (_day). A DEATH ON RECORD WHOSE DAY CANNOT BE READ (the scrubbed copy) IS NOT 'NO DEATH': the chart is
+#          asked about whatever the payer and the code, once per process; only a DAY is an answer for it - Medicare's 'no death on record' does not
+#          undo it, in check() or in record() - and while nobody names one check() raises DayLost: the caller fails closed (amd.rebill_charge answers
+#          409, death_check_review.py says NOT CHECKED, the feed's import enters no visit). check_charge raises Unreadable when the charge's own detail
+#          shows no chart, no visit date or no row of the charge - it used to answer 'not blocked'. What could not be written (a cache file that cannot
+#          be read is never written over) is remembered for the rest of the process (_UNSAVED). cache_state() gives a caller the file's state in counts.
 # CCM in the month of death: the DOS must be on/before the date of death; a month-end CCM date after the death is blocked.
 import os, re, json, time, datetime, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
 def _default_cache():
-    """Where the cache is when DECEASED_CACHE names none (11/25/2026). The first of these that EXISTS: (1) <this file's folder>/../practices/ehpa/
-    registers/deceased_cache.json - the repository's register seen from core/, and a workspace in which a run put a copy there; (2) the flat
-    workspace's own register <this file's folder>/registers/deceased_cache.json - the helpers stand side by side there and the copy from Drive is
-    merged into that file before the first guard call; (3) the repository's register seen from scripts/helpers/. None exists yet: the
-    workspace's registers folder when there is one (the folder a run packs), else (1) as before. Until that day only (1) was tried: in the flat
-    workspace no step fills that path (the runs' own lessons of that day), so the guard started EMPTY - every death the practice held was
-    unknown to it until Medicare was asked again, and a look-up that failed let the charge through."""
-    one = os.path.join(REPO, "practices", "ehpa", "registers", "deceased_cache.json"); flat = os.path.join(HERE, "registers", "deceased_cache.json")
-    for p in (one, flat, os.path.join(os.path.dirname(REPO), "practices", "ehpa", "registers", "deceased_cache.json")):
+    """Where the cache is when DECEASED_CACHE names none (11/25/2026). In a run's flat workspace - the helpers side by side, a registers folder
+    beside them - it is that folder's deceased_cache.json: the file step 0c merges the copy from Drive into and the pack uploads, whatever other
+    copy lies around (what such a copy holds is carried in - _carry). Anywhere else: the repository's register, seen from core/ or from
+    scripts/helpers/, when it is there; else <this file's folder>/../practices/ehpa/registers/deceased_cache.json as before. Until that day only
+    that last path was tried: in the flat workspace no step fills it (the runs' own lessons of that day), so the guard started EMPTY - every
+    death the practice held was unknown to it until Medicare was asked again, and a look-up that failed let the charge through. (The second
+    verification, the same day: a copy a run had made at that old path must not win over the workspace's register - what the guard learned
+    went into a file no step packs.)"""
+    one = os.path.join(REPO, "practices", "ehpa", "registers", "deceased_cache.json")
+    if os.path.isdir(os.path.join(HERE, "registers")): return os.path.join(HERE, "registers", "deceased_cache.json")
+    for p in (one, os.path.join(os.path.dirname(REPO), "practices", "ehpa", "registers", "deceased_cache.json")):
         if os.path.isfile(p): return p
-    return flat if os.path.isdir(os.path.join(HERE, "registers")) else one
+    return one
 CACHE = os.environ.get("DECEASED_CACHE") or _default_cache()
 MEDICARE = {"FLO02", "car6085"}
 CCM = {"99487", "99489", "99490", "99491", "99439", "99437", "G0556", "G0557", "G0558", "G2058",
        "pcode492674", "pcode492675", "pcode492676", "pcode492677"}
 MAX_AGE_DAYS = 30
 LOG = []
+class DayLost(RuntimeError):
+    """A date of death is on record for the chart, its day cannot be read here, and Medicare named none: the claim is NOT cleared."""
+class Unreadable(RuntimeError):
+    """The charge's own read shows nothing to compare (no chart, no visit date, no row of the charge): the charge is NOT cleared."""
+LOST_WORDS = "a date of death is on record for this chart but its day cannot be read here, and Medicare named none - the claim is not cleared (merge the cache copy from Drive, or look the chart up)"
+UNREADABLE_WORDS = "the charge's own detail shows no chart, no visit date or no row of this charge - there is nothing to compare, so the charge is not cleared"
+_CARRIED = [False]       # whether the days of the workspace's other cache files were carried into the cache in use (once per process - _carry)
+_LOST_ASKED = set()      # charts with a death on record whose day cannot be read, asked about in this process without a day coming back: a second question about one asks nobody again
+_UNSAVED = {}            # chart -> the entry this process learned but could NOT write (the cache file cannot be read, so it is never written over): every later answer of the process still sees it
 _ASKED = {}          # pid -> the day Medicare was asked for the answer stedi_lookup just used (a shared answer can be older than today)
 # 11/25/2026 (William: "is stedi able to do that for free?" - it is not; AdvancedMD's own eligibility check is): the free check comes before
 #   the paid one (the header says when, and what counts as an answer). COUNTS is for the caller's one line - the guard itself prints nothing.
@@ -97,9 +118,53 @@ FREE_STAMPS = ("eligibilitycreatedat", "eligibilitychangedat", "eligibilityrespo
 FREE_NO_DOS = "0" * 8    # the 'date of service' of a death-only note in the answer store: no reader asks about it (see _note_death)
 _FREE_FAILS = [0]        # such failures in a row so far, in this process
 _FREE = {}               # pid -> True when the answer stedi_lookup just used is AdvancedMD's free one (check() names the source by it)
+def _others():
+    """The other cache files a workspace can hold beside the one in use: the feed helpers' own file of before (deceased_cache_local.json beside
+    this file), the workspace's register, and the copy a run made at the path this guard used to read."""
+    mine = os.path.realpath(CACHE)
+    return [p for p in (os.path.join(HERE, "deceased_cache_local.json"), os.path.join(HERE, "registers", "deceased_cache.json"),
+                        os.path.join(REPO, "practices", "ehpa", "registers", "deceased_cache.json")) if os.path.isfile(p) and os.path.realpath(p) != mine]
+def _carry():
+    """ONE cache (11/25/2026, the second verification of that day's change). A workspace held up to three cache files that never met: the feed
+    helpers kept their own (deceased_cache_local.json), the Charge Review check and the rebill read the register, and a run's hand copy lay at
+    the old path. A day the feed had learned was unknown to the check before approvals, and the other way round. Now every day another cache
+    file of this workspace holds is carried into the cache in use, once per process, before the first answer: a day that can be read beats
+    none and beats one that cannot be read; of two days the EARLIER stays (it blocks more); nothing else is carried - an entry without a day
+    is asked about again when it matters. A file that cannot be read is passed over; when the cache in use cannot be read nothing is written
+    over it (_put's own rule). It never raises."""
+    if _CARRIED[0]: return
+    _CARRIED[0] = True
+    try:
+        mine = None
+        for path in _others():
+            try:
+                with open(path) as fh: other = json.load(fh)
+            except Exception: continue
+            if not isinstance(other, dict): continue
+            if mine is None:
+                try:
+                    with open(CACHE) as fh: txt = fh.read()
+                    mine = json.loads(txt) if txt.strip() else {}
+                except FileNotFoundError: mine = {}
+                except Exception: return
+                if not isinstance(mine, dict): return
+            for pid, rec in other.items():
+                day = _day(rec.get("dod")) if isinstance(rec, dict) else None
+                if not day or not re.match(r"\d+$", str(pid)): continue
+                cur = mine.get(pid) if isinstance(mine.get(pid), dict) else {}
+                have = _day(cur.get("dod"))
+                if have and have <= day: continue
+                new = dict(cur); new.update({"dod": day, "checked": str(rec.get("checked") or cur.get("checked") or datetime.date.today().isoformat()),
+                                             "src": str(rec.get("src") or cur.get("src") or "carried from another cache file of this workspace")})
+                if _put(str(pid), new): mine[str(pid)] = new
+    except Exception: pass
 def _load():
-    try: return json.load(open(CACHE))
-    except Exception: return {}
+    _carry()
+    try: c = json.load(open(CACHE))
+    except Exception: c = {}
+    if not isinstance(c, dict): c = {}
+    c.update(_UNSAVED)      # (11/25/2026, the second verification: with a cache file that cannot be read the guard kept nothing it learned, and a later question about the same chart in the same start was answered without it)
+    return c
 def _save(c):
     os.makedirs(os.path.dirname(CACHE), exist_ok=True); json.dump(c, open(CACHE, "w"), indent=1, sort_keys=True)
 def _put(pid, rec):
@@ -125,6 +190,33 @@ def _iso(d):
     if re.match(r"\d{8}$", d): return f"{d[:4]}-{d[4:6]}-{d[6:]}"
     m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", d)
     return f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}" if m else d[:10]
+def _day(v):
+    """A cached day as YYYY-MM-DD when it is a real calendar date in a shape a helper has written it in (YYYY-MM-DD, eight digits, MM/DD/YYYY);
+    None for anything else - the scrubbed placeholder, a text, a date that is none. (11/25/2026, the second verification: two helpers of that
+    day wrote the day as eight digits, and such an entry was read as 'unknown' - a claim to another payer passed with no word.)"""
+    s = _iso(v) if v else ""
+    if not re.match(r"\d{4}-\d{2}-\d{2}$", s): return None
+    try: return datetime.date.fromisoformat(s).isoformat()
+    except ValueError: return None
+def _checked(rec):
+    """The day an entry was checked, as a date; 1/1/2000 for an entry that names none or names it in another shape (the copy from Drive can
+    carry null there) - such an entry is stale, and it raises nothing."""
+    try: return datetime.date.fromisoformat(str((rec or {}).get("checked") or "")[:10])
+    except ValueError: return datetime.date(2000, 1, 1)
+def cache_state():
+    """What the cache file looks like, in counts only - for a caller's one line, never an entry: {"file": it is there, "readable": it can be
+    read as the table it is, "charts": its entries, "days": entries with a day that can be read, "lost": entries with a day on record that
+    cannot be read here (the scrubbed copy)}. (11/25/2026, the second verification: a caller could tell only that the file was missing.)"""
+    out = {"file": os.path.isfile(CACHE), "readable": False, "charts": 0, "days": 0, "lost": 0}
+    if not out["file"]: return out
+    try:
+        with open(CACHE) as fh: txt = fh.read()
+        c = json.loads(txt) if txt.strip() else {}
+    except Exception: return out
+    if not isinstance(c, dict): return out
+    recs = [v for v in c.values() if isinstance(v, dict)]
+    out.update(readable=True, charts=len(c), days=sum(1 for v in recs if _day(v.get("dod"))), lost=sum(1 for v in recs if v.get("dod") and not _day(v.get("dod"))))
+    return out
 def dod_from_271(j):
     s = json.dumps(j)
     hits = re.findall(r'"[A-Za-z]*[Dd]eath[A-Za-z]*"\s*:\s*"(\d{8})"', s) + re.findall(r"DTP\*442\*D8\*(\d{8})", s)
@@ -285,28 +377,43 @@ def stedi_lookup(pid, dos_iso):
     return dod, ok
 def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
     """-> (blocked: bool, reason: str). Blocks only on a known date of death earlier than the DOS."""
-    pid = re.sub(r"\D", "", str(pid)); dos = _iso(dos); c = _load(); rec = c.get(pid)
-    # 10/14/2026: a cache restored from GitHub carries the PHI gate's '[DOB]' in place of the date of death (35 charts) - a
-    # non-date dod is UNKNOWN (re-lookup), never compared as a string (which silently let every DOS through).
-    if rec and rec.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(rec.get("dod"))):
-        rec = dict(rec); rec["dod"] = None; rec["checked"] = "2000-01-01"; c[pid] = rec
-    stale = rec is None or (datetime.date.today() - datetime.date.fromisoformat(rec.get("checked", "2000-01-01"))).days > MAX_AGE_DAYS
+    pid = re.sub(r"\D", "", str(pid)); dos = _iso(dos); c = _load(); rec = c.get(pid); lost = False
+    if not isinstance(rec, dict): rec = None      # an entry of another shape (a text, a list) is no entry: the chart is asked about as one the cache does not know
+    # 10/14/2026: a cache restored from GitHub carries the PHI gate's placeholder in place of the day (35 charts) - a day that cannot be read
+    # is UNKNOWN (asked again), never compared as a string (which silently let every DOS through). 11/25/2026 (the second verification): a
+    # day in eight digits or MM/DD/YYYY IS a day (two helpers wrote it so, and the claim passed); and a day that cannot be read is asked
+    # about WHATEVER the payer and the code - until then only a Medicare or care-management claim was, and any other passed with no word.
+    if isinstance(rec, dict) and rec.get("dod"):
+        day = _day(rec.get("dod")); rec = dict(rec); c[pid] = rec
+        if day is None: rec["dod"] = None; rec["checked"] = "2000-01-01"; lost = True
+        else: rec["dod"] = day
+    today = datetime.date.today()
+    stale = rec is None or (today - _checked(rec)).days > MAX_AGE_DAYS
     # 11/10/2026 (review fix): an entry checked BEFORE this claim's date of service cannot know of a death since - asked again (one plain check)
-    stale = stale or str(rec.get("checked") or "") < min(dos, datetime.date.today().isoformat())
-    needs = (carrier in MEDICARE) or ((proc or "") in CCM)
-    if allow_lookup and needs and stale and not (rec and rec.get("dod")):
+    stale = stale or str(rec.get("checked") or "") < min(dos, today.isoformat())
+    needs = (carrier in MEDICARE) or ((proc or "") in CCM) or lost
+    if allow_lookup and needs and stale and not (rec and rec.get("dod")) and not (lost and pid in _LOST_ASKED):
         dod, ok = stedi_lookup(pid, dos)
         if not ok and not dod:              # 11/10/2026 (review fix): a date of death the hook wrote during THIS check (a plain answer with 61) counts now
-            try: seen = (_load().get(pid) or {}).get("dod")
+            try: seen = _load().get(pid); seen = _day(seen.get("dod")) if isinstance(seen, dict) else None
             except Exception: seen = None
-            if seen and re.match(r"\d{4}-\d{2}-\d{2}$", str(seen)): dod = seen
+            if seen: dod = seen
         if not ok and not dod: dod = _stored_death(pid)     # 11/10/2026 (re-check fix): a death an answer in the store already shows still blocks
-        if ok or dod:
+        # 11/25/2026 (the second verification): for a chart with a death ON RECORD whose day cannot be read, only a DAY is an answer. Medicare's
+        # 'no death on record' does not undo it: a death the practice learned from the facility or the chart is not in Medicare's answer for
+        # weeks, and the placeholder stands where such a day stood. The entry stays as it is and the claim is not cleared (DayLost below).
+        if lost and not dod: _LOST_ASKED.add(pid)
+        if dod or (ok and not lost):
             free = _FREE.pop(pid, None)         # 11/25/2026: the answer is AdvancedMD's free one - the source says so; the block wording and the staleness rule are the same
             rec = {"dod": dod, "checked": _ASKED.pop(pid, None) or datetime.date.today().isoformat(),
                    "src": ("amd-medicare-271" if free else "stedi-medicare-271") if dod else ("amd: no death on record" if free else "stedi: no death on record")}
-            c[pid] = rec; _put(pid, rec)
-        else: LOG.append(f"pat{pid} DOS {dos}: date of death UNVERIFIED (lookup failed)")
+            c[pid] = rec; lost = False
+            if not _put(pid, rec): _UNSAVED[pid] = rec
+        elif not ok: LOG.append(f"pat{pid} DOS {dos}: date of death UNVERIFIED (lookup failed)")
+    # 11/25/2026 (the second verification): a death IS on record for this chart, its day cannot be read here, and nobody answered (or nobody
+    # was asked: a question from the cache only). That is not 'no death on record' - the claim is not cleared: the caller fails closed on this
+    # error (amd.rebill_charge answers 409 and sends nothing; death_check_review.py says NOT CHECKED). The entry stays as it was.
+    if lost: raise DayLost(LOST_WORDS)
     dod = (rec or {}).get("dod")
     if dod and dos and dos > dod:
         return True, f"pat{pid} DOS {dos} is after date of death {dod} ({(rec or {}).get('src')}) - claim must not be submitted" + \
@@ -318,7 +425,11 @@ def check_charge(chargeid, sequencenumber=None, allow_lookup=True):
     import xml.etree.ElementTree as ET
     cid = re.sub(r"\D", "", str(chargeid)); d = ET.fromstring(resave.detail(cid))
     v = d.find(".//visit"); p = d.find(".//patient"); ch = [x for x in d.iter("charge") if x.get("id") == "charge" + cid]
-    pid = re.sub(r"\D", "", p.get("id")) if p is not None else ""
+    pid = re.sub(r"\D", "", p.get("id") or "") if p is not None else ""
+    # 11/25/2026 (the second verification): a read that shows nothing to compare - a Fault, no chart, no visit date, no row of this charge -
+    # was answered 'not blocked', and amd.rebill_charge sent the rebill although the cache held the day. Now it is an error the caller fails
+    # closed on (the rebill answers 409 'could not verify', the check before approvals says NOT CHECKED). Fixed words: no chart, no date.
+    if not pid or v is None or not str(v.get("date") or "").strip() or not ch: raise Unreadable(UNREADABLE_WORDS)
     carrier = None
     if sequencenumber is not None:
         for ip in d.iter("insplan"):
@@ -330,6 +441,8 @@ def record(pid, j, src="stedi-medicare-271"):
     pid = re.sub(r"\D", "", str(pid)); dod = dod_from_271(j); c = _load()
     errs = [e.get("code") for e in (j.get("errors") or [])]
     if dod or errs == ["72"] or (not errs and _answered(j)):          # 11/10/2026: an empty reply is not kept as 'no death on record'
-        _put(pid, {"dod": dod, "checked": datetime.date.today().isoformat(), "name": (c.get(pid) or {}).get("name"),
+        old = c.get(pid) if isinstance(c.get(pid), dict) else {}
+        if not dod and old.get("dod") and _day(old.get("dod")) is None: return dod      # the second verification of 11/25/2026: an answer WITHOUT a day never writes over a death on record whose day cannot be read here (check() keeps such a claim uncleared - this hook must not clear it behind its back); an entry with a day that can be read is written as before
+        _put(pid, {"dod": dod, "checked": datetime.date.today().isoformat(), "name": old.get("name"),
                    "src": src if dod else ("stedi: not a Medicare beneficiary" if errs == ["72"] else "stedi: no death on record")})
     return dod
