@@ -1965,34 +1965,10 @@
       "description": "Eligibility for a chart patient who is a DEPENDENT on someone else's policy (spouse/child plans). Florida Blue answers AAA 73 at the subscriber level when the policyholder name is not on its file; a clean answer carries the dependent's planStatus/benefits.\n\nHelper: stedi._post (no named helper yet)\nCaptured: 2026-10-09",
       "body": {
        "mode": "raw",
-       "raw": {
-        "tradingPartnerServiceId": "{{payer_id}}",
-        "provider": {
-         "organizationName": "EFFINGER HEALTH PA",
-         "npi": "1629515325"
-        },
-        "subscriber": {
-         "firstName": "[name]",
-         "lastName": "[name]",
-         "memberId": "{{member_id}}"
-        },
-        "dependents": [
-         {
-          "firstName": "[name]",
-          "lastName": "[name]",
-          "dateOfBirth": "{{patient_dob_yyyymmdd}}"
-         }
-        ],
-        "encounter": {
-         "dateOfService": "{{dos_yyyymmdd}}",
-         "serviceTypeCodes": [
-          "30"
-         ]
-        }
-       },
+       "raw": "{\n \"tradingPartnerServiceId\": \"{{payer_id}}\",\n \"provider\": {\n  \"organizationName\": \"EFFINGER HEALTH PA\",\n  \"npi\": \"1629515325\"\n },\n \"subscriber\": {\n  \"firstName\": \"{{subscriber_firstname}}\",\n  \"lastName\": \"{{subscriber_lastname}}\",\n  \"memberId\": \"{{member_id}}\"\n },\n \"dependents\": [\n  {\n   \"firstName\": \"{{patient_firstname}}\",\n   \"lastName\": \"{{patient_lastname}}\",\n   \"dateOfBirth\": \"{{patient_dob_yyyymmdd}}\"\n  }\n ],\n \"encounter\": {\n  \"dateOfService\": \"{{dos_yyyymmdd}}\",\n  \"serviceTypeCodes\": [\n   \"30\"\n  ]\n }\n}",
        "options": {
         "raw": {
-         "language": "text"
+         "language": "json"
         }
        }
       }

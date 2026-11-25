@@ -1,11 +1,11 @@
 {
- "_about": "Machine-readable vocabulary of every AdvancedMD / Stedi API call the project has captured. ONE entry per call. docs/postman_effinger_amd.json is GENERATED from this file by tools/mirror/postman_build.py \u2014 edit here, never the collection. Never store a token, password, key, patient name or member number in this file.",
+ "_about": "Machine-readable vocabulary of every AdvancedMD / Stedi API call the project has captured. ONE entry per call. docs/postman_effinger_amd.json is GENERATED from this file by tools/mirror/postman_build.py — edit here, never the collection. Never store a token, password, key, patient name or member number in this file.",
  "variables": {
   "token": "AMD usercontext token from login (never stored)",
   "xmlgw": "https://providerapi.advancedmd.com/processrequest/api-103/TEMP/xmlrpc/processrequest.aspx",
   "msgtime": "m/d/yyyy h:mm:ss AM",
-  "amd_password": "never stored \u2014 Gmail thread",
-  "stedi_key": "never stored \u2014 secrets/stedi_live.key",
+  "amd_password": "never stored — Gmail thread",
+  "stedi_key": "never stored — secrets/stedi_live.key",
   "patientid": "",
   "visitid": "",
   "chargeid": "",
@@ -33,14 +33,14 @@
  "calls": [
   {
    "folder": "Login",
-   "name": "Login step 1 \u2014 partnerlogin (returns webserver redirect)",
+   "name": "Login step 1 — partnerlogin (returns webserver redirect)",
    "method": "POST",
    "url": "https://partnerlogin.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx",
    "headers": {
     "Content-Type": "text/xml"
    },
    "body": "<ppmdmsg action=\"login\" class=\"login\" msgtime=\"{{msgtime}}\" username=\"POI0712\" psw=\"{{amd_password}}\" officecode=\"152563\" appname=\"TEMP\"/>",
-   "description": "ONE ATTEMPT ONLY \u2014 a second failed login locks POI0712 and kills the Claimocity feed. Response carries webserver=\"...\"; repeat the same body against <webserver>/xmlrpc/processrequest.aspx to get <usercontext>TOKEN</usercontext>. Token = {{token}} everywhere else.",
+   "description": "ONE ATTEMPT ONLY — a second failed login locks POI0712 and kills the Claimocity feed. Response carries webserver=\"...\"; repeat the same body against <webserver>/xmlrpc/processrequest.aspx to get <usercontext>TOKEN</usercontext>. Token = {{token}} everywhere else.",
    "helper": "amd.login(psw) / amd.login_cached()",
    "captured": "8/30/2026",
    "body_language": "xml",
@@ -50,7 +50,7 @@
   },
   {
    "folder": "Login",
-   "name": "Login step 2 \u2014 webserver (returns usercontext token)",
+   "name": "Login step 2 — webserver (returns usercontext token)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -68,7 +68,7 @@
   {
    "id": "eligibility/check-eligibility-eligibilitydetailslegacy-full-271",
    "folder": "Eligibility",
-   "name": "Check eligibility (EligibilityDetailsLegacy) \u2014 full 271",
+   "name": "Check eligibility (EligibilityDetailsLegacy) — full 271",
    "method": "POST",
    "url": "https://pm-api-103.advancedmd.com/api/eligibility/EligibilityDetailsLegacy/checkEligibility",
    "headers": {
@@ -105,7 +105,7 @@
   {
    "id": "demographics/edit-address-familyupdate-patch",
    "folder": "Demographics",
-   "name": "Edit address (familyupdate) \u2014 PATCH",
+   "name": "Edit address (familyupdate) — PATCH",
    "method": "PATCH",
    "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
    "headers": {
@@ -115,7 +115,7 @@
    },
    "body": "{\n \"updatedpatient\": \"<flat patient with new address1/address2/zipcode/city/state>\",\n \"originalpatient\": \"<flat patient as read>\",\n \"updateaccounttype\": false,\n \"familyupdate\": {\n  \"capturepreviousaddress\": false,\n  \"responsiblepartyid\": \"<respparty id>\",\n  \"patientids\": [\n   0\n  ],\n  \"homephone\": \"\",\n  \"newaddress\": {\n   \"address1\": \"SNF\",\n   \"address2\": \"\",\n   \"zipcode\": \"32308-4486\",\n   \"city\": \"TALLAHASSEE\",\n   \"state\": \"FL\",\n   \"countrycode\": \"USA\"\n  }\n },\n \"deleteappointments\": false\n}",
    "body_language": "json",
-   "description": "Captured from William's Edit-address click 9/7/2026. William's placeholder rule: HCA / SNF / ALF on line 1, zip 32308-4486. GOTCHA (9/11): returns HTTP 500 'Email is not a valid format' and saves NOTHING when the chart's contact email holds junk (phone numbers seen in email on old charts) \u2014 send email:\"\" (or a valid address) inside the same updatedpatient.",
+   "description": "Captured from William's Edit-address click 9/7/2026. William's placeholder rule: HCA / SNF / ALF on line 1, zip 32308-4486. GOTCHA (9/11): returns HTTP 500 'Email is not a valid format' and saves NOTHING when the chart's contact email holds junk (phone numbers seen in email on old charts) — send email:\"\" (or a valid address) inside the same updatedpatient.",
    "helper": "patient_patch.family_address(pid, address1, address2, zip, city, state)",
    "captured": "9/7/2026 (William's paste); email gotcha 9/11/2026",
    "status": "proven",
@@ -169,7 +169,7 @@
    },
    "body": "<ppmdmsg action=\"getchargedetaildataicd10\" class=\"demographics\" msgtime=\"{{msgtime}}\" chargeid=\"{{chargeid}}\" nocookie=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
    "body_language": "text",
-   "description": "By CHARGE id only; visitid= returns nothing for new visits. Returns ONLY the one charge asked for \u2014 see the void trap.",
+   "description": "By CHARGE id only; visitid= returns nothing for new visits. Returns ONLY the one charge asked for — see the void trap.",
    "helper": "resave.detail(cid), resave.visit_charges(cid)",
    "captured": "9/2/2026",
    "status": "proven",
@@ -177,7 +177,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "addinsurance \u2014 add a plan (NO group number)",
+   "name": "addinsurance — add a plan (NO group number)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -195,7 +195,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "updateinsurance \u2014 change one plan field (wrapped shape)",
+   "name": "updateinsurance — change one plan field (wrapped shape)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -213,7 +213,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "lookuppatient \u2014 find a chart",
+   "name": "lookuppatient — find a chart",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -231,7 +231,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "DOB / flat fields \u2014 PATCH (familyupdate null)",
+   "name": "DOB / flat fields — PATCH (familyupdate null)",
    "method": "PATCH",
    "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
    "headers": {
@@ -250,7 +250,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "updvisitwithcharges \u2014 FULL-ECHO resave (void trap!)",
+   "name": "updvisitwithcharges — FULL-ECHO resave (void trap!)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -258,7 +258,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"updvisitwithcharges\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><visit id=\"vst{{visitid}}\" patient=\"pat{{patientid}}\" insorder=\"{{insorder}}\" refplan=\"{{refplan}}\" preauth=\"{{preauth}}\" facility=\"fac{{facilityid}}\" force=\"1\" approval=\"1\" inspectorenabled=\"1\" batchid=\"\"><chargelist><charge id=\"charge{{chargeid}}\" ...EVERY ACTIVE CHARGE OF THE VISIT, ALL ATTRIBUTES ECHOED... modcodes=\"mcode7\"><diagcodelist><diagcode id=\"{{numeric dcode id}}\"/></diagcodelist></charge></chargelist></visit></ppmdmsg>",
-   "description": "REPLACES the visit's charge list with what you send \u2014 any charge omitted is VOIDED (30 charges lost 9/2\u20139/3). Build from resave.visit_charges(chargeid); never echo a single-charge detail on a multi-charge visit. diagcodes= attr is silently IGNORED for edits \u2014 dx saves only via the nested <diagcodelist> child with NUMERIC ids (9/8). modcodes = mcode ids (25 = mcode7). insorder = comma list of plan SEQUENCE numbers. refplan/preauth repoint the visit to a referral plan and write the auth onto it (and onto the previous plan \u2014 process the stay keeping the original plan LAST).",
+   "description": "REPLACES the visit's charge list with what you send — any charge omitted is VOIDED (30 charges lost 9/2–9/3). Build from resave.visit_charges(chargeid); never echo a single-charge detail on a multi-charge visit. diagcodes= attr is silently IGNORED for edits — dx saves only via the nested <diagcodelist> child with NUMERIC ids (9/8). modcodes = mcode ids (25 = mcode7). insorder = comma list of plan SEQUENCE numbers. refplan/preauth repoint the visit to a referral plan and write the auth onto it (and onto the previous plan — process the stay keeping the original plan LAST).",
    "helper": "resave.py, recode._save(cid, fn), move_to_ins.move(cid, seq), amdw.resave_visit",
    "captured": "9/2/2026; mcode 9/7; dx child 9/8; refplan 9/8",
    "body_language": "xml",
@@ -268,7 +268,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "updextrainsinfo \u2014 frequency reset (always original) / hospitalization dates",
+   "name": "updextrainsinfo — frequency reset (always original) / hospitalization dates",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -276,7 +276,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"updextrainsinfo\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" visitid=\"vst{{visitid}}\"><usercontext>{{token}}</usercontext><extins txtChargeCode=\"\" resubmissioncode=\"1\" origrefnum=\"\" hospitalizationfrom=\"{{admitdate}}\" hospitalizationto=\"{{dischargedate}}\"/></ppmdmsg>",
-   "description": "Run BEFORE every rebill: resubmissioncode=1 origrefnum='' (William 9/3 \u2014 never frequency 7 unless he hands you the payer ICN). Same call sets the hospitalization (admit) dates the Inspector wants. NEVER send hospitalizationto (standing flag).",
+   "description": "Run BEFORE every rebill: resubmissioncode=1 origrefnum='' (William 9/3 — never frequency 7 unless he hands you the payer ICN). Same call sets the hospitalization (admit) dates the Inspector wants. NEVER send hospitalizationto (standing flag).",
    "helper": "freq1_visit.run(vid, cid, seq); inspector_0907.set_date",
    "captured": "9/2/2026",
    "body_language": "xml",
@@ -286,7 +286,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "addreferralplan \u2014 one referral plan per VA stay",
+   "name": "addreferralplan — one referral plan per VA stay",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -304,7 +304,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "getreviewcharges \u2014 Charge Review column",
+   "name": "getreviewcharges — Charge Review column",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -322,7 +322,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "approvecharges \u2014 approve Charge Review rows",
+   "name": "approvecharges — approve Charge Review rows",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -404,7 +404,7 @@
    },
    "body": "<ppmdmsg action=\"getclaimexclusioncharges\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" claimrunid=\"{{claimrunid}}\" clearinghouse=\"1\" payer=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
    "body_language": "text",
-   "description": "Attribute order in the response is not fixed \u2014 parse <visit ...> by attribute name, never positionally (claimrunid can precede id).",
+   "description": "Attribute order in the response is not fixed — parse <visit ...> by attribute name, never positionally (claimrunid can precede id).",
    "helper": "excl_act_0907.py",
    "captured": "9/2/2026",
    "status": "proven",
@@ -449,7 +449,7 @@
   {
    "id": "claims-center/mass-write-off-search-open-balances-by-carrier",
    "folder": "Claims Center",
-   "name": "Mass write-off search \u2014 open balances by carrier",
+   "name": "Mass write-off search — open balances by carrier",
    "method": "POST",
    "url": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch",
    "headers": {
@@ -467,7 +467,7 @@
   {
    "id": "claims-center/mass-rebill-search-unpaid-list-by-last-billed-carrier",
    "folder": "Claims Center",
-   "name": "Mass rebill search \u2014 unpaid list / by last-billed carrier",
+   "name": "Mass rebill search — unpaid list / by last-billed carrier",
    "method": "POST",
    "url": "https://pm-api-103.advancedmd.com/api/claim/massrebillsearch",
    "headers": {
@@ -476,7 +476,7 @@
    },
    "body": "{\n \"begindateofservicestartdate\": \"2025-05-10\",\n \"begindateofserviceenddate\": \"2026-09-07\",\n \"billstartdate\": null,\n \"billenddate\": null,\n \"visitids\": null,\n \"minimumvisitbalance\": null,\n \"chargecodeids\": null,\n \"paperformids\": null,\n \"claimrunid\": null,\n \"agingdayrange\": null,\n \"waystarpayerid\": null,\n \"cpid\": null,\n \"npid\": null,\n \"providerids\": null,\n \"facilityids\": null,\n \"carriercategoryids\": null,\n \"chargecodecategoryids\": null,\n \"denialcategoryids\": null,\n \"financialclassids\": null,\n \"paymentreasonid\": null,\n \"patientid\": null,\n \"carrierids\": [\n  42009\n ],\n \"submitterids\": null\n}",
    "body_language": "json",
-   "description": "Captured 9/7/2026. Empty body {} = the whole unpaid list. chargedetailids in the response is a COMMA-SEPARATED STRING, not a list \u2014 split it (9/10).",
+   "description": "Captured 9/7/2026. Empty body {} = the whole unpaid list. chargedetailids in the response is a COMMA-SEPARATED STRING, not a list — split it (9/10).",
    "helper": "build_money.py, claim_status_sweep.py, precheck.py",
    "captured": "8/30/2026; filters 9/7; DOS filter 9/9",
    "status": "proven",
@@ -502,7 +502,7 @@
   },
   {
    "folder": "Claims Center",
-   "name": "bypassclaimedits \u2014 clear an Inspector edit",
+   "name": "bypassclaimedits — clear an Inspector edit",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -510,7 +510,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"bypassclaimedits\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" batchid=\"{{batchid}}\"><usercontext>{{token}}</usercontext><chargelist><charge id=\"charge{{chargeid}}\"/></chargelist></ppmdmsg>",
-   "description": "Bypasses the Claim Inspector edit on the charge (after the underlying fix, or when the edit is a false positive by William's rules). Error ids change on every re-inspection \u2014 re-list and bypass with FRESH ids.",
+   "description": "Bypasses the Claim Inspector edit on the charge (after the underlying fix, or when the edit is a false positive by William's rules). Error ids change on every re-inspection — re-list and bypass with FRESH ids.",
    "helper": "inspector_0907.bypass",
    "captured": "9/2/2026",
    "body_language": "xml",
@@ -520,7 +520,7 @@
   },
   {
    "folder": "Claims Center",
-   "name": "hideunbillablevisits \u2014 release Unbilled rows",
+   "name": "hideunbillablevisits — release Unbilled rows",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -538,7 +538,7 @@
   },
   {
    "folder": "Claims Center",
-   "name": "hideexclusions \u2014 complete an Exclusions claim run",
+   "name": "hideexclusions — complete an Exclusions claim run",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -556,7 +556,7 @@
   },
   {
    "folder": "Claims Center",
-   "name": "getclaimrunstatus \u2014 claim runs / run alerts",
+   "name": "getclaimrunstatus — claim runs / run alerts",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -564,7 +564,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"getclaimrunstatus\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext></ppmdmsg>",
-   "description": "Every claim run with status \u2014 source of the run-alert taxonomy and the aged-run watch.",
+   "description": "Every claim run with status — source of the run-alert taxonomy and the aged-run watch.",
    "helper": "build_money.py",
    "captured": "8/31/2026",
    "body_language": "xml",
@@ -706,7 +706,7 @@
   },
   {
    "folder": "Payments & ERA",
-   "name": "addpayments \u2014 manual payment / write-off (Payment Entry)",
+   "name": "addpayments — manual payment / write-off (Payment Entry)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -724,7 +724,7 @@
   },
   {
    "folder": "Payments & ERA",
-   "name": "posterapayments \u2014 the ERA Post button (JSON ppmdmsg via wfe gateway)",
+   "name": "posterapayments — the ERA Post button (JSON ppmdmsg via wfe gateway)",
    "method": "POST",
    "url": "https://pm-wfe-103.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx?long=1",
    "headers": {
@@ -742,7 +742,7 @@
   },
   {
    "folder": "Lookups",
-   "name": "lookupdiagcode \u2014 dcode ids",
+   "name": "lookupdiagcode — dcode ids",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -750,7 +750,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"lookupdiagcode\" class=\"lookup\" msgtime=\"{{msgtime}}\" exactmatch=\"0\" code=\"{{icd10}}%\" orderby=\"code\" page=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
-   "description": "Anchor the code at the start (M86.9%); a %-prefix returns nothing. Result <diagcode id=\"dcodeNNN\" code=...> \u2014 strip 'dcode' for the diagcodelist child.",
+   "description": "Anchor the code at the start (M86.9%); a %-prefix returns nothing. Result <diagcode id=\"dcodeNNN\" code=...> — strip 'dcode' for the diagcodelist child.",
    "helper": "inline",
    "captured": "9/8/2026",
    "body_language": "xml",
@@ -760,7 +760,7 @@
   },
   {
    "folder": "Lookups",
-   "name": "lookupcarrier \u2014 carrier by code",
+   "name": "lookupcarrier — carrier by code",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -768,7 +768,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"lookupcarrier\" class=\"lookup\" msgtime=\"{{msgtime}}\" code=\"%{{carriercode}}%\"><usercontext>{{token}}</usercontext></ppmdmsg>",
-   "description": "The ONLY carrier read that works (getcarrierlist/getcarrier are invalid actions). No carrier write exists \u2014 Master Files is William's. After any carrier master edit verify the CPID stuck.",
+   "description": "The ONLY carrier read that works (getcarrierlist/getcarrier are invalid actions). No carrier write exists — Master Files is William's. After any carrier master edit verify the CPID stuck.",
    "helper": "inline",
    "captured": "9/8/2026",
    "body_language": "xml",
@@ -778,7 +778,7 @@
   },
   {
    "folder": "Lookups",
-   "name": "selectfacilities \u2014 facility id map",
+   "name": "selectfacilities — facility id map",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -786,7 +786,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"selectfacilities\" class=\"masterfiles\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext></ppmdmsg>",
-   "description": "uid/facilityname map \u2192 practices/ehpa/facilities.json. Visit attr facility=\"facNN\" routes facesheet lookups (PCC for SNFs).",
+   "description": "uid/facilityname map → practices/ehpa/facilities.json. Visit attr facility=\"facNN\" routes facesheet lookups (PCC for SNFs).",
    "helper": "board_facilities.py",
    "captured": "9/2/2026",
    "body_language": "xml",
@@ -858,7 +858,7 @@
     "Content-Type": "application/json"
    },
    "body": "{\n \"provider\": {\"organizationName\": \"EFFINGER HEALTH PA\", \"npi\": \"{{npi}}\"},\n \"subscriber\": {\"firstName\": \"\", \"lastName\": \"\", \"dateOfBirth\": \"YYYYMMDD\", \"address\": {\"state\": \"FL\"}},\n \"encounter\": {\"dateOfService\": \"YYYYMMDD\"}\n}",
-   "description": "NO /change prefix. \u2192 {coveragesFound, items[{payer, subscriber.memberId, planDateInformation incl dateOfDeath, benefitsInformation}]}. $1.50 per check \u2014 last resort after AMD 271 and Stedi eligibility. subscriber/dateOfBirth (or ssn) is REQUIRED (400 without it).",
+   "description": "NO /change prefix. → {coveragesFound, items[{payer, subscriber.memberId, planDateInformation incl dateOfDeath, benefitsInformation}]}. $1.50 per check — last resort after AMD 271 and Stedi eligibility. subscriber/dateOfBirth (or ssn) is REQUIRED (400 without it).",
    "helper": "stedi.disc, disc_run.py --check",
    "captured": "9/6/2026; live 9/8",
    "body_language": "json",
@@ -885,7 +885,7 @@
   },
   {
    "folder": "Claims Center",
-   "name": "Mass write-off search \u2014 PATIENT balances (isinsbalance false)",
+   "name": "Mass write-off search — PATIENT balances (isinsbalance false)",
    "method": "POST",
    "url": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch",
    "headers": {
@@ -915,7 +915,7 @@
    },
    "body": "<ppmdmsg action=\"updvisitwithnewcharges\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" patientid=\"pat{{patientid}}\" episodeid=\"{{episodeid}}\" approval=\"1\" inspectorenabled=\"1\" getfinancials=\"-1\" customclaimfieldsavailable=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext><visit id=\"vst{{visitid}}\" date=\"{{visitdate}}\" profile=\"prof13\" insorder=\"{{insorder}}\" refplan=\"{{refplan}}\" facility=\"{{facility}}\" force=\"1\"><chargelist><charge id=\"charge{{chargeid}}\" respparty=\"\" begindate=\"\" enddate=\"\" diagcodes=\"\" modcodes=\"\" aging=\"\" billins=\"1\" proccode=\"\" cobcode=\"\" pos=\"\" tos=\"\" units=\"\" netfee=\"\" fee=\"\" allowed=\"\" patportion=\"\" insportion=\"\" patbalance=\"\" insbalance=\"\" finclasscode=\"\" lineitemnote=\"\"/></chargelist></visit></ppmdmsg>",
    "body_language": "xml",
-   "helper": "rerender_garland_g_to_effinger.py (build the chargelist from resave.visit_charges \u2014 every ACTIVE charge, full CHG_FIELDS echo)",
+   "helper": "rerender_garland_g_to_effinger.py (build the chargelist from resave.visit_charges — every ACTIVE charge, full CHG_FIELDS echo)",
    "captured": "9/11/2026",
    "status": "proven",
    "tags": [
@@ -1007,7 +1007,7 @@
   },
   {
    "folder": "Payments & ERA",
-   "name": "addpayments \u2014 ERA-linked manual post WITH reason codes (Payment Entry 'post manually' shape)",
+   "name": "addpayments — ERA-linked manual post WITH reason codes (Payment Entry 'post manually' shape)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1031,7 +1031,7 @@
   },
   {
    "folder": "Payments & ERA",
-   "name": "RECIPE \u2014 repair an Unbilled 'Payment reason codes are missing or do not balance' row",
+   "name": "RECIPE — repair an Unbilled 'Payment reason codes are missing or do not balance' row",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1055,7 +1055,7 @@
   {
    "id": "payments-era/recipe-paper-remit-to-era-center",
    "folder": "Payments & ERA",
-   "name": "RECIPE \u2014 paper / virtual-card EOB -> synthetic 835 -> ERA Center -> ERA-linked post under the payer's carrier",
+   "name": "RECIPE — paper / virtual-card EOB -> synthetic 835 -> ERA Center -> ERA-linked post under the payer's carrier",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1077,7 +1077,7 @@
   {
    "id": "payments-era/addpayments-era-linked-two-writeoffs",
    "folder": "Payments & ERA",
-   "name": "addpayments \u2014 ERA-linked $0 post with TWO write-offs (Medicare contractual + Medicaid coinsurance) on one charge",
+   "name": "addpayments — ERA-linked $0 post with TWO write-offs (Medicare contractual + Medicaid coinsurance) on one charge",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1181,38 +1181,15 @@
     "Content-Type": "application/json",
     "Authorization": "{{stedi_key}}"
    },
-   "body": {
-    "tradingPartnerServiceId": "{{payer_id}}",
-    "provider": {
-     "organizationName": "EFFINGER HEALTH PA",
-     "npi": "1629515325"
-    },
-    "subscriber": {
-     "firstName": "[name]",
-     "lastName": "[name]",
-     "memberId": "{{member_id}}"
-    },
-    "dependents": [
-     {
-      "firstName": "[name]",
-      "lastName": "[name]",
-      "dateOfBirth": "{{patient_dob_yyyymmdd}}"
-     }
-    ],
-    "encounter": {
-     "dateOfService": "{{dos_yyyymmdd}}",
-     "serviceTypeCodes": [
-      "30"
-     ]
-    }
-   },
+   "body": "{\n \"tradingPartnerServiceId\": \"{{payer_id}}\",\n \"provider\": {\n  \"organizationName\": \"EFFINGER HEALTH PA\",\n  \"npi\": \"1629515325\"\n },\n \"subscriber\": {\n  \"firstName\": \"{{subscriber_firstname}}\",\n  \"lastName\": \"{{subscriber_lastname}}\",\n  \"memberId\": \"{{member_id}}\"\n },\n \"dependents\": [\n  {\n   \"firstName\": \"{{patient_firstname}}\",\n   \"lastName\": \"{{patient_lastname}}\",\n   \"dateOfBirth\": \"{{patient_dob_yyyymmdd}}\"\n  }\n ],\n \"encounter\": {\n  \"dateOfService\": \"{{dos_yyyymmdd}}\",\n  \"serviceTypeCodes\": [\n   \"30\"\n  ]\n }\n}",
    "helper": "stedi._post (no named helper yet)",
    "captured": "2026-10-09",
-   "description": "Eligibility for a chart patient who is a DEPENDENT on someone else's policy (spouse/child plans). Florida Blue answers AAA 73 at the subscriber level when the policyholder name is not on its file; a clean answer carries the dependent's planStatus/benefits."
+   "description": "Eligibility for a chart patient who is a DEPENDENT on someone else's policy (spouse/child plans). Florida Blue answers AAA 73 at the subscriber level when the policyholder name is not on its file; a clean answer carries the dependent's planStatus/benefits.",
+   "body_language": "json"
   },
   {
    "folder": "Charges & visits",
-   "name": "addvisit \u2014 create an EMPTY visit (<appt> child)",
+   "name": "addvisit — create an EMPTY visit (<appt> child)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1233,7 +1210,7 @@
   },
   {
    "folder": "Charges & visits",
-   "name": "updvisitwithnewcharges \u2014 ADD NEW charges to a visit",
+   "name": "updvisitwithnewcharges — ADD NEW charges to a visit",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1254,7 +1231,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "addpatient \u2014 create a chart",
+   "name": "addpatient — create a chart",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1275,7 +1252,7 @@
   },
   {
    "folder": "Demographics",
-   "name": "updaterespparty \u2014 name/dob/sex on the responsible party",
+   "name": "updaterespparty — name/dob/sex on the responsible party",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1295,7 +1272,7 @@
   },
   {
    "folder": "Lookups",
-   "name": "lookupdiagcode \u2014 ICD-10 dcode id (codeset=10)",
+   "name": "lookupdiagcode — ICD-10 dcode id (codeset=10)",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1315,7 +1292,7 @@
   },
   {
    "folder": "Lookups",
-   "name": "lookupproccode \u2014 pcode id for a CPT",
+   "name": "lookupproccode — pcode id for a CPT",
    "method": "POST",
    "url": "{{xmlgw}}",
    "headers": {
@@ -1376,7 +1353,7 @@
   {
    "id": "charges-visits/referral-plans-list-rest",
    "folder": "Charges & visits",
-   "name": "Referral plans of a chart \u2014 REST list (inboundreferrals?PatientId)",
+   "name": "Referral plans of a chart — REST list (inboundreferrals?PatientId)",
    "method": "GET",
    "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals?PatientId={{patientid}}&ShowExpired=true",
    "headers": {
@@ -1398,7 +1375,7 @@
   {
    "id": "charges-visits/referral-plan-read-rest",
    "folder": "Charges & visits",
-   "name": "Referral plan \u2014 REST read (inboundreferrals/{id})",
+   "name": "Referral plan — REST read (inboundreferrals/{id})",
    "method": "GET",
    "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals/{{refplanid}}",
    "headers": {
@@ -1420,7 +1397,7 @@
   {
    "id": "charges-visits/referral-plan-update-rest-put-clear-or-set-preauth",
    "folder": "Charges & visits",
-   "name": "Referral plan \u2014 REST update (PUT inboundreferrals): clear / set the Pre-Auth #",
+   "name": "Referral plan — REST update (PUT inboundreferrals): clear / set the Pre-Auth #",
    "method": "PUT",
    "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals",
    "headers": {
@@ -1443,7 +1420,7 @@
   {
    "id": "lookups/referral-status-codes-rest",
    "folder": "Lookups",
-   "name": "Referral status codes \u2014 REST (statuscodes/0)",
+   "name": "Referral status codes — REST (statuscodes/0)",
    "method": "GET",
    "url": "https://pm-api-103.advancedmd.com/api/referral/statuscodes/0",
    "headers": {
