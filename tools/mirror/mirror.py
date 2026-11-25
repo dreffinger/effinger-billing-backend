@@ -148,14 +148,14 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # building to HCA REHAB at 31 - his word of 10/31: wrong) and never bypasses a place-of-service edit on a visit entered at 61; a copy from before moves visits again - its
              # marker is now a sentence only that version has (it still carries the Pattern 692 rule and the retry pass). The insurance check asks its paid look-up with the CHART's own
              # name and birth date (a feed patient with a wrong birth date): a copy from before asks with Claimocity's - its marker is now that sentence (it still carries the list rule)
-             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "the paid look-up is asked with the CHART's own name and birth date",
+             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "the paid look-up is bought only for a chart that is KNOWN to be the feed's patient",
              # the same word for the insurance intake of existing charts, and the three steps of the identity rule with the rule itself (feed_identity.py): they only work together -
              # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
-             "feed_in1_intake.py": "with the CHART's own name and birth date - from the chart answer read in step 2",
+             "feed_in1_intake.py": "nothing of the feed's insurance is asked about or entered while nobody knows that the chart is the feed's patient",
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
              "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.1"',
+             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.2"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
              "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.1"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it

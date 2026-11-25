@@ -32,11 +32,19 @@
 #   8 no birth date from the feed, no full-name candidate has a real one -> the live one; "no birth date on either side".
 #   9 anything else -> NEW CHART (when name candidates stood beside it: "same-name charts not used", for William).
 #   0 not decided (a chart that could not be read; two dates or two spellings that point to two charts; no name; no Claimocity id; a
-#     name-and-date key that two Claimocity ids share without a real date to tie them): no chart is chosen and none is made - William.
+#     name-and-date key that several Claimocity ids share without a real date to tie them - unless the rule gives every one of them,
+#     each weighed on its own, the SAME chart: shared_answer): no chart is chosen and none is made - William.
 #   The LIVE chart of a group: a real birth date before none, then the most recent charge that is not void, then the most charges, then
 #   the lowest chart id - never the order AdvancedMD lists them in. AdvancedMD lists 50 charts at most: where the list of name
 #   candidates may be cut short rule 6 ("the only name candidates") is not asked, and where full-name candidates may be missing too
-#   neither are rules 5, 7 and 8 ("all", "ONE date") - rules 1 to 4 stay; else rule 9, flagged, for William.
+#   neither are rules 5, 7 and 8 ("all", "ONE date") - rules 1 to 4 stay; else rule 9, flagged, for William. Where only charts under
+#   ANOTHER first name may be missing (rule 3 may not have seen them all) every rule is asked, and a new chart for a patient with a real
+#   date is flagged, for William. Where the charts that write the last name another way were not asked for (a lookup AdvancedMD did
+#   not answer for this patient) every rule is asked as well - no rule is switched off for an unanswered lookup - and a new chart is
+#   flagged, for William.
+#   What AdvancedMD is asked for must be as wide as what the rule calls the same name: lookup_forms gives the name of a feed patient as
+#   the lookups take it - the words of the last name with a % between them, and its LETTERS with a % between them (a chart may write an
+#   apostrophe, a space, a period or a hyphen where the feed has none).
 #   When a batch carries one Claimocity id with a real date and with
 #   none, the real one is used for every message; with two different real dates each is tried, they must not point to two charts, and
 #   a NEW chart is written with neither of them (which is right nobody knows: the placeholder date, face sheet needed).
@@ -46,7 +54,7 @@
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
 import re, datetime, unicodedata
-IDENTITY_RULE_VERSION = "2026-11-25.1"      # the match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
+IDENTITY_RULE_VERSION = "2026-11-25.2"      # (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number) the match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
 NO_DOB_MDY = "01/01/1900"                   # what a NEW chart is written with when Claimocity sent no usable date - never an empty one
 CHART_TRIES = 200                           # how many chart numbers the new-chart step may take for one patient
 SUFFIXES = ("JR", "SR", "II", "III", "IV", "V")
@@ -62,7 +70,7 @@ FLAG_NO_DOB_EITHER = "no birth date on either side"
 FLAG_NOT_USED = "same-name charts not used"
 FLAG_TWO_DATES = "Claimocity sent two birth dates"
 FLAG_NO_CHART_MADE = "new chart not made"
-FLAG_CUT = "list of same-name charts may be incomplete"      # AdvancedMD lists 50 charts at most, or did not answer one form of the lookup
+FLAG_CUT = "list of same-name charts may be incomplete"      # a page of a lookup came back full (AdvancedMD lists 50 charts at most) and no narrower lookup brought the rest - or a lookup AdvancedMD answers went unanswered for this patient
 FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT]
                        + [FLAG_DATE + k for k in SLIP_KINDS + (FAR, FLAG_NO_FEED_DOB, FLAG_CHART_NO_DOB)])
 EVIDENCE = ("mrn", "ssn", "member", "ssn4")                                   # strongest first
@@ -79,7 +87,8 @@ WHY_DISAGREE = "the birth dates or names Claimocity sent point to different char
 WHY_SHARED = "several Claimocity ids under one name are not known to be one person"
 WHY_NO_ID = "the message carries no Claimocity id"
 WHY_NO_NAME = "Claimocity sent no last name or no first name"
-WHY_WORDS = frozenset(list(WHY.values()) + [WHY_NEW_BESIDE, WHY_MAP, WHY_NOT_YET, WHY_UNREAD, WHY_DISAGREE, WHY_SHARED, WHY_NO_ID, WHY_NO_NAME])
+WHY_SAME_RUN = "a new chart is made in this run for another Claimocity id of this name - this one waits and the next run weighs it against that chart"
+WHY_WORDS = frozenset(list(WHY.values()) + [WHY_NEW_BESIDE, WHY_MAP, WHY_NOT_YET, WHY_UNREAD, WHY_DISAGREE, WHY_SHARED, WHY_NO_ID, WHY_NO_NAME, WHY_SAME_RUN])
 FAIL_NO_PID = "no PID segment for this Claimocity id in the feed files"       # why the new-chart step made no chart (its failed rows)
 FAIL_NUMBER = "every chart number tried answered Duplicate chart"
 FAIL_REFUSED = "AdvancedMD refused the new chart"
@@ -166,6 +175,45 @@ def name_kind(feed_last, feed_first, chart_last, chart_first):
     return "name"
 def name_candidate(feed_last, feed_first, chart_last, chart_first): return name_kind(feed_last, feed_first, chart_last, chart_first) in ("name", "full")
 def full_name_candidate(feed_last, feed_first, chart_last, chart_first): return name_kind(feed_last, feed_first, chart_last, chart_first) == "full"
+# 11/25/2026 (review of the identity rule): the rule above compares last names by their LETTERS, but the lookups asked AdvancedMD for the name as the
+# feed writes it - a chart with an apostrophe, a space, a period or a hyphen the feed does not have (O'x for Ox, MC x for MCx, DE LA x for DELAx) was
+# never listed: a namesake's chart was then taken by the name alone, or a second chart made, without a word. What is asked for must be as wide as
+# what the rule calls the same name; these are the forms for it.
+def _marked(s):
+    """A name as the rule reads it (_up: upper case, accents taken off) - but with every letter that was not written as a plain letter (it carried an
+    accent, or one character stood for two letters) in LOWER case: a lookup cannot rely on how AdvancedMD holds such a letter - in a lookup it is a gap."""
+    out = []
+    for c in unicodedata.normalize("NFKD", str(s if s is not None else "")):
+        if unicodedata.combining(c):
+            if out and "A" <= out[-1] <= "Z": out[-1] = out[-1].lower()
+        else:
+            u = c.upper(); out.append(u if len(u) == 1 else u.lower())
+    return "".join(out)
+def _plain(marked): return "%".join(c for c in marked if "A" <= c <= "Z")          # the plain letters of a marked run, a % between them
+def _lead(marked): return "" if "A" <= marked[:1] <= "Z" else "%"                  # a name that begins with something else than a plain letter is asked for with a % in front
+def lookup_forms(last, first):
+    """One name of the feed as AdvancedMD's name search can be asked for it (% = anything, also nothing; none of the forms ends with one - the caller adds it):
+      "words"   - the words of the last name with a % for whatever stands between them, a trailing suffix word dropped: finds the chart whatever it
+                  writes where the FEED has an apostrophe, a space, a period or a hyphen, and any longer form of the last name (a suffix, a second name);
+      "letters" - its letters with a % between them: finds the chart ALSO when it writes one of those where the feed has none. Every chart the rule
+                  calls the same last name answers to it - if its last name begins with the same plain letter (a name the FEED begins otherwise is
+                  asked for with a % in front; never every name, which would be a search in the middle of all the others);
+      "first3"  - the first three letters of the first name, a % between them (a name candidate begins with them);
+      "first4"  - the first four letters of its first word, None when that word has fewer (every FULL-name candidate begins with them);
+      "first_word" - that whole word, "" when it has no more than four letters (at least the patient's own chart).
+    Letters and % only. A letter that carries an accent is left out: it is a gap, like everything else that is no plain letter."""
+    words = re.findall(r"[A-Za-z]+", _marked(last))
+    if len(words) > 1 and words[-1].upper() in SUFFIXES: words = words[:-1]
+    lead = _lead(_marked(last).strip())
+    whole = re.sub(r"%+", "%", "%".join(re.sub(r"[a-z]+", "%", w) for w in words)).strip("%")
+    m = _marked(first).strip(); fl = "".join(c for c in m if "A" <= c.upper() <= "Z"); fw = "".join(c for c in (m.split() or [""])[0] if "A" <= c.upper() <= "Z"); fd = _lead(m)
+    return {"words": lead + whole, "letters": lead + _plain("".join(words)), "first3": fd + _plain(fl[:3]),
+            "first4": fd + _plain(fw[:4]) if len(fw) >= 4 else None, "first_word": fd + _plain(fw) if len(fw) > 4 else ""}
+def answers_to(pattern, name):
+    """Whether a chart's name, as AdvancedMD lists it, can be an answer to a lookup at all: the letters of the pattern stand, in their order, among the
+    letters of the name (case, accents and whatever is written between them aside). A page of charts that do not is the sign that AdvancedMD did
+    not make the search it was asked for."""
+    return re.search(".*".join(re.sub(r"[^A-Z]", "", str(pattern if pattern is not None else "").upper())), _letters(name)) is not None
 
 # ---- numbers ----------------------------------------------------------------------------------------------------------------------------
 def ssn_junk(d):
@@ -175,14 +223,20 @@ def ssn_key(s):
     """The nine digits of a usable Social Security number, "" for anything else."""
     d = _digits(s)
     return d if len(d) == 9 and not ssn_junk(d) else ""
+def ssn4_junk(d):
+    """Four digits that are the mask of a placeholder, not the last four of a number: all one digit (nine nines, nine ones ...) or 6789 (one to nine in a row)."""
+    return len(set(d)) == 1 or d == "6789"
 def ssn4_key(s):
-    """The last four when the value shows EXACTLY four digits (a masked number), "" for anything else."""
+    """The last four when the value shows EXACTLY four digits (a masked number), "" for anything else - also for the mask of a placeholder (11/25/2026,
+    review of the identity rule: a placeholder shown masked on a lookup row counted as proof of another person, and a second chart was made)."""
     d = _digits(s)
-    return d if len(d) == 4 and d != "0000" else ""
+    return d if len(d) == 4 and not ssn4_junk(d) else ""
 def _ssn_side(v):
-    """What one side shows: (nine digits, "") or ("", the last four) or ("", "") - nothing usable, also when it carries two different numbers."""
+    """What one side shows: (nine digits, "") or ("", the last four) or ("", "") - nothing usable, also when it carries two different numbers. The four
+    digits a side shows beside its OWN nine-digit placeholder that ends in them are that placeholder's mask: no number."""
     vals = [x for x in _list(v) if x]
     nine = {ssn_key(x) for x in vals} - {""}; four = {ssn4_key(x) for x in vals} - {""}
+    four -= {_digits(x)[-4:] for x in vals if len(_digits(x)) == 9 and ssn_junk(_digits(x))}
     if len(nine) == 1: return nine.pop(), ""
     if not nine and len(four) == 1: return "", four.pop()
     return "", ""
@@ -240,10 +294,15 @@ def live_chart(charts, today8):
 def patients(key_ids, today8, ssn_of=None):
     """Who the patients of a batch are. key_ids: {"NAME|DOB" key (the import's own): [the Claimocity ids of the messages that carry it]}, "" for a
     message without an id; ssn_of(id) -> the Social Security values the feed carries for that id. Answers
-      ([{"ids": [...], "keys": [every key the patient came with], "decide_keys": [the keys the decision is written under]}, ...] by id, {key: why it cannot be decided}).
+      ([{"ids": [...], "keys": [every key the patient came with], "decide_keys": [the keys its own answer is written under],
+         "shared_keys": [the keys it shares with another patient - see shared_answer]}, ...] by id, {key: why it cannot be decided}).
     One patient per Claimocity id. Two ids under one name and one REAL birth date are one patient (the same reasoning as rule 2) - unless the feed
-    carries two different Social Security numbers for them. A key that two patients share (one name, no birth date: not known to be one person), or
-    that no Claimocity id carries, is decided for nobody: no chart, none made, for William (the import can give one key only one chart)."""
+    carries two different Social Security numbers for them. A key that two patients share (one name, no birth date: not known to be one person) can
+    carry only ONE chart (the import reads the chart by the key): each of them is weighed and decided on its own, and the key gets a chart only when
+    the rule gives every one of them the same chart (shared_answer; 11/25/2026, review of the identity rule - until then such a key was decided for
+    nobody before anything was weighed, and neither visit was entered). A key that no Claimocity id carries, one a message without an id shares with
+    a Claimocity id under no real date (nobody can say whose it is), and one whose ids the feed proves to be two people (two different Social
+    Security numbers) are decided for nobody: no chart, none made, for William."""
     tok = lambda k, i: i if i else "\x00" + k          # a message without an id is nobody's own: one token per key
     par = {}
     def find(x):
@@ -264,11 +323,45 @@ def patients(key_ids, today8, ssn_of=None):
         roots = sorted({find(tok(k, i)) for i in key_ids[k]})
         for r in roots:
             ids = sorted(x for x in comp[r] if not x.startswith("\x00"))
-            if ids: out.setdefault(r, {"ids": ids, "keys": [], "decide_keys": []})["keys"].append(k)
-        if len(roots) > 1: undecided[k] = WHY_SHARED
+            if ids: out.setdefault(r, {"ids": ids, "keys": [], "decide_keys": [], "shared_keys": []})["keys"].append(k)
+        if len(roots) > 1:
+            nines = {n for n in (_ssn_side(ssn_of(i))[0] for i in key_ids[k] if i) if n} if ssn_of else set()
+            if all(r in out for r in roots) and not real_dob(k.rpartition("|")[2], today8) and len(nines) < 2:      # every one of them can be weighed, and nothing says they are two people
+                for r in roots: out[r]["shared_keys"].append(k)
+            else: undecided[k] = WHY_SHARED
         elif not roots or roots[0] not in out: undecided[k] = WHY_NO_ID
         else: out[roots[0]]["decide_keys"].append(k)
     return sorted(out.values(), key=lambda p: p["ids"]), undecided
+def shared_answer(answers):
+    """The answer for a name-and-date key that several patients of one batch share (patients: one name, no real birth date - not known to be one
+    person; the import can give the key only ONE chart). answers: what decide() answered for each of them, each weighed on its own. The key carries
+    a chart only when every one of them was given that SAME chart - then under the weakest of their answers (the highest rule number: its flags say
+    what was not known). Anything else - two charts, a chart and a new chart, a new chart for each (never ONE new chart for two ids nobody knows to
+    be one person, never two charts under one key), one of them not decided - is rule 0: no chart and none made, for William."""
+    rs = list(answers); cands = _sorted_ids(i for r in rs for i in r["candidates"])
+    if rs and all(r["chart"] for r in rs) and len({r["chart"] for r in rs}) == 1:
+        a = dict(max(rs, key=lambda r: (r["rule"], 1 if r["for_william"] else 0, tuple(r["flags"]), tuple(r["evidence"]), tuple(r["group"]), r["feed_dob"])))      # (the same for every order of the answers)
+        a["flags"] = list(a["flags"]); a["evidence"] = list(a["evidence"]); a["group"] = list(a["group"])
+    else: a = _answer(0, WHY_SHARED, william=True)
+    a["candidates"] = cands; a["needs_activity"] = []; a["new_chart"] = False
+    return a
+def new_chart_waits(patients):
+    """One person under two NEW Claimocity ids in one batch (the second birth date a digit off, or none) got two new charts - where the same two
+    messages in two batches got ONE: the second run finds the first one's new chart and the rule takes it (11/25/2026, review of the identity rule).
+    patients: the patients of one batch that rule 9 gives a new chart, each {"names": [(last, first), ...], "real": the batch carries a real birth date
+    for it}. -> the positions of those whose new chart is NOT made in this run: a patient whose name is a name candidate of one whose chart is made.
+    The charts are made for the patients with a real birth date first (the chart the other is weighed against carries its date), then in the order
+    given. A patient that waits gets no chart in this run; the next run weighs it against the chart made now - and takes it, or makes a new chart
+    beside it and asks William. Pure."""
+    ps = [[(str(l or ""), str(f or "")) for l, f in (p.get("names") or [])] for p in patients]; made = []; wait = []
+    for i in sorted(range(len(ps)), key=lambda i: (0 if patients[i].get("real") else 1, i)):
+        if any(name_candidate(l, f, ml, mf) for l, f in ps[i] for j in made for ml, mf in ps[j]): wait.append(i)
+        else: made.append(i)
+    return sorted(wait)
+def waits(d):
+    """The answer of a patient whose new chart waits for the next run (new_chart_waits): no chart, none made - and not for William, the next run decides."""
+    a = _answer(0, WHY_SAME_RUN); a["candidates"] = list(d.get("candidates") or []); a["feed_dob"] = d.get("feed_dob") if d.get("feed_dob") in ("real", "none") else "none"
+    return a
 
 # ---- decide() ---------------------------------------------------------------------------------------------------------------------------
 def _ids(cs): return [c["id"] for c in sorted(cs, key=lambda c: (chart_number(c["id"]), c["id"]))]
@@ -291,8 +384,12 @@ def _chosen(rule, group, flags, considered, d, today8):
     return a
 def _one(last, first, d, cs, today8, cut=""):
     """Rules 1 to 9 for ONE name and ONE date of the feed (d = its real birth date, "" when it has none). cut: AdvancedMD's list of same-name charts
-    may be cut short - "name": name candidates may be missing (rule 6 says 'the ONLY name candidates': not asked); "full": full-name candidates may
-    be missing too (rules 5, 7 and 8 say 'all' and 'ONE date': not asked either). Rules 1 to 4 choose by what a chart itself shows and stay."""
+    may be cut short - "first": only charts under ANOTHER first name may be missing (rule 3 may not have seen them all: every rule is still asked, but
+    a NEW chart for a patient with a real date is flagged, for William); "spelling": the charts that write the last name another way than the feed
+    were not asked for (AdvancedMD did not answer that lookup for this patient - the list is what these steps saw until 11/25/2026: every rule is
+    asked, as it always was, but a NEW chart is flagged, for William); "name": name candidates may be missing (rule 6 says 'the ONLY name
+    candidates': not asked); "full": full-name candidates may be missing too (rules 5, 7 and 8 say 'all' and 'ONE date': not asked either).
+    Rules 1 to 4 choose by what a chart itself shows and stay."""
     kind = {c["id"]: name_kind(last, first, c["last"], c["first"]) for c in cs}
     name_c = [c for c in cs if kind[c["id"]] in ("name", "full")]; full_c = [c for c in name_c if kind[c["id"]] == "full"]
     sur_c = [c for c in cs if kind[c["id"]] == "surname" and d and c["dob"] == d]      # the same last name and exactly the date, under another first name
@@ -310,13 +407,14 @@ def _one(last, first, d, cs, today8, cut=""):
     if d and not exact and cut != "full":              # (a name candidate WITH the date that rule 2 could not take is a namesake: no slip is read then)
         g = [c for c in full_c if c["dob"] and slip(d, c["dob"])]
         if g and len({c["dob"] for c in g}) == 1 and not _contra(g): return _chosen(5, g, [FLAG_DATE + slip(d, g[0]["dob"])], name_c, d, today8)
-    if d and not cut and name_c and len(full_c) == len(name_c) and not any(c["dob"] for c in name_c) and not _contra(name_c): return _chosen(6, name_c, [FLAG_CHART_NO_DOB], name_c, d, today8)
+    if d and cut in ("", "first", "spelling") and name_c and len(full_c) == len(name_c) and not any(c["dob"] for c in name_c) and not _contra(name_c): return _chosen(6, name_c, [FLAG_CHART_NO_DOB], name_c, d, today8)
     if not d and cut != "full" and full_c and not _contra(full_c):       # no date to go by at all: a proven namesake among the full-name charts stops both rules
         dated = [c for c in full_c if c["dob"]]
         if dated and len({c["dob"] for c in dated}) == 1: return _chosen(7, dated, [FLAG_NO_FEED_DOB], name_c, d, today8)
         if not dated: return _chosen(8, full_c, [FLAG_NO_DOB_EITHER], name_c, d, today8)
-    flags = ([FLAG_NOT_USED] if name_c else []) + ([] if d else [FLAG_NO_FEED_DOB]) + ([FLAG_CUT] if cut else [])
-    return _answer(9, WHY_NEW_BESIDE if name_c else WHY_NEW, flags=flags, considered=name_c, william=bool(name_c) or bool(cut))      # (a new chart with no date is for William too: decide() says so)
+    short = bool(cut) and (cut != "first" or bool(d))      # (a list cut only for other first names matters to rule 3 alone, and rule 3 is never asked without a real date)
+    flags = ([FLAG_NOT_USED] if name_c else []) + ([] if d else [FLAG_NO_FEED_DOB]) + ([FLAG_CUT] if short else [])
+    return _answer(9, WHY_NEW_BESIDE if name_c else WHY_NEW, flags=flags, considered=name_c, william=bool(name_c) or short)      # (a new chart with no date is for William too: decide() says so)
 def _combine(rs):
     """One answer from the answers of every name and date the feed carries for the patient: a chart only when all that chose one chose the same."""
     needs = _sorted_ids(i for r in rs for i in r["needs_activity"]); cands = _sorted_ids(i for r in rs for i in r["candidates"])
@@ -332,8 +430,8 @@ def _combine(rs):
 def decide(feed, candidates, today8):
     """Which chart is this feed patient? Pure and the same for every order of the charts.
     feed: {"id" or "ids": the Claimocity id(s), "name" ("LAST, FIRST") or "names" [(last, first), ...], "dob" or "dobs": the birth date(s) the batch
-           carries (YYYYMMDD), "ssn": value(s), "members": [member numbers], "cut": "" | "name" | "full" - how far AdvancedMD's list of same-name
-           charts may be cut short (it answers 50 at most): see _one}
+           carries (YYYYMMDD), "ssn": value(s), "members": [member numbers], "cut": "" | "first" | "spelling" | "name" | "full" - how far the list
+           of same-name charts may fall short (AdvancedMD answers 50 at most, and may not answer a lookup): see _one}
     candidates: the charts found by name, each {"id": "pat123", "name": "LAST,FIRST", "dob": YYYYMMDD or "", and EITHER the chart's own "mrn" / "ssn" /
            "members" OR the words worked out beforehand "ev" [...] / "contra" bool, "read": False when the chart could not be read, "last_dos" (YYYYMMDD)
            and "charges" (how many) once its activity was read}
@@ -360,7 +458,7 @@ def decide(feed, candidates, today8):
                    "act": "last_dos" in c or "charges" in c, "last_dos": c.get("last_dos") or "", "charges": c.get("charges") or 0})
     cs.sort(key=lambda c: (chart_number(c["id"]), c["id"]))
     if len({c["id"] for c in cs}) != len(cs): raise ValueError("the same chart was given twice")
-    two = len(real) > 1; cut = feed.get("cut") if feed.get("cut") in ("", "name", None) else "full"      # anything else that is said about a cut list counts as the worst
+    two = len(real) > 1; cut = feed.get("cut") if feed.get("cut") in ("", "first", "spelling", "name", None) else "full"      # anything else that is said about a cut list counts as the worst
     if not names: a = _answer(0, WHY_NO_NAME, william=True)
     else:
         a = _combine([_one(l, f, d, cs, today8, cut or "") for l, f in names for d in (real or [""])])
@@ -388,7 +486,8 @@ def william_lines(d, chart="", feed_id=""):
     rule = d.get("rule"); flags = d.get("flags") or []; cands = [c for c in (d.get("candidates") or []) if isinstance(c, str) and re.fullmatch(r"pat[0-9]+", c)]; out = []
     why = d.get("why") if d.get("why") in WHY_WORDS else ""; chart = chart if re.fullmatch(r"pat[0-9]+", str(chart or "")) else ""      # a chart id or nothing: these lines are printed
     made = ("new chart %s was made" % chart) if chart else "a new chart is needed"
-    if rule == 0: out.append("no chart chosen and none made for Claimocity id %s: %s" % (show_id(feed_id), why))
+    if rule == 0:
+        if why != WHY_SAME_RUN: out.append("no chart chosen and none made for Claimocity id %s: %s" % (show_id(feed_id), why))      # (a wait for the next run is no question for William)
     elif rule in (3, 6, 8): out.append("%s %s (FYI)" % (chart or "a chart", why))
     elif rule == 9:
         if FLAG_NOT_USED in flags: out.append("%s beside %d same-name chart(s) (%s) with other birth dates and no number in common - same person or not?" % (made, len(cands), ", ".join(cands)))

@@ -35,10 +35,20 @@
 #      FEED's name and birth date, so a visit on a chart whose birth date had been corrected from a face sheet was looked up under the wrong date, missed, and was held
 #      "no active plan: discovery found nothing". The chart's record says which one was asked ("lookup_asked", and behind the hold's own words whenever the two dates are
 #      not the same) - by the kind of slip, never with a name or a date. See lookup_who.
+#      11/25/2026, the review of that change (a chart whose birth date was FAR from the feed's - a chart the patient map sends the patient to with no check, it may be
+#      another person's - was looked up, insured and its visit released as the chart's own person; a look-up with no real birth date at all was bought by name alone and
+#      its answer added): the paid look-up is bought only for a chart that is KNOWN to be the feed's patient, and only with a real birth date to ask with. Known = the
+#      chart carries this patient's Claimocity id (its additional number); or the two real birth dates are the same and at least one of the two names is; or the feed's
+#      name is the chart's (the owner's full-name rule) and the dates are not far apart (a slip, or one side has none). Anything else: NOTHING is bought and NOTHING is
+#      added on this step's own word - the chart is held "same person? ..." for William (record key same_person = its visits; worded so that the hand step
+#      claimocity_fixholds.py adds nothing either). No real birth date on either side: nothing is bought - held "no active plan: no paid look-up was bought - ... (face
+#      sheet needed)" (record key no_birth_date). William's answer for a run: --same-person <charts>. Another first name under the same date is not held; it is SAID, like
+#      every other difference, on the "discovery: added" line the digest prints. A chart that could not be read is asked as before, and the words say it could not be
+#      read - never that it has no birth date. See lookup_hold.
 #   6. the feed's IN1 payers are mapped and reported next to the chart (the 271 decides, the feed only informs).
 # Writes feed_verify_1028.json (+ registers copy). AMD writes: visit insorder resaves; addinsurance only from discovery; updextrainsinfo only to put
 # back an admission date a resave wiped (11/10/2026). Never: a save on a billed visit, a rebill, a void (except the no-charge line left out above).
-# Usage: python3 feed_verify_1028.py [--no-stedi] [--limit N] [--only patNNN,...]
+# Usage: python3 feed_verify_1028.py [--no-stedi] [--limit N] [--only patNNN,...] [--same-person patNNN,...]
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
 HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8133-5488-ad3a-bd2fb16f50f8/scratchpad/hl7/claimocity_oct")
@@ -421,13 +431,28 @@ def order_hold(visit, order, m, info, qtag=None):
 # chart itself no longer carries: it found nothing, nothing was added, and the chart was held "no active plan: discovery found nothing". After the match the chart is the
 # patient: lookup_who takes the name and the birth date from the chart answer main() already holds (elig_amd.plans gives the patient's own attributes with the plans - no
 # extra call) and falls back to the feed's only when the chart's birth date is not a real one. What it says goes into registers and reports, so its words carry no name and
-# no date. With no real birth date on either side the look-up is still asked with what the feed sent, exactly as before this change (nothing is bought less or more).
-# _real_dob and _slip are the owner's rule as scripts/helpers/feed_identity.py states it (real_dob, slip); they are private copies here - the same text stands in
-# claimocity_import.py and feed_in1_intake.py, and tools/selftest/test_pos_rule.py checks the three read the same - until the helpers point at that one module.
-# _dob8 and lookup_who stand, the same text, in feed_in1_intake.py (its Florida Medicaid check).
+# no date.
+# WHEN IT IS NOT ASKED (11/25/2026, the review of the first version of this change - two findings, each reproduced by a second reviewer). "After the match the chart is the
+# patient" is not always true: a Claimocity id the patient map knows goes to its chart with no check, and the old resolve rule put a patient on the single same-name chart
+# whatever its birth date. For such a chart - another person's - the first version asked the look-up about the CHART's person, added that person's plan and released the
+# FEED patient's visit as a clean claim (before, the feed patient's own plan landed on it: a name and date mismatch a payer can refuse). And with no real birth date on
+# either side the look-up was bought with a name and the placeholder, and its answer added. So lookup_hold judges first, and main() buys nothing and adds nothing when it
+# holds: 'same_person' - nobody knows that the chart is the feed's patient (two real dates FAR apart; or the date differs or is missing AND the name is not the chart's;
+# or only the date is the same and both names are others) and the chart's answer does not show the patient's Claimocity id; 'no_birth_date' - no real birth date on
+# either side. The hold for 'same_person' carries none of the phrases the hand step claimocity_fixholds.py acts on ("no active plan", "discovery found [") - that step
+# would put the FEED patient's plans on a chart that may be another person's; the hold for 'no_birth_date' starts "no active plan" like every chart that waits for a
+# face sheet. William's answer is given to a run as --same-person <charts>; a chart that carries the Claimocity id needs none. Only a chart whose answer shows a patient
+# is judged: one that could not be read (no name and no birth-date attribute in the answer) is asked as before, and lookup_who says it could not be read. (The older
+# self-test tools/selftest/test_feed_order.py answers such a chart, with a feed message that has no date either, and expects the look-up bought - no real chart answers so.)
+# _real_dob, _slip and _name_kind are the owner's rule as scripts/helpers/feed_identity.py states it (real_dob, slip, name_kind) - private copies here; the same text
+# stands in feed_in1_intake.py (and _real_dob, _slip in claimocity_import.py), and tools/selftest/test_pos_rule.py checks that they read the same. They are NOT drop-in
+# equal to that module: _slip answers in this helper's own shorter words ("one digit", "two digits swapped" - there "one digit differs", "two neighbouring digits
+# swapped") and answers "far" where slip answers ""; _real_dob answers False for a today that is no date (real_dob raises) and for a date with blanks around it (real_dob
+# strips them; nothing here hands one over). The words are in registers and in the digest's own list, so point these at the module only through that word map.
+# _dob8, _name_kind, _same_id, lookup_hold and lookup_who stand, the same text, in feed_in1_intake.py (its Florida Medicaid check).
 def _real_dob(d8, today8):
     """True when d8 is a REAL birth date (the owner's rule): 8 digits, a real calendar date, the year 1901 or later, not after today8 and not more than 120 years before
-    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (Mirrors real_dob in feed_identity.py.)"""
+    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (The rule of real_dob in feed_identity.py.)"""
     d8 = str(d8 if d8 is not None else ""); today8 = str(today8 if today8 is not None else "")
     if not re.fullmatch(r"[0-9]{8}", d8) or not re.fullmatch(r"[0-9]{8}", today8) or d8[:4] < "1901": return False
     try: __import__("datetime").date(int(d8[:4]), int(d8[4:6]), int(d8[6:8]))
@@ -435,8 +460,8 @@ def _real_dob(d8, today8):
     return "%04d%s" % (int(today8[:4]) - 120, today8[4:]) <= d8 <= today8
 def _slip(a8, b8):
     """How two REAL birth dates differ (the owner's rule) - the kind of slip, the first that fits: "one digit" (one digit differs), "two digits swapped" (two neighbouring
-    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (Mirrors slip in
-    feed_identity.py.)"""
+    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (The rule of slip in
+    feed_identity.py, in this helper's own shorter words; there far is the empty answer.)"""
     a8, b8 = str(a8), str(b8)
     if a8 == b8: return ""
     if len(a8) != 8 or len(b8) != 8: return "far"
@@ -458,26 +483,76 @@ def _dob8(s):
     if m: return "".join(m.groups())
     x = re.sub(r"\D", "", s)
     return x[:8] if len(x) >= 8 else ""
+def _name_kind(feed_last, feed_first, chart_last, chart_first):
+    """What a chart's name is to the feed's (the owner's rule for names): "full" - the same last name, and the first word of the first name is the same or the shorter of the
+    two first words has four letters or more and begins the longer one (MARY / MARYANN); "name" - the same last name and the first names share their first three letters;
+    "surname" - the same last name under another first name (or none); "" - another last name, or none. Last names are compared in upper case, letters only, without a
+    trailing suffix word (JR, SR, II, III, IV, V); an accent is not a difference. (The rule of name_kind in feed_identity.py.)"""
+    ud = __import__("unicodedata"); up = lambda s: "".join(c for c in ud.normalize("NFKD", str(s if s is not None else "")) if not ud.combining(c)).upper()
+    def key(s):
+        w = re.findall(r"[A-Z]+", up(s))
+        return "".join(w[:-1] if len(w) > 1 and w[-1] in ("JR", "SR", "II", "III", "IV", "V") else w)
+    k = key(feed_last)
+    if not k or k != key(chart_last): return ""
+    a, b = re.sub(r"[^A-Z]", "", up(feed_first)), re.sub(r"[^A-Z]", "", up(chart_first))
+    if not a or not b or a[:3] != b[:3]: return "surname"
+    wa, wb = (re.sub(r"[^A-Z]", "", (up(x).split() or [""])[0]) for x in (feed_first, chart_first))
+    return "full" if wa and wb and (wa == wb or (min(len(wa), len(wb)) >= 4 and (wa.startswith(wb) or wb.startswith(wa)))) else "name"
+def _same_id(a, b):
+    """True when a chart's additional number is this patient's Claimocity id: equal as upper-case letters and digits, and eight characters or more (the feed step and the
+    old integration write the id there; an empty or short value is never one). (The evidence 'mrn' of feed_identity.py.)"""
+    x, y = (re.sub(r"[^A-Z0-9]", "", str(v if v is not None else "").upper()) for v in (a, b))
+    return len(x) >= 8 and x == y
+def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False):
+    """Why a paid look-up of a chart is NOT asked - (key, words) - or ("", words) when it is asked (lookup_who says with what). pa = the chart's own patient attributes
+    (name "LAST,FIRST ...", dob MM/DD/YYYY, additionalmrn when the answer carries it); first, last, dob8 = what the feed carries (first = the whole first name or its
+    first word); fid = the patient's Claimocity id; sure = William's word that the chart is this patient. The rule (11/25/2026, the review):
+      "same_person" - nobody knows that the chart is the feed's patient: the two real birth dates are FAR apart; or they are a slip apart, or one side (or each) has no
+          real one, AND the feed's name is not the chart's ("full" by _name_kind); or only the birth date is the same and BOTH names are others. Not held when the chart
+          carries the patient's Claimocity id (_same_id) or on William's word - the second value then says which ("" when there was nothing to doubt).
+      "no_birth_date" - the chart is the patient, but neither side carries a real birth date: there is nothing to ask with (face sheet needed).
+    A chart answer that shows no patient at all (neither a name nor a birth-date attribute - a read that failed) is not judged: ("", ""), the look-up is asked as before.
+    The words are fixed - no name, no date, no number. It never raises: a comparison that cannot be made is held ("same_person")."""
+    try:
+        today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
+        if "name" not in a and "dob" not in a: return "", ""
+        cl, _, cf = __import__("html").unescape(str(a.get("name") or "")).partition(",")
+        c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); cr = _real_dob(c8, today8); fr = _real_dob(f8, today8); kind = _name_kind(last, first, cl, cf)
+        if cr and fr and c8 == f8: why = "" if (kind or _name_kind("X", first, "X", cf) == "full") else "only the birth date is the same - both names differ"
+        elif cr and fr and _slip(f8, c8) == "far": why = "Claimocity's birth date and this chart's are far apart"
+        elif kind == "full": why = ""
+        else: why = ("Claimocity's birth date is a slip from this chart's" if cr and fr else "one side carries no birth date" if cr or fr else "no birth date on either side") + " and the names differ"
+        known = _same_id(a.get("additionalmrn"), fid)
+        if why and not (known or sure): return "same_person", "same person? %s, and the chart's answer does not show this patient's Claimocity id" % why
+        if not (cr or fr): return "no_birth_date", "neither Claimocity nor the chart carries a real birth date to ask with (face sheet needed)"
+        return "", ("" if not why else "the chart carries this patient's Claimocity id" if known else "William's word: same person")
+    except Exception:
+        return "same_person", "same person? the chart's name and birth date could not be compared with Claimocity's"
 def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
     """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's
     getdemographic answer gives them (name "LAST,FIRST ...", dob MM/DD/YYYY) - the answer the caller already holds, so this costs no call. first, last, dob8 = what the
     feed carries. When the chart's birth date is a REAL one (_real_dob) and its name can be read, the answer is the CHART's first name (its first word), last name and
     birth date; else it is the feed's three values exactly as they were passed - never a mix of the two. words = which one was asked and how the other differs, in fixed
-    words that carry no name and no date (a slip is named by its kind); they begin with `what` ("look-up", "Medicaid") and go into registers and reports.
+    words that carry no name and no date (a slip is named by its kind; another first name under the same last name, or another last name, is said behind them - 11/25/2026,
+    the review); they begin with `what` ("look-up", "Medicaid") and go into registers and reports. A chart answer that shows no patient at all (a read that failed) leaves
+    the feed's values and says the chart could not be read - never that it has no birth date. Whether the look-up is asked at all is lookup_hold's.
     It never raises: whatever cannot be compared leaves the feed's values, and the words say so."""
     try:
         today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
-        cl, _, cf = __import__("html").unescape(str(a.get("name") or "")).partition(","); cl = cl.strip(); cf = cf.strip().split(" ")[0]
+        if "name" not in a and "dob" not in a: return first, last, dob8, "%s asked with what Claimocity sent; the chart's name and birth date could not be read" % what
+        cl, _, cn = __import__("html").unescape(str(a.get("name") or "")).partition(","); cl = cl.strip(); cf = cn.strip().split(" ")[0]
         c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); fr = _real_dob(f8, today8)
+        kind = _name_kind(last, first, cl, cn) if (cl and cf) else "full"; names = "" if kind == "full" else "; the first names differ" if kind else "; the last names differ"
         if _real_dob(c8, today8):
             if not (cl and cf): return first, last, dob8, "%s asked with Claimocity's name and birth date; the chart's name could not be read" % what
-            return cf, cl, c8, "%s asked with the chart's birth date; %s" % (what, ("Claimocity's is the same" if f8 == c8 else "Claimocity's differs: " + _slip(f8, c8)) if fr else "no birth date from Claimocity")
-        return first, last, dob8, ("%s asked with Claimocity's birth date; the chart has no birth date of its own" if fr else "%s asked with what Claimocity sent; no birth date on either side") % what
+            return cf, cl, c8, "%s asked with the chart's birth date; %s%s" % (what, ("Claimocity's is the same" if f8 == c8 else "Claimocity's differs: " + _slip(f8, c8)) if fr else "no birth date from Claimocity", names)
+        return first, last, dob8, ("%s asked with Claimocity's birth date; the chart has no birth date of its own" if fr else "%s asked with what Claimocity sent; no birth date on either side") % what + names
     except Exception:
         return first, last, dob8, "%s asked with what Claimocity sent; the chart's name and birth date could not be compared" % what
 def main():
     a = sys.argv[1:]; use_stedi = "--no-stedi" not in a; limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
     only = set(a[a.index("--only") + 1].split(",")) if "--only" in a else None
+    same = ({re.sub(r"\D", "", x) for x in a[a.index("--same-person") + 1].split(",")} - {""}) if "--same-person" in a else set()      # 11/25/2026 (review): William's word for THIS run - these charts (patNNN or NNN) are their feed patients (lookup_hold's sure)
     amd.login_cached()
     by_chart = collections.defaultdict(list)
     for r in REG["created"]: by_chart[r["pid"]].append(r)
@@ -570,14 +645,31 @@ def main():
                 # look-up) - nothing is bought; the chart waits for a night when the free check answers
                 rec["hold"].append("free check down - not checked tonight: none of this chart's %d free eligibility check(s) answered (%s), so no paid look-up was bought" % (
                     len(openp), ", ".join("%s %s" % (code_of[p["id"]], status.get(p["id"]) or "?") for p in openp)))
+            # 11/25/2026 (the review, WHEN IT IS NOT ASKED above): before anything is bought, every feed patient whose visits sit on this chart (one message per
+            # Claimocity id, in visit order) is judged against the chart's own name, birth date and Claimocity id - pa, read at the top of this chart's check. One
+            # patient nobody knows to be the chart's holds the chart (its visits are released together): nothing is bought and nothing is added on this step's own word.
+            # Else the look-up is asked for the first patient there is a real birth date to ask with; none at all: held for William's face sheet, nothing bought.
+            _lkm = None; _lkn = ""
+            if lead is None and not rec["hold"] and use_stedi:
+                _lkj = []
+                for _f in dict.fromkeys(v["feed_id"] for v in visits):
+                    _m = PARSED.get(_f, {}); _ml, _, _mf = (_m.get("name") or "").partition(",")
+                    _lkj.append((lookup_hold(pa, _mf.strip(), _ml.strip(), (_m.get("dob") or "")[:8], _f, sure=num in same), _m))
+                _lkh = next((h for h, _m in _lkj if h[0] == "same_person"), None) or (None if any(not h[0] for h, _m in _lkj) else _lkj[0][0])
+                if _lkh:
+                    rec["lookup_asked"] = "look-up not asked: " + _lkh[1]; rec[_lkh[0]] = list(rec["visits"])      # same_person / no_birth_date: the chart's visits, for ONE line at the top of the digest
+                    rec["hold"].append(("%s - for William: no paid look-up was bought and no plan was added on this step's own word" if _lkh[0] == "same_person" else "no active plan: no paid look-up was bought - %s") % _lkh[1])
+                else: _lkn, _lkm = next((h[1], _m) for h, _m in _lkj if not h[0])
             if lead is None and not rec["hold"]:
                 if use_stedi:
-                    msg = PARSED.get(visits[0]["feed_id"], {})
+                    msg = _lkm if _lkm is not None else PARSED.get(visits[0]["feed_id"], {})
                     last, _, first = msg.get("name", "").partition(","); first = first.strip().split(" ")[0] if first else ""; last = last.strip()
                     # 11/25/2026 (William, WHOM THE PAID LOOK-UP IS ASKED ABOUT above): the chart's own name and birth date - pa, read at the top of this chart's
                     # check - when its birth date is a real one, else the feed's exactly as before. The record says which (lookup_asked); a hold says it too, behind
-                    # its own words, whenever the two dates are not the same (the digest and the hand step still find "no active plan" at the hold's start)
-                    first, last, dob8, asked = lookup_who(pa, first, last, msg.get("dob", "")[:8]); rec["lookup_asked"] = asked
+                    # its own words, whenever the two dates are not the same (the digest and the hand step still find "no active plan" at the hold's start).
+                    # 11/25/2026 (review): the same words stand behind "discovery: added ..." - the line the digest prints - and they also say another first or last
+                    # name, the Claimocity id on the chart, or William's word, where one of those let the look-up be asked
+                    first, last, dob8, asked = lookup_who(pa, first, last, msg.get("dob", "")[:8]); asked += ("; " + _lkn) if _lkn else ""; rec["lookup_asked"] = asked
                     _how = "" if asked.endswith("is the same") else " - " + asked
                     try:
                         # 11/10/2026 (round 7, 4.7): the look-up is dated to the chart's latest date of service (the captured shape with dateOfService), and a
@@ -596,7 +688,7 @@ def main():
                                 rec["fixes"].append("discovery found %s but the chart already carries a %s plan (status %s) - not re-added" % (code, code, [status.get(p["id"]) for p in plans if code_of[p["id"]] == code])); continue
                             if code and code in CODE2CAR:
                                 insid, seq = add_ins.add(num, CODE2CAR[code], it["member"])
-                                rec["fixes"].append("discovery: added %s plan -> %s seq %s" % (code, insid, seq)); stats["plans added"] += 1
+                                rec["fixes"].append("discovery: added %s plan -> %s seq %s%s" % (code, insid, seq, _how)); stats["plans added"] += 1
                                 if insid and str(insid).startswith("ins"):
                                     ok, m2 = ins_update._set_order(num, {p["id"]: p for p in elig_amd.plans(num)[1]}, insid, str(seq)); rec["fixes"].append("chart order -> %s: %s" % (seq, m2[:100]))
                                     lead = {"id": insid, "sequence": str(seq)}; code_of[insid] = code; reason = "Stedi discovery %s ACTIVE" % code; status[insid] = "ACTIVE"

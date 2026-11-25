@@ -490,9 +490,16 @@ try:
         len(_nop), ", ".join("%s (%s)" % (p_, " ".join(v_.get("visits") or [])) for p_, v_ in _nop[:20]) + (" +%d more" % (len(_nop) - 20) if len(_nop) > 20 else "")))
     if _dif: L("  - TOP OF THE REPORT - OLD INSURANCE ORDER: %d visit(s) on %d chart(s) still bill to their old insurance order (or are already billed) - %s: %s" % (len(_dif), len({p_ for p_, _x in _dif}), _HELD, _who2(_dif)))
     if _unr: L("  - TOP OF THE REPORT - INSURANCE ORDER NOT READ: %d visit(s) on %d chart(s) - %s: %s" % (len(_unr), len({p_ for p_, _x in _unr}), _HELD, _who2(_unr)))
+    # 11/25/2026 (review of the birth-date change): the two holds the insurance check sets BEFORE it buys a look-up (claimocity_verify.py lookup_hold) -
+    # record keys same_person / no_birth_date, each the chart's visits. Chart ids and visit ids only; the hold line in the list below has the fixed words.
+    _byc = lambda key: [(p_, [x_ for x_ in v_.get(key) if isinstance(x_, str)]) for p_, v_ in ver.items() if isinstance(v_, dict) and isinstance(v_.get(key), list) and v_.get(key)]
+    _whoc = lambda rows: ", ".join("%s (%s)" % (p_, " ".join(x_)) for p_, x_ in rows[:20]) + (" +%d more" % (len(rows) - 20) if len(rows) > 20 else "")
+    _sam, _nbd = _byc("same_person"), _byc("no_birth_date")
+    if _sam: L("  - TOP OF THE REPORT - SAME PERSON? %d chart(s) whose name or birth date is not what Claimocity sent for the visits on it: no paid look-up was bought and no plan was added (the look-up would be asked about the CHART's person) - for William: is the visit on the right chart? On his yes the insurance check is run again for that chart with --same-person; on his no the visit belongs on the proper chart (William 11/9/2026): %s" % (len(_sam), _whoc(_sam)))
+    if _nbd: L("  - TOP OF THE REPORT - NO BIRTH DATE ON EITHER SIDE: %d chart(s) with no active plan where neither Claimocity nor the chart carries a real birth date - no paid look-up can be asked without one; a face sheet is needed: %s" % (len(_nbd), _whoc(_nbd)))
     if _svp: L("  - TOP OF THE REPORT - SAVE NOT AS ASKED: %d visit(s) on %d chart(s) - the order reads right but the save lost a charge or the admission date (see the hold line): %s" % (len(_svp), len({p_ for p_, _x in _svp}), _who2(_svp)))
 except Exception as _e:                                    # never stops the digest
-    L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem in the insurance-check register." % type(_e).__name__)
+    L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem / same_person / no_birth_date in the insurance-check register." % type(_e).__name__)
 L("- Lead payer on released charts: " + ", ".join("%s %d" % (k, v) for k, v in leads.most_common()))
 L("- Visit insurance orders changed (saves sent and accepted by AdvancedMD): %d; plans added from discovery / feed IN1: %d" % (orders_changed, len(plans_added)))
 for pid, f in plans_added: L("  - %s: %s" % (pid, f))
@@ -579,7 +586,8 @@ if os.path.exists(_idf):
                 continue
             _tops = _FI.william_lines(p_, _ch, _ids[0] if _ids else "")
             for t_ in _tops: _T(t_)
-            if not _tops and p_.get("flags"): L("  - %s: %s (%s)" % (_ch or "no chart", p_["why"], "; ".join(p_["flags"])))      # a match the rule had to explain (a slip in the date, no date from Claimocity): said here, not at the top
+            if not _tops and not _ch and p_.get("rule") == 0: L("  - no chart yet for Claimocity id %s: %s" % (_fid, p_["why"]))      # a wait for the next run (feed_identity.new_chart_waits): said, no question for William
+            elif not _tops and p_.get("flags"): L("  - %s: %s (%s)" % (_ch or "no chart", p_["why"], "; ".join(p_["flags"])))      # a match the rule had to explain (a slip in the date, no date from Claimocity): said here, not at the top
         for n_ in (_idr.get("notes") if isinstance(_idr.get("notes"), list) else []):
             if isinstance(n_, str) and not re.search(r"[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}|,\s*[A-Z]{2,}", n_): _T(n_[:500])      # the driver's own lines: ids and chart ids - a line that looks like it holds a date or a LAST, FIRST name is left out
         _nr = [f_ for f_ in (_idr.get("not_registered") if isinstance(_idr.get("not_registered"), list) else []) if isinstance(f_, str) and re.fullmatch(r"[0-9A-Za-z_.\-]{1,80}", f_)]
@@ -605,9 +613,10 @@ try:
     _KINDS = ("one digit", "two digits swapped", "month and day swapped", "one day apart", "far")
     _differ = ["%s %s" % (p_, " / ".join(k_ for k_ in _KINDS if "differs: " + k_ in _dn[p_])) for p_ in _charts if any("differs: " + k_ in _dn[p_] for k_ in _KINDS)]
     _grp = lambda w_: [p_ for p_ in _charts if w_ in _dn[p_]]
-    _nofeed, _nochart, _neither = _grp("no birth date from Claimocity"), _grp("chart has no birth date"), _grp("no birth date on either side")
+    _nofeed, _nochart, _neither = _grp("no birth date from Claimocity"), _grp("chart has no birth date"), _grp("no birth date on either side"); _unread = _grp("chart not read")      # (11/25/2026, review: not read is not 'no birth date' - until then such a row fell out of this line)
     _parts = (["feed and chart differ on %d chart(s) (%s)" % (len(_differ), _some(_differ))] if _differ else []) + (["Claimocity sent no birth date for %d chart(s) (%s)" % (len(_nofeed), _some(_nofeed))] if _nofeed else []) \
-        + (["%d chart(s) carry no birth date themselves (%s)" % (len(_nochart), _some(_nochart))] if _nochart else []) + (["no birth date on either side for %d chart(s) (%s)" % (len(_neither), _some(_neither))] if _neither else [])
+        + (["%d chart(s) carry no birth date themselves (%s)" % (len(_nochart), _some(_nochart))] if _nochart else []) + (["no birth date on either side for %d chart(s) (%s)" % (len(_neither), _some(_neither))] if _neither else []) \
+        + (["%d chart(s) could not be read (%s) - nobody knows their birth date for this batch" % (len(_unread), _some(_unread))] if _unread else [])
     if _parts:
         if not _chart_section: L(""); L("## Birth dates (Claimocity's and the chart's)")
         L("- Birth dates: %s. Each visit went on the chart as it stands; the chart's own date is the one used for the quality code and for every insurance look-up (William 11/25/2026: where the chart's date is right and Claimocity's is wrong, the chart's stays)." % "; ".join(_parts))

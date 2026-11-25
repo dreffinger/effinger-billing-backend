@@ -61,6 +61,7 @@
 #   extra call; in memory only - never printed, never written). Every register row says how the feed's birth date compares with it (dob_note: "same", "differs: one
 #   digit", "no birth date from Claimocity" ... - fixed words, never a date). The age of the 1123F rule comes from the chart's birth date when that is a real one, else
 #   from the feed's as before. The run prints ONE line "BIRTH DATES: ..." with chart ids only, and nothing when every date is the same. See THE CHART'S OWN BIRTH DATE.
+#   A chart whose own answer could not be read says "chart not read" (11/25/2026, review) - never "chart has no birth date", which nobody knows then.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -403,10 +404,13 @@ def _fmt_day(d): return d.strftime("%m/%d/%Y") if d else ""
 # when it is a REAL one, and main() prints ONE line (birth_dates_line). Nothing here holds, moves or changes a visit: which chart a feed patient goes to is decided before
 # the import (the match step); the import only says what it sees. A register row never carries a date or a name - a slip is named by its kind.
 # _real_dob and _slip are the owner's rule as scripts/helpers/feed_identity.py states it (real_dob, slip); they are private copies here - the same text stands in
-# claimocity_verify.py and feed_in1_intake.py, and tools/selftest/test_pos_rule.py checks the three read the same - until the helpers point at that one module.
+# claimocity_verify.py and feed_in1_intake.py, and tools/selftest/test_pos_rule.py checks the three read the same. 11/25/2026 (review): they are NOT drop-in equal
+# to that module - _slip answers in this helper's own shorter words ("one digit", "two digits swapped"; there "one digit differs", "two neighbouring digits swapped")
+# and "far" where slip answers ""; _real_dob answers False for a today that is no date (real_dob raises). dob_note's words are in the registers and in the digest's
+# own list, so point these at the module only through that word map.
 def _real_dob(d8, today8):
     """True when d8 is a REAL birth date (the owner's rule): 8 digits, a real calendar date, the year 1901 or later, not after today8 and not more than 120 years before
-    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (Mirrors real_dob in feed_identity.py.)"""
+    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (The rule of real_dob in feed_identity.py.)"""
     d8 = str(d8 if d8 is not None else ""); today8 = str(today8 if today8 is not None else "")
     if not re.fullmatch(r"[0-9]{8}", d8) or not re.fullmatch(r"[0-9]{8}", today8) or d8[:4] < "1901": return False
     try: __import__("datetime").date(int(d8[:4]), int(d8[4:6]), int(d8[6:8]))
@@ -414,8 +418,8 @@ def _real_dob(d8, today8):
     return "%04d%s" % (int(today8[:4]) - 120, today8[4:]) <= d8 <= today8
 def _slip(a8, b8):
     """How two REAL birth dates differ (the owner's rule) - the kind of slip, the first that fits: "one digit" (one digit differs), "two digits swapped" (two neighbouring
-    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (Mirrors slip in
-    feed_identity.py.)"""
+    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (The rule of slip in
+    feed_identity.py, in this helper's own shorter words; there far is the empty answer.)"""
     a8, b8 = str(a8), str(b8)
     if a8 == b8: return ""
     if len(a8) != 8 or len(b8) != 8: return "far"
@@ -432,23 +436,28 @@ SLIP_KINDS = ("one digit", "two digits swapped", "month and day swapped", "one d
 def dob_note(feed8, chart8, today8):
     """What a register row says about the two birth dates of its visit ("dob_note") - fixed words, never a date: "same" (both REAL and equal); "no birth date from
     Claimocity" (the chart has a real one, the feed none or the placeholder); "chart has no birth date" (the feed has a real one); "no birth date on either side";
-    "differs: " + the kind of slip (one digit / two digits swapped / month and day swapped / one day apart) or "differs: far" for two real dates that are not equal."""
+    "differs: " + the kind of slip (one digit / two digits swapped / month and day swapped / one day apart) or "differs: far" for two real dates that are not equal.
+    chart8 None = the chart's own answer could not be read (chart_ctx): "chart not read", whatever the feed carries - 11/25/2026 (review): until then such a row said
+    "chart has no birth date", which nobody knows of a chart that was not read."""
+    if chart8 is None: return "chart not read"
     f = _real_dob(feed8, today8); c = _real_dob(chart8, today8)
     if f and c: return "same" if str(feed8) == str(chart8) else "differs: " + _slip(feed8, chart8)
     return "no birth date from Claimocity" if c else "chart has no birth date" if f else "no birth date on either side"
 def birth_dates_line(seen):
     """The ONE line a run prints about birth dates ("BIRTH DATES: ..."), or "" when there is nothing to say (no visit, or every visit's feed date is its chart's). seen =
     chart id -> the dob_note words of its visits in this run. Chart ids only - never a name, never a date. A chart whose visits differ in two ways is named once, with
-    both kinds; a group names its first twelve charts and counts the rest (the rows of the register name every one)."""
+    both kinds; a group names its first twelve charts and counts the rest (the rows of the register name every one). The charts whose own answer could not be read
+    ("chart not read") are a group of their own, said last."""
     def order(p):
         n = re.sub(r"\D", "", str(p)); return (int(n) if n else 0, str(p))
     def some(items): return ", ".join(items[:12]) + ((" +%d more" % (len(items) - 12)) if len(items) > 12 else "")
     notes = {p: {str(w) for w in (ws or ()) if w} for p, ws in (seen or {}).items()}; charts = sorted(notes, key=order)
     differ = ["%s %s" % (p, " / ".join(k for k in SLIP_KINDS if "differs: " + k in notes[p])) for p in charts if any(w.startswith("differs: ") for w in notes[p])]
     group = lambda words: [str(p) for p in charts if words in notes[p]]
-    no_feed, no_chart, neither = group("no birth date from Claimocity"), group("chart has no birth date"), group("no birth date on either side")
+    no_feed, no_chart, neither = group("no birth date from Claimocity"), group("chart has no birth date"), group("no birth date on either side"); unread = group("chart not read")      # 11/25/2026 (review): not read is not 'no birth date'
     parts = (["feed and chart differ on %d chart(s) (%s)" % (len(differ), some(differ))] if differ else []) + (["Claimocity sent no birth date for %d chart(s) (%s)" % (len(no_feed), some(no_feed))] if no_feed else []) \
-        + (["%d chart(s) carry no birth date themselves (%s)" % (len(no_chart), some(no_chart))] if no_chart else []) + (["no birth date on either side for %d chart(s) (%s)" % (len(neither), some(neither))] if neither else [])
+        + (["%d chart(s) carry no birth date themselves (%s)" % (len(no_chart), some(no_chart))] if no_chart else []) + (["no birth date on either side for %d chart(s) (%s)" % (len(neither), some(neither))] if neither else []) \
+        + (["%d chart(s) could not be read (%s)" % (len(unread), some(unread))] if unread else [])
     return ("BIRTH DATES: " + "; ".join(parts)) if parts else ""
 def medicare_first(ctx, dos_mdy):
     """True when the chart's FIRST plan in billing order is Medicare Part B and is in force on that date (ctx['plans'] rows: plan id, carrier,
@@ -1871,8 +1880,8 @@ for f in sorted(glob.glob((HL7_DIR + "/*.hl7"))):       # sorted: "the last mess
 _ctx = {}
 def chart_ctx(pid):
     """episode, respparty, refplan, insorder, live {(cpt,dos)} from the chart's own history/detail. Since 11/25/2026 also 'dob' - the chart's own birth date as 8 digits
-    ("" when the answer gives none or one that cannot be read; the year-1900 placeholder is kept as written) - and 'name', both from the getdemographic answer made here
-    anyway. They stay in memory: nothing prints them or writes them to a register."""
+    ("" when the answer gives none or one that cannot be read; the year-1900 placeholder is kept as written; None when the chart itself could not be read - like
+    chart_insorder) - and 'name', both from the getdemographic answer made here anyway. They stay in memory: nothing prints them or writes them to a register."""
     if pid in _ctx: return _ctx[pid]
     num = re.sub(r"\D", "", pid)
     root = txh.fetch(num)
@@ -1891,7 +1900,7 @@ def chart_ctx(pid):
     ctx["resp"] = a.get("respparty", ""); ctx["insorder"] = a.get("insorder", "") or "1"; ctx["deceased"] = a.get("deceased", "")
     # William 11/25/2026 (THE CHART'S OWN BIRTH DATE above): the same answer carries the patient's name and birth date as the chart holds them (name "LAST,FIRST",
     # the date as MM/DD/YYYY) - kept here so the row can say how the feed's date compares and the 1123F age is the chart's. No extra call; in memory only.
-    _cd = _any_day(a.get("dob")); ctx["dob"] = ("%04d%02d%02d" % (_cd.year, _cd.month, _cd.day)) if _cd else ""; ctx["name"] = __import__("html").unescape(a.get("name", "") or "").strip()
+    _cd = _any_day(a.get("dob")); ctx["dob"] = ("%04d%02d%02d" % (_cd.year, _cd.month, _cd.day)) if _cd else ("" if p else None); ctx["name"] = __import__("html").unescape(a.get("name", "") or "").strip()
     pl = re.findall(r'<insplan id="(ins\d+)" carrier="(car\d+)" begindate="([^"]*)" enddate="([^"]*)"[^>]*sequence="(\d+)"', r)
     ctx["plans"] = pl
     # 11/10/2026 (round 7): the "1" above is only a stand-in when the chart has no plan - AdvancedMD then keeps insorder "1" on the new visit but builds
@@ -2062,9 +2071,9 @@ def build(msg, ctx):
     # feed sent the message from two or more buildings - a later batch reads that day as named under two buildings (review C1)
     # missing_dx: the feed's diagnosis codes AdvancedMD's list does not have; dx_instead (11/25/2026): the code that stands in their place on this visit - the
     # key is there only when a code was replaced (a row with missing_dx and no dx_instead had the code left off: an import from before that day, or I10 not in the list)
-    # dob_note (William 11/25/2026, THE CHART'S OWN BIRTH DATE): how the feed's date compares with the chart's own - fixed words, never a date. A note that cannot be
-    # made is left out; it never keeps a visit from going in
-    try: _dn = dob_note(re.sub(r"\D", "", str(msg.get("dob") or ""))[:8], ctx.get("dob") or "", run_day().strftime("%Y%m%d"))
+    # dob_note (William 11/25/2026, THE CHART'S OWN BIRTH DATE): how the feed's date compares with the chart's own - fixed words, never a date ("chart not read" when the
+    # chart's answer could not be read). A note that cannot be made is left out; it never keeps a visit from going in
+    try: _dn = dob_note(re.sub(r"\D", "", str(msg.get("dob") or ""))[:8], ctx.get("dob"), run_day().strftime("%Y%m%d"))      # None (the chart could not be read) is handed over as it is
     except Exception: _dn = ""
     return (create, body, plain), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
                             "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE and not initial, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx),

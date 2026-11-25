@@ -17,12 +17,17 @@
 #      SQL LIKE, 50 charts at most), a list AdvancedMD cuts short (nobody is then matched by the name alone), and what the steps must
 #      never do: decide on a half-read, make a chart on an older step's word, write a name, a date, a Social Security number or a
 #      member number into a register, a printed line or one of the fields the driver copies.
+#      11/25/2026 (review of the identity rule - three things it reproduced): a chart that writes the last name with an apostrophe, a
+#      space, a period or a hyphen the FEED does not have is weighed like any other (several hundred patients put together at random
+#      go through the match and resolve steps and must come out as the rule answers when it is given EVERY chart of the stand-in); a
+#      lookup form AdvancedMD does not answer never makes a second chart (wherever in a run the two unanswered asks fall); and one name
+#      with no birth date under two Claimocity ids is weighed for each id and entered when the rule gives both the same chart.
 #   The stand-in AdvancedMD refuses every action a step is not supposed to send (a stray write fails the test) and counts addpatient.
 # Every name, birth date, Social Security number and member number here is invented, and each is put together at run time (lf, ymd, the
 #   + signs) so that no such value sits in this file as a literal: tools/mirror/phi_gate.py scrubs this file like any other before a
 #   commit - the last section checks that it finds nothing to change here or in the four helpers.
 # Run: python3 tools/selftest/test_feed_identity.py   (exit 1 on any failure)
-import os, sys, json, types, tempfile, importlib.util, io, re, contextlib, random, itertools, datetime
+import os, sys, json, types, tempfile, importlib.util, io, re, contextlib, random, itertools, datetime, collections, unicodedata
 import xml.etree.ElementTree as ET
 sys.dont_write_bytecode = True      # this test leaves no __pycache__ beside the helpers it loads
 # THIS SELF-TEST NEVER REACHES ADVANCEDMD OR ANY OTHER HOST (the same three locks as tools/selftest/test_pos_rule.py): the network is shut
@@ -148,6 +153,16 @@ T("junk on either side is neither evidence nor proof", lambda: EV({"ssn": "1" * 
 T("evidence ssn4: a side shows only four digits and the last four are equal", lambda: EV({"ssn": S1}, {"ssn": "xxx-xx-" + S1[5:]}) == (["ssn4"], False) and EV({"ssn": S1[5:]}, {"ssn": dash(S1)}) == (["ssn4"], False))
 T("... four digits that differ from the other side's last four: two people as well (the safest reading - no chart by name alone)", lambda: EV({"ssn": S1}, {"ssn": "xxx-xx-" + S3[5:]}) == ([], True))
 T("the lookup row's masked number beside the chart's full one: the full one counts", lambda: EV({"ssn": S1}, {"ssn": ["***-**-" + S1[5:], dash(S1)]}) == (["ssn"], False))
+# 11/25/2026 (review of the identity rule): a PLACEHOLDER number shown masked is no number either. Until then the last four of nine nines on a
+# lookup row (the stars and four nines) counted as proof of another person beside any real number of the feed: the chart with the patient's own name and birth
+# date was passed over and a second chart made. Four digits that are all one digit, or 6789 (one to nine in a row), are the mask of a placeholder;
+# so are the four digits a side shows when the SAME side shows a nine-digit placeholder ending in them.
+T("a masked placeholder is no number: four digits all alike, or 6789 - neither the last four nor anything else", lambda: [FI.ssn4_key(x) for x in ("***-**-9999", "xxx-xx-1111", "7777", "***-**-6789", "0000")] == [""] * 5)
+T("... so a masked placeholder on the chart is neither evidence nor proof of another person beside the feed's real number", lambda: EV({"ssn": S1}, {"ssn": "***-**-9999"}) == ([], False) and EV({"ssn": S1}, {"ssn": ["xxx-xx-6789", ""]}) == ([], False)
+  and EV({"ssn": "***-**-1111"}, {"ssn": dash(S1)}) == ([], False))
+T("... and the four digits a side shows beside its OWN nine-digit placeholder ending in them are that placeholder's mask: nothing usable (a real number beside them still counts)",
+  lambda: EV({"ssn": S1}, {"ssn": ["***-**-" + S3[5:], "000" + S3[3:]]}) == ([], False) and EV({"ssn": S1}, {"ssn": ["***-**-" + S3[5:], "9" + S3[1:]]}) == ([], False)
+  and EV({"ssn": S1}, {"ssn": ["***-**-" + S1[5:], "000" + S3[3:]]}) == (["ssn4"], False) and EV({"ssn": S1}, {"ssn": ["***-**-" + S3[5:], dash(S3)]}) == ([], True))
 T("a side that carries two different nine-digit numbers is not used at all", lambda: EV({"ssn": [S1, S2]}, {"ssn": S1}) == ([], False))
 
 T("member number key: upper case, letters and digits only", lambda: FI.member_key(" " + M1[:2].lower() + "-" + M1[2:5] + " " + M1[5:] + " ") == M1)
@@ -237,6 +252,7 @@ X("rule 4: ... neither side has one - flag 'no birth date on either side'", F(ZO
 X("rule 4: the same member number (the chart's has the three-letter prefix)", F(ZO, "XANTHIA", B, members=[M2, M1]), [C(1, ZO, "XANTHIA", FARD, members=[PFX + M1]), C(2, ZO, "XANTHIA", B2, members=[M1[:7]])], "pat1", 4, ["birth date differs: far"], evidence=["member"])
 X("rule 4: a member number of seven characters is no evidence - a new chart beside the same-name chart, for William", F(ZO, "XANTHIA", B, members=[M1[:7]]), [C(1, ZO, "XANTHIA", FARD, members=[M1[:7]])], None, 9, NOT_USED, william=True)
 X("rule 4: the last four of the Social Security number where the chart shows only four", F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "XANTHIA", FARD, ssn="***-**-" + S1[5:])], "pat1", 4, ["birth date differs: far"], evidence=["ssn4"])
+X("a chart with the patient's name and birth date whose number is a masked PLACEHOLDER is the patient's chart (rule 2) - the placeholder proves nobody else (11/25/2026)", F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "XANTHIA", B, ssn="***-**-9999")], "pat1", 2)
 X("rule 4: the strongest evidence wins - the full number on one chart beats the member number on another", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, members=[M1], last_dos=ymd(2026, 11, 1), charges=9), C(2, ZO, "XANTHIA", B2, ssn=S1)], "pat2", 4, ["birth date differs: far"], evidence=["ssn"], group=["pat2"])
 X("rule 4: the member number beats the last four", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, ssn="xxx-xx-" + S1[5:]), C(2, ZO, "XANTHIA", B2, members=[M1])], "pat2", 4, ["birth date differs: far"], evidence=["member"])
 X("rule 4: a junk number equal on both sides is no evidence", F(ZO, "XANTHIA", B, ssn="1" * 9), [C(1, ZO, "XANTHIA", FARD, ssn="1" * 9)], None, 9, NOT_USED, william=True)
@@ -299,6 +315,24 @@ X("a list of name candidates that may be cut while every full-name chart is ther
 X("... rule 7 is asked too", dict(F(QU, "ZEBEDIAH", P8), cut="name"), [C(1, QU, "ZEBEDIAH", B2)], "pat1", 7, ["no birth date from Claimocity"])
 X("... but not rule 6, which says 'the ONLY name candidates'", dict(F(ZO, "XANTHIA", B), cut="name"), [C(1, ZO, "XANTHIA", P8)], None, 9, NOT_USED + _CUT, william=True)
 X("... anything else said about a cut list counts as the worst case", dict(F(ZO, "XANTHIA", B_DIGIT), cut=True), [C(1, ZO, "XANTHIA", B)], None, 9, NOT_USED + _CUT, william=True)
+# 11/25/2026 (review of the identity rule): the lookup for ANY first name (rule 3) can come back full too - until then nobody noticed
+X("a list that may be cut only for charts under ANOTHER first name ('first'): every name candidate is there - rule 6 is still asked", dict(F(ZO, "XANTHIA", B), cut="first"), [C(1, ZO, "XANTHIA", P8)], "pat1", 6, ["chart has no birth date"], william=True)
+X("... and so are rule 5", dict(F(ZO, "XANTHIA", B_DIGIT), cut="first"), [C(1, ZO, "XANTHIA", B)], "pat1", 5, ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False)
+X("... rule 7", dict(F(QU, "ZEBEDIAH", P8), cut="first"), [C(1, QU, "ZEBEDIAH", B2)], "pat1", 7, ["no birth date from Claimocity"], william=False)
+X("... and rule 3 itself, for the charts that were listed", dict(F(ZO, "XANTHIA", B), cut="first"), [C(1, ZO, "ELSPETH", B)], "pat1", 3, ["first name differs"], william=True)
+X("... but a NEW chart for a patient with a real date is flagged, for William: a chart of that last name and date under another first name (rule 3) may be among those not listed", dict(F(WE, "OTTOLINE", B), cut="first"), [], None, 9, _CUT, william=True, feed_dob="real")
+X("... beside same-name charts as well", dict(F(ZO, "XANTHIA", B), cut="first"), [C(1, ZO, "XANTHIA", FARD)], None, 9, NOT_USED + _CUT, william=True)
+X("... not when Claimocity sent no birth date: rule 3 is never asked then, so nothing it could have found is missing (the new chart is for William anyway - face sheet needed)", dict(F(WE, "OTTOLINE", P8), cut="first"), [], None, 9, ["no birth date from Claimocity"], william=True, feed_dob="none")
+# ... and a patient can be weighed without the lookup that finds every SPELLING of the last name (AdvancedMD did not answer it for this one, though it does answer it): 'spelling'
+X("a list that may lack the charts that write the last name another way than the feed ('spelling' - all the steps ever saw until 11/25/2026): no rule is switched off for it - the slip is read (rule 5)", dict(F(ZO, "XANTHIA", B_DIGIT), cut="spelling"), [C(1, ZO, "XANTHIA", B)], "pat1", 5,
+  ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False)
+X("... rule 6 is asked", dict(F(ZO, "XANTHIA", B), cut="spelling"), [C(1, ZO, "XANTHIA", P8)], "pat1", 6, ["chart has no birth date"], william=True)
+X("... rule 7", dict(F(QU, "ZEBEDIAH", P8), cut="spelling"), [C(1, QU, "ZEBEDIAH", B2)], "pat1", 7, ["no birth date from Claimocity"], william=False)
+X("... rule 8", dict(F(QU, "ZEBEDIAH", ""), cut="spelling"), [C(1, QU, "ZEBEDIAH", "")], "pat1", 8, ["no birth date on either side"], william=True)
+X("... but a NEW chart made on such a list is flagged, for William (is there a chart of this patient already?) - with a real date", dict(F(WE, "OTTOLINE", B), cut="spelling"), [], None, 9, _CUT, william=True, feed_dob="real")
+X("... and with none (beside 'face sheet needed')", dict(F(WE, "OTTOLINE", P8), cut="spelling"), [], None, 9, ["no birth date from Claimocity"] + _CUT, william=True, feed_dob="none")
+T("... what goes to William for it: the question, and - with no date - the face sheet too", lambda: (lambda a, b: (len(a) == 1 and "may be incomplete" in a[0] and "pat900" in a[0] and len(b) == 2 and "face sheet needed" in b[1], (a, b)))(
+    FI.william_lines(D(dict(F(WE, "OTTOLINE", B), cut="spelling"), []), "pat900", FID), FI.william_lines(D(dict(F(WE, "OTTOLINE", P8), cut="spelling"), []), "pat900", FID)))
 T("a group of several charts whose activity was not given: decide() names the charts whose activity it needs, and none once it has it",
   lambda: (D(F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B), C(2, ZO, "XANTHIA", B), C(3, ZO, "XANTHIA", FARD)])["needs_activity"] == ["pat1", "pat2"]
            and D(F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B, last_dos="", charges=0), C(2, ZO, "XANTHIA", B, last_dos=ymd(2026, 1, 1), charges=1)])["needs_activity"] == [] and D(F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B)])["needs_activity"] == []))
@@ -321,7 +355,7 @@ def _random_cases(n):
         else: f["names"] = [(rnd.choice(lasts), rnd.choice(firsts)) for _ in range(rnd.randint(1, 3))]
         if rnd.random() < 0.8: f["dob"] = rnd.choice(dates)
         else: f["dobs"] = [rnd.choice(dates) for _ in range(rnd.randint(1, 3))]
-        if rnd.random() < 0.15: f["cut"] = rnd.choice(["name", "full"])
+        if rnd.random() < 0.15: f["cut"] = rnd.choice(["first", "spelling", "name", "full"])
         cs = []
         for k in rnd.sample(range(1, 40), rnd.randint(0, 6)):
             c = C(k, rnd.choice(lasts), rnd.choice(firsts), rnd.choice(dates), ssn=rnd.choice(ssns), members=rnd.choice(mems), mrn=rnd.choice(["", "", "", FID.upper(), FID2]))
@@ -338,7 +372,7 @@ def _random_cases(n):
             if (r == 1 and "mrn" not in ev) or (r == 4 and not set(ev) & {"ssn", "member", "ssn4"}): why.append("rule %d without its evidence" % r)
             if (r in (1, 2, 4) and not kinds & {"name", "full"}) or (r in (5, 6, 7, 8) and "full" not in kinds) or (r == 3 and "surname" not in kinds): why.append("rule %d on a chart whose name does not fit it" % r)
             if r in (2, 3) and not FI.real_dob(c["dob"], TODAY): why.append("rule %d on a chart without a real date" % r)
-            if (r in (5, 7, 8) and f.get("cut") == "full") or (r == 6 and f.get("cut")): why.append("rule %d on a list that may be cut short" % r)
+            if (r in (5, 7, 8) and f.get("cut") == "full") or (r == 6 and f.get("cut") in ("name", "full")): why.append("rule %d on a list that may be cut short" % r)
             if d["for_william"] != (r in (3, 6, 8)): why.append("for_william of a chosen chart")
         elif not d["for_william"] and not (d["rule"] == 9 and d["flags"] == [] and d["feed_dob"] == "real"): why.append("a flagged new chart, or no decision, that is not for William")
         if (len(FI.william_lines(d, "pat900", FID)) >= 1) != d["for_william"]: why.append("the lines for William")
@@ -350,15 +384,39 @@ T("a chart id that does not look like one, or the same chart twice, is an error 
 # the feed patients of one batch
 K = lambda last, first, d8: (last + ", " + first).upper().strip() + "|" + d8[:8]
 k1, k2, k3, k4 = K(ZO, "XANTHIA", B), K(ZO, "XANTHIA", P8), K(QU, "ZEBEDIAH", B2), K(ZO, "XANTHIA", "")
-def _pat(ids, keys, decide=None): return {"ids": sorted(ids), "keys": sorted(keys), "decide_keys": sorted(keys if decide is None else decide)}
+def _pat(ids, keys, decide=None, shared=()): return {"ids": sorted(ids), "keys": sorted(keys), "decide_keys": sorted(keys if decide is None else decide), "shared_keys": sorted(shared)}
 T("the patients of a batch: one Claimocity id under its real date and under the placeholder is ONE patient - both keys are decided together", lambda: FI.patients({k1: [FID], k2: [FID], k3: [FID2]}, TODAY) == ([_pat([FID], [k1, k2]), _pat([FID2], [k3])], {}))
 T("... two Claimocity ids under one name and one REAL date are one patient", lambda: FI.patients({k1: [FID2, FID], k2: [FID]}, TODAY) == ([_pat([FID, FID2], [k1, k2])], {}))
-T("... two Claimocity ids under one name and NO date are not known to be one person: that key is not decided (for William), each id keeps its other keys",
-  lambda: (lambda ps, un: ps == [_pat([FID], [k1, k2], [k1]), _pat([FID2], [k2, k3], [k3])] and list(un) == [k2] and un[k2] in FI.WHY_WORDS)(*FI.patients({k1: [FID], k2: [FID, FID2], k3: [FID2]}, TODAY)))
+T("... also when the feed carries the SAME Social Security number for both, or one for only one of them", lambda: all(FI.patients({k1: [FID, FID2]}, TODAY, ssn_of=x.get) == ([_pat([FID, FID2], [k1])], {}) for x in ({FID: [S1], FID2: [dash(S1)]}, {FID2: [S1]})))
+# 11/25/2026 (review of the identity rule): until then such a key was decided for nobody before anything was weighed - no lookup, no chart, neither visit entered
+T("... two Claimocity ids under one name and NO date are not known to be one person, and the import can give their key only ONE chart: each id is still a patient of its own and is weighed - the key is theirs TOGETHER "
+  "(the resolve step writes a chart under it only when the rule gives every one of them the same chart), each id keeps its other keys",
+  lambda: (lambda ps, un: (ps == [_pat([FID], [k1, k2], [k1], [k2]), _pat([FID2], [k2, k3], [k3], [k2])] and un == {}, (ps, un)))(*FI.patients({k1: [FID], k2: [FID, FID2], k3: [FID2]}, TODAY)))
+T("... also when neither of them comes with another key", lambda: (lambda r: (r == ([_pat([FID], [k2], [], [k2]), _pat([FID2], [k2], [], [k2])], {}), r))(FI.patients({k2: [FID2, FID]}, TODAY)))
+T("... but not when the feed itself carries two different Social Security numbers for them (two people for certain): that key is decided for nobody, whatever chart each would get",
+  lambda: (lambda ps, un: (ps == [_pat([FID], [k2], []), _pat([FID2], [k2], [])] and list(un) == [k2] and un[k2] in FI.WHY_WORDS, (ps, un)))(*FI.patients({k2: [FID, FID2]}, TODAY, ssn_of={FID: [S1], FID2: [dash(S2)]}.get)))
+T("... the same Social Security number on both, or one on only one side, proves nothing against it", lambda: all(FI.patients({k2: [FID, FID2]}, TODAY, ssn_of=x.get) == ([_pat([FID], [k2], [], [k2]), _pat([FID2], [k2], [], [k2])], {}) for x in ({FID: [S1], FID2: [dash(S1)]}, {FID: [S1]}, {})))
 T("... two Claimocity ids under one name and one real date whose Social Security numbers DIFFER are two people: not put together, the key not decided",
   lambda: (lambda ps, un: ps == [_pat([FID], [k1], []), _pat([FID2], [k1], [])] and list(un) == [k1])(*FI.patients({k1: [FID, FID2]}, TODAY, ssn_of={FID: [S1], FID2: [dash(S2)]}.get)))
 T("... a message without a Claimocity id is nobody's: its key is not decided - unless a Claimocity id carries the same name and the same real date",
   lambda: (lambda ps, un: ps == [_pat([FID], [k1])] and list(un) == [k4] and un[k4] in FI.WHY_WORDS)(*FI.patients({k1: [FID, ""], k4: [""]}, TODAY)))
+T("... and under a name with NO date that a Claimocity id also carries nobody can say whose it is: that key is decided for nobody (it is not one the rule could settle - a message without an id is never weighed), the id keeps its other keys",
+  lambda: (lambda ps, un: (ps == [_pat([FID], [k1, k2], [k1])] and list(un) == [k2] and un[k2] in FI.WHY_WORDS, (ps, un)))(*FI.patients({k1: [FID], k2: [FID, ""]}, TODAY)))
+def _shared_cases():      # the answers of patients that came under ONE name with no birth date, each decided on its own
+    one = [C(1, QU, "ZEBEDIAH", B2)]; two = one + [C(2, QU, "ZEBEDIAH", B)]; other = dict(F(QU, "ZEBEDIAH", P8), id=FID2)
+    return {"r2": D(F(QU, "ZEBEDIAH", B2), one), "r7": D(other, one), "r2b": D(F(QU, "ZEBEDIAH", B), two), "new": D(other, two), "none": D(dict(F(QU, "ZEBEDIAH"), dobs=[B, B2]), two),
+            "r8": D(other, [C(3, QU, "ZEBEDIAH", "")])}
+def _sh(*names): return (lambda c: FI.shared_answer([c[n] for n in names]))(_shared_cases())
+T("the cases below are what they are meant to be: rule 2 and rule 7 on one chart, rule 2 on another, a new chart, nobody, rule 8", lambda: (lambda c: ([(c[n]["rule"], c[n]["chart"]) for n in ("r2", "r7", "r2b", "new", "none", "r8")] == [(2, "pat1"), (7, "pat1"), (2, "pat2"), (9, None), (0, None), (8, "pat3")], c))(_shared_cases()))
+T("a name-and-date key several patients share: the rule gave every one of them, each on its own, the SAME chart - the key carries that chart, under the weakest of their answers (the highest rule number: its flags say what was not known), in any order",
+  lambda: (lambda s: (s["chart"] == "pat1" and s["rule"] == 7 and s["why"] == FI.WHY[7] and s["flags"] == ["no birth date from Claimocity"] and s["candidates"] == ["pat1"] and s["group"] == ["pat1"] and s["feed_dob"] == "none"
+                      and s["for_william"] is False and s["new_chart"] is False and FI.problems(s) == [] and s == _sh("r7", "r2") and _sh("r7", "r7")["rule"] == 7, s))(_sh("r2", "r7")))
+T("... the rule gave them two DIFFERENT charts: not known to be one person - NO chart under the key and none made, for William; the charts that were considered are named",
+  lambda: (lambda s: (s["chart"] is None and s["rule"] == 0 and s["why"] == FI.WHY_SHARED and s["candidates"] == ["pat1", "pat2"] and s["for_william"] is True and s["new_chart"] is False and s["flags"] == [] and FI.problems(s) == [] and s == _sh("r2b", "r7"), s))(_sh("r7", "r2b")))
+T("... one of them a chart, the other a new chart - or both a new chart (nobody knows them to be one person: never ONE new chart for two ids, never two under one key) - or one of them not decided: no chart, none made, for William",
+  lambda: all((lambda s: s["chart"] is None and s["rule"] == 0 and s["why"] == FI.WHY_SHARED and s["for_william"] is True and s["new_chart"] is False and FI.problems(s) == [])(_sh(*ns)) for ns in (("r2", "new"), ("new", "r7"), ("new", "new"), ("r7", "none"), ("none", "none"), ())))
+T("... what goes to William then is one line that names the Claimocity id; a chart the rule gave them all by rule 8 is still the FYI of rule 8",
+  lambda: (lambda a, b: (len(a) == 1 and FID in a[0] and len(b) == 1 and "pat3" in b[0] and "(FYI)" in b[0], (a, b)))(FI.william_lines(_sh("r7", "r2b"), "", FID), FI.william_lines(_sh("r8", "r8"), "pat3", FID)))
 T("the date a new chart is written with: the feed's when it is real; otherwise the placeholder date and 'none' - never an empty date",
   lambda: ([FI.chart_dob(x, TODAY) for x in ([B], [P8, B, ""], [""], [P8], [], ["00000000"], [B, FARD], [ymd(1941, 2, 30)])] == [(mdy(B), "real")] * 2 + [(P_MDY, "none")] * 6 and FI.NO_DOB_MDY == P_MDY))
 # what goes to William, and the fixed words
@@ -436,6 +494,7 @@ def like(pattern, name):
     """AdvancedMD's name search as this stand-in takes it - the strict reading: SQL LIKE on LAST,FIRST, % = anything, upper case, no space after the comma."""
     p = re.sub(r"\s*,\s*", ",", pattern.upper()); n = re.sub(r"\s*,\s*", ",", name.upper())
     return re.fullmatch("".join(".*" if c == "%" else re.escape(c) for c in p), n) is not None
+def spelt(pattern): return re.search(r"(?:^|%)[A-Z]%[A-Z]%", pattern.upper().split(",")[0]) is not None      # a lookup with a % between the LETTERS of the last name (the form that finds every spelling)
 def chart(n, last, first, d8="", ssn="", mrn="", members=(), charges=(), **k):
     return dict(dict(id="pat%d" % n, last=last, first=first, dob=d8, ssn=ssn, mrn=mrn, chartno="C%d" % n, members=list(members), charges=list(charges), resp="resp%d" % n), **k)
 def msg(fid, last, first, d8, ssn="", in1=(), nopid=False): return dict(fid=fid, last=last, first=first, dob=d8, ssn=ssn, in1=list(in1), nopid=nopid)
@@ -456,10 +515,12 @@ class Amd:
     def __init__(s, charts):
         s.charts = {c["id"]: dict(c) for c in charts}; s.calls = []; s.refused = []; s.added = []; s.resp = []; s.script = ""; s.allowed = set()
         s.nextid = 9001; s.dup = 0; s.dup_always = False; s.blind = True; s.bad = {}; s.addfault = ""; s.quote = '"'; s.bare_id = False; s.odd_row = ""; s.no_begin = False; s.asked = []
+        s.no_spell = False; s.mute_spell = False; s.no_inner = False; s.junk_spell = False; s.also = []; s.limits = []
     def msg(s, action, cls, attrs=None, children=""): return '<ppmdmsg action="%s" class="%s" %s>%s</ppmdmsg>' % (action, cls, " ".join('%s="%s"' % kv for kv in (attrs or {}).items()), children)
     def post(s, body, timeout=0):
         a = dict(re.findall(r'(\w+)="([^"]*)"', body.split(">", 1)[0])); action = a.get("action", "?")
         s.calls.append((s.script, action))
+        if action == "lookuppatient" and "name" in a: s.limits.append((a["name"], timeout))      # how long the step is ready to wait for each name lookup (0 = it did not say: amd.post's own three minutes)
         if action not in s.allowed:
             s.refused.append((s.script, action)); raise RuntimeError("the stand-in AdvancedMD refuses %s from %s" % (action, s.script))
         if s.bad.get(action):
@@ -472,8 +533,12 @@ class Amd:
         if "code" not in a:
             s.asked.append(a.get("name", ""))
             if s.no_begin and "%," in a.get("name", ""): return FAULT % "Server Error (test)"      # an AdvancedMD that does not take the 'begins with' form of the last name
+            if s.no_spell and spelt(a.get("name", "")): return FAULT % "Server Error (test)"       # ... that does not take a % between the letters of the last name
+            if s.mute_spell and spelt(a.get("name", "")): return OKAY % "<patientlist></patientlist>"      # ... that answers such a lookup with no chart, whatever it holds
+            if s.no_inner and "%" in a.get("name", "")[:-1]: return FAULT % "Server Error (test)"         # ... that takes a % at the END of a lookup only (the two lookups the steps made until 11/25/2026, for a name without an apostrophe)
         if "code" in a: rows = [] if s.blind else [c for c in s.charts.values() if c["chartno"].upper() == a["code"].upper()]
-        else: rows = sorted((c for c in s.charts.values() if like(a.get("name", ""), lf(c["last"], c["first"]))), key=lambda c: (c["last"], c["first"], c["id"]))[:50]      # AdvancedMD answers the first 50 by name
+        elif s.junk_spell and spelt(a.get("name", "")): rows = sorted(s.charts.values(), key=lambda c: (c["last"], c["first"], c["id"]))[:50]      # ... that does not understand such a lookup and answers its first 50 charts, whatever was asked
+        else: rows = sorted((c for c in s.charts.values() if like(a.get("name", ""), lf(c["last"], c["first"])) or c["id"] in s.also), key=lambda c: (c["last"], c["first"], c["id"]))[:50]      # AdvancedMD answers the first 50 by name (s.also: charts it lists for a reason of its own, say a former name)
         return OKAY % ("<patientlist>%s</patientlist>" % ("".join(s.row(c) for c in rows).replace('"', s.quote) + ("" if "code" in a else s.odd_row)))
     def do_getdemographic(s, a, body):
         c = s.charts.get(a.get("patientid"))
@@ -555,6 +620,64 @@ check("the stand-in AdvancedMD refuses an action a step may not send, and writes
 def step(name, fn):      # one scenario: whatever goes wrong inside it is a FAIL of its own check, never the end of the test
     T(name, fn)
 def ok_field(v, **want): return all(v.get(k) == x for k, x in want.items())
+
+# ---- the name as the match step asks AdvancedMD for it (feed_identity.lookup_forms), read the stand-in's strict way ---------------------
+# 11/25/2026 (review of the identity rule): the rule compares last names by their LETTERS, the lookups asked for them as the feed writes
+# them - so a chart with an apostrophe, a space, a period or a hyphen the feed does not have was never listed, and a namesake's chart was
+# taken by the name alone, or a second chart made, without a word.
+def LK(last, first="XANTHIA"): return FI.lookup_forms(last, first)
+FAMILIES = [["O" + ZO, "O'" + ZO, "O " + ZO], ["MC" + QU, "MC " + QU, "Mc" + QU.title()], ["VAN" + WE, "VAN " + WE, "VAN-" + WE], ["DELA" + YA, "DE LA " + YA, "DELA " + YA, "DE-LA-" + YA],
+            ["ST" + TH, "ST " + TH, "ST. " + TH, "ST." + TH], [TH + YA, TH + "-" + YA, TH + " " + YA], [ZO, ZO + " JR", ZO + " SR.", ZO + " III"]]      # each: one last name to the rule, spelled several ways
+WRITTEN = [f[1] for f in FAMILIES[:4]] + ["ST. " + TH, TH + "-" + YA, ZO + " III"]      # of each family the spelling that writes every apostrophe, space, period and hyphen
+T("the families of spellings below are what they are meant to be: one last name each to the rule, and no two of them the same name", lambda: all(len({FI.last_key(x) for x in fam}) == 1 for fam in FAMILIES) and len({FI.last_key(fam[0]) for fam in FAMILIES}) == len(FAMILIES))
+T("the letters form of a last name - its letters with a % between them: every chart that spells the same letters answers to it, whatever it writes between them and after them (any first name: the lookup of rule 3)",
+  lambda: [(a, b) for fam in FAMILIES for a in fam for b in fam if not like(LK(a)["letters"] + "%", lf(b, "ELSPETHA"))] == [])
+T("... and with the first three letters of the first name, a % between them too (X.A.N. and XAN THIA are XAN to the rule)",
+  lambda: [(a, b, f) for fam in FAMILIES for a in fam for b in fam for f in ("XANTHIA", "XAN THIA K", "X.A.N.", "xander") if not like("%s%%, %s%%" % (LK(a, "Xan-thia")["letters"], LK(a, "Xan-thia")["first3"]), lf(b, f))] == [])
+T("... it is still a search for THIS name: a last name with a letter less, or with two letters the other way round, does not answer",
+  lambda: not like(LK(ZO)["letters"] + "%", lf(ZO[:-1], "X")) and not like(LK(ZO)["letters"] + "%", lf(ZO[1] + ZO[0] + ZO[2:], "X")) and not like("%s%%, %s%%" % (LK(ZO)["letters"], LK(ZO)["first3"]), lf(ZO, "ELSPETHA")))
+T("what the forms are: letters and % only; a trailing suffix word is no part of them; the words form keeps the words whole with a % for whatever stands between them",
+  lambda: (lambda vals: (all(re.fullmatch(r"[A-Z%]+", v) for v in vals) and LK(ZO)["letters"] == "%".join(ZO) and LK(ZO + " Jr.")["letters"] == "%".join(ZO) and LK(ZO)["words"] == ZO and LK(ZO + " III")["words"] == ZO
+                         and LK("o'" + ZO.lower())["words"] == "O%" + ZO and LK("De La " + YA)["words"] == "DE%LA%" + YA and LK("St. " + TH)["words"] == "ST%" + TH and LK("V")["letters"] == "V", vals))(
+      [v for fam in FAMILIES for a in fam for v in (LK(a)["letters"], LK(a)["words"], LK(a)["first3"], LK(a)["first4"], LK(a)["first_word"])]))
+T("the words form finds the chart whatever it writes where the FEED has an apostrophe, a space, a period or a hyphen - and any longer form of the last name (a suffix, a second name)",
+  lambda: [(a, b) for fam, a in zip(FAMILIES, WRITTEN) for b in fam if not like(LK(a)["words"] + "%", lf(b, "ELSPETHA"))] == [] and like(LK(ZO)["words"] + "%", lf(ZO + " SR.", "X")) and like(LK(ZO)["words"] + "%", lf(ZO + "-" + QU, "X")))
+T("... but not a chart that has one where the feed has NONE (the lookups the step made until now): that takes the letters form",
+  lambda: not like(LK("O" + ZO)["words"] + "%", lf("O'" + ZO, "X")) and like(LK("O" + ZO)["letters"] + "%", lf("O'" + ZO, "X")) and not like(LK("DELA" + YA)["words"] + "%", lf("DE LA " + YA, "X")))
+T("the first name's forms: three letters, four letters of its first word (none when that word has fewer - every full-name candidate begins with them), the whole first word when it has more than four",
+  lambda: ([(LK(ZO, f)["first3"], LK(ZO, f)["first4"], LK(ZO, f)["first_word"]) for f in ("Xanthia", "ANN K", "MARY ANN", "A.J.", "Jo Ann", "X'ORWEN")]
+           == [("X%A%N", "X%A%N%T", "%".join("XANTHIA")), ("A%N%N", None, ""), ("M%A%R", "M%A%R%Y", ""), ("A%J", None, ""), ("J%O%A", None, ""), ("X%O%R", "X%O%R%W", "X%O%R%W%E%N")]))
+T("... every full-name candidate answers to the four letters (a middle name, a longer form, a hyphen written as a space)",
+  lambda: [(a, b) for a, b in (("XANTHIA", "XANTHIA K"), ("XANTHIA", "XANT"), ("XANT", "XANTHIANNE"), ("MARY", "MARYANN"), ("MARY-ANN", "MARY ANN"), ("X'ORWEN", "XORWEN"))
+           if FI.name_kind(ZO, a, ZO, b) != "full" or not like("%s%%, %s%%" % (LK(ZO, a)["letters"], LK(ZO, a)["first4"]), lf(ZO, b))] == [])
+_ENYE = ZO[:2] + "Ñ" + ZO[2:]      # an accented letter inside the invented name
+T("a letter that carries an accent is left out of the forms (a gap: AdvancedMD may hold it with or without) - the chart answers either way, and the two ways of writing the accent give the same forms",
+  lambda: (LK(_ENYE)["letters"] == "%".join(ZO) and LK(_ENYE)["words"] == ZO[:2] + "%" + ZO[2:] and like(LK(_ENYE)["letters"] + "%", lf(_ENYE, "X")) and like(LK(_ENYE)["words"] + "%", lf(ZO[:2] + "N" + ZO[2:], "X"))
+           and LK(unicodedata.normalize("NFD", _ENYE)) == LK(_ENYE) and FI.name_kind(_ENYE, "X", ZO[:2] + "N" + ZO[2:], "X") == "full", LK(_ENYE)))
+T("a name that begins with something else than a plain letter is asked for with a % in front (never a search that begins in the middle of every other name)",
+  lambda: (LK("'T " + ZO)["letters"] == "%T%" + "%".join(ZO) and like(LK("'T " + ZO)["letters"] + "%", lf("'T " + ZO, "X")) and like(LK("'T " + ZO)["letters"] + "%", lf("T" + ZO, "X")) and LK("'T " + ZO)["words"] == "%T%" + ZO
+           and LK(ZO, "'Xan")["first3"] == "%X%A%N" and not LK(ZO)["letters"].startswith("%") and not LK(ZO)["words"].startswith("%"), LK("'T " + ZO)))
+T("a chart AdvancedMD lists for a lookup must itself answer to it - the letters of the pattern, in their order, among the letters of its name (case, accents and whatever stands between them aside): that is how the step tells an answer from a page of anything",
+  lambda: (all(FI.answers_to(p, n) for p, n in ((LK(ZO)["letters"] + "%", lf("o'" + ZO.lower() + " III", "Elspetha")), ("%s%%, %s%%" % (LK(ZO)["letters"], LK(ZO)["first3"]), lf(_ENYE.replace("Ñ", "") , "XAN-THIA")), (ZO + "%", lf(ZO + "-" + QU, "X")),
+                                                 (LK(ZO[:2] + "N" + ZO[2:])["letters"] + "%", lf(_ENYE, "X")), ("%", lf(QU, "X")), ("", "")))
+           and not any(FI.answers_to(p, n) for p, n in ((LK(ZO)["letters"] + "%", lf(QU, "ZEBEDIAH")), (LK(ZO)["letters"] + "%", lf(ZO[:-1], "XANTHIA")), ("%s%%, %s%%" % (LK(ZO)["letters"], LK(ZO)["first3"]), lf(ZO, "ELSPETHA")), (ZO + "%", "")))))
+def _sprinkle(rnd, word, p=0.2): return "".join(c + (rnd.choice(["'", " ", "-", ".", ". "]) if rnd.random() < p and i < len(word) - 1 else "") for i, c in enumerate(word))
+def _forms_hold(n):
+    """n pairs of a feed name and a chart name put together at random from the invented words - apostrophes, spaces, hyphens and periods sprinkled into both, a suffix on either,
+    upper and lower case: whatever the rule calls the same name, the forms must find (what is NOT found is never weighed - that is how a second chart gets made)."""
+    rnd = random.Random(2511); bad = []; kinds = collections.Counter()
+    cores = [ZO, QU, WE, TH, YA, "O" + ZO, "MC" + QU, "DELA" + YA, TH + YA, "NG", "LI"]; sufs = ["", "", "", " JR", " SR.", " III", " V"]; firsts = ["XANTHIA", "XANT", "XANTHIANNE", "XANDRA", "XAN", "AJ", "JOANN", "MARYANN", "MARY", "ELSPETHA"]
+    for i in range(n):
+        core = rnd.choice(cores); fl = _sprinkle(rnd, core) + rnd.choice(sufs); cl = _sprinkle(rnd, core) + rnd.choice(sufs); ff = _sprinkle(rnd, rnd.choice(firsts), 0.1); cfirst = _sprinkle(rnd, rnd.choice(firsts), 0.1) + rnd.choice(["", "", " K", " Q."])
+        if rnd.random() < 0.3: cl = cl.title(); cfirst = cfirst.lower()
+        kind = FI.name_kind(fl, ff, cl, cfirst); f = FI.lookup_forms(fl, ff); name = lf(cl, cfirst); kinds[kind] += 1
+        ok = kind == "" or like(f["letters"] + "%", name)                                                             # the same last name under any first name
+        if kind in ("name", "full"): ok = ok and like("%s%%, %s%%" % (f["letters"], f["first3"]), name)               # a name candidate
+        if kind == "full" and f["first4"] is not None: ok = ok and like("%s%%, %s%%" % (f["letters"], f["first4"]), name)      # a full-name candidate
+        if not ok: bad.append((fl, ff, cl, cfirst, kind, f))
+    return bad, kinds
+T("3,000 pairs of names put together at random: every chart the rule calls the same last name answers to the letters form, every name candidate to it with three letters of the first name, every full-name candidate with four",
+  lambda: (lambda bad, kinds: (bad == [] and kinds["surname"] > 100 and kinds["name"] > 100 and kinds["full"] > 100, (bad[:2], dict(kinds))))(*_forms_hold(3000)))
 
 # ---- the two charts of 11/17: both carry the corrected date, the feed is one digit off ------------------------------------------------
 BD = ymd(Y - 85, 5, 14); BD_OFF = ymd(Y - 85, 5, 24); BD_FAR = ymd(Y - 70, 9, 27); BD2 = ymd(Y - 79, 2, 8)
@@ -654,6 +777,52 @@ me = we.match()
 step("a message with an EMPTY Claimocity id: under a name and real date a Claimocity id also carries it goes with that patient - and the empty id is never written among the ids (the patient map must not learn it); alone it is nobody's: no chart, none made",
      lambda: (we.clean() and ok_field(me.get(K(ZO, A_FIRST, BD), {}), resolved="pat101", rule=2, feed_ids=[FID], decided_for=[FID]) and ok_field(me.get(K(WE, C_FIRST, BD), {}), rule=0, status="AMBIGUOUS", feed_ids=[], for_william=True)
               and "resolved" not in me[K(WE, C_FIRST, BD)] and we.amd.added == [] and not any("" in (v.get("feed_ids") or []) for v in me.values()), (we.err, me)))
+# ---- one name with NO birth date under two Claimocity ids in one batch (11/25/2026, review of the identity rule) --------------------------
+# Until then such a key was decided for nobody before anything was weighed: no lookup, no chart, neither visit entered - although the rule
+# gives each of the two ids, on its own, the same chart (and did, when the same two messages came in two batches).
+def _steps(msgs, charts, **opts):
+    w = World(list(msgs), list(charts))
+    for k, v in opts.items(): setattr(w.amd, k, v)
+    return w.ingest()
+def _william(w): return [l for o_ in w.out.values() for l in o_.splitlines() if l.startswith("FOR WILLIAM: ")]
+def brief(e): return {k: v for k, v in (e or {}).items() if k not in ("lookup", "sharers")}
+SIX = [chart(n, QU, B_FIRST, BD2, charges=[(ymd(Y - 1, n - 110, 3), 0)] * (117 - n)) for n in range(111, 117)]      # the six same-name charts of 11/8: one date, pat116 the live one
+x1 = _steps([msg(FID, QU, B_FIRST, P8), msg(FID2, QU, B_FIRST, P8)], SIX); ex1 = x1.match().get(K(QU, B_FIRST, P8), {})
+step("the 11/8 patient under TWO Claimocity ids in one batch (the placeholder under both, six same-name charts with one date): each id is weighed on its own, the rule gives both the live chart, and their one name-and-date key carries it - "
+     "both visits are entered, both ids stand on the key (the patient map learns them), no chart is made",
+     lambda: (x1.clean() and ok_field(ex1, resolved="pat116", rule=7, status="AMBIGUOUS", flags=["no birth date from Claimocity"], feed_ids=[FID, FID2], decided_for=[FID, FID2], pids=["pat%d" % n for n in range(111, 117)], feed_dob="none", for_william=False)
+              and ex1.get("why") == FI.WHY[7] and x1.amd.added == [] and "claimocity_newcharts.py" not in x1.out and len(x1.amd.asked) >= 2 and _william(x1) == [], (x1.err, brief(ex1), _william(x1), x1.amd.asked)))
+def _again(w):      # the resolve step run a second time over the file it has just written
+    before = w.match(); said, _e = w.run("claimocity_resolve.py", READS)
+    return (w.clean() and w.match() == before and "NEW CHART" not in said and "FOR WILLIAM" not in said and "RESOLVE 2 Claimocity patient(s): rule 7 x2;" in said, (w.err, said, {k[-8:]: brief(v) for k, v in w.match().items()}))
+step("... and the resolve step run a second time over that file writes - and says - the same again (the two ids on the key are still two patients, each decided on its own; never one patient with no chart to weigh, for whom a new chart would be called)", lambda: _again(x1))
+x2 = _steps([msg(FID, ZO, A_FIRST, BD), msg(FID, ZO, A_FIRST, P8), msg(FID2, ZO, A_FIRST, P8)], [chart(101, ZO, A_FIRST, BD)]); m2x = x2.match()
+step("... one of the two ids also comes with its real date: it is decided ONCE, with that date (rule 2) - and its message under the placeholder is entered too, because the rule gives the other id, on its own, the same chart (rule 7); "
+     "the key they share says the weaker of the two answers",
+     lambda: (x2.clean() and ok_field(m2x.get(K(ZO, A_FIRST, BD), {}), resolved="pat101", rule=2, status="FOUND", decided_for=[FID], feed_ids=[FID], for_william=False)
+              and ok_field(m2x.get(K(ZO, A_FIRST, P8), {}), resolved="pat101", rule=7, status="FOUND", flags=["no birth date from Claimocity"], decided_for=[FID, FID2], feed_ids=[FID, FID2], for_william=False)
+              and x2.amd.added == [] and _william(x2) == [], (x2.err, {k[-8:]: brief(v) for k, v in m2x.items()}, _william(x2))))
+x3 = _steps([msg(FID, ZO, A_FIRST, BD), msg(FID, ZO, A_FIRST, P8), msg(FID2, ZO, A_FIRST, P8)], [chart(101, ZO, A_FIRST, BD), chart(102, ZO, A_FIRST, BD_FAR)]); m3x = x3.match(); e3x = m3x.get(K(ZO, A_FIRST, P8), {})
+step("... but when the rule does NOT give them the same chart (the second id, with no date, stands before two same-name charts with two dates - on its own it would get a new chart): the key they share gets NO chart and none is made for it - "
+     "never one chart for two ids nobody knows to be one person; the first id's own key keeps its chart; William gets ONE line with both ids and what each would get on its own",
+     lambda: (x3.clean() and ok_field(m3x.get(K(ZO, A_FIRST, BD), {}), resolved="pat101", rule=2, status="FOUND", decided_for=[FID])
+              and ok_field(e3x, rule=0, status="AMBIGUOUS", decided_for=[], feed_ids=[FID, FID2], for_william=True, candidates=["pat101", "pat102"], why=FI.WHY_SHARED, flags=[]) and "resolved" not in e3x
+              and x3.amd.added == [] and "claimocity_newcharts.py" not in x3.out and len(_william(x3)) == 1 and all(t_ in _william(x3)[0] for t_ in (FID, FID2, "pat101", "a new chart")), (x3.err, {k[-8:]: brief(v) for k, v in m3x.items()}, _william(x3))))
+x4 = _steps([msg(FID, WE, C_FIRST, P8), msg(FID2, WE, C_FIRST, P8)], []); e4x = x4.match().get(K(WE, C_FIRST, P8), {})
+step("... nor when both would get a NEW chart (no chart of that name at all): nobody knows the two ids to be one person - no chart is made for either, for William",
+     lambda: (x4.clean() and ok_field(e4x, rule=0, status="AMBIGUOUS", decided_for=[], feed_ids=[FID, FID2], for_william=True, why=FI.WHY_SHARED) and "resolved" not in e4x and x4.amd.added == [] and "claimocity_newcharts.py" not in x4.out
+              and len(_william(x4)) == 1 and FID in _william(x4)[0] and FID2 in _william(x4)[0], (x4.err, brief(e4x), _william(x4))))
+x5 = _steps([msg(FID, QU, B_FIRST, P8, ssn=S1), msg(FID2, QU, B_FIRST, P8, ssn=dash(S2))], [chart(111, QU, B_FIRST, BD2)]); e5x = x5.match().get(K(QU, B_FIRST, P8), {})
+step("... and never when the feed itself carries two different Social Security numbers for the two ids: two people for certain - the key gets no chart although each of them alone would be given the one same-name chart",
+     lambda: (x5.clean() and ok_field(e5x, rule=0, status="AMBIGUOUS", decided_for=[], feed_ids=[FID, FID2], for_william=True) and "resolved" not in e5x and x5.amd.added == [] and len(_william(x5)) == 1, (x5.err, brief(e5x), _william(x5))))
+x6 = _steps([msg(FID, QU, B_FIRST, P8), msg(FID2, QU, B_FIRST, P8)], [chart(111, QU, B_FIRST, "")]); e6x = x6.match().get(K(QU, B_FIRST, P8), {})
+step("... a chart the rule gives them both by rule 8 (no birth date on either side) is the FYI of rule 8, said ONCE for the key",
+     lambda: (x6.clean() and ok_field(e6x, resolved="pat111", rule=8, status="FOUND", decided_for=[FID, FID2], for_william=True, flags=["no birth date on either side"]) and x6.amd.added == []
+              and _william(x6) == ["FOR WILLIAM: pat111 %s (FYI)" % FI.WHY[8]], (x6.err, brief(e6x), _william(x6))))
+x7 = _steps([msg(FID, QU, B_FIRST, P8), msg(FID, QU, B_FIRST, ""), msg(FID2, QU, B_FIRST, "")], [chart(111, QU, B_FIRST, "")]); m7x = x7.match()
+step("... and not said twice when one of the two has said it already under a key of its own (the first id came under the placeholder too): two keys, one chart, ONE line",
+     lambda: (x7.clean() and ok_field(m7x.get(K(QU, B_FIRST, P8), {}), resolved="pat111", rule=8, decided_for=[FID]) and ok_field(m7x.get(K(QU, B_FIRST, ""), {}), resolved="pat111", rule=8, decided_for=[FID, FID2]) and x7.amd.added == []
+              and _william(x7) == ["FOR WILLIAM: pat111 %s (FYI)" % FI.WHY[8]], (x7.err, {k.rpartition("|")[2] or "none": brief(v) for k, v in m7x.items()}, _william(x7))))
 # ---- evidence by number: the numbers are read, weighed and never written -------------------------------------------------------------
 ws = World([msg(FID, ZO, A_FIRST, BD, ssn=dash(S1), in1=[("Medicare Part B", M2)])], [chart(101, ZO, A_FIRST, BD_FAR, ssn=S1, row_ssn="***-**-" + S1[5:], charges=[(ymd(Y - 1, 3, 3), 0)]), chart(102, ZO, A_FIRST, BD2, members=[M2], charges=[(ymd(Y, 1, 3), 0)])]).ingest()
 es = ws.match().get(K(ZO, A_FIRST, BD), {})
@@ -692,6 +861,90 @@ step("the name lookups find the chart whatever the spelling of the last name: an
               (wl.err, {k.split("|")[0]: v.get("resolved") for k, v in ml.items()})))
 wq = World([msg(FID, AP, A_FIRST, BD)], [chart(101, "O'" + ZO, A_FIRST, BD)]).ingest()
 step("... and a name AdvancedMD answers with its apostrophe written as an XML entity is still the same name", lambda: (wq.clean() and wq.match().get(K(AP, A_FIRST, BD), {}).get("resolved") == "pat101", (wq.err, wq.match())))
+# ---- every spelling of the last name: a chart with an apostrophe, a space, a period or a hyphen the FEED does not have (11/25/2026, review of the identity rule) ----
+PLAIN, APOS = "O" + ZO, "O'" + ZO
+sa = _steps([msg(FID, PLAIN, A_FIRST, P8)], [chart(101, PLAIN, A_FIRST, BD), chart(102, APOS, A_FIRST, BD_FAR)]); ea = sa.match().get(K(PLAIN, A_FIRST, P8), {})
+step("a namesake whose chart writes the last name with an apostrophe the feed does not have: BOTH charts are weighed - two dates, so nobody is matched by the name alone: a new chart beside the two, for William "
+     "(until then only the chart spelled like the feed was listed, and rule 7 took it without a word)",
+     lambda: (sa.clean() and ok_field(ea, rule=9, candidates=["pat101", "pat102"], for_william=True, flags=["same-name charts not used", "no birth date from Claimocity"], resolved="pat9001", cut="", every_spelling=True) and len(sa.amd.added) == 1
+              and any("beside 2 same-name chart(s) (pat101, pat102)" in l for l in _william(sa)), (sa.err, brief(ea), _william(sa), sa.amd.asked)))
+sb = _steps([msg(FID, PLAIN, A_FIRST, BD_OFF)], [chart(101, PLAIN, A_FIRST, BD), chart(102, APOS, A_FIRST, BD_OFF)]); eb = sb.match().get(K(PLAIN, A_FIRST, BD_OFF), {})
+step("... and when the chart with the apostrophe carries exactly the feed's date while the chart spelled like the feed is one digit off: the same date decides (rule 2) - no slip is read into the other chart (until then: rule 5, the other chart)",
+     lambda: (sb.clean() and ok_field(eb, resolved="pat102", rule=2, status="FOUND", flags=[], candidates=["pat101", "pat102"], for_william=False) and sb.amd.added == [], (sb.err, brief(eb), sb.amd.asked)))
+for _label, _fl, _cl in (("an apostrophe", PLAIN, APOS), ("MC as a word of its own", "MC" + QU, "MC " + QU), ("DE as a word of its own", "DE" + YA, "DE " + YA), ("VAN as a word of its own", "VAN" + QU, "VAN " + QU),
+                         ("ST without the period the feed writes", "ST. " + WE, "ST " + WE), ("a hyphen between two names the feed writes as one", TH + YA, TH + "-" + YA), ("DE LA where the feed writes DELA", "DELA " + YA, "DE LA " + YA)):
+    step("the patient's ONLY chart writes the last name another way than the feed (%s): it is found - by the Claimocity id it carries (rule 1), and without the id by the same date (rule 2) - and no second chart is made" % _label,
+         lambda _fl=_fl, _cl=_cl: (lambda a, b: (a.clean() and b.clean() and ok_field(a.match().get(K(_fl, A_FIRST, BD), {}), resolved="pat101", rule=1, flags=[], for_william=False) and ok_field(b.match().get(K(_fl, A_FIRST, BD), {}), resolved="pat101", rule=2, flags=[], for_william=False)
+                                                 and a.amd.added == [] and b.amd.added == [], (a.err, b.err, brief(a.match().get(K(_fl, A_FIRST, BD))), brief(b.match().get(K(_fl, A_FIRST, BD))), b.amd.asked)))(
+             _steps([msg(FID, _fl, A_FIRST, BD)], [chart(101, _cl, A_FIRST, BD_FAR, mrn=FID.upper())]), _steps([msg(FID, _fl, A_FIRST, BD)], [chart(101, _cl, A_FIRST, BD)])))
+sp1 = _steps([msg(FID, PLAIN, A_FIRST, BD_OFF)], [chart(190, APOS, A_FIRST, BD)] + [chart(200 + n, "O " + ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)]); es1 = sp1.match().get(K(PLAIN, A_FIRST, BD_OFF), {})
+step("more charts of that last name - in all its spellings - than AdvancedMD lists (50), the patient's own chart under another spelling and not among those listed: the every-spelling lookup is asked again WITH the first name, and finds it",
+     lambda: (sp1.clean() and ok_field(es1, resolved="pat190", rule=5, cut="", every_spelling=True, for_william=False) and sp1.amd.added == [] and len([n for n in sp1.amd.asked if spelt(n)]) == 2, (sp1.err, brief(es1), sp1.amd.asked)))
+sp2 = _steps([msg(FID, PLAIN, A_FIRST, BD_OFF)], [chart(190, PLAIN, A_FIRST, BD)] + [chart(200 + n, APOS, A_FIRST + " A%02d" % n, BD_FAR) for n in range(1, 56)]); es2 = sp2.match().get(K(PLAIN, A_FIRST, BD_OFF), {})
+step("... more FULL-name charts under ANOTHER spelling than AdvancedMD lists: the list the feed's own spelling brings looks whole (one chart), but it is not - nobody can say 'all of them carry one date': no chart by the slip alone, a new chart, flagged, for William",
+     lambda: (sp2.clean() and ok_field(es2, rule=9, cut="full", for_william=True, resolved="pat9001") and es2.get("flags") == ["same-name charts not used", FI.FLAG_CUT] and len(sp2.amd.added) == 1, (sp2.err, brief(es2), sp2.amd.asked)))
+sp3 = _steps([msg(FID, PLAIN, A_FIRST, BD)], [chart(190, APOS, D_FIRST, BD)] + [chart(200 + n, PLAIN, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)]); es3 = sp3.match().get(K(PLAIN, A_FIRST, BD), {})
+step("... and a chart of rule 3 (another first name, exactly the date) under another spelling: the full page of the every-spelling lookup is still read - the chart on it is weighed (the list stays marked as cut for other first names)",
+     lambda: (sp3.clean() and ok_field(es3, resolved="pat190", rule=3, flags=["first name differs"], cut="first", for_william=True) and sp3.amd.added == [], (sp3.err, brief(es3), sp3.amd.asked)))
+# ---- one person under two NEW Claimocity ids in one batch (11/25/2026, review of the identity rule) ---------------------------------------------
+# Until then each of the two got a new chart (the second birth date a digit off, or none) - where the same two messages in two batches got ONE: the
+# second run found the first one's new chart and the rule took it. Now the chart is made for one of them (the one with a real birth date first) and
+# the other waits for the next run, which weighs it against that chart: no second chart, no line for William, its file read again.
+NW = lambda *ps: FI.new_chart_waits([{"names": list(n), "real": r} for n, r in ps])
+T("new_chart_waits: two new patients whose names are name candidates of each other - the second waits; the one with a real birth date is made first, whatever the order; another last name, or only the last name in common, waits for nobody",
+  lambda: NW(([(ZO, A_FIRST)], True), ([(ZO, A_FIRST)], True)) == [1] and NW(([(ZO, A_FIRST)], False), ([(ZO, A_FIRST)], True)) == [0] and NW(([(ZO, A_FIRST)], True), ([(QU, A_FIRST)], True)) == []
+  and NW(([(ZO, A_FIRST)], True), ([(ZO, B_FIRST)], True)) == [] and NW(([(ZO, A_FIRST)], True), ([(ZO, A_FIRST[:4])], False), ([(ZO + " JR", A_FIRST)], True)) == [1, 2] and NW() == [] and NW(([(ZO, A_FIRST)], True)) == [])
+T("... a patient that waits is weighed against nobody else that waits: three of one name - one chart is made, two wait; two names of one patient count each", lambda: NW(([(ZO, A_FIRST)], False), ([(ZO, A_FIRST)], False), ([(ZO, A_FIRST)], False)) == [1, 2]
+  and NW(([(QU, B_FIRST), (ZO, A_FIRST)], True), ([(ZO, A_FIRST)], True)) == [1])
+T("the answer of a patient that waits: no chart, none made, rule 0 in the fixed words - and NOT for William (the next run decides it; no board card for a wait)",
+  lambda: (lambda a: (a["chart"], a["rule"], a["why"], a["new_chart"], a["for_william"], a["candidates"], a["feed_dob"], FI.problems(a), _w(a)) == (None, 0, FI.WHY_SAME_RUN, False, False, ["pat7"], "real", [], []))(
+      FI.waits(dict(D(F(ZO, A_FIRST, BD), [C(7, ZO, A_FIRST, BD_FAR)])))))
+def _made(w): return [(x.get("name"), x.get("dob"), x.get("additionalmrn")) for x in w.amd.added]
+nw1 = _steps([msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, A_FIRST, BD_OFF)], []); m_nw1 = nw1.match(); _a1, _b1 = m_nw1.get(K(ZO, A_FIRST, BD), {}), m_nw1.get(K(ZO, A_FIRST, BD_OFF), {})
+_first1, _wait1 = (_a1, _b1) if _a1.get("rule") == 9 else (_b1, _a1)
+step("one person under two NEW Claimocity ids in one batch, the second birth date one digit off: ONE new chart is made - the other id waits (no chart, none made, not for William, said in a plain line) and its file is read again by the next run",
+     lambda: (nw1.clean() and len(nw1.amd.added) == 1 and ok_field(_first1, rule=9, status="MISSING", resolved="pat9001") and ok_field(_wait1, rule=0, status="AMBIGUOUS", why=FI.WHY_SAME_RUN, for_william=False, pids=[])
+              and "resolved" not in _wait1 and len(_wait1.get("decided_for") or []) == 1 and not any(_wait1["decided_for"][0] in l for l in _william(nw1))
+              and any(_wait1["decided_for"][0] in l and "waits" in l for l in nw1.out["claimocity_resolve.py"].splitlines()), (nw1.err, brief(_a1), brief(_b1), _made(nw1), _william(nw1), nw1.out.get("claimocity_resolve.py", "")[-600:])))
+def _next_run(first, waiting):      # the next run: only the message that waited is new, and the chart made for the other id stands in AdvancedMD (its Claimocity id on it)
+    fd = first.get("decided_for", [""])[0]; wd_ = waiting.get("decided_for", [""])[0]; dob_of = {FID: BD, FID2: BD_OFF}
+    return _steps([msg(wd_, ZO, A_FIRST, dob_of.get(wd_, ""))], [chart(9001, ZO, A_FIRST, dob_of.get(fd, ""), mrn=fd.upper())]), K(ZO, A_FIRST, dob_of.get(wd_, ""))
+nw1b, _k1b = _next_run(_first1, _wait1); _e1b = nw1b.match().get(_k1b, {})
+step("... and the NEXT run weighs the id that waited against that new chart: the rule takes it by the slip in the date (rule 5) - one chart for the one person, as when the two messages come in two batches",
+     lambda: (nw1b.clean() and ok_field(_e1b, resolved="pat9001", rule=5, status="FOUND") and _e1b.get("flags") == [FI.FLAG_DATE + FI.SLIP_DIGIT] and nw1b.amd.added == [], (nw1b.err, brief(_e1b))))
+nw2 = _steps([msg(FID, ZO, A_FIRST, P8), msg(FID2, ZO, A_FIRST, BD)], []); m_nw2 = nw2.match()
+step("... one of the two ids comes with NO birth date: the chart is made for the id WITH the real date (and written with it) - the other waits, whatever the order of the two in the batch",
+     lambda: (nw2.clean() and [(d_, m_) for _n, d_, m_ in _made(nw2)] == [(mdy(BD), FID2.upper())] and ok_field(m_nw2.get(K(ZO, A_FIRST, BD), {}), rule=9, resolved="pat9001")
+              and ok_field(m_nw2.get(K(ZO, A_FIRST, P8), {}), rule=0, why=FI.WHY_SAME_RUN, for_william=False, status="AMBIGUOUS") and "resolved" not in m_nw2.get(K(ZO, A_FIRST, P8), {}), (nw2.err, _made(nw2), {k[-8:]: brief(v) for k, v in m_nw2.items()})))
+nw3 = _steps([msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, B_FIRST, BD2), msg(FID3, QU, A_FIRST, BD)], []); m_nw3 = nw3.match()
+step("... two NEW patients who share only the last name, and one of another last name: nobody waits - three charts, as before",
+     lambda: (nw3.clean() and len(nw3.amd.added) == 3 and all(ok_field(v, rule=9, status="MISSING") and v.get("resolved") for v in m_nw3.values()) and len(m_nw3) == 3, (nw3.err, _made(nw3), {k: brief(v) for k, v in m_nw3.items()})))
+sp4 = _steps([msg(FID, ZO, A_FIRST, BD_OFF), msg(FID, ZO, "YOLANDRA", BD_OFF)], [chart(190, ZO, A_FIRST, BD)] + [chart(200 + n, ZO, A_FIRST + " A%02d" % n, BD_FAR) for n in range(1, 56)]); ms4 = sp4.match()
+step("one Claimocity id under two first names in one batch, the list of same-name charts cut short for ONE of them: the worst of the two counts for the patient - no chart by the slip alone; one new chart, flagged, for William",
+     lambda: (sp4.clean() and len(ms4) == 2 and all(ok_field(v, rule=9, cut="full", for_william=True, resolved="pat9001") and v.get("flags") == ["same-name charts not used", FI.FLAG_CUT] for v in ms4.values()) and len(sp4.amd.added) == 1,
+              (sp4.err, {k.split("|")[0][-8:]: brief(v) for k, v in ms4.items()})))
+def _differential(n, seed, spellings=None, **opts):
+    """n feed patients put together at random - the last name in one of its spellings, up to five charts of that name in others (now and then a chart of another name) - go through the match and
+    resolve steps, and each must come out as the rule itself answers when it is given EVERY chart of the stand-in. A difference means a chart was not weighed that the rule calls the same name."""
+    rnd = random.Random(seed); bad = []; rules = collections.Counter(); t8 = datetime.date.today().strftime("%Y%m%d")
+    firsts = [A_FIRST, A_FIRST + " K", "XANDRA", "XAN", A_FIRST + "NNE", D_FIRST, B_FIRST[:3], B_FIRST]; dates = [BD, BD_OFF, ymd(Y - 85, 4, 15), BD_FAR, P8, "", BD2]; ssns = ["", "", "", S1, S2]; mems = [[], [], [], [M1], [M2]]
+    for i in range(n):
+        f = rnd.randrange(len(FAMILIES)); fam = FAMILIES[f]; fl = spellings[f] if spellings else rnd.choice(fam); ff = rnd.choice(firsts); fd = rnd.choice(dates); fs = rnd.choice(ssns); fm = rnd.choice(mems)
+        charts = [chart(nn, rnd.choice(rnd.choice(FAMILIES) if rnd.random() < 0.1 else fam), rnd.choice(firsts), rnd.choice(dates), ssn=rnd.choice(ssns), members=rnd.choice(mems), mrn=rnd.choice(["", "", "", FID.upper()]),
+                        charges=[(ymd(Y - 1, rnd.randint(1, 12), rnd.randint(1, 28)), 0)] * rnd.randint(0, 3)) for nn in rnd.sample(range(101, 140), rnd.randint(0, 5))]
+        w = World([msg(FID, fl, ff, fd, ssn=fs, in1=[("Humana Gold", x) for x in fm])], charts)
+        for k, v in opts.items(): setattr(w.amd, k, v)
+        w.run("claimocity_match.py", READS, argv=("feed_unknown_%s.json" % STAMP,))
+        if not w.err["claimocity_match.py"]: w.run("claimocity_resolve.py", READS)
+        e = w.match().get(K(fl, ff, fd), {})
+        all_charts = [{"id": c["id"], "name": lf(c["last"], c["first"]), "dob": c["dob"], "mrn": c["mrn"], "ssn": c["ssn"], "members": c["members"], "last_dos": max([d for d, v in c["charges"] if not v] or [""]), "charges": len([d for d, v in c["charges"] if not v])} for c in charts]
+        want = FI.decide({"id": FID, "name": cf(fl, ff), "dob": fd, "ssn": fs, "members": fm}, all_charts, t8); rules[want["rule"]] += 1
+        if not w.clean() or [e.get(x) for x in ("rule", "resolved", "flags", "candidates", "for_william")] != [want["rule"], want["chart"], want["flags"], want["candidates"], want["for_william"]]:
+            bad.append({"steps": [e.get(x) for x in ("rule", "resolved", "flags", "candidates", "for_william", "cut")], "the rule given every chart": [want[x] for x in ("rule", "chart", "flags", "candidates", "for_william")], "errors": {k: v for k, v in w.err.items() if v}, "asked": len(w.amd.asked)})
+    return bad, rules
+step("300 feed patients put together at random, the last name spelled one way in the feed and other ways on the charts: the match and resolve steps answer for every one of them what the rule answers when it is given EVERY chart of the stand-in - "
+     "no chart the rule calls the same name goes unweighed (until then 60 of these 300 came out otherwise: a chart missed, a namesake taken, a second chart made)",
+     lambda: (lambda bad, rules: (bad == [] and len(rules) >= 8, (len(bad), bad[:2], dict(rules))))(*_differential(300, 1125)))
 wk = World([msg(FID, ZO, A_FIRST, BD)], [chart(100 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)] + [chart(190, ZO, A_FIRST, BD)]).ingest()
 step("a last name with more charts than AdvancedMD answers at once (50): the narrow lookup still finds the patient's own chart", lambda: (wk.clean() and wk.match().get(K(ZO, A_FIRST, BD), {}).get("resolved") == "pat190", (wk.err, wk.match().get(K(ZO, A_FIRST, BD)))))
 wk2 = World([msg(FID, ZO, A_FIRST, BD)], [chart(100 + n, ZO, "XANA%02dQ" % n, BD_FAR) for n in range(1, 56)] + [chart(190, ZO, A_FIRST, BD)]).ingest()
@@ -713,13 +966,104 @@ wk7 = World([msg(FID, ZO, A_FIRST, "")], [chart(101, ZO, A_FIRST, BD), chart(102
 e7 = wk7.match().get(K(ZO, A_FIRST, ""), {})
 step("a namesake whose chart carries a suffix (a father and a son), under a last name with more charts than AdvancedMD lists: the lookup by the BEGINNING of the last name brings both - two dates, so nobody is matched by the name alone (without it only one of the two would be seen, and taken)",
      lambda: (wk7.clean() and ok_field(e7, rule=9, candidates=["pat101", "pat102"], for_william=True, flags=["same-name charts not used", "no birth date from Claimocity"], resolved="pat9001") and len(wk7.amd.added) == 1 and wk7.amd.added[0]["dob"] == P_MDY, (wk7.err, {k: v for k, v in e7.items() if k != "lookup"})))
-wb = World([msg(FID, ZO, A_FIRST, BD_OFF), msg(FID2, QU, B_FIRST, BD2), msg(FID3, WE, C_FIRST, BD)], [chart(101, ZO, A_FIRST, BD), chart(111, QU, B_FIRST, BD2)]); wb.amd.no_begin = True; wb.ingest()
-mb = wb.match()
-step("an AdvancedMD that does not answer the 'begins with' form of the last name does not stop the feed: the step says so ONCE, asks it no more, and matches nobody by the name alone - the same date still decides, a slip does not, every new chart is flagged for William",
-     lambda: (wb.clean() and ok_field(mb.get(K(QU, B_FIRST, BD2), {}), resolved="pat111", rule=2, cut="full") and ok_field(mb.get(K(ZO, A_FIRST, BD_OFF), {}), rule=9, cut="full", for_william=True, flags=["same-name charts not used", FI.FLAG_CUT])
-              and ok_field(mb.get(K(WE, C_FIRST, BD), {}), rule=9, for_william=True, flags=[FI.FLAG_CUT]) and len(wb.amd.added) == 2
-              and len([l for l in wb.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: AdvancedMD did not answer the lookup by the BEGINNING of the last name")]) == 1 and len([n for n in wb.amd.asked if "%," in n]) == 2,
-              (wb.err, {k.split("|")[0][:3]: {x: y for x, y in v.items() if x != "lookup"} for k, v in mb.items()}, wb.amd.asked)))
+# ---- a lookup form AdvancedMD does not answer (11/25/2026, review of the identity rule): never a second chart for it -------------------------
+# Until then ONE 'begins with' lookup that went unanswered twice switched rules 5 to 8 off for every patient after it in the run: the 11/17
+# and the 11/8 patient each got a second chart again. Now a form the step can do without never costs a chart: the step goes on with the
+# lookups it has always made, and the list of same-name charts counts as cut short only when a page of it really came back full.
+B3 = [msg(FID, WE, C_FIRST, BD), msg(FID2, ZO, A_FIRST, BD_OFF), msg(FID3, QU, B_FIRST, P8)]      # an ordinary new patient, the 11/17 patient, the 11/8 patient
+C3 = [chart(101, ZO, A_FIRST, BD, charges=[(ymd(Y - 1, 10, 2), 0)] * 3), chart(102, ZO, A_FIRST, BD, charges=[(ymd(Y - 1, 12, 14), 0)])] + SIX
+def _b3_ok(w, without=""):      # without: which of the three was weighed WITHOUT the every-spelling lookup in a run in which AdvancedMD does answer it - N the new patient, S the slip (11/17), P the placeholder (11/8)
+    m = w.match(); c = lambda x: "spelling" if x in without else ""
+    return (ok_field(m.get(K(ZO, A_FIRST, BD_OFF), {}), resolved="pat102", rule=5, for_william=False, cut=c("S")) and ok_field(m.get(K(QU, B_FIRST, P8), {}), resolved="pat116", rule=7, for_william=False, cut=c("P"))
+            and ok_field(m.get(K(WE, C_FIRST, BD), {}), rule=9, flags=[FI.FLAG_CUT] if "N" in without else [], for_william="N" in without, resolved="pat9001", cut=c("N")) and [p["name"] for p in w.amd.added] == [lf(WE, C_FIRST)])
+def _b3_said(w): return (w.err, [(x["chart"], x["dob"] == P_MDY) for x in w.amd.added], {k.rpartition("|")[2] or "none": (v.get("rule"), v.get("resolved"), v.get("cut"), v.get("flags")) for k, v in w.match().items()})
+h0 = _steps(B3, C3); N_LOOKUPS = len(h0.amd.asked)
+step("three unknown patients in one batch - an ordinary new one, the 11/17 patient, the 11/8 patient: ONE new chart, the two others on their live charts; three name lookups for each (the two the steps have always made - "
+     "the name as the feed writes it, and its last name under any first name - and every spelling of the last name)",
+     lambda: (h0.clean() and _b3_ok(h0) and N_LOOKUPS == 9 and len([n for n in h0.amd.asked if spelt(n)]) == 3 and not any("%," in n for n in h0.amd.asked) and all(v.get("every_spelling") is True for v in h0.match().values()), (_b3_said(h0), h0.amd.asked)))
+def _hiccups():      # the same batch, lookup number p+1 of the run timing out twice and every later call answered - for every p
+    bad = []; stopped = 0
+    for p in range(N_LOOKUPS):
+        w = World(B3, C3); w.amd.bad["lookuppatient"] = ["ok"] * p + ["raise", "raise"]; w.ingest()
+        if w.err.get("claimocity_match.py"): stopped += 1; good = w.amd.added == [] and "claimocity_resolve.py" not in w.out and not w.amd.refused and not any(v["status"] == "MISSING" for v in w.match().values())
+        else: good = w.clean() and _b3_ok(w, {2: "N", 5: "S", 8: "P"}.get(p, ""))      # (the third lookup of each patient is the one the step can do without)
+        if not good: bad.append((p, _b3_said(w)))
+    return bad, stopped
+step("... the same batch with ONE lookup that times out twice, at every place of the run in turn: either the step STOPS with nothing decided and nothing made (a lookup it cannot do without - the next run reads the files again), "
+     "or everybody is decided as above - the 11/17 and the 11/8 patient never get a second chart for a lookup AdvancedMD did not answer, wherever in the run it falls; "
+     "and when it fell on the NEW patient, whose chart was then made without the every-spelling lookup AdvancedMD answers for the others, that new chart is flagged, for William",
+     lambda: (lambda bad, stopped: (bad == [] and stopped == 6 and N_LOOKUPS == 9, (bad[:2], stopped, N_LOOKUPS)))(*_hiccups()))
+step("... a lookup the step can do without waits ONE minute at most for its answer (asked twice); the two it cannot do without wait as long as every other AdvancedMD call",
+     lambda: (len(h0.amd.limits) == 9 and all(t == (60 if spelt(n) else 0) for n, t in h0.amd.limits), h0.amd.limits))
+def _twice_apart():      # four unknown patients; the every-spelling lookup times out twice for the first and for the third, and is answered for the second
+    w = World(B3 + [msg(FID4, TH, D_FIRST, BD2)], C3); w.amd.bad["lookuppatient"] = ["ok", "ok", "raise", "raise"] + ["ok"] * 5 + ["raise", "raise"]; w.ingest(); m = w.match()
+    return (w.clean() and [m.get(k, {}).get("every_spelling") for k in (K(WE, C_FIRST, BD), K(ZO, A_FIRST, BD_OFF), K(QU, B_FIRST, P8), K(TH, D_FIRST, BD2))] == [False, True, False, True] and len(w.amd.added) == 2
+            and not any("not asked again in this run" in l for l in w.out["claimocity_match.py"].splitlines())
+            and ok_field(m.get(K(WE, C_FIRST, BD), {}), rule=9, cut="spelling", flags=[FI.FLAG_CUT], for_william=True) and ok_field(m.get(K(QU, B_FIRST, P8), {}), resolved="pat116", rule=7, cut="spelling", for_william=False)
+            and ok_field(m.get(K(TH, D_FIRST, BD2), {}), rule=9, cut="", flags=[], for_william=False) and len([l for l in _william(w) if "was made although AdvancedMD's list of same-name charts may be incomplete" in l]) == 1,
+            (w.err, {k.rpartition("|")[2] or "none": (v.get("every_spelling"), v.get("cut"), v.get("flags")) for k, v in m.items()}, w.out.get("claimocity_match.py"), _william(w)))
+step("... the every-spelling lookup unanswered for one patient, answered for the next, unanswered for a third: that is not 'twice in a row' - it is asked again for the fourth (only two in a row end it for the run); "
+     "the NEW chart of the first, made without a lookup AdvancedMD does answer in this run, is flagged for William with the question - the new chart of the fourth, weighed in full, is not", _twice_apart)
+def _both_marks():      # no birth date, more charts of the last name than AdvancedMD lists (cut for other first names) AND the every-spelling lookup unanswered for this patient, answered for the next
+    w = World([msg(FID, ZO, A_FIRST, ""), msg(FID2, WE, C_FIRST, BD)], [chart(200 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)]); w.amd.bad["lookuppatient"] = ["ok", "ok", "raise", "raise"]; w.ingest(); e = w.match().get(K(ZO, A_FIRST, ""), {})
+    return (w.clean() and ok_field(e, rule=9, cut="spelling", every_spelling=False, for_william=True, flags=["no birth date from Claimocity", FI.FLAG_CUT]) and len(w.amd.added) == 2, (w.err, brief(e), w.amd.asked))
+step("... two reasons at once why the list may fall short - cut for other first names, and weighed without the every-spelling lookup: the heavier one counts (the new chart is flagged also when Claimocity sent no birth date)", _both_marks)
+def _sharer_marked():      # two ids under one name with no birth date; the every-spelling lookup unanswered for the first (twice), answered for the second
+    w = World([msg(FID, QU, B_FIRST, P8), msg(FID2, QU, B_FIRST, P8)], SIX); w.amd.bad["lookuppatient"] = ["ok", "ok", "raise", "raise"]; w.ingest(); e = w.match().get(K(QU, B_FIRST, P8), {})
+    return (w.clean() and ok_field(e, resolved="pat116", rule=7, decided_for=[FID, FID2]) and [(s["ids"], s["every_spelling"], s["cut"]) for s in e.get("sharers") or []] == [([FID], False, "spelling"), ([FID2], True, "")] and w.amd.added == [],
+            (w.err, brief(e), [(s["ids"], s["every_spelling"], s["cut"]) for s in e.get("sharers") or []]))
+step("... and what was gathered for a patient under a key it SHARES carries the same mark (the key still gets the chart the rule gives them both: no rule is switched off)", _sharer_marked)
+wb = _steps(B3, C3, no_spell=True, no_begin=True); mb = wb.match()
+step("an AdvancedMD that answers neither a % between the letters of the last name nor the 'begins with' form does not stop the feed and costs nobody a chart: the step says so, asks the first for two patients only (twice each), "
+     "the second not at all, and goes on with the lookups it has always made - the slip is still read, the placeholder still matched, the new patient gets a plain new chart",
+     lambda: (wb.clean() and _b3_ok(wb) and len([n for n in wb.amd.asked if spelt(n)]) == 4 and not any("%," in n for n in wb.amd.asked) and all(v.get("every_spelling") is False for v in mb.values())
+              and len([l for l in wb.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: AdvancedMD did not answer the lookup by every spelling of the last name")]) == 2
+              and len([l for l in wb.out["claimocity_match.py"].splitlines() if "not asked again in this run" in l]) == 1, (_b3_said(wb), wb.amd.asked, wb.out.get("claimocity_match.py"))))
+wi_ = _steps(B3 + [msg(FID4, "DE LA " + YA, E_FIRST, BD2), msg(FID5, TH + "-" + YA, D_FIRST, BD_OFF)], C3 + [chart(121, "DE LA " + YA, E_FIRST, BD2), chart(122, TH + " " + YA, D_FIRST, BD)], no_inner=True); mi_ = wi_.match()
+step("an AdvancedMD that takes a % at the END of a lookup only - the lookups the steps have made until now, and nothing else: the step does not stop, also not for a last name of several words (asked for with a % between its words first; "
+     "unanswered, then by its first word and as the feed writes it - the two searches the steps have always made); everybody is decided as before, a two-word last name and a hyphen the chart writes as a space included",
+     lambda: (wi_.clean() and _b3_ok(wi_) and ok_field(mi_.get(K("DE LA " + YA, E_FIRST, BD2), {}), resolved="pat121", rule=2, every_spelling=False) and ok_field(mi_.get(K(TH + "-" + YA, D_FIRST, BD_OFF), {}), resolved="pat122", rule=5, every_spelling=False)
+              and len(wi_.amd.added) == 1, (_b3_said(wi_), wi_.amd.asked, wi_.out.get("claimocity_match.py"))))
+BIG = [chart(190, ZO, A_FIRST, BD)] + [chart(200 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)]      # the patient's own chart (a slip from the feed's date) among 56 of one last name
+wf1 = _steps([msg(FID, ZO, A_FIRST, BD_OFF)], BIG, no_spell=True); ef1 = wf1.match().get(K(ZO, A_FIRST, BD_OFF), {})
+step("... under a last name with more charts than AdvancedMD lists (50) the 'begins with' form IS asked - only then: answered, every name candidate is in hand and the slip is read (rule 5); the list counts as cut only for other first names",
+     lambda: (wf1.clean() and ok_field(ef1, resolved="pat190", rule=5, cut="first", every_spelling=False, for_william=False) and wf1.amd.added == [] and len([n for n in wf1.amd.asked if "%," in n]) == 1, (wf1.err, brief(ef1), wf1.amd.asked)))
+wf2 = _steps([msg(FID, ZO, A_FIRST, BD_OFF)], BIG, no_spell=True, no_begin=True); ef2 = wf2.match().get(K(ZO, A_FIRST, BD_OFF), {})
+step("... and when that goes unanswered too, the list of same-name charts really may be cut short: nobody is matched by the name alone - a new chart, flagged, for William (the one case left in which a lookup AdvancedMD does not answer costs a chart: a full page AND no narrower lookup)",
+     lambda: (wf2.clean() and ok_field(ef2, rule=9, cut="full", for_william=True, flags=["same-name charts not used", FI.FLAG_CUT], resolved="pat9001") and len(wf2.amd.added) == 1, (wf2.err, brief(ef2), wf2.amd.asked)))
+wf3 = _steps([msg(FID, ZO, A_FIRST, "")], [chart(101, ZO, A_FIRST, BD), chart(102, ZO + " III", A_FIRST, BD2)] + [chart(200 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)], no_spell=True); ef3 = wf3.match().get(K(ZO, A_FIRST, ""), {})
+step("... the father and the son again (a suffix on one chart, more charts of the last name than AdvancedMD lists), without the every-spelling lookup: the 'begins with' form brings both - two dates, nobody matched by the name alone",
+     lambda: (wf3.clean() and ok_field(ef3, rule=9, candidates=["pat101", "pat102"], for_william=True, flags=["same-name charts not used", "no birth date from Claimocity"], every_spelling=False, cut="first") and len(wf3.amd.added) == 1, (wf3.err, brief(ef3), wf3.amd.asked)))
+wm2 = _steps([msg(FID, ZO, A_FIRST, BD_OFF), msg(FID2, WE, C_FIRST, BD)], [chart(101, ZO, A_FIRST, BD)], mute_spell=True); mm2 = wm2.match()
+step("an AdvancedMD that answers the every-spelling lookup with NO chart although the plain lookup has just listed one: that answer is not believed (the step says so) - the patient is weighed with the lookups the step has always made",
+     lambda: (wm2.clean() and ok_field(mm2.get(K(ZO, A_FIRST, BD_OFF), {}), resolved="pat101", rule=5, every_spelling=False, cut="spelling") and ok_field(mm2.get(K(WE, C_FIRST, BD), {}), rule=9, flags=[], every_spelling=True, cut="") and len(wm2.amd.added) == 1
+              and len([l for l in wm2.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: AdvancedMD's answer to the lookup by every spelling of the last name")]) == 1, (wm2.err, {k[-8:]: brief(v) for k, v in mm2.items()}, wm2.out.get("claimocity_match.py"))))
+wj = _steps(B3, C3 + [chart(300 + n, "AAB%02dKELT" % n, C_FIRST, BD_FAR) for n in range(1, 61)], junk_spell=True)
+step("an AdvancedMD that does not understand the every-spelling lookup and answers it with its first 50 charts, whatever was asked: a full page of charts that do not answer to the lookup is no answer - "
+     "it is not taken for 'the list is cut short' (which would switch the name-alone rules off for everybody); the step says so and goes on as without it",
+     lambda: (wj.clean() and _b3_ok(wj) and all(v.get("every_spelling") is False for v in wj.match().values()) and len([n for n in wj.amd.asked if spelt(n)]) == 2
+              and len([l for l in wj.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: AdvancedMD did not answer the lookup by every spelling of the last name")]) == 2, (_b3_said(wj), wj.amd.asked, wj.out.get("claimocity_match.py"))))
+wa = _steps([msg(FID, PLAIN, A_FIRST, BD)], [chart(101, APOS, A_FIRST, BD), chart(301, QU, B_FIRST, BD2), chart(302, WE, C_FIRST, BD_FAR)], also=["pat301", "pat302"]); ewa = wa.match().get(K(PLAIN, A_FIRST, BD), {})
+step("... but a SHORT answer is used as it comes, also when AdvancedMD lists charts in it for a reason of its own (two charts of other names beside the patient's): only a full page of other charts is no answer",
+     lambda: (wa.clean() and ok_field(ewa, resolved="pat101", rule=2, candidates=["pat101"], every_spelling=True) and wa.amd.added == [], (wa.err, brief(ewa), wa.amd.asked)))
+wm3 = _steps([msg(FID, ZO, A_FIRST, BD)], [chart(101, ZO + " III", A_FIRST, BD)], mute_spell=True); em3 = wm3.match().get(K(ZO, A_FIRST, BD), {})
+step("... also when only the lookup under any first name had listed it (a suffix on the chart: the name as the feed writes it does not list it): whatever the every-spelling lookup answers, the step never sees LESS than the two lookups it has always made",
+     lambda: (wm3.clean() and ok_field(em3, resolved="pat101", rule=2, every_spelling=False) and wm3.amd.added == [], (wm3.err, brief(em3), wm3.amd.asked)))
+step("120 more patients at random against an AdvancedMD that does not answer the every-spelling lookup, the feed writing every apostrophe, space, period and hyphen of the last name: the lookups the step has always made still bring every chart the rule calls the same name",
+     lambda: (lambda bad, rules: (bad == [], (len(bad), bad[:2])))(*_differential(120, 2611, spellings=WRITTEN, no_spell=True)))
+# ---- the lookup for ANY first name (rule 3) - 11/25/2026, review of the identity rule ------------------------------------------------------
+VQ = "VAN " + QU
+r3a = _steps([msg(FID, VQ, A_FIRST, BD)], [chart(190, VQ, D_FIRST, BD)] + [chart(200 + n, "VAN A%02dKELT" % n, C_FIRST, BD_FAR) for n in range(1, 56)]); e3a = r3a.match().get(K(VQ, A_FIRST, BD), {})
+step("rule 3 under a two-word last name, beside 55 charts of OTHER last names that begin with the same word: the lookup for any first name asks for THIS last name, not for its first word - the chart is found "
+     "(asked by the first word alone the page came back full without it, and a second chart was made without a word)",
+     lambda: (r3a.clean() and ok_field(e3a, resolved="pat190", rule=3, flags=["first name differs"], for_william=True, cut="") and r3a.amd.added == [], (r3a.err, brief(e3a), r3a.amd.asked)))
+r3c = _steps([msg(FID, VQ, A_FIRST, BD)], [chart(190, VQ, D_FIRST, BD)] + [chart(200 + n, "VAN A%02dKELT" % n, C_FIRST, BD_FAR) for n in range(1, 56)], no_inner=True); e3c = r3c.match().get(K(VQ, A_FIRST, BD), {})
+step("... the same against an AdvancedMD that takes a % at the END of a lookup only: the last name is asked for as the feed writes it too (the search the match step made until now), and the chart is found there",
+     lambda: (r3c.clean() and ok_field(e3c, resolved="pat190", rule=3, flags=["first name differs"], for_william=True, every_spelling=False) and r3c.amd.added == [], (r3c.err, brief(e3c), r3c.amd.asked)))
+r3b = _steps([msg(FID, ZO, A_FIRST, BD)], [chart(100 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)] + [chart(190, ZO, D_FIRST, BD)]); e3b = r3b.match().get(K(ZO, A_FIRST, BD), {})
+step("rule 3 under a last name with more charts than AdvancedMD lists (50), the patient's chart - another first name, exactly the date - not among those listed: the step cannot see it, but it KNOWS the list was cut: "
+     "the new chart is flagged, for William, with the question (until then: a plain new chart and not a word)",
+     lambda: (r3b.clean() and ok_field(e3b, rule=9, cut="first", flags=[FI.FLAG_CUT], for_william=True, resolved="pat9001") and len(r3b.amd.added) == 1 and any("may be incomplete" in l and "pat9001" in l for l in _william(r3b)), (r3b.err, brief(e3b), _william(r3b))))
 def _odd(charts, **opts):
     w = World([msg(FID, ZO, A_FIRST, BD)], list(charts))
     for k, v in opts.items(): setattr(w.amd, k, v)

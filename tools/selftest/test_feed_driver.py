@@ -260,6 +260,41 @@ check("4f every entry names the chart of each of its Claimocity ids - also the p
       lambda: by_id(os.path.join(TMP, "ident", "ws"), S2, KEY(0)) == {FID(0): "pat9000"} and by_id(os.path.join(TMP, "ident", "ws"), S2, KEY(3)) == {FID(3): "pat9301"} and by_id(os.path.join(TMP, "nochart", "ws"), S3, KEY(5)) == {},
       lambda: (match(os.path.join(TMP, "ident", "ws"), S2).get(KEY(0)), match(os.path.join(TMP, "nochart", "ws"), S3).get(KEY(5))))
 
+# two UNKNOWN Claimocity ids under one name that carries no date of birth - the review of the identity rule: the resolve step weighs each on its own and
+# writes ONE answer under the key they share - a chart (with both ids under decided_for) when the rule gives both the same one, else rule 0 with
+# decided_for [] and what was gathered for each under "sharers" (names and dates of charts: workspace only).
+S4s = "20261128T1250Z"; P1900 = "19" + "000101"; KSH = KEY(1, P1900); TWO0 = [msg(1, "20261128", dob=P1900), msg(1, "20261128", dob=P1900, fid=TWIN)]
+SHARERS = [{"ids": [FID(1)], "lookup": [{"pid": "pat9101", "name": NAME(7), "dob": DOB(7)}], "cut": "", "every_spelling": True}, {"ids": [TWIN], "lookup": [{"pid": "pat9101", "name": NAME(7), "dob": DOB(7)}], "cut": "", "every_spelling": True}]
+w, r, mreg = sandbox("sharers_same", ["20261128a.hl7"], ws_map={})
+o, calls, e = driver_run(w, r, ARGS(S4s), steps(w, S4s, TWO0, {KSH: dict(answer(7, "pat9101", ids=sorted([FID(1), TWIN]), flags=[FI.FLAG_NO_FEED_DOB], cands=["pat9101"], dob="none"), sharers=SHARERS)}))
+_row = next((p for p in (ident(w, S4s) or {}).get("patients") or []), {})
+check("4g two UNKNOWN Claimocity ids under one name with no birth date, the rule giving both the SAME chart: both ids are named with it, both visits go in, the map learns both, the file is registered - and nothing of what was gathered for each ('sharers') reaches the register",
+      lambda: e == "" and by_id(w, S4s, KSH) == {FID(1): "pat9101", TWIN: "pat9101"} and pm(w) == {FID(1): "pat9101", TWIN: "pat9101"} and "NOT REGISTERED" not in o and sorted(ingest(w).get("files") or {}) == ["20261128a.hl7"]
+      and sorted(_row.get("feed_ids") or []) == sorted([FID(1), TWIN]) and (_row.get("chart"), _row.get("rule")) == ("pat9101", 7) and "sharers" not in json.dumps(ident(w, S4s)) and not any(x in json.dumps(ident(w, S4s)) + o for x in secrets(1, 7)),
+      lambda: (e, o[-500:], match(w, S4s).get(KSH), ident(w, S4s)))
+w, r, mreg = sandbox("sharers_none", ["20261128a.hl7", "20261129a.hl7"], ws_map={FID(2): "pat9201"})
+_none = dict(answer(0, "", status="AMBIGUOUS", will=True, ids=sorted([FID(1), TWIN]), why=FI.WHY_SHARED, cands=["pat9101"], dob="none"), decided_for=[], sharers=SHARERS,
+             resolution="not decided: %s - no chart chosen, none made (each on its own: %s -> pat9101; %s -> a new chart)" % (FI.WHY_SHARED, FID(1), TWIN))
+o, calls, e = driver_run(w, r, ARGS(S4s), steps(w, S4s, TWO0 + [msg(2, "20261129")], {KSH: _none}))
+_l = next((l for l in o.splitlines() if l.startswith("NOT REGISTERED:")), ""); _row = next((p for p in (ident(w, S4s) or {}).get("patients") or []), {})
+check("4h ... the rule NOT giving both the same chart: the key carries no chart - neither id is named with one, neither visit is entered, the map learns neither, their file stays unregistered and the line names both ids; the register's row shows no chart, for William",
+      lambda: e == "" and by_id(w, S4s, KSH) == {} and pm(w) == {FID(2): "pat9201"} and sorted(ingest(w).get("files") or {}) == ["20261129a.hl7"] and "20261128a.hl7" in _l and FID(1) in _l and TWIN in _l
+      and "claimocity_newcharts.py" not in calls and sorted(_row.get("feed_ids") or []) == sorted([FID(1), TWIN]) and (_row.get("chart"), _row.get("rule"), _row.get("for_william"), _row.get("why")) == ("", 0, True, FI.WHY_SHARED)
+      and "sharers" not in json.dumps(ident(w, S4s)) and not any(x in json.dumps(ident(w, S4s)) + o for x in secrets(1, 7)), lambda: (e, _l, calls, match(w, S4s).get(KSH), ident(w, S4s)))
+w, r, mreg = sandbox("sharers_own", ["20261128a.hl7", "20261129a.hl7"], ws_map={})
+o, calls, e = driver_run(w, r, ARGS(S4s), steps(w, S4s, [msg(1, "20261128"), msg(1, "20261129", dob=P1900), msg(1, "20261129", dob=P1900, fid=TWIN)], {KEY(1): answer(2, "pat9101", ids=[FID(1)]), KSH: _none}))
+check("4i ... and an id that HAS a chart through a key of its own (it also came with its real date) keeps it there: that visit goes in and the map learns the id - while its message under the shared key with no chart is not entered, and only that file is read again",
+      lambda: e == "" and by_id(w, S4s, KEY(1)) == {FID(1): "pat9101"} and by_id(w, S4s, KSH) == {} and pm(w) == {FID(1): "pat9101"} and sorted(ingest(w).get("files") or {}) == ["20261128a.hl7"]
+      and "20261129a.hl7" in next((l for l in o.splitlines() if l.startswith("NOT REGISTERED:")), ""), lambda: (e, o[-600:], match(w, S4s)))
+w, r, mreg = sandbox("new_waits", ["20261128a.hl7", "20261129a.hl7"], ws_map={})
+o, calls, e = driver_run(w, r, ARGS(S4s), steps(w, S4s, [msg(3, "20261128"), msg(3, "20261129", dob=DOB(4), fid=TWIN)],
+                                                {KEY(3): answer(9, "", ids=[FID(3)], why=FI.WHY_NEW), KEY(3, DOB(4)): answer(0, "", status="AMBIGUOUS", ids=[TWIN], why=FI.WHY_SAME_RUN)}, newcharts={KEY(3): "pat9301"}))
+_wrow = irow(w, S4s, TWIN)
+check("4j a patient whose NEW chart waits for the next run (another Claimocity id of the same name got a new chart in this run - feed_identity.new_chart_waits): the first one's chart is made and its visit goes in; the one that waits gets no chart, its file is read again, "
+      "and the register's row says why in the rule's fixed words - not for William",
+      lambda: e == "" and by_id(w, S4s, KEY(3)) == {FID(3): "pat9301"} and by_id(w, S4s, KEY(3, DOB(4))) == {} and pm(w) == {FID(3): "pat9301"} and sorted(ingest(w).get("files") or {}) == ["20261128a.hl7"]
+      and (_wrow.get("chart"), _wrow.get("rule"), _wrow.get("why"), _wrow.get("for_william")) == ("", 0, FI.WHY_SAME_RUN, False) and "withheld" not in _wrow, lambda: (e, o[-500:], match(w, S4s), ident(w, S4s)))
+
 # ---- 5. what the driver prints -------------------------------------------------------------------------------------------------------------------
 S5 = "20261129T1240Z"; LONG = "POS RULE: CCM 32 x12, CCM 31 x0, visits 32 x104, visits 31 x18, not applied x0, unknown bldg x0, rehab 61 x11/21 x24 - END"
 w, r, mreg = sandbox("tail", ["20261129a.hl7"], ws_map={FID(1): "pat9101"})
@@ -272,7 +307,7 @@ check("5c every helper of the identity rule travels with the others: the shared 
 
 # ---- 7. the feed's digest says it (claimocity_report.py, run inside this process over invented registers) -----------------------------------------
 REPORT = os.path.join(HELPERS, "claimocity_report.py"); RSRC = open(REPORT).read()
-def report_run(label, stamp, created, identity=None, inspector=None, newcharts=None, unreadable=None):
+def report_run(label, stamp, created, identity=None, inspector=None, newcharts=None, unreadable=None, verify=None):
     """the report helper over ONE invented batch -> (its digest's lines, its error)"""
     d = os.path.join(TMP, "report_" + label); os.makedirs(os.path.join(d, "registers")); os.makedirs(os.path.join(d, "outbox"))
     json.dump({"created": created, "skipped": [], "failed": []}, open(os.path.join(d, "registers", "feed_import_%s.json" % stamp), "w"))
@@ -280,6 +315,7 @@ def report_run(label, stamp, created, identity=None, inspector=None, newcharts=N
     if inspector is not None: json.dump(inspector, open(os.path.join(d, "registers", "feed_inspector_%s.json" % stamp), "w"))
     if newcharts is not None: json.dump(newcharts, open(os.path.join(d, "registers", "feed_newcharts_%s.json" % stamp), "w"))
     if unreadable is not None: open(os.path.join(d, "registers", "feed_unreadable_%s.json" % stamp), "w").write(unreadable if isinstance(unreadable, str) else json.dumps(unreadable))
+    if verify is not None: json.dump(verify, open(os.path.join(d, "feed_verify_%s.json" % stamp), "w"))      # the insurance check's own file, in the workspace (the digest writes the register copy)
     shutil.copy2(os.path.join(HELPERS, "feed_identity.py"), os.path.join(d, "feed_identity.py"))
     old_cwd = os.getcwd(); old_env = dict(os.environ); old_path = list(sys.path); old_fi = sys.modules.pop("feed_identity", None); out = io.StringIO(); err = ""
     try:
@@ -345,6 +381,32 @@ check("7g ONE line says where the feed's birth date and the chart's differ - by 
       and "pat9101" not in _bd[0] and "TOP OF THE REPORT" not in _bd[0] and L8[L8.index(_bd[0]) - 1].startswith("## Birth dates"), lambda: (e8, _bd))
 L8b, e8b = report_run("dob_same", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"], dob_note="same"), vrow("pat9102", "vst7002", "11/29/2026", ["99308"])])
 check("7h no such line when every visit's feed date is its chart's (or the rows carry no note - an older import)", lambda: e8b == "" and not has(L8b, "Birth dates"), lambda: (e8b, has(L8b, "Birth dates")))
+L8c2, e8c2 = report_run("dob_unread", S7, ROWS8 + [vrow("pat9601", "vst7007", "11/29/2026", ["99309"], dob_note="chart not read")])
+_bd2 = [l for l in L8c2 if l.startswith("- Birth dates:")]
+check("7h2 a chart whose own answer could not be read is a group of its own on that line - never counted as a chart that has none (the review's finding)",
+      lambda: e8c2 == "" and len(_bd2) == 1 and "1 chart(s) could not be read (pat9601)" in _bd2[0] and "1 chart(s) carry no birth date themselves (pat9501)" in _bd2[0], lambda: (e8c2, _bd2))
+L8c3, e8c3 = report_run("dob_unread_only", S7, [vrow("pat9601", "vst7007", "11/29/2026", ["99309"], dob_note="chart not read")])
+check("7h3 ... and it is said when it is the only thing to say", lambda: e8c3 == "" and len(has(L8c3, "- Birth dates:", "1 chart(s) could not be read (pat9601)")) == 1, lambda: (e8c3, has(L8c3, "Birth dates")))
+# the insurance check's two holds of 11/25/2026 (review): 'same person?' and 'no birth date on either side' - one line each at the top of the report
+def vrec(visits, **more): return dict({"decision": "HOLD", "visits": list(visits), "hold": [], "checks": [], "plans": [], "insorder": "", "lead": ""}, **more)
+VER7 = {"pat9301": vrec(["vst7004"], same_person=["vst7004"], lookup_asked="look-up not asked: same person? the two birth dates are far apart", hold=["same person? the two birth dates are far apart - for William: no paid look-up was bought and no plan was added on this step's own word"]),
+        "pat9401": vrec(["vst7005", "vst7008"], no_birth_date=["vst7005", "vst7008"], hold=["no active plan: no paid look-up was bought - neither Claimocity nor the chart carries a real birth date to ask with (face sheet needed)"]),
+        "pat9101": dict(vrec(["vst7001"]), decision="RELEASE")}
+L8v, e8v = report_run("verify_holds", S7, ROWS8, verify=VER7)
+_sp = has(top(L8v), "SAME PERSON?"); _nb = has(top(L8v), "NO BIRTH DATE ON EITHER SIDE")
+check("7i a chart the insurance check held 'same person?' stands in ONE line at the top of the report - the chart and its visits, that no paid look-up was bought and no plan added, and what William's answer starts",
+      lambda: e8v == "" and len(_sp) == 1 and "1 chart(s)" in _sp[0] and "pat9301 (vst7004)" in _sp[0] and "no paid look-up was bought" in _sp[0] and "--same-person" in _sp[0] and "pat9401" not in _sp[0] and "pat9101" not in _sp[0], lambda: (e8v, top(L8v)))
+check("7j ... and a chart with no real birth date on either side in another: nothing can be asked without a face sheet",
+      lambda: len(_nb) == 1 and "1 chart(s)" in _nb[0] and "pat9401 (vst7005 vst7008)" in _nb[0] and "face sheet" in _nb[0] and "pat9301" not in _nb[0], lambda: top(L8v))
+L8w, e8w = report_run("verify_holds_none", S7, ROWS8, verify={"pat9101": dict(vrec(["vst7001"]), decision="RELEASE"), "pat9301": vrec(["vst7004"], same_person="yes", no_birth_date=None), "pat9401": vrec(["vst7005"], same_person=[])})
+check("7k neither line when no chart carries such a hold (a value that is no list of visits, or an empty one, is none)", lambda: e8w == "" and not has(L8w, "SAME PERSON?") and not has(L8w, "NO BIRTH DATE ON EITHER SIDE"), lambda: (e8w, top(L8w)))
+# a patient whose new chart waits for the next run (feed_identity.new_chart_waits): said in a plain line under 'Which chart' - no question for William
+WAIT7 = {"stamp": S7, "identity_rule": FI.IDENTITY_RULE_VERSION, "counts": {"known from the patient map": 0, "looked up": 2, "new charts": 1, "for William": 0, "no chart": 1}, "repointed": [], "notes": [], "not_registered": ["20261129a.hl7"],
+         "patients": [{"feed_ids": [FID(3)], "chart": "pat9301", "status": "MISSING", "new_chart": True, "rule": 9, "why": FI.WHY_NEW, "flags": [], "candidates": [], "evidence": [], "feed_dob": "real", "for_william": False},
+                      {"feed_ids": [FID(4)], "chart": "", "status": "AMBIGUOUS", "new_chart": False, "rule": 0, "why": FI.WHY_SAME_RUN, "flags": [], "candidates": [], "evidence": [], "feed_dob": "real", "for_william": False}]}
+L7w, e7w = report_run("identity_wait", S7, [vrow("pat9301", "vst7004", "11/29/2026", ["99309"])], identity=WAIT7)
+check("7l a patient whose new chart waits for the next run (another Claimocity id of the same name got a new chart in this run) is said in a plain line with its Claimocity id - never as a question for William at the top; the file that is read again still is",
+      lambda: e7w == "" and len(has(L7w, FID(4), FI.WHY_SAME_RUN)) == 1 and not has(top(L7w), FID(4)) and len(has(top(L7w), "NOT REGISTERED", "20261129a.hl7")) == 1 and has(L7w, "1 with NO chart"), lambda: (e7w, [l for l in L7w if FID(4) in l], top(L7w)))
 # inpatient rehab at place of service 61 (the import's rows: stay, pos, pos_kind; the inspector step's held rows)
 def rehab(pid, visit, dos, cpts, initial, sign="new admission 1-2 days after an acute stay", kept=False):
     return vrow(pid, visit, dos, cpts, fac="fac29" if kept else "fac67", pos="21" if kept else "61", pos_lines=["21" if kept else "61"] * len(cpts), pos_kind=["rehab-stay-kept-21" if kept else "rehab"] * len(cpts),
