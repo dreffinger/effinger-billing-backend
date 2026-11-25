@@ -37,6 +37,9 @@
 #   row still names every such code (missing_dx) and says what stands in its place (dx_instead); claimocity_report.py puts them into the digest and
 #   writes the text of William's email. A charge line with NO code at all is still skipped ("no usable dx for <CPT>" - there is nothing to change),
 #   and without I10 in the list everything is as before that day: the code is left off, and a line with no usable code skips the visit. See DX_INSTEAD.
+# CCM and a patient who has passed away - William's word of 11/25/2026: before a CCM message (99487 / 99489) is entered, Medicare is asked for a date of death (the deceased guard's own
+#   check; a kept answer younger than 30 days and asked on or after the CCM date is used as it is). A death before the CCM date = the message is never entered, in the
+#   month it is found and in every month after. Until that day only a death an earlier look-up had cached kept a CCM charge out. A look-up that fails keeps nothing out.
 # A feed message with no charge line, or with no patient id (11/25/2026): passed over and counted - it never stops the import. Where it has a feed id
 #   it leaves ONE skipped row with that plain reason; that row never makes a second start of the same batch pass the patient over.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
@@ -1835,6 +1838,33 @@ def main():
         v = _dc.get(re.sub(r"\D", "", pid)) or {}
         d = v.get("dod") or ""
         return d if re.match(r"\d{4}-\d{2}-\d{2}$", d) else None
+    # CCM AND A PATIENT WHO HAS PASSED AWAY - William's word of 11/25/2026: ("run a death check on all ccm charges to make sure there is no date of death prior to billing the ccm charges, there
+    # already is a date of death check in the billing runs but verify that no patient dies and a new set of ccm charges go in month after month after the patient has died").
+    # The check above reads only the cache: a death an EARLIER look-up found. A patient who died since had the month's CCM entered; the insurance check after the import
+    # (claimocity_verify.py) then asked Medicare, found the death and wrote a hold - which stops nothing in AdvancedMD - so the charge went out with the claim run and was
+    # written off afterwards (four charts, August 2026: the 'after-death' cards on the board). From 11/25/2026 Medicare is asked BEFORE a CCM message is entered, with the
+    # deceased guard's own check (deceased_guard.check as a care-management claim: a fresh Medicare answer when the kept one is older than 30 days or was asked before the
+    # CCM date; the answer is kept, so the insurance check after the import pays for no second one). A date of death before the CCM date = the message is not entered,
+    # this month and every month after (a death stays in the cache for good). A look-up that fails never keeps a charge out - the guard's rule: only a date of death
+    # blocks - the message is entered, the DONE line says so, and the insurance check asks again. A dry run asks nothing new (cache only).
+    _ccm_asked = set()
+    def _ccm_dod(pid, msg):
+        num = re.sub(r"\D", "", pid)
+        try:
+            __import__("os").environ.setdefault("DECEASED_CACHE", __import__("os").path.abspath("deceased_cache_local.json"))      # the file the insurance check uses, as above
+            import deceased_guard as _dg
+            _d8 = max(c["dos"][:8] for c in msg["FT1"] if c["cpt"] in CCM)
+            if (num, _d8) not in _ccm_asked:
+                _ccm_asked.add((num, _d8)); stats["CCM: date of death looked up before the entry (William 11/25/2026)"] += 1
+                _dg.check(num, mdy(_d8), None, "99487", allow_lookup=not dry)
+            v = (_dg._load() or {}).get(num) or {}
+            d = v.get("dod") or ""
+            if re.match(r"\d{4}-\d{2}-\d{2}$", str(d)):
+                _dc[num] = v; return d
+            return None
+        except Exception as e:
+            stats["CCM death check could not be made before the entry (%s) - entered; the insurance check asks again" % type(e).__name__] += 1
+            return None
     # nursing and hospital visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
     # so the result does not depend on the order the messages are entered in
     try:
@@ -1919,9 +1949,11 @@ def main():
         if not pid: stats["no chart"] += 1; continue
         if n >= limit: break
         try:
-            dod = _dod(pid)
+            dod = _dod(pid); _dod_src = "deceased cache"
+            if not dod and any(c["cpt"] in CCM for c in msg["FT1"]):      # a CCM message: Medicare is asked before the entry (William 11/25/2026 - _ccm_dod above)
+                dod = _ccm_dod(pid, msg); _dod_src = "Medicare, asked before this CCM charge was entered - William 11/25/2026"
             if dod and any(c["dos"][:8] > dod.replace("-", "") for c in msg["FT1"]):
-                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (deceased cache) - never billed" % dod})
+                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (%s) - never billed" % (dod, _dod_src)})
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)      # a dry run writes nothing (11/10/2026, challenge review): its register would make the live run of the same stamp skip whole patients
                 continue
             ctx = chart_ctx(pid); ctx["pid"] = pid

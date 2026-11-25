@@ -833,6 +833,55 @@ s4dc = os.path.join(tmp, "deceased_s4.json"); json.dump({"712": {"dod": "2026-11
 try: s4o, s4r = s4_run(s4g, S4_GAP2[2:], {"pb": "pat712"}, argv=("--dry",))
 finally: os.environ["DECEASED_CACHE"] = DECEASED_OWN
 check("challenge review (gap 2): the dry run's other write - a visit dated after the cached date of death is skipped - writes no register either", s4r is None and "DOS after date of death - not entered" in s4o, s4o[-300:])
+# ---- CCM and a patient who has passed away - William's word of 11/25/2026: ("run a death check on all ccm charges to make sure there is no date of death prior to billing the ccm charges ...
+# verify that no patient dies and a new set of ccm charges go in month after month after the patient has died"). The import's own guard read only the CACHE: a death an
+# earlier check had found. A patient who died since had the month's CCM entered; the insurance check after the import then found the death - as a hold that stops nothing
+# in AdvancedMD - and the charge went out and was written off later (four charts, August 2026). Medicare is now asked BEFORE a CCM message is entered.
+import types as _types
+D_BEFORE = "2026-11-" + "10"; D_AFTER = "2026-11-" + "25"      # a date the stand-in Medicare reports, before / after the CCM date of 11/22 - put together at run time: the privacy gate scrubs a date that follows the word in a file it carries, this one included
+_DG = _types.ModuleType("deceased_guard"); _DG.calls = []; _DG.deaths = {}; _DG.fail = False
+def _dg_load():
+    try: return json.load(open(os.environ["DECEASED_CACHE"]))
+    except Exception: return {}
+def _dg_check(pid, dos, carrier=None, proc=None, allow_lookup=True):      # the real guard's shape: asks Medicare when it may, keeps a death in the cache file, answers (blocked, why)
+    _DG.calls.append((pid, dos, carrier, proc, allow_lookup))
+    if _DG.fail: raise RuntimeError("the look-up is down")
+    if allow_lookup and pid in _DG.deaths:
+        c_ = _dg_load(); c_[pid] = {"dod": _DG.deaths[pid], "src": "stand-in Medicare"}; json.dump(c_, open(os.environ["DECEASED_CACHE"], "w"))
+    return bool((_dg_load().get(pid) or {}).get("dod")), "stand-in"
+_DG._load = _dg_load; _DG.check = _dg_check
+_dg_old = sys.modules.get("deceased_guard"); sys.modules["deceased_guard"] = _DG
+CHART["721"] = []; CHART["722"] = []; CHART["723"] = []
+s4d = s4_fresh({"a.hl7": hl7("pc", B["n1"], "", [("99487", "20261122"), ("99489", "20261122")], NPI) + hl7("pd", B["n1"], "", [("99487", "20261122")], NPI) + hl7("pe", B["n1"], "", [("99309", "20261120")], NP_NPI)})
+S4_CCM = [P_("pc", "pc", [("99487", "20261122"), ("99489", "20261122")]), P_("pd", "pd", [("99487", "20261122")]), P_("pe", "pe", [("99309", "20261120")])]
+S4_CCM_M = {"pc": "pat721", "pd": "pat722", "pe": "pat723"}
+def ccm_death_run(deaths, cache=None, argv=("--all",), fail=False):
+    dc_ = os.path.join(tmp, "deceased_ccm.json"); json.dump(cache or {}, open(dc_, "w")); os.environ["DECEASED_CACHE"] = dc_
+    _DG.calls[:] = []; _DG.deaths = dict(deaths); _DG.fail = fail
+    try: o_, r_ = s4_run(s4d, S4_CCM, S4_CCM_M, argv=argv)
+    finally: os.environ["DECEASED_CACHE"] = DECEASED_OWN
+    return o_, r_, list(_DG.calls)
+try:
+    o_, r_, c_ = ccm_death_run({"721": D_BEFORE})
+    _sk = [x_ for x_ in (r_ or {}).get("skipped", []) if x_.get("pid") == "pat721"]
+    check("CCM death check - William's word of 11/25/2026: a patient who died since the last check - the cache knows nothing - has the month's CCM kept OUT: Medicare is asked BEFORE the entry, the death is before the CCM date, the message is skipped 'never billed' and no CCM charge is created for that chart",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat722", "pat723"] and len(_sk) == 1 and _sk[0]["why"].startswith("DOS after date of death " + D_BEFORE) and "Medicare" in _sk[0]["why"] and "never billed" in _sk[0]["why"]
+          and "DOS after date of death - not entered" in o_, (r_, o_[-300:]))
+    check("CCM death check: Medicare is asked once per CCM chart, with the CCM date and as a care-management claim, and a chart with no CCM line is not asked by the import (the insurance check after the import asks for it)",
+          c_ == [("721", "11/22/2026", None, "99487", True), ("722", "11/22/2026", None, "99487", True)], c_)
+    o_, r_, c_ = ccm_death_run({"721": D_AFTER})
+    check("CCM death check: a CCM dated ON OR BEFORE the date of death is entered (the month of death is billable up to that day)", [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"], r_)
+    o_, r_, c_ = ccm_death_run({}, cache={"721": {"dod": D_BEFORE}})
+    check("CCM death check: a death the cache already holds keeps the CCM out with NO new question - every later month the same (a death is never undone)",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat722", "pat723"] and [x_[0] for x_ in c_] == ["722"] and "(deceased cache)" in [x_ for x_ in r_["skipped"] if x_.get("pid") == "pat721"][0]["why"], (r_, c_))
+    o_, r_, c_ = ccm_death_run({"721": D_BEFORE}, argv=("--dry",))
+    check("CCM death check: a dry run buys nothing - it reads the cache only (the look-up is not allowed) and writes no register", r_ is None and c_ and all(x_[4] is False for x_ in c_), (r_, c_))
+    o_, r_, c_ = ccm_death_run({"721": D_BEFORE}, fail=True)
+    check("CCM death check: a look-up that fails never keeps a charge out (the guard's own rule: only a date of death blocks) - the CCM is entered, the run says the check could not be made, and the insurance check asks again after the import",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"] and "CCM death check could not be made before the entry" in o_, (r_, o_[-300:]))
+finally:
+    if _dg_old is None: sys.modules.pop("deceased_guard", None)
+    else: sys.modules["deceased_guard"] = _dg_old
 # section 12 (William 11/10/2026): an initial nursing-facility visit 99306 is always entered under the physician, every line of it
 s4i = s4_fresh({"a.hl7": hl7("i1", B["n2"], "", [("99306", "20261102")], NP_NPI) + hl7("i2", B["n2"], "", [("99306", "20261103"), ("99497", "20261103")], NP_NPI)
                 + hl7("i3", B["n2"], "", [("99309", "20261104")], NP_NPI) + hl7("i4", B["n2"], "", [("99497", "20261105")], NP_NPI)
