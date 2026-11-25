@@ -321,6 +321,8 @@ check("build: CCM that arrives from the hospital is NOT touched (21)", [p for _,
 body, info, pp = built("u1", [("99487", "20261031")])
 check("build: a CCM line from an unknown building goes out as 32 (William 11/25/2026: never 31), with no facility, the register keeps the default 31 beside it, and it is not a rule failure",
       [p for _, p in pp] == ["32"] and info["fac"] == "" and info["pos_lines"] == ["32"] and info["pos_feed"] == "31" and info["pos_kind"] == ["ccm-unknown-building"] and info["pos_err"] == "", (pp, info))
+check("build (11/25/2026): a message from a building the table does not know carries the feed's OWN building name into the register row (feed_building) - nobody could add the building because its name was in no register and no digest (ten 11/17/2026 visits, charts of one building); a building the table knows carries no such key",
+      info.get("feed_building") == B["u1"] and "feed_building" not in built("n1", [("99487", "20261031")])[1] and "feed_building" not in built("a1", [("99487", "20261031")])[1], info)
 body, info, pp = built("u1", [("99309", "20261102")])
 check("build: a nursing VISIT from an unknown building keeps the old default 31 and no facility", [p for _, p in pp] == ["31"] and info["fac"] == "" and info["pos_lines"] == ["31"] and info["pos_kind"] == [""] and info["pos_err"] == "", (pp, info))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026"), ("99487", "10/31/2026")])
@@ -2330,6 +2332,11 @@ check("digest (11/25/2026): CCM lines the chart shows a skilled-looking month fo
       and "  - for William, not held - CCM entered at 32, the chart shows a skilled-looking month (pos_kind ccm-skilled-month): pat9 11/02/2026 99487+99489; pat9 11/02/2026 99487" in r.stdout, r.stdout[-900:])
 # 11/25/2026 (review, findings 1 and 5): the rows as the import writes them SINCE that day - a visit whose rule failed carries its CCM line at 32 (kind ccm-forced), a
 # visit from a building the table does not know carries its CCM line at 32 (kind ccm-unknown-building) and its nursing visit at the default 31
+_ub = dict(reg_row(["99487", "99309"], "", "31", ["32", "31"], ["ccm-unknown-building", ""]), feed_building="A Building The Table Does Not Know")
+_rub, _lub = digest(rows + [_ub, dict(_ub, dos="11/03/2026")])
+check("digest (11/25/2026): a building the facility table does not know is NAMED - the feed's own words, once, with how many visits - so that it can be added to the table",
+      "  - TOP OF THE REPORT - add to the facility table (claimocity_import.py FAC), the feed's own building name: 'A Building The Table Does Not Know' x2" in _rub.stdout
+      and "TOP OF THE REPORT - building the facility table does not know: pat9 11/02/2026 99487+99309" in _rub.stdout, _rub.stdout[-700:])
 r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["32"], ["ccm-forced"], err="boom"), reg_row(["99487", "99309"], "", "31", ["32", "31"], ["ccm-unknown-building", ""])])
 check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named - and what the line says about their CCM lines (at 32) is read from the register",
       "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service (a CCM line among them at 32), see pos_err" in line
@@ -2853,7 +2860,7 @@ check("rulebook and runbook: the rule's numbers are the import's (3 lines a roun
       and "at most 3 lines" in _qrb and "at most 10 a run" in _qrb and "up to six billed 1123F lines" in _qrb and "three days after its visit was billed" in _qrb and "30 days" in _qrb and "a date of service in 2026" in _qrb
       and "at most 3 visits" in _qrun and "at most 10 a run" in _qrun and "up to six billed quality lines" in _qrun.replace("\n", " ") and "three days after its visit was billed" in _qrun.replace("\n", " "))
 check("runbook (SM-8, M8, S1, S2): the switches with the exact command form, stop, reset only while OFF and on the ingest only, any other value named; Hospital visits do not carry it",
-      "&& QUALITY_CODE=off python3 claimocity_ingest.py" in _qrun.replace("\n", " ") and "`QUALITY_CODE=stop` = OFF until William restarts it" in _qrun.replace("\n", " ") and "NOTHING TO RESTART" in _qrun and "on the ingest command only" in _qrun.replace("\n", " ")
+      "&& QUALITY_CODE=off nohup python3 claimocity_ingest.py" in _qrun.replace("\n", " ") and "&& QUALITY_CODE=off python3 claimocity_ingest.py" not in _qrun.replace("\n", " ") and "never between `nohup` and `python3`, where the command does not start" in _qrun.replace("\n", " ") and "`QUALITY_CODE=stop` = OFF until William restarts it" in _qrun.replace("\n", " ") and "NOTHING TO RESTART" in _qrun and "on the ingest command only" in _qrun.replace("\n", " ")
       and "Any other value adds no line and the log names it" in _qrun.replace("\n", " ") and "Hospital visits do not carry\nit in this version" in _qrun)
 check("runbook (M8c): the import register is committed right after the import while a pilot round is open - the privacy gate first, then the same git commands as the practice-database register",
       all(x_ in _qrun.replace("\n", " ") for x_ in ("COMMIT THE IMPORT REGISTER while a pilot round is open", "python3 tools/mirror/phi_gate.py /home/claude/unbilled/registers/feed_import_<stamp>.json practices/ehpa/registers/feed_import_<stamp>.json",

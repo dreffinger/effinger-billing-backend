@@ -57,9 +57,11 @@ def _tag(x): return "%s %s %s" % (x.get("pid") or "?", x.get("dos") or "?", "+".
 def _names(key, lead, cap=30):      # cap=None names EVERY chart (11/25/2026: the two CCM lists below); the other lists show the first 30 and say how many more the import register holds
     v = _who.get(key) or []
     if v: L("  - %s: %s%s" % (lead, "; ".join(v if cap is None else v[:cap]), (" (+%d more - see the import register)" % (len(v) - cap)) if (cap is not None and len(v) > cap) else ""))
+_bld = collections.Counter()                                                           # the feed's own name of a building the facility table does not know -> visits (11/25/2026)
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
+        if not x.get("fac") and isinstance(x.get("feed_building"), str) and x["feed_building"].strip(): _bld[x["feed_building"].strip()] += 1
         if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x) + ((" (%s)" % str(x["msg_fallback"])[:120]) if x.get("msg_fallback") else ""))      # msg_fallback: where each value its copies did not agree on came from
         if x.get("prof_default") is True: _ps["profdef"] += 1; _who["profdef"].append(_tag(x))
         if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
@@ -133,6 +135,9 @@ try:
         L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["profdef"]); _names("profdef", "charts")
     if _ps["nofacother"]:
         L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["nofacother"]); _names("nofacother", "charts")
+    # 11/25/2026: the building is NAMED, in the feed's own words (the import writes them into the row as feed_building), whatever codes its visits carry - with the name
+    # in hand the building can be added to the table (claimocity_import.py FAC: the feed's name -> AdvancedMD facility id and place of service) and its next visits go in with a facility
+    if _bld: L("  - TOP OF THE REPORT - add to the facility table (claimocity_import.py FAC), the feed's own building name: %s" % "; ".join("'%s' x%d" % (n_, c_) for n_, c_ in sorted(_bld.items(), key=lambda t_: (-t_[1], t_[0]))))
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 # initial nursing-facility visits (William 11/10/2026, rules.md): every one goes in under the physician whatever clinician the feed names - one plain line, not for the top
