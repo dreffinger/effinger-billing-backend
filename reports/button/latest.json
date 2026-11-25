@@ -4,7 +4,7 @@
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/5/0/1 -> 0/5/0/1; ERA 2 checks $2,433.94 -> 0 checks $0.00; posted $2,433.94; re-sent 42",
- "note": "",
+ "note": "BUTTON PRESS 2026-11-25T04:35:00Z \u00b7 mode: live \u00b7 steps: all \u00b7 packages: none \u00b7 note: Started for William from his chat session on his word of 11/25 (about 11:30 PM ET): process the face sheet data posted, run a billing run and an insurance cascade on the new face sheets, report, and send the current face sheets needed email with date of birth beside the names (brief delivered after the run ended; the run had already done exactly this).",
  "run_url": "https://claude.ai/code/session_01HHfWRC8rLfzUzE72JBZhWM",
  "started": "2026-11-25T04:35:00Z",
  "ended": "2026-11-25T05:47:07Z",
