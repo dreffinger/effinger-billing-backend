@@ -1,0 +1,61 @@
+{
+ "stamp": "2026-11-25T0900Z",
+ "live": true,
+ "visits": [
+  {
+   "pid": "17478219",
+   "visit": "19462480",
+   "charge": "23375622",
+   "why": "CAPITAL HEALTH PLAN (CMS 271 11/25: HMO since 02/01/2026) - no CHP member number on the chart",
+   "before": {
+    "insorder": "1",
+    "list": "1",
+    "charges": 2,
+    "dos": [
+     "11/24/2026",
+     "11/24/2026"
+    ],
+    "cpt": [
+     "pcode492676",
+     "pcode492677"
+    ],
+    "insbalance": [
+     "206.00",
+     "109.00"
+    ]
+   },
+   "action": "set_insorder '' ok=True resave vst19462480 insorder 1 -> , list [1] -> [], 2 live charges (was 2)",
+   "after": {
+    "insorder": "",
+    "list": "",
+    "charges": 2
+   }
+  },
+  {
+   "pid": "17478224",
+   "visit": "19462482",
+   "charge": "23375625",
+   "why": "HUMANA INSURANCE COMPANY H5216-070 (CMS 271 11/25: since 01/01/2018) - no Humana member id; discovery found Medicare only",
+   "before": {
+    "insorder": "1",
+    "list": "1",
+    "charges": 1,
+    "dos": [
+     "11/24/2026"
+    ],
+    "cpt": [
+     "pcode492676"
+    ],
+    "insbalance": [
+     "206.00"
+    ]
+   },
+   "action": "set_insorder '' ok=True resave vst19462482 insorder 1 -> , list [1] -> [], 1 live charges (was 1)",
+   "after": {
+    "insorder": "",
+    "list": "",
+    "charges": 1
+   }
+  }
+ ]
+}

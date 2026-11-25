@@ -1,0 +1,48 @@
+{
+ "what": "face sheets needed (facesheets_needed.py 2026-11-25.1) - chart numbers, kinds and dollars only",
+ "stamp": "2026-11-25T1018Z",
+ "at": "2026-11-25T10:36:33Z",
+ "asof": "2026-11-25T10:35:00Z",
+ "cards_read": 572,
+ "your_turn": 2,
+ "dollars": 412.0,
+ "facesheet": {
+  "n": 1,
+  "dollars": 206.0
+ },
+ "decision": {
+  "n": 1,
+  "dollars": 206.0
+ },
+ "rows": [
+  {
+   "charts": [
+    "17478219"
+   ],
+   "kind": "facesheet",
+   "amount": 206.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17476865"
+   ],
+   "kind": "decision",
+   "amount": 206.0,
+   "new": false
+  }
+ ],
+ "file": {
+  "ops": 6,
+  "kept": 0,
+  "stale": 0,
+  "new": 0,
+  "failed": 0
+ },
+ "checks": {
+  "unanswered": [],
+  "sweep_missing": [],
+  "nothing_waiting": [],
+  "short_read": []
+ }
+}

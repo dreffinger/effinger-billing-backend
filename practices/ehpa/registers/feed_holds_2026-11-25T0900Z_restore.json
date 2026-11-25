@@ -1,0 +1,32 @@
+{
+ "stamp": "2026-11-25T0900Z",
+ "live": true,
+ "visits": [
+  {
+   "pid": "17478224",
+   "visit": "19462482",
+   "charge": "23375625",
+   "why": "HUMANA INSURANCE COMPANY H5216-070 (CMS 271 11/25: since 01/01/2018) - no Humana member id; discovery found Medicare only",
+   "before": {
+    "insorder": "",
+    "list": "",
+    "charges": 1,
+    "dos": [
+     "11/24/2026"
+    ],
+    "cpt": [
+     "pcode492676"
+    ],
+    "insbalance": [
+     "206.00"
+    ]
+   },
+   "action": "set_insorder '1' ok=True resave vst19462482 insorder  -> 1, list [] -> [1], 1 live charges (was 1)",
+   "after": {
+    "insorder": "1",
+    "list": "1",
+    "charges": 1
+   }
+  }
+ ]
+}
