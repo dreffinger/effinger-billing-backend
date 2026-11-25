@@ -1,0 +1,47 @@
+{
+ "19453098": {
+  "before": [
+   "I10",
+   "M17.12",
+   "R10.9",
+   "Z01.818"
+  ],
+  "after": [
+   "I10",
+   "M17.12",
+   "R10.9"
+  ],
+  "save": "saved: 1 live charges (was 1)",
+  "verified": true
+ },
+ "19453097": {
+  "before": [
+   "I10",
+   "M17.12",
+   "R10.9",
+   "Z01.818"
+  ],
+  "after": [
+   "I10",
+   "M17.12",
+   "R10.9"
+  ],
+  "save": "saved: 1 live charges (was 1)",
+  "verified": true
+ },
+ "19453099": {
+  "before": [
+   "I10",
+   "M17.12",
+   "R10.9",
+   "Z01.818"
+  ],
+  "after": [
+   "I10",
+   "M17.12",
+   "R10.9"
+  ],
+  "save": "saved: 1 live charges (was 1)",
+  "verified": true
+ }
+}

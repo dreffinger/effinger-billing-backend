@@ -1,0 +1,24 @@
+{
+ "pid": "17478414",
+ "live": true,
+ "steps": [
+  [
+   "add CAP07",
+   "ins9521409",
+   "2"
+  ],
+  [
+   "AMD 271",
+   "ACTIVE | plan  | A  B  | others HN  ; HN  ; HN  ; HN   | death - | addr [address] PENDLETON FL 32348 | aaa []"
+  ],
+  [
+   "patient order",
+   "2,1",
+   "(True, \"insorder 2,1 via ins9521409 -> '2,1'\")"
+  ]
+ ],
+ "visits": {
+  "19462412": "resave vst19462412 insorder 1 -> 2, list [1] -> [2], 2 live charges (was 2) | freq1 + rebill seq 2 -> 204",
+  "19462163": "resave vst19462163 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+ }
+}
