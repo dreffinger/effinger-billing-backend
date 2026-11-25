@@ -21,7 +21,11 @@
 #     - an intact set without its manifest still restores (it cannot be checked - that is unchanged), and so do parts saved with
 #       Windows line ends;
 #     - the command lines the routine prompts name (pack --out DIR, unpack DIR) do the same with the real part size;
-#     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder.
+#     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder;
+#     - the size cap is never silent, and what travels under it is the NEWEST state (11/25/2026). From 11/24/2026 13:01 UTC every bundle
+#       stopped at the 40 MB default: files were skipped without a word, and registers/ - the folder walked last - lost the registers of
+#       the run that had just entered the Claimocity feed's visits, so the next fresh container read the same feed file again. Now the
+#       newest files are packed first, the pack says how many files and megabytes it left out (and the manifest records it).
 # Run: python3 tools/selftest/test_ws_bundle.py   (exit 1 on any failure)
 import os, sys, io, re, json, glob, shutil, random, hashlib, tempfile, subprocess, contextlib, atexit
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -235,6 +239,43 @@ i2 = copy_set(b_out, "i_windows_line_ends", "%02d")
 for x in part_names(i2):
     t = open(os.path.join(i2, x)).read(); open(os.path.join(i2, x), "wb").write(t.replace("\n", "\r\n").encode() + b"\r\n")
 comes_back("I2 parts saved with Windows line ends and a trailing empty line still restore", i2, BIG_FILES)
+
+# ---- J. the size cap (11/25/2026): never silent, and the NEWEST files are the ones that travel -----------------------------------------
+J, _j_unused = make_workspace("j_cap_ws", 0, 0, "cap")
+for i in range(6): put(J, "era_details/old_%d.json" % i, junk(200000))                       # 1.2 MB of old ERA cache
+for i in range(4): put(J, "patient_db/chart_%04d/old.json" % i, junk(200000))                # 0.8 MB of old 271 answers
+for i in range(5): put(J, "registers/feed_import_OLD%d.json" % i, junk(100000))              # 0.5 MB of old registers (already on main)
+_t = __import__("time"); _old = _t.time() - 5 * 86400
+for _root, _dirs, _fs in os.walk(J):
+    for _f in _fs: os.utime(os.path.join(_root, _f), (_old, _old))                          # everything so far is five days old
+put(J, "registers/feed_import_NEW.json", junk(150000)); put(J, "registers/claimocity_ingest.json", json.dumps({"files": {"invented": 1}}))   # THIS run's registers
+J_TRAVELS = {rel for rel in tree(J) if not any(x in rel for x in NEVER)}
+def pack_capped(src, out, mb):
+    keep = ws_bundle.WS; ws_bundle.WS = src; buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf): m = ws_bundle.pack(out, mb)
+    finally: ws_bundle.WS = keep
+    return m, buf.getvalue()
+j_out = fresh("j_cap_out"); mj, jo = pack_capped(J, j_out, 1)                                # a 1 MB cap: about 2.65 MB of files cannot all travel
+check("J1 over the cap the pack SAYS so - how many files and megabytes were left out, by folder, and what to do about it",
+      "BUNDLE INCOMPLETE" in jo and "--max-mb" in jo and re.search(r"\d+ file\(s\)", jo) is not None and "MB" in jo, jo[-500:])
+lo = mj.get("left_out") or {}
+check("J2 ... and the manifest records it (left_out: files, bytes, by folder, the newest file left out and its time)",
+      lo.get("files", 0) >= 1 and lo.get("bytes", 0) > 0 and set(lo.get("by_dir") or {"?": 1}) <= {"registers", "patient_db", "era_details", "tools"} and bool(lo.get("newest")) and isinstance(lo.get("names"), list), lo)
+j_dst = fresh("j_cap_restore"); rc, out = unpack(j_out, j_dst); got = set(tree(j_dst))
+check("J3 the files THIS run wrote travel first: the new feed register and the file register are in the bundle although registers/ is walked last and older files had to stay behind",
+      rc == 0 and {"registers/feed_import_NEW.json", "registers/claimocity_ingest.json"} <= got and len(got) < len(J_TRAVELS), (rc, sorted(got)[:14]))
+_mt = lambda rel: os.path.getmtime(os.path.join(J, rel))
+_capped = lambda rel: rel.split(os.sep)[0] in ("registers", "patient_db", "era_details", "tools")
+_left = sorted(J_TRAVELS - got)
+check("J4 what stayed behind is the OLDEST: no file left out is newer than a file of the walked folders that travelled, and the count matches the manifest",
+      _left and all(_capped(r) for r in _left) and max(_mt(r) for r in _left) <= min(_mt(r) for r in got if _capped(r)) and len(_left) == lo.get("files"), (_left[:6], lo.get("files")))
+j_out2 = fresh("j_cap_roomy"); mj2, jo2 = pack_capped(J, j_out2, 40); j_dst2 = fresh("j_cap_roomy_restore"); rc2, _o2 = unpack(j_out2, j_dst2)
+check("J5 under the cap nothing is left out, nothing is said and the manifest carries no left_out - every file travels",
+      "BUNDLE INCOMPLETE" not in jo2 and "left_out" not in mj2 and rc2 == 0 and set(tree(j_dst2)) == J_TRAVELS, (jo2[-200:], sorted(J_TRAVELS - set(tree(j_dst2)))[:6]))
+pj = cli(["pack", "--out", fresh("j_cli_out"), "--max-mb", "1"], J)
+check("J6 the command line says it too, and still exits 0 (a bundle that is not complete is better than none - the run reads the line)",
+      pj.returncode == 0 and "BUNDLE INCOMPLETE" in pj.stdout, (pj.returncode, pj.stdout[-300:], pj.stderr[-200:]))
 
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

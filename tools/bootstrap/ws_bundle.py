@@ -32,6 +32,16 @@ not carry over to the next fresh container, whichever mode had packed it. Bundle
   - a copy of a part under a decorated name ("...part07 (1).b64", a second download) is left out when the plainly named part is
     there and used when it is the only one; a file with no part number in its name is left out; unpack says each time.
 Unchanged: a set WITHOUT its manifest cannot be checked - unpack extracts what it can read, as it always did.
+
+The size cap (11/25/2026): --max-mb (40 by default) used to skip, WITHOUT A WORD, every file that no longer fitted - and registers/
+was the folder walked last. From 11/24/2026 13:01 UTC the workspace no longer fitted (2,864 of about 4,330 files travelled), so the
+registers of the run that had just entered the Claimocity feed's visits stayed behind and the next fresh container read the same
+feed file again. Now:
+  - the files of the walked folders are packed NEWEST FIRST, so what a run has just written always travels and what stays behind
+    under the cap is the oldest (registers that old are on GitHub main; the 271 and ERA caches can be pulled again);
+  - a pack that leaves anything out says so - 'BUNDLE INCOMPLETE: N file(s), X MB ...' with the folders and the newest file left
+    out - and the manifest records it under left_out. It still exits 0: an incomplete bundle is better than none; the run puts the
+    line at the top of its report and packs again with a larger --max-mb when the newest file left out is recent.
 Self-test (offline, throwaway folders, no patient data): python3 tools/selftest/test_ws_bundle.py
 """
 import os, sys, io, re, tarfile, base64, json, time, glob, hashlib
@@ -71,6 +81,7 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
     buf = io.BytesIO()
     total = 0
     names = []
+    cand = []; left = []      # the files of the walked folders (mtime, name, path, size, folder); those the cap left out
     with tarfile.open(fileobj=buf, mode='w:gz') as tar:
         for entry in sorted(os.listdir(WS)):
             p = os.path.join(WS, entry)
@@ -97,9 +108,14 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
                     if phi_only and (f.endswith(('.py', '.sh')) or (d == 'registers' and (time.time() - os.path.getmtime(fp) > 6 * 3600 or os.path.getsize(fp) > 400 * 1024))):   # only this run's registers (the rest are on main), none over 400 KB
                         continue
                     if _want(fp, rel):
-                        if total + os.path.getsize(fp) > max_mb * 1024 * 1024:
-                            continue
-                        tar.add(fp, arcname=rel); names.append(rel); total += os.path.getsize(fp)
+                        try: cand.append((os.path.getmtime(fp), rel, fp, os.path.getsize(fp), d))
+                        except OSError: continue
+        # 11/25/2026: NEWEST FIRST under the cap - what this run wrote always travels; what does not fit is the oldest, and it is SAID
+        cand.sort(key=lambda c: (-c[0], c[1]))
+        for mt, rel, fp, sz, d in cand:
+            if total + sz > max_mb * 1024 * 1024:
+                left.append((mt, rel, sz, d)); continue
+            tar.add(fp, arcname=rel); names.append(rel); total += sz
     raw = buf.getvalue()
     b64 = base64.b64encode(raw).decode()
     os.makedirs(out_dir, exist_ok=True)
@@ -112,10 +128,21 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
         parts.append(name); part_sha[name] = hashlib.sha256(chunk.encode()).hexdigest()
     manifest = {'stamp': stamp, 'files': len(names), 'raw_bytes': total, 'tar_gz_bytes': len(raw),
                 'sha256': hashlib.sha256(raw).hexdigest(), 'parts': parts, 'part_sha256': part_sha, 'members': names[:400]}
+    if left:
+        by = {}
+        for mt, rel, sz, d in left: by[d] = by.get(d, 0) + 1
+        newest = max(left)                                    # the newest file that stayed behind: if it is recent, pack again with a larger cap
+        manifest['left_out'] = {'files': len(left), 'bytes': sum(x[2] for x in left), 'by_dir': by, 'cap_mb': max_mb,
+                                'newest': newest[1], 'newest_at': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime(newest[0])), 'names': [x[1] for x in sorted(left, reverse=True)[:40]]}
     mf = os.path.join(out_dir, f'workspace_state_{stamp}.manifest.json')
     json.dump(manifest, open(mf, 'w'), indent=1)
     print(f'packed {len(names)} files ({total/1024:.0f} KB raw -> {len(raw)/1024:.0f} KB gz) into {len(parts)} part(s): {parts[0]} .. {parts[-1]}')
     print('manifest:', mf)
+    if left:
+        lo = manifest['left_out']
+        print('BUNDLE INCOMPLETE: %d file(s), %.1f MB did not fit under the --max-mb cap of %d MB and are NOT in this bundle (%s). The newest files were packed first; '
+              'the newest one left out is %s (written %s). Put this line at the top of the report; when that file is from the last few days pack again with a larger '
+              '--max-mb, or the next fresh container starts without it.' % (lo['files'], lo['bytes'] / 1048576.0, max_mb, ', '.join('%s %d' % kv for kv in sorted(lo['by_dir'].items())), lo['newest'], lo['newest_at']))
     return manifest
 
 

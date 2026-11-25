@@ -6,6 +6,11 @@
 #   2. helpers   - every *.py / carriers.json / facilities.json in the workspace that is newer than
 #                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore);
 #                  a stale Drive-overlaid copy of a protected helper (the PROTECTED table below) never overwrites the repo's
+#   2a. feed registers (11/25/2026) - the Claimocity feed's registers in the workspace (the batch registers feed_import / feed_newcharts /
+#                  feed_verify / feed_inspector / feed_fixholds / feed_recon / feed_order_sweep, the file register claimocity_ingest.json,
+#                  the patient map, the diagnosis cache) -> practices/ehpa/registers/, the three standing files MERGED with main's.
+#                  Until then a run had to copy them by hand (feed runbook step e); three runs did not, and the next run read the
+#                  same feed file again. They are scrubbed in place by the tree gate like every other register.
 #   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
 #                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
@@ -164,6 +169,77 @@ def sync_helpers():
                 continue
             gate(src, dst); n += 1
     print("helpers: %d file(s) refreshed into scripts/helpers/" % n)
+
+# ---- 2a. the Claimocity feed's registers (11/25/2026) ---------------------------------------------
+# The feed's registers are written in the run's throw-away workspace. Until 11/25/2026 they reached main only when the run copied them by
+# hand (nightly/claimocity_feed_step.md step e - prose). On 11/10, 11/21 and 11/24/2026 the morning run entered 60 / 84 / 26 visits in
+# AdvancedMD and committed no feed register: the next fresh container took main's older file register, saw the same feed file as new and
+# read it again (no visit was entered twice - the import checks the chart's live charges - but the batch records of 11/21 and 11/24 exist
+# nowhere, and the feed page shows $0 for those files). Now every `sync` carries them:
+#   - a batch register is copied when main does not have it, or when the workspace copy is newer than main's (a fresh container's
+#     restored copy is older than the clone's and never overwrites it);
+#   - the three standing files are MERGED, so nothing either side knows is lost: the file register (every file and run; for a file both
+#     know with the same content the EARLIEST registration stays - the run that really entered its visits), the patient map (this run
+#     answers for a patient both know) and the diagnosis cache (a known code is never replaced by "not in AdvancedMD").
+# Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word - and quality_exceptions.json).
+# Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror.
+FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon)_\d{8}T\d{4}ZR?|feed_order_sweep_\d{8}T\d{4,6}Z)\.json$")
+FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json")
+def _merge_ingest(main, ws):
+    out = dict(main); files = dict(main.get("files") or {})
+    for k, v in (ws.get("files") or {}).items():
+        cur = files.get(k)
+        if not isinstance(v, dict): continue
+        if not isinstance(cur, dict): files[k] = v
+        elif cur.get("sha256") != v.get("sha256"):                       # another content under the same name: the later registration answers
+            if str(v.get("at") or "") > str(cur.get("at") or ""): files[k] = v
+        elif str(v.get("at") or "~") < str(cur.get("at") or "~"): files[k] = v      # the same content: the first registration is the run that entered it
+    runs = []; seen = set()
+    for r in list(main.get("runs") or []) + list(ws.get("runs") or []):
+        key = json.dumps(r, sort_keys=True)
+        if key not in seen: seen.add(key); runs.append(r)
+    runs.sort(key=lambda r: (str(r.get("at") or ""), str(r.get("stamp") or "")) if isinstance(r, dict) else ("", ""))
+    for k, v in ws.items():
+        if k not in out: out[k] = v
+    out["files"] = files; out["runs"] = runs
+    return out
+def _merge_map(main, ws):
+    out = dict(main); out.update(ws); return out
+def _merge_dx(main, ws):
+    out = dict(main)
+    for k, v in ws.items():
+        if v or k not in out: out[k] = v                                 # "not in AdvancedMD" (null) never replaces a code main knows
+    return out
+_FEED_MERGE = {"claimocity_ingest.json": (_merge_ingest, {"indent": 1}), "claimocity_patient_map.json": (_merge_map, {"indent": 0, "sort_keys": True}),
+               "dx_cache_feed.json": (_merge_dx, {"indent": 0, "sort_keys": True})}
+def sync_feed_registers():
+    """Copy / merge the feed's registers from the workspace into practices/ehpa/registers/. Returns the number of files written."""
+    src_dir = os.path.join(WS, "registers"); dst_dir = os.path.join(ROOT, "practices", "ehpa", "registers")
+    if not os.path.isdir(src_dir):
+        print("feed registers: no %s in the workspace - nothing to carry" % src_dir); return 0
+    os.makedirs(dst_dir, exist_ok=True)
+    copied = merged = 0; bad = []
+    for name in sorted(os.listdir(src_dir)):
+        src = os.path.join(src_dir, name); dst = os.path.join(dst_dir, name)
+        if not os.path.isfile(src): continue
+        try:
+            if FEED_BATCH.match(name):
+                if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src): continue
+                json.load(open(src, encoding="utf-8"))                   # a half-written register never goes to main
+                shutil.copy2(src, dst); copied += 1
+            elif name in _FEED_MERGE:
+                fn, fmt = _FEED_MERGE[name]
+                ws_obj = json.load(open(src, encoding="utf-8"))
+                if not isinstance(ws_obj, dict): raise ValueError("not a JSON object")
+                main_obj = json.load(open(dst, encoding="utf-8")) if os.path.exists(dst) else {}
+                new = fn(main_obj if isinstance(main_obj, dict) else {}, ws_obj)
+                if new != main_obj:
+                    json.dump(new, open(dst, "w", encoding="utf-8"), **fmt); merged += 1
+        except Exception as e:
+            bad.append("%s (%s)" % (name, type(e).__name__))
+    print("feed registers: %d file(s) carried into practices/ehpa/registers/ (%d batch register(s) copied, %d standing file(s) merged)%s" % (
+        copied + merged, copied, merged, (" - could not be read and left as they are on main: " + ", ".join(bad)) if bad else ""))
+    return copied + merged
 
 def gate_tree():
     """10/6/2026: everything `git add -A` would commit passes through phi_gate's tree mode first - registers,
@@ -338,6 +414,7 @@ def main():
         msg = sys.argv[2] if len(sys.argv) > 2 else "mirror %s" % TODAY
         merge_registry()
         sync_helpers()
+        sync_feed_registers()
         build_postman()
         ok = commit_and_push(msg)
         print("\nNEXT (connector legs, in this order):")
@@ -350,7 +427,9 @@ def main():
         return
     if cmd == "postman":
         return build_postman()
-    sys.exit("usage: mirror.py [status|sync \"message\"|postman]")
+    if cmd == "feed-registers":      # 11/25/2026: only step 2a - for a run that commits by hand (the daily feed task): copies / merges the feed registers, commits nothing
+        sync_feed_registers(); return
+    sys.exit("usage: mirror.py [status|sync \"message\"|postman|feed-registers]")
 
 if __name__ == "__main__":
     main()
