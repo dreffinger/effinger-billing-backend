@@ -205,6 +205,7 @@ stedi = types.ModuleType("stedi"); stedi.STAND_IN = True
 def _medicare(first, last, dob8, member_id=None, dos=None, state=None, pid=None, who=None, max_age_days=None, **more):
     """The vendor client's ONE Medicare answer, scripted per chart: "alive", "failed", or the day Medicare's record shows."""
     VENDOR.append(str(pid)); r = STATE["medicare"].get(str(pid), "alive")
+    if isinstance(r, list): r = r.pop(0) if len(r) > 1 else r[0]      # a list = the answers of the asks in order (the last one stays): Medicare down at first, answering later
     if r == "failed": return {}, "failed"
     j = {"benefitsInformation": [{"code": "1", "insuranceTypeCode": "MA"}, {"code": "1", "insuranceTypeCode": "MB"}], "errors": [], "planDateInformation": {}}
     if r != "alive": j["planDateInformation"]["dateOfDeath"] = ymd(r)
@@ -221,7 +222,7 @@ elig_amd.run_plan = _run_plan; elig_amd.summarize = _summarize
 STANDINS = {"amd": amd, "resave": resave, "stedi": stedi, "elig_amd": elig_amd}
 
 GUARDS = []                    # every scripted guard made below (a last check: the helper used nothing of them but check_charge, check and the lists)
-def scripted(results=None, counts=None, start=None, log=None, bad_counts=None, second=None, peek=None):
+def scripted(results=None, counts=None, start=None, log=None, bad_counts=None, second=None, peek=None, covered=None):
     """A scripted guard. results: charge -> True (blocked) / "unverified" / an exception to raise / nothing (clear) - what check_charge says.
     second: chart -> the same, for what check() says (the second question). counts: charge -> what the guard's COUNTS grow by when that
     charge is checked (None = a guard that has no COUNTS). start: where its COUNTS stand before. peek: charge -> the charges this guard
@@ -246,6 +247,8 @@ def scripted(results=None, counts=None, start=None, log=None, bad_counts=None, s
     def _other(name):
         if not name.startswith("__") and name not in ("COUNTS", "LOG", "MEDICARE", "CCM"): g.other.append(name)
         raise AttributeError(name)
+    if covered is not None:      # covered: what the guard's covered(chart, date of service) answers - a value, or a function of the two (g.covers keeps every question); None = a guard that has no such function (a guard from before)
+        g.covers = []; g.covered = lambda pid, dos: (g.covers.append((pid, dos)), covered(pid, dos) if callable(covered) else covered)[1]
     g.check_charge = check_charge; g.check = check; g.__getattr__ = _other; GUARDS.append(g); return g
 
 # ---- the helper, as the program a run starts - inside this process ---------------------------------------------------------------------------
@@ -287,8 +290,9 @@ def run(argv=(), guard=None, ws=None, drop=()):
     text = out.getvalue(); regs = sorted(glob.glob(os.path.join(w, "registers", "*")))
     reg = None; raw = ""
     if regs:
+        written = [x for x in regs if os.path.basename(x).startswith("death_check_review_")] or regs      # the helper's own register (in a flat workspace the registers folder holds the guard's cache too - section 10z8)
         try:
-            with open(regs[-1]) as fh: raw = fh.read()
+            with open(written[-1]) as fh: raw = fh.read()
             reg = json.loads(raw)
         except (OSError, ValueError): reg = None
     SEEN.append(text); SEEN.append(raw)
@@ -565,6 +569,7 @@ finally:
     for n, m in _had.items():
         sys.modules.pop(n, None)
         if m is not None: sys.modules[n] = m
+if DG is not None and hasattr(DG, "_CARRIED"): DG._CARRIED[0] = True      # this guard's file stands in the CHECKOUT: the other cache files of its layout are the checkout's own (the repository's register among them) - nothing of the checkout is carried into this self-test's throwaway cache (the carry is shown with a guard whose file stands in a sandbox folder: section 10z8)
 check("10a the real guard is loaded from its file and writes its cache in the throwaway folder - never the repository's (its cache path is the one set here)",
       lambda: DG is not None and DG.CACHE == DCACHE and callable(DG.check_charge), lambda: DG_ERR or getattr(DG, "CACHE", None))
 def cache():
@@ -793,26 +798,57 @@ check("10y3 ... the second look at the end asks nobody and buys nothing: the gua
 check("10y4 ... with nothing on anybody's record both charges stay clear with no line, and --dry (nothing asked, so no day learned) blocks nothing more than its cache knows",
       lambda: RY3.code == 0 and kind(RY3, "BLOCKED") == [] and [x.get("result") for x in rows(RY3)] == ["clear", "clear"] and not any("late" in x for x in rows(RY3))
       and RY4.code == 0 and kind(RY4, "BLOCKED") == [] and RY4.vendor == [], lambda: (RY3.code, RY3.lines, RY4.code, RY4.lines, RY4.vendor))
-# ---- 10y5. an UNVERIFIED line that a later answer of the same start has overtaken (the second verification, 11/25/2026) ---------------------------
-# The line was said during the walk and stayed - beside a BLOCKED line for the same charge, or although a later charge of the same chart had
-# brought Medicare's answer. Now it is said when the listing is through: none for a charge that ended BLOCKED, none for a charge AFTER which
-# another charge of the same chart needed Medicare's answer and got it.
+# ---- 10y5. an UNVERIFIED line is dropped only when an answer that COVERS the charge really came (the independent check of the second round, finding 5) ----------
+# The second verification let the line go 'for a charge AFTER which another charge of the same chart needed Medicare's answer and got it'. But 'needed an
+# answer and is not unverified' is also true of a later charge the cache already covered - nobody was asked for it - and then nobody had answered for the first
+# charge either: the line was dropped, and whether it was said depended on the listing's order. The helper now asks the GUARD when the listing is through:
+# covered(chart, date of service) - a day that can be read, or an entry that is not stale for that date by the guard's own rule. A guard that has no such
+# function (a guard from before, a stand-in) drops nothing. 'None for a charge that ended BLOCKED' stays.
 CCM_Y2 = ("5305", "pcode492677", "99489", "car6404", "car6113", DOS_A)
-def two_u(first, second, results, second_look=None):
-    scene([("9301", "7301", [first]), ("9302", "7301", [second])]); g = scripted(results, second=second_look); return run(guard=g)
-RU1 = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"})                                         # the first look-up fails, the second charge of the chart is answered (clear)
-RU2 = two_u(CCM_Y, CCM_Y2, {"5302": "unverified", "5305": True}, {"7301": True})           # ... the second charge brings a day that blocks both
-RU3 = two_u(CCM_Y, ORD_Y, {"5302": "unverified"})                                          # the later charge needed no Medicare answer: nothing overtakes
-RU4 = two_u(CCM_Y2, CCM_Y, {"5302": "unverified"})                                         # the answer came BEFORE the look-up that failed: nothing overtakes
-check("10y5 the first look-up of a chart fails and a LATER charge of the same chart gets Medicare's answer in the same start: no UNVERIFIED line is left for the first (the answer is the chart's), none is counted, and its register row says it was answered later",
+def two_u(first, second, results, second_look=None, covered=None):
+    scene([("9301", "7301", [first]), ("9302", "7301", [second])]); g = scripted(results, second=second_look, covered=covered); return run(guard=g), g
+(RU1, GU1) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"}, covered=True)                              # the first look-up fails; when the listing is through the guard's cache COVERS that charge
+(RU1b, GU1b) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"}, covered=False)                           # ... the cache does NOT cover it, although the later charge of the chart needed an answer and is not unverified
+(RU1c, GU1c) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"})                                          # ... a guard that has no covered()
+(RU1d, GU1d) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"}, covered=lambda pid, dos: 1 / 0)          # ... a covered() that raises
+(RU1e, GU1e) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified"}, covered="yes")                           # ... a covered() that answers something else than True
+(RU2, GU2) = two_u(CCM_Y, CCM_Y2, {"5302": "unverified", "5305": True}, {"7301": True}, covered=True)      # the second charge brings a day that blocks both
+(RU3, GU3) = two_u(CCM_Y, ORD_Y, {"5302": "unverified"}, covered=False)                              # the later charge needed no Medicare answer
+(RU4, GU4) = two_u(CCM_Y2, CCM_Y, {"5302": "unverified"}, covered=False)                             # the look-up that failed is the LAST charge of the chart
+check("10y5 a look-up fails and, when the listing is through, the guard's cache COVERS that charge (covered(chart, its date of service) is True - an answer came later in the start): no UNVERIFIED line is left for it, none is counted, and its register row says it was answered later",
       lambda: kind(RU1, "UNVERIFIED") == [] and RU1.code == 0 and (RU1.reg or {}).get("unverified") == 0 and row(RU1, "5302").get("answered_later") is True and "unverified" not in row(RU1, "5302") and "words" not in row(RU1, "5302")
-      and not any("UNVERIFIED" in str(l) for l in (RU1.reg or {}).get("lines") or []), lambda: (RU1.code, RU1.lines, rows(RU1)))
-check("10y6 ... and when the later answer names a day that blocks both, the first charge has ONE line - BLOCKED - and no UNVERIFIED line beside it, in the output and in the register",
-      lambda: RU2.code == 3 and len(kind(RU2, "BLOCKED")) == 2 and kind(RU2, "UNVERIFIED") == [] and (RU2.reg or {}).get("unverified") == 0 and not any(str(l).startswith("UNVERIFIED") for l in (RU2.reg or {}).get("lines") or []),
-      lambda: (RU2.code, RU2.lines))
-check("10y7 ... a later charge that needed NO Medicare answer overtakes nothing, and neither does an answer that came BEFORE the look-up that failed: the UNVERIFIED line stands (one line, counted once, said after the listing is through and before the summary)",
+      and not any("UNVERIFIED" in str(l) for l in (RU1.reg or {}).get("lines") or []) and GU1.covers == [("7301", iso(DOS_A))], lambda: (RU1.code, RU1.lines, rows(RU1), GU1.covers))
+check("10y5b ... the SAME listing and the cache does NOT cover the charge - a later charge of the chart needed a Medicare answer and is not unverified, but nobody answered: the line IS said (it was dropped: 'answered later', 0 unverified, exit 0)",
+      lambda: kind(RU1b, "UNVERIFIED") == ["UNVERIFIED: pat7301 visit 9301 charge 5302 DOS %s code 99487 - %s" % (iso(DOS_A), UNVERIFIED)] and (RU1b.reg or {}).get("unverified") == 1 and row(RU1b, "5302").get("unverified") is True
+      and "answered_later" not in row(RU1b, "5302") and GU1b.covers == [("7301", iso(DOS_A))], lambda: (RU1b.lines, rows(RU1b), GU1b.covers))
+check("10y5c ... with a guard that has NO covered() (a guard from before) the line is never dropped; nor when covered() raises, nor when it answers anything but True",
+      lambda: all(len(kind(r, "UNVERIFIED")) == 1 and (r.reg or {}).get("unverified") == 1 and "answered_later" not in row(r, "5302") and r.err == "" and r.code == 0 for r in (RU1c, RU1d, RU1e)), lambda: [(r.code, r.err, r.lines) for r in (RU1c, RU1d, RU1e)])
+check("10y6 ... and when the later answer names a day that blocks both, the first charge has ONE line - BLOCKED - and no UNVERIFIED line beside it, in the output and in the register (none for a charge that ended BLOCKED - the guard is not even asked whether it is covered)",
+      lambda: RU2.code == 3 and len(kind(RU2, "BLOCKED")) == 2 and kind(RU2, "UNVERIFIED") == [] and (RU2.reg or {}).get("unverified") == 0 and not any(str(l).startswith("UNVERIFIED") for l in (RU2.reg or {}).get("lines") or []) and GU2.covers == [],
+      lambda: (RU2.code, RU2.lines, GU2.covers))
+check("10y7 ... a later charge that needed NO Medicare answer changes nothing, and neither does the order: the UNVERIFIED line stands (one line, counted once, said after the listing is through and before the summary)",
       lambda: len(kind(RU3, "UNVERIFIED")) == 1 and (RU3.reg or {}).get("unverified") == 1 and row(RU3, "5302").get("unverified") is True and len(kind(RU4, "UNVERIFIED")) == 1 and (RU4.reg or {}).get("unverified") == 1
       and RU3.lines[-2].startswith("UNVERIFIED: pat7301 visit 9301 charge 5302 ") and RU3.lines[-1].startswith("DEATH CHECK - Charge Review:"), lambda: (RU3.lines, RU4.lines))
+# ... and with the REAL guard, the checker's own case: ONE straight-Medicare chart whose cache entry says 'no death on record', checked 10 days ago; a visit of
+# 3 days ago (Medicare must be asked again - nobody answers) and a visit of 12 days ago (the cache's answer covers it: nobody is asked).
+NEW_Y = ("5311", "pcode65089", "99232", "car6085", "car6404", ago(3)); OLD_Y = ("5312", "pcode65089", "99232", "car6085", "car6404", ago(12)); NEWER_Y = ("5313", "pcode65089", "99232", "car6085", "car6404", ago(2))
+def two_real(first, second, medicare):
+    shutil.rmtree(os.path.dirname(DCACHE), True); os.makedirs(os.path.dirname(DCACHE))
+    with open(DCACHE, "w") as fh: json.dump({"7301": {"dod": None, "checked": iso(ago(10)), "src": "stedi: no death on record"}}, fh)
+    scene([("9301", "7301", [first]), ("9302", "7301", [second])]); STATE["charts"] = {"7301": [("car6085", MBI_S)]}; STATE["medicare"] = {"7301": medicare}; STATE["free"] = {}; del DG.LOG[:]
+    return run(guard=DG)
+RV1 = RV2 = RV3 = RV4 = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded")
+if DG is not None:
+    RV1 = two_real(NEW_Y, OLD_Y, "failed"); RV2 = two_real(OLD_Y, NEW_Y, "failed")            # nobody answers, in both orders
+    RV3 = two_real(NEW_Y, NEWER_Y, ["failed", "alive"])                                        # nobody answers for the first charge; Medicare answers for a LATER visit of the chart, today
+    RV4 = two_real(NEW_Y, OLD_Y, ["failed", "alive"]); _v4 = list(RV4.vendor)                  # control: the second charge is covered by the cache - Medicare is not asked a second time
+V_LINE = "UNVERIFIED: pat7301 visit %s charge 5311 DOS %s code 99232 - " + UNVERIFIED
+check("10y8 with the REAL guard, the checker's own case: nobody answers for the visit of 3 days ago; the visit of 12 days ago is covered by the cache (nobody is asked for it) - the UNVERIFIED line for the first is said in BOTH orders of the listing, 1 unverified (listed first it was dropped: 0 unverified, exit 0, 'answered later')",
+      lambda: kind(RV1, "UNVERIFIED") == [V_LINE % ("9301", iso(ago(3)))] and kind(RV2, "UNVERIFIED") == [V_LINE % ("9302", iso(ago(3)))] and all((r.reg or {}).get("unverified") == 1 and r.code == 0 and r.vendor == ["7301"] for r in (RV1, RV2))
+      and not any("answered_later" in x for r in (RV1, RV2) for x in rows(r)) and real_summary(RV1, 2, 2, 2, 2, 0, 0, 1) and real_summary(RV2, 2, 2, 2, 2, 0, 0, 1), lambda: (RV1.lines, RV2.lines, RV1.vendor, RV2.vendor))
+check("10y9 with the REAL guard: nobody answers for the first charge, then Medicare answers 'no death' for a later visit of the same chart in the same start - that answer is the chart's and covers the first charge too: no UNVERIFIED line, 0 unverified, 'answered later'; when the second charge needs no new answer, Medicare is asked once and the line stays",
+      lambda: kind(RV3, "UNVERIFIED") == [] and (RV3.reg or {}).get("unverified") == 0 and row(RV3, "5311").get("answered_later") is True and RV3.vendor == ["7301", "7301"] and RV3.code == 0
+      and _v4 == ["7301"] and len(kind(RV4, "UNVERIFIED")) == 1, lambda: (RV3.lines, RV3.vendor, rows(RV3), RV4.lines))
 
 # ---- 10z. the guard's cache file is not there: said, at the top (11/25/2026, the integration; the review's finding on the cache) -----------------
 # A guard that finds no cache file starts with nothing: a day the practice already holds is unknown to it until Medicare answers again, and
@@ -863,6 +899,54 @@ if DG is not None:
 else: RC6 = RC1
 check("10z6 with a cache file that cannot be read (so nothing the guard learns can be written) the day a later charge of the same chart brings still blocks the earlier one: the guard remembers for the rest of the start what it could not write",
       lambda: RC6.code == 3 and sorted(kind(RC6, "BLOCKED")) == Y_BLOCKED and open(DCACHE).read() == "{ this file cannot be read", lambda: (RC6.code, RC6.lines))
+# ---- 10z8. the line about the cache is taken AFTER the guard has carried the other cache files in (the independent check of the second round, finding 11) -------
+# The helper decided 'the file is missing' and read the cache's state BEFORE the guard's first answer - and the guard carries what the workspace's other cache
+# files hold into its cache at that first answer. So: no register file, the feed's old file holds the chart's day -> 'CACHE MISSING: ... the guard starts with
+# NOTHING' and, two lines on, BLOCKED by that very day; two placeholders whose days the old file holds -> 'CACHE: 2 chart(s) carry a date of death whose day
+# cannot be read here' although both had been filled in. The clause of the live prompts then sends the run to a merge and a second start it does not need.
+FLAT_N = [0]
+def flat_ws(register=None, local=None):
+    """a run's flat workspace in the throwaway folder: registers/ beside the helpers; its register (None = no file) and the feed helpers' cache file of before"""
+    FLAT_N[0] += 1; w = os.path.join(TMP, "flat%d" % FLAT_N[0]); os.makedirs(os.path.join(w, "registers"))
+    for path, what in ((os.path.join(w, "registers", "deceased_cache.json"), register), (os.path.join(w, "deceased_cache_local.json"), local)):
+        if what is not None:
+            with open(path, "w") as fh: fh.write(what if isinstance(what, str) else json.dumps(what))
+    return w
+def flat_guard(w):
+    """the REAL guard as it stands in that workspace: its text is the checkout's, run under the name <workspace>/deceased_guard.py with no cache named by the
+    environment - so its cache is the workspace's register and its other files are the workspace's. A new module each time, like a new process."""
+    old = os.environ.pop("DECEASED_CACHE", None); had = {n: sys.modules.get(n) for n in STANDINS}
+    try:
+        sys.modules.update(STANDINS); g = types.ModuleType("deceased_guard"); g.__file__ = os.path.join(w, "deceased_guard.py"); g.UNDER_TEST = True
+        exec(compile(_read(GUARD), g.__file__, "exec"), g.__dict__); return g
+    finally:
+        sys.path[:] = _PATH
+        if old is not None: os.environ["DECEASED_CACHE"] = old
+        for n, m in had.items():
+            sys.modules.pop(n, None)
+            if m is not None: sys.modules[n] = m
+def flat_run(register, local, medicare=None):
+    w = flat_ws(register, local); scene([("9301", "7301", [ORD_Y])]); STATE["charts"] = {"7301": [("car6404", MEM_S)]}; STATE["medicare"] = dict(medicare or {}); STATE["free"] = {}
+    g = flat_guard(w); return run(guard=g, ws=w), g
+_DAY_F = {"7301": {"dod": iso(GONE), "checked": iso(ago(2)), "src": "amd-271"}, "7302": {"dod": iso(GONE2), "checked": iso(ago(2))}}
+_LOST_F = {"7301": {"dod": "[DOB]", "checked": iso(ago(50))}, "7302": {"dod": "[DOB]", "checked": iso(ago(50))}}
+(RF1, GF1), (RF2, GF2), (RF3, GF3), (RF4, GF4) = flat_run(None, _DAY_F), flat_run(_LOST_F, _DAY_F), flat_run(dict(_LOST_F, **{"7303": {"dod": "[DOB]", "checked": iso(ago(50))}}), _DAY_F), flat_run(None, None)
+check("10z8 no register file, but the feed's old file beside the helpers holds the chart's day: the guard carries it in first, so NO line says the cache is missing (it said 'the guard starts with NOTHING' two lines before BLOCKED) - the charge is BLOCKED, and the register says what the cache looks like after the carry",
+      lambda: GF1.CACHE == os.path.join(RF1.ws, "registers", "deceased_cache.json") and not [l for l in RF1.lines if l.startswith("CACHE")] and RF1.code == 3
+      and kind(RF1, "BLOCKED") == ["BLOCKED: pat7301 visit 9301 charge 5301 DOS %s code 99349 - %s" % (iso(DOS_B), BLOCK)] and (RF1.reg or {}).get("cache_missing") is False
+      and (RF1.reg or {}).get("cache") == {"file": True, "readable": True, "charts": 2, "days": 2, "lost": 0} and leaks(RF1.out + RF1.raw) == [], lambda: (RF1.code, RF1.err, RF1.lines, (RF1.reg or {}).get("cache")))
+check("10z9 ... the register holds two placeholders and the old file both days: NO line counts charts whose day cannot be read (it said '2 chart(s)'); with a third placeholder nobody holds a day for, the line counts ONE; and with nothing anywhere the file IS missing and the line says so, first",
+      lambda: not [l for l in RF2.lines if l.startswith("CACHE")] and RF2.code == 3 and len(kind(RF3, "CACHE:")) == 1 and "1 chart(s)" in kind(RF3, "CACHE:")[0] and (RF3.reg or {}).get("cache", {}).get("lost") == 1
+      and RF4.lines[:1] == [MISSING] and RF4.code == 0 and (RF4.reg or {}).get("cache_missing") is True, lambda: (RF2.lines, RF3.lines, RF4.lines))
+_cs_path = os.path.join(TMP, "scripted_state", "deceased_cache.json"); os.makedirs(os.path.dirname(_cs_path)); _cs_seen = []
+def _cs_state():
+    """a scripted guard's cache_state that does what the real one does since that day: the file comes to be WHILE the state is taken (the carry)"""
+    _cs_seen.append(os.path.isfile(_cs_path))
+    with open(_cs_path, "w") as fh: fh.write("{}")
+    return {"file": True, "readable": True, "charts": 3, "days": 3, "lost": 0}
+scene(FOUR); GCS = scripted(); GCS.CACHE = _cs_path; GCS.cache_state = _cs_state; RCS = run(guard=GCS)
+check("10z10 the ORDER, with a scripted guard: the helper asks the guard's cache_state() BEFORE it decides that the file is missing - a file that comes to be while the state is taken (the carry) is not called missing",
+      lambda: _cs_seen == [False] and not [l for l in RCS.lines if l.startswith("CACHE")] and (RCS.reg or {}).get("cache_missing") is False and (RCS.reg or {}).get("cache", {}).get("days") == 3 and RCS.code == 0, lambda: (_cs_seen, RCS.lines[:2]))
 HELPER_MOD = types.ModuleType("death_check_review_probe"); HELPER_MOD.__file__ = os.path.join(ROOT, HELPER)
 exec(compile(_read(HELPER), HELPER_MOD.__file__, "exec"), HELPER_MOD.__dict__)      # the helper as a module: it does nothing by itself
 check("10z7 the 'code' a line and the register show is a procedure code or a procedure id in its own shape - five characters of a code, or pcode and digits; any other word standing in the procedure attributes of an answer is not printed",
@@ -902,8 +986,8 @@ check("11b2 every value the helper takes from AdvancedMD's answers is kept only 
       and [M.day(x) for x in (NAME_S, "", None, "soon", ymd(DOS_A) + "7")] == [""] * 5 and [M.code_of(x) for x in ("99487", "G0556", "pcode492676", "1123F")] == ["99487", "G0556", "pcode492676", "1123F"]
       and [M.code_of(x) for x in (NAME_S, "two words", "", None, "x" * 13)] == [""] * 5 and M.kind_of(RuntimeError(NAME_S)) == "RuntimeError", lambda: M)
 check("11c the fixed words in the helper are the specification's, word for word", lambda: ('"%s"' % BLOCK) in helper_text() and ('"%s"' % UNCHECKED) in helper_text() and ('"%s"' % UNVERIFIED) in helper_text())
-check("11d the helper used nothing of the scripted guards but check_charge, check, the guard's lists (LOG, CCM, MEDICARE, COUNTS) and the NAME of its cache file (CACHE - only to say when that file is missing: the helper never opens it) - it never reaches into the guard's cache or its look-up, and never changes the guard",
-      lambda: len(GUARDS) > 20 and sum(len(g.calls) for g in GUARDS) > 40 and [[x for x in g.other if x not in ("CACHE", "cache_state")] for g in GUARDS if [x for x in g.other if x not in ("CACHE", "cache_state")]] == [] and set(re.findall(r"\bG\.(\w+)", code_lines(helper_text()))) == {"check_charge", "check"}
+check("11d the helper used nothing of the scripted guards but check_charge, check, the guard's lists (LOG, CCM, MEDICARE, COUNTS), the NAME of its cache file (CACHE - only to say when that file is missing: the helper never opens it) and the guard's own two answers about its cache (cache_state: counts; covered: whether an answer covers a charge) - it never reaches into the guard's cache or its look-up, and never changes the guard",
+      lambda: len(GUARDS) > 20 and sum(len(g.calls) for g in GUARDS) > 40 and [[x for x in g.other if x not in ("CACHE", "cache_state", "covered")] for g in GUARDS if [x for x in g.other if x not in ("CACHE", "cache_state", "covered")]] == [] and set(re.findall(r"\bG\.(\w+)", code_lines(helper_text()))) == {"check_charge", "check"}
       and not re.search(r"open\(\s*cpath|json\.load", code_lines(helper_text())),
       lambda: (sum(len(g.calls) for g in GUARDS), [g.other for g in GUARDS if g.other][:3], sorted(set(re.findall(r"\bG\.(\w+)", code_lines(helper_text()))))))
 check("11d2 the helper names no cache file and changes no environment variable: the guard takes the cache the run's environment gives it (DECEASED_CACHE, else its own default), exactly as it does for the code a run writes itself - and no cache file appears in the folder the helper is started in",

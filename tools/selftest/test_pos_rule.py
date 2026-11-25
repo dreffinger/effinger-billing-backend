@@ -899,15 +899,21 @@ import types as _types
 D_BEFORE = "2026-11-" + "10"; D_AFTER = "2026-11-" + "25"      # a date the stand-in Medicare reports, before / after the CCM date of 11/22 - put together at run time: the privacy gate scrubs a date that follows the word in a file it carries, this one included
 _DG = _types.ModuleType("deceased_guard"); _DG.calls = []; _DG.deaths = {}; _DG.fail = False
 def _dg_load():
-    try: return json.load(open(os.environ["DECEASED_CACHE"]))
-    except Exception: return {}
+    try: c_ = json.load(open(os.environ["DECEASED_CACHE"]))
+    except Exception: c_ = {}
+    return dict(c_, **getattr(_DG, "more", {}))      # more: what the guard's cache holds beyond the file the environment names (entries it carried in from a file the import does not read itself)
 def _dg_check(pid, dos, carrier=None, proc=None, allow_lookup=True):      # the real guard's shape: asks Medicare when it may, keeps a death in the cache file, answers (blocked, why)
     _DG.calls.append((pid, dos, carrier, proc, allow_lookup))
+    if hasattr(_DG, "peek"): _DG.peek.append(json.load(open(S4_REG)) if os.path.exists(S4_REG) else None)      # peek: what the import's register holds ON DISK at the moment of each question
     if _DG.fail: raise RuntimeError("the look-up is down")
+    if pid in getattr(_DG, "unverified", ()):      # unverified: charts whose look-up nobody answers - the real guard's answer: not blocked, and one line in its LOG
+        _DG.LOG.append("pat%s DOS %s: date of death UNVERIFIED (lookup failed)" % (pid, dos)); return False, ""
     if allow_lookup and pid in _DG.deaths:
         c_ = _dg_load(); c_[pid] = {"dod": _DG.deaths[pid], "src": "stand-in Medicare"}; json.dump(c_, open(os.environ["DECEASED_CACHE"], "w"))
     _r = _dg_load().get(pid) or {}
-    if _r.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(_r.get("dod"))): raise _DG.DayLost("a death is on record, its day cannot be read, nobody named one")      # the real guard's rule of 11/25/2026 (the second verification)
+    if _r.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(_r.get("dod"))):
+        if getattr(_DG, "before", False): return False, "stand-in"      # before: a guard from before the second verification - a day it cannot read is 'unknown' to it: it answers 'not blocked' and raises nothing
+        raise _DG.DayLost("a death is on record, its day cannot be read, nobody named one")      # the real guard's rule of 11/25/2026 (the second verification)
     return bool(_r.get("dod")), "stand-in"
 _DG._load = _dg_load; _DG.check = _dg_check; _DG.DayLost = type("DayLost", (RuntimeError,), {})
 _dg_old = sys.modules.get("deceased_guard"); sys.modules["deceased_guard"] = _DG
@@ -915,10 +921,10 @@ CHART["721"] = []; CHART["722"] = []; CHART["723"] = []
 s4d = s4_fresh({"a.hl7": hl7("pc", B["n1"], "", [("99487", "20261122"), ("99489", "20261122")], NPI) + hl7("pd", B["n1"], "", [("99487", "20261122")], NPI) + hl7("pe", B["n1"], "", [("99309", "20261120")], NP_NPI)})
 S4_CCM = [P_("pc", "pc", [("99487", "20261122"), ("99489", "20261122")]), P_("pd", "pd", [("99487", "20261122")]), P_("pe", "pe", [("99309", "20261120")])]
 S4_CCM_M = {"pc": "pat721", "pd": "pat722", "pe": "pat723"}
-def ccm_death_run(deaths, cache=None, argv=("--all",), fail=False):
+def ccm_death_run(deaths, cache=None, argv=("--all",), fail=False, msgs=None):
     dc_ = os.path.join(tmp, "deceased_ccm.json"); json.dump(cache or {}, open(dc_, "w")); os.environ["DECEASED_CACHE"] = dc_
     _DG.calls[:] = []; _DG.deaths = dict(deaths); _DG.fail = fail
-    try: o_, r_ = s4_run(s4d, S4_CCM, S4_CCM_M, argv=argv)
+    try: o_, r_ = s4_run(s4d, msgs or S4_CCM, S4_CCM_M, argv=argv)
     finally: os.environ["DECEASED_CACHE"] = DECEASED_OWN
     return o_, r_, list(_DG.calls)
 try:
@@ -950,9 +956,13 @@ try:
     check("death day lost (second verification): a chart with a death on record whose day cannot be read has NO visit entered, also an ordinary nursing visit - the guard is asked for it as an ordinary claim, nobody names a day, the message is skipped with fixed words and its codes, and the run says so for the top of the report",
           [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"] and len(_sk) == 1 and _sk[0]["why"] == s4d.DEATH_DAY_WHY and _sk[0].get("cpts") == ["99309"]
           and ("723", "11/20/2026", None, None, True) in c_ and s4d.DEATH_DAY_WHY in o_ and "TOP OF THE REPORT" in o_, (r_, c_, o_[-400:]))
+    _ddl = [l_ for l_ in o_.splitlines() if l_.startswith("DEATH DAY UNKNOWN: ")]
+    check("death day lost: ... the import's line says what is true of every such visit - 'nobody named the day' (the independent check of that round, finding 13: it said 'Medicare named none either', also when nobody had been asked - a dry run, a workspace with no guard) - with the count, the chart and what a run does",
+          _ddl == ["DEATH DAY UNKNOWN: 1 visit(s) on 1 chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again in every later run: pat723" % s4d.DEATH_DAY_WHY]
+          and "Medicare named none" not in o_, _ddl)
     o_, r_, c_ = ccm_death_run({"723": D_BEFORE}, cache={"723": {"dod": LOSTD}})
-    check("death day lost: ... when Medicare names the day and it is BEFORE the visit, the visit is kept out for good ('never billed'), as for every known death",
-          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"] and [x_["why"].startswith("DOS after date of death " + D_BEFORE) for x_ in _why(r_, "pat723")] == [True], r_)
+    check("death day lost: ... when Medicare names the day and it is BEFORE the visit, the visit is kept out for good ('never billed'), as for every known death - and its row says where the day came from: Medicare, asked because the day on record could not be read (never 'deceased cache': the cache did not hold it)",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"] and [x_["why"] for x_ in _why(r_, "pat723")] == ["DOS after date of death %s (Medicare, asked because the day on record could not be read) - never billed" % D_BEFORE], r_)
     o_, r_, c_ = ccm_death_run({"723": D_AFTER}, cache={"723": {"dod": LOSTD}})
     check("death day lost: ... and when the day Medicare names is AFTER the visit, the visit is entered", [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"], r_)
     o_, r_, c_ = ccm_death_run({}, cache={"721": {"dod": LOSTD}})
@@ -961,10 +971,52 @@ try:
           [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat722", "pat723"] and len(_sk) == 1 and _sk[0]["why"] == s4d.DEATH_DAY_WHY and sorted(_sk[0].get("cpts") or []) == ["99487", "99489"]
           and "CCM death check could not be made" not in o_, (r_, o_[-300:]))
     o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}}, argv=("--dry",))
-    check("death day lost: a dry run asks from the cache only, enters nothing for the chart and writes no register", r_ is None and ("723", "11/20/2026", None, None, False) in c_ and s4d.DEATH_DAY_WHY in o_, (r_, c_, o_[-300:]))
+    check("death day lost: a dry run asks from the cache only, enters nothing for the chart and writes no register - and its line says no more than is true of it (nobody was asked: 'nobody named the day')",
+          r_ is None and ("723", "11/20/2026", None, None, False) in c_ and s4d.DEATH_DAY_WHY in o_ and "(nobody named the day)" in o_ and "Medicare named none" not in o_, (r_, c_, o_[-300:]))
+    # ---- the independent check of the second round: changes of ONE line in the import that passed every check (its list of surviving mutations). Each has its check now.
+    _DG.before = True
+    try: o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}, "721": {"dod": LOSTD}})
+    finally: del _DG.before
+    check("death day lost (i01): the hold does NOT rest on the guard raising - with a guard from before (a day it cannot read is 'unknown': it answers 'not blocked' and raises nothing) the chart's visits are held all the same, the ordinary visit and the care-management message",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat722"] and [x_["why"] for x_ in _why(r_, "pat723") + _why(r_, "pat721")] == [s4d.DEATH_DAY_WHY] * 2 and ("723", "11/20/2026", None, None, True) in c_, (r_, c_))
+    _DG.before = True; _DG.more = {"721": {"dod": LOSTD, "src": "carried in by the guard from a file the import does not read"}}
+    try: o_, r_, c_ = ccm_death_run({})
+    finally: del _DG.before; del _DG.more
+    check("death day lost (i01): ... also when the placeholder stands only in the GUARD's cache (no file the import reads itself holds the chart): the care-management message is asked about as always, the guard's cache then shows a death on record with no day - held, not entered",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat722", "pat723"] and [x_["why"] for x_ in _why(r_, "pat721")] == [s4d.DEATH_DAY_WHY] and ("721", "11/22/2026", None, "99487", True) in c_, (r_, c_))
+    _DG.LOG = []; _DG.unverified = {"721"}
+    try: o_, r_, c_ = ccm_death_run({})
+    finally: del _DG.LOG; del _DG.unverified
+    _unv = "CCM entered with the date of death UNVERIFIED (nobody answered the look-up) - the insurance check asks again"
+    check("CCM death check (i11): nobody answers the look-up for a care-management chart - the guard answers 'not blocked' and logs it: the charge goes in (only a date of death keeps one out) and the run's DONE line COUNTS it, once, in fixed words",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"] and ("'%s': 1" % _unv) in o_.splitlines()[-1] and o_.splitlines()[-1].startswith("DONE "), o_[-500:])
+    _DG.peek = []
+    try: o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}}, msgs=[S4_CCM[2], S4_CCM[0], S4_CCM[1]])
+    finally: _pk = _DG.peek; del _DG.peek
+    check("death day lost (i13): the held visit's skip row reaches the register FILE at once - when the guard is asked about the NEXT message of the run, the row is on disk already (a run cut off after it does not lose the row the retry step reads)",
+          [x_[0] for x_ in c_] == ["723", "721", "722"] and _pk[0] is None and _pk[1] is not None and [(x_.get("pid"), x_.get("why")) for x_ in _pk[1].get("skipped", [])] == [("pat723", s4d.DEATH_DAY_WHY)] and not _pk[1].get("created"), (c_, _pk))
+    o_, r_, c_ = ccm_death_run({}, msgs=[S4_CCM[0], dict(S4_CCM[0]), S4_CCM[1]])
+    check("CCM death check (i14): the guard is asked ONCE per chart, date and kind in a run - a second message of the same chart with the same care-management date asks nobody again",
+          [x_[0] for x_ in c_] == ["721", "722"] and [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"], (c_, r_))
+    # D14 (word#6): the DEATH CHECK line is PRINTED by the import's main() - shown by running it, not by searching its text (a change that printed nothing passed every check)
+    _DG.COUNTS = {"free asked": 3, "free answered": 2, "paid asked": 1}; _DG.LOG = ["pat0 DOS x: date of death UNVERIFIED (lookup failed)"]
+    try: o_, r_, c_ = ccm_death_run({})
+    finally: del _DG.COUNTS; del _DG.LOG
+    _ol = o_.splitlines(); _dcl1 = "DEATH CHECK: AdvancedMD free asked x3, answered x2; went to the vendor x1; date of death UNVERIFIED x1 - TOP OF THE REPORT"; _at = lambda w_: next((i_ for i_, l_ in enumerate(_ol) if l_.startswith(w_)), -1)
+    check("DEATH CHECK line (D14): the import's main() PRINTS it when the guard counted something - ONE line with the guard's own numbers and its count of unverified checks, before the place-of-service lines and DONE (the drivers show the last three lines of the import's log)",
+          _ol.count(_dcl1) == 1 and 0 <= _ol.index(_dcl1) < _at("POS RULE: ") < _at("DONE ") == len(_ol) - 1, _ol[-6:])
+    o_, r_, c_ = ccm_death_run({})
+    check("DEATH CHECK line (D14): ... and prints no such line when the guard counted nothing (a guard without counts)", not any(l_.startswith("DEATH CHECK") for l_ in o_.splitlines()) and o_.splitlines()[-1].startswith("DONE "), o_[-300:])
     o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": D_BEFORE.replace("-", "")}})
     check("death day shapes: a day the cache holds as EIGHT DIGITS is a day - the visit after it is kept out with no question (it used to read as 'no death' and went in)",
           [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722"] and [x_["why"].startswith("DOS after date of death " + D_BEFORE) for x_ in _why(r_, "pat723")] == [True] and "723" not in [x_[0] for x_ in c_], (r_, c_))
+    # (the independent check of the second round, finding 12: a day with a TIME behind it - AdvancedMD stamps its dates with one - was a day to the guard and none to
+    #  the import, so the chart counted as one whose day is lost and every visit of it was held, also one BEFORE the day. tools/selftest/test_lookup_rules.py holds
+    #  the three readers of a cached day together over every shape; here the import itself, on its batch)
+    o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": D_AFTER + "T00:00:00"}}); o2_, r2_, c2_ = ccm_death_run({}, cache={"723": {"dod": D_BEFORE[5:7] + "/" + D_BEFORE[8:] + "/" + D_BEFORE[:4] + " 12:00:00 AM"}})
+    check("death day shapes: a day the cache holds with a TIME behind it is a day to the import too - a visit BEFORE it is entered with no question (the chart was held as one whose day is lost), a visit after it is kept out",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"] and "723" not in [x_[0] for x_ in c_] and s4d.DEATH_DAY_WHY not in o_
+          and [x_["pid"] for x_ in (r2_ or {}).get("created", [])] == ["pat721", "pat722"] and [x_["why"].startswith("DOS after date of death " + D_BEFORE) for x_ in _why(r2_, "pat723")] == [True] and "723" not in [x_[0] for x_ in c2_], (r_, c_, r2_, c2_))
     _f1 = os.path.join(tmp, "deceased_cache_local.json"); _f2 = os.path.join(tmp, "registers", "deceased_cache.json")
     try:
         json.dump({"723": {"dod": LOSTD}}, open(_f1, "w")); json.dump({"723": {"dod": D_BEFORE}}, open(_f2, "w"))
@@ -977,6 +1029,47 @@ try:
         json.dump(["not", "a", "table"], open(_f1, "w")); open(_f2, "w").write("{ not json")
         o_, r_, c_ = ccm_death_run({})
         check("one cache: a cache file that cannot be read, or is no table, is passed over - it never stops the import", [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"], (r_, o_[-300:]))
+        # ---- the independent check of the second round, new finding 7 (D7): the import read four names itself - and not the copy at the OLD path (the folder
+        # ../practices/ehpa/registers, where a run's lesson had told runs to put one), although the guard carries that copy's days into its cache in the same
+        # process: a visit after a day only that copy held was ENTERED. The import now reads the cache files the guard knows: the file the environment names, the
+        # guard's own, every file of the guard's _others() when the guard can be loaded, the two relative names of before, and the old path seen from the
+        # import's own folder. It still calls nothing that writes.
+        _kept = lambda r, n=1: [x_["why"].startswith("DOS after date of death " + D_BEFORE) and "(deceased cache)" in x_["why"] for x_ in _why(r, "pat723")] == [True] * n and "pat723" not in [x_["pid"] for x_ in (r or {}).get("created", [])]
+        os.remove(_f2); json.dump({"723": {"dod": D_BEFORE}}, open(_f1, "w"))
+        o_, r_, c_ = ccm_death_run({})
+        check("one cache: a day that ONLY the feed helpers' file of before holds (deceased_cache_local.json beside the helpers - the environment names another file, the register has none) keeps the visit out, with no question",
+              _kept(r_) and "723" not in [x_[0] for x_ in c_], (r_, c_))
+        os.remove(_f1); _f3 = os.path.join(tmp, "d7_elsewhere", "another_cache.json"); os.makedirs(os.path.dirname(_f3)); json.dump({"723": {"dod": D_BEFORE.replace("-", "")}}, open(_f3, "w")); _seen_o = []
+        _DG._others = lambda: (_seen_o.append(1), [_f3, os.path.join(tmp, "d7_elsewhere", "not_there.json"), 7, None])[1]
+        try: o_, r_, c_ = ccm_death_run({})
+        finally: del _DG._others
+        check("one cache (finding 7): the import reads every file the guard's own list of other cache files names (_others - the copy at the old path is one of them): a day only such a file holds keeps the visit out; a name on that list that is no file, or no name at all, is passed over",
+              _kept(r_) and _seen_o == [1] and "723" not in [x_[0] for x_ in c_], (r_, c_, _seen_o))
+        _DG._others = lambda: 1 / 0
+        try: o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": D_BEFORE}})
+        finally: del _DG._others
+        check("one cache: ... a guard whose list cannot be had (it raises) never stops the import - the file the environment names is read as before", _kept(r_), (r_, o_[-300:]))
+        # the old path seen from the IMPORT's own folder: here the helper is a copy standing in <tmp>/d7_ws (a run's flat workspace keeps its helpers side by side),
+        # so that path is <tmp>/practices/ehpa/registers/deceased_cache.json - read also with a guard that names no other file, and with no guard at all
+        _f4 = os.path.join(tmp, "practices", "ehpa", "registers", "deceased_cache.json"); os.makedirs(os.path.dirname(_f4)); json.dump({"723": {"dod": D_BEFORE, "checked": "2026-11-" + "24"}}, open(_f4, "w"))
+        _cp = os.path.join(tmp, "d7_ws", "claimocity_import.py"); os.makedirs(os.path.dirname(_cp)); open(_cp, "w").write(open(HELPER).read())
+        _hd = tempfile.mkdtemp(prefix="posrule_s4_", dir=tmp); open(os.path.join(_hd, "a.hl7"), "w", encoding="utf-8").write(hl7("pc", B["n1"], "", [("99487", "20261122"), ("99489", "20261122")], NPI) + hl7("pd", B["n1"], "", [("99487", "20261122")], NPI) + hl7("pe", B["n1"], "", [("99309", "20261120")], NP_NPI))
+        _hl0 = os.environ["FEED_HL7_DIR"]; os.environ["FEED_HL7_DIR"] = _hd
+        try: _sp7 = importlib.util.spec_from_file_location("claimocity_import_d7", _cp); s4d7 = importlib.util.module_from_spec(_sp7); _sp7.loader.exec_module(s4d7)
+        finally: os.environ["FEED_HL7_DIR"] = _hl0
+        s4d7.run_day = ci.run_day; _s4d0 = s4d; s4d = s4d7
+        try:
+            o_, r_, c_ = ccm_death_run({}); _old1 = (_kept(r_), "723" not in [x_[0] for x_ in c_], s4d7.amd is amd and s4d7.resave is resave and s4d7.txh is txh)
+            o2_, r2_, c2_ = ccm_death_run({}, argv=("--dry",)); _old2 = (r2_ is None, "DOS after date of death - not entered" in o2_, os.listdir(os.path.dirname(_f4)) == ["deceased_cache.json"], json.load(open(_f4)) == {"723": {"dod": D_BEFORE, "checked": "2026-11-" + "24"}})
+            sys.modules.pop("deceased_guard", None); _ref = type("_NoGuard", (), {"find_spec": staticmethod(lambda name, path=None, target=None: (_ for _ in ()).throw(ImportError("no deceased_guard in this workspace")) if name == "deceased_guard" else None)})(); sys.meta_path.insert(0, _ref)
+            try: o3_, r3_, c3_ = ccm_death_run({})
+            finally: sys.meta_path.remove(_ref); sys.modules["deceased_guard"] = _DG
+            _old3 = (_kept(r3_), c3_ == [], [x_["pid"] for x_ in (r3_ or {}).get("created", [])] == ["pat721", "pat722"])
+        finally: s4d = _s4d0; os.remove(_f4); os.remove(_cp)
+        check("one cache (finding 7): a day that stands ONLY in the copy at the old path - ../practices/ehpa/registers/deceased_cache.json seen from the import's own folder - keeps the visit out (it was ENTERED: the import did not read that copy, although the guard carries its days in during the same process)",
+              _old1 == (True, True, True), (_old1, r_))
+        check("one cache: ... a dry run reads it too and writes nothing - no register, nothing in that folder, the copy as it was; and with NO guard module at all the import still reads it (the care-management charts go in and the run says their check could not be made, as before)",
+              _old2 == (True, True, True, True) and _old3 == (True, True, True) and "CCM death check could not be made before the entry (ImportError)" in o3_, (_old2, _old3, o3_[-300:]))
     finally:
         for _f in (_f1, _f2):
             if os.path.exists(_f): os.remove(_f)
@@ -3627,6 +3720,26 @@ check("... the line also says how many checks ended UNVERIFIED (the guard's own 
 check("... the import prints it BEFORE its place-of-service lines (the drivers show the last three lines of the import's log, and those stay POS CHECK, POS RULE and DONE), the insurance check before its DONE line",
       (lambda a_, b_: 0 < a_.find("death_check_line(__import__(\"sys\").modules.get(\"deceased_guard\"))") < a_.find('print("POS RULE: CCM 32 x%d') and 0 < b_.find("death_check_line(deceased_guard)") < b_.rfind('print("DONE", dict(stats))'))(
           open(os.path.join(ROOT, "scripts", "helpers", "claimocity_import.py")).read(), open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()))
+# D14 (word#6) and the independent check's surviving changes v01 / v02: the insurance check's own run, INSIDE this process with the stand-ins of 'the whole insurance-check step' above
+_vgc = dict(VF_STAND["deceased_guard"], COUNTS={"free asked": 4, "free answered": 3, "paid asked": 1}, LOG=["pat1 DOS x: date of death UNVERIFIED (lookup failed)"], free_down=lambda: False); _vg0 = VF_STAND["deceased_guard"]
+_vrow = dict(_qrow, quality_codes=None, quality_charge=None); VF_STAND["deceased_guard"] = _vgc
+try: _vr, _vo, _ve = vf_run(_vrow, None)
+finally: VF_STAND["deceased_guard"] = _vg0
+_vl = _vo.splitlines(); _dcl2 = "DEATH CHECK: AdvancedMD free asked x4, answered x3; went to the vendor x1; date of death UNVERIFIED x1 - TOP OF THE REPORT"
+check("DEATH CHECK line (D14): the insurance check's run PRINTS it when its guard counted something - ONE line, right before its DONE line - shown by running the step, not by searching its text (a change that printed nothing passed every check)",
+      _ve == "" and _vl.count(_dcl2) == 1 and _vl.index(_dcl2) == len(_vl) - 2 and _vl[-1].startswith("DONE "), (_ve, _vl[-3:]))
+_vr, _vo, _ve = vf_run(_vrow, None)
+check("DEATH CHECK line (D14): ... and prints no such line when its guard counted nothing", _ve == "" and not any(l_.startswith("DEATH CHECK") for l_ in _vo.splitlines()) and _vo.splitlines()[-1].startswith("DONE "), (_ve, _vo[-200:]))
+_venv = []; _vge = dict(VF_STAND["deceased_guard"], check=lambda *a_, **k_: (_venv.append(os.environ.get("DECEASED_CACHE")), (False, ""))[1]); _dc_keep = os.environ.pop("DECEASED_CACHE", None)
+try:
+    VQ.update(order="2", void=set(), sent=[], fault=None); json.dump({"created": [dict(_vrow, feed_id="f1", dos="11/10/2026", cpts=["99309"])]}, open(os.path.join(vfd, "registers", "feed_import_T2.json"), "w"))
+    if os.path.exists(os.path.join(vfd, "feed_verify_T2.json")): os.remove(os.path.join(vfd, "feed_verify_T2.json"))
+    _vo2, _ve2 = run_inside(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py"), dict(VF_STAND, deceased_guard=_vge), vfd, env={"FEED_STAMP": "T2"}, argv=("--no-stedi",))
+finally:
+    if _dc_keep is not None: os.environ["DECEASED_CACHE"] = _dc_keep
+_vcode = "\n".join(l_ for l_ in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read().splitlines() if not l_.lstrip().startswith("#"))
+check("v02 the insurance check names no cache file of its own (the line os.environ.setdefault('DECEASED_CACHE', ...) of before must not come back - the guard keeps ONE cache): started with no cache named by the environment, its guard is asked with none named - and no such line, and no file name of the feed's old cache, is in its code",
+      _ve2 == "" and _venv == [None] and not re.search(r"environ\.setdefault\(\s*[\"']DECEASED_CACHE", _vcode) and "deceased_cache_local" not in _vcode and "DECEASED_CACHE" not in _vcode, (_ve2, _venv))
 LK_NOID = ", and the chart's answer does not show this patient's Claimocity id"
 LK_W = {"far": "same person? Claimocity's birth date and this chart's are far apart" + LK_NOID, "slip": "same person? Claimocity's birth date is a slip from this chart's and the names differ" + LK_NOID,
         "one": "same person? one side carries no birth date and the names differ" + LK_NOID, "none": "same person? no birth date on either side and the names differ" + LK_NOID,
@@ -4661,6 +4774,11 @@ _r, _d = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s1", "pid": "pat5", "wh
 _dl2 = [l_ for l_ in _d.splitlines() if "DEATH DAY UNKNOWN" in l_]
 check("digest (the second verification of the death check): the visits the import kept out because a date of death is on record and its day could not be read are ONE line for the top of the report - counts and chart ids only (a 'chart' that is no chart id is not printed)",
       _r.returncode == 0 and len(_dl2) == 1 and _dl2[0].startswith("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: 3 visit(s) on 1 chart(s) were NOT entered") and _dl2[0].endswith(": pat5") and "Somebody" not in _d, (_r.returncode, _dl2, _r.stderr[-300:]))
+_il2 = [l_ for l_ in _d.splitlines() if l_.startswith("- 1 visits / ")]
+check("digest (the independent check of that round, finding 13): the first Import line does not call those visits 'skipped as already in AMD' - its count is of the other skip rows (here 2 of 5: three rows are visits held for a lost day), the sentence's words are as they were; and the line about the held visits says 'nobody named the day', not 'Medicare named none' (the import's register cannot say who was asked)",
+      len(_il2) == 1 and "; 2 encounters skipped as already in AMD; 0 faults." in _il2[0] and "nobody named the day" in _dl2[0] and "Medicare named none" not in _d, (_il2, _dl2))
+_r0, _d0 = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s4", "pid": "pat6", "why": "all lines already in AMD"}, {"feed_id": "s5", "pid": "pat7", "why": "unknown CPT 99999"}])
+check("... and with no held visit that count is every skip row, as before", "; 2 encounters skipped as already in AMD; 0 faults." in _d0 and "DEATH DAY UNKNOWN" not in _d0, _d0[:400])
 _r, _d = mdig([_mrow], dict(_MG0))
 check("... and nothing is said when no visit was kept out so", _r.returncode == 0 and "DEATH DAY UNKNOWN" not in _d, _d[:300])
 _MW = dict(_MG0, added=["prof13"], clinicians={"prof13": {"state": "waiting", "year": "2026", "visit": "vst1", "charge": "charge78"}, "prof15": {"state": "not yet", "year": "2026"}})
@@ -5261,10 +5379,102 @@ _DDW = ci.DEATH_DAY_WHY
 _o4, _c4, _e4, _w4 = dx_retry(_DXC, extra=(("Y4", "pat9204", [("99309", "20261030", "I10")]), ("Y5", "pat9205", [("99309", "20261030", "I10")]), ("Y6", "pat9206", [("99309", "20261030", "I10")])),
                               rows={"Y4": {"why": _DDW, "cpts": ["99309"]}, "Y5": {"why": _DDW, "cpts": ["99487"]}, "Y6": {"why": _DDW}})
 _p4 = [m_["pid"] for m_ in (_rd(_w4, "feed_parsed_20261126T1400ZR.json") or [])]
-check("retry (the second verification of the death check): a visit kept out because a date of death is on record and its day could not be read is handed to the import again, by its own codes - a row that names another code, or no code, hands nothing over - and the step says how many charts wait so",
-      _e4 == "" and "Y4" in _p4 and "Y5" not in _p4 and "Y6" not in _p4 and "retry-dx: 2 chart(s) have a visit that was kept out because a date of death is on record" in _o4 and "pat9204" in _o4, (_e4, _p4, _o4[:400]))
+check("retry (the second verification of the death check): a visit kept out because a date of death is on record and its day could not be read is handed to the import again, by its own codes - a row that names another code, or no code, hands nothing over - and the step names the ONE chart whose visit it really hands over (the independent check of that round: it counted two - also the chart whose row matched no visit)",
+      _e4 == "" and "Y4" in _p4 and "Y5" not in _p4 and "Y6" not in _p4 and "retry-dx: 1 chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (pat9204) - handed to the import again" in _o4, (_e4, _p4, _o4[:400]))
 check("... the words of that skip are ONE line in the import, the retry step and the digest (the three read each other's rows by them)",
       all(('DEATH_DAY_WHY = "%s"' % _DDW) in open(os.path.join(ROOT, "scripts", "helpers", n_)).read() for n_ in ("claimocity_import.py", "claimocity_retry_dx.py", "claimocity_report.py")) and _DDW.endswith("- not entered"))
+# ---- the independent check of the second round, new finding 3 (D3): the retry of a visit held for a lost day must CONVERGE. Every live retry wrote the held row again into
+# its OWN register (stamp ...R) and kept its own batch file; the next run read that register as a batch of its own and handed the visit over once more for each - 1, 2, 4,
+# 8, 16 messages per run in one workspace; in a fresh container one more stale line 'batch(es) <stamp>R ... the feed files are not on hand' per run; and once the day was
+# known and lay BEFORE the visit - 'kept out for good' - every later run still handed the visit over and still said its day could not be read. Now: held rows are taken
+# only from registers that are NOT a retry's own; each visit (feed patient, its codes, its dates of service) is handed over at most once per run; and a visit is left
+# alone for good once a LATER register - a retry's own included - shows it created, answered 'all lines already in AMD', or kept out with 'DOS after date of death'.
+# Here: the REAL retry driver over ONE sandbox workspace, run after run; its import step is the REAL import helper (loaded fresh each time, like a new process) against
+# the stand-in AdvancedMD and the stand-in guard of the 'CCM death check' block, which reads the workspace's own cache file and raises DayLost for a day it cannot read.
+_HS0 = "20261125T1240Z"; _HLOST = "[" + "DOB" + "]"; _HN = [0]; _hglob = __import__("glob").glob; _hrm = __import__("shutil").rmtree
+def held_cache(w_, entry): json.dump({"9301": entry}, open(os.path.join(w_, "registers", "deceased_cache.json"), "w"))
+def held_import(w_, stamp, argv=("--all",)):
+    """The REAL import helper over one batch of the workspace (stamp), loaded fresh, started in the workspace as the drivers start it -> what it printed."""
+    keys_ = ("FEED_STAMP", "FEED_HL7_DIR", "FEED_DX_CACHE", "DECEASED_CACHE"); e0_ = {k_: os.environ.get(k_) for k_ in keys_}; cwd_ = os.getcwd(); g0_ = sys.modules.get("deceased_guard"); a_ = sys.argv[:]; _HN[0] += 1
+    os.environ.update(FEED_STAMP=stamp, FEED_HL7_DIR=os.path.join(w_, "hl7", stamp), FEED_DX_CACHE="dx_cache_feed.json", DECEASED_CACHE=os.path.join(w_, "registers", "deceased_cache.json"))
+    os.chdir(w_); sys.modules["deceased_guard"] = _DG; _DG.calls[:] = []; _DG.deaths = {}; _DG.fail = False; b_ = io.StringIO()
+    try:
+        sp_ = importlib.util.spec_from_file_location("claimocity_import_held_%d" % _HN[0], HELPER); m_ = importlib.util.module_from_spec(sp_); sp_.loader.exec_module(m_)
+        if not (m_.amd is amd and m_.resave is resave and m_.txh is txh): raise RuntimeError("the fresh copy did not load the stand-in modules")
+        sys.argv = ["claimocity_import.py"] + [str(x_) for x_ in argv]; m_.time.sleep = lambda s: None
+        with contextlib.redirect_stdout(b_): m_.main()
+    finally:
+        sys.argv = a_; os.chdir(cwd_)
+        for k_, v_ in e0_.items(): os.environ.pop(k_, None) if v_ is None else os.environ.__setitem__(k_, v_)
+        sys.modules.pop("deceased_guard", None) if g0_ is None else sys.modules.__setitem__("deceased_guard", g0_)
+    return b_.getvalue().strip()
+def held_ws():
+    """ONE sandbox workspace and clone: a first batch with ONE nursing visit of chart pat9301 (feed patient Z1) and one of pat9302 (Z2); the workspace's cache says of
+    9301: a death on record, its day not readable. The ingest's own import of that batch has run (live): Z1's visit is held, Z2's is entered."""
+    w_, r_ = hc_dirs({})
+    for d_ in (w_, r_): open(os.path.join(d_, "claimocity_import.py"), "w").write(_HSRC)
+    os.makedirs(os.path.join(w_, "registers")); os.makedirs(os.path.join(w_, "hl7", _HS0)); vis_ = (("Z1", "pat9301", [("99309", "20261120", "I10")]), ("Z2", "pat9302", [("99309", "20261120", "I10")]))
+    json.dump([{"pid": f_, "name": NAME(f_), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": x_, "units": "1"} for c_, d_, x_ in l_]} for f_, _p, l_ in vis_], open(os.path.join(w_, "feed_parsed_%s.json" % _HS0), "w"))
+    json.dump({NAME(f_).upper().strip() + "|" + DOBK: {"status": "FOUND", "pids": [p_], "amd_names": [], "feed_ids": [f_], "resolved": p_, "via": "test", "by_id": {f_: p_}} for f_, p_, _l in vis_}, open(os.path.join(w_, "feed_match_%s.json" % _HS0), "w"))
+    open(os.path.join(w_, "hl7", _HS0, "a.hl7"), "w").write("".join(hl7(f_, B["n1"], "", [(c_, d_) for c_, d_, _x in l_], NP_NPI) for f_, _p, l_ in vis_))
+    json.dump({"I10": "dcode1"}, open(os.path.join(w_, "dx_cache_feed.json"), "w")); json.dump({f_: p_ for f_, p_, _l in vis_}, open(os.path.join(w_, "registers", "claimocity_patient_map.json"), "w"))
+    CHART["9301"] = []; CHART["9302"] = []; held_cache(w_, {"dod": _HLOST, "checked": "2026-10-" + "01", "src": "x"}); POSTS.clear(); held_import(w_, _HS0)
+    return w_, r_
+def held_retry(w_, r_, stamp_arg, fresh=False):
+    """ONE live retry in that workspace -> (what the driver printed, its error, the messages it handed to the import, its stamp, what the import printed, its import
+    register). fresh: before the run only the registers are there of what earlier retries left (a new container: their batch files and raw folders did not travel)."""
+    rs_ = re.sub(r"[^0-9TZ]", "", stamp_arg) + "R"; seen_ = {"handed": 0, "out": ""}
+    if fresh:
+        for f_ in _hglob(os.path.join(w_, "feed_parsed_*R.json")) + _hglob(os.path.join(w_, "feed_match_*R.json")): os.remove(f_)
+        for d_ in _hglob(os.path.join(w_, "hl7", "*R")): _hrm(d_)
+    def step_(cmd):
+        if os.path.basename(str(cmd[1])) == "claimocity_import.py":
+            seen_["handed"] = len(json.load(open(os.path.join(w_, "feed_parsed_%s.json" % rs_)))); seen_["out"] = held_import(w_, rs_, cmd[2:]); return seen_["out"]
+    POSTS.clear(); ci._ctx.clear()
+    o_, calls_, e_ = driver_run("claimocity_retry_dx.py", w_, r_, ("--live", "--no-stedi", "--stamp", stamp_arg), step_)
+    return o_, e_, seen_["handed"], rs_, seen_["out"], (_rd(w_, "registers", "feed_import_%s.json" % rs_) or {"created": [], "skipped": [], "failed": []})
+_dg_keep = sys.modules.get("deceased_guard")
+_hw, _hr = held_ws(); _hreg0 = _rd(_hw, "registers", "feed_import_%s.json" % _HS0) or {}; _hrow = [x_ for x_ in _hreg0.get("skipped", []) if x_.get("why") == _DDW]
+check("held visit (finding 3): the import's skip row for a visit held because the day is lost carries the visit's codes AND its dates of service (dos_lines, one per line, as the created rows do) - a later row about the same visit can be matched to it; the other chart's visit goes in",
+      len(_hrow) == 1 and _hrow[0].get("feed_id") == "Z1" and _hrow[0].get("pid") == "pat9301" and _hrow[0].get("cpts") == ["99309"] and _hrow[0].get("dos_lines") == ["11/20/2026"] and [x_["pid"] for x_ in _hreg0.get("created", [])] == ["pat9302"], _hreg0)
+_hruns = []
+for _st in ("2026-11-25T1840Z", "2026-11-26T0040Z", "2026-11-26T0640Z"):
+    _o, _e, _n, _rs, _io, _rg = held_retry(_hw, _hr, _st)
+    _hruns.append((_e, _n, len(_rg["created"]), [x_.get("why") for x_ in _rg["skipped"]], len(_hglob(os.path.join(_hw, "hl7", _rs, "*.hl7"))), "retry-dx: 1 chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (pat9301) - handed to the import again" in _o,
+                   [l_[:44] for l_ in _io.splitlines() if l_.startswith("DEATH DAY UNKNOWN")]))
+check("THREE RUNS (finding 3): three live retries in ONE workspace while the day stays lost hand the visit to the import ONCE each - 1, 1, 1 (it was 1, 2, 4: each retry's own register and batch file were read as one more batch) - and each run leaves ONE skip row and ONE raw file, and the import's own line counts ONE visit",
+      [r_[:6] for r_ in _hruns] == [("", 1, 0, [_DDW], 1, True)] * 3 and all(len(r_[6]) == 1 and r_[6][0].startswith("DEATH DAY UNKNOWN: 1 visit(s) on 1 chart(s) ") for r_ in _hruns), _hruns)
+held_cache(_hw, {"dod": "2026-11-" + "10", "checked": "2026-11-" + "26", "src": "stedi-medicare-271 (drive copy)"})      # the day becomes known (the merge of the Drive copy) and lies BEFORE the visit of 11/20
+_o4, _e4, _n4, _rs4, _io4, _rg4 = held_retry(_hw, _hr, "2026-11-26T1240Z"); _o5, _e5, _n5, _rs5, _io5, _rg5 = held_retry(_hw, _hr, "2026-11-26T1840Z"); _o6, _e6, _n6, _rs6, _io6, _rg6 = held_retry(_hw, _hr, "2026-11-27T0040Z")
+check("THREE RUNS: ... once the day is known and lies BEFORE the visit, the next retry hands the visit over once more and the import keeps it out for good - 'DOS after date of death ... never billed', a row that carries the visit's codes and dates of service too; from then on NO retry hands it over: 0, 0 (it was handed over in every later run, for ever), nothing says any more that its day could not be read, and a retry with nothing to do writes no register",
+      (_e4, _e5, _e6) == ("", "", "") and _n4 == 1 and not _rg4["created"] and [(x_.get("feed_id"), x_.get("cpts"), x_.get("dos_lines"), str(x_.get("why")).startswith("DOS after date of death 2026-11-")) for x_ in _rg4["skipped"]] == [("Z1", ["99309"], ["11/20/2026"], True)]
+      and (_n5, _n6) == (0, 0) and "retry-dx: nothing to retry" in _o5 and "retry-dx: nothing to retry" in _o6 and "kept out because a date of death" not in _o5 + _o6 and _rd(_hw, "registers", "feed_import_%s.json" % _rs5) is None
+      and not any("addvisit" in b_ for b_ in POSTS), (_e4, _n4, _rg4, _n5, _n6, _o5[:300]))
+_hw2, _hr2 = held_ws(); _oa, _ea, _na, _rsa, _ioa, _rga = held_retry(_hw2, _hr2, "2026-11-25T1840Z")
+held_cache(_hw2, {"dod": "2026-11-" + "24", "checked": "2026-11-" + "26", "src": "stedi-medicare-271 (drive copy)"})      # the day becomes known and lies AFTER the visit: the visit is billable
+_ob, _eb, _nb, _rsb, _iob, _rgb = held_retry(_hw2, _hr2, "2026-11-26T0040Z"); _sent_b = sum(1 for b_ in POSTS if 'action="addvisit"' in b_); _oc, _ec, _nc, _rsc, _ioc, _rgc = held_retry(_hw2, _hr2, "2026-11-26T0640Z")
+check("THREE RUNS: ... and once the day is known and lies AFTER the visit, the next retry hands the visit over and the import ENTERS it - one visit sent to AdvancedMD, a created row; after that no retry hands it over again: 0",
+      (_ea, _eb, _ec) == ("", "", "") and (_na, _nb, _nc) == (1, 1, 0) and [(x_["pid"], x_["cpts"]) for x_ in _rgb["created"]] == [("pat9301", ["99309"])] and _sent_b == 1 and "retry-dx: nothing to retry" in _oc and not any("addvisit" in b_ for b_ in POSTS), (_na, _nb, _nc, _rgb, _oc[:300]))
+_hw3, _hr3 = held_ws(); held_retry(_hw3, _hr3, "2026-11-25T1840Z"); held_cache(_hw3, {"dod": "2026-11-" + "24", "checked": "2026-11-" + "26", "src": "x"}); CHART["9301"] = [("99309", "11/20/2026")]      # ... the day is known, AFTER the visit - and the chart already carries the visit (entered by hand meanwhile)
+_od, _ed, _nd, _rsd, _iod, _rgd = held_retry(_hw3, _hr3, "2026-11-26T0040Z"); _oe, _ee, _ne, _rse, _ioe, _rge = held_retry(_hw3, _hr3, "2026-11-26T0640Z")
+_of, _ef, _nf, _rsf, _iof, _rgf = held_retry(_hw3, _hr3, "2026-11-26T1240Z", fresh=True)      # a new container: the retries' own batch files did not travel, and no reconciliation register says which visit was answered
+json.dump({"rows": [{"f": "Z1", "d": "2026-11-20", "c": ["99309"], "s": "already", "why": "all lines already in AMD"}]}, open(os.path.join(_hw3, "registers", "feed_recon_%s.json" % _rsd), "w"))      # what the reconciliation step of that retry writes (a stand-in here starts nothing)
+_og, _eg, _ng, _rsg, _iog, _rgg = held_retry(_hw3, _hr3, "2026-11-26T1840Z", fresh=True); CHART["9301"] = []
+check("THREE RUNS: ... a held visit the chart carries by then is answered 'all lines already in AMD' by the import - in the retry's own register - and is not handed over again: 0. That row names the feed patient only; which visit it answers is read from that retry's own batch file (it handed over this visit and no other of the patient), or from the reconciliation register of the retry, which names the visit. With neither on hand the visit is handed over once more - once a run, never twice - and answered 'already' again",
+      (_ed, _ee, _ef, _eg) == ("", "", "", "") and _nd == 1 and [(x_.get("feed_id"), x_.get("why")) for x_ in _rgd["skipped"]] == [("Z1", "all lines already in AMD")] and not _rgd["created"] and _ne == 0 and _nf == 1 and _ng == 0
+      and not any("addvisit" in b_ for b_ in POSTS), (_nd, _rgd, _ne, _nf, _ng))
+_hw4, _hr4 = held_ws(); _hf = [held_retry(_hw4, _hr4, _st, fresh=True) for _st in ("2026-11-25T1840Z", "2026-11-26T0040Z", "2026-11-26T0640Z", "2026-11-26T1240Z")]
+check("THREE RUNS: ... in a FRESH container every run (only the registers travel): still ONE message per run, and no line of the retry names a retry's own batch as one whose feed files are not on hand or cannot be read again (that line grew by one batch per run)",
+      [(x_[1], x_[2]) for x_ in _hf] == [("", 1)] * 4 and not any(re.search(r"\d{8}T\d{4}ZR[^\n]*(?:not on hand|cannot re-read)|(?:batch|batch\(es\)) [^\n]*\d{8}T\d{4}ZR", x_[0]) for x_ in _hf)
+      and all(len([y_ for y_ in x_[5]["skipped"] if y_.get("why") == _DDW]) == 1 for x_ in _hf), [(x_[1], x_[2], [l_ for l_ in x_[0].splitlines() if "batch" in l_][:3]) for x_ in _hf])
+_hw5, _hr5 = held_ws(); _r5 = _rd(_hw5, "registers", "feed_import_%s.json" % _HS0); _r5["skipped"] = _r5["skipped"] + [dict(x_) for x_ in _r5["skipped"] if x_.get("why") == _DDW]      # the same held row twice in one batch's register, and once more in a second batch that carries the same visit again
+json.dump(_r5, open(os.path.join(_hw5, "registers", "feed_import_%s.json" % _HS0), "w")); _S1 = "20261125T1500Z"
+for _a, _b in (("feed_parsed_%s.json", "feed_parsed_%s.json"), ("feed_match_%s.json", "feed_match_%s.json")): open(os.path.join(_hw5, _b % _S1), "w").write(open(os.path.join(_hw5, _a % _HS0)).read())
+os.makedirs(os.path.join(_hw5, "hl7", _S1)); open(os.path.join(_hw5, "hl7", _S1, "a.hl7"), "w").write(open(os.path.join(_hw5, "hl7", _HS0, "a.hl7")).read()); held_import(_hw5, _S1)
+_oh, _eh, _nh, _rsh, _ioh, _rgh = held_retry(_hw5, _hr5, "2026-11-25T1840Z")
+check("THREE RUNS: ... each visit is handed over at most ONCE per run: the same held visit named by two rows of one register and by a second batch that carries it again goes to the import once",
+      _eh == "" and _nh == 1 and len([x_ for x_ in (_rd(_hw5, "registers", "feed_import_%s.json" % _S1) or {}).get("skipped", []) if x_.get("why") == _DDW]) == 1, (_eh, _nh, _oh[:300]))
+check("... and after these runs the stand-in guard of this section is gone again (no guard module is left loaded for the checks that follow)", sys.modules.get("deceased_guard") is _dg_keep)
 _o, _calls, _e, _w = dx_retry(_DXC); _RS = "20261126T1400ZR"; _rr = _rd(_w, "registers", "feed_import_%s.json" % _RS) or {"created": [], "skipped": [], "failed": []}
 _sent = [re.findall(r'diagcodes="([^"]*)"', b_) for b_ in POSTS if 'action="updvisitwithnewcharges"' in b_]      # per charge call: the diagnosis ids of each of its charges
 check("retry (William 11/25/2026, the driver itself with the real import and report helpers, offline): a visit that waited as 'no usable dx' because its only diagnosis code is not in AdvancedMD's list is handed to the import once I10 is in the list - the visit whose charge line carries no code at all still waits",

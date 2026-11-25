@@ -564,12 +564,16 @@ SRS["READ_NOTE"] = ""      # 11/11/2026 (round 8): resave.py's note beside visit
 def _elig(payer, first, last, b8, member, dos, stc=("30",), pid=None):
     ELIG["calls"].append({"payer": payer, "first": first, "last": last, "b": b8, "member": member, "dos": dos, "pid": pid})
     return ELIG["ans"].get((payer, member, dos), {"errors": [{"code": "T1", "description": "no answer in this test"}]})
-SSTAND = {"amd": STAND["amd"], "resave": SRS, "stedi": {"elig": _elig},
-          "deceased_guard": {"check": lambda pid, dos, carrier=None, proc=None, allow_lookup=True: (True, "the deceased guard blocks it (test)") if pid in DGB else (False, "")}}
+DGR = {}; DGC = []      # 11/25/2026 (D1): chart -> the error the stand-in guard raises for it; every question that guard got, with the cache file the environment named at that moment
+def _dg_standin(pid, dos, carrier=None, proc=None, allow_lookup=True):
+    DGC.append((pid, dos, carrier, proc, allow_lookup, os.environ.get("DECEASED_CACHE")))
+    if pid in DGR: raise DGR[pid]
+    return (True, "the deceased guard blocks it (test)") if pid in DGB else (False, "")
+SSTAND = {"amd": STAND["amd"], "resave": SRS, "stedi": {"elig": _elig}, "deceased_guard": {"check": _dg_standin}}
 SWD = [None]; NOW = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None); DOC, NPL = "Dr. Effinger (DO)", "Pamela G."; APPF = "registers/feed_order_approved.json"
 def ws9(rows, recon=None, verify=None, approved=None, seed=()):
     """A fresh workspace for the sweep: the import register (batch T9), the feed's clinicians, the insurance check's record, the approved file, earlier registers."""
-    d = tempfile.mkdtemp(prefix="feedorder_sweep_"); os.makedirs(os.path.join(d, "registers")); SWD[0] = d; ELIG["calls"].clear(); DREADS.clear(); DGB.clear()
+    d = tempfile.mkdtemp(prefix="feedorder_sweep_"); os.makedirs(os.path.join(d, "registers")); SWD[0] = d; ELIG["calls"].clear(); DREADS.clear(); DGB.clear(); DGR.clear(); del DGC[:]
     json.dump(CARS9, open(os.path.join(d, "carriers_rich.json"), "w")); json.dump({"created": rows}, open(os.path.join(d, "registers", "feed_import_T9.json"), "w"))
     json.dump({"rows": [{"v": v_, "prov": p_} for v_, p_ in (recon or {}).items()]}, open(os.path.join(d, "registers", "feed_recon_T9.json"), "w"))
     if verify is not None: json.dump(verify, open(os.path.join(d, "registers", "feed_verify_T9.json"), "w"))
@@ -787,6 +791,63 @@ check("8.2 a payment on a charge the import register does not list (read just no
 check("8.2/8.4 the entered clinician must be the one the feed names: the nurse practitioner's visit under the physician is not saved", W[0].v["vst9706"].saves == [] and "entered under the physician (prof13), but the feed names the nurse practitioner (prof15)" in o, o[-900:])
 check("8.2 exactly one open plan at the lead sequence: an order whose plan the chart does not have is not saved", W[0].v["vst9707"].saves == [] and "0 open plan(s) at sequence 2 - exactly one is needed" in o, o[-900:])
 check("8.2 a charge the import entered that now reads void (not a no-charge line): not saved - a person reads the visit first", W[0].v["vst9708"].saves == [] and "charge(s) the import entered now read void: charge97082" in o, o[-600:])
+# 11/25/2026 (the independent check of the death check's second round, its new finding 1 - a regression). Since that day the guard RAISES when a death is on record for a
+# chart and nobody can name its day (DayLost), and any guard call can end in an error of another kind (the chart could not be read, a time-out). The sweep let the error
+# out of its deceased check: the run ended 'DID NOT FINISH' at the first such visit and the visits of OTHER charts behind it were never saved - in every run, until
+# somebody named the day. Now the error is caught PER VISIT: that one visit is refused in fixed words - the error by its kind, never by its own words (they can name a
+# patient) - in the sweep's own way of refusing a visit, and the sweep goes on with the next visit.
+class DayLost(RuntimeError): pass      # the guard's own error for such a chart: the sweep knows an error by the name of its kind only
+SECRET_WORDS = "ZZSECRET-WORDS-OF-THE-ERROR"      # what the error itself says - never printed, never written
+UNCHECKED = "for William: the date of death could not be checked (%s) - nothing is sent for this visit on this run"
+def lost_world(world=None):
+    W[0] = (world or SWorld)({"661": med("661", "M661"), "662": med("662", "M662"), "663": med("663", "M663")}, SW("vst6601", [chg(66011)]), SW("vst6602", [chg(66021)]), SW("vst6603", [chg(66031)]))
+    ws9([srow("vst6601", "pat661", "10/12/2026", ["99309"], ["charge66011"]), srow("vst6602", "pat662", "10/13/2026", ["99309"], ["charge66021"]), srow("vst6603", "pat663", "10/14/2026", ["99309"], ["charge66031"])],
+        recon={"vst6601": DOC, "vst6602": DOC, "vst6603": DOC}, approved={"vst6601": _send, "vst6602": _send, "vst6603": _send}, seed=[PILOT_DONE])
+def saves66(): return [len(W[0].v[v_].saves) for v_ in ("vst6601", "vst6602", "vst6603")]
+_dc0 = os.environ.pop("DECEASED_CACHE", None)      # the runs below start with NO cache named by the environment: what the guard is asked under shows whether the sweep names one itself
+try:
+    lost_world(); o, e = sweep("--resave", "--approved", APPF, "--live")
+    check("D1 control: three approved stuck visits of three charts and a guard that raises for none - all three are saved", e == "" and saves66() == [1, 1, 1] and len(DGC) == 3, (e, saves66(), o[-500:]))
+    check("s01 the sweep names no cache file of its own (the line os.environ.setdefault('DECEASED_CACHE', ...) of before must not come back - the guard keeps ONE cache): its guard is asked with the environment as the run has it, and no such line is in its code",
+          len(DGC) == 3 and all(c_[5] is None for c_ in DGC) and not re.search(r"environ\.setdefault\(\s*[\"']DECEASED_CACHE", SSRC) and "deceased_cache_local" not in "\n".join(l_.split("#")[0] for l_ in SSRC.splitlines()), [c_[5] for c_ in DGC])
+    lost_world(); DGR["662"] = DayLost(SECRET_WORDS); o, e = sweep("--resave", "--approved", APPF, "--live"); _r6 = {r_["visit"]: r_ for j_ in sreg("resave") for r_ in j_.get("rows") or []}
+    check("D1 the guard raises DayLost for the SECOND visit's chart (a death on record whose day nobody can name): that ONE visit is not saved, and the visits of the other charts - the one before it AND the one behind it - are saved; the run finishes",
+          e == "" and saves66() == [1, 0, 1] and "FEED ORDER SWEEP DID NOT FINISH" not in o and "Feed order saves: 2 saved and read back, 1 not saved" in o and (sreg("sweep") or [{}])[-1].get("finished") is True, (e, saves66(), o[-900:]))
+    check("D1 ... the visit is refused the sweep's own way - 'FEED ORDER SAVE - not saved', its register row says refused and not sent, its TOP line says what this run did - in fixed words that name the error by its KIND; the error's own words are nowhere",
+          "FEED ORDER SAVE - not saved: pat662 vst6602 10/13/2026 (the owner's approved file (send)) - " + UNCHECKED % "DayLost" in o and _r6.get("vst6602", {}).get("refused") == UNCHECKED % "DayLost" and _r6["vst6602"].get("sent") is False
+          and top(o, "vst6602").endswith("| this run: " + UNCHECKED % "DayLost") and SECRET_WORDS not in o and SECRET_WORDS not in json.dumps(sreg("resave") + sreg("sweep")), (o[-900:], _r6.get("vst6602")))
+    o, e = sweep("--resave", "--approved", APPF, "--live"); _s2 = saves66(); DGR.clear(); o2, e2 = sweep("--resave", "--approved", APPF, "--live")
+    check("D1 ... the next run asks again and refuses that visit again (nothing else is sent twice); once the guard answers, the visit is saved",
+          e == "" and _s2 == [1, 0, 1] and "FEED ORDER SAVE - not saved: pat662 vst6602" in o and e2 == "" and saves66() == [1, 1, 1] and "FEED ORDER SAVE: pat662 vst6602 10/13/2026" in o2, (e, _s2, e2, saves66(), o2[-500:]))
+    lost_world(); DGR["661"] = TimeoutError(SECRET_WORDS); o, e = sweep("--resave", "--approved", APPF, "--live")
+    check("D1 an error of ANOTHER kind (a time-out) for the FIRST visit's chart: the same - that visit is refused by the error's kind and the two visits behind it are saved (0 of 3 were saved before)",
+          e == "" and saves66() == [0, 1, 1] and "FEED ORDER SWEEP DID NOT FINISH" not in o and "FEED ORDER SAVE - not saved: pat661 vst6601 10/12/2026 (the owner's approved file (send)) - " + UNCHECKED % "TimeoutError" in o and SECRET_WORDS not in o, (e, saves66(), o[-900:]))
+    lost_world(); DGR["662"] = DayLost(SECRET_WORDS); o, e = sweep("--resave", "--approved", APPF)
+    check("D1 a DRY run the same: the guard is asked from its cache only, the visit it raises for is 'not saved' in the same words, the other two 'would be saved' - and nothing is sent",
+          e == "" and saves66() == [0, 0, 0] and [c_[4] for c_ in DGC] == [False] * 3 and o.count("FEED ORDER SAVE (dry run): would save ") == 2 and "FEED ORDER SAVE - not saved: pat662 vst6602 10/13/2026 (the owner's approved file (send)) - " + UNCHECKED % "DayLost" in o, (e, saves66(), DGC, o[-900:]))
+    W[0] = SWorld({"664": med("664", "M664"), "665": med("665", "M665")}, SW("vst6604", [chg(66041)], move_builds=False), SW("vst6605", [chg(66051)], move_builds=False))
+    ws9([srow("vst6604", "pat664", "10/12/2026", ["99309"], ["charge66041"]), srow("vst6605", "pat665", "10/13/2026", ["99309"], ["charge66051"])], recon={"vst6604": NPL, "vst6605": NPL},
+        approved={"vst6604": _mv, "vst6605": _mv}, seed=[MOVE_DONE, PILOT_DONE])
+    DGR["664"] = DayLost(SECRET_WORDS); o, e = sweep("--fix-clinician", "--approved", APPF, "--live"); _m6 = {m_["visit"]: m_ for j_ in sreg("fixclin") for m_ in j_.get("moves") or []}
+    check("D1 the clinician moves the same: the guard raises for the first visit's chart - that visit is NOT moved ('FEED ORDER CLINICIAN - not moved', refused and not sent in its row, the error by its kind) and the visit of the other chart behind it IS moved",
+          e == "" and W[0].v["vst6604"].moves == [] and len(W[0].v["vst6605"].moves) == 1 and "FEED ORDER SWEEP DID NOT FINISH" not in o
+          and "FEED ORDER CLINICIAN - not moved: pat664 vst6604 10/12/2026 - " + UNCHECKED % "DayLost" in o and _m6.get("vst6604", {}).get("refused") == UNCHECKED % "DayLost" and _m6["vst6604"].get("sent") is False and SECRET_WORDS not in o + json.dumps(sreg("fixclin")),
+          (e, [len(W[0].v[v_].moves) for v_ in ("vst6604", "vst6605")], o[-900:]))
+    # ... and with the REAL guard (scripts/helpers/deceased_guard.py - a copy loaded from the sandbox folder, so every module it loads beside itself is a stand-in of this
+    # self-test or is not there; the network is shut either way): its cache holds the privacy gate's placeholder for the second chart, and nobody can name the day
+    class SWorldG(SWorld):      # the real guard asks for a chart by its digits (patientid="662"); the stand-in world reads pat662
+        def post(self, body, timeout=0): return SWorld.post(self, re.sub(r'patientid="(\d+)"', r'patientid="pat\1"', body), timeout)
+    import importlib.util as _ilu
+    lost_world(SWorldG); _gp = os.path.join(SWD[0], "deceased_guard.py"); open(_gp, "w").write(open(os.path.join(HELPERS, "deceased_guard.py")).read())
+    json.dump({"662": {"dod": "[" + "DOB" + "]", "checked": (NOW - datetime.timedelta(days=30)).strftime("%Y-%m-%d"), "src": "x"}}, open(os.path.join(SWD[0], "registers", "deceased_cache.json"), "w"))
+    _path0 = list(sys.path); _gsp = _ilu.spec_from_file_location("deceased_guard_real_d1", _gp); _g = _ilu.module_from_spec(_gsp); _gsp.loader.exec_module(_g); _old = SSTAND["deceased_guard"]; SSTAND["deceased_guard"] = {"check": _g.check}
+    try: o, e = sweep("--resave", "--approved", APPF, "--live")
+    finally: SSTAND["deceased_guard"] = _old; sys.path[:] = _path0
+    check("D1 with the REAL guard: a chart whose cache entry is the placeholder (a death on record, its day not readable here) and nobody names the day - the guard raises its own DayLost, that visit is refused in the fixed words, and the visits of the two other charts are saved (the checker's own case: 1 of 3, then the run stopped)",
+          e == "" and _g.CACHE == os.path.join(SWD[0], "registers", "deceased_cache.json") and saves66() == [1, 0, 1] and "FEED ORDER SWEEP DID NOT FINISH" not in o
+          and "FEED ORDER SAVE - not saved: pat662 vst6602 10/13/2026 (the owner's approved file (send)) - " + UNCHECKED % "DayLost" in o and not any(m_ in sys.modules for m_ in ("medicare_store", "elig_amd")), (e, getattr(_g, "CACHE", None), saves66(), o[-900:]))
+finally:
+    if _dc0 is not None: os.environ["DECEASED_CACHE"] = _dc0
 # the cap: 121 visits on one chart, each its own date -> 120 checks bought ($36.00), one waits for the next run
 W[0] = SWorld({"981": med("981", "M981")}, *[SW("vst98%03d" % i_, [chg(980000 + i_)]) for i_ in range(121)])
 _d0 = datetime.date(2026, 6, 1)

@@ -36,10 +36,11 @@
 #   row (carrier, sequence, ordinal - docs/captured_calls.md), not on a plan element at that sequence, or shows it as bare digits. A
 #   block from either answer stands. HOW the guard asks - AdvancedMD's free check first, a paid vendor answer only when the free one
 #   cannot answer - is the guard's rule, not this helper's: this helper never asks Medicare anything itself.
-#   (4) 'Not blocked' counts as CHECKED only when there was something to check: the guard does not raise on an answer that carries no
-#   chart, no date of service or no row of that charge (a Fault, say) - it has nothing to compare and answers 'not blocked'. Such a
-#   charge, and one the read of (2) could not read at all, is NOT CHECKED here. A block always stands, with "?" in its line for what could
-#   not be read.
+#   (4) 'Not blocked' counts as CHECKED only when there was something to check: a charge whose own detail carries no chart, no date of
+#   service or no row of that charge (a Fault, say), and one the read of (2) could not read at all, is NOT CHECKED here - whatever the
+#   guard makes of it. (The guard itself raises Unreadable on such an answer since the second verification of 11/25/2026; until then it
+#   had nothing to compare and answered 'not blocked', and a guard from before still does - this helper leans on neither.) A block always
+#   stands, with "?" in its line for what could not be read.
 # WHAT IT PRINTS (and keeps word for word in the register under "lines"):
 #   BLOCKED: pat<chart> visit <id> charge <id> DOS <date> code <code> - date of death before the date of service - do NOT approve; void
 #     (William 10/4 and 11/25/2026)                 one line for every charge the guard blocks;
@@ -49,7 +50,14 @@
 #                                                   still being entered) and every charge it shows without an id;
 #   UNVERIFIED: pat<chart> visit <id> charge <id> DOS <date> code <code> - date of death unverified (the look-up failed) - not a block; say
 #     it in the report                              one line for every charge whose look-up failed (the guard's own LOG line is the source):
-#                                                   a failed check blocks nothing - only a date on Medicare's record does;
+#                                                   a failed check blocks nothing - only a date on Medicare's record does. Said when the
+#                                                   listing is through: none for a charge that ended BLOCKED, none for a charge the guard's
+#                                                   cache COVERS by then (the guard's own covered(): a day that can be read, or an answer
+#                                                   checked on or after the charge's date of service) - a guard without covered() drops none;
+#   CACHE MISSING: / CACHE UNREADABLE: / CACHE EMPTY: / CACHE: N chart(s) carry a date of death whose day cannot be read here ... - TOP OF
+#     THE REPORT                                    at most one line, the first, about the guard's cache as the guard ANSWERS from it:
+#                                                   its state is asked AFTER the guard has carried the workspace's other cache files in
+#                                                   (the guard's own cache_state() - a guard from before has none and gets no such line);
 #   DEATH CHECK - Charge Review: N charge(s) on V visit(s) listed, K checked; M needed a Medicare answer (CCM or straight Medicare) - <free
 #     and bought answers>; B BLOCKED; U could not be checked; X unverified - register <file>
 #                                                   the LAST line, always: a run that sees no such line has no answer from this helper.
@@ -59,8 +67,9 @@
 #     any save): when the two differ the run does not rely on this helper. K is NOT that number: K and the NOT CHECKED lines about a charge
 #     (every NOT CHECKED line but 'no charge listed under this visit', which is about a visit) always add up to N, so K is smaller than N
 #     whenever a charge is NOT CHECKED - this helper working as designed. (11/25/2026 review fix: the texts first named K, so every answer
-#     with a NOT CHECKED charge sent the run to guard calls of its own - and deceased_guard.check_charge raises nothing when it has nothing
-#     to compare, it answers 'not blocked'. A NOT CHECKED charge stays unapproved on that run, whatever a guard call of the run's own answers.)
+#     with a NOT CHECKED charge sent the run to guard calls of its own - which know no more than this helper did: the guard of that day
+#     answered 'not blocked' when it had nothing to compare, and since the second verification it raises Unreadable. A NOT CHECKED charge
+#     stays unapproved on that run, whatever a guard call of the run's own answers.)
 #   NEVER printed or written: the day itself, the guard's own reason (it holds that day), a name, a birth date, a Medicare or member
 #   number, an error's words (they can name a patient - an error is shown by its kind). Every value taken from AdvancedMD's answers is kept
 #   only in the shape of what it is: an id as its digits, a date of service as a date, a code as a code.
@@ -83,12 +92,12 @@
 #   lists by batch id (no request of this call with a batch id is captured - docs/captured_calls.md).
 import os, re, sys, json, time, datetime
 import xml.etree.ElementTree as ET
-DEATH_CHECK_REVIEW_VERSION = "2026-11-25.5"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start; .4 = the second verification: the cache's state in counts, the code's own shape)
+DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"      # this helper's own version: change it with EVERY revision - it is written into the register (.2 = the 11/25/2026 review fix: the header's WHEN A RUN STARTS IT and the number a run compares; .3 = the same day: a charge that came out clear is put to the guard's cache once more at the end of the start; .4 = the second verification: the cache's state in counts, the code's own shape; .5 = the same verification: the UNVERIFIED lines are said when the listing is through, 'went to the vendor'; .6 = the independent check of that round: the cache's state is asked FIRST, so its lines are about the cache after the guard's carry; an UNVERIFIED line goes only when the guard's cache covers the charge - the guard's covered())
 BLOCK_WORDS = "date of death before the date of service - do NOT approve; void (William 10/4 and 11/25/2026)"
 UNCHECKED_WORDS = "could not be checked - do not approve this charge on this run"
 UNVERIFIED_WORDS = "date of death unverified (the look-up failed) - not a block; say it in the report"
 NOTHING = "approve NOTHING on this helper's word"
-CACHE_UNREADABLE = "CACHE UNREADABLE: the deceased guard's cache file is there but cannot be read - the guard knows NOTHING the practice holds and can keep nothing it learns beyond this start; merge the copy from Drive (step 0c) and start this helper again before any approval - TOP OF THE REPORT"
+CACHE_UNREADABLE = "CACHE UNREADABLE: the deceased guard's cache file is there but cannot be read - the guard knows NOTHING that file holds (only what another cache file of this workspace holds, when there is one) and can keep nothing it learns beyond this start; merge the copy from Drive (step 0c) and start this helper again before any approval - TOP OF THE REPORT"
 CACHE_EMPTY = "CACHE EMPTY: the deceased guard's cache holds no chart at all - a date of death the practice already holds is unknown to it until Medicare answers again; merge the copy from Drive (step 0c) and start this helper again before any approval - TOP OF THE REPORT"
 CACHE_LOST = "CACHE: %d chart(s) carry a date of death whose day cannot be read here (the scrubbed copy from the repository) - a charge of such a chart is asked about whatever its payer and is NOT CHECKED until somebody names the day; merge the copy from Drive (step 0c) to get the days back - TOP OF THE REPORT"
 CACHE_MISSING = "CACHE MISSING: the deceased guard's cache file is not there - the guard starts with NOTHING: a date of death the practice already holds is unknown to it until Medicare answers again, and a charge that needs no Medicare answer is not asked about at all - TOP OF THE REPORT"
@@ -190,9 +199,10 @@ def words(text, cid):
             "firsts": firsts(v), "found": bool(ch), "code": code_of(cpt) or code_of(proc), "cpt": code_of(cpt), "proc": proc, "plans": {str(ip.get("sequence")): ip.get("carrier") or "" for ip in d.iter("insplan")}}
 def handed(resave, cid, text, ask):
     """ask() - the guard's questions about ONE charge - while resave.detail(<that charge>) answers with `text`, the answer this helper has
-    just read and looked at. 11/25/2026: the guard reads the charge it checks itself, and it does not raise on an answer that carries no
-    chart (a Fault, say) - it passes it; read a second time, a charge whose first answer was good could so be passed unseen while this
-    helper called it clear (tools/selftest/test_death_check_review.py 10n). Handed the same answer, the guard decides on what was looked at
+    just read and looked at. 11/25/2026: the guard reads the charge it checks itself. Read a SECOND time, a charge whose first answer was
+    good can get another answer - a Fault, say: the guard of that day passed such an answer ('not blocked') while this helper called the
+    charge clear; since the second verification it raises Unreadable, and a charge that could be checked would read NOT CHECKED
+    (tools/selftest/test_death_check_review.py 10n). Handed the same answer, the guard decides on what was looked at
     here, and AdvancedMD is asked ONCE per charge. A read of any other charge goes to AdvancedMD as always. text None (this helper had no
     good answer to hand over): nothing is put in the way - the guard reads for itself, as it always did. resave.detail is put back whatever
     happens."""
@@ -247,22 +257,27 @@ def review(argv):
     log = getattr(G, "LOG", None); log = log if isinstance(log, list) else None
     before = counts(G); lines = []; rows = []; checked = needed = nb = nu = nx = 0
     def say(s): lines.append(s); print(s, flush=True)
+    # 11/25/2026 (the second verification): after the bootstrap the file is always THERE - the repository's register is copied in when the
+    # state bundle brought none, and that copy holds no day anyone can read. So the helper says, in counts only (the guard's own
+    # cache_state; a guard from before has none and gets no line): a file that cannot be read, a file with no chart at all, and how many
+    # charts carry a day that cannot be read here. A charge of such a chart is asked about whatever its payer; when nobody answers the
+    # guard raises DayLost and the charge is NOT CHECKED - never clear.
+    # THE STATE IS ASKED FIRST (the independent check of that round, finding 11): the guard carries what the workspace's other cache files
+    # hold into its cache at its first answer - and cache_state() does so before it counts. This helper used to decide 'the file is missing'
+    # and to read the state BEFORE that: it said 'the guard starts with NOTHING' two lines before a BLOCKED answer by a day the carry had
+    # brought, and counted charts as unreadable whose days had been filled in - and the live prompts' clause then sent the run to a merge
+    # and a second start it did not need. Every line below is about the cache as the guard answers from it.
+    state = None
+    try:
+        st = getattr(G, "cache_state", None); st = st() if callable(st) else None
+        if isinstance(st, dict): state = {k: (bool(st.get(k)) if k in ("file", "readable") else int(st.get(k) or 0)) for k in ("file", "readable", "charts", "days", "lost")}
+    except Exception: state = None
     # 11/25/2026 (the integration; the review's finding on the cache): a guard that finds NO cache file starts with nothing - a day the practice
     # already holds is unknown to it until Medicare answers again, and a charge that needs no Medicare answer is not asked about at all. This
     # helper names no cache and cannot know what a missing file would have held; it says that the file is missing, once, for the top of the
     # report. (deceased_guard.py finds the workspace's own registers/deceased_cache.json since that day; a guard that names no file gets no line.)
     cpath = getattr(G, "CACHE", None); cache_missing = isinstance(cpath, str) and bool(cpath) and not os.path.isfile(cpath)
     if cache_missing: say(CACHE_MISSING)
-    # 11/25/2026 (the second verification): after the bootstrap the file is always THERE - the repository's register is copied in when the
-    # state bundle brought none, and that copy holds no day anyone can read. So the helper also says, in counts only (the guard's own
-    # cache_state; a guard from before has none and gets no line): a file that cannot be read, a file with no chart at all, and how many
-    # charts carry a day that cannot be read here. A charge of such a chart is asked about whatever its payer; when nobody answers the
-    # guard raises DayLost and the charge is NOT CHECKED - never clear.
-    state = None
-    try:
-        st = getattr(G, "cache_state", None); st = st() if callable(st) else None
-        if isinstance(st, dict): state = {k: (bool(st.get(k)) if k in ("file", "readable") else int(st.get(k) or 0)) for k in ("file", "readable", "charts", "days", "lost")}
-    except Exception: state = None
     if state and state["file"] and not cache_missing:
         if not state["readable"]: say(CACHE_UNREADABLE)
         elif not state["charts"]: say(CACHE_EMPTY)
@@ -308,9 +323,10 @@ def review(argv):
         except Exception as e:
             nu += 1; unchecked(chart, visit, cid, "the guard raised " + kind_of(e)); continue
         unverified = (not blocked) and log is not None and any("UNVERIFIED" in str(x) for x in log[n0:])
-        # 11/25/2026: 'not blocked' counts as CHECKED only when there was something to check. The guard does not raise on an answer that carries
-        # no chart, no date of service or no row of that charge (a Fault, say): it has nothing to compare and answers 'not blocked' - found
-        # with the real guard in tools/selftest/test_death_check_review.py (10j). A block always stands, whatever the read above showed.
+        # 11/25/2026: 'not blocked' counts as CHECKED only when there was something to check - a chart, a date of service and the charge's own
+        # row in the detail this helper read. (The guard of that day did not raise on an answer without them, a Fault say: it had nothing to
+        # compare and answered 'not blocked'; since the second verification it raises Unreadable, and the charge is NOT CHECKED by the lines
+        # above - tools/selftest/test_death_check_review.py 10j holds either way.) A block always stands, whatever the read above showed.
         if not blocked:
             bad = bad or ("" if w["chart"] and w["dos"] else "no chart or no date of service in the charge's own detail") or ("" if w["found"] else "the charge is not in its own detail")
             if bad:
@@ -343,11 +359,18 @@ def review(argv):
             say("BLOCKED: pat%s visit %s charge %s DOS %s code %s - " % (num(row["chart"]), row.get("visit") or "?", row.get("charge") or "?", row["dos"], row.get("code") or "?") + BLOCK_WORDS)
     # 11/25/2026 (the second verification): an UNVERIFIED line used to be said during the walk and stayed - in the output and in the register - also when a later
     # answer of the same start had overtaken it: beside a BLOCKED line for the same charge, or although a later charge of the same chart had brought Medicare's
-    # answer. Now the lines are said when the listing is through: none for a charge that ended BLOCKED (above), and none for a charge AFTER which another charge of
-    # the same chart needed Medicare's answer and got it (that answer is the chart's; had it named a day, the look above would have blocked this charge).
+    # answer. Now the lines are said when the listing is through: none for a charge that ended BLOCKED (above), and none for a charge an answer COVERS by then.
+    # WHAT 'COVERS' IS (the independent check of that round, finding 5): that verification let the line go when a LATER charge of the same chart 'needed a
+    # Medicare answer and is not unverified'. That is also true of a later charge the cache already covered - nobody was asked for it - so the line was dropped
+    # although nobody had answered for THIS charge, and whether it was said depended on the listing's order. The guard is asked instead, when the listing is
+    # through: covered(chart, this charge's date of service) - its cache holds a day that can be read, or an entry that is not stale for that date by the guard's
+    # own rule. Only True drops the line; a guard that has no covered() (a guard from before, a stand-in), one that raises or answers anything else drops nothing.
+    covers = getattr(G, "covered", None)
     for i, row in enumerate(rows):
         if not row.get("unverified"): continue
-        if any(num(r.get("chart")) == num(row.get("chart")) and r.get("needed") and not r.get("unverified") and r.get("result") in ("clear", "BLOCKED") for r in rows[i + 1:]):
+        try: answered = callable(covers) and covers(num(row.get("chart")), row.get("dos") or "") is True
+        except Exception: answered = False
+        if answered:
             nx -= 1; row.pop("unverified", None); row.pop("words", None); row["answered_later"] = True; continue
         say("UNVERIFIED: pat%s visit %s charge %s DOS %s code %s - " % (num(row.get("chart")) or "?", row.get("visit") or "?", row.get("charge") or "?", row.get("dos") or "?", row.get("code") or "?") + UNVERIFIED_WORDS)
     after = counts(G); added = {k: after[k] - before[k] for k in COUNT_KEYS} if before is not None and after is not None else None

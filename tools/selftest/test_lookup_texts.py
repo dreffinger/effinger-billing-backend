@@ -433,12 +433,75 @@ def t_death_check():
     check("death check, second verification: a death_check_review.py that is missing does not skip Charge Review (step 0e's word for a missing helper does not hold for it - the fall-back applies), and with no clone to copy from the run goes on with the workspace's copies and says so",
           lambda: "a death_check_review.py that is in neither place does NOT skip Charge Review, whatever step 0e says of a missing helper: the fall-back at the end of this clause applies" in c
           and "with no clone to copy from, go on with the workspace's copies and say so at the top of the report" in c, c[:1200])
-    dc = {n: (t[t.find("DECEASED CACHE:"):t.find("Then `bash tools/bootstrap_workspace.sh layout", max(0, t.find("DECEASED CACHE:")))] if "DECEASED CACHE:" in t else "") for n, t in (("billing_button.txt", BB), ("columns.txt", LIVE_TXT.get("columns.txt", "")))}
+    COL = LIVE_TXT.get("columns.txt", "")
+    def step0c(t): return next((l for l in t.splitlines() if l.startswith("0c. ")), "")
+    def cache_sentence(t):
+        """step 0c's sentence about the cache copy on Drive: from 'DECEASED CACHE' up to the sentence that follows it in both prompts"""
+        l = step0c(t); i = l.find("DECEASED CACHE"); j = l.find('Then download every "workspace mirror" file', max(0, i)); return l[i:j] if 0 <= i < j else ""
+    dc = {"billing_button.txt": cache_sentence(BB), "columns.txt": cache_sentence(COL)}; DGD = "python3 /home/claude/effinger-billing-backend/scripts/helpers/dg_drive.py "
     check("death check, second verification: BOTH prompts merge the cache copy from Drive in step 0c, before the first guard call, with the same sentence (the columns prompt had none: its guard read the scrubbed copy) - and the sentence says what a scrubbed date is to the guard now: a death on record whose claims are not cleared until a day is named",
-          lambda: dc["billing_button.txt"] == dc["columns.txt"] != "" and "python3 dg_drive.py unpack inbox/deceased_cache_drive.json /home/claude/unbilled/registers/deceased_cache.json" in dc["columns.txt"]
-          and "python3 dg_drive.py pack /home/claude/unbilled/registers/deceased_cache.json outbox/deceased_cache.json" in dc["columns.txt"]
-          and "to deceased_guard a scrubbed date is a death ON RECORD whose day cannot be read" in dc["columns.txt"] and "treats a scrubbed date as UNKNOWN" not in BB + LIVE_TXT.get("columns.txt", "")
-          and all(0 < t.find("DECEASED CACHE:") < t.find("1. CHARGE REVIEW:") for t in (BB, LIVE_TXT.get("columns.txt", ""))), {n: v[:160] for n, v in dc.items()})
+          lambda: dc["billing_button.txt"] == dc["columns.txt"] != "" and (DGD + "unpack inbox/deceased_cache_drive.json /home/claude/unbilled/registers/deceased_cache.json /home/claude/effinger-billing-backend/practices/ehpa/registers/deceased_cache.json`") in dc["columns.txt"]
+          and (DGD + "pack /home/claude/unbilled/registers/deceased_cache.json outbox/deceased_cache.json`") in dc["columns.txt"]
+          and "to deceased_guard a scrubbed date is a death ON RECORD whose day cannot be read" in dc["columns.txt"] and "treats a scrubbed date as UNKNOWN" not in BB + COL
+          and all(0 < t.find("DECEASED CACHE") < t.find("1. CHARGE REVIEW:") for t in (BB, COL)), {n: v[:160] for n, v in dc.items()})
+    # the independent check of the second round (its list of untrue sentences): the sentence stood BEFORE the layout step - on a machine whose state bundle brought no
+    # registers folder the merge command ended at its first path and the clone's register was not merged; it ran the bundle's copy of dg_drive.py; and it said the
+    # free check comes first for every chart, while a chart with no Medicare plan gets none
+    check("death check, independent check of the second round: in BOTH prompts the cache sentence stands AFTER the layout step of 0c (that step makes registers/ and copies the helpers in), calls the REPOSITORY's own copy of dg_drive.py - for the merge and for the pack, never a bare `python3 dg_drive.py` - and says where the free check is asked: first where the chart has a Medicare plan",
+          lambda: all(0 < step0c(t).find("Then `bash tools/bootstrap_workspace.sh layout /home/claude/effinger-billing-backend`") < step0c(t).find("DECEASED CACHE") < step0c(t).find('Then download every "workspace mirror" file') for t in (BB, COL))
+          and all(t.count("DECEASED CACHE (") == 1 and "python3 dg_drive.py" not in t for t in (BB, COL)) and dc["columns.txt"].count(DGD) == 2 and where("/home/claude/effinger-billing-backend/scripts/helpers/dg_drive.py") == H + "dg_drive.py"
+          and "AdvancedMD's free check first where the chart has a Medicare plan" in dc["columns.txt"] and "AdvancedMD's free check first and a Stedi answer only when that gives none" not in BB + COL
+          and "after the layout step: it makes registers/ and copies the helpers in" in dc["columns.txt"], {n: step0c(t)[max(0, step0c(t).find("DECEASED CACHE") - 60):][:300] for n, t in (("billing_button.txt", BB), ("columns.txt", COL))})
+    check("death check, independent check of the second round: the sentence says what the merge never does - undo a death on record (a 'no death' note of the Drive copy replaces neither a day nor a scrubbed date; of two days the earlier stays) - and dg_drive.py does it so",
+          lambda: "The merge never undoes a death on record: a 'no death' note of the Drive copy replaces neither a day nor a scrubbed date, and of two days the earlier stays" in dc["columns.txt"]
+          and "if cur.get(\"dod\"): continue" in _read(H + "dg_drive.py") and "of two days the EARLIER stays" in _read(H + "dg_drive.py"), dc["columns.txt"][-700:])
+    check("death check, independent check of the second round: the clause says what a run does when a CACHE line is STILL printed after the merge and the second start - it says so at the top of the report and goes on (never a third start, never a stop of the step): a charge of a chart whose day cannot be read comes out NOT CHECKED and is not approved, every other charge is handled as the helper answers",
+          lambda: "ONE merge and ONE second start: when such a line is STILL printed after them (the Drive copy lacks those days, or cannot be had), say so at the top of the report and go on with that second answer - the charges of the charts concerned come out NOT CHECKED and are not approved, every other charge is handled as the helper answers" in c
+          and c.find("start the helper again BEFORE anything is saved or approved") < c.find("ONE merge and ONE second start") < c.find("a charge it lists as NOT CHECKED with '(the guard raised DayLost)'") < c.find("IT COMES BEFORE ANY SAVE IN THIS STEP"), c[:1900])
+    sk31 = [l for l in SKILL.splitlines() if l.startswith("- Date of death on the Medicare record")]
+    check("death check, independent check of the second round: the look-up skill's standing rule no longer says 'write off any DOS after it and flag William to confirm/void' (eight lines above the paragraph that says the opposite) - the run VOIDS such a charge: never written off, never a question for him",
+          lambda: len(sk31) == 1 and "write off" not in sk31[0].split("never written off")[0] and "flag William" not in SKILL and "the run VOIDS every charge dated after it and says so in the report" in sk31[0]
+          and "never written off, never re-dated, never a question for him" in sk31[0] and '"VOID all charges sent after date of death"' in sk31[0], sk31)
+    rb_ = _read("nightly/claimocity_feed_step.md"); c1 = next((l for l in rb_.splitlines() if l.startswith("(c1) ")), ""); fl = next((l for l in rb_.splitlines() if l.startswith("(f) ")), "")
+    DDW = "a date of death is on record for this chart but its day cannot be read - not entered"
+    check("runbook (c1): the retry step names its THIRD kind of skip - the visit held because the day of a death on record cannot be read, in the import's own words - and how that kind ends: handed over ONCE a run, and never again once a later register shows the visit entered, answered 'all lines already in AMD' or kept out with 'DOS after date of death'",
+          lambda: (" or '%s' (" % DDW) in c1 and ('DEATH_DAY_WHY = "%s"' % DDW) in _read(H + "claimocity_import.py") and "the import asks again and enters the visit, keeps it out for good, or keeps it waiting" in c1
+          and "such a visit is handed over ONCE a run, and never again once a later register - a retry's own included - shows it entered, answered 'all lines already in AMD', or kept out with 'DOS after date of death'" in c1
+          and "Medicare named no day" not in c1 and "the feed files are not on hand and could not be fetched' also goes under Holds" in c1, c1[:1500])
+    check("runbook (f): the sentences about the feed's two lines are true - the count 'date of death UNVERIFIED xN' is of charges that WENT IN (a chart whose day is lost is not in it: its visit did not go in); the line 'DEATH DAY UNKNOWN' stands among the last lines of the import's log and its twin in the digest under the Import counts - both are FOR the top of the report, neither stands at a top; and nobody is said to have been asked who was not",
+          lambda: "(a check nobody answered: the charge went in, the insurance check asks again - a chart whose day of death is lost is not in that count: its visit did not go in and has the line below)" in fl
+          and "A line 'DEATH DAY UNKNOWN: ...' - among the LAST lines of the import's log, and its twin in the digest under the Import counts ('  - TOP OF THE REPORT - DEATH DAY UNKNOWN: ...') - goes to the top of the report word for word" in fl
+          and "its twin at the top of the digest" not in fl and "Medicare named none" not in fl and "nobody named the day, so the visit was NOT entered" in fl
+          and "the retry in (c1) hands the visit to the import again, once a run, until a register shows it entered or kept out for good" in fl, fl[:1500])
+    rsrc = _read(H + "claimocity_retry_dx.py"); rh = _header(rsrc)
+    check("retry driver: its header says how the retry of a held visit ends - a held row only from a register that is not a retry's own, each visit once a run, left alone for good once a later register shows it entered, kept out or answered 'already' - and no longer leans on 'a no-op the second time' for this kind; the code does so",
+          lambda: "THIS KIND MUST CONVERGE BY ITS OWN RULES" in rh and "a held row is taken only from a register that is NOT a retry's own" in rh and "goes to the import at most ONCE per run" in rh
+          and "it is left alone for good once a LATER register, a retry's own included, shows that visit" in rh and "'a no-op the second time' did not hold for it" in rh and "Medicare named no day" not in rh
+          and 'if stamp.endswith("R"): continue' in rsrc and "def _kept_out(stamp, fid, lines):" in rsrc and "if (fid, lines) in handed or _kept_out(stamp, fid, lines): continue" in rsrc, rh[-1900:])
+    hh = _header(hsrc); mir = _read("tools/mirror/mirror.py"); vline = re.search(r'^DEATH_CHECK_REVIEW_VERSION = "[^"]+"', hsrc, re.M)
+    check("the helper's header no longer says the guard 'does not raise' on a charge with nothing to compare (it raises Unreadable since the second verification - the header, the paragraph on the number a run compares and handed() still said otherwise), and it says what the helper does since version .6: the cache's state asked first, an UNVERIFIED line let go only when the guard's cache covers the charge",
+          lambda: "the guard does not raise on an answer that carries no" not in hsrc and "it does not raise on an answer that carries no chart" not in hsrc and "raises nothing when it has nothing" not in hsrc and "The guard itself raises Unreadable on such an answer since the second verification" in hh
+          and "none for a charge the guard's cache COVERS by then" in hh and "its state is asked AFTER the guard has carried the workspace's other cache files in" in hh, hh[2500:4200])
+    check("the helper's version is 2026-11-25.6, its version line says what .5 and .6 changed, and the mirror's marker for death_check_review.py is that very line (the two must stay equal: a copy of another version never comes back over the repository's)",
+          lambda: vline is not None and vline.group(0) == 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.6"' and ("\"death_check_review.py\": '%s'" % vline.group(0)) in mir and ".5 = " in hsrc and ".6 = " in hsrc
+          and len(re.findall(r"DEATH_CHECK_REVIEW_VERSION = \"[^\"]+\"", mir)) == 1, (vline and vline.group(0), re.findall(r"DEATH_CHECK_REVIEW_VERSION = \"[^\"]+\"", mir)))
+    ll = [l for l in _read("docs/SHARED_LESSONS.md").splitlines() if l.startswith("- 2026-11-25T1410Z FIX (the date-of-death check")]
+    check("lessons: the line of 14:10Z is ONE line and every sentence the independent check named in it is true now - what the import reads, where the line DEATH DAY UNKNOWN stands, when an UNVERIFIED line is let go, how the retry ends - and it records that check's own round (the helper's version .6)",
+          lambda: len(ll) == 1 and "death_check_review.py version 2026-11-25.6" in ll[0] and "The import reads every cache file itself and takes a chart's earliest day." not in ll[0]
+          and "The import reads the cache files the guard knows" in ll[0] and "the copy at the old path among them" in ll[0]
+          and "'DEATH DAY UNKNOWN' at the top of the import's log and of the digest" not in ll[0] and "among the last lines of the import's log" in ll[0] and "under the Import counts" in ll[0]
+          and "none for a charge after which another charge of the same chart got Medicare's answer" not in ll[0] and "none for a charge the guard's cache covers by then" in ll[0]
+          and "hands the visit to the import again every run)" not in ll[0] and "once a run, until a register shows it entered or kept out for good" in ll[0]
+          and "(8) THE INDEPENDENT CHECK OF THAT ROUND" in ll[0] and "feed_order_sweep.py" in ll[0].split("(8) THE INDEPENDENT CHECK OF THAT ROUND")[1], [x[:300] for x in ll])
+    rule109 = next((l for l in _read("practices/ehpa/rules.md").splitlines() if l.startswith("- (11/25/2026, William in chat, STANDING for every billing task) THE DATE-OF-DEATH CHECK")), "")
+    check("rulebook: the bullet still says that Medicare's 'no death on record' does not undo a death on record whose day cannot be read - only a DAY is an answer for such a chart - and (the independent check) it no longer says the digest's line stands 'at the top': the line is FOR the top of the report, and the retry hands the visit over until a register shows it entered or kept out for good",
+          lambda: "only a DAY is an answer for such a chart (Medicare's 'no death on record' does not undo it), and until one is named the claim is not cleared" in rule109
+          and "the digest says DEATH DAY UNKNOWN at the top" not in rule109 and "the digest carries the line 'DEATH DAY UNKNOWN' for the top of the report" in rule109
+          and "the retry step hands it to the import again, once a run, until a register shows it entered or kept out for good" in rule109, rule109[-1700:])
+    gh = _header(gsrc)
+    check("the guard's header records the independent check's round: it keeps a death for good also against its own hook (record), the chart's own mark without a date is a death on record with no day, the default cache goes by where the file stands, the carry takes a placeholder and keeps in memory what it cannot write, cache_state carries first, covered() - and it still names no vendor call of its own",
+          lambda: all(x in gh for x in ("THE GUARD KEEPS A DEATH FOR GOOD, ALSO AGAINST ITS OWN HOOK", "THE CHART'S OWN 'deceased' MARK WITHOUT A DATE", "THE DEFAULT CACHE GOES BY WHERE THIS FILE STANDS", "THE CARRY (_carry) also takes a placeholder",
+                                       "cache_state() carries first", "covered(pid, dos)", "A death is taken off the record by hand only")) and "requests" not in gsrc, gh[-1800:])
     five = ["skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md", "skills/billing-insurance-lookup-stedi/SKILL.md", "skills/billing-insurances-cleaning-task/SKILL.md", "skills/billing-run-alerts-task/SKILL.md", "practices/ehpa/rules.md"]
     ft = {n: _read(n) for n in five}
     check("death check, second verification: the four skills and the rulebook's hard rule say what William said of a blocked charge - the run VOIDS it (10/4 and 11/25/2026: never re-dated, never written off, never a question for him) - none still lists it 'for William to void' or re-dates a care-management charge; and each says that a death on record whose day cannot be read is not 'no death'",
@@ -491,7 +554,10 @@ def t_death_check():
     GATE = load("tools/mirror/phi_gate.py", "phi_gate_under_test_2")                  # the gate's text transform only: pure, no file, no network
     code = ("tools/selftest/test_death_check_review.py", H + DCR)
     moved = [n for n in code if not _exists(n) or GATE.redact(_read(n), {}, code=True) != _read(n)]
-    prose = {"billing_button.txt step 1": s1["billing_button.txt"], "columns.txt step 1": s1["columns.txt"], "rules.md bullet": b, "the skill's guard section": guard_sec, "the lessons line": (ls or [""])[0]}
+    prose = {"billing_button.txt step 1": s1["billing_button.txt"], "columns.txt step 1": s1["columns.txt"], "rules.md bullet": b, "the skill's guard section": guard_sec, "the lessons line": (ls or [""])[0],
+             "billing_button.txt step 0c": step0c(BB), "columns.txt step 0c": step0c(COL), "the look-up skill's rule": (sk31 or [""])[0], "runbook (c1)": c1, "runbook (f)": fl, "the lessons line of 14:10Z": (ll or [""])[0], "rules.md bullet of 11/25": rule109}
+    code = code + (H + "claimocity_retry_dx.py", H + "dg_drive.py", H + "deceased_guard.py", "core/deceased_guard.py", H + "feed_order_sweep.py")
+    moved = [n for n in code if not _exists(n) or GATE.redact(_read(n), {}, code=True) != _read(n)]
     moved += [n for n, t in prose.items() if not t or GATE.redact(t, {}, code=False) != t]
     check("death check: the privacy gate's tree rules leave the helper, its self-test and every new sentence exactly as they are (a date written right behind the word death would be rewritten - none is)", lambda: moved == [], moved)
 

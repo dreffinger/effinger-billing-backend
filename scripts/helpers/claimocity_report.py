@@ -51,17 +51,20 @@ _qlines = sum(1 for x in reg["created"] if isinstance(x.get("quality_codes"), li
 _qlines += sum(1 for x in reg["created"] if isinstance(x.get("mvp_codes"), list) and x.get("mvp_codes") and x.get("mvp_charge"))           # ... nor are the option code's (M0004) no-charge lines
 _failed = [x for x in (reg.get("failed") or []) if isinstance(x, dict)]                      # 11/10/2026 (operations review N3): failed visits are counted and named, never "0 faults"
 _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
-L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]),
+# 11/25/2026 (the second verification of the death check): the visits the import kept out because a date of death is on record for the chart and nobody could name
+# its day (claimocity_import.DEATH_DAY_WHY - the same line here; the self-test holds the two together). Chart ids and counts only.
+# (The independent check of that round, finding 13: the count below called those visits 'skipped as already in AMD' - they are NOT in AdvancedMD, they are held. They
+# are taken out of that count; the line for the top of the report, a few lines down, says what they are. The sentence's words are as they were.)
+DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
+_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY))
+L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]) - _ddheld,
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
-# 11/25/2026 (the second verification of the death check): the visits the import kept out because a date of death is on record for the chart and nobody could name
-# its day (claimocity_import.DEATH_DAY_WHY - the same line here; the self-test holds the two together). Chart ids and counts only.
-DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
-try:
+try:      # (the register cannot say who was asked - a dry run asks nobody, a workspace may hold no guard - so the line says 'nobody named the day', as the import's own does)
     _ddr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY)]
     _ddc = sorted({x.get("pid") for x in _ddr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
-    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and Medicare named none. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again in every later run: %s" % (
+    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again in every later run: %s" % (
         len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
 except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch

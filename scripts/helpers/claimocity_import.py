@@ -99,20 +99,24 @@ REG = ("registers/feed_import_%s.json" % STAMP)
 NO_LINES_WHY = "feed message without a charge line - passed over"
 NO_PID_WHY = "feed message without a patient id - passed over"
 # 11/25/2026 (the second verification of the death check): the fixed words of a visit that is NOT entered because a date of death is on record for its chart and
-# nobody can name the day (the cache copy in this workspace carries the privacy gate's placeholder, and Medicare named none). claimocity_retry_dx.py reads these words
-# and hands the visit to the import again in every later run; claimocity_report.py says it at the top of the digest.
+# nobody can name the day (the cache copy in this workspace carries the privacy gate's placeholder, and nobody named the day). claimocity_retry_dx.py reads these words
+# and hands the visit to the import again - once a run, until a later register shows the visit entered or kept out for good; claimocity_report.py says it in the digest,
+# in a line for the top of the report.
 DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
 def death_day(v):
-    """A cached date of death as YYYY-MM-DD when it is a real calendar date in a shape a helper has written it in (YYYY-MM-DD, eight digits, MM/DD/YYYY); None for
-    anything else - the placeholder of the repository's copy, a text, a date that is none. (The guard's own reading, deceased_guard._day.)"""
+    """A cached date of death as YYYY-MM-DD when it is a real calendar date in a shape a helper has written it in (YYYY-MM-DD, eight digits, MM/DD/YYYY - the
+    first and the last may carry a time behind the day, as AdvancedMD stamps its dates); None for anything else - the placeholder of the repository's copy, a
+    text, a date that is none. THE GUARD'S OWN READING, step for step (deceased_guard._iso and _day): this helper must work with no guard module beside it, so
+    the reading is written out here - and tools/selftest/test_lookup_rules.py holds it, dg_drive.py's and the guard's together over every shape. (11/25/2026,
+    the independent check of the second round, finding 12: a day with a time behind it was a day to the guard and none here - the chart counted as one whose
+    day is lost, and every visit of it was held, also one BEFORE the day.)"""
     s = str(v or "").strip()
-    m = re.match(r"(\d{4})-(\d{2})-(\d{2})$", s) or re.match(r"(\d{4})(\d{2})(\d{2})$", s)
-    if m: y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    if re.match(r"\d{8}$", s): s = "%s-%s-%s" % (s[:4], s[4:6], s[6:])
     else:
-        m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})$", s)
-        if not m: return None
-        y, mo, d = int(m.group(3)), int(m.group(1)), int(m.group(2))
-    try: return datetime.date(y, mo, d).isoformat()
+        m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
+        s = "%s-%02d-%02d" % (m.group(3), int(m.group(1)), int(m.group(2))) if m else s[:10]
+    if not v or not re.match(r"\d{4}-\d{2}-\d{2}$", s): return None
+    try: return datetime.date.fromisoformat(s).isoformat()
     except ValueError: return None
 # 11/12/2026 (William: "fix everything billable to put them in advanced md"): 99349, the established-patient home / assisted-living visit, was
 #   not in these two tables, so three feed visits (9/1, 9/2 and 11/3/2026) were skipped as "unknown CPT 99349". It goes in under pcode65142
@@ -2254,10 +2258,20 @@ def main():
     # file held, a day written as eight digits, and a death whose day is the privacy gate's placeholder (the repository's copy) all read as 'no death', and the visit
     # went in. Now EVERY file is read; a chart's EARLIEST day in any of them counts (it keeps more out); a file that cannot be read is passed over; and a chart with a
     # death on record whose day is in no file (_dc_lost) has nothing entered until somebody names the day (_asked_dod below).
-    _dc = {}; _dc_lost = set(); _dcf = set(); _osm = __import__("os")
-    try: _dcg = getattr(__import__("deceased_guard"), "CACHE", "") or ""
-    except Exception: _dcg = ""
-    for _p in [_osm.environ.get("DECEASED_CACHE", ""), _dcg, "deceased_cache_local.json", "registers/deceased_cache.json"]:
+    # 11/25/2026 (the independent check of that round, finding 7): 'every file' left one out - the copy at the OLD path, ../practices/ehpa/registers/, where a run's
+    # lesson had told runs to put one. The guard carries that copy's days into its cache during this very process, but only at its first answer - and for a chart
+    # the import asks nothing about it never answers: both visits of such a chart were ENTERED. So the import reads the files the guard knows: the one the
+    # environment names, the guard's own (CACHE), every file on the guard's own list of other cache files (_others - it only looks whether each is a file) when
+    # the guard can be loaded, the two relative names of before, and the old path seen from this helper's own folder. Nothing here writes: the guard's _load, which
+    # carries, is not called for this - a dry run still writes nothing.
+    _dc = {}; _dc_lost = set(); _dcf = set(); _osm = __import__("os"); _dcg = ""; _dco = []
+    try:
+        _dgm = __import__("deceased_guard"); _dcg = getattr(_dgm, "CACHE", "") or ""
+        _dco = [_x for _x in (getattr(_dgm, "_others")() or [])] if callable(getattr(_dgm, "_others", None)) else []
+    except Exception: pass
+    try: _dcold = _osm.path.join(_osm.path.dirname(_osm.path.dirname(_osm.path.abspath(__file__))), "practices", "ehpa", "registers", "deceased_cache.json")
+    except Exception: _dcold = ""
+    for _p in [_osm.environ.get("DECEASED_CACHE", ""), _dcg] + _dco + ["deceased_cache_local.json", "registers/deceased_cache.json", _dcold]:
         if not isinstance(_p, str) or not _p or not _osm.path.isfile(_p) or _osm.path.realpath(_p) in _dcf: continue
         _dcf.add(_osm.path.realpath(_p))
         try: _c = json.load(open(_p))
@@ -2283,7 +2297,8 @@ def main():
     # guard at deceased_cache_local.json here). And a chart with a death ON RECORD whose day nobody can read (lost) is asked about before ANY message of it is
     # entered - as an ordinary claim: the guard asks whatever the payer and the code for such a chart - and is HELD unless a day is named: the guard raises DayLost
     # when neither AdvancedMD nor the vendor names one, and Medicare's 'no death on record' does not undo a death another source put on record. A held message is not
-    # entered; its row carries DEATH_DAY_WHY and its codes, and the retry step hands it to the import again in every later run.
+    # entered; its row carries DEATH_DAY_WHY, its codes and its dates of service, and the retry step hands it to the import again - once a run, until a register
+    # shows it entered or kept out for good (claimocity_retry_dx.py; the independent check of that round, finding 3).
     _ccm_asked = set(); _dd_held = set()
     def _asked_dod(pid, msg, lost=False):
         """-> (the day or None, held). lost: a death is on record for the chart and its day is in no cache file."""
@@ -2398,13 +2413,17 @@ def main():
             if not dod and (_lost or any(c["cpt"] in CCM for c in msg["FT1"])):      # a CCM message, or a chart whose day of death is lost: asked before the entry (_asked_dod above)
                 dod, _held = _asked_dod(pid, msg, _lost)
                 _dod_src = "Medicare, asked because the day on record could not be read" if _lost else "Medicare, asked before this CCM charge was entered - William 11/25/2026"
+            # (11/25/2026, the independent check of the second round, finding 3: both rows below name the VISIT - its codes and, under dos_lines, each line's own date of
+            #  service as MM/DD/YYYY, the way the created rows do. claimocity_retry_dx.py matches them by that: it hands a held visit over once a run, and leaves it alone
+            #  for good once a later register shows the same visit kept out 'DOS after date of death'. The second row used to name the feed patient only.)
+            _vis = {"cpts": [c["cpt"] for c in msg["FT1"]], "dos_lines": [mdy(c["dos"][:8]) for c in msg["FT1"]]}
             if _held:
                 stats[DEATH_DAY_WHY] += 1; _dd_held.add(pid)
-                reg["skipped"].append({"feed_id": fid, "pid": pid, "why": DEATH_DAY_WHY, "cpts": [c["cpt"] for c in msg["FT1"]], "lines": seen_lines(msg)})
+                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": DEATH_DAY_WHY}, **dict(_vis, lines=seen_lines(msg))))
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)
                 continue
             if dod and any(c["dos"][:8] > dod.replace("-", "") for c in msg["FT1"]):
-                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (%s) - never billed" % (dod, _dod_src)})
+                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (%s) - never billed" % (dod, _dod_src)}, **_vis))
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)      # a dry run writes nothing (11/10/2026, challenge review): its register would make the live run of the same stamp skip whole patients
                 continue
             ctx = chart_ctx(pid); ctx["pid"] = pid
@@ -2643,8 +2662,10 @@ def main():
     # place-of-service lines, like the line above
     _dl = death_check_line(__import__("sys").modules.get("deceased_guard"))
     if _dl: print(_dl)
-    # 11/25/2026 (the second verification): the visits kept out because a death is on record for the chart and nobody can name its day - chart ids and counts only
-    if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (Medicare named none either) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again in every later run: %s" % (
+    # 11/25/2026 (the second verification): the visits kept out because a death is on record for the chart and nobody can name its day - chart ids and counts only.
+    # (The independent check of that round, finding 13: the line said 'Medicare named none either' - also when nobody had been asked: a dry run, a workspace with no
+    # guard module. 'nobody named the day' is true of every such visit.)
+    if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again in every later run: %s" % (
         stats[DEATH_DAY_WHY], len(_dd_held), DEATH_DAY_WHY, ", ".join(sorted(_dd_held))))
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
