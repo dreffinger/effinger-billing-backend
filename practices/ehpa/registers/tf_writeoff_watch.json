@@ -957,6 +957,28 @@
      "outcome": "sent 2026-11-20T0230Z"
     }
    ]
+  },
+  {
+   "id": "railroad-17472491-2025",
+   "pid": "17472491",
+   "carrier": "RET01",
+   "plan": "ins9521143 (seq 3, Railroad Medicare - paid the 09-11/2026 visits 11/19/2026, check 823741821)",
+   "order": "William 11/25/2026 08:22Z on card lawford-leilani-17472491-medicare-plan: 'send to railroad' (the 0721Z run had written the visit off WOLATE by the 12-month rule)",
+   "sent": "2026-11-25T1027Z (lawford_railroad_1018.py --live: WOLATE 22509876 + $0 marker 24674822 voided; freq1_visit.py reroute 19422192 23327550 3,2,4 3 -> 204)",
+   "status": "open",
+   "visits": [
+    {
+     "vid": "19422192",
+     "dos": "11/03/2025",
+     "cpt": "99232",
+     "charges": [
+      "23327550"
+     ],
+     "insbal": 111.0,
+     "outcome": "sent",
+     "answers": []
+    }
+   ]
   }
  ]
 }
