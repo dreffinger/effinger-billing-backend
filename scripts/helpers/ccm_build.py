@@ -84,6 +84,11 @@ REF_SQL = "select body from raw.documents where source = 'ref' and collection = 
 NOTES_SIGNED_SQL = "select doc_id, body->'fields', body->>'sha' from raw.documents where source = 'ccm' and collection = 'signed'"
 # the signed addenda with their recorded fields (what he signed, with the day written): a signed addendum keeps them on the hub page
 ADD_SIGNED_SQL = "select doc_id, body->'fields' from raw.documents where source = 'ccm' and collection = 'addenda_signed'"
+# the monthly add-on (11/25/2026): CCM visits read back from AdvancedMD after the history pull (scripts/helpers/ccm_month.py), the names the
+# hub already has in Neon, and the fingerprint of every month draft already loaded (to tell which notes are new this run)
+CCM_LINES_SQL = "select doc_id, body from raw.documents where source = 'ccm' and collection = 'lines'"
+NEON_PATIENTS_SQL = "select doc_id, body from raw.documents where source = 'ccm' and collection = 'patients'"
+MONTH_SHAS_SQL = "select doc_id, body->>'fields_sha' from raw.documents where collection = 'months' and source = 'ccm'"
 ADD_DRAFTS_SQL = "select doc_id, body from raw.documents where source = 'ccm' and collection = 'addenda' and doc_id = any(string_to_array(%s, ','))"
 
 def neon_select(sql, params=()):
@@ -136,6 +141,23 @@ def charge_lines(select, dx=None):
     if dx is not None:
         for l in out: l["dx"] = list(dx.get(l["chart"], {}).get(_charge_no(l["charge"]), []))
     return out
+def ccm_lines(select, have=()):
+    """(lines, carriers): the live CCM lines of the visits ccm_month.py read back from AdvancedMD after the history pull, shaped like
+    charge_lines() with their ICD-10 codes as AdvancedMD holds them - a charge already among `have` (charge numbers from the history) is
+    left to the history; carriers = {(chart, YYYY-MM): the feed's lead carrier} for a chart the history has no plan for"""
+    have = {_charge_no(x) for x in have}; out = []; car = {}
+    for did, body in select(CCM_LINES_SQL):
+        d = _json(body)
+        if not isinstance(d, dict) or not d.get("chart"): continue
+        for c in d.get("charges") or []:
+            if c.get("void") or not c.get("dos") or c.get("code") not in CODES or _charge_no(c.get("charge")) in have: continue
+            have.add(_charge_no(c.get("charge")))
+            out.append({"chart": d["chart"], "charge": _charge_no(c.get("charge")), "visit": str(c.get("visit") or d.get("visit") or ""), "dos": c["dos"], "code": c["code"],
+                        "units": str(c.get("units") or "1"), "provider_code": c.get("provider_code") or "", "provider": PROVIDERS.get(c.get("provider_code") or "", c.get("provider_code") or ""),
+                        "facility": c.get("facility") or (d.get("feed") or {}).get("facility") or "", "dx": [str(x) for x in (c.get("dx") or []) if x]})
+            fc = (d.get("feed") or {}).get("carrier") or ""
+            if fc: car.setdefault((d["chart"], c["dos"][:7]), fc)
+    return out, car
 def read_descriptions(select, path=None):
     """code -> [CMS description, fiscal year]: the reference document the icd10 command writes - from that file when one is named, else
     the one loaded into Neon (source 'ref', collection 'icd10cm', doc_id 'descriptions'); {} when there is none"""
@@ -174,8 +196,10 @@ def build_months(select, patients, descriptions=None):
             f = _json(f)
             if isinstance(f, dict): stored[did] = f
     recs = []
-    for m in N.months(charge_lines(select, dx_by_charge(select)), signer=N.SIGNER_CODE):
-        m = dict(m, insurance=insurance_for(plans.get(m["chart"], []), m["month"]), diagnoses=N.diagnoses([(c["code"], c.get("dx")) for c in m["charges"]], desc))
+    hist = charge_lines(select, dx_by_charge(select))
+    extra, carriers = ccm_lines(select, [l["charge"] for l in hist])
+    for m in N.months(hist + extra, signer=N.SIGNER_CODE):
+        m = dict(m, insurance=insurance_for(plans.get(m["chart"], []), m["month"]) or carriers.get((m["chart"], m["month"]), ""), diagnoses=N.diagnoses([(c["code"], c.get("dx")) for c in m["charges"]], desc))
         pt = patients.get(m["chart"]) or {}
         rid = "%s_%s" % (m["chart"], m["month"])
         f = stored[rid] if rid in signed and rid in stored else N.note_fields(m, pt, None, [])      # a signed note is final: what he signed
@@ -196,6 +220,17 @@ def insurance_for(plans, ym):
         if (b is None or b <= last) and (e is None or e >= first) and name:
             live.append((int(seq) if str(seq).isdigit() else 99, name))
     return min(live)[1] if live else ""
+def neon_patients(select):
+    """chart -> {name, dob, sex, read_at}: the names the hub already has in Neon (source 'ccm', collection 'patients') - a routine's fresh
+    workspace starts with none, and a note must not wait for a name that was read before"""
+    out = {}
+    for did, body in select(NEON_PATIENTS_SQL):
+        d = _json(body)
+        if isinstance(d, dict) and d.get("name") and d.get("dob"): out[d.get("chart") or did] = d
+    return out
+def all_patients(select, ws):
+    """Neon's names, then the workspace's on top (a read made this run wins)"""
+    out = neon_patients(select); out.update(read_patients(ws)); return out
 def read_patients(ws):
     p = os.path.join(ws, "ccm", "ccm_patients.jsonl"); out = {}
     if os.path.exists(p):
@@ -320,7 +355,7 @@ def main(argv=None, select=None):
         if cmd == "build" and not desc:
             print("ccm_build: no ICD-10 descriptions - a new note lists its diagnoses with them: write them with `icd10`, load them "
                   "(neon_db.py load-docs --source ref) or pass --descriptions <file>"); return 2
-        recs, signed = build_months(select, read_patients(ws), desc)
+        recs, signed = build_months(select, all_patients(select, ws), desc)
         c = collections.Counter(("signed" if r["id"] in signed else r["status"]) for r in recs)
         print("ccm_build: %d patient-months (%d charts, %s to %s): %d ready to sign, %d flagged, %d waiting for the patient's name, %d signed" % (
             len(recs), len({r["chart"] for r in recs}), min((r["month"] for r in recs), default="-"), max((r["month"] for r in recs), default="-"),
@@ -330,14 +365,26 @@ def main(argv=None, select=None):
         if not out: print("ccm_build: build needs --out <dir>"); return 2
         if _inside_repo(out): print("ccm_build: %s is inside the repository - patient data never goes there" % out); return 2
         at = _now(); pts = read_patients(ws); n = 0
+        loaded = {r[0]: r[1] for r in select(MONTH_SHAS_SQL)}
+        fresh = [r for r in recs if r["id"] not in signed and loaded.get(r["id"]) != r["fields_sha"]]      # new or changed since the last load
         for chart in sorted({r["chart"] for r in recs} & set(pts)):
             p = pts[chart]; _write(os.path.join(out, "neon", "patients", chart + ".json"), {"chart": chart, "name": p.get("name", ""), "dob": p.get("dob", ""), "sex": p.get("sex", ""), "read_at": p.get("read_at", ""), "_written": at})
         for r in recs:
             if r["id"] in signed: continue      # a signed month is final
             _write(os.path.join(out, "neon", "months", r["id"] + ".json"), month_doc(r, at)); n += 1
         hub = hub_docs(recs, signed, at)
-        for k, v in hub.items(): _write(os.path.join(out, "hub", k + ".json"), v)
-        print("ccm_build: wrote %d month records (%d signed months left as they are) and %d hub documents under %s" % (n, len(signed & {r["id"] for r in recs}), len(hub), out)); return 0
+        only = [m for m in (opt("--hub-months") or "").split(",") if m]      # the routine writes only the months that changed (and config/practice)
+        if "--hub-new" in a: only = sorted(set(only) | {r["month"] for r in fresh})
+        for k, v in hub.items():
+            if only and k.startswith("notes/") and v.get("month") not in only: continue
+            _write(os.path.join(out, "hub", k + ".json"), v)
+        new = collections.Counter(r["status"] for r in fresh if r["id"] not in signed)
+        _write(os.path.join(out, "summary.json"), {"_written": at, "new_or_changed": len(fresh), "new_ready": new["ready to sign"], "new_flagged": new["flagged"],
+               "new_noname": new["no name yet"], "months": sorted({r["month"] for r in fresh}), "hub_months": only or "all",
+               "unsigned": {"ready": c["ready to sign"], "flagged": c["flagged"], "noname": c["no name yet"]}})
+        print("ccm_build: wrote %d month records (%d new or changed since the last load: %d ready, %d flagged, %d waiting for a name; months %s; "
+              "%d signed months left as they are) and the hub documents (%s) under %s" % (n, len(fresh), new["ready to sign"], new["flagged"], new["no name yet"],
+              ", ".join(sorted({r["month"] for r in fresh})) or "-", len(signed & {r["id"] for r in recs}), ("months " + ", ".join(only)) if only else "all months", out)); return 0
     if cmd == "signatures" and (opt("--kind") or "notes") == "addenda":
         page, out, via = opt("--page"), opt("--out"), opt("--via") or ""
         if not (page and out) or _inside_repo(out): print("ccm_build: signatures --kind addenda needs --page <dir> and --out <dir> outside the repository"); return 2

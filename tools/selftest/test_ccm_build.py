@@ -75,6 +75,7 @@ DESC = {"E11.9": ["Invented diabetes words", 2027], "I10": ["Invented hypertensi
 REF = [{"title": "test", "codes": DESC}]
 STORED = {}; NOTES_SIGNED = []; ADD_SIGNED = {}; ADD_DRAFTS = {}      # ADD_SIGNED: a signed addendum's id -> its recorded fields
 SIGNED = set(); DRAFTS = {}; SQL = []
+CCM_LINES = {}; NEON_PATIENTS = {}; LOADED_SHAS = {}      # the monthly add-on (11/25/2026): visits read back after the history pull, names in Neon, loaded drafts
 def select(sql, params=()):
     SQL.append(sql)
     if not re.match(r"^\s*(select|with)\b", sql, re.I): raise AssertionError("not a SELECT: " + sql[:60])
@@ -84,6 +85,9 @@ def select(sql, params=()):
     if "collection = 'chargedetail'" in sql and "d.doc_id = any(" in sql: return [[r[0], "08/%02d/2026" % (1 + n % 28), r[2]] for n, r in enumerate(CHARGEDETAIL) if r[0] in params[0].split(",")]
     if "collection = 'chargedetail'" in sql and "select distinct x.code" in sql: return [[c] for c in sorted({c for r in CHARGEDETAIL for c in json.loads(r[2])} | {"Q99.99"})]
     if "collection = 'chargedetail'" in sql: return [list(r) for r in CHARGEDETAIL]
+    if "collection = 'lines'" in sql: return [[k, json.dumps(v)] for k, v in sorted(CCM_LINES.items())]
+    if "collection = 'patients'" in sql: return [[k, json.dumps(v)] for k, v in sorted(NEON_PATIENTS.items())]
+    if "collection = 'months' and source" in sql: return [[k, v] for k, v in sorted(LOADED_SHAS.items())]
     if "collection = 'months' and doc_id in (select" in sql: return [[i, json.dumps(STORED[i])] for i in sorted(SIGNED) if i in STORED]
     if "collection = 'addenda_signed'" in sql: return [[x, json.dumps(ADD_SIGNED[x])] if "body->'fields'" in sql else [x] for x in sorted(ADD_SIGNED)]
     if "collection = 'addenda'" in sql: return [[i, json.dumps(ADD_DRAFTS[i])] for i in params[0].split(",") if i in ADD_DRAFTS]
