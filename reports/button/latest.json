@@ -1,20 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-25T0634Z",
+ "stamp": "2026-11-25T0703Z",
  "mode": "live",
  "status": "ok",
- "headline": "BUTTON PRESS (William 12:35 AM ET): 16 refresh-board cards worked - 13 done, 3 handed back; re-sent 23 visits $4881.00; written off $1506.00; voided after death $727.00; Columns 0/5/0/1 -> 0/2/0/1; ERA not in this press",
- "note": "BUTTON PRESS 2026-11-25T05:56:23Z \u00b7 mode live \u00b7 steps columns, cascade \u00b7 packages none \u00b7 William 11/25 ~12:35 AM ET: 'process all the new insurance info on the refresh board and given here fix the charts and rebill them and then give me a report here and then give me another insurance refresh list here and an email and update the board to keep working on'",
- "run_url": "https://claude.ai/code/session_01HHfWRDQzUP5c1sfAy6tDA5",
- "started": "2026-11-25T06:34:00Z",
- "ended": "2026-11-25T07:08:00Z",
- "engine": "claude",
- "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "06:39Z columns routine (held by 0f guard until 07:03Z)",
+ "run_url": "",
+ "started": "2026-11-25T07:07:19Z",
+ "ended": "2026-11-25T07:15:40Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 2,
     "unbilled": 0,
     "exclusions": 1
    },
@@ -28,31 +26,26 @@
   "era": {
    "before": {
     "checks": 0,
-    "unposted": 0.0
+    "unposted": 0
    },
    "after": {
     "checks": 0,
-    "unposted": 0.0
-   },
-   "note": "era step not in this press (0557Z run: 0 checks)"
+    "unposted": 0
+   }
   },
   "posted": {
    "pay": 0.0,
-   "woins": 1506.0,
+   "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
   },
   "resent": {
-   "visits": 23,
-   "dollars": 4881.0
+   "visits": 0,
+   "dollars": 0.0
   },
   "written_off": {
-   "count": 10,
-   "dollars": 1506.0
-  },
-  "voided": {
-   "charges": 4,
-   "dollars": 727.0
+   "count": 0,
+   "dollars": 0.0
   },
   "packages": {
    "applied": 0,
@@ -60,375 +53,308 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 323909.46,
-   "visits": 2798,
-   "charts": 485,
+   "total": 318332.46,
+   "visits": 2768,
+   "charts": 479,
    "over_365": {
     "n": 582,
     "dollars": 28293.88
-   },
-   "asof": "2026-11-25T0557Z run (not re-run: the press named steps columns + cascade)"
+   }
   },
   "denials": {
    "visits": 7886,
    "actionable": 53,
    "actionable_amt": 10055.0,
-   "asof": "2026-11-25 06:18 UTC"
-  },
-  "g0439": {
-   "pcode": "pcode67716",
-   "description": "ANNUAL WELLNESS VST; PPS SUBSQT VST",
-   "standard_fee": 204.0,
-   "how": "read-only AdvancedMD procedure look-up; $204.00 is the fee on every G0439 charge billed (e.g. v19448611, v19448364)"
+   "asof": "2026-11-25 07:15 UTC"
   }
  },
  "steps": [
   {
-   "name": "board",
-   "title": "Board input (William's 12:35 AM order)",
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "46 ids named on the press; cards an earlier board file already answered were skipped; 16 worked: 13 done (6 charts fixed + 23 visits re-sent, 3 write-offs on William's word, 3 after-death voids), 3 handed back (new Medicare card x2 incl. a merge decision, card photo x1); board file board_updates_2026-11-25T0634Z.json (27 ops incl. the 11 of the 0557Z file, asof 06:37Z) uploaded to the board inbox; face sheets email sent (19 cards on William's turn, $10,395.23)",
+   "summary": "1505 helpers into /home/claude/unbilled",
    "counts": {
-    "cards": 16,
-    "done": 13,
-    "handed_back": 3,
-    "resent_visits": 23,
-    "written_off": 10,
-    "voided_charges": 4
+    "helpers copied": 1505,
+    "registers": 1854,
+    "python": "/usr/local/bin/python3"
    },
-   "lines": [
-    {
-     "chart": "17471643",
-     "result": "handed back",
-     "action": "sheet's Medicare number = the chart's (and the twin chart 17471791's); AMD 271 AAA 72 under both spellings; nothing written - new Medicare card needed; the two charts are one patient, merge is William's call; FCC Medicaid plan set once Medicare is right",
-     "dollars": 218.0
-    },
-    {
-     "chart": "17471791",
-     "result": "handed back",
-     "action": "twin of 17471643 - same number, same answer (one card for both)",
-     "dollars": 71.59
-    },
-    {
-     "chart": "17472826",
-     "result": "done",
-     "action": "WOINS $310 + $111 voided, order BCBS seq 1, v19438893 + v19438892 sent once (204); balances back on insurance",
-     "dollars": 421.0
-    },
-    {
-     "chart": "17471238",
-     "result": "done",
-     "action": "Medicare Beneficiary ID written (chart held the older HIC number), 271 ACTIVE A/B 1999-11-01, v19446256 + v19448464 sent",
-     "dollars": 410.0
-    },
-    {
-     "chart": "20709",
-     "result": "done",
-     "action": "Medicare Beneficiary ID written (older HIC number rejected), 271 ACTIVE 2017-03-01, 8 visits sent; Medicaid seq 2 + Humana seq 3 already on the chart",
-     "dollars": 1778.0
-    },
-    {
-     "chart": "17478414",
-     "result": "done",
-     "action": "claimocity_ingest --reprocess created v19462412 (11/09/2026 99306+99497, charges 23375502 $256 + 23375503 $133); 1123F $0.01 held by Pattern 2049 and taken off; I66.22 -> I10 (dx email sent)",
-     "dollars": 389.0
-    },
-    {
-     "chart": "17478414",
-     "result": "done",
-     "action": "CAP07 ins9521409 added (policy from Pam's admission record, begin 11/08/2026, no group), 271 ACTIVE, order 2,1; v19462412 + v19462163 sent to CHP (204); Medicare plan stays",
-     "dollars": 530.0
-    },
-    {
-     "chart": "12182505",
-     "result": "done",
-     "action": "Railroad number rewritten on ins9519511, order 3,2; 6 visits re-pointed and sent (204); RET01 271 AAA 51 (provider not on file) and AARP INACTIVE - watch the remits; Humana PDP is the drug plan, no payer",
-     "dollars": 1210.0
-    },
-    {
-     "chart": "17475908",
-     "result": "done",
-     "action": "WOINS $310 + $111 (TRICARE duplicate, remit not obtainable) on William's word",
-     "dollars": 421.0
-    },
-    {
-     "chart": "17477353",
-     "result": "done",
-     "action": "WOINS $109 (Humana CO-4 on the CCM add-on) on William's word",
-     "dollars": 109.0
-    },
-    {
-     "chart": "17471273",
-     "result": "done",
-     "action": "WOINS $310 + 6 x $111 (Aetna finalized at $0) on William's word",
-     "dollars": 976.0
-    },
-    {
-     "chart": "17469397",
-     "result": "done",
-     "action": "after-death charges 23367095 + 23367096 voided (write-offs and $0 payments voided first)",
-     "dollars": 315.0
-    },
-    {
-     "chart": "17475365",
-     "result": "done",
-     "action": "after-death charge 23367066 voided",
-     "dollars": 206.0
-    },
-    {
-     "chart": "17477267",
-     "result": "claude (crossover watch)",
-     "action": "09/20/2026 99487 charge 23366938 voided on William's word; the August $809.20 Medigap coinsurance at Florida Blue stays on the crossover-wait rule",
-     "dollars": 206.0
-    },
-    {
-     "chart": "17477572",
-     "result": "done",
-     "action": "I10 first on 3 charges, sent to CHP (204 x3); Pattern 2776 cleared by removing Z01.818 (I10, M17.12, R10.9 remain)",
-     "dollars": 532.0
-    },
-    {
-     "chart": "17473460",
-     "result": "handed back",
-     "action": "chart's number = the sheet's; AMD 271 AAA 73 and Medicare's plain check 73 (name mismatch), nothing written - photo of the Medicare card needed (23 visits)",
-     "dollars": 690.59
-    }
-   ]
-  },
-  {
-   "name": "feed",
-   "title": "Claimocity feed",
-   "status": "ok",
-   "summary": "reprocess of the 11/13 HL7 created v19462412 on chart 17478414 (59 visits already entered); dx_codes_needed email sent (I66.22 -> I10); order sweep 065306Z 2 NO CLAIM (17472729 clinician move, 17478219 CHP number); feed registers + monitor + practice db register on main"
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-25T07:07:19Z",
+   "ended": "2026-11-25T07:07:20Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 5->2 (Pattern 2776 x3 on chart 17477572 cleared by removing Z01.818), Unbilled 0->0, Exclusions 1->1 (AET12 hold)",
+   "summary": "CR 0->0, CI 2->2, Unbilled 0->0, Exclusions 1->1",
    "counts": {
-    "inspector_cleared": 3,
-    "inspector_held": 2
+    "charge review": 0,
+    "claim inspector": 2,
+    "unbilled": 0,
+    "exclusions": 1,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 2,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 0,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
    },
+   "dollars": {},
    "lines": [
     {
-     "visit": "19461189",
-     "chart": "17478413",
-     "hold": "Pattern 28158 (O24.419) - card on William's turn"
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 2,
+     "ids": "v19461189 v19462192"
     },
     {
-     "visit": "19462192",
-     "chart": "17477311",
-     "hold": "Pattern 4531 (99223 at POS 31) - card on William's turn"
-    },
-    {
-     "visit": "19455937",
-     "chart": "24750",
-     "hold": "AET12 PREF0288 carrier record"
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
     }
-   ]
+   ],
+   "errors": [],
+   "started": "2026-11-25T07:07:20Z",
+   "ended": "2026-11-25T07:10:26Z"
   },
   {
-   "name": "cascade",
-   "title": "Cascade pre-check",
+   "name": "era",
+   "title": "ERA posting",
    "status": "ok",
-   "summary": "precheck --days 3 --max 120: 17 pairs, 0 flagged; void_rules 1 open, 0 voided; Stedi this run: 1 Medicare plain check (chart 17473460)"
-  },
-  {
-   "name": "lookup",
-   "title": "G0439 look-up (read-only)",
-   "status": "ok",
-   "summary": "AdvancedMD pcode67716 'ANNUAL WELLNESS VST; PPS SUBSQT VST', standard fee $204.00"
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
+    "fallback posted": 0,
+    "checks dismissed": 0,
+    "checks held": 0,
+    "denial lines recorded": 0
+   },
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-25T07:10:26Z",
+   "ended": "2026-11-25T07:10:29Z"
   },
   {
    "name": "packages",
-   "title": "Approved packages",
+   "title": "Approval packages",
    "status": "ok",
-   "summary": "none on this press (register: 94 done)"
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-25T07:10:29Z",
+   "ended": "2026-11-25T07:10:29Z"
   },
   {
    "name": "outstanding",
-   "title": "Outstanding claims",
+   "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "$323909.46 on 2798 visits / 485 charts; over a year 582 / $28293.88 (0557Z figures)"
+   "summary": "2768 visits on 479 charts, $318332.46 open; 582 over a year ($28293.88)",
+   "counts": {
+    "visits": 2768,
+    "charts": 479,
+    "over 365 days": 582
+   },
+   "dollars": {
+    "open insurance balance": 318332.46,
+    "over 365 days": 28293.88
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "[name]",
+     "visits": 1361,
+     "dollars": 136115.6,
+     "oldest_days": 1106
+    },
+    {
+     "carrier": "UNI20",
+     "name": "[name]",
+     "visits": 218,
+     "dollars": 43151.07,
+     "oldest_days": 1202
+    },
+    {
+     "carrier": "FLO99",
+     "name": "[name]",
+     "visits": 166,
+     "dollars": 28649.7,
+     "oldest_days": 443
+    },
+    {
+     "carrier": "BCBS",
+     "name": "[name]",
+     "visits": 364,
+     "dollars": 28335.48,
+     "oldest_days": 1073
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "[name]",
+     "visits": 97,
+     "dollars": 19646.4,
+     "oldest_days": 1175
+    },
+    {
+     "carrier": "HUM01",
+     "name": "[name]",
+     "visits": 61,
+     "dollars": 10390.13,
+     "oldest_days": 679
+    },
+    {
+     "carrier": "VACCN",
+     "name": "[name]",
+     "visits": 43,
+     "dollars": 7735.22,
+     "oldest_days": 991
+    },
+    {
+     "carrier": "CAP07",
+     "name": "[name]",
+     "visits": 33,
+     "dollars": 6591.0,
+     "oldest_days": 292
+    },
+    {
+     "carrier": "SUN01",
+     "name": "[name]",
+     "visits": 47,
+     "dollars": 5502.6,
+     "oldest_days": 65
+    },
+    {
+     "carrier": "MCAD",
+     "name": "[name]",
+     "visits": 45,
+     "dollars": 5037.46,
+     "oldest_days": 387
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 27,
+     "dollars": 4048.38,
+     "oldest_days": 191
+    },
+    {
+     "carrier": "UMR",
+     "name": "[name]",
+     "visits": 20,
+     "dollars": 3261.0,
+     "oldest_days": 84
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-25T07:10:29Z",
+   "ended": "2026-11-25T07:10:30Z"
   },
   {
    "name": "denials",
-   "title": "Working denials",
+   "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7886 visits, 53 actionable $10055.00 (0557Z refresh)"
+   "summary": "7886 denied visits on 881 charts; 53 actionable $10055.00 (52 inside 12 months $9849.00); WRITTEN-OFF 3008, RESOLVED 4572, RESUBMITTED 181, OPEN 125",
+   "counts": {
+    "charts read": 881,
+    "denial lines": 13320,
+    "visits": 7886,
+    "actionable": 53,
+    "inside 12 months": 52,
+    "status WRITTEN-OFF": 3008,
+    "status RESOLVED": 4572,
+    "status RESUBMITTED": 181,
+    "status OPEN": 125
+   },
+   "dollars": {
+    "actionable": 10055.0,
+    "inside 12 months": 9849.0,
+    "resubmitted": 31094.49,
+    "resolved since": 692343.33
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1962,
+     "dollars": 324994.0,
+     "patients": 229
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1263,
+     "dollars": 196442.23,
+     "patients": 203
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1127,
+     "dollars": 175550.95,
+     "patients": 217
+    },
+    {
+     "disposition": "COB",
+     "visits": 1036,
+     "dollars": 172490.61,
+     "patients": 109
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 501,
+     "dollars": 95436.0,
+     "patients": 225
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84295.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 446,
+     "dollars": 64213.3,
+     "patients": 75
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 511,
+     "dollars": 36062.36,
+     "patients": 73
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 317,
+     "dollars": 28001.88,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-25T07:10:30Z",
+   "ended": "2026-11-25T07:15:40Z"
   }
  ],
  "packages": [],
- "resent": [
-  {
-   "chart": "17472826",
-   "visits": [
-    "19438893",
-    "19438892"
-   ],
-   "dollars": 421.0,
-   "why": "William: bill BCBS - WOINS wo22475808 $310 + wo22475797 $111 voided, order BCBS seq 1, sent once each"
-  },
-  {
-   "chart": "17471238",
-   "visits": [
-    "19446256",
-    "19448464"
-   ],
-   "dollars": 410.0,
-   "why": "Medicare Beneficiary ID from the sheet written (the chart carried the older HIC number, 72); 271 ACTIVE; sent as originals"
-  },
-  {
-   "chart": "20709",
-   "visits": [
-    "19446255",
-    "19448275",
-    "19448463",
-    "19448951",
-    "19451781",
-    "19452343",
-    "19455840",
-    "19455920"
-   ],
-   "dollars": 1778.0,
-   "why": "Medicare Beneficiary ID written (older HIC number rejected 72); 271 ACTIVE; sent as originals"
-  },
-  {
-   "chart": "17478414",
-   "visits": [
-    "19462412",
-    "19462163"
-   ],
-   "dollars": 530.0,
-   "why": "CAP07 plan ins9521409 added from Pam's admission record (seq 2, no group), 271 ACTIVE, order 2,1; both visits to CHP as originals (v19462412 created by the feed reprocess this run)"
-  },
-  {
-   "chart": "12182505",
-   "visits": [
-    "19431381",
-    "19433872",
-    "19437363",
-    "19442366",
-    "19448364",
-    "19449793"
-   ],
-   "dollars": 1210.0,
-   "why": "Railroad Medicare number rewritten on ins9519511 (the chart held the old number), order 3,2 (AARP second); re-pointed and sent"
-  },
-  {
-   "chart": "17477572",
-   "visits": [
-    "19453098",
-    "19453097",
-    "19453099"
-   ],
-   "dollars": 532.0,
-   "why": "William: I10 first - diagnosis order saved on charges 23363598/23363597/23363599, sent to CHP; Z01.818 (first-listed-only, Pattern 2776) removed, inspector clean"
-  }
- ],
- "written_off": [
-  {
-   "chart": "17475908",
-   "visit": "19436456",
-   "dollars": 310.0,
-   "why": "WOINS - TRICARE East reports the claim already paid (duplicate), remit not obtainable; William 'write off' (BOARD1125C)"
-  },
-  {
-   "chart": "17475908",
-   "visit": "19436537",
-   "dollars": 111.0,
-   "why": "WOINS - same (BOARD1125C)"
-  },
-  {
-   "chart": "17477353",
-   "visit": "19459605",
-   "dollars": 109.0,
-   "why": "WOINS - Humana CO-4 on the CCM add-on; William 'write off' (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19448259",
-   "dollars": 310.0,
-   "why": "WOINS - Aetna finalized at $0; William 'write off' (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19448592",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19448627",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19448967",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19448986",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19449065",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  },
-  {
-   "chart": "17471273",
-   "visit": "19449321",
-   "dollars": 111.0,
-   "why": "WOINS - Aetna finalized at $0 (BOARD1125C)"
-  }
- ],
- "voided": [
-  {
-   "chart": "17469397",
-   "visit": "19455708",
-   "charges": [
-    "23367095",
-    "23367096"
-   ],
-   "dollars": 315.0,
-   "why": "after the date of death - WOINS wo22509480/81 + $0 payments voided, charges voided (read back void=1)"
-  },
-  {
-   "chart": "17475365",
-   "visit": "19455689",
-   "charges": [
-    "23367066"
-   ],
-   "dollars": 206.0,
-   "why": "after the date of death - WOINS wo22509484 + $0 payment voided, charge voided (void=1)"
-  },
-  {
-   "chart": "17477267",
-   "visit": "19455599",
-   "charges": [
-    "23366938"
-   ],
-   "dollars": 206.0,
-   "why": "after the date of death, on William's word - WOINS wo22509482 + $0 posting voided, charge voided (void=1); the August visits ($809.20 Medigap coinsurance at Florida Blue) untouched"
-  }
- ],
  "waiting": [
-  "Chart 17471643 / 17471791 (one patient): new Medicare card + which chart to keep ($289.59); Florida Community Care Medicaid plan set once Medicare is right",
-  "Chart 17473460: photo of the Medicare card - 73 name mismatch on AMD and on Medicare's plain check ($690.59, 23 visits)",
-  "Chart 12182505: Railroad 271 AAA 51 (provider not on file) and AARP INACTIVE - 6 claims sent, watch the remits",
-  "Chart 17477267: $809.20 Medigap coinsurance at Florida Blue (13 secondaries) on the crossover-wait rule",
-  "Claim Inspector: v19461189 Pattern 28158 (chart 17478413) and v19462192 Pattern 4531 (chart 17477311) - cards on William's turn",
-  "Exclusions: AET12 PREF0288 carrier record (chart 24750) - left by rule",
-  "Feed order sweep: v19458775 (chart 17472729) waits for the clinician move; v19459226 (chart 17478219) waits on the CHP member number",
-  "Working Denials board inbox: denials_updates 10/14 + 10/16 unapplied (registry lastCheck 10/23) - 40 days",
-  "Neon: no NEON_DATABASE_URL in this container - the Neon leg was skipped (practice db register on main)"
+  "Claim Inspector: 2 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
  "errors": []
 }
