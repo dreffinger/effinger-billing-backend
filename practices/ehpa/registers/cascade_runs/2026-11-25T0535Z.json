@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-25T05:42:01Z",
+ "at": "2026-11-25T05:35:00Z",
+ "changed": 0,
+ "checked": 17,
+ "commit": "4ac81e4",
+ "date": "2026-11-25",
+ "dollars": 0,
+ "done": "No AdvancedMD change needed; chart 17478455 card closed - Capital Health Plan now on the chart and its 7 hospital visits (1270 dollars) already at CHP since 11/24",
+ "era_posted": 0.0,
+ "finished": "2026-11-25T05:42:01Z",
+ "flagged": 0,
+ "kind": "nightly cascade",
+ "lookups": 3,
+ "note": "17 visit-and-plan pairs checked (3 new Stedi lookups), 0 flagged; ERA Center empty",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-25T0535Z.json",
+ "stamp": "2026-11-25T0535Z",
+ "stedi_cost": 0.9,
+ "writeoffs": 0.0
+}
