@@ -373,7 +373,9 @@ for k, v in looked.items():
         for i in (v.get("decided_for") or v.get("feed_ids") or []): by.setdefault(i, v["resolved"])      # a looked-up id: the chart the rule chose, or the new chart made for it
     # 11/25/2026 (the verification's fixes, wired here): on a key several Claimocity ids share that got no chart of its own, each id that has PROOF of its own
     # chart goes there (claimocity_resolve.py names it under "by_proof") - until then such ids had no chart, run after run. Only a chart id is taken.
-    _own_ids = {i for i in (v.get("decided_for") or v.get("feed_ids") or []) if isinstance(i, str) and i}      # ... and only for a Claimocity id the entry itself names
+    # ... and only for a Claimocity id the entry itself names: its feed_ids hold EVERY id of the key - decided_for only the ids left without a chart as soon as
+    # one id has proof and another has none (claimocity_resolve.py), and it was read alone at first: the id WITH proof then got no chart after all
+    _own_ids = {i for f_ in ("feed_ids", "decided_for") for i in (v.get(f_) if isinstance(v.get(f_), list) else []) if isinstance(i, str) and i}
     for i, c_ in (v["by_proof"].items() if isinstance(v.get("by_proof"), dict) else []):
         if i in _own_ids and CHART_ID.match(str(c_ or "")): by.setdefault(i, c_)
     v["by_id"] = by

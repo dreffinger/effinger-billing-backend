@@ -1059,9 +1059,12 @@ check("6b the privacy gate leaves every such register of this self-test exactly 
 #     message's own id - and gives each such id a row of its own in the identity register. Until then such ids had no chart, run after run.
 S17 = "20261130T1240Z"; F17 = S17[:8]; TWIN17 = FID(3)[:22] + "ee"; K17 = KEY(3, "")      # (F17: the file date, taken from the stamp - the privacy gate rewrites a date that stands right behind an empty birth date)
 def prow(fid, chart, rule=1): return {"feed_ids": [fid], "chart": chart, "rule": rule, "why": FI.WHY[rule], "flags": [], "candidates": [], "evidence": [], "feed_dob": "none", "for_william": False}
-def proof_run(label, why, by, rows, will):
+def proof_run(label, why, by, rows, will, left=None):
+    """left: the ids the resolve step leaves WITHOUT a chart - its entry names only those under decided_for as soon as one id has proof and another has none
+    (feed_ids keeps every id of the key); None = every id is named there, as when all of them have proof"""
     w_, r_, mreg_ = sandbox(label, ["20261130a.hl7"])
     e_ = dict(answer(0, "", status="AMBIGUOUS", dob="none", will=will, ids=[FID(3), TWIN17], why=why), by_proof=by, proof_rows=rows)
+    if left is not None: e_["decided_for"] = list(left)
     o_, calls_, err_ = driver_run(w_, r_, ARGS(S17), steps(w_, S17, [msg(3, F17, dob=""), msg(3, F17, dob="", fid=TWIN17)], {K17: e_}))
     return w_, o_, err_
 w, o, e = proof_run("proof_both", FI.WHY_EACH_PROOF, {FID(3): "pat9301", TWIN17: "pat9302"}, [prow(FID(3), "pat9301"), prow(TWIN17, "pat9302", 4)], False)
@@ -1071,11 +1074,15 @@ check("17a two Claimocity ids under one name and no birth date, EACH with proof 
       and sorted(ingest(w).get("files") or {}) == ["20261130a.hl7"], lambda: (e, o[-500:], match(w, S17).get(K17), pm(w)))
 check("17b ... the identity register carries ONE row for each such id - its own chart, its own rule, the rule's fixed words - and no row for the key itself (it has nothing more to say); nothing of a name or a date",
       lambda: _rows17 == [([FID(3)], "pat9301", 1), ([TWIN17], "pat9302", 4)] and not any(x in json.dumps(ident(w, S17)) for x in secrets(3)), lambda: (_rows17, ident(w, S17)))
-w, o, e = proof_run("proof_one", FI.WHY_SHARED, {FID(3): "pat9301"}, [prow(FID(3), "pat9301")], True)
+w, o, e = proof_run("proof_one", FI.WHY_SHARED, {FID(3): "pat9301"}, [prow(FID(3), "pat9301")], True, left=[TWIN17])
 _rows17 = sorted((tuple(p_.get("feed_ids") or []), p_.get("chart"), p_.get("rule")) for p_ in (ident(w, S17) or {}).get("patients") or [])
-check("17c ... when only ONE of the ids has proof it gets its chart and its row, and the other stays without a chart: the key's own row names both ids with NO chart (never the first id's chart for both), the file is not registered, and the map learns the one id only",
-      lambda: e == "" and by_id(w, S17, K17) == {FID(3): "pat9301"} and pm(w) == {FID(3): "pat9301"} and _rows17 == [((FID(3),), "pat9301", 1), ((FID(3), TWIN17), "", 0)]
+check("17c ... when only ONE of the ids has proof (the resolve step then names only the OTHER id under decided_for) the id with proof still gets its chart and its row - it got neither at first: the driver read decided_for alone - and the other stays without a chart: the key's own row names that id with NO chart (never the first id's chart), the file is not registered, and the map learns the one id only",
+      lambda: e == "" and by_id(w, S17, K17) == {FID(3): "pat9301"} and pm(w) == {FID(3): "pat9301"} and _rows17 == [((FID(3),), "pat9301", 1), ((TWIN17,), "", 0)]
       and (ident(w, S17) or {}).get("not_registered") == ["20261130a.hl7"] and sorted(ingest(w).get("files") or {}) == [], lambda: (e, o[-600:], _rows17, match(w, S17).get(K17)))
+w, o, e = proof_run("proof_one_all", FI.WHY_SHARED, {FID(3): "pat9301"}, [prow(FID(3), "pat9301")], True)
+_rows17b = sorted((tuple(p_.get("feed_ids") or []), p_.get("chart"), p_.get("rule")) for p_ in (ident(w, S17) or {}).get("patients") or [])
+check("17c2 ... the same when an entry names every id under decided_for: the key's own row shows NO chart for the ids it names (never the proven id's chart for all)",
+      lambda: e == "" and by_id(w, S17, K17) == {FID(3): "pat9301"} and _rows17b == [((FID(3),), "pat9301", 1), ((FID(3), TWIN17), "", 0)], lambda: (e, _rows17b))
 w, o, e = proof_run("proof_odd", FI.WHY_EACH_PROOF, {FID(3): NAME(3), TWIN17: "pat9302", "": "pat9303", 7: "pat9304"}, [dict(prow(FID(3), "pat9301"), why="invented words " + NAME(3)), prow(TWIN17, "pat9302"), "odd", {"feed_ids": [TWIN17], "chart": NAME(3)}], False)
 check("17d ... only a chart id is taken from by_proof and only a row in the rule's fixed words from proof_rows: a name where a chart id should stand, an empty id, a row with invented words - none of them is used or reaches the register",
       lambda: e == "" and by_id(w, S17, K17) == {TWIN17: "pat9302"} and not any(x in json.dumps(ident(w, S17)) for x in secrets(3)) and not any(x in o for x in secrets(3)), lambda: (e, by_id(w, S17, K17), ident(w, S17)))

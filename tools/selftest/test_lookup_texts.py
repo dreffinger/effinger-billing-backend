@@ -385,8 +385,13 @@ def t_death_check():
           lambda: where(DCR) == H + DCR and all("before approvecharges run `python3 death_check_review.py`" in c for c in clause.values())
           and sorted((tn, a.strip()) for tn, h, a in CMDS if os.path.basename(h) == DCR) == [("billing_button.txt", ""), ("columns.txt", "")], (where(DCR), [(tn, a) for tn, h, a in CMDS if os.path.basename(h) == DCR]))
     old = "1. CHARGE REVIEW: getreviewcharges class=chargeentry per batch id from getclaiminspectorbatches. CCM / modifier-25 gate (99487 never carries 25; the add-on 99489 and 99497-with-99223/99306 get modifier 25 = mcode7"
+    hum = {n: (l[l.find("EXCEPT FOR HUMANA"):l.find("PRIMARY-DX GATE")] if "EXCEPT FOR HUMANA" in l else "") for n, l in s1.items()}
+    msrc = _read(H + "mod25_addon.py") if _exists(H + "mod25_addon.py") else ""
+    check("modifier 25 and Humana (William 11/25/2026 'yes try that'; the verification's finding on the standing gate): both prompts carry the SAME exception in step 1, right behind the gate's sentence - the 99489 of a visit whose claim goes to Humana first carries no modifier 25, the gate's helper decides, and the helper's two lines are the helper's own words",
+          lambda: hum["billing_button.txt"] == hum["columns.txt"] != "" and "python3 mod25_addon.py <charge id>" in hum["columns.txt"] and "carries NO modifier 25" in hum["columns.txt"]
+          and all(w in hum["columns.txt"] and w in msrc for w in ("NO MODIFIER 25 - HUMANA", "MODIFIER 25 STANDS ON A HUMANA ADD-ON")) and "do NOT approve that visit on this run" in hum["columns.txt"], {n: v[:200] for n, v in hum.items()})
     check("death check: every other word of the two step-1 lines is kept - the clause stands at the END of each line, behind the line's old last sentence, and is the SAME clause in both prompts",
-          lambda: all(l.startswith(old) and "then approvecharges for a clean batch; flag anything that fails the gate. PRIMARY-DX GATE" in l and "the F02.8x -> F03.90 inspector swap still applies where the inspector raises it." in l for l in s1.values())
+          lambda: all(l.startswith(old) and "then approvecharges for a clean batch; flag anything that fails the gate. EXCEPT FOR HUMANA (William 11/25/2026, 'yes try that' - rules.md): the 99489 add-on of a visit whose claim goes to Humana FIRST" in l and "the line goes to the top of the report for William word for word. PRIMARY-DX GATE" in l and "the F02.8x -> F03.90 inspector swap still applies where the inspector raises it." in l for l in s1.values())
           and "The deceased guard runs before every approval. " + DCR_HEAD in s1["billing_button.txt"] and "- catch it here, before the claim goes out. " + DCR_HEAD in s1["columns.txt"]
           and clause["billing_button.txt"] == clause["columns.txt"] != "" and all(l.count(DCR_HEAD) == 1 for l in s1.values()), {n: l[-260:] for n, l in s1.items()})
     c = clause["columns.txt"]
