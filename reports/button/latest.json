@@ -1,18 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-25T0721Z",
+ "stamp": "2026-11-25T0809Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/0/0/1 (engine pass 0/5/0/1 -> 0/0/0/1); ERA 0 checks $0.00 -> 0; posted WOINS $70.34 + WOLATE $111; 13 board cards worked - 4 Castellane visits moved + 18 voided, 7 Humana freq-7 resends, Garland-G 99309 entered; 12 on William's turn $5,041.18",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1 (AET12 carrier hold); ERA 0 checks -> 0; 8 board cards worked - Cowley first stay re-authed + 8 visits re-sent $1,430, CHP home visits WONCS $600, Kestrel-K WONCS $433, Rowantree DOB fixed / Medicare date of death -> $315 voided, Smythe JR + Whitby JR Medicare ACTIVE ($310 re-sent), DO coinsurance WOCAID2ND $71.59; 7 on William's turn $1,779",
  "note": "button press (no brief): live, all steps",
- "run_url": "https://claude.ai/code/session_01HHfWRC9DvGwFE5otvEcZJs",
- "started": "2026-11-25T07:52:56Z",
- "ended": "2026-11-25T08:02:21Z",
+ "run_url": "https://claude.ai/code/session_01HHfWRFtyX2nrBBSS4f9NrU",
+ "started": "2026-11-25T08:09:00Z",
+ "ended": "2026-11-25T08:44:44Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 0,
     "unbilled": 0,
     "exclusions": 1
    },
@@ -35,17 +35,18 @@
   },
   "posted": {
    "pay": 0.0,
-   "woins": 70.34,
-   "wocaid2nd": 0.0,
-   "wolate": 111.0
+   "woins": 0.0,
+   "wocaid2nd": 71.59,
+   "wolate": 0.0,
+   "woncs": 1033.0
   },
   "resent": {
-   "visits": 12,
-   "dollars": 2334.84
+   "visits": 9,
+   "dollars": 1740.0
   },
   "written_off": {
-   "count": 3,
-   "dollars": 181.34
+   "count": 9,
+   "dollars": 1104.59
   },
   "packages": {
    "applied": 0,
@@ -53,27 +54,27 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 312816.95,
-   "visits": 2734,
-   "charts": 475,
+   "total": 309957.36,
+   "visits": 2720,
+   "charts": 471,
    "over_365": {
-    "n": 578,
-    "dollars": 28038.46
+    "n": 576,
+    "dollars": 27993.84
    }
   },
   "denials": {
    "visits": 7868,
-   "actionable": 53,
-   "actionable_amt": 10055.0,
-   "asof": "2026-11-25 08:01 UTC"
+   "actionable": 52,
+   "actionable_amt": 9755.0,
+   "asof": "2026-11-25 08:43 UTC"
   },
   "voided": {
-   "charges": 18,
-   "dollars": 2697.0
+   "charges": 2,
+   "dollars": 315.0
   },
   "board": {
-   "william_turn": 12,
-   "william_turn_dollars": 5041.18
+   "william_turn": 7,
+   "william_turn_dollars": 1779.0
   }
  },
  "steps": [
@@ -81,7 +82,7 @@
    "name": "feed",
    "title": "Claimocity feed ingest",
    "status": "ok",
-   "summary": "bucket 36 objects, 0 new (newest 20261124); ingest 'nothing new - done'; retry-dx nothing to retry (G0439 still not in the import tables); feed order sweep 20261125T072457Z: 0 checks bought, 0 saved, 2 not saved (v19458775 waits for the clinician move - chat; v19459226 - Medicare names another primary on 10/22/2026); feed registers + practice-db register committed to main; practice db 5 + 2 swept documents written; Neon: no connection string in this environment (NEON_DATABASE_URL absent, no 'neon database url' mail)",
+   "summary": "bucket 36 objects, 0 new; ingest 'nothing new - done'; retry-dx nothing (G0439 still not in the import tables); feed order sweep 20261125T081454Z: 0 saved, 2 not saved standing (v19458775 chart 17472729 waits for the clinician move; v19459226 chart 17478219 needs the CHP member number); intake nothing; feed registers + practice-db register committed to main (8 docs); Neon: no connection string in this environment",
    "counts": {
     "new_files": 0,
     "entered": 0,
@@ -91,150 +92,101 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:22:00Z",
-   "ended": "2026-11-25T08:02:21Z"
+   "started": "2026-11-25T08:12:00Z",
+   "ended": "2026-11-25T08:16:00Z"
   },
   {
    "name": "board",
    "title": "Insurance Refresh Board input",
    "status": "ok",
-   "summary": "0 drops, 0 denials commands; 13 cards worked (9 chat-filed 'next run' orders + 4 pastes of 07:18-07:26Z), 9 finished cards closed, 1 new card; board_updates_2026-11-25T0721Z.json (24 ops, asof 07:33Z) uploaded, 0703Z file (applied) trashed; face-sheets email sent from facesheets_needed build (SYNC OK): 12 on William's turn $5,041.18",
+   "summary": "572 cards read 08:19Z; 0 drops, 0 denials commands; 8 cards worked, 6 closed, 2 handed back / watching; board_updates_2026-11-25T0809Z.json (9 ops, asof 08:19Z) uploaded to the board inbox, 0721Z file (applied, 24 ops) trashed; face-sheets email sent 08:43Z from facesheets_needed build (SYNC OK): 7 on William's turn $1,779",
    "counts": {
-    "cards_worked": 13,
-    "closed": 9,
-    "new_cards": 1,
-    "handed_back": 5,
-    "ops": 24,
-    "william_turn": 12
+    "cards_worked": 8,
+    "closed": 6,
+    "handed_back": 2,
+    "ops": 9,
+    "william_turn": 7
    },
    "dollars": {
-    "william_turn": 5041.18
+    "william_turn": 1779.0
    },
    "lines": [
     {
-     "chart": "17476479",
-     "what": "birth date corrected from William's sheet; Medicare identifies the chart (INACTIVE, date of death [DOB] recorded in the deceased cache; no charge after it); v19452652 coinsurance 44.09 re-routed to the Medigap plan seq 2 (204)"
+     "chart": "17478013",
+     "what": "first stay 10/05-10/12/2026: blank plan rplan18462897 re-providered to Effinger by REST PUT and given the first-stay VA auth; 8 visits resaved onto it (full echo), rplan18462365 restored to the second stay's auth; freq-1 rebill x8 $1,430"
     },
     {
-     "chart": "17473945",
-     "what": "surname corrected from William's sheet; Medicare identifies the chart (INACTIVE, date of death [DOB] recorded; last charge 09/29/2025); 17.65 coinsurance waits on the AET12 carrier fix"
+     "chart": "46678",
+     "what": "v19457095 home visit: CHP $0 denial had moved $300 to the patient - moved back to insurance, WONCS $300 (William 11/25: CHP denies home/ALF visits)"
     },
     {
-     "chart": "17471061",
-     "what": "sheet's Medicare number = chart's, still 72; charges 22477637 + 22477690 (04/07-04/08/2025): WOINS 35.17 each (contractual never posted), v19403439 + v19403500 re-routed 1,3 seq 3 to TRICARE For Life (204 x2); card closed (nothing open at Medicare)"
-    },
-    {
-     "chart": "17472491",
-     "what": "v19461997 + v19462053 (11/19-11/20/2026, billed to Medicaid first) re-routed 3,4 seq 3 (204 x2); charge 23327550 (11/03/2025, $111, past 12 months) WOLATE; handed back - which Medicare contractor (First Coast ended 9/17, Railroad plan paying), HMO entity on the 271"
-    },
-    {
-     "chart": "17478413",
-     "what": "v19461189: O24.419 removed from both charges (full-visit save), inspector clear, card done"
-    },
-    {
-     "chart": "44953",
-     "what": "v19461125 v19461250 v19461227 v19461280 (Humana CO-16/M76): diagnosis list -> I10 alone, freq-7 with Humana claim numbers (204 x4), $640"
-    },
-    {
-     "chart": "17477353 / 48444 / 17472396",
-     "what": "Humana 99489 modifier-25 step 1: WOINS taken back on charges 23372154 / 23371551 / 23371233 ($327), mcode7 removed (full-visit saves), freq-7 with Humana claim numbers (204 x3); card stays on Claude's turn for step 2"
-    },
-    {
-     "chart": "12182776 <- 20752",
-     "what": "4 visits moved as originals: v19462413 (12/05/2025 99309), v19462414 (12/20/2025 99487+99489), v19462415 (01/12/2026 99309), v19462416 (01/27/2026 99487+99489) - $912, POS 32, insorder 1,2; old copies voided"
-    },
-    {
-     "chart": "20752",
-     "what": "18 charges / $2,697 dated 06/06/2024+ voided (their $0 postings and WOINS lines first), read back void=1; 0 live charges dated 06/06/2024+ remain"
-    },
-    {
-     "chart": "17471238",
-     "what": "v19462417 (11/09/2026 99309, $141) entered from the feed message, POS 31; G0439 of 11/10/2026 held (a G0439 of 07/10/2026 $204 is open) - decision card"
+     "chart": "17476928",
+     "what": "v19460671 home visit WONCS $300 (same rule)"
     },
     {
      "chart": "17478219",
-     "what": "CHP eligibility by name + DOB without member id: AAA 72 - handed back (CHP/CIO + 8-digit member number needed)"
+     "what": "09/01/2026 home visit WONCS $433 - Medicare's dated answer: CHP Medicare Risk HMO since 02/01/2026; 10/22 CCM $206 handed back for the CHP member number"
     },
     {
-     "chart": "17477648",
-     "what": "no SurgeryPlus / Employer Direct carrier in AMD (SUR 'SURGERY ONE' is another name) - handed back (carrier needed), nothing re-sent"
+     "chart": "17476865",
+     "what": "birth date corrected from William's sheet/ID; Medicare now identifies the chart - INACTIVE with a date of death (deceased cache); v19455672 09/20/2026 charges 23367044/23367045 voided $315; the 08/23/2026 99487 $206 paid after the date -> William's decision"
     },
     {
-     "chart": "feed charts x77",
-     "what": "read-only duplicate audit: 1 new likely duplicate (17478216 ~ 17477499 / 21875, same birth date, $315 on the feed chart) -> new decision card; 17478345 and 17478434 known; register feed_duplicate_audit_2026-11-25T0721Z.json"
+     "chart": "17473460",
+     "what": "Medicare 73 (name) cleared by putting the suffix inside the last-name field - ACTIVE; nothing re-sent (open $1,133.83 = coinsurance at the BCBS secondary/crossover + three $0 Medicare 01/2026 answers)"
+    },
+    {
+     "chart": "17477168",
+     "what": "same suffix fix - ACTIVE; v19449331 $310 re-sent (204); the chart's email held a phone number and blocked the PATCH - blanked"
+    },
+    {
+     "chart": "17471791",
+     "what": "Medicare record: date of death 03/2026, QMB through 03/31/2026; coinsurance $71.59 WOCAID2ND x5 (BOARD1125DO); deceased cache"
+    },
+    {
+     "chart": "17471643",
+     "what": "same person's second chart: 01/2026 visits $218 at Medicare since 09/11 - watching; deceased cache"
     }
    ],
    "errors": [],
-   "started": "2026-11-25T07:33:00Z",
-   "ended": "2026-11-25T08:02:21Z"
+   "started": "2026-11-25T08:19:00Z",
+   "ended": "2026-11-25T08:43:00Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 5->0, Unbilled 0->0, Exclusions 1->1",
+   "summary": "0/0/0/1 -> 0/0/0/1 (08:16Z -> 08:36Z): the one exclusion is AET12 chart 24750 v19455937 09/20/2026 PREF0288 INVALID PAYER ID/CPID + PREF0264 - the carrier record, standing hold (board row aet12-carrier-cpid)",
    "counts": {
-    "charge review": 0,
-    "claim inspector": 5,
-    "unbilled": 0,
-    "exclusions": 1,
-    "inspector advisories to bypass": 5,
-    "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 5,
-    "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 0,
-    "unbilled released": 0,
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "cleared": 0,
+    "remaining": 1
    },
    "dollars": {},
-   "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 5,
-     "ids": "v19458952 v19459146 v19459605 v19403439 v19403500"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:52:57Z",
-   "ended": "2026-11-25T07:55:53Z"
+   "started": "2026-11-25T08:16:50Z",
+   "ended": "2026-11-25T08:36:14Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "0 checks before and after; era_upload 0; no new Drive remits, Availity nothing; no facesheets or Pam emails",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
-    "fallback posted": 0,
-    "checks dismissed": 0,
-    "checks held": 0,
-    "denial lines recorded": 0
+    "checks": 0,
+    "posted": 0
    },
-   "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
-   },
+   "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:55:53Z",
-   "ended": "2026-11-25T07:55:56Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   },
   {
    "name": "cascade",
    "title": "Insurance cascade pre-check",
    "status": "ok",
-   "summary": "precheck --days 3 --max 120: 17 pairs, 0 new lookups, 0 flagged; void_rules: 1 open rule, 0 voids; Stedi 2026-11: 130 calls $54.40 at list (7 claim-status calls this run $2.10)",
+   "summary": "17 pairs checked, 0 flagged; void_rules 1 open, 0 voids",
    "counts": {
     "pairs": 17,
     "flagged": 0
@@ -242,250 +194,85 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-25T08:00:00Z",
-   "ended": "2026-11-25T08:02:21Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   },
   {
    "name": "packages",
    "title": "Approval packages",
    "status": "ok",
-   "summary": "0 approved on the page, 0 approved / 0 waiting in the register; nothing refused this run, nothing submitted",
+   "summary": "approvals page 0 approved; register 94 done; nothing to apply",
    "counts": {
     "applied": 0,
     "refused": 0,
-    "skipped": 0,
-    "submitted": 0
+    "skipped": 0
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:21:00Z",
-   "ended": "2026-11-25T08:02:21Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   },
   {
    "name": "cred",
    "title": "Credentialing check",
    "status": "ok",
-   "summary": "NPPES 3 records, 0 changed; LEIE 84,224 rows, 0 matches; reminders due none; no cred_updates file",
+   "summary": "NPPES 3 records 0 changed; LEIE 84224 rows 0 matches; reminders none - no cred_updates file",
    "counts": {
-    "nppes_changed": 0,
+    "changed": 0,
     "leie_matches": 0
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:21:00Z",
-   "ended": "2026-11-25T08:02:21Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2734 visits on 475 charts, $312816.95 open; 578 over a year ($28038.46)",
+   "summary": "2720 visits on 471 charts, $309957.36 open; top carriers FLO02 $130,430.50 (1327), UNI20 $43,151.07 (218), FLO99 $28,649.70 (166), BCBS $28,335.48 (364) -> reports/button/outstanding_latest.json",
    "counts": {
-    "visits": 2734,
-    "charts": 475,
-    "over 365 days": 578
+    "visits": 2720,
+    "charts": 471
    },
    "dollars": {
-    "open insurance balance": 312816.95,
-    "over 365 days": 28038.46
+    "total": 309957.36
    },
-   "lines": [
-    {
-     "carrier": "FLO02",
-     "name": "[name]",
-     "visits": 1333,
-     "dollars": 131560.09,
-     "oldest_days": 1106
-    },
-    {
-     "carrier": "UNI20",
-     "name": "[name]",
-     "visits": 218,
-     "dollars": 43151.07,
-     "oldest_days": 1202
-    },
-    {
-     "carrier": "FLO99",
-     "name": "[name]",
-     "visits": 166,
-     "dollars": 28649.7,
-     "oldest_days": 443
-    },
-    {
-     "carrier": "BCBS",
-     "name": "[name]",
-     "visits": 364,
-     "dollars": 28335.48,
-     "oldest_days": 1073
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "[name]",
-     "visits": 97,
-     "dollars": 19646.4,
-     "oldest_days": 1175
-    },
-    {
-     "carrier": "HUM01",
-     "name": "[name]",
-     "visits": 57,
-     "dollars": 9750.13,
-     "oldest_days": 679
-    },
-    {
-     "carrier": "VACCN",
-     "name": "[name]",
-     "visits": 43,
-     "dollars": 7735.22,
-     "oldest_days": 991
-    },
-    {
-     "carrier": "CAP07",
-     "name": "[name]",
-     "visits": 33,
-     "dollars": 6591.0,
-     "oldest_days": 292
-    },
-    {
-     "carrier": "SUN01",
-     "name": "[name]",
-     "visits": 47,
-     "dollars": 5502.6,
-     "oldest_days": 65
-    },
-    {
-     "carrier": "MCAD",
-     "name": "[name]",
-     "visits": 45,
-     "dollars": 5037.46,
-     "oldest_days": 387
-    },
-    {
-     "carrier": "CIG09",
-     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
-     "visits": 27,
-     "dollars": 4048.38,
-     "oldest_days": 191
-    },
-    {
-     "carrier": "UMR",
-     "name": "[name]",
-     "visits": 20,
-     "dollars": 3261.0,
-     "oldest_days": 84
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:55:56Z",
-   "ended": "2026-11-25T07:55:58Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7868 denied visits on 880 charts; 53 actionable $10055.00 (52 inside 12 months $9849.00); WRITTEN-OFF 2996, RESOLVED 4572, RESUBMITTED 175, OPEN 125",
+   "summary": "877 charts read, 13293 denial lines, 7868 visits; 52 actionable $9755.00 (51 inside 12 months $9549.00); 0 errors -> reports/button/working_denials_latest.json",
    "counts": {
-    "charts read": 880,
-    "denial lines": 13293,
     "visits": 7868,
-    "actionable": 53,
-    "inside 12 months": 52,
-    "status WRITTEN-OFF": 2996,
-    "status RESOLVED": 4572,
-    "status RESUBMITTED": 175,
-    "status OPEN": 125
+    "actionable": 52
    },
    "dollars": {
-    "actionable": 10055.0,
-    "inside 12 months": 9849.0,
-    "resubmitted": 30087.49,
-    "resolved since": 692343.33
+    "actionable": 9755.0
    },
-   "lines": [
-    {
-     "disposition": "UNCLASSIFIED",
-     "visits": 1947,
-     "dollars": 322557.0,
-     "patients": 228
-    },
-    {
-     "disposition": "FIX",
-     "visits": 1260,
-     "dollars": 195956.23,
-     "patients": 202
-    },
-    {
-     "disposition": "REVIEW",
-     "visits": 1127,
-     "dollars": 175550.95,
-     "patients": 217
-    },
-    {
-     "disposition": "COB",
-     "visits": 1036,
-     "dollars": 172490.61,
-     "patients": 109
-    },
-    {
-     "disposition": "DUPLICATE",
-     "visits": 501,
-     "dollars": 95436.0,
-     "patients": 225
-    },
-    {
-     "disposition": "INFO",
-     "visits": 500,
-     "dollars": 84295.35,
-     "patients": 56
-    },
-    {
-     "disposition": "CRED",
-     "visits": 446,
-     "dollars": 64213.3,
-     "patients": 75
-    },
-    {
-     "disposition": "TIMELY",
-     "visits": 223,
-     "dollars": 37540.38,
-     "patients": 95
-    },
-    {
-     "disposition": "CONTRACTUAL",
-     "visits": 511,
-     "dollars": 36062.36,
-     "patients": 73
-    },
-    {
-     "disposition": "PATIENT",
-     "visits": 317,
-     "dollars": 28001.88,
-     "patients": 143
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-25T07:55:58Z",
-   "ended": "2026-11-25T08:01:11Z"
+   "started": "2026-11-25T08:09:00Z",
+   "ended": "2026-11-25T08:44:44Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "TRAP (this run): the deceased guard's default cache path from the workspace is /home/claude/practices/ehpa/registers/deceased_cache.json - no bootstrap writes there, and deceased_cache_local.json held 1 entry; both merged from the workspace register this run (374 charts, 43 dated) - bootstrap_workspace.sh layout should do it",
-  "Working Denials board inbox: denials_updates_2026-10-14T1710Z.json and 2026-10-16T1310Z.json still waiting (42 days; that board's registry has applied nothing since 10/23)",
-  "chart 17478013: VA CCN authorization effective after the first admission - William's word (card on his turn, $1,430)",
-  "charts 48458, 17471791, 17471643: new Medicare card needed (the sheets carry the chart's rejected number) - $396.59",
-  "chart 17478219: Capital Health Plan member number (CHP/CIO + 8 digits) - $639",
-  "chart 17473460: photo of the Medicare card (name mismatch 73) - $690.59; chart 17477168 name mismatch $310; chart 17476865 birth-date mismatch $315 - face sheets",
-  "chart 17471238: enter the second wellness visit G0439 on 11/10/2026? (one of 07/10/2026 is open) - $204",
-  "chart 17472491: which Medicare contractor pays her (First Coast plan end-dated 9/17/2026 vs Railroad plan paying; HMO entity on the 271); $111 of 11/03/2025 written off untimely - 'send to Railroad' reverses it",
-  "chart 17477648: SurgeryPlus (Employer Direct Healthcare) carrier needed in Master Files before the three 9/2026 visits ($630) can be sent",
-  "chart 17478216 ~ 17477499 / 21875: same person? (feed-made duplicate, $315) - decision card",
-  "Humana 99489 modifier-25 step 2 waits on Humana's answer to the three freq-7 resends (chart 17477353 v19459605, 48444 v19459146, 17472396 v19458952)",
-  "Neon: no connection string in this environment (NEON_DATABASE_URL absent; no 'neon database url' Gmail thread) - load-writes not done; AMD_PSW absent too (credential file written from Gregg's thread)",
-  "feed: v19458775 (chart 17472729) waits for the clinician move to prof15 - a chat session runs --fix-clinician; v19459226 (chart 17478219) - CHP member number",
-  "AET12 exclusion chart 24750 v19455937 PREF0288 - carrier record (standing hold)"
+  "FAULT: Working Denials board inbox files denials_updates_2026-10-14T1710Z.json and 2026-10-16T1310Z.json still unapplied (42 days; that board's registry has applied nothing since 10/23) - William to open the Working Denials board or say to drop them",
+  "WATCH: the 0721Z run was still finishing when this run bootstrapped (its START 51 min old at 08:09Z, so the 40-minute guard did not block); it uploaded workspace_state_2026-11-25_0810UTC at 08:11Z while this run restored 0718UTC - this run's bundle supersedes both; the guard should also look for a RUN COMPLETE digest",
+  "Neon leg skipped: no NEON_DATABASE_URL in this environment and no 'neon database url' Gmail thread",
+  "AET12 chart 24750 v19455937: carrier CPID record (board row aet12-carrier-cpid) - standing",
+  "feed order sweep standing: v19458775 chart 17472729 (clinician move), v19459226 chart 17478219 (CHP member number)",
+  "chart 17476865: the 08/23/2026 99487 $206 Medicare paid after the date of death - William decides (refund/void)",
+  "chart 17471643: 01/2026 visits $218 at Medicare since 09/11 - watching",
+  "SHARED_LESSONS: suffix inside the LAST-NAME field clears Medicare AAA 73 (suffix field / middle initial do not); an invalid chart email blocks the demographics PATCH (blank it in the same patch); Bash default 2-min timeout cut a live helper (pass timeout); REST referral PUT re-providers a blank plan; refplan_rest.py recovered from the 10/5 bundle - copied to scripts/helpers, 4 vocabulary entries merged"
  ],
  "errors": []
 }

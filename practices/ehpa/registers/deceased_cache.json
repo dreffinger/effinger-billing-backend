@@ -325,9 +325,9 @@
   "src": "stedi: not a Medicare beneficiary"
  },
  "17471791": {
-  "checked": "2026-10-14",
-  "dod": null,
-  "src": "stedi: no death on record (relearned 10/14; earlier cache said deceased)"
+  "checked": "2026-11-25",
+  "dod": "[DOB]",
+  "src": "stedi MBI look-up (SSN) 2026-11-25T0809Z - QMB through 03/31/2026"
  },
  "17471793": {
   "checked": "2026-10-28",
@@ -1067,9 +1067,9 @@
   "src": "stedi: no death on record"
  },
  "17476865": {
-  "checked": "2026-09-23",
-  "dod": null,
-  "src": "stedi: no death on record"
+  "checked": "2026-11-25",
+  "dod": "[DOB]",
+  "src": "AMD 271 2026-11-25T0809Z (birth date corrected from William's sheet; Medicare identifies the chart)"
  },
  "17476868": {
   "checked": "2026-10-13",
@@ -1303,9 +1303,10 @@
   "src": "stedi: no death on record (drive copy)"
  },
  "17478219": {
-  "checked": "2026-10-28",
+  "checked": "2026-11-25",
   "dod": null,
-  "src": "stedi: no death on record (drive copy)"
+  "name": null,
+  "src": "stedi: no death on record"
  },
  "17478220": {
   "checked": "2026-10-28",
@@ -1878,5 +1879,15 @@
   "checked": "2026-09-22",
   "dod": null,
   "src": "stedi: no death on record"
+ },
+ "17477168": {
+  "checked": "2026-11-25",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17471643": {
+  "checked": "2026-11-25",
+  "dod": "[DOB]",
+  "src": "stedi MBI look-up (SSN) 2026-11-25T0809Z - QMB through 03/31/2026"
  }
 }
