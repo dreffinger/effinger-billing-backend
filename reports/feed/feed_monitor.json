@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-25T06:53:06Z",
+ "generated": "2026-11-25T12:49:54Z",
  "as_of": "2026-11-25",
  "coverage": {
   "files": [
@@ -231,9 +231,9 @@
    {
     "name": "20261113626627aa54d52f67a80d586a.hl7",
     "date": "20261113",
-    "stamp": "20261125T0635Z",
+    "stamp": "20261113T1240Z",
     "messages": 61,
-    "at": "2026-11-25T06:50:05.095031Z"
+    "at": "2026-11-13T13:10:34.015094Z"
    },
    {
     "name": "20261114626627aa54d52f67a80d586a.hl7",
@@ -304,13 +304,20 @@
     "stamp": "20261125T0040Z",
     "messages": 26,
     "at": "2026-11-25T00:44:08.817227Z"
+   },
+   {
+    "name": "20261125626627aa54d52f67a80d586a.hl7",
+    "date": "20261125",
+    "stamp": "20261125T0900Z",
+    "messages": 332,
+    "at": "2026-11-25T10:34:51.017223Z"
    }
   ],
-  "file_count": 43,
+  "file_count": 44,
   "first_file": "20260903",
-  "last_file": "20261124",
+  "last_file": "20261125",
   "dos_min": "2026-08-27",
-  "dos_max": "2026-11-21",
+  "dos_max": "2026-11-24",
   "batches": [
    "1028",
    "20261030T0034Z",
@@ -342,7 +349,8 @@
    "20261124T1844Z",
    "20261125T0040Z",
    "20261125T0438ZR",
-   "20261125T0635Z"
+   "20261125T0635Z",
+   "20261125T0900Z"
   ],
   "note": "Feed files on hand start 10/16/2026: the old integration consumed the earlier files on the SFTP, so those encounters live in AdvancedMD only. Days with no bar inside the window are days with no feed encounter on hand, not necessarily days without visits."
  },
@@ -350,34 +358,34 @@
   "week": {
    "from": "2026-11-19",
    "to": "2026-11-25",
-   "visits": 63,
-   "lines": 65,
-   "dollars": 10073.0,
-   "patients": 48,
-   "entered": 63,
-   "already_in_amd": 119,
-   "deceased_not_entered": 1,
+   "visits": 383,
+   "lines": 592,
+   "dollars": 97605.0,
+   "patients": 313,
+   "entered": 383,
+   "already_in_amd": 124,
+   "deceased_not_entered": 7,
    "failed": 0,
-   "skipped_other": 12,
+   "skipped_other": 13,
    "skipped_other_why": [
     "no usable dx for 99223",
     "no usable dx for 99233",
     "no usable dx for 99309",
-    "unknown CPT 99349",
-    "unknown CPT G0439"
+    "no usable dx for 99487",
+    "unknown CPT 99349"
    ],
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 310.0
+     "lines": 10,
+     "visits": 10,
+     "dollars": 3100.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 44,
-     "visits": 44,
-     "dollars": 6844.0
+     "lines": 85,
+     "visits": 85,
+     "dollars": 13404.0
     },
     {
      "name": "SNF admission",
@@ -392,18 +400,36 @@
      "dollars": 2397.0
     },
     {
+     "name": "Chronic care management",
+     "lines": 473,
+     "visits": 270,
+     "dollars": 77650.0
+    },
+    {
      "name": "Advance care planning",
-     "lines": 2,
-     "visits": 2,
-     "dollars": 266.0
+     "lines": 6,
+     "visits": 6,
+     "dollars": 798.0
     }
    ],
    "cpt": [
     {
+     "name": "99487",
+     "lines": 269,
+     "visits": 269,
+     "dollars": 55414.0
+    },
+    {
+     "name": "99489",
+     "lines": 204,
+     "visits": 204,
+     "dollars": 22236.0
+    },
+    {
      "name": "99233",
-     "lines": 40,
-     "visits": 40,
-     "dollars": 6400.0
+     "lines": 81,
+     "visits": 81,
+     "dollars": 12960.0
     },
     {
      "name": "99309",
@@ -412,56 +438,128 @@
      "dollars": 2397.0
     },
     {
+     "name": "99223",
+     "lines": 10,
+     "visits": 10,
+     "dollars": 3100.0
+    },
+    {
+     "name": "99497",
+     "lines": 6,
+     "visits": 6,
+     "dollars": 798.0
+    },
+    {
      "name": "99232",
      "lines": 4,
      "visits": 4,
      "dollars": 444.0
     },
     {
-     "name": "99497",
-     "lines": 2,
-     "visits": 2,
-     "dollars": 266.0
-    },
-    {
      "name": "99306",
      "lines": 1,
      "visits": 1,
      "dollars": 256.0
-    },
-    {
-     "name": "99223",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 310.0
     }
    ],
    "facility": [
     {
-     "name": "HCA Capital Hospital",
-     "lines": 46,
-     "visits": 45,
-     "dollars": 7287.0
+     "name": "Brynwood (Monticello)",
+     "lines": 149,
+     "visits": 83,
+     "dollars": 23317.0
     },
     {
-     "name": "Brynwood (Monticello)",
-     "lines": 15,
-     "visits": 15,
-     "dollars": 2115.0
+     "name": "HCA Capital Hospital",
+     "lines": 100,
+     "visits": 95,
+     "dollars": 17169.0
+    },
+    {
+     "name": "Aspire at Tallahassee",
+     "lines": 72,
+     "visits": 36,
+     "dollars": 11340.0
     },
     {
      "name": "Centre Pointe Health & Rehab",
-     "lines": 4,
-     "visits": 3,
-     "dollars": 671.0
+     "lines": 55,
+     "visits": 30,
+     "dollars": 8752.0
+    },
+    {
+     "name": "Sodalis ALF",
+     "lines": 52,
+     "visits": 33,
+     "dollars": 8869.0
+    },
+    {
+     "name": "Westminster Bertrand",
+     "lines": 44,
+     "visits": 22,
+     "dollars": 6930.0
+    },
+    {
+     "name": "Azalea Gardens ALF",
+     "lines": 34,
+     "visits": 19,
+     "dollars": 5549.0
+    },
+    {
+     "name": "unknown facility",
+     "lines": 28,
+     "visits": 15,
+     "dollars": 4507.0
+    },
+    {
+     "name": "Tapestry Lakeshore ALF",
+     "lines": 18,
+     "visits": 16,
+     "dollars": 3514.0
+    },
+    {
+     "name": "Brookdale Hermitage ALF",
+     "lines": 15,
+     "visits": 13,
+     "dollars": 2896.0
+    },
+    {
+     "name": "Capital Square ALF",
+     "lines": 15,
+     "visits": 12,
+     "dollars": 2799.0
+    },
+    {
+     "name": "Canterfield Of Tallahassee ALF",
+     "lines": 8,
+     "visits": 8,
+     "dollars": 1648.0
+    },
+    {
+     "name": "Allegro Senior Living ALF",
+     "lines": 2,
+     "visits": 1,
+     "dollars": 315.0
     }
    ],
    "setting": [
     {
+     "name": "Nursing facility",
+     "lines": 329,
+     "visits": 168,
+     "dollars": 52060.0
+    },
+    {
+     "name": "Assisted living",
+     "lines": 144,
+     "visits": 102,
+     "dollars": 25590.0
+    },
+    {
      "name": "Inpatient hospital",
-     "lines": 46,
-     "visits": 45,
-     "dollars": 7287.0
+     "lines": 100,
+     "visits": 95,
+     "dollars": 17169.0
     },
     {
      "name": "Skilled nursing facility",
@@ -473,9 +571,9 @@
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 32,
-     "visits": 30,
-     "dollars": 5312.0
+     "lines": 559,
+     "visits": 350,
+     "dollars": 92844.0
     },
     {
      "name": "Pamela G.",
@@ -493,89 +591,89 @@
    "payer": [
     {
      "name": "Medicare",
-     "lines": 32,
-     "visits": 31,
-     "dollars": 4939.0
+     "lines": 387,
+     "visits": 242,
+     "dollars": 63611.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 18,
-     "visits": 17,
-     "dollars": 2870.0
+     "lines": 140,
+     "visits": 95,
+     "dollars": 23288.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 6,
-     "visits": 6,
-     "dollars": 941.0
+     "lines": 27,
+     "visits": 19,
+     "dollars": 4353.0
     },
     {
      "name": "Commercial / other",
-     "lines": 3,
-     "visits": 3,
-     "dollars": 431.0
+     "lines": 22,
+     "visits": 15,
+     "dollars": 3724.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 111.0
+     "lines": 3,
+     "visits": 2,
+     "dollars": 426.0
     },
     {
      "name": "No active plan",
-     "lines": 5,
-     "visits": 5,
-     "dollars": 781.0
+     "lines": 13,
+     "visits": 10,
+     "dollars": 2203.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 17
+     "patients": 154
     },
     {
      "code": "E785",
-     "patients": 10
+     "patients": 104
     },
     {
      "code": "E119",
-     "patients": 8
+     "patients": 76
     },
     {
-     "code": "D649",
-     "patients": 7
+     "code": "F0390",
+     "patients": 67
     },
     {
      "code": "I639",
-     "patients": 7
+     "patients": 53
+    },
+    {
+     "code": "F32A",
+     "patients": 46
     },
     {
      "code": "E039",
-     "patients": 6
-    },
-    {
-     "code": "R627",
-     "patients": 5
-    },
-    {
-     "code": "G20A1",
-     "patients": 5
-    },
-    {
-     "code": "N189",
-     "patients": 4
-    },
-    {
-     "code": "N10",
-     "patients": 4
-    },
-    {
-     "code": "R5381",
-     "patients": 4
+     "patients": 40
     },
     {
      "code": "I4891",
-     "patients": 4
+     "patients": 38
+    },
+    {
+     "code": "F419",
+     "patients": 32
+    },
+    {
+     "code": "K219",
+     "patients": 31
+    },
+    {
+     "code": "D649",
+     "patients": 28
+    },
+    {
+     "code": "M6281",
+     "patients": 28
     }
    ],
    "days": [
@@ -595,31 +693,31 @@
     },
     {
      "date": "2026-11-21",
-     "visits": 17,
-     "lines": 17,
-     "dollars": 2720.0,
-     "patients": 17
+     "visits": 18,
+     "lines": 18,
+     "dollars": 3030.0,
+     "patients": 18
     },
     {
      "date": "2026-11-22",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 2,
+     "lines": 4,
+     "dollars": 886.0,
+     "patients": 2
     },
     {
      "date": "2026-11-23",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 21,
+     "lines": 23,
+     "dollars": 4526.0,
+     "patients": 21
     },
     {
      "date": "2026-11-24",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 296,
+     "lines": 499,
+     "dollars": 81810.0,
+     "patients": 295
     },
     {
      "date": "2026-11-25",
@@ -633,34 +731,34 @@
   "month": {
    "from": "2026-10-27",
    "to": "2026-11-25",
-   "visits": 857,
-   "lines": 935,
-   "dollars": 154742.0,
-   "patients": 241,
-   "entered": 857,
-   "already_in_amd": 119,
-   "deceased_not_entered": 1,
+   "visits": 1177,
+   "lines": 1462,
+   "dollars": 242274.0,
+   "patients": 372,
+   "entered": 1177,
+   "already_in_amd": 124,
+   "deceased_not_entered": 7,
    "failed": 0,
-   "skipped_other": 12,
+   "skipped_other": 13,
    "skipped_other_why": [
     "no usable dx for 99223",
     "no usable dx for 99233",
     "no usable dx for 99309",
-    "unknown CPT 99349",
-    "unknown CPT G0439"
+    "no usable dx for 99487",
+    "unknown CPT 99349"
    ],
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 73,
-     "visits": 73,
-     "dollars": 22630.0
+     "lines": 82,
+     "visits": 82,
+     "dollars": 25420.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 506,
-     "visits": 506,
-     "dollars": 75374.0
+     "lines": 547,
+     "visits": 547,
+     "dollars": 81934.0
     },
     {
      "name": "Hospital discharge",
@@ -694,23 +792,35 @@
     },
     {
      "name": "Chronic care management",
-     "lines": 55,
-     "visits": 31,
-     "dollars": 9002.0
+     "lines": 528,
+     "visits": 301,
+     "dollars": 86652.0
     },
     {
      "name": "Advance care planning",
-     "lines": 54,
-     "visits": 54,
-     "dollars": 7182.0
+     "lines": 58,
+     "visits": 58,
+     "dollars": 7714.0
     }
    ],
    "cpt": [
     {
      "name": "99233",
-     "lines": 392,
-     "visits": 392,
-     "dollars": 62720.0
+     "lines": 433,
+     "visits": 433,
+     "dollars": 69280.0
+    },
+    {
+     "name": "99487",
+     "lines": 300,
+     "visits": 300,
+     "dollars": 61800.0
+    },
+    {
+     "name": "99489",
+     "lines": 228,
+     "visits": 228,
+     "dollars": 24852.0
     },
     {
      "name": "99309",
@@ -726,27 +836,15 @@
     },
     {
      "name": "99223",
-     "lines": 73,
-     "visits": 73,
-     "dollars": 22630.0
+     "lines": 82,
+     "visits": 82,
+     "dollars": 25420.0
     },
     {
      "name": "99497",
-     "lines": 54,
-     "visits": 54,
-     "dollars": 7182.0
-    },
-    {
-     "name": "99487",
-     "lines": 31,
-     "visits": 31,
-     "dollars": 6386.0
-    },
-    {
-     "name": "99489",
-     "lines": 24,
-     "visits": 24,
-     "dollars": 2616.0
+     "lines": 58,
+     "visits": 58,
+     "dollars": 7714.0
     },
     {
      "name": "99344",
@@ -788,97 +886,115 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 610,
-     "visits": 582,
-     "dollars": 102073.0
+     "lines": 664,
+     "visits": 632,
+     "dollars": 111955.0
     },
     {
      "name": "Brynwood (Monticello)",
-     "lines": 120,
-     "visits": 113,
-     "dollars": 17730.0
+     "lines": 254,
+     "visits": 181,
+     "dollars": 38932.0
     },
     {
      "name": "Sodalis ALF",
-     "lines": 80,
-     "visits": 51,
-     "dollars": 15529.0
-    },
-    {
-     "name": "Centre Pointe Health & Rehab",
-     "lines": 45,
-     "visits": 39,
-     "dollars": 7019.0
+     "lines": 132,
+     "visits": 84,
+     "dollars": 24398.0
     },
     {
      "name": "Aspire at Tallahassee",
-     "lines": 33,
-     "visits": 32,
-     "dollars": 4792.0
+     "lines": 105,
+     "visits": 68,
+     "dollars": 16132.0
+    },
+    {
+     "name": "Centre Pointe Health & Rehab",
+     "lines": 96,
+     "visits": 66,
+     "dollars": 15100.0
     },
     {
      "name": "Westminster Bertrand",
-     "lines": 28,
-     "visits": 25,
-     "dollars": 4201.0
+     "lines": 72,
+     "visits": 47,
+     "dollars": 11131.0
     },
     {
      "name": "unknown facility",
-     "lines": 12,
-     "visits": 11,
-     "dollars": 1799.0
+     "lines": 40,
+     "visits": 26,
+     "dollars": 6306.0
+    },
+    {
+     "name": "Azalea Gardens ALF",
+     "lines": 34,
+     "visits": 19,
+     "dollars": 5549.0
     },
     {
      "name": "Brookdale Hermitage ALF",
-     "lines": 4,
-     "visits": 2,
-     "dollars": 866.0
-    },
-    {
-     "name": "Capital Square ALF",
-     "lines": 2,
-     "visits": 1,
-     "dollars": 433.0
+     "lines": 19,
+     "visits": 15,
+     "dollars": 3762.0
     },
     {
      "name": "Tapestry Lakeshore ALF",
-     "lines": 1,
+     "lines": 19,
+     "visits": 17,
+     "dollars": 3814.0
+    },
+    {
+     "name": "Capital Square ALF",
+     "lines": 17,
+     "visits": 13,
+     "dollars": 3232.0
+    },
+    {
+     "name": "Canterfield Of Tallahassee ALF",
+     "lines": 8,
+     "visits": 8,
+     "dollars": 1648.0
+    },
+    {
+     "name": "Allegro Senior Living ALF",
+     "lines": 2,
      "visits": 1,
-     "dollars": 300.0
+     "dollars": 315.0
     }
    ],
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 610,
-     "visits": 582,
-     "dollars": 102073.0
+     "lines": 664,
+     "visits": 632,
+     "dollars": 111955.0
+    },
+    {
+     "name": "Nursing facility",
+     "lines": 363,
+     "visits": 202,
+     "dollars": 56885.0
+    },
+    {
+     "name": "Assisted living",
+     "lines": 231,
+     "visits": 157,
+     "dollars": 42718.0
     },
     {
      "name": "Skilled nursing facility",
      "lines": 204,
      "visits": 186,
      "dollars": 30716.0
-    },
-    {
-     "name": "Assisted living",
-     "lines": 87,
-     "visits": 55,
-     "dollars": 17128.0
-    },
-    {
-     "name": "Nursing facility",
-     "lines": 34,
-     "visits": 34,
-     "dollars": 4825.0
     }
    ],
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 528,
-     "visits": 480,
-     "dollars": 87228.0
+     "lines": 1055,
+     "visits": 800,
+     "dollars": 174760.0
     },
     {
      "name": "Clinician on file",
@@ -896,89 +1012,89 @@
    "payer": [
     {
      "name": "Medicare",
-     "lines": 442,
-     "visits": 408,
-     "dollars": 72390.0
+     "lines": 803,
+     "visits": 624,
+     "dollars": 132053.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 269,
-     "visits": 241,
-     "dollars": 45053.0
+     "lines": 399,
+     "visits": 324,
+     "dollars": 67097.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 65,
-     "visits": 61,
-     "dollars": 10303.0
+     "lines": 89,
+     "visits": 76,
+     "dollars": 14264.0
     },
     {
      "name": "Commercial / other",
-     "lines": 56,
-     "visits": 54,
-     "dollars": 9473.0
+     "lines": 77,
+     "visits": 67,
+     "dollars": 13199.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 11,
-     "visits": 11,
-     "dollars": 2050.0
+     "lines": 13,
+     "visits": 12,
+     "dollars": 2365.0
     },
     {
      "name": "No active plan",
-     "lines": 92,
-     "visits": 82,
-     "dollars": 15473.0
+     "lines": 81,
+     "visits": 74,
+     "dollars": 13296.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 206
+     "patients": 360
     },
     {
      "code": "E785",
-     "patients": 119
+     "patients": 224
     },
     {
      "code": "E119",
-     "patients": 71
+     "patients": 150
     },
     {
      "code": "I639",
-     "patients": 70
-    },
-    {
-     "code": "N390",
-     "patients": 63
-    },
-    {
-     "code": "E039",
-     "patients": 62
-    },
-    {
-     "code": "M6281",
-     "patients": 50
-    },
-    {
-     "code": "J449",
-     "patients": 45
-    },
-    {
-     "code": "F32A",
-     "patients": 41
-    },
-    {
-     "code": "G20A1",
-     "patients": 38
+     "patients": 116
     },
     {
      "code": "F0390",
-     "patients": 37
+     "patients": 102
     },
     {
-     "code": "R55",
-     "patients": 37
+     "code": "E039",
+     "patients": 96
+    },
+    {
+     "code": "F32A",
+     "patients": 86
+    },
+    {
+     "code": "N390",
+     "patients": 84
+    },
+    {
+     "code": "M6281",
+     "patients": 77
+    },
+    {
+     "code": "I4891",
+     "patients": 71
+    },
+    {
+     "code": "J449",
+     "patients": 64
+    },
+    {
+     "code": "F419",
+     "patients": 58
     }
    ],
    "days": [
@@ -1159,31 +1275,31 @@
     },
     {
      "date": "2026-11-21",
-     "visits": 17,
-     "lines": 17,
-     "dollars": 2720.0,
-     "patients": 17
+     "visits": 18,
+     "lines": 18,
+     "dollars": 3030.0,
+     "patients": 18
     },
     {
      "date": "2026-11-22",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 2,
+     "lines": 4,
+     "dollars": 886.0,
+     "patients": 2
     },
     {
      "date": "2026-11-23",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 21,
+     "lines": 23,
+     "dollars": 4526.0,
+     "patients": 21
     },
     {
      "date": "2026-11-24",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 296,
+     "lines": 499,
+     "dollars": 81810.0,
+     "patients": 295
     },
     {
      "date": "2026-11-25",
@@ -1197,34 +1313,34 @@
   "all": {
    "from": "2026-08-27",
    "to": "2026-11-25",
-   "visits": 1483,
-   "lines": 1795,
-   "dollars": 292554.0,
-   "patients": 391,
-   "entered": 1483,
-   "already_in_amd": 119,
-   "deceased_not_entered": 1,
+   "visits": 1803,
+   "lines": 2322,
+   "dollars": 380086.0,
+   "patients": 402,
+   "entered": 1803,
+   "already_in_amd": 124,
+   "deceased_not_entered": 7,
    "failed": 0,
-   "skipped_other": 12,
+   "skipped_other": 13,
    "skipped_other_why": [
     "no usable dx for 99223",
     "no usable dx for 99233",
     "no usable dx for 99309",
-    "unknown CPT 99349",
-    "unknown CPT G0439"
+    "no usable dx for 99487",
+    "unknown CPT 99349"
    ],
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 108,
-     "visits": 108,
-     "dollars": 33480.0
+     "lines": 117,
+     "visits": 117,
+     "dollars": 36270.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 662,
-     "visits": 662,
-     "dollars": 98655.0
+     "lines": 703,
+     "visits": 703,
+     "dollars": 105215.0
     },
     {
      "name": "Hospital discharge",
@@ -1258,41 +1374,41 @@
     },
     {
      "name": "Chronic care management",
-     "lines": 478,
-     "visits": 262,
-     "dollars": 77419.0
+     "lines": 951,
+     "visits": 532,
+     "dollars": 155069.0
     },
     {
      "name": "Advance care planning",
-     "lines": 97,
-     "visits": 95,
-     "dollars": 12865.0
+     "lines": 101,
+     "visits": 99,
+     "dollars": 13397.0
     }
    ],
    "cpt": [
     {
      "name": "99233",
-     "lines": 517,
-     "visits": 517,
-     "dollars": 82560.0
+     "lines": 558,
+     "visits": 558,
+     "dollars": 89120.0
+    },
+    {
+     "name": "99487",
+     "lines": 530,
+     "visits": 530,
+     "dollars": 109180.0
+    },
+    {
+     "name": "99489",
+     "lines": 421,
+     "visits": 421,
+     "dollars": 45889.0
     },
     {
      "name": "99309",
      "lines": 353,
      "visits": 353,
      "dollars": 47094.0
-    },
-    {
-     "name": "99487",
-     "lines": 261,
-     "visits": 261,
-     "dollars": 53766.0
-    },
-    {
-     "name": "99489",
-     "lines": 217,
-     "visits": 217,
-     "dollars": 23653.0
     },
     {
      "name": "99232",
@@ -1302,15 +1418,15 @@
     },
     {
      "name": "99223",
-     "lines": 108,
-     "visits": 108,
-     "dollars": 33480.0
+     "lines": 117,
+     "visits": 117,
+     "dollars": 36270.0
     },
     {
      "name": "99497",
-     "lines": 95,
-     "visits": 95,
-     "dollars": 12635.0
+     "lines": 99,
+     "visits": 99,
+     "dollars": 13167.0
     },
     {
      "name": "99344",
@@ -1358,51 +1474,69 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 823,
-     "visits": 781,
-     "dollars": 139195.0
+     "lines": 877,
+     "visits": 831,
+     "dollars": 149077.0
     },
     {
      "name": "Brynwood (Monticello)",
-     "lines": 352,
-     "visits": 275,
-     "dollars": 50549.0
+     "lines": 486,
+     "visits": 343,
+     "dollars": 71751.0
     },
     {
      "name": "Aspire at Tallahassee",
-     "lines": 128,
-     "visits": 103,
-     "dollars": 20138.0
+     "lines": 200,
+     "visits": 139,
+     "dollars": 31478.0
     },
     {
      "name": "Centre Pointe Health & Rehab",
-     "lines": 124,
-     "visits": 89,
-     "dollars": 19336.0
+     "lines": 175,
+     "visits": 116,
+     "dollars": 27417.0
     },
     {
      "name": "Westminster Bertrand",
-     "lines": 94,
-     "visits": 63,
-     "dollars": 14115.0
+     "lines": 138,
+     "visits": 85,
+     "dollars": 21045.0
     },
     {
      "name": "Sodalis ALF",
-     "lines": 85,
-     "visits": 56,
-     "dollars": 17029.0
+     "lines": 137,
+     "visits": 89,
+     "dollars": 25898.0
     },
     {
-     "name": "Brookdale Hermitage ALF",
-     "lines": 40,
-     "visits": 24,
-     "dollars": 7539.0
+     "name": "Azalea Gardens ALF",
+     "lines": 59,
+     "visits": 39,
+     "dollars": 10214.0
     },
     {
      "name": "Tapestry Lakeshore ALF",
-     "lines": 38,
-     "visits": 20,
-     "dollars": 6294.0
+     "lines": 56,
+     "visits": 36,
+     "dollars": 9808.0
+    },
+    {
+     "name": "Brookdale Hermitage ALF",
+     "lines": 55,
+     "visits": 37,
+     "dollars": 10435.0
+    },
+    {
+     "name": "unknown facility",
+     "lines": 40,
+     "visits": 26,
+     "dollars": 6306.0
+    },
+    {
+     "name": "Capital Square ALF",
+     "lines": 39,
+     "visits": 25,
+     "dollars": 6794.0
     },
     {
      "name": "Oakes Southwood",
@@ -1411,42 +1545,24 @@
      "dollars": 4765.0
     },
     {
-     "name": "Azalea Gardens ALF",
-     "lines": 25,
-     "visits": 20,
-     "dollars": 4665.0
-    },
-    {
-     "name": "Capital Square ALF",
-     "lines": 24,
-     "visits": 13,
-     "dollars": 3995.0
-    },
-    {
      "name": "Canterfield Of Tallahassee ALF",
-     "lines": 18,
-     "visits": 9,
-     "dollars": 2835.0
-    },
-    {
-     "name": "unknown facility",
-     "lines": 12,
-     "visits": 11,
-     "dollars": 1799.0
+     "lines": 26,
+     "visits": 17,
+     "dollars": 4483.0
     },
     {
      "name": "Allegro Senior Living ALF",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 300.0
+     "lines": 3,
+     "visits": 2,
+     "dollars": 615.0
     }
    ],
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 823,
-     "visits": 781,
-     "dollars": 139195.0
+     "lines": 877,
+     "visits": 831,
+     "dollars": 149077.0
     },
     {
      "name": "Skilled nursing facility",
@@ -1456,29 +1572,29 @@
     },
     {
      "name": "Assisted living",
-     "lines": 231,
-     "visits": 143,
-     "dollars": 42657.0
+     "lines": 375,
+     "visits": 245,
+     "dollars": 68247.0
     },
     {
      "name": "Nursing facility",
-     "lines": 34,
-     "visits": 34,
-     "dollars": 4825.0
+     "lines": 363,
+     "visits": 202,
+     "dollars": 56885.0
     }
    ],
    "clinician": [
+    {
+     "name": "Dr. Effinger (DO)",
+     "lines": 1086,
+     "visits": 826,
+     "dollars": 180508.0
+    },
     {
      "name": "Clinician on file",
      "lines": 1066,
      "visits": 812,
      "dollars": 174034.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 559,
-     "visits": 506,
-     "dollars": 92976.0
     },
     {
      "name": "Pamela G.",
@@ -1490,89 +1606,89 @@
    "payer": [
     {
      "name": "Medicare",
-     "lines": 989,
-     "visits": 792,
-     "dollars": 158249.0
+     "lines": 1360,
+     "visits": 1017,
+     "dollars": 219638.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 440,
-     "visits": 369,
-     "dollars": 73390.0
+     "lines": 568,
+     "visits": 451,
+     "dollars": 95119.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 108,
-     "visits": 91,
-     "dollars": 17112.0
+     "lines": 143,
+     "visits": 117,
+     "dollars": 22852.0
     },
     {
      "name": "Commercial / other",
-     "lines": 79,
-     "visits": 70,
-     "dollars": 13059.0
+     "lines": 100,
+     "visits": 83,
+     "dollars": 16785.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 3160.0
+     "lines": 19,
+     "visits": 18,
+     "dollars": 3475.0
     },
     {
      "name": "No active plan",
-     "lines": 162,
-     "visits": 144,
-     "dollars": 27584.0
+     "lines": 132,
+     "visits": 117,
+     "dollars": 22217.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 223
+     "patients": 378
     },
     {
      "code": "E785",
-     "patients": 130
+     "patients": 236
     },
     {
      "code": "E119",
-     "patients": 74
+     "patients": 154
     },
     {
      "code": "I639",
-     "patients": 74
-    },
-    {
-     "code": "E039",
-     "patients": 70
-    },
-    {
-     "code": "N390",
-     "patients": 69
-    },
-    {
-     "code": "M6281",
-     "patients": 53
-    },
-    {
-     "code": "J449",
-     "patients": 48
-    },
-    {
-     "code": "F32A",
-     "patients": 45
+     "patients": 120
     },
     {
      "code": "F0390",
-     "patients": 44
+     "patients": 109
+    },
+    {
+     "code": "E039",
+     "patients": 104
+    },
+    {
+     "code": "F32A",
+     "patients": 90
+    },
+    {
+     "code": "N390",
+     "patients": 90
+    },
+    {
+     "code": "M6281",
+     "patients": 80
     },
     {
      "code": "I4891",
-     "patients": 39
+     "patients": 73
     },
     {
-     "code": "G20A1",
-     "patients": 39
+     "code": "J449",
+     "patients": 67
+    },
+    {
+     "code": "F419",
+     "patients": 60
     }
    ],
    "days": [
@@ -2180,31 +2296,31 @@
     },
     {
      "date": "2026-11-21",
-     "visits": 17,
-     "lines": 17,
-     "dollars": 2720.0,
-     "patients": 17
+     "visits": 18,
+     "lines": 18,
+     "dollars": 3030.0,
+     "patients": 18
     },
     {
      "date": "2026-11-22",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 2,
+     "lines": 4,
+     "dollars": 886.0,
+     "patients": 2
     },
     {
      "date": "2026-11-23",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 21,
+     "lines": 23,
+     "dollars": 4526.0,
+     "patients": 21
     },
     {
      "date": "2026-11-24",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
+     "visits": 296,
+     "lines": 499,
+     "dollars": 81810.0,
+     "patients": 295
     },
     {
      "date": "2026-11-25",
@@ -2236,15 +2352,15 @@
    "kind": "deceased"
   },
   {
-   "pid": "pat17476537",
-   "why": "no ACTIVE plan on the chart (Stedi off)",
-   "dos": "11/06/2026",
+   "pid": "pat17473431",
+   "why": "no active plan: discovery found [('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('AETNA I",
+   "dos": "11/24/2026",
    "kind": "facesheet"
   },
   {
-   "pid": "pat17477183",
-   "why": "no active plan: discovery found nothing",
-   "dos": "11/04/2026",
+   "pid": "pat17476537",
+   "why": "no ACTIVE plan on the chart (Stedi off)",
+   "dos": "11/06/2026",
    "kind": "facesheet"
   },
   {
@@ -2296,18 +2412,6 @@
    "kind": "facesheet"
   },
   {
-   "pid": "pat17478216",
-   "why": "no active plan: discovery found nothing",
-   "dos": "10/22/2026",
-   "kind": "facesheet"
-  },
-  {
-   "pid": "pat17478221",
-   "why": "no active plan: discovery found nothing",
-   "dos": "10/22/2026",
-   "kind": "facesheet"
-  },
-  {
    "pid": "pat17478223",
    "why": "no active plan: discovery found [('ANTHEM BLUE CROSS', 'Active Coverage')] - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it",
    "dos": "11/13/2026",
@@ -2326,27 +2430,9 @@
    "kind": "facesheet"
   },
   {
-   "pid": "pat17478320",
-   "why": "no active plan: discovery found nothing",
-   "dos": "11/04/2026",
-   "kind": "facesheet"
-  },
-  {
    "pid": "pat17478345",
    "why": "no active plan: discovery found nothing",
    "dos": "11/05/2026",
-   "kind": "facesheet"
-  },
-  {
-   "pid": "pat17478413",
-   "why": "no active plan: discovery found nothing - HELD in this report only - AdvancedMD makes no claim for this visit until it is saved again with its plan in place",
-   "dos": "11/13/2026",
-   "kind": "facesheet"
-  },
-  {
-   "pid": "pat17478413",
-   "why": "no open plan on this chart: each visit of this chart must be saved again after a plan is added (vst19461189) - a visit entered with no plan has an empty insurance order until then - HELD in this report only - AdvancedMD ",
-   "dos": "11/13/2026",
    "kind": "facesheet"
   },
   {
@@ -2362,12 +2448,6 @@
    "kind": "facesheet"
   },
   {
-   "pid": "pat23069",
-   "why": "no active plan: discovery found [('BCBSF', 'Active Coverage'), ('CMS', 'Active Coverage'), ('BCBSF', 'Active Coverage')]",
-   "dos": "11/04/2026",
-   "kind": "facesheet"
-  },
-  {
    "pid": "pat46439",
    "why": "no ACTIVE plan on the chart (Stedi off)",
    "dos": "11/06/2026",
@@ -2376,7 +2456,7 @@
   {
    "pid": "pat12182947",
    "why": "CMS reports MA/other primary 'SUNSHINE STATE HEALTH PLAN, INC.' (SUN01) but no ACTIVE SUN01 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim ru",
-   "dos": "11/21/2026",
+   "dos": "11/24/2026",
    "kind": "payer"
   },
   {
@@ -2387,62 +2467,36 @@
   },
   {
    "pid": "pat17472519",
-   "why": "CMS reports MA/other primary 'BLUE CROSS AND BLUE SHIELD OF FLORIDA, INC.' (BCBS) but no ACTIVE BCBS plan on the chart",
-   "dos": "10/27/2026",
+   "why": "CMS reports MA/other primary 'BLUE CROSS AND BLUE SHIELD OF FLORIDA, INC.' (BCBS) but no ACTIVE BCBS plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next",
+   "dos": "11/24/2026",
    "kind": "payer"
   },
   {
    "pid": "pat17476739",
    "why": "CMS reports MA/other primary 'SUNSHINE STATE HEALTH PLAN, INC.' (SUN01) but no ACTIVE SUN01 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim ru",
-   "dos": "11/10/2026",
+   "dos": "11/24/2026",
    "kind": "payer"
   },
   {
    "pid": "pat17476942",
-   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart",
-   "dos": "10/27/2026",
-   "kind": "payer"
-  },
-  {
-   "pid": "pat17477085",
-   "why": "CMS reports MA/other primary 'UNITEDHEALTHCARE OF FLORIDA, INC.' (UNI20) but no ACTIVE UNI20 plan on the chart",
-   "dos": "10/27/2026",
+   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
+   "dos": "11/24/2026",
    "kind": "payer"
   },
   {
    "pid": "pat17478219",
-   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart",
-   "dos": "09/01/2026",
+   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
+   "dos": "11/24/2026",
    "kind": "payer"
   },
   {
-   "pid": "pat17478414",
-   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
-   "dos": "11/09/2026",
-   "kind": "payer"
-  },
-  {
-   "pid": "pat17478455",
-   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
-   "dos": "11/21/2026",
+   "pid": "pat17478224",
+   "why": "CMS reports MA/other primary 'HUMANA INSURANCE COMPANY' (HUM01) but no ACTIVE HUM01 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless",
+   "dos": "11/24/2026",
    "kind": "payer"
   }
  ],
  "runs": [
-  {
-   "stamp": "20261118T1240Z",
-   "at": "2026-11-18T12:55:08.306717Z",
-   "files": 1,
-   "exit": 0,
-   "live": true
-  },
-  {
-   "stamp": "20261119T0756Z",
-   "at": "2026-11-19T08:46:47.465213Z",
-   "files": 0,
-   "exit": 0,
-   "live": true
-  },
   {
    "stamp": "20261119T0756Z",
    "at": "2026-11-19T08:56:45.407998Z",
@@ -2512,23 +2566,37 @@
    "files": 1,
    "exit": 0,
    "live": true
+  },
+  {
+   "stamp": "20261125T0809Z",
+   "at": "2026-11-25T08:14:18.527917Z",
+   "files": 0,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261125T0900Z",
+   "at": "2026-11-25T10:34:51.017301Z",
+   "files": 1,
+   "exit": 0,
+   "live": true
   }
  ],
  "totals": {
-  "visits": 1483,
-  "lines": 1795,
-  "dollars": 292554.0,
-  "patients": 391,
-  "new_charts": 74,
-  "already_in_amd": 119,
-  "deceased_not_entered": 1,
+  "visits": 1803,
+  "lines": 2322,
+  "dollars": 380086.0,
+  "patients": 402,
+  "new_charts": 80,
+  "already_in_amd": 124,
+  "deceased_not_entered": 7,
   "failed": 0,
-  "skipped_other": 12,
-  "holds": 35,
+  "skipped_other": 13,
+  "holds": 27,
   "verification": {
-   "active plan verified": 331,
-   "inactive only": 17,
-   "no plan to check": 43
+   "active plan verified": 355,
+   "inactive only": 11,
+   "no plan to check": 36
   }
  },
  "button": {
