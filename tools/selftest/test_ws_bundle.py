@@ -22,10 +22,12 @@
 #       Windows line ends;
 #     - the command lines the routine prompts name (pack --out DIR, unpack DIR) do the same with the real part size;
 #     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder;
-#     - the size cap is never silent, and what travels under it is the NEWEST state (11/25/2026). From 11/24/2026 13:01 UTC every bundle
+#     - the size cap is never silent, and what stays behind under it is the oldest registers (11/25/2026). From 11/24/2026 13:01 UTC every bundle
 #       stopped at the 40 MB default: files were skipped without a word, and registers/ - the folder walked last - lost the registers of
-#       the run that had just entered the Claimocity feed's visits, so the next fresh container read the same feed file again. Now the
-#       newest files are packed first, the pack says how many files and megabytes it left out (and the manifest records it).
+#       the run that had just entered the Claimocity feed's visits, so the next fresh container read the same feed file again. Now a
+#       run's own (recent) registers are packed first, then the 271 and ERA caches that live nowhere else, then the older registers newest
+#       first - what stays behind is the oldest registers, which GitHub main already holds - and the pack says how many files and
+#       megabytes it left out (the manifest records it).
 # Run: python3 tools/selftest/test_ws_bundle.py   (exit 1 on any failure)
 import os, sys, io, re, json, glob, shutil, random, hashlib, tempfile, subprocess, contextlib, atexit
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -240,7 +242,8 @@ for x in part_names(i2):
     t = open(os.path.join(i2, x)).read(); open(os.path.join(i2, x), "wb").write(t.replace("\n", "\r\n").encode() + b"\r\n")
 comes_back("I2 parts saved with Windows line ends and a trailing empty line still restore", i2, BIG_FILES)
 
-# ---- J. the size cap (11/25/2026): never silent, and the NEWEST files are the ones that travel -----------------------------------------
+# ---- J. the size cap (11/25/2026): never silent; a run's own registers travel first, then the caches that live nowhere else, then the
+#         older registers newest first - what stays behind is the oldest registers (GitHub main holds those) ---------------------------------
 J, _j_unused = make_workspace("j_cap_ws", 0, 0, "cap")
 for i in range(6): put(J, "era_details/old_%d.json" % i, junk(200000))                       # 1.2 MB of old ERA cache
 for i in range(4): put(J, "patient_db/chart_%04d/old.json" % i, junk(200000))                # 0.8 MB of old 271 answers
@@ -248,6 +251,7 @@ for i in range(5): put(J, "registers/feed_import_OLD%d.json" % i, junk(100000)) 
 _t = __import__("time"); _old = _t.time() - 5 * 86400
 for _root, _dirs, _fs in os.walk(J):
     for _f in _fs: os.utime(os.path.join(_root, _f), (_old, _old))                          # everything so far is five days old
+for i in range(5): os.utime(os.path.join(J, "registers", "feed_import_OLD%d.json" % i), (_old + 86400, _old + 86400))   # ... the old registers four days: NEWER than the caches, yet not this run's
 put(J, "registers/feed_import_NEW.json", junk(150000)); put(J, "registers/claimocity_ingest.json", json.dumps({"files": {"invented": 1}}))   # THIS run's registers
 J_TRAVELS = {rel for rel in tree(J) if not any(x in rel for x in NEVER)}
 def pack_capped(src, out, mb):
@@ -263,13 +267,17 @@ lo = mj.get("left_out") or {}
 check("J2 ... and the manifest records it (left_out: files, bytes, by folder, the newest file left out and its time)",
       lo.get("files", 0) >= 1 and lo.get("bytes", 0) > 0 and set(lo.get("by_dir") or {"?": 1}) <= {"registers", "patient_db", "era_details", "tools"} and bool(lo.get("newest")) and isinstance(lo.get("names"), list), lo)
 j_dst = fresh("j_cap_restore"); rc, out = unpack(j_out, j_dst); got = set(tree(j_dst))
-check("J3 the files THIS run wrote travel first: the new feed register and the file register are in the bundle although registers/ is walked last and older files had to stay behind",
+check("J3 the registers THIS run wrote travel first: the new feed register and the file register are in the bundle although registers/ is walked last and older files had to stay behind",
       rc == 0 and {"registers/feed_import_NEW.json", "registers/claimocity_ingest.json"} <= got and len(got) < len(J_TRAVELS), (rc, sorted(got)[:14]))
-_mt = lambda rel: os.path.getmtime(os.path.join(J, rel))
-_capped = lambda rel: rel.split(os.sep)[0] in ("registers", "patient_db", "era_details", "tools")
+_reg_old = {r for r in J_TRAVELS if r.startswith("registers" + os.sep) and "OLD" in r}
+_cache = {r for r in J_TRAVELS if r.split(os.sep)[0] in ("patient_db", "era_details")}
 _left = sorted(J_TRAVELS - got)
-check("J4 what stayed behind is the OLDEST: no file left out is newer than a file of the walked folders that travelled, and the count matches the manifest",
-      _left and all(_capped(r) for r in _left) and max(_mt(r) for r in _left) <= min(_mt(r) for r in got if _capped(r)) and len(_left) == lo.get("files"), (_left[:6], lo.get("files")))
+check("J4 at 1 MB what stays behind is every OLD register (GitHub main holds those) and then the cache files that no longer fit - never one of this run's registers; the count matches the manifest",
+      _left and _reg_old <= set(_left) and set(_left) <= (_reg_old | _cache) and len(_left) == lo.get("files") and lo.get("by_dir", {}).get("registers") == len(_reg_old), (_left[:8], lo))
+j_out3 = fresh("j_cap_mid"); mj3, jo3 = pack_capped(J, j_out3, 2.3); j_dst3 = fresh("j_cap_mid_restore"); rc3, _o3 = unpack(j_out3, j_dst3); got3 = set(tree(j_dst3))
+check("J4b with room for the caches (2.3 MB) NO 271 or ERA cache file is given up for an old register: the caches that live nowhere else all travel, and only old registers stay behind",
+      rc3 == 0 and _cache <= got3 and {"registers/feed_import_NEW.json", "registers/claimocity_ingest.json"} <= got3 and set(J_TRAVELS - got3) <= _reg_old and len(J_TRAVELS - got3) >= 1
+      and set((mj3.get("left_out") or {}).get("by_dir") or {}) == {"registers"}, (sorted(J_TRAVELS - got3), mj3.get("left_out")))
 j_out2 = fresh("j_cap_roomy"); mj2, jo2 = pack_capped(J, j_out2, 40); j_dst2 = fresh("j_cap_roomy_restore"); rc2, _o2 = unpack(j_out2, j_dst2)
 check("J5 under the cap nothing is left out, nothing is said and the manifest carries no left_out - every file travels",
       "BUNDLE INCOMPLETE" not in jo2 and "left_out" not in mj2 and rc2 == 0 and set(tree(j_dst2)) == J_TRAVELS, (jo2[-200:], sorted(J_TRAVELS - set(tree(j_dst2)))[:6]))

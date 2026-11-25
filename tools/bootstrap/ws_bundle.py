@@ -37,8 +37,10 @@ The size cap (11/25/2026): --max-mb (40 by default) used to skip, WITHOUT A WORD
 was the folder walked last. From 11/24/2026 13:01 UTC the workspace no longer fitted (2,864 of about 4,330 files travelled), so the
 registers of the run that had just entered the Claimocity feed's visits stayed behind and the next fresh container read the same
 feed file again. Now:
-  - the files of the walked folders are packed NEWEST FIRST, so what a run has just written always travels and what stays behind
-    under the cap is the oldest (registers that old are on GitHub main; the 271 and ERA caches can be pulled again);
+  - the files of the walked folders are packed in this order: (1) the registers of the last 72 hours - what a run has just written,
+    and what an earlier run may not have mirrored yet; (2) tools/, patient_db/ and era_details/ - the 271 and ERA caches live nowhere
+    else, so they are never given up for an older register; (3) the older registers, newest first. What stays behind under the cap
+    is therefore the OLDEST registers - and GitHub main holds those;
   - a pack that leaves anything out says so - 'BUNDLE INCOMPLETE: N file(s), X MB ...' with the folders and the newest file left
     out - and the manifest records it under left_out. It still exits 0: an incomplete bundle is better than none; the run puts the
     line at the top of its report and packs again with a larger --max-mb when the newest file left out is recent.
@@ -73,6 +75,7 @@ def _want(path, rel):
     return True
 
 
+RECENT_REGISTER_HOURS = 72   # 11/25/2026: a register this fresh may not be on GitHub main yet - under the size cap it travels before everything else
 PHI_TOP = {'needs_facesheet_list.md', 'laterality_flag_log.md', 'precheck_cache.json'}   # --phi-only: the top-level files that live nowhere else
 
 
@@ -110,8 +113,11 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
                     if _want(fp, rel):
                         try: cand.append((os.path.getmtime(fp), rel, fp, os.path.getsize(fp), d))
                         except OSError: continue
-        # 11/25/2026: NEWEST FIRST under the cap - what this run wrote always travels; what does not fit is the oldest, and it is SAID
-        cand.sort(key=lambda c: (-c[0], c[1]))
+        # 11/25/2026: under the cap the order is (0) the registers of the last RECENT_REGISTER_HOURS, (1) tools / the 271 and ERA caches
+        # (they live nowhere else), (2) the older registers - newest first inside each. What does not fit is the oldest registers, and it is SAID
+        _now = time.time()
+        def _tier(c): return 1 if c[4] != 'registers' else (0 if _now - c[0] <= RECENT_REGISTER_HOURS * 3600 else 2)
+        cand.sort(key=lambda c: (_tier(c), -c[0], c[1]))
         for mt, rel, fp, sz, d in cand:
             if total + sz > max_mb * 1024 * 1024:
                 left.append((mt, rel, sz, d)); continue
@@ -140,9 +146,9 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
     print('manifest:', mf)
     if left:
         lo = manifest['left_out']
-        print('BUNDLE INCOMPLETE: %d file(s), %.1f MB did not fit under the --max-mb cap of %d MB and are NOT in this bundle (%s). The newest files were packed first; '
-              'the newest one left out is %s (written %s). Put this line at the top of the report; when that file is from the last few days pack again with a larger '
-              '--max-mb, or the next fresh container starts without it.' % (lo['files'], lo['bytes'] / 1048576.0, max_mb, ', '.join('%s %d' % kv for kv in sorted(lo['by_dir'].items())), lo['newest'], lo['newest_at']))
+        print('BUNDLE INCOMPLETE: %d file(s), %.1f MB did not fit under the --max-mb cap of %d MB and are NOT in this bundle (%s). The registers of the last 72 hours were packed first, then the 271 / ERA caches, then older registers newest first; '
+              'the newest file left out is %s (written %s). Put this line at the top of the report; when that file is from the last few days, or is not a register, pack again '
+              'with a larger --max-mb, or the next fresh container starts without it.' % (lo['files'], lo['bytes'] / 1048576.0, max_mb, ', '.join('%s %d' % kv for kv in sorted(lo['by_dir'].items())), lo['newest'], lo['newest_at']))
     return manifest
 
 
