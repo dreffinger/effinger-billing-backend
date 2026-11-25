@@ -1,0 +1,43 @@
+{
+ "stamp": "2026-11-25T0634Z",
+ "live": true,
+ "fitz": {
+  "steps": [
+   [
+    "RET01 already on the chart",
+    "ins9519511",
+    "3",
+    "NUMBER DIFFERS"
+   ],
+   [
+    "RET01 number written"
+   ],
+   [
+    "AAR01 already on the chart",
+    "ins9509919",
+    "2"
+   ],
+   [
+    "AMD 271 RET01",
+    "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '51', 'FollowUpActionCode': 'C'}]"
+   ],
+   [
+    "AMD 271 AAR01",
+    "INACTIVE | plan  | A  B  | others  | death - | addr [address] TALLAHASSEE FL 323122104 | aaa []"
+   ],
+   [
+    "patient order",
+    "3,2",
+    "(True, \"insorder 3,2 via ins9519511 -> '3,2'\")"
+   ]
+  ],
+  "visits": {
+   "19431381": "01/29/2026 198.00 resave vst19431381 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+   "19433872": "02/26/2026 206.00 resave vst19433872 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+   "19437363": "04/02/2026 198.00 resave vst19437363 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+   "19442366": "05/17/2026 206.00 resave vst19442366 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+   "19448364": "04/06/2026 204.00 resave vst19448364 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+   "19449793": "07/24/2026 198.00 resave vst19449793 insorder 1,2 -> 3,2, list [1,2] -> [3,2], 1 live charges (was 1) | freq1 + rebill seq 3 -> 204"
+  }
+ }
+}

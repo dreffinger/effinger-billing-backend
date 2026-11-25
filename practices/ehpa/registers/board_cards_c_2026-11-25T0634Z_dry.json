@@ -1,0 +1,56 @@
+{
+ "stamp": "2026-11-25T0634Z",
+ "live": false,
+ "karnes": [
+  {
+   "visit": "19438893",
+   "charge": "23346184",
+   "cpt": "pcode65084",
+   "dos": "04/14/2026",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "wos": [
+    [
+     "wo22475808",
+     "310.00",
+     "WOINS",
+     null
+    ]
+   ],
+   "pays": [
+    [
+     "pay24634385",
+     "0.00",
+     "213403769"
+    ]
+   ],
+   "steps": [],
+   "result": "DRY would void 1 WOINS write-off(s), move a patient balance back, re-send to BCBS seq 1"
+  },
+  {
+   "visit": "19438892",
+   "charge": "23346183",
+   "cpt": "pcode65089",
+   "dos": "04/15/2026",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "wos": [
+    [
+     "wo22475797",
+     "111.00",
+     "WOINS",
+     null
+    ]
+   ],
+   "pays": [
+    [
+     "pay24634374",
+     "0.00",
+     "213403769"
+    ]
+   ],
+   "steps": [],
+   "result": "DRY would void 1 WOINS write-off(s), move a patient balance back, re-send to BCBS seq 1"
+  }
+ ]
+}

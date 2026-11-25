@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-25T00:55:27Z",
+ "generated": "2026-11-25T06:53:06Z",
  "as_of": "2026-11-25",
  "coverage": {
   "files": [
@@ -231,9 +231,9 @@
    {
     "name": "20261113626627aa54d52f67a80d586a.hl7",
     "date": "20261113",
-    "stamp": "20261113T1240Z",
+    "stamp": "20261125T0635Z",
     "messages": 61,
-    "at": "2026-11-13T13:10:34.015094Z"
+    "at": "2026-11-25T06:50:05.095031Z"
    },
    {
     "name": "20261114626627aa54d52f67a80d586a.hl7",
@@ -340,7 +340,9 @@
    "20261121T1840Z",
    "20261122T1240Z",
    "20261124T1844Z",
-   "20261125T0040Z"
+   "20261125T0040Z",
+   "20261125T0438ZR",
+   "20261125T0635Z"
   ],
   "note": "Feed files on hand start 10/16/2026: the old integration consumed the earlier files on the SFTP, so those encounters live in AdvancedMD only. Days with no bar inside the window are days with no feed encounter on hand, not necessarily days without visits."
  },
@@ -348,12 +350,12 @@
   "week": {
    "from": "2026-11-19",
    "to": "2026-11-25",
-   "visits": 62,
-   "lines": 64,
-   "dollars": 9932.0,
-   "patients": 47,
-   "entered": 62,
-   "already_in_amd": 118,
+   "visits": 63,
+   "lines": 65,
+   "dollars": 10073.0,
+   "patients": 48,
+   "entered": 63,
+   "already_in_amd": 119,
    "deceased_not_entered": 1,
    "failed": 0,
    "skipped_other": 12,
@@ -385,9 +387,9 @@
     },
     {
      "name": "SNF follow-up",
-     "lines": 16,
-     "visits": 16,
-     "dollars": 2256.0
+     "lines": 17,
+     "visits": 17,
+     "dollars": 2397.0
     },
     {
      "name": "Advance care planning",
@@ -405,9 +407,9 @@
     },
     {
      "name": "99309",
-     "lines": 16,
-     "visits": 16,
-     "dollars": 2256.0
+     "lines": 17,
+     "visits": 17,
+     "dollars": 2397.0
     },
     {
      "name": "99232",
@@ -443,9 +445,9 @@
     },
     {
      "name": "Brynwood (Monticello)",
-     "lines": 14,
-     "visits": 14,
-     "dollars": 1974.0
+     "lines": 15,
+     "visits": 15,
+     "dollars": 2115.0
     },
     {
      "name": "Centre Pointe Health & Rehab",
@@ -463,9 +465,9 @@
     },
     {
      "name": "Skilled nursing facility",
-     "lines": 18,
-     "visits": 17,
-     "dollars": 2645.0
+     "lines": 19,
+     "visits": 18,
+     "dollars": 2786.0
     }
    ],
    "clinician": [
@@ -477,9 +479,9 @@
     },
     {
      "name": "Pamela G.",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 2416.0
+     "lines": 18,
+     "visits": 18,
+     "dollars": 2557.0
     },
     {
      "name": "Clinician on file",
@@ -521,15 +523,15 @@
     },
     {
      "name": "No active plan",
-     "lines": 4,
-     "visits": 4,
-     "dollars": 640.0
+     "lines": 5,
+     "visits": 5,
+     "dollars": 781.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 18
+     "patients": 17
     },
     {
      "code": "E785",
@@ -537,7 +539,7 @@
     },
     {
      "code": "E119",
-     "patients": 9
+     "patients": 8
     },
     {
      "code": "D649",
@@ -552,11 +554,11 @@
      "patients": 6
     },
     {
-     "code": "G20A1",
+     "code": "R627",
      "patients": 5
     },
     {
-     "code": "R627",
+     "code": "G20A1",
      "patients": 5
     },
     {
@@ -572,17 +574,17 @@
      "patients": 4
     },
     {
-     "code": "R531",
+     "code": "I4891",
      "patients": 4
     }
    ],
    "days": [
     {
      "date": "2026-11-19",
-     "visits": 41,
-     "lines": 41,
-     "dollars": 6098.0,
-     "patients": 41
+     "visits": 42,
+     "lines": 42,
+     "dollars": 6239.0,
+     "patients": 42
     },
     {
      "date": "2026-11-20",
@@ -631,12 +633,12 @@
   "month": {
    "from": "2026-10-27",
    "to": "2026-11-25",
-   "visits": 854,
-   "lines": 931,
-   "dollars": 154071.0,
+   "visits": 857,
+   "lines": 935,
+   "dollars": 154742.0,
    "patients": 241,
-   "entered": 854,
-   "already_in_amd": 118,
+   "entered": 857,
+   "already_in_amd": 119,
    "deceased_not_entered": 1,
    "failed": 0,
    "skipped_other": 12,
@@ -668,15 +670,15 @@
     },
     {
      "name": "SNF admission",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 4352.0
+     "lines": 18,
+     "visits": 18,
+     "dollars": 4608.0
     },
     {
      "name": "SNF follow-up",
-     "lines": 195,
-     "visits": 195,
-     "dollars": 27223.0
+     "lines": 197,
+     "visits": 197,
+     "dollars": 27505.0
     },
     {
      "name": "SNF discharge",
@@ -698,9 +700,9 @@
     },
     {
      "name": "Advance care planning",
-     "lines": 53,
-     "visits": 53,
-     "dollars": 7049.0
+     "lines": 54,
+     "visits": 54,
+     "dollars": 7182.0
     }
    ],
    "cpt": [
@@ -712,9 +714,9 @@
     },
     {
      "name": "99309",
-     "lines": 187,
-     "visits": 187,
-     "dollars": 26367.0
+     "lines": 189,
+     "visits": 189,
+     "dollars": 26649.0
     },
     {
      "name": "99232",
@@ -730,9 +732,9 @@
     },
     {
      "name": "99497",
-     "lines": 53,
-     "visits": 53,
-     "dollars": 7049.0
+     "lines": 54,
+     "visits": 54,
+     "dollars": 7182.0
     },
     {
      "name": "99487",
@@ -754,9 +756,9 @@
     },
     {
      "name": "99306",
-     "lines": 17,
-     "visits": 17,
-     "dollars": 4352.0
+     "lines": 18,
+     "visits": 18,
+     "dollars": 4608.0
     },
     {
      "name": "99308",
@@ -792,9 +794,9 @@
     },
     {
      "name": "Brynwood (Monticello)",
-     "lines": 116,
-     "visits": 110,
-     "dollars": 17059.0
+     "lines": 120,
+     "visits": 113,
+     "dollars": 17730.0
     },
     {
      "name": "Sodalis ALF",
@@ -854,9 +856,9 @@
     },
     {
      "name": "Skilled nursing facility",
-     "lines": 200,
-     "visits": 183,
-     "dollars": 30045.0
+     "lines": 204,
+     "visits": 186,
+     "dollars": 30716.0
     },
     {
      "name": "Assisted living",
@@ -886,17 +888,17 @@
     },
     {
      "name": "Pamela G.",
-     "lines": 150,
-     "visits": 148,
-     "dollars": 22244.0
+     "lines": 154,
+     "visits": 151,
+     "dollars": 22915.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 441,
-     "visits": 407,
-     "dollars": 72249.0
+     "lines": 442,
+     "visits": 408,
+     "dollars": 72390.0
     },
     {
      "name": "Medicare Advantage",
@@ -924,23 +926,23 @@
     },
     {
      "name": "No active plan",
-     "lines": 89,
-     "visits": 80,
-     "dollars": 14943.0
+     "lines": 92,
+     "visits": 82,
+     "dollars": 15473.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 223
+     "patients": 206
     },
     {
      "code": "E785",
-     "patients": 129
+     "patients": 119
     },
     {
      "code": "E119",
-     "patients": 82
+     "patients": 71
     },
     {
      "code": "I639",
@@ -967,15 +969,15 @@
      "patients": 41
     },
     {
-     "code": "G8929",
-     "patients": 39
-    },
-    {
      "code": "G20A1",
      "patients": 38
     },
     {
      "code": "F0390",
+     "patients": 37
+    },
+    {
+     "code": "R55",
      "patients": 37
     }
    ],
@@ -1073,10 +1075,10 @@
     },
     {
      "date": "2026-11-09",
-     "visits": 58,
-     "lines": 62,
-     "dollars": 9759.0,
-     "patients": 58
+     "visits": 60,
+     "lines": 65,
+     "dollars": 10289.0,
+     "patients": 60
     },
     {
      "date": "2026-11-10",
@@ -1143,10 +1145,10 @@
     },
     {
      "date": "2026-11-19",
-     "visits": 41,
-     "lines": 41,
-     "dollars": 6098.0,
-     "patients": 41
+     "visits": 42,
+     "lines": 42,
+     "dollars": 6239.0,
+     "patients": 42
     },
     {
      "date": "2026-11-20",
@@ -1195,12 +1197,12 @@
   "all": {
    "from": "2026-08-27",
    "to": "2026-11-25",
-   "visits": 1480,
-   "lines": 1791,
-   "dollars": 291883.0,
+   "visits": 1483,
+   "lines": 1795,
+   "dollars": 292554.0,
    "patients": 391,
-   "entered": 1480,
-   "already_in_amd": 118,
+   "entered": 1483,
+   "already_in_amd": 119,
    "deceased_not_entered": 1,
    "failed": 0,
    "skipped_other": 12,
@@ -1232,15 +1234,15 @@
     },
     {
      "name": "SNF admission",
-     "lines": 30,
-     "visits": 30,
-     "dollars": 7680.0
+     "lines": 31,
+     "visits": 31,
+     "dollars": 7936.0
     },
     {
      "name": "SNF follow-up",
-     "lines": 366,
-     "visits": 366,
-     "dollars": 48417.0
+     "lines": 368,
+     "visits": 368,
+     "dollars": 48699.0
     },
     {
      "name": "SNF discharge",
@@ -1262,9 +1264,9 @@
     },
     {
      "name": "Advance care planning",
-     "lines": 96,
-     "visits": 94,
-     "dollars": 12732.0
+     "lines": 97,
+     "visits": 95,
+     "dollars": 12865.0
     }
    ],
    "cpt": [
@@ -1276,9 +1278,9 @@
     },
     {
      "name": "99309",
-     "lines": 351,
-     "visits": 351,
-     "dollars": 46812.0
+     "lines": 353,
+     "visits": 353,
+     "dollars": 47094.0
     },
     {
      "name": "99487",
@@ -1306,9 +1308,9 @@
     },
     {
      "name": "99497",
-     "lines": 94,
-     "visits": 94,
-     "dollars": 12502.0
+     "lines": 95,
+     "visits": 95,
+     "dollars": 12635.0
     },
     {
      "name": "99344",
@@ -1318,9 +1320,9 @@
     },
     {
      "name": "99306",
-     "lines": 30,
-     "visits": 30,
-     "dollars": 7680.0
+     "lines": 31,
+     "visits": 31,
+     "dollars": 7936.0
     },
     {
      "name": "99308",
@@ -1362,9 +1364,9 @@
     },
     {
      "name": "Brynwood (Monticello)",
-     "lines": 348,
-     "visits": 272,
-     "dollars": 49878.0
+     "lines": 352,
+     "visits": 275,
+     "dollars": 50549.0
     },
     {
      "name": "Aspire at Tallahassee",
@@ -1448,9 +1450,9 @@
     },
     {
      "name": "Skilled nursing facility",
-     "lines": 703,
-     "visits": 522,
-     "dollars": 105206.0
+     "lines": 707,
+     "visits": 525,
+     "dollars": 105877.0
     },
     {
      "name": "Assisted living",
@@ -1480,17 +1482,17 @@
     },
     {
      "name": "Pamela G.",
-     "lines": 166,
-     "visits": 162,
-     "dollars": 24873.0
+     "lines": 170,
+     "visits": 165,
+     "dollars": 25544.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 988,
-     "visits": 791,
-     "dollars": 158108.0
+     "lines": 989,
+     "visits": 792,
+     "dollars": 158249.0
     },
     {
      "name": "Medicare Advantage",
@@ -1518,23 +1520,23 @@
     },
     {
      "name": "No active plan",
-     "lines": 159,
-     "visits": 142,
-     "dollars": 27054.0
+     "lines": 162,
+     "visits": 144,
+     "dollars": 27584.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 241
+     "patients": 223
     },
     {
      "code": "E785",
-     "patients": 141
+     "patients": 130
     },
     {
      "code": "E119",
-     "patients": 86
+     "patients": 74
     },
     {
      "code": "I639",
@@ -1565,12 +1567,12 @@
      "patients": 44
     },
     {
-     "code": "G8929",
-     "patients": 40
+     "code": "I4891",
+     "patients": 39
     },
     {
-     "code": "R531",
-     "patients": 40
+     "code": "G20A1",
+     "patients": 39
     }
    ],
    "days": [
@@ -2094,10 +2096,10 @@
     },
     {
      "date": "2026-11-09",
-     "visits": 58,
-     "lines": 62,
-     "dollars": 9759.0,
-     "patients": 58
+     "visits": 60,
+     "lines": 65,
+     "dollars": 10289.0,
+     "patients": 60
     },
     {
      "date": "2026-11-10",
@@ -2164,10 +2166,10 @@
     },
     {
      "date": "2026-11-19",
-     "visits": 41,
-     "lines": 41,
-     "dollars": 6098.0,
-     "patients": 41
+     "visits": 42,
+     "lines": 42,
+     "dollars": 6239.0,
+     "patients": 42
     },
     {
      "date": "2026-11-20",
@@ -2414,6 +2416,12 @@
    "kind": "payer"
   },
   {
+   "pid": "pat17478414",
+   "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
+   "dos": "11/09/2026",
+   "kind": "payer"
+  },
+  {
    "pid": "pat17478455",
    "why": "CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart - HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless some",
    "dos": "11/21/2026",
@@ -2421,41 +2429,6 @@
   }
  ],
  "runs": [
-  {
-   "stamp": "20261114T1240Z",
-   "at": "2026-11-14T12:52:23.988911Z",
-   "files": 1,
-   "exit": 2,
-   "live": true
-  },
-  {
-   "stamp": "20261114T1240Z",
-   "at": "2026-11-14T12:55:54.253583Z",
-   "files": 1,
-   "exit": 0,
-   "live": true
-  },
-  {
-   "stamp": "20261115T1240Z",
-   "at": "2026-11-15T12:55:53.057354Z",
-   "files": 1,
-   "exit": 0,
-   "live": true
-  },
-  {
-   "stamp": "20261116T1240Z",
-   "at": "2026-11-16T12:48:54.205534Z",
-   "files": 1,
-   "exit": 0,
-   "live": true
-  },
-  {
-   "stamp": "20261117T1239Z",
-   "at": "2026-11-17T13:03:21.714232Z",
-   "files": 1,
-   "exit": 0,
-   "live": true
-  },
   {
    "stamp": "20261118T1240Z",
    "at": "2026-11-18T12:55:08.306717Z",
@@ -2504,23 +2477,58 @@
    "files": 1,
    "exit": 0,
    "live": true
+  },
+  {
+   "stamp": "20261125T0437ZR",
+   "at": "2026-11-25T04:38:03.144806Z",
+   "files": 0,
+   "exit": 0,
+   "live": false
+  },
+  {
+   "stamp": "20261125T0435Z",
+   "at": "2026-11-25T04:38:23.726790Z",
+   "files": 0,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261125T0438ZR",
+   "at": "2026-11-25T04:39:12.568050Z",
+   "files": 0,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261125T0634Z",
+   "at": "2026-11-25T06:49:27.660588Z",
+   "files": 1,
+   "exit": 0,
+   "live": false
+  },
+  {
+   "stamp": "20261125T0635Z",
+   "at": "2026-11-25T06:50:05.095059Z",
+   "files": 1,
+   "exit": 0,
+   "live": true
   }
  ],
  "totals": {
-  "visits": 1480,
-  "lines": 1791,
-  "dollars": 291883.0,
+  "visits": 1483,
+  "lines": 1795,
+  "dollars": 292554.0,
   "patients": 391,
   "new_charts": 74,
-  "already_in_amd": 118,
+  "already_in_amd": 119,
   "deceased_not_entered": 1,
   "failed": 0,
   "skipped_other": 12,
-  "holds": 34,
+  "holds": 35,
   "verification": {
-   "active plan verified": 330,
+   "active plan verified": 331,
    "inactive only": 17,
-   "no plan to check": 44
+   "no plan to check": 43
   }
  },
  "button": {
