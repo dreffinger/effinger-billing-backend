@@ -10,7 +10,9 @@
 #   never past 12 months without William's word). A chart the fixer already listed 'no other number found' in the last 30 days is
 #   not looked up again (the look-up is a paid call). REJECTED 71 / 73 (birth date / name does not match) and 'no open Medicare
 #   plan' are listed for the board - a person or the facesheet settles those. INACTIVE with a date of death: charges dated AFTER
-#   that date with a balance are LISTED (the standing rule writes them off; manual_post.py does it, with --dry first).
+#   that date with a balance are LISTED - the standing rule VOIDS them (William 10/4/2026 "void anything DOS after the date of death" and again
+#   11/25/2026 "VOID all charges sent after date of death"; until 11/25 this line said 'write off', and the 11/20 run wrote four charts' charges off and
+#   asked him to confirm or void): the run takes back any write-off, voids the charge (void_tx.void_charge) and asks William nothing.
 # Never touches: a chart Medicare accepts. Without --fix it is read only.
 # Usage: python3 medicare_number_scan.py [--fix] [--all]      (--all asks every chart again, ignoring the 30-day memory)
 import amd, ins_update, elig_amd, txh, json, collections, time, datetime, os, sys
@@ -48,7 +50,7 @@ if __name__ == "__main__":
         for c in txh.fetch(pid).iter("charge"):
             a = c.attrib; d8 = a.get("dos")[6:] + a.get("dos")[:2] + a.get("dos")[3:5]
             if a.get("void") != "1" and d8 > dod and float(a.get("insbal") or 0) + float(a.get("patbal") or 0) > 0.005:
-                late += 1; print("  AFTER DEATH pat%s chg%s v%s %s %s insbal %s patbal %s at %s - write off (standing rule) and put on the board" % (pid, a.get("id"), a.get("visit"), a.get("dos"), a.get("proccode"), a.get("insbal"), a.get("patbal"), a.get("carrier")))
+                late += 1; print("  AFTER DEATH pat%s chg%s v%s %s %s insbal %s patbal %s at %s - VOID it (the standing rule, William 10/4 and 11/25/2026: a charge after the date of death is voided, never written off; nothing for William)" % (pid, a.get("id"), a.get("visit"), a.get("dos"), a.get("proccode"), a.get("insbal"), a.get("patbal"), a.get("carrier")))
     json.dump(reg, open(REG, "w"), indent=1)
     todo = [pid for pid, ans, n, amt in bad if ans == "REJECTED 72" and not ("no other number found" in str((fixreg.get(pid) or {}).get("number")) and recent((fixreg.get(pid) or {}).get("day")))]
     print("RESULT Medicare number scan: asked %d | invalid number %d | name or birth date mismatch %d | no open Medicare plan %d | charges after death with a balance %d | to the fixer %d%s" % (

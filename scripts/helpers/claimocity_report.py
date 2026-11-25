@@ -502,6 +502,26 @@ try:
         if isinstance(_e2, dict) and re.sub(r"\D", "", str(_e2.get("visit") or "")): _freedv[re.sub(r"\D", "", str(_e2["visit"]))] = bool(_e2.get("retry_of")) and (_e2.get("listed") is False or (_e2.get("void_ok") is True and _e2.get("released") is True))
 except Exception: _freedv = {}
 for h in insp.get("held", []): L("  - vst%s %s: %s%s" % (h["visit"], h["pid"], h["why"][:120], " - then freed by this run's retry pass: the visit is free" if _freedv.get(re.sub(r"\D", "", str(h.get("visit") or ""))) else ""))
+# A new admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): the step bypasses the Claim
+# Inspector's Pattern 692. Said AFTER the held rows (they belong to the 'held N' line above), by visit - a visit once, whatever the number of its entries; a visit
+# that is on the held list for another edit and a bypass AdvancedMD did not accept are named as such
+try:
+    _n9 = lambda x: re.sub(r"\D", "", str(x or ""))
+    _byp = [b for b in (insp.get("bypassed") if isinstance(insp, dict) and isinstance(insp.get("bypassed"), list) else []) if isinstance(b, dict) and "692" in [str(x) for x in (b.get("patterns") or [])] and _n9(b.get("visit"))]
+    _heldv = {_n9(h.get("visit")) for h in (insp.get("held") if isinstance(insp.get("held"), list) else []) if isinstance(h, dict)}
+    _okv = sorted({_n9(b.get("visit")) for b in _byp if b.get("ok") is not False}); _refv = sorted({_n9(b.get("visit")) for b in _byp if b.get("ok") is False} - set(_okv))
+    if _okv:
+        _free = [v for v in _okv if v not in _heldv]; _also = [v for v in _okv if v in _heldv]
+        _who = {}      # visit -> " (chart, service date)" from the import register of this batch, where it has the visit
+        try:
+            for _c in (reg.get("created") if isinstance(reg, dict) and isinstance(reg.get("created"), list) else []):
+                if isinstance(_c, dict) and _n9(_c.get("visit")): _who[_n9(_c.get("visit"))] = " (%s, %s)" % (_c.get("pid") or "chart ?", _c.get("dos") or "date ?")
+        except Exception: _who = {}
+        _nm = lambda v: "vst" + v + _who.get(v, "")
+        L("- New admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): the Pattern 692 edit was bypassed on %d visit(s)%s%s." % (
+            len(_okv), (" - %s: not held, nothing for William" % ", ".join(_nm(v) for v in _free)) if _free else "", ("%s %s: on the held list above for another edit" % (";" if _free else " -", ", ".join(_nm(v) for v in _also))) if _also else ""))
+    if _refv: L("- New admission: AdvancedMD did not accept the bypass of the Pattern 692 edit on %s - the edit is still listed; the next columns pass bypasses it again." % ", ".join("vst" + v for v in _refv))
+except Exception: pass
 L("")
 L("## Next")
 L("- AMD's automatic claim run (~17:00 ET) sends every clean approved claim; the submission wizard sends sooner.")

@@ -43,7 +43,35 @@ PROFILES = {
 STEP_TITLES = {"columns": "Claims Center columns", "era": "ERA posting", "cascade": "Insurance cascade",
                "sweep": "Claim-status sweep (277)", "packages": "Approval packages", "cred": "Credentialing check",
                "money": "Money ledger data", "outstanding": "Outstanding claims summary", "denials": "Working Denials refresh", "aging": "AR aging refresh"}
-ADVISORY_ERR_PATTERNS = ("20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "27261")
+# the Claim Inspector patterns the standing rules bypass. 11/25/2026: this was a third hand-kept list (no 4311, no 692) read as a substring - so the engine
+# reported a visit as waiting for William in the very pass in which the advisory sweep released it. The engine now reads the SWEEP'S OWN list (advisory_patterns)
+# and an edit's pattern the way the sweep does (the number after "Pattern "); this tuple is only what is used when the sweep's file cannot be read.
+ADVISORY_ERR_PATTERNS = ("20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "4311", "27261", "692")
+
+
+def advisory_patterns(ws):
+    """The patterns insp_bypass_advisories.py bypasses - read from that helper's own ADVISORY line in the workspace (the copy the engine runs right after)."""
+    try:
+        m = re.search(r"(?m)^ADVISORY = \{([^}\n]*)\}", open(os.path.join(ws, "insp_bypass_advisories.py"), encoding="utf-8", errors="replace").read())
+        got = set(re.findall(r'"(\d+)"', m.group(1))) if m else set()
+        if got:
+            return got
+    except OSError:
+        pass
+    return set(ADVISORY_ERR_PATTERNS)
+
+
+def classify_inspector(before, advs):
+    """{'advisory' | 'missing data / dx': ['v<visit>', ...]} for the Claim Inspector holds of a scan - exactly the sweep's own test: a visit is 'advisory'
+    only when EVERY edit on it carries a pattern of the list (the number after "Pattern " in the edit's words)."""
+    held = {}
+    for _bid, vs in ((before or {}).get("inspector") or {}).items():
+        for v in vs:
+            errs = v.get("errs") or []
+            pats = [(re.search(r"Pattern (\d+)", (e[1] if len(e) > 1 else "") or "") or [None, None])[1] for e in errs]
+            adv = bool(errs) and all(p in advs for p in pats)
+            held.setdefault("advisory" if adv else "missing data / dx", []).append("v%s" % v.get("vid"))
+    return held
 
 
 def utcnow():
@@ -270,13 +298,7 @@ class Run:
         s["counts"].update({"charge review": cb["charge_review"], "claim inspector": cb["claim_inspector"],
                             "unbilled": cb["unbilled"], "exclusions": cb["exclusions"]})
         # what the inspector holds are (ids only) - advisories are bypassed by the helper, the rest is listed
-        held = {}
-        for bid, vs in (before.get("inspector") or {}).items():
-            for v in vs:
-                errs = v.get("errs") or []
-                kinds = sorted({(e[2] or e[0] or "?") for e in errs})
-                adv = all(any(pat in (e[2] or "") or pat in (e[1] or "") for pat in ADVISORY_ERR_PATTERNS) for e in errs) if errs else False
-                held.setdefault("advisory" if adv else "missing data / dx", []).append("v%s" % v.get("vid"))
+        held = classify_inspector(before, advisory_patterns(self.ws))      # the sweep's own list and reading (11/25/2026)
         for k, vids in held.items():
             s["lines"].append({"column": "claim inspector", "kind": k, "visits": len(vids), "ids": " ".join(vids[:25])})
         # Unbilled rows by error text, Exclusions by (carrier, error) - chart / visit ids only

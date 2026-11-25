@@ -511,7 +511,7 @@ check("8.3 the sweep never resets a chart's default order, adds or ends a plan, 
 check("8.2 an insurance order is saved only through resave.set_insorder (step 1's list-aware save) - the sweep sends no updvisitwithcharges of its own", "resave.set_insorder(" in SSRC and "updvisitwithcharges" not in SSRC)
 check("8.5 the price and the caps: $0.30 a check, 120 checks and $40 a run", "PRICE, CAP_CHECKS, CAP_DOLLARS = 0.30, 120, 40.0" in SSRC)
 MIR = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read(); HCS = open(os.path.join(HELPERS, "claimocity_helpers_current.py")).read()
-_mk = {"resave.py": "set_insorder never sends a save when the visit's charges could not all be read", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST", "feed_order_sweep.py": "NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ"}
+_mk = {"resave.py": "set_insorder never sends a save when the visit's charges could not all be read", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST", "feed_order_sweep.py": "THE ADMISSION DATE IS SET BY THE STANDING RULE, NOT HELD FOR WILLIAM"}      # 11/25/2026: the sentence only the version that sets the admission date by the standing rule has
 _mk7 = ('"resave.py": "set_insorder reads the visit\'s insurance-order LIST"', "\"feed_order_sweep.py\": 'STANDING = \"standing word, William 11/10/2026\"'")      # the round-7 entries of mirror.py's table: gone since 11/11/2026
 check("mirror.py protects resave.py and the sweep with sentences only their round-8 versions (11/11/2026, the echo guard) have, and the insurance check with one only its round-7 version has (a copy from before never comes back over them - the round-7 sentences of resave.py and the sweep are no longer the markers); the shared helper names the same sentence for the insurance check",
       all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()) and not any(x_ in MIR for x_ in _mk7)
@@ -612,8 +612,9 @@ check("R7-REPLAY-5 a stuck visit entered 40 days ago (service date 09/25/2026) i
 check("8.1/8.4/10 a clinician mismatch is listed: entered under the physician, the feed names the nurse practitioner", "clinician: entered under the physician (prof13) - the feed names the nurse practitioner (prof15)" in top(o, "vst9011"), top(o, "vst9011"))
 check("8.4 an initial nursing-facility visit (99306 + 99497) under the physician is not a mismatch, and the line SHOWS the feed's clinician for William",
       "clinician: entered under" not in top(o, "vst9012") and "an initial nursing-facility visit: the physician's by William's rule - the feed names the nurse practitioner (prof15): William confirms who saw the patient" in top(o, "vst9012"), top(o, "vst9012"))
-check("8.1/10 admission-date problems are listed: one after the service date, two in one stay, a hospital visit with none",
-      "its admission date 10/28/2026 is after its service date 10/27/2026" in top(o, "vst9013") and "two admission dates in one stay: vst9015 10/27/2026, vst9016 10/28/2026" in top(o, "vst9015")
+check("8.1/10 admission dates in the listing (11/25/2026: set by the standing rule, not held): a 99223 whose date is the day after its own becomes its own date; two dates in one stay are said and hold nothing; a hospital visit with no date on a chart with no initial hospital visit is still for a person",
+      "its admission date 10/28/2026 becomes 10/27/2026 - the date of the chart's most recent initial hospital visit on or before it (William 11/19/2026); written with the save" in top(o, "vst9013") and "is after its service date" not in top(o, "vst9013")
+      and "two admission dates in one stay: vst9015 10/27/2026, vst9016 10/28/2026 - not held for it (William 11/19/2026)" in top(o, "vst9015")
       and "a hospital visit with no admission date" in top(o, "vst9017") and "admission" not in top(o, "vst9011"), (top(o, "vst9013"), top(o, "vst9015"), top(o, "vst9017")))
 check("8.1 a void no-charge quality line (1123F) the import entered does not count against the visit", top(o, "vst9022") != "" and "read void" not in top(o, "vst9022"), top(o, "vst9022"))
 check("8.1 (investigator's case) a charge of the visit's own that now reads void is listed - a person reads it; the save refuses it", "charge(s) the import entered now read void: charge90242" in top(o, "vst9024"), top(o, "vst9024"))
@@ -772,16 +773,16 @@ check("8.5 both plans active on the date -> William decides, nothing saved", W[0
 # the other checks of a save, one at a time: the deceased guard, the plan the file names, AdvancedMD's plan dates, the admission date, a billed sibling
 W[0] = SWorld({"971": med("971", "M971"), "972": med("972", "M972"), "973": [{"id": "ins973", "car": "car6085", "seq": "1", "member": "M973", "begin": "10/30/2026"}], "974": med("974", "M974"), "975": med("975", "M975"),
                "976": med("976", "M976"), "977": med("977", "M977"), "978": med("978", "M978")},
-    SW("vst9701", [chg(97011)]), SW("vst9702", [chg(97021)]), SW("vst9703", [chg(97031)]), SW("vst9704", [chg(97041, cpt="99223", pcode="pcode65101")], admit="10/29/2026"),
+    SW("vst9701", [chg(97011)]), SW("vst9702", [chg(97021)]), SW("vst9703", [chg(97031)]), SW("vst9704", [chg(97041, cpt="99232", pcode="pcode65102")], admit="10/29/2026"),
     SW("vst9705", [chg(97051), chg(97052, cpt="99497", pcode="pcode65299", pays=[{"amount": "12.00"}])]), SW("vst9706", [chg(97061)]), SW("vst9707", [chg(97071)]), SW("vst9708", [chg(97081), chg(97082, cpt="99497", pcode="pcode65299", void=True)]))
-ws9([srow("vst970%d" % i_, "pat97%d" % i_, "10/2%d/2026" % i_, ["99223"] if i_ == 4 else ["99309"], ["charge970%d1" % i_] + (["charge97082"] if i_ == 8 else [])) for i_ in range(1, 9)], recon=dict({"vst970%d" % i_: DOC for i_ in range(1, 9)}, vst9706=NPL),
+ws9([srow("vst970%d" % i_, "pat97%d" % i_, "10/2%d/2026" % i_, ["99232"] if i_ == 4 else ["99309"], ["charge970%d1" % i_] + (["charge97082"] if i_ == 8 else [])) for i_ in range(1, 9)], recon=dict({"vst970%d" % i_: DOC for i_ in range(1, 9)}, vst9706=NPL),
     approved={"vst9701": _send, "vst9702": dict(_send, plans_in_force_today=[{"carrier": "UNI20", "seq": "1"}]), "vst9703": _send, "vst9704": _send, "vst9705": _send, "vst9706": _send,
               "vst9707": dict(_send, order="2", plans_in_force_today=[]), "vst9708": _send}, seed=[PILOT_DONE])
 DGB.add("971"); o, e = sweep("--resave", "--approved", APPF, "--live")
 check("8.2 the deceased guard blocks a save", e == "" and W[0].v["vst9701"].saves == [] and "the deceased guard blocks it (test)" in o, o[-900:])
 check("8.2 a plan at the lead sequence that is not the carrier the owner's file names: not saved (never a claim to another payer than he approved)", W[0].v["vst9702"].saves == [] and "the plan at sequence 1 is FLO02 now - the approved file names UNI20" in o, o[-900:])
 check("8.2 AdvancedMD's plan begins after the date of service: not saved", W[0].v["vst9703"].saves == [] and "AdvancedMD's plan at sequence 1 begins 10/30/2026, after the service date" in o, o[-900:])
-check("8.2 an admission date that is not sane (after the date of service): not saved", W[0].v["vst9704"].saves == [] and "its admission date 10/29/2026 is after its service date 10/24/2026" in o, o[-900:])
+check("8.2 an admission date that is not sane (after the date of service) on a follow-up visit of a chart with no initial hospital visit of ours: not saved (11/25/2026: an initial visit in that state gets its own date - the NEW ADMISSION checks below)", W[0].v["vst9704"].saves == [] and "for William: its admission date 10/29/2026 is after its service date 10/24/2026" in o, o[-900:])
 check("8.2 a payment on a charge the import register does not list (read just now through every live charge): never saved", W[0].v["vst9705"].saves == [] and "billed, paid or a balance on the patient on one of its 2 live charges" in o, o[-500:])
 check("8.2/8.4 the entered clinician must be the one the feed names: the nurse practitioner's visit under the physician is not saved", W[0].v["vst9706"].saves == [] and "entered under the physician (prof13), but the feed names the nurse practitioner (prof15)" in o, o[-900:])
 check("8.2 exactly one open plan at the lead sequence: an order whose plan the chart does not have is not saved", W[0].v["vst9707"].saves == [] and "0 open plan(s) at sequence 2 - exactly one is needed" in o, o[-900:])
@@ -887,21 +888,100 @@ o, e = sweep()
 check("OPS-2/NH7-3 a visit an earlier run saved (its list filled, not billed yet) is read again until it bills: its admission date, gone since that save, gets a TOP line for a person",
       e == "" and "TOP OF THE REPORT - FEED ORDER SWEEP - ADMISSION DATE LOST: pat969 vst9691 service date 10/14/2026: its admission date read 10/14/2026 before this helper's save" in o, o[-600:])
 # R7-REPLAY-2: two admission dates ONE day apart in one stay (the reviewer's exact shape) - both listed with it, neither saved; NH7-4 in the listing: 99497 first, the date on the 99223
-W[0] = SWorld({"970": med("970", "M970"), "974": med("974", "M974"), "977": med("977", "M977")}, SW("vst9801", [chg(98011, cpt="99223", pcode="pcode65101")], admit="10/27/2026"), SW("vst9802", [chg(98021, cpt="99232", pcode="pcode65102")], admit="10/28/2026"),
+W[0] = SWorld({"970": med("970", "M970"), "974": med("974", "M974"), "977": med("977", "M977"), "978": med("978", "M978")}, SW("vst9801", [chg(98011, cpt="99223", pcode="pcode65101")], admit="10/27/2026"), SW("vst9802", [chg(98021, cpt="99232", pcode="pcode65102")], admit="10/28/2026"),
               SW("vst9803", [chg(98031, cpt="99232", pcode="pcode65102", attrs={"datebilled": "11/02/2026", "insbilled": "1"})], lst="1", admit="10/28/2026"),
               SW("vst9804", [chg(98041, cpt="99497", pcode="pcode65299"), chg(98042, cpt="99223", pcode="pcode65101")], admit={"99223": "10/20/2026"}),
-              SW("vst9805", [chg(98051, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9806", [chg(98061, cpt="99232", pcode="pcode65102")], admit="10/25/2026"))
-ws9([srow("vst9801", "pat970", "10/27/2026", ["99223"], ["charge98011"], admit="20261027"), srow("vst9802", "pat970", "10/28/2026", ["99232"], ["charge98021"], admit="20261028"),
+              SW("vst9805", [chg(98051, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9806", [chg(98061, cpt="99232", pcode="pcode65102")], admit="10/25/2026"),
+              SW("vst9807", [chg(98071, cpt="99232", pcode="pcode65102")], admit="10/29/2026"))      # chart 978: a follow-up whose only date lies AFTER it, and no initial hospital visit of ours on the chart
+ws9([srow("vst9807", "pat978", "10/27/2026", ["99232"], ["charge98071"], admit="20261029"),
+     srow("vst9801", "pat970", "10/27/2026", ["99223"], ["charge98011"], admit="20261027"), srow("vst9802", "pat970", "10/28/2026", ["99232"], ["charge98021"], admit="20261028"),
      srow("vst9803", "pat970", "11/01/2026", ["99232"], ["charge98031"], admit="20261028"), srow("vst9804", "pat974", "10/20/2026", ["99497", "99223"], ["charge98041", "charge98042"], admit="20261020"),
      srow("vst9805", "pat977", "10/27/2026", ["99223"], ["charge98051"], admit="20261020"), srow("vst9806", "pat977", "10/28/2026", ["99232"], ["charge98061"], admit="20261025")],
-    recon={v_: DOC for v_ in ("vst9801", "vst9802", "vst9803", "vst9804", "vst9805", "vst9806")}, approved={"vst9801": _send, "vst9802": _send}, seed=[PILOT_DONE])
+    recon={v_: DOC for v_ in ("vst9801", "vst9802", "vst9803", "vst9804", "vst9805", "vst9806", "vst9807")}, approved={"vst9801": _send, "vst9802": _send, "vst9807": _send}, seed=[PILOT_DONE])
 o, e = sweep("--resave", "--approved", APPF, "--live")
-check("R7-REPLAY-2 two different admission dates within 3 days on one chart (10/27 and 10/28, one stay) are named on both visits' TOP lines and neither is saved until William settles the date",
-      e == "" and "two admission dates in one stay: vst9801 10/27/2026, vst9802 10/28/2026" in top(o, "vst9801") and "two admission dates in one stay: vst9802 10/28/2026, vst9801 10/27/2026" in top(o, "vst9802")
-      and W[0].v["vst9801"].saves == [] and W[0].v["vst9802"].saves == [] and "for William: two admission dates in one stay" in o, (top(o, "vst9801"), top(o, "vst9802")))
+check("R7-REPLAY-2 (CHANGED 11/25/2026 - William settled it on 11/19: the rule's date, and send) two different admission dates within 3 days on one chart (the 99223 of 10/27 with 10/27, its follow-up with 10/28): both are named on the TOP lines, NEITHER is held - the 99223 is saved as it is, the follow-up's date is written 10/27 first and then it is saved",
+      e == "" and top(o, "vst9801") == "" and top(o, "vst9802") == ""      # a visit this run saved and read back gets no TOP line
+      and len(W[0].v["vst9801"].saves) == 1 and len(W[0].v["vst9802"].saves) == 1 and W[0].v["vst9802"].admit == "10/27/2026" and W[0].v["vst9801"].admit == "10/27/2026"
+      and "for William: two admission dates in one stay" not in o, (top(o, "vst9801")[-400:], top(o, "vst9802")[-400:], W[0].v["vst9802"].admit, len(W[0].v["vst9801"].saves), len(W[0].v["vst9802"].saves)))
+_rs = [r_ for g_ in sreg("resave") for r_ in g_.get("rows") or [] if r_.get("visit") == "vst9802"]
+check("R7-REPLAY-2 ... the save's row says what was written: admit_write 10/27/2026, the date it read before, and the admission date read back after the save is the rule's",
+      len(_rs) == 1 and _rs[0].get("admit_write") == "10/27/2026" and "it read 10/28/2026" in str(_rs[0].get("admit_before")) and _rs[0].get("admit_after") == "10/27/2026" and _rs[0].get("ok") is True, _rs)
 check("8.1 (the builders' rule kept) two admission dates 5 days apart, both on or before both service dates, are still 'two admission dates in one stay'", "two admission dates in one stay: vst9805 10/20/2026, vst9806 10/25/2026" in top(o, "vst9805"), top(o, "vst9805"))
 check("NH7-4 the listing reads each hospital code's admission date from its own charge: a 99497 + 99223 visit whose date sits on the 99223 is not 'a hospital visit with no admission date'", top(o, "vst9804") != "" and "no admission date" not in top(o, "vst9804"), top(o, "vst9804"))
-check("OPS-5 a check only a person can clear says so: 'for William: ...' (here the admission date)", "FEED ORDER SAVE - not saved: pat970 vst9801 10/27/2026 (the owner's approved file (send)) - for William: two admission dates in one stay" in o, o[-900:])
+check("OPS-5 a check only a person can clear says so: 'for William: ...' (here the one admission-date hold that remains - a follow-up whose only date lies after it, on a chart with no initial hospital visit of ours)",
+      "FEED ORDER SAVE - not saved: pat978 vst9807 10/27/2026 (the owner's approved file (send)) - for William: its admission date 10/29/2026 is after its service date 10/27/2026" in o and W[0].v["vst9807"].saves == [], o[-900:])
+# NEW ADMISSION - THE ADMISSION DATE IS SET BY THE STANDING RULE, NOT HELD (William 11/19/2026: "there will be some 99223 admission dates after follow up dates which will be
+# valid"; 11/25/2026: "i now follow patients after dc from the inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer
+# valid to block a 99223 after a series of inpatient visits"). The shapes are the ones the feed really sends (the independent review of 11/25 replayed the import registers):
+# the follow-ups of a stay carry a date a day LATER than their 99223; a second 99223 carries the FIRST stay's date; a 99223 carries the day after its own date; the follow-ups
+# of a rehab stay arrive BEFORE its 99223 and carry the feed's later date.
+_NA = ("vst9811", "vst9812", "vst9813", "vst9814", "vst9821", "vst9822", "vst9823", "vst9831", "vst9832", "vst9841", "vst9842")
+W[0] = SWorld({"981": med("981", "M981"), "982": med("982", "M982"), "983": med("983", "M983"), "984": med("984", "M984")},
+              # chart 981 - hospital 99223 10/20 (date 10/20) + follow-up 10/21 (date 10/20); rehab 99223 10/22 (date 10/22) + follow-up 10/23 carrying 10/23, a day late
+              SW("vst9811", [chg(98111, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9812", [chg(98121, cpt="99232", pcode="pcode65102")], admit="10/20/2026"),
+              SW("vst9813", [chg(98131, cpt="99223", pcode="pcode65101")], admit="10/22/2026"), SW("vst9814", [chg(98141, cpt="99232", pcode="pcode65102")], admit="10/23/2026"),
+              # chart 982 - the second 99223 (10/23, two days after the first stay's last visit) carries the FIRST stay's date 10/20; its follow-up 10/24 carries 10/20 too
+              SW("vst9821", [chg(98211, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9822", [chg(98221, cpt="99223", pcode="pcode65101")], admit="10/20/2026"),
+              SW("vst9823", [chg(98231, cpt="99232", pcode="pcode65102")], admit="10/20/2026"),
+              # chart 983 - a 99223 of 10/19 whose date reads 10/20, the day AFTER it; its follow-up of 10/20 carries 10/20
+              SW("vst9831", [chg(98311, cpt="99223", pcode="pcode65101")], admit="10/20/2026"), SW("vst9832", [chg(98321, cpt="99232", pcode="pcode65102")], admit="10/20/2026"),
+              # chart 984 - hospital 99223 10/06; a rehab follow-up of 10/15 that carries 10/14 arrives BEFORE the rehab stay's own 99223: the feed's later date stands
+              SW("vst9841", [chg(98411, cpt="99223", pcode="pcode65101")], admit="10/06/2026"), SW("vst9842", [chg(98421, cpt="99233", pcode="pcode65103")], admit="10/14/2026"))
+ws9([srow("vst9811", "pat981", "10/20/2026", ["99223"], ["charge98111"], admit="20261020"), srow("vst9812", "pat981", "10/21/2026", ["99232"], ["charge98121"], admit="20261020"),
+     srow("vst9813", "pat981", "10/22/2026", ["99223"], ["charge98131"], admit="20261022"), srow("vst9814", "pat981", "10/23/2026", ["99232"], ["charge98141"], admit="20261023"),
+     srow("vst9821", "pat982", "10/20/2026", ["99223"], ["charge98211"], admit="20261020"), srow("vst9822", "pat982", "10/23/2026", ["99223"], ["charge98221"], admit="20261020"),
+     srow("vst9823", "pat982", "10/24/2026", ["99232"], ["charge98231"], admit="20261020"),
+     srow("vst9831", "pat983", "10/19/2026", ["99223"], ["charge98311"], admit="20261020"), srow("vst9832", "pat983", "10/20/2026", ["99232"], ["charge98321"], admit="20261020"),
+     srow("vst9841", "pat984", "10/06/2026", ["99223"], ["charge98411"], admit="20261006"), srow("vst9842", "pat984", "10/15/2026", ["99233"], ["charge98421"], admit="20261014")],
+    recon={v_: DOC for v_ in _NA}, approved={v_: _send for v_ in _NA}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+_adm_now = {v_: W[0].v[v_].admit for v_ in _NA}; _saved = {v_: len(W[0].v[v_].saves) for v_ in _NA}
+check("NEW ADMISSION (William 11/25/2026) no visit of these four charts is kept for William for its admission date - all eleven are saved", e == "" and all(n_ == 1 for n_ in _saved.values()) and "for William: two admission dates" not in o and "is after its service date" not in o, (e, _saved, o[-600:]))
+check("NEW ADMISSION a hospital stay then a rehab stay with its own 99223: each stay keeps its own date; the rehab follow-up that carried a date a day late gets the rehab 99223's date, written before its save",
+      [_adm_now[v_] for v_ in ("vst9811", "vst9812", "vst9813", "vst9814")] == ["10/20/2026", "10/20/2026", "10/22/2026", "10/22/2026"] and top(o, "vst9814") == "", ([_adm_now[v_] for v_ in ("vst9811", "vst9812", "vst9813", "vst9814")], top(o, "vst9814")[-300:]))
+check("NEW ADMISSION a second 99223 that carries the FIRST stay's date gets its own date, and the follow-up after it gets that date too - the first stay's 99223 is untouched",
+      [_adm_now[v_] for v_ in ("vst9821", "vst9822", "vst9823")] == ["10/20/2026", "10/23/2026", "10/23/2026"], [_adm_now[v_] for v_ in ("vst9821", "vst9822", "vst9823")])
+check("NEW ADMISSION a 99223 whose date reads the day AFTER its own date gets its own date, and its follow-up - whose date is then one day after it - the same",
+      [_adm_now[v_] for v_ in ("vst9831", "vst9832")] == ["10/19/2026", "10/19/2026"], [_adm_now[v_] for v_ in ("vst9831", "vst9832")])
+check("NEW ADMISSION a rehab follow-up that arrives before the rehab stay's own 99223 KEEPS the feed's later date (10/14, eight days after the hospital 99223) - it is not pulled back to the hospital admission",
+      [_adm_now[v_] for v_ in ("vst9841", "vst9842")] == ["10/06/2026", "10/14/2026"] and "becomes" not in top(o, "vst9842"), ([_adm_now[v_] for v_ in ("vst9841", "vst9842")], top(o, "vst9842")[-300:]))
+_rs = {r_.get("visit"): r_ for g_ in sreg("resave") for r_ in g_.get("rows") or []}
+check("NEW ADMISSION every save that wrote a date says so in its row (admit_write) and read the rule's date back after the save; a save that wrote none carries no such field",
+      {v_: _rs[v_].get("admit_write") for v_ in _NA if _rs[v_].get("admit_write")} == {"vst9814": "10/22/2026", "vst9822": "10/23/2026", "vst9823": "10/23/2026", "vst9831": "10/19/2026", "vst9832": "10/19/2026"}
+      and all(_rs[v_].get("ok") is True and _rs[v_].get("admit_after") == _adm_now[v_] for v_ in _NA), {v_: (_rs[v_].get("admit_write"), _rs[v_].get("admit_after"), _rs[v_].get("ok")) for v_ in _NA})
+# ... a date that cannot be written: the order is NOT saved, nothing else is sent, and it is no STOP - the next run writes it again
+W[0] = SWorld({"985": med("985", "M985")}, SW("vst9851", [chg(98511, cpt="99223", pcode="pcode65101")], admit="10/20/2026", restore=False))
+ws9([srow("vst9851", "pat985", "10/19/2026", ["99223"], ["charge98511"], admit="20261020")], recon={"vst9851": DOC}, approved={"vst9851": _send}, seed=[PILOT_DONE])
+o, e = sweep("--resave", "--approved", APPF, "--live")
+check("NEW ADMISSION the rule's date cannot be written (AdvancedMD keeps the old one): the order is NOT saved, the line says why, no STOP is raised - the next run tries again",
+      e == "" and W[0].v["vst9851"].saves == [] and "FEED ORDER SAVE - not saved: pat985 vst9851 10/19/2026 (the owner's approved file (send)) - its admission date could not be set to 10/19/2026 before the save (AdvancedMD refused it for 99223) - not saved, the next run tries again" in o and W[0].v["vst9851"].admit == "10/20/2026"
+      and "FEED ORDER SWEEP STOPPED" not in o, (e, len(W[0].v["vst9851"].saves), o[-700:]))
+o, e = sweep("--resave", "--approved", APPF)
+check("NEW ADMISSION a dry run writes nothing and says which date the save would write first", e == "" and W[0].v["vst9851"].saves == [] and W[0].v["vst9851"].admit == "10/20/2026"
+      and "FEED ORDER SAVE (dry run): would save pat985 vst9851 10/19/2026 insurance order 1 (the owner's approved file (send)) - its admission date 10/20/2026 -> 10/19/2026 first (the standing rule)" in o, o[-500:])
+# ... the same rule on the sweep's own function, taken from its source (no AdvancedMD, no files): (visit, service date, admission date[, codes]) per visit of the chart
+_asrc = SSRC[SSRC.index("def d8(x):"):SSRC.index("def jload(path):")] + SSRC[SSRC.index("def days_apart(a8, b8):"):SSRC.index("def approved(path):")]
+_ans = {"re": re, "datetime": datetime, "resave": types.SimpleNamespace(HOSP_CODES=set(SRS["HOSP_CODES"]))}; exec(_asrc, _ans); _adm = _ans["admission"]
+_I, _F = ["99223"], ["99232"]
+check("NEW ADMISSION (the function) the date is right: nothing kept, nothing written - the 99223 on its own date, a follow-up carrying its 99223's date, a chart with no initial visit whose date is not after the visit",
+      _adm("v1", "20261020", "20261020", _I, [("v1", "20261020", "20261020", _I)]) == ([], [], "") and _adm("v2", "20261021", "20261020", _F, [("v1", "20261020", "20261020", _I), ("v2", "20261021", "20261020", _F)]) == ([], [], "")
+      and _adm("v2", "20261021", "20261019", _F, [("v2", "20261021", "20261019", _F)]) == ([], [], ""))
+check("NEW ADMISSION (the function) the rule's date is written when the date is empty, after the service date, before the most recent initial visit, or the day after it - 99221, 99222 and 99223 alike",
+      all(_adm("v2", "20261021", f_, _F, [("v1", "20261020", "20261020", [c_]), ("v2", "20261021", f_, _F)])[2] == "20261020" for f_ in ("", "20261022", "20261015", "20261021") for c_ in ("99221", "99222", "99223"))
+      and _adm("v2", "20261021", "20261022", _F, [("v1", "20261020", "20261020", _I), ("v2", "20261021", "20261022", _F)])[0] == [])
+check("NEW ADMISSION (the function) the feed's date stands when it is two or more days after the most recent initial visit and not after the service date (a later admission whose own initial visit is not on the chart yet)",
+      _adm("v2", "20261015", "20261014", _F, [("v1", "20261006", "20261006", _I), ("v2", "20261015", "20261014", _F)]) == ([], [], "")
+      and (lambda r_: r_[0] == [] and r_[2] == "")(_adm("v2", "20261015", "20261008", _F, [("v1", "20261006", "20261006", _I), ("v2", "20261015", "20261008", _F)])))
+check("NEW ADMISSION (the function) an initial visit more than 45 days back anchors nothing: the feed's date stands; and the visit's OWN codes (the argument) make it an initial visit also when the chart list carries no codes",
+      _adm("v2", "20261215", "20261210", _F, [("v1", "20261020", "20261020", _I), ("v2", "20261215", "20261210", _F)]) == ([], [], "")
+      and _adm("v2", "20261022", "20261023", ["99497", "99223"], [("v1", "20261021", "20261020"), ("v2", "20261022", "20261023")])[2] == "20261022")
+check("NEW ADMISSION (the function) the ONE hold that remains: a hospital visit for which no date can be named - no date at all, or only a date after the visit - on a chart with no initial hospital visit of ours in the 45 days before",
+      _adm("v2", "20261021", "", _F, [("v2", "20261021", "", _F)]) == (["a hospital visit with no admission date"], [], "")
+      and _adm("v2", "20261021", "20261022", _F, [("v2", "20261021", "20261022", _F)]) == (["its admission date 10/22/2026 is after its service date 10/21/2026"], [], ""))
+check("NEW ADMISSION (the function) 'two admission dates in one stay' is said for the report and never keeps a visit; a visit with no hospital code is judged as before (only a date after its service date keeps it)",
+      (lambda r_: r_[0] == [] and r_[1] == ["two admission dates in one stay: v1 10/27/2026, v2 10/28/2026 - not held for it (William 11/19/2026)"] and r_[2] == "")(_adm("v1", "20261030", "20261027", _F, [("v1", "20261030", "20261027", _F), ("v2", "20261031", "20261028", _F)]))
+      and _adm("v9", "20261021", "20261022", ["99309"], [("v9", "20261021", "20261022", ["99309"])]) == (["its admission date 10/22/2026 is after its service date 10/21/2026"], [], "")
+      and _adm("v9", "20261021", "", ["99309"], [("v1", "20261020", "20261020", _I), ("v9", "20261021", "", ["99309"])]) == ([], [], ""))
 # R7-REPLAY-5 (the reviewer's exact input): a no-plan visit entered 31 days ago, its chart's first plan landed, the dated check active, not in the owner's file -> listed and saved by the standing word
 W[0] = SWorld({"975": [{"id": "ins975", "car": "car300", "seq": "1", "member": "U975"}]}, SW("vst9751", [chg(97511)]), SW("vst9752", [chg(97521)]))
 ws9([srow("vst9751", "pat975", "10/08/2026", ["99309"], ["charge97511"], days_ago=31, open_plans_at_entry=0, chart_insorder=""),
