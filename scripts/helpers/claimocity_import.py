@@ -450,6 +450,17 @@ def dob_note(feed8, chart8, today8):
     f = _real_dob(feed8, today8); c = _real_dob(chart8, today8)
     if f and c: return "same" if str(feed8) == str(chart8) else "differs: " + _slip(feed8, chart8)
     return "no birth date from Claimocity" if c else "chart has no birth date" if f else "no birth date on either side"
+def death_check_line(g):
+    """The run's date-of-death checks in ONE printed line (11/25/2026, William: "is stedi able to do that for free?"): asked free at AdvancedMD, answered free,
+    bought from the vendor - the deceased guard's own COUNTS (g = the loaded guard module, or None). "" when there is nothing to say: no guard loaded, a guard from
+    before (it has no COUNTS), counts of another shape, or nothing asked. Counts only - never a chart, a name or a date. It never raises."""
+    try:
+        c = getattr(g, "COUNTS", None)
+        if not isinstance(c, dict): return ""
+        fa, fn, pa = (int(c.get(k) or 0) for k in ("free asked", "free answered", "paid asked"))
+        if not (fa or pa): return ""
+        return "DEATH CHECK: AdvancedMD free asked x%d, answered x%d; vendor bought x%d%s" % (fa, fn, pa, "; free check off after 3 failures in a row" if getattr(g, "free_down", lambda: False)() else "")
+    except Exception: return ""
 def birth_dates_line(seen):
     """The ONE line a run prints about birth dates ("BIRTH DATES: ..."), or "" when there is nothing to say (no visit, or every visit's feed date is its chart's). seen =
     chart id -> the dob_note words of its visits in this run. Chart ids only - never a name, never a date. A chart whose visits differ in two ways is named once, with
@@ -2574,6 +2585,10 @@ def main():
         _bl = birth_dates_line(_dobs)
         if _bl: print(_bl)
     except Exception as e: print("BIRTH DATES: this line could not be built (%s) - read dob_note in the rows of the import register" % type(e).__name__)
+    # 11/25/2026: the date-of-death checks of this run (the care-management check before the entry) - free at AdvancedMD or bought from the vendor; before the
+    # place-of-service lines, like the line above
+    _dl = death_check_line(__import__("sys").modules.get("deceased_guard"))
+    if _dl: print(_dl)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
         # one SHORTALL line, like the next one (90 characters with one-digit counts, 110 with six-digit counts in all four places)

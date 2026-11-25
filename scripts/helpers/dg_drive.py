@@ -26,7 +26,7 @@ def unpack(drive_path, cache_paths):
         for pid, (dod, checked) in d.get("dated", {}).items():
             cur = c.get(pid) or {}
             if not (cur.get("dod") and DATE.match(str(cur.get("dod")))) or (checked or "") >= (cur.get("checked") or ""):
-                c[pid] = {**cur, "dod": dod, "checked": checked or cur.get("checked"), "src": cur.get("src") if cur.get("src", "").startswith("stedi-medicare-271") else "stedi-medicare-271 (drive copy)"}; n += 1
+                c[pid] = {**cur, "dod": dod, "checked": checked or cur.get("checked"), "src": cur.get("src") if cur.get("src", "").startswith(("stedi-medicare-271", "amd-medicare-271")) else "stedi-medicare-271 (drive copy)"}; n += 1
         for pid, checked in d.get("nodeath", {}).items():
             cur = c.get(pid) or {}
             if cur.get("dod") and DATE.match(str(cur.get("dod"))): continue          # a real date in the cache beats a no-death note

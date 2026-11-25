@@ -24,7 +24,17 @@
 #       sweep, rule (f) after a refusal of our provider number, and the price table's coordination-of-benefits sentence say what the code does;
 #     - (11/10/2026 second re-check) every text that describes the CS_OFF proposal (STEP 2, the sweep's header and its line, the rules'
 #       header and propose_off) names its look-back - no usable answer from any claim of the payer from 7 days before the first of the four
-#       tries until now - and none promises that a payer that answers its other claims is never named.
+#       tries until now - and none promises that a payer that answers its other claims is never named;
+#     - (11/25/2026, the date-of-death check before any approval) both live prompts start death_check_review.py in step 1 with the same
+#       clause - a BLOCKED charge never approved and voided; exit 2, a Python error or a count that differs = the guard applied by the run
+#       itself, nothing approved unchecked - and keep every other word of the step; the rulebook's new bullet holds William's order word for
+#       word, the answer to his question (the vendor is never free - AdvancedMD's check is) and the price table's prices; the Charge Review
+#       skill and the lessons file name the helper; the privacy gate leaves the helper, its self-test and every new sentence alone;
+#     - (review fix of 11/25/2026) the clause, the rulebook's bullet, the skill's sentence, the lessons line and the helper's header put the
+#       helper before ANY save of the Charge Review step - the two gates fix a visit with a full-visit save that carries approval 1 and
+#       asks no guard (read from recode.py, mod25_addon.py and dx_primary_fix.py), so no gate fix on a visit with a BLOCKED or NOT CHECKED
+#       charge - and name the number a run compares with its own listing: the charges LISTED, never the charges checked (smaller by every
+#       NOT CHECKED charge); a NOT CHECKED charge stays unapproved whatever a guard call of the run's own answers.
 # Run: python3 tools/selftest/test_lookup_texts.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, re, json, glob, types, datetime
 import importlib.abc, importlib.machinery
@@ -355,7 +365,112 @@ def t_review_texts():
     check("review texts: the price table's header says no committed helper makes a coordination-of-benefits check - not where September's came from (re-check NEW-7)",
           lambda: "one-off scripts" not in _header(SRC["stedi_prices.py"]) and "no committed helper makes one" in _header(SRC["stedi_prices.py"]), _header(SRC["stedi_prices.py"])[-500:])
 
-for t in (t_commands, t_precheck, t_claim_status, t_usage_and_prices, t_skill_and_docs, t_review_texts):
+# ==== 7. 11/25/2026 - the date-of-death check before any approval (William: "... verify date of death first ... is stedi able to do that for free?") ====
+W1125 = ("add into the billing codes routines when billing any ccm codes to straight medicare to do a stedi or advanced md check to see can you do a "
+         "check to verify date of death first so as not to bill any after the date of death to straight medicare is stedi able to do that for free? and "
+         "check before submitting stedi does that for free right")      # William's order, word for word
+DCR = "death_check_review.py"
+DCR_HEAD = "DEATH CHECK BEFORE ANY APPROVAL"
+DCR_BLOCK = "date of death before the date of service - do NOT approve; void (William 10/4 and 11/25/2026)"
+DCR_UNCHECKED = "could not be checked - do not approve this charge on this run"
+CR_SKILL = "skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md"
+def step1(text):
+    """The Charge Review step of a live prompt: the line that starts '1. CHARGE REVIEW:'."""
+    return next((l for l in text.splitlines() if l.startswith("1. CHARGE REVIEW:")), "")
+def t_death_check():
+    s1 = {"billing_button.txt": step1(BB), "columns.txt": step1(LIVE_TXT.get("columns.txt", ""))}
+    clause = {n: (l[l.find(DCR_HEAD):] if DCR_HEAD in l else "") for n, l in s1.items()}
+    hsrc = _read(H + DCR) if _exists(H + DCR) else ""; gsrc = _read(H + "deceased_guard.py")
+    check("death check: the helper the Charge Review step starts, death_check_review.py, is in the repository where the workspace builders copy helpers from, and both live prompts start it in step 1 - before approvecharges, with no option",
+          lambda: where(DCR) == H + DCR and all("before approvecharges run `python3 death_check_review.py`" in c for c in clause.values())
+          and sorted((tn, a.strip()) for tn, h, a in CMDS if os.path.basename(h) == DCR) == [("billing_button.txt", ""), ("columns.txt", "")], (where(DCR), [(tn, a) for tn, h, a in CMDS if os.path.basename(h) == DCR]))
+    old = "1. CHARGE REVIEW: getreviewcharges class=chargeentry per batch id from getclaiminspectorbatches. CCM / modifier-25 gate (99487 never carries 25; the add-on 99489 and 99497-with-99223/99306 get modifier 25 = mcode7"
+    check("death check: every other word of the two step-1 lines is kept - the clause stands at the END of each line, behind the line's old last sentence, and is the SAME clause in both prompts",
+          lambda: all(l.startswith(old) and "then approvecharges for a clean batch; flag anything that fails the gate. PRIMARY-DX GATE" in l and "the F02.8x -> F03.90 inspector swap still applies where the inspector raises it." in l for l in s1.values())
+          and "The deceased guard runs before every approval. " + DCR_HEAD in s1["billing_button.txt"] and "- catch it here, before the claim goes out. " + DCR_HEAD in s1["columns.txt"]
+          and clause["billing_button.txt"] == clause["columns.txt"] != "" and all(l.count(DCR_HEAD) == 1 for l in s1.values()), {n: l[-260:] for n, l in s1.items()})
+    c = clause["columns.txt"]
+    check("death check: the clause says what a run does with the helper's lines - a BLOCKED charge is never approved and is voided (rules.md 10/4 and 11/25/2026), a NOT CHECKED charge is not approved on this run - and that exit 3 is an answer, not a failure of the helper",
+          lambda: "a charge it lists as BLOCKED is never approved" in c and "and is voided (rules.md 10/4 and 11/25/2026)" in c and "a charge it lists as NOT CHECKED is not approved on this run" in c
+          and "exit 0 = every charge checked and none blocked; exit 3 = an answer too, not a failure: at least one charge BLOCKED or NOT CHECKED" in c and "an UNVERIFIED line is no block" in c, c)
+    check("death check: ... and what it does when the helper itself fails - exit 2 or a Python error: said at the top of the report, the guard applied to every charge by the run itself as before (deceased_guard.check with the claim's first carrier and the code - the call the runs' own code made - or deceased_guard.check_charge), nothing approved unchecked",
+          lambda: "exit 2" in c and "a Python error" in c and "say so at the top of the report" in c and "approve nothing this run" in c and "`deceased_guard.check_charge(<charge id>, <first number of the visit's insorder>)`" in c
+          and "as before (`deceased_guard.check(<chart>, <date of service>, <the carrier the claim goes to first>, <the code>)` for each charge, or `deceased_guard.check_charge(" in c
+          and c.rstrip().endswith("the helper is a faster, tested way to do the same check, never a reason to approve unchecked."), c[-640:])
+    # review fix of 11/25/2026: the texts first told a run to compare the number of charges CHECKED with its own listing. That number is smaller
+    # by every NOT CHECKED charge, so every answer with one tripped the rule and sent the run to guard calls of its own - and
+    # deceased_guard.check_charge answers 'not blocked' when it has nothing to compare. The number to compare is the number LISTED.
+    check("death check: ... and that the number of charges the helper's summary line says it LISTED - the line's first number, as the helper prints it - must equal the number of charges in the run's own listing of Charge Review, taken before any save; never the number checked, which is smaller by every NOT CHECKED charge - if the two differ, the same",
+          lambda: "the number of charges its summary line says it listed - the line's FIRST number; the number checked is smaller by every NOT CHECKED charge and is not the one to compare - must equal the number of charges in your own listing of Charge Review, taken before any save" in c
+          and "says it checked must equal" not in c and "the same when the two numbers differ" in c and '"DEATH CHECK - Charge Review: %d charge(s) on %d visit(s) listed, %d checked; ' in hsrc, c)
+    # review fix of 11/25/2026: the texts first said only "before approvecharges". The step's two gates save before that: they fix a visit with
+    # a full-visit save that carries approval 1 and asks no guard; a visit saved that way may leave Charge Review approved, and the helper
+    # lists only what is still there.
+    gates = {n: _read(H + n) for n in ("recode.py", "mod25_addon.py", "dx_primary_fix.py")}
+    def body(src, name):
+        """The text of one top-level function of a helper, up to the next top-level def."""
+        m = re.search(r"^def %s\(.*?(?=^def |\Z)" % re.escape(name), src, re.S | re.M); return m.group(0) if m else ""
+    check("death check, review fix of 11/25/2026: the clause puts the helper before ANY save of the step - before either gate saves its fix, not only before approvecharges - and says why; the code bears it out: the modifier-25 fix (mod25_addon.py -> recode._save) and the primary-dx fix (dx_primary_fix.save_visit_dx) are full-visit saves (updvisitwithcharges) that carry approval 1, and none of the three files asks the deceased guard",
+          lambda: "IT COMES BEFORE ANY SAVE IN THIS STEP - before either gate above saves its fix, not only before approvecharges: the modifier-25 fix and the primary-dx fix are full-visit saves that carry approval=1 and ask no guard, so treat each as an approval, and the helper lists only what is still waiting in Charge Review - a visit such a save has taken out of Charge Review is never put through it." in c
+          and 0 < c.find("IT COMES BEFORE ANY SAVE IN THIS STEP") < c.find("Its last line is the summary line")
+          and all("updvisitwithcharges" in b_ and re.search(r'"approval"\s*:\s*"1"', b_) is not None for b_ in (body(gates["recode.py"], "_save"), body(gates["dx_primary_fix.py"], "save_visit_dx")))
+          and "recode._save(" in gates["mod25_addon.py"] and not any("deceased_guard" in s for s in gates.values()), c[:900])
+    # What these two sentences say of deceased_guard.check_charge is shown with the REAL guard, not read from its text: tools/selftest/test_death_check_review.py 10x3 and 10x4.
+    check("death check, review fix of 11/25/2026: the visit of a BLOCKED or a NOT CHECKED charge gets no gate fix and stays out of approvecharges; a NOT CHECKED charge stays unapproved whatever a guard call of the run's own answers for it (the guard's check_charge raises nothing when it has nothing to compare)",
+          lambda: "a charge it lists as BLOCKED is never approved - its visit gets no gate fix and stays out of approvecharges - and is voided (rules.md 10/4 and 11/25/2026)" in c
+          and "a charge it lists as NOT CHECKED is not approved on this run - its visit gets no gate fix and stays out of approvecharges too, whatever a guard call of your own answers for it (deceased_guard.check_charge raises nothing when it has nothing to compare: it answers 'not blocked')" in c, c)
+    check("death check, review fix of 11/25/2026: when the run has to apply the guard itself, the call to use is deceased_guard.check with the claim's own carrier and code; check_charge only where the charge's own detail shows a plan element with its carrier at that sequence and the code is no care-management code - and no gate fix is saved on a visit before the guard has answered for its charges",
+          lambda: "`deceased_guard.check_charge(<charge id>, <first number of the visit's insorder>)` - that one only where the charge's own detail shows a plan element with its carrier at that sequence and the code is no care-management code: with less to go on it may ask Medicare nothing), with no gate fix saved on a visit before the guard has answered for its charges, and the same when the two numbers differ" in c, c[-900:])
+    check("death check, review fix of 11/25/2026: the helper's own header names the same number - N, the charges LISTED, never K, the charges checked - and the same order: before approvecharges and before any save of a Charge Review visit",
+          lambda: "N - the charges LISTED, the line's first number - is the number a run compares with its own listing" in _header(hsrc) and "K is NOT that number" in _header(hsrc) and "K is the number a run compares" not in _header(hsrc)
+          and "BEFORE approvecharges AND BEFORE ANY SAVE of a Charge Review visit" in _header(hsrc), _header(hsrc)[:700])
+    check("death check: the words the texts rely on are the helper's own - its BLOCKED and NOT CHECKED lines with the fixed words, the summary line, the three exit codes, --dry, the register's name, its two questions to the guard (check_charge at sequence 1 for every charge; check with the first plan's carrier and the code) - and both guard calls exist as the texts write them",
+          lambda: all(x in hsrc for x in ('"%s"' % DCR_BLOCK, '"%s"' % DCR_UNCHECKED, '"BLOCKED: pat%s visit %s charge %s DOS %s code %s - "', '"NOT CHECKED: pat%s visit %s charge %s (%s) - "', '"DEATH CHECK - Charge Review: ', '"--dry"',
+                                           '"death_check_review_%s%s.json"', "return 2", "3 if ", "G.check_charge(cid, 1, allow_lookup=False) if dry else G.check_charge(cid, 1)", 'G.check(w["chart"], w["dos"], carrier, w["cpt"] or w["proc"] or None, allow_lookup=not dry)'))
+          and "EXIT: 0 =" in _header(hsrc) and re.search(r"^def check_charge\(chargeid, sequencenumber=None, allow_lookup=True", gsrc, re.M) is not None
+          and re.search(r"^def check\(pid, dos, carrier=None, proc=None, allow_lookup=True", gsrc, re.M) is not None, hsrc[:200])
+    rb = _read("practices/ehpa/rules.md").splitlines()
+    i = next((k for k, l in enumerate(rb) if l.startswith("- (11/25/2026, William in chat, STANDING for the charge feed) CCM AFTER A PATIENT HAS PASSED AWAY")), -1)
+    b = rb[i + 1] if 0 <= i < len(rb) - 1 else ""
+    check("rulebook: ONE new bullet right behind 'CCM AFTER A PATIENT HAS PASSED AWAY' holds William's order of 11/25/2026 word for word and his question's answer - the vendor is never free, AdvancedMD's check is",
+          lambda: b.startswith("- (11/25/2026, William in chat, STANDING for every billing task) ") and ('"%s"' % W1125) in b and "the vendor is never free - AdvancedMD's check is" in b
+          and sum(1 for l in rb if W1125 in l) == 1, b[:300])
+    check("rulebook: the bullet says what is in force - the check runs before a CCM charge is entered from the feed, before any charge is approved in Charge Review (death_check_review.py) and before any rebill; the free check first, a vendor answer only when the free one cannot answer; a failed check blocks nothing and is said",
+          lambda: "before a CCM charge is entered from the feed" in b and "before any charge is approved in Charge Review - death_check_review.py" in b and "and before any rebill" in b
+          and "it asks AdvancedMD's free check" in b and "first and buys a vendor answer only when the free one cannot answer" in b
+          and "A failed check blocks nothing - only a date on Medicare's record does" in b and "and is said" in b, b[-900:])
+    check("rulebook, review fix of 11/25/2026: the bullet says the helper is started before approvecharges AND before either Charge Review gate saves its fix (those fixes are full-visit saves that carry approval 1 and ask no guard), that the visit of a BLOCKED or NOT CHECKED charge gets no gate fix, and that a NOT CHECKED charge stays unapproved whatever a guard call of the run's own answers",
+          lambda: "the standing read-only helper a run starts before approvecharges and before either Charge Review gate saves its fix (the modifier-25 fix and the primary-dx fix are full-visit saves that carry approval 1 and ask no guard: each is treated as an approval)" in b
+          and "not approved on that run, whatever a guard call of the run's own answers for it; the visit of a BLOCKED or NOT CHECKED charge gets no gate fix" in b
+          and "as before (deceased_guard.check with the claim's first carrier and the code; deceased_guard.check_charge only where the charge's own detail shows that plan's carrier and the code is no care-management code), saves no gate fix on a visit before the guard has answered for its charges, and approves nothing it has not checked" in b, b[-1300:])
+    L = PR.LADDERS
+    check("rulebook: the prices the bullet states are stedi_prices.py's (a plain Medicare check $0.30 for the month's first 250, then $0.15; the look-up by name $1.00 for the first 100, then $0.75)",
+          lambda: L["eligibility"][:2] == [(250, 0.30), (3500, 0.15)] and PR.ladder_of("plain Medicare") == "eligibility" and L["look-up without SSN"][:2] == [(100, 1.00), (750, 0.75)]
+          and "stedi_prices.py: a plain Medicare check $0.30 each for the month's first 250, then $0.15; the look-up by name $1.00 each for the first 100, then $0.75" in b, b[:700])
+    sk = _read(CR_SKILL); guard_sec = sk.split("## Deceased-patient guard", 1)[1] if "## Deceased-patient guard" in sk else ""
+    check("skill: the Charge Review skill's 'Deceased-patient guard' section names the helper in one sentence - started before approvecharges, read-only, and never a reason to approve unchecked",
+          lambda: guard_sec.count("death_check_review.py") == 1 and "Before approvecharges run the standing helper `python3 death_check_review.py`" in guard_sec and "approve nothing you have not checked" in guard_sec, guard_sec[-500:])
+    check("skill, review fix of 11/25/2026: the sentence says the helper runs before any save of a Charge Review visit too (the gates' fixes are saves that carry approval 1 and ask no guard; no such fix on a visit with a BLOCKED or NOT CHECKED charge), that a NOT CHECKED charge stays unapproved whatever a guard call of the run's own answers, and that the count to compare with the run's own listing is the count LISTED - never the count checked",
+          lambda: 'run it before any save of a Charge Review visit too - the modifier-25 fix and the primary-dx fix are full-visit saves that carry approval="1" and ask no guard, so each is treated as an approval, and a visit with a BLOCKED or NOT CHECKED charge gets no such fix' in guard_sec
+          and "(not approved on this run, whatever a guard call of your own answers for it)" in guard_sec
+          and "a last summary line whose count of charges LISTED (its first number - not the count checked, which is smaller by every NOT CHECKED charge) must equal the number of charges in your own listing of Charge Review" in guard_sec
+          and "count of charges checked must equal" not in guard_sec, guard_sec[-1700:])
+    ls = [l for l in _read("docs/SHARED_LESSONS.md").splitlines() if l.startswith("- 2026-11-25T0800Z | chat (William: date-of-death check before CCM to Medicare; is the vendor free?) | FIX | ")]
+    check("lessons: ONE dated line (kind FIX, five fields) records the change for every other routine - the free check first, the standing helper, its exit codes and the fallback",
+          lambda: len(ls) == 1 and ls[0].count(" | ") == 4 and all(x in ls[0] for x in ("death_check_review.py", "the vendor is never free", "exit 0", "3 =", "2 =", "deceased_guard.check_charge")), ls[:1])
+    check("lessons, review fix of 11/25/2026: that line says the helper is started before approvecharges AND before any save of a Charge Review visit, names the trap of the step's order (the gates fix a visit with a full-visit save that carries approval 1 and asks no guard), the count LISTED as the number to compare with the run's own listing - never the count checked - and that a NOT CHECKED charge stays unapproved whatever a guard call of the run's own answers",
+          lambda: len(ls) == 1 and all(x in ls[0] for x in ("Before approvecharges AND BEFORE ANY SAVE OF A CHARGE REVIEW VISIT a run starts `python3 death_check_review.py`", "a count of charges LISTED - the summary line's first number; never the count checked, which is smaller by every NOT CHECKED charge, the helper working as designed - that differs from the run's own listing (taken before any save)",
+                                                             "TRAP of the step's order", "full-visit save that carries approval 1 and asks no guard", "a visit such a save has taken out of Charge Review is never listed by the helper",
+                                                             "(not approved on that run, whatever a guard call of the run's own answers for it)", "as before (deceased_guard.check with the claim's first carrier and the code - not deceased_guard.check_charge alone: the trap below)"))
+          and "a count of charges checked that differs" not in ls[0], [x[-1500:] for x in ls[:1]])
+    GATE = load("tools/mirror/phi_gate.py", "phi_gate_under_test_2")                  # the gate's text transform only: pure, no file, no network
+    code = ("tools/selftest/test_death_check_review.py", H + DCR)
+    moved = [n for n in code if not _exists(n) or GATE.redact(_read(n), {}, code=True) != _read(n)]
+    prose = {"billing_button.txt step 1": s1["billing_button.txt"], "columns.txt step 1": s1["columns.txt"], "rules.md bullet": b, "the skill's guard section": guard_sec, "the lessons line": (ls or [""])[0]}
+    moved += [n for n, t in prose.items() if not t or GATE.redact(t, {}, code=False) != t]
+    check("death check: the privacy gate's tree rules leave the helper, its self-test and every new sentence exactly as they are (a date written right behind the word death would be rewritten - none is)", lambda: moved == [], moved)
+
+for t in (t_commands, t_precheck, t_claim_status, t_usage_and_prices, t_skill_and_docs, t_review_texts, t_death_check):
     try: t()
     except Exception as e:
         import traceback

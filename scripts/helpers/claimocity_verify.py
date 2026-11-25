@@ -546,6 +546,17 @@ def same_person_yes(path="registers/feed_same_person.json"):
             ids = {i for i in v["feed_ids"] if isinstance(i, str) and i}
             if ids: out.setdefault(num, set()).update(ids)
     return out, ""
+def death_check_line(g):
+    """The run's date-of-death checks in ONE printed line (11/25/2026, William: "is stedi able to do that for free?"): asked free at AdvancedMD, answered free,
+    bought from the vendor - the deceased guard's own COUNTS (g = the loaded guard module, or None). "" when there is nothing to say: no guard loaded, a guard from
+    before (it has no COUNTS), counts of another shape, or nothing asked. Counts only - never a chart, a name or a date. It never raises."""
+    try:
+        c = getattr(g, "COUNTS", None)
+        if not isinstance(c, dict): return ""
+        fa, fn, pa = (int(c.get(k) or 0) for k in ("free asked", "free answered", "paid asked"))
+        if not (fa or pa): return ""
+        return "DEATH CHECK: AdvancedMD free asked x%d, answered x%d; vendor bought x%d%s" % (fa, fn, pa, "; free check off after 3 failures in a row" if getattr(g, "free_down", lambda: False)() else "")
+    except Exception: return ""
 def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
     """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's
     getdemographic answer gives them (name "LAST,FIRST ...", dob MM/DD/YYYY) - the answer the caller already holds, so this costs no call. first, last, dob8 = what the
@@ -801,5 +812,7 @@ def main():
         out[pid] = rec
         json.dump({k: v for k, v in out.items() if k not in prev or v is not prev.get(k)} if OUTF != ("feed_verify_%s.json" % STAMP) else out, open(OUTF, "w"), indent=1)
         if n % 25 == 0: print("progress", n, dict(stats))
+    _dl = death_check_line(deceased_guard)      # what this step itself asked about a patient who has passed away - free at AdvancedMD or bought (its own process, its own counts; added 11/25/2026)
+    if _dl: print(_dl)
     print("DONE", dict(stats))
 if __name__ == "__main__": main()

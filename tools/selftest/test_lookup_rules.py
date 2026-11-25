@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # PLAIN ENGLISH (offline self-test of the Medicare-answer rules - look-ups part A, 11/10/2026)
 # Decides: nothing. Loads the vendor client (scripts/helpers/stedi.py), the Medicare answer store (medicare_store.py), the deceased-
-#   patient guard (deceased_guard.py), the nightly pre-claim check (precheck.py), the price table (stedi_prices.py), the usage reader
+#   patient guard (deceased_guard.py), the reader of AdvancedMD's free eligibility answer the guard uses (elig_amd.py, since 11/25/2026),
+#   the nightly pre-claim check (precheck.py), the price table (stedi_prices.py), the usage reader
 #   (stedi_usage.py) and the engine's cascade step (tools/button/run_all.py) INSIDE this process, from their files, with stand-in modules
 #   for everything that talks to AdvancedMD or the vendor: a request counter answers every vendor request from a canned table. No network,
 #   no AdvancedMD, no vendor, no patient data - every chart, name, number and date here is invented at run time. It proves:
@@ -36,6 +37,24 @@
 #     - (11/10/2026 second re-check, kept as it is) when the guard's own call fails, the death an OLDER kept answer shows blocks even when
 #       a newer kept answer shows none, it goes into the guard's cache and the chart's next claim is blocked with no call - and the
 #       guard's header says so.
+#     - (11/25/2026, William: "do a stedi or advanced md check ... is stedi able to do that for free?") the guard asks AdvancedMD's FREE
+#       eligibility check first, on the chart's Medicare plan (the plan whose number the vendor would be asked with), and buys the vendor's
+#       answer only when the free check gives no usable answer: a date of death in the free answer blocks in the same words and buys
+#       nothing; ACTIVE with Part A or Part B, no rejection and stamps of today keeps 'no death on record' and buys nothing; a rejection,
+#       INACTIVE with no date, an unreadable answer, a status other than 200, a time-out, any error, an answer AdvancedMD kept from an
+#       earlier day -> the paid call exactly as before, with the same arguments; no Medicare plan -> no free check; the switch
+#       DEATH_CHECK_FREE=off; 3 failures in a row switch the free check off for the run; a death in the cache -> no call at all; an answer
+#       the answer store already holds is used first, as before; a death the free check found still blocks when the cache file is lost
+#       and nothing can be asked; COUNTS; nothing printed, nothing written in the working directory. The stand-in AdvancedMD answers the
+#       free check 'Medicare cannot answer now' for every plan a test does not name, so every guard check written before that day runs
+#       through the free check too and proves that an unusable free answer changes nothing.
+#     - (11/25/2026, the independent review of that change - section 4c) a date-of-death segment whose date cannot be read (empty,
+#       missing, null, blanks, a text that is no date) is never 'no death on record', beside ACTIVE lines too: the plain check is bought
+#       as before; the note of a free date of death in the answer store leaves the store's 'asked and failed today' mark as it was, so
+#       no helper buys the failing chart again that day; an answer that came but cannot be read is not 'down' and does not count toward
+#       the 3; and the rules no check pinned before: the store is asked with the guard's 30 days and about the claim's own date of
+#       service, only HTTP 200 is an answer, each of the answer's three stamps must be of today, a vendor call that raises is still
+#       counted as bought; the marker the mirror holds for the guard is a string the guard carries.
 # Run: python3 tools/selftest/test_lookup_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback
 import importlib.abc, importlib.machinery
@@ -88,6 +107,7 @@ def _read(rel):
 TMP = tempfile.mkdtemp(prefix="lookuprules_"); atexit.register(shutil.rmtree, TMP, True)
 STORE = os.path.join(TMP, "patient_db", "medicare_answers.json"); ULOG = os.path.join(TMP, "patient_db", "stedi_usage.log"); DCACHE = os.path.join(TMP, "registers", "deceased_cache.json")
 os.environ.update(MEDICARE_STORE=STORE, STEDI_USAGE_LOG=ULOG, DECEASED_CACHE=DCACHE)
+os.environ.pop("DEATH_CHECK_FREE", None)          # 11/25/2026: the guard's free check runs as a workspace has it by default (on), whatever this shell says
 def _snapshot():
     out = {}
     for d, dirs, files in os.walk(ROOT):
@@ -218,7 +238,7 @@ def chart(pid, p=None, plans=(), deceased="", last=None):
     return str(pid)
 def _chart_xml(pid):
     c = CHARTS[str(pid)]
-    plans = "".join('<insplan id="ins%d" carrier="%s" begindate="%s" enddate="%s" x="" subscribernum="%s" y="" sequence="%d"/>' % (i + 1, car, mdy(datetime.date(2015, 1, 1)), end, num, i + 1)
+    plans = "".join('<insplan id="ins%s" carrier="%s" begindate="%s" enddate="%s" x="" subscribernum="%s" y="" sequence="%d"/>' % (ins(pid, i + 1), car, mdy(datetime.date(2015, 1, 1)), end, num, i + 1)      # 11/25/2026: a plan id of its own per chart and plan (ins(), below) - the free check is asked by plan id
                     for i, (car, end, num) in enumerate(c["plans"]))
     return '<r><patient name="%s" dob="%s" deceased="%s" state="FL"/>%s</r>' % (c["name"], c["dob"], c["deceased"], plans)
 def _amd_post(body, timeout=0):
@@ -229,6 +249,64 @@ fake_era = standin("era_post", API=ERA_API, H=lambda: {"Content-Type": "applicat
 RESAVE = {}
 fake_resave = standin("resave", detail=lambda cid_: RESAVE[str(cid_)])
 sys.modules.update({"requests": fake_requests, "amd": fake_amd, "era_post": fake_era, "resave": fake_resave, "deceased_guard": fake_guard})
+
+# ---- stand-in for AdvancedMD's FREE eligibility check, amd.check_eligibility (11/25/2026) -----------------------------------------
+# The guard asks it FIRST. The stand-in answers per insurance-plan id from FREE; a plan no test names gets 'Medicare cannot answer now'
+# (a rejection, AAA 42) - an answer that is NOT usable - so every guard check written before 11/25/2026 runs through the free check
+# too and proves on its way that an unusable free answer leaves the paid path exactly as it was. An answer has the shape
+# elig_amd.summarize reads (docs/captured_calls.md: <PPMDResults><Results ...><Edi271>...; or the same as JSON, attributes as "@name")
+# and carries what a real one carries - the name, the Medicare number, the birth date - all invented and put together at run time.
+import xml.etree.ElementTree as ET
+FREE = {}                       # insurance-plan digits -> ("answer", body) / ("http", status[, body]) / ("timeout",) / ("raise",)
+FREE_ASKED = []                 # every free check since the last reset(): (the plan id as the guard passed it, service type, time-out)
+FREE_TOTAL = [0]                # every free check of the whole run (never reset)
+def ins(pid, i=1):
+    """The digits of the insurance-plan id of plan i (1 = the first) of an invented chart: what the free check is asked with."""
+    return "%s%d" % (pid, i)
+def amd_stamp(days_back=0):
+    """A stamp as AdvancedMD writes it on an eligibility answer: its own clock, 7 hours behind UTC, MM/DD/YYYY HH:MMPM."""
+    return (datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None) - datetime.timedelta(hours=7, days=days_back)).strftime("%m/%d/%Y %I:%M%p")
+def free271(p=None, status="active", parts=("MA", "MB"), death8=None, aaa=(), stamp=0, shape="xml"):
+    """One free answer of the stand-in AdvancedMD. status: active (benefit lines with code 1) / inactive (code 6) / rejected or unknown (no
+    benefit line); parts: the insurance types of the benefit lines; aaa: rejection codes; stamp: how many days back the answer's three own
+    stamps are (a triple = created, changed, response; a word = written as it is; None = no stamp); shape 'json' = as AdvancedMD sometimes sends it.
+    death8: the text of the answer's date-of-death segment (qualifier 442); a tuple = one such segment per item, in that order - '' is a segment
+    with an empty date, None one with no date in it at all (the attribute left out; null in the JSON shape)."""
+    p = p or dict(first="NOPLAN", last="ZZNOPLAN", dob8=ymd(datetime.date(1940, 1, 2)), number="")
+    root = ET.Element("PPMDResults")
+    res = ET.SubElement(root, "Results", dict(eligibilityid="89" + "2" * 5, eligibilitystatusid="1" if status in ("active", "inactive") else "20",
+                                              patientname=nm(p["last"], p["first"]), subscriberid=p.get("number") or ""))
+    if stamp is not None:
+        for k, d in zip(("eligibilitycreatedat", "eligibilitychangedat", "eligibilityresponsedate"), stamp if isinstance(stamp, tuple) else (stamp,) * 3):
+            res.set(k, d if isinstance(d, str) else amd_stamp(d))
+    edi = ET.SubElement(res, "Edi271")
+    for code in aaa: ET.SubElement(edi, "RequestValidation", dict(AAA01_ValidRequestIndicator="Y", AAA03_RejectReasonCode=code, AAA04_FollowUpActionCode="C"))
+    sub = ET.SubElement(edi, "Subscriber")
+    ET.SubElement(sub, "Name", dict(NM101_EntityIdentifierCode="IL", NM103_LastOrOrganizationalName=p["last"], NM104_FirstName=p["first"], NM109_IdentificationCode=p.get("number") or ""))
+    ET.SubElement(sub, "DemographicInformation", dict(DMG02_DateTimePeriod=p["dob8"], DMG03_GenderCode="F"))
+    for d in (death8 if isinstance(death8, tuple) else ((death8,) if death8 else ())):
+        seg = dict(DTP01_DateTimeQualifier="442", DTP02_DateTimePeriodFormatQualifier="D8")
+        if d is not None or shape != "xml": seg["DTP03_DateTimePeriod"] = d       # None: the segment carries no date (11/25/2026 review, finding 1)
+        ET.SubElement(sub, "DTPSegment", seg)
+    for typ in (parts if status in ("active", "inactive") else ()):
+        w = ET.SubElement(sub, "EligibilityOrBenefitInformation")
+        ET.SubElement(w, "EligibilityOrBenefitInformation", dict(EB01_EligibilityOrBenefitInformationCode="1" if status == "active" else "6", EB03_ServiceTypeCode="30", EB04_InsuranceTypeCode=typ))
+        ET.SubElement(w, "DTPSegment", dict(DTP01_DateTimeQualifier="291", DTP03_DateTimePeriod=ymd(datetime.date(2015, 1 if typ == "MA" else 2, 1))))
+    if shape == "xml": return ET.tostring(root, encoding="unicode")
+    def conv(e):                                           # the JSON shape: attributes as "@name", a repeated child as a list
+        d = {"@" + k: v for k, v in e.attrib.items()}
+        for c in e: d[c.tag] = conv(c) if c.tag not in d else (d[c.tag] if isinstance(d[c.tag], list) else [d[c.tag]]) + [conv(c)]
+        return d
+    return {root.tag: conv(root)}
+def _amd_free(insplan_id, stc="30", timeout=120):
+    FREE_ASKED.append((str(insplan_id), stc, timeout)); FREE_TOTAL[0] += 1
+    ov = FREE.get(re.sub(r"\D", "", str(insplan_id)))
+    if ov is None: return 200, free271(status="rejected", aaa=("42",))      # nothing said about this plan: Medicare cannot answer now - not a usable answer
+    if ov[0] == "timeout": raise FakeTimeout("read timed out")
+    if ov[0] == "raise": raise RuntimeError("connection reset")
+    if ov[0] == "http": return ov[1], (ov[2] if len(ov) > 2 else "<html><body>the stand-in's error page</body></html>")
+    return 200, ov[1]
+fake_amd.check_eligibility = _amd_free
 
 # ---- loading the code under test from its file (never by import) ----------------------------------------------------------------
 def imports(src):
@@ -291,6 +369,11 @@ def reset():
     ST.WHO = "test_lookup_rules.py"
     if hasattr(ST, "_PLAIN_OFF"): del ST._PLAIN_OFF[:]           # a refusal of our provider number holds for one run (one process) - each case is a new run
     if DG is not None: del DG.LOG[:]; DG._ASKED.clear()
+    del FREE_ASKED[:]; FREE.clear(); os.environ.pop("DEATH_CHECK_FREE", None)      # 11/25/2026: the free check - each case is a new run: nothing said about any plan, the switch not set,
+    if DG is not None:                                                             # COUNTS at zero and no failure in a row behind it
+        for k in getattr(DG, "COUNTS", {}): DG.COUNTS[k] = 0
+        if hasattr(DG, "_FREE_FAILS"): DG._FREE_FAILS[0] = 0
+        if hasattr(DG, "_FREE"): DG._FREE.clear()
 def kinds(): return [b.get("tradingPartnerServiceId") or ("discovery" if "discovery" in u else "?") for u, b in SENT]
 def ask(*a, **k):
     err = io.StringIO()
@@ -901,6 +984,496 @@ def t_guard_charge():
     with contextlib.redirect_stderr(err): r = DG.check_charge("555", 1)
     check("guard: check_charge reads the charge and blocks a straight-Medicare claim after a death learned from the plain check", lambda: r[0] is True and kinds() == ["CMS"], r)
 
+# ==== 4b. the guard asks AdvancedMD's FREE check first (William 11/25/2026 - rules A1 to A11 of his order) ======================
+BLOCK = "pat%s DOS %s is after date of death %s (%s) - claim must not be submitted; void the charge"
+UNVERIFIED = "pat%s DOS %s: date of death UNVERIFIED (lookup failed)"
+def counts():
+    """The guard's COUNTS as (asked free, answered free, bought); None on a guard that keeps none."""
+    c = getattr(DG, "COUNTS", None)
+    return tuple(c.get(k) for k in ("free asked", "free answered", "paid asked")) if isinstance(c, dict) else None
+def free_is(pid, i=1, **kw): FREE[ins(pid, i)] = ("answer", free271(**kw))
+def free_death(pid, p, **kw): free_is(pid, p=p, death8=p["death8"], **dict(dict(status="inactive"), **kw))      # Medicare answers INACTIVE after a death, and gives the date
+def guard_said(pid, dos, carrier="car6085", proc="99309"):
+    """The guard's answer and everything it printed, on both streams."""
+    out = io.StringIO()
+    with contextlib.redirect_stdout(out), contextlib.redirect_stderr(out): r = DG.check(pid, dos, carrier, proc)
+    return r, out.getvalue()
+def src_of(pid): return ((cache_json() or {}).get(pid) or {}).get("src")
+def mchart(p, number="same"):
+    """A new invented chart with ONE open Medicare plan that holds the person's own number (or the number given)."""
+    return chart(cid(), p, plans=[("car6085", "", p["number"] if number == "same" else number)])
+def cache_checked(pid, day):
+    """Write another 'checked' day into the chart's cache entry (an entry made some days ago)."""
+    c = cache_json(); c[pid]["checked"] = iso(day)
+    with open(DCACHE, "w") as fh: json.dump(c, fh)
+def plain_body(p, dos):
+    """The plain Medicare check the guard buys for this person - the vendor call exactly as it was before the free check."""
+    return {"tradingPartnerServiceId": "CMS", "provider": ST.PROV, "subscriber": {"firstName": p["first"], "lastName": p["last"], "dateOfBirth": p["dob8"], "memberId": p["number"]},
+            "encounter": {"serviceTypeCodes": ["30"], "dateOfService": ymd(dos)}}
+
+def t_free_was_on():
+    n = FREE_TOTAL[0]
+    check("free first: every guard check above ran with the free check ON and asked first - the stand-in AdvancedMD was asked some 34 times and answered 'Medicare cannot answer now' each time - so each of them also proves that an unusable free answer leaves the paid path exactly as it was (A2)",
+          lambda: n >= 30 and FREE == {}, n)
+
+def t_free_death():
+    reset(); dead = newp(death=ago(20)); dos = ago(5); pid = mchart(dead); free_death(pid, dead)
+    r, said = guard_said(pid, iso(dos)); c = (cache_json() or {}).get(pid)
+    check("free first (A2 i, A3): a date of death in AdvancedMD's free answer blocks the claim in the same words, source amd-medicare-271 - and NOTHING is bought",
+          lambda: r == (True, BLOCK % (pid, iso(dos), iso(ago(20)), "amd-medicare-271")) and SENT == [] and log_lines() == [], (r, kinds()))
+    check("free first (A1, A6): ONE free check - on the chart's Medicare plan, by the digits of its insurance-plan id, service type 30, with a 60-second time-out",
+          lambda: FREE_ASKED == [(ins(pid), "30", 60)], FREE_ASKED)
+    check("free first (A3): the cache keeps that date with src 'amd-medicare-271', checked today", lambda: c == {"dod": iso(ago(20)), "checked": iso(TODAY), "src": "amd-medicare-271"}, c)
+    check("free first (A7): COUNTS = 1 asked free, 1 answered free, 0 bought; the guard printed nothing and logged nothing", lambda: counts() == (1, 1, 0) and said == "" and DG.LOG == [], (counts(), said, DG.LOG))
+    del FREE_ASKED[:]; r2 = guard_check(pid, iso(ago(1)))
+    check("free first (A11): a death in the cache -> the chart's next claim is blocked with no call at all, free or paid", lambda: r2[0] is True and FREE_ASKED == [] and SENT == [] and counts() == (1, 1, 0), (r2, FREE_ASKED, kinds(), counts()))
+    _try(lambda: cache_checked(pid, ago(45))); free_is(pid, p=dict(dead, death8=None)); r3 = guard_check(pid, iso(ago(1))); c3 = (cache_json() or {}).get(pid)
+    check("free first (A3, A11): a death is never undone - the entry 45 days old (older than the 30 days) and AdvancedMD now ready to answer 'no death': the claim is still blocked from the cache, nothing is asked, free or paid, and the entry stays as it was",
+          lambda: r3 == (True, BLOCK % (pid, iso(ago(1)), iso(ago(20)), "amd-medicare-271")) and FREE_ASKED == [] and SENT == [] and c3 == {"dod": iso(ago(20)), "checked": iso(ago(45)), "src": "amd-medicare-271"} and counts() == (1, 1, 0), (r3, FREE_ASKED, kinds(), c3))
+    res = []
+    for name, kw in (("beside INACTIVE", dict(status="inactive")), ("beside a rejection (AAA 72)", dict(status="rejected", aaa=("72",))), ("beside ACTIVE lines (an ended plan answers so)", dict(status="active")),
+                     ("in the JSON shape", dict(status="inactive", shape="json")), ("in an answer AdvancedMD kept from 3 days ago", dict(status="inactive", stamp=3)), ("in an answer with no stamp", dict(status="inactive", stamp=None))):
+        reset(); d = newp(death=ago(12)); pid = mchart(d); free_death(pid, d, **kw)
+        r = guard_check(pid, iso(ago(3))); res.append((name, r == (True, BLOCK % (pid, iso(ago(3)), iso(ago(12)), "amd-medicare-271")), kinds(), counts(), src_of(pid)))
+    check("free first (A2 i): a date of death is taken whatever else the free answer says - beside INACTIVE, beside a rejection, beside ACTIVE lines, in the JSON shape, in an answer kept from an earlier day or with no stamp (a death is never undone): blocked, nothing bought",
+          lambda: len(res) == 6 and all(x[1] and x[2] == [] and x[3] == (1, 1, 0) and x[4] == "amd-medicare-271" for x in res), res)
+    reset(); d2 = newp(death=first_of_month(TODAY)); h = mchart(d2); free_death(h, d2)
+    rc = guard_check(h, iso(first_of_month(TODAY) + datetime.timedelta(days=1)), proc="99490"); ro = guard_check(h, iso(first_of_month(TODAY)), proc="99490")
+    check("free first (A3): the care-management wording in the month of death is the same from a free answer, and a date of service on the date of death is not blocked",
+          lambda: rc[0] is True and "(amd-medicare-271)" in rc[1] and rc[1].endswith("; CCM in the month of death needs a DOS on/before the death date, else void") and ro == (False, "") and SENT == [], (rc, ro))
+    reset(); d3 = newp(death=ago(9)); k = chart(cid(), d3, plans=[("car6404", "", "M" + "4" * 9), ("car6085", "", d3["number"])]); free_death(k, d3, i=2)
+    r = guard_check(k, iso(ago(2)), carrier="car6404", proc="99490")
+    check("free first: a care-management claim billed to another payer is checked too - the free check goes to the chart's Medicare plan and its date of death blocks, nothing bought",
+          lambda: r[0] is True and FREE_ASKED == [(ins(k, 2), "30", 60)] and SENT == [], (r, FREE_ASKED, kinds()))
+    reset(); d4 = newp(death=ago(9)); m = mchart(d4); free_death(m, d4); r = guard_check(m, mdy(ago(2)), carrier="FLO02", proc="99309")
+    check("free first: a straight-Medicare claim named by its carrier code (FLO02), its date of service written MM/DD/YYYY as the insurance check passes it, is checked the same way - blocked from the free answer, nothing bought",
+          lambda: r == (True, BLOCK % (m, iso(ago(2)), iso(ago(9)), "amd-medicare-271")) and FREE_ASKED == [(ins(m), "30", 60)] and SENT == [], (r, FREE_ASKED, kinds()))
+    d8 = ymd(ago(12)); res = []
+    for bad in (d8[:7], d8 + "-" + d8, d8[:4] + "1340", "0" * 8, "D8" + d8[2:]):
+        reset(); q = newp(); pid = mchart(q); FREE[ins(pid)] = ("answer", free271(q, status="inactive", death8=bad))
+        r = guard_check(pid, iso(ago(3))); res.append((bad, r, kinds(), counts(), src_of(pid)))
+    check("free first (A2): a date of death that is not 8 digits (7 digits, a range, letters) or is no calendar date is NOT an answer - nothing is taken from it and the plain check is bought as before",
+          lambda: len(res) == 5 and all(x[1] == (False, "") and x[2] == ["CMS"] and x[3] == (1, 0, 1) and x[4] == "stedi: no death on record" for x in res), res)
+
+def t_free_alive():
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p)
+    r, said = guard_said(pid, iso(ago(2))); c = (cache_json() or {}).get(pid)
+    check("free first (A2 ii, A3): a free answer with no rejection, ACTIVE, Part A and Part B, stamped today and with no date of death is kept as 'amd: no death on record', checked today - nothing blocked, nothing bought",
+          lambda: r == (False, "") and SENT == [] and log_lines() == [] and c == {"dod": None, "checked": iso(TODAY), "src": "amd: no death on record"} and FREE_ASKED == [(ins(pid), "30", 60)], (r, kinds(), c, FREE_ASKED))
+    check("free first (A7, A9): for that answer the guard prints nothing and logs nothing; COUNTS = 1 asked free, 1 answered free, 0 bought", lambda: said == "" and DG.LOG == [] and counts() == (1, 1, 0), (said, DG.LOG, counts()))
+    check("free first: an answer that shows no death is not put into the Medicare answer store - the guard's own cache is what it reads (the store file is not even made)", lambda: FREE_ASKED != [] and store_json() is None, store_json())
+    del FREE_ASKED[:]; r2 = guard_check(pid, iso(ago(1)))
+    check("free first: a second claim of that chart the same day asks nothing, free or paid (the cache entry is today's)", lambda: r2 == (False, "") and FREE_ASKED == [] and SENT == [] and counts() == (1, 1, 0), (r2, FREE_ASKED, kinds(), counts()))
+    def variants(rows, make):
+        res = []
+        for name, value, usable in rows:
+            reset(); q = newp(); pid = mchart(q); free_is(pid, p=q, **make(value)); r = guard_check(pid, iso(ago(2)))
+            res.append((name, r == (False, "") and kinds() == ([] if usable else ["CMS"]) and counts() == ((1, 1, 0) if usable else (1, 0, 1)) and src_of(pid) == ("amd" if usable else "stedi") + ": no death on record", kinds(), counts(), src_of(pid)))
+        return res
+    res = variants((("Part B alone", ("MB",), True), ("Part A alone", ("MA",), True), ("ACTIVE lines but neither Part A nor Part B", ("HM",), False)), lambda v: dict(parts=v))
+    rj = variants((("the JSON shape", "json", True),), lambda v: dict(shape=v))
+    check("free first (A2 ii): Part A or Part B must be shown - Part B alone, Part A alone and the JSON shape are answers (nothing bought); ACTIVE lines with neither are not (the plain check is bought as before)",
+          lambda: len(res) == 3 and all(x[1] for x in res + rj), res + rj)
+    res = variants((("its three stamps are of today on AdvancedMD's clock, 7 hours behind UTC", 0, True), ("kept from 2 days ago", 2, False), ("created 3 days ago, the response stamped today", (3, 0, 0), False),
+                    ("no stamp at all", None, False), ("a stamp that is no date", "soon", False)), lambda v: dict(stamp=v))
+    check("free first (A2): the free answer carries its own stamps (created, changed, response) - 'no death on record' is taken only when all of them are of today; an answer AdvancedMD kept from an earlier day, one with an older stamp among the three, one with no stamp or an unreadable one is not an answer (the plain check is bought as before)",
+          lambda: len(res) == 5 and all(x[1] for x in res), res)
+    res = variants((("created today, CHANGED 3 days ago, the response today", (0, 3, 0), False), ("created and changed today, the RESPONSE 3 days ago", (0, 0, 3), False),
+                    ("created today, changed and response 3 days ago", (0, 3, 3), False), ("the three stamps written out one by one, all of today", (0, 0, 0), True)), lambda v: dict(stamp=v))
+    names = _try(lambda: tuple(DG.FREE_STAMPS))
+    check("free first (A2, review finding 6e and 6f): EACH of the answer's three stamps counts - created today but changed 3 days ago, or the response 3 days old, is an answer AdvancedMD kept, not one of today (the plain check is bought as before); the three names are the ones a captured answer carries",
+          lambda: len(res) == 4 and all(x[1] for x in res) and names == ("eligibilitycreatedat", "eligibilitychangedat", "eligibilityresponsedate"), (res, names))
+    def at(utc, machine=0):
+        """A stand-in datetime module pinned to one moment: now() in UTC is `utc`; this machine's own clock runs `machine` hours off it."""
+        class _DT(datetime.datetime):
+            @classmethod
+            def now(cls, tz=None): return utc.replace(tzinfo=datetime.timezone.utc) if tz else utc + datetime.timedelta(hours=machine)
+        class _D(datetime.date):
+            @classmethod
+            def today(cls): return (utc + datetime.timedelta(hours=machine)).date()
+        return types.SimpleNamespace(datetime=_DT, date=_D, timedelta=datetime.timedelta, timezone=datetime.timezone)
+    def of_today(stamp, utc, machine=0):
+        real = DG.datetime; DG.datetime = at(utc, machine)
+        try: return DG._free_today({"amd": {k: stamp for k in DG.FREE_STAMPS}})
+        finally: DG.datetime = real
+    eve = "%02d/%02d/%d 10:23PM" % (9, 24, 2026); U = datetime.datetime
+    clock = _try(lambda: [of_today(eve, U(2026, 9, 25, 5, 30)), of_today(eve, U(2026, 9, 25, 7, 30)), of_today("%02d/%02d/%d 11:35PM" % (11, 24, 2026), U(2026, 11, 25, 6, 35), machine=-5),
+                          of_today(eve, U(2026, 9, 25, 9, 0)), of_today(eve, U(2026, 9, 26, 5, 30))])
+    check("free first (A2): 'today' is read on AdvancedMD's own clock, 7 hours behind UTC - a captured answer, asked at 05:30 UTC on the 25th, is stamped 10:23PM of the 24th and IS of today (so is one read half an hour after AdvancedMD's midnight, and one read at 1:35 AM on a machine on Eastern time); the same stamp two hours into AdvancedMD's next day, or a day later, is not",
+          lambda: clock == [True, True, True, False, False], clock)
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p); guard_check(pid, iso(ago(40))); n = []
+    for day, dos in ((ago(30), ago(40)), (ago(31), ago(40)), (ago(10), ago(5))):
+        _try(lambda: cache_checked(pid, day)); del FREE_ASKED[:]; guard_check(pid, iso(dos)); n.append(len(FREE_ASKED))
+    check("free first (A3): the staleness rule is unchanged for a free 'no death' entry - 30 days old it is used with no call; 31 days old, or checked before the claim's date of service, the free check is asked again (and answers: still nothing bought)",
+          lambda: n == [0, 1, 1] and SENT == [] and cache_json()[pid] == {"dod": None, "checked": iso(TODAY), "src": "amd: no death on record"}, (n, kinds()))
+    ws = os.path.join(TMP, "free_cwd"); os.makedirs(ws, exist_ok=True); here = os.getcwd(); reset(); p = newp(); pid = mchart(p); free_is(pid, p=p)
+    os.chdir(ws)
+    try: r = guard_check(pid, iso(ago(2)))
+    finally: os.chdir(here)
+    check("free first (A8): the guard asks amd.check_eligibility itself and reads the answer with elig_amd.summarize - nothing is written in the working directory (no patient_db/ folder, no copy of the answer)",
+          lambda: r == (False, "") and FREE_ASKED == [(ins(pid), "30", 60)] and os.listdir(ws) == [], (FREE_ASKED, os.listdir(ws)))
+
+def t_free_unusable():
+    real = ST.medicare; calls = []
+    def spy(*a, **k): calls.append((a, dict(k))); return real(*a, **k)
+    cases = (("a rejection (AAA 72: the number is not valid)", lambda p: ("answer", free271(p, status="rejected", aaa=("72",)))),
+             ("a rejection beside ACTIVE lines (AAA 42)", lambda p: ("answer", free271(p, aaa=("42",)))),
+             ("INACTIVE with no date of death", lambda p: ("answer", free271(p, status="inactive"))),
+             ("UNKNOWN (no benefit line and no rejection)", lambda p: ("answer", free271(p, status="unknown"))),
+             ("a JSON body that is no eligibility answer", lambda p: ("answer", {"message": "try again"})),
+             ("a body that cannot be read (PARSE ERROR)", lambda p: ("answer", "<PPMDResults><Results")),
+             ("an empty body", lambda p: ("answer", "")),
+             ("HTTP 500 with an error page", lambda p: ("http", 500)),
+             ("HTTP 401 with a complete ACTIVE answer in its body", lambda p: ("http", 401, free271(p))),
+             ("a time-out", lambda p: ("timeout",)),
+             ("an error on the way", lambda p: ("raise",)))
+    ST.medicare = spy; res = []
+    try:
+        for name, make in cases:
+            reset(); del calls[:]; p = newp(); dos = ago(2); pid = mchart(p); FREE[ins(pid)] = make(p)
+            r = guard_check(pid, iso(dos))
+            res.append({"case": name, "r": r, "free": list(FREE_ASKED) == [(ins(pid), "30", 60)], "sent": [b for _, b in SENT] == [plain_body(p, dos)], "src": src_of(pid), "counts": counts(), "log": list(DG.LOG),
+                        "call": calls == [((p["first"], p["last"], p["dob8"]), dict(member_id=p["number"], dos=ymd(dos), state="FL", pid=pid, who="guard", max_age_days=30))],
+                        "usage": [(l[1], l[2], l[4]) for l in log_lines()] == [("guard", "plain Medicare", pid)]})
+    finally: ST.medicare = real
+    asked = lambda x: x["free"] and x["counts"] == (1, 0, 1)
+    check("free first (A2): a rejection (72; 42 beside ACTIVE lines), INACTIVE with no date, UNKNOWN, a body that is no answer or cannot be read, an HTTP status other than 200 (even with a complete answer in its body), a time-out, an error on the way - none is an answer: the free check was asked once and nothing was taken from it",
+          lambda: len(res) == len(cases) and all(asked(x) for x in res), [(x["case"], x["free"], x["counts"]) for x in res if not asked(x)][:4])
+    same = lambda x: x["r"] == (False, "") and x["call"] and x["sent"] and x["src"] == "stedi: no death on record" and x["usage"] and x["log"] == []
+    check("free first (A2, A11): ... and after each of them the paid call is made exactly as before, with the same arguments - stedi.medicare(first, last, birth date, the plan's number, the date of service, FL, the chart, 'guard', 30 days) - ONE plain check to the vendor, kept as 'stedi: no death on record', the usage line as before, no LOG line",
+          lambda: len(res) == len(cases) and all(asked(x) and same(x) for x in res), [(x["case"], x["r"], x["call"], x["sent"], x["src"], x["usage"], x["log"]) for x in res if not same(x)][:3])
+    reset(); d = newp(death=ago(9)); pid = mchart(d); FREE[ins(pid)] = ("answer", free271(d, status="unknown")); r = guard_check(pid, iso(ago(2)))
+    check("free first (A2): after an unusable free answer a death the vendor's answer shows blocks as before, source stedi-medicare-271",
+          lambda: r == (True, BLOCK % (pid, iso(ago(2)), iso(ago(9)), "stedi-medicare-271")) and kinds() == ["CMS"] and counts() == (1, 0, 1), (r, kinds(), counts()))
+    reset(); p = newp(); pid = mchart(p); FREE[ins(pid)] = ("timeout",); OVERRIDE[("CMS", p["number"])] = ("timeout",); r = guard_check(pid, iso(ago(2)))
+    check("free first (A2, A7): no usable free answer and the vendor's call fails too -> nothing is blocked, nothing is kept, and the LOG line is word for word as before",
+          lambda: r == (False, "") and kinds() == ["CMS"] and DG.LOG == [UNVERIFIED % (pid, iso(ago(2)))] and (cache_json() or {}).get(pid) is None and counts() == (1, 0, 1), (r, DG.LOG, counts()))
+
+def t_free_plan():
+    def one(plans, want, dos=ago(2), carrier="car6085", proc="99309"):
+        """-> (the free check went to plan `want` and to no other, the number the vendor was asked with, the number on that plan, the vendor calls, COUNTS, who the usage log names)"""
+        reset(); p = newp(); mine = plans(p); pid = chart(cid(), p, plans=mine); guard_check(pid, iso(dos), carrier, proc)
+        sub = SENT[0][1].get("subscriber", {}) if SENT else {}
+        return ([x[0] for x in FREE_ASKED] == ([ins(pid, want)] if want else []), sub.get("memberId"), ST.medicare_number(mine[want - 1][2]) if want else None, kinds(), counts(), log_lines()[0][1] if log_lines() else None)
+    a = one(lambda p: [("car6085", mdy(ago(400)), WRONG[0]), ("car6085", "", spaced(p["number"])), ("car6404", "", "M" + "5" * 9)], 2)
+    check("free first (A1): the free check goes to the chart's OPEN Medicare plan - an ended one listed before it and a plan of another payer are passed over - and when it gives no answer the vendor is asked with that same plan's number",
+          lambda: a[0] and a[1] == a[2] is not None and a[3] == ["CMS"] and a[4] == (1, 0, 1), a)
+    b = one(lambda p: [("car6085", mdy(ago(100)), p["number"]), ("car6085", mdy(ago(900)), WRONG[1])], 1)
+    c = one(lambda p: [("car6085", mdy(ago(900)), WRONG[1]), ("car6085", mdy(ago(100)), p["number"])], 2)
+    d = one(lambda p: [("car6085", mdy(ago(3)), p["number"]), ("car6085", mdy(ago(1)), WRONG[2])], 1, dos=ago(5))
+    check("free first (A1): no open Medicare plan -> the one that ended last, whichever is listed first; a plan that ended on or after the date of service is open for that claim (the first such plan) - each time the plan whose number the vendor is asked with: the very choice made for the number",
+          lambda: all(x[0] and x[1] == x[2] is not None and x[3] == ["CMS"] for x in (b, c, d)), (b, c, d))
+    on = one(lambda p: [("car6085", mdy(ago(5)), p["number"]), ("car6085", mdy(ago(1)), WRONG[2])], 1, dos=ago(5))
+    check("free first (A1): a plan that ended ON the date of service itself is still open for that claim - it is the plan asked about, free and paid", lambda: on[0] and on[1] == on[2] is not None and on[3] == ["CMS"], on)
+    e = one(lambda p: [("car6404", "", "M" + "6" * 9)], 0, carrier="car6404", proc="99490")
+    check("free first (A1, A11): no Medicare plan on the chart -> NO free check; the look-up by name runs exactly as before, counted 'guard, no Medicare plan on the chart'; COUNTS = 0 asked free, 1 bought",
+          lambda: e[0] and e[3] == ["MBILUNOSSN"] and e[5] == "guard, no Medicare plan on the chart" and e[4] == (0, 0, 1), e)
+    f = one(lambda p: [("car6085", "", "")], 1)
+    check("free first (A1): a Medicare plan with no number on it is still the chart's Medicare plan - the free check is asked about it, and when it gives no answer the look-up is bought as before, counted 'guard'",
+          lambda: f[0] and f[3] == ["MBILUNOSSN"] and f[5] == "guard" and f[4] == (1, 0, 1), f)
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p); real_post = fake_amd.post
+    fake_amd.post = lambda body, timeout=0: real_post(body, timeout).replace(' id="ins%s"' % ins(pid), "")
+    try: r = guard_check(pid, iso(ago(2)))
+    finally: fake_amd.post = real_post
+    check("free first (A1): a Medicare plan the chart answer shows with no plan id cannot be asked about - no free check, the plain check as before",
+          lambda: r == (False, "") and FREE_ASKED == [] and kinds() == ["CMS"] and counts() == (0, 0, 1), (FREE_ASKED, kinds(), counts()))
+
+def t_free_order():
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(ago(30))); free_is(pid, p=p)
+    r = guard_check(pid, iso(ago(5)))
+    check("free first: the chart's own deceased field still comes first - blocked from it, and neither the free check nor the vendor is asked",
+          lambda: r[0] is True and FREE_ASKED == [] and SENT == [] and counts() == (0, 0, 0) and cache_json()[pid]["dod"] == iso(ago(30)), (r, FREE_ASKED, counts()))
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p)
+    r1 = guard_check(pid, iso(ago(2)), carrier="car6404", proc="99213"); n1 = (len(FREE_ASKED), len(SENT), len(BILLING))
+    err = io.StringIO()
+    with contextlib.redirect_stderr(err): r2 = DG.check(pid, iso(ago(2)), "car6085", "99490", allow_lookup=False)
+    n2 = (len(FREE_ASKED), len(SENT), len(BILLING))
+    check("free first: WHEN an answer is needed is unchanged - a claim that is neither straight Medicare nor care management asks nothing, and a caller that passes allow_lookup=False asks nothing, free or paid (not even the chart is read)",
+          lambda: r1 == r2 == (False, "") and n1 == n2 == (0, 0, 0) and counts() == (0, 0, 0), (r1, r2, n1, n2, counts()))
+    reset(); q = newp(); pid = mchart(q); dos = ago(2); free_is(pid, p=q)
+    askp(q, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)         # another helper bought today's answer; the guard's cache did not come along
+    r = guard_check(pid, iso(dos))
+    check("free first: an answer another helper bought is in the answer store - the guard uses it as before and asks nothing, free or paid (one paid call in all; COUNTS all zero)",
+          lambda: len(SENT) == 1 and FREE_ASKED == [] and r == (False, "") and src_of(pid) == "stedi: no death on record" and counts() == (0, 0, 0), (kinds(), FREE_ASKED, src_of(pid), counts()))
+    res = []
+    for died in (False, True):
+        reset(); q = newp(); pid = mchart(q)
+        askp(q, dos=ymd(ago(5)), pid=pid, who="pre-claim check", max_age_days=0)                    # alive when asked
+        store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(20)))); os.remove(DCACHE)
+        if died: q["death8"] = ymd(ago(10)); free_death(pid, q)                                       # the patient died after that answer was asked
+        else: free_is(pid, p=q)
+        del SENT[:]; r = guard_check(pid, iso(ago(5))); res.append((r, kinds(), list(FREE_ASKED) == [(ins(pid), "30", 60)], src_of(pid), counts()))
+    check("free first: an answer in the store that was asked BEFORE the claim's date of service cannot know of a death since - where one plain check was bought, the FREE check is now asked and answers: 'no death' is kept with nothing bought, and a death since then blocks the claim with nothing bought",
+          lambda: res[0] == ((False, ""), [], True, "amd: no death on record", (1, 1, 0)) and res[1][0][0] is True and "after date of death %s (amd-medicare-271)" % iso(ago(10)) in res[1][0][1] and res[1][1:] == ([], True, "amd-medicare-271", (1, 1, 0)), res)
+    reset(); d = newp(death=ago(4)); pid = mchart(d); dos = ago(2)
+    askp(d, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0)                              # a bought answer that shows the death
+    store_edit(lambda x: x["charts"][pid]["answers"][0].update(asked=iso(ago(3)))); os.remove(DCACHE)
+    free_is(pid, p=dict(d, death8=None))                                                               # the free check would now answer 'no death'
+    del SENT[:]; r = guard_check(pid, iso(dos))
+    check("free first: a death an answer in the store already shows is used as it is, as before - the claim is blocked with no call at all, free or paid, even when the free check would answer 'no death' (a death is never undone; the free check never makes the guard weaker)",
+          lambda: r[0] is True and "after date of death %s (stedi-medicare-271)" % iso(ago(4)) in r[1] and FREE_ASKED == [] and SENT == [] and counts() == (0, 0, 0), (r, FREE_ASKED, kinds(), counts()))
+    res = []
+    for usable in (True, False):
+        reset(); p = newp(); pid = mchart(p); OVERRIDE[("CMS", p["number"])] = ("timeout",)
+        askp(p, dos=ymd(ago(2)), pid=pid, who="pre-claim check", max_age_days=0); OVERRIDE.clear(); del SENT[:]      # another helper's paid call failed today
+        if usable: free_is(pid, p=p)
+        r = guard_check(pid, iso(ago(2))); res.append((r, kinds(), len(FREE_ASKED), src_of(pid), list(DG.LOG), counts()))
+    check("free first: a chart whose paid call failed earlier today is not bought again today, as before - but the free check costs nothing and is asked: its answer is kept; when it gives none the chart stays UNVERIFIED, exactly as before",
+          lambda: res[0] == ((False, ""), [], 1, "amd: no death on record", [], (1, 1, 0)) and res[1][:4] == ((False, ""), [], 1, None) and len(res[1][4]) == 1 and "UNVERIFIED" in res[1][4][0] and res[1][5] == (1, 0, 0), res)
+
+def t_free_switch():
+    res = []
+    for word in ("off", "OFF", " Off ", "0", "no", "false"):
+        reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d); os.environ["DEATH_CHECK_FREE"] = word
+        try: r = guard_check(pid, iso(ago(2)))
+        finally: os.environ.pop("DEATH_CHECK_FREE", None)
+        res.append((word, r == (True, BLOCK % (pid, iso(ago(2)), iso(ago(9)), "stedi-medicare-271")), list(FREE_ASKED), kinds(), src_of(pid), counts()))
+    check("free first (A5): DEATH_CHECK_FREE=off (any case; also 0 / no / false) -> the free check is never tried: the paid check is made as before (here it finds the death), COUNTS = 0 asked free, 1 bought",
+          lambda: len(res) == 6 and all(x[1] and x[2] == [] and x[3] == ["CMS"] and x[4] == "stedi-medicare-271" and x[5] == (0, 0, 1) for x in res), res)
+    res = []
+    for word in (None, "on", "1", ""):
+        reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d)
+        if word is not None: os.environ["DEATH_CHECK_FREE"] = word
+        try: r = guard_check(pid, iso(ago(2)))
+        finally: os.environ.pop("DEATH_CHECK_FREE", None)
+        res.append((word, r[0], list(FREE_ASKED) == [(ins(pid), "30", 60)], kinds(), src_of(pid)))
+    check("free first (A5): by default - the variable not set - and with any other word the free check is ON", lambda: len(res) == 4 and all(x[1] is True and x[2] and x[3] == [] and x[4] == "amd-medicare-271" for x in res), res)
+
+def t_free_down():
+    def run(plan):
+        """A new run with one chart per letter: T a time-out, H HTTP 503, X an error on the way, P a body that cannot be read, E an empty body, C a complete answer cut off in the middle,
+        A a rejection, U a usable answer, - what the stand-in says by default.
+        -> (free checks asked per chart, every chart answered 'no death' from the right source, COUNTS, the guard's free_down())"""
+        reset(); asked = []; right = []
+        for k in plan:
+            p = newp(); pid = mchart(p)
+            if k != "-": FREE[ins(pid)] = {"T": ("timeout",), "H": ("http", 503), "X": ("raise",), "P": ("answer", "<PPMDResults><Results"), "E": ("answer", ""), "C": ("answer", free271(p)[:len(free271(p)) // 2]),
+                                           "A": ("answer", free271(p, status="rejected", aaa=("72",))), "U": ("answer", free271(p))}[k]
+            n = len(FREE_ASKED); r = guard_check(pid, iso(ago(2))); asked.append(len(FREE_ASKED) - n)
+            right.append(r == (False, "") and src_of(pid) == ("amd" if k == "U" else "stedi") + ": no death on record")
+        return asked, all(right), counts(), _try(lambda: DG.free_down())
+    a = run("TTT--"); ka = kinds(); ta = [x[2] for x in FREE_ASKED]
+    check("free first (A4): after 3 free checks in a row that end in a time-out the free check is not tried again in this process - the 4th and 5th chart go straight to the paid check; every chart is still answered as before",
+          lambda: a == ([1, 1, 1, 0, 0], True, (3, 0, 5), True) and ka == ["CMS"] * 5, (a, ka))
+    check("free first (A6): every free check is asked with a 60-second time-out", lambda: ta == [60, 60, 60], ta)
+    b = run("THX-")
+    check("free first (A4): a time-out, an HTTP error and an error on the way count alike - 3 in a row and the free check is off",
+          lambda: b == ([1, 1, 1, 0], True, (3, 0, 4), True), b)
+    c = run("PPP-"); c2 = run("PECUU"); c3 = run("TTPT-")
+    check("free first (A4, review finding 4): an answer that came but cannot be read is an unusable answer, not 'down' - it does not count toward the 3 and does not start the count again: three unreadable bodies in a row (cut short, empty, cut off in the middle) leave the free check ON, so the usable answers after them are taken free and not bought; fail, fail, unreadable, fail -> off from the 5th chart",
+          lambda: c == ([1, 1, 1, 1], True, (4, 0, 4), False) and c2 == ([1, 1, 1, 1, 1], True, (5, 2, 3), False) and c3 == ([1, 1, 1, 1, 0], True, (4, 0, 5), True), (c, c2, c3))
+    d = run("TTAT-"); e = run("AAAA-")
+    check("free first (A4): a rejection is not 'down' - it does not count toward the 3 and does not start the count again: fail, fail, rejection, fail -> off from the 5th chart; four rejections in a row switch nothing off",
+          lambda: d == ([1, 1, 1, 1, 0], True, (4, 0, 5), True) and e == ([1, 1, 1, 1, 1], True, (5, 0, 5), False), (d, e))
+    f = run("TTUTT-"); g = run("TTUTT-T-")
+    check("free first (A4): a usable answer starts the count again - fail, fail, usable, fail, fail leaves the free check on (the 6th chart is asked); one more failure and it is off",
+          lambda: f == ([1, 1, 1, 1, 1, 1], True, (6, 1, 5), False) and g == ([1, 1, 1, 1, 1, 1, 1, 0], True, (7, 1, 7), True), (f, g))
+    h = run("-")
+    check("free first (A4): 'in this process' only - the next run starts with the free check on again", lambda: h == ([1], True, (1, 0, 1), False), h)
+    new = _try(lambda: load("scripts/helpers/deceased_guard.py", "deceased_guard_new_process"))              # the guard as a new process loads it (the runs above start from reset(), which sets these itself)
+    check("free first (A4, A7): a new process starts with nothing behind it - no failure counted, the free check on, COUNTS all at zero",
+          lambda: new._FREE_FAILS == [0] and new.free_down() is False and new.COUNTS == {"free asked": 0, "free answered": 0, "paid asked": 0} and new._FREE == {} and new.FREE_DOWN_AFTER == 3)
+
+def t_free_counts():
+    check("free first (A7): COUNTS is a dict with exactly the keys 'free asked', 'free answered', 'paid asked', all whole numbers", lambda: list(DG.COUNTS) == ["free asked", "free answered", "paid asked"] and all(type(v) is int for v in DG.COUNTS.values()))
+    reset(); a, b, c, d, e = newp(), newp(death=ago(8)), newp(), newp(), newp()
+    pa, pb, pc, pd, pe = (mchart(x) for x in (a, b, c, d, e))
+    free_is(pa, p=a); free_death(pb, b); FREE[ins(pc)] = ("timeout",)                                                   # d: what the stand-in says by default (not usable)
+    askp(e, dos=ymd(ago(2)), pid=pe, who="pre-claim check", max_age_days=0); os.remove(DCACHE); n0 = len(SENT)          # e: another helper bought today's answer
+    said = "".join(guard_said(x, iso(ago(2)))[1] for x in (pa, pb, pc, pd, pe))
+    guard_check(pa, iso(ago(1))); guard_check(pb, iso(ago(1)))                                                          # second claims: the cache answers
+    check("free first (A7): five charts - a free 'no death', a free date of death, a free time-out, an unusable free answer, an answer another helper had bought - give COUNTS = 4 asked free, 2 answered free, 2 bought: an answer read back from the store is neither asked nor bought, second claims count nothing, and the guard printed nothing",
+          lambda: counts() == (4, 2, 2) and len(SENT) - n0 == 2 and len(FREE_ASKED) == 4 and said == "", (counts(), kinds(), FREE_ASKED, said))
+
+def t_free_store():
+    reset(); d = newp(death=ago(9)); pid = mchart(d); dos = ago(2); free_death(pid, d)
+    r = guard_check(pid, iso(dos)); st = store_chart(pid).get("answers") or []
+    check("free first: a date of death the free check shows is also noted in the Medicare answer store - nothing was bought, yet the store holds ONE death-only entry (medicare_store.death shows it), with no number, name or birth date in the file",
+          lambda: r[0] is True and SENT == [] and _try(lambda: MS.death(pid)) == d["death8"] and len(st) == 1 and st[0]["death"] == d["death8"] and st[0]["who"] == "guard" and st[0]["active"] is None
+          and not any(x in text_of(STORE) for x in (d["number"], d["last"], d["dob8"])), (kinds(), st))
+    got = [_try(lambda: MS.get(pid, 30, ymd(dos))), _try(lambda: MS.get(pid, 0, ymd(TODAY))), _try(lambda: MS.get(pid, 60, ymd(prev_month(dos)))), _try(lambda: MS.get(pid, 60, None))]
+    j, how, err = askp(d, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=(TODAY - first_of_month(dos)).days)
+    check("free first: ... and the store serves that entry to NO reader as a Medicare answer - the guard's 30 days, a same-day reader, a reader of last month's visit and one with no date all get nothing, and the pre-claim check buys its own answer exactly as before",
+          lambda: len(st) == 1 and got == [None] * 4 and how == "plain" and "stored" not in j and kinds() == ["CMS"], (got, how, kinds()))
+    res = []
+    for now in (("answer", err_answer("42")), ("timeout",)):
+        for free_now in (("timeout",), ("answer", free271(status="rejected", aaa=("42",))), "switched off"):
+            reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d); r0 = guard_check(pid, iso(ago(2))), kinds()   # the free check finds the death (nothing bought)
+            os.remove(DCACHE)                                                                          # a machine where the answer store came along and the guard's cache did not
+            if free_now == "switched off": os.environ["DEATH_CHECK_FREE"] = "off"
+            else: FREE[ins(pid)] = free_now
+            OVERRIDE[("CMS", d["number"])] = now; OVERRIDE[("MBILUNOSSN", d["last"])] = now; del SENT[:]; del DG.LOG[:]
+            try: r = guard_check(pid, iso(ago(1)))
+            finally: os.environ.pop("DEATH_CHECK_FREE", None)
+            res.append((now[0], free_now if isinstance(free_now, str) else free_now[0], r0[0][0] is True and r0[1] == [], r, kinds(), list(DG.LOG), ((cache_json() or {}).get(pid) or {}).get("dod")))
+    check("free first: a death the FREE check found (nothing bought) still blocks when the guard's cache file is lost and neither the free check (a time-out, a rejection, switched off) nor the vendor (42, a time-out) can answer - blocked by the death noted in the answer store, not UNVERIFIED, and the date is back in the cache",
+          lambda: len(res) == 6 and all(x[2] is True and x[3][0] is True and "after date of death %s" % iso(ago(9)) in x[3][1] and x[5] == [] and x[6] == iso(ago(9)) for x in res), res)
+    reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d); guard_check(pid, iso(ago(2))); os.remove(DCACHE); del FREE_ASKED[:]
+    r = guard_check(pid, iso(ago(1)))
+    check("free first: the cache file lost and AdvancedMD answering - the free check is asked again, shows the death again and blocks; nothing is bought",
+          lambda: r == (True, BLOCK % (pid, iso(ago(1)), iso(ago(9)), "amd-medicare-271")) and FREE_ASKED == [(ins(pid), "30", 60)] and SENT == [], (r, FREE_ASKED, kinds()))
+
+def t_free_charge():
+    reset(); d = newp(death=ago(30)); pid = mchart(d); free_death(pid, d); dos = ago(3)
+    RESAVE["556"] = '<r><visit date="%s"/><patient id="pat%s"/><charge id="charge556" proccode="99490"/><insplan sequence="1" carrier="car6085"/></r>' % (mdy(dos), pid)
+    out = io.StringIO()
+    with contextlib.redirect_stdout(out), contextlib.redirect_stderr(out): r = _try(lambda: DG.check_charge("556", 1))
+    tail = "; CCM in the month of death needs a DOS on/before the death date, else void" if iso(dos)[:7] == iso(ago(30))[:7] else "; void the charge"
+    check("free first: check_charge - what amd.rebill_charge asks before every rebill - blocks a care-management charge to straight Medicare from the free answer, in the same words, buys nothing and prints nothing",
+          lambda: r == (True, "pat%s DOS %s is after date of death %s (amd-medicare-271) - claim must not be submitted" % (pid, iso(dos), iso(ago(30))) + tail) and SENT == [] and out.getvalue() == "" and counts() == (1, 1, 0), (r, kinds(), out.getvalue()))
+
+def t_free_missing():
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p); real = fake_amd.check_eligibility; del fake_amd.check_eligibility
+    try: r = guard_check(pid, iso(ago(2)))
+    finally: fake_amd.check_eligibility = real
+    a = (r, kinds(), src_of(pid), counts(), list(DG.LOG))
+    reset(); p = newp(); pid = mchart(p); free_is(pid, p=p); ea = sys.modules.pop("elig_amd", None)
+    try: r = guard_check(pid, iso(ago(2)))
+    finally:
+        if ea is not None: sys.modules["elig_amd"] = ea
+    b = (r, kinds(), src_of(pid), counts(), list(DG.LOG)); n = len(FREE_ASKED)
+    check("free first: a workspace whose amd.py has no check_eligibility, or one without elig_amd.py -> no free check and no error: the paid check as before, COUNTS = 0 asked free, 1 bought",
+          lambda: a == b == ((False, ""), ["CMS"], "stedi: no death on record", (0, 0, 1), []) and n == 0 and ea is not None, (a, b, n))
+
+def t_free_privacy():
+    reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d); r, said = guard_said(pid, iso(ago(2)))
+    q = newp(); pq = mchart(q); FREE[ins(pq)] = ("timeout",); OVERRIDE[("CMS", q["number"])] = ("timeout",); r2, said2 = guard_said(pq, iso(ago(2)))
+    w = newp(); pw = mchart(w); free_is(pw, p=w); r3, said3 = guard_said(pw, iso(ago(2)))
+    secret = [x[k] for x in (d, q, w) for k in ("number", "last", "dob8")]
+    check("privacy (A9): the guard prints nothing for a free answer; the one line it logs, for the chart it could not verify, holds the chart id and the date of service only - no name, birth date, Medicare number or date of death in what it prints or logs",
+          lambda: r[0] is True and FREE_ASKED != [] and said + said3 == "" and DG.LOG == [UNVERIFIED % (pq, iso(ago(2)))] and not any(s in said + said2 + said3 + " ".join(DG.LOG) for s in secret + [d["death8"], iso(ago(9))]), (said, said2, said3, DG.LOG))
+    check("privacy (A9): the cache keeps the date of death as before (the date, the day checked, the source - nothing else); no name, birth date or Medicare number is in the cache, the usage log or the answer store, although the free answers carried all three",
+          lambda: cache_json()[pid] == {"dod": iso(ago(9)), "checked": iso(TODAY), "src": "amd-medicare-271"} and cache_json()[pw] == {"dod": None, "checked": iso(TODAY), "src": "amd: no death on record"}
+          and all(s in json.dumps(FREE[ins(pid)]) + json.dumps(FREE[ins(pw)]) for s in (d["number"], d["last"], d["dob8"], w["number"])) and not any(s in text_of(DCACHE) + text_of(ULOG) + text_of(STORE) for s in secret), cache_json())
+
+# ---- 4c. after the independent review of the free-first change (11/25/2026) - each check names the review finding it closes ------
+def t_free_death_unreadable():
+    def run(death8, died=True, plans=None, **kw):
+        """One chart whose free answer is complete - no rejection, ACTIVE, Part A and Part B, stamps of today - but for its date-of-death segment(s) `death8`. The vendor's
+        answer (Medicare's own record) shows a death 9 days ago, or none. -> (the guard's answer for a care-management claim dated 2 days ago, the vendor calls, COUNTS,
+        the source in the guard's cache, how many free checks, the chart)"""
+        reset(); d = newp(death=ago(9) if died else None); pid = chart(cid(), d, plans=plans(d) if plans else [("car6085", "", d["number"])])
+        FREE[ins(pid)] = ("answer", free271(d, death8=death8, **kw))
+        return guard_check(pid, iso(ago(2)), proc="99490"), kinds(), counts(), src_of(pid), len(FREE_ASKED), pid
+    d8 = ymd(ago(9))
+    from_paid = lambda x: x[0][0] is True and "after date of death %s (stedi-medicare-271)" % iso(ago(9)) in x[0][1] and x[1:5] == (["CMS"], (1, 0, 1), "stedi-medicare-271", 1)
+    from_free = lambda x: x[0][0] is True and "after date of death %s (amd-medicare-271)" % iso(ago(9)) in x[0][1] and x[1:5] == ([], (1, 1, 0), "amd-medicare-271", 1)
+    shapes = (("an empty date", ("",), {}), ("no date in the segment at all", (None,), {}), ("null, in the JSON shape", (None,), dict(shape="json")), ("an empty date, in the JSON shape", ("",), dict(shape="json")),
+              ("blanks only", ("   ",), {}), ("the real date, then a second segment with an empty date (the reader keeps the last one)", (d8, ""), {}),
+              ("an empty date on a chart whose only Medicare plan has ended (such a plan answers with ACTIVE lines)", ("",), dict(plans=lambda p: [("car6085", mdy(ago(30)), p["number"])])))
+    res = [(name, run(v, **kw)) for name, v, kw in shapes]
+    check("free first (A2, review finding 1): a date-of-death segment whose date cannot be read - empty, missing, null, blanks, or an empty one after the real one - beside ACTIVE lines with Part A and Part B stamped today is NOT 'no death on record': the plain check is bought as before, and the death it shows blocks the claim",
+          lambda: len(res) == 7 and all(from_paid(x) for _, x in res), [(n, x[:4]) for n, x in res if not from_paid(x)][:3])
+    x = run(("",)); pid = x[5]; del SENT[:]; del FREE_ASKED[:]; r2 = guard_check(pid, iso(ago(1)))
+    check("free first (review finding 1): ... and that death is in the guard's cache, so the chart's next claim is blocked with no call at all - the misread answer had been kept as 'amd: no death on record' and let every claim of the chart through for 30 days",
+          lambda: from_paid(x) and r2[0] is True and SENT == [] and FREE_ASKED == [] and cache_json()[pid]["dod"] == iso(ago(9)), (x[:4], r2, kinds(), FREE_ASKED))
+    res = [(name, run(v, died=False, **kw)[:5]) for name, v, kw in shapes[:5]]
+    check("free first (A2, review finding 1): for a patient Medicare's record shows alive such an answer is no answer either - one plain check is bought and kept as 'stedi: no death on record'; a free 'no death on record' is taken only from an answer with NO date-of-death segment in it",
+          lambda: len(res) == 5 and all(x == ((False, ""), ["CMS"], (1, 0, 1), "stedi: no death on record", 1) for _, x in res), res)
+    a = run(("", d8)); b = run((" %s " % d8,)); c = run(("",), status="inactive")
+    check("free first (A2 i): an empty segment followed by the real date, and a date with blanks around it, are read as that date - blocked from the free answer, nothing bought; INACTIVE beside an empty date goes to the paid check, as before",
+          lambda: from_free(a) and from_free(b) and from_paid(c), (a[:4], b[:4], c[:4]))
+    res = [(bad, run(bad)) for bad in (d8[:7], d8 + "-" + d8, d8[:4] + "1340", "0" * 8, "D8" + d8[2:])]
+    check("free first (A2, review finding 6a): a date-of-death text that is no date - 7 digits, a range, no calendar date, eight zeros, letters - beside an otherwise complete ACTIVE answer is no answer either (the check further up tries these texts beside INACTIVE lines only): the plain check is bought and the death it shows blocks",
+          lambda: len(res) == 5 and all(from_paid(x) for _, x in res), [(n, x[:4]) for n, x in res if not from_paid(x)][:3])
+
+def t_free_failed_mark():
+    reset(); d = newp(death=ago(9)); pid = mchart(d); dos = ago(2); free_death(pid, d); age = (TODAY - first_of_month(dos)).days
+    OVERRIDE[("CMS", d["number"])] = ("answer", err_answer("42"))                                                                    # Medicare cannot answer now: the mark then carries the code and its words
+    j1, how1, e1 = askp(d, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=age); m1 = store_chart(pid).get("failed")     # the pre-claim check's paid call fails: 'asked and failed today'
+    r = guard_check(pid, iso(dos), proc="99490"); m2 = store_chart(pid).get("failed"); n2 = len(SENT); c2 = counts()                   # the guard: nothing bought, the free check shows the death
+    j3, how3, e3 = askp(d, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=age)                                              # the pre-claim check asks again the same day
+    check("free first (review finding 3): a chart whose paid call failed earlier today, then a free answer with a date of death - the claim is blocked and the death is noted in the answer store, and the store's 'asked and failed today' mark is still there exactly as it was, so the pre-claim check asking again that day buys nothing (ONE vendor request in all)",
+          lambda: how1 == "failed" and isinstance(m1, dict) and m1.get("who") == "pre-claim check" and m1.get("dos") == ymd(dos) and m1.get("errors") and "42" in str(m1.get("reason")) and m2 == m1
+          and r[0] is True and "(amd-medicare-271)" in r[1] and (n2, c2) == (1, (1, 1, 0))
+          and how3 == "failed" and j3["stored"]["how"] == "failed" and len(SENT) == 1 and _try(lambda: MS.death(pid)) == d["death8"], (how1, m1, m2, r, n2, c2, how3, kinds()))
+    _try(lambda: store_edit(lambda x: x["charts"][pid]["failed"].update(day=iso(ago(1))))); OVERRIDE.clear(); j4, how4, e4 = askp(d, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=age)
+    check("free first (review finding 3): ... the mark stays the day's only - the next day the chart is asked again, as before", lambda: how4 == "plain" and kinds() == ["CMS", "CMS"], (how4, kinds()))
+    reset(); d = newp(death=ago(9)); pid = mchart(d); nxt = next_month(TODAY) + datetime.timedelta(days=1); free_death(pid, d)
+    askp(d, dos=ymd(TODAY), pid=pid, who="pre-claim check", max_age_days=0)                                                            # today's answer about THIS month's visit: it stays in the store
+    OVERRIDE[("CMS", d["number"])] = ("timeout",); askp(d, dos=ymd(nxt), pid=pid, who="pre-claim check", max_age_days=0)                # a call about a date in NEXT month fails today: the mark, beside that answer
+    os.remove(DCACHE); m1 = store_chart(pid).get("failed"); n1 = len(SENT); r = guard_check(pid, iso(nxt)); m2 = store_chart(pid).get("failed")
+    check("free first (review finding 3): the mark is found and put back also when the store holds an answer of today beside it (a claim dated next month: that answer is about this month's visit and serves nobody asking about the later date)",
+          lambda: isinstance(m1, dict) and m1.get("dos") == ymd(nxt) and m2 == m1 and r[0] is True and "(amd-medicare-271)" in r[1] and len(SENT) == n1 == 2 and len(store_chart(pid).get("answers") or []) == 2, (m1, m2, r, kinds(), store_chart(pid).get("answers")))
+    reset(); ws = new_ws(); d = newp(death=ago(9)); dos = ago(1); pid = mchart(d); unpaid(pid, "FLO02", dos); free_death(pid, d)
+    OVERRIDE[("CMS", d["number"])] = ("timeout",)
+    c1, o1, e1 = precheck(ws); row1 = _try(lambda: rows(ws)[pid]["result"]); n1 = len(SENT)
+    r = guard_check(pid, iso(dos), proc="99490")
+    c3, o3, e3 = precheck(ws); row3 = _try(lambda: rows(ws)[pid]["result"]); said = [l for l in o3.splitlines() if l.startswith("checked ")]
+    check("free first (review finding 3): the same with the real pre-claim check run as a program before and after the guard - its second start that day reports the failed check again, says '(0 new lookups)' and sends nothing",
+          lambda: row1 == row3 == "ERROR Medicare check failed (time-out)" and n1 == 1 and r[0] is True and len(SENT) == 1 and len(said) == 1 and "(0 new lookups)" in said[0], (row1, row3, r, kinds(), said))
+    res = []
+    def boom(*a, **k): raise OSError("the answer store cannot be reached (stand-in)")
+    for broken in ("written", "read", "read or written"):
+        reset(); d = newp(death=ago(9)); pid = mchart(d); free_death(pid, d); real = (MS.put, MS.get)
+        if "written" in broken: MS.put = boom
+        if "read" in broken: MS.get = boom
+        try: r = _try(lambda: guard_check(pid, iso(ago(2))))
+        finally: MS.put, MS.get = real
+        res.append((broken, r, kinds(), src_of(pid), counts(), _try(lambda: MS.death(pid))))
+    check("free first: the note in the answer store never stops the guard - with a store that cannot be written, cannot be read, or neither, the free answer's date of death still blocks and is kept in the guard's cache, and nothing is bought; a store that only cannot be read still gets the note",
+          lambda: len(res) == 3 and all(x[1] != "raised" and x[1][0] is True and x[2] == [] and x[3] == "amd-medicare-271" and x[4] == (1, 1, 0) for x in res) and res[1][5] == ymd(ago(9)), res)
+
+def t_free_pins():
+    # review finding 6: rules of the free-first code that no check pinned (the guard was right on each of them - a later edit could have lost them with no check failing)
+    res = []
+    for old in (40, 30):
+        reset(); p = newp(); pid = mchart(p); dos = ago(45); free_is(pid, p=p)
+        askp(p, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)             # another helper's answer about that visit; the guard's cache did not come along
+        store_edit(lambda x: x["charts"][pid]["answers"][0].update(asked=iso(ago(old)))); del SENT[:]
+        r = guard_check(pid, iso(dos)); res.append((old, r, kinds(), len(FREE_ASKED), src_of(pid), counts()))
+    check("free first (review finding 6b): the answer store is asked with the guard's own 30 days - an answer 40 days old is none the client hands over, so the free check is asked and answers and nothing is bought; one 30 days old is used with no call at all, as before",
+          lambda: res == [(40, (False, ""), [], 1, "amd: no death on record", (1, 1, 0)), (30, (False, ""), [], 0, "stedi: no death on record", (0, 0, 0))], res)
+    last = first_of_month(TODAY) - datetime.timedelta(days=5)                                                # a visit near the end of LAST month - never this month's, whatever day today is
+    reset(); d = newp(death=last - datetime.timedelta(days=6)); pid = mchart(d)
+    askp(d, dos=ymd(last), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)                # another helper bought the answer about that visit: it shows the death
+    store_edit(lambda x: x["charts"][pid]["answers"][0].update(asked=iso(max(last, ago(20)))))
+    free_is(pid, p=dict(d, death8=None)); del SENT[:]                                                        # the free check would now answer 'no death'
+    r = guard_check(pid, iso(last)); c1 = (r[0], "after date of death %s (stedi-medicare-271)" % iso(last - datetime.timedelta(days=6)) in r[1], list(FREE_ASKED), kinds(), counts())
+    reset(); p = newp(); pid = mchart(p); nxt = next_month(TODAY) + datetime.timedelta(days=1); free_is(pid, p=p)
+    askp(p, dos=ymd(TODAY), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE); del SENT[:]  # today's answer, about THIS month's visit
+    r = guard_check(pid, iso(nxt)); c2 = (r, kinds(), len(FREE_ASKED), src_of(pid), counts())
+    check("free first (review finding 6c): the answer store is asked about the CLAIM's own date of service, not about today - a death an answer about LAST month's visit shows is used as it is (blocked, nothing asked, free or paid, although the free check would answer 'no death'); and today's answer about this month's visit is no answer for a claim dated next month (the free check is asked and answers, nothing is bought)",
+          lambda: c1 == (True, True, [], [], (0, 0, 0)) and c2 == ((False, ""), [], 1, "amd: no death on record", (1, 1, 0)), (c1, c2))
+    res = []
+    for st in (201, 204, 206, 299):
+        reset(); d = newp(death=ago(12)); pid = mchart(d); FREE[ins(pid)] = ("http", st, free271(d)); r = guard_check(pid, iso(ago(3)))
+        res.append((st, r[0], "(stedi-medicare-271)" in r[1], kinds(), counts(), src_of(pid)))
+    check("free first (A2, review finding 6d): only HTTP 200 is an answer - 201, 204, 206 or 299 with a complete ACTIVE answer in the body is not taken: the plain check is bought as before, and the death it shows blocks",
+          lambda: len(res) == 4 and all(x[1:] == (True, True, ["CMS"], (1, 0, 1), "stedi-medicare-271") for x in res), res)
+    def boom(*a, **k): raise RuntimeError("connection reset")
+    reset(); p = newp(); pid = mchart(p); sys.modules["stedi"] = standin("stedi", mbi=boom, med_summ=ST.med_summ)      # an older client (no medicare()) whose look-up raises
+    try: r = guard_check(pid, iso(ago(2)))
+    finally: sys.modules["stedi"] = ST
+    g1 = (r, kinds(), counts(), list(DG.LOG) == [UNVERIFIED % (pid, iso(ago(2)))], src_of(pid))
+    reset(); p = newp(); pid = mchart(p); real = ST.medicare; ST.medicare = boom                                       # today's client, and medicare() itself raises
+    try: r = guard_check(pid, iso(ago(2)))
+    finally: ST.medicare = real
+    g2 = (r, kinds(), counts(), list(DG.LOG) == [UNVERIFIED % (pid, iso(ago(2)))], src_of(pid))
+    check("free first (A7, review finding 6g): a vendor call that RAISES is still counted as bought - with an older client whose look-up raises and with today's client: COUNTS = 1 asked free, 0 answered free, 1 bought; nothing is blocked and the chart is logged UNVERIFIED, as before",
+          lambda: g1 == g2 == ((False, ""), [], (1, 0, 1), True, None), (g1, g2))
+
+def t_free_texts():
+    src = _read("scripts/helpers/deceased_guard.py")
+    head = " ".join(l.lstrip("# ") for l in src.split("\nimport ", 1)[0].splitlines() if l.startswith("#"))
+    said = {x: x in head for x in ("11/25/2026 (William:", "is stedi able to do that for free?", "the vendor is never free", "FIRST asks AdvancedMD's free check", "buys the vendor's answer only when the free check gives no usable answer",
+                                   "'amd-medicare-271'", "'amd: no death on record'", "can never make the guard weaker", "After 3 free checks in a row", "DEATH_CHECK_FREE=off", "COUNTS", "nothing of them is printed, logged or kept")}
+    check("texts: the guard's header says what it does since 11/25/2026 - William's words, AdvancedMD's free check first and the vendor only when it gives no usable answer, the two new sources, the 3-in-a-row rule, the switch, COUNTS, privacy",
+          lambda: all(said.values()), [x for x, ok in said.items() if not ok])
+    check("texts: the guard still never names a vendor call of its own, the sentence the look-up texts test reads is still there, and the free check does not go through elig_amd.run_plan (which writes the answer into the working directory)",
+          lambda: "requests" not in src and "refuses the plain check for another reason" in head and "stedi.medicare(" in src and "FREE_TIMEOUT = 60" in src and "run_plan(" not in src and "amd.check_eligibility" in src and "elig_amd.summarize(" in src)
+    said = {x: x in head for x in ("no date-of-death segment in the answer at all", "a date-of-death segment whose date is empty or is no date", "an answer that came but cannot be read",
+                                   "is not 'down'", "leaves the store's 'asked and failed today' mark as it was")}
+    check("texts: the guard's header says what the review of that day changed - a 'no death' answer has no date-of-death segment at all and one whose date cannot be read is no answer; an unreadable answer is not 'down'; the death note leaves the store's failed mark as it was",
+          lambda: all(said.values()), [x for x, ok in said.items() if not ok])
+    line = 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}'
+    mk = re.search(r'"deceased_guard\.py":\s*(\'[^\'\n]*\'|"[^"\n]*")', _read("tools/mirror/mirror.py")); marker = mk.group(1)[1:-1] if mk else None
+    check("texts (review finding 2): whatever marker the mirror's table of protected helpers holds for deceased_guard.py is a string BOTH copies of the guard carry - the mirror never refuses the repository's own guard as stale; and the line only the free-first guard has, the one that table can tell an older workspace copy by, stands in each copy exactly once",
+          lambda: bool(marker) and marker in src and marker in _read("core/deceased_guard.py") and src.count(line) == 1 and _read("core/deceased_guard.py").count(line) == 1, marker)
+    GATE = load("tools/mirror/phi_gate.py", "phi_gate_under_test")                  # the gate's text transform only: pure, no file, no network
+    moved = [n for n in ("scripts/helpers/deceased_guard.py", "core/deceased_guard.py") if GATE.redact(_read(n), {}, code=True) != _read(n)]
+    check("texts: the privacy gate's tree rules (what mirror.py runs on changed files) leave the guard exactly as it is - no date in its header sits where the gate would take it for a date of birth or of death", lambda: moved == [], moved)
+
 # ==== 5. the nightly pre-claim check (run as a program INSIDE this process, in a throwaway workspace) ===========================
 WS_N = [0]
 def new_ws():
@@ -1082,11 +1655,16 @@ def t_copies():
     names = ("stedi.py", "deceased_guard.py", "precheck.py", "medicare_store.py", "amd.py", "elig_amd.py")
     diff = [n for n in names if _read("scripts/helpers/" + n) != _read("core/" + n)]
     check("copies: core/ holds the same stedi, deceased_guard, precheck, medicare_store, amd and elig_amd as scripts/helpers", lambda: diff == [], diff)
+    core = _read("core/deceased_guard.py")
+    check("copies: core/deceased_guard.py carries the free-first rule of 11/25/2026 too (COUNTS with its three keys, the switch, the two new sources)",
+          lambda: all(x in core for x in ('COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}', "DEATH_CHECK_FREE", '"amd-medicare-271"', '"amd: no death on record"')))
 
 TESTS = [t_prices, t_usage_reader, t_shape, t_plain_good, t_not_found, t_wrong_number, t_suffix, t_no_number, t_down, t_other_refusal, t_ssn, t_med_summ,
          t_usage_log, t_cli, t_store]
 GUARD_TESTS = [t_guard_death, t_guard_not_found_failed, t_guard_shared, t_guard_review, t_guard_number, t_guard_flag_cache, t_guard_old_client, t_guard_charge,
                t_precheck_args, t_precheck_words, t_precheck_store, t_ten_charts]
+FREE_TESTS = [t_free_was_on, t_free_death, t_free_alive, t_free_unusable, t_free_plan, t_free_order, t_free_switch, t_free_down, t_free_counts, t_free_store, t_free_charge,
+              t_free_missing, t_free_privacy, t_free_death_unreadable, t_free_failed_mark, t_free_pins, t_free_texts]      # 11/25/2026: AdvancedMD's free check first (section 4b) and its review the same day (4c)
 LAST = [t_engine, t_texts, t_copies]
 _PATH = list(sys.path)
 def _run(t):
@@ -1097,12 +1675,49 @@ def _run(t):
         sys.path[:] = _PATH                                          # the client adds its own folder to sys.path - nothing of the checkout stays importable
         os.environ.update(MEDICARE_STORE=STORE, STEDI_USAGE_LOG=ULOG, DECEASED_CACHE=DCACHE)
 for t in TESTS: _run(t)
+EA = load("scripts/helpers/elig_amd.py", "elig_amd"); sys.modules["elig_amd"] = EA                                # 11/25/2026: the REAL reader of AdvancedMD's free answer (summarize) - its amd is the stand-in; nothing here starts its run_plan
 reset(); DG = load("scripts/helpers/deceased_guard.py", "deceased_guard"); sys.modules["deceased_guard"] = DG     # from here on the client's hook feeds the REAL guard
 check("guard: the guard is the real file, it uses the one cache path it is configured with, and its own request and key file are gone",
       lambda: DG.CACHE == DCACHE and DG.MAX_AGE_DAYS == 30 and not hasattr(DG, "KEYF") and not hasattr(DG, "STEDI") and "requests" not in _read("scripts/helpers/deceased_guard.py"))
-for t in GUARD_TESTS + LAST: _run(t)
+for t in GUARD_TESTS + FREE_TESTS + LAST: _run(t)
 check("fixtures: the well-shaped 'wrong' numbers belong to no invented person of this run (so a chart holding one really has a wrong number)",
       lambda: 0 < len(PEOPLE) < 895 and not any(q["number"] in WRONG for q in PEOPLE.values()), len(PEOPLE))
+# ---- the guard's cache when nobody names one (11/25/2026, the integration) ------------------------------------------------------------------
+# Until then the guard looked in ONE place - <its folder>/../practices/ehpa/registers/ - which is right for the clone's core/ copy only. In
+# the flat workspace of a run (the helpers side by side, the registers folder beside them) no step fills that path: the guard started EMPTY,
+# a death the practice already held was unknown to it, and a look-up that failed let the charge through (the runs' own lessons of that day).
+def _cache_of(guard_file, env=None):
+    """the cache path the guard chooses when its file stands at guard_file (the file need not be there) and DECEASED_CACHE is env (None = not set)"""
+    old = os.environ.pop("DECEASED_CACHE", None)
+    try:
+        if env is not None: os.environ["DECEASED_CACHE"] = env
+        m = types.ModuleType("deceased_guard_probe"); m.__file__ = guard_file; m.UNDER_TEST = True
+        exec(compile(_read("scripts/helpers/deceased_guard.py"), guard_file, "exec"), m.__dict__)
+        return m.CACHE
+    finally:
+        os.environ.pop("DECEASED_CACHE", None)
+        if old is not None: os.environ["DECEASED_CACHE"] = old
+def _tree(name, files=(), dirs=()):
+    root = os.path.join(TMP, "cachewhere", name)
+    for d in dirs: os.makedirs(os.path.join(root, d), exist_ok=True)
+    for f in files:
+        os.makedirs(os.path.dirname(os.path.join(root, f)), exist_ok=True); open(os.path.join(root, f), "w").write("{}")
+    return root
+_REG = os.path.join("practices", "ehpa", "registers", "deceased_cache.json")
+_wsA = _tree("flat", ["home/ws/registers/deceased_cache.json"]); _wsB = _tree("flat_prepared", ["home/ws/registers/deceased_cache.json", "home/" + _REG])
+_clC = _tree("clone", [_REG], ["core", "scripts/helpers"]); _wsE = _tree("flat_new", [], ["home/ws/registers"]); _wsF = _tree("bare", [], ["home/ws"])
+check("guard: with no cache named, the guard of a run's FLAT workspace (the helpers side by side, registers/ beside them) reads the workspace's own registers/deceased_cache.json - it no longer starts empty beside the cache the practice holds",
+      lambda: _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py")) == os.path.join(_wsA, "home", "ws", "registers", "deceased_cache.json"), lambda: _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py")))
+check("guard: ... where a run has put a copy at the path the guard always tried first (<folder>/../practices/ehpa/registers/) that copy still answers; in the clone the core/ copy reads the repository's register as before, and the scripts/helpers/ copy now reads the same file",
+      lambda: _cache_of(os.path.join(_wsB, "home", "ws", "deceased_guard.py")) == os.path.join(_wsB, "home", _REG) and _cache_of(os.path.join(_clC, "core", "deceased_guard.py")) == os.path.join(_clC, _REG)
+      and _cache_of(os.path.join(_clC, "scripts", "helpers", "deceased_guard.py")) == os.path.join(_clC, _REG),
+      lambda: (_cache_of(os.path.join(_wsB, "home", "ws", "deceased_guard.py")), _cache_of(os.path.join(_clC, "core", "deceased_guard.py")), _cache_of(os.path.join(_clC, "scripts", "helpers", "deceased_guard.py"))))
+check("guard: ... with no cache file anywhere yet, a workspace that has a registers folder gets its cache THERE (the folder a run packs), any other place the path of before; and a cache the environment names wins everywhere - an empty name is no name",
+      lambda: _cache_of(os.path.join(_wsE, "home", "ws", "deceased_guard.py")) == os.path.join(_wsE, "home", "ws", "registers", "deceased_cache.json")
+      and _cache_of(os.path.join(_wsF, "home", "ws", "deceased_guard.py")) == os.path.join(_wsF, "home", _REG)
+      and all(_cache_of(os.path.join(r_, "home", "ws", "deceased_guard.py"), "/x/named.json") == "/x/named.json" for r_ in (_wsA, _wsB, _wsE, _wsF)) and _cache_of(os.path.join(_clC, "core", "deceased_guard.py"), "/x/named.json") == "/x/named.json"
+      and _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py"), "") == os.path.join(_wsA, "home", "ws", "registers", "deceased_cache.json"),
+      lambda: (_cache_of(os.path.join(_wsE, "home", "ws", "deceased_guard.py")), _cache_of(os.path.join(_wsF, "home", "ws", "deceased_guard.py")), _cache_of(os.path.join(_wsA, "home", "ws", "deceased_guard.py"), "")))
 check("nothing was written in the checkout", lambda: _snapshot() == BEFORE, sorted(set(_snapshot().items()) ^ set(BEFORE.items()))[:5])
 print("test_lookup_rules: %d checks, %d failed%s" % (COUNT[0], len(FAILS), "" if not FAILS else " - " + "; ".join(FAILS)[:300]))
 sys.exit(1 if FAILS else 0)

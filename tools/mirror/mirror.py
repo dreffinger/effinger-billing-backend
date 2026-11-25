@@ -178,7 +178,11 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # over them - the markers are a sentence and a line only the fixed versions have
              "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
              # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
-             "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
+             "stedi.py": "def medicare(", "precheck.py": "max_age_days=_month_age(dos)",
+             # 11/25/2026 (William: "is stedi able to do that for free?"): the guard asks AdvancedMD's free eligibility check before it buys a vendor answer, and finds the
+             # workspace's own cache; a workspace copy from before buys an answer for every check and can start with an empty cache - it must not come back over the new
+             # one. The marker is the COUNTS line only the new guard has (until that day: "stedi.medicare(", which the old guard holds too).
+             "deceased_guard.py": 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.3"',
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the

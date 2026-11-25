@@ -15,6 +15,9 @@
 #   raw answer; anything shaped like a Medicare number is blanked before a write. A list keeps at most 20 items; the plan lines (U, R)
 #   are put first, so the cut falls on the other lines before an Advantage plan. death(pid) gives the deceased-patient guard the date of
 #   death any kept answer shows, whatever its age or month of service (a death is never undone - 11/10/2026 re-check fix).
+#   11/25/2026: the deceased-patient guard also notes here a date of death that AdvancedMD's FREE eligibility check showed (the guard's
+#   _note_death: put() with how 'amd free check, date of death only', who 'guard', date of service '00000000') - a death-only entry about
+#   no date of service, so get() hands it to no reader as a Medicare answer, while death() shows it like any other kept date of death.
 # Never touches: AdvancedMD, the vendor, the guard's own cache (deceased_cache.json).
 import os, re, json, datetime, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
