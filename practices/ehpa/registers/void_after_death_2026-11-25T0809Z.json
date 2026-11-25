@@ -1,0 +1,18 @@
+{
+ "stamp": "2026-11-25T0809Z",
+ "pid": "17476865",
+ "dod": "[DOB]",
+ "voided": [
+  {
+   "cid": "23367044",
+   "void_ok": true,
+   "void_after": "1"
+  },
+  {
+   "cid": "23367045",
+   "void_ok": true,
+   "void_after": "1"
+  }
+ ],
+ "left": "23362986 08/23/2026 99487 paid 206.00 by Medicare 08/26/2026 - after the date of death, money received: for William"
+}

@@ -1,0 +1,33 @@
+{
+ "stamp": "2026-11-25T0809Z",
+ "live": false,
+ "cap07_open_charges": 104,
+ "home_rows": [
+  {
+   "pid": "17476928",
+   "visit": "19460671",
+   "charge": "23373487",
+   "dos": "2026-11-05T00:00:00",
+   "cpt": "99344",
+   "list_insbalance": 300.0,
+   "live_insbalance": 300.0,
+   "live_patbalance": 0.0,
+   "live_paid": null,
+   "carrier": "CAP07",
+   "action": "DRY - would write off WONCS 300.00"
+  },
+  {
+   "pid": "46678",
+   "visit": "19457095",
+   "charge": "23368917",
+   "dos": "2026-10-01T00:00:00",
+   "cpt": "99344",
+   "list_insbalance": 0.0,
+   "live_insbalance": 0.0,
+   "live_patbalance": 300.0,
+   "live_paid": null,
+   "carrier": "CAP07",
+   "action": "DRY - patient balance 300.00 (CHP $0 denial): would move_to_ins.move then WONCS 300.00"
+  }
+ ]
+}

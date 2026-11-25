@@ -1372,6 +1372,95 @@
     "payment",
     "patient"
    ]
+  },
+  {
+   "id": "charges-visits/referral-plans-list-rest",
+   "folder": "Charges & visits",
+   "name": "Referral plans of a chart \u2014 REST list (inboundreferrals?PatientId)",
+   "method": "GET",
+   "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals?PatientId={{patientid}}&ShowExpired=true",
+   "headers": {
+    "Authorization": "Bearer {{token}}",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+   },
+   "body": "",
+   "body_language": "text",
+   "description": "The Referral Plans screen's list call (captured 10/5/2026 from William's Chrome DevTools). Returns {totalcount, items:[plan]} - every referral plan on the chart, expired included. The list rows carry an EMPTY authorizations[] - read a plan with the single GET to see its Pre-Auth #. patientid = plain number (no 'pat').",
+   "helper": "refplan_rest.list_plans(pid)",
+   "captured": "10/5/2026",
+   "status": "proven",
+   "tags": [
+    "referral",
+    "rest"
+   ]
+  },
+  {
+   "id": "charges-visits/referral-plan-read-rest",
+   "folder": "Charges & visits",
+   "name": "Referral plan \u2014 REST read (inboundreferrals/{id})",
+   "method": "GET",
+   "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals/{{refplanid}}",
+   "headers": {
+    "Authorization": "Bearer {{token}}",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+   },
+   "body": "",
+   "body_language": "text",
+   "description": "One referral plan as the Referral Plans screen loads it (captured 10/5/2026): id, patientid, referralnumber, reason, by/toreferringproviderid, effectivedate, expirationdate, statusid/statusname, facility, carrier, excludefromclaim, preauthorizationrequired, referraldiagnosiscodes[], referralnotes[], authorizations[] - each authorization = {id, authorizationnumber (the Pre-Auth # that prints in box 23), description, effectivedate, expirationdate, statusid, carrier, warnremaining*, updateusing, calculatewhen, authorizationdiagnosiscodes[], authorizationnotes[], authorizationcounts[{id, authorized*/remaining*, isdefault, procedurecodes[]}]}. refplanid = plain number (rplan18462071 -> 18462071).",
+   "helper": "refplan_rest.get(rplan)",
+   "captured": "10/5/2026",
+   "status": "proven",
+   "tags": [
+    "referral",
+    "rest"
+   ]
+  },
+  {
+   "id": "charges-visits/referral-plan-update-rest-put-clear-or-set-preauth",
+   "folder": "Charges & visits",
+   "name": "Referral plan \u2014 REST update (PUT inboundreferrals): clear / set the Pre-Auth #",
+   "method": "PUT",
+   "url": "https://pm-api-103.advancedmd.com/api/referral/inboundreferrals",
+   "headers": {
+    "Authorization": "Bearer {{token}}",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+   },
+   "body": "{\n \"id\": \"{{refplanid}}\",\n \"patientid\": \"{{patientid}}\",\n \"referralnumber\": \"\",\n \"reason\": \"SELF-REFERRAL\",\n \"byreferringproviderid\": 13,\n \"toreferringproviderid\": 13,\n \"effectivedate\": \"yyyy-mm-dd\",\n \"expirationdate\": null,\n \"statusid\": null,\n \"statusname\": \"\",\n \"facility\": null,\n \"carrier\": null,\n \"excludefromclaim\": true,\n \"preauthorizationrequired\": false,\n \"referraldiagnosiscodes\": [],\n \"referralnotes\": [],\n \"authorizations\": [\n  {\n   \"id\": \"<authorization id from the GET>\",\n   \"authorizationnumber\": \"<the Pre-Auth # - '' clears it>\",\n   \"description\": \"SELF-REFERRAL\",\n   \"effectivedate\": \"<as read>\",\n   \"expirationdate\": null,\n   \"statusid\": null,\n   \"statusname\": \"\",\n   \"carrier\": null,\n   \"warnremainingunits\": null,\n   \"warnremainingamount\": null,\n   \"warnremainingminutes\": null,\n   \"warnremainingvisits\": null,\n   \"warnremainingdays\": null,\n   \"updateusing\": \"\",\n   \"calculatewhen\": \"\",\n   \"authorizationdiagnosiscodes\": [],\n   \"authorizationnotes\": [],\n   \"authorizationcounts\": [\n    {\n     \"id\": \"<count id from the GET>\",\n     \"authorizedunits\": null,\n     \"authorizedamount\": null,\n     \"authorizedminutes\": null,\n     \"authorizedvisits\": null,\n     \"remainingunits\": null,\n     \"remainingamount\": null,\n     \"remainingminutes\": null,\n     \"remainingvisits\": null,\n     \"isdefault\": true,\n     \"procedurecodes\": []\n    }\n   ],\n   \"carrierid\": null\n  }\n ],\n \"authorization\": \"<the same authorization object again (the screen's singular copy of the edited one)>\",\n \"carrierid\": null,\n \"facilityid\": null\n}",
+   "body_language": "json",
+   "description": "The Referral Plans screen's Save (William's Chrome DevTools 'Copy as cURL', 10/5/2026, chart pat17477777 / plan 18462071): PUT the WHOLE plan object (no id in the URL) - take the single GET, send dates as yyyy-mm-dd, add carrierid to each authorization, nulls where the GET shows 0 for warnremaining*, append the singular 'authorization' copy and top-level carrierid/facilityid, change ONLY what you mean to change. Proven: authorizationnumber '' blanked the foreign VA auth (HTTP 200; REST readback '' and XML refplan preauth='' the same second). This is the ONLY backend edit of a referral plan - the XML gateway has no update/delete (9/20 probes), a resave with preauth='' is ignored. Always confirm plan.patientid == the chart before writing (a plan of another patient must never be edited from a visit). NOT captured yet: creating a NEW authorization record on a plan that has none (the screen's POST when a Pre-Auth # is typed into an empty plan), deleting a plan.",
+   "helper": "refplan_rest.clear_preauth(rplan, pid) / refplan_rest.set_preauth(rplan, pid, number)",
+   "captured": "10/5/2026",
+   "status": "proven",
+   "tags": [
+    "referral",
+    "rest",
+    "preauth"
+   ]
+  },
+  {
+   "id": "lookups/referral-status-codes-rest",
+   "folder": "Lookups",
+   "name": "Referral status codes \u2014 REST (statuscodes/0)",
+   "method": "GET",
+   "url": "https://pm-api-103.advancedmd.com/api/referral/statuscodes/0",
+   "headers": {
+    "Authorization": "Bearer {{token}}",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+   },
+   "body": "",
+   "body_language": "text",
+   "description": "Referral/authorization status list the screen loads (captured 10/5/2026): 7 PENDING APPROVAL, 8 APPROVED, 9 DENIED, 10 CLOSED, 11 APPEAL, 12 #AUTH REQUIRED, 13 #REFERRAL REQUIRED, 14 #READY FOR USE, 15 #EXPIRED, 16 #NO LONGER USED, 65 sent. statusid on a plan/authorization refers to these.",
+   "helper": "refplan_rest.statuscodes()",
+   "captured": "10/5/2026",
+   "status": "proven",
+   "tags": [
+    "referral",
+    "rest"
+   ]
   }
  ]
 }

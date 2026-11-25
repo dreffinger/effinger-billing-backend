@@ -1,0 +1,122 @@
+{
+ "stamp": "2026-11-25T0809Z",
+ "live": true,
+ "jobs": [
+  {
+   "pid": "17476865",
+   "kind": "dob",
+   "open_medicare_charges": [
+    [
+     "19455672",
+     "23367044",
+     "09/20/2026",
+     "99487",
+     "206.00"
+    ],
+    [
+     "19455672",
+     "23367045",
+     "09/20/2026",
+     "99489",
+     "109.00"
+    ]
+   ],
+   "patch": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17476865,\"conversionid\":null,\"chartnumber\":\"4588\",\"mrn\":\"6A33A0FED5B1B37D9BDB4349\",\"ssn\":\"\","
+   ],
+   "271": "INACTIVE | plan  | A  B  | others  | death [DOB] | addr [address] IRMO SC 290638847 | aaa []",
+   "outcome": "kept - Medicare identifies the chart; INACTIVE, date of death [DOB]",
+   "dod": "[DOB]"
+  },
+  {
+   "pid": "17473460",
+   "kind": "name",
+   "open_medicare_charges": [
+    [
+     "19429006",
+     "23335517",
+     "01/09/2026",
+     "99309",
+     "84.64"
+    ],
+    [
+     "19430601",
+     "23336940",
+     "01/27/2026",
+     "99487",
+     "80.71"
+    ],
+    [
+     "19430601",
+     "23336941",
+     "01/27/2026",
+     "99489",
+     "44.58"
+    ]
+   ],
+   "patch": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17473460,\"conversionid\":null,\"chartnumber\":\"3773\",\"mrn\":\"6862DCF18DE00B00FB3565E4\",\"ssn\":\"\","
+   ],
+   "271": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}]",
+   "patch2": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17473460,\"conversionid\":null,\"chartnumber\":\"3773\",\"mrn\":\"6862DCF18DE00B00FB3565E4\",\"ssn\":\"\","
+   ],
+   "271b": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}]",
+   "outcome": "restored - Medicare REJECTED   (REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}])"
+  },
+  {
+   "pid": "17477168",
+   "kind": "name",
+   "open_medicare_charges": [
+    [
+     "19449331",
+     "23358926",
+     "07/20/2026",
+     "99223",
+     "310.00"
+    ]
+   ],
+   "patch": [
+    500,
+    "{\"title\":\"Email is not a valid format.\",\"status\":500}"
+   ],
+   "271": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}]",
+   "outcome": "restored - Medicare REJECTED   (REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}])"
+  },
+  {
+   "pid": "17477168",
+   "kind": "name+email",
+   "old_email": "+18503401186",
+   "patch": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17477168,\"conversionid\":null,\"chartnumber\":\"4668\",\"m"
+   ],
+   "271": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '73', 'FollowUpActionCode': 'C'}]",
+   "outcome": "restored - Medicare REJECTED  "
+  },
+  {
+   "pid": "17477168",
+   "kind": "lastname with suffix",
+   "new": "WHITBY JR",
+   "old": [
+    "WHITBY"
+   ],
+   "271": "ACTIVE | plan 20120101 | A 20120101 B 20120101 | others OT  18:S5921 N6:356 UNITEDHEALTHCARE INS. CO. & UHC INS. CO. OF NY: | death - | addr [address] JOE FL 324567607 | aaa []",
+   "outcome": "kept - Medicare identifies the chart as WHITBY JR",
+   "resend": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "pid": "17473460",
+   "kind": "lastname with suffix",
+   "new": "SMYTHE JR",
+   "old": [
+    "SMYTHE"
+   ],
+   "271": "ACTIVE | plan 19950201,20030701 | A 19950201 B 20030701 | others 14  IG:000041723029 6P:DOL 12162017 ALLSTATE INSURANCE COMPANY: | death - | addr [address] TALLAHASSEE FL 323119184 | aaa []",
+   "outcome": "kept - Medicare identifies the chart as SMYTHE JR"
+  }
+ ]
+}

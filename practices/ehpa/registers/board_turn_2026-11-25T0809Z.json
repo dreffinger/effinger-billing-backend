@@ -1,0 +1,88 @@
+{
+ "what": "face sheets needed (facesheets_needed.py 2026-11-25.1) - chart numbers, kinds and dollars only",
+ "stamp": "2026-11-25T0809Z",
+ "at": "2026-11-25T08:39:59Z",
+ "asof": "2026-11-25T08:19:00Z",
+ "cards_read": 572,
+ "your_turn": 7,
+ "dollars": 1779.0,
+ "facesheet": {
+  "n": 2,
+  "dollars": 313.0
+ },
+ "decision": {
+  "n": 5,
+  "dollars": 1466.0
+ },
+ "rows": [
+  {
+   "charts": [
+    "48458"
+   ],
+   "kind": "facesheet",
+   "amount": 107.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471238"
+   ],
+   "kind": "decision",
+   "amount": 204.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17478219"
+   ],
+   "kind": "facesheet",
+   "amount": 206.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17472491"
+   ],
+   "kind": "decision",
+   "amount": 111.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477648"
+   ],
+   "kind": "decision",
+   "amount": 630.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17478216"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17476865"
+   ],
+   "kind": "decision",
+   "amount": 206.0,
+   "new": true
+  }
+ ],
+ "file": {
+  "ops": 9,
+  "kept": 0,
+  "stale": 0,
+  "new": 0,
+  "failed": 0
+ },
+ "checks": {
+  "unanswered": [],
+  "sweep_missing": [],
+  "nothing_waiting": [],
+  "short_read": []
+ }
+}

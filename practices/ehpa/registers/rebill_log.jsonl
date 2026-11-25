@@ -489,3 +489,12 @@
 {"at": "2026-11-25T07:44:53Z", "visit": "19459605", "charge": "23372154", "seq": 1, "status": 204, "by": "freq7_visit.py"}
 {"at": "2026-11-25T07:45:00Z", "visit": "19459146", "charge": "23371551", "seq": 1, "status": 204, "by": "freq7_visit.py"}
 {"at": "2026-11-25T07:45:07Z", "visit": "19458952", "charge": "23371233", "seq": 2, "status": 204, "by": "freq7_visit.py"}
+{"at": "2026-11-25T08:25:55Z", "visit": "19457321", "charge": "23369178", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:25:59Z", "visit": "19457281", "charge": "23369138", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:26:04Z", "visit": "19457280", "charge": "23369137", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:26:08Z", "visit": "19457476", "charge": "23369383", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:26:13Z", "visit": "19457471", "charge": "23369378", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:26:18Z", "visit": "19457529", "charge": "23369457", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:26:23Z", "visit": "19457519", "charge": "23369447", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
+{"at": "2026-11-25T08:27:09Z", "visit": "19457647", "charge": "23369559", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-25T08:33:29Z", "visit": "19449331", "charge": "23358926", "seq": 1, "status": 204, "by": "-"}

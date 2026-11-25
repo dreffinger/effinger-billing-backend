@@ -1,0 +1,85 @@
+{
+ "stamp": "2026-11-25T0809Z",
+ "live": false,
+ "pid": "17478013",
+ "auth_stay1": "VA0054306492",
+ "plans_before": {
+  "rplan18462897": {
+   "ismain": "1",
+   "refprov": "rprov14",
+   "preauth": "VA9011260694"
+  },
+  "rplan18462365": {
+   "ismain": "0",
+   "refprov": "rprov13",
+   "preauth": "VA9011260694"
+  }
+ },
+ "visits_before": {
+  "19457321": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "310.00"
+   ]
+  },
+  "19457281": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457280": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457476": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457471": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457529": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457519": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  },
+  "19457647": {
+   "refplan": "rplan18462365",
+   "insorder": "1",
+   "charges": 1,
+   "insbalance": [
+    "160.00"
+   ]
+  }
+ },
+ "steps": []
+}

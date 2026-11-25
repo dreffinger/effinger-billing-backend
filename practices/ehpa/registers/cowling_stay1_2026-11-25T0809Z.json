@@ -1,0 +1,17 @@
+{
+ "stamp": "2026-11-25T0809Z",
+ "live": true,
+ "pid": "17478013",
+ "auth_stay1": "VA0054306492",
+ "note": "helper cut at 2 minutes by the Bash tool after step 5's 7th rebill; state read back: rplan18462897 refprov rprov13 preauth VA0054306492 (REST by/to 13), rplan18462365 preauth VA9011260694, 8 first-stay visits on rplan18462897 insorder 1 with 1 live charge each; rebills 204 x7 by the helper (08:25:55-08:26:23Z) + v19457647 by freq1_visit.py 08:27:09Z",
+ "visits": {
+  "19457321": "23369178 310.00 204",
+  "19457281": "23369138 160.00 204",
+  "19457280": "23369137 160.00 204",
+  "19457476": "23369383 160.00 204",
+  "19457471": "23369378 160.00 204",
+  "19457529": "23369457 160.00 204",
+  "19457519": "23369447 160.00 204",
+  "19457647": "23369559 160.00 204 (freq1_visit.py)"
+ }
+}

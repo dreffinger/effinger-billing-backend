@@ -68,4 +68,3 @@
 - 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425391 pat48008 Pattern 11256 unspecified laterality bypassed
 - 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425399 pat48008 Pattern 11256 unspecified laterality bypassed
 - 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425490 pat48008 Pattern 11256 unspecified laterality bypassed
-- 11/25/2026 run 2026-11-25T0754Z: pat17477353 visit 19459605 - Pattern 11256 unspecified laterality H9190 bypassed (billing hold only); William to confirm the laterality
