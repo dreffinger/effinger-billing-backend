@@ -1,0 +1,41 @@
+{
+ "stamp": "2026-11-21T1308Z",
+ "live": true,
+ "source": "scan_2026-11-21T1240Z/summary_before.json",
+ "held": [
+  {
+   "batch": "1",
+   "vid": "19461189",
+   "pid": "17478413",
+   "patterns": [
+    "28158"
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19461966",
+   "pid": "17478350",
+   "patterns": [
+    "692"
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19462063",
+   "pid": "17478349",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19462064",
+   "pid": "17478349",
+   "patterns": [
+    null
+   ]
+  }
+ ],
+ "done": [],
+ "failed": []
+}

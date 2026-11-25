@@ -1,0 +1,60 @@
+{
+ "pat17477128": {
+  "v": 4,
+  "visits": [
+   "vst19462410",
+   "vst19462411"
+  ],
+  "dos": [
+   "11/09/2026",
+   "11/19/2026"
+  ],
+  "cpts": [
+   "99309"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519091",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19462410 insorder 2: already 2, list [2] - nothing sent",
+   "vst19462411 insorder 2: already 2, list [2] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9518486",
+    "car": "UNI20",
+    "seq": "1",
+    "end": "08/03/2026"
+   },
+   {
+    "id": "ins9519091",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19462410": "2",
+   "vst19462411": "2"
+  },
+  "decision": "RELEASE"
+ }
+}

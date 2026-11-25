@@ -1,0 +1,63 @@
+[
+ {
+  "checkid": 1053612,
+  "check": "350239508",
+  "carrier": "FLO02",
+  "deposit": "2026-11-24",
+  "visitid": 19452451,
+  "chart": "4524",
+  "dos": "2026-08-22",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "MA01",
+   "MA18",
+   "#AM",
+   "MA01",
+   "MA18",
+   "N390",
+   "#AM"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99487",
+    "chargedetailid": 23362734,
+    "paid": 0.0,
+    "adj": 206.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO151",
+      "amt": 206.0
+     }
+    ],
+    "rarc": [
+     "MA01",
+     "MA18",
+     "#AM"
+    ]
+   },
+   {
+    "cpt": "99489",
+    "chargedetailid": 23362735,
+    "paid": 0.0,
+    "adj": 109.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO234",
+      "amt": 109.0
+     }
+    ],
+    "rarc": [
+     "MA01",
+     "MA18",
+     "N390",
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-21T13:10:27Z"
+ }
+]

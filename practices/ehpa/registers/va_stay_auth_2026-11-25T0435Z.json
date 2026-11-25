@@ -1,0 +1,82 @@
+[
+ {
+  "card": "lowry-fenwick-17475970-stay-1105",
+  "pid": "17475970",
+  "auth": "VA0065278022",
+  "seq": "1",
+  "plans_before": {
+   "rplan18461938": [
+    "1",
+    "VA9010445129"
+   ],
+   "rplan18461939": [
+    "0",
+    "VA9010525257"
+   ],
+   "rplan18461940": [
+    "0",
+    "VA9010836682"
+   ],
+   "rplan18461941": [
+    "0",
+    "VA9011001288"
+   ],
+   "rplan18460206": [
+    "0",
+    "VA9009891369"
+   ]
+  },
+  "visits": {
+   "19460346": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 2 -> 1  plan_preauth=VA0065278022 | NOT rebilled (resave not as asked)",
+   "19460344": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19460401": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19460532": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19460684": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461085": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461064": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461041": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461136": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461269": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461242": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461295": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461449": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461629": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204",
+   "19461858": "resave ok=True refplan=rplan18461938 preauth=None insorder=1 charges 1 -> 1  plan_preauth=VA0065278022 | freq1 + rebill seq 1 -> 204"
+  },
+  "plan_written": "rplan18461938",
+  "plans_after": {
+   "rplan18461938": [
+    "1",
+    "VA0065278022"
+   ],
+   "rplan18461939": [
+    "0",
+    "VA9010525257"
+   ],
+   "rplan18461940": [
+    "0",
+    "VA9010836682"
+   ],
+   "rplan18461941": [
+    "0",
+    "VA9011001288"
+   ],
+   "rplan18460206": [
+    "0",
+    "VA9009891369"
+   ]
+  },
+  "plans_changed": {
+   "rplan18461938": [
+    [
+     "1",
+     "VA9010445129"
+    ],
+    [
+     "1",
+     "VA0065278022"
+    ]
+   ]
+  }
+ }
+]

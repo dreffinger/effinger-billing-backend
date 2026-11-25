@@ -294,7 +294,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"addreferralplan\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><refplan id=\"\" patient=\"pat{{patientid}}\" ismain=\"0\" status=\"stat1\" preauthreq=\"0\" sequence=\"2\" refprov=\"rprov{{refprovid}}\" type=\"I\" reason=\"SELF-REFERRAL\" preauth=\"\" begindate=\"\" enddate=\"\" maxvisits=\"0\" usedvisits=\"0\" maxamount=\"\" usedamount=\"0\" proccode=\"\" diagcodes=\"\" facility=\"\"/></ppmdmsg>",
-   "description": "Creates a BLANK plan and returns its rplan id (attribute values largely ignored). Without ismain/status it get-or-returns the existing main plan. Then resave each visit with refplan=\"rplanX\" preauth=\"VAxxxx\" to link + write the auth. VA auths live on referral plans, not the encounter.",
+   "description": "Creates a BLANK plan and returns its rplan id (attribute values largely ignored). Without ismain/status it get-or-returns the existing main plan. Then resave each visit with refplan=\"rplanX\" preauth=\"VAxxxx\" to link + write the auth. VA auths live on referral plans, not the encounter. 11/25/2026: get-or-returns the chart plan that has the SAME refprov (any other attribute changed); only a different refprov inserts, and the inserted plan becomes MAIN.",
    "helper": "inline (9/8 Lowry-Fenwick stays)",
    "captured": "9/8/2026",
    "body_language": "xml",

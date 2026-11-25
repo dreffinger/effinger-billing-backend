@@ -1,0 +1,42 @@
+[
+ {
+  "id": 1053619,
+  "licensekey": 152563,
+  "receiveddate": "2026-11-21T16:35:51.807",
+  "depositdate": "2026-11-20T00:00:00",
+  "eracarrierid": "2449",
+  "eracarriername": "HUMANA INC.",
+  "hasnote": false,
+  "systemcarrierid": 6285,
+  "systemcarriercode": "HUM01",
+  "systemcarriername": "HUMANA",
+  "paymentnumber": "207259647261121",
+  "paymentamount": 438.35,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 438.35,
+  "unpostedamount": 438.35,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ },
+ {
+  "id": 1053620,
+  "licensekey": 152563,
+  "receiveddate": "2026-11-21T16:37:15.967",
+  "depositdate": "2026-11-20T00:00:00",
+  "eracarrierid": "2449",
+  "eracarriername": "HUMANA INC.",
+  "hasnote": false,
+  "systemcarrierid": 6285,
+  "systemcarriercode": "HUM01",
+  "systemcarriername": "HUMANA",
+  "paymentnumber": "207259646261121",
+  "paymentamount": 307.75,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 307.75,
+  "unpostedamount": 307.75,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]

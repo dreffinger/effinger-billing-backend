@@ -1,0 +1,77 @@
+[
+ {
+  "card": "[name]-17478470",
+  "pid": "17478470",
+  "effective": "11/17/2026",
+  "steps": [
+   [
+    "add CAP07",
+    "ins9521404",
+    "1"
+   ],
+   [
+    "AMD 271",
+    "ACTIVE | plan  | A  B  | others HN  ; HN  ; HN  ; HN   | death - | addr [address] TALLAHASSEE FL 32305 | aaa []"
+   ]
+  ],
+  "visits": {
+   "19461860": "resave vst19461860 insorder 1 -> 1, list [] -> [1], 2 live charges (was 2) | freq1 + rebill seq 1 -> 204",
+   "19461854": "resave vst19461854 insorder 1 -> 1, list [] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+  }
+ },
+ {
+  "card": "[name]-17478452",
+  "pid": "17478452",
+  "effective": "11/01/2026",
+  "steps": [
+   [
+    "add CAP07",
+    "ins9521405",
+    "2"
+   ],
+   [
+    "AMD 271",
+    "ACTIVE | plan  | A  B  | others HN  ; HN  ; HN  ; HN   | death - | addr [address] TALLAHASSEE FL 32303 | aaa []"
+   ],
+   [
+    "patient order",
+    "2,1",
+    "(True, \"insorder 2,1 via ins9521405 -> '2,1'\")"
+   ]
+  ],
+  "visits": {
+   "19461642": "resave vst19461642 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19461630": "resave vst19461630 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  }
+ },
+ {
+  "card": "[name]-17478455",
+  "pid": "17478455",
+  "effective": "11/09/2026",
+  "steps": [
+   [
+    "add CAP07",
+    "ins9521406",
+    "2"
+   ],
+   [
+    "AMD 271",
+    "ACTIVE | plan  | A  B  | others HN  ; HN  ; HN  ; HN   | death - | addr [address] CRAWFORDVILLE FL 32327 | aaa []"
+   ],
+   [
+    "patient order",
+    "2,1",
+    "(True, \"insorder 2,1 via ins9521406 -> '2,1'\")"
+   ]
+  ],
+  "visits": {
+   "19461640": "resave vst19461640 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19461968": "resave vst19461968 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19461853": "resave vst19461853 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19461990": "resave vst19461990 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19462060": "resave vst19462060 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19462187": "resave vst19462187 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "19462331": "resave vst19462331 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  }
+ }
+]

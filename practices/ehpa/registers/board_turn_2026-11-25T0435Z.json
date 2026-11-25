@@ -1,0 +1,312 @@
+{
+ "what": "face sheets needed (facesheets_needed.py 2026-11-25.1) - chart numbers, kinds and dollars only",
+ "stamp": "2026-11-25T0435Z",
+ "at": "2026-11-25T05:14:20Z",
+ "asof": "2026-11-25T04:42:00Z",
+ "cards_read": 565,
+ "your_turn": 34,
+ "dollars": 18706.43,
+ "facesheet": {
+  "n": 17,
+  "dollars": 10953.23
+ },
+ "decision": {
+  "n": 17,
+  "dollars": 7753.2
+ },
+ "rows": [
+  {
+   "charts": [
+    "17478332"
+   ],
+   "kind": "facesheet",
+   "amount": 433.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "20752"
+   ],
+   "kind": "facesheet",
+   "amount": 1225.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17476021"
+   ],
+   "kind": "facesheet",
+   "amount": 3119.89,
+   "new": false
+  },
+  {
+   "charts": [
+    "17478013"
+   ],
+   "kind": "facesheet",
+   "amount": 1430.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "48458"
+   ],
+   "kind": "facesheet",
+   "amount": 107.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471791"
+   ],
+   "kind": "facesheet",
+   "amount": 71.59,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471643"
+   ],
+   "kind": "facesheet",
+   "amount": 218.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17478350"
+   ],
+   "kind": "decision",
+   "amount": 310.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "12182505"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "21839"
+   ],
+   "kind": "decision",
+   "amount": 456.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471238"
+   ],
+   "kind": "facesheet",
+   "amount": 410.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471238"
+   ],
+   "kind": "decision",
+   "amount": 0.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17474537"
+   ],
+   "kind": "facesheet",
+   "amount": 43.26,
+   "new": false
+  },
+  {
+   "charts": [
+    "17478200"
+   ],
+   "kind": "decision",
+   "amount": 421.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "20709"
+   ],
+   "kind": "facesheet",
+   "amount": 1778.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17473749"
+   ],
+   "kind": "decision",
+   "amount": 1241.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471273"
+   ],
+   "kind": "decision",
+   "amount": 976.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17472826"
+   ],
+   "kind": "decision",
+   "amount": 421.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17478219"
+   ],
+   "kind": "facesheet",
+   "amount": 639.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17469397"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17472491"
+   ],
+   "kind": "decision",
+   "amount": 111.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17476479"
+   ],
+   "kind": "facesheet",
+   "amount": 44.09,
+   "new": false
+  },
+  {
+   "charts": [
+    "44953"
+   ],
+   "kind": "decision",
+   "amount": 480.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17475365"
+   ],
+   "kind": "decision",
+   "amount": 206.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477648"
+   ],
+   "kind": "decision",
+   "amount": 630.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17475908"
+   ],
+   "kind": "decision",
+   "amount": 421.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471061"
+   ],
+   "kind": "facesheet",
+   "amount": 101.16,
+   "new": false
+  },
+  {
+   "charts": [
+    "17473945"
+   ],
+   "kind": "facesheet",
+   "amount": 17.65,
+   "new": false
+  },
+  {
+   "charts": [
+    "17473460"
+   ],
+   "kind": "facesheet",
+   "amount": 690.59,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477572"
+   ],
+   "kind": "decision",
+   "amount": 532.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477267"
+   ],
+   "kind": "decision",
+   "amount": 809.2,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477353"
+   ],
+   "kind": "decision",
+   "amount": 109.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477168"
+   ],
+   "kind": "facesheet",
+   "amount": 310.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17476865"
+   ],
+   "kind": "facesheet",
+   "amount": 315.0,
+   "new": false
+  }
+ ],
+ "file": {
+  "ops": 19,
+  "kept": 0,
+  "stale": 0,
+  "new": 0,
+  "failed": 0
+ },
+ "checks": {
+  "unanswered": [],
+  "sweep_missing": [
+   {
+    "chart": "17478470",
+    "visits": [
+     "19461860",
+     "19461854"
+    ]
+   }
+  ],
+  "nothing_waiting": [],
+  "short_read": []
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "tag": "mid",
+ "stamp": "2026-11-21T1240Z",
+ "count": 1,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053612,
+   "licensekey": 152563,
+   "receiveddate": "2026-11-21T02:42:45.173",
+   "depositdate": "2026-11-24T00:00:00",
+   "eracarrierid": "1448",
+   "eracarriername": "MEDICARE PART B",
+   "hasnote": false,
+   "systemcarrierid": 6085,
+   "systemcarriercode": "FLO02",
+   "systemcarriername": "FLORIDA MEDICARE",
+   "paymentnumber": "350239508",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

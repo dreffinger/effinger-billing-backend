@@ -1,0 +1,14 @@
+{
+ "pid": "17473160",
+ "new": "1927-06-05",
+ "live": true,
+ "patch": [
+  200,
+  "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17473160,\"conversionid\":null,\"chartnumber\":\"3556\",\"m"
+ ],
+ "271": "ACTIVE | plan 19920601 | A 19920601 B 19920601 | others MA  ; MA  ; OT  18:S5884 N6:190 HUMANA INSURANCE CO. & HUMANA INSURANCE CO. OF NY: | death - | addr C/O PAULA MCANALLEN 205 CHAMPIONS POINT CARY NC 275135676 | aaa ",
+ "outcome": "kept - Medicare ACTIVE",
+ "visits": {
+  "19442323": "freq1 + rebill seq 1 -> 204"
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "tag": "before",
+ "stamp": "2026-11-25T0435Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053637,
+   "licensekey": 152563,
+   "receiveddate": "2026-11-24T17:09:27.34",
+   "depositdate": "2026-11-23T00:00:00",
+   "eracarrierid": "2449",
+   "eracarriername": "HUMANA INC.",
+   "hasnote": false,
+   "systemcarrierid": 6285,
+   "systemcarriercode": "HUM01",
+   "systemcarriername": "HUMANA",
+   "paymentnumber": "207634778261124",
+   "paymentamount": 83.13,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 83.13,
+   "unpostedamount": 83.13,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053638,
+   "licensekey": 152563,
+   "receiveddate": "2026-11-24T18:55:14.693",
+   "depositdate": "2026-11-27T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "UNITEDHEALTHCARE SERVICES INC AND ITS AFFILIATES",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "W3040204",
+   "paymentamount": 2350.81,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 2350.81,
+   "unpostedamount": 2350.81,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

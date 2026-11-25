@@ -1,0 +1,25 @@
+{
+ "stamp": "2026-11-22T0645Z",
+ "live": true,
+ "source": "scan_2026-11-22T0643Z/summary_before.json",
+ "held": [
+  {
+   "batch": "1",
+   "vid": "19461189",
+   "pid": "17478413",
+   "patterns": [
+    "28158"
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19461966",
+   "pid": "17478350",
+   "patterns": [
+    "692"
+   ]
+  }
+ ],
+ "done": [],
+ "failed": []
+}

@@ -1,0 +1,48 @@
+{
+ "tag": "mid",
+ "stamp": "2026-11-22T1258Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053622,
+   "licensekey": 152563,
+   "receiveddate": "2026-11-22T03:48:15.33",
+   "depositdate": "2026-11-23T00:00:00",
+   "eracarrierid": "2111",
+   "eracarriername": "SUNSHINE HEALTH",
+   "hasnote": false,
+   "systemcarrierid": 6194,
+   "systemcarriercode": "SUN01",
+   "systemcarriername": "SUNSHINE STATE HEALTH PLAN",
+   "paymentnumber": "T003353691",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053623,
+   "licensekey": 152563,
+   "receiveddate": "2026-11-22T04:34:17.19",
+   "depositdate": "2026-11-21T00:00:00",
+   "eracarrierid": "1844",
+   "eracarriername": "SUNSHINE STATE HEALTH PLAN, INC",
+   "hasnote": false,
+   "systemcarrierid": 6174,
+   "systemcarriercode": "WEL04",
+   "systemcarriername": "WELLCARE",
+   "paymentnumber": "1003594367",
+   "paymentamount": 0.0,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

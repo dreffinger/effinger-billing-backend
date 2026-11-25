@@ -6061,3 +6061,11 @@ No new AMD or Stedi call shapes were learned tonight. Calls used: freq1_visit re
 
 # captured_calls additions - nightly cascade 2026-11-24T0536Z
 No new AMD or Stedi call shapes learned tonight. Postman: unchanged.
+
+# captured_calls additions - 2026-11-25T0435Z (ehpa Billing Button run, ehpa cloud)
+
+No new call shapes. Behaviours learned (chart ids only):
+- `addreferralplan` (class chargeentry, ismain="0" status="stat1" ...) get-or-RETURNS the chart's existing plan whenever the refprov is the SAME as an existing plan's (pat17478013: rprov13 with every variation of sequence / preauthreq / type / facility / begin-end dates and ismain="1" returned rplan18462365). With a DIFFERENT refprov (rprov14) it INSERTS a new plan - and makes it the MAIN plan (rplan18462897 ismain=1, the old main demoted to 0). Passing the existing plan's id with ismain="1" does not re-promote it. So: one referral plan per stay is only possible per referring provider; a second VA stay with the same referring provider has to share the plan (its preauth is overwritten). Leaves the chart with a blank main plan of the third provider - UI fix.
+- A full-visit resave with `refplan=<another plan of the same chart>` + `preauth=` repoints the visit AND writes the preauth onto the target plan (re-proven pat17478013, pat17475970).
+- `resave.detail(cid)` returns ONE charge - a live-charge count after a resave must come from `resave.visit_charges(cid)` (a 2-charge visit read as 1 made va_stay_auth_1125.py skip one rebill; nothing was voided).
+- A Medicare number listed by a secondary's own 271 among the patient's other payers (BCBS 'others' block) proved to be the reissued MBI (pat17474021): written on the chart, AMD's free 271 ACTIVE - mbi_candidate_1125.py keeps it only on ACTIVE.

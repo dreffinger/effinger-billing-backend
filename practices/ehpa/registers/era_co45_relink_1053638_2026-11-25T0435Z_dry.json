@@ -1,0 +1,467 @@
+{
+ "stamp": "2026-11-25T0435Z",
+ "checkid": "1053638",
+ "checknumber": "W3040204",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17471216",
+   "vid": "19458938",
+   "cid": "23371205",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "no payment with check W3040204 on the charge - left"
+  },
+  {
+   "pid": "17471216",
+   "vid": "19458938",
+   "cid": "23371206",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "no payment with check W3040204 on the charge - left"
+  },
+  {
+   "pid": "17473233",
+   "vid": "19458936",
+   "cid": "23371201",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17475312",
+   "vid": "19459630",
+   "cid": "23372198",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17475312",
+   "vid": "19459630",
+   "cid": "23372199",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476749",
+   "vid": "19459631",
+   "cid": "23372200",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476749",
+   "vid": "19459631",
+   "cid": "23372201",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476265",
+   "vid": "19459614",
+   "cid": "23372170",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476265",
+   "vid": "19459614",
+   "cid": "23372171",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19459615",
+   "cid": "23372172",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19455634",
+   "cid": "23366991",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19455634",
+   "cid": "23366992",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19452596",
+   "cid": "23362918",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19452596",
+   "cid": "23362919",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17473200",
+   "vid": "19459629",
+   "cid": "23372196",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17473200",
+   "vid": "19459629",
+   "cid": "23372197",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19452683",
+   "cid": "23363062",
+   "cpt": "99349",
+   "paid": 104.25,
+   "co": 93.75,
+   "pr": 0,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17475837",
+   "vid": "19459096",
+   "cid": "23371485",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17472873",
+   "vid": "19459143",
+   "cid": "23371545",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17472873",
+   "vid": "19459143",
+   "cid": "23371546",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "12179690",
+   "vid": "19459138",
+   "cid": "23371535",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "no payment with check W3040204 on the charge - left"
+  },
+  {
+   "pid": "12179690",
+   "vid": "19459138",
+   "cid": "23371536",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "no payment with check W3040204 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19459545",
+   "cid": "23372090",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19459572",
+   "cid": "23372117",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19459583",
+   "cid": "23372129",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19458953",
+   "cid": "23371234",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 142.72,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19458953",
+   "cid": "23371235",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 74.05,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  }
+ ]
+}

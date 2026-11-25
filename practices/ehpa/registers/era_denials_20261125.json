@@ -1,0 +1,298 @@
+[
+ {
+  "checkid": 1053637,
+  "check": "207634778261124",
+  "carrier": "HUM01",
+  "deposit": "2026-11-23",
+  "visitid": 19460167,
+  "chart": "HF328205260",
+  "dos": "2026-11-01",
+  "claimstatus": 2,
+  "processok": true,
+  "rarc": [
+   "#AM"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99233",
+    "chargedetailid": 23372791,
+    "paid": 0.0,
+    "adj": 160.0,
+    "carc": [
+     {
+      "grp": "OA",
+      "code": "OA23",
+      "amt": 160.0
+     }
+    ],
+    "rarc": [
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:18:46Z"
+ },
+ {
+  "checkid": 1053637,
+  "check": "207634778261124",
+  "carrier": "HUM01",
+  "deposit": "2026-11-23",
+  "visitid": 19460204,
+  "chart": "HF328205260",
+  "dos": "2026-11-03",
+  "claimstatus": 2,
+  "processok": true,
+  "rarc": [
+   "#AM"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99239",
+    "chargedetailid": 23372833,
+    "paid": 0.0,
+    "adj": 163.0,
+    "carc": [
+     {
+      "grp": "OA",
+      "code": "OA23",
+      "amt": 163.0
+     }
+    ],
+    "rarc": [
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:18:46Z"
+ },
+ {
+  "checkid": 1053637,
+  "check": "207634778261124",
+  "carrier": "HUM01",
+  "deposit": "2026-11-23",
+  "visitid": 19460189,
+  "chart": "HF372295450",
+  "dos": "2026-11-03",
+  "claimstatus": 1,
+  "processok": false,
+  "rarc": [
+   "#AM",
+   "#AM"
+  ],
+  "errors": [
+   "5"
+  ],
+  "charges": [
+   {
+    "cpt": "99497",
+    "chargedetailid": 23372817,
+    "paid": 0.0,
+    "adj": 133.0,
+    "carc": [
+     {
+      "grp": "OA",
+      "code": "OA23",
+      "amt": 133.0
+     }
+    ],
+    "rarc": [
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:18:46Z"
+ },
+ {
+  "checkid": 1053638,
+  "check": "W3040204",
+  "carrier": "UNI20",
+  "deposit": "2026-11-27",
+  "visitid": 19459523,
+  "chart": "4566",
+  "dos": "2026-09-02",
+  "claimstatus": 1,
+  "processok": false,
+  "rarc": [
+   "N549",
+   "#AM"
+  ],
+  "errors": [
+   "5"
+  ],
+  "charges": [
+   {
+    "cpt": "99344",
+    "chargedetailid": -1,
+    "paid": 0.0,
+    "adj": 300.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "COB16",
+      "amt": 300.0
+     }
+    ],
+    "rarc": [
+     "N549",
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:20:32Z"
+ },
+ {
+  "checkid": 1053638,
+  "check": "W3040204",
+  "carrier": "UNI20",
+  "deposit": "2026-11-27",
+  "visitid": 19450211,
+  "chart": "4566",
+  "dos": "2026-07-22",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "N549"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99344",
+    "chargedetailid": 23360097,
+    "paid": 0.0,
+    "adj": 300.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO29",
+      "amt": 300.0
+     }
+    ],
+    "rarc": [
+     "N549"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:20:32Z"
+ },
+ {
+  "checkid": 1053638,
+  "check": "W3040204",
+  "carrier": "UNI20",
+  "deposit": "2026-11-27",
+  "visitid": 19448753,
+  "chart": "4566",
+  "dos": "2026-07-17",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "N549",
+   "N549"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99487",
+    "chargedetailid": 23358111,
+    "paid": 0.0,
+    "adj": 206.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO29",
+      "amt": 206.0
+     }
+    ],
+    "rarc": [
+     "N549"
+    ]
+   },
+   {
+    "cpt": "99489",
+    "chargedetailid": 23358112,
+    "paid": 0.0,
+    "adj": 109.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO29",
+      "amt": 109.0
+     }
+    ],
+    "rarc": [
+     "N549"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:20:32Z"
+ },
+ {
+  "checkid": 1053638,
+  "check": "W3040204",
+  "carrier": "UNI20",
+  "deposit": "2026-11-27",
+  "visitid": 19448606,
+  "chart": "4566",
+  "dos": "2026-07-16",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "N549"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "G0439",
+    "chargedetailid": 23357911,
+    "paid": 0.0,
+    "adj": 204.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO29",
+      "amt": 204.0
+     }
+    ],
+    "rarc": [
+     "N549"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:20:32Z"
+ },
+ {
+  "checkid": 1053638,
+  "check": "W3040204",
+  "carrier": "UNI20",
+  "deposit": "2026-11-27",
+  "visitid": 19455317,
+  "chart": "722",
+  "dos": "2026-04-28",
+  "claimstatus": 1,
+  "processok": true,
+  "rarc": [
+   "#AM"
+  ],
+  "errors": [],
+  "charges": [
+   {
+    "cpt": "99349",
+    "chargedetailid": 23366556,
+    "paid": 0.0,
+    "adj": 198.0,
+    "carc": [
+     {
+      "grp": "CO",
+      "code": "CO29",
+      "amt": 198.0
+     }
+    ],
+    "rarc": [
+     "#AM"
+    ]
+   }
+  ],
+  "when": "2026-11-25T05:20:32Z"
+ }
+]

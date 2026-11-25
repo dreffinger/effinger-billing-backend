@@ -1,0 +1,158 @@
+{
+ "fixed": [
+  {
+   "visit": "19462063",
+   "pid": "pat17478349",
+   "patterns": [
+    "117065068",
+    "117070083"
+   ],
+   "note": [
+    "admit 11/20/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19462064",
+   "pid": "pat17478349",
+   "patterns": [
+    "117070083"
+   ],
+   "note": [
+    "HELD: 117070083"
+   ]
+  },
+  {
+   "visit": "19462071",
+   "pid": "pat45010",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23375086 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19462078",
+   "pid": "pat17471688",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462103",
+   "pid": "pat17477190",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462111",
+   "pid": "pat23617",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462112",
+   "pid": "pat23617",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462121",
+   "pid": "pat25710",
+   "patterns": [
+    "20389"
+   ],
+   "note": [
+    "charge23375136: delete ['W19.XXXD', 'I10', 'E78.5'] -> ['I10', 'E78.5', 'R32']",
+    "charge23375137: delete ['W19.XXXD', 'I10', 'E78.5'] -> ['I10', 'E78.5', 'R32']",
+    "saved: 2 live charges (was 2)",
+    "resave ok"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19462078",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462103",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462111",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462112",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19462064",
+   "pid": "pat17478349",
+   "why": "The Source of Payment you have chosen is not..."
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19462078",
+   "pid": "pat17471688",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462103",
+   "pid": "pat17477190",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19462111",
+   "pid": "pat23617",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19462112",
+   "pid": "pat23617",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  }
+ ],
+ "quality_removed": [
+  {
+   "visit": "19462071",
+   "pid": "pat45010",
+   "charge": "charge23375086",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-21T13:05:26.577714",
+   "resave_ok": true
+  }
+ ]
+}

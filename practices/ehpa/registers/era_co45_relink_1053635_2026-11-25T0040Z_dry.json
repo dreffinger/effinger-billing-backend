@@ -1,0 +1,42 @@
+{
+ "stamp": "2026-11-25T0040Z",
+ "checkid": "1053635",
+ "checknumber": "0935804550",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17477827",
+   "vid": "19461481",
+   "cid": "23374380",
+   "cpt": "99309",
+   "paid": 97.67,
+   "co": 43.33,
+   "pr": 0,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "AMB03"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17478350",
+   "vid": "19461447",
+   "cid": "23374343",
+   "cpt": "99233",
+   "paid": 109.0,
+   "co": 51.0,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "result": "already corrected"
+  }
+ ]
+}

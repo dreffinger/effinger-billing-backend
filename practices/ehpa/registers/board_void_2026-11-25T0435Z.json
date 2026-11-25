@@ -1,0 +1,32 @@
+{
+ "stamp": "2026-11-25T0435Z",
+ "live": true,
+ "pid": "17477258",
+ "visit": "19455614",
+ "charge": "23366962",
+ "steps": [
+  [
+   "void writeoff",
+   "wo22509483",
+   true,
+   "c-8bbfq\" lst=\"11/24/2026 20:48:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  [
+   "void payment",
+   "pay24674330",
+   true,
+   "c-8bbfq\" lst=\"11/24/2026 20:48:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  [
+   "void charge",
+   "23366962",
+   true,
+   "c-8bbfq\" lst=\"11/24/2026 20:48:43\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ]
+ ],
+ "after": {
+  "void": "1",
+  "insbalance": "206.00",
+  "patbalance": "0.00"
+ }
+}

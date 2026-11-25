@@ -1,0 +1,196 @@
+{
+ "stamp": "2026-11-22T1259Z",
+ "run": "1700397",
+ "pid": null,
+ "live": true,
+ "rows": [
+  {
+   "visit": "19461786",
+   "claimid": "19461786A",
+   "carrier": "HUM01",
+   "dos": [
+    "11/04/2026"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374764",
+     "cpt": "99309",
+     "dos": "11/04/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461787",
+   "claimid": "19461787A",
+   "carrier": "HUM01",
+   "dos": [
+    "10/05/2026"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374766",
+     "cpt": "99309",
+     "dos": "10/05/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461788",
+   "claimid": "19461788A",
+   "carrier": "HUM01",
+   "dos": [
+    "11/05/2026"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374768",
+     "cpt": "99309",
+     "dos": "11/05/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461789",
+   "claimid": "19461789A",
+   "carrier": "HUM01",
+   "dos": [
+    "11/02/2026"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374770",
+     "cpt": "99309",
+     "dos": "11/02/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461791",
+   "claimid": "19461791A",
+   "carrier": "HUM01",
+   "dos": [
+    "11/05/2026"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374774",
+     "cpt": "99309",
+     "dos": "11/05/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461792",
+   "claimid": "19461792A",
+   "carrier": "HUM01",
+   "dos": [
+    "10/01/2026"
+   ],
+   "cpt": [
+    "99344"
+   ],
+   "fee": 300.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374776",
+     "cpt": "99344",
+     "dos": "10/01/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "300.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19461793",
+   "claimid": "19461793A",
+   "carrier": "HUM01",
+   "dos": [
+    "04/11/2026"
+   ],
+   "cpt": [
+    "99349"
+   ],
+   "fee": 198.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23374778",
+     "cpt": "99349",
+     "dos": "04/11/2026",
+     "carrier": "HUM01",
+     "billdate": "11/20/2026",
+     "insbal": "198.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-844db7d4dc-6rl8x\" lst=\"11/22/2026 04:59:47\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": [
+  "19461785",
+  "19461794",
+  "19461795"
+ ]
+}

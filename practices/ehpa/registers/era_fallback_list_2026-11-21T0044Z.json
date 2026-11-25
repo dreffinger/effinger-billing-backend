@@ -1,0 +1,22 @@
+[
+ {
+  "id": 1053602,
+  "licensekey": 152563,
+  "receiveddate": "2026-11-20T14:28:07.79",
+  "depositdate": "2026-11-20T00:00:00",
+  "eracarrierid": "4246",
+  "eracarriername": "CAPITAL HEALTH PLAN",
+  "hasnote": false,
+  "systemcarrierid": 41826,
+  "systemcarriercode": "CAP07",
+  "systemcarriername": "CAPITAL HEALTH PLAN",
+  "paymentnumber": "4132044",
+  "paymentamount": 2911.72,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 2911.72,
+  "unpostedamount": 2911.72,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]

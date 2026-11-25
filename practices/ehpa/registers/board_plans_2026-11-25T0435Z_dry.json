@@ -1,0 +1,61 @@
+[
+ {
+  "card": "[name]-17478470",
+  "pid": "17478470",
+  "effective": "11/17/2026",
+  "steps": [
+   [
+    "DRY would add CAP07 plan",
+    "8278",
+    "11/17/2026",
+    "seq",
+    "1"
+   ]
+  ],
+  "visits": {
+   "19461860": "DRY resave vst19461860 insorder 1 -> 1, list [] (2 live charges echoed) | DRY freq1 + rebill seq 1",
+   "19461854": "DRY resave vst19461854 insorder 1 -> 1, list [] (1 live charges echoed) | DRY freq1 + rebill seq 1"
+  }
+ },
+ {
+  "card": "[name]-17478452",
+  "pid": "17478452",
+  "effective": "11/01/2026",
+  "steps": [
+   [
+    "DRY would add CAP07 plan",
+    "8069",
+    "11/01/2026",
+    "seq",
+    "2"
+   ]
+  ],
+  "visits": {
+   "19461642": "DRY resave vst19461642 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19461630": "DRY resave vst19461630 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2"
+  }
+ },
+ {
+  "card": "[name]-17478455",
+  "pid": "17478455",
+  "effective": "11/09/2026",
+  "steps": [
+   [
+    "DRY would add CAP07 plan",
+    "1304",
+    "11/09/2026",
+    "seq",
+    "2"
+   ]
+  ],
+  "visits": {
+   "19461640": "DRY resave vst19461640 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19461968": "DRY resave vst19461968 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19461853": "DRY resave vst19461853 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19461990": "DRY resave vst19461990 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19462060": "DRY resave vst19462060 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19462187": "DRY resave vst19462187 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2",
+   "19462331": "DRY resave vst19462331 insorder 1 -> 2, list [1] (1 live charges echoed) | DRY freq1 + rebill seq 2"
+  }
+ }
+]

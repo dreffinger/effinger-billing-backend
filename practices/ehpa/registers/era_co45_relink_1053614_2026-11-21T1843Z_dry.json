@@ -1,0 +1,25 @@
+{
+ "stamp": "2026-11-21T1843Z",
+ "checkid": "1053614",
+ "checknumber": "1008885775",
+ "live": false,
+ "lines": [
+  {
+   "pid": "12182947",
+   "vid": "19461293",
+   "cid": "23374212",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 21.8,
+    "patbalance": 0.0,
+    "carrier": "WEL04"
+   },
+   "result": "already corrected"
+  }
+ ]
+}

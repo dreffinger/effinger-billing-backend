@@ -1,0 +1,12 @@
+[
+ {
+  "pid": "17474021",
+  "insid": "[member id]",
+  "old": "*******XM32",
+  "candidate": "*******HU52",
+  "live": true,
+  "write": "(True, 'c-8bbfq\" lst=\"11/24/2026 21:11:30\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>')",
+  "271": "ACTIVE | plan 20120101,20150201 | A 20120101 B 20150201 | others OT  18:S5601 N6:813 SILVERSCRIPT INSURANCE COMPANY:; 47  6P:DOL 02022022 LIABILITY INSURER: | death - | addr [address] MONTIC",
+  "outcome": "kept - Medicare ACTIVE"
+ }
+]

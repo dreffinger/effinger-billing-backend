@@ -1,0 +1,25 @@
+{
+ "stamp": "2026-11-25T0435Z",
+ "checkid": "1053637",
+ "checknumber": "207634778261124",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17477972",
+   "vid": "19461623",
+   "cid": "23374542",
+   "cpt": "99233",
+   "paid": 83.13,
+   "co": 76.87,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "result": "already corrected"
+  }
+ ]
+}

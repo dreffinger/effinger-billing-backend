@@ -1,0 +1,76 @@
+{
+ "stamp": "2026-11-22T0039Z",
+ "checkid": "1053620",
+ "checknumber": "207259646261121",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17471793",
+   "vid": "19459299",
+   "cid": "23371744",
+   "cpt": "99309",
+   "paid": 19.92,
+   "co": 121.08,
+   "pr": 0,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "result": "payment 19.92 / remainder 0.00 do not match the remit (paid 19.92, fee 141.00) - left for review"
+  },
+  {
+   "pid": "17477972",
+   "vid": "19461234",
+   "cid": "23374123",
+   "cpt": "99233",
+   "paid": 83.13,
+   "co": 76.87,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17477972",
+   "vid": "19461217",
+   "cid": "23374104",
+   "cpt": "99223",
+   "paid": 121.57,
+   "co": 188.43,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "17477972",
+   "vid": "19461256",
+   "cid": "23374145",
+   "cpt": "99233",
+   "paid": 83.13,
+   "co": 76.87,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "result": "already corrected"
+  }
+ ]
+}
