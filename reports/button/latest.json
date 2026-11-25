@@ -1,40 +1,34 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-25T0435Z",
+ "stamp": "2026-11-25T0557Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/5/0/1 -> 0/5/0/1; ERA 2 checks $2,433.94 -> 0 checks $0.00; posted $2,433.94; re-sent 42",
- "note": "BUTTON PRESS 2026-11-25T04:35:00Z \u00b7 mode: live \u00b7 steps: all \u00b7 packages: none \u00b7 note: Started for William from his chat session on his word of 11/25 (about 11:30 PM ET): process the face sheet data posted, run a billing run and an insurance cascade on the new face sheets, report, and send the current face sheets needed email with date of birth beside the names (brief delivered after the run ended; the run had already done exactly this).",
- "run_url": "https://claude.ai/code/session_01HHfWRC8rLfzUzE72JBZhWM",
- "started": "2026-11-25T04:35:00Z",
- "ended": "2026-11-25T05:47:07Z",
+ "headline": "Columns 0/8/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 10; written off $456.00",
+ "note": "no BUTTON PRESS brief (scheduled firing 10 minutes after the 0435Z run ended) -> live, all steps, every approved package",
+ "run_url": "https://claude.ai/code/session_01HHfWRDQzUP5c1sfAy6tDA5",
+ "started": "2026-11-25T05:57:00Z",
+ "ended": "2026-11-25T06:28:58Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
-  "denials": {
-   "visits": 7886,
-   "actionable": 46,
-   "actionable_amt": 8631.0,
-   "asof": "2026-11-25 05:36 UTC"
-  },
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 8,
     "unbilled": 0,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 2,
     "unbilled": 0,
     "exclusions": 1
    }
   },
   "era": {
    "before": {
-    "checks": 2,
-    "unposted": 2433.94
+    "checks": 0,
+    "unposted": 0.0
    },
    "after": {
     "checks": 0,
@@ -42,18 +36,18 @@
    }
   },
   "posted": {
-   "pay": 2433.94,
-   "woins": 284.3,
+   "pay": 0.0,
+   "woins": 0.0,
    "wocaid2nd": 0.0,
-   "wolate": 0.0
+   "wolate": 456.0
   },
   "resent": {
-   "visits": 42,
-   "dollars": 7571.16
+   "visits": 10,
+   "dollars": 2605.0
   },
   "written_off": {
-   "count": 11,
-   "dollars": 2047.0
+   "count": 3,
+   "dollars": 456.0
   },
   "packages": {
    "applied": 0,
@@ -61,13 +55,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 324365.46,
-   "visits": 2800,
+   "total": 323909.46,
+   "visits": 2798,
    "charts": 485,
    "over_365": {
-    "n": 584,
-    "dollars": 28749.88
+    "n": 582,
+    "dollars": 28293.88
    }
+  },
+  "denials": {
+   "visits": 7886,
+   "actionable": 53,
+   "actionable_amt": 10055.0,
+   "asof": "2026-11-25 06:18 UTC"
   }
  },
  "steps": [
@@ -75,101 +75,203 @@
    "name": "board",
    "title": "Board input",
    "status": "ok",
-   "summary": "19 cards worked from William's 11/25 answers (16 closed, 3 handed back); 0 drops, 0 denials commands queued",
+   "summary": "8 cards William answered 04:40-05:27Z worked (4 closed, 4 handed back), 1 Pattern 692 card closed, 1 unanswered 11/14 ask handed back, 1 new card (inspector hold since 11/22); 0 drops, 0 denials commands; 3 applied inbox files trashed",
    "counts": {
-    "cards": 19,
-    "handed_back": 3,
+    "cards": 11,
+    "handed_back": 5,
+    "closed": 5,
+    "new": 1,
     "drops": 0,
     "commands": 0
-   }
+   },
+   "lines": [
+    {
+     "chart": "17476021",
+     "action": "facesheet number = the chart's, Medicare 72; MBI look-up with SSN 75 - new card needed",
+     "dollars": 3119.89
+    },
+    {
+     "chart": "48458",
+     "action": "facesheet number = the chart's, Medicare 72; look-up 75 under both spellings - new card needed",
+     "dollars": 107.0
+    },
+    {
+     "chart": "21839",
+     "action": "WOLATE on William's word, v19423852 + v19423656",
+     "dollars": 456.0
+    },
+    {
+     "chart": "17473749",
+     "action": "restored 7 visits and billed UHC MA on William's word",
+     "dollars": 1751.0
+    },
+    {
+     "chart": "17474537",
+     "action": "DOB given, card back to William for the Medicare number",
+     "dollars": 43.26
+    },
+    {
+     "chart": "17478200",
+     "action": "Detego plan + auth, 2 visits sent",
+     "dollars": 421.0
+    },
+    {
+     "chart": "17478219",
+     "action": "WellCare inactive 2026 (dated checks) - CHP number still needed",
+     "dollars": 639.0
+    },
+    {
+     "chart": "17478332",
+     "action": "Florida Blue MA plan ACTIVE, v19460350 sent",
+     "dollars": 433.0
+    },
+    {
+     "chart": "17478413",
+     "action": "O24.419 diagnosis question handed back (asked 11/14, never on his turn)",
+     "dollars": 421.0
+    },
+    {
+     "chart": "17477311",
+     "action": "new card: 99223 at POS 31 (Pattern 4531) - coding decision",
+     "dollars": 421.0
+    }
+   ]
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 5->5, Unbilled 0->0 (29 prior-payor rows released mid-run), Exclusions 1->1",
+   "summary": "CR 0->0, CI 8->2 (6 advisories bypassed: Pattern 692 x3 new-admission rule, 35790 x3), Unbilled 0->0, Exclusions 1->1 (AET12 hold)",
    "counts": {
-    "unbilled_released": 29
-   }
+    "inspector_bypassed": 6,
+    "inspector_held": 2
+   },
+   "lines": [
+    {
+     "visit": "19461189",
+     "chart": "17478413",
+     "hold": "Pattern 28158"
+    },
+    {
+     "visit": "19462192",
+     "chart": "17477311",
+     "hold": "Pattern 4531"
+    },
+    {
+     "visit": "19455937",
+     "chart": "24750",
+     "hold": "AET12 PREF0288"
+    }
+   ]
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $2,433.94 -> 0 checks / $0.00",
-   "dollars": {
-    "posted_post_button": 2088.24,
-    "posted_fallback": 345.7,
-    "woins_fallback": 284.3
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
+    "fallback posted": 0,
+    "checks dismissed": 0,
+    "checks held": 0,
+    "denial lines recorded": 0
    },
-   "lines": [
-    {
-     "check": "1053637",
-     "payer": "HUM01",
-     "amount": 83.13,
-     "action": "Post button 1 visit; dismissed (3 denial / $0 lines recorded)"
-    },
-    {
-     "check": "1053638",
-     "payer": "UNI20",
-     "amount": 2350.81,
-     "action": "Post button 15 visits $2,005.11; 11/04 write-offs voided on v19458938 + v19459138, 4 UHC lines posted ERA-linked $345.70 (WOINS $284.30); dismissed"
-    }
-   ]
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-25T06:11:15Z",
+   "ended": "2026-11-25T06:11:18Z"
   },
   {
    "name": "cascade",
    "title": "Cascade pre-check",
    "status": "ok",
-   "summary": "precheck 19 patient/payer pairs (2 new lookups), 2 flagged ADVANTAGE PLAN -> both 11/22 visits re-pointed to the chart's MA plan; void rules: 0 voided (1 open)",
-   "lines": [
-    {
-     "chart": "17472826",
-     "visit": "19462327",
-     "action": "re-pointed to BCBS MA"
-    },
-    {
-     "chart": "17473090",
-     "visit": "19462325",
-     "action": "re-pointed to BCBS MA"
-    }
-   ]
+   "summary": "precheck --days 3 --max 120: 17 pairs (0 new look-ups), 0 flagged; void_rules 1 open, 0 voided; Stedi this month 115 calls $48.50 list (this run: 2 MBI look-ups, 3 eligibility checks)"
   },
   {
    "name": "packages",
    "title": "Approved packages",
    "status": "ok",
-   "summary": "no approved package (register 94 done; page 0 approved)"
+   "summary": "0 approved, 0 waiting (register: 94 done)"
   },
   {
    "name": "cred",
-   "title": "Credentialing check",
+   "title": "cred_check",
    "status": "ok",
-   "summary": "NPPES 3 records 0 changed; LEIE 0 matches; no reminders due"
+   "summary": "NPPES 3 records 0 changed; revalidation TBD x3; LEIE 84,224 rows 0 matches; reminders none"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims",
    "status": "ok",
-   "summary": "2800 visits on 485 charts, $324365.46 open"
+   "summary": "$323909.46 on 2798 visits / 485 charts; over a year 582 / $28293.88"
   },
   {
    "name": "denials",
-   "title": "Denials refresh",
+   "title": "Working denials refresh",
    "status": "ok",
-   "summary": "7886 denied visits on 884 charts; 46 actionable $8,631.00 (45 inside 12 months $8,425.00); WRITTEN-OFF 3015, RESOLVED 4572, RESUBMITTED 183, OPEN 116"
+   "summary": "7886 visits, 53 actionable $10055.00 (52 inside 12 months)"
   }
  ],
  "packages": [],
+ "resent": [
+  {
+   "chart": "17473749",
+   "visits": [
+    "19440501",
+    "19442537",
+    "19448611",
+    "19448758",
+    "19450214",
+    "19452603",
+    "19455642"
+   ],
+   "dollars": 1751.0,
+   "why": "William 'restore': Medicare $0 CO-24/CO-109 postings + WOINS voided, billed to the UHC MA plan"
+  },
+  {
+   "chart": "17478200",
+   "visits": [
+    "19459188",
+    "19459194"
+   ],
+   "dollars": 421.0,
+   "why": "Detego Health plan added (carrier William created), auth on the referral plan, sent as originals"
+  },
+  {
+   "chart": "17478332",
+   "visits": [
+    "19460350"
+   ],
+   "dollars": 433.0,
+   "why": "Florida Blue MA plan added from William's sheet, ACTIVE 11/03/2026, sent"
+  }
+ ],
+ "written_off": [
+  {
+   "chart": "21839",
+   "visit": "19423852",
+   "dollars": 141.0,
+   "why": "WOLATE - William 'write off' (past the 12-month filing limit)"
+  },
+  {
+   "chart": "21839",
+   "visit": "19423656",
+   "dollars": 315.0,
+   "why": "WOLATE - William 'write off' (past the 12-month filing limit)"
+  }
+ ],
  "waiting": [
-  "Claim Inspector: 5 visit(s) with Pattern 692 / 4531 / 28158 holds - chat session or William",
+  "Claim Inspector: v19461189 Pattern 28158 (chart 17478413, diagnosis) and v19462192 Pattern 4531 (chart 17477311, 99223 at POS 31) - cards on William's turn",
   "Exclusions: AET12 PREF0288 carrier record (board row aet12-carrier-cpid) - left by rule",
-  "Chart 17478013: this run's referral-plan probe left a blank plan with the third referring provider as the chart's MAIN plan (rplan18462897) - in AMD set rplan18462365 (Effinger, carries the auth) as main or delete the blank one",
-  "Chart 17475970: the main referral plan now carries the 11/04-stay auth; the unpaid 6/20-6/28 and 9/7-9/14 visits point to it - repoint them to their own stay's plan before any re-send",
-  "Chart 17473431: Railroad Medicare (RET01) answers 51 'provider not on file' - Palmetto RRB enrollment",
-  "Feed: CPT G0439 is not in claimocity_import.py's PCODE/FEE tables - a retry waits on it",
-  "Board inbox: 3 registered files not trashed - the session's permission check blocked the trash call (1KrCVQGeFUVKgju_YrAOXQlNgst690LmA, 1HHD8giMIcdkKMzusQj2u3gRQ__1XMQ_y, 19J-WNLEIzfp74NqKtLSWgBwCzEfL1y8c) - trash by hand in Drive 'board inbox'; 528 others trashed",
-  "Board: catalano 20752 Medicare number, cowling first-admission VA auth, karnes April decision - on William's turn"
+  "Feed order sweep: v19458775 (chart 17472729) waits for the clinician move to the NP (a chat session runs --fix-clinician); v19459226 (chart 17478219) waits on the CHP member number",
+  "Working Denials board inbox: denials_updates_2026-10-14T1710Z.json and 2026-10-16T1310Z.json not in that board's applied map (registry lastCheck 10/23) - awaiting board sync for 40 days",
+  "Neon: no NEON_DATABASE_URL and no 'neon database url' Gmail thread - the Neon leg was skipped this run"
  ],
  "errors": []
 }
