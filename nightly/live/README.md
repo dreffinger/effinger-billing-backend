@@ -8,6 +8,7 @@ William 11/2/2026: "make it permanent where I don't have to manually push anythi
 | Backend billing run - Claims Center columns every 6 hours (trig_01QRqT8KB4Q1H9EyYRG4NBKX, UI-created, `created_via http_api`) | `_stub_columns.txt` - 11/7/2026 03:55Z (ran its pasted v8 11/5 text until then) | `columns.txt` |
 | Nightly insurance cascade (trig_01XVrVN9dpSdvAbB1ZrsAzFU, UI-created, `created_via http_api`) | `_stub_cascade.txt` - 11/7/2026 03:43Z (ran its pasted 10/22 text until then) | `cascade.txt` |
 | Claimocity feed ingest - daily (trig_011wLUbRetVyUZdEBojuCwrs, UI-created) | `_stub_feed_daily.txt` - 11/7/2026 03:58Z (ran its pasted v3 text until then) | `feed_daily.txt` |
+| CCM notes - nightly (not created yet; spec 11/25/2026: 03:45 UTC daily, ehpa environment, Gmail + Google Drive) | `_stub_ccm_notes.txt` | `ccm_notes.txt` |
 
 To change what a routine does: edit its file here, `mirror.py sync` - the next firing fetches `main` and follows the new text. Nothing is pasted into a routine again. The pointer stubs change only if the file path or the bootstrap changes.
 
