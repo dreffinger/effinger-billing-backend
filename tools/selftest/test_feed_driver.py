@@ -153,6 +153,22 @@ w, r, mreg = sandbox("map4", [], ws_map={FID(2): "pat9002"}, main_map={FID(2): "
 o, calls, e = driver_run(w, r, ARGS(S1), lambda b, cmd: None)
 check("1g on a quiet day (no new file) the map is corrected all the same - before the driver stops", e == "" and "nothing new - done" in o and pm(w) == {FID(2): "pat9902"} and calls == [], (e, o[-300:], pm(w)))
 
+# the rehab monitor's register (pos61_monitor.json): the repository's copy when it is the LATER one - the review of the monitor (11/25/2026): the
+# workspace's copy comes back from the state bundle and can be older than the one the mirror carried to main; the monitor goes by it for whose turn it is.
+def mon_reg(at, tag): return {"version": "2026-11-25.2", "at": at, "lines": ["REHAB AT 61: " + tag], "top": [], "visits": {"vst" + tag: {"last_read": at[:10]}}}
+def mon_case(label, ws_at, main_at, main_text=None):
+    w_, r_, mreg_ = sandbox(label, ["20261126a.hl7"], ws_map={FID(1): "pat9001"})
+    if ws_at is not None: json.dump(mon_reg(ws_at, "ws"), open(os.path.join(w_, "registers", "pos61_monitor.json"), "w"))
+    if main_text is not None: open(os.path.join(mreg_, "pos61_monitor.json"), "w").write(main_text)
+    elif main_at is not None: json.dump(mon_reg(main_at, "main"), open(os.path.join(mreg_, "pos61_monitor.json"), "w"))
+    o_, calls_, e_ = driver_run(w_, r_, ARGS(S1), steps(w_, S1, [msg(1, "20261126")], {}))
+    return e_, [l for l in o_.splitlines() if l.startswith("REHAB MONITOR REGISTER:")], (rd(w_, "registers", "pos61_monitor.json") or {}).get("lines")
+check("1e the rehab monitor's register: the repository's copy is taken, whole, when it is LATER than the one this workspace was restored with (one line says so) - and when the workspace has none",
+      lambda: mon_case("mon_later", "2026-11-25T06:40:00Z", "2026-11-26T00:41:10Z") == ("", ["REHAB MONITOR REGISTER: the repository's copy (2026-11-26T00:41:10Z) is later than this workspace's (2026-11-25T06:40:00Z) - taken, whole"], ["REHAB AT 61: main"])
+      and (lambda c: c[0] == "" and len(c[1]) == 1 and c[2] == ["REHAB AT 61: main"])(mon_case("mon_none", None, "2026-11-26T00:41:10Z")), lambda: (mon_case("mon_later_x", "2026-11-25T06:40:00Z", "2026-11-26T00:41:10Z"), mon_case("mon_none_x", None, "2026-11-26T00:41:10Z")))
+check("1f ... the workspace's own copy stays when it is the later one, or as late; and a copy on main that cannot be read, carries no time or is no register changes nothing - no line, the ingest goes on",
+      lambda: all(mon_case("mon_keep%d" % i, "2026-11-26T00:41:10Z", a, t) == ("", [], ["REHAB AT 61: ws"]) for i, (a, t) in enumerate([("2026-11-25T06:40:00Z", None), ("2026-11-26T00:41:10Z", None), (None, "{ half"), (None, json.dumps({"lines": ["x"]})), (None, json.dumps(["at"])), (None, json.dumps({"at": "tomorrow"})), (None, None)])))
+
 # ---- 2. the identity register ------------------------------------------------------------------------------------------------------------------
 S2 = "20261126T1840Z"
 DEC = {KEY(1, DOB(1)[:7] + "9"): answer(5, "pat9101", flags=[FI.FLAG_DATE + FI.SLIP_DIGIT], cands=["pat9101", "pat9102"], ev=["slip:" + FI.SLIP_DIGIT], ids=[FID(1)]),      # the 11/17 shape: one digit off

@@ -128,6 +128,26 @@ def _main_map():
         print("PATIENT MAP: %d feed patient(s) now go to the repository's chart%s; %d added from the repository's map" % (
             len(repointed), (" - " + ", ".join("%s (was %s, now %s)" % (show_id(x["feed_id"]), x["was"] or "?", x["now"]) for x in repointed[:20]) + (" (+%d more)" % (len(repointed) - 20) if len(repointed) > 20 else "")) if repointed else "", added))
 _main_map()
+# ---- the rehab monitor's register: the repository's copy when it is the LATER one (11/25/2026, review of the monitor) ------------------------------
+# pos61_monitor.py goes by its own register of the run before (whose turn it is to be read; what it has said already). The workspace's copy comes
+# back from the state bundle and can be older than the one the mirror carried to main: then main's is copied here, whole - that register is ONE
+# run's finding and is never mixed (tools/mirror/mirror.py _merge_pos61 keeps the later one the same way). A copy on main that cannot be read,
+# carries no time or is no register changes nothing.
+def _main_monitor():
+    src = os.path.join(os.path.dirname(REPO_MAP), "pos61_monitor.json"); dst = os.path.join("registers", "pos61_monitor.json")
+    def at(p):
+        try: d = json.load(open(p))
+        except Exception: return None
+        return d["at"] if isinstance(d, dict) and isinstance(d.get("at"), str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", d["at"]) else None
+    a = at(src)
+    if a is None: return
+    b = (at(dst) or "") if os.path.exists(dst) else ""
+    if a > b:
+        try:
+            shutil.copy2(src, dst + ".tmp"); os.replace(dst + ".tmp", dst)
+            print("REHAB MONITOR REGISTER: the repository's copy (%s) is later than this workspace's (%s) - taken, whole" % (a, b or "none"))
+        except Exception as e: print("REHAB MONITOR REGISTER: the repository's later copy could not be copied (%s) - the monitor starts from this workspace's" % type(e).__name__)
+_main_monitor()
 # ---- the identity rule's own words (feed_identity.py - the copy here, else the clone's) -------------------------------------------------------
 # Loaded only for its fixed words and for problems(), the proof that an entry holds nothing but fixed words, chart ids and rule numbers.
 # Without it (a workspace and a clone that both lack the file) nothing of an entry is copied to the register: every field is withheld.

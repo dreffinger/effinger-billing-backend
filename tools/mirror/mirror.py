@@ -157,7 +157,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
              "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.2"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
-             "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.1"',
+             "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.3"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it
              # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
              # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out

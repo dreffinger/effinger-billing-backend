@@ -14,24 +14,37 @@
 #   WHAT A READ SHOWS (the visit is its hospital-visit line; where it has none, every line; a no-charge reporting line never counts):
 #     paid         a payment of the PAYER on the line (never the patient's: a line without a reason code that AdvancedMD marks source 1 or,
 #                  where it names no source, that names no carrier); a payment taken back with the other sign leaves nothing paid;
-#     denied       a $0 payment line with a reason code that denies, and nothing paid. The codes that never deny are the ones the practice's
-#                  ageing page (aging_refresh.py) never counts as a denial either: 45, 253, 23, 94, 246 and the cost shares 1, 2, 3;
-#     answered $0  a $0 payment line whose codes are only those (the whole allowed amount is the patient's deductible, say): not a denial,
-#                  and not lost - it has its own count and its own line, as "paid $0.00";
+#     denied       a $0 payment line with a reason code that denies, and that still stands. The codes that never deny are the ones the
+#                  practice's ageing page (aging_refresh.py) never counts as a denial either: 45, 253, 23, 94, 246 and the cost shares 1, 2, 3.
+#                  PER PAYER THE NEWEST ANSWER LEADS (11/25/2026 - until then ANY payment on the line made every denial on it an earlier
+#                  one). A denial no longer stands - it is kept in the row under "before" and the visit is not denied by it - only when the
+#                  SAME payer answered later with $0 and no denying code, or its own payment stands and the denial is not dated after it.
+#                  So a denial dated after that payer's own payment, and every denial of a payer that paid NOTHING on the line - the second
+#                  payer's after the first one paid, the first payer's when only another plan paid - IS a denied visit: its line stands at
+#                  the top under the payer that denied, and the dollars that were paid stay in its row, are named in its line and in the
+#                  count, and are NOT counted as paid. One exception: a $0 line dated after the same payer's standing payment whose only
+#                  denying codes say that the claim was paid already (18 exact duplicate, B13 previously paid) denies nothing - kept in
+#                  the row under "dup". A line that names no carrier is never taken for another payer's; where the dates do not tell the
+#                  order, the same payer's standing payment leads;
+#     answered $0  the payer's newest answer is a $0 payment line whose codes are only those (the whole allowed amount is the patient's
+#                  deductible, say): not a denial, and not lost - it has its own count and its own line, as "paid $0.00";
 #     written off  nothing paid, no answer, and no balance left; open / unanswered: billed, no answer, up to 30 days / more than 30 days
 #                  since the bill date; not billed: no bill date; voided: every charge of the visit reads void - not counted as entered
 #                  (a visit a later save made again under a NEW visit id reads voided too: the new visit is not followed);
 #     could not be read: the read failed or came back without a charge row of the visit - counted and named, never a reason to stop.
 #   WHAT IT SAYS (printed, and kept word for word in the register under "lines" and "top" for the digest):
 #     REHAB AT 61: N visit(s) entered; B billed; P paid ($X, average $Y per initial visit - at 21 the average was $138.67 on 95 paid of
-#       121 sent); D denied (codes ...); O billed and unanswered for over 30 days - and behind it, only when there is one: paid low, answered
-#       with $0, written off unpaid, not billed yet, could not be read, not read yet, voided since. With no rehab visit yet: one line.
+#       121 sent); D denied (codes ... - how many were written off since, and the dollars paid on denied visits); O billed and unanswered
+#       for over 30 days - and behind it, only when there is one: paid low, paid only after a denial (with the codes), answered with $0,
+#       written off unpaid, not billed yet, could not be read, not read yet, voided since. With no rehab visit yet: one line.
 #     REHAB STAYS KEPT AT 21 (the comparison group): the same numbers for the visits kept at 21.
 #     REHAB PAID PER CODE - at 61 / at 21: the average payment of each code in the two groups.
 #     TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: one line for EVERY denied visit at 61 - the visit, the chart, the date of service, the
-#       carrier code, the reason / remark codes - ending "- for William: keep 61 or go back to 21 for this payer?". It is printed in every
-#       run for as long as the visit carries a balance (also after it went out again: the line says so). A denied visit with no balance left
-#       (written off) is printed in every run for 14 days from the day this monitor first saw it denied, then it stays in the count.
+#       carrier code, the reason / remark codes, the dollars a payer paid on it - ending "- for William: keep 61 or go back to 21 for this
+#       payer?". It is printed in every run for as long as the visit carries a balance (also after it went out again: the line says so, and
+#       says "no answer yet" only while no payer has answered since). A denied visit with no balance left (written off; or denied by the
+#       payer whose own payment still stands - no balance shows until the take-back is on the charge) is printed in every run for 14 days
+#       from the day this monitor first saw it denied, then it stays in the count; the line is back, to stay, once a balance is.
 #     TOP OF THE REPORT - PLACE OF SERVICE 61 paid low: one line for every visit at 61 paid under 60% of the 21 average for its code (an
 #       initial hospital visit: the $138.67 below; any other code: what the comparison group averages for it, once three of its visits are
 #       paid - until then there is nothing to measure against and the row says so), and for every visit answered with $0. Printed in every
@@ -39,24 +52,42 @@
 #       stays in the count "paid low" and in the register. (Nothing ends such a line by itself, so it is not repeated for ever: --line-days N
 #       changes the 14 days, --line-days 0 keeps every line for as long as the visit is denied or paid low.)
 #     REHAB MONITOR: what the numbers above do not hold - a visit that could not be read, an import register that could not be read, a
-#       line riding with a paid visit (99497 / 99498) that is denied, the reads this run did not get to and why.
+#       line riding with a paid visit (99497 / 99498) that is denied, the reads this run did not get to and why, a run that had no register
+#       of an earlier run to go by, settled visits that were last read more than 30 days ago.
 #   WHAT IT WRITES: registers/pos61_monitor.json and nothing else - visit ids, chart ids, dates of service, bill and payment dates, codes,
 #   the state, the carrier CODE, reason codes and dollars; never a name, a birth date or a member number. Every value taken from AdvancedMD's
-#   answer or from a register is kept only in the shape of what it is (an id, a date, a code, a number); an error is kept by its kind,
-#   never by its words (they can name a patient). The register is also this helper's memory: a visit that is SETTLED - paid, or answered
-#   with $0, with no insurance balance left on any of its lines; denied or unanswered with no balance left at all; voided - is not read
-#   again (--all reads every visit again: a payment taken back after that is only seen then). What comes back from that memory is taken
-#   over field by field in its shape too. No date older than the visit's own date of service is ever kept - not from AdvancedMD's answer
-#   (a placeholder bill date; the payment still counts, without a day), not from the memory. Without the memory (a new workspace, a
-#   register that cannot be read) every visit is read again and every line is said again for its 14 days - nothing is lost.
+#   answer or from a register is kept only in the shape of what it is: a chart or visit id as the import writes it (pat123, vst123 - digits
+#   out of other text are no id and are never asked for), a date, a procedure or reason code, a carrier code of two to eight letters and
+#   digits, a number, the import's own two signs of a stay, the stamp of a register's file name. An error is kept by its kind,
+#   never by its words (they can name a patient). What comes back from the register of the run before is taken over field by field in its
+#   shape too. No date older than the visit's own date of service is ever kept - not from AdvancedMD's answer (a placeholder bill date; the
+#   payment still counts, without a day), not from the memory.
+#   ITS MEMORY is that register: what the last read of each visit showed, when a visit was last asked for, since when its line is said.
+#   A visit that is SETTLED - paid, or answered with $0, with no insurance balance left on any of its lines; denied or unanswered with no
+#   balance left at all; voided - is read again only on a SLOW TURN: once its last read is 7 days old it takes every fifth read of a run,
+#   the one read longest ago first, and every read that is left once the other visits are read. So a payment taken back, or a denial that
+#   comes after a visit was settled, is seen some runs later - not at once, and no longer never (--all: no visit waits for a slow turn;
+#   11/25/2026: until then a settled visit was read once and for all). A denial of a payer whose own payment still stands on the line
+#   settles nothing: that visit is read in every run. When settled visits were last read more than 30 days ago and a run does not get to
+#   them, a line says so.
+#   WITHOUT THE MEMORY - a new workspace, a register that cannot be read, or one that is more than 2 days old (what comes back when the
+#   runs' own registers are not carried on, or cannot be written) - nothing says which visits were read last. The reading then starts at
+#   another place of the list each day (the list by date of service; the day's number times the golden ratio, so the places of successive
+#   days fall evenly over the list whatever one run reads) and gets round to every visit within about 1.7 x (visits / reads a run) days.
+#   Until it has, the counts and lines of a run hold only what that run read (and what an old register says), a standing DENIED line is
+#   missing until its visit is read again, and a line already said is said again for its 14 days; a run in that state that could not read
+#   every visit says so in one line. (11/25/2026: the turn was taken from the memory alone - a run without it read the same oldest visits
+#   every time and never reached a newer one. The register has to be carried from run to run like the other standing feed registers.)
 # Rules it uses: at most ONE history read per visit and run. A RUN NEVER HANGS ON THIS HELPER: it reads for 90 seconds at most (--seconds;
-#   the clock is looked at before each read, so a call with the usual two-minute limit ends by itself) and 400 visits at most (--max); after
-#   three reads in a row that AdvancedMD does not answer, or when the login fails, the reading stops for this run; a run stopped from outside
-#   in the middle of a read (a time limit) still prints its lines and writes its register. Whose turn it is: the visits never asked for
-#   first, then the ones asked for longest ago - so the next run goes on where this one stopped, and a visit that never answers holds up
-#   nobody. A visit read before and not read today keeps what its last read showed and is marked stale; the lines and the counts say how
-#   many visits were not read. With more unsettled visits than one run reads, a denial is seen a run or two later: give the helper more
-#   time (--seconds 500 in a call with the ten-minute limit) rather than starting it twice. --dry and --live are the same run.
+#   the clock is looked at before each read, so a call with the usual two-minute limit ends by itself - but a read that is under way is not
+#   cut short: one read that AdvancedMD is slow to answer can carry the run past that) and 400 visits at most (--max); after three reads
+#   in a row that AdvancedMD does not answer, or when the login fails, the reading stops for this run; a run stopped from outside
+#   in the middle of a read (a time limit) still prints its lines and writes its register. Whose turn it is, with the memory: the visits
+#   never asked for first (by date of service, from the day's place among them), then the ones asked for longest ago - so the next run goes
+#   on where this one stopped as long as this run's register reaches it, and a visit that never answers holds up nobody. A visit read
+#   before and not read today keeps what its last read showed and is marked stale; the lines and the counts say how many visits were not
+#   read. With more unsettled visits than one run reads, a denial is seen a run or two later: give the helper more time (--seconds 500 in
+#   a call with the ten-minute limit) rather than starting it twice. --dry and --live are the same run.
 # Never: sends anything to AdvancedMD or to a payer - no save, no bill, no change of a place of service, of a facility or of a claim (whether
 #   a payer's visits go back to 21 is William's decision: the lines ask him); reads a whole chart; writes anything but its own register.
 # Usage (from the workspace; nightly/claimocity_feed_step.md says when):
@@ -66,14 +97,17 @@
 #   Exit 0 = it ran (also when visits could not be read: the lines say so); exit 2 = it did not run or could not write its register (one plain line).
 import os, re, sys, json, glob, time, datetime, collections
 import amd, txh
-POS61_MONITOR_VERSION = "2026-11-25.1"      # this helper's own version (not the import's POS_RULE_VERSION): change it with EVERY revision of the monitor - it is written into the register
+POS61_MONITOR_VERSION = "2026-11-25.3"      # this helper's own version (not the import's POS_RULE_VERSION): change it with EVERY revision of the monitor - it is written into the register
 # THE FIXED HISTORY OF PLACE OF SERVICE 21 - what the same kind of visit did before the rule. Constants, not read anywhere at run time.
 BASELINE_21 = {"sent": 121, "paid": 95, "average": 138.67, "denied_unpaid": 10}      # the practice's own AdvancedMD history pulled 11/10/2026: second initial hospital visits within 30 days at place of service 21 since 11/2025 - 121 sent, 95 paid, average $138.67 a paid visit, 10 denied and never paid
 BASELINE_WORDS = "the practice's history of 11/10/2026"
+SIGNS = ("facility number", "new admission 1-2 days after an acute stay")                # the import's two signs of a rehab stay (its stay.sign, claimocity_import.py SIGN_NUMBER / SIGN_ADMIT): nothing else is taken over from that field
+OTHER_NAME = "a feed_import file with another kind of name"                              # how a register is named here whose file name carries no stamp
 INITIAL = {"99221", "99222", "99223"}                                                    # an initial hospital visit: it opens a stay (the import's rule)
 HOSP_FAMILY = INITIAL | {"99231", "99232", "99233", "99238", "99239", "99234", "99235", "99236"}      # the import's hospital visit family (EM_FAMILY): the line that IS the visit
 REPORTING = {"1123F", "1124F", "M0004"}                                                  # no-charge reporting lines (aging_refresh.py REPORTING): never the visit, never its answer
 INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")                           # aging_refresh.py INFO_REASONS, code for code: contractual / prior payer / informational, and the cost shares - never a denial (an empty list here = every $0 line with a reason code is a denial)
+ALREADY_PAID = ("18", "B13")                                                             # 18 exact duplicate claim, B13 previously paid: behind the SAME payer's standing payment such a $0 line denies nothing (a claim that went out twice) - anywhere else it is a denial like any other
 UNANSWERED_DAYS = 30        # billed and no answer for MORE than this many days = unanswered
 UNDER_SHARE = 0.60          # paid UNDER this share of the 21 average for its code = paid low
 MIN_COMPARE = 3             # the comparison group's average for a code is used once this many of its visits are paid
@@ -81,14 +115,19 @@ LINE_DAYS = 14              # how long a line is repeated once nothing more is o
 MAX_READS = 400             # history reads in one run at most (--max)
 SECONDS = 90                # the time one run reads for (--seconds; 0 = no limit): looked at before each read, so a call with the usual two-minute limit ends by itself
 STOP_AFTER = 3              # reads in a row without an answer after which the reading stops for this run
+SETTLED_DAYS = 7            # a settled visit is read again once its last read is this many days old (its SLOW TURN) ...
+SETTLED_EVERY = 5           # ... and takes every fifth read of a run while other visits wait - and every read that is left once they are read
+SETTLED_LATE = 30           # settled visits last read more than this many days ago that a run did not get to are said in a line
+TURN_DAYS = 2               # the register of the run before says whose turn it is only while it is at most this many days old (an older one is what comes back when the runs' registers are not carried on)
+GOLDEN = 0.6180339887498949 # the golden ratio's part behind the point: the day's number times it gives the day's place in the list (start_of)
 PAUSE = 0.2                 # seconds between two reads
 CLOCK = time.monotonic      # the clock the time of a run is taken from
 QUESTION = "- for William: keep 61 or go back to 21 for this payer?"
 OUT = "pos61_monitor.json"
 BASE_LINE = "at 21 the average was $%.2f on %d paid of %d sent" % (BASELINE_21["average"], BASELINE_21["paid"], BASELINE_21["sent"])
-FACT_KEYS = ("read", "code", "fee", "carrier", "billed", "paid", "paid_on", "pay_codes", "denial", "remarks", "denied_on", "resent", "zero_codes", "before", "balance", "ins_balance", "other", "answer", "void", "closed")
-ROW_ORDER = ("visit", "chart", "dos", "cpts", "group", "batch", "initial", "sign", "state", "days", "said", "since", "read", "stale", "asked", "unread", "code", "fee", "carrier", "billed", "paid", "paid_on", "pay_codes", "low", "low_vs", "low_of",
-             "denial", "remarks", "denied_on", "resent", "zero_codes", "before", "balance", "ins_balance", "other", "answer", "void", "closed")
+FACT_KEYS = ("read", "code", "fee", "carrier", "billed", "paid", "paid_on", "paid_by", "pay_codes", "denial", "remarks", "denied_on", "pending", "resent", "zero_codes", "before", "dup", "balance", "ins_balance", "other", "answer", "void", "closed")
+ROW_ORDER = ("visit", "chart", "dos", "cpts", "group", "batch", "initial", "sign", "state", "days", "said", "since", "read", "stale", "asked", "unread", "code", "fee", "carrier", "billed", "paid", "paid_on", "paid_by", "pay_codes", "low", "low_vs", "low_of",
+             "denial", "remarks", "denied_on", "pending", "resent", "zero_codes", "before", "dup", "balance", "ins_balance", "other", "answer", "void", "closed")
 class Unreadable(Exception):
     """A read that came back without what was asked for. Its words are this helper's own - never AdvancedMD's."""
 
@@ -112,7 +151,15 @@ def money(x): return "$" + format(round(float(x or 0), 2) + 0.0, ",.2f")
 def cpt(x):
     s = str(x or "").strip().upper(); return s if re.fullmatch(r"\d{4}[0-9A-Z]|[A-Z]\d{4}", s) else ""      # a procedure code (99223, 1123F, M0004) - never five letters
 def carrier_code(x):
-    s = str(x or "").strip(); return s if re.fullmatch(r"[A-Za-z0-9]{1,12}", s) else ""      # a carrier CODE (FLO02) - anything else is left out
+    s = str(x or "").strip(); return s if re.fullmatch(r"[A-Za-z0-9]{2,8}", s) else ""      # a carrier CODE (FLO02, MCAD, UHCMA: two to eight letters and digits) - anything else is left out: a plan number or a long word in that field is no code (until 11/25/2026 up to twelve characters passed)
+def ident(x, prefix):
+    """The number of a chart or visit id as the import writes it (pat123 / vst123, or the bare number) - "" for anything else: digits picked out
+    of other text are no id (11/25/2026: they were taken for one, written down as one and asked for at AdvancedMD)."""
+    m = re.fullmatch(r"(?:%s)?(\d{1,15})" % prefix, str(x).strip()) if isinstance(x, (str, int)) and not isinstance(x, bool) else None; return m.group(1) if m else ""
+def stamp_of(name):
+    """The stamp in an import register's file name (feed_import_20261126T1240Z.json -> 20261126T1240Z; the early feed_import_1028.json -> 1028)
+    - "" for a name that is not made that way: such a name is never written down."""
+    m = re.fullmatch(r"feed_import_(\d{4,8}(?:T\d{4,6}Z[0-9A-Z]{0,4})?)\.json", str(name)); return m.group(1) if m else ""
 def kind_of(e): return re.sub(r"[^A-Za-z]", "", type(e).__name__)[:40] or "error"           # an error by its kind - never by its words
 def reason(code):
     """One code of a payment line -> (kind, group letters, code): "carc" a reason code (CO45 -> CO, 45; a bare 45 too), "remark" a remark code
@@ -142,10 +189,15 @@ def group_of(row):
     visit that went in at 21 (the comparison group - the import marks it rehab-stay-kept-21); "other" = a rehab-stay row at neither (named,
     never read); None = no rehab-stay visit at all."""
     st = row.get("stay") if isinstance(row.get("stay"), dict) else {}
-    lines = [str(x) for x in (row.get("pos_lines") if isinstance(row.get("pos_lines"), list) and row.get("pos_lines") else [row.get("pos")]) if x not in (None, "")]
+    sent = [str(x) for x in (row.get("pos_lines") if isinstance(row.get("pos_lines"), list) and row.get("pos_lines") else [row.get("pos")]) if x not in (None, "")]
+    # 11/25/2026 (review of the monitor): the group went by what the import SENT - a rehab visit AdvancedMD stored at 21 (the import says POS NOT KEPT at
+    # the top of its report) was counted and compared as a visit at 61. Where the import read the place of service back - pos_stored, one per charge
+    # line - that is what the claim goes out with, and the group is taken from it; with no read-back, what was sent counts as before.
+    ps = row.get("pos_stored"); stored = [str(x) for x in ps] if isinstance(ps, list) and ps and len(ps) == len(sent) and all(x not in (None, "") for x in ps) else None
+    lines = stored if stored is not None else sent
     if "61" in lines: return "61"
-    if "rehab-stay-kept-21" in kinds(row): return "21"
-    if st.get("kind") != "rehab": return None
+    if stored is None and "rehab-stay-kept-21" in kinds(row): return "21"
+    if st.get("kind") != "rehab" and "rehab-stay-kept-21" not in kinds(row) and "61" not in sent: return None
     return "21" if (lines and all(x == "21" for x in lines)) else "other"
 def import_rows(regdir):
     """({key: (row, batch stamp, group)}, [import registers that could not be read]) - the rehab-stay rows of "created" of every import register,
@@ -157,21 +209,21 @@ def import_rows(regdir):
         try:
             with open(path) as fh: reg = json.load(fh)
             if not isinstance(reg, dict): raise ValueError("not a register")
-        except Exception: bad.append(name); continue
+        except Exception: bad.append(name if stamp_of(name) else OTHER_NAME); continue
         for r in reg.get("created") if isinstance(reg.get("created"), list) else []:
             try:      # row by row: a row that is not what the import writes is passed over, the rows after it are still read
-                key = ("vst" + num(r.get("visit"))) if num(r.get("visit")) else "no visit|%s|%s|%s" % (num(r.get("pid")), mdy(day(r.get("dos"))), "+".join(cpt(x) for x in r.get("cpts") or []))
+                key = ("vst" + ident(r.get("visit"), "vst")) if ident(r.get("visit"), "vst") else "no visit|%s|%s|%s" % (ident(r.get("pid"), "pat"), mdy(day(r.get("dos"))), "+".join(cpt(x) for x in r.get("cpts") or []))
                 g = group_of(r)
             except Exception: continue
             if g is None: rows.pop(key, None)
-            else: rows[key] = (r, name[len("feed_import_"):-len(".json")], g)
+            else: rows[key] = (r, stamp_of(name), g)
     return rows, bad
 def static(r, stamp, g):
     """What the import register says of the visit - ids, the date of service, the codes, the stay - each in its own shape."""
     st = r.get("stay") if isinstance(r.get("stay"), dict) else {}; sign = str(st.get("sign") or "")
-    return {"visit": ("vst" + num(r.get("visit"))) if num(r.get("visit")) else "", "chart": ("pat" + num(r.get("pid"))) if num(r.get("pid")) else "", "dos": mdy(day(r.get("dos"))),
-            "cpts": [c for c in (cpt(x) for x in (r.get("cpts") if isinstance(r.get("cpts"), list) else [])) if c], "group": g, "batch": stamp if re.fullmatch(r"[0-9A-Za-z_]+", stamp) else "",
-            "initial": mdy(day(st.get("initial"))), "sign": sign if re.fullmatch(r"[a-z0-9 \-]{0,60}", sign) else ""}
+    return {"visit": ("vst" + ident(r.get("visit"), "vst")) if ident(r.get("visit"), "vst") else "", "chart": ("pat" + ident(r.get("pid"), "pat")) if ident(r.get("pid"), "pat") else "", "dos": mdy(day(r.get("dos"))),
+            "cpts": [c for c in (cpt(x) for x in (r.get("cpts") if isinstance(r.get("cpts"), list) else [])) if c], "group": g, "batch": stamp if stamp_of("feed_import_%s.json" % stamp) else "",
+            "initial": mdy(day(st.get("initial"))), "sign": sign if sign in SIGNS else ""}
 def kept_day(x, dos):
     """A date of the register of the run before, as text - "" when it is no date, or a date before the visit's own date of service (no bill,
     payment or run of this monitor is older than the visit: such a date is not what the field says it is, and is not carried on)."""
@@ -184,10 +236,12 @@ def tidy(old, dos=None):
         if kept_day(old.get(k), dos): out[k] = kept_day(old.get(k), dos)
     for k in ("fee", "paid", "balance", "ins_balance"):
         if isinstance(old.get(k), (int, float)) and not isinstance(old.get(k), bool): out[k] = round(f(old[k]), 2)
-    for k in ("pay_codes", "denial", "remarks", "zero_codes", "before"):
+    for k in ("pay_codes", "denial", "remarks", "zero_codes", "before", "dup"):
         if codes_of(old.get(k)): out[k] = codes_of(old.get(k))
     if cpt(old.get("code")): out["code"] = cpt(old.get("code"))
-    if carrier_code(old.get("carrier")): out["carrier"] = carrier_code(old.get("carrier"))
+    for k in ("carrier", "paid_by"):
+        if carrier_code(old.get(k)): out[k] = carrier_code(old.get(k))
+    if old.get("pending") is True: out["pending"] = True
     out["answer"] = old.get("answer") if old.get("answer") in ("paid", "denied", "zero", "none") else "none"
     if old.get("void") is True: out["void"] = True
     oth = [{"code": cpt(x.get("code")), "answer": x.get("answer") if x.get("answer") in ("paid", "denied", "zero", "none") else "none", "paid": round(f(x.get("paid")), 2),
@@ -197,16 +251,19 @@ def tidy(old, dos=None):
     return out if out.get("read") else {}
 def settled(fa):
     """Nothing more is expected of the payer for this visit: it is voided; or no insurance balance is left on any of its lines and it is paid
-    or answered with $0; or no balance is left at all (a denial written off, a visit written off unpaid). A fact that is missing settles nothing."""
+    or answered with $0; or no balance is left at all (a denial written off, a visit written off unpaid). A fact that is missing settles nothing -
+    and neither does a denial of a payer whose own payment still stands on the line ("pending": a take-back is to be expected, whatever the balance)."""
     if fa.get("void"): return True
     ins = fa.get("ins_balance"); bal = fa.get("balance")
-    if ins is None or ins > 0.005: return False
+    if ins is None or ins > 0.005 or fa.get("pending"): return False
     return fa.get("answer") in ("paid", "zero") or (bal is not None and bal <= 0.005 and (fa.get("answer") == "denied" or (fa.get("fee") or 0) > 0.005))
 def previous(path):
-    """{visit: its row} of the register the run before wrote. A register that is not there or cannot be read is no memory: every visit is read again."""
+    """({visit: its row} of the register the run before wrote, the day that run was made for) - ({}, None) for a register that is not there or
+    cannot be read: no memory, every visit counts as never read. A register whose own day cannot be read gives its rows and no day."""
     try:
-        with open(path) as fh: return {str(v["visit"]): v for v in json.load(fh).get("visits") or [] if isinstance(v, dict) and v.get("visit")}
-    except Exception: return {}
+        with open(path) as fh: reg = json.load(fh)
+        return {str(v["visit"]): v for v in reg.get("visits") or [] if isinstance(v, dict) and v.get("visit")}, day(reg.get("today"))
+    except Exception: return {}, None
 
 # ---- ONE read of a visit's own history -----------------------------------------------------------------------------------------------------
 def patient_line(p, reasons):
@@ -215,6 +272,50 @@ def patient_line(p, reasons):
     if reasons: return False
     src = str(p.get("source") or "").strip()
     return src == "1" if src else not str(p.get("carrier") or "").strip()
+def same_payer(a, b):
+    """Are two payment lines ONE payer's? Their carrier codes are the same - or one of them names none: a line that names no carrier is never
+    taken for ANOTHER payer's (the dates then decide)."""
+    return not a or not b or a.upper() == b.upper()
+def line_answer(real, zero):
+    """What the payer's lines on ONE charge line come to. real = (dollars, day, carrier, codes) of its payments, zero = (day, carrier, codes) of
+    its $0 lines with a reason code. PER PAYER THE NEWEST ANSWER LEADS (11/25/2026 - until then ANY payment on the line made every denial on
+    it an "earlier" one, whatever its date and whoever sent it: a second payer's CO-58 after the first payer had paid, a payer's own denial
+    behind its payment, and a first payer's denial that only a second plan paid a few dollars on, all read "paid" - nothing was printed, or
+    the wrong payer was asked about). A denying $0 line is
+      "before" (an earlier denial - the line is not denied by it) when the SAME payer answered later with $0 and no denying code, or when the
+               same payer's payment stands and the denial is not dated after it (dates that do not tell the order: the payment leads);
+      "dup"    when it is dated after the same payer's standing payment and its only denying codes say the claim was paid already (ALREADY_PAID);
+      "live"   in every other case - a denial dated after that payer's payment, and every denial of a payer that paid nothing on the line: it
+               is the payer's answer and the line is DENIED, also with another payer's dollars on it (they are kept and named, not counted)."""
+    net = sum(x[0] for x in real); paid = round(abs(net), 2); paid = paid if paid > 0.005 else 0.0; own = collections.Counter()
+    for x in real: own[x[2].upper()] += x[0]      # what each payer's own lines come to (a payment it took back nets to nothing)
+    kept = [x for x in real if x[0] * net > 0 and own[x[2].upper()] * net > 0 and abs(own[x[2].upper()]) > 0.005] if paid else []      # the payments that stand (a take-back carries the other sign)
+    kept = kept or ([x for x in real if x[0] * net > 0] if paid else []); later = lambda a, b: bool(a and b and a > b)
+    def stands(car):
+        """(does a payment of this payer stand, the newest day of such a payment) - nothing stands when its payments net to nothing."""
+        mine = [x for x in real if same_payer(x[2], car)]; s = sum(x[0] for x in mine)
+        return (True, max((x[1] for x in mine if x[1] and x[0] * s > 0), default=None)) if (paid and s * net > 0 and abs(s) > 0.005) else (False, None)
+    hard = [z for z in zero if any(denies(r) for r in z[2])]; soft = [z for z in zero if not any(denies(r) for r in z[2])]
+    says = [z for z in soft if any(r[0] == "carc" for r in z[2])]      # a $0 answer that carries a reason code and none that denies (a remark code alone answers nothing)
+    def fate(z):
+        if any(same_payer(y[1], z[1]) and later(y[0], z[0]) for y in says): return "before"
+        has, last = stands(z[1])
+        return "live" if not has else "before" if not later(z[0], last) else "dup" if all(r[2] in ALREADY_PAID for r in z[2] if denies(r)) else "live"
+    fates = [(fate(z), z) for z in hard]; live = [z for k, z in fates if k == "live"]; codes = lambda zs: sorted({show(r) for z in zs for r in z[2] if denies(r)})
+    out = {"paid": paid, "answer": "none", "codes": [], "before": codes([z for k, z in fates if k == "before"]), "dup": codes([z for k, z in fates if k == "dup"]),
+           "last": max([x[1] for x in real if x[1]] + [z[0] for z in zero if z[0]], default=None)}
+    newest = max(kept, key=lambda x: x[1] or datetime.date.min) if kept else None
+    if live:
+        top = max(live, key=lambda z: z[0] or datetime.date.min)
+        out.update(answer="denied", when=top[0], payer=top[1], codes=codes(live), remarks=sorted({show(r) for z in live + [y for y in soft if y not in says] for r in z[2] if r[0] == "remark"}))      # the remark codes of the denial's own lines, and of a $0 line that carries nothing but remark codes
+        if newest: out.update(paid_when=newest[1], paid_by=newest[2], pending=any(stands(z[1])[0] for z in live))      # pending: the payer that denies has a payment standing on this very line
+    elif paid:
+        top = max(real, key=lambda x: x[1] or datetime.date.min)      # (as before: the day and the payer of the newest payment line)
+        out.update(answer="paid", when=top[1], payer=top[2], codes=sorted({show(r) for x in real for r in x[3] if r[0] != "remark"}))
+    elif soft:
+        top = max(soft, key=lambda z: z[0] or datetime.date.min)
+        out.update(answer="zero", when=top[0], payer=top[1], codes=sorted({show(r) for z in soft for r in z[2] if r[0] != "remark"}))
+    return out
 def facts(root, vid, dos=None):
     """What ONE read of a visit's history shows -> the facts of the visit as the register keeps them (dates as text), or None when the answer
     holds no charge row of the visit. Amounts are stored as credits (negative) in this history: they are netted and read without the sign.
@@ -236,19 +337,9 @@ def facts(root, vid, dos=None):
             if abs(amt) > 0.005:
                 if not patient_line(p, rs): real.append((amt, when, car, rs))
             elif rs: zero.append((when, car, rs))
-        paid = round(abs(sum(x[0] for x in real)), 2); deny = [z for z in zero if any(denies(r) for r in z[2])]
         ln = {"code": code, "fee": round(f(c.get("fee")), 2), "billed": day_(c.get("billdate")), "carrier": carrier_code(c.get("carrier") or c.get("carriercode")),
-              "ins": round(f(c.get("insbal") or c.get("insbalance")), 2), "pat": round(f(c.get("patbal") or c.get("patbalance")), 2), "paid": paid if paid > 0.005 else 0.0, "answer": "none", "codes": []}
-        if ln["paid"]:
-            top = max(real, key=lambda x: x[1] or datetime.date.min)
-            ln.update(answer="paid", when=top[1], payer=top[2], codes=sorted({show(r) for x in real for r in x[3] if r[0] != "remark"}), before=sorted({show(r) for z in deny for r in z[2] if denies(r)}))
-        elif deny:
-            top = max(deny, key=lambda x: x[0] or datetime.date.min)
-            ln.update(answer="denied", when=top[0], payer=top[1], codes=sorted({show(r) for z in deny for r in z[2] if denies(r)}), remarks=sorted({show(r) for z in zero for r in z[2] if r[0] == "remark"}))
-        elif zero:
-            top = max(zero, key=lambda x: x[0] or datetime.date.min)
-            ln.update(answer="zero", when=top[0], payer=top[1], codes=sorted({show(r) for z in zero for r in z[2] if r[0] != "remark"}))
-        lines.append(ln)
+              "ins": round(f(c.get("insbal") or c.get("insbalance")), 2), "pat": round(f(c.get("patbal") or c.get("patbalance")), 2)}
+        ln.update(line_answer(real, zero)); lines.append(ln)
     if not seen: return None
     if not lines: return {"void": True, "answer": "none", "closed": True}      # every charge of the visit reads void
     main = [l for l in lines if l["code"] in HOSP_FAMILY]; other = [l for l in lines if l["code"] not in HOSP_FAMILY] if main else []; main = main or lines
@@ -257,11 +348,16 @@ def facts(root, vid, dos=None):
     top = max(ans(answer), key=lambda l: l.get("when") or datetime.date.min); billed = max((l["billed"] for l in main if l["billed"]), default=None)
     fa = {"code": next((l for l in main if l["code"] in INITIAL), main[0])["code"], "fee": round(sum(l["fee"] for l in main), 2), "carrier": top.get("payer") or next((l["carrier"] for l in main if l["carrier"]), ""),
           "billed": mdy(billed), "paid": round(sum(l["paid"] for l in main), 2), "balance": round(sum(l["ins"] + l["pat"] for l in main), 2), "ins_balance": round(sum(l["ins"] for l in lines), 2), "answer": answer}
+    fa.update(before=sorted({c for l in main for c in l["before"]}), dup=sorted({c for l in main for c in l["dup"]}))      # the denials that no longer stand; the "paid already" codes
     if answer == "paid":
-        fa.update(paid_on=mdy(max((l["when"] for l in ans("paid") if l.get("when")), default=None)), pay_codes=sorted({c for l in ans("paid") for c in l["codes"]}), before=sorted({c for l in ans("paid") for c in l.get("before") or []}))
+        fa.update(paid_on=mdy(max((l["when"] for l in ans("paid") if l.get("when")), default=None)), pay_codes=sorted({c for l in ans("paid") for c in l["codes"]}))
     elif answer == "denied":
         fa.update(denial=sorted({c for l in ans("denied") for c in l["codes"]}), remarks=sorted({c for l in ans("denied") for c in l.get("remarks") or []}), denied_on=mdy(top.get("when")))
-        if billed and top.get("when") and billed > top["when"]: fa["resent"] = mdy(billed)      # it went out again after the denial
+        pays = [(l.get("paid_when"), l.get("paid_by")) if l["answer"] == "denied" else (l.get("when"), l.get("payer")) for l in main if l["paid"]]      # the dollars that stand beside the denial: when, and whose
+        if pays: fa.update(paid_on=mdy(max(pays, key=lambda x: x[0] or datetime.date.min)[0]), paid_by=max(pays, key=lambda x: x[0] or datetime.date.min)[1] or "")
+        if any(l.get("pending") for l in ans("denied")): fa["pending"] = True
+        last = max((l["last"] for l in main if l["last"]), default=None)
+        if billed and top.get("when") and billed > top["when"] and not (last and last > billed): fa["resent"] = mdy(billed)      # it went out again after the denial, and no payer has answered since
     elif answer == "zero":
         fa.update(zero_codes=sorted({c for l in ans("zero") for c in l["codes"]}), paid_on=mdy(top.get("when")))
     if other: fa["other"] = [{"code": l["code"], "answer": l["answer"], "paid": l["paid"], "denial": l["codes"] if l["answer"] == "denied" else [], "balance": round(l["ins"] + l["pat"], 2)} for l in other]
@@ -284,17 +380,20 @@ def tally(rows, group):
     rs = [r for r in rows if r["group"] == group]; live = [r for r in rs if r["state"] != "voided"]
     S = lambda *names: [r for r in live if r["state"] in names]
     cnt = lambda rws, key: dict(sorted(collections.Counter(c for r in rws for c in r.get(key) or []).items(), key=lambda kv: (-kv[1], kv[0])))
-    paid = S("paid"); den = S("denied"); zero = S("answered $0"); ini = [r for r in paid if r.get("code") in INITIAL]
+    paid = S("paid"); den = S("denied"); zero = S("answered $0"); ini = [r for r in paid if r.get("code") in INITIAL]; first = [r for r in paid if r.get("before")]; beside = [r for r in den if (r.get("paid") or 0) > 0.005]
     return {"entered": len(live), "billed": len([r for r in live if r.get("read") and (r.get("billed") or r.get("answer") in ("paid", "denied", "zero"))]), "paid": len(paid),
             "paid_dollars": round(sum(r.get("paid") or 0 for r in paid), 2), "initial_paid": len(ini), "initial_average": round(sum(r.get("paid") or 0 for r in ini) / len(ini), 2) if ini else None,
-            "denied": len(den), "denied_codes": cnt(den, "denial"), "denied_written_off": len([r for r in den if (r.get("balance") or 0) <= 0.005]), "unanswered": len(S("unanswered")), "open": len(S("open")),
+            "denied": len(den), "denied_codes": cnt(den, "denial"), "denied_written_off": len([r for r in den if (r.get("balance") or 0) <= 0.005 and r not in beside]), "denied_paid": len(beside), "denied_paid_dollars": round(sum(r.get("paid") or 0 for r in beside), 2),
+            "paid_after_denial": len(first), "paid_after_codes": cnt(first, "before"), "unanswered": len(S("unanswered")), "open": len(S("open")),
             "not_billed": len(S("not billed")), "paid_low": len([r for r in paid if r.get("low")]), "zero_answer": len(zero), "zero_codes": cnt(zero, "zero_codes"), "written_off": len(S("written off")),
             "unread": len(S("could not be read", "not read yet")), "could_not_be_read": len(S("could not be read")), "not_read_yet": len(S("not read yet")), "voided": len(rs) - len(live)}
 def x_codes(d): return ", ".join("%s x%d" % kv for kv in d.items())
 def said(c, low):
     """The parts both group lines share: denied with its codes, unanswered, and - only where there is one - what the first numbers do not hold."""
-    den = "%d denied" % c["denied"] + ((" (codes %s%s)" % (x_codes(c["denied_codes"]), (" - %d of them written off since" % c["denied_written_off"]) if c["denied_written_off"] else "")) if c["denied"] else "")
-    more = [("%d paid low" % c["paid_low"]) if (low and c["paid_low"]) else "", ("%d answered with $0 and no denial code (%s)" % (c["zero_answer"], x_codes(c["zero_codes"]))) if c["zero_answer"] else "",
+    den = "%d denied" % c["denied"] + ((" (codes %s%s%s)" % (x_codes(c["denied_codes"]), (" - %d of them written off since" % c["denied_written_off"]) if c["denied_written_off"] else "",
+                                                             (" - %s paid on %d of them, not counted as paid" % (money(c["denied_paid_dollars"]), c["denied_paid"])) if c["denied_paid"] else "")) if c["denied"] else "")
+    more = [("%d paid low" % c["paid_low"]) if (low and c["paid_low"]) else "", ("%d paid only after a denial (%s)" % (c["paid_after_denial"], x_codes(c["paid_after_codes"]))) if c["paid_after_denial"] else "",
+            ("%d answered with $0 and no denial code (%s)" % (c["zero_answer"], x_codes(c["zero_codes"]))) if c["zero_answer"] else "",
             ("%d written off unpaid" % c["written_off"]) if c["written_off"] else "", ("%d not billed yet" % c["not_billed"]) if c["not_billed"] else "", ("%d could not be read" % c["could_not_be_read"]) if c["could_not_be_read"] else "",
             ("%d not read yet" % c["not_read_yet"]) if c["not_read_yet"] else "", ("%d voided since (not counted)" % c["voided"]) if c["voided"] else ""]
     return "%s; %d billed and unanswered for over %d days%s" % (den, c["unanswered"], UNANSWERED_DAYS, "".join("; " + m for m in more if m))
@@ -308,15 +407,17 @@ def who(r): return " ".join(x for x in (r.get("visit"), r.get("chart"), ("servic
 def top_lines(rows, today, line_days):
     """The TOP OF THE REPORT lines of the visits at 61: every denied visit first, then every visit paid low or answered with $0. A line is
     repeated in every run for line_days days from the day this monitor first saw the visit so (0 = always) - a denied visit that still
-    carries a balance keeps its line for as long as it does."""
+    carries a balance keeps its line for as long as it does. (A denial against the same payer's standing payment shows no balance: its line
+    has its line_days like the others - nothing would end it if the take-back never came - and stays once the balance is back.)"""
     den = []; low = []; fresh = lambda r: line_days == 0 or not day(r.get("since")) or (today - day(r["since"])).days <= line_days
     for r in rows:
         if r["group"] != "61": continue
         head = "%s %s carrier %s" % (who(r), r.get("code") or "+".join(r.get("cpts") or []) or "?", r.get("carrier") or "not named")
         if r["state"] == "denied" and ((r.get("balance") or 0) > 0.005 or fresh(r)):
-            rem = r.get("remarks") or []
-            den.append("TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: %s denied%s with %s%s, balance %s%s%s %s" % (head, (" " + r["denied_on"]) if r.get("denied_on") else "", ", ".join(r.get("denial") or ["?"]),
-                       (" (remark%s %s)" % ("s" if len(rem) > 1 else "", ", ".join(rem))) if rem else "", money(r.get("balance")), " (written off since)" if (r.get("balance") or 0) <= 0.005 else "",
+            rem = r.get("remarks") or []; got = (r.get("paid") or 0) > 0.005      # got: dollars stand beside the denial - another payer's, or the denying payer's own (pending)
+            den.append("TOP OF THE REPORT - PLACE OF SERVICE 61 DENIED: %s denied%s with %s%s, balance %s%s%s%s %s" % (head, (" " + r["denied_on"]) if r.get("denied_on") else "", ", ".join(r.get("denial") or ["?"]),
+                       (" (remark%s %s)" % ("s" if len(rem) > 1 else "", ", ".join(rem))) if rem else "", money(r.get("balance")), " (written off since)" if ((r.get("balance") or 0) <= 0.005 and not got) else "",
+                       (", with %s paid%s%s%s" % (money(r.get("paid")), (" by " + r["paid_by"]) if r.get("paid_by") else "", (" on " + r["paid_on"]) if r.get("paid_on") else "", " (the payer that denies: its payment still stands)" if r.get("pending") else "")) if got else "",
                        (", sent again %s - no answer yet" % r["resent"]) if r.get("resent") else "", QUESTION))
         elif r["state"] == "paid" and r.get("low") and fresh(r):
             low.append("TOP OF THE REPORT - PLACE OF SERVICE 61 paid low: %s paid %s%s - under %d%% of the %s average at 21 for %s (%s) %s" % (head, money(r.get("paid")), (" on " + r["paid_on"]) if r.get("paid_on") else "",
@@ -332,6 +433,34 @@ def turn(r):
     still waiting for the payer's answer before the ones that are paid and only wait for a second payer; then the oldest date of service."""
     asked = max([d for d in (day(r.get("read")), day(r.get("asked"))) if d] or [datetime.date.min])
     return (asked, 0 if not r.get("read") else 2 if r.get("answer") in ("paid", "zero") else 1, day(r["dos"]) or datetime.date.min, r["visit"])
+def start_of(today, n):
+    """The day's place in a list of n visits nothing says the turn of: the day's number times the golden ratio, the part behind the point, times
+    n. The places of successive days fall evenly over the list WHATEVER one run reads, so runs that have no memory still get round to every
+    visit - within about 1.7 x (visits / reads a run) days (11/25/2026: without the register of the run before, every run started at the same
+    oldest visits and never reached the newer ones; a fixed step would leave gaps for good whenever a run reads fewer visits than the step)."""
+    return int(((today.toordinal() * GOLDEN) % 1.0) * n) if n > 0 else 0
+def reading_order(rows, today, memory_day, every=False):
+    """The visits ONE run reads, in the order it reads them (read_visits stops where its reads or its time end).
+    With the register of the run before (at most TURN_DAYS old): the visits never asked for first - by date of service, from the day's
+    place among them - then the others that are not settled, the one asked for longest ago first (turn). Without it, or with an older one:
+    nothing says whose turn it is, so every visit that is not settled goes by date of service from the day's place (what the old register
+    says of a visit still stands until the visit is read again). A SETTLED visit is read again only on its slow turn: once its last read is
+    SETTLED_DAYS old it takes every SETTLED_EVERY-th read of the run - the one read longest ago first - and every read that is left once the
+    others are read. every (--all): no visit waits for a slow turn."""
+    ok = [r for r in rows if r["visit"] and r["chart"]]; by_dos = lambda r: (day(r["dos"]) or datetime.date.min, r["visit"])
+    last = lambda r: max([d for d in (day(r.get("read")), day(r.get("asked"))) if d] or [datetime.date.min])
+    known = lambda r: bool(r.get("read") or r.get("asked")); done = lambda r: bool(r.get("read") and r.get("closed")) and not every
+    def ring(rs):
+        rs = sorted(rs, key=by_dos); s = start_of(today, len(rs)); return rs[s:] + rs[:s]
+    due = [r for r in ok if done(r) and (today - last(r)).days >= SETTLED_DAYS]
+    if memory_day is not None and (today - memory_day).days <= TURN_DAYS:
+        first = ring([r for r in ok if not known(r)]) + sorted([r for r in ok if known(r) and not done(r)], key=turn); slow = sorted(due, key=lambda r: (last(r),) + by_dos(r))
+    else: first = ring([r for r in ok if not done(r)]); slow = ring(due)
+    out = []
+    while first or slow:
+        out += first[:SETTLED_EVERY - 1]; del first[:SETTLED_EVERY - 1]
+        if slow: out.append(slow.pop(0))
+    return out
 def read_visits(due, today, cap, seconds):
     """At most ONE history read for each visit of the list, in the list's order -> (reads tried, why the reading ended early or "").
     Nothing leaves a single visit's read: a read that fails is written on its row (the error's kind, never its words) and the next visit is
@@ -400,7 +529,7 @@ def monitor(argv=None):
     ws = vals.get("--workspace") or os.environ.get("BILLING_WORKSPACE") or ""
     regdir = vals.get("--registers") or os.path.join(ws, "registers")
     if not os.path.isdir(regdir): return stop("registers folder not found: %s (start it in the workspace, or name the folder with --registers)" % regdir)
-    path = os.path.join(regdir, OUT); found, bad = import_rows(regdir); prev = previous(path)
+    path = os.path.join(regdir, OUT); found, bad = import_rows(regdir); prev, memory_day = previous(path)
     rows = []; other = []
     for key, (r, stamp, g) in found.items():
         row = static(r, stamp, g)
@@ -415,12 +544,15 @@ def monitor(argv=None):
         elif not row["chart"]: row["unread"] = "no chart id in the import register"
         rows.append(row)
     rows.sort(key=lambda r: (r["group"] != "61", day(r["dos"]) or datetime.date.min, r["visit"], r["chart"]))
-    # ---- the reads: a settled visit is not read again (--all: every visit) ---------------------------------------------------------------------------
-    due = sorted([r for r in rows if r["visit"] and r["chart"] and (ALL or not r.get("read") or not r.get("closed"))], key=turn)
-    tried, ended = read_visits(due, today, cap, seconds) if due else (0, "")
-    waiting = [r for r in due if not r.pop("_asked", False)]
-    for r in due:
-        if r.get("read") and r["read"] != mdy(today): r["stale"] = True      # read before, not read today: what the last read showed stands
+    # ---- the reads: the visits that are not settled, and the settled ones on their slow turn (--all: every visit takes its turn) ----------------------
+    trusted = memory_day is not None and (today - memory_day).days <= TURN_DAYS      # does the register of the run before say whose turn it is?
+    order = reading_order(rows, today, memory_day, ALL); n_first = len([r for r in order if not (r.get("read") and r.get("closed"))])
+    tried, ended = read_visits(order, today, cap, seconds) if order else (0, "")
+    waiting = []      # the visits that are not settled and that this run did not get to (a settled visit that waits for its slow turn is not "not read")
+    for r in order:
+        was = r.pop("_asked", False); done = bool(r.get("read") and r.get("closed"))
+        if not was and not done: waiting.append(r)
+        if r.get("read") and r["read"] != mdy(today) and (was or not done): r["stale"] = True      # read before, not read today: what the last read showed stands
     # ---- today's state of every visit, the low payments, and since when a visit has its line ---------------------------------------------------------
     for r in rows:
         r["state"], d = state_of(r, today)
@@ -462,8 +594,17 @@ def monitor(argv=None):
     if ended.startswith("login"): noted.append("REHAB MONITOR: the login to AdvancedMD failed (%s) - nothing was read in this run; %s" % (ended[6:], nxt))
     if ended == "silent": noted.append("REHAB MONITOR: AdvancedMD did not answer %s reads in a row - the reading stopped for this run; %s" % ({2: "two", 3: "three", 4: "four", 5: "five"}.get(STOP_AFTER, str(STOP_AFTER)), nxt))
     if ended == "stopped": noted.append("REHAB MONITOR: the run was stopped from outside (a time limit) after %d read(s) - what was read stands; %s" % (tried, nxt))
-    if ended == "cap": noted.append("REHAB MONITOR: %d visit(s) were not read in this run (--max %d reads a run) - the next run reads them first" % (len(waiting), cap))
-    if ended == "time": noted.append("REHAB MONITOR: %d visit(s) were not read in this run (--seconds %d: the time of one run was used up after %d read(s)) - the next run reads them first" % (len(waiting), seconds, tried))
+    keep = "the next run reads them first, as long as this run's register reaches it"      # (11/25/2026: said without the condition, it was untrue for every run that starts in a fresh workspace)
+    if ended == "cap" and waiting: noted.append("REHAB MONITOR: %d visit(s) were not read in this run (--max %d reads a run) - %s" % (len(waiting), cap, keep))
+    if ended == "time" and waiting: noted.append("REHAB MONITOR: %d visit(s) were not read in this run (--seconds %d: the time of one run was used up after %d read(s)) - %s" % (len(waiting), seconds, tried, keep))
+    if not trusted and waiting and tried:      # a run without memory that could not read everything: say what its lines hold
+        got = max(1, n_first - len(waiting))
+        why = ("%s was not there or could not be read" % OUT) if (memory_day is None and not prev) else "the one that came back does not say what day it is of" if memory_day is None else "the one that came back is of %s, %d days before this run" % (mdy(memory_day), (today - memory_day).days)
+        noted.append("REHAB MONITOR: this run had no register of an earlier run to go by (%s) - nothing said which visits were read last, so the reading started at today's place in the list by date of service, another place each day (at %d read(s) a run every visit is reached within about %d day(s)); %s"
+                     % (why, got, (17 * n_first + 10 * got - 1) // (10 * got), "what that register says of a visit stands until the visit is read again" if prev else "the counts and lines above hold only what this run read"))
+    behind = [r for r in rows if r.get("read") and r.get("closed") and not r.get("void") and not r.get("unread") and (today - day(r["read"])).days > SETTLED_LATE]
+    if behind: noted.append("REHAB MONITOR: %d settled visit(s) were last read more than %d days ago (the oldest on %s) and this run did not get to them - a payment taken back since, or a late denial, shows only when they are read again: give the helper more time (--seconds 500 in a call with the ten-minute limit)"
+                            % (len(behind), SETTLED_LATE, mdy(min(day(r["read"]) for r in behind))))
     unread = [r for r in rows if r.get("unread")]
     if unread: noted.append("REHAB MONITOR: %d visit(s) could not be read this run: %s" % (len(unread), "; ".join("%s (%s%s)" % (who(r), r["unread"], (" - what the read of %s showed stands" % r["read"]) if r.get("read") else "") for r in unread[:40])
                             + (" ... and %d more, each in the register" % (len(unread) - 40) if len(unread) > 40 else "")))
@@ -475,7 +616,7 @@ def monitor(argv=None):
     reg = {"what": "read-only payment monitor of the inpatient-rehab visits at place of service 61 (pos61_monitor.py): chart ids, visit ids, dates of service, codes, carrier codes, reason codes and dollars - no name, no birth date and no member number is ever written here",
            "version": POS61_MONITOR_VERSION, "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "today": mdy(today), "mode": "read only - nothing is ever sent to AdvancedMD; --dry and --live are the same run",
            "baseline_21": dict(BASELINE_21), "limits": {"unanswered_days": UNANSWERED_DAYS, "low_share": UNDER_SHARE, "min_compare": MIN_COMPARE, "line_days": line_days, "max_reads": cap, "seconds": seconds},
-           "counts": {"at 61": c61, "kept at 21": c21}, "by_code": by_code, "reads": tried, "ended": ended.split(" ")[0], "unreadable_registers": bad, "lines": lines + noted, "top": top,
+           "counts": {"at 61": c61, "kept at 21": c21}, "by_code": by_code, "reads": tried, "ended": ended.split(" ")[0], "memory": mdy(memory_day), "unreadable_registers": bad, "lines": lines + noted, "top": top,
            "visits": [{k: r[k] for k in ROW_ORDER if k in r and r[k] is not None and r[k] != "" and r[k] != []} for r in rows]}
     tmp = path + ".tmp"
     try:
@@ -485,7 +626,7 @@ def monitor(argv=None):
         try: os.remove(tmp)
         except OSError: pass
         for l in (lines if quiet else []): print(l)
-        print("REHAB MONITOR: its register %s could not be written (%s) - the lines above stand; the next run reads again what this run read" % (path, kind_of(e))); return 2
+        print("REHAB MONITOR: its register %s could not be written (%s) - the lines above stand; the next run does not know what this run read (it has the register of the run before, or none)" % (path, kind_of(e))); return 2
     print(("%s - register: %s" % (lines[0], path)) if quiet else "register: %s" % path)
     return 0
 
