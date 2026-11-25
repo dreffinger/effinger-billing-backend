@@ -13,6 +13,9 @@
 #              text>) - for William; nothing was changed". The held row carries the same sentence and "pos61": true; the digest puts it at the top of the report. Every
 #              other edit on such a visit is handled as on any hospital visit (the admission date, the advisories), and the re-save echoes the visit's own facility and
 #              place of service. A visit of a rehab stay that was KEPT at 21 (pos_kind rehab-stay-kept-21) is a hospital visit like any other for this step.
+#              11/25/2026 (review): BOTH listings are read for it. An edit about the place that shows only on the second listing - the Claim Inspector listed the visit
+#              with no edit a second earlier, or the step's own re-save brought it - is held the same way and never bypassed, whatever its number; the row then also
+#              says what the step had already done to the visit before the edit showed ("(before this edit showed, this step had: ...)").
 #   Pattern 20389 / primary-position dx (sequela, external cause, Z secondary-only, 'code first' manifestation) -> William's
 #              9/14 cascade (dx_primary_fix.plan): delete the code, else move it behind the condition code, else I10 first; full-echo
 #              dx save; the visit is re-listed and the leftover advisories bypassed with fresh ids.
@@ -118,6 +121,10 @@ def names_place(e):
     """Is this Claim Inspector edit about WHERE the visit was - Pattern 4531 (a code not typical for the place of service), or words that name the place of service, the
     facility or the location?"""
     return pattern(e) == "4531" or bool(PLACE_WORDS.search(e["text"] or ""))
+def pos61_words(vid, place):
+    """The ONE sentence for a visit entered at 61 that the Claim Inspector questions for its place of service or its facility (POS61_LINE) - the held row's reason and the
+    printed line, on the first listing and (11/25/2026, review) on the listing after it alike."""
+    return POS61_LINE % (vid, "; ".join(e["text"] if re.search(r"Pattern \d+", e["text"]) else "edit %s: %s" % (e["number"], e["text"]) for e in place)[:300])
 def hold_words(data, ask=""):
     """The reason of a hold: the edits' own words - behind William's question when the hold has one (a nursing-facility code under the hospital building)."""
     w = "; ".join(e["text"][:80] for e in data)
@@ -540,7 +547,7 @@ def main():
             # of the report. The register is written at once: this visit leaves the loop here.
             _place = [e for e in info["errors"] if names_place(e)] if rehab_visit(c) else []
             if _place:
-                _w = POS61_LINE % (vid, "; ".join(e["text"] if re.search(r"Pattern \d+", e["text"]) else "edit %s: %s" % (e["number"], e["text"]) for e in _place)[:300])
+                _w = pos61_words(vid, _place)
                 held(vid, c, _w, quality=bool(qline), mvp=bool(mline), pos61=True); print(_w); write_register(); continue
             # 1. hospitalization date
             if "117065068" in pats:
@@ -581,6 +588,15 @@ def main():
             # 5. re-list and bypass the advisories that remain - never an edit that names the quality line (11/10/2026)
             time.sleep(1.0)
             again = list_batch().get(vid)
+            # 11/25/2026 (review): the edit about the place of service or the facility of a visit entered at 61 can show only on THIS listing - the first one came back without it (3 of
+            # 68 visits in the committed inspector registers were listed with no edit at first) or the step's own re-save brought it. Step 0 read the first listing only: such an edit
+            # was held as an ordinary hold, with no line for the top of the report, and BYPASSED when its number is on the bypass list. It is held here the same way as there: no
+            # bypass of ANY edit of the visit, nothing more changed, the same sentence - and, when the step had already done something to the visit before the edit showed (the
+            # admission date, a re-save that echoes the visit's own facility and 61), the row says what
+            _place = [e for e in again["errors"] if names_place(e)] if (again and rehab_visit(c)) else []
+            if _place:
+                _w = pos61_words(vid, _place) + ((" (before this edit showed, this step had: %s)" % "; ".join(note)[:200]) if note else "")
+                held(vid, c, _w, quality=bool(qline), mvp=bool(mline), pos61=True); print(_w); note.append("HELD: place of service 61 - " + "; ".join(pattern(e) for e in _place)); again = None
             if again:
                 if mline:      # the visit carries the M0004 line too: the lines known by their own procedure (the import may have recorded them the other way round)
                     _nl = dict(no_charge_lines(c)); qline = _nl.get(QUALITY_CODE, ""); mline = _nl.get(MVP_CODE, "")
