@@ -16,7 +16,16 @@
 #       physician and the nurse practitioner's visits in one batch each keep their own clinician; a hospital message and a nursing
 #       message of one patient each keep their own building); a message the raw files cannot answer falls back to the patient's
 #       last-read values and is reported, and so is any failure inside the rule - the import carries on;
-#     - a visit an earlier batch could not enter is still read as history; when the batch's own visits cannot be listed no line is 32;
+#     - a visit an earlier batch could not enter is still read as history; when the batch's own visits cannot be listed no nursing VISIT
+#       line is 32 (a CCM line is 32 without that list - William 11/25/2026);
+#     - (11/25/2026, the review of the CCM rule) a CCM line that stands at 31 anywhere - in a visit whose rule failed, in a visit with no
+#       facility, under whatever kind - is counted by the import and shouted by the digest, which names EVERY chart of its two CCM lists;
+#       build() itself moves such a line to 32 once more after the rule, so "never 31" does not rest on the rule's own answer;
+#     - (William 11/25/2026: "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to
+#       be added") a diagnosis code AdvancedMD's list does not have goes in as I10 in its place - never twice on a line; a line with no
+#       code at all is still skipped; without I10 in the list everything is as before; the retry enters the visits that waited on such a
+#       code; the digest carries ONE line and writes the email's text to outbox/dx_codes_needed_<stamp>.txt (sections 3b, 6 and 6c);
+#     - a feed message with no charge line or no patient id is passed over and counted - it never stops the import step (section 4);
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
 #       whose first plan is Medicare Part B and whose last insurance check showed Medicare first - never on a care-management-only message,
@@ -262,6 +271,16 @@ check("11/25/2026: ccm_never_31 - where a failed rule leaves every line at the f
 _CCM_FAMILY = {"99487", "99489", "99490", "99439", "99491", "99437"}
 check("11/25/2026: every chronic-care-management code the import can enter is in the rule's CCM set (a code added to the code table without the rule would go out at the feed's 31)",
       {c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY} <= ci.CCM and ci.CCM <= set(ci.PCODE) and ci.CCM <= _CCM_FAMILY, (sorted(ci.CCM), sorted(c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY)))
+# 11/25/2026 (review of the CCM rule, finding 5): the digest and the inspector step each keep their OWN copy of the CCM codes - read here from their source text
+# (the inspector is never loaded: it talks to AdvancedMD). Each must be the import's set, code for code.
+_rep_src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")).read(); _insp_src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
+_ccm_rep = re.search(r"\b_CCM = \{([^}]*)\}", _rep_src); _ccm_insp = re.findall(r'not any\(x in \(([^)]*)\) for x in c\["cpts"\]\)', _insp_src)
+_codes = lambda t_: set(re.findall(r'"([0-9A-Z]{5})"', t_))
+check("11/25/2026 (review): the digest's own CCM set (claimocity_report.py, _CCM) and the inspector step's CCM codes (its test that keeps a CCM visit from being moved to HCA REHAB at 31) are the import's CCM set, code for code - a CCM code added to the import alone would be moved to 31 after entry, or go uncounted and unshouted in the digest",
+      bool(_ccm_rep) and _codes(_ccm_rep.group(1)) == ci.CCM and len(_ccm_insp) == 1 and _codes(_ccm_insp[0]) == ci.CCM, (_ccm_rep and _ccm_rep.group(1), _ccm_insp, sorted(ci.CCM)))
+check("... and that guard really reads the codes of such a line: a made-up third CCM code in a line of either shape is read as a third code",
+      _codes(re.search(r"\b_CCM = \{([^}]*)\}", '_NFV = {"99304"}; _CCM = {"99487", "99489", "99490"}').group(1)) == ci.CCM | {"99490"}
+      and [_codes(t_) for t_ in re.findall(r'not any\(x in \(([^)]*)\) for x in c\["cpts"\]\)', 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489", "99490") for x in c["cpts"]) and not c.get("pos_err"):')] == [ci.CCM | {"99490"}])
 check("monthly visit + 99497: both 32", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
 check("weekly visit + 99497: both 31", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/29/2026")]) == ["31", "31"])
 check("99497 listed BEFORE its visit still follows the visit", L([("99497", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
@@ -387,12 +406,111 @@ body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/202
 check("build: an error with no text is still reported", [p for _, p in pp] == ["31"] and info["pos_err"] == "ValueError", (pp, info))
 ci.nf_visit_kind = _real
 _realpl = ci.pos_lines
-ci.pos_lines = lambda cd, fp, n, h: (["11"] * len(cd), [""] * len(cd), [""] * len(cd))
+ci.pos_lines = lambda cd, fp, n, h, here=None: (["11"] * len(cd), [""] * len(cd), [""] * len(cd))      # 11/25/2026 (review): the stand-in takes the five arguments build() passes - with four, this check passed on a TypeError and never reached the guard
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
-check("build: an impossible place of service from the rule is refused (31, reported)", [p for _, p in pp] == ["31"] and info["pos_err"] != "", (pp, info))
+check("build: an impossible place of service from the rule is refused by build()'s own guard - the reason reads 'unexpected place of service' (31, reported)", [p for _, p in pp] == ["31"] and info["pos_err"].startswith("unexpected place of service ['11']"), (pp, info))
+# 11/25/2026 (review, defence in depth): "a CCM line is never entered at 31" must not rest on the rule's own answer. A stand-in rule that answers 31 for
+# a CCM line - under the kind "ccm", as if all were well - is given to build(): the charge that would go to AdvancedMD carries 32 all the same.
+_cw = lambda cd: ["32 by rule: CCM in a nursing building" if c_ in ci.CCM else "31 by rule: made up for this test" for c_, _d in cd]
+ci.pos_lines = lambda cd, fp, n, h, here=None: (["31"] * len(cd), _cw(cd), ["ccm" if c_ in ci.CCM else "skilled" for c_, _d in cd])
+body, info, pp = built("n1", [("99487", "20261031"), ("99489", "20261031")])
+check("11/25/2026 build (defence in depth): a rule that answers 31 for a CCM line and calls it 'ccm' - the charge XML still carries pos=\"32\" on both CCM lines and 31 on none; the register says the lines were forced, in William's name, and no rule failure is reported",
+      [p for _, p in pp] == ["32", "32"] and (body or "").count(' pos="32" ') == 2 and ' pos="31" ' not in (body or "") and info["pos"] == "32" and info["pos_lines"] == ["32", "32"]
+      and info["pos_kind"] == ["ccm-forced", "ccm-forced"] and all("William" in w_ and "never entered at 31" in w_ for w_ in info["pos_why"]) and info["pos_err"] == "" and info["pos_feed"] == "31", (pp, info))
+body, info, pp = built("n2", [("99309", "20261102"), ("99487", "20261102"), ("99497", "20261102")], live=[("99309", "10/03/2026")])
+check("11/25/2026 build (defence in depth): ... and only the CCM line is touched - the visit line and its 99497 keep the place of service, the reason and the kind the rule gave them",
+      [p for _, p in pp] == ["31", "32", "31"] and info["pos_kind"] == ["skilled", "ccm-forced", "skilled"] and info["pos_why"][0] == info["pos_why"][2] == "31 by rule: made up for this test" and info["pos"] == "31", (pp, info))
+ci.pos_lines = lambda cd, fp, n, h, here=None: ([fp] * len(cd), [""] * len(cd), [""] * len(cd))
+_b13, _i13, _p13 = built("a1", [("99487", "20261031")]); _b21, _i21, _p21 = built("h1", [("99487", "20261031")])
+check("11/25/2026 build (defence in depth): ... an ALF / home CCM line (13) and a CCM line from the hospital (21) are not touched by the second look", [p for _, p in _p13 + _p21] == ["13", "21"] and _i13["pos_kind"] == _i21["pos_kind"] == [""], (_p13, _p21))
 ci.pos_lines = _realpl
+# count_pos (11/25/2026, review): the import's own counters follow the VALUE - a CCM line that stands at 31 is counted as not William's rule under every kind,
+# in a visit whose rule failed and in a visit with no facility; the 'CCM 31 xN' of the import's short log line is the sum of that counter
+_cnt = lambda info_: (lambda s_: (ci.count_pos(info_, s_), dict(s_))[1])(__import__("collections").Counter())
+_K31 = "POS 31 CCM - NOT WILLIAM'S RULE (11/25/2026: every CCM line is 32) - an old copy of the rule ran"
+_INFO = lambda cpts, lines, kinds, fac="fac34", err="": {"cpts": cpts, "pos_lines": lines, "pos_kind": kinds, "pos_feed": "31", "fac": fac, "pos_err": err}
+_c1 = _cnt(_INFO(["99487", "99489"], ["31", "32"], ["ccm", "ccm"]))
+check("count_pos (11/25/2026, review): the VALUE decides, not the label - of two CCM lines called 'ccm', the one at 31 is counted as 'POS 31 CCM - NOT WILLIAM'S RULE' and only the one at 32 as a 32 line",
+      _c1.get(_K31) == 1 and _c1.get("POS 32 CCM (nursing building)") == 1 and len(_c1) == 2, _c1)
+_c2 = _cnt(_INFO(["99487"], ["31"], ["ccm-skilled-month"]))
+check("count_pos: ... the same under the kind 'ccm-skilled-month': a line at 31 is never counted among the 32 lines listed for William", _c2 == {_K31: 1}, _c2)
+_c3 = _cnt(_INFO(["99309", "99487"], ["31", "31"], ["", ""], err="boom"))
+check("count_pos: ... and in a visit whose rule failed (pos_err) the CCM line at 31 is counted BEFORE the count ends - and that visit is not counted under words that say 'a CCM line at 32'",
+      _c3.get(_K31) == 1 and sum(v_ for k_, v_ in _c3.items() if k_.startswith("POS RULE NOT APPLIED")) == 1 and not any("a CCM line at 32" in k_ for k_ in _c3), _c3)
+_c4 = _cnt(_INFO(["99487", "99309"], ["31", "31"], ["", ""], fac=""))
+check("count_pos: ... and from a building the facility table does not know: the CCM line at 31 is counted as not William's rule, both lines still count as lines of an unknown building, and no counter says 'a CCM line at 32' about that CCM line",
+      _c4.get(_K31) == 1 and sum(v_ for k_, v_ in _c4.items() if k_.startswith("POS RULE: building")) == 2 and _c4.get("POS RULE: building not in the facility table - a nursing visit at the default 31, a CCM line at 32") == 1, _c4)
+_c5 = _cnt(_INFO(["99309", "99487"], ["31", "32"], ["", "ccm-forced"], err="boom")); _c6 = _cnt(_INFO(["99487", "99309"], ["32", "31"], ["ccm-unknown-building", ""], fac=""))
+check("count_pos: what the import enters today is counted as before - a failed rule with its CCM line at 32, and an unknown building with its CCM line at 32, count no CCM line at 31",
+      _K31 not in _c5 and _c5.get("POS RULE NOT APPLIED (entered at the feed's place of service; a CCM line at 32)") == 1 and _K31 not in _c6
+      and _c6.get("POS RULE: building not in the facility table - a nursing visit at the default 31, a CCM line at 32") == 2, (_c5, _c6))
 body, info, pp = built("a1", [("99487", "20261031")], live=[(None, None), ("x",), 7])
 check("build: odd rows in the chart history cannot touch an ALF message", [p for _, p in pp] == ["13"] and info["pos_err"] == "", (pp, info))
+
+# ---- 3b. a diagnosis code AdvancedMD's own list does not have: I10 in its place (William 11/25/2026) ---------------------------------------
+# "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to be added" (said right after "Add diagnosis
+# S82.843D in AMD Master Files change this diagnosis to i10"). The stand-in list of this test knows I10 (dcode1) and E119 (dcode2) and nothing else.
+_HSRC = open(HELPER).read()
+def dxbuilt(dx, lines=(("99309", "20261102"),), fid="n2"):
+    """build() over ONE message whose charge lines carry the diagnosis field dx (one text for every line, or a list with one per line) ->
+    (the charge XML or None, the register info or the skip reason, the diagcodes attribute of every charge, the <diagcode> ids of every charge)."""
+    dxs = [dx] * len(lines) if isinstance(dx, str) else list(dx)
+    m_ = {"pid": fid, "name": "x", "dob": "", "FT1": [{"cpt": c_, "dos": d_, "dx": x_, "units": "1"} for (c_, d_), x_ in zip(lines, dxs)]}
+    try: out_, info_ = ci.build(m_, ctx(live=[("99309", "10/03/2026")]))
+    except Exception as e: return None, "%s: %s" % (type(e).__name__, e), [], []
+    if out_ is None: return None, info_, [], []
+    return out_[1], info_, re.findall(r'diagcodes="([^"]*)"', out_[1]), [re.findall(r'<diagcode id="(\d+)"/>', l_) for l_ in re.findall(r"<diagcodelist>(.*?)</diagcodelist>", out_[1])]
+def dxold(dx):      # what the import sent for one line BEFORE 11/25/2026: every code the list knows, in the feed's order, at most 12 - a code it does not know was left off
+    return " ".join([ci.DX[c_] for c_ in dx.split("^") if ci.DX.get(c_)][:12])
+check("William's stand-in code is I10, kept in ONE constant of the import (DX_INSTEAD) with his words beside it, and the helper's PLAIN ENGLISH header states the rule",
+      getattr(ci, "DX_INSTEAD", None) == "I10" and re.search(r'^DX_INSTEAD = "I10"\s+#.*for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to be added', _HSRC, re.M) is not None
+      and "I10 IN ITS PLACE" in _HSRC.split("\nimport os as _os")[0], getattr(ci, "DX_INSTEAD", None))
+_b, _i, _dc, _dl = dxbuilt("S82.843D^E119")
+check("dx (William 11/25/2026): a code AdvancedMD's list does not have that stands FIRST on a line goes in as I10, first - the code after it keeps its place; attribute and <diagcode> list agree",
+      _dc == ["dcode1 dcode2"] and _dl == [["1", "2"]], (_i, _dc, _dl))
+check("dx: ... the register row still names the code AdvancedMD does not know (missing_dx) and says what stands in its place (dx_instead I10)",
+      isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"] and _i.get("dx_instead") == "I10", _i)
+_b, _i, _dc, _dl = dxbuilt("E119^S82.843D")
+check("dx: a code the list does not have that stands SECOND goes in as I10 in second place", _dc == ["dcode2 dcode1"] and _dl == [["2", "1"]] and isinstance(_i, dict) and _i.get("dx_instead") == "I10", (_i, _dc))
+_r4 = {x_: dxbuilt(x_)[2] for x_ in ("I10^S82.843D", "S82.843D^I10", "E119^S82.843D^I10", "I10^E119^S82.843D", "S82.843D^E119^I10")}
+check("dx: I10 never stands twice on a line - when the feed's own I10 is on the line beside a replaced code it stands ONCE, at its first position, and the other codes keep their order",
+      _r4 == {"I10^S82.843D": ["dcode1"], "S82.843D^I10": ["dcode1"], "E119^S82.843D^I10": ["dcode2 dcode1"], "I10^E119^S82.843D": ["dcode1 dcode2"], "S82.843D^E119^I10": ["dcode1 dcode2"]}, _r4)
+_b, _i, _dc, _dl = dxbuilt("S82.843D^E119^T84.011A^M51.17")
+check("dx: two or more replaced codes on one line give I10 once, at the first of their positions - and every one of them is named in missing_dx",
+      _dc == ["dcode1 dcode2"] and isinstance(_i, dict) and _i.get("missing_dx") == ["M51.17", "S82.843D", "T84.011A"] and _i.get("dx_instead") == "I10", (_i, _dc))
+_b, _i, _dc, _dl = dxbuilt("S82.843D")
+check("dx: a line whose ONLY code the list does not have is no longer a reason to skip the visit - it is ENTERED with I10 alone (two 99309 visits waited this way on S82.843D)",
+      _b is not None and _dc == ["dcode1"] and _dl == [["1"]] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"] and _i.get("dx_instead") == "I10" and 'proccode="pcode65119"' in _b, (_i, _dc))
+_r7 = {x_: dxbuilt(x_)[:2] for x_ in ("", "^", " ", " ^ ")}
+check("dx: a line whose diagnosis field is EMPTY - no code at all - is still skipped as before ('no usable dx for <CPT>'): there is nothing to change to I10",
+      all(v_ == (None, "no usable dx for 99309") for v_ in _r7.values()), _r7)
+_b, _i, _dc, _dl = dxbuilt(["S82.843D", ""], lines=(("99309", "20261102"), ("99497", "20261102")))
+check("dx: ... and ONE such line still skips the whole visit, also when its other line can go in with I10", (_b, _i) == (None, "no usable dx for 99497"), (_b, _i))
+_b, _i, _dc, _dl = dxbuilt(["S82.843D^E119", "T84.011A", "E119"], lines=(("99309", "20261102"), ("99497", "20261102"), ("99498", "20261102")))
+check("dx: the rule works line by line - each charge line gets I10 where ITS OWN unknown code stood, a line with known codes only is untouched, and the row names every unknown code of the visit once",
+      _dc == ["dcode1 dcode2", "dcode1", "dcode2"] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D", "T84.011A"] and _i.get("dx_instead") == "I10", (_i, _dc))
+_same = ("I10", "E119", "I10^E119", "E119^I10", "E119^E119", "I10^^E119", "I10^E119^I10")
+_brief = lambda r_: (r_[2], r_[1].get("missing_dx"), "dx_instead" in r_[1]) if isinstance(r_[1], dict) else (r_[2], r_[1], None)      # (codes sent per line, the codes named, whether anything stands in a code's place)
+_r9 = {x_: _brief(dxbuilt(x_)) for x_ in _same}
+check("dx: a line on which no code is replaced is sent EXACTLY as before 11/25/2026 - the same codes in the same order, a code the feed itself repeats included - and its row carries no dx_instead and an empty missing_dx",
+      all(v_ == ([dxold(x_)], [], False) for x_, v_ in _r9.items()), _r9)
+ci.DX.update({"K%02d" % n_: "dcode%d" % (100 + n_) for n_ in range(14)})
+_b, _i, _dc, _dl = dxbuilt("S82.843D^" + "^".join("K%02d" % n_ for n_ in range(14)))
+check("dx: the limit of 12 codes on a line stays - I10 in the first place, then the first eleven of the feed's known codes", _dc == [" ".join(["dcode1"] + ["dcode%d" % (100 + n_) for n_ in range(11)])] and len(_dl[0]) == 12, _dc)
+for n_ in range(14): del ci.DX["K%02d" % n_]
+_b, _i, _dc, _dl = dxbuilt(" E119 ^S82.843D ")
+check("dx: a code that arrives with blanks around it is looked up without them, as the cache step and the retry driver already read it - so a code the list HAS is never replaced by I10 (and never asked for in the email) because of a stray blank",
+      _dc == ["dcode2 dcode1"] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"], (_i, _dc))
+_dx0 = dict(ci.DX)
+for _how, _set in (("I10 itself is not in the list", lambda: ci.DX.pop("I10")), ("the cache holds I10 as 'not in the list' (null)", lambda: ci.DX.__setitem__("I10", None))):
+    ci.DX.clear(); ci.DX.update(_dx0); _set()
+    _a = _brief(dxbuilt("S82.843D^E119")); _o = dxbuilt("S82.843D"); _t = _brief(dxbuilt("I10^E119"))
+    check("dx: when %s EVERYTHING is exactly as before - an unknown code is left off and named, nothing stands in its place (no dx_instead), and a line with no usable code skips the visit" % _how,
+          _a == (["dcode2"], ["S82.843D"], False) and _o[:2] == (None, "no usable dx for 99309") and _t == (["dcode2"], ["I10"], False), (_a, _o[:2], _t))
+ci.DX.clear(); ci.DX.update(_dx0)
+_cd = _cnt(dict(_INFO(["99309"], ["32"], ["monthly"]), dx_instead="I10", missing_dx=["S82.843D"])); _cn = _cnt(_INFO(["99309"], ["32"], ["monthly"]))
+check("dx: the import's DONE line counts each visit that went in with I10 in a code's place, in words that name William's order - and counts nothing for a visit with no replaced code",
+      [k_ for k_ in _cd if "I10" in k_] == ["diagnosis code not in AdvancedMD's list - visit entered with I10 in its place (William 11/25/2026); the digest names the codes for his email"] and not any("I10" in k_ for k_ in _cn), (_cd, _cn))
 
 # ---- 4. main() --dry over a small batch: the batch's own visits are read, counters print, nothing is posted but reads --------------------
 NAME = lambda k: "zz test " + k                                         # not a person: the match key the ingest builds is name|dob
@@ -445,6 +563,49 @@ check("an odd row in a register (its chart not a chart number) is there for the 
 out, dry = run_dry()
 check("main --dry: an odd row in an earlier register never switches the rule off for the next run", "batch visit list not built" not in out and dry.get("pat101", [{}])[0].get("pos_lines") == ["32", "32"] and "not applied x0" in out, out[-300:])
 os.remove(_regp)
+# 11/25/2026 (feed review, finding 6 - older than the CCM change): a parsed message with no charge line, or with no patient id, stopped the WHOLE import step
+# (IndexError / KeyError before the per-message guard). The ingest then ended 'STEP FAILED: import', the file was not registered, and every later run stopped
+# at the same message. Such a message is passed over and counted; the messages around it go in as if it were not there.
+def run_args(argv_):
+    """main() with these arguments over ci.PARSED -> (what it printed, its DRY rows per chart, '' or the error that ended it). An error is returned as text: it must show as a failed check, not end this self-test."""
+    POSTS.clear(); buf_ = io.StringIO(); _a = sys.argv[:]; sys.argv = ["claimocity_import.py"] + list(argv_); ci.BATCH_NF.clear(); ci.BATCH_NF_ERR[0] = ""; ci._ctx.clear(); err_ = ""
+    try:
+        with contextlib.redirect_stdout(buf_): ci.main()
+    except Exception as e: err_ = "%s: %s" % (type(e).__name__, e)
+    finally: sys.argv = _a
+    rows_ = {}
+    for ln_ in buf_.getvalue().splitlines():
+        m_ = re.match(r"DRY (pat\d+) (\{.*\})$", ln_)
+        if m_: rows_.setdefault(m_.group(1), []).append(eval(m_.group(2)))      # the helper prints its own dict; this is its own output, no outside data
+    return buf_.getvalue(), rows_, err_
+_shape = lambda dry_: {k_: [(d_["cpts"], d_["pos_lines"], d_["pos_kind"], d_["pos_err"], d_["fac"], d_["prof"]) for d_ in v_] for k_, v_ in dry_.items()}
+_posline = lambda out_: next((l_ for l_ in out_.splitlines() if l_.startswith("POS RULE: CCM")), "")
+_base_out, _base_dry, _base_err = run_args(["--dry"])
+_NOLINES = {"pid": "n2", "name": NAME("two"), "dob": DOBK, "file": "f", "FT1": [], "IN1": [], "DG1": []}                                # a PID line and no FT1 line
+_NOPID = {"file": "f", "FT1": [], "IN1": [], "DG1": []}                                                                               # no PID line at all: no patient id, no name, no date of birth
+_NOPID2 = {"file": "f", "FT1": [{"cpt": "99309", "dos": "20261102", "dx": "I10", "units": "1"}], "IN1": [], "DG1": []}                 # ... the same with a charge line
+_keep = ci.PARSED[:]; ci.PARSED[:] = [_NOLINES, _NOPID] + _keep[:3] + [_NOPID2] + _keep[3:]
+out, dry, _err = run_args(["--dry"])
+check("main --dry (11/25/2026, feed review): a feed message with no charge line and two with no patient id do not stop the import step - main() ends with its DONE line and no error",
+      _base_err == "" and _err == "" and out.strip().splitlines()[-1:] and out.strip().splitlines()[-1].startswith("DONE "), (_err, out[-300:]))
+check("main --dry: ... each is passed over and counted in plain words - 'feed message without a charge line - passed over' once, 'feed message without a patient id - passed over' twice",
+      "'feed message without a charge line - passed over': 1" in out and "'feed message without a patient id - passed over': 2" in out, out[-700:])
+check("main --dry: ... and the six messages around them reach build exactly as without them - the same visits, places of service, kinds, buildings and clinicians, the same POS RULE line; the batch's visit list is still built",
+      sum(len(v_) for v_ in dry.values()) == 6 and _shape(dry) == _shape(_base_dry) and _posline(out) == _posline(_base_out) != "" and "batch visit list not built" not in out and "POS RULE NOT APPLIED" not in out, (_shape(dry), out[-400:]))
+check("main --dry: ... and a dry run that meets them still writes no register", not os.path.exists(_regp))
+out, dry, _err = run_args(["--dry", "--one", "n1"])
+check("main --one <feed patient>: another patient's empty message, and a message of no patient, are simply not this patient's - nothing is counted for them and the one patient's visit is built",
+      _err == "" and sorted(dry) == ["pat101"] and "feed message without" not in out, (_err, out[-300:]))
+# 11/25/2026 (review, finding 8b): the 'POS CHECK no facility' line - the run copies it to the top of the report - said "at the feed's place of service" also for a CCM line, which is at 32
+_U = lambda lines_: {"pid": "u1", "name": NAME("five"), "dob": DOBK, "file": "f", "FT1": [{"cpt": c_, "dos": d_, "dx": "I10", "units": "1"} for c_, d_ in lines_]}
+ci.PARSED[:] = [_U([("99309", "20261102")]), _U([("99487", "20261130"), ("99309", "20261130")])]
+out, dry, _err = run_args(["--dry"]); ci.PARSED[:] = _keep
+_NOFAC = "the message's building is not in the facility table - entered without a facility"
+check("main --dry (11/25/2026, review): the 'POS CHECK no facility' line of a CCM visit from a building the table does not know says where its CCM line went in - at 32 - and no longer 'at the feed's place of service'",
+      ("POS CHECK no facility pat105 10/31/2026 ['99487'] " + _NOFAC + ": its CCM line(s) at 32 (William 11/25/2026: a CCM line is never 31); for William") in _base_out, [l_ for l_ in _base_out.splitlines() if l_.startswith("POS CHECK no facility")])
+check("main --dry: ... a message with a CCM line and a visit line says both - the CCM line at 32, every other line at the feed's place of service - and a visit with no CCM line keeps the old words",
+      _err == "" and ("POS CHECK no facility pat105 11/30/2026 ['99487', '99309'] " + _NOFAC + ": its CCM line(s) at 32 (William 11/25/2026: a CCM line is never 31), every other line at the feed's place of service; for William") in out
+      and ("POS CHECK no facility pat105 11/02/2026 ['99309'] " + _NOFAC + " at the feed's place of service; for William") in out, (_err, [l_ for l_ in out.splitlines() if l_.startswith("POS CHECK no facility")]))
 
 # ---- 4b. batches where one patient has two clinicians / two buildings, visits earlier batches could not enter, and live runs ---------------
 def P_(fid, k, lines): return {"pid": fid, "name": NAME(k), "dob": DOBK, "file": "f", "FT1": [{"cpt": c, "dos": d, "dx": "I10", "units": "1"} for c, d in lines]}
@@ -514,6 +675,28 @@ out, reg = run_live(M1, none=True)
 check("live run: an answer without the place of service claims nothing either way", all(r["pos_stored"] is None for r in reg["created"]) and "POS NOT KEPT" not in out, reg["created"])
 out, reg = run_live([P_("m5", "m5", [("99498", "20270121"), ("99309", "20270120")]), P_("m5", "m5", [("99306", "20270121")])])
 check("live run: a message with two dates is remembered line by line - the admission visit of the later date is still entered", len(reg["created"]) == 2 and reg["created"][0]["dos_lines"] == ["01/21/2027", "01/20/2027"] and reg["created"][1]["cpts"] == ["99306"] and reg["skipped"] == [], (reg["created"], reg["skipped"]))
+# 11/25/2026 (feed review, finding 6): what a LIVE run leaves behind for a message without a charge line / without a patient id
+def run_live_safe(parsed, **kw):      # run_live, with a crash of main() returned as text (third value) instead of ending this self-test
+    try: return run_live(parsed, **kw) + ("",)
+    except Exception as e:
+        if os.path.exists(_regp) and not kw.get("keep_own"): os.remove(_regp)
+        return "", {"created": [], "skipped": [], "failed": []}, "%s: %s" % (type(e).__name__, e)
+_E1 = P_("m1", "m1", [])                                                                # m1's PID line with no FT1 line behind it
+out, reg, _err = run_live_safe([_E1, _NOPID, M1[0]], keep_own=True)
+check("live run (11/25/2026, feed review): a message without a charge line leaves ONE skipped row with the plain reason where a feed id exists (feed id and chart, no visit line); a message without a patient id leaves no row; the visit behind them is entered",
+      _err == "" and [(r_.get("feed_id"), r_.get("pid"), r_.get("why")) for r_ in reg["skipped"]] == [("m1", "pat301", "feed message without a charge line - passed over")] and [r_["cpts"] for r_ in reg["created"]] == [["99309"]] and reg["failed"] == [], (_err, reg["skipped"], out[-300:]))
+out, reg, _err = run_live_safe([_E1, _NOPID, M1[0], M1[1]])                              # the SAME stamp started again (its register is still there), now with the resident's CCM message behind
+check("live run: ... that row never makes a second start under the same stamp pass over the resident's OTHER messages (a skipped row of a real visit passes over the whole patient): the CCM message behind it is entered by the second start, and the row is not written a second time",
+      _err == "" and [tuple(r_["cpts"]) for r_ in reg["created"]] == [("99309",), ("99487", "99489")] and [r_.get("why") for r_ in reg["skipped"]] == ["feed message without a charge line - passed over"], (_err, [r_["cpts"] for r_ in reg["created"]], reg["skipped"], out[-300:]))
+if os.path.exists(_regp): os.remove(_regp)
+# William 11/25/2026: a diagnosis code AdvancedMD's list does not have - the visit is entered with I10 in its place (section 3b proves build(); this is main() against the stand-in AdvancedMD)
+_DXV = dict(P_("n2", "two", [("99309", "20261102")]), FT1=[{"cpt": "99309", "dos": "20261102", "dx": "S82.843D", "units": "1"}])      # the visit of the kind that waited: one line, its only code not in the list
+out, reg, _err = run_live_safe([_DXV, P_("n3", "three", [("99306", "20261103")])])
+_sent = [b_ for b_ in POSTS if 'action="updvisitwithnewcharges"' in b_ and 'proccode="pcode65119"' in b_]
+check("live run (William 11/25/2026): a visit whose only diagnosis code is not in AdvancedMD's list is ENTERED - the charge sent carries I10's id alone - and not skipped; its register row names the code and what stands in its place; the visit beside it carries neither",
+      _err == "" and reg["skipped"] == [] and len(_sent) == 1 and 'diagcodes="dcode1"' in _sent[0] and '<diagcodelist><diagcode id="1"/></diagcodelist>' in _sent[0]
+      and [(r_["cpts"], r_.get("missing_dx"), r_.get("dx_instead")) for r_ in reg["created"]] == [(["99309"], ["S82.843D"], "I10"), (["99306"], [], None)], (_err, reg["created"], reg["skipped"]))
+check("live run: ... and the import's DONE line counts that one visit under William's order", "'diagnosis code not in AdvancedMD's list - visit entered with I10 in its place (William 11/25/2026); the digest names the codes for his email': 1" in out.replace('"', "'"), out[-500:])
 # ---- 4b2. round 6, step 4 (11/10/2026): what round 5's confirmation reviewers still found, and William's initial-visit rule ------------------------
 # Each check is built from the finding's own exact input (feed patient, buildings, clinicians, dates, file order). The raw feed files are read when the
 # helper loads, so a FRESH copy of the import helper is loaded for each input, over its own folder of raw files, with the same stand-in modules.
@@ -563,7 +746,7 @@ check("C1: a message sent from two buildings that is NOT entered (a code the tab
       s4c1.seen_lines(P_("t1", "t1", [("99309", "20260905")])) == [["99309", "09/05/2026", B["n1"]], ["99309", "09/05/2026", WO]] and s4c1.seen_lines(P_("t1", "t1", [("99308", "20261008")])) == [["99308", "10/08/2026", WO]])
 check("C1: the batch list carries that day once per building (msg_buildings), and a message sent from one building keeps exactly its own",
       s4c1.msg_buildings(P_("t1", "t1", [("99309", "20260905")])) == [B["n1"], WO] and s4c1.msg_buildings(P_("t1", "t1", [("99308", "20261008")])) == [WO], s4c1.BATCH_NF.get("pat801"))
-# C1b: the review's second input - only the last hunk (the visit's OWN day named under two buildings) keeps the month's CCM at 31
+# C1b: the review's second input - only the last hunk (the visit's OWN day named under two buildings) LISTS the month's CCM for William (until 11/25/2026 it also kept that CCM at 31; since then it is 32 like every CCM line)
 s4c1b = s4_fresh({"20261002.hl7": hl7("t2", B["n2"], "", [("99309", "20261002")], NP_NPI) + hl7("t2", WO, "", [("99309", "20261002")], NPI) + hl7("t2", B["n2"], "", [("99487", "20261031")], NPI)})
 CHART["802"] = [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE")]
 s4o, s4r = s4_run(s4c1b, [P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99487", "20261031")])], {"t2": "pat802"}); s4x = s4_rows(s4r, "pat802")
@@ -580,8 +763,8 @@ s4y = os.path.join(tmp, "registers", "feed_import_20261108T1200Z.json"); os.rena
 CHART["803"].append(("99309", "09/05/2026", "WESTMINSTER BERTRAND HEALTH CENTER"))                                                  # ... and the visit as it now stands on the chart
 s4t2 = s4_fresh({"20261031.hl7": hl7("t3", WO, "", [("99308", "20261008")], NPI) + hl7("t3", WO, "", [("99487", "20261031")], NPI)})
 s4o, s4r = s4_run(s4t2, [P_("t3", "t3", [("99308", "20261008")]), P_("t3", "t3", [("99487", "20261031")])], {"t3": "pat803"}); s4x = s4_rows(s4r, "pat803")
-check("C1 (challenge review, tie_then_next_batch): yesterday's batch entered the visit the feed sent from two buildings; in today's batch the next visit and the month's CCM still read that day as named under two buildings - 31 / 31 (without the register's tie_lines the chart's one building made them 32 / 32)",
-      [x_["dos"] for x_ in s4x] == ["10/08/2026", "10/31/2026"] and s4x[0]["pos_kind"] == ["moved"] and s4x[0]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+check("C1 (challenge review, tie_then_next_batch): yesterday's batch entered the visit the feed sent from two buildings; in today's batch the next visit and the month's CCM still read that day as named under two buildings - the visit stays at 31 (a move) and the CCM is LISTED for William, at 32 like every CCM line since 11/25/2026 (without the register's tie_lines the chart's one building made them 32 monthly / 32 CCM, named nowhere)",
+      [x_["dos"] for x_ in s4x] == ["10/08/2026", "10/31/2026"] and s4x[0]["pos_kind"] == ["moved"] and s4x[0]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] and s4x[1]["pos_lines"] == ["32"], s4_brief(s4x))
 os.remove(s4y)
 # W2 (round-5 ops-and-words review; the cross-check of 1478f14, input c): a disagreeing admission date comes from the LAST raw copy of that message
 def s4_admit(files, fid, lines):
@@ -2145,9 +2328,42 @@ r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["32", "32"]
 check("digest (11/25/2026): CCM lines the chart shows a skilled-looking month for are 32, counted with the others, and LISTED for William by chart - not at the top, nothing held",
       "CCM lines entered as 32: 5 (3 of them listed for William - the chart shows a skilled-looking month, see pos_why - not held and not changed);" in line and "ENTERED AT 31" not in r.stdout
       and "  - for William, not held - CCM entered at 32, the chart shows a skilled-looking month (pos_kind ccm-skilled-month): pat9 11/02/2026 99487+99489; pat9 11/02/2026 99487" in r.stdout, r.stdout[-900:])
-r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["31"], err="boom"), reg_row(["99487", "99309"], "", "31", ["31", "31"])])
-check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named", "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service" in line and "2 CCM / nursing-visit line(s) came from a building the facility table does not know" in line, line)
+# 11/25/2026 (review, findings 1 and 5): the rows as the import writes them SINCE that day - a visit whose rule failed carries its CCM line at 32 (kind ccm-forced), a
+# visit from a building the table does not know carries its CCM line at 32 (kind ccm-unknown-building) and its nursing visit at the default 31
+r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["32"], ["ccm-forced"], err="boom"), reg_row(["99487", "99309"], "", "31", ["32", "31"], ["ccm-unknown-building", ""])])
+check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named - and what the line says about their CCM lines (at 32) is read from the register",
+      "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service (a CCM line among them at 32), see pos_err" in line
+      and "2 CCM / nursing-visit line(s) came from a building the facility table does not know - entered with no facility (a nursing visit at the default 31, a CCM line at 32)" in line and "ENTERED AT 31" not in r.stdout, line)
 check("digest: ... with their chart numbers for the top of the report", "TOP OF THE REPORT - rule not applied, for William before the claim run; a routine changes nothing on these visits: pat9 11/02/2026 99487 (boom)" in r.stdout and "TOP OF THE REPORT - building the facility table does not know: pat9 11/02/2026 99487+99309" in r.stdout, r.stdout[-900:])
+# ... and the rows as a copy of the import from BEFORE 11/25/2026 wrote them (the three old ways to 31): the CCM line at 31 in a visit whose rule failed and in a visit with no
+# facility. Both left the digest's loop before any CCM line was looked at, and fixed words then said "a CCM line at 32" about them.
+_OLD31 = [dict(reg_row(["99487"], "fac34", "31", ["31"], err="boom"), pid="pat71"), dict(reg_row(["99487", "99309"], "", "31", ["31", "31"]), pid="pat72")]
+r, line = digest(rows + _OLD31)
+check("digest (11/25/2026, review): a CCM line AT 31 is shouted whatever row it stands in - also in a visit whose rule failed (pos_err) and in a visit with no facility: both are counted as ENTERED AT 31 beside the batch's 32 lines",
+      "CCM lines entered as 32: 2 - AND 2 CCM LINE(S) ENTERED AT 31, which is not William's rule (11/25/2026: every CCM line is 32)" in line, line)
+check("digest: ... both charts are named for the TOP OF THE REPORT under CCM ENTERED AT 31 - and still under their own headings (rule not applied; unknown building)",
+      "  - TOP OF THE REPORT - CCM ENTERED AT 31 (William 11/25/2026: every CCM line is 32) - for William before the claim run; a routine changes nothing on these visits: pat71 11/02/2026 99487; pat72 11/02/2026 99487+99309" in r.stdout
+      and "rule not applied, for William before the claim run; a routine changes nothing on these visits: pat71 11/02/2026 99487 (boom)" in r.stdout and "building the facility table does not know: pat72 11/02/2026 99487+99309" in r.stdout, r.stdout[-1200:])
+check("digest: ... and the line no longer says 'a CCM line at 32' about a row whose CCM line is at 31 - it points to the CCM ENTERED AT 31 list instead",
+      "a CCM line among them at 32" not in line and "a CCM line at 32" not in line and "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service (a CCM line among them AT 31 - see CCM ENTERED AT 31), see pos_err" in line
+      and "entered with no facility (a nursing visit at the default 31, a CCM line AT 31 - see CCM ENTERED AT 31)" in line, line)
+r, line = digest(rows + [dict(reg_row(["99487"], "fac37", "13", ["13"], err="2 buildings"), pid="pat73"), dict(reg_row(["99309"], "fac32", "31", ["31"], err="boom"), pid="pat74"), dict(reg_row(["99309"], "", "31", ["31"]), pid="pat75")])
+check("digest: ... 'a CCM line at 32' is said only where the register shows one: rule-failed visits whose only CCM line stands at an ALF's 13, and an unknown building with no CCM line, get no such words",
+      "POS RULE NOT APPLIED on 2 visit(s) - entered at the feed's place of service, see pos_err" in line and "entered with no facility (a nursing visit at the default 31)" in line and "at 32)" not in line and "ENTERED AT 31" not in r.stdout, line)
+r, line = digest(rows + [dict(reg_row(["99487"], "fac29", "21", ["31"], ["ccm"]), pid="pat76")])
+check("digest: ... a CCM line at 31 is shouted even in a row whose feed place of service is not 31 (the value is what counts)", "AND 1 CCM LINE(S) ENTERED AT 31" in line and "CCM ENTERED AT 31 (William 11/25/2026: every CCM line is 32) - for William before the claim run; a routine changes nothing on these visits: pat76 11/02/2026 99487" in r.stdout, r.stdout[-700:])
+# finding 2: the two CCM lists name EVERY chart - since 11/25/2026 a CCM line of a skilled-looking month goes out at 32 the same day, and the list is William's only cue
+_PID = lambda i_: "pat%d" % (7100 + i_)
+r, line = digest(rows + [dict(reg_row(["99487"], "fac32", "31", ["32"], ["ccm-skilled-month"]), pid=_PID(i_)) for i_ in range(45)])
+_ll = next((l_ for l_ in r.stdout.splitlines() if "for William, not held - CCM entered at 32" in l_), "")
+check("digest (11/25/2026, review): the list 'for William, not held - CCM entered at 32, the chart shows a skilled-looking month' names EVERY chart - 45 of 45, with no '(+N more ...)' cut",
+      "45 of them listed for William" in line and all(("%s 11/02/2026 99487" % _PID(i_)) in _ll for i_ in range(45)) and " more" not in _ll, _ll[-400:])
+r, line = digest(rows + [dict(reg_row(["99487"], "fac32", "31", ["31"], ["ccm"]), pid=_PID(i_)) for i_ in range(45)])
+_ll = next((l_ for l_ in r.stdout.splitlines() if "TOP OF THE REPORT - CCM ENTERED AT 31" in l_), "")
+check("digest: ... and so does the list 'TOP OF THE REPORT - CCM ENTERED AT 31': 45 of 45 charts, no cut", "AND 45 CCM LINE(S) ENTERED AT 31" in line and all(("%s 11/02/2026 99487" % _PID(i_)) in _ll for i_ in range(45)) and " more" not in _ll, _ll[-400:])
+r, line = digest(rows + [dict(reg_row(["99309"], "fac32", "31", ["31"], ["extra"]), pid=_PID(i_)) for i_ in range(45)])
+_ll = next((l_ for l_ in r.stdout.splitlines() if "for William, not held - visits kept at 31" in l_), "")
+check("digest: ... the other lists keep their cut at 30 charts ('+15 more - see the import register')", ("%s 11/02/2026 99309" % _PID(29)) in _ll and ("%s 11/02/2026 99309" % _PID(30)) not in _ll and _ll.endswith("(+15 more - see the import register)"), _ll[-300:])
 r, line = digest(rows + [dict(reg_row(["99309"], "fac32", "31", ["31"], ["moved"]))])
 check("digest: visits kept at 31 because the previous visit was in another building are counted apart", "nursing visits 31: 3 (1 of them because the previous nursing visit was in another building)" in line, line)
 r, line = digest([dict(x, pos_stored=list(x["pos_lines"])) for x in rows])
@@ -2172,6 +2388,61 @@ r, line = digest([rows[4], rows[5]])
 check("digest: no line when the batch had no nursing-building charge", r.returncode == 0 and line == "", r.stdout[-300:])
 r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lines=[None]), dict(reg_row(["99309"], "fac34", "31", ["32"]), pos_lines=[32], pos_kind=None), dict(reg_row(["99309", "99497"], "fac34", "31", ["32"]), pos_kind=["monthly"])])
 check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
+# William 11/25/2026 ("... change it to i10 and send me an email with the codes needed to be added"): the digest's ONE line about diagnosis codes AdvancedMD's list does
+# not have, and the text of the email, which the report writes to outbox/dx_codes_needed_<stamp>.txt - codes, chart numbers and dates of service, never a name
+def dxrow(pid, dos, missing, instead=True, **kw):      # a created row of the import register: the codes AdvancedMD does not know and - since 11/25/2026 - what stands in their place
+    return dict(reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]), pid=pid, dos=dos, missing_dx=missing, **(dict(dx_instead="I10") if instead else {}), **kw)
+def dxdigest(rows_, stamp):      # -> (the run, the digest's line about these codes, the text of the email file - None when the report wrote none)
+    f_ = os.path.join(rep_dir, "outbox", "dx_codes_needed_%s.txt" % stamp)
+    if os.path.exists(f_): os.remove(f_)
+    r_, _l = digest(rows_, stamp=stamp)
+    return r_, next((l_ for l_ in r_.stdout.splitlines() if l_.startswith("- Diagnosis codes not in AdvancedMD's list")), ""), (open(f_).read() if os.path.exists(f_) else None)
+_DXHEAD = "- Diagnosis codes not in AdvancedMD's list (William 11/25/2026: the visit goes in with I10 in its place; he adds the codes): "
+_DXR = [dxrow("pat9101", "10/30/2026", ["S82.843D"]), dxrow("pat9101", "11/12/2026", ["S82.843D"]), dxrow("pat9102", "10/31/2026", ["M51.17", "S82.843D"], name="ZZTEST, PERSON"), dxrow("pat9103", "11/01/2026", [])]
+r, _dl, _mail = dxdigest(rows + _DXR, "20261126T0139Z")
+check("digest (William 11/25/2026): ONE line names the diagnosis codes AdvancedMD's list does not have - the visits, each code with its number of visits (most visits first), and the file for William's email",
+      r.returncode == 0 and _dl == _DXHEAD + "3 visit(s) - S82.843D x3, M51.17 x1 - EMAIL WILLIAM: outbox/dx_codes_needed_20261126T0139Z.txt" and r.stdout.count("Diagnosis codes not in AdvancedMD's list") == 1, (_dl, r.stderr[-300:]))
+check("digest: ... the report WRITES that file - the text of the email: first that these codes are not in AdvancedMD's diagnosis list (Master Files > Diagnosis Codes) and need to be added, then one line per code with its visits, chart numbers and dates of service",
+      (_mail or "").startswith("These diagnosis codes are not in AdvancedMD's diagnosis list (Master Files > Diagnosis Codes) and need to be added:\n")
+      and "\nS82.843D - 3 visit(s): pat9101 10/30/2026; pat9101 11/12/2026; pat9102 10/31/2026\nM51.17 - 1 visit(s): pat9102 10/31/2026\n" in (_mail or ""), _mail)
+check("digest: ... and it ends with one sentence: each visit went in with I10 in the code's place on his word of 11/25/2026, later visits use a code once it is in the list, and visits already entered keep I10 unless he says otherwise",
+      (_mail or "").rstrip("\n").endswith("\nEach of these visits was entered with I10 in the code's place on your word of 11/25/2026; once a code is in the list, later visits use it; the visits already entered keep I10 unless you say otherwise."), _mail)
+check("digest: ... the email's text carries no name (the register row's other fields never reach it) and the digest's own line carries no chart number - codes and counts only",
+      _mail is not None and "ZZTEST" not in _mail and "PERSON" not in _mail and "pat9" not in _dl and len((_mail or "").strip().split("\n")) == 6, (_mail, _dl))
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9102", "11/12/2026", ["S82.843D"]), dxrow("pat9101", "01/05/2027", ["S82.843D"]), dxrow("pat9101", "12/30/2026", ["S82.843D"]), dxrow("pat9101", "11/12/2026", ["S82.843D"])], "20261126T0150Z")
+check("digest: ... in the email's text the visits of a code stand by chart number, then by date of service (a January visit after the December one), whatever order the register holds them in",
+      "\nS82.843D - 4 visit(s): pat9101 11/12/2026; pat9101 12/30/2026; pat9101 01/05/2027; pat9102 11/12/2026\n" in (_mail or ""), _mail)
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9103", "11/01/2026", [])], "20261126T0200Z")
+check("digest: no line and no file when no visit of the batch carries a code AdvancedMD does not know", r.returncode == 0 and _dl == "" and _mail is None and "EMAIL WILLIAM" not in r.stdout, (_dl, _mail))
+# a register written by the import of BEFORE 11/25/2026: the code was left off the charge, nothing stood in its place (the row has missing_dx and no dx_instead)
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "10/30/2026", ["S82.843D"], instead=False), dxrow("pat9102", "10/31/2026", ["S82.843D", "M51.17"], instead=False)], "20261110T1319Z")
+check("digest: a register of an older import (the code was DROPPED, not replaced) is worded truthfully - 'entered without that code (before 11/25/2026)', in the line and in the email's text, and nowhere that I10 was entered",
+      _dl == _DXHEAD + "2 visit(s), all entered without that code (before 11/25/2026) - S82.843D x2, M51.17 x1 - EMAIL WILLIAM: outbox/dx_codes_needed_20261110T1319Z.txt"
+      and "\nS82.843D - 2 visit(s): entered without that code (before 11/25/2026): pat9101 10/30/2026; pat9102 10/31/2026\n" in (_mail or "") and "was entered with I10" not in (_mail or "") and "entered with I10 in its place" not in (_mail or "")
+      and (_mail or "").rstrip("\n").endswith("\nThese visits were entered without that code: it was left off the charge and nothing stands in its place. Since 11/25/2026 a visit goes in with I10 in the code's place on your word; once a code is in the list, later visits use it."), (_dl, _mail))
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "10/30/2026", ["S82.843D"], instead=False), dxrow("pat9104", "11/09/2026", ["S82.843D"]), dxrow("pat9105", "11/09/2026", ["T84.011A"])], "20261110T1319Z")
+check("digest: ... a register that holds both kinds splits the visits: so many 'entered with I10 in its place' (dx_instead in the row) and so many 'entered without that code (before 11/25/2026)' - per code in the email, with a closing sentence for each kind",
+      _dl == _DXHEAD + "3 visit(s), 2 entered with I10 in its place and 1 entered without that code (before 11/25/2026) - S82.843D x2, T84.011A x1 - EMAIL WILLIAM: outbox/dx_codes_needed_20261110T1319Z.txt"
+      and "\nS82.843D - 2 visit(s): entered with I10 in its place: pat9104 11/09/2026 - entered without that code (before 11/25/2026): pat9101 10/30/2026\nT84.011A - 1 visit(s): entered with I10 in its place: pat9105 11/09/2026\n" in (_mail or "")
+      and "\nThe visits listed as entered with I10 in its place went in with I10 in the code's place on your word of 11/25/2026; once a code is in the list, later visits use it; the visits already entered keep I10 unless you say otherwise. The visits listed as entered without that code went in with their other codes only: nothing stands in the code's place on them." in (_mail or ""), (_dl, _mail))
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "11/25/2026", ["S82.843D"], instead=False)], "20261126T0300Z")
+check("digest: ... and a batch of 11/25/2026 or later whose row shows the code left off is not called 'before 11/25/2026' - it says that I10 was not put in its place (an older copy of the import ran, or I10 itself is not in AdvancedMD's list)",
+      "before 11/25/2026" not in _dl + (_mail or "") and "1 visit(s), all entered without that code (I10 was not put in its place: an older copy of the import ran, or I10 itself is not in AdvancedMD's list) - S82.843D x1 - EMAIL WILLIAM:" in _dl
+      and "\nS82.843D - 1 visit(s): entered without that code (I10 was not put in its place: an older copy of the import ran, or I10 itself is not in AdvancedMD's list): pat9101 11/25/2026\n" in (_mail or ""), (_dl, _mail))
+r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "11/26/2026", "S82.843D"), dxrow(None, None, [None, 5, "", "  ", "T84.011A", ["x"]]), dxrow("pat9106", "11/26/2026", {"a": 1}), dict(dxrow("pat9107", "11/26/2026", ["M51.17"]), dx_instead=7)], "20261126T0400Z")
+check("digest: odd values in these fields (a text or a dictionary where the list of codes belongs; a number, a blank or a list among the codes; no chart number, no date; a number where I10 belongs) never stop the report - what can be read is still said",
+      r.returncode == 0 and "Place of service in the nursing buildings" in r.stdout and "## Next" in r.stdout and "T84.011A x1" in _dl and "M51.17 x1" in _dl and "EMAIL WILLIAM: outbox/dx_codes_needed_20261126T0400Z.txt" in _dl and "? ?" in (_mail or ""), (r.stderr[-300:], _dl, _mail))
+_ob = os.path.join(rep_dir, "outbox"); _ob2 = _ob + "_aside"
+if os.path.isdir(_ob): os.rename(_ob, _ob2)
+open(_ob, "w").write("a file where the folder should be")      # the outbox cannot be made: the report must still run and say so in the line
+try: r, _dl, _mail = dxdigest(rows + _DXR, "20261126T0500Z")
+finally:
+    os.remove(_ob)
+    if os.path.isdir(_ob2): os.rename(_ob2, _ob)
+check("digest: when the email file cannot be written the report still runs and the line says so - the codes stay in the line and in the import register",
+      r.returncode == 0 and _dl.startswith(_DXHEAD + "3 visit(s) - S82.843D x3, M51.17 x1 - EMAIL WILLIAM: the file outbox/dx_codes_needed_20261126T0500Z.txt could not be written (") and "missing_dx of the import register" in _dl and "## Next" in r.stdout, (_dl, r.stderr[-300:]))
+_REP = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")).read()
+check("the report's PLAIN ENGLISH header says that it writes the email's text and where", "outbox/dx_codes_needed_<STAMP>.txt" in _REP.split("\nimport os as _os")[0] and "no patient name" in _REP.split("\nimport os as _os")[0])
 
 aud = tempfile.mkdtemp(prefix="posrule_aud_")
 _r1 = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", os.path.join(aud, "nowhere")], capture_output=True, text=True)
@@ -3460,6 +3731,71 @@ for _f in os.listdir(os.path.join(_w2, "registers")):
 _o, _calls, _e = driver_run("claimocity_retry_dx.py", _w2, _r2, ("--live", "--no-stedi", "--stamp", "2026-11-10T1400Z"), lambda cmd: None)
 check("W1: without a clone the retry still enters the visits (never a hold) and its RESULT line ends with the place-of-service warning, naming who checks what",
       _e == "" and "claimocity_import.py" in [c_[1] for c_ in _calls] and next((l_ for l_ in _o.splitlines() if l_.startswith("RESULT retry")), "").endswith("for William to check: the place of service of every nursing-building line this run entered, and the clinician and building of every visit whose patient has another message in the batch (a routine changes nothing on these visits)"), _o[-400:])
+# William 11/25/2026 (the retry of 'no usable dx' skips): the retry driver itself, INSIDE this process over a sandbox workspace and clone as above. Here its import step runs
+# the REAL import helper (a fresh copy over the retry's own batch files, with this self-test's stand-in AdvancedMD) and its report step the REAL report helper, so the whole
+# road is walked offline: the skip of an earlier batch -> the retry's own readiness rule -> build() puts I10 in the code's place -> the register row -> the digest's line and
+# the text of William's email. (The two W1 checks above start the driver over helper texts that carry no code table, which is why they stop at 'nothing to retry'.)
+_DXN = [0]
+def dx_retry(cache, argv=("--live", "--no-stedi", "--stamp", "2026-11-26T1400Z")):
+    """One earlier batch (20261031T1240Z) whose three visits were skipped as 'no usable dx for 99309': Y1 - its only code is not in AdvancedMD's list; Y2 - its charge line carries
+    no code at all; Y3 - two lines: the visit's only code is unknown, its 99497 carries a known code beside an unknown one. cache = the diagnosis cache the retry finds.
+    -> (what the driver printed, the programs it started, its error, the sandbox workspace)."""
+    w_, r_ = hc_dirs({})
+    for d_ in (w_, r_): open(os.path.join(d_, "claimocity_import.py"), "w").write(_HSRC)      # the REAL import helper in the workspace and in the clone: the driver reads the code table from its text
+    st_ = "20261031T1240Z"; rs_ = "20261126T1400ZR"; os.makedirs(os.path.join(w_, "registers")); os.makedirs(os.path.join(w_, "hl7", st_))
+    vis_ = (("Y1", "pat9201", [("99309", "20261030", "S82.843D")]), ("Y2", "pat9202", [("99309", "20261030", "")]), ("Y3", "pat9203", [("99309", "20261030", "M51.17"), ("99497", "20261030", "E11.9^T84.011A")]))
+    json.dump({"created": [], "failed": [], "skipped": [{"feed_id": f_, "pid": p_, "why": "no usable dx for 99309"} for f_, p_, _l in vis_]}, open(os.path.join(w_, "registers", "feed_import_%s.json" % st_), "w"))
+    json.dump([{"pid": f_, "name": NAME(f_), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": x_, "units": "1"} for c_, d_, x_ in l_]} for f_, _p, l_ in vis_], open(os.path.join(w_, "feed_parsed_%s.json" % st_), "w"))
+    open(os.path.join(w_, "hl7", st_, "a.hl7"), "w").write("".join(hl7(f_, B["n1"], "", [(c_, d_) for c_, d_, _x in l_], NPI) for f_, _p, l_ in vis_))
+    json.dump(cache, open(os.path.join(w_, "dx_cache_feed.json"), "w")); json.dump({f_: p_ for f_, p_, _l in vis_}, open(os.path.join(w_, "registers", "claimocity_patient_map.json"), "w"))
+    def step_(cmd):
+        b_ = os.path.basename(str(cmd[1]))
+        if b_ == "claimocity_import.py":      # the real import helper, loaded fresh over the retry's own batch files (the driver has written them), against the stand-in AdvancedMD
+            e0_ = {k_: os.environ.get(k_) for k_ in ("FEED_STAMP", "FEED_HL7_DIR", "FEED_DX_CACHE")}; os.environ.update(FEED_STAMP=rs_, FEED_HL7_DIR=os.path.join(w_, "hl7", rs_), FEED_DX_CACHE="dx_cache_feed.json"); _DXN[0] += 1
+            try: sp_ = importlib.util.spec_from_file_location("claimocity_import_retry_%d" % _DXN[0], HELPER); m_ = importlib.util.module_from_spec(sp_); sp_.loader.exec_module(m_)
+            finally:
+                for k_, v_ in e0_.items(): os.environ.pop(k_, None) if v_ is None else os.environ.__setitem__(k_, v_)
+            if not (m_.amd is amd and m_.resave is resave and m_.txh is txh): raise RuntimeError("the fresh copy did not load the stand-in modules")
+            a_ = sys.argv[:]; sys.argv = ["claimocity_import.py"] + [str(x_) for x_ in cmd[2:]]; b2_ = io.StringIO(); sl_ = m_.time.sleep; m_.time.sleep = lambda s: None
+            try:
+                with contextlib.redirect_stdout(b2_): m_.main()
+            finally: sys.argv = a_; m_.time.sleep = sl_
+            return b2_.getvalue().strip()
+        if b_ == "claimocity_report.py":      # the real report helper, started as a program: it loads nothing that talks to AdvancedMD (section 6 starts it the same way)
+            return subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=w_, env=dict(os.environ, FEED_STAMP=rs_), capture_output=True, text=True).stdout.strip()
+    POSTS.clear(); ci._ctx.clear()
+    o_, calls_, e_ = driver_run("claimocity_retry_dx.py", w_, r_, argv, step_)
+    return o_, calls_, e_, w_
+_rd = lambda w_, *p_: json.load(open(os.path.join(w_, *p_))) if os.path.exists(os.path.join(w_, *p_)) else None
+_txt = lambda w_, *p_: open(os.path.join(w_, *p_)).read() if os.path.exists(os.path.join(w_, *p_)) else ""
+_DXC = {"I10": "dcode1", "E11.9": "dcode2", "S82.843D": None}
+_o, _calls, _e, _w = dx_retry(_DXC); _RS = "20261126T1400ZR"; _rr = _rd(_w, "registers", "feed_import_%s.json" % _RS) or {"created": [], "skipped": [], "failed": []}
+_sent = [re.findall(r'diagcodes="([^"]*)"', b_) for b_ in POSTS if 'action="updvisitwithnewcharges"' in b_]      # per charge call: the diagnosis ids of each of its charges
+check("retry (William 11/25/2026, the driver itself with the real import and report helpers, offline): a visit that waited as 'no usable dx' because its only diagnosis code is not in AdvancedMD's list is handed to the import once I10 is in the list - the visit whose charge line carries no code at all still waits",
+      _e == "" and [c_[1] for c_ in _calls] == ["claimocity_dx.py", "claimocity_import.py", "claimocity_verify.py", "claimocity_inspector.py", "claimocity_report.py", "claimocity_recon.py"]
+      and [m_["pid"] for m_ in (_rd(_w, "feed_parsed_%s.json" % _RS) or [])] == ["Y1", "Y3"], (_e, _calls, _o[-600:]))
+check("retry: ... the import enters both visits with I10 where the unknown codes stood - Y1's charge carries I10's id alone, Y3's visit line too and its 99497 the known code first, then I10 - and each register row names its codes and says dx_instead I10",
+      _sent == [["dcode1"], ["dcode1", "dcode2 dcode1"]] and [(r_["pid"], r_["cpts"], r_.get("missing_dx"), r_.get("dx_instead")) for r_ in _rr["created"]] == [("pat9201", ["99309"], ["S82.843D"], "I10"), ("pat9203", ["99309", "99497"], ["M51.17", "T84.011A"], "I10")]
+      and _rr["skipped"] == [] and _rr["failed"] == [], (_sent, _rr["created"], _rr["skipped"]))
+check("retry: ... the driver's own line names the codes for the email - 'retry-dx: 2 visit(s) entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A' - says which visit still waits and why, and its RESULT line counts two visits created",
+      "\nretry-dx: 2 visit(s) entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A" in _o and "1 still wait: a charge line that carries no diagnosis code at all" in _o
+      and "RESULT retry %s: visits created 2, skipped 0, failed 0" % _RS in _o and "| 1 visit(s) still wait: a charge line that carries no diagnosis code at all - for William" in _o, _o[-900:])
+_dig = _txt(_w, "feed_digest_%s.md" % _RS); _mail = _txt(_w, "outbox", "dx_codes_needed_%s.txt" % _RS)
+check("retry: ... and the retry's own digest carries the line for William's email, with the file the report wrote beside it - each code with its chart number and date of service",
+      "- Diagnosis codes not in AdvancedMD's list (William 11/25/2026: the visit goes in with I10 in its place; he adds the codes): 2 visit(s) - M51.17 x1, S82.843D x1, T84.011A x1 - EMAIL WILLIAM: outbox/dx_codes_needed_%s.txt" % _RS in _dig
+      and "\nS82.843D - 1 visit(s): pat9201 10/30/2026\n" in _mail and "\nM51.17 - 1 visit(s): pat9203 10/30/2026\n" in _mail and "\nT84.011A - 1 visit(s): pat9203 10/30/2026\n" in _mail and "digest: feed_digest_%s.md" % _RS in _o, (_dig[:900], _mail))
+_o, _calls, _e, _w = dx_retry(_DXC, argv=("--no-stedi", "--stamp", "2026-11-26T1400Z"))
+check("retry: a DRY retry says what WOULD be entered with I10 and writes nothing - no visit is sent to AdvancedMD and no register is written",
+      _e == "" and "\nretry-dx: 2 visit(s) would be entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A" in _o and "(DRY - nothing written)" in _o
+      and not any("addvisit" in b_ or "updvisitwithnewcharges" in b_ for b_ in POSTS) and _rd(_w, "registers", "feed_import_%s.json" % _RS) is None and [c_[1] for c_ in _calls] == ["claimocity_dx.py", "claimocity_import.py"], (_e, _calls, _o[-600:]))
+for _how, _c in (("I10 itself is not in the list", {"E11.9": "dcode2", "S82.843D": None}), ("the cache holds I10 as 'not in the list' (null)", {"I10": None, "E11.9": "dcode2", "S82.843D": None})):
+    _o, _calls, _e, _w = dx_retry(_c)
+    check("retry: when %s everything is as before - no visit is handed to the import, and the driver's old sentence names the codes the visits wait on (William adds them)" % _how,
+          _e == "" and [c_[1] for c_ in _calls] == ["claimocity_dx.py"] and "retry-dx: 3 visit(s) still wait on codes not in AMD's diagnosis list: M51.17, S82.843D (valid ICD-10 - William adds them in AMD Master Files > Diagnosis Codes; the next run enters the visits)" in _o
+          and not any("addvisit" in b_ for b_ in POSTS) and _rd(_w, "feed_parsed_%s.json" % _RS) is None, (_e, _calls, _o[-500:]))
+_RSRC = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read()
+check("retry: its PLAIN ENGLISH header states William's rule of 11/25/2026 and its stand-in code is the import's (one word, two places - they cannot drift apart unseen)",
+      "for any diagnosis not in the master file yet change it to i10" in _RSRC.split("\nimport os, sys")[0] and re.search(r'^DX_INSTEAD = "%s"' % ci.DX_INSTEAD, _RSRC, re.M) is not None if hasattr(ci, "DX_INSTEAD") else False)
 # C2's exact input for the ingest driver: current import helper, report and inspector of 2075dba, complete clone; a batch of invented messages
 _w, _r = hc_dirs({"claimocity_report.py": "# report helper of 2075dba\n", "claimocity_inspector.py": "# inspector helper of 2075dba\n"})
 os.makedirs(os.path.join(_w, "inbox", "claimocity")); open(os.path.join(_w, "inbox", "claimocity", "20261110a.hl7"), "w").write(hl7("FD4", WO, "", [("99308", "20261105")], NP_NPI) + hl7("FD4", B["h1"], "", [("99308", "20261105")], NPI) + hl7("FG7", "ZZ Other Hospital", "20261028", [("99232", "20261030")], NPI))

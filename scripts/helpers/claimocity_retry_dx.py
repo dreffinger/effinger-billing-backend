@@ -10,13 +10,22 @@
 #   registers show AdvancedMD has every code of it - created rows of any batch AND the recon rows entered / already / voided (the import's
 #   "already" answer leaves no created row, so a skip it answered that way used to be retried on every run); a code counts as known only when
 #   it is in both PCODE and FEE; this run's row goes into claimocity_ingest.json before the recon, which reads its time and mode there.
+# 11/25/2026 (William, STANDING: "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to be
+#   added" - said right after "Add diagnosis S82.843D in AMD Master Files change this diagnosis to i10"): a skipped visit no longer waits for
+#   its code to be added. It is READY as soon as every charge line carries at least one diagnosis code and I10 itself is in AMD's list - the
+#   import then puts I10 in the place of each code the list does not have (claimocity_import.py, DX_INSTEAD; the same word stands below). The
+#   codes are still printed, for the email: "retry-dx: N visit(s) entered with I10 in place of codes not in AMD's diagnosis list: <codes>"
+#   (a dry run: "would be entered"), and the retry's own digest carries the line 'EMAIL WILLIAM: outbox/dx_codes_needed_<stamp>R.txt' with
+#   the text claimocity_report.py wrote there. A charge line with NO diagnosis code at all still waits (there is nothing to change to I10) and
+#   is named for William. When I10 is not in the list everything is as before: the visit waits on its codes and they are printed.
 # Decides: nothing new. For every skipped-dx row in registers/feed_import_*.json whose (patient, DOS, CPT set) was never created:
 #   1 gets the batch's parsed messages (feed_parsed_<stamp>.json, else re-parses hl7/<stamp>/, else re-downloads the batch's files from
 #     the bucket with claimocity_gcs.py --fetch), 2 re-checks the codes in AMD (claimocity_dx.py looks null codes up again), 3 imports
-#     only the messages whose every charge line now has a usable code, under a NEW stamp <now>R (import, verify, inspector, report -
+#     only the messages that are ready (above), under a NEW stamp <now>R (import, verify, inspector, report -
 #     the same scripts as claimocity_ingest.py; dedupe is the registers + the chart's live charges, so a retry is a no-op the second time).
-# Codes still missing are printed: "still wait on codes not in AMD's diagnosis list: M51.17, M51.86" - that line goes into the digest
-#   under Holds, with the fix: William adds the code in AMD (Master Files > Diagnosis Codes > New, ICD-10 code + description).
+# Codes the visits still wait on (only when I10 itself is not in the list) are printed: "still wait on codes not in AMD's diagnosis list:
+#   M51.17, M51.86" - that line goes into the digest under Holds, with the fix: William adds the code in AMD (Master Files > Diagnosis
+#   Codes > New, ICD-10 code + description).
 # Dry by default (prints what would be entered, writes nothing in AMD); --live enters. Exit 0 done (also when nothing to retry), 2 a step failed.
 # Usage: cd /home/claude/unbilled && python3 claimocity_retry_dx.py [--live] [--stamp <UTC stamp>] [--no-stedi]
 import os, sys, re, json, glob, subprocess, datetime, collections
@@ -119,7 +128,7 @@ def parsed_for(stamp):
 msgs = []
 for stamp, ids in sorted(want.items()):
     for m in parsed_for(stamp):
-        if m["pid"] not in ids: continue
+        if m.get("pid") not in ids: continue                                    # 11/25/2026: a message with no patient id (no PID line) is nobody's skip - passed over, it never stops the retry
         cpts = {c["cpt"] for c in m["FT1"]}
         if not cpts & ids[m["pid"]]: continue                                    # another visit of that patient - not the one the skip names
         if cpts - KNOWN_CPTS: unknown_cpts.update(c for c in cpts - KNOWN_CPTS if c); continue   # review round 3: a second code the import does not know yet
@@ -142,17 +151,36 @@ def step(name, cmd, must=True):
     return r.returncode
 step("dx", [sys.executable, os.path.join(HERE, "claimocity_dx.py")])
 cache = json.load(open(env["FEED_DX_CACHE"]))
-ready, waiting, missing = [], 0, set()
+# WHICH VISITS ARE READY (William 11/25/2026, STANDING: "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to be
+# added"). Until that day a visit was ready only when every charge line had a code AMD's list knows; a visit whose only code was missing waited until William added it
+# (two 99309 visits waited on S82.843D since the batches of 11/13 and 11/22/2026). Now, when I10 itself is in the list, every charge line that carries at least ONE
+# diagnosis code can go in: the import puts I10 in the place of each code the list does not have. The codes no longer hold the visit back - they are printed below and
+# named in the retry's digest for William's email. A charge line with NO code at all still waits: there is nothing to change to I10. When I10 is not in the list
+# (i10 false) this is the old rule, line for line.
+DX_INSTEAD = "I10"      # the code that stands in a missing code's place - the same line as in claimocity_import.py (William 11/25/2026); the self-test holds the two together
+i10 = bool(cache.get(DX_INSTEAD))
+ready, waiting, missing, nocode = [], 0, set(), 0      # nocode: the visits that wait because a charge line carries no diagnosis code at all
 for m in msgs:
-    ok = True
+    ok = True; bare = False
     for c in m["FT1"]:
         codes = [x.strip() for x in (c.get("dx") or "").split("^") if x.strip()]
+        if i10 and codes: continue                                               # this line can go in: a code the list knows as it is, I10 for every other
         if not any(cache.get(x) for x in codes):
-            ok = False; missing.update(x for x in codes if not cache.get(x))
+            ok = False; missing.update(x for x in codes if not cache.get(x)); bare = bare or not codes
     if ok: ready.append(m)
-    else: waiting += 1
+    else: waiting += 1; nocode += 1 if bare else 0
+NOCODE = "a charge line that carries no diagnosis code at all"
+def with_instead(ms):
+    """(how many of these visits go in with I10 in a code's place, those codes) as the cache shows it: the codes on their charge lines that AMD's list does not have.
+    Nothing when I10 itself is not in the list - then the import leaves such a code off, as it always did."""
+    n, codes = 0, set()
+    for m_ in (ms if i10 else []):
+        u = {x.strip() for c in m_["FT1"] for x in (c.get("dx") or "").split("^") if x.strip() and not cache.get(x.strip())}
+        if u: n += 1; codes |= u
+    return n, codes
 if not ready:
-    print("retry-dx: %d visit(s) still wait on codes not in AMD's diagnosis list: %s (valid ICD-10 - William adds them in AMD Master Files > Diagnosis Codes; the next run enters the visits)" % (waiting, ", ".join(sorted(missing))))
+    if missing: print("retry-dx: %d visit(s) still wait on codes not in AMD's diagnosis list: %s (valid ICD-10 - William adds them in AMD Master Files > Diagnosis Codes; the next run enters the visits)" % (waiting, ", ".join(sorted(missing))))
+    else: print("retry-dx: %d visit(s) still wait: %s - for William (Claimocity sent the line without a code; there is nothing to change to %s)" % (waiting, NOCODE, DX_INSTEAD))
     os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
 
 # ---- 4 import (+ verify, inspector, report when live) under the retry stamp ----------------------------------------------------------
@@ -190,7 +218,10 @@ if nohl7:
     if not ready: os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
 env["FEED_HL7_DIR"] = os.path.abspath(hdir)
 # (the feed helpers were made the repository's at the start of this run - make_current above; pos_warn says what could not be)
-print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s | mode %s" % (rstamp, len(ready), ", ".join(batches), ("; %d still wait on %s" % (waiting, ", ".join(sorted(missing)))) if waiting else "", "LIVE" if live else "DRY"))
+_ni, _ci = with_instead(ready)      # after the batches without feed files were taken out: what this retry hands to the import
+print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s%s | mode %s" % (rstamp, len(ready), ", ".join(batches),
+      (" (%d of them with %s in place of codes not in AMD's diagnosis list)" % (_ni, DX_INSTEAD)) if _ni else "",
+      ("; %d still wait%s" % (waiting, (" on " + ", ".join(sorted(missing)) + (" and " + NOCODE if nocode else "")) if missing else (": " + NOCODE))) if waiting else "", "LIVE" if live else "DRY"))
 def save_run_row():
     """this retry's row in registers/claimocity_ingest.json, written BEFORE the recon - claimocity_recon.py reads the run's time and mode from it
     (review round 1: the row used to come last, so feed_recon_<stamp>R.json carried at=null, live=null). The register is read again first: the
@@ -209,6 +240,13 @@ if live:
 impf = "registers/feed_import_%s.json" % rstamp
 imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skipped": [], "failed": []}
 save_run_row()
-print("RESULT retry %s: visits created %d, skipped %d, failed %d%s%s" % (rstamp, len(imp["created"]), len(imp["skipped"]), len(imp["failed"]),
-      "" if live else " (DRY - nothing written)", (" | still waiting on codes: " + ", ".join(sorted(missing))) if waiting else "") + UNKNOWN_NOTE + pos_warn)
+# 11/25/2026 (William: "... and send me an email with the codes needed to be added"): the codes that went in as I10, in one line. A live retry reads them from its own
+# import register (the rows that carry dx_instead - what was really entered); a dry retry writes no register and says what would be entered, by the cache.
+_ent = [r for r in imp["created"] if isinstance(r, dict) and r.get("dx_instead")]
+if live: _ni, _ci = len(_ent), {c for r in _ent for c in (r.get("missing_dx") or []) if isinstance(c, str)}
+if _ni: print("retry-dx: %d visit(s) %s with %s in place of codes not in AMD's diagnosis list: %s (William 11/25/2026 - he adds them in AMD Master Files > Diagnosis Codes; %s)" % (
+    _ni, "entered" if live else "would be entered", DX_INSTEAD, ", ".join(sorted(_ci)), "this retry's digest names the file that holds the text of his email" if live else "a live retry enters them and its digest names the file for his email"))
+print("RESULT retry %s: visits created %d, skipped %d, failed %d%s%s%s" % (rstamp, len(imp["created"]), len(imp["skipped"]), len(imp["failed"]),
+      "" if live else " (DRY - nothing written)", (" | still waiting on codes: " + ", ".join(sorted(missing))) if missing else "",
+      (" | %d visit(s) still wait: %s - for William (Claimocity sent the line without a code)" % (nocode, NOCODE)) if nocode else "") + UNKNOWN_NOTE + pos_warn)
 if live and os.path.exists("feed_digest_%s.md" % rstamp): print("digest: feed_digest_%s.md" % rstamp)
