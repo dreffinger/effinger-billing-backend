@@ -356,6 +356,10 @@ button.btn:disabled{opacity:.5;cursor:default}
   const drafts={};   // row id -> the note William has typed but not yet posted (survives the re-render on every store change)
   const opens={};    // row id -> true while its Details fold is open (same idea: survives the re-render, which is what killed the 9/24 attempt)
   const money=n=>'$'+Math.round(Number(n)||0).toLocaleString();
+  // 11/25 (William: "insurance refresh boards are showing zero"): an amount typed as text ('$315.00', '1,250.50',
+  // '$0 open (visit 19456964 settled)') read as not-a-number, and ONE such card made the whole "$ waiting" tile read $0.
+  // The amount is the number the text starts with; text that starts with no number counts as 0.
+  const amt=v=>{ if(typeof v==='number') return isFinite(v)?v:0; const m=String(v??'').replace(/[$,\s]/g,'').match(/^-?\d+(?:\.\d+)?/); return m?Number(m[0]):0; };
   const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?'':d.toLocaleString([], {month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const turnOf=it=> it.status==='done'?'done':(it.status==='william'?'william':'claude');
@@ -502,13 +506,16 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(filter==='open') return t!=='done';
       if(filter==='new') return newness(it);
       return t===filter;
-    }).sort((a,b)=>String(a.patient||'').localeCompare(String(b.patient||''), undefined, {sensitivity:'base'}) || (Number(b.amount||0)-Number(a.amount||0)));   // A→Z by last name (William 9/14)
+    }).sort((a,b)=>String(a.patient||'').localeCompare(String(b.patient||''), undefined, {sensitivity:'base'}) || (amt(b.amount)-amt(a.amount)));   // A→Z by last name (William 9/14)
     const open=items.filter(it=>turnOf(it)!=='done');
     const mine=open.filter(it=>turnOf(it)==='william'), fresh=mine.filter(newness);
     $('#n-william').textContent=mine.length;
-    $('#n-william-l').textContent=fresh.length?`Your turn · ${fresh.length} new`:'Your turn';
+    // 11/25: the tile carries the dollars of the cards on his turn - the same count and total the evening
+    // 'current face sheets needed' email leads with, so the two can be read against each other at a glance
+    const mineAmt=mine.reduce((s,it)=>s+amt(it.amount),0);
+    $('#n-william-l').textContent=['Your turn', mineAmt>0?money(mineAmt):'', fresh.length?fresh.length+' new':''].filter(Boolean).join(' · ');
     $('#n-claude').textContent=open.filter(it=>turnOf(it)==='claude').length;
-    $('#n-amount').textContent=money(open.reduce((s,it)=>s+Number(it.amount||0),0));
+    $('#n-amount').textContent=money(open.reduce((s,it)=>s+amt(it.amount),0));
     $('#n-done').textContent=items.filter(it=>turnOf(it)==='done').length;
     const list=$('#list');
     // 9/24: the list is rebuilt on every store change (each run file the Drive sync applies, every note). Keep what William
@@ -565,7 +572,7 @@ button.btn:disabled{opacity:.5;cursor:default}
       return `<article class="item ${t}${isNew?' new':''}" id="it-${esc(it.id)}">
         <div>${facBadge(it)}<div class="who">${esc(it.patient)}</div>${idline}</div>
         <div class="need"><span class="lead">${lead}</span><div class="ask">${esc(hl.h)||'<span class="why">(nothing written yet)</span>'}</div></div>
-        <div class="amt">${Number(it.amount)>0?money(it.amount):''}</div>
+        <div class="amt">${amt(it.amount)>0?money(amt(it.amount)):''}</div>
         <div>${isNew?'<span class="pill new" title="Claude added something after your last note on this row">New</span>':''}<span class="pill ${t}">${label}</span><div class="ids" style="margin-top:6px">${it.updated?'updated '+when(it.updated):''}</div></div>
         ${more}
         ${controls}
@@ -677,7 +684,7 @@ button.btn:disabled{opacity:.5;cursor:default}
   // board inbox) instead. This page reads those files through William's Google Drive connector and applies the ops
   // into the board store itself — no approval anywhere. Applied file ids are remembered in meta/drive_sync so each
   // file is applied once; the routine trashes the files listed there on its next run.
-  // File shape: {"schema":"irb-board-updates/1","source":"...","created":"<iso>","ops":[
+  // File shape: {"schema":"irb-board-updates/1","source":"...","created":"<iso>","asof":"<iso: when the run READ the board - optional>","ops":[
   //   {"op":"upsert","collection":"items","id":"<row id>","set":{...fields...},"append":{"notes":[...],"checks":[...],"api":[...]}},
   //   {"op":"update", ...same, but the row must already exist},  {"op":"replace","collection":"items","id":"...","data":{...whole row...}},
   //   {"op":"delete","collection":"drops","id":"..."} ]}
@@ -688,7 +695,17 @@ button.btn:disabled{opacity:.5;cursor:default}
   //    refuses to apply anything and says to reload. (It cannot discipline a tab that predates this build - only reloading does that.)
   //  - MAX_AGE_DAYS: a run file speaks for the day it was written. One left behind in the inbox past this is recorded and skipped,
   //    never applied, so a September file can never again rewrite a November row.
-  const CODE_REV=20261112, MAX_AGE_DAYS=10;   // 20261112: the charge's facility badge (chargefac); an older open tab is asked to reload
+  // 11/25 (William: the board showed 0 on his turn while the evening email listed 18 charts). Three faults in this sync, fixed below
+  // and proved one by one in tools/selftest/test_board_page.js:
+  //  (1) listInbox read only the FIRST page of the Drive listing - Drive answered 5 files and a next-page token - so most run files
+  //      were never seen by the board;
+  //  (2) the registry was copied with Object.assign({}, snap.data()) and then written into, but the store hands out FROZEN data, so
+  //      every reg.applied[id]=entry was dropped without an error: nothing was recorded after September, every file in view was
+  //      applied again on every check, and the runs - which trash only recorded files - never emptied the inbox;
+  //  (3) the stale-file guard compared a file's time with the stamp THIS PAGE had just put on the row, so of several waiting files
+  //      only the oldest one's status / need / why landed; and a whole-card upsert applied again REPLACED the card's notes - which is
+  //      how William's 11/19 answers on two cards were erased a minute after he posted them.
+  const CODE_REV=20261125, MAX_AGE_DAYS=10;   // 20261125: the sync rewrite above; an older open tab is asked to reload
   const COLL_OK=/^(items|drops|commands)$/, ID_OK=/^[A-Za-z0-9_\-.~:@+]{1,200}$/;
   const TAB='tab-'+Math.random().toString(36).slice(2,10);
   let mcp=null, syncing=false, lastSyncAt=0;
@@ -698,7 +715,7 @@ button.btn:disabled{opacity:.5;cursor:default}
     const ul=$('#sync-log'); if(!ul) return;
     const rows=Object.entries((reg&&reg.applied)||{}).map(([id,v])=>Object.assign({id},v||{})).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,10);
     // 11/12 third review: ops the page kept (nothing to write - the card's badge stays) are shown as kept, not as changes
-    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.kept?` · ${Number(r.kept)} kept (the card's badge stays)`:''}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
+    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.kept?` · ${Number(r.kept)} already on the card`:''}${r.stale?` · ${Number(r.stale)} kept your newer word`:''}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
   }
   function b64utf8(b64){ const bin=atob(String(b64).replace(/\s/g,'')); const bytes=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(bytes); }
   const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -731,26 +748,57 @@ button.btn:disabled{opacity:.5;cursor:default}
       throw e;
     }
   }
+  // 11/25: the WHOLE inbox, page by page. Drive answers as few files per page as it likes - 5 on 11/25/2026 whatever pageSize asked,
+  // unless the listing is ordered - and a nextPageToken; the page used to stop at the first page. The folder is listed (no title clause)
+  // and the name is tested here. Returns the run files oldest first, plus every file id in the folder (for tidying the registry).
+  // Any failure part way THROWS: a partial listing is never applied and never used to tidy the registry.
+  const MAX_LIST_PAGES=80, NO_RETRY=/^(needs_reauth|server_not_connected|selection_required|server_not_found|not_in_manifest|consent_required|blocked_by_policy|approval_required|not_granted|capability_disabled|capability_removed|cancelled|user_changed)$/;
   async function listInbox(){
-    const r=await drive('search_files',{query:"parentId = '"+INBOX_ID+"' and title contains 'board_updates_'", excludeContentSnippets:true, pageSize:100});
-    const p=r&&r.payload; const files=(p&&Array.isArray(p.files))?p.files:[];
-    return files.filter(f=>f&&f.id&&/^board_updates_.*\.json$/i.test(String(f.title||''))).sort((a,b)=>String(a.createdTime||'').localeCompare(String(b.createdTime||''))||String(a.title||'').localeCompare(String(b.title||'')));
+    const all=[], listed={}; let token='', pages=0, ordered=true;
+    for(;;){
+      const input={query:"parentId = '"+INBOX_ID+"'", excludeContentSnippets:true, pageSize:100};
+      if(ordered) input.orderBy='modifiedTime desc';
+      if(token) input.pageToken=token;
+      let r;
+      try{ r=await drive('search_files', input); }
+      catch(e){
+        // if the ordered listing is refused, ask once more without the order (pages of 5 - slower, same result). Only on the first
+        // page, and never for an access problem (those have their own message and nothing to retry).
+        if(ordered && !token && !(e && NO_RETRY.test(String(e.code||'')))){ ordered=false; continue; }
+        throw e;
+      }
+      const p=r&&r.payload; if(!p||typeof p!=='object'||!Array.isArray(p.files)) throw new Error('unreadable Drive listing');
+      for(const f of p.files){ if(f&&f.id&&!listed[f.id]){ listed[f.id]=1; all.push(f); } }
+      token=(typeof p.nextPageToken==='string'&&p.nextPageToken)?p.nextPageToken:''; pages++;
+      if(!token) break;
+      if(pages>=MAX_LIST_PAGES) throw new Error('the Drive inbox listing did not end after '+MAX_LIST_PAGES+' pages');
+    }
+    const files=all.filter(f=>/^board_updates_.*\.json$/i.test(String(f.title||''))).sort((a,b)=>String(a.createdTime||'').localeCompare(String(b.createdTime||''))||String(a.title||'').localeCompare(String(b.title||'')));
+    return {files, listed};
   }
   async function readUpdate(fileId){
     const r=await drive('download_file_content',{fileId});
     const p=r&&r.payload; if(!p||typeof p.content!=='string') throw new Error('empty download');
     return JSON.parse(b64utf8(p.content));
   }
-  async function loadReg(){ const s=await withRetry(()=>db.doc(REG_PATH).get()); return s.exists?Object.assign({},s.data()):null; }
-  async function saveReg(reg, existed){
-    const applied=isObj(reg.applied)?reg.applied:{}; const ids=Object.keys(applied); let full=!existed;
-    for(const k of ids){ const e=applied[k]; if(isObj(e)&&typeof e.error==='string'&&e.error.length>80) e.error=e.error.slice(0,80); }
-    if(ids.length>120){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-120).forEach(k=>delete applied[k]); full=true; }   // 9/14: 300 entries with long error text outgrew the doc and the save failed silently, so files were re-applied on every open
+  // 11/25: a DEEP copy. The store's snapshots and their data() are frozen (the runtime's contract: clone a body before editing it
+  // for a write). Object.assign({}, data) copied the top level only, so reg.applied stayed frozen and every entry written into it was
+  // dropped without an error - lastCheck (top level) saved, the applied map never did. That was the "registry does not persist"
+  // mystery of 9/14, 9/19, 9/20 and 11/2, each time put down to a stale open tab.
+  async function loadReg(){ const s=await withRetry(()=>db.doc(REG_PATH).get()); return s.exists?JSON.parse(JSON.stringify(s.data())):null; }
+  // `listed` = every file id in the inbox right now (from a COMPLETE listing), or null when there is none to go by.
+  async function saveReg(reg, listed){
+    const applied=isObj(reg.applied)?reg.applied:{};
+    for(const k of Object.keys(applied)){ const e=applied[k]; if(isObj(e)&&typeof e.error==='string'&&e.error.length>80) e.error=e.error.slice(0,80); }
+    // 11/25: an entry is forgotten only once its file has LEFT the inbox (the billing run trashes recorded files) and three days have
+    // passed. The old rule kept the newest 120 whatever was still in the inbox: with 200 files waiting, recording the old ones would
+    // have pushed out the entries of files still listed, and those files would have been applied again.
+    if(listed){ const cut=new Date(Date.now()-3*864e5).toISOString(); for(const k of Object.keys(applied)){ if(!listed[k] && String((applied[k]||{}).at||'')<cut) delete applied[k]; } }
+    const ids=Object.keys(applied);
+    if(ids.length>900){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-900).forEach(k=>delete applied[k]); }   // the document has a size limit; 900 entries is far below it
     reg.applied=applied;
     reg.codeRev=Math.max(CODE_REV, Number(reg.codeRev)||0);   // only ever moves forward
-    // 9/14 9 PM: a merge-style update() was NOT persisting the applied map (the registry kept only two 9/12 entries while lastCheck
-    // moved), so every inbox file re-applied on every sync and their stale status/need overwrote William's Mark done / Post → Claude.
-    // The registry is small; always write the whole document.
+    // The registry is small; always write the whole document (9/14).
     await withRetry(()=>db.doc(REG_PATH).set(reg));
   }
   // 11/12 second review: a charge-facility badge found by a stronger rule is never replaced by a guess - checked HERE, against the badge
@@ -770,7 +818,34 @@ button.btn:disabled{opacity:.5;cursor:default}
     const has=chartNums(row), nowCharts=has.length?has:chartList(neu.chart);
     return chartList(old.chart).every(c=>nowCharts.includes(c));
   }
-  async function applyOp(op, now, fileCreated){
+  // ---- whose word is newer (11/25).
+  // A run file speaks for the moment its run READ the board: `asof` when the file carries it, otherwise the EARLIER of the body's
+  // `created` and the time Drive received the file (a body has claimed a time an hour after its upload).
+  // A row's own state time is the latest of: `stateAt` (the file time of the last run file whose status / need / why this page
+  // applied), William's newest note (every action of his writes one), and `updated` when SOMEONE ELSE wrote it - a chat session writing
+  // the store directly, or William's buttons - told apart because this page stamps `syncAt` with the same value whenever IT writes
+  // `updated`. A file's status / need / why apply only when the file is newer than that. The old test read `updated` alone, which this
+  // page itself had just stamped while applying the previous file, so in a catch-up only the oldest waiting file's state landed.
+  const tms=t=>{ const n=Date.parse(String(t||'')); return isFinite(n)?n:0; };
+  const fileTimeOf=(body, f)=>{
+    if(body && typeof body.asof==='string' && tms(body.asof)) return body.asof;
+    const c=[body&&body.created, f&&f.createdTime].filter(x=>typeof x==='string'&&tms(x)).sort((a,b)=>tms(a)-tms(b));
+    return c.length?c[0]:'';
+  };
+  const lastWilliamAt=row=>{ let t=''; for(const n of (Array.isArray(row&&row.notes)?row.notes:[])){ if(n&&n.who==='William'&&tms(n.at)>tms(t)) t=String(n.at); } return t; };
+  const rowStateAt=row=>{
+    if(!row) return '';
+    const u=String(row.updated||''), ext=(u && u!==String(row.syncAt||''))?u:'';
+    let best=''; for(const t of [String(row.stateAt||''), lastWilliamAt(row), ext]){ if(tms(t)>tms(best)) best=t; }
+    return best;
+  };
+  // notes / checks / api only ever GROW on a card that exists: entries are added when not already there, never replaced
+  const LISTS=['notes','checks','api'];
+  const addAll=(base, extra)=>{ const out=(Array.isArray(base)?base:[]).slice(); for(const e of (Array.isArray(extra)?extra:[extra])){ if(!out.some(x=>same(x,e))) out.push(e); } return out; };
+  const plain=v=>JSON.parse(JSON.stringify(v===undefined?null:v));
+  // Returns 'kept' when the op left the card exactly as it was (nothing written), 'stale' when its status / need / why were held back
+  // because the card's own word is newer (its notes and checks still land), nothing otherwise.
+  async function applyOp(op, now, ftime){
     if(!isObj(op)) throw new Error('op is not an object');
     const col=String(op.collection||'items'), id=String(op.id||''), kind=String(op.op||'upsert').toLowerCase();
     if(!COLL_OK.test(col)) throw new Error('collection not allowed: '+col);
@@ -779,24 +854,34 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(kind==='delete'){ await withRetry(()=>ref.delete()); return; }
     if(kind==='replace'){
       if(!isObj(op.data)) throw new Error('replace needs data');
-      const cur0=await withRetry(()=>ref.get());
-      if(cur0.exists && fileCreated && String((cur0.data()||{}).updated||'')>String(fileCreated)) return 'stale';   // the row moved on after this file was written
-      const data=Object.assign({}, op.data), old0=cur0.exists?(cur0.data()||{}).chargefac:null;
+      const cur0=await withRetry(()=>ref.get()); const curR=cur0.exists?cur0.data():null;
+      if(curR && ftime && tms(rowStateAt(curR))>tms(ftime)) return 'stale';   // the row moved on after this file was written
+      const data=plain(op.data), old0=curR?curR.chargefac:null;
+      for(const k of ['updated','stateAt','syncAt']) delete data[k];          // this page's own bookkeeping never comes from a file
       if(isObj(data.chargefac) && !cfOnCard(data.chargefac, data)){   // 11/12 third review: the file's badge is another chart's - the card's own goes over, if it fits
-        if(isObj(old0) && old0.name && cfOnCard(old0, data)) data.chargefac=old0; else delete data.chargefac;
+        if(isObj(old0) && old0.name && cfOnCard(old0, data)) data.chargefac=plain(old0); else delete data.chargefac;
       }
-      else if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=old0;   // a stronger stored badge stays (see keepsBadge)
-      await withRetry(()=>ref.set(Object.assign({},data,{updated:data.updated||now}))); return;
+      else if(isObj(data.chargefac) && keepsBadge(old0, data.chargefac, data)) data.chargefac=plain(old0);   // a stronger stored badge stays (see keepsBadge)
+      // 11/25: a replace rewrites the run's own card, never William's words - his notes stay, in time order with the new ones
+      if(curR){
+        const his=(Array.isArray(curR.notes)?curR.notes:[]).filter(n=>n&&n.who==='William');
+        if(his.length) data.notes=addAll(Array.isArray(data.notes)?data.notes:[], plain(his)).sort((a,b)=>tms(a&&a.at)-tms(b&&b.at));
+      }
+      data.updated=now; data.syncAt=now; data.stateAt=ftime||now;
+      await withRetry(()=>ref.set(data)); return;
     }
     if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
     const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
     const snap=await withRetry(()=>ref.get()); const cur=snap.exists?snap.data():null;
     if(!cur && kind==='update') throw new Error('no such row: '+col+'/'+id);
-    const patch=Object.assign({}, set);
-    // Stale-file guard (9/14): a run file only speaks for the moment it was written. If the row changed after that (William's Mark done /
-    // Post → Claude, a chat update), its status, need and why are newer than the file's — keep them; the file's appends still land.
-    const stale = !!(cur && fileCreated && String(cur.updated||'')>String(fileCreated));
-    if(stale){ for(const k of ['status','need','why','updated']) delete patch[k]; }
+    const patch=plain(set);
+    for(const k of ['updated','stateAt','syncAt']) delete patch[k];            // 11/2: `updated` never travels in a set; nor does this page's bookkeeping
+    // Stale-file guard (9/14, rebuilt 11/25): a run file only speaks for the moment its run read the board. If the card's own word is
+    // newer - William's Mark done / Post → Claude, a chat's direct write, or a later file already applied - its status, need and why
+    // stay; the file's notes and checks still land.
+    const stale = !!(cur && ftime && tms(rowStateAt(cur))>tms(ftime));
+    const setsState=['status','need','why'].some(k=>k in patch);
+    if(stale){ for(const k of ['status','need','why']) delete patch[k]; }
     // 11/12 second review: a stronger stored charge-facility badge stays (keepsBadge) - the row as it will be after this op decides the chart.
     // 11/12 third review: and a badge worked out on a chart the card will not have after this op is never written (cfOnCard) - a new row's too.
     // A clear (chargefac null - the helper's for a badge worked out on another chart) removes only a badge that is not on the card's charts:
@@ -806,52 +891,62 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(patch.chargefac===null){ if(cur && isObj(cur.chargefac) && cur.chargefac.name && cfOnCard(cur.chargefac, after)) delete patch.chargefac; }
       else if(!cfOnCard(patch.chargefac, after) || (cur && keepsBadge(cur.chargefac, patch.chargefac, after))) delete patch.chargefac;
     }
-    // 11/2 (William): a run file carries its own 'updated' in set{}, and writing it verbatim rolled the row's stamp BACKWARDS past
-    // William's Post - the card then read "updated <this morning>" and, worse, the stale guard above compares the row's stamp with
-    // the file's created time, so the next file looked newer than his answer and its status/need/why overwrote it. The stamp only
-    // ever moves forward now; an append that lands today stamps the row today (patch.updated=now below).
-    if(cur && patch.updated && String(patch.updated) < String(cur.updated||'')) delete patch.updated;
-    for(const k of Object.keys(app)){
-      const add=Array.isArray(app[k])?app[k]:[app[k]];
-      const base=Array.isArray(patch[k])?patch[k].slice():(cur&&Array.isArray(cur[k])?cur[k].slice():[]);
-      for(const e of add){ if(!base.some(x=>same(x,e))) base.push(e); }
-      patch[k]=base;
-    }
-    // 11/12 review: an op on an existing row that only sets the charge's facility badge (chargefac - tools/db/board_chargefac.py build)
-    // is display-only and leaves `updated` alone. Stamping it made every later run file in the same sync look stale to the 9/14 guard
-    // above on every card the badge file touched (their status / need / why were dropped), and moved a done card's "done <date>".
-    const setKeys=Object.keys(set);
-    const displayOnly=!!cur && setKeys.length>0 && setKeys.every(k=>k==='chargefac') && !Object.keys(app).length;
-    if(!('updated' in patch) && !displayOnly) patch.updated=now;
-    if(cur && !Object.keys(patch).length) return 'kept';   // the op only carried a badge the row keeps: nothing to write
-    if(cur){ await withRetry(()=>ref.update(patch)); }
-    else{
-      const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);
-      // 11/2 (William): the sweeps mint a new row id for a chart that already has a card (…-denials, …-open, a chart-number variant),
-      // so a question he had already answered on the old card came back on a brand-new one. The cards are NOT merged - a chart can
-      // carry several real work items - but a new card now says which other cards exist for the chart and how they ended, so the
-      // next run (and William) can see the answer is already on file. The board shows the same line on every card, live.
-      if(col==='items' && CHART.test(String(doc.amdid||'').trim())){
-        const sibs=chartSibs(doc.amdid, id);
-        if(sibs.length){
-          doc.twins=sibs.map(x=>x.id);
-          doc.notes=(Array.isArray(doc.notes)?doc.notes.slice():[]).concat([{who:'Claude',text:'Chart '+String(doc.amdid).trim()+' already has '+(sibs.length===1?'a card':sibs.length+' cards')+': '+sibsLine(sibs)+'. Check there before asking again — the answer may already be on file.',at:now}]);
-        }
+    // 11/25: notes / checks / api are append-only on a card that exists - whether they arrive in `append` or inside `set`. A run that
+    // creates a card sends the whole card in `set`; applied a second time (the registry did not record files until today) that set
+    // REPLACED the notes, and William's answer posted in between was gone. Entries already on the card are skipped, so applying a
+    // file twice changes nothing.
+    const lists={};
+    if(cur){ for(const k of LISTS){ if(Array.isArray(patch[k])){ lists[k]=patch[k]; delete patch[k]; } } }
+    for(const k of Object.keys(app)){ lists[k]=(lists[k]||[]).concat(Array.isArray(app[k])?app[k]:[app[k]]); }
+    for(const k of Object.keys(lists)){ patch[k]=addAll(Array.isArray(patch[k])?patch[k]:(cur&&Array.isArray(cur[k])?cur[k]:[]), lists[k]); }
+    if(cur){
+      // only what really differs is written; an op that changes nothing writes nothing and leaves the card's stamp alone
+      const diff={}; for(const k of Object.keys(patch)){ if(!same(cur[k], patch[k])) diff[k]=patch[k]; }
+      const applies = setsState && !stale && !!ftime;                              // this file's state is now the card's newest word
+      const nextState = applies ? ftime : rowStateAt(cur);                         // ... otherwise carry the card's own state time forward
+      if(!Object.keys(diff).length){
+        // nothing to write on the card - but a newer file that CONFIRMS the state still moves the state time, so an older file
+        // turning up later cannot undo it
+        if(applies && tms(ftime)>tms(cur.stateAt)) await withRetry(()=>ref.update({stateAt:ftime}));
+        return (stale&&setsState)?'stale':'kept';
       }
-      await withRetry(()=>ref.set(doc));
+      // 11/12 review: an op that only sets the charge's facility badge (chargefac) is display-only and leaves `updated` alone
+      const displayOnly=Object.keys(diff).every(k=>k==='chargefac');
+      if(!displayOnly){
+        diff.updated=now; diff.syncAt=now;                                         // syncAt marks this stamp as the page's own (see rowStateAt)
+        if(nextState && nextState!==String(cur.stateAt||'')) diff.stateAt=nextState;
+      }
+      await withRetry(()=>ref.update(diff));
+      return (stale&&setsState)?'stale':undefined;
     }
+    const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);
+    // 11/2 (William): the sweeps mint a new row id for a chart that already has a card (…-denials, …-open, a chart-number variant),
+    // so a question he had already answered on the old card came back on a brand-new one. The cards are NOT merged - a chart can
+    // carry several real work items - but a new card now says which other cards exist for the chart and how they ended, so the
+    // next run (and William) can see the answer is already on file. The board shows the same line on every card, live.
+    if(col==='items' && CHART.test(String(doc.amdid||'').trim())){
+      const sibs=chartSibs(doc.amdid, id);
+      if(sibs.length){
+        doc.twins=sibs.map(x=>x.id);
+        doc.notes=(Array.isArray(doc.notes)?doc.notes.slice():[]).concat([{who:'Claude',text:'Chart '+String(doc.amdid).trim()+' already has '+(sibs.length===1?'a card':sibs.length+' cards')+': '+sibsLine(sibs)+'. Check there before asking again — the answer may already be on file.',at:now}]);
+      }
+    }
+    doc.updated=now; doc.syncAt=now; if(col==='items') doc.stateAt=ftime||now;
+    await withRetry(()=>ref.set(doc));
   }
   async function runSync(reason){
     if(!db||!mcp||syncing) return; syncing=true; const go=goEl(); if(go) go.disabled=true;
     setSync('Checking the Drive inbox…','busy');
     try{
-      let lease=null; try{ lease=await db.doc(LEASE_PATH).acquire({holder:TAB, ttlMs:120000}); }catch(e){ lease=null; }
+      const leaseOn=async()=>{ try{ return await db.doc(LEASE_PATH).acquire({holder:TAB, ttlMs:120000}); }catch(e){ return null; } };
+      const lease=await leaseOn();
       if(lease && lease.acquired===false){ setSync('Another window is applying run updates right now — this one checks again later.'); return; }
-      let reg=await loadReg(); let existed=!!reg; reg=reg||{}; reg.applied=isObj(reg.applied)?reg.applied:{};
+      let reg=await loadReg(); reg=reg||{}; reg.applied=isObj(reg.applied)?reg.applied:{};
       if(Number(reg.codeRev||0) > CODE_REV){
         setSync('This tab is running an out-of-date copy of the board, so it will not apply run updates — reload the page.','err'); return;
       }
-      const files=await listInbox();
+      // 11/25: the whole inbox or nothing - listInbox throws when any page of the listing fails, and then nothing is applied or recorded
+      const inbox=await listInbox(); const files=inbox.files, listed=inbox.listed;
       const cutoff=Date.now()-MAX_AGE_DAYS*864e5;
       const todo=[], expired=[];
       for(const f of files){
@@ -859,40 +954,45 @@ button.btn:disabled{opacity:.5;cursor:default}
         const t=Date.parse(f.createdTime||'');
         if(isFinite(t) && t<cutoff) expired.push(f); else todo.push(f);
       }
+      let regErr='';
+      const keep=async()=>{ try{ await saveReg(reg, listed); regErr=''; }catch(e){ regErr=String(e&&e.code||e&&e.message||'error'); } };
       if(expired.length){
         const nowIso=new Date().toISOString();
         for(const f of expired) reg.applied[f.id]={title:f.title, at:nowIso, ops:0, failed:0, error:'skipped — older than '+MAX_AGE_DAYS+' days, so it cannot speak for a row now'};
-        try{ await saveReg(reg, existed); existed=true; }catch(e){}
+        await keep();
       }
+      const skippedTxt=expired.length?(' '+expired.length+' file'+(expired.length===1?'':'s')+' older than '+MAX_AGE_DAYS+' days '+(expired.length===1?'was':'were')+' skipped, not applied (see Applied files).'):'';
       lastSyncAt=Date.now();
       if(!todo.length){
-        reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); }catch(e){}
+        reg.lastCheck=new Date().toISOString(); await keep();
         renderSyncLog(reg);
-        setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+').','ok'); return;
+        setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+', '+files.length+' run file'+(files.length===1?'':'s')+' in the inbox).'+skippedTxt+(regErr?' The applied-files registry could not be saved ('+regErr+').':''), regErr?'err':'ok'); return;
       }
-      let nFiles=0, nOps=0, nFail=0, nKept=0, regErr='';
+      let nFiles=0, nOps=0, nFail=0, nKept=0, nStale=0;
       for(const f of todo){
         setSync('Applying '+f.title+' ('+(nFiles+1)+' of '+todo.length+')…','busy');
+        if(nFiles && nFiles%8===0) await leaseOn();                                // a long catch-up outlives one lease: renew it
         let body=null; const entry={title:f.title, at:new Date().toISOString(), ops:0, failed:0};
         try{ body=await readUpdate(f.id); }
         catch(e){ if(e&&e.code) throw e; entry.error='unreadable: '+String(e&&e.message||e).slice(0,120); }
         if(body){
           if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
           else{
-            const now=new Date().toISOString(); const errs=[];
-            // 11/12 third review: an op applyOp kept (it returns 'kept': nothing to write, the card's badge stays) is counted as kept, never as a change
-            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); if(r==='kept') entry.kept=(entry.kept||0)+1; else{ entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; } }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            const now=new Date().toISOString(), ftime=fileTimeOf(body, f); const errs=[];
+            // an op that left its card exactly as it was is counted as kept, never as a change; one whose status / need / why were held
+            // back because the card's own word is newer is counted as stale (its notes and checks still landed)
+            for(const op of body.ops){ try{ const r=await applyOp(op, now, ftime); if(r==='kept') entry.kept=(entry.kept||0)+1; else{ entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; } }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
             if(errs.length) entry.error=errs.join('; ');
           }
         }
-        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed; nKept+=Number(entry.kept||0);
-        try{ await saveReg(reg, existed); existed=true; regErr=''; }catch(e){ regErr=String(e&&e.code||e&&e.message||'error'); }
+        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed; nKept+=Number(entry.kept||0); nStale+=Number(entry.stale||0);
+        await keep();
       }
-      reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); regErr=''; }catch(e){ regErr=regErr||String(e&&e.code||e&&e.message||'error'); }
+      reg.lastCheck=new Date().toISOString(); await keep();
       renderSyncLog(reg);
-      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nKept?' ('+nKept+' kept: the card\'s badge stays)':'')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
+      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nKept?' ('+nKept+' already on the card)':'')+(nStale?' ('+nStale+' kept your newer word)':'')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+skippedTxt+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be read again next time (harmless: what is already on a card is skipped).':''), (nFail||regErr)?'err':'ok');
     }catch(e){
-      setSync(mcpMsg(e),'err');
+      setSync((e&&e.code)?mcpMsg(e):('Could not read the Drive inbox ('+String(e&&e.message||e).slice(0,140)+') — nothing was applied; will try again later.'),'err');
     }finally{ syncing=false; const g=goEl(); if(g) g.disabled=false; }
   }
   window.__ehpaRefresh=async function(){ if(!db) return 'reload'; const snap=await withRetry(()=>db.collection('items').get()); items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data())); render(); subscribe(); $('#conn').textContent='Live · refreshed '+when(new Date().toISOString()); if(mcp) await runSync('manual'); };
