@@ -99,112 +99,96 @@
    "lines": [
     {
      "chart": "17471643",
-     "card": "do-thien-17471643-medicare-number",
      "result": "handed back",
      "action": "sheet's Medicare number = the chart's (and the twin chart 17471791's); AMD 271 AAA 72 under both spellings; nothing written - new Medicare card needed; the two charts are one patient, merge is William's call; FCC Medicaid plan set once Medicare is right",
      "dollars": 218.0
     },
     {
      "chart": "17471791",
-     "card": "do-thein-17471791-medicare-number",
      "result": "handed back",
      "action": "twin of 17471643 - same number, same answer (one card for both)",
      "dollars": 71.59
     },
     {
      "chart": "17472826",
-     "card": "karnes-charles-douglas-denials",
      "result": "done",
      "action": "WOINS $310 + $111 voided, order BCBS seq 1, v19438893 + v19438892 sent once (204); balances back on insurance",
      "dollars": 421.0
     },
     {
      "chart": "17471238",
-     "card": "garcia-mercedes-17471238-medicare-number",
      "result": "done",
      "action": "Medicare Beneficiary ID written (chart held the older HIC number), 271 ACTIVE A/B 1999-11-01, v19446256 + v19448464 sent",
      "dollars": 410.0
     },
     {
      "chart": "20709",
-     "card": "hardy-kathleen-20709-medicare-number",
      "result": "done",
      "action": "Medicare Beneficiary ID written (older HIC number rejected), 271 ACTIVE 2017-03-01, 8 visits sent; Medicaid seq 2 + Humana seq 3 already on the chart",
      "dollars": 1778.0
     },
     {
      "chart": "17478414",
-     "card": "feed-visit-not-entered-1109-99306",
      "result": "done",
      "action": "claimocity_ingest --reprocess created v19462412 (11/09/2026 99306+99497, charges 23375502 $256 + 23375503 $133); 1123F $0.01 held by Pattern 2049 and taken off; I66.22 -> I10 (dx email sent)",
      "dollars": 389.0
     },
     {
      "chart": "17478414",
-     "card": "edwards-michael-admit-1108",
      "result": "done",
      "action": "CAP07 ins9521409 added (policy from Pam's admission record, begin 11/08/2026, no group), 271 ACTIVE, order 2,1; v19462412 + v19462163 sent to CHP (204); Medicare plan stays",
      "dollars": 530.0
     },
     {
      "chart": "12182505",
-     "card": "fitzpatrick-carol-12182505",
      "result": "done",
      "action": "Railroad number rewritten on ins9519511, order 3,2; 6 visits re-pointed and sent (204); RET01 271 AAA 51 (provider not on file) and AARP INACTIVE - watch the remits; Humana PDP is the drug plan, no payer",
      "dollars": 1210.0
     },
     {
      "chart": "17475908",
-     "card": "reffitt-sybil-17475908",
      "result": "done",
      "action": "WOINS $310 + $111 (TRICARE duplicate, remit not obtainable) on William's word",
      "dollars": 421.0
     },
     {
      "chart": "17477353",
-     "card": "wallace-diane-17477353",
      "result": "done",
      "action": "WOINS $109 (Humana CO-4 on the CCM add-on) on William's word",
      "dollars": 109.0
     },
     {
      "chart": "17471273",
-     "card": "hays-robert-17471273",
      "result": "done",
      "action": "WOINS $310 + 6 x $111 (Aetna finalized at $0) on William's word",
      "dollars": 976.0
     },
     {
      "chart": "17469397",
-     "card": "kuhne-kay-17469397-after-death",
      "result": "done",
      "action": "after-death charges 23367095 + 23367096 voided (write-offs and $0 payments voided first)",
      "dollars": 315.0
     },
     {
      "chart": "17475365",
-     "card": "olson-jesse-17475365-after-death",
      "result": "done",
      "action": "after-death charge 23367066 voided",
      "dollars": 206.0
     },
     {
      "chart": "17477267",
-     "card": "walden-martha-17477267",
      "result": "claude (crossover watch)",
      "action": "09/20/2026 99487 charge 23366938 voided on William's word; the August $809.20 Medigap coinsurance at Florida Blue stays on the crossover-wait rule",
      "dollars": 206.0
     },
     {
      "chart": "17477572",
-     "card": "stafford-shirley-17477572",
      "result": "done",
      "action": "I10 first on 3 charges, sent to CHP (204 x3); Pattern 2776 cleared by removing Z01.818 (I10, M17.12, R10.9 remain)",
      "dollars": 532.0
     },
     {
      "chart": "17473460",
-     "card": "smith-rodney-17473460-medicare-match",
      "result": "handed back",
      "action": "chart's number = the sheet's; AMD 271 AAA 73 and Medicare's plain check 73 (name mismatch), nothing written - photo of the Medicare card needed (23 visits)",
      "dollars": 690.59
