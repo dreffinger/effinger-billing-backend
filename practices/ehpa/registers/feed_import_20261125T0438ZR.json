@@ -1,0 +1,264 @@
+{
+ "created": [
+  {
+   "feed_id": "6a565f774b95b38f0194a2c7",
+   "pid": "pat17477128",
+   "visit": "vst19462410",
+   "charges": [
+    "charge23375495"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-25T04:38:58.628582",
+   "dos": "11/09/2026",
+   "dos_lines": [
+    "11/09/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 4 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260820",
+   "missing_dx": [
+    "S82.843D"
+   ],
+   "dx_instead": "I10",
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a565f774b95b38f0194a2c7",
+   "pid": "pat17477128",
+   "visit": "vst19462411",
+   "charges": [
+    "charge23375496"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-25T04:39:00.995148",
+   "dos": "11/19/2026",
+   "dos_lines": [
+    "11/19/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 10 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260820",
+   "missing_dx": [
+    "S82.843D"
+   ],
+   "dx_instead": "I10",
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  }
+ ],
+ "skipped": [],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.01",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [
+   "charge23373645",
+   "charge23373648",
+   "charge23373650",
+   "charge23373913",
+   "charge23373928",
+   "charge23374160",
+   "charge23374348",
+   "charge23375086",
+   "charge23375196"
+  ],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 2,
+   "fee": "0.01",
+   "since": "feed_import_20261113T0135Z.json",
+   "lines": 5,
+   "void": 5,
+   "open": 0
+  },
+  "budget": 0,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [
+   [
+    "pat17470875",
+    "2026"
+   ],
+   [
+    "pat17473571",
+    "2026"
+   ],
+   [
+    "pat17473962",
+    "2026"
+   ],
+   [
+    "pat17475778",
+    "2026"
+   ],
+   [
+    "pat17478210",
+    "2026"
+   ],
+   [
+    "pat21915",
+    "2026"
+   ],
+   [
+    "pat24368",
+    "2026"
+   ],
+   [
+    "pat25994",
+    "2026"
+   ],
+   [
+    "pat45010",
+    "2026"
+   ]
+  ],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [
+   "charge23374160",
+   "charge23374348",
+   "charge23375086"
+  ],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 0,
+  "unread": [],
+  "unread_prev": [],
+  "probe": "AdvancedMD held visit vst19462152 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261122T1240Z.json) - William looks",
+  "probe_kind": "claim_check",
+  "probe_since": "feed_inspector_20261111T1239Z.json",
+  "probe_words": "[Pattern 2049] Per Medicare guidelines the...",
+  "probe_tries": 7,
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "taken_lines": [],
+  "wrong_code_charge": "",
+  "n620_seen": "",
+  "left_off_cent": [],
+  "proof_aside": null,
+  "notes": [
+   "AdvancedMD held visit vst19460833 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T1239Z.json) - new lines carry $0.01, one line a run until one is billed",
+   "feed_inspector_20261121T1240Z.json names quality charge charge23375086, which no import register row carries - passed over"
+  ]
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "probe": "",
+  "probe_since": "",
+  "probe_words": "",
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "wrong_code_charge": "",
+  "notes": []
+ }
+}
