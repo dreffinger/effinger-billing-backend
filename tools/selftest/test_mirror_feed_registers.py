@@ -26,7 +26,12 @@
 #       never copied from the workspace; nothing is ever deleted; a broken JSON file stops nothing and is said; no odd input raises;
 #     - with no workspace registers folder the step says so and does nothing;
 #     - the runbook's step (e) and the three prompts that run the feed say what a run does with a line that ENDS 'TOP OF THE REPORT', in
-#       the words the step really prints (section 11 reads those four texts; nothing else in the repository is read).
+#       the words the step really prints (section 11 reads those four texts; nothing else in the repository is read);
+#     - (11/25/2026, the verification of the feed part) the helper step lets no OLDER workspace copy of a feed helper back over the
+#       repository's - the parser and the download step had no marker, and the marker of the shared helper list also stood in the copy from
+#       before (section 13 runs the step over the repository's real helpers, copied into the throwaway tree); and William's standing word
+#       feed_same_person.json is looked at by the same guard as the other standing files, so a broken hand edit never rides into a commit
+#       (section 14).
 # How the gate is proven, both ways offline: (1) a stand-in gate script that writes down how it was called (and one that fails);
 #   (2) the real phi_gate.py, copied into the throwaway tree (its tree mode works on the checkout it sits in) with an empty stand-in name
 #   map, on an empty `git init` of that folder: an invented date behind the words the import writes for a visit after a recorded death
@@ -694,6 +699,83 @@ check("12i a workspace register that cannot be read stops nothing: it is named f
 put(reg, MONF, "<<<<<<< Updated upstream\n{}\n=======\n{}\n>>>>>>> Stashed changes\n")
 check("12j main's copy with the conflict markers of a pull is found by the same guard as the other standing files (`mirror.py feed-registers` then ends non-zero and `sync` puts the committed copy back)",
       any(x.startswith(MONF + " (conflict markers)") for x in mirror.feed_standing_unreadable()), mirror.feed_standing_unreadable())
+
+# ---- 13. the helper step never lets an older workspace copy of a feed helper back over the repository's (11/25/2026, the verification) ----------
+# What it found: mirror.py refuses a workspace copy of a protected helper that lacks its marker - but the parser had NO marker (the shared helper list
+# said 'the parser has not changed since 10/28/2026', while the change of that day made it survive a broken message), and the marker of the shared
+# helper list itself ('compared byte for byte with the clone's copy') also stands in the copy from before. A workspace that held those two older copies
+# with a fresher file time (what a state bundle or a Drive copy laid over the clone looks like) put them back over the repository's: the parser stopped
+# on a broken message again, and nothing made the identity rule's helpers current in a workspace any more. The download step had no marker either.
+_real_helpers = os.path.join(ROOT, "scripts", "helpers")
+if not os.path.exists(os.path.join(_real_helpers, "claimocity_helpers_current.py")):
+    print("ok   13 (not run here: this tree holds no scripts/helpers - a copy of the two tools alone)")
+else:
+    _hsp = importlib.util.spec_from_file_location("claimocity_helpers_current_m", os.path.join(_real_helpers, "claimocity_helpers_current.py")); HC = importlib.util.module_from_spec(_hsp); _hsp.loader.exec_module(HC)
+    def _markers(name): return [m_ for m_ in (mirror.PROTECTED.get(name), getattr(mirror, "PROTECTED_ALSO", {}).get(name)) if m_]
+    _bare = [f_ for f_ in HC.FEED_HELPERS + ("claimocity_gcs.py",) if not _markers(f_) or not all(m_ in open(os.path.join(_real_helpers, f_)).read() for m_ in _markers(f_))]
+    check("13a every helper the feed's driver makes current, and the download step, is protected by a marker that stands in the repository's copy (the parser and the download step had none)", not _bare, _bare)
+    check("13b the parser's marker is the one the shared helper list names for it (without a clone the driver then notices an old parser - it said 'not checked'), and the shared list is protected by a SECOND sentence, one the copy from before does not carry",
+          HC.VERSION_LINES.get("feed_parse_dft_1028.py") == mirror.PROTECTED.get("feed_parse_dft_1028.py") and bool(HC.VERSION_LINES.get("feed_parse_dft_1028.py"))
+          and len(_markers("claimocity_helpers_current.py")) == 2 and "has not changed since 10/28/2026 and carries none" not in open(os.path.join(_real_helpers, "claimocity_helpers_current.py")).read(),
+          (HC.VERSION_LINES.get("feed_parse_dft_1028.py"), _markers("claimocity_helpers_current.py")))
+    ws, reg = setup("helpers"); _repo_h = os.path.join(mirror.ROOT, "scripts", "helpers"); os.makedirs(_repo_h)
+    _copy_gate = put(os.path.join(TMP, "helpers"), "copy_gate.py", "import sys, shutil\nshutil.copyfile(sys.argv[1], sys.argv[2])\n")      # a stand-in for the privacy gate's file mode: it carries the file as it is
+    OLD_ONES = ["feed_parse_dft_1028.py", "claimocity_helpers_current.py", "claimocity_gcs.py", "claimocity_match.py"]      # the last one has always had a marker: the control
+    def _older(name):
+        """the copy from before: the repository's text without the line that carries its marker - for the shared helper list without its SECOND sentence only, so that the copy still carries the first, as the copy on main from before this change does"""
+        gone = [m_ for m_ in ([getattr(mirror, "PROTECTED_ALSO", {}).get(name)] if name == "claimocity_helpers_current.py" else [mirror.PROTECTED.get(name)]) if m_]
+        return "".join(l_ for l_ in open(os.path.join(_real_helpers, name)).read().splitlines(True) if not any(m_ in l_ for m_ in gone)) + "# an older copy\n"
+    for f_ in OLD_ONES:
+        shutil.copyfile(os.path.join(_real_helpers, f_), os.path.join(_repo_h, f_)); _p = put(ws, f_, _older(f_)); _t = time.time() + 600; os.utime(_p, (_t, _t))      # the workspace's copy is the NEWER file
+    put(_repo_h, "some_run_helper.py", "# the repository's copy\n"); _p = put(ws, "some_run_helper.py", "# a helper a run improved\n"); os.utime(_p, (time.time() + 600,) * 2)      # not protected: carried as always
+    _g0 = mirror.GATE; mirror.GATE = _copy_gate; _buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(_buf): mirror.sync_helpers()
+        _herr = ""
+    except (Exception, SystemExit) as _e: _herr = "%s: %s" % (type(_e).__name__, _e)
+    finally: mirror.GATE = _g0
+    _hout = _buf.getvalue(); _same = {f_: open(os.path.join(_repo_h, f_)).read() == open(os.path.join(_real_helpers, f_)).read() for f_ in OLD_ONES}
+    check("13c a workspace that holds the OLDER copy of the parser, of the shared helper list and of the download step with a fresher file time: none of them goes back over the repository's copy - each is named STALE, like the helper that always had a marker "
+          "(the parser and the shared list went back: the repository's parser stopped on a broken message again, its shared list no longer named the identity rule's helpers)",
+          _herr == "" and all(_same.values()) and all("helpers: STALE workspace copy of %s skipped" % f_ in _hout for f_ in OLD_ONES), (_herr, _same, _hout[-700:]))
+    check("13d ... a helper that is not protected is still carried from the workspace when its file is the newer one, and the step's last line counts it",
+          open(os.path.join(_repo_h, "some_run_helper.py")).read() == "# a helper a run improved\n" and "helpers: 1 file(s) refreshed into scripts/helpers/" in _hout, _hout[-300:])
+    ws, reg = setup("helpers_current"); _repo_h = os.path.join(mirror.ROOT, "scripts", "helpers"); os.makedirs(_repo_h)
+    for f_ in OLD_ONES[:3]:
+        shutil.copyfile(os.path.join(_real_helpers, f_), os.path.join(_repo_h, f_)); _p = put(ws, f_, open(os.path.join(_real_helpers, f_)).read() + "# a line a run added\n"); os.utime(_p, (time.time() + 600,) * 2)
+    mirror.GATE = _copy_gate; _buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(_buf): mirror.sync_helpers()
+        _herr = ""
+    except (Exception, SystemExit) as _e: _herr = "%s: %s" % (type(_e).__name__, _e)
+    finally: mirror.GATE = _g0
+    check("13e a workspace copy that carries every marker (this version, with a line a run added) is carried as before - the markers keep an older copy out, never a current one",
+          _herr == "" and all(open(os.path.join(_repo_h, f_)).read().endswith("# a line a run added\n") for f_ in OLD_ONES[:3]) and "STALE" not in _buf.getvalue(), (_herr, _buf.getvalue()[-300:]))
+
+# ---- 14. William's standing word 'same person' is a standing file too: a broken copy never rides into a commit (11/25/2026, the verification) --------
+# feed_same_person.json is written by hand, on William's word, in the clone. A hand edit that went wrong (half written, the conflict markers of a
+# pull) was committed by `sync` like any other change: the guard looked at the six merged standing files only. The ingest of every later run then
+# found the file unreadable (it empties the workspace's copy and says so) - until a person repaired main.
+ws, reg = setup("yes_file"); put(reg, "feed_same_person.json", '{"pat9": {"feed_ids": ["x"], "approved_by": "invented"},'); put(reg, "claimocity_patient_map.json", {"feedA": "pat1"})
+check("14a a half-written feed_same_person.json in the clone is named by the same guard as the other standing files - `mirror.py feed-registers` then ends non-zero and `sync` puts the committed copy back (it was not looked at)",
+      mirror.feed_standing_unreadable() == ["feed_same_person.json (JSONDecodeError)"], mirror.feed_standing_unreadable())
+put(reg, "feed_same_person.json", "<" * 7 + " ours\n{}\n" + "=" * 7 + "\n{}\n" + ">" * 7 + " theirs\n"); _u1 = mirror.feed_standing_unreadable(); put(reg, "feed_same_person.json", ["pat9"]); _u2 = mirror.feed_standing_unreadable()
+put(reg, "feed_same_person.json", {"pat9": {"feed_ids": ["x"], "approved_by": "invented"}}); _u3 = mirror.feed_standing_unreadable(); put(os.path.join(ws, "registers"), "feed_same_person.json", {"pat7": {"feed_ids": ["y"], "approved_by": "from a restored workspace"}}); n, out = run()
+check("14b ... with conflict markers and as a JSON list too; a readable one is not named - and the step still never takes that file from a workspace (its home is main: the ingest copies main's file into the workspace)",
+      _u1 == ["feed_same_person.json (conflict markers)"] and _u2 == ["feed_same_person.json (no JSON object)"] and _u3 == [] and get(reg, "feed_same_person.json") == {"pat9": {"feed_ids": ["x"], "approved_by": "invented"}} and n == 0, (_u1, _u2, _u3, n, out))
+# ---- 15. the charts William called duplicates (feed_duplicate_charts.json) have their home on main too (11/25/2026, the integration) ---------------
+# claimocity_match.py reads the workspace's copy, which the ingest replaces with main's at every start. Like feed_same_person.json the file is written
+# by hand in the clone, on his word: the step never takes it from a workspace, and a broken copy in the clone is named before any commit.
+ws, reg = setup("dup_file"); put(reg, "feed_duplicate_charts.json", {"pat9": {"proper": "pat1", "approved_by": "invented"}}); put(reg, "claimocity_patient_map.json", {"feedA": "pat1"})
+put(os.path.join(ws, "registers"), "feed_duplicate_charts.json", {"pat7": {"proper": "pat2", "approved_by": "from a restored workspace"}}); n, out = run(); _d0 = mirror.feed_standing_unreadable()
+check("15a feed_duplicate_charts.json is never taken from a workspace (its home is main: the ingest copies main's file into the workspace), and a readable one is not named by the guard",
+      get(reg, "feed_duplicate_charts.json") == {"pat9": {"proper": "pat1", "approved_by": "invented"}} and n == 0 and _d0 == [], (n, out, _d0))
+put(reg, "feed_duplicate_charts.json", '{"pat9": {"proper": "pat1",'); _d1 = mirror.feed_standing_unreadable(); put(reg, "feed_duplicate_charts.json", ["pat9"]); _d2 = mirror.feed_standing_unreadable()
+check("15b ... and a half-written one, or one that is no JSON object, is named by the same guard as the other standing files - it never rides into a commit",
+      _d1 == ["feed_duplicate_charts.json (JSONDecodeError)"] and _d2 == ["feed_duplicate_charts.json (no JSON object)"], (_d1, _d2))
+check("15c the repository holds the file at its home, as an object (empty until William names a duplicate) - so a workspace's copy can never become main's by a copy that only fills what is missing",
+      os.path.isfile(os.path.join(ROOT, "practices", "ehpa", "registers", "feed_duplicate_charts.json")) and isinstance(json.load(open(os.path.join(ROOT, "practices", "ehpa", "registers", "feed_duplicate_charts.json"))), dict)
+      and isinstance(json.load(open(os.path.join(ROOT, "practices", "ehpa", "registers", "feed_same_person.json"))), dict))
 
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

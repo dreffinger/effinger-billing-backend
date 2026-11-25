@@ -33,7 +33,37 @@
 #   9 anything else -> NEW CHART (when name candidates stood beside it: "same-name charts not used", for William).
 #   0 not decided (a chart that could not be read; two dates or two spellings that point to two charts; no name; no Claimocity id; a
 #     name-and-date key that several Claimocity ids share without a real date to tie them - unless the rule gives every one of them,
-#     each weighed on its own, the SAME chart: shared_answer): no chart is chosen and none is made - William.
+#     each weighed on its own, the SAME chart: shared_answer; and the cases of RULES WITHOUT PROOF below): no chart is chosen and none
+#     is made - William.
+#   RULES WITHOUT PROOF (11/25/2026, the independent verification of this rule: such a rule could put a visit on ANOTHER person's
+#   chart). Rules 1 to 4 choose by what a chart itself shows - the Claimocity id, the same date, a number. Rules 5 to 8 choose by what
+#   the same-name charts LOOK LIKE ("ONE date", "the only name candidates", "no date"), and rules 6, 7 and 8 have nothing but the name:
+#     a) THE WAIT. While the same batch makes a new chart for another Claimocity id of this last name - a name candidate, or rule 3's
+#        relation: another first name under one real date (related) - the charts an answer by rules 5 to 8 rests on are about to
+#        change. Such a patient gets no chart in that run, its file is read again, and the next run weighs it against every chart of
+#        the batch (until then: of three new ids of one name the one without a date went, by rule 7, on the chart of whichever dated
+#        id sorted first). A NEW patient waits the same way for the new chart of the one before it (new_chart_waits: one person
+#        under two new ids got two charts - also two ids of rule 3's relation, which now wait too: two charts in one batch and one
+#        chart in two was the fault the wait was built for, and one chart with the FYI of rule 3 at the top is what William can
+#        still correct; two charts nobody looks at he cannot). A patient with proof never waits. A wait is no question for William;
+#        the chart it waits for that could NOT be made is one (claimocity_newcharts.py says it: WHY_WAIT_FAILED).
+#     b) THE PATIENT MAP. A chart of the group rule 6, 7 or 8 chooses from that the feed's patient map gives to ANOTHER Claimocity id
+#        is not taken on the name alone: nothing shows the two ids are one person (a chart with no birth date took every same-name
+#        patient that came, one run after the other - with a real date by rule 6, without one by rule 8). No chart, none made, for
+#        William; his answer goes into the repository's map. A chart nobody in the map owns - it was there before the feed, the
+#        patient of 11/8/2026 - is chosen as before. Rule 5 is NOT held back: the slip is evidence of its own (the full name and a
+#        date one keystroke from the chart's; it stands in the answer's evidence), and it is the case William's word is about -
+#        "where we know the correct dob but claimocity sends the wrong one".
+#     c) TWO OF ONE BATCH. Two feed patients of one batch whose real dates are FAR apart never both take one chart by rule 6, 7 or 8
+#        (that chart has no date to tell them apart): none of them takes it - William. One with proof of the chart keeps it. Two
+#        that MAY be one person - equal dates, a slip between them, no date on one side or on both - still take a chart together in
+#        one batch, as before (shared_answer); when they come in two runs, b) asks William about the second.
+#   A CHART WILLIAM CALLED A DUPLICATE (his word of 11/9/2026; registers/feed_duplicate_charts.json, read by claimocity_match.py) is
+#   never the chart a visit goes to: the PROPER chart stands in its place. What speaks for the duplicate - its name, its date, its
+#   numbers: what Claimocity knows that person by - speaks for the proper chart ("also"), and for rules 5 to 8 the two are ONE chart
+#   with the proper chart's own date. Until then the duplicate caught that patient's NEXT Claimocity id by rule 2, without a word.
+#   SEVERAL IDS UNDER ONE NAME, an id with proof: on a key several Claimocity ids share, an id whose own answer is a chart by rules 1
+#   to 4 keeps that chart (claimocity_resolve.py writes "by_proof"); an id without proof stays without one - William.
 #   The LIVE chart of a group: a real birth date before none, then the most recent charge that is not void, then the most charges, then
 #   the lowest chart id - never the order AdvancedMD lists them in. AdvancedMD lists 50 charts at most: where the list of name
 #   candidates may be cut short rule 6 ("the only name candidates") is not asked, and where full-name candidates may be missing too
@@ -48,8 +78,11 @@
 #   When a batch carries one Claimocity id with a real date and with
 #   none, the real one is used for every message; with two different real dates each is tried, they must not point to two charts, and
 #   a NEW chart is written with neither of them (which is right nobody knows: the placeholder date, face sheet needed).
-#   To William (top of the report, chart ids only): rule 9 beside same-name charts (a question), a new chart with no birth date (face
-#   sheet needed), rules 3, 6 and 8 (an FYI), rule 0. Rules 1, 2, 4, 5 and 7 are said in the digest's body.
+#   To William (top of the report, chart ids and Claimocity ids only): rule 9 beside same-name charts (a question), a new chart with
+#   no birth date (face sheet needed), rules 3, 6 and 8 (an FYI - it names the Claimocity id it is about, since two feed patients on
+#   one chart gave the same line twice), rule 0 - with the chart in question where the patient map or a second patient of the batch
+#   held the answer back; but not a wait and not a key whose ids each went to the chart their own proof names (PLAIN_WORDS: said in
+#   the body). Rules 1, 2, 4, 5 and 7 are said in the digest's body.
 # Never touches: anything. Pure functions - no AdvancedMD call, no file, no network, no clock (today's date is handed in), nothing
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
@@ -71,8 +104,12 @@ FLAG_NOT_USED = "same-name charts not used"
 FLAG_TWO_DATES = "Claimocity sent two birth dates"
 FLAG_NO_CHART_MADE = "new chart not made"
 FLAG_CUT = "list of same-name charts may be incomplete"      # a page of a lookup came back full (AdvancedMD lists 50 charts at most) and no narrower lookup brought the rest - or a lookup AdvancedMD answers went unanswered for this patient
-FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT]
+FLAG_DUPLICATE = "in the place of a chart William called a duplicate"      # the chosen chart stood in the place of a listed duplicate: that chart still stands in AdvancedMD (11/25/2026)
+FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT, FLAG_DUPLICATE]
                        + [FLAG_DATE + k for k in SLIP_KINDS + (FAR, FLAG_NO_FEED_DOB, FLAG_CHART_NO_DOB)])
+RULES_BY_PROOF = (1, 2, 3, 4)               # the rules that choose by what a chart itself shows: such an answer never waits, and the patient map never holds it back
+RULES_BY_CHARTS = (5, 6, 7, 8)              # the rules that choose by what the same-name charts LOOK LIKE: such an answer waits while the same batch makes a same-name chart
+RULES_NAME_ALONE = (6, 7, 8)                # ... and of those the ones with nothing but the name: held back where the patient map gives the chart to another Claimocity id (not 5: the slip is evidence of its own)
 EVIDENCE = ("mrn", "ssn", "member", "ssn4")                                   # strongest first
 EVIDENCE_WORDS = frozenset(EVIDENCE + tuple("slip:" + k for k in SLIP_KINDS))
 WHY_NEW = "new chart - no chart with this name"
@@ -87,8 +124,18 @@ WHY_DISAGREE = "the birth dates or names Claimocity sent point to different char
 WHY_SHARED = "several Claimocity ids under one name are not known to be one person"
 WHY_NO_ID = "the message carries no Claimocity id"
 WHY_NO_NAME = "Claimocity sent no last name or no first name"
-WHY_SAME_RUN = "a new chart is made in this run for another Claimocity id of this name - this one waits and the next run weighs it against that chart"
-WHY_WORDS = frozenset(list(WHY.values()) + [WHY_NEW_BESIDE, WHY_MAP, WHY_NOT_YET, WHY_UNREAD, WHY_DISAGREE, WHY_SHARED, WHY_NO_ID, WHY_NO_NAME, WHY_SAME_RUN])
+# (11/25/2026, the independent verification) The wait's words said "a new chart is made in this run for another Claimocity id of this name" - before
+# the new-chart step had made it, and also when AdvancedMD then refused it: untrue, run after run. They now say what is waited FOR, and
+# "last name" (the wait also holds for rule 3's relation, another first name); the new-chart step puts WHY_WAIT_FAILED in their place when
+# that chart could not be made. (Both read the same for one Claimocity id and for a key several ids share.)
+WHY_SAME_RUN = "waiting for the new chart of another Claimocity id of this last name in this batch - the next run decides, against the charts that are there then"
+WHY_WAIT_FAILED = "waiting for the new chart of another Claimocity id, which could not be made in this run - no chart until that chart is made"
+WHY_OWNED = "the chart that fits by the name alone belongs to another Claimocity id in the patient map - nothing shows the two are one person"
+WHY_FAR_PAIR = "another feed patient of this batch with a far-apart birth date fits the same chart, which has no birth date - nothing shows whose chart it is"
+WHY_EACH_PROOF = "several Claimocity ids under one name - each goes to the chart its own proof names"
+WHY_WORDS = frozenset(list(WHY.values()) + [WHY_NEW_BESIDE, WHY_MAP, WHY_NOT_YET, WHY_UNREAD, WHY_DISAGREE, WHY_SHARED, WHY_NO_ID, WHY_NO_NAME, WHY_SAME_RUN, WHY_WAIT_FAILED, WHY_OWNED, WHY_FAR_PAIR, WHY_EACH_PROOF])
+PLAIN_WORDS = frozenset([WHY_SAME_RUN, WHY_EACH_PROOF])      # rule 0 that is no question for William: a wait (the next run decides it), and a key whose ids each have their own chart
+ASKS = {WHY_OWNED: "same person or not?", WHY_FAR_PAIR: "whose chart is it?"}      # what William is asked where an answer was held back for a chart: his line names that chart
 FAIL_NO_PID = "no PID segment for this Claimocity id in the feed files"       # why the new-chart step made no chart (its failed rows)
 FAIL_NUMBER = "every chart number tried answered Duplicate chart"
 FAIL_REFUSED = "AdvancedMD refused the new chart"
@@ -300,9 +347,11 @@ def patients(key_ids, today8, ssn_of=None):
     carries two different Social Security numbers for them. A key that two patients share (one name, no birth date: not known to be one person) can
     carry only ONE chart (the import reads the chart by the key): each of them is weighed and decided on its own, and the key gets a chart only when
     the rule gives every one of them the same chart (shared_answer; 11/25/2026, review of the identity rule - until then such a key was decided for
-    nobody before anything was weighed, and neither visit was entered). A key that no Claimocity id carries, one a message without an id shares with
-    a Claimocity id under no real date (nobody can say whose it is), and one whose ids the feed proves to be two people (two different Social
-    Security numbers) are decided for nobody: no chart, none made, for William."""
+    nobody before anything was weighed, and neither visit was entered). A key that no Claimocity id carries, and one a message without an id shares
+    with a Claimocity id under no real date (nobody can say whose it is), are decided for nobody: no chart, none made, for William. A key whose
+    ids the feed itself proves to be two people (two different Social Security numbers) never gets ONE chart either and stands among the keys
+    nobody can decide together - but each of its ids is still weighed (it is among their shared keys as well): an id with proof of its own chart
+    keeps it (11/25/2026, the independent verification - until then neither of them was even weighed, run after run)."""
     tok = lambda k, i: i if i else "\x00" + k          # a message without an id is nobody's own: one token per key
     par = {}
     def find(x):
@@ -326,42 +375,82 @@ def patients(key_ids, today8, ssn_of=None):
             if ids: out.setdefault(r, {"ids": ids, "keys": [], "decide_keys": [], "shared_keys": []})["keys"].append(k)
         if len(roots) > 1:
             nines = {n for n in (_ssn_side(ssn_of(i))[0] for i in key_ids[k] if i) if n} if ssn_of else set()
-            if all(r in out for r in roots) and not real_dob(k.rpartition("|")[2], today8) and len(nines) < 2:      # every one of them can be weighed, and nothing says they are two people
+            if all(r in out for r in roots):                      # every one of them can be weighed, each on its own
                 for r in roots: out[r]["shared_keys"].append(k)
+                if real_dob(k.rpartition("|")[2], today8) or len(nines) > 1: undecided[k] = WHY_SHARED      # ... but the feed itself says they are two people: the key never gets ONE chart
             else: undecided[k] = WHY_SHARED
         elif not roots or roots[0] not in out: undecided[k] = WHY_NO_ID
         else: out[roots[0]]["decide_keys"].append(k)
     return sorted(out.values(), key=lambda p: p["ids"]), undecided
-def shared_answer(answers):
+def shared_answer(answers, apart=False):
     """The answer for a name-and-date key that several patients of one batch share (patients: one name, no real birth date - not known to be one
     person; the import can give the key only ONE chart). answers: what decide() answered for each of them, each weighed on its own. The key carries
     a chart only when every one of them was given that SAME chart - then under the weakest of their answers (the highest rule number: its flags say
     what was not known). Anything else - two charts, a chart and a new chart, a new chart for each (never ONE new chart for two ids nobody knows to
-    be one person, never two charts under one key), one of them not decided - is rule 0: no chart and none made, for William."""
+    be one person, never two charts under one key), one of them not decided - is rule 0: no chart and none made, for William.
+    11/25/2026 (the independent verification): apart - the feed itself shows the ids to be two people (patients): never ONE chart, whatever each
+    was given. One of them WAITS for a new chart of the batch (waits): the key waits with it, in the wait's own words, not for William - the
+    next run decides. Every one of them was held back for one and the same reason that names a chart (ASKS: the patient map, a far-apart pair):
+    the key says that reason. (claimocity_resolve.py still gives each id that has PROOF of its own chart that chart: "by_proof".)"""
     rs = list(answers); cands = _sorted_ids(i for r in rs for i in r["candidates"])
-    if rs and all(r["chart"] for r in rs) and len({r["chart"] for r in rs}) == 1:
+    if rs and not apart and all(r["chart"] for r in rs) and len({r["chart"] for r in rs}) == 1:
         a = dict(max(rs, key=lambda r: (r["rule"], 1 if r["for_william"] else 0, tuple(r["flags"]), tuple(r["evidence"]), tuple(r["group"]), r["feed_dob"])))      # (the same for every order of the answers)
         a["flags"] = list(a["flags"]); a["evidence"] = list(a["evidence"]); a["group"] = list(a["group"])
+    elif any(r["rule"] == 0 and r["why"] == WHY_SAME_RUN for r in rs): a = _answer(0, WHY_SAME_RUN)
+    elif rs and all(r["rule"] == 0 for r in rs) and len({r["why"] for r in rs}) == 1 and rs[0]["why"] in ASKS: a = _answer(0, rs[0]["why"], william=True)
     else: a = _answer(0, WHY_SHARED, william=True)
     a["candidates"] = cands; a["needs_activity"] = []; a["new_chart"] = False
     return a
+def related(p, q):
+    """Whether the new chart of patient q is a chart the rule would weigh patient p against (11/25/2026, the independent verification): a name of p
+    is a NAME CANDIDATE of a name of q - or, rule 3's relation, the two share the last name under another first name and q's chart is written
+    with a real birth date that p carries too (q has exactly ONE: with two dates, or none, its chart is written with no date rule 3 could go
+    by). p, q: {"names": [(last, first), ...], "dobs": [the REAL birth dates the batch carries for it]} - which dates are real is the caller's
+    to say (this file has no clock). Pure."""
+    kinds = {name_kind(str(l or ""), str(f or ""), str(ml or ""), str(mf or "")) for l, f in (p.get("names") or []) for ml, mf in (q.get("names") or [])}
+    if kinds & {"name", "full"}: return True
+    qd = sorted({_d8(d) for d in _list(q.get("dobs")) if _d8(d)})
+    return "surname" in kinds and len(qd) == 1 and qd[0] in {_d8(d) for d in _list(p.get("dobs"))}
 def new_chart_waits(patients):
     """One person under two NEW Claimocity ids in one batch (the second birth date a digit off, or none) got two new charts - where the same two
     messages in two batches got ONE: the second run finds the first one's new chart and the rule takes it (11/25/2026, review of the identity rule).
     patients: the patients of one batch that rule 9 gives a new chart, each {"names": [(last, first), ...], "real": the batch carries a real birth date
-    for it}. -> the positions of those whose new chart is NOT made in this run: a patient whose name is a name candidate of one whose chart is made.
-    The charts are made for the patients with a real birth date first (the chart the other is weighed against carries its date), then in the order
-    given. A patient that waits gets no chart in this run; the next run weighs it against the chart made now - and takes it, or makes a new chart
-    beside it and asks William. Pure."""
-    ps = [[(str(l or ""), str(f or "")) for l, f in (p.get("names") or [])] for p in patients]; made = []; wait = []
-    for i in sorted(range(len(ps)), key=lambda i: (0 if patients[i].get("real") else 1, i)):
-        if any(name_candidate(l, f, ml, mf) for l, f in ps[i] for j in made for ml, mf in ps[j]): wait.append(i)
+    for it, "dobs": [those real dates]}. -> the positions of those whose new chart is NOT made in this run: a patient the rule would weigh against
+    the chart of one whose chart IS made (related: a name candidate - or, since the independent verification of 11/25/2026, rule 3's relation;
+    without "dobs" only the name is asked). Never for one that itself waits: that one's chart is not made now, and the next run weighs it
+    against both. The charts are made for the patients with a real birth date first (the chart the other is weighed against carries its date),
+    then in the order given. A patient that waits gets no chart in this run; the next run weighs it against the chart made now - and takes it,
+    or makes a new chart beside it and asks William. Pure."""
+    ps = list(patients); made = []; wait = []
+    for i in sorted(range(len(ps)), key=lambda i: (0 if ps[i].get("real") else 1, i)):
+        if any(related(ps[i], ps[j]) for j in made): wait.append(i)
         else: made.append(i)
     return sorted(wait)
 def waits(d):
-    """The answer of a patient whose new chart waits for the next run (new_chart_waits): no chart, none made - and not for William, the next run decides."""
+    """The answer of a patient that waits for the next run - one whose new chart waits (new_chart_waits), and one whose answer rests on the same-name
+    charts while the batch makes another of them (claimocity_resolve.py): no chart, none made - and not for William, the next run decides."""
     a = _answer(0, WHY_SAME_RUN); a["candidates"] = list(d.get("candidates") or []); a["feed_dob"] = d.get("feed_dob") if d.get("feed_dob") in ("real", "none") else "none"
     return a
+def undecided(d, why, charts=None):
+    """The answer of a patient whose own answer d does not stand for a reason the rule sees only across the batch: no chart, none made, rule 0 under
+    the fixed words given, for William; charts - the chart(s) in question, named to him (without them: the charts d had considered)."""
+    if why not in WHY_WORDS: raise ValueError("not one of the fixed words")
+    a = _answer(0, why, william=True); a["candidates"] = _sorted_ids(charts if charts is not None else (d.get("candidates") or []))
+    a["feed_dob"] = d.get("feed_dob") if d.get("feed_dob") in ("real", "none") else "none"
+    return a
+def same_chart_far(patients):
+    """Two feed patients of ONE batch with far-apart real birth dates were both put on one chart that has no birth date (rule 6 twice): two people on
+    one chart, the second one's visit on the first one's plan (11/25/2026, the independent verification). patients: the patients of a batch, each
+    {"chart": the chart its answer names (or None), "rule": its rule number, "dobs": [its REAL birth dates]}. -> the positions of those whose answer
+    does not stand: a chart by the name alone (RULES_NAME_ALONE) that ANOTHER patient of the batch was given too - by any rule - while the two
+    are FAR apart: each carries a real date, and no date of the one equals, or is a slip from, a date of the other. A patient with proof of the
+    chart keeps it; two that may be one person (equal dates, a slip, no date on one side) are left as they are. Pure."""
+    def far(a, b):
+        a, b = {_d8(x) for x in _list(a) if _d8(x)}, {_d8(x) for x in _list(b) if _d8(x)}
+        return bool(a) and bool(b) and not any(x == y or slip(x, y) for x in a for y in b)
+    ps = list(patients)
+    return [i for i, p in enumerate(ps) if p.get("chart") and p.get("rule") in RULES_NAME_ALONE
+            and any(j != i and q.get("chart") == p["chart"] and far(p.get("dobs"), q.get("dobs")) for j, q in enumerate(ps))]
 
 # ---- decide() ---------------------------------------------------------------------------------------------------------------------------
 def _ids(cs): return [c["id"] for c in sorted(cs, key=lambda c: (chart_number(c["id"]), c["id"]))]
@@ -380,8 +469,13 @@ def _chosen(rule, group, flags, considered, d, today8):
     live = live_chart(group, today8); ev = list(live["ev"]); k = slip(d, live["dob"]) if d and live["dob"] else ""
     if k: ev.append("slip:" + k)
     a = _answer(rule, WHY[rule], live["id"], _date_flags(d, live["dob"]) if flags is None else flags, ev, considered, group, rule in (3, 6, 8))
+    if live["dup"]: a["flags"].append(FLAG_DUPLICATE)      # the chosen chart stood in the place of a chart William called a duplicate
     a["needs_activity"] = _ids([c for c in group if not c["act"]]) if len(group) > 1 else []      # the live chart of several needs their activity
     return a
+def _kind(last, first, c):
+    """What a chart is to one name of the feed: by its own name - or by the name of a chart William called its duplicate, where that says more."""
+    ks = {name_kind(last, first, l, f) for l, f in c["names"]}
+    return next((k for k in ("full", "name", "surname") if k in ks), "")
 def _one(last, first, d, cs, today8, cut=""):
     """Rules 1 to 9 for ONE name and ONE date of the feed (d = its real birth date, "" when it has none). cut: AdvancedMD's list of same-name charts
     may be cut short - "first": only charts under ANOTHER first name may be missing (rule 3 may not have seen them all: every rule is still asked, but
@@ -389,11 +483,14 @@ def _one(last, first, d, cs, today8, cut=""):
     were not asked for (AdvancedMD did not answer that lookup for this patient - the list is what these steps saw until 11/25/2026: every rule is
     asked, as it always was, but a NEW chart is flagged, for William); "name": name candidates may be missing (rule 6 says 'the ONLY name
     candidates': not asked); "full": full-name candidates may be missing too (rules 5, 7 and 8 say 'all' and 'ONE date': not asked either).
-    Rules 1 to 4 choose by what a chart itself shows and stay."""
-    kind = {c["id"]: name_kind(last, first, c["last"], c["first"]) for c in cs}
+    Rules 1 to 4 choose by what a chart itself shows and stay.
+    A chart that stands in the place of charts William called its duplicates (decide: "also") is to the rules that go by PROOF every name and
+    every date it is known under - the feed's date on the duplicate is 'the same birth date' (rules 2 and 3) - and to the rules that go by what
+    the charts look like (5 to 8) ONE chart with its own date."""
+    kind = {c["id"]: _kind(last, first, c) for c in cs}
     name_c = [c for c in cs if kind[c["id"]] in ("name", "full")]; full_c = [c for c in name_c if kind[c["id"]] == "full"]
-    sur_c = [c for c in cs if kind[c["id"]] == "surname" and d and c["dob"] == d]      # the same last name and exactly the date, under another first name
-    exact = [c for c in name_c if d and c["dob"] == d]
+    sur_c = [c for c in cs if kind[c["id"]] == "surname" and d and d in c["dates"]]      # the same last name and exactly the date, under another first name
+    exact = [c for c in name_c if d and d in c["dates"]]
     if any(not c["read"] for c in name_c + sur_c): return _answer(0, WHY_UNREAD, considered=name_c + sur_c, william=True)
     g = [c for c in name_c if "mrn" in c["ev"]]
     if g: return _chosen(1, g, [], name_c, d, today8)
@@ -434,11 +531,15 @@ def decide(feed, candidates, today8):
            of same-name charts may fall short (AdvancedMD answers 50 at most, and may not answer a lookup): see _one}
     candidates: the charts found by name, each {"id": "pat123", "name": "LAST,FIRST", "dob": YYYYMMDD or "", and EITHER the chart's own "mrn" / "ssn" /
            "members" OR the words worked out beforehand "ev" [...] / "contra" bool, "read": False when the chart could not be read, "last_dos" (YYYYMMDD)
-           and "charges" (how many) once its activity was read}
+           and "charges" (how many) once its activity was read, "owned": True when the feed's patient map gives this chart to ANOTHER Claimocity id
+           (claimocity_match.py says it), "also": [{"name", "dob"} of each chart William called a duplicate of this one - it stands in their place]}
     Answers {"chart": the chart id or None, "rule": 1..9 (0 = not decided: no chart and no new chart), "why": fixed words, "flags": [...], "evidence": [...]
-           of the chosen chart, "candidates": [chart ids considered], "group": [the charts the live one was taken from], "needs_activity": [charts of a
-           group of several whose activity was not given - read it and ask again; until then the chart is not final], "feed_dob": "real" | "none",
-           "for_william": bool, "new_chart": bool}."""
+           of the chosen chart, "candidates": [chart ids considered - for an answer held back for a chart (ASKS) the chart(s) in question], "group": [the
+           charts the live one was taken from], "needs_activity": [charts of a group of several whose activity was not given - read it and ask again;
+           until then the chart is not final], "feed_dob": "real" | "none", "for_william": bool, "new_chart": bool}.
+    11/25/2026 (the independent verification): an answer by the name alone (RULES_NAME_ALONE) whose group holds a chart that is "owned" is held back -
+           rule 0, WHY_OWNED, for William, those charts named: nothing shows the two Claimocity ids are one person. The whole group counts, not
+           only its live chart: the rule takes the live one of charts it calls ONE person's, and that person has another Claimocity id."""
     ids = [i for i in _list(feed.get("ids") if feed.get("ids") is not None else feed.get("id")) if i]
     if feed.get("names") is not None: names = [tuple(n) for n in feed["names"]]
     elif feed.get("name") is not None: names = [split_name(feed["name"])]
@@ -453,15 +554,19 @@ def decide(feed, candidates, today8):
         last, first = split_name(c["name"]) if c.get("name") is not None else (c.get("last") or "", c.get("first") or "")
         if "ev" in c: ev, contra = [e for e in EVIDENCE if e in (c.get("ev") or [])], bool(c.get("contra"))
         else: ev, contra = evidence({"ids": ids, "ssn": feed.get("ssn"), "members": feed.get("members")}, c)
-        dob = _d8(c.get("dob"))
-        cs.append({"id": cid, "last": last, "first": first, "dob": dob if real_dob(dob, today8) else "", "ev": ev, "contra": contra, "read": c.get("read", True) is not False,
-                   "act": "last_dos" in c or "charges" in c, "last_dos": c.get("last_dos") or "", "charges": c.get("charges") or 0})
+        dob = _d8(c.get("dob")); dob = dob if real_dob(dob, today8) else ""
+        also = [(split_name(x.get("name")), _d8(x.get("dob"))) for x in (c.get("also") if isinstance(c.get("also"), (list, tuple)) else []) if isinstance(x, dict)]      # the charts it stands in the place of
+        cs.append({"id": cid, "last": last, "first": first, "dob": dob, "ev": ev, "contra": contra, "read": c.get("read", True) is not False,
+                   "act": "last_dos" in c or "charges" in c, "last_dos": c.get("last_dos") or "", "charges": c.get("charges") or 0, "owned": c.get("owned") is True, "dup": bool(also),
+                   "names": [(last, first)] + [n for n, _d in also], "dates": {x for x in [dob] + [x for _n, x in also if real_dob(x, today8)] if x}})
     cs.sort(key=lambda c: (chart_number(c["id"]), c["id"]))
     if len({c["id"] for c in cs}) != len(cs): raise ValueError("the same chart was given twice")
     two = len(real) > 1; cut = feed.get("cut") if feed.get("cut") in ("", "first", "spelling", "name", None) else "full"      # anything else that is said about a cut list counts as the worst
     if not names: a = _answer(0, WHY_NO_NAME, william=True)
     else:
         a = _combine([_one(l, f, d, cs, today8, cut or "") for l, f in names for d in (real or [""])])
+        theirs = [c for c in cs if c["id"] in a["group"] and c["owned"]] if a["chart"] and a["rule"] in RULES_NAME_ALONE else []
+        if theirs: a = _answer(0, WHY_OWNED, considered=theirs, william=True)      # the name alone, and the patient map gives a chart of that group to another Claimocity id: not taken on the rule's own word
         if two and FLAG_TWO_DATES not in a["flags"]: a["flags"].append(FLAG_TWO_DATES)
     a["feed_dob"] = "real" if real and not (a["rule"] == 9 and two) else "none"      # a NEW chart of a patient with two real dates is written with none of them
     if a["rule"] == 9 and a["feed_dob"] == "none": a["for_william"] = True               # face sheet needed
@@ -481,17 +586,22 @@ def problems(d):
     if not isinstance(d.get("for_william"), bool): out.append("for_william")
     return out
 def william_lines(d, chart="", feed_id=""):
-    """What goes to William for one patient - the top of the report, one line each, chart ids and the Claimocity id only (a run turns it into a board
-    card with the names). d: an answer or a match-file entry; chart: the chart chosen, or the new chart once it is made ("" = not made yet)."""
+    """What goes to William for one patient - the top of the report, one line each, chart ids and Claimocity ids only (a run turns it into a board
+    card with the names). d: an answer or a match-file entry; chart: the chart chosen, or the new chart once it is made ("" = not made yet);
+    feed_id: the Claimocity id the line is about - or the list of them, when one answer stands for several ids.
+    11/25/2026 (the independent verification): the FYI of rules 3, 6 and 8 names the Claimocity id (two feed patients on one chart gave the same
+    line twice, and nobody could tell which id each was about); an answer held back for a chart (ASKS) names that chart and asks the question."""
     rule = d.get("rule"); flags = d.get("flags") or []; cands = [c for c in (d.get("candidates") or []) if isinstance(c, str) and re.fullmatch(r"pat[0-9]+", c)]; out = []
     why = d.get("why") if d.get("why") in WHY_WORDS else ""; chart = chart if re.fullmatch(r"pat[0-9]+", str(chart or "")) else ""      # a chart id or nothing: these lines are printed
+    ids = [i for i in _list(feed_id) if i] or [""]; who = "Claimocity id%s %s" % ("s" if len(ids) > 1 else "", ", ".join(show_id(i) for i in ids))
     made = ("new chart %s was made" % chart) if chart else "a new chart is needed"
     if rule == 0:
-        if why != WHY_SAME_RUN: out.append("no chart chosen and none made for Claimocity id %s: %s" % (show_id(feed_id), why))      # (a wait for the next run is no question for William)
-    elif rule in (3, 6, 8): out.append("%s %s (FYI)" % (chart or "a chart", why))
+        if why not in PLAIN_WORDS:      # (a wait for the next run is no question for William; nor is a key whose ids each went to the chart of their own proof)
+            out.append("no chart chosen and none made for %s: %s%s" % (who, why, " (chart%s %s) - %s" % ("s" if len(cands) > 1 else "", ", ".join(cands), ASKS[why]) if why in ASKS and cands else ""))
+    elif rule in (3, 6, 8): out.append("%s %s (FYI) - %s" % (chart or "a chart", why, who))
     elif rule == 9:
         if FLAG_NOT_USED in flags: out.append("%s beside %d same-name chart(s) (%s) with other birth dates and no number in common - same person or not?" % (made, len(cands), ", ".join(cands)))
         if FLAG_CUT in flags and FLAG_NOT_USED not in flags: out.append("%s although AdvancedMD's list of same-name charts may be incomplete - is there a chart of this patient already?" % made)
         if d.get("feed_dob") == "none": out.append("%s: Claimocity sent %s - face sheet needed" % (made, "two different birth dates" if FLAG_TWO_DATES in flags else "no birth date"))
-        if FLAG_NO_CHART_MADE in flags: out.append("the new chart for Claimocity id %s could NOT be made - its visits are not entered" % show_id(feed_id))
+        if FLAG_NO_CHART_MADE in flags: out.append("the new chart for %s could NOT be made - its visits are not entered" % who)
     return out

@@ -22,7 +22,10 @@ FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_insp
                 "claimocity_dx.py", "claimocity_recon.py", "feed_in1_intake.py", "pos61_monitor.py",
                 "deceased_guard.py")      # 11/25/2026: the import's care-management check and the insurance check load the guard - the copy that asks AdvancedMD's free check first
 # the version lines mirror.py protects (the self-test checks that the two lists agree); the import helper and the two drivers carry the
-# driver's own POS_RULE line. The parser has not changed since 10/28/2026 and carries none: without a clone it is not checked.
+# driver's own POS_RULE line. SINCE 11/25/2026 THE PARSER CARRIES A SENTENCE OF ITS OWN TOO: it had none ("not changed since 10/28/2026") although
+# that day's change made it survive a broken message - without a clone an old parser was not noticed, and the mirror let an older workspace copy
+# of it go back over the repository's. The same for this file: its own marker in mirror.py also stood in the copy from before, so the mirror
+# now asks a workspace copy of it for the sentence above as well (mirror.py PROTECTED_ALSO).
 VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.3"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
                 
                  "claimocity_verify.py": "the paid look-up is bought only for a chart that is KNOWN to be the feed's patient",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
@@ -32,6 +35,7 @@ VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.3"', 
                  "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
                  "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.2"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.3"',
                  "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
+                 "feed_parse_dft_1028.py": "EVERY MESSAGE THAT CANNOT BE ENTERED AS IT CAME IS COUNTED BY FILE DATE AND MESSAGE NUMBER",      # 11/25/2026 (the verification): the sentence only the parser that counts every message it cannot hand on to be entered has
                  "deceased_guard.py": 'COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):

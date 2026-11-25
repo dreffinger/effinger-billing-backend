@@ -172,7 +172,12 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # the AR ageing page: a reporting line never makes a visit read as denied (11/10/2026)
              "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")',
              # the one function the ingest and the retry share to make the feed helpers the repository's on every run (11/10/2026, reviewers C2 / W1)
+             # (11/25/2026: this sentence also stands in the copy from before that day's change - PROTECTED_ALSO below asks for a second one)
              "claimocity_helpers_current.py": "compared byte for byte with the clone's copy",
+             # 11/25/2026 (the verification of the feed part): the parser and the download step had NO marker. The parser of that day survives a broken message and
+             # counts every message that cannot be entered; the download step fetches a registered file again when the bucket's copy has another size. An older
+             # workspace copy of either went back over the repository's - the markers are sentences only those versions have
+             "feed_parse_dft_1028.py": "EVERY MESSAGE THAT CANNOT BE ENTERED AS IT CAME IS COUNTED BY FILE DATE AND MESSAGE NUMBER", "claimocity_gcs.py": "A REGISTERED FILE WHOSE COPY IN THE BUCKET HAS ANOTHER SIZE IS FETCHED AGAIN",
              # 11/25/2026 (independent review of the I10 rule): the diagnosis cache step never caches a fault as 'not in the list' and always resolves I10; the
              # reconciliation never hands the row of a message without a charge line to another message. A workspace copy from before that must not come back
              # over them - the markers are a sentence and a line only the fixed versions have
@@ -191,6 +196,10 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # that they agree with this table; when a rule changes, change the line in the helper and here together, and in
              # boards/templates/tracker.html when it is a board rule)
              "facesheets_needed.py": 'FACESHEETS_NEEDED_VERSION = "2026-11-25.1"', "board_apply.py": 'BOARD_APPLY_VERSION = "2026-11-25.1"'}
+# 11/25/2026 (the verification): a SECOND sentence a workspace copy must carry as well, for a helper whose marker above also stands in an older copy.
+# The shared helper list grew that day from 8 to 17 helpers (the identity rule's steps travel with the others) and its marker stayed the same: an
+# older copy with a fresher file time went back over the repository's, and nothing made the identity rule's helpers current in a workspace any more.
+PROTECTED_ALSO = {"claimocity_helpers_current.py": "SINCE 11/25/2026 THE PARSER CARRIES A SENTENCE OF ITS OWN TOO"}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
@@ -203,10 +212,12 @@ def sync_helpers():
             dst = os.path.join(dst_dir, name)
             if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
                 continue
-            marker = PROTECTED.get(name)
-            if marker and os.path.exists(dst) and marker not in open(src, errors="replace").read():
-                print("helpers: STALE workspace copy of %s skipped (no '%s' - the repo copy is newer code); copy the repo's back over the workspace" % (name, marker))
-                continue
+            markers = [m for m in (PROTECTED.get(name), PROTECTED_ALSO.get(name)) if m]
+            if markers and os.path.exists(dst):
+                text = open(src, errors="replace").read(); marker = next((m for m in markers if m not in text), None)
+                if marker:
+                    print("helpers: STALE workspace copy of %s skipped (no '%s' - the repo copy is newer code); copy the repo's back over the workspace" % (name, marker))
+                    continue
             gate(src, dst); n += 1
     print("helpers: %d file(s) refreshed into scripts/helpers/" % n)
 
@@ -253,11 +264,14 @@ def sync_helpers():
 #     like the others.
 # Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word -, quality_exceptions.json and, since
 # 11/25/2026, feed_same_person.json - William's standing word that a chart is a feed patient; the ingest copies main's file into the workspace).
+# feed_same_person.json is written by hand in the clone, so the guard below looks at it like at a merged standing file (FEED_HOME_CHECKED): a half-written
+# edit or the conflict markers of a pull never ride into a commit (11/25/2026, the verification - `sync` committed such a file like any other change).
 # Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror: it never raises. (Only the
 # subcommand `feed-registers` ends non-zero, AFTER the step, while a standing file on main is no longer JSON - feed_standing_unreadable.)
 # The sweep's stamp carries seconds and, when two runs start in one second, "_2", "_3" ... behind it (feed_order_sweep.py).
 FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon|identity|unreadable)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
 FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json", "feed_in1_intake.json", "feed_dx_needed.json", "pos61_monitor.json")
+FEED_HOME_CHECKED = ("feed_same_person.json", "feed_duplicate_charts.json")      # home is main and never merged from a workspace - but checked for being a JSON object before any commit (the second one: the charts William called duplicates, 11/25/2026 - claimocity_match.py never offers such a chart)
 def _merge_ingest(main, ws):
     out = dict(main); files = dict(main.get("files") or {})
     for k, v in (ws.get("files") or {}).items():
@@ -448,10 +462,10 @@ def feed_standing_unreadable():
     add their rows to the file register at the same place leave conflict markers in it after a pull with rebase. The step above names such
     a file and leaves it for a person - but `feed-registers` ended 0, so the run's own commit of the folder followed and put the markers
     on main, where the ingest of every later container stops before it reads a file: the feed is down until a person repairs main.) It
-    looks at every standing file main holds, also one the workspace does not have - the step above never opens main's copy of those.
-    Never raises."""
+    looks at every standing file main holds, also one the workspace does not have - the step above never opens main's copy of those -
+    and at William's standing word feed_same_person.json (FEED_HOME_CHECKED). Never raises."""
     out = []
-    for name in _FEED_MERGE:
+    for name in tuple(_FEED_MERGE) + FEED_HOME_CHECKED:
         p = os.path.join(ROOT, "practices", "ehpa", "registers", name); raw = None
         if not os.path.lexists(p): continue
         try:

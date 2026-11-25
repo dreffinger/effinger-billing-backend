@@ -9,8 +9,10 @@
 #    patients share (one name, no birth date) can carry only ONE chart: each of them is weighed here like any other patient, and
 #    what was gathered for each is written under that key ("sharers") - claimocity_resolve.py gives the key a chart only when the
 #    rule gives every one of them the same chart (11/25/2026, review of the identity rule: until then nothing was looked up for
-#    them and neither visit was entered). A key that no Claimocity id carries, or whose ids the feed itself shows to be two people,
-#    is decided for nobody (feed_identity.patients).
+#    them and neither visit was entered). A key that no Claimocity id carries is decided for nobody (feed_identity.patients). A
+#    key whose ids the feed itself shows to be two people (two Social Security numbers) never gets ONE chart - it is marked
+#    "apart" - but each of its ids is weighed like any other patient, so that an id with PROOF of its own chart keeps it
+#    (11/25/2026, the independent verification: until then neither of them was weighed, run after run).
 #  2 the charts (by_name), three lookups for each name of the feed: "LAST, FIR%" as before; the last name under ANY first name
 #    ("LAST%" - its words with a % for whatever stands between them: a suffix only the chart carries, a second word, a hyphen
 #    written as a space, and the charts of rule 3); and the LETTERS of the last name with a % between them - every chart the rule
@@ -35,6 +37,20 @@
 #  3 each kept chart is read ONCE (getdemographic: additionalmrn, ssn, the plans' subscribernum) and weighed against the feed's own
 #    Claimocity id, PID-19 and insurance numbers (IN1-49, else IN1-36) from the raw .hl7 files. The numbers stay in memory: the match
 #    file gets the chart id, its name and date, and the evidence WORDS (mrn / ssn / member / ssn4, and whether a number contradicts).
+#  4 what this workspace already knows about a chart (11/25/2026, the independent verification - two files this step only READS):
+#    - registers/claimocity_patient_map.json, the feed's patient map ({Claimocity id: chart} - every id the feed has put on a chart):
+#      a chart it gives to ANOTHER Claimocity id than this patient's is marked "owned". The rule does not take such a chart on the
+#      name alone (rules 6 to 8: a chart with no birth date took every same-name patient that came) - feed_identity.decide.
+#    - registers/feed_duplicate_charts.json, the charts William called duplicates ({"pat<duplicate>": {"proper": "pat<proper>",
+#      "approved_by": his word and its date}} - its home is the repository, the ingest copies it here; his word of 11/9/2026: "if a
+#      duplicate chart shows up with visits in it just put the visits in the proper chart"). A listed duplicate is never offered as
+#      a candidate: the PROPER chart stands in its place. What speaks for the duplicate - its name, its date, its numbers - is
+#      written to the proper chart's row ("also", the evidence words), and an id the map still gives to the duplicate counts as the
+#      proper chart's. Until then the duplicate, still standing in AdvancedMD, caught that patient's NEXT Claimocity id by name
+#      and the same date. An entry without approved_by, or of another shape, counts for nothing (two charts listed as each other's
+#      duplicate too).
+#    A file that is not there says nothing. A file that cannot be read is said in ONE line that starts "MATCH: " and nothing is
+#    decided on it: the step goes on as without the file.
 #  One of the two lookups the step has always made, or a chart read, that AdvancedMD does not answer (a fault, a page that is no
 #  answer, nothing at all, a row that cannot be read as a chart) is asked once more; not answered again, the step STOPS (exit 1) with
 #  nothing decided - the driver stops the ingest and the next run reads the files again. A lookup that answers with no chart at all
@@ -76,6 +92,38 @@ for m in msgs:
     pid = str(m["pid"]) if str(m["pid"]).strip() else ""      # an empty PID-3 is no Claimocity id: it is never written among the ids (the patient map must not learn it)
     if pid not in KEYS.setdefault(k, []): KEYS[k].append(pid)
 PATIENTS, UNDECIDED = FI.patients(KEYS, TODAY8, ssn_of=lambda i: SSN.get(i))
+# ---- what this workspace already knows about a chart (11/25/2026, the independent verification): two registers this step only reads ----
+def register(path):
+    """A register of this workspace -> (its content, "") - ({}, "") when the file is not there - (None, why) when it is there and is no JSON object."""
+    if not _os.path.exists(path): return {}, ""
+    try:
+        with open(path) as fh: d = json.load(fh)
+        if not isinstance(d, dict): raise ValueError("no JSON object")
+        return d, ""
+    except Exception as e: return None, type(e).__name__
+MAPF = "registers/claimocity_patient_map.json"; DUPF = "registers/feed_duplicate_charts.json"; CHART_ID = re.compile(r"pat[0-9]+")
+_doc, _why = register(MAPF)
+if _doc is None: print("MATCH: %s could not be read (%s) - which chart the feed already uses for another Claimocity id is not known in this run: nothing is held back for it, and a chart is chosen by the name alone as before (rules 6 to 8)." % (MAPF, _why))
+OWNERS = collections.defaultdict(set)      # chart id -> the Claimocity ids the feed's patient map gives that chart to
+for _f, _c in (_doc or {}).items():
+    if isinstance(_f, str) and _f and isinstance(_c, str) and CHART_ID.fullmatch(_c): OWNERS[_c].add(_f)
+_doc, _why = register(DUPF)
+if _doc is None: print("MATCH: %s could not be read (%s) - nothing is decided on it: no chart counts as a duplicate in this run, and a chart William called a duplicate is weighed like any other." % (DUPF, _why))
+DUP = {}                                   # a chart William called a duplicate -> the chart he called the proper one (an entry without his word, or of another shape, counts for nothing)
+for _k, _v in (_doc or {}).items():
+    if (isinstance(_k, str) and CHART_ID.fullmatch(_k) and isinstance(_v, dict) and isinstance(_v.get("approved_by"), str) and _v["approved_by"].strip()
+            and isinstance(_v.get("proper"), str) and CHART_ID.fullmatch(_v["proper"]) and _v["proper"] != _k): DUP[_k] = _v["proper"]
+def proper(cid):
+    """The chart that stands in the place of a listed duplicate - the end of the chain when the proper chart is itself listed as a duplicate. None for
+    a chart that is not listed, and for charts listed in a circle (which of them is the proper one nobody knows: they are weighed like any other)."""
+    seen = [cid]
+    while seen[-1] in DUP:
+        if DUP[seen[-1]] in seen: return None
+        seen.append(DUP[seen[-1]])
+    return seen[-1] if len(seen) > 1 else None
+def owned(cid, ids):
+    """Whether the patient map gives this chart - or a listed duplicate it stands for - to a Claimocity id that is not one of this patient's own."""
+    return bool(set().union(OWNERS.get(cid, set()), *[OWNERS.get(d, set()) for d in DUP if proper(d) == cid]) - set(ids))
 amd.login_cached()
 def answered(r):
     """An AdvancedMD answer that can be read: its envelope is there and it carries no Fault ELEMENT (the letters in a name are not one)."""
@@ -215,17 +263,28 @@ for p in PATIENTS:
         for r in listed:
             kind = FI.name_kind(last, first, *FI.split_name(r.get("name") or ""))
             if kind in ("name", "full") or (kind == "surname" and FI.amd_dob(r.get("dob")) in real): found.setdefault(r["id"], r)
-    look = []
-    for cid in sorted(found, key=lambda c: (FI.chart_number(c), c)):
-        r = found[cid]; c = chart(cid)
+    by_number = lambda c: (FI.chart_number(c), c); row_of = collections.OrderedDict()      # the chart a row is weighed under -> the row
+    for cid in sorted(found, key=lambda c: (proper(c) is not None, by_number(c))):      # the charts that stand for themselves first, then the listed duplicates
+        r = found[cid]; c = chart(cid); stands = proper(cid)
         ev, contra = FI.evidence(feed, {"mrn": c["mrn"], "ssn": [r.get("ssn") or "", c["ssn"]], "members": c["members"]})
-        look.append({"pid": cid, "name": r.get("name") or "", "dob": FI.amd_dob(r.get("dob")), "ev": ev, "contra": contra})
+        row = {"pid": stands or cid, "name": r.get("name") or "", "dob": FI.amd_dob(r.get("dob")), "ev": ev, "contra": contra}
+        if stands is None: row_of[cid] = row; continue
+        # 11/25/2026 (the independent verification): a chart William called a duplicate is never offered as a candidate - the proper chart stands in its
+        # place. What speaks for the duplicate (its name and date - what Claimocity knows that person by - and its numbers) speaks for the proper chart:
+        # it goes to the proper chart's own row, or, when the lookups for this name did not list the proper chart, it IS that chart's row.
+        its = row_of.setdefault(stands, row); its.setdefault("also", []).append({"name": row["name"], "dob": row["dob"]})
+        its["ev"] = [e for e in FI.EVIDENCE if e in its["ev"] or e in ev]; its["contra"] = bool(its["contra"] or contra)
+        print("  %s: %s is a chart William called a duplicate - it is not offered; the proper chart %s stands in its place" % (who, cid, stands))
+    look = []
+    for cid in sorted(row_of, key=by_number):
+        row_of[cid]["owned"] = owned(cid, ids); look.append(row_of[cid])      # owned: the feed's patient map gives this chart to ANOTHER Claimocity id - the rule does not take it on the name alone
     gathered = {"lookup": look, "cut": cut, "every_spelling": bool(spelt) and all(spelt)}      # every_spelling False: this patient was weighed with the lookups the step has always made only
     mine = []      # where what was gathered for this patient is written: under its own keys, and among the "sharers" of a key it shares
     for k in p["decide_keys"]:
         out[k] = waiting(FI.WHY_NOT_YET, feed_ids=[i for i in KEYS[k] if i], decided_for=ids, candidates=[c["pid"] for c in look], feed_dob="real" if real else "none", **gathered); mine.append(out[k])
     for k in p["shared_keys"]:      # a key several patients share: what was gathered for EACH of them, under the key - claimocity_resolve.py decides each and writes a chart only when they all get the same one
         e = out.setdefault(k, waiting(FI.WHY_NOT_YET, feed_ids=[i for i in KEYS[k] if i], feed_dob=dated(k), sharers=[]))
+        if k in UNDECIDED: e["apart"] = True      # the feed itself shows the ids of this key to be two people (feed_identity.patients): the resolve step never gives it ONE chart - an id with proof of its own chart still keeps it
         e["sharers"].append(dict({"ids": ids}, **gathered)); mine.append(e["sharers"][-1]); e["candidates"] = sorted(set(e["candidates"]) | {c["pid"] for c in look}, key=lambda c: (FI.chart_number(c), c))
     weighed += 1; with_charts += 1 if look else 0; plain += [mine] if spelt and not gathered["every_spelling"] else []
     print("  %s%s: %d chart(s) to weigh %s%s%s" % (who, " (+%d more id(s))" % (len(ids) - 1) if len(ids) > 1 else "", len(look), [c["pid"] for c in look], " - AdvancedMD's list of same-name charts may be incomplete (%s)" % cut if cut else "",

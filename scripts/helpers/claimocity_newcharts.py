@@ -19,6 +19,16 @@
 # line hold chart ids, Claimocity ids and the fixed words of feed_identity.py - never a piece of the name (until 11/25/2026 a failed
 # row kept the first six characters of the name key and AdvancedMD's own words, and a plan row could keep AdvancedMD's answer).
 # Each created row carries rule, why, flags, dob (real / none) and for_william, as the identity rule gave them.
+# A plan row holds the carrier code the feed's payer was mapped to, AdvancedMD's plan id and its place in the order - nothing of the
+# feed's own payer text (11/25/2026, the independent verification: until then "from" kept the first 30 characters of the IN1 carrier
+# field, and a field that carried more than a payer - a patient's name behind it - went to the repository as it stood).
+# THE PATIENT THAT WAITS FOR A CHART OF THIS RUN (11/25/2026, the independent verification). The resolve step lets a patient wait
+# for the new chart of another Claimocity id BEFORE this step has made that chart; its entries name the ids it waits for
+# ("waits_for"). When that chart could NOT be made (AdvancedMD refused it; no free chart number; no PID segment) this step, which
+# knows it, puts the fixed words WHY_WAIT_FAILED on the waiting entries and marks them for William - one line "FOR WILLIAM: ..."
+# beside the first id's own "could NOT be made". Until then the waiting id said in every run that a new chart "is made in this
+# run" for the other one, which was not true, and was never a question for William. No chart is made for the waiting patient on
+# a guess: when the first one's chart is made, the wait goes on as before - one run, a plain line.
 # Proven 10/28/2026 on pat17478199 (chart F1028-01). Never touches existing charts.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
@@ -173,7 +183,7 @@ for ids, keys in todo.items():
             seen.add(code)
             try:
                 insid, seq = add_ins.add(pid, CODE2CAR[code], member, finclass="CC")
-                if insid: rec["plans"].append({"code": code, "ins": insid, "seq": seq, "from": payer[:30]})
+                if insid: rec["plans"].append({"code": code, "ins": insid, "seq": seq})      # (11/25/2026: no "from" - the feed's own payer text can carry more than a payer, and this register travels to the repository)
                 else: rec["plans"].append({"code": code, "err": FI.PLAN_NOT_ADDED})      # add_ins answers (None, AdvancedMD's own words) - words that can name the member number
             except Exception as e:
                 rec["plans"].append({"code": code, "err": "%s (%s)" % (FI.PLAN_NOT_ADDED, type(e).__name__)})
@@ -183,4 +193,18 @@ for ids, keys in todo.items():
     for line in FI.william_lines(dict(v, feed_dob=dobkind, flags=rec["flags"]), pid, fid): print("FOR WILLIAM: " + line)      # chart ids only - they belong at the top of the report
     save()
     time.sleep(0.5)
+# ---- the patients that wait for a chart of this run (11/25/2026, the independent verification) -----------------------------------------------
+# claimocity_resolve.py wrote on every entry that waits the Claimocity ids whose new chart it waits for ("waits_for"). A chart was made for
+# an id when an entry decided for it now carries "resolved". Where one of the awaited charts was NOT made the wait's own words would say what
+# is not true: the entry gets the fixed words for it and goes to William - no chart is made for the waiting patient here.
+has_chart = {i for v in MATCH.values() if v.get("resolved") for i in (v.get("decided_for") or [])}; told = set()
+for k, v in MATCH.items():
+    awaited = [i for i in (v.get("waits_for") or []) if isinstance(i, str)] if isinstance(v.get("waits_for"), list) else []
+    if v.get("rule") != 0 or v.get("why") != FI.WHY_SAME_RUN or not awaited or all(i in has_chart for i in awaited): continue
+    v["why"] = FI.WHY_WAIT_FAILED; v["for_william"] = True; v["resolution"] = "not decided: %s - no chart chosen, none made" % FI.WHY_WAIT_FAILED
+    ids = tuple(v.get("decided_for") or v.get("feed_ids") or [])
+    if ids not in told:      # (said once for a patient that came under several name-and-date keys)
+        told.add(ids)
+        for line in FI.william_lines(v, "", list(ids)): print("FOR WILLIAM: " + line)
+if told: save()
 print("DONE created", len(reg["created"]), "failed", len(reg["failed"]))
