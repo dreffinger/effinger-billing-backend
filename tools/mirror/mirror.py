@@ -137,7 +137,13 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
              "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
-             "sweep_full.py": "claim_status_sweep.main("}
+             "sweep_full.py": "claim_status_sweep.main(",
+             # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the
+             # 'current face sheets needed' email and the board rules it is worked out with. A workspace copy of an earlier version must
+             # never go back on main - the markers are the helpers' own version lines (tools/selftest/test_facesheets_needed.py checks
+             # that they agree with this table; when a rule changes, change the line in the helper and here together, and in
+             # boards/templates/tracker.html when it is a board rule)
+             "facesheets_needed.py": 'FACESHEETS_NEEDED_VERSION = "2026-11-25.1"', "board_apply.py": 'BOARD_APPLY_VERSION = "2026-11-25.1"'}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
