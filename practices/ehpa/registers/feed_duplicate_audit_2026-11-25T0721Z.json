@@ -1,0 +1,220 @@
+{
+ "stamp": "2026-11-25T0721Z",
+ "audited": 77,
+ "duplicates": [
+  {
+   "F": "17478216",
+   "O": "21875",
+   "test": "same birth date",
+   "F_charges": 2,
+   "F_open": 315.0,
+   "O_charges": 22,
+   "O_open": 0.0,
+   "older_history": "21875"
+  },
+  {
+   "F": "17478216",
+   "O": "17477499",
+   "test": "same birth date",
+   "F_charges": 2,
+   "F_open": 315.0,
+   "O_charges": 3,
+   "O_open": 300.0,
+   "older_history": "17477499"
+  },
+  {
+   "F": "17478345",
+   "O": "21798",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 91,
+   "O_open": 75.85,
+   "older_history": "21798"
+  },
+  {
+   "F": "17478345",
+   "O": "17469615",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 0,
+   "O_open": 0.0,
+   "older_history": "17478345"
+  },
+  {
+   "F": "17478345",
+   "O": "17472040",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 0.0,
+   "older_history": "17472040"
+  },
+  {
+   "F": "17478345",
+   "O": "17477383",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 74.64,
+   "older_history": "17477383"
+  },
+  {
+   "F": "17478345",
+   "O": "17477933",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 16.93,
+   "older_history": "17477933"
+  },
+  {
+   "F": "17478345",
+   "O": "12180395",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 4,
+   "O_open": 0.0,
+   "older_history": "12180395"
+  },
+  {
+   "F": "17478434",
+   "O": "17471238",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 27,
+   "O_open": 551.0,
+   "older_history": "17471238"
+  },
+  {
+   "F": "17478434",
+   "O": "17471333",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 67,
+   "O_open": 1633.08,
+   "older_history": "17471333"
+  },
+  {
+   "F": "17478345",
+   "O": "21798",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 91,
+   "O_open": 75.85,
+   "older_history": "21798"
+  },
+  {
+   "F": "17478345",
+   "O": "17469615",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 0,
+   "O_open": 0.0,
+   "older_history": "17478345"
+  },
+  {
+   "F": "17478345",
+   "O": "17472040",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 0.0,
+   "older_history": "17472040"
+  },
+  {
+   "F": "17478345",
+   "O": "17477383",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 74.64,
+   "older_history": "17477383"
+  },
+  {
+   "F": "17478345",
+   "O": "17477933",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 1,
+   "O_open": 16.93,
+   "older_history": "17477933"
+  },
+  {
+   "F": "17478345",
+   "O": "12180395",
+   "test": "placeholder birth date, one real date on the same name",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 4,
+   "O_open": 0.0,
+   "older_history": "12180395"
+  },
+  {
+   "F": "17478434",
+   "O": "17471238",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 27,
+   "O_open": 551.0,
+   "older_history": "17471238"
+  },
+  {
+   "F": "17478434",
+   "O": "17471333",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 67,
+   "O_open": 1633.08,
+   "older_history": "17471333"
+  },
+  {
+   "F": "17478434",
+   "O": "17471238",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 27,
+   "O_open": 551.0,
+   "older_history": "17471238"
+  },
+  {
+   "F": "17478434",
+   "O": "17471333",
+   "test": "one digit differs",
+   "F_charges": 0,
+   "F_open": 0.0,
+   "O_charges": 67,
+   "O_open": 1633.08,
+   "older_history": "17471333"
+  }
+ ],
+ "placeholder_dob": [
+  {
+   "F": "17478345",
+   "charges": 0,
+   "open": 0.0
+  },
+  {
+   "F": "17478345",
+   "charges": 0,
+   "open": 0.0
+  }
+ ],
+ "no_plan_open": [],
+ "errors": []
+}

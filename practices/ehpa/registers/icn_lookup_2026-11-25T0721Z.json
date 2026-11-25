@@ -1,0 +1,184 @@
+{
+ "19461125": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "0",
+      "check": "NO-PAY-202611170",
+      "paidDate": "2026-11-17",
+      "payerClaim": "820263180303619"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263180303619",
+    "svc": "20261112-20261112"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263180303619"
+  ]
+ },
+ "19461250": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "0",
+      "check": "NO-PAY-202611170",
+      "paidDate": "2026-11-17",
+      "payerClaim": "820263200279597"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263200279597",
+    "svc": "20261113-20261113"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263200279597"
+  ]
+ },
+ "19461227": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "0",
+      "check": "NO-PAY-202611170",
+      "paidDate": "2026-11-17",
+      "payerClaim": "820263200280463"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263200280463",
+    "svc": "20261114-20261114"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263200280463"
+  ]
+ },
+ "19461280": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "0",
+      "check": "NO-PAY-202611180",
+      "paidDate": "2026-11-18",
+      "payerClaim": "820263210195408"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263210195408",
+    "svc": "20261115-20261115"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263210195408"
+  ]
+ },
+ "19459605": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "142.98",
+      "check": "205442287261104",
+      "paidDate": "2026-11-03",
+      "payerClaim": "820263040169027"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263040169027",
+    "svc": "20261027-20261027"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263040169027"
+  ]
+ },
+ "19459146": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "142.98",
+      "check": "205106379261101",
+      "paidDate": "2026-10-31",
+      "payerClaim": "820263010652926"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263010652926",
+    "svc": "20261025-20261025"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263010652926"
+  ]
+ },
+ "19458952": {
+  "http": 200,
+  "claims": [
+   {
+    "lines": [
+     {
+      "cat": "F0",
+      "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action wi",
+      "code": "107",
+      "codev": "Processed according to contract provisions (Contract refers to provisions that exist betwe",
+      "paid": "80.71",
+      "check": "205106379261101",
+      "paidDate": "2026-10-31",
+      "payerClaim": "820263010651753"
+     }
+    ],
+    "acct": "",
+    "pccn": "820263010651753",
+    "svc": "20261022-20261022"
+   }
+  ],
+  "errors": [],
+  "icn": [
+   "820263010651753"
+  ]
+ }
+}

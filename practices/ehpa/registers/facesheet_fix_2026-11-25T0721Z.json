@@ -1,0 +1,37 @@
+{
+ "stamp": "2026-11-25T0721Z",
+ "live": true,
+ "jobs": [
+  {
+   "pid": "17476479",
+   "field": "dob",
+   "before": "[DOB]",
+   "patch": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17476479,\"conversionid\":null,\"chartnumber\":\"4495\",\"mrn\":\"68D12B0782BC932DF14214F5\",\"ssn\":\"\","
+   ],
+   "after": "[DOB]",
+   "271": "INACTIVE | plan  | A  B  | others  | death [DOB] | addr APT 110 [address] TALLAHASSEE FL 323035551 | aaa []",
+   "outcome": "kept - Medicare identifies the chart; INACTIVE, date of death [DOB]",
+   "dod": "[DOB]",
+   "reroute": "resave vst19452652 insorder 1 -> 1,2, list [1] -> [1,2], 2 live charges (was 2) | freq1 + rebill seq 2 -> 204"
+  },
+  {
+   "pid": "17473945",
+   "field": "lastname",
+   "before": [
+    "SHELFORD"
+   ],
+   "patch": [
+    200,
+    "{\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17473945,\"conversionid\":null,\"chartnumber\":\"3945\",\"mrn\":\"68BB2138D31BA0199FA99F2F\",\"ssn\":\"\","
+   ],
+   "after": [
+    "SHELFORD"
+   ],
+   "271": "INACTIVE | plan  | A  B  | others  | death [DOB] | addr [address] TALLAHASSEE FL 323092299 | aaa []",
+   "outcome": "kept - Medicare identifies the chart; INACTIVE, date of death [DOB]",
+   "dod": "[DOB]"
+  }
+ ]
+}

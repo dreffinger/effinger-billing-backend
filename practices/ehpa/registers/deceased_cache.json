@@ -11,7 +11,7 @@
  },
  "12179890": {
   "checked": "2026-10-14",
-  "dod": "2025-08-30",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "12181827": {
@@ -21,7 +21,7 @@
  },
  "12182505": {
   "checked": "2026-10-16",
-  "dod": "2026-09-20",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (drive copy)"
  },
  "12182506": {
@@ -81,7 +81,7 @@
  },
  "12234330": {
   "checked": "2026-10-14",
-  "dod": "2026-04-21",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "12235552": {
@@ -106,12 +106,12 @@
  },
  "17469078": {
   "checked": "2026-10-14",
-  "dod": "2026-02-28",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17469397": {
   "checked": "2026-10-14",
-  "dod": "2026-08-06",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17469426": {
@@ -227,7 +227,7 @@
  },
  "17471156": {
   "checked": "2026-10-14",
-  "dod": "2025-11-12",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17471172": {
@@ -341,7 +341,7 @@
  },
  "17471843": {
   "checked": "2026-10-14",
-  "dod": "2026-05-18",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17471968": {
@@ -396,7 +396,7 @@
  },
  "17472431": {
   "checked": "2026-10-14",
-  "dod": "2025-11-16",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17472436": {
@@ -472,12 +472,12 @@
  },
  "17472766": {
   "checked": "2026-10-14",
-  "dod": "2025-08-18",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17472784": {
   "checked": "2026-10-14",
-  "dod": "2026-07-14",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17472791": {
@@ -492,7 +492,7 @@
  },
  "17472833": {
   "checked": "2026-10-14",
-  "dod": "2026-03-04",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17472834": {
@@ -517,7 +517,7 @@
  },
  "17472910": {
   "checked": "2026-10-14",
-  "dod": "2025-12-14",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17472931": {
@@ -532,7 +532,7 @@
  },
  "17473019": {
   "checked": "2026-10-14",
-  "dod": "2025-09-29",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473032": {
@@ -567,7 +567,7 @@
  },
  "17473109": {
   "checked": "2026-10-14",
-  "dod": "2026-08-17",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473160": {
@@ -582,7 +582,7 @@
  },
  "17473191": {
   "checked": "2026-10-14",
-  "dod": "2026-03-28",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473197": {
@@ -597,7 +597,7 @@
  },
  "17473211": {
   "checked": "2026-10-14",
-  "dod": "2026-05-31",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473222": {
@@ -642,7 +642,7 @@
  },
  "17473309": {
   "checked": "2026-10-14",
-  "dod": "2026-02-17",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473343": {
@@ -667,7 +667,7 @@
  },
  "17473393": {
   "checked": "2026-10-14",
-  "dod": "2025-12-23",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473422": {
@@ -703,12 +703,12 @@
  },
  "17473462": {
   "checked": "2026-10-14",
-  "dod": "2026-04-18",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473477": {
   "checked": "2026-10-14",
-  "dod": "2026-09-15",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473482": {
@@ -718,7 +718,7 @@
  },
  "17473548": {
   "checked": "2026-10-14",
-  "dod": "2026-08-01",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17473568": {
@@ -766,6 +766,11 @@
   "dod": null,
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17473945": {
+  "checked": "2026-11-25",
+  "dod": "[DOB]",
+  "src": "AMD 271 after the surname correction, button run 2026-11-25T0721Z"
+ },
  "17473964": {
   "checked": "2026-09-22",
   "dod": null,
@@ -788,7 +793,7 @@
  },
  "17474126": {
   "checked": "2026-10-14",
-  "dod": "2025-12-11",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17474173": {
@@ -803,7 +808,7 @@
  },
  "17474200": {
   "checked": "2026-10-14",
-  "dod": "2025-12-19",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17474420": {
@@ -823,7 +828,7 @@
  },
  "17474516": {
   "checked": "2026-10-14",
-  "dod": "2026-01-24",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17474541": {
@@ -843,7 +848,7 @@
  },
  "17474649": {
   "checked": "2026-10-14",
-  "dod": "2026-09-01",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271"
  },
  "17474670": {
@@ -878,7 +883,7 @@
  },
  "17475064": {
   "checked": "2026-10-16",
-  "dod": "2026-05-26",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (drive copy)"
  },
  "17475198": {
@@ -913,7 +918,7 @@
  },
  "17475602": {
   "checked": "2026-10-14",
-  "dod": "2026-04-16",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17475638": {
@@ -983,7 +988,7 @@
  },
  "17476416": {
   "checked": "2026-10-28",
-  "dod": "2026-09-07",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (drive copy)"
  },
  "17476438": {
@@ -997,9 +1002,9 @@
   "src": "stedi: no death on record"
  },
  "17476479": {
-  "checked": "2026-09-22",
-  "dod": null,
-  "src": "stedi: not a Medicare beneficiary"
+  "checked": "2026-11-25",
+  "dod": "[DOB]",
+  "src": "AMD 271 after the birth-date correction, button run 2026-11-25T0721Z"
  },
  "17476490": {
   "checked": "2026-10-28",
@@ -1134,7 +1139,7 @@
  },
  "17477227": {
   "checked": "2026-10-14",
-  "dod": "2026-08-01",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17477267": {
@@ -1239,7 +1244,7 @@
  },
  "17477843": {
   "checked": "2026-10-28",
-  "dod": "2026-10-11",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (drive copy)"
  },
  "17477851": {
@@ -1384,7 +1389,7 @@
  },
  "20860": {
   "checked": "2026-10-14",
-  "dod": "2026-08-02",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "20863": {
@@ -1394,7 +1399,7 @@
  },
  "20879": {
   "checked": "2026-10-14",
-  "dod": "2026-06-16",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "20933": {
@@ -1439,7 +1444,7 @@
  },
  "21564": {
   "checked": "2026-10-14",
-  "dod": "2026-08-05",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "21692": {
@@ -1464,7 +1469,7 @@
  },
  "21967": {
   "checked": "2026-10-14",
-  "dod": "2025-12-11",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "22075": {
@@ -1544,7 +1549,7 @@
  },
  "23671": {
   "checked": "2026-10-14",
-  "dod": "2024-10-05",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271"
  },
  "23683": {
@@ -1629,7 +1634,7 @@
  },
  "24651": {
   "checked": "2026-10-14",
-  "dod": "2026-06-19",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "24655": {
@@ -1649,7 +1654,7 @@
  },
  "24797": {
   "checked": "2026-10-28",
-  "dod": "2026-07-02",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (drive copy)"
  },
  "25160": {
@@ -1735,7 +1740,7 @@
  },
  "44984": {
   "checked": "2026-10-14",
-  "dod": "2026-08-24",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "44987": {
@@ -1795,12 +1800,12 @@
  },
  "45668": {
   "checked": "2026-10-14",
-  "dod": "2026-07-27",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "45724": {
   "checked": "2026-10-14",
-  "dod": "2026-04-21",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "46048": {
@@ -1861,7 +1866,7 @@
  },
  "48008": {
   "checked": "2026-10-14",
-  "dod": "2026-02-03",
+  "dod": "[DOB]",
   "src": "stedi-medicare-271"
  },
  "48207": {

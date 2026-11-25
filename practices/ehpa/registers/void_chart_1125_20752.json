@@ -1,0 +1,1756 @@
+{
+ "pid": "20752",
+ "after": "2024-06-06",
+ "live": true,
+ "plan": [
+  {
+   "cid": "22454537",
+   "visit": "19384663",
+   "dos": "06/06/2024",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24562265",
+     "0.00",
+     "4025823"
+    ],
+    [
+     "24595609",
+     "0.00",
+     "WO-TIMELY"
+    ],
+    [
+     "24626877",
+     "0.00",
+     "4031232(0)"
+    ],
+    [
+     "24626945",
+     "0.00",
+     "4037389(0)"
+    ],
+    [
+     "24627268",
+     "0.00",
+     "4059646(2)"
+    ]
+   ],
+   "wos": [
+    [
+     "22433602",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24562265",
+     true
+    ],
+    [
+     "24595609",
+     true
+    ],
+    [
+     "24626877",
+     true
+    ],
+    [
+     "24626945",
+     true
+    ],
+    [
+     "24627268",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22433602",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:35\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22454537', 'createtime': '2024-06-18T17:01:26', 'respparty': 'resp21885', 'begindate': '06/06/2024', 'enddate': '06/06/2024', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '587906', 'void': '1', 'protected': '1', 'lastbilledcarrier': '1', 'datebilled': '04/18/2025 12:46:53', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '06/18/2024', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22433602', 'createtime': '2026-09-03T23:35:58.203', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/03/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509880', 'createtime': '2026-11-24T23:48:34.943', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24562265', 'createtime': '2026-05-28T16:29:42.667', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24206E02557'}, {'id': 'pay24595609', 'createtime': '2026-09-03T23:35:58.170', 'source': '2', 'paymentcode': 'PE', 'date': '09/03/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24626877', 'createtime': '2026-09-09T17:23:37.190', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24253E00183'}, {'id': 'pay24626945', 'createtime': '2026-09-09T17:37:58.843', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4037389(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24306E06704'}, {'id': 'pay24627268', 'createtime': '2026-09-09T18:26:09.323', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25111E00665'}, {'id': 'pay24674826', 'createtime': '2026-11-24T23:48:32.310', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674827', 'createtime': '2026-11-24T23:48:32.753', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674828', 'createtime': '2026-11-24T23:48:33.420', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674829', 'createtime': '2026-11-24T23:48:33.843', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4037389(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674830', 'createtime': '2026-11-24T23:48:34.317', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22454764",
+   "visit": "19384828",
+   "dos": "06/17/2024",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24562266",
+     "0.00",
+     "4025823"
+    ],
+    [
+     "24595610",
+     "0.00",
+     "WO-TIMELY"
+    ],
+    [
+     "24626872",
+     "0.00",
+     "4031232(0)"
+    ],
+    [
+     "24626939",
+     "0.00",
+     "4037389(1)"
+    ],
+    [
+     "24627171",
+     "0.00",
+     "4059646(2)"
+    ]
+   ],
+   "wos": [
+    [
+     "22433603",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24562266",
+     true
+    ],
+    [
+     "24595610",
+     true
+    ],
+    [
+     "24626872",
+     true
+    ],
+    [
+     "24626939",
+     true
+    ],
+    [
+     "24627171",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22433603",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:39\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22454764', 'createtime': '2024-06-20T17:03:21', 'respparty': 'resp21885', 'begindate': '06/17/2024', 'enddate': '06/17/2024', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '587910', 'void': '1', 'protected': '1', 'lastbilledcarrier': '1', 'datebilled': '04/18/2025 12:46:53', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '06/20/2024', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22433603', 'createtime': '2026-09-03T23:36:00.503', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/03/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509881', 'createtime': '2026-11-24T23:48:38.897', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24562266', 'createtime': '2026-05-28T16:29:42.750', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24206E02558'}, {'id': 'pay24595610', 'createtime': '2026-09-03T23:36:00.483', 'source': '2', 'paymentcode': 'PE', 'date': '09/03/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24626872', 'createtime': '2026-09-09T17:23:36.813', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24253E00469'}, {'id': 'pay24626939', 'createtime': '2026-09-09T17:37:46.193', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4037389(1)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24306E06489'}, {'id': 'pay24627171', 'createtime': '2026-09-09T18:26:03.277', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25111E01133'}, {'id': 'pay24674831', 'createtime': '2026-11-24T23:48:36.430', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674832', 'createtime': '2026-11-24T23:48:36.947', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674833', 'createtime': '2026-11-24T23:48:37.520', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674834', 'createtime': '2026-11-24T23:48:38.053', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4037389(1)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674835', 'createtime': '2026-11-24T23:48:38.463', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22485162",
+   "visit": "19409530",
+   "dos": "07/09/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576273",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616782",
+     "0.00",
+     ""
+    ],
+    [
+     "24638511",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455076",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576273",
+     true
+    ],
+    [
+     "24616782",
+     true
+    ],
+    [
+     "24638511",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455076",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485162', 'createtime': '2025-07-17T12:03:14', 'respparty': 'resp21885', 'begindate': '07/09/2025', 'enddate': '07/09/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588647', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '07/17/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455076', 'createtime': '2026-09-07T18:54:22.160', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509882', 'createtime': '2026-11-24T23:48:41.610', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24576273', 'createtime': '2026-06-01T23:53:27.227', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04031'}, {'id': 'pay24616782', 'createtime': '2026-09-07T18:54:22.133', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638511', 'createtime': '2026-09-10T21:16:44.080', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216750'}, {'id': 'pay24674836', 'createtime': '2026-11-24T23:48:40.300', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674837', 'createtime': '2026-11-24T23:48:40.777', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674838', 'createtime': '2026-11-24T23:48:41.230', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "22485350",
+   "visit": "19409680",
+   "dos": "07/11/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576271",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616783",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455077",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576271",
+     true
+    ],
+    [
+     "24616783",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455077",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:44\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485350', 'createtime': '2025-07-18T12:09:26', 'respparty': 'resp21885', 'begindate': '07/11/2025', 'enddate': '07/11/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588649', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '07/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455077', 'createtime': '2026-09-07T18:54:23.700', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509883', 'createtime': '2026-11-24T23:48:43.887', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24576271', 'createtime': '2026-06-01T23:53:27.110', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04025'}, {'id': 'pay24616783', 'createtime': '2026-09-07T18:54:23.683', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674839', 'createtime': '2026-11-24T23:48:43.040', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674840', 'createtime': '2026-11-24T23:48:43.357', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22485352",
+   "visit": "19409681",
+   "dos": "07/17/2025",
+   "cpt": "G0439",
+   "fee": "204.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576268",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616785",
+     "0.00",
+     ""
+    ],
+    [
+     "24638512",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455079",
+     "-204.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576268",
+     true
+    ],
+    [
+     "24616785",
+     true
+    ],
+    [
+     "24638512",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455079",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:47\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485352', 'createtime': '2025-07-18T12:09:32', 'respparty': 'resp21885', 'begindate': '07/17/2025', 'enddate': '07/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode67716', 'authcount': '20768', 'fee': '204.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '204.00', 'patportion': '0.00', 'insportion': '204.00', 'patbalance': '0.00', 'insbalance': '204.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588649', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '07/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455079', 'createtime': '2026-09-07T18:54:26.533', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '204.00', 'void': '1'}, {'id': 'wo22509884', 'createtime': '2026-11-24T23:48:47.050', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-204.00', 'void': '1'}], [{'id': 'pay24576268', 'createtime': '2026-06-01T23:53:26.870', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04013'}, {'id': 'pay24616785', 'createtime': '2026-09-07T18:54:26.517', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638512', 'createtime': '2026-09-10T21:16:44.150', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216770'}, {'id': 'pay24674841', 'createtime': '2026-11-24T23:48:45.347', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674842', 'createtime': '2026-11-24T23:48:45.963', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674843', 'createtime': '2026-11-24T23:48:46.543', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23316360",
+   "visit": "19413432",
+   "dos": "08/12/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24575050",
+     "0.00",
+     "4073544"
+    ],
+    [
+     "24616786",
+     "0.00",
+     ""
+    ],
+    [
+     "24638513",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455080",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24575050",
+     true
+    ],
+    [
+     "24616786",
+     true
+    ],
+    [
+     "24638513",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455080",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:50\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23316360', 'createtime': '2025-08-16T12:02:13', 'respparty': 'resp21885', 'begindate': '08/12/2025', 'enddate': '08/12/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588702', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '08/16/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455080', 'createtime': '2026-09-07T18:54:28.123', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509885', 'createtime': '2026-11-24T23:48:49.883', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24575050', 'createtime': '2026-06-01T23:12:00.520', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4073544', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25230E03767'}, {'id': 'pay24616786', 'createtime': '2026-09-07T18:54:28.107', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638513', 'createtime': '2026-09-10T21:16:44.210', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216790'}, {'id': 'pay24674844', 'createtime': '2026-11-24T23:48:48.463', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4073544', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674845', 'createtime': '2026-11-24T23:48:48.940', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674846', 'createtime': '2026-11-24T23:48:49.223', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23316576",
+   "visit": "19413563",
+   "dos": "08/17/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24575602",
+     "0.00",
+     "4073997"
+    ],
+    [
+     "24616787",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455081",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24575602",
+     true
+    ],
+    [
+     "24616787",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455081",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:52\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23316576', 'createtime': '2025-08-18T12:02:08', 'respparty': 'resp21885', 'begindate': '08/17/2025', 'enddate': '08/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588706', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '08/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455081', 'createtime': '2026-09-07T18:54:29.713', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509886', 'createtime': '2026-11-24T23:48:52', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24575602', 'createtime': '2026-06-01T23:30:34.337', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4073997', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25233E07570'}, {'id': 'pay24616787', 'createtime': '2026-09-07T18:54:29.693', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674847', 'createtime': '2026-11-24T23:48:51.247', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4073997', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674848', 'createtime': '2026-11-24T23:48:51.593', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23320329",
+   "visit": "19416687",
+   "dos": "09/05/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616789",
+     "0.00",
+     ""
+    ],
+    [
+     "24627371",
+     "0.00",
+     "QP01980544"
+    ]
+   ],
+   "wos": [
+    [
+     "22455083",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616789",
+     true
+    ],
+    [
+     "24627371",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455083",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:55\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23320329', 'createtime': '2025-09-16T12:01:28', 'respparty': 'resp21885', 'begindate': '09/05/2025', 'enddate': '09/05/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588762', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/16/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034545362 dcode1037452776 dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455083', 'createtime': '2026-09-07T18:54:32.617', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509887', 'createtime': '2026-11-24T23:48:54.580', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24616789', 'createtime': '2026-09-07T18:54:32.600', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24627371', 'createtime': '2026-09-09T18:49:48.500', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': 'QP01980544', 'status': 'B', 'paymenttype': '10', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25260E11343'}, {'id': 'pay24674849', 'createtime': '2026-11-24T23:48:53.650', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674850', 'createtime': '2026-11-24T23:48:54.193', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'QP01980544', 'status': 'B', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23320715",
+   "visit": "19417104",
+   "dos": "09/15/2025",
+   "cpt": "99308",
+   "fee": "107.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24574515",
+     "0.00",
+     "4077675"
+    ],
+    [
+     "24671417",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507367",
+     "-107.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24574515",
+     true
+    ],
+    [
+     "24671417",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507367",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:57\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23320715', 'createtime': '2025-09-19T12:04:30', 'respparty': 'resp21885', 'begindate': '09/15/2025', 'enddate': '09/15/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65118', 'authcount': '20768', 'fee': '107.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '107.00', 'patportion': '0.00', 'insportion': '107.00', 'patbalance': '0.00', 'insbalance': '107.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588768', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/19/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034545362 dcode1037452776 dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507367', 'createtime': '2026-11-02T01:22:35.987', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '107.00', 'void': '1'}, {'id': 'wo22509888', 'createtime': '2026-11-24T23:48:57.100', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-107.00', 'void': '1'}], [{'id': 'pay24574515', 'createtime': '2026-06-01T22:37:33.843', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4077675', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25265E15392'}, {'id': 'pay24671417', 'createtime': '2026-11-02T01:22:35.970', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674851', 'createtime': '2026-11-24T23:48:56.233', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4077675', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674852', 'createtime': '2026-11-24T23:48:56.657', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23321913",
+   "visit": "19418060",
+   "dos": "09/22/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24573551",
+     "0.00",
+     "4078464"
+    ],
+    [
+     "24671418",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507368",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24573551",
+     true
+    ],
+    [
+     "24671418",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507368",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:59\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23321913', 'createtime': '2025-09-27T12:01:19', 'respparty': 'resp21885', 'begindate': '09/22/2025', 'enddate': '09/22/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588784', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/27/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507368', 'createtime': '2026-11-02T01:22:37.687', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509889', 'createtime': '2026-11-24T23:48:59.397', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24573551', 'createtime': '2026-06-01T21:27:24.130', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4078464', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25273E03157'}, {'id': 'pay24671418', 'createtime': '2026-11-02T01:22:37.670', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674853', 'createtime': '2026-11-24T23:48:58.683', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4078464', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674854', 'createtime': '2026-11-24T23:48:59.130', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23324193",
+   "visit": "19419253",
+   "dos": "10/03/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24574124",
+     "0.00",
+     "4080098"
+    ],
+    [
+     "24671419",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507369",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24574124",
+     true
+    ],
+    [
+     "24671419",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507369",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:02\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23324193', 'createtime': '2025-10-09T12:02:20', 'respparty': 'resp21885', 'begindate': '10/03/2025', 'enddate': '10/03/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588808', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '10/09/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507369', 'createtime': '2026-11-02T01:22:39.190', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509890', 'createtime': '2026-11-24T23:49:01.887', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24574124', 'createtime': '2026-06-01T22:25:05.883', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4080098', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25287E02051'}, {'id': 'pay24671419', 'createtime': '2026-11-02T01:22:39.170', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674855', 'createtime': '2026-11-24T23:49:00.940', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4080098', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674856', 'createtime': '2026-11-24T23:49:01.353', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23326302",
+   "visit": "19421051",
+   "dos": "10/25/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24573005",
+     "0.00",
+     "4081805"
+    ],
+    [
+     "24671420",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507370",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24573005",
+     true
+    ],
+    [
+     "24671420",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507370",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:04\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23326302', 'createtime': '2025-10-26T12:09:41', 'respparty': 'resp21885', 'begindate': '10/25/2025', 'enddate': '10/25/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588840', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '10/26/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507370', 'createtime': '2026-11-02T01:22:40.730', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509891', 'createtime': '2026-11-24T23:49:04.030', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24573005', 'createtime': '2026-06-01T21:05:51.553', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4081805', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25300E05131'}, {'id': 'pay24671420', 'createtime': '2026-11-02T01:22:40.713', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674857', 'createtime': '2026-11-24T23:49:03.200', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4081805', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674858', 'createtime': '2026-11-24T23:49:03.490', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23331659",
+   "visit": "19425632",
+   "dos": "12/05/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "141.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24567474",
+     "0.00",
+     "4087635"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24567474",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:05\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23331659', 'createtime': '2025-12-09T12:03:23', 'respparty': 'resp21885', 'begindate': '12/05/2025', 'enddate': '12/05/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588923', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '12/09/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037 dcode1034545289', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24567474', 'createtime': '2026-05-28T21:15:52.700', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4087635', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25349E06043'}, {'id': 'pay24674859', 'createtime': '2026-11-24T23:49:05.450', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4087635', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23339096",
+   "visit": "19432534",
+   "dos": "02/06/2026",
+   "cpt": "99308",
+   "fee": "107.00",
+   "insbal": "107.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24568989",
+     "0.00",
+     "4096862"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24568989",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:07\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23339096', 'createtime': '2026-02-14T12:01:59', 'respparty': 'resp21885', 'begindate': '02/06/2026', 'enddate': '02/06/2026', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65118', 'authcount': '20768', 'fee': '107.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '107.00', 'expected': '107.00', 'patportion': '0.00', 'insportion': '107.00', 'patbalance': '0.00', 'insbalance': '107.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '589043', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '02/14/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034545077 dcode1034545289 dcode1037453432', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24568989', 'createtime': '2026-05-28T21:19:13.563', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4096862', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '26048E03150'}, {'id': 'pay24674860', 'createtime': '2026-11-24T23:49:06.980', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4096862', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23340787",
+   "visit": "19433956",
+   "dos": "02/26/2026",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "206.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24569168",
+     "0.00",
+     "4098281"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24569168",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:08\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23340787', 'createtime': '2026-02-28T12:06:29', 'respparty': 'resp21885', 'begindate': '02/26/2026', 'enddate': '02/26/2026', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '206.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '589068', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '02/28/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034545077 dcode1034545289 dcode1037453432', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24569168', 'createtime': '2026-05-28T21:19:43.780', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4098281', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '26060E01940'}, {'id': 'pay24674861', 'createtime': '2026-11-24T23:49:08.157', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4098281', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364478",
+   "visit": "19409680",
+   "dos": "07/11/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616784",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455078",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616784",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455078",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:10\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364478', 'createtime': '2026-09-03T21:27:24', 'respparty': 'resp21885', 'begindate': '07/11/2025', 'enddate': '07/11/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455078', 'createtime': '2026-09-07T18:54:25.150', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509892', 'createtime': '2026-11-24T23:49:10.220', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24616784', 'createtime': '2026-09-07T18:54:25.133', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674862', 'createtime': '2026-11-24T23:49:09.740', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364481",
+   "visit": "19413563",
+   "dos": "08/17/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616788",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455082",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616788",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455082",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:12\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364481', 'createtime': '2026-09-03T21:27:31', 'respparty': 'resp21885', 'begindate': '08/17/2025', 'enddate': '08/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455082', 'createtime': '2026-09-07T18:54:31.060', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509893', 'createtime': '2026-11-24T23:49:12.430', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24616788', 'createtime': '2026-09-07T18:54:31.043', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674863', 'createtime': '2026-11-24T23:49:11.887', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364484",
+   "visit": "19421051",
+   "dos": "10/25/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24671421",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507371",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24671421",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507371",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:14\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364484', 'createtime': '2026-09-03T21:27:38', 'respparty': 'resp21885', 'begindate': '10/25/2025', 'enddate': '10/25/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507371', 'createtime': '2026-11-02T01:22:42.260', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509894', 'createtime': '2026-11-24T23:49:14.277', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24671421', 'createtime': '2026-11-02T01:22:42.240', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674864', 'createtime': '2026-11-24T23:49:13.780', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  }
+ ],
+ "kept": [],
+ "done": [
+  {
+   "cid": "22454537",
+   "visit": "19384663",
+   "dos": "06/06/2024",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24562265",
+     "0.00",
+     "4025823"
+    ],
+    [
+     "24595609",
+     "0.00",
+     "WO-TIMELY"
+    ],
+    [
+     "24626877",
+     "0.00",
+     "4031232(0)"
+    ],
+    [
+     "24626945",
+     "0.00",
+     "4037389(0)"
+    ],
+    [
+     "24627268",
+     "0.00",
+     "4059646(2)"
+    ]
+   ],
+   "wos": [
+    [
+     "22433602",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24562265",
+     true
+    ],
+    [
+     "24595609",
+     true
+    ],
+    [
+     "24626877",
+     true
+    ],
+    [
+     "24626945",
+     true
+    ],
+    [
+     "24627268",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22433602",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:35\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22454537', 'createtime': '2024-06-18T17:01:26', 'respparty': 'resp21885', 'begindate': '06/06/2024', 'enddate': '06/06/2024', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '587906', 'void': '1', 'protected': '1', 'lastbilledcarrier': '1', 'datebilled': '04/18/2025 12:46:53', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '06/18/2024', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22433602', 'createtime': '2026-09-03T23:35:58.203', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/03/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509880', 'createtime': '2026-11-24T23:48:34.943', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24562265', 'createtime': '2026-05-28T16:29:42.667', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24206E02557'}, {'id': 'pay24595609', 'createtime': '2026-09-03T23:35:58.170', 'source': '2', 'paymentcode': 'PE', 'date': '09/03/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24626877', 'createtime': '2026-09-09T17:23:37.190', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24253E00183'}, {'id': 'pay24626945', 'createtime': '2026-09-09T17:37:58.843', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4037389(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24306E06704'}, {'id': 'pay24627268', 'createtime': '2026-09-09T18:26:09.323', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25111E00665'}, {'id': 'pay24674826', 'createtime': '2026-11-24T23:48:32.310', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674827', 'createtime': '2026-11-24T23:48:32.753', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674828', 'createtime': '2026-11-24T23:48:33.420', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674829', 'createtime': '2026-11-24T23:48:33.843', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4037389(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674830', 'createtime': '2026-11-24T23:48:34.317', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22454764",
+   "visit": "19384828",
+   "dos": "06/17/2024",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24562266",
+     "0.00",
+     "4025823"
+    ],
+    [
+     "24595610",
+     "0.00",
+     "WO-TIMELY"
+    ],
+    [
+     "24626872",
+     "0.00",
+     "4031232(0)"
+    ],
+    [
+     "24626939",
+     "0.00",
+     "4037389(1)"
+    ],
+    [
+     "24627171",
+     "0.00",
+     "4059646(2)"
+    ]
+   ],
+   "wos": [
+    [
+     "22433603",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24562266",
+     true
+    ],
+    [
+     "24595610",
+     true
+    ],
+    [
+     "24626872",
+     true
+    ],
+    [
+     "24626939",
+     true
+    ],
+    [
+     "24627171",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22433603",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:39\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22454764', 'createtime': '2024-06-20T17:03:21', 'respparty': 'resp21885', 'begindate': '06/17/2024', 'enddate': '06/17/2024', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '587910', 'void': '1', 'protected': '1', 'lastbilledcarrier': '1', 'datebilled': '04/18/2025 12:46:53', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '06/20/2024', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22433603', 'createtime': '2026-09-03T23:36:00.503', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/03/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509881', 'createtime': '2026-11-24T23:48:38.897', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24562266', 'createtime': '2026-05-28T16:29:42.750', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24206E02558'}, {'id': 'pay24595610', 'createtime': '2026-09-03T23:36:00.483', 'source': '2', 'paymentcode': 'PE', 'date': '09/03/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24626872', 'createtime': '2026-09-09T17:23:36.813', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24253E00469'}, {'id': 'pay24626939', 'createtime': '2026-09-09T17:37:46.193', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4037389(1)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '24306E06489'}, {'id': 'pay24627171', 'createtime': '2026-09-09T18:26:03.277', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25111E01133'}, {'id': 'pay24674831', 'createtime': '2026-11-24T23:48:36.430', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4025823', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674832', 'createtime': '2026-11-24T23:48:36.947', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'WO-TIMELY', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674833', 'createtime': '2026-11-24T23:48:37.520', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4031232(0)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674834', 'createtime': '2026-11-24T23:48:38.053', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4037389(1)', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674835', 'createtime': '2026-11-24T23:48:38.463', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4059646(2)', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22485162",
+   "visit": "19409530",
+   "dos": "07/09/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576273",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616782",
+     "0.00",
+     ""
+    ],
+    [
+     "24638511",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455076",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576273",
+     true
+    ],
+    [
+     "24616782",
+     true
+    ],
+    [
+     "24638511",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455076",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485162', 'createtime': '2025-07-17T12:03:14', 'respparty': 'resp21885', 'begindate': '07/09/2025', 'enddate': '07/09/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588647', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '07/17/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455076', 'createtime': '2026-09-07T18:54:22.160', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509882', 'createtime': '2026-11-24T23:48:41.610', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24576273', 'createtime': '2026-06-01T23:53:27.227', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04031'}, {'id': 'pay24616782', 'createtime': '2026-09-07T18:54:22.133', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638511', 'createtime': '2026-09-10T21:16:44.080', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216750'}, {'id': 'pay24674836', 'createtime': '2026-11-24T23:48:40.300', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674837', 'createtime': '2026-11-24T23:48:40.777', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674838', 'createtime': '2026-11-24T23:48:41.230', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "22485350",
+   "visit": "19409680",
+   "dos": "07/11/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576271",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616783",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455077",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576271",
+     true
+    ],
+    [
+     "24616783",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455077",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:44\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485350', 'createtime': '2025-07-18T12:09:26', 'respparty': 'resp21885', 'begindate': '07/11/2025', 'enddate': '07/11/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588649', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '07/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455077', 'createtime': '2026-09-07T18:54:23.700', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509883', 'createtime': '2026-11-24T23:48:43.887', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24576271', 'createtime': '2026-06-01T23:53:27.110', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04025'}, {'id': 'pay24616783', 'createtime': '2026-09-07T18:54:23.683', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674839', 'createtime': '2026-11-24T23:48:43.040', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674840', 'createtime': '2026-11-24T23:48:43.357', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "22485352",
+   "visit": "19409681",
+   "dos": "07/17/2025",
+   "cpt": "G0439",
+   "fee": "204.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24576268",
+     "0.00",
+     "4070295"
+    ],
+    [
+     "24616785",
+     "0.00",
+     ""
+    ],
+    [
+     "24638512",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455079",
+     "-204.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24576268",
+     true
+    ],
+    [
+     "24616785",
+     true
+    ],
+    [
+     "24638512",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455079",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:47\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge22485352', 'createtime': '2025-07-18T12:09:32', 'respparty': 'resp21885', 'begindate': '07/17/2025', 'enddate': '07/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode67716', 'authcount': '20768', 'fee': '204.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '204.00', 'patportion': '0.00', 'insportion': '204.00', 'patbalance': '0.00', 'insbalance': '204.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588649', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '07/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455079', 'createtime': '2026-09-07T18:54:26.533', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '204.00', 'void': '1'}, {'id': 'wo22509884', 'createtime': '2026-11-24T23:48:47.050', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-204.00', 'void': '1'}], [{'id': 'pay24576268', 'createtime': '2026-06-01T23:53:26.870', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25202E04013'}, {'id': 'pay24616785', 'createtime': '2026-09-07T18:54:26.517', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638512', 'createtime': '2026-09-10T21:16:44.150', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216770'}, {'id': 'pay24674841', 'createtime': '2026-11-24T23:48:45.347', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4070295', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674842', 'createtime': '2026-11-24T23:48:45.963', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674843', 'createtime': '2026-11-24T23:48:46.543', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23316360",
+   "visit": "19413432",
+   "dos": "08/12/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24575050",
+     "0.00",
+     "4073544"
+    ],
+    [
+     "24616786",
+     "0.00",
+     ""
+    ],
+    [
+     "24638513",
+     "0.00",
+     "349929519"
+    ]
+   ],
+   "wos": [
+    [
+     "22455080",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24575050",
+     true
+    ],
+    [
+     "24616786",
+     true
+    ],
+    [
+     "24638513",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455080",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:50\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23316360', 'createtime': '2025-08-16T12:02:13', 'respparty': 'resp21885', 'begindate': '08/12/2025', 'enddate': '08/12/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588702', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 11:18:13', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '08/16/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455080', 'createtime': '2026-09-07T18:54:28.123', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509885', 'createtime': '2026-11-24T23:48:49.883', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24575050', 'createtime': '2026-06-01T23:12:00.520', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4073544', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25230E03767'}, {'id': 'pay24616786', 'createtime': '2026-09-07T18:54:28.107', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24638513', 'createtime': '2026-09-10T21:16:44.210', 'source': '2', 'paymentcode': 'PE', 'date': '09/10/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1', 'carrierfid': '6085', 'origrefnum': '1026251216790'}, {'id': 'pay24674844', 'createtime': '2026-11-24T23:48:48.463', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4073544', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674845', 'createtime': '2026-11-24T23:48:48.940', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674846', 'createtime': '2026-11-24T23:48:49.223', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '349929519', 'status': 'H', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23316576",
+   "visit": "19413563",
+   "dos": "08/17/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24575602",
+     "0.00",
+     "4073997"
+    ],
+    [
+     "24616787",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455081",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24575602",
+     true
+    ],
+    [
+     "24616787",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455081",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:52\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23316576', 'createtime': '2025-08-18T12:02:08', 'respparty': 'resp21885', 'begindate': '08/17/2025', 'enddate': '08/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588706', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '08/18/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455081', 'createtime': '2026-09-07T18:54:29.713', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509886', 'createtime': '2026-11-24T23:48:52', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24575602', 'createtime': '2026-06-01T23:30:34.337', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4073997', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25233E07570'}, {'id': 'pay24616787', 'createtime': '2026-09-07T18:54:29.693', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674847', 'createtime': '2026-11-24T23:48:51.247', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4073997', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674848', 'createtime': '2026-11-24T23:48:51.593', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23320329",
+   "visit": "19416687",
+   "dos": "09/05/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616789",
+     "0.00",
+     ""
+    ],
+    [
+     "24627371",
+     "0.00",
+     "QP01980544"
+    ]
+   ],
+   "wos": [
+    [
+     "22455083",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616789",
+     true
+    ],
+    [
+     "24627371",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455083",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:55\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23320329', 'createtime': '2025-09-16T12:01:28', 'respparty': 'resp21885', 'begindate': '09/05/2025', 'enddate': '09/05/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/09/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588762', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/16/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034545362 dcode1037452776 dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455083', 'createtime': '2026-09-07T18:54:32.617', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509887', 'createtime': '2026-11-24T23:48:54.580', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24616789', 'createtime': '2026-09-07T18:54:32.600', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24627371', 'createtime': '2026-09-09T18:49:48.500', 'source': '2', 'paymentcode': 'PE', 'date': '09/09/2026', 'amount': '0.00', 'checknumber': 'QP01980544', 'status': 'B', 'paymenttype': '10', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25260E11343'}, {'id': 'pay24674849', 'createtime': '2026-11-24T23:48:53.650', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674850', 'createtime': '2026-11-24T23:48:54.193', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'QP01980544', 'status': 'B', 'paymenttype': '10', 'void': '1'}])"
+  },
+  {
+   "cid": "23320715",
+   "visit": "19417104",
+   "dos": "09/15/2025",
+   "cpt": "99308",
+   "fee": "107.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24574515",
+     "0.00",
+     "4077675"
+    ],
+    [
+     "24671417",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507367",
+     "-107.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24574515",
+     true
+    ],
+    [
+     "24671417",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507367",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:48:57\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23320715', 'createtime': '2025-09-19T12:04:30', 'respparty': 'resp21885', 'begindate': '09/15/2025', 'enddate': '09/15/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65118', 'authcount': '20768', 'fee': '107.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '107.00', 'patportion': '0.00', 'insportion': '107.00', 'patbalance': '0.00', 'insbalance': '107.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588768', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/19/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034545362 dcode1037452776 dcode1034543889', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507367', 'createtime': '2026-11-02T01:22:35.987', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '107.00', 'void': '1'}, {'id': 'wo22509888', 'createtime': '2026-11-24T23:48:57.100', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-107.00', 'void': '1'}], [{'id': 'pay24574515', 'createtime': '2026-06-01T22:37:33.843', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4077675', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25265E15392'}, {'id': 'pay24671417', 'createtime': '2026-11-02T01:22:35.970', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674851', 'createtime': '2026-11-24T23:48:56.233', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4077675', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674852', 'createtime': '2026-11-24T23:48:56.657', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23321913",
+   "visit": "19418060",
+   "dos": "09/22/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24573551",
+     "0.00",
+     "4078464"
+    ],
+    [
+     "24671418",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507368",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24573551",
+     true
+    ],
+    [
+     "24671418",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507368",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:48:59\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23321913', 'createtime': '2025-09-27T12:01:19', 'respparty': 'resp21885', 'begindate': '09/22/2025', 'enddate': '09/22/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588784', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/27/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507368', 'createtime': '2026-11-02T01:22:37.687', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509889', 'createtime': '2026-11-24T23:48:59.397', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24573551', 'createtime': '2026-06-01T21:27:24.130', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4078464', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25273E03157'}, {'id': 'pay24671418', 'createtime': '2026-11-02T01:22:37.670', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674853', 'createtime': '2026-11-24T23:48:58.683', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4078464', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674854', 'createtime': '2026-11-24T23:48:59.130', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23324193",
+   "visit": "19419253",
+   "dos": "10/03/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24574124",
+     "0.00",
+     "4080098"
+    ],
+    [
+     "24671419",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507369",
+     "-141.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24574124",
+     true
+    ],
+    [
+     "24671419",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507369",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:02\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23324193', 'createtime': '2025-10-09T12:02:20', 'respparty': 'resp21885', 'begindate': '10/03/2025', 'enddate': '10/03/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588808', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '10/09/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507369', 'createtime': '2026-11-02T01:22:39.190', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '141.00', 'void': '1'}, {'id': 'wo22509890', 'createtime': '2026-11-24T23:49:01.887', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-141.00', 'void': '1'}], [{'id': 'pay24574124', 'createtime': '2026-06-01T22:25:05.883', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4080098', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25287E02051'}, {'id': 'pay24671419', 'createtime': '2026-11-02T01:22:39.170', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674855', 'createtime': '2026-11-24T23:49:00.940', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4080098', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674856', 'createtime': '2026-11-24T23:49:01.353', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23326302",
+   "visit": "19421051",
+   "dos": "10/25/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24573005",
+     "0.00",
+     "4081805"
+    ],
+    [
+     "24671420",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507370",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24573005",
+     true
+    ],
+    [
+     "24671420",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507370",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:04\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23326302', 'createtime': '2025-10-26T12:09:41', 'respparty': 'resp21885', 'begindate': '10/25/2025', 'enddate': '10/25/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588840', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '109.0000', 'finclasscode': 'CH', 'entered': '10/26/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507370', 'createtime': '2026-11-02T01:22:40.730', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '206.00', 'void': '1'}, {'id': 'wo22509891', 'createtime': '2026-11-24T23:49:04.030', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-206.00', 'void': '1'}], [{'id': 'pay24573005', 'createtime': '2026-06-01T21:05:51.553', 'source': '2', 'paymentcode': 'PE', 'date': '06/01/2026', 'amount': '0.00', 'checknumber': '4081805', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25300E05131'}, {'id': 'pay24671420', 'createtime': '2026-11-02T01:22:40.713', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674857', 'createtime': '2026-11-24T23:49:03.200', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4081805', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674858', 'createtime': '2026-11-24T23:49:03.490', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23331659",
+   "visit": "19425632",
+   "dos": "12/05/2025",
+   "cpt": "99309",
+   "fee": "141.00",
+   "insbal": "141.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24567474",
+     "0.00",
+     "4087635"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24567474",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:05\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23331659', 'createtime': '2025-12-09T12:03:23', 'respparty': 'resp21885', 'begindate': '12/05/2025', 'enddate': '12/05/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65119', 'authcount': '20768', 'fee': '141.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '141.00', 'expected': '141.00', 'patportion': '0.00', 'insportion': '141.00', 'patbalance': '0.00', 'insbalance': '141.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '588923', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '12/09/2025', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037 dcode1034545289', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24567474', 'createtime': '2026-05-28T21:15:52.700', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4087635', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '25349E06043'}, {'id': 'pay24674859', 'createtime': '2026-11-24T23:49:05.450', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4087635', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23339096",
+   "visit": "19432534",
+   "dos": "02/06/2026",
+   "cpt": "99308",
+   "fee": "107.00",
+   "insbal": "107.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24568989",
+     "0.00",
+     "4096862"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24568989",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:07\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23339096', 'createtime': '2026-02-14T12:01:59', 'respparty': 'resp21885', 'begindate': '02/06/2026', 'enddate': '02/06/2026', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode65118', 'authcount': '20768', 'fee': '107.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '107.00', 'expected': '107.00', 'patportion': '0.00', 'insportion': '107.00', 'patbalance': '0.00', 'insbalance': '107.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '589043', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '02/14/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034545077 dcode1034545289 dcode1037453432', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24568989', 'createtime': '2026-05-28T21:19:13.563', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4096862', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '26048E03150'}, {'id': 'pay24674860', 'createtime': '2026-11-24T23:49:06.980', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4096862', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23340787",
+   "visit": "19433956",
+   "dos": "02/26/2026",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "206.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24569168",
+     "0.00",
+     "4098281"
+    ]
+   ],
+   "wos": [],
+   "void_pays": [
+    [
+     "24569168",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:08\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23340787', 'createtime': '2026-02-28T12:06:29', 'respparty': 'resp21885', 'begindate': '02/26/2026', 'enddate': '02/26/2026', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492676', 'authcount': '20768', 'fee': '206.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '05/28/2026', 'pos': '31', 'tos': '01', 'allowed': '206.00', 'expected': '206.00', 'patportion': '0.00', 'insportion': '206.00', 'patbalance': '0.00', 'insbalance': '206.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '589068', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '02/28/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'POI0712     ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034545077 dcode1034545289 dcode1037453432', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [], [{'id': 'pay24569168', 'createtime': '2026-05-28T21:19:43.780', 'source': '2', 'paymentcode': 'PE', 'date': '05/28/2026', 'amount': '0.00', 'checknumber': '4098281', 'status': 'B', 'paymenttype': '9', 'void': '1', 'carrierfid': '41826', 'origrefnum': '26060E01940'}, {'id': 'pay24674861', 'createtime': '2026-11-24T23:49:08.157', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '4098281', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364478",
+   "visit": "19409680",
+   "dos": "07/11/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616784",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455078",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616784",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455078",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-zv9p9\" lst=\"11/24/2026 23:49:10\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364478', 'createtime': '2026-09-03T21:27:24', 'respparty': 'resp21885', 'begindate': '07/11/2025', 'enddate': '07/11/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1034545056 dcode1034543883 dcode1034913042 dcode1034545077 dcode1034545437', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455078', 'createtime': '2026-09-07T18:54:25.150', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509892', 'createtime': '2026-11-24T23:49:10.220', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24616784', 'createtime': '2026-09-07T18:54:25.133', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674862', 'createtime': '2026-11-24T23:49:09.740', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364481",
+   "visit": "19413563",
+   "dos": "08/17/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24616788",
+     "0.00",
+     ""
+    ]
+   ],
+   "wos": [
+    [
+     "22455082",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24616788",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22455082",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:12\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364481', 'createtime': '2026-09-03T21:27:31', 'respparty': 'resp21885', 'begindate': '08/17/2025', 'enddate': '08/17/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '09/07/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22455082', 'createtime': '2026-09-07T18:54:31.060', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '09/07/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509893', 'createtime': '2026-11-24T23:49:12.430', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24616788', 'createtime': '2026-09-07T18:54:31.043', 'source': '2', 'paymentcode': 'PE', 'date': '09/07/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674863', 'createtime': '2026-11-24T23:49:11.887', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': '', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  },
+  {
+   "cid": "23364484",
+   "visit": "19421051",
+   "dos": "10/25/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "zero_pays": [
+    [
+     "24671421",
+     "0.00",
+     "AGING1102"
+    ]
+   ],
+   "wos": [
+    [
+     "22507371",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "void_pays": [
+    [
+     "24671421",
+     true
+    ]
+   ],
+   "void_wos": [
+    [
+     "22507371",
+     true
+    ]
+   ],
+   "void_charge": [
+    true,
+    "c-8bbfq\" lst=\"11/24/2026 23:49:14\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "readback": "({'id': 'charge23364484', 'createtime': '2026-09-03T21:27:38', 'respparty': 'resp21885', 'begindate': '10/25/2025', 'enddate': '10/25/2025', 'begintime': '00:00', 'endtime': '00:00', 'proccode': 'pcode492677', 'authcount': '20768', 'fee': '109.00', 'units': '1.0', 'netfee': '0', 'lineitemnote': '', 'duration': '0', 'aging': '11/02/2026', 'pos': '31', 'tos': '01', 'allowed': '0.00', 'expected': '109.00', 'patportion': '0.00', 'insportion': '109.00', 'patbalance': '0.00', 'insbalance': '109.00', 'billins': '1', 'insbilled': '1', 'batchnumber': '0', 'void': '1', 'protected': '1', 'lastbilledcarrier': '2', 'datebilled': '09/04/2026 00:03:14', 'voideddate': '11/24/2026', 'totalvisitcharges': '0.0000', 'finclasscode': 'CH', 'entered': '09/03/2026', 'dayclosed': '1', 'paymentplan': '0', 'postedby': 'EFFINGER    ', 'diagcodes': 'dcode1037453831 dcode1034543889 dcode1034545056 dcode1034543883 dcode1034545077 dcode1034545037', 'modcodes': '', 'includecmndata': '0', 'userfileformfid': '0', 'periodclosed': '0', 'cobcode': '', 'note': '', 'asstprovider': '', 'resident': ''}, [{'id': 'wo22507371', 'createtime': '2026-11-02T01:22:42.260', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/02/2026', 'amount': '109.00', 'void': '1'}, {'id': 'wo22509894', 'createtime': '2026-11-24T23:49:14.277', 'source': '2', 'Writeoffcode': 'WOINS', 'date': '11/24/2026', 'amount': '-109.00', 'void': '1'}], [{'id': 'pay24671421', 'createtime': '2026-11-02T01:22:42.240', 'source': '2', 'paymentcode': 'PE', 'date': '11/02/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}, {'id': 'pay24674864', 'createtime': '2026-11-24T23:49:13.780', 'source': '2', 'paymentcode': 'PE', 'date': '11/24/2026', 'amount': '0.00', 'checknumber': 'AGING1102', 'status': 'B', 'paymenttype': '9', 'void': '1'}])"
+  }
+ ]
+}
