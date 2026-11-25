@@ -1123,6 +1123,32 @@ check("A/B words: captured calls, rulebook and lessons say the re-route helpers 
 _own = open(os.path.abspath(__file__)).read()
 check("OPS-10 no invented member id here is 5 characters or more: the privacy gate's tree mode (mirror.py sync) would rewrite it and break this test", not re.findall(r'"(?:member|subscribernum|memberid|member_id)"\s*:\s*"[A-Za-z0-9][A-Za-z0-9\-]{4,}"', _own))
 
+# ---- INGEST-1 (11/25/2026, independent review): a second LIVE start under the SAME stamp is refused before anything is touched --------------
+# The import resumes a stamp's register and then passes over every message of a patient that register lists as skipped - also one the first
+# start never reached (reproduced by the review: a CCM 99487 in no row, the file registered, the charge never entered). The driver is run here
+# for real, with only its workspace folder pointed at a throw-away one.
+import subprocess as _sp, shutil as _sh
+def _ingest_at(tmp, stamp, live=True, register=True):
+    src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
+    assert src.count('WS = "/home/claude/unbilled"') == 1
+    open(os.path.join(tmp, "claimocity_ingest.py"), "w").write(src.replace('WS = "/home/claude/unbilled"', "WS = %r" % tmp))
+    os.makedirs(os.path.join(tmp, "inbox"), exist_ok=True); os.makedirs(os.path.join(tmp, "registers"), exist_ok=True)
+    open(os.path.join(tmp, "inbox", "20261125.hl7"), "w").write("MSH|^~\\&|X\r")
+    if register: json.dump({"created": [], "skipped": [{"feed_id": "F1", "pid": "pat1", "why": "all lines already in AMD"}], "failed": []}, open(os.path.join(tmp, "registers", "feed_import_%s.json" % stamp), "w"))
+    return _sp.run([sys.executable, os.path.join(tmp, "claimocity_ingest.py"), "--hl7-dir", os.path.join(tmp, "inbox"), "--stamp", stamp] + (["--live"] if live else []), capture_output=True, text=True)
+_t1 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r1 = _ingest_at(_t1, "20261125T1239Z")
+check("INGEST-1 a second live start under a stamp that already has an import register is refused: 'STEP FAILED: stamp ... already has an import register', exit 2, a NEW stamp named - and no step ran (no parse, no log of a step)",
+      _r1.returncode == 2 and "STEP FAILED: stamp 20261125T1239Z already has an import register" in _r1.stdout and "NEW stamp" in _r1.stdout
+      and not glob.glob(os.path.join(_t1, "logs", "claimocity_*")) and not glob.glob(os.path.join(_t1, "feed_parsed_*")), (_r1.returncode, _r1.stdout[-400:], _r1.stderr[-300:]))
+_run1 = (json.load(open(os.path.join(_t1, "registers", "claimocity_ingest.json"))).get("runs") or [{}])[-1] if os.path.exists(os.path.join(_t1, "registers", "claimocity_ingest.json")) else {}
+check("INGEST-1 the refused start is on record (exit 2) and the file is NOT registered - the start under the new stamp reads it again", _run1.get("exit") == 2 and not json.load(open(os.path.join(_t1, "registers", "claimocity_ingest.json"))).get("files"), _run1)
+_t2 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r2 = _ingest_at(_t2, "20261125T1239Z", register=False)
+check("INGEST-1 a first start under a stamp is not refused (it goes on to its first step)", "already has an import register" not in _r2.stdout and bool(glob.glob(os.path.join(_t2, "logs", "claimocity_20261125T1239Z_parse.log"))), (_r2.returncode, _r2.stdout[-300:], _r2.stderr[-200:]))
+_t3 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r3 = _ingest_at(_t3, "20261125T1239Z", live=False)
+check("INGEST-1 a dry look under the same stamp is not refused (it writes nothing)", "already has an import register" not in _r3.stdout, (_r3.returncode, _r3.stdout[-300:]))
+for _t in (_t1, _t2, _t3): _sh.rmtree(_t, ignore_errors=True)
+check("INGEST-1 the driver's header no longer promises that a re-run inside a batch is a no-op", "make a re-run a no-op" not in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read())
+
 time.sleep = _sleep0
 print("\n" + ("all checks passed" if not FAILS else "%d check(s) FAILED: %s" % (len(FAILS), "; ".join(FAILS))))
 sys.exit(1 if FAILS else 0)
