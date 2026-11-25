@@ -88,7 +88,11 @@ case "$mode" in
     for d in docs/captured_calls.md docs/api_vocabulary.json docs/MIRROR.md; do
       [ -f "$REPO/$d" ] && [ ! -e "$WS/$(basename "$d")" ] && cp -p "$REPO/$d" "$WS/$(basename "$d")"
     done
-    # 4) tools
+    # 4) tools - missing ones are added; the state-bundle tool is REPLACED by the repository's copy (11/25/2026: the prompts take
+    #    tools/ws_bundle.py from Drive first, and with 'cp -pn' an older Drive copy kept packing for ever - a fix on main never reached
+    #    a run). This script itself is not replaced here: it is running; the prompts copy it from the clone before they start it.
+    mkdir -p "$WS/tools"
+    [ -f "$REPO/tools/bootstrap/ws_bundle.py" ] && cp -p "$REPO/tools/bootstrap/ws_bundle.py" "$WS/tools/ws_bundle.py"
     [ -d "$REPO/tools/bootstrap" ] && cp -pn "$REPO"/tools/bootstrap/* "$WS/tools/" 2>/dev/null
     # 5) amd.py shim recipe (restore recipe 9/10/2026): workspace amd.py = repo core/amd.py + compat shims appended
     if [ -f "$WS/amd.py" ] && ! grep -q '^def call(' "$WS/amd.py"; then
