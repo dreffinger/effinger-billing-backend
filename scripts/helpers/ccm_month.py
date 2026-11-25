@@ -23,6 +23,10 @@
 #   python3 scripts/helpers/ccm_month.py plan                                   what is new or due a re-read (no login, no call)
 #   python3 scripts/helpers/ccm_month.py read --out <dir> [--limit N] [--recheck-hours H]   the reads
 # Exit: 0 done (nothing new is 0 too), 2 bad input, 3 session, 4 failures, 5 quiet window or STOP.
+# Inside a billing routine (11/25/2026, William: "they only come through once a month and should be in the regular billing projects"): the
+#   routine that owns the AdvancedMD window runs `read --in-routine` (no quiet-window stop - it IS that window's routine, behind its own
+#   cross-container guard, sharing its cached login), and `plan` ends with one line the runbook reads:
+#   "ccm_month plan: to_read=<visits> names=<charts without a name> unsigned=<unsigned CCM notes in Neon>" - all three 0 = nothing to do.
 # Self-test: python3 tools/selftest/test_ccm_month.py
 import os, sys, re, json, time, datetime, collections
 import xml.etree.ElementTree as ET
@@ -61,6 +65,11 @@ def _day(s):
         except ValueError: pass
     return ""
 
+UNSIGNED_SQL = ("select count(*) from raw.documents m where m.source = 'ccm' and m.collection = 'months' and m.doc_id not in "
+                "(select doc_id from raw.documents where source = 'ccm' and collection = 'signed')")
+def unsigned(select):
+    try: return int((select(UNSIGNED_SQL) or [[0]])[0][0] or 0)
+    except Exception: return -1      # unknown: the runbook then lists the page's signings as if some were waiting
 def plan(select, recheck_hours=20.0):
     """(visits to read, charts with no name): a visit is read when one of its feed CCM charges is not in the AdvancedMD history and it has
     no lines document yet, or its lines document is older than recheck_hours and its month is not signed. A visit: {"chart", "visit",
@@ -124,14 +133,16 @@ def main(argv=None, select=None, amd=None, sleep=time.sleep):
     try: rh = float(opt("--recheck-hours", "20")); limit = int(opt("--limit", "0"))
     except ValueError: print("ccm_month: --recheck-hours and --limit take numbers"); return 2
     if cmd not in ("plan", "read"):
-        print("usage: ccm_month.py plan | read --out <dir> [--limit N] [--recheck-hours H]"); return 2
+        print("usage: ccm_month.py plan | read --out <dir> [--limit N] [--recheck-hours H] [--in-routine]"); return 2
+    in_routine = "--in-routine" in a
     visits, charts = plan(select, rh)
     why = collections.Counter(v["why"].split(" (")[0] for v in visits)
     months = sorted({v["month"] for v in visits})
-    q = P.quiet_window(_now())
+    q = None if in_routine else P.quiet_window(_now())
     print("ccm_month: %d visit(s) to read (%d new, %d re-read) in %s; %d chart(s) without a name%s" % (len(visits), why["new"], why["re-read"],
           ", ".join(months) or "-", len(charts), (" - a scheduled billing routine uses AdvancedMD until %s UTC" % P.hhmm(q[1])) if q else ""))
-    if cmd == "plan": return 0
+    if cmd == "plan":
+        print("ccm_month plan: to_read=%d names=%d unsigned=%d" % (len(visits), len(charts), unsigned(select))); return 0
     out = opt("--out")
     if not out: print("ccm_month: read needs --out <dir>"); return 2
     out = os.path.abspath(out)
@@ -148,7 +159,7 @@ def main(argv=None, select=None, amd=None, sleep=time.sleep):
     todo = visits[:limit or None]
     for v in todo:
         if os.path.exists(os.path.join(out, "STOP")): print("ccm_month: STOP file - stopped after %d visits" % n); return 5
-        q = P.quiet_window(_now())
+        q = None if in_routine else P.quiet_window(_now())
         if q: print("ccm_month: a scheduled billing routine starts now - stopped after %d visits; run again after %s UTC" % (n, P.hhmm(q[1]))); return 5
         at = _iso(_now())
         try:
@@ -166,7 +177,7 @@ def main(argv=None, select=None, amd=None, sleep=time.sleep):
             if fails >= MAX_FAILS_IN_A_ROW: print("ccm_month: %d reads in a row failed - stopped (the last: %s)" % (fails, errors[-1])); return 4
     pn = 0
     for c in charts:
-        q = P.quiet_window(_now())
+        q = None if in_routine else P.quiet_window(_now())
         if q: print("ccm_month: quiet window - %d patient read(s) left for the next run" % (len(charts) - pn)); break
         at = _iso(_now())
         try:

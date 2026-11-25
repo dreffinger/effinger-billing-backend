@@ -140,12 +140,14 @@ of a patient is written into this repository.
    `python3 tools/db/neon_db.py load-docs --src <dir> --source ccm` records them - final from then on. Then mark them recorded on the page
    (`rec: true`) and rebuild the page's addenda documents so its counts move.
 
+## Running it (11/25/2026)
+The daily Claimocity feed routine does it, as PHASE C of `nightly/live/feed_daily.txt`: `scripts/helpers/ccm_month.py plan` (one Neon read) decides whether anything is waiting; when new CCM charges came in, `ccm_month.py read --in-routine` reads them back from AdvancedMD (read only, the feed's own login - the feed misses later voids and AdvancedMD holds the diagnosis order) into the workspace, `ccm_build.py build --hub-new` drafts the new or changed notes, and William gets one email with counts and the hub link. Offline proof: `python3 tools/selftest/test_ccm_month.py`.
+
 ## Not built yet
 - The RingCentral search (faxes, calls): it needs the practice's RingCentral app key - the account's Developer Console access is turned
   off as of 11/11/2026 (the owner turns on "Developer Portal Access" for his role, or RingCentral support enables it);
   `scripts/helpers/ringcentral_fax.py` is on the census-inputs pull request.
 - Supporting items on the notes (faxes, calls, transcripts, referrals, prescriptions, plans of care, PointClickCare) - as dated addenda.
-- A scheduled routine that records the page's signings and adds each new month's CCM charges.
 
 Offline proofs (no AdvancedMD, no RingCentral, no Neon, no network): `python3 tools/selftest/test_ccm_notes.py`,
 `python3 tools/selftest/test_ccm_patients.py`, `python3 tools/selftest/test_ccm_build.py`.

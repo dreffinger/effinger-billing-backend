@@ -56,6 +56,7 @@ def select(sql, params=()):
     if "from ehpa.feed_charges" in sql: return [list(r) for r in FEED]
     if "from amd.charges where cpt" in sql: return [[x] for x in HIST]
     if "collection = 'lines'" in sql: return [[k, v[0], v[1]] for k, v in LINES_READ.items()]
+    if sql.startswith("select count(*)"): return [["3"]]
     if "collection = 'signed'" in sql: return [[x] for x in SIGNED]
     if "collection = 'patients'" in sql: return [[x] for x in NAMED]
     raise AssertionError("unexpected query: " + sql[:80])
@@ -121,6 +122,13 @@ check("read: a refused workspace inside the repository", M.main(["read", "--out"
 os.environ["CCM_NOW"] = "2026-11-28T01:20:00Z"
 a2 = AMD(); rc = M.main(["read", "--out", OUT], select=select, amd=a2, sleep=lambda s: None)
 check("read: inside a scheduled routine's quiet window it stops before logging in (exit 5)", rc == 5 and a2.logins == 0 and not a2.calls, (rc, a2.logins, a2.calls))
+import io, contextlib
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf): rc = M.main(["plan"], select=select)
+check("plan: ends with the one line a billing routine reads (to read, without a name, unsigned)", rc == 0 and buf.getvalue().strip().splitlines()[-1] == "ccm_month plan: to_read=3 names=1 unsigned=3", buf.getvalue())
+os.environ["CCM_NOW"] = "2026-11-28T01:40:00Z"
+a5 = AMD(); rc = M.main(["read", "--out", os.path.join(TMP, "o7"), "--in-routine"], select=select, amd=a5, sleep=lambda s: None)
+check("read --in-routine: the billing routine that owns the window reads inside it", rc == 0 and a5.logins == 1 and a5.calls.count("getchargedetaildataicd10") == 4, (rc, a5.calls))
 os.environ["CCM_NOW"] = "2026-11-28T00:00:00Z"
 a3 = AMD(login_ok=False); check("read: a dead session stops the run without a second login (exit 3)", M.main(["read", "--out", OUT], select=select, amd=a3, sleep=lambda s: None) == 3 and a3.logins == 1)
 FEED.extend([["pat91000%02d" % i, "88001%02d" % i, "77001%02d" % i, "99487", "2026-11-26", "", "Test Manor", "Dr. Test"] for i in range(10, 16)])
