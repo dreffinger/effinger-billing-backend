@@ -12,7 +12,8 @@
 #   Pattern 692 (initial hospital care reported after subsequent hospital care: a 99223 after follow-up hospital visits) -> bypass. A NEW ADMISSION -
 #              William 11/25/2026, about a 99223 this step held on 11/20 and a run put on his turn: "i now follow patients after dc from the inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a series of inpatient visits"
 #              (his word of 11/19/2026 too: "there will be some 99223 admission dates after follow up dates which will be valid"). Never a hold, never a
-#              card on his turn, never recoded to a subsequent visit; the visit keeps the admission date the import wrote (the feed's, else its own date).
+#              card on his turn, never recoded to a subsequent visit; the visit keeps the admission date it carries (the feed's; when the feed gave none,
+#              step 1 below writes the visit's own date for the empty Hospitalization From Date).
 # THE NO-CHARGE QUALITY LINE (1123F, William 11/10/2026 - practices/ehpa/rules.md): on a visit that carries it, an edit whose words name the
 #   line (its code, pcode65441, its charge number, or a zero amount of a charge) is NEVER bypassed, whatever its pattern. William's decision
 #   (11/10/2026: "choose whether AdvancedMD should take the no-charge 1123F line off a held visit automatically or leave the visit held for
@@ -199,7 +200,7 @@ def advisories(vid, c, adv):
             OUT["laterality"].append({"visit": vid, "pid": c["pid"], "text": e["text"]})
             open("laterality_flag_log.md", "a").write("- %s vst%s %s: %s (bypassed, Claimocity import 10/28)\n" % (datetime.date.today(), vid, c["pid"], e["text"]))
     if not adv: return []
-    ok = bypass(vid, [e["id"] for e in adv]); OUT["bypassed"].append({"visit": vid, "patterns": sorted({pattern(e) for e in adv})})
+    ok = bypass(vid, [e["id"] for e in adv]); OUT["bypassed"].append(dict({"visit": vid, "patterns": sorted({pattern(e) for e in adv})}, **({} if ok else {"ok": False})))      # "ok": false = AdvancedMD did not accept the bypass (11/25/2026: the report says so)
     return ["bypassed %d advisories%s" % (len(adv), "" if ok else " FAILED")]
 def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
     """William 11/10/2026: the routine takes the no-charge line(s) off a held visit by itself. which = [(code, charge)] of the lines to take off (the

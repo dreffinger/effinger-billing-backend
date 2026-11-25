@@ -13,11 +13,12 @@
 #   nursing-facility visit 99304-99306, its 99497 included, is the physician's whatever the feed names - William 11/10/2026 - and the line
 #   still shows the feed's clinician when it differs, so William can confirm who saw the patient), an admission date after the date of
 #   service, two admission dates in one stay (or two different admission dates within 3 days on one chart), a hospital visit with no admission
-#   date (each hospital code's date read from its own charge). A NEW ADMISSION IS NOT 'TWO DATES IN ONE STAY' (William 11/19/2026 and
-#   11/25/2026 - he follows patients after discharge from the inpatient hospital and admits them to inpatient rehab: "that block is no longer
-#   valid to block a 99223 after a series of inpatient visits"): a later admission date that an initial hospital visit (99221-99223) of the
-#   chart carries began a new admission - its visits and the earlier stay's visits are not kept for William for it; only a visit dated after
-#   the new admission began that still carries the earlier date is (admission()). A visit an earlier run of this helper saved is read again until it bills: an
+#   date (each hospital code's date read from its own charge). THE ADMISSION DATE IS SET BY THE STANDING RULE, NOT HELD FOR WILLIAM (11/19/2026
+#   and 11/25/2026 - he follows patients after discharge from the inpatient hospital and admits them to inpatient rehab: "that block is no
+#   longer valid to block a 99223 after a series of inpatient visits"): a hospital visit carries the date of the chart's most recent initial
+#   hospital visit (99221-99223) on or before it; where AdvancedMD shows another date the --resave save writes the rule's date first and reads
+#   it back; a later date the feed names stands (a new admission whose initial visit is not on the chart yet); 'two admission dates in one
+#   stay' is said and holds nothing. Kept for a person: a hospital visit for which no date can be named (admission()). A visit an earlier run of this helper saved is read again until it bills: an
 #   admission date lost since that save gets a TOP line. A visit a clinician move left on another insurance order than the checked one gets a
 #   TOP line and is saved like the others.
 #   THE OWNER'S APPROVED FILE must be there and carry his recorded word (approved_by and answers) for anything to be bought, moved or saved -
@@ -188,34 +189,43 @@ def days_apart(a8, b8):
     """Days between two YYYYMMDD dates; None when one cannot be read."""
     try: return abs((datetime.date(int(a8[:4]), int(a8[4:6]), int(a8[6:8])) - datetime.date(int(b8[:4]), int(b8[4:6]), int(b8[6:8]))).days)
     except (ValueError, TypeError): return None
-INITIAL_HOSP = {"99221", "99222", "99223"}      # an initial hospital visit OPENS an admission (a new admission - below)
+INITIAL_HOSP = {"99221", "99222", "99223"}      # an initial hospital visit opens an admission
+ADMIT_WINDOW = 45                                # days an initial hospital visit anchors the visits after it (the Claim Inspector's own rule)
 def admission(vid, dos8, admit8, cpts, others):
-    """What is wrong with the visit's admission date: a hospital visit without one, one after the date of service, two admission dates in one
-    stay (another visit of the chart carries a different date although both dates are on or before both dates of service, or a different
-    date within 3 days of this one - one stay entered with two dates).
-    A NEW ADMISSION IS NOT A SECOND DATE FOR ONE STAY - William 11/19/2026 ("i am now discharging from hospital hca to rehab hca inpateint rehab so
-    there will be some 99223 admission dates after follow up dates which will be valid") and 11/25/2026 ("i now follow patients after dc from the
-    inpatient hospital and admit them to inpatient rehab so code into the billing runs that that block is no longer valid to block a 99223 after a
-    series of inpatient visits"): when the LATER of the two dates is carried by an initial hospital visit (99221-99223) of the chart, a new admission
-    began that day. The visits that carry the later date then have no finding, and neither has a visit of the earlier stay dated on or before that
-    day (the day of the transfer belongs to both stays). ONE visit keeps the finding: one dated AFTER the new admission began that still carries
-    the earlier date - its own date looks wrong, and no other visit is held because of it. A later date that NO initial visit carries is one stay
-    entered with two dates, as before.
-    others = (visit, service date, admission date) for every visit of the chart, with the visit's codes as a fourth field when they are known;
-    a list without codes is judged as before 11/25/2026. cpts = this visit's own codes."""
-    out = []
-    if (set(cpts or ()) & set(resave.HOSP_CODES)) and not admit8: out.append("a hospital visit with no admission date")
-    if admit8 and dos8 and admit8 > dos8: out.append("its admission date %s is after its service date %s" % (mdy(admit8), mdy(dos8)))
+    """The admission date a visit must carry. -> (words that keep the visit for a person, words for the report only, the date to WRITE before the
+    save - "" when the date it has is right or none can be named).
+    THE STANDING RULE - William 9/1/2026 (the admission date is the date of the most recent initial hospital visit on or before the visit) and
+    11/19/2026 ("i am now discharging from hospital hca to rehab hca inpateint rehab so there will be some 99223 admission dates after follow up
+    dates which will be valid" - asked about 14 visits this sweep held, his answer was applied by hand: the rule's date written where it differed,
+    every visit sent), again 11/25/2026 ("that block is no longer valid to block a 99223 after a series of inpatient visits"). Until 11/25/2026
+    this function kept a visit for William whenever two visits of a chart carried different dates ('two admission dates in one stay') or a date
+    lay after the service date. The feed's date drifts: on about one initial hospital visit in ten it is the day AFTER the visit's own date, and
+    the follow-ups of a stay often carry a date a day off - so those holds asked him the same question again and again. Now, for a hospital visit:
+      R = the service date of the most recent initial hospital visit (99221-99223) of the chart on or before this visit, at most 45 days back
+          (this visit itself when it is one); F = the date AdvancedMD shows (the feed's).
+      F is R, F is empty, F is after the service date, F is before R, or F is the day after R  ->  the date is R (written before the save when F differs)
+      F is two or more days after R and not after the service date  ->  F stands: the feed names a later admission whose own initial visit is not on
+          the chart (yet) - hospital to inpatient rehab
+      no R: F stands when it is not after the service date; otherwise NO date can be named - the one case that still keeps the visit for a person
+          (a hospital visit with no admission date, or one whose only date lies after it, on a chart with no initial hospital visit of ours).
+    'two admission dates in one stay' is said for the report and holds nothing. A visit without a hospital code is judged as before 11/25/2026.
+    others = (visit, service date, admission date[, codes]) for every visit of the chart; cpts = this visit's own codes."""
+    keep, note = [], []
+    hosp = bool(set(cpts or ()) & set(resave.HOSP_CODES)); F = admit8 or ""
     rows = [(tuple(o) + ((),))[:4] for o in others]
-    opened = {a for v, _d, a, c in rows + [(vid, dos8, admit8, cpts)] if a and (set(cpts or ()) if v == vid else set(c or ())) & INITIAL_HOSP}      # the admission dates an initial hospital visit carries
-    def new_admission(a):
-        """This visit's date and the other date `a` are two ADMISSIONS (not one stay with two dates) - and this visit is on the right side of it."""
-        later = max(a, admit8)
-        return later in opened and (admit8 == later or (bool(dos8) and dos8 <= later))
-    two = [(v, a) for v, d, a, _c in rows if v != vid and a and admit8 and a != admit8 and ((d and dos8 and max(a, admit8) <= min(d, dos8)) or (days_apart(a, admit8) or 99) <= 3)
-           and not new_admission(a)] if admit8 else []
-    if two: out.append("two admission dates in one stay: %s %s, %s" % (vid, mdy(admit8), ", ".join("%s %s" % (v, mdy(a)) for v, a in two[:3])))
-    return out
+    inits = {d for v, d, _a, c in rows + [(vid, dos8, admit8, cpts)] if d and (set(cpts or ()) if v == vid else set(c or ())) & INITIAL_HOSP}
+    R = max([d for d in inits if dos8 and d <= dos8 and (days_apart(d, dos8) if days_apart(d, dos8) is not None else 999) <= ADMIT_WINDOW] or [""])
+    if not hosp: T = F
+    elif R and (not F or (dos8 and F > dos8) or F <= R or days_apart(F, R) == 1): T = R
+    elif F and dos8 and F <= dos8: T = F
+    else: T = ""
+    if hosp and not T: keep.append("a hospital visit with no admission date" if not F else "its admission date %s is after its service date %s" % (mdy(F), mdy(dos8)))
+    elif not hosp and F and dos8 and F > dos8: keep.append("its admission date %s is after its service date %s" % (mdy(F), mdy(dos8)))
+    elif hosp and T != F:
+        note.append("its admission date %s becomes %s - the date of the chart's most recent initial hospital visit on or before it (William 11/19/2026); written with the save" % (mdy(F) or "(none)", mdy(T)))
+    two = [(v, a) for v, d, a, _c in rows if v != vid and a and F and a != F and ((d and dos8 and max(a, F) <= min(d, dos8)) or (days_apart(a, F) or 99) <= 3)] if F else []
+    if two: note.append("two admission dates in one stay: %s %s, %s - not held for it (William 11/19/2026)" % (vid, mdy(F), ", ".join("%s %s" % (v, mdy(a)) for v, a in two[:3])))
+    return keep, note, (T if hosp and T and T != F else "")
 
 def approved(path):
     """{visit: entry} from the owner's approved file (round 7, 8.8). Raises when the file cannot be read, or when it does not carry the owner's
@@ -413,7 +423,8 @@ def main():
     INFO = [x for x in INFO if x["state"] != "waiting for the claim run"]
     ADM = {x["visit"]: x["admit8"] for x in INFO}; BYC = {}      # admission dates: every visit of the chart the registers know (what AdvancedMD shows for the visits read now)
     for v, r in ROWS.items(): BYC.setdefault(r.get("pid"), []).append((v, d8(r.get("dos")), ADM[v] if v in ADM else d8(r.get("admit")), list(r.get("cpts") or [])))      # ... and its codes: an initial hospital visit opens a new admission (William 11/25/2026 - admission())
-    for info in INFO: info["admission"] = admission(info["visit"], info["dos8"], info["admit8"], info["cpts"], BYC.get(info["chart"]) or []) if info["state"] in ("EMPTY insurance order", OTHER) else []
+    for info in INFO:      # what keeps the visit for a person, what the report says of its date, and the date the save writes first (admission())
+        info["admission"], info["admission_note"], info["admit_fix"] = admission(info["visit"], info["dos8"], info["admit8"], info["cpts"], BYC.get(info["chart"]) or []) if info["state"] in ("EMPTY insurance order", OTHER) else ([], [], "")
     empty = [x for x in INFO if x["state"] in ("EMPTY insurance order", OTHER)]
     for info in empty:
         ch = chart(info["chart"]); ap = AP.get(info["visit"])
@@ -432,7 +443,7 @@ def main():
             prob.append("an initial nursing-facility visit: the physician's by William's rule - the feed names %s: William confirms who saw the patient" % WHO[LABELS[FEED[info["visit"]].strip()]])
         if info["void"]: prob.append("charge(s) the import entered now read void: %s" % ",".join(info["void"]))
         if info["patbal"] > 0.004: prob.append("$%.2f sits on the patient" % info["patbal"])
-        prob += info["admission"]
+        prob += info["admission"] + info["admission_note"]
         tgt = (ap or {}).get("clinician")      # the file moves this visit to another clinician first: who acts on it, in words (11/10/2026: a routine never moves a clinician)
         mvw = ("" if not tgt else ", moved to %s" % WHO.get(tgt, tgt) if info["profile"] == tgt else
                ", for William: the file moves it to %s, but %s" % (WHO.get(tgt, tgt), "an initial nursing-facility visit stays under the physician" if set(info["cpts"]) & INITIAL_NF else
@@ -666,11 +677,26 @@ def main():
                 print("FEED ORDER SAVE - waits: %s %s %s - %s" % (info["chart"], vid, info["dos"], row["waits"])); continue
             if not LIVE:
                 row["dry"] = True; info["save"] = "would be saved (dry run)"; rows.append(row); done += 1
-                print("FEED ORDER SAVE (dry run): would save %s %s %s insurance order %s (%s)" % (info["chart"], vid, info["dos"], order, mode)); continue
+                if info.get("admit_fix"): row["admit_write"] = mdy(info["admit_fix"])
+                print("FEED ORDER SAVE (dry run): would save %s %s %s insurance order %s (%s)%s" % (info["chart"], vid, info["dos"], order, mode,
+                      " - its admission date %s -> %s first (the standing rule)" % (mdy(info["admit8"]) or "(none)", mdy(info["admit_fix"])) if info.get("admit_fix") else "")); continue
             v0, p0, c0 = read_all(info, "save")      # every live charge of the visit, also one the import register does not list: nothing billed, paid or on the patient (11/11/2026: not all read -> nothing sent, the run ends)
             if resave.billed_reasons(c0) or [c for c in c0 if float(c.get("patbalance") or 0) > 0.004]:
                 row["refused"] = info["save"] = "billed, paid or a balance on the patient on one of its %d live charges (read just now) - never saved" % len(c0); rows.append(row)
                 print("FEED ORDER SAVE - not saved: %s %s %s (%s) - %s" % (info["chart"], vid, info["dos"], mode, row["refused"])); continue
+            if info.get("admit_fix"):      # the standing admission-date rule (admission(), William 11/19/2026): the rule's date is written FIRST - the import's own call - and read back; only then the order is saved
+                fix = info["admit_fix"]; why_ = ""
+                try:
+                    _codes, bad_ = resave.restore_admit(v0.get("id"), c0, mdy(fix)); time.sleep(0.4)
+                    v1, p1, c1 = resave.visit_charges(num(info["charges"][0])); a1 = resave.admit_codes(c1)
+                    if bad_: why_ = "AdvancedMD refused it for %s" % ", ".join(str(x)[:40] for x in bad_)
+                    elif not a1 or any(d8(x) != fix for x in a1.values()): why_ = "it reads %s afterwards" % (" / ".join(sorted({mdy(d8(x)) or "none" for x in a1.values()})) or "none")
+                except Exception as e: why_ = "%s: %s" % (type(e).__name__, str(e)[:100]); a1 = {}
+                row["admit_write"] = mdy(fix)
+                if why_:      # the order is NOT saved; nothing else was sent for this visit - the next run writes the date again
+                    row["refused"] = info["save"] = "its admission date could not be set to %s before the save (%s) - not saved, the next run tries again" % (mdy(fix), why_); rows.append(row)
+                    print("FEED ORDER SAVE - not saved: %s %s %s (%s) - %s" % (info["chart"], vid, info["dos"], mode, row["refused"])); continue
+                info["admits"] = a1; info["admit8"] = fix; row["admit_before"] = "%s (written by the standing rule; it read %s)" % (mdy(fix), row["admit_before"] or "none")
             # the row first, marked unexpected until the read-back is recorded: a run cut off between the save and its read-back leaves a STOP
             row.update(sent=True, unexpected="the run ended before this save's answer and read-back were recorded - look at the visit in AdvancedMD")
             rows.append(row); dump_rows(); done += 1

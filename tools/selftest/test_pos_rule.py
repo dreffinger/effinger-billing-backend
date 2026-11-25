@@ -2327,7 +2327,7 @@ insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py"))
 check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
 check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either; mirror.py's marker for the inspector is a sentence only the current version has - since 11/12/2026 the version that tries a stuck visit again in every run (before, since 11.6: the one that takes BOTH no-charge lines off), so that an older copy of the step never comes back over the retry pass",
       'not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):' in insp and "is never moved to HCA REHAB either" in insp
-      and '"claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line"' in mir and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp
+      and '"claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care"' in mir and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp      # 11/25/2026: the marker is the sentence only the version that bypasses Pattern 692 has; the retry pass's sentence is still in the step
       and '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' not in mir and "the step takes BOTH no-charge lines off" in insp and "THIS STEP TAKES THE LINE OFF BY ITSELF" in insp)
 step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
 ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
@@ -2535,13 +2535,23 @@ check("digest: a visit that carries the quality line and is held by the Claim In
 json.dump({"fixed": [], "bypassed": [], "laterality": [], "held": [{"visit": "7", "pid": "pat7", "why": "Pattern 24078: something else"}]}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
 r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
 check("digest: ... and no such line when none of the held visits carries the quality line", "are HELD by the Claim Inspector" not in r.stdout and "Quality code 1123F" in r.stdout, r.stdout[-600:] + r.stderr[-300:])
-json.dump({"fixed": [], "bypassed": [{"visit": "7", "patterns": ["692"]}, {"visit": "8", "patterns": ["20657", "692"]}, {"visit": "9", "patterns": ["35790"]}], "laterality": [], "held": []}, open(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"), "w"))
+_NAF = os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json")
+json.dump({"fixed": [], "bypassed": [{"visit": "7", "patterns": ["692"]}, {"visit": "8", "patterns": ["20657", "692"]}, {"visit": "8", "patterns": ["692"]}, {"visit": "9", "patterns": ["35790"]}], "laterality": [], "held": []}, open(_NAF, "w"))
 r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0)
-check("digest (new admission, William 11/25/2026): the report says on how many visits the inspector step bypassed Pattern 692, by visit - and that nothing is held or waits for William; a visit bypassed for another advisory is not counted",
-      r.returncode == 0 and "- New admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): Pattern 692 bypassed on 2 visit(s) - vst7, vst8. Not held, nothing for William." in r.stdout, r.stdout[-700:] + r.stderr[-300:])
-os.remove(os.path.join(rep_dir, "registers", "feed_inspector_20261111T0100Z.json"))
+check("digest (new admission, William 11/25/2026): the report says on how many visits the inspector step bypassed the Pattern 692 edit, by visit - a visit once, whatever the number of its entries - and that nothing is held or waits for William; a visit bypassed for another advisory is not counted",
+      r.returncode == 0 and "- New admission (William 11/25/2026: a 99223 after follow-up hospital visits is valid - inpatient hospital, then inpatient rehab): the Pattern 692 edit was bypassed on 2 visit(s) - vst7 (pat7, 11/02/2026), vst8: not held, nothing for William." in r.stdout, r.stdout[-700:] + r.stderr[-300:])
+json.dump({"fixed": [], "bypassed": [{"visit": "7", "patterns": ["692"]}, {"visit": "8", "patterns": ["692"]}, {"visit": "6", "patterns": ["692"], "ok": False}], "laterality": [],
+           "held": [{"visit": "8", "pid": "pat8", "why": "Pattern 24078: something else"}, {"visit": "5", "pid": "pat5", "why": "Pattern 77002: another hold"}]}, open(_NAF, "w"))
+r, ql = qdigest([dict(qrow), dict(rows[4], visit="vst7", pid="pat7")], G0); _dl = r.stdout.splitlines()
+_i_held = next((i_ for i_, l_ in enumerate(_dl) if l_.startswith("- fixed ") and "held 2" in l_), -1); _i_na = next((i_ for i_, l_ in enumerate(_dl) if l_.startswith("- New admission (William 11/25/2026")), -1)
+check("digest (new admission): the line stands AFTER the held rows, which stay directly under the 'held N' line - a held visit never reads as a sub-item of 'not held'",
+      _i_held >= 0 and _dl[_i_held + 1].startswith("  - vst8 pat8: Pattern 24078") and _dl[_i_held + 2].startswith("  - vst5 pat5: Pattern 77002") and _i_na == _i_held + 3, _dl[_i_held:_i_held + 6] if _i_held >= 0 else r.stdout[-600:])
+check("digest (new admission): a visit whose 692 edit was bypassed but which is on the held list for ANOTHER edit is named as held, not as free; a bypass AdvancedMD did not accept is said in a line of its own",
+      "the Pattern 692 edit was bypassed on 2 visit(s) - vst7 (pat7, 11/02/2026): not held, nothing for William; vst8: on the held list above for another edit." in r.stdout
+      and "- New admission: AdvancedMD did not accept the bypass of the Pattern 692 edit on vst6 - the edit is still listed; the next columns pass bypasses it again." in r.stdout, r.stdout[-900:])
+os.remove(_NAF)
 r, ql = qdigest([qrow, rows[4]], G0)
-check("digest (new admission): ... and no such line in a batch without one", "New admission (William 11/25/2026" not in r.stdout, r.stdout[-300:])
+check("digest (new admission): ... and no such line in a batch without one", "New admission" not in r.stdout, r.stdout[-300:])
 check("digest: the quality code has its own line with the visits under it, says it is a pilot and what proves a line", r.returncode == 0 and "Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on 1 visit(s) in this batch, line amount $0.00; PILOT - at most 3 visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD." in ql
       and "carried by: pat9 vst1 charge77" in ql and "remark N620 on the 1123F line shows Medicare received the code and that it is valid for the year; whether the measure is met shows only in the feedback on the Medicare quality-program site" in r.stdout
       and "counted" not in r.stdout and "2 visits / 2 charge lines created" in r.stdout, (ql, r.stdout[:400], r.stderr[-300:]))
@@ -3242,17 +3252,53 @@ _abo, _abe = run_inside(os.path.join(ROOT, "scripts", "helpers", "insp_bypass_ad
 check("new admission: ... live, the sweep sends ONE bypass per planned visit with that visit's own edit ids - no edit of the visit it left whole is sent",
       _abe == "" and len(_AB["posts"]) == 2 and 'visit id="201"' in _AB["posts"][0] and 'claimedit id="e1"' in _AB["posts"][0] and 'visit id="203"' in _AB["posts"][1] and 'claimedit id="e4"' in _AB["posts"][1] and 'claimedit id="e5"' in _AB["posts"][1]
       and not any('"e2"' in b_ or '"e3"' in b_ or 'visit id="202"' in b_ for b_ in _AB["posts"]), (_abe, _AB["posts"]))
+_bp_old = IS_STAND["amd"]["post"]
+IS_STAND["amd"]["post"] = lambda body, **kw: ("<r><Fault><description>bypass refused in this test</description></Fault></r>" if "bypassclaimedits" in body else _bp_old(body, **kw))
+_ir, _io, _ie = is_run([E_692], row=HROW); IS_STAND["amd"]["post"] = _bp_old
+check("new admission: a bypass AdvancedMD does not accept is recorded as such in the step's register (\"ok\": false) - the visit is not written down as released",
+      _ie == "" and _ir["bypassed"] and all(b_.get("ok") is False for b_ in _ir["bypassed"]) and "FAILED" in _io, (_ie, _ir["bypassed"], _io[-200:]))
+E_692R = {"id": "e692r", "number": "77070088049", "text": "[Pattern 692] Initial hospital care code 99223..."}      # the edit as the feed registers of 11/01 and 11/20 show it: a long internal number, the pattern only in the words
+_ir, _io, _ie = is_run([E_692R], row=HROW)
+check("new admission: the edit as AdvancedMD really sends it (an internal number, 'Pattern 692' only in its words) is bypassed the same way", _ie == "" and IS["bypassed"] == [["e692r"]] and _ir["held"] == [], (_ie, _ir, IS["bypassed"]))
+import importlib.util as _iu692
+_sp = _iu692.spec_from_file_location("run_all_692", os.path.join(ROOT, "tools", "button", "run_all.py")); RA692 = _iu692.module_from_spec(_sp); _sp.loader.exec_module(RA692)
+_sw_adv = set(re.findall(r'"(\d+)"', re.search(r"(?m)^ADVISORY = \{([^}\n]*)\}", open(os.path.join(ROOT, "scripts", "helpers", "insp_bypass_advisories.py")).read()).group(1)))
+_ewd = tempfile.mkdtemp(prefix="posrule_eng_"); open(os.path.join(_ewd, "insp_bypass_advisories.py"), "w").write(open(os.path.join(ROOT, "scripts", "helpers", "insp_bypass_advisories.py")).read())
+check("new admission: the run engine (tools/button/run_all.py) takes its advisory list from the sweep's own ADVISORY line - the two can no longer disagree - and its built-in fallback carries 692 and 4311 too",
+      RA692.advisory_patterns(_ewd) == _sw_adv and "692" in _sw_adv and RA692.advisory_patterns(tempfile.mkdtemp(prefix="posrule_eng0_")) == set(RA692.ADVISORY_ERR_PATTERNS) and {"692", "4311"} <= set(RA692.ADVISORY_ERR_PATTERNS)
+      and set(RA692.ADVISORY_ERR_PATTERNS) == _sw_adv, (sorted(RA692.advisory_patterns(_ewd)), sorted(_sw_adv), sorted(RA692.ADVISORY_ERR_PATTERNS)))
+_scan = {"inspector": {"1": [{"vid": "301", "errs": [["e1", E_692["text"], "77070088049"]]}, {"vid": "302", "errs": [["e2", E_692["text"], ""], ["e3", "Pattern 24078 component of another procedure", ""]]},
+                             {"vid": "303", "errs": [["e4", "Pattern 4311 new patient code in history", ""]]}, {"vid": "304", "errs": [["e5", "procedure pcode692183 has a zero amount (claim 1692)", "88001"]]},
+                             {"vid": "305", "errs": []}]}}
+check("new admission: the engine's report sorts a visit the sweep's way - 692 alone and 4311 alone are advisories (not 'waiting for William'); 692 beside a data edit, an edit that only CONTAINS the digits 692 (the M0004 procedure id, a claim number) and a visit with no edit text are not",
+      RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)) == {"advisory": ["v301", "v303"], "missing data / dx": ["v302", "v304", "v305"]}, RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)))
+# ---- a charge dated after a patient has passed away is VOIDED - William on the board 10/4/2026 and again in chat 11/25/2026 ("VOID all charges sent after ..."): until 11/25 the live
+#      prompts and the Medicare-number scan told a run to WRITE such a charge OFF and to put a 'confirm or void' card on his turn - the opposite of the rulebook ----
+_vd = {n_: open(os.path.join(ROOT, *n_.split("/"))).read() for n_ in ("nightly/live/billing_button.txt", "nightly/live/cascade.txt", "nightly/live/columns.txt", "practices/ehpa/rules.md", "scripts/helpers/medicare_number_scan.py")}
+_VW = "VOID all charges sent after " + "date of " + "death"
+check("after a date of passing (William 10/4/2026 and 11/25/2026): no live prompt and no helper tells a run to write such a charge off or to ask him to confirm or void any more",
+      not any(x_ in _vd[n_] for n_ in _vd for x_ in ("is written off WOINS with a dated note and the chart goes on the board on William's turn", "write off any charge dated after", "write it off per the standing rule", "write off (standing rule)", "the standing rule writes them off", "to confirm/void", "to confirm or void.")),
+      [(n_, x_) for n_ in _vd for x_ in ("is written off WOINS with a dated note", "write off any charge dated after", "write it off per the standing rule", "write off (standing rule)", "to confirm/void", "to confirm or void.") if x_ in _vd[n_]])
+check("after a date of passing: ... they say VOID, with his words - twice in the Billing Button prompt (the guard sentence and the pre-check's rule e), twice in the cascade prompt (rule e and the Medicare-number scan's AFTER lines), in the rulebook and in the scan helper's own line",
+      _vd["nightly/live/billing_button.txt"].count(_VW) == 2 and _vd["nightly/live/cascade.txt"].count(_VW) == 2 and _VW in _vd["practices/ehpa/rules.md"] and "VOID it (the standing rule" in _vd["scripts/helpers/medicare_number_scan.py"]
+      and "void_tx.void_charge" in _vd["nightly/live/billing_button.txt"] and "void_tx.void_charge" in _vd["nightly/live/cascade.txt"], {n_: _vd[n_].count(_VW) for n_ in _vd})
+check("face sheets (11/25/2026): the rulebook says which of two Medicare numbers on a nursing-facility sheet is the current one, that a drug-plan card is never a payer for a visit, and what a Railroad Retirement Board card means",
+      "A FACE SHEET WITH TWO MEDICARE NUMBERS" in _vd["practices/ehpa/rules.md"] and "'Medicare Beneficiary ID'" in _vd["practices/ehpa/rules.md"] and "RAILROAD RETIREMENT BOARD means Railroad Medicare (RET01)" in _vd["practices/ehpa/rules.md"])
 _w692 = {n_: open(os.path.join(ROOT, *n_.split("/"))).read() for n_ in ("nightly/live/columns.txt", "nightly/live/billing_button.txt", "practices/ehpa/rules.md", "docs/SHARED_LESSONS.md", "nightly/claimocity_feed_step.md",
                                                                        "skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md", "scripts/helpers/claimocity_inspector.py", "scripts/helpers/insp_bypass_advisories.py")}
 check("new admission: both live run prompts name Pattern 692 among the edits the Claim Inspector step bypasses, and say in capitals that a 99223 after follow-up hospital visits is a new admission - never a hold, never a card, never recoded",
-      all("initial hospital care after subsequent care 692" in _w692[n_] and "A 99223 AFTER FOLLOW-UP HOSPITAL VISITS IS A NEW ADMISSION" in _w692[n_] and "never recoded to a subsequent visit" in _w692[n_] for n_ in ("nightly/live/columns.txt", "nightly/live/billing_button.txt")))
+      all("mod-25 4426, initial hospital care after subsequent care 692) -> bypassclaimedits." in _w692[n_] and "A 99223 AFTER FOLLOW-UP HOSPITAL VISITS IS A NEW ADMISSION" in _w692[n_]
+          and "Pattern 692 is never a hold and never a card on William's turn, and the 99223 is never recoded to a subsequent visit - bypass it" in _w692[n_]
+          and "python3 insp_bypass_ids.py <visitid>:692 --why 'William 11/25/2026 new admission' --stamp <run stamp>` - a dry run - then the same command with --live" in _w692[n_] for n_ in ("nightly/live/columns.txt", "nightly/live/billing_button.txt")))
 check("new admission: the rulebook carries William's words of 11/25/2026 beside his word of 11/19/2026, and says what the runs do: Pattern 692 bypassed, the sweep's 'two admission dates in one stay' not raised for a new admission",
       "that block is no longer valid to block a 99223 after a series of inpatient visits" in _w692["practices/ehpa/rules.md"] and "Pattern 692" in _w692["practices/ehpa/rules.md"] and "there will be some 99223 admission dates after follow up dates which will be valid" in _w692["practices/ehpa/rules.md"]
-      and "insp_bypass_advisories.py" in _w692["practices/ehpa/rules.md"] and "feed_order_sweep.py" in _w692["practices/ehpa/rules.md"])
+      and "is on the list the runs bypass - the feed's inspector step (claimocity_inspector.py ADVISORY), the advisory sweep (insp_bypass_advisories.py ADVISORY)" in _w692["practices/ehpa/rules.md"]
+      and "The feed order sweep (feed_order_sweep.py admission()) no longer keeps a visit for William for its admission date" in _w692["practices/ehpa/rules.md"] and "'two admission dates in one stay' is said in the report and holds nothing" in _w692["practices/ehpa/rules.md"])
 check("new admission: the lessons file has the RULE and why the 11/19 word did not hold (it was written in the rulebook and applied once by a dated helper, never coded into the standing steps)",
       "RULE (11/25/2026" in _w692["docs/SHARED_LESSONS.md"] and "Pattern 692" in _w692["docs/SHARED_LESSONS.md"] and "admit_send_1119.py" in _w692["docs/SHARED_LESSONS.md"])
 check("new admission: the feed runbook and the repository's copy of the Claim Inspector skill say the same (692 = a new admission, bypassed)",
-      "Pattern 692" in _w692["nightly/claimocity_feed_step.md"] and "Pattern 692" in _w692["skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md"])
+      "The feed's inspector step bypasses the Claim Inspector's Pattern 692" in _w692["nightly/claimocity_feed_step.md"] and "it keeps no visit for William for 'two admission dates in one stay'" in _w692["nightly/claimocity_feed_step.md"]
+      and "Bypass it - never a hold, never a board card, never recode the 99223 to a subsequent visit" in _w692["skills/billing-easy-task-charge-review-and-claim-inspector-columns/SKILL.md"])
 check("new admission: the two helpers carry 692 in their own lists (the feed step's ADVISORY and the sweep's ADVISORY), each with William's word beside it",
       bool(re.search(r'^ADVISORY = \([^\n]*"692"', _w692["scripts/helpers/claimocity_inspector.py"], re.M)) and bool(re.search(r'^ADVISORY = \{[^\n]*"692"', _w692["scripts/helpers/insp_bypass_advisories.py"], re.M))
       and "William 11/25/2026" in _w692["scripts/helpers/claimocity_inspector.py"] and "William 11/25/2026" in _w692["scripts/helpers/insp_bypass_advisories.py"])
@@ -3718,7 +3764,7 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
-      '"claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line"' in mir and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in mir
+      '"claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care"' in mir and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in mir
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 
 # ---- 6b2. the confirm reviews (11/10/2026 evening): the words of their fixes, and the privacy gate's tree mode ------------------------------------------

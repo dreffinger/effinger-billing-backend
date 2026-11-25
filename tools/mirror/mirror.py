@@ -135,12 +135,17 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # (resave.py above). feed_order_sweep.py is new that day: the daily listing and the owner-approved save
              # 11/12/2026 (rule version 2026-11-10.8, the quality code never switches itself off): the inspector step tries a visit stuck with its no-charge line again in
              # every run - a copy from before that leaves such a visit held for ever now that nothing switches the code off; its marker is the sentence only that version has
-             "claimocity_inspector.py": "every run tries the void and the re-save again for a visit stuck with its no-charge line", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
+             # 11/25/2026 (William: a 99223 after follow-up hospital visits is a new admission - "that block is no longer valid"): the inspector step bypasses Pattern 692;
+             # a copy from before holds such a visit and puts it on his turn again - its marker is now a sentence only the version with that rule has (it still carries the retry pass)
+             "claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
+             "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it
              # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
              # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out
              # of a full-visit save is voided: such a copy must not come back over them. Their markers (resave.py's above, the sweep's here) are now
              # sentences only the round-8 versions have - a round-7 copy is refused too; the insurance check keeps its round-7 sentence
-             "feed_order_sweep.py": "NOTHING IS SENT WHEN A VISIT'S CHARGES COULD NOT ALL BE READ",
+             # 11/25/2026: the sweep sets a hospital visit's admission date by the standing rule and no longer keeps it for William ('two admission dates in one stay'); a copy from
+             # before holds those visits again - its marker is now a sentence only that version has (it still carries the round-8 guard)
+             "feed_order_sweep.py": "THE ADMISSION DATE IS SET BY THE STANDING RULE, NOT HELD FOR WILLIAM",
              # the denial table exists twice (boards/ and here); the workspace copy the bootstrap lays out first is this one - an older
              # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
              "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',
