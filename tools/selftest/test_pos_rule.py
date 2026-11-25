@@ -501,14 +501,14 @@ _b, _i, _dc, _dl = dxbuilt("S82.843D^" + "^".join("K%02d" % n_ for n_ in range(1
 check("dx: the limit of 12 codes on a line stays - I10 in the first place, then the first eleven of the feed's known codes", _dc == [" ".join(["dcode1"] + ["dcode%d" % (100 + n_) for n_ in range(11)])] and len(_dl[0]) == 12, _dc)
 for n_ in range(14): del ci.DX["K%02d" % n_]
 _b, _i, _dc, _dl = dxbuilt(" E119 ^S82.843D ")
-check("dx: a code that arrives with blanks around it is looked up without them, as the cache step and the retry driver already read it - so a code the list HAS is never replaced by I10 (and never asked for in the email) because of a stray blank",
+check("dx: under the rule a code that arrives with blanks around it is looked up without them, as the cache step and the retry driver already read it - so a code the list HAS is never replaced by I10 (and never asked for in the email) because of a stray blank",
       _dc == ["dcode2 dcode1"] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"], (_i, _dc))
 _dx0 = dict(ci.DX)
 for _how, _set in (("I10 itself is not in the list", lambda: ci.DX.pop("I10")), ("the cache holds I10 as 'not in the list' (null)", lambda: ci.DX.__setitem__("I10", None))):
     ci.DX.clear(); ci.DX.update(_dx0); _set()
-    _a = _brief(dxbuilt("S82.843D^E119")); _o = dxbuilt("S82.843D"); _t = _brief(dxbuilt("I10^E119"))
-    check("dx: when %s EVERYTHING is exactly as before - an unknown code is left off and named, nothing stands in its place (no dx_instead), and a line with no usable code skips the visit" % _how,
-          _a == (["dcode2"], ["S82.843D"], False) and _o[:2] == (None, "no usable dx for 99309") and _t == (["dcode2"], ["I10"], False), (_a, _o[:2], _t))
+    _a = _brief(dxbuilt("S82.843D^E119")); _o = dxbuilt("S82.843D"); _t = _brief(dxbuilt("I10^E119")); _bl = _brief(dxbuilt("E119^ E119 ^ ^S82.843D "))
+    check("dx: when %s EVERYTHING is exactly as before - an unknown code is left off and named, nothing stands in its place (no dx_instead), a line with no usable code skips the visit, and the field is read to the letter (a blank around a code included)" % _how,
+          _a == (["dcode2"], ["S82.843D"], False) and _o[:2] == (None, "no usable dx for 99309") and _t == (["dcode2"], ["I10"], False) and _bl == (["dcode2"], [" ", " E119 ", "S82.843D "], False), (_a, _o[:2], _t, _bl))
 ci.DX.clear(); ci.DX.update(_dx0)
 _cd = _cnt(dict(_INFO(["99309"], ["32"], ["monthly"]), dx_instead="I10", missing_dx=["S82.843D"])); _cn = _cnt(_INFO(["99309"], ["32"], ["monthly"]))
 check("dx: the import's DONE line counts each visit that went in with I10 in a code's place, in words that name William's order - and counts nothing for a visit with no replaced code",

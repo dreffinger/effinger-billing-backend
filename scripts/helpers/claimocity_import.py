@@ -1734,7 +1734,7 @@ def build(msg, ctx):
     for _k, (c, cpos) in enumerate(zip(lines, lpos)):
         dcodes = []; _rep = False
         for code in c["dx"].split("^"):
-            code = code.strip()                               # read as claimocity_dx.py caches it and the retry driver reads it (11/25/2026): with a blank around it a code the list HAS could never be found - and would now be replaced
+            if _instead: code = code.strip()                  # 11/25/2026: under the rule a code is read as claimocity_dx.py caches it and the retry driver reads it - with a blank around it a code the list HAS would not be found, and would be replaced by I10 and asked for in the email. Without I10 in the list the field is read exactly as before.
             if DX.get(code): dcodes.append(DX[code])
             elif code:
                 missing_dx.add(code)
