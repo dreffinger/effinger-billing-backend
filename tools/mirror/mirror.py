@@ -128,9 +128,12 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # still keeps a CCM line at 31 in a 'skilled-looking month' - it must not come back over the new one
              # 11/25/2026 (.2): the independent review of the I10 rule changed the import (what it says of a code past the twelfth place) and the report
              # (the diagnosis lines of the digest) - a copy from before those fixes must not come back either
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.2"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.2"',
+             # 11/25/2026 (.3 - William the same day: inpatient rehab goes out at place of service 61; a feed patient with a wrong birth date goes to the chart he already has): the
+             # import enters a rehab stay at HCA REHAB / 61, notes the feed's birth date against the chart's and asks for a message's chart by its own Claimocity id; the report says
+             # all three - a copy from before must not come back over either
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.3"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.3"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.2"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.2"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.3"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.3"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
@@ -141,7 +144,20 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # every run - a copy from before that leaves such a visit held for ever now that nothing switches the code off; its marker is the sentence only that version has
              # 11/25/2026 (William: a 99223 after follow-up hospital visits is a new admission - "that block is no longer valid"): the inspector step bypasses Pattern 692;
              # a copy from before holds such a visit and puts it on his turn again - its marker is now a sentence only the version with that rule has (it still carries the retry pass)
-             "claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care", "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST",
+             # 11/25/2026 (William: the rehab unit's visits go out at 61 and are watched): the inspector step no longer moves any visit (it moved nursing-coded visits under the hospital
+             # building to HCA REHAB at 31 - his word of 10/31: wrong) and never bypasses a place-of-service edit on a visit entered at 61; a copy from before moves visits again - its
+             # marker is now a sentence only that version has (it still carries the Pattern 692 rule and the retry pass). The insurance check asks its paid look-up with the CHART's own
+             # name and birth date (a feed patient with a wrong birth date): a copy from before asks with Claimocity's - its marker is now that sentence (it still carries the list rule)
+             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "the paid look-up is asked with the CHART's own name and birth date",
+             # the same word for the insurance intake of existing charts, and the three steps of the identity rule with the rule itself (feed_identity.py): they only work together -
+             # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
+             "feed_in1_intake.py": "with the CHART's own name and birth date - from the chart answer read in step 2",
+             "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
+             "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
+             "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
+             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.1"',
+             # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
+             "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.1"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it
              # 11/11/2026 (round 8, the echo guard): resave.py's order save and feed_order_sweep.py never send a save when AdvancedMD did not return
              # all of a visit's charges. A copy from before sends a short or EMPTY list of charges after a failed history read, and a charge left out
@@ -160,7 +176,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (independent review of the I10 rule): the diagnosis cache step never caches a fault as 'not in the list' and always resolves I10; the
              # reconciliation never hands the row of a message without a charge line to another message. A workspace copy from before that must not come back
              # over them - the markers are a sentence and a line only the fixed versions have
-             "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": 'NO_LINES_WHY = "feed message without a charge line - passed over"',
+             "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
              # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
              "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
@@ -226,12 +242,17 @@ def sync_helpers():
 #         _merge_intake and _merge_dx_needed. (Review: the intake register and the order sweep's coverage / resave / fixclin registers
 #         hold state - a Medicaid check or a dated check is bought again, a visit saved again, when a fresh workspace lacks them - and the
 #         first version left them to the runbook's prose.)
+#       the register of the place-of-service-61 monitor pos61_monitor.json (11/25/2026) - never mixed: the LATER run's stays, whole
+#         (_merge_pos61). It is the monitor's memory and the words the digest prints about the rehab visits.
+#   - feed_identity_<stamp>.json (11/25/2026: which chart each new feed patient went to and by which rule - chart ids, rule numbers and
+#     fixed words only; claimocity_ingest.py writes it from the match file, which itself never leaves the workspace) is a batch register
+#     like the others.
 # Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word - and quality_exceptions.json).
 # Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror: it never raises. (Only the
 # subcommand `feed-registers` ends non-zero, AFTER the step, while a standing file on main is no longer JSON - feed_standing_unreadable.)
 # The sweep's stamp carries seconds and, when two runs start in one second, "_2", "_3" ... behind it (feed_order_sweep.py).
-FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
-FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json", "feed_in1_intake.json", "feed_dx_needed.json")
+FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon|identity)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
+FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json", "feed_in1_intake.json", "feed_dx_needed.json", "pos61_monitor.json")
 def _merge_ingest(main, ws):
     out = dict(main); files = dict(main.get("files") or {})
     for k, v in (ws.get("files") or {}).items():
@@ -299,11 +320,20 @@ def _merge_dx_needed(main, ws):
                 if given: e[k] = (min if k.startswith("first") else max)(given, key=_stamp_key)        # on a tie the first of the two: main's
         out[code] = e
     return out
+def _merge_pos61(main, ws):
+    """pos61_monitor.json - the register of ONE run of pos61_monitor.py (William 11/25/2026: the rehab visits at place of service 61 are
+    watched until they are paid): the lines the digest prints, the counts, and the monitor's memory of every rehab visit it has read. It
+    is one run's finding and is never mixed: the register of the LATER run (its "at") stays, whole - also when it holds fewer visits (a
+    voided visit leaves the list). The same time on both sides is the same run's register - main's stays (the tree gate may have scrubbed
+    it). No time on either side: nothing says which is later, and the workspace's - this run's - stays. Main holds none yet: the workspace's."""
+    if not main: return ws
+    a = _stamp_key(ws.get("at")); b = _stamp_key(main.get("at"))
+    return ws if (a > b or not (a or b)) else main
 # every merged file is written the way its helper writes it, so that a diff on main shows only the entries that changed
 # (feed_dx_needed.json has no writer in the repository yet: one field a line, keys in order)
 _FEED_MERGE = {"claimocity_ingest.json": (_merge_ingest, {"indent": 1}), "claimocity_patient_map.json": (_merge_map, {"indent": 0, "sort_keys": True}),
                "dx_cache_feed.json": (_merge_dx, {"indent": 0, "sort_keys": True}), "feed_in1_intake.json": (_merge_intake, {"indent": 1}),
-               "feed_dx_needed.json": (_merge_dx_needed, {"indent": 1, "sort_keys": True})}
+               "feed_dx_needed.json": (_merge_dx_needed, {"indent": 1, "sort_keys": True}), "pos61_monitor.json": (_merge_pos61, {"indent": 1})}
 def _feed_rows(name, doc):
     """How many rows a batch register holds - what "fuller" means when both sides have one (the rules above, 11/25/2026)."""
     if isinstance(doc, list): return len(doc)

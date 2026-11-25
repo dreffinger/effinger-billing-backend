@@ -6,6 +6,8 @@
 #   chart was made - William's identity hold). Entered rows also carry the insurance cascade's verdict (RELEASE / HOLD + why).
 #   A feed message with NO charge line is no patient-day and has no row here; the import's skipped row for it ('feed message without a
 #   charge line - passed over') stays in the import register and is never handed to another message of that patient (11/25/2026).
+#   THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S (11/25/2026): where the match file names a chart per Claimocity id (by_id - the
+#   ingest writes it) that chart is taken, so two feed patients under one name and one birth date are not reconciled as one.
 # Writes registers/feed_recon_<stamp>.json - PHI-LIGHT: Claimocity patient id, AMD chart id, DOS, CPTs, dx codes, fees, visit and
 #   charge ids, facility id, clinician key, file date. Never a name, DOB, member id or SSN (the parsed file that has them stays in
 #   the workspace). The file is mirrored to main with the other registers and copied into the Claimocity Feed Monitoring page's
@@ -90,7 +92,10 @@ failed_by_fid = collections.defaultdict(list)
 for f in imp.get("failed", []): failed_by_fid[f.get("feed_id")].append(f)
 resolved = {}
 for k, v in match.items():
-    if v.get("resolved"):
+    if isinstance(v.get("by_id"), dict):      # 11/25/2026: the driver names the chart of EACH Claimocity id of the entry - two feed patients under one name and birth date keep their own charts, and an id the entry does not name has no chart
+        for fid, chart in v["by_id"].items():
+            if chart: resolved[fid] = chart
+    elif v.get("resolved"):
         for fid in v.get("feed_ids", []): resolved[fid] = v["resolved"]
 # every OTHER batch's created visits: a batch whose own import register is missing (10/29 05:49Z - the first daily run, its
 # container's registers never reached main) is still accounted for when the 10/28 backlog or another batch entered the same visit

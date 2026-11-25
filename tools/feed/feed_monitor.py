@@ -57,7 +57,8 @@ def fac_name(fid):
     return n[:40]
 
 POS_NAME = {"21": "Inpatient hospital", "22": "Outpatient hospital", "23": "Emergency room", "31": "Skilled nursing facility", "32": "Nursing facility",
-            "13": "Assisted living", "12": "Home", "11": "Office", "33": "Custodial care", "34": "Hospice", "14": "Group home", "19": "Off-campus outpatient"}
+            "13": "Assisted living", "12": "Home", "11": "Office", "33": "Custodial care", "34": "Hospice", "14": "Group home", "19": "Off-campus outpatient",
+            "61": "Inpatient rehab"}      # 11/25/2026 (William): the visits of the hospital's rehabilitation unit go out at 61
 
 def service(cpt):
     c = (cpt or "").upper()

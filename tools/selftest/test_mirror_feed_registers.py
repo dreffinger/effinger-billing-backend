@@ -16,6 +16,8 @@
 #       read from the workspace ROOT, where the feed helpers keep it, a known code is never replaced by "not in AdvancedMD", and where the
 #       two sides hold DIFFERENT ids for a code MAIN's id stays and the line names the code; the insurance-intake register
 #       feed_in1_intake.json and - when a run wrote it - feed_dx_needed.json are merged entry by entry;
+#     - (11/25/2026) feed_identity_<stamp>.json - which chart each new feed patient went to, and by which rule - travels like every other
+#       batch register, and the place-of-service-61 monitor's register pos61_monitor.json is never mixed: the LATER run's stays, whole;
 #     - `mirror.py feed-registers` (for a run that commits by hand) runs the privacy gate over the registers folder before it returns and
 #       exits non-zero when the gate fails - and when a standing file on main is no longer JSON (the conflict markers of a pull with
 #       rebase), with one line for the top of the report, so that the run's own commit of the folder does not follow; it commits and
@@ -644,6 +646,49 @@ else:
         _i = _t.find("'feed registers:' line that ends 'TOP OF THE REPORT'"); _j = _t.find("goes to the top of the report word for word - runbook step (e)", max(_i, 0))
         if not 0 <= _i < _j < _i + 240: _miss.append(_f)
     check("11d each of the three prompts that run the feed (the daily feed task, the columns run, the Billing Button) says in one clause that a 'feed registers:' line that ends 'TOP OF THE REPORT' goes to the top of the report word for word, and names runbook step (e)", not _miss, _miss)
+
+# ---- 12. the identity register and the place-of-service-61 monitor's register (11/25/2026) --------------------------------------------------
+# William 11/25/2026: a feed patient with a wrong birth date goes to the chart he already has (scripts/helpers/feed_identity.py); which chart
+# each new feed patient went to, and by which rule, is written to feed_identity_<stamp>.json - chart ids, rule numbers and fixed words only.
+# The same day: rehab visits go out at place of service 61 and pos61_monitor.py follows their payment; its register is one run's finding
+# (the digest's lines and the monitor's memory), so the register of the LATER run stays, whole.
+mirror._running_ingest_stamps = NO_INGEST
+ws, reg = setup("identity"); wr = os.path.join(ws, "registers")
+IDENT = ["feed_identity_20261126T1240Z.json", "feed_identity_20261126T1840ZR.json"]
+NOT_IDENT = ["feed_identity.json", "feed_identity_20261126T1240Z_decisions.json", "feed_identity_2026" "1126.json", "feed_identities_20261126T1240Z.json"]      # the third: a stamp without a time (put together here - the privacy gate reads a word and eight digits as a name and a birth date)
+for b in IDENT + NOT_IDENT: put(wr, b, {"stamp": "invented", "patients": rows(2, "workspace")})
+n, out = run()
+check("12a the feed's identity register (which chart each new feed patient went to and by which rule - chart ids and rule numbers only) travels to main like every other batch register, a retry stamp included; a name that only looks like one does not",
+      all(os.path.exists(os.path.join(reg, b)) for b in IDENT) and not any(os.path.exists(os.path.join(reg, b)) for b in NOT_IDENT) and n == len(IDENT), (n, out, sorted(os.listdir(reg))))
+put(reg, IDENT[0], {"stamp": "invented", "patients": rows(1, "main")}); put(reg, IDENT[1], {"stamp": "invented", "patients": rows(3, "main")}); n, out = run()
+check("12b ... and by the same rule as the others: a FULLER workspace copy (its rows are its patients) replaces main's shorter one, a shorter one never replaces main's fuller one",
+      side(reg, IDENT[0]) == "workspace" and side(reg, IDENT[1]) == "main" and n == 1 and "1 fuller workspace copy replaced main's shorter one: %s (1 -> 2 rows)" % IDENT[0] in line(out), (n, out))
+MONF = "pos61_monitor.json"
+def mon(at, tag, k=1): return {"version": "2026-11-25.1", "at": at, "lines": ["REHAB AT 61: %d visit(s) entered" % k], "top": [], "visits": rows(k, tag)}
+ws, reg = setup("pos61"); wr = os.path.join(ws, "registers")
+put(wr, MONF, mon("2026-11-26T12:40:00Z", "workspace", 2)); n, out = run()
+check("12c main gets the place-of-service-61 monitor's register the first time a workspace has it, written the way the monitor writes it (one field a line)",
+      os.path.exists(os.path.join(reg, MONF)) and get(reg, MONF) == mon("2026-11-26T12:40:00Z", "workspace", 2) and n == 1
+      and open(os.path.join(reg, MONF)).read() == json.dumps(mon("2026-11-26T12:40:00Z", "workspace", 2), indent=1), (n, out))
+put(reg, MONF, mon("2026-11-27T12:40:00Z", "main", 5)); n, out = run()
+check("12d the register of the LATER run stays, whole: a restored workspace's older register never replaces main's newer one, however the file times stand (it is one run's finding - the digest's lines and the monitor's memory - never a mix of two)",
+      get(reg, MONF) == mon("2026-11-27T12:40:00Z", "main", 5) and n == 0, (n, out))
+put(wr, MONF, mon("2026-11-28T12:40:00Z", "workspace", 3), age=OLDER); n, out = run()
+check("12e ... and the workspace's register of a later run replaces main's, whole - also when it holds FEWER visits (a voided visit leaves the list) and its file is the older one",
+      get(reg, MONF) == mon("2026-11-28T12:40:00Z", "workspace", 3) and n == 1, (n, out))
+n2, out2 = run()
+check("12f a second run changes nothing and counts nothing, and the workspace's copy is not touched", n2 == 0 and get(reg, MONF) == mon("2026-11-28T12:40:00Z", "workspace", 3) and get(wr, MONF) == mon("2026-11-28T12:40:00Z", "workspace", 3), (n2, out2))
+put(reg, MONF, mon("2026-11-28T12:40:00Z", "main", 3)); n, out = run()
+check("12g the same run's register on both sides: main's stays (the tree gate may have scrubbed it)", side(reg, MONF) == "main" and n == 0, (n, out))
+_noat = lambda tag: {k: v for k, v in mon("x", tag).items() if k != "at"}
+put(reg, MONF, _noat("main")); put(wr, MONF, _noat("workspace")); n, out = run()
+check("12h no time on either side: nothing says which is the later one, and the workspace's - this run's - stays (the intake register's rule)", side(reg, MONF) == "workspace" and n == 1, (n, out))
+put(reg, MONF, mon("2026-11-29T12:40:00Z", "main")); put(wr, MONF, "{ half written"); n, out = run()
+check("12i a workspace register that cannot be read stops nothing: it is named for the top of the report and main's copy stays as it is",
+      get(reg, MONF) == mon("2026-11-29T12:40:00Z", "main") and "could not be read and left as they are on main: %s (" % MONF in line(out) and line(out).endswith("TOP OF THE REPORT"), (n, out))
+put(reg, MONF, "<<<<<<< Updated upstream\n{}\n=======\n{}\n>>>>>>> Stashed changes\n")
+check("12j main's copy with the conflict markers of a pull is found by the same guard as the other standing files (`mirror.py feed-registers` then ends non-zero and `sync` puts the committed copy back)",
+      any(x.startswith(MONF + " (conflict markers)") for x in mirror.feed_standing_unreadable()), mirror.feed_standing_unreadable())
 
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

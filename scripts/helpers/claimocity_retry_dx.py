@@ -40,7 +40,7 @@ def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0
 # helpers here the repository's copies exactly as the ingest does - the one shared function claimocity_helpers_current.make_current: with the clone
 # there, every helper that differs is replaced by the clone's copy; without one, each is checked by its version line. It never holds a visit for
 # this (rules.md part 6): what could not be made current is said at the end of the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-25.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-25.3"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 REPO_REGS = os.path.join(os.path.dirname(os.path.dirname(REPO_HELPERS)), "practices", "ehpa", "registers")   # the recon registers on main (the workspace copies come first); derived, so the selftest sandbox moves it too
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
@@ -146,7 +146,7 @@ def step(name, cmd, must=True):
     log = "logs/claimocity_%s_%s.log" % (rstamp, name)
     with open(log, "w") as fh: r = subprocess.run(cmd, cwd=WS, env=env, stdout=fh, stderr=subprocess.STDOUT, text=True)
     tail = open(log).read().strip().splitlines()[-3:]
-    print("[%s] exit %d  %s" % (name, r.returncode, " | ".join(t[:110] for t in tail)))
+    print("[%s] exit %d  %s" % (name, r.returncode, " | ".join(t[:160] for t in tail)))
     if r.returncode and must: print("STEP FAILED:", name, "- see", log); sys.exit(2)
     return r.returncode
 step("dx", [sys.executable, os.path.join(HERE, "claimocity_dx.py")])
@@ -189,8 +189,9 @@ match = {}
 for m in ready:
     key = m["name"].upper().strip() + "|" + m["dob"][:8]; pid = pmap.get(m["pid"])
     if not pid: print("retry-dx: feed patient %s has no chart in the patient map - skipped" % m["pid"]); continue
-    e = match.setdefault(key, {"status": "FOUND", "pids": [pid], "amd_names": [], "feed_ids": [], "resolved": pid, "via": "patient map (retry)"})
+    e = match.setdefault(key, {"status": "FOUND", "pids": [pid], "amd_names": [], "feed_ids": [], "resolved": pid, "via": "patient map (retry)", "by_id": {}})
     if m["pid"] not in e["feed_ids"]: e["feed_ids"].append(m["pid"])
+    e["by_id"][m["pid"]] = pid      # 11/25/2026: each Claimocity id keeps the chart the map names for it (the import asks by the message's own id) - of two ids under one name and birth date the first one's chart is no longer used for both
 json.dump(match, open("feed_match_%s.json" % rstamp, "w"), indent=1)
 batches = sorted({m["_batch"] for m in ready})
 # 11/10/2026: the import reads the building (and with it the place of service), the provider and the admission date from the raw files.

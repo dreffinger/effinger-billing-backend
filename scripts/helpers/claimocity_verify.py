@@ -29,6 +29,12 @@
 #      with drug coverage IS medical, the 11/10 clarification) shown active on every date of service;
 #      otherwise nothing is added and the answer's words go to William. When every free check of a chart with plans errored, nothing is bought:
 #      "free check down - not checked tonight".
+#      11/25/2026 (William: "correct every one that comes to the correct date of birth and insurance and fix them ... where we know the correct dob but claimocity sends
+#      the wrong one or the 01011900 default date"): the paid look-up is asked with the CHART's own name and birth date - taken from the chart answer this step already
+#      holds, no extra call - whenever the chart's birth date is a real one; else with the feed's, as before; never a mix of the two. Until that day it was asked with the
+#      FEED's name and birth date, so a visit on a chart whose birth date had been corrected from a face sheet was looked up under the wrong date, missed, and was held
+#      "no active plan: discovery found nothing". The chart's record says which one was asked ("lookup_asked", and behind the hold's own words whenever the two dates are
+#      not the same) - by the kind of slip, never with a name or a date. See lookup_who.
 #   6. the feed's IN1 payers are mapped and reported next to the chart (the 271 decides, the feed only informs).
 # Writes feed_verify_1028.json (+ registers copy). AMD writes: visit insorder resaves; addinsurance only from discovery; updextrainsinfo only to put
 # back an admission date a resave wiped (11/10/2026). Never: a save on a billed visit, a rebill, a void (except the no-charge line left out above).
@@ -408,6 +414,67 @@ def order_hold(visit, order, m, info, qtag=None):
     else:
         words, key = held("%s bills to insurance order %s, but %s%s" % (visit, lst, "the save did not read back as asked" if info.get("sent") else "nothing was sent: the visit's charges do not read as the import entered them", w_)), ("save_problem" if info.get("sent") else "")
     return (("insorder not applied on %s%s - " % (visit, qtag(m))) if qtag else "") + words, key
+# ---- William 11/25/2026 ("correct every one that comes to the correct date of birth and insurance and fix them figure our how to do this for other charts that have the
+# same mistake where we know the correct dob but claimocity sends the wrong one or the 01011900 default date") - WHOM THE PAID LOOK-UP IS ASKED ABOUT ---------------------
+# The feed sends some patients with a WRONG birth date (an old one ten days off, a year twenty years off) or with the year-1900 placeholder, although the chart their visits
+# sit on holds the right one - corrected from a face sheet. This step asked Stedi's insurance discovery with the FEED's name and birth date - a look-up under a date the
+# chart itself no longer carries: it found nothing, nothing was added, and the chart was held "no active plan: discovery found nothing". After the match the chart is the
+# patient: lookup_who takes the name and the birth date from the chart answer main() already holds (elig_amd.plans gives the patient's own attributes with the plans - no
+# extra call) and falls back to the feed's only when the chart's birth date is not a real one. What it says goes into registers and reports, so its words carry no name and
+# no date. With no real birth date on either side the look-up is still asked with what the feed sent, exactly as before this change (nothing is bought less or more).
+# _real_dob and _slip are the owner's rule as scripts/helpers/feed_identity.py states it (real_dob, slip); they are private copies here - the same text stands in
+# claimocity_import.py and feed_in1_intake.py, and tools/selftest/test_pos_rule.py checks the three read the same - until the helpers point at that one module.
+# _dob8 and lookup_who stand, the same text, in feed_in1_intake.py (its Florida Medicaid check).
+def _real_dob(d8, today8):
+    """True when d8 is a REAL birth date (the owner's rule): 8 digits, a real calendar date, the year 1901 or later, not after today8 and not more than 120 years before
+    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (Mirrors real_dob in feed_identity.py.)"""
+    d8 = str(d8 if d8 is not None else ""); today8 = str(today8 if today8 is not None else "")
+    if not re.fullmatch(r"[0-9]{8}", d8) or not re.fullmatch(r"[0-9]{8}", today8) or d8[:4] < "1901": return False
+    try: __import__("datetime").date(int(d8[:4]), int(d8[4:6]), int(d8[6:8]))
+    except ValueError: return False
+    return "%04d%s" % (int(today8[:4]) - 120, today8[4:]) <= d8 <= today8
+def _slip(a8, b8):
+    """How two REAL birth dates differ (the owner's rule) - the kind of slip, the first that fits: "one digit" (one digit differs), "two digits swapped" (two neighbouring
+    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (Mirrors slip in
+    feed_identity.py.)"""
+    a8, b8 = str(a8), str(b8)
+    if a8 == b8: return ""
+    if len(a8) != 8 or len(b8) != 8: return "far"
+    diff = [i for i in range(8) if a8[i] != b8[i]]
+    if len(diff) == 1: return "one digit"
+    if len(diff) == 2 and diff[1] == diff[0] + 1 and a8[diff[0]] == b8[diff[1]] and a8[diff[1]] == b8[diff[0]]: return "two digits swapped"
+    if a8[:4] == b8[:4] and a8[4:6] == b8[6:8] and a8[6:8] == b8[4:6]: return "month and day swapped"
+    try:
+        day = __import__("datetime").date
+        if abs((day(int(a8[:4]), int(a8[4:6]), int(a8[6:8])) - day(int(b8[:4]), int(b8[4:6]), int(b8[6:8]))).days) == 1: return "one day apart"
+    except ValueError: pass
+    return "far"
+def _dob8(s):
+    """A birth date as AdvancedMD writes it (MM/DD/YYYY, with or without leading zeros or a time behind it), as the feed writes it (YYYYMMDD, or longer with a time) or
+    with dashes (YYYY-MM-DD) -> the 8 digits YYYYMMDD; "" for anything that cannot be read that way. It reads the shape only: whether the date is a REAL one is _real_dob's."""
+    s = str(s if s is not None else "").strip(); m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
+    if m: return "%s%02d%02d" % (m.group(3), int(m.group(1)), int(m.group(2)))
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", s)
+    if m: return "".join(m.groups())
+    x = re.sub(r"\D", "", s)
+    return x[:8] if len(x) >= 8 else ""
+def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
+    """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's
+    getdemographic answer gives them (name "LAST,FIRST ...", dob MM/DD/YYYY) - the answer the caller already holds, so this costs no call. first, last, dob8 = what the
+    feed carries. When the chart's birth date is a REAL one (_real_dob) and its name can be read, the answer is the CHART's first name (its first word), last name and
+    birth date; else it is the feed's three values exactly as they were passed - never a mix of the two. words = which one was asked and how the other differs, in fixed
+    words that carry no name and no date (a slip is named by its kind); they begin with `what` ("look-up", "Medicaid") and go into registers and reports.
+    It never raises: whatever cannot be compared leaves the feed's values, and the words say so."""
+    try:
+        today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
+        cl, _, cf = __import__("html").unescape(str(a.get("name") or "")).partition(","); cl = cl.strip(); cf = cf.strip().split(" ")[0]
+        c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); fr = _real_dob(f8, today8)
+        if _real_dob(c8, today8):
+            if not (cl and cf): return first, last, dob8, "%s asked with Claimocity's name and birth date; the chart's name could not be read" % what
+            return cf, cl, c8, "%s asked with the chart's birth date; %s" % (what, ("Claimocity's is the same" if f8 == c8 else "Claimocity's differs: " + _slip(f8, c8)) if fr else "no birth date from Claimocity")
+        return first, last, dob8, ("%s asked with Claimocity's birth date; the chart has no birth date of its own" if fr else "%s asked with what Claimocity sent; no birth date on either side") % what
+    except Exception:
+        return first, last, dob8, "%s asked with what Claimocity sent; the chart's name and birth date could not be compared" % what
 def main():
     a = sys.argv[1:]; use_stedi = "--no-stedi" not in a; limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
     only = set(a[a.index("--only") + 1].split(",")) if "--only" in a else None
@@ -507,11 +574,16 @@ def main():
                 if use_stedi:
                     msg = PARSED.get(visits[0]["feed_id"], {})
                     last, _, first = msg.get("name", "").partition(","); first = first.strip().split(" ")[0] if first else ""; last = last.strip()
+                    # 11/25/2026 (William, WHOM THE PAID LOOK-UP IS ASKED ABOUT above): the chart's own name and birth date - pa, read at the top of this chart's
+                    # check - when its birth date is a real one, else the feed's exactly as before. The record says which (lookup_asked); a hold says it too, behind
+                    # its own words, whenever the two dates are not the same (the digest and the hand step still find "no active plan" at the hold's start)
+                    first, last, dob8, asked = lookup_who(pa, first, last, msg.get("dob", "")[:8]); rec["lookup_asked"] = asked
+                    _how = "" if asked.endswith("is the same") else " - " + asked
                     try:
                         # 11/10/2026 (round 7, 4.7): the look-up is dated to the chart's latest date of service (the captured shape with dateOfService), and a
                         # plan it alone found is added only when it is a MEDICAL plan the answer shows active on EVERY date of service of the chart's visits
                         dos8 = sorted(x for x in (ymd(v["dos"]) for v in visits) if x)
-                        raw = stedi.disc(first, last, msg.get("dob", "")[:8], "FL", dos=dos8[-1] if dos8 else None)
+                        raw = stedi.disc(first, last, dob8, "FL", dos=dos8[-1] if dos8 else None)
                         ds = stedi.disc_summ(raw); rec["discovery"] = ds
                         raws = [x if isinstance(x, dict) else {} for x in ((raw.get("items") or []) if isinstance(raw, dict) else [])]
                         refused = []
@@ -530,10 +602,10 @@ def main():
                                     lead = {"id": insid, "sequence": str(seq)}; code_of[insid] = code; reason = "Stedi discovery %s ACTIVE" % code; status[insid] = "ACTIVE"
                                 break
                         if lead is None and refused:      # worded without "discovery found [": the hand step claimocity_fixholds.py would buy the look-up again and add it
-                            rec["hold"].append("no active plan: the look-up's answer was not added - for William: %s" % "; ".join(refused)[:700])
-                        elif lead is None: rec["hold"].append("no active plan: discovery found %s" % ([(i.get("payer"), i.get("status")) for i in ds.get("items") or []] or "nothing"))
+                            rec["hold"].append("no active plan: the look-up's answer was not added - for William: %s%s" % ("; ".join(refused)[:700], _how))
+                        elif lead is None: rec["hold"].append("no active plan: discovery found %s%s" % ([(i.get("payer"), i.get("status")) for i in ds.get("items") or []] or "nothing", _how))
                     except Exception as e:
-                        rec["hold"].append("no active plan; discovery error %s" % str(e)[:120])
+                        rec["hold"].append("no active plan; discovery error %s%s" % (str(e)[:120], _how))
                 else:
                     rec["hold"].append("no ACTIVE plan on the chart (Stedi off)")
             # order = lead + one secondary of another carrier (dual: the Medicaid/LTC plan; else the next open plan)

@@ -1,4 +1,7 @@
 Effinger feed import example (10/28/2026) - what is in this folder
+(11/25/2026: this folder is the 10/28 example and is not kept up to date. The live helpers are in scripts/helpers/; since 11/25/2026 they choose a feed
+ patient's chart by the identity rule of scripts/helpers/feed_identity.py - a patient the feed sends with a wrong birth date goes to the chart that patient
+ already has - and the new-chart step makes a chart only where that rule says so.)
 
 claimocity_in1_to_amd_carrier.csv  THE TABLE: every distinct IN1-4 payer name in the 10/16-10/27 files (100 names, 1,076 rows) -> the
                                AdvancedMD carrier code / carrier id / carrier name we map it to, and the action (addinsurance, SKIP for

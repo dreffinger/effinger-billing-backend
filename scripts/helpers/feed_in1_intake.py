@@ -14,6 +14,13 @@
 #   4. Medicaid side: ONE Florida Medicaid eligibility check through Stedi with the feed's Medicaid number (the ordinary eligibility
 #      price) - active or not, and WHICH managed plan the state names; the plan the STATE names wins over the feed's wording. Not
 #      active = nothing added. Medicaid cannot answer (an error, an outage) = nothing added, tried again next run;
+#      11/25/2026 (William: "correct every one that comes to the correct date of birth and insurance and fix them ... where we know the
+#      correct dob but claimocity sends the wrong one or the 01011900 default date"): Medicaid is asked
+#      with the CHART's own name and birth date - from the chart answer read in step 2, no extra call - whenever the chart's birth date
+#      is a real one; else with the feed's, as before; never a mix of the two. Until that day it was asked with the FEED's name and birth
+#      date - also when the feed carries a wrong date or the year-1900 placeholder for a patient whose chart was corrected from a face
+#      sheet. The line it prints and the register entry say which one was asked whenever the two dates are not the same - by the kind
+#      of slip, never with a name or a date. See lookup_who;
 #   5. Medigap / TRICARE For Life / CHAMPVA: the plan is added and AdvancedMD's free eligibility check is run on it; a clear
 #      'inactive' or 'not found' ends the plan again the same minute;
 #   6. the plan is added with no group number and, when the chart's insurance order holds no Medicaid-family / secondary plan yet,
@@ -48,6 +55,67 @@ def medicaid_answer(first, last, dob8, medicaid_id, pid):
         for pat, code in STATE_PLAN:
             if re.search(pat, t.upper()): return "active", code, "Medicaid active; the state names %s" % t[:60]
     return "active", "MCAD", "Medicaid active; no managed medical plan named (%s)" % ("; ".join(t[:30] for c, t in names[:3]) or "fee-for-service")
+# ---- William 11/25/2026 ("correct every one that comes to the correct date of birth and insurance and fix them figure our how to do this for other charts that have the
+# same mistake where we know the correct dob but claimocity sends the wrong one or the 01011900 default date") - WHOM MEDICAID IS ASKED ABOUT -----------------------------
+# The feed sends some patients with a WRONG birth date or with the year-1900 placeholder although the chart holds the right one. The Medicaid check below was asked with the
+# FEED's name and birth date. How Florida Medicaid answers a check whose birth date is not the one it holds has not been captured (the repository's notes record the
+# refusal AAA 71 for such a check from Centene - docs/captured_calls.md - and from Medicare - docs/SHARED_LESSONS.md); an answer that is an error counts as 'could not
+# answer' here - nothing added, bought again next run. The chart is read here anyway (ins_update._plans, step 2) and its answer carries the patient's own name and birth
+# date: lookup_who takes them from it - no extra call - and falls back to the feed's only when the chart's birth date is not a real one. What it says goes into the printed
+# line and the register, so its words carry no name and no date.
+# _real_dob and _slip are the owner's rule as scripts/helpers/feed_identity.py states it (real_dob, slip); they are private copies here - the same text stands in
+# claimocity_import.py and claimocity_verify.py, and tools/selftest/test_pos_rule.py checks the three read the same - until the helpers point at that one module.
+# _dob8 and lookup_who stand, the same text, in claimocity_verify.py (its paid look-up).
+def _real_dob(d8, today8):
+    """True when d8 is a REAL birth date (the owner's rule): 8 digits, a real calendar date, the year 1901 or later, not after today8 and not more than 120 years before
+    it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (Mirrors real_dob in feed_identity.py.)"""
+    d8 = str(d8 if d8 is not None else ""); today8 = str(today8 if today8 is not None else "")
+    if not re.fullmatch(r"[0-9]{8}", d8) or not re.fullmatch(r"[0-9]{8}", today8) or d8[:4] < "1901": return False
+    try: __import__("datetime").date(int(d8[:4]), int(d8[4:6]), int(d8[6:8]))
+    except ValueError: return False
+    return "%04d%s" % (int(today8[:4]) - 120, today8[4:]) <= d8 <= today8
+def _slip(a8, b8):
+    """How two REAL birth dates differ (the owner's rule) - the kind of slip, the first that fits: "one digit" (one digit differs), "two digits swapped" (two neighbouring
+    digits swapped), "month and day swapped" (MMDD read as DDMM), "one day apart"; anything else is "far". "" when the two are the same date. (Mirrors slip in
+    feed_identity.py.)"""
+    a8, b8 = str(a8), str(b8)
+    if a8 == b8: return ""
+    if len(a8) != 8 or len(b8) != 8: return "far"
+    diff = [i for i in range(8) if a8[i] != b8[i]]
+    if len(diff) == 1: return "one digit"
+    if len(diff) == 2 and diff[1] == diff[0] + 1 and a8[diff[0]] == b8[diff[1]] and a8[diff[1]] == b8[diff[0]]: return "two digits swapped"
+    if a8[:4] == b8[:4] and a8[4:6] == b8[6:8] and a8[6:8] == b8[4:6]: return "month and day swapped"
+    try:
+        day = __import__("datetime").date
+        if abs((day(int(a8[:4]), int(a8[4:6]), int(a8[6:8])) - day(int(b8[:4]), int(b8[4:6]), int(b8[6:8]))).days) == 1: return "one day apart"
+    except ValueError: pass
+    return "far"
+def _dob8(s):
+    """A birth date as AdvancedMD writes it (MM/DD/YYYY, with or without leading zeros or a time behind it), as the feed writes it (YYYYMMDD, or longer with a time) or
+    with dashes (YYYY-MM-DD) -> the 8 digits YYYYMMDD; "" for anything that cannot be read that way. It reads the shape only: whether the date is a REAL one is _real_dob's."""
+    s = str(s if s is not None else "").strip(); m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
+    if m: return "%s%02d%02d" % (m.group(3), int(m.group(1)), int(m.group(2)))
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", s)
+    if m: return "".join(m.groups())
+    x = re.sub(r"\D", "", s)
+    return x[:8] if len(x) >= 8 else ""
+def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
+    """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's
+    getdemographic answer gives them (name "LAST,FIRST ...", dob MM/DD/YYYY) - the answer the caller already holds, so this costs no call. first, last, dob8 = what the
+    feed carries. When the chart's birth date is a REAL one (_real_dob) and its name can be read, the answer is the CHART's first name (its first word), last name and
+    birth date; else it is the feed's three values exactly as they were passed - never a mix of the two. words = which one was asked and how the other differs, in fixed
+    words that carry no name and no date (a slip is named by its kind); they begin with `what` ("look-up", "Medicaid") and go into registers and reports.
+    It never raises: whatever cannot be compared leaves the feed's values, and the words say so."""
+    try:
+        today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
+        cl, _, cf = __import__("html").unescape(str(a.get("name") or "")).partition(","); cl = cl.strip(); cf = cf.strip().split(" ")[0]
+        c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); fr = _real_dob(f8, today8)
+        if _real_dob(c8, today8):
+            if not (cl and cf): return first, last, dob8, "%s asked with Claimocity's name and birth date; the chart's name could not be read" % what
+            return cf, cl, c8, "%s asked with the chart's birth date; %s" % (what, ("Claimocity's is the same" if f8 == c8 else "Claimocity's differs: " + _slip(f8, c8)) if fr else "no birth date from Claimocity")
+        return first, last, dob8, ("%s asked with Claimocity's birth date; the chart has no birth date of its own" if fr else "%s asked with what Claimocity sent; no birth date on either side") % what
+    except Exception:
+        return first, last, dob8, "%s asked with what Claimocity sent; the chart's name and birth date could not be compared" % what
 recs = adt_ingest.read([DIR]); feed = collections.defaultdict(dict); who = {}
 for r in recs:
     fid = r["patient"].get("id"); who[fid] = r["patient"]
@@ -59,6 +127,7 @@ for fid, blocks in feed.items():
     pid = re.sub(r"\D", "", PMAP.get(fid, ""))
     if not pid: tally["no chart yet"] += 1; continue
     r, plans, order = ins_update._plans(pid); plans = list(plans.values())
+    _pt = re.search(r'<patient [^>]*>', r or ""); cpat = dict(re.findall(r'(\w+)="([^"]*)"', _pt.group(0))) if _pt else {}      # 11/25/2026: the chart's own patient attributes (its name, its birth date) from the answer just read - no extra call (lookup_who)
     have = {p.get("carrier") for p in plans}; live_codes = {CAR2CODE.get(p.get("carrier")) for p in plans if not p.get("enddate")}
     live_medicaid = bool((live_codes & fpm.MEDICAID_FAMILY) or any(CAR2CODE.get(p.get("carrier")) == "HUM01" and len(norm(p.get("subscribernum"))) == 10 and norm(p.get("subscribernum")).isdigit() for p in plans if not p.get("enddate")))
     asked_medicaid = False
@@ -78,7 +147,10 @@ for fid, blocks in feed.items():
             if not re.fullmatch(r"\d{10}", norm(member)): tally["Medicaid row without a 10-digit Medicaid number"] += 1; continue
             if done >= MAX: tally["over this run's limit (next run)"] += 1; continue
             p = who.get(fid, {}); asked_medicaid = True; done += 1
-            status, scode, text = medicaid_answer(p.get("first", "").split()[0] if p.get("first") else "", p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), norm(member), pid)
+            # 11/25/2026 (William, WHOM MEDICAID IS ASKED ABOUT above): the chart's own name and birth date when the chart's birth date is a real one, else the feed's as before
+            _mf, _ml, _md, _how = lookup_who(cpat, p.get("first", "").split()[0] if p.get("first") else "", p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), what="Medicaid")
+            status, scode, text = medicaid_answer(_mf, _ml, _md, norm(member), pid)
+            if not _how.endswith("is the same"): text = "%s - %s" % (text, _how)      # which one was asked, in fixed words: into the printed line and the register entry
             if status == "unknown": print("  pat%s: %s - nothing added, asked again next run" % (pid, text)); tally["Medicaid could not answer (next run)"] += 1; continue
             if status == "inactive": REG[key] = {"outcome": "not active - " + text, "stamp": STAMP}; print("  pat%s: %s - nothing added" % (pid, text)); tally["Medicaid not active (nothing added)"] += 1; continue
             use = scode if scode in CODE2CAR else code

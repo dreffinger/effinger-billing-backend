@@ -12,13 +12,25 @@
 import os, shutil
 REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 # the files the runbook's step (c) copies before every ingest, and this file itself
+# 11/25/2026 (William: a feed patient with a wrong birth date goes to the chart he already has): the match, resolve and new-chart steps and
+# the identity rule they share must be the repository's too - a restored copy from before the rule makes the second charts again, and the
+# four only work together (resolve refuses a match file of another version). The diagnosis cache step, the reconciliation, the insurance
+# intake and the place-of-service-61 monitor are started in the same run and travel with them.
 FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py",
-                "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py")
+                "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py",
+                "claimocity_match.py", "claimocity_resolve.py", "claimocity_newcharts.py", "feed_identity.py",
+                "claimocity_dx.py", "claimocity_recon.py", "feed_in1_intake.py", "pos61_monitor.py")
 # the version lines mirror.py protects (the self-test checks that the two lists agree); the import helper and the two drivers carry the
 # driver's own POS_RULE line. The parser has not changed since 10/28/2026 and carries none: without a clone it is not checked.
-VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.2"', "claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care",      # 11/25/2026: a sentence only the version that bypasses Pattern 692 has (William: a 99223 after follow-up hospital visits is a new admission)
+VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.3"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
                 
-                 "claimocity_verify.py": "the save is skipped only when the visit's insurance-order LIST"}      # 11/10/2026 (round 7): a sentence only the list-aware version has
+                 "claimocity_verify.py": "the paid look-up is asked with the CHART's own name and birth date",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
+                 "feed_in1_intake.py": "with the CHART's own name and birth date - from the chart answer read in step 2",
+                 "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
+                 "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
+                 "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
+                 "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.1"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.1"',
+                 "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S"}
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):
     try: return open(p, "rb").read()

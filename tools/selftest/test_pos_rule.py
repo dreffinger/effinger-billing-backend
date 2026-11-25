@@ -31,6 +31,13 @@
 #       the batch carries it; 'entered with I10' is said only when I10 stands on the charge; the reconciliation never hands the row of a
 #       message without a charge line to another message of the patient (sections 3b and 6c);
 #     - a feed message with no charge line or no patient id is passed over and counted - it never stops the import step (section 4);
+#     - (William 11/25/2026: "yes and let us monitor them to make sure they pay and dont deny the ones were already paying with the inpatient
+#       hosptial as the place oif service") a hospital visit of an INPATIENT REHAB STAY - its message names the rehab unit's number, or its
+#       initial visit is dated 1 or 2 days after the last visit of an acute stay - goes in at HCA REHAB (fac67) with every line at place of
+#       service 61; the visits of a stay whose initial visit sits on the chart at 21 keep 21 (rehab-stay-kept-21); any error = as before, said;
+#       no quality line at 61; the read-back covers 61; the inspector step moves no visit any more (a nursing-facility code under the hospital
+#       building is held for William) and never moves or bypasses a rehab visit for an edit about its place of service (the section
+#       'INPATIENT REHAB STAYS AT PLACE OF SERVICE 61');
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
 #       whose first plan is Medicare Part B and whose last insurance check showed Medicare first - never on a care-management-only message,
@@ -276,16 +283,20 @@ check("11/25/2026: ccm_never_31 - where a failed rule leaves every line at the f
 _CCM_FAMILY = {"99487", "99489", "99490", "99439", "99491", "99437"}
 check("11/25/2026: every chronic-care-management code the import can enter is in the rule's CCM set (a code added to the code table without the rule would go out at the feed's 31)",
       {c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY} <= ci.CCM and ci.CCM <= set(ci.PCODE) and ci.CCM <= _CCM_FAMILY, (sorted(ci.CCM), sorted(c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY)))
-# 11/25/2026 (review of the CCM rule, finding 5): the digest and the inspector step each keep their OWN copy of the CCM codes - read here from their source text
-# (the inspector is never loaded: it talks to AdvancedMD). Each must be the import's set, code for code.
+# 11/25/2026 (review of the CCM rule, finding 5): the digest keeps its OWN copy of the CCM codes - read here from its source text. It must be the import's set, code for code.
+# 11/25/2026 (inpatient rehab stays): the inspector step kept a copy too, in the test that kept a CCM visit from being MOVED to HCA REHAB at 31. That move is gone - the step moves
+# no visit any more (William 10/31/2026: it was wrong) - and with it the copy. The one code set the step keeps now is the nursing-facility visit codes of its 'which building?' hold,
+# and that one must be the import's NF_VISIT, code for code (the inspector is never loaded here: it talks to AdvancedMD).
 _rep_src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")).read(); _insp_src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
-_ccm_rep = re.search(r"\b_CCM = \{([^}]*)\}", _rep_src); _ccm_insp = re.findall(r'not any\(x in \(([^)]*)\) for x in c\["cpts"\]\)', _insp_src)
+_ccm_rep = re.search(r"\b_CCM = \{([^}]*)\}", _rep_src); _ccm_insp = re.findall(r'not any\(x in \(([^)]*)\) for x in c\["cpts"\]\)', _insp_src); _nf_insp = re.search(r"(?m)^NF_VISIT = \{([^}]*)\}", _insp_src)
 _codes = lambda t_: set(re.findall(r'"([0-9A-Z]{5})"', t_))
-check("11/25/2026 (review): the digest's own CCM set (claimocity_report.py, _CCM) and the inspector step's CCM codes (its test that keeps a CCM visit from being moved to HCA REHAB at 31) are the import's CCM set, code for code - a CCM code added to the import alone would be moved to 31 after entry, or go uncounted and unshouted in the digest",
-      bool(_ccm_rep) and _codes(_ccm_rep.group(1)) == ci.CCM and len(_ccm_insp) == 1 and _codes(_ccm_insp[0]) == ci.CCM, (_ccm_rep and _ccm_rep.group(1), _ccm_insp, sorted(ci.CCM)))
-check("... and that guard really reads the codes of such a line: a made-up third CCM code in a line of either shape is read as a third code",
+check("11/25/2026 (review): the digest's own CCM set (claimocity_report.py, _CCM) is the import's CCM set, code for code - a CCM code added to the import alone would go uncounted and unshouted in the digest. The inspector step keeps NO CCM test of its own any more "
+      "(11/25/2026, inpatient rehab stays: it moves no visit, so no CCM visit can be moved to 31 after entry - no line of its code names fac67); the one code set it keeps - the nursing-facility visit codes of its 'which building?' hold - is the import's NF_VISIT, code for code",
+      bool(_ccm_rep) and _codes(_ccm_rep.group(1)) == ci.CCM and _ccm_insp == [] and not re.search(r'(?m)^[^#\n]*"fac67"', _insp_src.split("\nimport os as _os", 1)[-1]) and bool(_nf_insp) and _codes(_nf_insp.group(1)) == ci.NF_VISIT,
+      (_ccm_rep and _ccm_rep.group(1), _ccm_insp, _nf_insp and _nf_insp.group(1), sorted(ci.CCM)))
+check("... and that guard really reads the codes of such a line: a made-up extra code in a line of either shape is read as an extra code",
       _codes(re.search(r"\b_CCM = \{([^}]*)\}", '_NFV = {"99304"}; _CCM = {"99487", "99489", "99490"}').group(1)) == ci.CCM | {"99490"}
-      and [_codes(t_) for t_ in re.findall(r'not any\(x in \(([^)]*)\) for x in c\["cpts"\]\)', 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489", "99490") for x in c["cpts"]) and not c.get("pos_err"):')] == [ci.CCM | {"99490"}])
+      and _codes(re.search(r"(?m)^NF_VISIT = \{([^}]*)\}", 'HOSP = {"99221"}\nNF_VISIT = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316", "99318"}      # made up').group(1)) == ci.NF_VISIT | {"99318"})
 check("monthly visit + 99497: both 32", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
 check("weekly visit + 99497: both 31", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/29/2026")]) == ["31", "31"])
 check("99497 listed BEFORE its visit still follows the visit", L([("99497", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
@@ -317,6 +328,32 @@ check("build: Brynwood CCM goes out as 32 / 32", [p for _, p in pp] == ["32", "3
 check("build: register keeps the feed's 31 beside the 32", info["pos"] == "32" and info["pos_feed"] == "31" and info["pos_lines"] == ["32", "32"] and info["pos_kind"] == ["ccm", "ccm"] and info["pos_err"] == "" and info["fac"] == "fac34", info)
 check("build: 99489 still carries modifier 25 beside 99487", 'modcodes="mcode7"' in body and body.count('modcodes=""') == 1)
 check("build: fees unchanged (206.00 / 109.00)", 'fee="206.00"' in body and 'fee="109.00"' in body)
+# William 11/25/2026 (asked 'Should I stop putting 25 on 99489 for Humana and re-send the ones still inside the filing limit?': "yes try that"): Humana answered CO-4 (the code is
+# inconsistent with the modifier) on 24 care-management add-on lines that carried modifier 25 in 2026 and on none of its 99489 lines without it. The add-on line of a chart whose FIRST plan in
+# billing order is a Humana plan goes in without the modifier; every other payer, and the 99497 line, as before.
+def built_ctx(fid, lines, **more):
+    c_ = ctx(); c_.update(more); out, info = ci.build(msg(fid, lines), c_)
+    return (None, info) if out is None else (out[1], info)
+_H1 = ("ins7", "car6285", "01/01/2020", "", "1"); _HMA = ("ins8", "car302851", "01/01/2020", "", "1"); _M1 = ("ins1", "car6085", "01/01/2020", "", "1"); _M2 = ("ins1", "car6085", "01/01/2020", "", "2"); _H2 = ("ins7", "car6285", "01/01/2020", "", "2")
+_CCM2 = [("99487", "20261031"), ("99489", "20261031")]; _m25 = lambda b_: (b_.count('modcodes="mcode7"'), b_.count('modcodes=""'))
+_hb, _hi = built_ctx("n1", _CCM2, plans=[_H1, _M2], insorder="1,2")
+check("build (William 11/25/2026, Humana): a CCM visit of a chart whose FIRST plan in billing order is Humana - the 99489 add-on goes in WITHOUT modifier 25, and the row says which code was left without it",
+      _hb is not None and _m25(_hb) == (0, 2) and _hi.get("no_mod25") == ["99489"], (_hb and _m25(_hb), _hi.get("no_mod25") if isinstance(_hi, dict) else _hi))
+_hb, _hi = built_ctx("n1", _CCM2, plans=[_HMA], insorder="1")
+check("build (Humana): ... the same for the practice's other Humana carrier record (Humana Gold Plus)", _hb is not None and _m25(_hb) == (0, 2) and _hi.get("no_mod25") == ["99489"], _hb and _m25(_hb))
+_hb, _hi = built_ctx("n1", _CCM2, plans=[_M1, _H2], insorder="1,2")
+check("build (Humana): ... Medicare first and Humana second - modifier 25 on the 99489 line as before, and no such note on the row", _hb is not None and _m25(_hb) == (1, 1) and "no_mod25" not in _hi, (_hb and _m25(_hb), _hi.get("no_mod25")))
+_hb, _hi = built_ctx("n1", _CCM2, plans=[_M1, _H2], insorder="2,1")
+check("build (Humana): ... it is the BILLING ORDER that decides, not the plan's own sequence number: the chart bills its sequence-2 Humana plan first - no modifier", _hb is not None and _m25(_hb) == (0, 2) and _hi.get("no_mod25") == ["99489"], _hb and _m25(_hb))
+_hb, _hi = built_ctx("n1", _CCM2)
+check("build (Humana): ... a chart whose plans are not known (none read) is entered as before - modifier 25 on the add-on", _hb is not None and _m25(_hb) == (1, 1) and "no_mod25" not in _hi, _hb and _m25(_hb))
+_hb, _hi = built_ctx("n1", [("99309", "20261102"), ("99497", "20261102")], plans=[_H1], insorder="1")
+check("build (Humana): ... the rule is for the 99489 add-on only: a 99497 beside a visit keeps its modifier 25 on a Humana chart", _hb is not None and _hb.count('modcodes="mcode7"') == 1 and "no_mod25" not in _hi, _hb and _m25(_hb))
+_odd = [built_ctx("n1", _CCM2, plans=x_, insorder=o_) for x_, o_ in ((None, "1"), ("car6285", "1"), ([("ins7", "car6285")], "1"), ([_H1], None), ([_H1], ""), ([7, None, _M1], "1"), ([_H1], ["1"]))]
+check("build (Humana): ... plan rows or a billing order that cannot be read never stop a visit and never take the modifier off - the visit is built as before", all(b_ is not None and _m25(b_) == (1, 1) for b_, _i in _odd), [(_i if b_ is None else _m25(b_)) for b_, _i in _odd])
+_cj = json.load(open(os.path.join(ROOT, "practices", "ehpa", "carriers.json")))
+check("build (Humana): the two carrier ids are the practice's Humana records in carriers.json (HUM01 and the Gold Plus plan), and the import's header states the rule in William's words",
+      getattr(ci, "HUMANA", None) == {"car6285", "car302851"} and all("HUMANA" in " ".join(str(x_) for x_ in _cj.get(c_, [])).upper() for c_ in ci.HUMANA) and "yes try that" in open(HELPER).read().split("\nimport os as _os")[0], (getattr(ci, "HUMANA", None),))
 body, info, pp = built("a1", [("99487", "20261031"), ("99489", "20261031")])
 check("build: ALF CCM still goes out as 13 / 13", [p for _, p in pp] == ["13", "13"] and info["pos"] == "13" and info["pos_lines"] == ["13", "13"] and info["fac"] == "fac37", (pp, info))
 body, info, pp = built("h1", [("99232", "20261031")])
@@ -1052,7 +1089,7 @@ for _p23 in ("23", "21"):
     ci.FAC["ER X"] = ("fac99", _p23); qreset(); _q = ci.quality_due; ci.quality_due = lambda *a_, **k_: 0; out, info, pp = qbuilt(qmsg("e1", [("99232", "20261031")]), qctx()); ci.quality_due = _q      # the second guard, in build(): here the decision is made to say yes
     check("quality: ... and build() itself never puts the line on a %s line, even when the decision says yes: the visit goes in as without the code, no place of the round is used" % _p23,
           out is not None and QP not in out[1] and out[1] == out[2] and "quality_codes" not in info and pp == [("pcode65089", _p23)] and ci.QUALITY["added"] == 0 and ci.QUALITY["done"] == set(), (pp, info))
-check("quality (13.2): the places of service that never carry the line are 21, 22 and 23", ci.QUALITY_POS_SKIP == {"21", "22", "23"})
+check("quality (13.2; 11/25/2026): the places of service that never carry the line are 21, 22, 23 - and 61: a visit of an inpatient rehab stay is a hospital visit for this rule (William 11/25/2026: the rehab visits go in at 61)", ci.QUALITY_POS_SKIP == {"21", "22", "23", "61"}, ci.QUALITY_POS_SKIP)
 del ci.FAC["ER X"]; del ci.FACOF["e1"]
 gets("after proof, while the run still has room (10 a run until Medicare's own answer is on file)", V1, qctx(), added=9, confirmed=True, budget=10)
 none("after proof, the run's 10 are used up", V1, qctx(), added=10, confirmed=True, budget=10)
@@ -2332,16 +2369,220 @@ check("M0004 main --dry: the dry run says which visits WOULD carry it (one per c
       and not os.path.exists(os.path.join(REGDIR, "feed_import_SELFTEST.json")), [l for l in out.splitlines() if "M0004" in l])
 clear_regs(); rmreg(EARLIER, "feed_verify_20261101T0001Z.json"); DEMOG["plans"] = ""; BILLS.clear(); PROC.clear(); DETAILS.clear(); charts0(); qreset(); mreset(); ci.PARSED[:] = BASE
 
+# ---- 4e. William 11/25/2026 ("correct every one that comes to the correct date of birth and insurance and fix them figure our how to do this for other charts that have
+#      the same mistake where we know the correct dob but claimocity sends the wrong one or the 01011900 default date"): THE CHART'S OWN BIRTH DATE ---------------------
+# The feed can carry a wrong birth date - or the year-1900 placeholder - for a patient whose chart holds the right one. After the match the CHART is the patient:
+#   - chart_ctx keeps the chart's own birth date (8 digits) and name from the ONE getdemographic answer it already makes - no extra call, never printed, never written;
+#   - every created row says how the feed's birth date compares with the chart's ("dob_note": fixed words, never a date);
+#   - the 1123F rule takes the age from the chart's birth date when that is a real one, else from the feed's (until that day: the feed's only);
+#   - the run prints ONE line "BIRTH DATES: ..." with chart ids only - and nothing when every date is the same.
+# Every name and date below is invented and put together at run time (the privacy gate scrubs a date that stands behind such a word in a file it carries, this one too).
+def bd_d8(y_, m_, d_): return "%04d%02d%02d" % (y_, m_, d_)                  # a date as the feed writes it ...
+def bd_amd(y_, m_, d_): return "%02d/%02d/%04d" % (m_, d_, y_)               # ... and as AdvancedMD writes it
+def bd_lf(last_, first_): return last_ + "," + first_                        # AdvancedMD's own LAST,FIRST form
+BD_T8 = RUN_DAY[0].strftime("%Y%m%d")                                        # this self-test's run day (fixed near the top: 11/20/2026)
+bd_miss = lambda *a_, **k_: None                                             # an import helper without these functions fails the checks below one by one - it never ends the self-test
+bd_real, bd_slip, bd_note, bd_line = (getattr(ci, n_, bd_miss) for n_ in ("_real_dob", "_slip", "dob_note", "birth_dates_line"))
+BD_A = bd_d8(1940, 2, 15)                                                    # an invented patient's date; the dates below are slips of it, or far from it
+check("11/25/2026 - a birth date is REAL when it is 8 digits, a real calendar date, the year 1901 or later, not after today and not more than 120 years ago - today itself, the day 120 years back and a real February 29 are real",
+      all(bd_real(x_, BD_T8) is True for x_ in (BD_A, BD_T8, bd_d8(1906, 11, 20), bd_d8(1960, 2, 29))) and bd_real(bd_d8(1901, 1, 1), bd_d8(2020, 1, 1)) is True, [bd_real(x_, BD_T8) for x_ in (BD_A, BD_T8, bd_d8(1906, 11, 20), bd_d8(1960, 2, 29))])
+BD_NOT = ("", None, bd_d8(1900, 1, 1), "0000" + "0000", bd_d8(1961, 2, 30), bd_d8(1961, 13, 45), bd_d8(1961, 0, 0), bd_d8(2026, 11, 21), bd_d8(2099, 1, 1), bd_d8(1906, 11, 19), "1940" + "021", "1940-02-" + "15", "abcdefgh", 19400215.5)
+check("birth date: ... anything else is NO BIRTH DATE - empty, nothing, the year-1900 placeholder, zeros, a day or month that does not exist, tomorrow, a year far ahead, one day more than 120 years back, too few digits, a date still written with dashes, letters",
+      all(bd_real(x_, BD_T8) is False for x_ in BD_NOT) and bd_real(bd_d8(1900, 12, 31), bd_d8(2020, 1, 1)) is False and bd_real(BD_A, "") is False, [x_ for x_ in BD_NOT if bd_real(x_, BD_T8) is not False])
+BD_SLIPS = [(BD_A, bd_d8(1940, 2, 16), "one digit"), (BD_A, bd_d8(1940, 2, 25), "one digit"), (BD_A, bd_d8(1960, 2, 15), "one digit"), (BD_A, bd_d8(1940, 3, 15), "one digit"),
+            (bd_d8(1940, 3, 12), bd_d8(1940, 3, 21), "two digits swapped"), (bd_d8(1949, 2, 15), bd_d8(1994, 2, 15), "two digits swapped"), (bd_d8(1940, 1, 20), bd_d8(1940, 2, 10), "two digits swapped"),
+            (bd_d8(1940, 2, 3), bd_d8(1940, 3, 2), "month and day swapped"), (bd_d8(1940, 11, 12), bd_d8(1940, 12, 11), "month and day swapped"), (bd_d8(1940, 1, 10), bd_d8(1940, 10, 1), "month and day swapped"),
+            (bd_d8(1940, 1, 31), bd_d8(1940, 2, 1), "one day apart"), (bd_d8(1939, 12, 31), bd_d8(1940, 1, 1), "one day apart"), (bd_d8(1940, 2, 29), bd_d8(1940, 3, 1), "one day apart"), (bd_d8(1940, 2, 9), bd_d8(1940, 2, 10), "one day apart"),
+            (BD_A, bd_d8(1952, 11, 3), "far"), (BD_A, bd_d8(1940, 3, 16), "far"), (bd_d8(1940, 2, 25), bd_d8(1940, 3, 7), "far"), (BD_A, bd_d8(1940, 2, 17), "one digit"), (bd_d8(1940, 2, 19), bd_d8(1940, 2, 21), "far")]
+check("slip (the owner's rule): between two real dates - one digit differs / two neighbouring digits swapped / month and day swapped / one day apart, the first that fits; anything else is far (ten days off inside a month is one digit, across a month end it is far)",
+      [bd_slip(a_, b_) for a_, b_, _w in BD_SLIPS] == [w_ for _a, _b, w_ in BD_SLIPS], [(a_, b_, bd_slip(a_, b_), w_) for a_, b_, w_ in BD_SLIPS if bd_slip(a_, b_) != w_])
+check("slip: ... the same answer whichever of the two dates is named first, and a date beside itself is no slip", [bd_slip(b_, a_) for a_, b_, _w in BD_SLIPS] == [w_ for _a, _b, w_ in BD_SLIPS] and bd_slip(BD_A, BD_A) == "", [(a_, b_, bd_slip(b_, a_)) for a_, b_, w_ in BD_SLIPS if bd_slip(b_, a_) != w_])
+BD_GONE = ("", None, bd_d8(1900, 1, 1), "0000" + "0000", bd_d8(2099, 1, 1), bd_d8(1961, 2, 30))      # what counts as no birth date
+check("dob_note: 'same' only for two real dates that are equal", bd_note(BD_A, BD_A, BD_T8) == "same", bd_note(BD_A, BD_A, BD_T8))
+check("dob_note: the feed carries no real date and the chart does - 'no birth date from Claimocity' (empty, nothing, the 1900 placeholder, zeros, a year far ahead, a day that does not exist)",
+      all(bd_note(f_, BD_A, BD_T8) == "no birth date from Claimocity" for f_ in BD_GONE), [bd_note(f_, BD_A, BD_T8) for f_ in BD_GONE])
+check("dob_note: the chart carries no real date and the feed does - 'chart has no birth date'", all(bd_note(BD_A, c_, BD_T8) == "chart has no birth date" for c_ in BD_GONE), [bd_note(BD_A, c_, BD_T8) for c_ in BD_GONE])
+check("dob_note: neither carries one - 'no birth date on either side'", all(bd_note(f_, c_, BD_T8) == "no birth date on either side" for f_ in BD_GONE for c_ in BD_GONE), sorted({str(bd_note(f_, c_, BD_T8)) for f_ in BD_GONE for c_ in BD_GONE}))
+check("dob_note: two real dates that differ - 'differs: ' and the kind of slip, or 'differs: far'", [bd_note(a_, b_, BD_T8) for a_, b_, _w in BD_SLIPS if bd_real(a_, BD_T8) and bd_real(b_, BD_T8)] == ["differs: " + w_ for _a, _b, w_ in BD_SLIPS],
+      [(bd_note(a_, b_, BD_T8), w_) for a_, b_, w_ in BD_SLIPS])
+BD_WORDS = ["same", "no birth date from Claimocity", "chart has no birth date", "no birth date on either side", "differs: one digit", "differs: two digits swapped", "differs: month and day swapped", "differs: one day apart", "differs: far"]
+_bd_all = {bd_note(f_, c_, BD_T8) for f_ in list(BD_GONE) + [x_ for t_ in BD_SLIPS for x_ in t_[:2]] for c_ in list(BD_GONE) + [x_ for t_ in BD_SLIPS for x_ in t_[:2]]}
+check("dob_note: those nine answers are every answer there is, and none of them carries a digit - no date can sit in a register row", _bd_all == set(BD_WORDS) and not any(re.search(r"\d", str(w_)) for w_ in _bd_all), sorted(str(w_) for w_ in _bd_all))
+# the chart's own birth date and name, from the ONE getdemographic answer chart_ctx already asks for
+BD_LAST = "ZZCHARTLAST"; BD_FIRST = "ZZCHARTFIRST"; BD_CH = {}              # BD_CH: chart id -> (name, birth date) as AdvancedMD's answer carries them; a chart not listed answers as before (neither)
+bd_post0 = amd.post
+def bd_post(body, timeout=0):
+    m_ = re.search(r'patientid="(pat\d+)"', body) if "getdemographic" in body else None
+    if not (m_ and m_.group(1) in BD_CH): return bd_post0(body, timeout)
+    POSTS.append(body); n_, b_ = BD_CH[m_.group(1)]
+    return '<r><patient id="%s" name="%s" dob="%s" respparty="resp9" insorder="%s" deceased=""/>%s</r>' % (m_.group(1), n_, b_, DEMOG["order"], DEMOG["plans"])
+amd.post = bd_post
+CHART.update({"6%02d" % i: [("99309", "10/03/2026")] for i in range(1, 25)})
+BD_CH.update({"pat601": (bd_lf(BD_LAST, BD_FIRST + " Q"), bd_amd(1956, 3, 9)), "pat602": (bd_lf("O&apos;" + BD_LAST, BD_FIRST), bd_amd(1900, 1, 1)), "pat603": (bd_lf(BD_LAST, BD_FIRST), "3/9/" + "1956"),
+              "pat604": (bd_lf(BD_LAST, BD_FIRST), "02/30/" + "1950"), "pat605": (bd_lf(BD_LAST, BD_FIRST), ""), "pat606": (bd_lf(BD_LAST, BD_FIRST), "not a date")})
+ci._ctx.clear(); POSTS.clear(); _bdc = {p_: ci.chart_ctx(p_) for p_ in ("pat601", "pat602", "pat603", "pat604", "pat605", "pat606", "pat607")}
+check("chart_ctx (11/25/2026): the chart's own birth date - 8 digits - and its name are kept from the ONE getdemographic answer the import already makes: no extra call",
+      _bdc["pat601"].get("dob") == bd_d8(1956, 3, 9) and _bdc["pat601"].get("name") == bd_lf(BD_LAST, BD_FIRST + " Q") and _bdc["pat601"].get("resp") == "resp9" and sum(1 for b_ in POSTS if "getdemographic" in b_) == 7, (sorted(_bdc["pat601"]), len(POSTS)))
+check("chart_ctx: ... the year-1900 placeholder is kept as it is written (the rule calls it no birth date), a date written without leading zeros is read, a day that does not exist / an empty or unreadable value / a chart that gives none is '' - and a name's own apostrophe is read as one",
+      [_bdc[p_].get("dob") for p_ in ("pat602", "pat603", "pat604", "pat605", "pat606", "pat607")] == [bd_d8(1900, 1, 1), bd_d8(1956, 3, 9), "", "", "", ""] and _bdc["pat602"].get("name") == bd_lf("O'" + BD_LAST, BD_FIRST) and _bdc["pat607"].get("name") == "",
+      [_bdc[p_].get("dob") for p_ in ("pat602", "pat603", "pat604", "pat605", "pat606", "pat607")])
+amd.post = lambda body, timeout=0: "<r><Fault>chart not read</Fault></r>" if "getdemographic" in body else bd_post(body, timeout)
+try: ci._ctx.clear(); _bdf = ci.chart_ctx("pat601")
+finally: amd.post = bd_post
+check("chart_ctx: ... a chart whose answer could not be read keeps no birth date and no name - nothing is guessed", _bdf.get("dob") == "" and _bdf.get("name") == "" and _bdf.get("chart_insorder") is None, sorted(_bdf))
+# the age of the 1123F rule (quality_due through build()): the chart's birth date when it is a real one, else the feed's
+BD_VISIT = [("99309", "20261102")]                                           # one nursing visit; the ages below are counted on its day
+BD_70, BD_40, BD_65, BD_64 = bd_d8(1956, 5, 1), bd_d8(1986, 5, 1), bd_d8(1961, 11, 2), bd_d8(1961, 11, 3)      # 70, 40, 65 on the very day, 64
+def bd_ctx(chart_, **kw): c_ = qctx(**kw); c_["dob"] = chart_; return c_
+gets("11/25/2026: the chart's birth date makes the patient 70 while the feed's makes them 40 - the age is the chart's", qmsg("n2", BD_VISIT, dob=BD_40), bd_ctx(BD_70))
+none("11/25/2026: ... and the reverse - 40 by the chart's birth date, 70 by the feed's (until that day the feed's 70 gave the line)", qmsg("n2", BD_VISIT, dob=BD_70), bd_ctx(BD_40))
+gets("11/25/2026: 65 on the very day by the chart's birth date (the feed's says 64)", qmsg("n2", BD_VISIT, dob=BD_64), bd_ctx(BD_65))
+none("11/25/2026: 64 by the chart's birth date (the feed's says 65)", qmsg("n2", BD_VISIT, dob=BD_65), bd_ctx(BD_64))
+gets("11/25/2026: the feed sends the year-1900 placeholder and the chart's birth date makes the patient 70 (until that day: no line - the age was not shown)", qmsg("n2", BD_VISIT, dob=bd_d8(1900, 1, 1)), bd_ctx(BD_70))
+gets("11/25/2026: the feed sends no birth date at all and the chart's makes the patient 70", qmsg("n2", BD_VISIT, dob=""), bd_ctx(BD_70))
+none("11/25/2026: the feed sends no birth date and the chart's makes the patient 40", qmsg("n2", BD_VISIT, dob=""), bd_ctx(BD_40))
+for _bdw, _bdv in (("holds no birth date", ""), ("carries the year-1900 placeholder", bd_d8(1900, 1, 1)), ("carries a date that is not a real one (a year far ahead)", bd_d8(2099, 1, 1)), ("carries a day that does not exist", bd_d8(1956, 2, 30))):
+    gets("11/25/2026: the chart %s - the feed's birth date decides, exactly as before (70)" % _bdw, qmsg("n2", BD_VISIT, dob=BD_70), bd_ctx(_bdv))
+    none("11/25/2026: the chart %s - the feed's birth date decides, exactly as before (40)" % _bdw, qmsg("n2", BD_VISIT, dob=BD_40), bd_ctx(_bdv))
+none("11/25/2026: neither the chart nor the feed carries a real birth date - no line, as before", qmsg("n2", BD_VISIT, dob=bd_d8(1900, 1, 1)), bd_ctx(""))
+gets("11/25/2026: a chart context that carries no birth date at all (every older check builds it so) reads as before - the feed's 70", qmsg("n2", BD_VISIT, dob=BD_70), qctx())
+# the row's own note, through build() - every class
+def bd_info(feed_, chart_): qreset(off="reference"); return (ci.build(qmsg("n2", BD_VISIT, dob=feed_), bd_ctx(chart_))[1] or {}).get("dob_note")
+BD_CASES = [(BD_A, BD_A, "same"), (bd_d8(1900, 1, 1), BD_A, "no birth date from Claimocity"), (BD_A, bd_d8(1900, 1, 1), "chart has no birth date"), ("", "", "no birth date on either side"), (bd_d8(1940, 2, 16), BD_A, "differs: one digit"),
+            (bd_d8(1940, 3, 21), bd_d8(1940, 3, 12), "differs: two digits swapped"), (bd_d8(1940, 3, 2), bd_d8(1940, 2, 3), "differs: month and day swapped"), (bd_d8(1940, 2, 1), bd_d8(1940, 1, 31), "differs: one day apart"), (bd_d8(1952, 11, 3), BD_A, "differs: far")]
+check("build() (11/25/2026): the visit's register fields carry dob_note - how the feed's birth date compares with the chart's - for every class, in the fixed words", [bd_info(f_, c_) for f_, c_, _w in BD_CASES] == [w_ for _f, _c, w_ in BD_CASES],
+      [(bd_info(f_, c_), w_) for f_, c_, w_ in BD_CASES])
+qreset(off="reference"); _bdi = ci.build(qmsg("n2", BD_VISIT, dob=BD_A), qctx())[1]
+check("build(): ... a chart context without a birth date (the chart could not be read) says 'chart has no birth date' - never 'same'", _bdi.get("dob_note") == "chart has no birth date", _bdi.get("dob_note"))
+_bdn0 = getattr(ci, "dob_note", None); ci.dob_note = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom")); qreset(off="reference"); _bdo, _bdi = ci.build(qmsg("n2", BD_VISIT, dob=BD_A), bd_ctx(BD_A))
+if _bdn0 is None: del ci.dob_note
+else: ci.dob_note = _bdn0
+check("build(): ... a note that cannot be made never keeps a visit out - the visit is built, its row simply carries no dob_note", _bdo is not None and "dob_note" not in _bdi and _bdi.get("cpts") == ["99309"] and _bdn0 is not None, sorted(_bdi))
+# through main(): one invented chart for every class, live against the stand-in AdvancedMD
+def bd_msg(k_, feed_, day_="20261102"):      # made-up patient <k_> whose raw message names its own building and clinician; feed_ = what the feed carries for it
+    fid_ = "bd-%s-%s" % (k_, day_); ci.MSGOF[ci.msg_key(fid_, [("99309", day_)])] = {(B["n2"], NPI, "")}; ci.FACOF[fid_] = B["n2"]; ci.FACS[fid_] = {B["n2"]}; ci.NPIOF[fid_] = NPI
+    return {"pid": fid_, "name": NAME(k_), "dob": feed_, "file": "f", "FT1": [{"cpt": "99309", "dos": day_, "dx": "I10", "units": "1"}]}
+BD_MAIN = [("bd1", "pat611", BD_A, (1940, 2, 15), "same"), ("bd2", "pat612", bd_d8(1940, 2, 16), (1940, 2, 15), "differs: one digit"), ("bd3", "pat613", bd_d8(1940, 3, 21), (1940, 3, 12), "differs: two digits swapped"),
+           ("bd4", "pat614", bd_d8(1940, 3, 2), (1940, 2, 3), "differs: month and day swapped"), ("bd5", "pat615", bd_d8(1940, 2, 1), (1940, 1, 31), "differs: one day apart"), ("bd6", "pat616", bd_d8(1952, 11, 3), (1940, 2, 15), "differs: far"),
+           ("bd7", "pat617", bd_d8(1900, 1, 1), (1940, 2, 15), "no birth date from Claimocity"), ("bd8", "pat618", BD_A, (1900, 1, 1), "chart has no birth date"), ("bd9", "pat619", "", None, "no birth date on either side")]
+BD_CH.clear(); _bd_keys = []
+for _bk, _bp, _bf, _bc, _bw in BD_MAIN:
+    if _bc: BD_CH[_bp] = (bd_lf(BD_LAST + _bk.upper(), BD_FIRST), bd_amd(*_bc))
+    ci.MATCH[NAME(_bk).upper().strip() + "|" + _bf[:8]] = {"resolved": _bp}; _bd_keys.append(NAME(_bk).upper().strip() + "|" + _bf[:8])
+BD_SECRET = [BD_LAST, BD_FIRST] + [f_(*t_) for t_ in [(1940, 2, 15), (1940, 2, 16), (1940, 3, 21), (1940, 3, 12), (1940, 3, 2), (1940, 2, 3), (1940, 2, 1), (1940, 1, 31), (1952, 11, 3), (1956, 5, 1), (1986, 5, 1)]
+                                       for f_ in (bd_d8, bd_amd, lambda y_, m_, d_: "%04d-%02d-%02d" % (y_, m_, d_))]      # every invented name and date, in every way a date is written
+bd_leaks = lambda *texts_: sorted({s_ for s_ in BD_SECRET for t_ in texts_ if s_ in t_})
+out, reg = run_live([bd_msg(k_, f_) for k_, _p, f_, _c, _w in BD_MAIN]); BD_ROWS = list(reg["created"])      # BD_ROWS: the rows as the import wrote them, kept for the privacy gate's check further down
+_bdl = [l_ for l_ in out.splitlines() if l_.startswith("BIRTH DATES")]
+check("live run (11/25/2026): every created row carries dob_note - one invented chart for each class, in the fixed words", {r_["pid"]: r_.get("dob_note") for r_ in reg["created"]} == {p_: w_ for _k, p_, _f, _c, w_ in BD_MAIN} and len(reg["created"]) == 9 and reg["failed"] == [],
+      {r_["pid"]: r_.get("dob_note") for r_ in reg["created"]})
+check("live run: ... and the run prints ONE line that names them by chart id, group by group - the charts whose dates are the same are not in it",
+      _bdl == ["BIRTH DATES: feed and chart differ on 5 chart(s) (pat612 one digit, pat613 two digits swapped, pat614 month and day swapped, pat615 one day apart, pat616 far); Claimocity sent no birth date for 1 chart(s) (pat617); "
+               "1 chart(s) carry no birth date themselves (pat618); no birth date on either side for 1 chart(s) (pat619)"], _bdl)
+_bdo = out.strip().splitlines()
+check("live run: ... the line stands right after the two QUALITY lines and before the place-of-service lines - the run still ends POS RULE, then DONE",
+      len(_bdl) == 1 and [l_.split(":")[0] for l_ in _bdo[-5:-2]] == ["QUALITY 1123F", "QUALITY M0004", "BIRTH DATES"] and _bdo[-2].startswith("POS RULE: CCM") and _bdo[-1].startswith("DONE "), _bdo[-5:])
+_bdout2, _bdreg2 = run_live([bd_msg("bd2", bd_d8(1940, 2, 16))], flip=True); _bdo2 = _bdout2.strip().splitlines()
+check("live run: ... and in a run that also prints the short POS CHECK line the last three log lines are still POS CHECK, POS RULE and DONE (the ingest shows those three) - the birth-date line stands before them",
+      [l_.split(":")[0] for l_ in _bdo2[-4:-1]] == ["BIRTH DATES", "POS CHECK", "POS RULE"] and _bdo2[-1].startswith("DONE ") and _bdo2[-4] == "BIRTH DATES: feed and chart differ on 1 chart(s) (pat612 one digit)" and len(_bdreg2["created"]) == 1, _bdo2[-5:])
+check("live run (privacy): no invented name and no invented date - written the feed's way, AdvancedMD's way or with dashes - is in anything the run printed or in its register; the line itself carries chart ids only",
+      bd_leaks(out, json.dumps(reg)) == [] and len(_bdl) == 1 and re.sub(r"pat\d+", "", _bdl[0]).count("1 chart(s)") == 3 and not re.search(r"\d{4,}|\d/\d", re.sub(r"pat\d+", "", _bdl[0])), bd_leaks(out, json.dumps(reg)))
+ci.PARSED[:] = [bd_msg(k_, f_) for k_, _p, f_, _c, _w in BD_MAIN]; out, dry = run_dry()
+check("main --dry: the dry run says the same - every DRY row carries its dob_note and the one line is printed (nothing is written)",
+      {p_: v_[0].get("dob_note") for p_, v_ in dry.items()} == {p_: w_ for _k, p_, _f, _c, w_ in BD_MAIN} and [l_ for l_ in out.splitlines() if l_.startswith("BIRTH DATES")] == _bdl and bd_leaks(out) == [] and not os.path.exists(_regp),
+      ({p_: v_[0].get("dob_note") for p_, v_ in dry.items()}, [l_ for l_ in out.splitlines() if l_.startswith("BIRTH DATES")]))
+out, reg = run_live([bd_msg("bd1", BD_A)])
+check("live run: when the feed's birth date and the chart's are the same on every visit NOTHING is printed about birth dates - the row still says 'same'", "BIRTH DATES" not in out and [r_.get("dob_note") for r_ in reg["created"]] == ["same"], [l_ for l_ in out.splitlines() if "BIRTH" in l_])
+BD_CH["pat620"] = (bd_lf(BD_LAST + "TEN", BD_FIRST), bd_amd(1940, 2, 15))
+for _bf in (BD_A, bd_d8(1952, 11, 3)): ci.MATCH[NAME("bd10").upper().strip() + "|" + _bf] = {"resolved": "pat620"}; _bd_keys.append(NAME("bd10").upper().strip() + "|" + _bf)
+out, reg = run_live([bd_msg("bd10", BD_A), bd_msg("bd10", bd_d8(1952, 11, 3), "20261105")])
+check("live run: one chart, two messages, two birth dates from the feed (the right one and one far off) - each row says its own, and the line names the chart once, by what differs",
+      [r_.get("dob_note") for r_ in reg["created"]] == ["same", "differs: far"] and [l_ for l_ in out.splitlines() if l_.startswith("BIRTH DATES")] == ["BIRTH DATES: feed and chart differ on 1 chart(s) (pat620 far)"] and bd_leaks(out, json.dumps(reg)) == [],
+      ([r_.get("dob_note") for r_ in reg["created"]], [l_ for l_ in out.splitlines() if l_.startswith("BIRTH DATES")]))
+_bdl0 = getattr(ci, "birth_dates_line", None); ci.birth_dates_line = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom")); out, reg = run_live([bd_msg("bd2", bd_d8(1940, 2, 16))])
+if _bdl0 is None: del ci.birth_dates_line
+else: ci.birth_dates_line = _bdl0
+check("live run: the line cannot be built - the run says so in one line, still writes its register and still ends with DONE", "BIRTH DATES: this line could not be built (RuntimeError)" in out and out.strip().splitlines()[-1].startswith("DONE ") and len(reg["created"]) == 1 and _bdl0 is not None,
+      out.strip().splitlines()[-4:])
+check("birth_dates_line: nothing to say - no visit, or every date the same, or a row without a note - is the empty line", bd_line({}) == "" and bd_line({"pat1": {"same"}, "pat2": {"same", None, ""}}) == "", (bd_line({}), bd_line({"pat1": {"same"}})))
+check("birth_dates_line: a chart whose visits differ in two ways is named once with both, the kinds in the rule's order; charts are listed in the order of their numbers",
+      bd_line({"pat7": {"differs: far", "differs: one digit", "same"}, "pat10": {"differs: one day apart"}, "pat9": {"no birth date from Claimocity"}}) == "BIRTH DATES: feed and chart differ on 2 chart(s) (pat7 one digit / far, pat10 one day apart); Claimocity sent no birth date for 1 chart(s) (pat9)",
+      bd_line({"pat7": {"differs: far", "differs: one digit", "same"}, "pat10": {"differs: one day apart"}, "pat9": {"no birth date from Claimocity"}}))
+check("birth_dates_line: a long group names its first twelve charts and counts the rest - the rows of the register still name every one", bd_line({"pat%d" % i: {"chart has no birth date"} for i in range(1, 15)}) == "BIRTH DATES: 14 chart(s) carry no birth date themselves (%s +2 more)" % ", ".join("pat%d" % i for i in range(1, 13)),
+      bd_line({"pat%d" % i: {"chart has no birth date"} for i in range(1, 15)}))
+# The import keeps its own copy of the two tests the identity rule is built on (what a REAL birth date is; what kind of slip two dates are) - it loads no other helper.
+# One rule, two places: every date of a wide grid is judged the same by both, so the row's dob_note and the chart the rule chooses can never disagree about a date unseen.
+_fsp = importlib.util.spec_from_file_location("feed_identity_pos_t", os.path.join(ROOT, "scripts", "helpers", "feed_identity.py")); FIT = importlib.util.module_from_spec(_fsp); _fsp.loader.exec_module(FIT)
+_BD_TODAY = bd_d8(2026, 11, 25); _grid = set()
+for _y, _m, _d in ((1940, 2, 15), (1951, 12, 31), (1936, 1, 1), (1960, 2, 29), (1999, 10, 11), (1930, 6, 30)):
+    _b = bd_d8(_y, _m, _d); _grid.add(_b)
+    for _i in range(8):
+        for _c in "0123456789": _grid.add(_b[:_i] + _c + _b[_i + 1:])                       # every one-digit change (also dates that do not exist)
+        if _i < 7: _grid.add(_b[:_i] + _b[_i + 1] + _b[_i] + _b[_i + 2:])                 # every swap of two neighbouring digits
+    _grid.add(_b[:4] + _b[6:8] + _b[4:6])                                                 # month and day swapped
+    for _dd in (-1, 1, 2, -2, 30, 365, 3650): _grid.add((_dt.date(_y, _m, _d) + _dt.timedelta(days=_dd)).strftime("%Y%m%d"))
+_grid |= {"", "0" * 8, bd_d8(1900, 1, 1), bd_d8(1901, 1, 1), bd_d8(1906, 11, 25), bd_d8(1906, 11, 24), bd_d8(2026, 11, 25), bd_d8(2026, 11, 26), "1940021", "abcdefgh", bd_d8(1940, 2, 30)}
+_grid = sorted(_grid); _real_diff = [d_ for d_ in _grid if bool(bd_real(d_, _BD_TODAY)) != bool(FIT.real_dob(d_, _BD_TODAY))]
+_KI = ("one digit", "two digits swapped", "month and day swapped", "one day apart", "far"); _KF = tuple(FIT.SLIP_KINDS) + ("",)
+_reals = [d_ for d_ in _grid if FIT.real_dob(d_, _BD_TODAY)]; _slip_diff = []
+for _a in _reals[::3]:
+    for _b in _reals:
+        if _a != _b and _KI.index(bd_slip(_a, _b)) != _KF.index(FIT.slip(_a, _b)): _slip_diff.append((_a, _b, bd_slip(_a, _b), FIT.slip(_a, _b)))
+check("birth dates: the import's own test of a REAL birth date and of the kind of slip between two dates agree with the identity rule's (feed_identity.py) on every date of a wide grid - %d dates, %d pairs; one rule, two places" % (len(_grid), len(_reals[::3]) * (len(_reals) - 1)),
+      _real_diff == [] and _slip_diff == [] and len(_reals) > 200 and len(_KI) == len(_KF), (_real_diff[:5], _slip_diff[:5], len(_reals)))
+# 11/25/2026 (William: a feed patient goes to the chart he already has - never a second one, never another patient's): THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S. The match file is
+# keyed by name and birth date, and until now the import took the chart from that key alone - two feed patients under one name and birth date (a namesake, the placeholder date, a second
+# Claimocity id) shared one chart. The driver now names a chart per Claimocity id in every entry ("by_id"); the import asks by the message's own id (chart_of).
+def id_msg(k_, fid_, day_="20261102"):      # made-up patient <k_> under Claimocity id <fid_>: two ids can share one name and one birth date
+    ci.MSGOF[ci.msg_key(fid_, [("99309", day_)])] = {(B["n2"], NPI, "")}; ci.FACOF[fid_] = B["n2"]; ci.FACS[fid_] = {B["n2"]}; ci.NPIOF[fid_] = NPI
+    return {"pid": fid_, "name": NAME(k_), "dob": BD_A, "file": "f", "FT1": [{"cpt": "99309", "dos": day_, "dx": "I10", "units": "1"}]}
+_idk = NAME("bd11").upper().strip() + "|" + BD_A; _bd_keys.append(_idk); _IDX, _IDY = "id-x-" + "a1" * 9, "id-y-" + "b2" * 9
+for _ip in ("pat631", "pat632"): BD_CH[_ip] = (bd_lf(BD_LAST + "ELEVEN", BD_FIRST), bd_amd(1940, 2, 15))
+_who = lambda reg_: sorted((r_.get("feed_id"), r_.get("pid")) for r_ in reg_["created"])
+ci.MATCH[_idk] = {"resolved": "pat631", "by_id": {_IDX: "pat631", _IDY: "pat632"}}; out, reg = run_live([id_msg("bd11", _IDX), id_msg("bd11", _IDY, "20261103")])
+check("the chart of each Claimocity id (11/25/2026): two feed patients under ONE name and birth date whose entry names a chart per id - each visit goes to its OWN id's chart (before, both went to the one chart of the name-and-date key)",
+      _who(reg) == [(_IDX, "pat631"), (_IDY, "pat632")] and reg["failed"] == [], (_who(reg), out[-300:]))
+ci.MATCH[_idk] = {"resolved": "pat631", "by_id": {_IDX: "pat631"}}; out, reg = run_live([id_msg("bd11", _IDX), id_msg("bd11", _IDY, "20261103")])
+check("the chart of each Claimocity id: ... an id the entry does NOT name gets no chart - its visit is not entered on the other id's chart by the name alone, it is counted 'no chart' (the driver keeps its file unregistered) - while the named id's visit goes in",
+      _who(reg) == [(_IDX, "pat631")] and "'no chart': 1" in out.strip().splitlines()[-1], (_who(reg), out.strip().splitlines()[-1][:300]))
+for _bad in ({_IDX: "pat631", _IDY: ["pat632"]}, {_IDX: "pat631", _IDY: ""}, {_IDX: "pat631", _IDY: None}):
+    ci.MATCH[_idk] = {"resolved": "pat631", "by_id": _bad}; out, reg = run_live([id_msg("bd11", _IDX), id_msg("bd11", _IDY, "20261103")])
+    check("the chart of each Claimocity id: ... a per-id value that is no chart id (%r) is no chart - never the key's 'resolved' in its place" % (_bad[_IDY],), _who(reg) == [(_IDX, "pat631")], _who(reg))
+ci.MATCH[_idk] = {"resolved": "pat631"}; out, reg = run_live([id_msg("bd11", _IDX), id_msg("bd11", _IDY, "20261103")])
+check("the chart of each Claimocity id: ... an entry WITHOUT per-id charts (an older match file, the hand-made one of a test) is read as before - the key's chart for every message under it",
+      _who(reg) == [(_IDX, "pat631"), (_IDY, "pat631")], _who(reg))
+ci.MATCH[_idk] = {"resolved": "pat631", "by_id": {_IDX: "pat631", _IDY: "pat632"}}; ci.PARSED[:] = [id_msg("bd11", _IDX), id_msg("bd11", _IDY, "20261103")]; out, dry = run_dry()
+check("the chart of each Claimocity id: ... the dry run reads the same way - each id's visit under its own chart", sorted(dry) == ["pat631", "pat632"] and all(len(v_) == 1 for v_ in dry.values()), sorted(dry))
+_isrc = open(HELPER).read()
+check("the chart of each Claimocity id: ... ONE function answers it for the whole import (chart_of) - the batch's own list of visits, the row of a message without a charge line and the entry itself ask it; no other line reads the match file's 'resolved'",
+      "def chart_of(" in _isrc and _isrc.count("chart_of(") >= 4 and _isrc.count('.get("resolved")') == 1 and "by_id" in _isrc[:_isrc.index("\nimport os as _os")], (_isrc.count("chart_of("), _isrc.count('.get("resolved")')))
+# through main(): the age rule reads the chart the import itself read (chart_ctx -> quality_due), with an earlier insurance check that released these charts with Medicare leading
+DEMOG["plans"] = MEDICARE + OTHER; earlier(); clear_regs(); BD_CH.update({"pat401": (bd_lf(BD_LAST + "Q", BD_FIRST), bd_amd(1956, 5, 1)), "pat402": (bd_lf(BD_LAST + "R", BD_FIRST), bd_amd(1986, 5, 1))})
+for _bk, _bp, _bf in (("bdq1", "pat401", BD_40), ("bdq2", "pat402", BD_70), ("bdq3", "pat403", BD_70)): ci.MATCH[NAME(_bk).upper().strip() + "|" + _bf] = {"resolved": _bp}; _bd_keys.append(NAME(_bk).upper().strip() + "|" + _bf)
+ci.PARSED[:] = [bd_msg("bdq1", BD_40), bd_msg("bdq2", BD_70), bd_msg("bdq3", BD_70)]; out, dry = run_dry()
+check("main --dry (11/25/2026): the 1123F line goes to the chart whose OWN birth date makes the patient 70 although the feed says 40, not to the chart whose own date says 40 although the feed says 70; a chart that gives no birth date is judged by the feed's, as before",
+      lined(dry) == ["pat401", "pat403"] and {p_: v_[0].get("dob_note") for p_, v_ in dry.items()} == {"pat401": "differs: one digit", "pat402": "differs: one digit", "pat403": "chart has no birth date"} and bd_leaks(out) == [],
+      (lined(dry), {p_: v_[0].get("dob_note") for p_, v_ in dry.items()}))
+_bdh = open(HELPER).read(); _bdh = _bdh[:_bdh.index("\nimport os as _os")]
+check("the import's PLAIN ENGLISH header says what it does with birth dates (the chart's own date, dob_note on every row, the age of the 1123F rule, the one BIRTH DATES line)",
+      all(w_ in _bdh for w_ in ("William 11/25/2026", "dob_note", "BIRTH DATES", "the chart's own birth date")) and "never a date" in _bdh, [w_ for w_ in ("dob_note", "BIRTH DATES", "the chart's own birth date") if w_ not in _bdh])
+amd.post = bd_post0; rmreg(EARLIER); DEMOG["plans"] = ""; BD_CH.clear(); qreset(); mreset(); ci.PARSED[:] = BASE; ci._ctx.clear()
+for _bk in _bd_keys: ci.MATCH.pop(_bk, None)
+for _bdx in range(1, 25): CHART.pop("6%02d" % _bdx, None)
+check("4e leaves the stand-in AdvancedMD as it found it (the plain getdemographic answer, no chart of its own, no import register)", amd.post is bd_post0 and not any(f_.startswith("feed_import_") for f_ in os.listdir(REGDIR)) and "601" not in CHART and ci.PARSED == BASE)
+
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
 for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "working_denials.py", "claimocity_verify.py", "aging_refresh.py", "claimocity_dx.py", "claimocity_recon.py"):
     m = re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(helper), mir); m = m and type("M", (), {"group": lambda self, i, _m=m: _m.group(1) or _m.group(2)})()
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
-check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
-check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either; mirror.py's marker for the inspector is a sentence only the current version has - since 11/12/2026 the version that tries a stuck visit again in every run (before, since 11.6: the one that takes BOTH no-charge lines off), so that an older copy of the step never comes back over the retry pass",
-      'not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):' in insp and "is never moved to HCA REHAB either" in insp
-      and '"claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care"' in mir and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp      # 11/25/2026: the marker is the sentence only the version that bypasses Pattern 692 has; the retry pass's sentence is still in the step
+check("inspector (11/25/2026, inpatient rehab stays): NO visit is moved to HCA REHAB / 31 any more - not a CCM visit at the hospital location, not a nursing-facility code under the hospital building (until that day the step moved the latter to fac67 at 31; William 10/31/2026: wrong): "
+      "the move and its condition are gone from the step, and its re-save takes no facility and no place of service of its own",
+      'fac, pos = "fac67", "31"' not in insp and 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' not in insp and "def resave_visit(cid, hospfrom=None):" in insp and "NEVER MOVED" in insp)
+check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either - since 11/25/2026 because the step changes no facility and no place of service on ANY visit (its header says so; the section 'INPATIENT REHAB STAYS' below runs the step on such a visit); mirror.py's marker for the inspector is a sentence only the current version has - since 11/25/2026 the version that moves no visit and never bypasses a place-of-service edit at 61 (before: the one that bypasses Pattern 692; since 11/12/2026 the one that tries a stuck visit again in every run; since 11.6 the one that takes BOTH no-charge lines off), so that an older copy of the step never comes back over it",
+      "This step changes no facility and no place of service on any visit" in insp and 'c.get("pos_err")' not in insp
+      and '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp      # 11/25/2026 (rehab at 61): the marker is the sentence only the version that moves no visit has; the Pattern 692 sentence and the retry pass's are still in the step
       and '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' not in mir and "the step takes BOTH no-charge lines off" in insp and "THIS STEP TAKES THE LINE OFF BY ITSELF" in insp)
 step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
 ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
@@ -2354,7 +2595,7 @@ check("both copies of the denial table read reason 246 (a reporting code) as inf
 check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
 check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
       "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
-check("runbook: the feed step copies the helpers and checks the version line before the ingest", "cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py /home/claude/unbilled/" in step and step.index("cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("nohup python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live > logs/claimocity_ingest_<run stamp>.log 2>&1 &` (a dry run drops --live)"))
+check("runbook: the feed step copies the helpers and checks the version line before the ingest", "cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py claimocity_match.py claimocity_resolve.py claimocity_newcharts.py feed_identity.py claimocity_dx.py claimocity_recon.py feed_in1_intake.py pos61_monitor.py /home/claude/unbilled/" in step and step.index("cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py claimocity_match.py claimocity_resolve.py claimocity_newcharts.py feed_identity.py claimocity_dx.py claimocity_recon.py feed_in1_intake.py pos61_monitor.py /home/claude/unbilled/") < step.index("must print 1") < step.index("nohup python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live > logs/claimocity_ingest_<run stamp>.log 2>&1 &` (a dry run drops --live)"))
 check("runbook (11/25/2026): the ingest is started in the BACKGROUND with its own log and polled until its RESULT line - never as one plain command, which the 600 s limit cuts on a file of 50 or more messages (November's CCM file carries 200 or more)",
       "python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run" not in step and "THEN THE INGEST, IN THE BACKGROUND WITH ITS OWN LOG" in step and "until a line starts with 'RESULT stamp'" in step.replace("\n", " ")
       and "`pgrep -f claimocity_ingest.py` prints nothing when none runs" in step.replace("\n", " ")
@@ -2973,7 +3214,7 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.2 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.3 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule, .3 rehab at 61 and the chart's own birth date; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
       ("grep -c '%s'" % ver) in _STEP1 and '2026-11-10.8"' not in step and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
@@ -3172,6 +3413,152 @@ check("insurance check step (NH2-3): the quality line cannot be read in three tr
       and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: detail read mismatch") for h_ in _vr["hold"]), (_ve, _vr))
 VF_STAND["amd"]["post"] = lambda body, timeout=0: (_ for _ in ()).throw(TimeoutError("read timed out")); _vr, _vo, _ve = vf_run(_qrow, None); VF_STAND["amd"]["post"] = _AM2.post
 check("insurance check step: an echo that raises on a visit with the line - the hold still says 'insorder not applied' with the line named", _ve == "" and _vr and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: error") for h_ in _vr["hold"]), (_ve, _vr))
+# ---- William 11/25/2026 ("correct every one that comes to the correct date of birth and insurance and fix them ... where we know the correct dob but claimocity sends the
+#      wrong one or the 01011900 default date"): THE PAID LOOK-UPS ARE ASKED ABOUT THE CHART'S PATIENT. Until that day the insurance check asked the paid look-up (Stedi
+#      insurance discovery) and the insurance intake asked Florida Medicaid with the FEED's name and birth date - also for a visit that sits on a chart whose birth date was
+#      corrected from a face sheet: the look-up missed and the chart was held 'no active plan: discovery found nothing'. Now both take the chart's own name and birth date
+#      from the chart answer they already hold (no extra call) when the chart's birth date is a real one, else the feed's as before - never a mix - and say which one was
+#      asked in fixed words that carry no name and no date. Every name, date and number here is invented and put together at run time (4e says why). ----------------
+import ast as _ast
+def lk_defs(path_, names_):
+    """{name: its source text} for the named top-level functions of a helper - read from the file, the helper itself is never loaded."""
+    src_ = open(path_).read(); return {n_.name: _ast.get_source_segment(src_, n_) for n_ in _ast.parse(src_).body if isinstance(n_, _ast.FunctionDef) and n_.name in names_}
+LK_FILES = ("claimocity_import.py", "claimocity_verify.py", "feed_in1_intake.py")
+LK_SRC = {f_: lk_defs(os.path.join(ROOT, "scripts", "helpers", f_), ("_real_dob", "_slip", "_dob8", "lookup_who")) for f_ in LK_FILES}
+check("the birth-date rules are ONE text: _real_dob and _slip read the same, letter for letter, in the import, the insurance check and the insurance intake (private copies until they point at the shared module)",
+      all(LK_SRC[f_].get(n_) for f_ in LK_FILES for n_ in ("_real_dob", "_slip")) and all(len({LK_SRC[f_].get(n_) for f_ in LK_FILES}) == 1 for n_ in ("_real_dob", "_slip")), {f_: sorted(v_) for f_, v_ in LK_SRC.items()})
+check("... and so do _dob8 and lookup_who in the two helpers that ask a paid look-up (the insurance check and the insurance intake)",
+      all(LK_SRC[f_].get(n_) for f_ in LK_FILES[1:] for n_ in ("_dob8", "lookup_who")) and all(LK_SRC[LK_FILES[1]].get(n_) == LK_SRC[LK_FILES[2]].get(n_) for n_ in ("_dob8", "lookup_who")), {f_: sorted(v_) for f_, v_ in LK_SRC.items()})
+check("... the insurance check's copies answer as the import's do, date by date (the slips of 4e, and what is no birth date)", all(_ns.get("_slip", bd_miss)(a_, b_) == w_ for a_, b_, w_ in BD_SLIPS)
+      and all(_ns.get("_real_dob", bd_miss)(x_, BD_T8) is False for x_ in BD_NOT) and all(_ns.get("_real_dob", bd_miss)(x_, BD_T8) is True for x_ in (BD_A, BD_T8, bd_d8(1906, 11, 20))), [(a_, b_, _ns.get("_slip", bd_miss)(a_, b_)) for a_, b_, w_ in BD_SLIPS if _ns.get("_slip", bd_miss)(a_, b_) != w_][:3])
+lk_dob8 = _ns.get("_dob8", bd_miss); lk_who = _ns.get("lookup_who", lambda *a_, **k_: (None, None, None, None))
+check("_dob8: a birth date as AdvancedMD writes it (with or without leading zeros, with a time behind it), as the feed writes it, or with dashes -> 8 digits; anything it cannot read -> ''",
+      [lk_dob8(x_) for x_ in (bd_amd(1940, 2, 15), "2/15/" + "1940", bd_amd(1940, 2, 15) + " 00:00:00", BD_A, BD_A + "000000", "1940-02-" + "15", "", None, "not a date", "1940" + "021")] == [BD_A] * 6 + [""] * 4,
+      [lk_dob8(x_) for x_ in (bd_amd(1940, 2, 15), "2/15/" + "1940", BD_A, "", None, "not a date")])
+LK_CL, LK_CF, LK_FL, LK_FF = "ZZCHARTLAST", "ZZCHARTFIRST", "ZZFEEDLAST", "ZZFEEDFIRST"      # the chart's name and the feed's - invented, and different, so a check shows which one was asked
+def lk_pa(y_, m_, d_, name_=None): return {"name": bd_lf(LK_CL, LK_CF + " Q") if name_ is None else name_, "dob": bd_amd(y_, m_, d_), "insorder": "1", "deceased": ""}
+LK_CHART = (LK_CF, LK_CL, BD_A); LK_ONE = bd_d8(1940, 2, 16)                # the chart's patient as the look-up must be asked; a feed date one digit off
+check("lookup_who (11/25/2026): the chart's birth date is a real one - the look-up is asked with the CHART's first name, last name and birth date, whatever the feed carries (one digit off, far off, the 1900 placeholder, nothing, the same date)",
+      [lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, f_, BD_T8)[:3] for f_ in (LK_ONE, bd_d8(1952, 11, 3), bd_d8(1900, 1, 1), "", BD_A)] == [LK_CHART] * 5, [lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, f_, BD_T8)[:3] for f_ in (LK_ONE, "")])
+check("lookup_who: ... and its words say which one was asked and how the feed's differs - by the kind of slip, never by a date or a name",
+      [lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, f_, BD_T8)[3] for f_ in (LK_ONE, bd_d8(1952, 11, 3), bd_d8(1900, 1, 1), "", BD_A)] == ["look-up asked with the chart's birth date; Claimocity's differs: one digit", "look-up asked with the chart's birth date; Claimocity's differs: far",
+          "look-up asked with the chart's birth date; no birth date from Claimocity", "look-up asked with the chart's birth date; no birth date from Claimocity", "look-up asked with the chart's birth date; Claimocity's is the same"],
+      [lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, f_, BD_T8)[3] for f_ in (LK_ONE, bd_d8(1952, 11, 3), bd_d8(1900, 1, 1), "", BD_A)])
+check("lookup_who: the chart carries no real birth date (the 1900 placeholder, none, a year far ahead) - the feed's name and birth date are asked exactly as they were passed, as before; the words say so",
+      [lk_who(pa_, LK_FF, LK_FL, LK_ONE, BD_T8) for pa_ in (lk_pa(1900, 1, 1), {"name": bd_lf(LK_CL, LK_CF), "insorder": "1"}, lk_pa(2099, 1, 1), {}, None)] == [(LK_FF, LK_FL, LK_ONE, "look-up asked with Claimocity's birth date; the chart has no birth date of its own")] * 5,
+      [lk_who(pa_, LK_FF, LK_FL, LK_ONE, BD_T8)[3] for pa_ in (lk_pa(1900, 1, 1), {}, None)])
+check("lookup_who: neither side carries a real birth date - what the feed sent is asked unchanged (as before: this change buys no look-up less and no look-up more), and the words say there is none on either side",
+      [lk_who(lk_pa(1900, 1, 1), LK_FF, LK_FL, f_, BD_T8) for f_ in (bd_d8(1900, 1, 1), "")] == [(LK_FF, LK_FL, f_, "look-up asked with what Claimocity sent; no birth date on either side") for f_ in (bd_d8(1900, 1, 1), "")],
+      [lk_who(lk_pa(1900, 1, 1), LK_FF, LK_FL, f_, BD_T8)[3] for f_ in (bd_d8(1900, 1, 1), "")])
+check("lookup_who: never a mix - a chart whose birth date is real but whose name cannot be read (no first name, no name at all) leaves the feed's name AND the feed's birth date, and says so",
+      [lk_who(lk_pa(1940, 2, 15, n_), LK_FF, LK_FL, LK_ONE, BD_T8) for n_ in (LK_CL, "", "," + LK_CF)] == [(LK_FF, LK_FL, LK_ONE, "look-up asked with Claimocity's name and birth date; the chart's name could not be read")] * 3,
+      [lk_who(lk_pa(1940, 2, 15, n_), LK_FF, LK_FL, LK_ONE, BD_T8)[3] for n_ in (LK_CL, "")])
+check("lookup_who: the chart's name is read as AdvancedMD writes it - LAST,FIRST with a middle initial, a blank after the comma, an apostrophe written as &apos;, a suffix behind the last name - first word of the first name, the whole last name",
+      [lk_who(lk_pa(1940, 2, 15, n_), LK_FF, LK_FL, LK_ONE, BD_T8)[:2] for n_ in (bd_lf(LK_CL, LK_CF + " Q"), LK_CL + ", " + LK_CF, bd_lf("O&apos;" + LK_CL, LK_CF), bd_lf(LK_CL + " JR", LK_CF))] == [(LK_CF, LK_CL), (LK_CF, LK_CL), (LK_CF, "O'" + LK_CL), (LK_CF, LK_CL + " JR")],
+      [lk_who(lk_pa(1940, 2, 15, n_), LK_FF, LK_FL, LK_ONE, BD_T8)[:2] for n_ in (bd_lf(LK_CL, LK_CF + " Q"), LK_CL + ", " + LK_CF)])
+check("lookup_who: the Medicaid check says 'Medicaid asked with ...' in the same words; no answer of either kind carries a digit",
+      lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, LK_ONE, BD_T8, "Medicaid")[3] == "Medicaid asked with the chart's birth date; Claimocity's differs: one digit"
+      and not any(re.search(r"\d", str(lk_who(pa_, LK_FF, LK_FL, f_, BD_T8, w_)[3])) for pa_ in (lk_pa(1940, 2, 15), lk_pa(1900, 1, 1), lk_pa(1940, 2, 15, ""), None) for f_ in (LK_ONE, BD_A, "", bd_d8(1952, 11, 3)) for w_ in ("look-up", "Medicaid")),
+      lk_who(lk_pa(1940, 2, 15), LK_FF, LK_FL, LK_ONE, BD_T8, "Medicaid")[3])
+# the whole insurance-check step, run INSIDE this process with stand-ins: a chart with no plan, so the paid look-up is asked
+lkd = tempfile.mkdtemp(prefix="posrule_lk_"); os.makedirs(os.path.join(lkd, "registers")); json.dump({"car6085": ["FLO02", "FLORIDA MEDICARE"], "car300": ["UNI20", "UNITED HEALTHCARE"]}, open(os.path.join(lkd, "carriers_rich.json"), "w"))
+LK = {"calls": [], "plans": 0, "pa": {}, "onchart": [], "answer": {"items": []}, "added": []}; LK_SEEN = []      # LK_SEEN: every record these runs wrote, as the digest step copies it to the repository (for the privacy gate's check further down)
+_lk_ssrc = _ast.parse(open(os.path.join(ROOT, "scripts", "helpers", "stedi.py")).read()); _lk_sns = {}
+exec(compile(_ast.Module(body=[n_ for n_ in _lk_ssrc.body if isinstance(n_, _ast.FunctionDef) and n_.name == "disc_summ"], type_ignores=[]), "stedi.py", "exec"), _lk_sns)      # the vendor client's own summary of an answer (a pure function; the client itself is never loaded)
+def _lk_plans(num): LK["plans"] += 1; return dict(LK["pa"]), [dict(p_) for p_ in LK["onchart"]]
+def _lk_disc(first, last, dob, state="FL", dos=None): LK["calls"].append((first, last, dob, state, dos)); return LK["answer"]
+def _lk_add(num, car, member): LK["added"].append((num, car)); LK["onchart"].append({"id": "ins9", "carrier": car, "sequence": "1", "enddate": ""}); return "ins9", "1"
+LK_STAND = {"amd": VF_STAND["amd"], "resave": VF_STAND["resave"], "deceased_guard": VF_STAND["deceased_guard"], "elig_amd": {"plans": _lk_plans, "run_plan": lambda num, p: {"status": "ACTIVE", "other_payers": []}, "one_line": lambda s: "ACTIVE"},
+            "stedi": {"disc": _lk_disc, "disc_summ": _lk_sns["disc_summ"]}, "add_ins": {"add": _lk_add}, "ins_update": {"_set_order": lambda num, plans, insid, seq: (True, "chart order set")}}
+def lk_run(feed_name, feed_dob, pa, answer=None):
+    """One insurance-check run, stamp TB, over ONE chart with no plan: the feed message carries feed_name / feed_dob, the chart answers pa. -> (the chart's record, what was printed, an error)."""
+    LK.update(calls=[], plans=0, pa=dict(pa), onchart=[], answer=answer or {"items": []}, added=[]); VQ.update(order="2", void=set(), sent=[], fault=None)
+    json.dump([{"pid": "f1", "name": feed_name, "dob": feed_dob, "IN1": []}], open(os.path.join(lkd, "feed_parsed_TB.json"), "w"))
+    json.dump({"created": [dict(_qrow, quality_codes=None, quality_charge=None, feed_id="f1", dos="11/10/2026", cpts=["99309"])]}, open(os.path.join(lkd, "registers", "feed_import_TB.json"), "w"))
+    if os.path.exists(os.path.join(lkd, "feed_verify_TB.json")): os.remove(os.path.join(lkd, "feed_verify_TB.json"))
+    o_, e_ = run_inside(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py"), LK_STAND, lkd, env={"FEED_STAMP": "TB", "DECEASED_CACHE": os.path.join(lkd, "dc.json")})
+    r_ = (json.load(open(os.path.join(lkd, "feed_verify_TB.json"))).get("pat1") if os.path.exists(os.path.join(lkd, "feed_verify_TB.json")) else None) or {}
+    LK_SEEN.append({k_: v_ for k_, v_ in r_.items() if k_ != "discovery"}); return r_, o_, e_
+LK_SECRET = [LK_CL, LK_CF, LK_FL, LK_FF] + [f_(*t_) for t_ in [(1940, 2, 15), (1940, 2, 16), (1952, 11, 3)] for f_ in (bd_d8, bd_amd, lambda y_, m_, d_: "%04d-%02d-%02d" % (y_, m_, d_))]
+lk_leaks = lambda *texts_: sorted({s_ for s_ in LK_SECRET for t_ in texts_ if s_ in t_})
+lk_repo = lambda rec_: json.dumps({k_: v_ for k_, v_ in rec_.items() if k_ != "discovery"})      # what the digest step copies to the repository: the record without the look-up's raw answer
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF + " X"), LK_ONE, lk_pa(1940, 2, 15))
+check("insurance check step (11/25/2026): a chart with no active plan whose feed message carries a birth date one digit off - the paid look-up is asked ONCE, with the CHART's first name, last name and birth date, dated to the visit",
+      _le == "" and LK["calls"] == [(LK_CF, LK_CL, BD_A, "FL", "20261110")], (_le, len(LK["calls"]), [c_[3:] for c_ in LK["calls"]]))
+check("insurance check step: ... the record says which one was asked, and so does the hold William reads - 'no active plan: discovery found nothing' as before, then the words (the digest and the hand step still find their words at its start)",
+      _lr.get("lookup_asked") == "look-up asked with the chart's birth date; Claimocity's differs: one digit" and _lr.get("decision") == "HOLD"
+      and any(h_.startswith("no active plan: discovery found nothing - look-up asked with the chart's birth date; Claimocity's differs: one digit - HELD in this report only") for h_ in _lr.get("hold") or []), (_le, _lr.get("lookup_asked"), _lr.get("hold")))
+check("insurance check step: ... the chart was read once - the name and the birth date come from the chart answer the step already holds, no extra call", LK["plans"] == 1, LK["plans"])
+check("insurance check step (privacy): ... no invented name or date - written any way - is in what the step printed or in the record the digest step copies to the repository", lk_leaks(_lo, lk_repo(_lr)) == [] and "pat1" in _lo, lk_leaks(_lo, lk_repo(_lr)))
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), LK_ONE, lk_pa(1900, 1, 1))
+check("insurance check step: the chart carries the year-1900 placeholder and the feed a real birth date - the look-up is asked with the FEED's name and birth date, as before, and the record says so",
+      _le == "" and LK["calls"] == [(LK_FF, LK_FL, LK_ONE, "FL", "20261110")] and _lr.get("lookup_asked") == "look-up asked with Claimocity's birth date; the chart has no birth date of its own"
+      and any(h_.startswith("no active plan: discovery found nothing - look-up asked with Claimocity's birth date; the chart has no birth date of its own") for h_ in _lr.get("hold") or []) and lk_leaks(_lo, lk_repo(_lr)) == [], (_le, len(LK["calls"]), _lr.get("lookup_asked"), _lr.get("hold")))
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), bd_d8(1900, 1, 1), lk_pa(1940, 2, 15))
+check("insurance check step: the feed carries the year-1900 placeholder and the chart a real birth date (the case that was held 'discovery found nothing') - asked with the chart's; the record says Claimocity sent none",
+      _le == "" and LK["calls"] == [(LK_CF, LK_CL, BD_A, "FL", "20261110")] and _lr.get("lookup_asked") == "look-up asked with the chart's birth date; no birth date from Claimocity", (_le, len(LK["calls"]), _lr.get("lookup_asked")))
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), BD_A, lk_pa(1940, 2, 15))
+check("insurance check step: the feed's birth date and the chart's are the same - asked with the chart's name and that date; the record says they are the same and the hold reads exactly as it always did",
+      _le == "" and LK["calls"] == [(LK_CF, LK_CL, BD_A, "FL", "20261110")] and _lr.get("lookup_asked") == "look-up asked with the chart's birth date; Claimocity's is the same"
+      and any(h_.startswith("no active plan: discovery found nothing - HELD in this report only") for h_ in _lr.get("hold") or []) and not any("look-up asked" in h_ for h_ in _lr.get("hold") or []), (_le, len(LK["calls"]), _lr.get("lookup_asked"), _lr.get("hold")))
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), "", {"insorder": "", "deceased": ""})
+check("insurance check step: a chart answer without a name or a birth date and a feed message without a birth date (what every older check of this step uses) - the look-up is still asked, with what the feed sent, exactly as before",
+      _le == "" and LK["calls"] == [(LK_FF, LK_FL, "", "FL", "20261110")] and _lr.get("lookup_asked") == "look-up asked with what Claimocity sent; no birth date on either side" and _lr.get("decision") == "HOLD", (_le, len(LK["calls"]), _lr.get("lookup_asked")))
+def lk_ans(payer_, plan_, begin_): return {"items": [{"payer": {"name": payer_}, "payerId": "1", "subscriber": {"memberId": "X1"}, "planDateInformation": {"planBegin": begin_}, "benefitsInformation": [{"code": "1", "name": "Active Coverage", "planCoverage": plan_}]}]}
+_lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), bd_d8(1952, 11, 3), lk_pa(1940, 2, 15), lk_ans("UNITED HEALTHCARE", "AARP Medicare Advantage", "2026" + "0101"))
+check("insurance check step: a medical plan the look-up finds for the CHART's patient is added and the visit released, as before - and the record still says the feed's birth date was far from the chart's",
+      _le == "" and LK["calls"] == [(LK_CF, LK_CL, BD_A, "FL", "20261110")] and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and any(f_.startswith("discovery: added UNI20 plan") for f_ in _lr.get("fixes") or [])
+      and _lr.get("lookup_asked") == "look-up asked with the chart's birth date; Claimocity's differs: far" and lk_leaks(_lo, lk_repo(_lr)) == [], (_le, len(LK["calls"]), LK["added"], _lr.get("decision"), _lr.get("lookup_asked")))
+LK_STAND["stedi"]["disc"] = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("look-up down")); _lr, _lo, _le = lk_run(bd_lf(LK_FL, LK_FF), LK_ONE, lk_pa(1940, 2, 15)); LK_STAND["stedi"]["disc"] = _lk_disc
+check("insurance check step: a look-up that fails - held 'no active plan; discovery error ...' as before, with the words behind it", _le == "" and any(h_.startswith("no active plan; discovery error look-up down - look-up asked with the chart's birth date; Claimocity's differs: one digit") for h_ in _lr.get("hold") or []), (_le, _lr.get("hold")))
+_lvs = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _lvh = _lvs[:_lvs.index("\nimport os as _os")]
+check("insurance check: its PLAIN ENGLISH header says whom the paid look-up is asked about (a sentence only this version has), keeps the sentence mirror.py protects it by, and the feed's birth date no longer goes straight into the look-up",
+      "the paid look-up is asked with the CHART's own name and birth date" in _lvh and "the save is skipped only when the visit's insurance-order LIST" in _lvh and 'stedi.disc(first, last, msg.get("dob", "")[:8]' not in _lvs and "stedi.disc(first, last, dob8," in _lvs)
+# the insurance intake (feed_in1_intake.py), run INSIDE this process with stand-ins: ONE Florida Medicaid check for a chart the patient map knows
+_lk_fsrc = open(os.path.join(ROOT, "scripts", "helpers", "feed_payer_map.py")).read()
+_lk_fsp = importlib.util.spec_from_file_location("feed_payer_map_t", os.path.join(ROOT, "scripts", "helpers", "feed_payer_map.py")); LK_FPM = importlib.util.module_from_spec(_lk_fsp); _lk_fsp.loader.exec_module(LK_FPM)
+lki = tempfile.mkdtemp(prefix="posrule_in1_"); os.makedirs(os.path.join(lki, "registers")); json.dump({"car9": ["MCAD", "FLORIDA MEDICAID"]}, open(os.path.join(lki, "carriers_rich.json"), "w"))
+json.dump({"lkfeed1": "pat901"}, open(os.path.join(lki, "registers", "claimocity_patient_map.json"), "w"))
+LK_NUM = "9012" + "345678"; LK_PAYER = "Medicaid-FL"; LKI = {"asked": [], "plans": 0, "pa": {}, "recs": [], "answer": {}, "added": []}
+def _lki_plans(pid): LKI["plans"] += 1; return '<r><patient id="pat%s" %s/></r>' % (pid, " ".join('%s="%s"' % kv_ for kv_ in LKI["pa"].items())), {}, "1"
+def _lki_elig(payer, first, last, dob, member, dos, stc=("30",), pid=None): LKI["asked"].append((payer, first, last, dob, member, pid)); return LKI["answer"]
+def _lki_add(pid, car, member, *a_): LKI["added"].append((pid, car)); return "ins77", "2"
+LKI_STAND = {"amd": {"login_cached": lambda *a: None}, "add_ins": {"add": _lki_add}, "ins_update": {"_plans": _lki_plans, "update": lambda *a_, **k_: (True, "ok")}, "elig_amd": {"run_plan": lambda *a_, **k_: {"status": "ACTIVE"}},
+             "stedi": {"elig": _lki_elig}, "adt_ingest": {"read": lambda paths: LKI["recs"]}, "feed_payer_map": {k_: getattr(LK_FPM, k_) for k_ in ("code", "kind", "skip", "TABLE", "MEDICAID_FAMILY", "SECONDARY_ONLY")}}
+def lki_run(feed_iso, pa, live=False, answer=None):
+    """One insurance-intake run over ONE feed patient with a Medicaid block: the feed carries feed_iso (YYYY-MM-DD) and the feed's name, the chart answers pa. -> (what was printed, an error, its register or None)."""
+    LKI.update(asked=[], plans=0, pa=dict(pa), added=[], answer=answer or {"benefitsInformation": [{"code": "1"}]})
+    LKI["recs"] = [{"patient": {"id": "lkfeed1", "first": LK_FF + " X", "last": LK_FL, "dob": feed_iso}, "insurance": [{"name": LK_PAYER, "member": LK_NUM, "skip": ""}]}]
+    f_ = os.path.join(lki, "registers", "feed_in1_intake.json")
+    if os.path.exists(f_): os.remove(f_)
+    o_, e_ = run_inside(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py"), LKI_STAND, lki, argv=("--hl7-dir", "x", "--stamp", "TB") + (("--live",) if live else ()))
+    return o_, e_, (json.load(open(f_)) if os.path.exists(f_) else None)
+lki_leaks = lambda *texts_: sorted({s_ for s_ in LK_SECRET + [LK_NUM] for t_ in texts_ if s_ in t_})
+check("insurance intake: the table module it reads loads nothing that talks to AdvancedMD (it is a pure table - loaded here as it is), and every other module the helper loads is a stand-in",
+      loads(_lk_fsrc) == {"re"} and (loads(open(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py")).read()) - {"json", "os", "re", "sys", "time", "datetime", "collections"}) == set(LKI_STAND), (loads(_lk_fsrc), sorted(loads(open(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py")).read()))))
+_lo, _le, _lg = lki_run("1940-02-" + "16", lk_pa(1940, 2, 15))
+check("insurance intake (11/25/2026): the feed's Medicaid block carries a birth date one digit off the chart's - Florida Medicaid is asked ONCE with the CHART's first name, last name and birth date and the feed's Medicaid number",
+      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")], (_le, len(LKI["asked"]), _lo[-200:] if not lki_leaks(_lo) else "the printed text carries an invented name, date or number"))
+check("insurance intake: ... the chart was read once (the name and the birth date come from the chart answer the helper already holds - no extra call), the line it prints says which birth date was asked, and nothing it prints carries a name, a date or the Medicaid number",
+      LKI["plans"] == 1 and "pat901: DRY would add MCAD (Medicaid active; no managed medical plan named (fee-for-service) - Medicaid asked with the chart's birth date; Claimocity's differs: one digit)" in _lo and lki_leaks(_lo) == [] and _lg is None, (LKI["plans"], lki_leaks(_lo)))
+_lo, _le, _lg = lki_run("1940-02-" + "16", lk_pa(1900, 1, 1))
+check("insurance intake: the chart carries the year-1900 placeholder - Medicaid is asked with the FEED's name and birth date, as before, and the line says the chart has none",
+      _le == "" and LKI["asked"] == [("77027", LK_FF, LK_FL, LK_ONE, LK_NUM, "901")] and "Medicaid asked with Claimocity's birth date; the chart has no birth date of its own" in _lo and lki_leaks(_lo) == [], (_le, len(LKI["asked"]), lki_leaks(_lo)))
+_lo, _le, _lg = lki_run("1940-02-" + "15", lk_pa(1940, 2, 15))
+check("insurance intake: the same birth date on both sides - asked with the chart's name and that date, and the line reads exactly as it always did", _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and "asked with" not in _lo
+      and "pat901: DRY would add MCAD (Medicaid active; no managed medical plan named (fee-for-service)) and" in _lo, (_le, len(LKI["asked"]), lki_leaks(_lo)))
+_lo, _le, _lg = lki_run("1952-11-" + "03", lk_pa(1940, 2, 15), live=True)
+check("insurance intake, live: the plan is added as before and the register entry of that chart and carrier says which birth date Medicaid was asked with - in words; no name, no date and no Medicaid number is in the register or in what was printed",
+      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and isinstance(_lg, dict) and list(_lg) == ["901|MCAD"]
+      and _lg["901|MCAD"].get("outcome") == "added MCAD as ins77 seq 2 (Medicaid active; no managed medical plan named (fee-for-service) - Medicaid asked with the chart's birth date; Claimocity's differs: far)" and lki_leaks(_lo, json.dumps(_lg)) == [],
+      (_le, len(LKI["asked"]), LKI["added"], lki_leaks(_lo, json.dumps(_lg or {}))))
+_lo, _le, _lg = lki_run("1940-02-" + "16", lk_pa(1940, 2, 15), live=True, answer={"benefitsInformation": [{"code": "6"}]})
+check("insurance intake, live: Medicaid answers 'no active coverage' to the chart's name and birth date - nothing is added, and the entry that settles the chart and carrier says how it was asked",
+      _le == "" and LKI["added"] == [] and isinstance(_lg, dict) and (_lg.get("901|MCAD") or {}).get("outcome") == "not active - Medicaid: no active coverage - Medicaid asked with the chart's birth date; Claimocity's differs: one digit" and lki_leaks(_lo, json.dumps(_lg)) == [],
+      (_le, LKI["added"], lki_leaks(_lo, json.dumps(_lg or {}))))
+_lih = open(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py")).read(); _lih = _lih[:_lih.index("\nimport amd")]
+check("insurance intake: its PLAIN ENGLISH header says whom Medicaid is asked about", "with the CHART's own name and birth date" in _lih and "William" in _lih, _lih[-300:])
+check("the stand-ins of these runs are gone again (the import helper's own are back, no look-up module is left loaded)", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and not any(m_ in sys.modules for m_ in ("stedi", "elig_amd", "add_ins", "ins_update", "adt_ingest", "feed_payer_map", "deceased_guard")))
 # 11.1: the Claim Inspector step takes the quality line off a held visit by itself (run INSIDE this process with stand-ins)
 isd = tempfile.mkdtemp(prefix="posrule_ins_"); os.makedirs(os.path.join(isd, "registers")); json.dump({}, open(os.path.join(isd, "dx.json"), "w"))
 IS = {}
@@ -3212,6 +3599,13 @@ check("inspector (11.1): before proof a held visit that carries the line - the s
       _ie == "" and _ir["held"] == [] and IS["voided"] == [("pat1", "1011")] and len(IS["resaved"]) == 1 and 'id="charge1010"' in IS["resaved"][0] and "charge1011" not in IS["resaved"][0]
       and len(_ir["quality_removed"]) == 1 and {k_: _ir["quality_removed"][0][k_] for k_ in ("visit", "pid", "charge", "fee", "void_ok", "released")} == {"visit": "101", "pid": "pat1", "charge": "charge1011", "fee": "0.00", "void_ok": True, "released": True}
       and _ir["quality_removed"][0]["why"].startswith("Pattern 77002"), (_ie, _ir, IS["voided"]))
+# 11/25/2026 (seen while the step was changed for the rehab rule): a hospital visit with the 'hospitalization date' edit and NO admission anchor - no admission date in its message, no
+# initial hospital visit within 45 days - is held; that hold left the loop BEFORE the step wrote its register, so when such a visit was the last one listed (or the only one) its held row
+# never reached registers/feed_inspector_<stamp>.json and the digest's held list - William was never told.
+_HROW = {"visit": "vst101", "pid": "pat1", "charges": ["charge1010"], "cpts": ["99232"], "dos": "11/10/2026", "fac": "fac29"}
+_ir, _io, _ie = is_run([{"id": "e9", "number": "117065068", "text": "Hospitalization from date is required for this place of service"}], row=_HROW, ids=("1010",))
+check("inspector (11/25/2026): a hospital visit held for 'no admission anchor' is in the step's register also when it is the LAST visit listed - the register is written before the step goes on (until then that hold skipped the write and the held row was lost)",
+      _ie == "" and isinstance(_ir, dict) and [h_.get("visit") for h_ in _ir.get("held", [])] == ["101"] and str(_ir["held"][0].get("why", "")).startswith("no admission anchor") and IS["resaved"] == [] and IS["bypassed"] == [], (_ie, _ir, _io[-200:]))
 _ir, _io, _ie = is_run([E_DATA], after=[E_DATA])
 check("inspector (11.1): ... the visit is still listed after the line is gone - held for its own reason as before (no 'quality' mark: it carries no line now), the entry says released: false",
       _ie == "" and len(_ir["held"]) == 1 and "quality" not in _ir["held"][0] and _ir["held"][0]["why"].startswith("Pattern 77002") and _ir["quality_removed"][0]["void_ok"] is True and _ir["quality_removed"][0]["released"] is False, (_ie, _ir))
@@ -3293,6 +3687,338 @@ _scan = {"inspector": {"1": [{"vid": "301", "errs": [["e1", E_692["text"], "7707
                              {"vid": "305", "errs": []}]}}
 check("new admission: the engine's report sorts a visit the sweep's way - 692 alone and 4311 alone are advisories (not 'waiting for William'); 692 beside a data edit, an edit that only CONTAINS the digits 692 (the M0004 procedure id, a claim number) and a visit with no edit text are not",
       RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)) == {"advisory": ["v301", "v303"], "missing data / dx": ["v302", "v304", "v305"]}, RA692.classify_inspector(_scan, RA692.advisory_patterns(_ewd)))
+# ---- INPATIENT REHAB STAYS AT PLACE OF SERVICE 61 (William 11/25/2026) ------------------------------------------------------------------------------------
+# "i now follow patients after dc from the inpatient hospital and admit them to inpatient rehab ... many times now i will be following a patient like that the day after dc from
+# the inpatient hospital"; asked "Do you want the rehab visits on 61?": "yes and let us monitor them to make sure they pay and dont deny the ones were already paying with the
+# inpatient hosptial as the place oif service though so we need to monitor that". The hospital's rehabilitation unit is AdvancedMD facility fac67 (HCA REHAB) with its own number;
+# the feed names the HOSPITAL building for its visits too. A STAY starts at each initial hospital visit of ours; it is a REHAB stay when a feed message of it carries the unit's
+# number in its PV1 line, or when its initial visit is dated 1 or 2 days after the last visit of an acute stay. A visit of a rehab stay goes in at fac67 with every charge line
+# at 61 - unless its stay's initial visit already sits on the chart at 21 (no look-back, no mixing: those visits keep 21 and are the group the monitor compares with). Any error
+# = the visit goes in as before. Every chart, visit, feed id and date below is invented; the two shapes are the ones the registers show - an acute stay, a second initial visit
+# one or two days after its last visit, then daily follow-ups. Each input gets a FRESH copy of the import helper over its own raw feed files, in this section's own workspace
+# (its own registers folder), against the stand-in AdvancedMD.
+rhd = tempfile.mkdtemp(prefix="posrule_rehab_", dir=tmp); os.makedirs(os.path.join(rhd, "registers")); _rh_cwd = os.getcwd(); _rh_dm = dict(DEMOG)
+json.dump([], open(os.path.join(rhd, "feed_parsed_SELFTEST.json"), "w")); json.dump({}, open(os.path.join(rhd, "feed_match_SELFTEST.json"), "w")); os.chdir(rhd); ECHO.update(ECHO0); DEMOG.update(order="1", plans="")
+HOSPN = "HCA FLORIDA CAPITAL HOSPITAL TALLAHASSEE MEDICAL C"; REHABN = "HCA REHAB"      # how AdvancedMD's history names a visit at fac29 (the hospital) and at fac67 (its rehabilitation unit)
+RH_UNIT = "1083375828"                                                                    # the rehabilitation unit's own number (its public NPI)
+RH_SIGN = "new admission 1-2 days after an acute stay"; RH_NUM = "facility number"; RH_KEPT = "rehab-stay-kept-21"
+def _rt(f_):      # the answer - or the error as text, so that a check on something the helper does not have fails as a check and never ends this self-test
+    try: return f_()
+    except Exception as e: return "%s: %s" % (type(e).__name__, e)
+def rh_raw(msgs):
+    """The raw feed text of hospital messages [(feed id, [(code, yyyymmdd)], admission date, PV1 facility number or None)]: the feed names the HOSPITAL building for every one;
+    a facility number stands where the feed would send it - the last ^ component of the PV1 line's field 2 (PV1|1|^^^<number>|...)."""
+    return "".join(hl7(f_, B["h1"], a_, l_, NPI) if u_ is None else "MSH|^~\\&|feed|" + B["h1"] + "|x|x|20260901||DFT^P03|1|P|2.3\rPID|1||" + f_ + "\r" + "|".join(["PV1", "1", "^^^" + u_, "", "", "", "", NPI + "^x"] + [""] * 36 + [a_]) + "\r"
+                   + "".join(ft1(c_, d_) + "\r" for c_, d_ in l_) for f_, l_, a_, u_ in msgs)
+def rh_parsed(msgs): return [P_(f_, f_, l_) for f_, l_, _a, _u in msgs]
+def rh_ctx(rows=(), pid="pat8800"): return dict(ctx(), pid=pid, nfrows=set(rows), live={(r_[0], r_[1]) for r_ in rows})      # a chart as chart_ctx hands it over: its history rows (code, date, facility name) and its live charges
+def rh_built(m_, fid, lines, rows=(), batch=(), pid="pat8800", c_=None, err=""):
+    """build() of a fresh copy for ONE message -> (the calls or None, the register row or the skip reason / the error, [(procedure, place of service)] of the charge lines sent, the facility of the visit).
+    rows = the chart's history; batch = the other visits of this batch as main() lists them (code, date, building); c_ = a chart context used as it is (two messages of one run); err = the batch list was not built."""
+    try:
+        m_.BATCH_NF.clear(); m_.BATCH_NF[pid] = set(batch); m_.BATCH_NF_ERR[0] = err
+        o_, i_ = m_.build(msg(fid, lines), c_ if c_ is not None else rh_ctx(rows, pid))
+    except Exception as e: return None, "%s: %s" % (type(e).__name__, e), [], ""
+    finally:
+        try: m_.BATCH_NF_ERR[0] = ""
+        except Exception: pass
+    if o_ is None: return None, i_, [], ""
+    return o_, i_, re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)"', o_[1]), (re.findall(r'<visit id="%VISIT%"[^>]*? facility="([^"]*)"', o_[1]) + ["?"])[0]
+_rb = lambda r_: (r_[3], [p_ for _c, p_ in r_[2]], (r_[1].get("pos_kind"), r_[1].get("pos_err"), r_[1].get("stay")) if isinstance(r_[1], dict) else r_[1])      # (the facility sent, the place of service of every line sent, (kinds, error, stay) of the row)
+def rh_run(m_, parsed, match, argv=("--all",), stamp=None, post=None):
+    """main() of a fresh copy over parsed messages in this section's own workspace -> (what it printed, its register or None). stamp = the register is kept under that batch stamp, as an EARLIER
+    batch for the runs after it; post = a stand-in answer function for this run only."""
+    m_.PARSED[:] = parsed; m_.MATCH.clear(); m_.MATCH.update({NAME(k_).upper().strip() + "|" + DOBK: {"resolved": v_} for k_, v_ in match.items()})
+    POSTS.clear(); buf_ = io.StringIO(); _argv = sys.argv[:]; sys.argv = ["claimocity_import.py"] + list(argv); m_._ctx.clear(); m_.BATCH_NF.clear(); m_.BATCH_NF_ERR[0] = ""; _sl = m_.time.sleep; m_.time.sleep = lambda s: None; _p0 = amd.post
+    if post: amd.post = post
+    try:
+        with contextlib.redirect_stdout(buf_): m_.main()
+    except Exception as e: buf_.write("\nMAIN ENDED IN AN ERROR: %s: %s\n" % (type(e).__name__, e))
+    finally: m_.time.sleep = _sl; sys.argv = _argv; amd.post = _p0
+    f_ = os.path.join(rhd, "registers", "feed_import_SELFTEST.json"); reg_ = json.load(open(f_)) if os.path.exists(f_) else None
+    if reg_ is not None: os.rename(f_, os.path.join(rhd, "registers", "feed_import_%s.json" % stamp)) if stamp else os.remove(f_)
+    return buf_.getvalue(), reg_
+def rh_chart(num, reg_):      # what a batch entered now stands on the chart: each line with the facility name AdvancedMD's history gives it
+    for r_ in (reg_ or {}).get("created", []):
+        for c_, d_ in zip(r_["cpts"], r_.get("dos_lines") or [r_["dos"]] * len(r_["cpts"])): CHART.setdefault(num, []).append((c_, d_, {"fac29": HOSPN, "fac67": REHABN}.get(r_.get("fac"), "")))
+def rh_rows(reg_): return sorted([(r_["dos"], r_["cpts"], r_.get("fac"), r_.get("pos_lines"), r_.get("pos_kind"), r_.get("stay")) for r_ in (reg_ or {}).get("created", [])], key=lambda t_: t_[0][6:] + t_[0][:5])
+_rh_last3 = lambda out_: out_.strip().splitlines()[-3:]
+_rh_pl = lambda out_: next((l_ for l_ in out_.splitlines() if l_.startswith("POS RULE: CCM")), "")
+RH_A = [("99223", "08/03/2026"), ("99232", "08/04/2026"), ("99233", "08/05/2026"), ("99232", "08/06/2026"), ("99233", "08/07/2026"), ("99232", "08/08/2026"), ("99233", "08/09/2026"), ("99239", "08/10/2026")]      # an acute stay of ours: admitted 08/03, seen daily, discharged 08/10
+RH_AC = [(c_, d_, HOSPN) for c_, d_ in RH_A]                                                # ... as it stands on the chart, at the hospital
+RH_ST = lambda kind_, day_, sign_="": {"kind": kind_, "initial": day_, "sign": sign_}       # the register's "stay"
+# -- the rule's constants and words ---------------------------------------------------------------------------------------------------------------------------
+_HNOW = open(HELPER).read()
+check("rehab: the rehab unit's facility numbers stand in ONE constant of the import (REHAB_UNIT_NUMBERS), started with the unit's own number; a rehab visit goes in at fac67 with place of service 61; the hospital building is fac29 / 21",
+      getattr(ci, "REHAB_UNIT_NUMBERS", None) == {RH_UNIT} and len(re.findall(r"(?m)^REHAB_UNIT_NUMBERS = ", _HNOW)) == 1 and (getattr(ci, "REHAB_FAC", None), getattr(ci, "REHAB_POS", None)) == ("fac67", "61")
+      and getattr(ci, "REHAB_HOSPITAL", None) == ("fac29", "21") and ci.FAC.get(B["h1"]) == ("fac29", "21"), (getattr(ci, "REHAB_UNIT_NUMBERS", None), getattr(ci, "REHAB_FAC", None), getattr(ci, "REHAB_POS", None)))
+check("rehab: a stay starts at an initial hospital visit 99221-99223; the visits it holds are the same-day rule's hospital family (EM_FAMILY), for 45 days - the window the admission-date steps use; the two signs are named as the register names them",
+      getattr(ci, "HOSP_INITIAL", None) == {"99221", "99222", "99223"} and ci.HOSP_VISIT == next(f_ for f_ in ci.EM_FAMILY if "99223" in f_) and getattr(ci, "STAY_MAX_DAYS", None) == 45
+      and (getattr(ci, "SIGN_NUMBER", None), getattr(ci, "SIGN_ADMIT", None), getattr(ci, "REHAB_KEPT", None)) == (RH_NUM, RH_SIGN, RH_KEPT), (getattr(ci, "HOSP_INITIAL", None), getattr(ci, "STAY_MAX_DAYS", None), getattr(ci, "SIGN_ADMIT", None)))
+check("rehab: the rule's version line is 2026-11-25.3 in the import helper (and the version before it stands nowhere in it); its PLAIN ENGLISH header states the rule in William's words",
+      ci.POS_RULE_VERSION == "2026-11-25.3" and len(re.findall(r'(?m)^POS_RULE_VERSION = "2026-11-25\.3"', _HNOW)) == 1 and '"2026-11-25.1"' not in _HNOW
+      and all(w_ in _HNOW.split("\nimport os as _os")[0] for w_ in ("Inpatient rehab stays (William 11/25/2026", "dont deny the ones were already paying", "place of service 61", "HCA REHAB (fac67)", "rehab-stay-kept-21")), ci.POS_RULE_VERSION)
+# -- the stays of a chart, as a pure function --------------------------------------------------------------------------------------------------------------
+_rh_k = lambda rows_, **k_: _rt(lambda: [(ci._fmt_day(s_["initial"])[:5], s_["kind"], s_["sign"]) for s_ in ci.hospital_stays(rows_, **k_)[0]])
+_rh_ch = RH_A + [("99223", "08/11/2026"), ("99233", "08/12/2026"), ("99233", "08/20/2026"), ("99223", "08/22/2026"), ("99232", "08/23/2026"), ("99223", "08/25/2026"), ("99233", "08/26/2026"), ("99223", "08/29/2026"),
+                 ("99232", "08/30/2026"), ("99223", "08/30/2026")]
+check("rehab (the chain): an acute stay; a new initial visit ONE day after its last visit = a rehab stay; a new initial visit TWO days after the REHAB stay's last visit = the patient back in the hospital (acute); "
+      "two days after THAT stay's last visit = a rehab stay again; THREE days after = a new admission (acute); a follow-up and an initial visit on the SAME day = acute (one hospital visit a day)",
+      _rh_k(_rh_ch) == [("08/03", "acute", ""), ("08/11", "rehab", RH_SIGN), ("08/22", "acute", ""), ("08/25", "rehab", RH_SIGN), ("08/29", "acute", ""), ("08/30", "acute", "")], _rh_k(_rh_ch))
+check("rehab (the chain): the first stay in hand is acute - an initial visit with no hospital visit of ours before it is a new admission; the order the rows come in does not matter; other codes and odd rows are passed over",
+      _rh_k([("99223", "08/11/2026"), ("99233", "08/12/2026")]) == [("08/11", "acute", "")] and _rh_k(list(reversed(_rh_ch))) == _rh_k(_rh_ch)
+      and _rh_k(_rh_ch[:10] + [("99309", "08/11/2026"), ("99487", "08/31/2026"), ("99497", "08/12/2026"), (None, None), ("99223",), 7, ("99223", "not a date"), ("99223", "")]) == _rh_k(_rh_ch[:10]), _rh_k([("99223", "08/11/2026")]))
+_rh_h = _rt(lambda: {(ci._fmt_day(k_[0])[:5], k_[1]): v_ for k_, v_ in ci.hospital_stays([("99223", "08/01/2026"), ("99232", "09/15/2026"), ("99232", "09/16/2026")])[1].items()})
+check("rehab (the chain): a stay holds a visit up to 45 days after its initial visit - the 45th day is in the stay, the 46th is in no stay", _rh_h == {("08/01", True): 0, ("09/15", False): 0, ("09/16", False): None}, _rh_h)
+check("rehab (the chain): the facility number - a stay one of whose visits' own feed message names the rehab unit is a rehab stay, also the first stay in hand and also when the number stands on a follow-up; the stay after it is acute again",
+      _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], unit_lines=[("99233", "09/15/2026")]) == [("09/14", "rehab", RH_NUM), ("09/16", "acute", "")]
+      and _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")]) == [("09/14", "acute", ""), ("09/16", "rehab", RH_SIGN)], _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], unit_lines=[("99233", "09/15/2026")]))
+check("rehab (the chain): a stay whose initial visit already sits on the chart at HCA REHAB is the rehab stay it was entered as - so the initial visit right after it is the patient back in the hospital, whatever the structure still shows",
+      _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], chart_rows=[("99223", "09/14/2026", REHABN)]) == [("09/14", "rehab", ""), ("09/16", "acute", "")]
+      and _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], chart_rows=[("99223", "09/14/2026", HOSPN)]) == [("09/14", "acute", ""), ("09/16", "rehab", RH_SIGN)]
+      and _rt(lambda: [ci.at_rehab_unit(n_) for n_ in (REHABN, "hca rehab  (TALLAHASSEE)", HOSPN, "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT", "SEVEN HILLS HEALTH AND REHABILITATION CENTER CHC I", "", None)]) == [True, True, False, False, False, False, False],
+      _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], chart_rows=[("99223", "09/14/2026", REHABN)]))
+check("rehab (the chain): ... the same for a stay whose initial visit THIS RUN built at 61 (not on the chart yet) - and one this run built at 21 is no rehab stay by that; an initial visit the chart shows at HCA REHAB and ALSO at the hospital is not shown at HCA REHAB",
+      _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], sent={"09/14/2026": "61"}) == [("09/14", "rehab", ""), ("09/16", "acute", "")]
+      and _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], sent={"09/14/2026": "21"}) == [("09/14", "acute", ""), ("09/16", "rehab", RH_SIGN)]
+      and _rt(lambda: [s_["at_rehab"] for s_ in ci.hospital_stays([("99223", "09/14/2026")], chart_rows=[("99223", "09/14/2026", REHABN), ("99223", "09/14/2026", HOSPN)])[0]]) == [False]
+      and _rt(lambda: [s_["at_rehab"] for s_ in ci.hospital_stays([("99223", "09/14/2026")], chart_rows=[("99223", "09/14/2026", HOSPN)], sent={"09/14/2026": "61"})[0]]) == [False],
+      _rh_k([("99223", "09/14/2026"), ("99233", "09/15/2026"), ("99223", "09/16/2026")], sent={"09/14/2026": "61"}))
+_rh_v = lambda lines_, chart_=(), batch_=(), **k_: _rt(lambda: ci.rehab_visit(lines_, chart_, batch_, **k_))
+check("rehab (one message, pure): the answer names where the visit goes, the stay for the register and the words - a new initial visit one day after an acute stay: to 61, rehab, by the admission sign; no hospital line in the message: no answer at all",
+      _rh_v([("99223", "08/11/2026")], RH_AC) == {"to61": True, "stay": RH_ST("rehab", "08/11/2026", RH_SIGN), "why": "inpatient rehab stay: " + RH_SIGN} and _rh_v([("99497", "08/11/2026"), ("99309", "08/11/2026")], RH_AC) is None
+      and _rh_v([("99223", "08/13/2026")], RH_AC) == {"to61": False, "stay": RH_ST("acute", "08/13/2026"), "why": ""}, _rh_v([("99223", "08/11/2026")], RH_AC))
+# -- build(): what would go to AdvancedMD for ONE message ----------------------------------------------------------------------------------------------------
+RH_MSGS = [("b1", [("99223", "20260811")], "20260811", None), ("b1", [("99223", "20260812")], "20260812", None), ("b1", [("99223", "20260813")], "20260813", None), ("b1", [("99223", "20260810")], "20260810", None),
+           ("b1", [("99223", "20260821")], "20260821", None), ("b1", [("99223", "20260822")], "20260822", None), ("b1", [("99233", "20260813")], "20260811", None),
+           ("b1", [("99233", "20260813"), ("99497", "20260813")], "20260811", None), ("b1", [("99497", "20260813")], "", None), ("b1", [("99239", "20260810"), ("99223", "20260811")], "20260803", None),
+           ("b1", [("99233", "20260925")], "20260811", None), ("b1", [("99233", "20260926")], "20260811", None), ("b3", [("99223", "20260916")], "20260916", None),
+           ("ru1", [("99223", "20260914")], "20260914", RH_UNIT), ("ru1", [("99233", "20260915")], "20260914", RH_UNIT), ("ru2", [("99223", "20260914")], "20260914", "1777777771"),
+           ("ru3", [("99223", "20260914")], "20260914", RH_UNIT), ("ru3", [("99223", "20260914")], "20260914", None), ("ru4", [("99233", "20260915")], "", RH_UNIT),
+           ("ru5", [("99223", "20260914")], "20260914", RH_UNIT), ("ru5", [("99233", "20260915")], "20260914", RH_UNIT), ("ru5", [("99223", "20260916")], "20260916", None),
+           ("b1", [("99487", "20260831")], "", None)]
+RH = s4_fresh({"a.hl7": rh_raw(RH_MSGS) + hl7("o1", "ZZ Other Hospital", "20260811", [("99223", "20260811")], NPI) + hl7("o2", B["n2"], "", [("99232", "20260811")], NPI)})      # ... and two messages that do NOT come from the hospital building
+check("rehab (the raw-file read): each message's PV1 facility number is kept beside its building, clinician and admission date - by message, every raw copy; those three are read exactly as before",
+      _rt(lambda: (RH.MSGUNIT[RH.msg_key("ru1", [("99223", "20260914")])], RH.MSGUNIT[RH.msg_key("ru3", [("99223", "20260914")])], RH.MSGUNIT[RH.msg_key("b1", [("99223", "20260811")])])) == ({RH_UNIT}, {RH_UNIT, "I"}, {"I"})
+      and RH.msg_own(msg("ru1", [("99223", "20260914")])) == (B["h1"], NPI, "20260914") and RH.msg_agreed(msg("ru3", [("99223", "20260914")])) == (B["h1"], NPI, "20260914"),
+      _rt(lambda: (RH.MSGUNIT[RH.msg_key("ru1", [("99223", "20260914")])], RH.MSGUNIT[RH.msg_key("ru3", [("99223", "20260914")])])))
+check("rehab (the raw-file read): the lines whose own message names the rehab unit, per feed patient - a number the list does not have, a message whose copies do not agree on it, and a message with no number name none",
+      _rt(lambda: (sorted(RH.rehab_unit_lines("ru1")), RH.rehab_unit_lines("ru2"), RH.rehab_unit_lines("ru3"), RH.rehab_unit_lines("b1"), sorted(RH.rehab_unit_lines("ru5")))) == ([("99223", "09/14/2026"), ("99233", "09/15/2026")], [], [], [], [("99223", "09/14/2026"), ("99233", "09/15/2026")]),
+      _rt(lambda: (sorted(RH.rehab_unit_lines("ru1")), RH.rehab_unit_lines("ru2"), RH.rehab_unit_lines("ru3"))))
+_r1 = rh_built(RH, "b1", [("99223", "20260811")], RH_AC)
+check("rehab build: a 99223 ONE day after an acute stay's last visit goes in at HCA REHAB (fac67) with its line at place of service 61 - the visit's own call and the appointment both name fac67, nothing names fac29 or 21",
+      _rb(_r1) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))) and _r1[0] is not None and 'facility="fac67"' in _r1[0][0] and "fac29" not in _r1[0][0] + _r1[0][1] and ' pos="21" ' not in _r1[0][1], _rb(_r1))
+check("rehab build: the register row - fac fac67, pos 61, pos_lines all 61, pos_kind rehab on every line, pos_why 'inpatient rehab stay: <the sign>', pos_feed still what the building table gave (21), no error, and the new field stay {kind, initial, sign}",
+      isinstance(_r1[1], dict) and {k_: _r1[1].get(k_) for k_ in ("fac", "pos", "pos_lines", "pos_kind", "pos_why", "pos_feed", "pos_err", "stay")} == {"fac": "fac67", "pos": "61", "pos_lines": ["61"], "pos_kind": ["rehab"],
+          "pos_why": ["inpatient rehab stay: " + RH_SIGN], "pos_feed": "21", "pos_err": "", "stay": RH_ST("rehab", "08/11/2026", RH_SIGN)}, _r1[1])
+check("rehab build: the admission date and everything else are as for any hospital visit - the feed's own admission date on the visit, the physician's profile, the fee, one charge line, the message matched to its own raw copy",
+      _r1[0] is not None and 'hospitalizationfrom="08/11/2026"' in _r1[0][1] and 'onhcfa="1"' in _r1[0][1] and 'profile="prof13"' in _r1[0][1] and 'fee="310.00"' in _r1[0][1] and _r1[0][1].count("<charge ") == 1
+      and isinstance(_r1[1], dict) and _r1[1].get("admit") == "20260811" and _r1[1].get("msg_own") is True and _r1[1].get("cpts") == ["99223"], _r1[1])
+_r2 = rh_built(RH, "b1", [("99223", "20260812")], RH_AC); _r3 = rh_built(RH, "b1", [("99223", "20260813")], RH_AC)
+check("rehab build: TWO days after the acute stay's last visit - the same: fac67 / 61, a rehab stay", _rb(_r2) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/12/2026", RH_SIGN))), _rb(_r2))
+check("rehab build: THREE days after - a new admission to the hospital: exactly as before (fac29 / 21, no kind, no reason), and the row says its stay is acute",
+      _rb(_r3) == ("fac29", ["21"], ([""], "", RH_ST("acute", "08/13/2026"))) and isinstance(_r3[1], dict) and _r3[1].get("pos_why") == [""] and _r3[1].get("pos") == "21" and _r3[1].get("fac") == "fac29", _rb(_r3))
+_r4 = rh_built(RH, "b1", [("99223", "20260810")], RH_AC); _r4b = rh_built(RH, "b1", [("99223", "20260810")], RH_AC[:-1], batch={("99239", "08/10/2026", B["h1"])})
+check("rehab build: the SAME day as the acute stay's last visit is not a rehab admission by this rule - with that visit on the chart the same-day rule passes the line over as before (one hospital visit a day); with it only in this batch the visit goes in as an acute one (fac29 / 21)",
+      _r4[:2] == (None, "all lines already in AMD") and _rb(_r4b) == ("fac29", ["21"], ([""], "", RH_ST("acute", "08/10/2026"))), (_r4[:2], _rb(_r4b)))
+_rh_stay61 = RH_AC + [("99223", "08/11/2026", REHABN)] + [("99233", "08/%02d/2026" % d_, REHABN) for d_ in range(12, 21)]      # the chart after the rule: the rehab stay's initial visit and nine daily follow-ups at HCA REHAB
+_rh_stay21 = RH_AC + [("99223", "08/11/2026", HOSPN)] + [("99233", "08/%02d/2026" % d_, HOSPN) for d_ in range(12, 21)]        # the chart from before the rule: the same stay entered at the hospital / 21
+_r5 = [_rb(rh_built(RH, "b1", [("99223", d_)], c_)) for d_ in ("20260821", "20260822") for c_ in (_rh_stay61, _rh_stay21)]
+check("rehab build: a THIRD initial visit one or two days after the REHAB stay's last visit is the patient back in the hospital - acute, fac29 / 21 - whether that rehab stay stands on the chart at HCA REHAB or, entered before the rule, at the hospital",
+      _r5 == [("fac29", ["21"], ([""], "", RH_ST("acute", d_)))  for d_ in ("08/21/2026", "08/22/2026") for _c in (0, 1)], _r5)
+_r6 = rh_built(RH, "b1", [("99233", "20260813")], RH_AC + [("99223", "08/11/2026", HOSPN), ("99233", "08/12/2026", HOSPN)])
+check("rehab build (NO LOOK-BACK, NO MIXING): a follow-up of a rehab stay whose initial visit sits on the chart at the hospital (entered before the rule) keeps fac29 / 21 - kind rehab-stay-kept-21 on its line, the stay still said to be a rehab stay, no error",
+      _rb(_r6) == ("fac29", ["21"], ([RH_KEPT], "", RH_ST("rehab", "08/11/2026", RH_SIGN))) and isinstance(_r6[1], dict) and _r6[1]["pos_why"][0].startswith("inpatient rehab stay: " + RH_SIGN + " - kept at 21") and _r6[1].get("pos") == "21" and _r6[1].get("pos_feed") == "21", (_rb(_r6), _r6[1]))
+_r7 = rh_built(RH, "b1", [("99233", "20260813")], RH_AC + [("99223", "08/11/2026", REHABN), ("99233", "08/12/2026", REHABN)]); _r7b = rh_built(RH, "b1", [("99233", "20260813"), ("99497", "20260813")], RH_AC + [("99223", "08/11/2026", REHABN), ("99233", "08/12/2026", REHABN)])
+check("rehab build: a follow-up of a rehab stay whose initial visit sits on the chart at HCA REHAB follows it - fac67 / 61; a 99497 riding with such a visit goes in at 61 too (every charge line of the visit), with its modifier 25 as before",
+      _rb(_r7) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))) and _rb(_r7b) == ("fac67", ["61", "61"], (["rehab", "rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN)))
+      and _r7b[0] is not None and _r7b[0][1].count('modcodes="mcode7"') == 1 and ' pos="21" ' not in _r7b[0][1], (_rb(_r7), _rb(_r7b)))
+_r7c = rh_built(RH, "b1", [("99233", "20260813")], RH_AC, batch={("99223", "08/11/2026", B["h1"]), ("99233", "08/12/2026", B["h1"])})
+check("rehab build: the stay's initial visit is in this SAME batch and not on the chart yet - its follow-up in the batch follows it: fac67 / 61", _rb(_r7c) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))), _rb(_r7c))
+_r8 = rh_built(RH, "b1", [("99497", "20260813")], RH_AC + [("99223", "08/11/2026", REHABN), ("99233", "08/12/2026", REHABN)])
+check("rehab build: a message with no hospital visit line is not a visit of a stay - a 99497 alone from the hospital building goes in exactly as before (fac29 / 21) and its row carries no stay",
+      _r8[3] == "fac29" and [p_ for _c, p_ in _r8[2]] == ["21"] and isinstance(_r8[1], dict) and "stay" not in _r8[1] and _r8[1].get("pos_kind") == [""] and _r8[1].get("pos_err") == "", (_r8[3], _r8[2], _r8[1]))
+_r9 = rh_built(RH, "b1", [("99239", "20260810"), ("99223", "20260811")], RH_AC[:-1])
+check("rehab build: ONE message whose hospital lines belong to two stays, one of them a rehab stay (the discharge of the acute stay and the admission to rehab in one message) cannot go in as one visit at 61 - it goes in exactly as before (fac29, both lines 21), said in pos_err for William, with no stay in its row",
+      _r9[3] == "fac29" and [p_ for _c, p_ in _r9[2]] == ["21", "21"] and isinstance(_r9[1], dict) and "different stays" in str(_r9[1].get("pos_err")) and "inpatient rehab stay" in str(_r9[1].get("pos_err")) and "stay" not in _r9[1], (_r9[3], _r9[2], _r9[1]))
+_r10 = [_rb(rh_built(RH, "b1", [("99233", d_)], RH_AC + [("99223", "08/11/2026", REHABN)])) for d_ in ("20260925", "20260926")]
+check("rehab build: the stay holds a visit for 45 days - a follow-up on the 45th day after the rehab stay's initial visit goes in at 61, one on the 46th day is in no stay and goes in exactly as before (fac29 / 21, stay acute with no initial visit)",
+      _r10 == [("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))), ("fac29", ["21"], ([""], "", RH_ST("acute", "")))], _r10)
+_r11 = rh_built(RH, "b1", [("99233", "20260925")], [("99223", "08/11/2026", REHABN)]); _r11b = rh_built(RH, "b1", [("99233", "20260925")], [("99223", "08/11/2026", HOSPN)])
+check("rehab build (no mixing, the other way round): a follow-up whose stay's initial visit sits on the chart at HCA REHAB follows it also when nothing else of the structure is in hand any more (the acute stay before it is not among the chart's rows read) - 61, and the words say what was read, no sign is claimed; "
+      "the same follow-up with that initial visit at the hospital goes in as before (acute)",
+      _rb(_r11) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", ""))) and isinstance(_r11[1], dict) and _r11[1].get("pos_why") == ["inpatient rehab stay: its initial visit went in at HCA REHAB"]
+      and _rb(_r11b) == ("fac29", ["21"], ([""], "", RH_ST("acute", "08/11/2026"))), (_rb(_r11), _rb(_r11b)))
+# -- the facility number -------------------------------------------------------------------------------------------------------------------------------------
+_u1 = rh_built(RH, "ru1", [("99223", "20260914")]); _u1b = rh_built(RH, "ru1", [("99233", "20260915")], [("99223", "09/14/2026", REHABN)]); _u1c = rh_built(RH, "ru1", [("99233", "20260915")], [("99223", "09/14/2026", HOSPN)])
+check("rehab build (the facility number): a 99223 whose own feed message names the rehab unit's number goes in at fac67 / 61 with NO hospital visit of ours before it - the sign is 'facility number', in the row's stay and in its reason",
+      _rb(_u1) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "09/14/2026", RH_NUM))) and isinstance(_u1[1], dict) and _u1[1].get("pos_why") == ["inpatient rehab stay: " + RH_NUM], (_rb(_u1), _u1[1]))
+check("rehab build (the facility number): its follow-up follows the stay's initial visit - at HCA REHAB on the chart: fac67 / 61; at the hospital on the chart (entered before the rule): kept at 21, kind rehab-stay-kept-21, the sign still named",
+      _rb(_u1b) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "09/14/2026", RH_NUM))) and _rb(_u1c) == ("fac29", ["21"], ([RH_KEPT], "", RH_ST("rehab", "09/14/2026", RH_NUM))), (_rb(_u1b), _rb(_u1c)))
+_u2 = rh_built(RH, "ru2", [("99223", "20260914")]); _u3 = rh_built(RH, "ru3", [("99223", "20260914")])
+check("rehab build (the facility number): a number the list does not have is no sign, and neither is a message whose raw copies do not agree on the number - each goes in exactly as before (fac29 / 21, a new admission)",
+      _rb(_u2) == ("fac29", ["21"], ([""], "", RH_ST("acute", "09/14/2026"))) and _rb(_u3) == ("fac29", ["21"], ([""], "", RH_ST("acute", "09/14/2026"))), (_rb(_u2), _rb(_u3)))
+_u4 = rh_built(RH, "ru4", [("99233", "20260915")])
+check("rehab build (the facility number): a follow-up that names the rehab unit while NO initial hospital visit of ours is in hand for it (none within 45 days) never goes in at 61 on a guess - kept at 21 (kind rehab-stay-kept-21), its stay a rehab stay with no initial visit",
+      _rb(_u4) == ("fac29", ["21"], ([RH_KEPT], "", RH_ST("rehab", "", RH_NUM))) and isinstance(_u4[1], dict) and "no initial hospital visit" in _u4[1]["pos_why"][0], (_rb(_u4), _u4[1]))
+_u5 = rh_built(RH, "ru5", [("99223", "20260916")], batch={("99223", "09/14/2026", B["h1"]), ("99233", "09/15/2026", B["h1"])}); _u5b = rh_built(RH, "b3", [("99223", "20260916")], batch={("99223", "09/14/2026", B["h1"]), ("99233", "09/15/2026", B["h1"])})
+check("rehab build (the facility number): the batch's OTHER messages of the patient are read for it too - an initial visit the day after a stay whose messages name the rehab unit is the patient back in the hospital (acute, fac29 / 21), never a second rehab stay; the same shape with no number anywhere is the plain case (61)",
+      _rb(_u5) == ("fac29", ["21"], ([""], "", RH_ST("acute", "09/16/2026"))) and _rb(_u5b) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "09/16/2026", RH_SIGN))), (_rb(_u5), _rb(_u5b)))
+# -- the fail safe -------------------------------------------------------------------------------------------------------------------------------------------
+_rh_real = getattr(RH, "hospital_stays", None); RH.hospital_stays = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
+_e1 = rh_built(RH, "b1", [("99223", "20260811")], RH_AC)
+RH.hospital_stays = lambda *a_, **k_: (_ for _ in ()).throw(ValueError())
+_e2 = rh_built(RH, "b1", [("99223", "20260811")], RH_AC); _rh_c = rh_ctx(RH_AC); _e3 = rh_built(RH, "b1", [("99223", "20260811")], c_=_rh_c)
+if _rh_real is not None: RH.hospital_stays = _rh_real
+else: del RH.hospital_stays
+check("rehab build (fail safe): an error while the stay is worked out - the visit goes in exactly as before (fac29 / 21, 'rule error' as its reason, no stay in the row) and pos_err says so in plain words; an error with no text is still said",
+      _e1[3] == "fac29" and [p_ for _c, p_ in _e1[2]] == ["21"] and isinstance(_e1[1], dict) and "inpatient rehab stay" in str(_e1[1].get("pos_err")) and "boom" in str(_e1[1].get("pos_err")) and "entered as before" in str(_e1[1].get("pos_err"))
+      and _e1[1].get("pos_why") == ["rule error"] and _e1[1].get("pos_kind") == [""] and "stay" not in _e1[1] and _e1[1].get("fac") == "fac29" and isinstance(_e2[1], dict) and "ValueError" in str(_e2[1].get("pos_err")) and _e2[3] == "fac29", (_e1[3], _e1[2], _e1[1]))
+_e4 = rh_built(RH, "b1", [("99233", "20260813")], batch={("99223", "08/11/2026", B["h1"])}, c_=_rh_c); _e5 = rh_built(RH, "b1", [("99233", "20260813")], RH_AC, batch={("99223", "08/11/2026", B["h1"])})
+check("rehab build (fail safe, the same run): a stay's initial visit this run built at 21 because the rule failed for its message is followed by its follow-up later in that run - kept at 21, not 61 (without that the follow-up alone would go in at 61)",
+      _rb(_e4) == ("fac29", ["21"], ([RH_KEPT], "", RH_ST("rehab", "08/11/2026", RH_SIGN))) and _rb(_e5) == ("fac67", ["61"], (["rehab"], "", RH_ST("rehab", "08/11/2026", RH_SIGN))), (_rb(_e4), _rb(_e5)))
+_e6 = rh_built(RH, "b1", [("99223", "20260811")], RH_AC, err="selftest: the list was not built")
+check("rehab build (fail safe): when the batch's own visits could not be listed the stay of a hospital visit cannot be worked out - it goes in exactly as before (fac29 / 21) and pos_err says why",
+      _e6[3] == "fac29" and [p_ for _c, p_ in _e6[2]] == ["21"] and isinstance(_e6[1], dict) and "could not be listed" in str(_e6[1].get("pos_err")) and "inpatient rehab stay" in str(_e6[1].get("pos_err")) and "stay" not in _e6[1], (_e6[3], _e6[1]))
+_e7 = rh_built(RH, "b1", [("99223", "20260815")], RH_AC)
+check("rehab build (never on a guess): a message the raw files cannot answer for its own building (here: no raw copy of it) is entered as before in the patient's last-read building - the rule does not run for it: fac29 / 21, no stay, no error of this rule",
+      _e7[3] == "fac29" and [p_ for _c, p_ in _e7[2]] == ["21"] and isinstance(_e7[1], dict) and _e7[1].get("msg_own") is False and "stay" not in _e7[1] and _e7[1].get("pos_err") == "", (_e7[3], _e7[1]))
+_o1 = rh_built(RH, "o1", [("99223", "20260811")], RH_AC); _o2 = rh_built(RH, "o2", [("99232", "20260811")], RH_AC); _o3 = rh_built(RH, "b1", [("99487", "20260831")], RH_AC)
+check("rehab build (only the hospital building's hospital visits are read): a hospital code from a building the facility table does not know (a day after an acute stay), a hospital code from a nursing building, and a CCM line from the hospital building go in exactly as before - "
+      "no facility at the default 31; the nursing building at 31; fac29 at 21 - and none of their rows carries a stay or an error of this rule",
+      (_o1[3], [p_ for _c, p_ in _o1[2]]) == ("", ["31"]) and (_o2[3], [p_ for _c, p_ in _o2[2]]) == ("fac32", ["31"]) and (_o3[3], [p_ for _c, p_ in _o3[2]]) == ("fac29", ["21"])
+      and all(isinstance(r_[1], dict) and "stay" not in r_[1] and r_[1].get("pos_err") == "" and r_[1].get("pos_kind") == [""] for r_ in (_o1, _o2, _o3)), [(r_[3], r_[2], r_[1]) for r_ in (_o1, _o2, _o3)])
+# -- the quality lines: a rehab visit is a hospital visit for that rule ------------------------------------------------------------------------------------
+RH.QUALITY.clear(); RH.QUALITY.update(RH._quality_fresh()); RH.QUALITY["verify"] = {"pat8800": OKCHK}; _rh_qc = dict(rh_ctx(RH_AC), plans=[("ins1", "car6085", "01/01/2020", "", "1")], insorder="1")
+_rh_qm = dict(msg("b1", [("99223", "20260811")]), dob="1940" + "0215"); _rh_w61 = []; _rh_w31 = []
+_q61 = _rt(lambda: RH.quality_due(_rh_qm, _rh_qc, _rh_qm["FT1"], ["61"], _rh_w61)); _q31 = _rt(lambda: RH.quality_due(_rh_qm, _rh_qc, _rh_qm["FT1"], ["31"], _rh_w31))
+check("rehab (quality): the decision leaves a line at 61 out and says 'hospital' - for a patient who meets every other condition (the same line at 31 would carry it)", _q61 is None and _rh_w61 == ["hospital"] and _q31 == 0 and _rh_w31 == [], (_q61, _rh_w61, _q31))
+RH.BATCH_NF.clear(); _q1 = _rt(lambda: RH.build(_rh_qm, dict(_rh_qc)))
+_rh_qd = RH.quality_due; RH.quality_due = lambda *a_, **k_: 0; RH.QUALITY.clear(); RH.QUALITY.update(RH._quality_fresh()); RH.QUALITY["verify"] = {"pat8800": OKCHK}; _q2 = _rt(lambda: RH.build(_rh_qm, dict(_rh_qc))); RH.quality_due = _rh_qd
+check("rehab (quality): a rehab visit of such a patient goes in at 61 with NO 1123F / M0004 line - marked for the report's count like a hospital visit - and build() itself never puts the line on a 61 line even when the decision says yes",
+      isinstance(_q1, tuple) and _q1[0] is not None and ' pos="61" ' in _q1[0][1] and QP not in _q1[0][1] and MP not in _q1[0][1] and _q1[0][1] == _q1[0][2] and "quality_codes" not in _q1[1] and _q1[1].get("quality_skipped") == "hospital"
+      and isinstance(_q2, tuple) and _q2[0] is not None and ' pos="61" ' in _q2[0][1] and QP not in _q2[0][1] and _q2[0][1] == _q2[0][2] and "quality_codes" not in _q2[1] and RH.QUALITY["added"] == 0, (_q1 if not isinstance(_q1, tuple) else _q1[1], _q2 if not isinstance(_q2, tuple) else _q2[1]))
+RH.QUALITY.clear(); RH.QUALITY.update(RH._quality_fresh())
+# -- main(): the two shapes, batch by batch, against the stand-in AdvancedMD ----------------------------------------------------------------------------------
+# shape 1 - the acute stay is on the chart; the second 99223 comes the day after its last visit, the daily follow-ups in later batches
+CHART["8801"] = list(RH_AC); _m = [("r1", [("99223", "20260811")], "20260811", None)]
+rh_m = s4_fresh({"a.hl7": rh_raw(_m)}); rh_o1, rh_g1 = rh_run(rh_m, rh_parsed(_m), {"r1": "pat8801"}, stamp="20260812T1240Z"); _rh_p1 = list(POSTS); _rh_x = (rh_g1 or {}).get("created") or [{}]
+check("rehab live (shape 1): the second 99223, dated the day after the acute stay's last visit, is entered at HCA REHAB / 61 - the appointment and the charge call both name fac67, the charge line carries 61, and nothing sent names fac29 or 21",
+      len(_rh_x) == 1 and _rh_x[0].get("fac") == "fac67" and _rh_x[0].get("pos_lines") == ["61"] and sum(1 for b_ in _rh_p1 if 'action="addvisit"' in b_ and 'facility="fac67"' in b_) == 1
+      and sum(1 for b_ in _rh_p1 if 'action="updvisitwithnewcharges"' in b_ and 'facility="fac67"' in b_ and ' pos="61" ' in b_) == 1 and not any("fac29" in b_ or ' pos="21" ' in b_ for b_ in _rh_p1 if "addvisit" in b_ or "updvisitwithnewcharges" in b_), (_rh_x, rh_o1[-400:]))
+check("rehab live: the register row of that visit - fac fac67, pos 61, pos_lines [61], pos_kind [rehab], pos_why 'inpatient rehab stay: new admission 1-2 days after an acute stay', pos_feed 21, pos_err '', stay {kind rehab, initial 08/11/2026, sign}",
+      {k_: _rh_x[0].get(k_) for k_ in ("pid", "dos", "cpts", "fac", "pos", "pos_lines", "pos_kind", "pos_why", "pos_feed", "pos_err", "stay")} == {"pid": "pat8801", "dos": "08/11/2026", "cpts": ["99223"], "fac": "fac67", "pos": "61", "pos_lines": ["61"],
+          "pos_kind": ["rehab"], "pos_why": ["inpatient rehab stay: " + RH_SIGN], "pos_feed": "21", "pos_err": "", "stay": RH_ST("rehab", "08/11/2026", RH_SIGN)}, _rh_x[0])
+check("rehab live (the read-back): what AdvancedMD stored is read back for 61 as for every place of service - pos_stored [61], nothing shouted; the admission date is written for the 99223 as for any hospital visit",
+      _rh_x[0].get("pos_stored") == ["61"] and "POS NOT KEPT" not in rh_o1 and "POS CHECK" not in rh_o1 and any("updextrainsinfo" in b_ and 'txtChargeCode="99223"' in b_ and 'hospitalizationfrom="08/11/2026"' in b_ for b_ in _rh_p1), (_rh_x[0].get("pos_stored"), rh_o1[-300:]))
+_RH61 = "POS 61 inpatient rehab visit - entered at HCA REHAB (William 11/25/2026)"; _RH21 = "POS 21 visit of an inpatient rehab stay kept at 21 (no look-back, no mixing - see pos_why)"
+check("rehab live (the counters): the DONE line counts the visit under its own counter, and the short POS RULE line - still within the last three log lines, still 110 characters or fewer - ends with the two new numbers: rehab visits entered at 61 / rehab-stay visits kept at 21",
+      ("'%s': 1" % _RH61) in rh_o1.replace('"', "'") and any(l_ == "POS RULE: CCM 32 x0, CCM 31 x0, visits 32 x0, visits 31 x0, not applied x0, unknown bldg x0, rehab 61 x1/21 x0" for l_ in _rh_last3(rh_o1)) and len(_rh_pl(rh_o1)) <= 110
+      and _rh_last3(rh_o1)[-1].startswith("DONE "), _rh_last3(rh_o1))
+check("rehab live (privacy): nothing the import wrote or printed for that visit holds the patient's name or date of birth - the register row carries chart, visit, dates of service, codes and dollars only",
+      NAME("r1") not in json.dumps(rh_g1) and DOBK not in json.dumps(rh_g1) and "zz test" not in rh_o1 and DOBK not in rh_o1 and not ({"name", "dob", "member", "memberid", "ssn"} & set(_rh_x[0])), sorted(_rh_x[0]))
+rh_chart("8801", rh_g1); _m = [("r1", [("99233", "20260812")], "20260811", None), ("r1", [("99233", "20260813"), ("99497", "20260813")], "20260811", None), ("r1", [("99233", "20260825")], "20260811", None)]
+rh_m = s4_fresh({"b.hl7": rh_raw(_m)}); rh_o2, rh_g2 = rh_run(rh_m, rh_parsed(_m), {"r1": "pat8801"}, stamp="20260826T1240Z")
+check("rehab live (shape 1, the next batches): the daily follow-ups of that stay follow it - each at fac67 with every line at 61, the 99497 that rides with one of them too, two weeks on as on the first day - and each row names the stay's initial visit",
+      rh_rows(rh_g2) == [("08/12/2026", ["99233"], "fac67", ["61"], ["rehab"], RH_ST("rehab", "08/11/2026", RH_SIGN)), ("08/13/2026", ["99233", "99497"], "fac67", ["61", "61"], ["rehab", "rehab"], RH_ST("rehab", "08/11/2026", RH_SIGN)),
+                         ("08/25/2026", ["99233"], "fac67", ["61"], ["rehab"], RH_ST("rehab", "08/11/2026", RH_SIGN))] and "rehab 61 x3/21 x0" in _rh_pl(rh_o2), (rh_rows(rh_g2), _rh_pl(rh_o2)))
+# shape 2 - everything in ONE batch, the messages in the wrong order: the acute stay, a second 99223 TWO days after its last visit, then the follow-ups
+_m = [("r2", [(c_, d_)], a_, None) for c_, d_, a_ in (("99233", "20260909", "20260907"), ("99233", "20260908", "20260907"), ("99223", "20260907", "20260907"), ("99239", "20260905", "20260901"), ("99232", "20260904", "20260901"),
+                                                      ("99233", "20260903", "20260901"), ("99232", "20260902", "20260901"), ("99223", "20260901", "20260901"))]
+CHART["8802"] = []; rh_m = s4_fresh({"a.hl7": rh_raw(_m)}); rh_od, _g = rh_run(rh_m, rh_parsed(_m), {"r2": "pat8802"}, argv=("--dry",))
+_rh_dry = sorted([(d_["dos"], d_["fac"], d_["pos_lines"], d_["pos_kind"], d_.get("stay")) for d_ in (eval(m_.group(1)) for m_ in re.finditer(r"(?m)^DRY pat8802 (\{.*\})$", rh_od))], key=lambda t_: t_[0])      # the helper prints its own dict; this is its own output, no outside data
+_rh_s2 = [("09/0%d/2026" % d_, "fac29", ["21"], [""], RH_ST("acute", "09/01/2026")) for d_ in (1, 2, 3, 4, 5)] + [("09/0%d/2026" % d_, "fac67", ["61"], ["rehab"], RH_ST("rehab", "09/07/2026", RH_SIGN)) for d_ in (7, 8, 9)]
+check("rehab dry (shape 2, one batch, the follow-ups read BEFORE their initial visit): the acute stay's five visits as before (fac29 / 21, stay acute); the second 99223 two days after its last visit and both follow-ups at fac67 / 61 - the order of the messages does not matter; a dry run writes nothing",
+      _rh_dry == _rh_s2 and _g is None and "rehab 61 x3/21 x0" in _rh_pl(rh_od) and not any("addvisit" in b_ for b_ in POSTS), (_rh_dry, _rh_pl(rh_od)))
+rh_o3, rh_g3 = rh_run(rh_m, rh_parsed(_m), {"r2": "pat8802"}, stamp="20260910T1240Z")
+check("rehab live (shape 2): ... and the live run enters exactly what the dry run said - eight visits, the rehab stay's three at HCA REHAB / 61, read back as sent",
+      [(r_[0], r_[2], r_[3], r_[4], r_[5]) for r_ in rh_rows(rh_g3)] == _rh_s2 and all(r_.get("pos_stored") == r_.get("pos_lines") for r_ in (rh_g3 or {}).get("created", [])) and "POS NOT KEPT" not in rh_o3, (rh_rows(rh_g3), rh_o3[-300:]))
+rh_chart("8802", rh_g3); _m = [("r2", [("99233", "20260910")], "20260907", None), ("r2", [("99223", "20260912")], "20260912", None), ("r2", [("99232", "20260913")], "20260912", None)]
+rh_m = s4_fresh({"c.hl7": rh_raw(_m)}); rh_o4, rh_g4 = rh_run(rh_m, rh_parsed(_m), {"r2": "pat8802"}, stamp="20260914T1240Z")
+check("rehab live (shape 2, the next batch): one more follow-up of the rehab stay at 61; then a THIRD initial visit two days after the rehab stay's last visit and its follow-up - the patient is back in the hospital: fac29 / 21, stay acute",
+      rh_rows(rh_g4) == [("09/10/2026", ["99233"], "fac67", ["61"], ["rehab"], RH_ST("rehab", "09/07/2026", RH_SIGN)), ("09/12/2026", ["99223"], "fac29", ["21"], [""], RH_ST("acute", "09/12/2026")),
+                         ("09/13/2026", ["99232"], "fac29", ["21"], [""], RH_ST("acute", "09/12/2026"))] and "rehab 61 x1/21 x0" in _rh_pl(rh_o4), (rh_rows(rh_g4), _rh_pl(rh_o4)))
+# a rehab stay entered BEFORE the rule (its initial visit on the chart at the hospital): the comparison group
+CHART["8803"] = RH_AC + [("99223", "08/11/2026", HOSPN), ("99233", "08/12/2026", HOSPN)]; _m = [("r3", [("99233", "20260813")], "20260811", None), ("r3", [("99233", "20260814")], "20260811", None)]
+rh_m = s4_fresh({"a.hl7": rh_raw(_m)}); rh_o5, rh_g5 = rh_run(rh_m, rh_parsed(_m), {"r3": "pat8803"}, stamp="20260815T1240Z")
+check("rehab live (NO LOOK-BACK, NO MIXING): the remaining visits of a rehab stay whose initial visit sits on the chart at the hospital keep fac29 / 21 - kind rehab-stay-kept-21, stay rehab - counted under their own counter and in the short line ('rehab 61 x0/21 x2')",
+      rh_rows(rh_g5) == [("08/1%d/2026" % d_, ["99233"], "fac29", ["21"], [RH_KEPT], RH_ST("rehab", "08/11/2026", RH_SIGN)) for d_ in (3, 4)] and ("'%s': 2" % _RH21) in rh_o5.replace('"', "'")
+      and "rehab 61 x0/21 x2" in _rh_pl(rh_o5) and len(_rh_pl(rh_o5)) <= 110 and not any('facility="fac67"' in b_ or ' pos="61" ' in b_ for b_ in POSTS), (rh_rows(rh_g5), _rh_pl(rh_o5)))
+# the fail safe through main(): the import never stops for this rule
+CHART["8804"] = list(RH_AC); CHART["8805"] = [("99309", "08/03/2026")]; _m = [("r4", [("99223", "20260811")], "20260811", None)]
+rh_m = s4_fresh({"a.hl7": rh_raw(_m) + hl7("r5", B["n2"], "", [("99309", "20260902")], NPI)}); rh_m.hospital_stays = lambda *a_, **k_: (_ for _ in ()).throw(RuntimeError("boom"))
+rh_o6, rh_g6 = rh_run(rh_m, rh_parsed(_m) + [P_("r5", "r5", [("99309", "20260902")])], {"r4": "pat8804", "r5": "pat8805"})
+_rh_y = {r_["pid"]: r_ for r_ in (rh_g6 or {}).get("created", [])}
+check("rehab live (fail safe): an error inside the rule never stops the import - the hospital visit goes in exactly as before (fac29 / 21) with pos_err saying so, it is printed and counted as POS RULE NOT APPLIED ('not applied x1'), and the nursing visit behind it is entered as always (32, the monthly visit)",
+      sorted(_rh_y) == ["pat8804", "pat8805"] and _rh_y["pat8804"].get("fac") == "fac29" and _rh_y["pat8804"].get("pos_lines") == ["21"] and "inpatient rehab stay" in str(_rh_y["pat8804"].get("pos_err")) and "stay" not in _rh_y["pat8804"]
+      and "POS RULE NOT APPLIED pat8804 08/11/2026" in rh_o6 and "not applied x1" in _rh_pl(rh_o6) and "rehab 61 x0/21 x0" in _rh_pl(rh_o6) and _rh_y["pat8805"].get("pos_lines") == ["32"] and "stay" not in _rh_y["pat8805"] and "MAIN ENDED IN AN ERROR" not in rh_o6, (_rh_y, rh_o6[-400:]))
+# the read-back: AdvancedMD stores another place of service than the 61 that was sent
+CHART["8806"] = list(RH_AC); _m = [("r6", [("99223", "20260811")], "20260811", None)]; _rh_post = amd.post
+rh_m = s4_fresh({"a.hl7": rh_raw(_m)}); rh_o7, rh_g7 = rh_run(rh_m, rh_parsed(_m), {"r6": "pat8806"}, post=lambda body, timeout=0: _rh_post(body, timeout).replace(' pos="61"', ' pos="21"') if 'action="updvisitwithnewcharges"' in body else _rh_post(body, timeout))
+_rh_z = ((rh_g7 or {}).get("created") or [{}])[0]
+check("rehab live (the read-back): AdvancedMD stores 21 where 61 was sent - said for that visit (POS NOT KEPT), counted as ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE, the row keeps what was sent beside what was stored, and the short POS CHECK line stands within the last three log lines",
+      _rh_z.get("pos_lines") == ["61"] and _rh_z.get("pos_stored") == ["21"] and _rh_z.get("fac") == "fac67" and "POS NOT KEPT pat8806 08/11/2026 ['99223'] sent ['61'] stored ['21']" in rh_o7
+      and "'ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE (stored differs from sent)': 1" in rh_o7.replace('"', "'") and any(l_.startswith("POS CHECK: stored another POS x1;") and len(l_) <= 110 for l_ in _rh_last3(rh_o7))
+      and any(l_.startswith("POS RULE:") for l_ in _rh_last3(rh_o7)), (_rh_z, _rh_last3(rh_o7)))
+os.chdir(_rh_cwd); DEMOG.clear(); DEMOG.update(_rh_dm)
+# -- the inspector step (run INSIDE this process with stand-ins, as above) -------------------------------------------------------------------------------------
+# (a) a nursing-facility code under the hospital building: until 11/25/2026 the step MOVED such a visit to HCA REHAB (fac67) at place of service 31. William 10/31/2026: wrong -
+#     those patients were not in the rehab unit, the Claimocity location was wrong ("99309 would be wrong - not HCA rehab"). It is HELD for him, never moved.
+_INOW = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read(); _ICODE = "\n".join(l_ for l_ in _INOW.split("\nimport os as _os", 1)[-1].split("\n") if not l_.lstrip().startswith("#"))
+RH_WHICH = "nursing-facility code under the hospital building - which building was the patient in?"
+def rh_is(errors, **kw):      # is_run - with a register the step did NOT write returned as an empty one that says so: a check then fails, it never ends this self-test
+    r_, o_, e_ = is_run(errors, **kw)
+    return (r_ if isinstance(r_, dict) else {"fixed": [], "bypassed": [], "held": [], "laterality": [], "quality_removed": [], "NOT WRITTEN": True}), o_, e_
+E_4531N = {"id": "e45", "number": "4531", "text": "Pattern 4531: Procedure code 99309 is not typically performed by a provider in place of service 21"}
+E_HOSPD = {"id": "e17", "number": "117065068", "text": "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services."}
+RH_NROW = {"visit": "vst101", "pid": "pat1", "charges": ["charge1010"], "cpts": ["99309"], "dos": "09/02/2026", "fac": "fac29", "pos": "21", "pos_feed": "21", "pos_lines": ["21"], "pos_kind": [""], "pos_err": ""}
+_ir, _io, _ie = rh_is([E_4531N], row=RH_NROW)
+check("inspector (11/25/2026): a nursing-facility code under the hospital building (Pattern 4531) is NOT moved to HCA REHAB any more - nothing is re-saved, nothing is bypassed: the visit is HELD for William with the question 'which building was the patient in?' and the edit's own words",
+      _ie == "" and IS["resaved"] == [] and IS["bypassed"] == [] and IS["voided"] == [] and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith(RH_WHICH) and "Pattern 4531" in _ir["held"][0]["why"]
+      and not any("fac67" in str(n_) for x_ in _ir["fixed"] for n_ in x_["note"]), (_ie, _ir, IS["resaved"]))
+_ir, _io, _ie = rh_is([E_4531N, E_HOSPD], row=RH_NROW)
+check("inspector: ... the same visit with the empty admission-date edit beside it - no admission date is written for a nursing code, and the re-save that asks AdvancedMD to look again echoes the visit as it is: no facility and no place of service of the step's own (no fac67, no 31)",
+      _ie == "" and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith(RH_WHICH) and len(IS["resaved"]) == 1 and "fac67" not in IS["resaved"][0] and "facility=" not in IS["resaved"][0] and 'pos="31"' not in IS["resaved"][0]
+      and 'pos="32"' in IS["resaved"][0] and not any("written" in str(n_) or "fac67" in str(n_) for x_ in _ir["fixed"] for n_ in x_["note"]), (_ie, _ir, IS["resaved"]))
+for _rn, _rr in (("with a 99497 riding with it", dict(RH_NROW, cpts=["99309", "99497"], charges=["charge1010", "charge1013"], pos_lines=["21", "21"], pos_kind=["", ""])), ("that the import itself had flagged (pos_err)", dict(RH_NROW, pos_err="two buildings"))):
+    _ir, _io, _ie = rh_is([E_4531N], row=_rr)
+    check("inspector: ... a nursing-facility visit under the hospital building %s is held with the same question, and not moved" % _rn, _ie == "" and IS["resaved"] == [] and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith(RH_WHICH), (_ie, _ir))
+_ir, _io, _ie = rh_is([dict(E_4531N, text=E_4531N["text"].replace("99309", "99487"))], row=dict(RH_NROW, cpts=["99487"]))
+check("inspector: a CCM visit at the hospital location is held as before, with the edit's own words (not the nursing-facility question) - and not moved either", _ie == "" and IS["resaved"] == [] and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith("Pattern 4531") and RH_WHICH not in _ir["held"][0]["why"], (_ie, _ir))
+check("inspector (the source): the step's code names no facility id and overrides no facility and no place of service - its re-save is a full echo; the one code set it keeps for the question is the import's NF_VISIT, code for code",
+      "fac67" not in _ICODE and '"31"' not in _ICODE and "facility=None" not in _ICODE and 'va["facility"]' not in _ICODE and 'a["pos"] = ' not in _ICODE and re.search(r"(?m)^def resave_visit\(cid, hospfrom=None\):", _INOW) is not None
+      and (lambda m_: bool(m_) and set(re.findall(r'"(\d{5})"', m_.group(1))) == ci.NF_VISIT)(re.search(r"(?m)^NF_VISIT = \{([^}]*)\}", _INOW)), [l_ for l_ in _ICODE.split("\n") if "fac67" in l_ or 'va["facility"]' in l_][:3])
+# (b) a visit the import entered as a rehab stay (place of service 61, HCA REHAB) is never moved back and never bypassed for an edit about the place of service or the facility
+RH_RROW = {"visit": "vst101", "pid": "pat1", "charges": ["charge1010"], "cpts": ["99223"], "dos": "09/07/2026", "admit": "20260907", "fac": "fac67", "pos": "61", "pos_feed": "21", "pos_lines": ["61"], "pos_kind": ["rehab"], "pos_err": "",
+           "stay": RH_ST("rehab", "09/07/2026", RH_SIGN)}
+E_4531R = {"id": "e61", "number": "4531", "text": "Pattern 4531: Procedure code 99223 is not typically performed by a provider in place of service 61"}
+RH_LINE = "PLACE OF SERVICE 61: AdvancedMD's Claim Inspector questions rehab visit vst101 (%s) - for William; nothing was changed"
+_ir, _io, _ie = rh_is([E_4531R, E_692, E_HOSPD], row=RH_RROW)
+check("inspector (rehab at 61): the Claim Inspector lists a rehab visit with an edit that names the place of service - the step holds it and changes NOTHING on it: no bypass (not even of the advisory beside it), no admission date written, no re-save, nothing voided",
+      _ie == "" and IS["bypassed"] == [] and IS["resaved"] == [] and IS["voided"] == [] and len(_ir["held"]) == 1 and _ir["bypassed"] == [] and _ir["fixed"] == [] and "NOT WRITTEN" not in _ir, (_ie, _ir, IS["bypassed"], IS["resaved"]))
+check("inspector (rehab at 61): ... the held row carries the sentence for the TOP OF THE REPORT word for word - the visit, the pattern and its text, 'for William; nothing was changed' - and the mark pos61; the step prints the same line, and its register is on disk at once (this visit leaves the step's loop there)",
+      _ie == "" and len(_ir["held"]) == 1 and _ir["held"][0].get("why") == RH_LINE % E_4531R["text"] and _ir["held"][0].get("pos61") is True and _ir["held"][0].get("pid") == "pat1" and ("\n" + RH_LINE % E_4531R["text"] + "\n") in ("\n" + _io), (_ie, _ir["held"], _io[-400:]))
+E_FACR = {"id": "e62", "number": "35790", "text": "Pattern 35790: the facility of this visit does not match its place of service"}
+_ir, _io, _ie = rh_is([E_FACR], row=RH_RROW)
+check("inspector (rehab at 61): an edit that names the facility is held the same way whatever its pattern - also one whose number is on the list this step bypasses",
+      _ie == "" and IS["bypassed"] == [] and IS["resaved"] == [] and len(_ir["held"]) == 1 and _ir["held"][0].get("why") == RH_LINE % E_FACR["text"] and _ir["held"][0].get("pos61") is True, (_ie, _ir, IS["bypassed"]))
+_ir, _io, _ie = rh_is([E_692], row=RH_RROW)
+check("inspector (rehab at 61): an edit that names neither is handled as on any hospital visit - the new-admission advisory (Pattern 692) on a rehab stay's 99223 is bypassed, the visit is not held, nothing is re-saved",
+      _ie == "" and IS["bypassed"] == [["e692"]] and _ir["held"] == [] and IS["resaved"] == [] and "PLACE OF SERVICE 61" not in _io, (_ie, _ir, IS["bypassed"]))
+_rh_d0, _rh_v0 = IS_STAND["resave"]["detail"], IS_STAND["resave"]["visit_charges"]
+def _rh_detail(cid): return '<r><patient id="pat1"/><visit id="vst101" episode="e1" facility="fac67"/><charge id="charge%s" proccode="pcode65084" fee="310.00" pos="61" void="0"/></r>' % re.sub(r"\D", "", str(cid))
+IS_STAND["resave"]["detail"] = _rh_detail; IS_STAND["resave"]["visit_charges"] = lambda cid: (lambda r_: (r_.find(".//visit"), r_.find(".//patient"), [r_.find(".//charge")]))(ET.fromstring(_rh_detail("1010")))
+try: _ir, _io, _ie = rh_is([E_HOSPD], after=[], row=RH_RROW); _rh_sv = list(IS["resaved"])
+finally: IS_STAND["resave"]["detail"] = _rh_d0; IS_STAND["resave"]["visit_charges"] = _rh_v0
+check("inspector (rehab at 61): the empty admission-date edit on a rehab visit is fixed as on any hospital visit - the date is written and the visit re-saved - and that re-save echoes the visit's OWN facility and place of service: fac67 and 61 stay, nothing is moved back to fac29 / 21",
+      _ie == "" and len(_rh_sv) == 1 and 'facility="fac67"' in _rh_sv[0] and 'pos="61"' in _rh_sv[0] and "fac29" not in _rh_sv[0] and 'pos="21"' not in _rh_sv[0] and any("admit 09/07/2026 written" in str(n_) for x_ in _ir["fixed"] for n_ in x_["note"]) and "PLACE OF SERVICE 61" not in _io, (_ie, _ir, _rh_sv))
+_ir, _io, _ie = rh_is([E_4531R], row=dict(RH_RROW, fac="fac29", pos="21", pos_lines=["21"], pos_kind=[RH_KEPT]))
+check("inspector: a visit of a rehab stay that was KEPT at 21 is not a visit entered at 61 - an edit about its place of service is held like any data edit of a hospital visit, with the edit's own words and no 'PLACE OF SERVICE 61' line",
+      _ie == "" and len(_ir["held"]) == 1 and _ir["held"][0]["why"].startswith("Pattern 4531") and "pos61" not in _ir["held"][0] and "PLACE OF SERVICE 61" not in _io and IS["resaved"] == [], (_ie, _ir))
+_RH_NEW = "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"
+check("inspector (the header): it keeps the sentence the mirror protects it by (Pattern 692 ...) and carries ONE new sentence only this version has; the old words about the move to the HCA SNF unit are gone",
+      "Pattern 692 (initial hospital care reported after subsequent hospital care" in _INOW.split("\nimport os as _os")[0] and _INOW.split("\nimport os as _os")[0].count(_RH_NEW) == 1 and "-> the HCA SNF unit: facility fac67 (HCA REHAB), charge POS 31, resave." not in _INOW
+      and RH_WHICH in _INOW.split("\nimport os as _os")[0], _RH_NEW in _INOW)
 # ---- a charge dated after a patient has passed away is VOIDED - William on the board 10/4/2026 and again in chat 11/25/2026 ("VOID all charges sent after ..."): until 11/25 the live
 #      prompts and the Medicare-number scan told a run to WRITE such a charge OFF and to put a 'confirm or void' card on his turn - the opposite of the rulebook ----
 _vd = {n_: open(os.path.join(ROOT, *n_.split("/"))).read() for n_ in ("nightly/live/billing_button.txt", "nightly/live/cascade.txt", "nightly/live/columns.txt", "practices/ehpa/rules.md", "scripts/helpers/medicare_number_scan.py")}
@@ -3785,7 +4511,8 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
-      '"claimocity_inspector.py": "Pattern 692 (initial hospital care reported after subsequent hospital care"' in mir and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in mir
+      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "the paid look-up is asked with the CHART\'s own name and birth date"' in mir      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below)
+      and "the paid look-up is asked with the CHART's own name and birth date" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 
 # ---- 6b2. the confirm reviews (11/10/2026 evening): the words of their fixes, and the privacy gate's tree mode ------------------------------------------
@@ -3810,6 +4537,23 @@ if os.path.exists(_gate):      # (a throwaway tree that holds only the files the
     _own = {n_: open(os.path.join(ROOT, "tools", "selftest", n_), encoding="utf-8").read() for n_ in ("test_pos_rule.py", "test_quality_nights.py")}
     check("privacy gate (W-8): its TREE mode (what mirror.py runs before every commit) leaves this self-test and the night simulation unchanged - without a name map, only its own rules", all(_pgm.redact(t_, {}, code=True) == t_ for t_ in _own.values()),
           [n_ for n_, t_ in _own.items() if _pgm.redact(t_, {}, code=True) != t_])
+    # 11/25/2026 (4e and the look-ups above): the gate rewrites a date that stands a few characters BEHIND a word such as the two this change is about - in a helper's
+    # comment as in a register. So the three helpers of that change must be fixed points of the tree mode like the self-tests; the rows and records the helpers wrote in
+    # the runs above must pass it unchanged, written the way the registers are written (each key on its own line) and on one line; and no sentence about whom a look-up
+    # was asked may END on such a word - a run stamp that follows it on the same line would be taken for a patient's date and blanked
+    _bdg = {n_: open(os.path.join(ROOT, "scripts", "helpers", n_), encoding="utf-8").read() for n_ in LK_FILES}
+    check("privacy gate (11/25/2026): the three helpers that use the chart's own name and birth date are left unchanged by the gate's tree mode - none of their comments carries a date right behind such a word",
+          all(_pgm.redact(t_, {}, code=True) == t_ for t_ in _bdg.values()), [n_ for n_, t_ in _bdg.items() if _pgm.redact(t_, {}, code=True) != t_])
+    _bdt = [json.dumps(o_, indent=i_) for o_ in [{"created": BD_ROWS, "skipped": [], "failed": []}] + [{"pat1": r_} for r_ in LK_SEEN] for i_ in (1, None)]
+    check("privacy gate: the import rows (one of every class) and the insurance-check records of the runs above pass the gate unchanged - each key on its own line, as the registers are written, and on one line - and its own check finds nothing in them",
+          len(BD_ROWS) == 9 and len(LK_SEEN) == 7 and all(r_.get("dob_note") for r_ in BD_ROWS) and all(r_.get("lookup_asked") for r_ in LK_SEEN) and all(_pgm.redact(t_, {}, code=None) == t_ for t_ in _bdt) and _pgm.check("\n".join(_bdt)) == [],
+          (len(BD_ROWS), len(LK_SEEN), sum(1 for t_ in _bdt if _pgm.redact(t_, {}, code=None) != t_), _pgm.check("\n".join(_bdt))[:2]))
+    _bd_stamp = "2026-11-" + "25T1241Z"      # a run stamp, written in two pieces like every date here
+    _bd_said = sorted({str(lk_who(pa_, LK_FF, LK_FL, f_, BD_T8, w_)[3]) for pa_ in (lk_pa(1940, 2, 15), lk_pa(1900, 1, 1), lk_pa(1940, 2, 15, ""), None) for f_ in (LK_ONE, BD_A, "", bd_d8(1952, 11, 3)) for w_ in ("look-up", "Medicaid")}
+                      | {"%s asked with the chart's birth date; Claimocity's differs: %s" % (w_, k_) for w_ in ("look-up", "Medicaid") for k_ in getattr(ci, "SLIP_KINDS", ())})
+    _bd_one = [json.dumps({"901|MCAD": {"outcome": "not active - Medicaid: no active coverage - " + s_, "stamp": _bd_stamp}}) for s_ in _bd_said] + [json.dumps({"lookup_asked": s_, "at": _bd_stamp}) for s_ in _bd_said]
+    check("privacy gate: no sentence about whom a look-up was asked ends on such a word - with a run stamp right behind it on the same line (an entry written on one line) the gate still leaves the entry whole",
+          len(_bd_said) == 20 and all(_pgm.redact(t_, {}, code=None) == t_ for t_ in _bd_one), (len(_bd_said), [t_ for t_ in _bd_one if _pgm.redact(t_, {}, code=None) != t_][:2]))
 else: print("skip privacy gate (W-8): tools/mirror/phi_gate.py is not in this tree")
 
 # ---- 6c. round 6, step 4 (11/10/2026): the feed helpers on every run (C2, W1), the rulebook's merge, reason 58 on the board, the words ---------------
@@ -3859,7 +4603,9 @@ check("a helper that cannot be copied is named: the import helper as PLACE OF SE
       "PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is missing, an old copy or an earlier version of the rule and could not be replaced (OSError)" in _wn and _same(_w, "claimocity_verify.py") and "FEED HELPERS NOT ALL CURRENT" not in _wn, (_l, _wn))
 _pm = {f_: (m_.group(1) or m_.group(2)) for f_ in HC.VERSION_LINES for m_ in [re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(f_), mir)] if m_}
 check("the shared helper's version lines are mirror.py's PROTECTED markers, word for word (so they cannot drift apart), and the drivers pass their own POS_RULE line",
-      _pm == HC.VERSION_LINES and HC.RULE_HELPERS == ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py") and set(HC.FEED_HELPERS) == {"claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py"}, (_pm, HC.VERSION_LINES))
+      _pm == HC.VERSION_LINES and HC.RULE_HELPERS == ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py") and set(HC.FEED_HELPERS) == {"claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py",
+                                                                                                                                              "claimocity_match.py", "claimocity_resolve.py", "claimocity_newcharts.py", "feed_identity.py", "claimocity_dx.py", "claimocity_recon.py", "feed_in1_intake.py", "pos61_monitor.py"}      # 11/25/2026: the identity rule's steps, the cache step, the reconciliation, the intake and the monitor travel with the others
+      and all(m_ in open(os.path.join(ROOT, "scripts", "helpers", f_)).read() for f_, m_ in HC.VERSION_LINES.items()), (_pm, HC.VERSION_LINES, [f_ for f_, m_ in HC.VERSION_LINES.items() if m_ not in open(os.path.join(ROOT, "scripts", "helpers", f_)).read()]))
 # the two drivers themselves, run INSIDE this process over a sandbox workspace and clone: their WS and REPO_HELPERS lines are pointed there, and every
 # program they would start (parse, dx, import, verify, inspector, report, recon) is answered by a stand-in that starts nothing
 def driver_run(name, w_, r_, argv, on_step):
@@ -4092,9 +4838,10 @@ check("ingest + the REAL cache step: the same fault stops the INGEST at 'STEP FA
 # patient's messages - but it never reaches a message without a charge line, so that row landed on a REAL visit of the patient: an 'already' visit read 'skipped', a patient with
 # no chart fell off William's no-chart list, a real skip lost its reason. No charge was entered or lost by it; the record that goes to main and to the monitoring page was wrong.
 RECON = os.path.join(ROOT, "scripts", "helpers", "claimocity_recon.py"); _RCSRC = open(RECON).read()
-def recon_rows(parsed, skipped, pmap):
-    """the helper over ONE invented batch - its messages, the skipped rows of its import register, the patient map -> (its error, [(the codes, the outcome, the reason)] of its rows, its counts)"""
+def recon_rows(parsed, skipped, pmap, match=None):
+    """the helper over ONE invented batch - its messages, the skipped rows of its import register, the patient map (and, when given, the batch's match file) -> (its error, [(the codes, the outcome, the reason)] of its rows, its counts)"""
     d_ = tempfile.mkdtemp(prefix="posrule_rc_", dir=tmp); os.makedirs(os.path.join(d_, "registers")); st_ = "20261126T0100Z"
+    if match is not None: json.dump(match, open(os.path.join(d_, "feed_match_%s.json" % st_), "w"))
     json.dump(parsed, open(os.path.join(d_, "feed_parsed_%s.json" % st_), "w")); json.dump(pmap, open(os.path.join(d_, "registers", "claimocity_patient_map.json"), "w"))
     json.dump({"created": [], "skipped": skipped, "failed": []}, open(os.path.join(d_, "registers", "feed_import_%s.json" % st_), "w"))
     o_, e_ = run_inside(RECON, {}, d_, argv=(st_, "--ws", d_)); r_ = _rd(d_, "registers", "feed_recon_%s.json" % st_) or {}
@@ -4110,6 +4857,13 @@ check("recon: ... the visit of a patient with NO chart still reads 'nochart' - i
 check("recon: ... and a REAL skip of that patient beside the empty message keeps its own reason - 'no usable dx for 99309' stands on the visit and is counted under dx", _e3 == "" and _r3 == [(["99309"], "dx", "no usable dx for 99309")] and _c3.get("dx") == 1 and _c3.get("skipped") == 0, (_e3, _r3, _c3))
 _e4, _r4b, _c4b = recon_rows(_RCM[1:] + [dict(_RCM[1], FT1=[{"cpt": "99497", "dos": "20261103", "dx": "I10", "units": "1"}])], [_RREAL, {"feed_id": "ZR1", "pid": "pat9301", "why": "unknown CPT 99497"}], {"ZR1": "pat9301"})
 check("recon: ... every OTHER skipped row is handed out as before - two visits of one patient, two skips, each with its own reason and kind", _e4 == "" and _r4b == [(["99309"], "dx", "no usable dx for 99309"), (["99497"], "cpt", "unknown CPT 99497")], (_e4, _r4b, _c4b))
+# 11/25/2026 (the chart of each Claimocity id): the match file names a chart per id (by_id); the reconciliation reads it the way the import does - an id the entry does not name has NO chart
+_RCB = [{"pid": "ZRA", "file": "20261125", "provider": "x", "FT1": [{"cpt": "99309", "dos": "20261102", "dx": "I10", "units": "1"}]}, {"pid": "ZRB", "file": "20261125", "provider": "x", "FT1": [{"cpt": "99308", "dos": "20261103", "dx": "I10", "units": "1"}]}]
+_e5, _r5, _c5 = recon_rows(_RCB, [], {}, match={"K": {"resolved": "pat9401", "feed_ids": ["ZRA", "ZRB"], "by_id": {"ZRA": "pat9401"}}})
+_e6, _r6, _c6 = recon_rows(_RCB, [], {}, match={"K": {"resolved": "pat9401", "feed_ids": ["ZRA", "ZRB"]}})
+check("recon (11/25/2026): where the match file names a chart per Claimocity id, an id it does not name reads 'nochart' - it is not reconciled on the other id's chart by the entry's 'resolved' (an older match file without per-id charts is read as before)",
+      _e5 == "" and [(c_, s_) for c_, s_, _y in _r5] == [(["99309"], "already"), (["99308"], "nochart")] and _c5.get("nochart") == 1 and _e6 == "" and [(c_, s_) for c_, s_, _y in _r6] == [(["99309"], "already"), (["99308"], "already")]
+      and "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S" in _RCSRC.split("\nimport os, sys")[0], (_e5, _r5, _c5, _e6, _r6))
 # C2's exact input for the ingest driver: current import helper, report and inspector of 2075dba, complete clone; a batch of invented messages
 _w, _r = hc_dirs({"claimocity_report.py": "# report helper of 2075dba\n", "claimocity_inspector.py": "# inspector helper of 2075dba\n"})
 os.makedirs(os.path.join(_w, "inbox", "claimocity")); open(os.path.join(_w, "inbox", "claimocity", "20261110a.hl7"), "w").write(hl7("FD4", WO, "", [("99308", "20261105")], NP_NPI) + hl7("FD4", B["h1"], "", [("99308", "20261105")], NPI) + hl7("FG7", "ZZ Other Hospital", "20261028", [("99232", "20261030")], NPI))
@@ -4204,7 +4958,8 @@ check("W3: the three places that said 'check ... by hand' say it is for William 
       "check by hand" not in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")).read() and "by hand" not in _rules.split("POS RULE NOT APPLIED, ")[1][:60]
       and "facility, clinician and place of service are for William; a routine changes nothing on this visit" in open(HELPER).read() and "POS RULE NOT APPLIED, for William; a routine changes nothing on this visit." in _rules)
 check("C9: rulebook part 6 and the runbook name the visit the import flagged that the Claim Inspector holds at the hospital location beside the CCM one - William says what happens to it",
-      "and a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location (Pattern 4531" in _rules and "a CCM visit or a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location" in _step and "nor for a visit the import flagged as POS RULE NOT APPLIED" in _step)
+      "and a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location (Pattern 4531" in _rules and "a CCM visit or a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location" in _step and "a CCM visit, a nursing-facility code or a visit the import flagged as POS RULE NOT APPLIED stays where" in _step.replace("\n  ", " ").replace("\n", " ")      # 11/25/2026: the paragraph was reworded with the rehab rule - the inspector step moves NO visit to HCA REHAB any more
+      and "The inspector step moves NO visit to HCA REHAB any more" in _step and "the inspector step moves no visit to HCA REHAB: since 11/25/2026 that holds for EVERY visit" in _rules)
 check("W6 (1): the bypass loop has an upper bound - at most three passes, then stop and report - in the rulebook, the runbook and the lessons line",
       "at most three passes in all - still listed after the third, stop" in _rules and "at most three passes in all (it clears ONE" in _step and "still listed after the third pass: stop" in _step and "at most three passes; still listed after the third: stop" in _less)
 check("W5 / W6: the comma of part 6, the lessons line's exception (part 4), what msg_own false means, what N counts, the second one-liner, every '32' of the read-back, and what LISTS a CCM line for William as part 1 words it (11/25/2026: listed, no longer kept at 31)",
