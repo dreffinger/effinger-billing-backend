@@ -1,0 +1,34 @@
+{
+ "17478332": {
+  "card": "[name]-17478332",
+  "steps": [
+   [
+    "add BCBS",
+    "ins9521408",
+    "3"
+   ],
+   [
+    "AMD 271",
+    "ACTIVE | plan  | A  B  | others PR BLUEMEDICARE VALUE (PPO) BLUEMEDICARE PPO:; HM CHOICE ;    | death - | addr [address] CRAWFORDVILLE FL 32327 | aaa []"
+   ],
+   [
+    "patient order",
+    "3,1",
+    "(True, \"insorder 3,1 via ins9521408 -> '3,1'\")"
+   ]
+  ],
+  "visits": {
+   "19460350": "resave vst19460350 insorder 1 -> 3, list [] -> [3], 2 live charges (was 2) | freq1 + rebill seq 3 -> 204"
+  },
+  "answers": {
+   "8323": [
+    "yes",
+    "Active Coverage BLUEMEDICARE VALUE (PPO); Active Coverage CHOICE",
+    [
+     "20260101",
+     "20261231"
+    ]
+   ]
+  }
+ }
+}

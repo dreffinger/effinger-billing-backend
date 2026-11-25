@@ -449,3 +449,13 @@
 {"at": "2026-11-25T05:12:28Z", "visit": "19442323", "charge": "23350355", "seq": 1, "status": 204, "by": "dob_fix_1125.py"}
 {"at": "2026-11-25T05:29:43Z", "visit": "19462327", "charge": "23375392", "seq": 1, "status": 204, "by": "precheck_ma_1125.py"}
 {"at": "2026-11-25T05:29:59Z", "visit": "19462325", "charge": "23375390", "seq": 1, "status": 204, "by": "precheck_ma_1125.py"}
+{"at": "2026-11-25T06:07:33Z", "visit": "19440501", "charge": "23348190", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:07:42Z", "visit": "19442537", "charge": "23350726", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:07:47Z", "visit": "19448611", "charge": "23357916", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:07:54Z", "visit": "19448758", "charge": "23358122", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:08:00Z", "visit": "19450214", "charge": "23360100", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:08:07Z", "visit": "19452603", "charge": "23362931", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:08:12Z", "visit": "19455642", "charge": "23367003", "seq": 2, "status": 204, "by": "board_cards_1125b.py"}
+{"at": "2026-11-25T06:24:22Z", "visit": "19459188", "charge": "23371598", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-25T06:24:29Z", "visit": "19459194", "charge": "23371604", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-25T06:24:54Z", "visit": "19460350", "charge": "23373024", "seq": 3, "status": 204, "by": "board_plans_1125b.py"}

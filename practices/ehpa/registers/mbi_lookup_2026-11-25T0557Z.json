@@ -1,0 +1,30 @@
+{
+ "17476021": {
+  "with_ssn": true,
+  "name_asked": "JULES COPELAND",
+  "found": false,
+  "same_as_chart": false,
+  "errors": [
+   [
+    "75",
+    "Subscriber/Insured Not Found"
+   ]
+  ],
+  "name_on_record": "JULES COPELAND",
+  "dod": null
+ },
+ "48458": {
+  "with_ssn": false,
+  "name_asked": "CARLOTTA DANIELS",
+  "found": false,
+  "same_as_chart": false,
+  "errors": [
+   [
+    "75",
+    "Subscriber/Insured Not Found"
+   ]
+  ],
+  "name_on_record": "CARLOTTA DANIELS",
+  "dod": null
+ }
+}
