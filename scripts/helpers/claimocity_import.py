@@ -117,7 +117,7 @@ def mdy(yyyymmdd):
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before - except
 # that a CCM line of an unknown building is 32, not the default 31. Any error in the rule falls back to the feed's place of service for
 # the whole message - its CCM lines 32 all the same - and is counted as "POS RULE NOT APPLIED" - the import never stops for this rule.
-POS_RULE_VERSION = "2026-11-25.1"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-25.2"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -1740,7 +1740,7 @@ def build(msg, ctx):
                 missing_dx.add(code)
                 if _instead: dcodes.append(_instead); _rep = True
         if _rep:                                              # ONCE, at its first position: the feed's own I10 beside a replaced code, or two replaced codes, never give I10 twice
-            dcodes = [x for i, x in enumerate(dcodes) if x != _instead or i == dcodes.index(_instead)]; dx_replaced = True
+            dcodes = [x for i, x in enumerate(dcodes) if x != _instead or i == dcodes.index(_instead)]; dx_replaced = dx_replaced or _instead in dcodes[:12]      # 11/25/2026 (independent review): said only when I10 really stands on the charge - past the 12 codes a line carries it is cut like any other code, and the row, the DONE counter, the retry's line and William's email must not say 'entered with I10' for it
         if not dcodes: return None, "no usable dx for %s" % c["cpt"]
         mod = "mcode7" if c["cpt"] in MOD25 and len(cpts) > 1 else ""
         fee = FEE[c["cpt"]]; d = mdy(c["dos"][:8])

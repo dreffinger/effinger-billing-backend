@@ -25,6 +25,11 @@
 #       be added") a diagnosis code AdvancedMD's list does not have goes in as I10 in its place - never twice on a line; a line with no
 #       code at all is still skipped; without I10 in the list everything is as before; the retry enters the visits that waited on such a
 #       code; the digest carries ONE line and writes the email's text to outbox/dx_codes_needed_<stamp>.txt (sections 3b, 6 and 6c);
+#     - (11/25/2026, the independent review of that rule) the diagnosis cache step writes 'not in the list' ONLY for a real lookup answer:
+#       a fault, an error page or an empty body is asked once more, then the step ends non-zero with nothing cached for the code and the
+#       driver stops before anything is entered; I10 itself is looked up whenever the cache has no id for it, also when no message of
+#       the batch carries it; 'entered with I10' is said only when I10 stands on the charge; the reconciliation never hands the row of a
+#       message without a charge line to another message of the patient (sections 3b and 6c);
 #     - a feed message with no charge line or no patient id is passed over and counted - it never stops the import step (section 4);
 #     - what AdvancedMD stored is read back from its answer and a different place of service is said loudly;
 #     - the advance-care-plan quality code 1123F rides, at no charge and once per patient per year, with a visit of a patient 65 or older
@@ -499,6 +504,15 @@ check("dx: a line on which no code is replaced is sent EXACTLY as before 11/25/2
 ci.DX.update({"K%02d" % n_: "dcode%d" % (100 + n_) for n_ in range(14)})
 _b, _i, _dc, _dl = dxbuilt("S82.843D^" + "^".join("K%02d" % n_ for n_ in range(14)))
 check("dx: the limit of 12 codes on a line stays - I10 in the first place, then the first eleven of the feed's known codes", _dc == [" ".join(["dcode1"] + ["dcode%d" % (100 + n_) for n_ in range(11)])] and len(_dl[0]) == 12, _dc)
+_b, _i, _dc, _dl = dxbuilt("^".join("K%02d" % n_ for n_ in range(12)) + "^S82.843D")      # 11/25/2026 (independent review): twelve known codes, THEN the unknown one - the thirteenth place is cut, with the I10 that stood there
+check("dx: an unknown code that stands PAST the 12 codes a line carries is cut like any other code - no I10 stands on the charge, so the row names the code and does NOT say dx_instead, and the DONE line counts no 'entered with I10'",
+      _dc == [" ".join("dcode%d" % (100 + n_) for n_ in range(12))] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"] and "dx_instead" not in _i and not any("I10" in k_ for k_ in _cnt(_i)), (_i, _dc))
+_b, _i, _dc, _dl = dxbuilt("^".join("K%02d" % n_ for n_ in range(11)) + "^S82.843D")
+check("dx: ... while an unknown code in the TWELFTH place is still on the charge as I10, the last code the line carries - its row says dx_instead I10",
+      _dc == [" ".join(["dcode%d" % (100 + n_) for n_ in range(11)] + ["dcode1"])] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D"] and _i.get("dx_instead") == "I10", (_i, _dc))
+_b, _i, _dc, _dl = dxbuilt(["T84.011A^E119", "^".join("K%02d" % n_ for n_ in range(12)) + "^S82.843D"], lines=(("99309", "20261102"), ("99497", "20261102")))
+check("dx: ... and it is said per VISIT - a visit whose first line carries I10 in a code's place still says dx_instead I10 when a LATER line of it has its unknown code cut at the 12-code limit, and the row names both codes",
+      _dc == ["dcode1 dcode2", " ".join("dcode%d" % (100 + n_) for n_ in range(12))] and isinstance(_i, dict) and _i.get("missing_dx") == ["S82.843D", "T84.011A"] and _i.get("dx_instead") == "I10", (_i, _dc))
 for n_ in range(14): del ci.DX["K%02d" % n_]
 _b, _i, _dc, _dl = dxbuilt(" E119 ^S82.843D ")
 check("dx: under the rule a code that arrives with blanks around it is looked up without them, as the cache step and the retry driver already read it - so a code the list HAS is never replaced by I10 (and never asked for in the email) because of a stray blank",
@@ -2320,7 +2334,7 @@ clear_regs(); rmreg(EARLIER, "feed_verify_20261101T0001Z.json"); DEMOG["plans"] 
 
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
-for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "working_denials.py", "claimocity_verify.py", "aging_refresh.py"):
+for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "working_denials.py", "claimocity_verify.py", "aging_refresh.py", "claimocity_dx.py", "claimocity_recon.py"):
     m = re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(helper), mir); m = m and type("M", (), {"group": lambda self, i, _m=m: _m.group(1) or _m.group(2)})()
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
@@ -2482,9 +2496,14 @@ check("digest: ... a register that holds both kinds splits the visits: so many '
       and "\nS82.843D - 2 visit(s): entered with I10 in its place: pat9104 11/09/2026 - entered without that code (before 11/25/2026): pat9101 10/30/2026\nT84.011A - 1 visit(s): entered with I10 in its place: pat9105 11/09/2026\n" in (_mail or "")
       and "\nThe visits listed as entered with I10 in its place went in with I10 in the code's place on your word of 11/25/2026; once a code is in the list, later visits use it; the visits already entered keep I10 unless you say otherwise. The visits listed as entered without that code went in with their other codes only: nothing stands in the code's place on them." in (_mail or ""), (_dl, _mail))
 r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "11/25/2026", ["S82.843D"], instead=False)], "20261126T0300Z")
-check("digest: ... and a batch of 11/25/2026 or later whose row shows the code left off is not called 'before 11/25/2026' - it says that I10 was not put in its place (an older copy of the import ran, or I10 itself is not in AdvancedMD's list)",
-      "before 11/25/2026" not in _dl + (_mail or "") and "1 visit(s), all entered without that code (I10 was not put in its place: an older copy of the import ran, or I10 itself is not in AdvancedMD's list) - S82.843D x1 - EMAIL WILLIAM:" in _dl
-      and "\nS82.843D - 1 visit(s): entered without that code (I10 was not put in its place: an older copy of the import ran, or I10 itself is not in AdvancedMD's list): pat9101 11/25/2026\n" in (_mail or ""), (_dl, _mail))
+check("digest: ... and a batch of 11/25/2026 or later whose row shows the code left off is not called 'before 11/25/2026' - it says that I10 was not put in its place and names the three ways that happens (an older copy of the import ran, I10 itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries) - in the line, beside the code in the email's text and in its closing sentence",
+      "before 11/25/2026" not in _dl + (_mail or "") and "1 visit(s), all entered without that code (I10 was not put in its place: an older copy of the import ran, I10 itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries) - S82.843D x1 - EMAIL WILLIAM:" in _dl
+      and "\nS82.843D - 1 visit(s): entered without that code (I10 was not put in its place: an older copy of the import ran, I10 itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries): pat9101 11/25/2026\n" in (_mail or "")
+      and (_mail or "").rstrip("\n").endswith("\nThese visits were entered without that code: it was left off the charge and nothing stands in its place - I10 was not put there as your word of 11/25/2026 asks (an older copy of the import ran, I10 itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries). Once a code is in the list, later visits use it."), (_dl, _mail))
+# 11/25/2026 (independent review): the check above uses a stamp of 11/26, so the report's own line - a batch stamped before 20261125 - could move a day unseen. The day itself:
+_d25 = dxdigest(rows + [dxrow("pat9101", "11/24/2026", ["S82.843D"], instead=False)], "20261125T0040Z"); _d24 = dxdigest(rows + [dxrow("pat9101", "11/23/2026", ["S82.843D"], instead=False)], "20261124T1240Z")
+check("digest: ... the day itself is the line - a batch stamped 11/25/2026 is NOT called 'before 11/25/2026' (it says that I10 was not put in its place), a batch stamped 11/24/2026 is",
+      "before 11/25/2026" not in _d25[1] + (_d25[2] or "") and "I10 was not put in its place" in _d25[1] and "all entered without that code (before 11/25/2026)" in _d24[1] and "I10 was not put in its place" not in _d24[1] + (_d24[2] or ""), (_d25[1], _d24[1]))
 r, _dl, _mail = dxdigest(rows + [dxrow("pat9101", "11/26/2026", "S82.843D"), dxrow(None, None, [None, 5, "", "  ", "T84.011A", ["x"]]), dxrow("pat9106", "11/26/2026", {"a": 1}), dict(dxrow("pat9107", "11/26/2026", ["M51.17"]), dx_instead=7)], "20261126T0400Z")
 check("digest: odd values in these fields (a text or a dictionary where the list of codes belongs; a number, a blank or a list among the codes; no chart number, no date; a number where I10 belongs) never stop the report - what can be read is still said",
       r.returncode == 0 and "Place of service in the nursing buildings" in r.stdout and "## Next" in r.stdout and "T84.011A x1" in _dl and "M51.17 x1" in _dl and "EMAIL WILLIAM: outbox/dx_codes_needed_20261126T0400Z.txt" in _dl and "? ?" in (_mail or ""), (r.stderr[-300:], _dl, _mail))
@@ -2954,7 +2973,7 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.1 since William's CCM word; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.2 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
       ("grep -c '%s'" % ver) in _STEP1 and '2026-11-10.8"' not in step and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
@@ -3097,11 +3116,12 @@ check("... and nothing else is started as a program from here (every program sta
       and not re.search(r"os\.system\(|os\.popen\(|runpy\.", _me.replace('r"os\\.system\\(|os\\.popen\\(|runpy\\."', "")), (len(_runs), len(_known)))
 def run_inside(path, standins, cwd, env=None, argv=()):
     """Run a helper that talks to AdvancedMD INSIDE this process: its amd / resave / ... are the stand-in modules given here, put in
-    sys.modules for the run and taken out again. Refuses to run unless every module of AMD_MODULES the helper loads is a stand-in."""
+    sys.modules for the run and taken out again. Refuses to run unless every module of AMD_MODULES the helper loads is a stand-in.
+    run_inside.exit holds what the helper left with (11/25/2026): None when it ran to its end, else the value it gave to sys.exit - EXIT() below reads it as a program's exit code."""
     src = open(path).read(); wanted = loads(src) & set(AMD_MODULES)
     missing = sorted(wanted - set(standins))
     if missing: raise RuntimeError("no stand-in for %s - the helper is not run" % missing)
-    old_mod = {k: sys.modules.get(k) for k in standins}; old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); out = io.StringIO(); err = ""
+    old_mod = {k: sys.modules.get(k) for k in standins}; old_cwd = os.getcwd(); old_env = dict(os.environ); old_argv = list(sys.argv); out = io.StringIO(); err = ""; run_inside.exit = None
     import time as _time
     old_sleep = _time.sleep
     try:
@@ -3112,7 +3132,7 @@ def run_inside(path, standins, cwd, env=None, argv=()):
         os.chdir(cwd); os.environ.update(env or {}); sys.argv = [path] + list(argv); _time.sleep = lambda *_a: None
         with contextlib.redirect_stdout(out):
             try: exec(compile(src, path, "exec"), {"__name__": "__main__", "__file__": path})
-            except SystemExit: pass
+            except SystemExit as _x: run_inside.exit = _x.code      # 11/25/2026: kept, not thrown away - the diagnosis cache step must END NON-ZERO when AdvancedMD gave no lookup answer, and its checks read that here
             except Exception as e: err = "%s: %s" % (type(e).__name__, e)
     finally:
         _time.sleep = old_sleep; os.chdir(old_cwd); sys.argv = old_argv
@@ -3123,6 +3143,7 @@ def run_inside(path, standins, cwd, env=None, argv=()):
             if v is None: sys.modules.pop(k, None)
             else: sys.modules[k] = v
     return out.getvalue(), err
+EXIT = lambda: 0 if run_inside.exit in (None, 0) else run_inside.exit if isinstance(run_inside.exit, int) else 1      # the exit code a program gives for what the last helper run inside left with (a text given to sys.exit is exit 1)
 # the whole insurance-check step, run INSIDE this process with stand-ins: what it writes in its register for a visit that carries the line
 vfd = tempfile.mkdtemp(prefix="posrule_vf_"); os.makedirs(os.path.join(vfd, "registers")); json.dump({"car6085": ["FLO02", "FLORIDA MEDICARE"]}, open(os.path.join(vfd, "carriers_rich.json"), "w"))
 json.dump([{"pid": "f1", "name": "x", "dob": "", "IN1": []}], open(os.path.join(vfd, "feed_parsed_T2.json"), "w"))
@@ -3848,9 +3869,10 @@ def driver_run(name, w_, r_, argv, on_step):
     if _live: raise RuntimeError("the sandbox copy still names a live folder outside a comment - not run: %r" % _live[:2])
     calls_ = []; sub_ = types.ModuleType("subprocess"); sub_.STDOUT = -2; sub_.PIPE = -1
     def _run(cmd, **k):
-        calls_.append([os.path.basename(str(x_)) for x_ in cmd]); txt_ = on_step(cmd) or "DONE {}"
+        calls_.append([os.path.basename(str(x_)) for x_ in cmd]); txt_ = on_step(cmd) or "DONE {}"; rc_ = 0
+        if isinstance(txt_, tuple): txt_, rc_ = txt_      # 11/25/2026: a step may answer (what it printed, its exit code) - so a step that ENDS NON-ZERO is walked through the driver itself (the diagnosis cache step, below)
         if hasattr(k.get("stdout"), "write"): k["stdout"].write(txt_ + "\n")
-        return types.SimpleNamespace(returncode=0, stdout=txt_ if k.get("capture_output") else "", stderr="")
+        return types.SimpleNamespace(returncode=rc_, stdout=txt_ if k.get("capture_output") else "", stderr="")
     sub_.run = _run
     old_sub = sys.modules.get("subprocess"); old_cwd = os.getcwd(); old_argv = sys.argv[:]; old_env = dict(os.environ); out_ = io.StringIO(); err_ = ""
     try:
@@ -3886,20 +3908,27 @@ check("W1: without a clone the retry still enters the visits (never a hold) and 
 # road is walked offline: the skip of an earlier batch -> the retry's own readiness rule -> build() puts I10 in the code's place -> the register row -> the digest's line and
 # the text of William's email. (The two W1 checks above start the driver over helper texts that carry no code table, which is why they stop at 'nothing to retry'.)
 _DXN = [0]
-def dx_retry(cache, argv=("--live", "--no-stedi", "--stamp", "2026-11-26T1400Z")):
+def dx_retry(cache, argv=("--live", "--no-stedi", "--stamp", "2026-11-26T1400Z"), extra=(), dx=None):
     """One earlier batch (20261031T1240Z) whose three visits were skipped as 'no usable dx for 99309': Y1 - its only code is not in AdvancedMD's list; Y2 - its charge line carries
     no code at all; Y3 - two lines: the visit's only code is unknown, its 99497 carries a known code beside an unknown one. cache = the diagnosis cache the retry finds.
+    extra = further visits of that batch, skipped the same way. dx = None: the retry's diagnosis cache step is answered by a stand-in that starts nothing (the cache stays as
+    given); dx = (AdvancedMD's diagnosis list, {code: the answers given instead of the list's}): that step is the REAL claimocity_dx.py, run inside this process against the
+    stand-in lookup of the section 'the diagnosis cache step itself' below - what it printed and how it ENDED go back to the driver.
     -> (what the driver printed, the programs it started, its error, the sandbox workspace)."""
     w_, r_ = hc_dirs({})
     for d_ in (w_, r_): open(os.path.join(d_, "claimocity_import.py"), "w").write(_HSRC)      # the REAL import helper in the workspace and in the clone: the driver reads the code table from its text
     st_ = "20261031T1240Z"; rs_ = "20261126T1400ZR"; os.makedirs(os.path.join(w_, "registers")); os.makedirs(os.path.join(w_, "hl7", st_))
-    vis_ = (("Y1", "pat9201", [("99309", "20261030", "S82.843D")]), ("Y2", "pat9202", [("99309", "20261030", "")]), ("Y3", "pat9203", [("99309", "20261030", "M51.17"), ("99497", "20261030", "E11.9^T84.011A")]))
+    vis_ = (("Y1", "pat9201", [("99309", "20261030", "S82.843D")]), ("Y2", "pat9202", [("99309", "20261030", "")]), ("Y3", "pat9203", [("99309", "20261030", "M51.17"), ("99497", "20261030", "E11.9^T84.011A")])) + tuple(extra)      # extra: further visits of that batch, skipped the same way
     json.dump({"created": [], "failed": [], "skipped": [{"feed_id": f_, "pid": p_, "why": "no usable dx for 99309"} for f_, p_, _l in vis_]}, open(os.path.join(w_, "registers", "feed_import_%s.json" % st_), "w"))
     json.dump([{"pid": f_, "name": NAME(f_), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": x_, "units": "1"} for c_, d_, x_ in l_]} for f_, _p, l_ in vis_], open(os.path.join(w_, "feed_parsed_%s.json" % st_), "w"))
     open(os.path.join(w_, "hl7", st_, "a.hl7"), "w").write("".join(hl7(f_, B["n1"], "", [(c_, d_) for c_, d_, _x in l_], NPI) for f_, _p, l_ in vis_))
     json.dump(cache, open(os.path.join(w_, "dx_cache_feed.json"), "w")); json.dump({f_: p_ for f_, p_, _l in vis_}, open(os.path.join(w_, "registers", "claimocity_patient_map.json"), "w"))
     def step_(cmd):
         b_ = os.path.basename(str(cmd[1]))
+        if b_ == "claimocity_dx.py" and dx is not None:      # 11/25/2026: the REAL diagnosis cache step over the retry's own batch file and cache, against the stand-in lookup (DXS below) - never AdvancedMD
+            DXS.update(list=dict(dx[0]), odd={k_: list(v_) for k_, v_ in dx[1].items()}, log=[])
+            o2_, e2_ = run_inside(DX_HELPER, DXS_STAND, w_, env={"FEED_STAMP": rs_, "FEED_DX_CACHE": "dx_cache_feed.json"})
+            return (o2_ + e2_).strip(), (1 if e2_ else EXIT())      # a helper that broke off with an error ends non-zero as a program does
         if b_ == "claimocity_import.py":      # the real import helper, loaded fresh over the retry's own batch files (the driver has written them), against the stand-in AdvancedMD
             e0_ = {k_: os.environ.get(k_) for k_ in ("FEED_STAMP", "FEED_HL7_DIR", "FEED_DX_CACHE")}; os.environ.update(FEED_STAMP=rs_, FEED_HL7_DIR=os.path.join(w_, "hl7", rs_), FEED_DX_CACHE="dx_cache_feed.json"); _DXN[0] += 1
             try: sp_ = importlib.util.spec_from_file_location("claimocity_import_retry_%d" % _DXN[0], HELPER); m_ = importlib.util.module_from_spec(sp_); sp_.loader.exec_module(m_)
@@ -3943,9 +3972,144 @@ for _how, _c in (("I10 itself is not in the list", {"E11.9": "dcode2", "S82.843D
     check("retry: when %s everything is as before - no visit is handed to the import, and the driver's old sentence names the codes the visits wait on (William adds them)" % _how,
           _e == "" and [c_[1] for c_ in _calls] == ["claimocity_dx.py"] and "retry-dx: 3 visit(s) still wait on codes not in AMD's diagnosis list: M51.17, S82.843D (valid ICD-10 - William adds them in AMD Master Files > Diagnosis Codes; the next run enters the visits)" in _o
           and not any("addvisit" in b_ for b_ in POSTS) and _rd(_w, "feed_parsed_%s.json" % _RS) is None, (_e, _calls, _o[-500:]))
+# 11/25/2026 (independent review): in the fixture above EVERY ready visit has a code the list lacks and is entered, so a retry that counted every ready visit as going in with I10,
+# dropped the '(N of them with I10 ...)' clause, or named the codes by the cache instead of by its own import register passed every check. Two visits tell those apart:
+# Y4 - its only code IS in the list (ready, and no I10 on it); Y5 - a code the list lacks, but the chart already carries the visit (ready, and the import enters nothing for it).
+_o, _calls, _e, _w = dx_retry(_DXC, argv=("--no-stedi", "--stamp", "2026-11-26T1400Z"), extra=(("Y4", "pat9204", [("99309", "20261030", "E11.9")]),))
+check("retry: a visit whose own codes the list knows is retried beside them and is NOT counted among the visits that go in with I10 - three visits are ready, two of them with I10",
+      _e == "" and "| 3 visit(s) from batch(es) 20261031T1240Z now have usable codes (2 of them with I10 in place of codes not in AMD's diagnosis list); 1 still wait: a charge line that carries no diagnosis code at all | mode DRY" in _o
+      and "\nretry-dx: 2 visit(s) would be entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A" in _o, _o[-700:])
+CHART["9205"] = [("99309", "10/30/2026")]      # Y5's visit already stands on its chart: the import answers 'all lines already in AMD' and enters nothing for it
+_o, _calls, _e, _w = dx_retry(_DXC, extra=(("Y5", "pat9205", [("99309", "20261030", "Z99.89")]),)); del CHART["9205"]
+check("retry: a LIVE retry names the codes by what its own import register shows was ENTERED with I10 - a ready visit the import did not enter (its chart already carries it) and its code are not in that line",
+      _e == "" and "\nretry-dx: 2 visit(s) entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A (" in _o and "Z99.89" not in next((l_ for l_ in _o.splitlines() if l_.startswith("retry-dx: 2 visit(s) entered")), "Z99.89"), _o[-900:])
 _RSRC = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read()
 check("retry: its PLAIN ENGLISH header states William's rule of 11/25/2026 and its stand-in code is the import's (one word, two places - they cannot drift apart unseen)",
       "for any diagnosis not in the master file yet change it to i10" in _RSRC.split("\nimport os, sys")[0] and re.search(r'^DX_INSTEAD = "%s"' % ci.DX_INSTEAD, _RSRC, re.M) is not None if hasattr(ci, "DX_INSTEAD") else False)
+# 11/25/2026 (independent review of the I10 rule): THE DIAGNOSIS CACHE STEP ITSELF - claimocity_dx.py, the first must-step of the ingest and of the retry - run INSIDE this process
+# against a stand-in AdvancedMD that answers lookupdiagcode from a table (no network). The answer shapes follow docs/captured_calls.md: a hit is <diagcode id="dcodeN" code="..."/>,
+# a lookup with no match 'returned an empty <Results/>' - nobody has confirmed more of a real answer than that, so nothing here leans on any other marker. Since that day a null in
+# the cache puts I10 on a claim in the code's place (build(), section 3b), so the step may write a null ONLY for a real lookup answer. An answer that is a fault, an error page or an
+# empty body is asked once more after a short pause; when that is no lookup answer either, the cache is written as it stands WITHOUT that code and the step ends non-zero with one
+# plain line - the driver then stops at 'STEP FAILED: dx' before anything is entered. And I10 itself, the rule's own stand-in code, is looked up also when no message of the batch
+# carries it: without it in the cache the import and the retry switch the rule off without a word.
+DX_HELPER = os.path.join(ROOT, "scripts", "helpers", "claimocity_dx.py"); _DSRC = open(DX_HELPER).read()
+DXS = {"list": {}, "odd": {}, "log": []}      # AdvancedMD's diagnosis list in this simulation; code -> the answers given INSTEAD of the list's, one per ask (the last one stays; None = the list's own); what was asked and every pause, in order
+_DXLIST = {"I10": "dcode1", "E11.9": "dcode2", "J44.9": "dcode4", "M51.17": "dcode7"}
+_DX_FAULT = "<PPMDResults><Error><Fault><detail><code>-2147220471</code><description>Server was unable to process request</description></detail></Fault></Error></PPMDResults>"
+def _dxs_post(body, timeout=0):
+    v_ = re.search(r'code="([^"%]*)%"', body).group(1); DXS["log"].append(("ask", v_)); odd_ = DXS["odd"].get(v_) or [None]
+    a_ = odd_.pop(0) if len(odd_) > 1 else odd_[0]
+    if a_ is not None: return a_
+    return '<PPMDResults><Results><diagcodelist itemcount="1"><diagcode id="%s" code="%s" name="x"/></diagcodelist></Results></PPMDResults>' % (DXS["list"][v_], v_) if v_ in DXS["list"] else "<PPMDResults><Results/></PPMDResults>"
+def _dxs_login(*a):      # the step logs in once, before its first lookup: from here on each of its pauses is written down (run_inside puts the real sleep back when the step has ended)
+    import time as _t; _t.sleep = lambda s_=0, *_a: DXS["log"].append(("pause", s_))
+DXS_STAND = {"amd": {"login_cached": _dxs_login, "post": _dxs_post,
+                     "msg": lambda action, cls, attrs=None, children="": '<ppmdmsg action="%s" class="%s" %s>%s</ppmdmsg>' % (action, cls, " ".join('%s="%s"' % kv_ for kv_ in (attrs or {}).items()), children)}}
+def dx_step(fields, cache, odd=None, known=None):
+    """The cache step over ONE invented batch whose charge lines carry these diagnosis fields, with the cache it finds (None = no cache file yet); odd = {code: the answers given
+    instead of the list's}, known = AdvancedMD's list (default _DXLIST). -> (what it printed, its error, its exit code, the cache file afterwards, what it asked and each pause in order)."""
+    d_ = tempfile.mkdtemp(prefix="posrule_dx_", dir=tmp); DXS.update(list=dict(_DXLIST if known is None else known), odd={k_: list(v_) for k_, v_ in (odd or {}).items()}, log=[])
+    json.dump([{"pid": "D1", "FT1": [{"cpt": "99309", "dos": "20261126", "dx": x_, "units": "1"} for x_ in fields]}], open(os.path.join(d_, "feed_parsed_DXT.json"), "w"))
+    if cache is not None: json.dump(cache, open(os.path.join(d_, "dxc.json"), "w"))
+    o_, e_ = run_inside(DX_HELPER, DXS_STAND, d_, env={"FEED_STAMP": "DXT", "FEED_DX_CACHE": "dxc.json"})
+    return o_, e_, EXIT(), _rd(d_, "dxc.json"), list(DXS["log"])
+_asks = lambda lg_: [a_[1] for a_ in lg_ if a_[0] == "ask"]
+_o, _e, _x, _c, _lg = dx_step(["J44.9^E11.9", "S82.843D"], {"I10": "dcode1"})
+check("dx step (11/25/2026): a batch whose lookups all ANSWER is cached as before - a code in AdvancedMD's list with its id, a code a real lookup answer does not list (the empty <Results/>) as null - one lookup per code, in order, and the step ends well",
+      _e == "" and _x == 0 and _c == {"I10": "dcode1", "E11.9": "dcode2", "J44.9": "dcode4", "S82.843D": None} and _asks(_lg) == ["E11.9", "J44.9", "S82.843D"] and "looked up 3: 2 found, 1 not in AMD" in _o, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["S82.843D"], {"I10": "dcode1"}, odd={"S82.843D": ["<Results/>"]})
+check("dx step: ... a lookup answer is known by its <Results element (docs/captured_calls.md: a lookup with no match 'returned an empty <Results/>') - that bare answer is cached as null too, asked once",
+      _e == "" and _x == 0 and _c == {"I10": "dcode1", "S82.843D": None} and _asks(_lg) == ["S82.843D"], (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["S82.843D"], {"I10": "dcode1"}, odd={"S82.843D": ["<PPMDResults><Error /></PPMDResults>"]})
+check("dx step: ... AdvancedMD's own envelope with no fault and no Results element counts as a lookup answer too (the no-match answer with codeset 10 was never recorded word for word - a rule that knew only <Results would stop every ingest carrying a code the list lacks): cached as null, asked once, the step ends well",
+      _e == "" and _x == 0 and _c == {"I10": "dcode1", "S82.843D": None} and _asks(_lg) == ["S82.843D"], (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["J44.9^E11.9", "S82.843D"], {"I10": "dcode1"}, odd={"J44.9": [_DX_FAULT]}); _last = (_o.strip().splitlines() or [""])[-1]
+check("dx step (11/25/2026, independent review of the I10 rule): a FAULT is never cached as 'not in the list' - the code is asked ONCE more after a short pause, and when that answer is a fault too the step ENDS NON-ZERO, the cache it writes holds NO entry for that code (what was answered before it is kept) and no further code is asked",
+      _e == "" and _x != 0 and _c == {"I10": "dcode1", "E11.9": "dcode2"} and _asks(_lg) == ["E11.9", "J44.9", "J44.9"] and [a_[0] for a_ in _lg[-3:]] == ["ask", "pause", "ask"] and 1 <= _lg[-2][1] <= 30, (_e, _x, _c, _lg, _o))
+check("dx step: ... its LAST line is one plain sentence that names the code and says that nothing was cached for it and that the next run asks again - inside the 110 characters the drivers show of a line beside 'STEP FAILED: dx' - and then what the answer was",
+      _last.startswith("dx: J44.9 - no lookup answer in two tries, nothing was cached for it; the next run asks again (the answer was a fault") and "the next run asks again" in _last[:110] and "looked up" not in _o, _o)
+for _how, _a2, _want in (("a real answer that lists the code", "J44.9", "dcode4"), ("a real answer that does not list it", "S82.843D", None)):
+    _o, _e, _x, _c, _lg = dx_step([_a2], {"I10": "dcode1"}, odd={_a2: [_DX_FAULT, None]})
+    check("dx step: ... a fault on the first ask and %s on the second - the code is cached by that second answer and the step ends well" % _how,
+          _e == "" and _x == 0 and _c == {"I10": "dcode1", _a2: _want} and _asks(_lg) == [_a2, _a2], (_e, _x, _c, _lg, _o))
+for _what, _ans, _said in (("an error page (it holds no <Results)", "<html><body><h1>502 Bad Gateway</h1></body></html>", "not a lookup answer (no <Results>)"), ("an empty body", "", "empty"),
+                           ("a fault that carries an empty <Results/> beside it", "<PPMDResults><Results/><Error><Fault>x</Fault></Error></PPMDResults>", "a fault"),
+                           ("an answer marked success=\"0\" - the registry's other mark of a failed call (docs/captured_calls.md: 'Detect faults on <Fault / success=\"0\"')", '<PPMDResults><Results success="0" /><Error /></PPMDResults>', "a fault")):
+    _o, _e, _x, _c, _lg = dx_step(["J44.9"], {"I10": "dcode1", "J44.9": None}, odd={"J44.9": [_ans]})
+    check("dx step: ... the same for %s, twice: the step ends non-zero, the code was asked twice, and the cache holds no entry for it - not even the null an EARLIER run left there" % _what,
+          _e == "" and _x != 0 and _c == {"I10": "dcode1"} and _asks(_lg) == ["J44.9", "J44.9"] and "dx: J44.9 - no lookup answer in two tries, nothing was cached for it; the next run asks again (the answer was %s" % _said in _o, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["M5117"], {"I10": "dcode1"})
+check("dx step: a code the feed wrote without its dot is asked as written and then with the dot, and cached under the feed's own spelling (as before)",
+      _e == "" and _x == 0 and _c == {"I10": "dcode1", "M5117": "dcode7"} and _asks(_lg) == ["M5117", "M51.17"], (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["M5117"], {"I10": "dcode1"}, odd={"M51.17": [_DX_FAULT]})
+check("dx step: ... and when the dotted form gets no lookup answer the code is not cached either - the line names the code as the feed wrote it and the form that was asked",
+      _e == "" and _x != 0 and _c == {"I10": "dcode1"} and _asks(_lg) == ["M5117", "M51.17", "M51.17"] and "dx: M5117 (asked as M51.17) - no lookup answer in two tries, nothing was cached for it; the next run asks again" in _o, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9^ ^J44.9", " ^ "], {"I10": "dcode1"})
+check("dx step: a blank between two ^ is not a code - it is not asked (asked, it is a search for every code of the list, and under the rule above a fault to THAT search would stop the ingest) and it is never cached",
+      _e == "" and _x == 0 and _c == {"I10": "dcode1", "E11.9": "dcode2", "J44.9": "dcode4"} and _asks(_lg) == ["E11.9", "J44.9"] and re.match(r"dx codes in feed: 2\b", _o) is not None, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9"], None)
+check("dx step (11/25/2026, William's I10 rule): I10 itself - the code that stands in a missing code's place - is looked up also when NO message of the batch carries it: a workspace with no cache yet holds I10's id after the step (without it the import and the retry switch the rule off without a word), and the first line still counts the FEED's codes",
+      _e == "" and _x == 0 and _c == {"E11.9": "dcode2", "I10": "dcode1"} and _asks(_lg) == ["E11.9", "I10"] and _o.startswith("dx codes in feed: 1 (and I10, the code that stands in for a code the list lacks), cached: 0, to look up: 2\n"), (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9"], {"I10": "dcode1", "E11.9": "dcode2"})
+check("dx step: ... a cache that holds I10's id already costs no lookup - nothing is asked and the cache is as it was", _e == "" and _x == 0 and _lg == [] and _c == {"I10": "dcode1", "E11.9": "dcode2"} and "to look up: 0" in _o, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9"], {"I10": None, "E11.9": "dcode2"})
+check("dx step: ... a cache that holds I10 as null asks for it again like any null (William may have added it since)", _e == "" and _x == 0 and _asks(_lg) == ["I10"] and _c == {"I10": "dcode1", "E11.9": "dcode2"}, (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9"], {"E11.9": "dcode2"}, known={"E11.9": "dcode2"})
+check("dx step: ... when a real lookup answer does not list I10 it is cached as null like any other code and the step ends well - the import then works as before 11/25/2026 (section 3b)",
+      _e == "" and _x == 0 and _c == {"E11.9": "dcode2", "I10": None} and _asks(_lg) == ["I10"], (_e, _x, _c, _lg, _o))
+_o, _e, _x, _c, _lg = dx_step(["E11.9"], {}, odd={"I10": [_DX_FAULT]})
+check("dx step: ... and when I10's own lookup gets no lookup answer the step ends non-zero as for any code - nothing is entered under a rule nobody could read",
+      _e == "" and _x != 0 and _c == {"E11.9": "dcode2"} and "dx: I10 - no lookup answer in two tries, nothing was cached for it; the next run asks again" in _o, (_e, _x, _c, _lg, _o))
+check("dx step: its stand-in code is the import's and the retry's (one word, three places - they cannot drift apart unseen) and its PLAIN ENGLISH header states the rule of 11/25/2026: a null only for a real lookup answer, asked once more, never cached, the driver stops, the next run asks again",
+      re.search(r'^DX_INSTEAD = "%s"' % ci.DX_INSTEAD, _DSRC, re.M) is not None
+      and all(w_ in _DSRC.split("\nimport os as _os")[0] for w_ in ("for any diagnosis not in the master file yet change it to i10", "<Results", "ONCE more", "STEP FAILED: dx", "the next run asks again")), _DSRC[:200])
+# ... and the same step walked through the retry DRIVER: its diagnosis cache step is the real claimocity_dx.py (dx= above), its import step the real import helper
+_o, _calls, _e, _w = dx_retry(_DXC, dx=(_DXLIST, {"M51.17": [_DX_FAULT]}))
+check("retry + the REAL cache step (11/25/2026): AdvancedMD answers the lookup of a code that IS in its list with a fault, twice - the retry stops at 'STEP FAILED: dx' before its import step: no visit is sent, no register is written, and the cache holds no null for that code (before, the fault was cached as 'not in the list' and the visit went in with I10 in the place of a code William already has)",
+      _e == "" and [c_[1] for c_ in _calls] == ["claimocity_dx.py"] and "\nSTEP FAILED: dx - see logs/claimocity_%s_dx.log" % _RS in _o and "[dx] exit 1 " in _o and "dx: M51.17 - no lookup answer in two tries, nothing was cached for it; the next run asks again" in _o
+      and not any("addvisit" in b_ or "updvisitwithnewcharges" in b_ for b_ in POSTS) and _rd(_w, "registers", "feed_import_%s.json" % _RS) is None and _rd(_w, "dx_cache_feed.json") == _DXC, (_e, _calls, _o[-700:], _rd(_w, "dx_cache_feed.json")))
+_o, _calls, _e, _w = dx_retry({"E11.9": "dcode2", "S82.843D": None}, dx=({"I10": "dcode1", "E11.9": "dcode2"}, {}))
+_sent = [re.findall(r'diagcodes="([^"]*)"', b_) for b_ in POSTS if 'action="updvisitwithnewcharges"' in b_]
+check("retry + the REAL cache step: a workspace whose cache has never seen I10 and retried messages that do not carry it - the step looks I10 up, so the rule is ON and the waiting visits go in with I10 (before, the retry said 'still wait on codes' and the rule was off without a word)",
+      _e == "" and (_rd(_w, "dx_cache_feed.json") or {}).get("I10") == "dcode1" and _sent == [["dcode1"], ["dcode1", "dcode2 dcode1"]]
+      and "\nretry-dx: 2 visit(s) entered with I10 in place of codes not in AMD's diagnosis list: M51.17, S82.843D, T84.011A" in _o, (_e, _calls, _o[-700:], _sent))
+# ... and through the INGEST driver itself: its parse step is answered by a stand-in (one invented message), its diagnosis cache step is the real claimocity_dx.py against a lookup that answers one code with a fault
+_w, _r = hc_dirs({}); os.makedirs(os.path.join(_w, "inbox", "claimocity")); os.makedirs(os.path.join(_w, "registers")); open(os.path.join(_w, "inbox", "claimocity", "20261126a.hl7"), "w").write(hl7("FD4", B["n1"], "", [("99308", "20261105")], NPI))
+def _ingest_dx(cmd):
+    b_ = os.path.basename(str(cmd[2] if str(cmd[1]) == "-I" else cmd[1]))
+    if b_ == "feed_parse_dft_1028.py": json.dump([{"pid": "FD4", "name": NAME("FD4"), "file": "20261126", "FT1": [{"cpt": "99308", "dos": "20261105", "dx": "J44.9^E11.9", "units": "1"}], "dob": DOBK}], open(os.path.join(_w, str(cmd[-1])), "w"))
+    if b_ == "claimocity_dx.py":
+        DXS.update(list=dict(_DXLIST), odd={"J44.9": [_DX_FAULT]}, log=[]); o2_, e2_ = run_inside(DX_HELPER, DXS_STAND, _w, env={"FEED_STAMP": "20261126T1239Z", "FEED_DX_CACHE": "dx_cache_feed.json"})
+        return (o2_ + e2_).strip(), (1 if e2_ else EXIT())
+_o, _calls, _e = driver_run("claimocity_ingest.py", _w, _r, ("--hl7-dir", "inbox/claimocity", "--stamp", "2026-11-26T1239Z", "--live", "--skip-verify"), _ingest_dx); _ing = _rd(_w, "registers", "claimocity_ingest.json") or {}
+check("ingest + the REAL cache step: the same fault stops the INGEST at 'STEP FAILED: dx' - no match, no new chart and no import step is started, its run row says exit 2 and the file is NOT registered (the next run reads it again), and the cache keeps what WAS answered",
+      _e == "" and [next((x_ for x_ in c_ if x_.endswith(".py")), "") for c_ in _calls] == ["feed_parse_dft_1028.py", "claimocity_dx.py"] and "\nSTEP FAILED: dx - see logs/claimocity_20261126T1239Z_dx.log" in _o
+      and "dx: J44.9 - no lookup answer in two tries, nothing was cached for it; the next run asks again" in _o and "RESULT stamp" not in _o and (_ing.get("runs") or [{}])[-1].get("exit") == 2 and _ing.get("files") == {}
+      and _rd(_w, "dx_cache_feed.json") == {"E11.9": "dcode2", "I10": "dcode1"}, (_e, _calls, _o[-600:], _ing))
+# 11/25/2026 (feed review): the reconciliation helper (claimocity_recon.py, the last step of the ingest and of the retry), run INSIDE this process - it loads no module that talks
+# to AdvancedMD. The import leaves ONE skipped row for a message without a charge line (section 4, NO_LINES_WHY). The recon hands a patient's skipped rows out, in order, to that
+# patient's messages - but it never reaches a message without a charge line, so that row landed on a REAL visit of the patient: an 'already' visit read 'skipped', a patient with
+# no chart fell off William's no-chart list, a real skip lost its reason. No charge was entered or lost by it; the record that goes to main and to the monitoring page was wrong.
+RECON = os.path.join(ROOT, "scripts", "helpers", "claimocity_recon.py"); _RCSRC = open(RECON).read()
+def recon_rows(parsed, skipped, pmap):
+    """the helper over ONE invented batch - its messages, the skipped rows of its import register, the patient map -> (its error, [(the codes, the outcome, the reason)] of its rows, its counts)"""
+    d_ = tempfile.mkdtemp(prefix="posrule_rc_", dir=tmp); os.makedirs(os.path.join(d_, "registers")); st_ = "20261126T0100Z"
+    json.dump(parsed, open(os.path.join(d_, "feed_parsed_%s.json" % st_), "w")); json.dump(pmap, open(os.path.join(d_, "registers", "claimocity_patient_map.json"), "w"))
+    json.dump({"created": [], "skipped": skipped, "failed": []}, open(os.path.join(d_, "registers", "feed_import_%s.json" % st_), "w"))
+    o_, e_ = run_inside(RECON, {}, d_, argv=(st_, "--ws", d_)); r_ = _rd(d_, "registers", "feed_recon_%s.json" % st_) or {}
+    return e_, [(x_.get("c"), x_.get("s"), x_.get("why")) for x_ in r_.get("rows", [])], r_.get("counts", {})
+_RCM = [{"pid": "ZR1", "file": "20261125", "FT1": []}, {"pid": "ZR1", "file": "20261125", "provider": "x", "FT1": [{"cpt": "99309", "dos": "20261102", "dx": "I10", "units": "1"}]}]      # the patient's message without a charge line, then a visit of that patient
+_RROW = {"feed_id": "ZR1", "pid": "pat9301", "why": ci.NO_LINES_WHY}; _RREAL = {"feed_id": "ZR1", "pid": "pat9301", "why": "no usable dx for 99309"}
+check("recon: the helper loads no module that talks to AdvancedMD (it is run here without a stand-in), and the reason it leaves out is the import's own line, word for word (NO_LINES_WHY - one text, two places)",
+      not (loads(_RCSRC) & set(AMD_MODULES)) and re.search(r'^NO_LINES_WHY = "%s"' % re.escape(ci.NO_LINES_WHY), _RCSRC, re.M) is not None, loads(_RCSRC))
+_e1, _r1, _c1 = recon_rows(_RCM, [_RROW], {"ZR1": "pat9301"}); _e2, _r2, _c2 = recon_rows(_RCM, [dict(_RROW, pid=None)], {}); _e3, _r3, _c3 = recon_rows(_RCM, [_RROW, _RREAL], {"ZR1": "pat9301"})
+check("recon (11/25/2026, feed review): the import's row for a message WITHOUT a charge line is not handed to another message of that patient - a visit an earlier batch entered still reads 'already' (visit already on the chart), not 'skipped' with the empty message's reason",
+      _e1 == "" and _r1 == [(["99309"], "already", "visit already on the chart (same CPT and date) - not entered twice")] and _c1.get("already") == 1 and _c1.get("skipped") == 0 and _c1.get("messages") == 1, (_e1, _r1, _c1))
+check("recon: ... the visit of a patient with NO chart still reads 'nochart' - it stays on William's no-chart list", _e2 == "" and [(c_, s_) for c_, s_, _y in _r2] == [(["99309"], "nochart")] and _c2.get("nochart") == 1 and _c2.get("skipped") == 0, (_e2, _r2, _c2))
+check("recon: ... and a REAL skip of that patient beside the empty message keeps its own reason - 'no usable dx for 99309' stands on the visit and is counted under dx", _e3 == "" and _r3 == [(["99309"], "dx", "no usable dx for 99309")] and _c3.get("dx") == 1 and _c3.get("skipped") == 0, (_e3, _r3, _c3))
+_e4, _r4b, _c4b = recon_rows(_RCM[1:] + [dict(_RCM[1], FT1=[{"cpt": "99497", "dos": "20261103", "dx": "I10", "units": "1"}])], [_RREAL, {"feed_id": "ZR1", "pid": "pat9301", "why": "unknown CPT 99497"}], {"ZR1": "pat9301"})
+check("recon: ... every OTHER skipped row is handed out as before - two visits of one patient, two skips, each with its own reason and kind", _e4 == "" and _r4b == [(["99309"], "dx", "no usable dx for 99309"), (["99497"], "cpt", "unknown CPT 99497")], (_e4, _r4b, _c4b))
 # C2's exact input for the ingest driver: current import helper, report and inspector of 2075dba, complete clone; a batch of invented messages
 _w, _r = hc_dirs({"claimocity_report.py": "# report helper of 2075dba\n", "claimocity_inspector.py": "# inspector helper of 2075dba\n"})
 os.makedirs(os.path.join(_w, "inbox", "claimocity")); open(os.path.join(_w, "inbox", "claimocity", "20261110a.hl7"), "w").write(hl7("FD4", WO, "", [("99308", "20261105")], NP_NPI) + hl7("FD4", B["h1"], "", [("99308", "20261105")], NPI) + hl7("FG7", "ZZ Other Hospital", "20261028", [("99232", "20261030")], NPI))

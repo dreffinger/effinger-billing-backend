@@ -12,7 +12,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-25.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-25.2"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -169,7 +169,7 @@ try:
         _i10 = "/".join(sorted(_dxi)) or "I10"
         _before = (bool(re.match(r"^2\d{7}T", _st8)) and _st8[:8] < "20261125") or STAMP == "1028"      # a batch from before William's word: its codes were left off by the import of that day
         _win = "entered with %s in its place" % _i10
-        _wout = "entered without that code (before 11/25/2026)" if _before else "entered without that code (%s was not put in its place: an older copy of the import ran, or %s itself is not in AdvancedMD's list)" % (_i10, _i10)
+        _wout = "entered without that code (before 11/25/2026)" if _before else "entered without that code (%s was not put in its place: an older copy of the import ran, %s itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries)" % (_i10, _i10)
         _nv = lambda c_: len(_dxc[c_][0]) + len(_dxc[c_][1])
         _order = sorted(_dxc, key=lambda c_: (-_nv(c_), c_))
         _kinds = "" if not _dxn[1] else (", all %s" % _wout) if not _dxn[0] else ", %d %s and %d %s" % (_dxn[0], _win, _dxn[1], _wout)
@@ -178,7 +178,7 @@ try:
         _end = (("Each of these visits was entered with %s in the code's place on your word of 11/25/2026; " % _i10) + _kept) if not _dxn[1] else \
                (("The visits listed as %s went in with %s in the code's place on your word of 11/25/2026; " % (_win, _i10)) + _kept + " The visits listed as entered without that code went in with their other codes only: nothing stands in the code's place on them.") if _dxn[0] else \
                ("These visits were entered without that code: it was left off the charge and nothing stands in its place. Since 11/25/2026 a visit goes in with %s in the code's place on your word; once a code is in the list, later visits use it." % _i10) if _before else \
-               ("These visits were entered without that code: it was left off the charge and nothing stands in its place - %s was not put there as your word of 11/25/2026 asks (an older copy of the import ran, or %s itself is not in AdvancedMD's list). Once a code is in the list, later visits use it." % (_i10, _i10))
+               ("These visits were entered without that code: it was left off the charge and nothing stands in its place - %s was not put there as your word of 11/25/2026 asks (an older copy of the import ran, %s itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries). Once a code is in the list, later visits use it." % (_i10, _i10))
         _file = "outbox/dx_codes_needed_%s.txt" % STAMP
         _mail = ["These diagnosis codes are not in AdvancedMD's diagnosis list (Master Files > Diagnosis Codes) and need to be added:", ""] + ["%s - %d visit(s): %s" % (c_, _nv(c_), _vis(c_)) for c_ in _order] + ["", _end]
         try:

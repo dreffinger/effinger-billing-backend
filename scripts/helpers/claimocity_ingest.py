@@ -71,7 +71,7 @@ print("stamp %s | %d new file(s) of %d in %s | mode %s" % (stamp, len(files), le
 # nothing is new, so the retry of the same routine runs current helpers too - every feed helper here is compared with the repository clone's copy
 # and replaced when it differs (claimocity_helpers_current.make_current, the one function this driver and claimocity_retry_dx.py share). Without a
 # clone each helper is checked by its version line. An old helper is said at the end of the RESULT line, never a reason to hold a visit (rules.md part 6).
-POS_RULE = 'POS_RULE_VERSION = "2026-11-25.1"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-25.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
     for _p in (os.path.join(HERE, "claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py")):

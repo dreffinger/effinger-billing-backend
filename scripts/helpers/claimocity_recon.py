@@ -4,6 +4,8 @@
 #   AdvancedMD got: entered (visit + charge ids + fees), already in AMD (the dedupe found the visit on the chart), skipped (why:
 #   date of death / diagnosis code not in AMD's list / unknown CPT), failed, or no chart (the patient could not be matched and no
 #   chart was made - William's identity hold). Entered rows also carry the insurance cascade's verdict (RELEASE / HOLD + why).
+#   A feed message with NO charge line is no patient-day and has no row here; the import's skipped row for it ('feed message without a
+#   charge line - passed over') stays in the import register and is never handed to another message of that patient (11/25/2026).
 # Writes registers/feed_recon_<stamp>.json - PHI-LIGHT: Claimocity patient id, AMD chart id, DOS, CPTs, dx codes, fees, visit and
 #   charge ids, facility id, clinician key, file date. Never a name, DOB, member id or SSN (the parsed file that has them stays in
 #   the workspace). The file is mirrored to main with the other registers and copied into the Claimocity Feed Monitoring page's
@@ -77,7 +79,13 @@ created_by_key = {}
 for c in imp.get("created", []):
     created_by_key.setdefault((c.get("feed_id"), c.get("dos"), tuple(sorted(c.get("cpts") or []))), []).append(c)
 skipped_by_fid = collections.defaultdict(list)
-for s in imp.get("skipped", []): skipped_by_fid[s.get("feed_id")].append(s)
+NO_LINES_WHY = "feed message without a charge line - passed over"      # the same line as in claimocity_import.py (the reason of its skipped row for such a message); the self-test holds the two together
+for s in imp.get("skipped", []):
+    # 11/25/2026 (independent review of the feed import): that row belongs to a message with NO charge line, which the loop below never reaches (`if not ft: continue`). Handed
+    # out with the patient's other rows it landed on ANOTHER message of that patient: a visit an earlier batch had entered read 'skipped' instead of 'already', the visit of a
+    # patient with no chart read 'skipped' instead of 'nochart' (off William's no-chart list), and a real skip beside it showed the empty message's reason while its own was
+    # shown nowhere. No charge was entered or lost by it - the record that goes to main and to the monitoring page was wrong. The row stays in the import register.
+    if s.get("why") != NO_LINES_WHY: skipped_by_fid[s.get("feed_id")].append(s)
 failed_by_fid = collections.defaultdict(list)
 for f in imp.get("failed", []): failed_by_fid[f.get("feed_id")].append(f)
 resolved = {}
