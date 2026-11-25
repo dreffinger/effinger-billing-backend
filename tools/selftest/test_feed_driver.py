@@ -22,6 +22,10 @@
 #   7 THE DIGEST SAYS IT (claimocity_report.py, run inside this process too): which chart each looked-up feed patient went to and what is
 #     for William (from the identity register), where the feed's birth date and the chart's differ (from the import's rows), and the
 #     inpatient-rehab visits at place of service 61 with each new rehab stay (William 11/25/2026) - chart ids only, fixed words only.
+#   8 ONE BROKEN MESSAGE NEVER STOPS THE FEED (feed_parse_dft_1028.py, started as its own program): a message without a patient line, or
+#     with a line cut short, used to end the parse with an error - no visit of that day was entered. Now every other message goes
+#     through, nothing is entered from the broken one, and it is counted in registers/feed_unreadable_<stamp>.json (file date and
+#     message number only) and at the top of the digest.
 # Usage: python3 tools/selftest/test_feed_driver.py     (exit 1 on any FAIL)
 import os, sys, io, re, json, types, shutil, tempfile, atexit, contextlib, importlib.util
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -88,7 +92,10 @@ def driver_run(w, r, argv, on_step):
             try: exec(compile(src, os.path.join(w, DRIVER), "exec"), {"__name__": "__main__", "__file__": os.path.join(w, DRIVER)})
             except SystemExit: pass
             except Exception as e: err = "%s: %s" % (type(e).__name__, e)
-    finally: sys.modules["subprocess"] = old_sub; os.chdir(old_cwd); sys.argv = old_argv; os.environ.clear(); os.environ.update(old_env)
+    finally:
+        if old_sub is None: sys.modules.pop("subprocess", None)      # it was not loaded before: leaving None behind would stop every later import of it
+        else: sys.modules["subprocess"] = old_sub
+        os.chdir(old_cwd); sys.argv = old_argv; os.environ.clear(); os.environ.update(old_env)
     return out.getvalue(), calls, err
 
 def answer(rule, chart="", status=None, flags=(), cands=(), ev=(), dob="real", will=False, ids=(), why=None):
@@ -265,13 +272,14 @@ check("5c every helper of the identity rule travels with the others: the shared 
 
 # ---- 7. the feed's digest says it (claimocity_report.py, run inside this process over invented registers) -----------------------------------------
 REPORT = os.path.join(HELPERS, "claimocity_report.py"); RSRC = open(REPORT).read()
-def report_run(label, stamp, created, identity=None, inspector=None, newcharts=None):
+def report_run(label, stamp, created, identity=None, inspector=None, newcharts=None, unreadable=None):
     """the report helper over ONE invented batch -> (its digest's lines, its error)"""
     d = os.path.join(TMP, "report_" + label); os.makedirs(os.path.join(d, "registers")); os.makedirs(os.path.join(d, "outbox"))
     json.dump({"created": created, "skipped": [], "failed": []}, open(os.path.join(d, "registers", "feed_import_%s.json" % stamp), "w"))
     if identity is not None: open(os.path.join(d, "registers", "feed_identity_%s.json" % stamp), "w").write(identity if isinstance(identity, str) else json.dumps(identity))
     if inspector is not None: json.dump(inspector, open(os.path.join(d, "registers", "feed_inspector_%s.json" % stamp), "w"))
     if newcharts is not None: json.dump(newcharts, open(os.path.join(d, "registers", "feed_newcharts_%s.json" % stamp), "w"))
+    if unreadable is not None: open(os.path.join(d, "registers", "feed_unreadable_%s.json" % stamp), "w").write(unreadable if isinstance(unreadable, str) else json.dumps(unreadable))
     shutil.copy2(os.path.join(HELPERS, "feed_identity.py"), os.path.join(d, "feed_identity.py"))
     old_cwd = os.getcwd(); old_env = dict(os.environ); old_path = list(sys.path); old_fi = sys.modules.pop("feed_identity", None); out = io.StringIO(); err = ""
     try:
@@ -357,9 +365,72 @@ check("7k a rehab visit the Claim Inspector questions stands at the top with the
 L9b, e9b = report_run("rehab_none", S7, [vrow("pat9604", "vst7105", "11/29/2026", ["99223"], stay={"kind": "acute", "initial": "11/29/2026", "sign": ""})])
 check("7l a batch without a rehab visit gets no such section", lambda: e9b == "" and not any(l.startswith("## Inpatient rehab") for l in L9b), lambda: (e9b, [l for l in L9b if l.startswith("##")]))
 
+# ---- 8. one broken message never stops the feed (feed_parse_dft_1028.py as its own program, over invented files) ---------------------------------
+import subprocess
+PARSER = os.path.join(HELPERS, "feed_parse_dft_1028.py"); S8 = "20261201T1240Z"
+def hl7(n, pid=True, cut=None, cpts=("99308",)):
+    """one invented message: cut='FT1' ends its last charge line after eight fields, cut='DG1' its diagnosis line after two"""
+    s = ["|".join(["MSH", "^~\\&", "FEED", "X", "X^1083300000", "", "", "20261201120000", "", "DFT^P03", "m%d" % n])]
+    if pid: s.append("|".join(["PID", "1", "", FID(n), "", NAME(n).replace(", ", "^"), "", DOB(n)]))
+    s.append("|".join(["PV1", "1", "I", "", "", "", "", "9^DOC^TOR"]))
+    for i, c in enumerate(cpts):
+        f = ["FT1", str(i + 1), "", "", "20261130", "20261201", "CG", "", "", "", "1"] + [""] * 8 + ["I10"] + [""] * 5 + [c + "^x"]
+        s.append("|".join(f[:8]) if cut == "FT1" and i == len(cpts) - 1 else "|".join(f))
+    s.append("DG1|1" if cut == "DG1" else "DG1|1||I10")
+    return "\r".join(s) + "\r"
+def parse_run(label, files):
+    """the parser as the driver starts it (python3 -I, the workspace as its folder) -> (exit code, its printed lines, the parsed list or None, the unreadable register or None)"""
+    w = os.path.join(TMP, "parse_" + label); src = os.path.join(w, "hl7", S8); os.makedirs(src); os.makedirs(os.path.join(w, "registers"))
+    for fn, body in files.items(): open(os.path.join(src, fn), "w").write(body)
+    r = subprocess.run([sys.executable, "-I", PARSER, src, "feed_parsed_%s.json" % S8], cwd=w, capture_output=True, text=True)
+    def rd(p_):
+        try: return json.load(open(os.path.join(w, p_)))
+        except (OSError, ValueError): return None
+    return r.returncode, (r.stdout + r.stderr).strip().splitlines(), rd("feed_parsed_%s.json" % S8), rd(os.path.join("registers", "feed_unreadable_%s.json" % S8)), w
+F8a, F8b = "2026" + "1201aaaa.hl7", "2026" + "1202bbbb.hl7"
+c8, o8, p8, u8, w8 = parse_run("broken", {F8a: hl7(1) + hl7(2, pid=False) + hl7(3, cpts=("99308", "99497")), F8b: hl7(4, cut="FT1", cpts=("99232", "99497")) + hl7(5, cut="DG1") + hl7(6)})
+_by = lambda n: [m for m in (p8 or []) if m.get("pid") == FID(n)]
+check("8a a file with a message without a patient line, one with a charge line cut short and one with a diagnosis line cut short: the parse ends without an error and writes its file (it used to stop - no visit of the day was entered)",
+      lambda: c8 == 0 and isinstance(p8, list) and len(p8) == 5, lambda: (c8, o8[-3:]))
+check("8b every other message is read whole, as before",
+      lambda: [[c["cpt"] for c in _by(n)[0]["FT1"]] for n in (1, 3, 6)] == [["99308"], ["99308", "99497"], ["99308"]] and all(_by(n)[0]["name"] == NAME(n) and _by(n)[0]["dob"] == DOB(n) and _by(n)[0]["file"] == f_[:8] for n, f_ in ((1, F8a), (3, F8a), (6, F8b))),
+      lambda: [(m.get("pid"), [c.get("cpt") for c in m.get("FT1") or []]) for m in p8 or []])
+check("8c the message without a patient line is nobody's visit: it is not handed on at all (the driver and every later step read a Claimocity id from each record), and every record that is handed on has one",
+      lambda: all("pid" in m and "name" in m and "dob" in m for m in p8) and sorted(m["pid"] for m in p8) == sorted(FID(n) for n in (1, 3, 4, 5, 6)), lambda: [sorted(m) for m in p8 or []])
+check("8d NOTHING is entered from a message with a line cut short: it keeps its patient and carries no charge line at all - not even the lines that could be read (the import's own 'feed message without a charge line' row then says it)",
+      lambda: [m["FT1"] for m in _by(4) + _by(5)] == [[], []] and [m.get("unreadable") for m in _by(4) + _by(5)] == ["a line of the message is cut short"] * 2, lambda: [(m.get("FT1"), m.get("unreadable")) for m in _by(4) + _by(5)])
+check("8e registers/feed_unreadable_<stamp>.json names each of the three by file date and message number, in fixed words - never a name, a birth date or a Claimocity id",
+      lambda: u8["stamp"] == S8 and sorted((x["file"], x["message"], x["why"]) for x in u8["messages"]) == [(F8a[:8], 2, "no patient line"), (F8b[:8], 1, "a line of the message is cut short"), (F8b[:8], 2, "a line of the message is cut short")]
+              and not any(s_ in json.dumps(u8) for s_ in secrets(1, 2, 3, 4, 5, 6) + [FID(n) for n in range(1, 7)]), lambda: u8)
+check("8f the parse's LAST line says it, short enough for the driver's line of a step: how many, that nothing of them was entered, TOP OF THE REPORT - and no name or birth date is printed by the parse at all",
+      lambda: o8[-1].startswith("UNREADABLE: 3 feed message(s)") and "TOP OF THE REPORT" in o8[-1][:160] and "registers/feed_unreadable_%s.json" % S8 in o8[-1] and not any(s_ in "\n".join(o8) for s_ in secrets(1, 2, 3, 4, 5, 6)), lambda: o8[-2:])
+c8g, o8g, p8g, u8g, w8g = parse_run("good", {F8a: hl7(1) + hl7(3)})
+check("8g a batch whose messages can all be read: no such line and no such register",
+      lambda: c8g == 0 and len(p8g) == 2 and u8g is None and not any("UNREADABLE" in l for l in o8g), lambda: (c8g, u8g, o8g[-2:]))
+c8s, o8s, p8s, u8s, w8s = parse_run("stale", {F8a: hl7(1) + hl7(2, pid=False)})
+open(os.path.join(w8s, "hl7", S8, F8a), "w").write(hl7(1))      # the file is sent again, whole
+r8s = subprocess.run([sys.executable, "-I", PARSER, os.path.join(w8s, "hl7", S8), "feed_parsed_%s.json" % S8], cwd=w8s, capture_output=True, text=True)
+check("8h a second parse of the same batch that finds nothing broken takes the register of the first away (a re-read after the file was sent again)",
+      lambda: u8s is not None and r8s.returncode == 0 and not os.path.exists(os.path.join(w8s, "registers", "feed_unreadable_%s.json" % S8)), lambda: (u8s, r8s.returncode, (r8s.stdout + r8s.stderr)[-300:]))
+c8n, o8n, p8n, u8n, w8n = parse_run("noreg", {F8a: hl7(1) + hl7(2, pid=False)}); shutil.rmtree(os.path.join(w8n, "registers"))
+if os.path.exists(os.path.join(w8n, "feed_parsed_%s.json" % S8)): os.remove(os.path.join(w8n, "feed_parsed_%s.json" % S8))
+r8n = subprocess.run([sys.executable, "-I", PARSER, os.path.join(w8n, "hl7", S8), "feed_parsed_%s.json" % S8], cwd=w8n, capture_output=True, text=True)
+check("8i started by hand in a folder without registers/: the parse still ends well and still says it in its last line (it makes no folder)",
+      lambda: r8n.returncode == 0 and os.path.exists(os.path.join(w8n, "feed_parsed_%s.json" % S8)) and not os.path.exists(os.path.join(w8n, "registers")) and r8n.stdout.strip().splitlines()[-1].startswith("UNREADABLE: 1 feed message(s)"), lambda: (r8n.returncode, (r8n.stdout + r8n.stderr)[-300:]))
+L8, e8 = report_run("unreadable", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])], unreadable={"stamp": S7, "messages": [{"file": "20261201", "message": 2, "why": "no patient line"}, {"file": "20261202", "message": 1, "why": "a line of the message is cut short"}]})
+check("8j the digest puts it at the top: how many feed messages could not be read, which file and which message, that their visits are NOT entered and what to do",
+      lambda: e8 == "" and len(has(top(L8), "2 feed message(s) could not be read", "20261201 message 2 (no patient line)", "20261202 message 1 (a line of the message is cut short)", "NOT entered", "Claimocity")) == 1, lambda: (e8, top(L8)))
+L8b, e8b = report_run("unreadable_words", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])], unreadable={"stamp": S7, "messages": [{"file": NAME(1), "message": DOB(1), "why": NAME(2)}, {"file": "20261202", "message": 3, "why": "a line of the message is cut short"}]})
+check("8k a register row that is not a file date, a number and the fixed words is counted but never copied (a name can never reach the digest through it)",
+      lambda: e8b == "" and len(has(top(L8b), "2 feed message(s) could not be read", "20261202 message 3")) == 1 and not any(s_ in "\n".join(L8b) for s_ in secrets(1, 2)), lambda: (e8b, top(L8b)))
+L8c, e8c = report_run("unreadable_bad", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])], unreadable="{ not json")
+check("8l a register that cannot be read is said at the top too - never passed over in silence", lambda: e8c == "" and len(has(top(L8c), "feed_unreadable_%s.json" % S7, "could not be read")) == 1, lambda: (e8c, top(L8c)))
+L8d, e8d = report_run("unreadable_none", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])])
+check("8m a batch without that register gets no such line", lambda: e8d == "" and not has(L8d, "could not be read"), lambda: (e8d, top(L8d)))
+
 # ---- 6. the privacy gate leaves this file and the driver alone --------------------------------------------------------------------------------------
 sys.path.insert(0, os.path.join(ROOT, "tools", "mirror")); import phi_gate as _pg
-for rel in ("tools/selftest/test_feed_driver.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_report.py"):
+for rel in ("tools/selftest/test_feed_driver.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_report.py", "scripts/helpers/feed_parse_dft_1028.py"):
     _t = open(os.path.join(ROOT, rel)).read(); _r = _pg.redact(_t, {}, code=True)
     check("6 the privacy gate's tree rules leave %s exactly as it is (every invented value is put together at run time)" % rel, _r == _t, [(a, b) for a, b in zip(_t.splitlines(), _r.splitlines()) if a != b][:2])
 

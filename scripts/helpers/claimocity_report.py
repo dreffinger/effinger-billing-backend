@@ -10,6 +10,7 @@
 #   which rule, and - at the TOP OF THE REPORT - every line that is for William (a new chart beside same-name charts, a new chart with no birth date, a
 #   patient nobody could decide, a new chart that could not be made, a file that stays unregistered). A word in that register that is not one of the
 #   identity rule's fixed words is never printed. 'Birth dates': ONE line from the import's rows (dob_note) - where the feed's date and the chart's differ.
+#   'Feed messages that could not be read': the parse step's register (feed_unreadable_<stamp>.json) - at the top, with what to do.
 #   'Inpatient rehab': the visits entered at HCA REHAB / place of service 61, the ones kept at 21, each new rehab stay by chart and date, and at the top
 #   every rehab visit the Claim Inspector questions (the inspector step's own sentence, whole).
 # Decides nothing and changes nothing in AdvancedMD; it sends no email itself - the line 'EMAIL WILLIAM: <file>' is the cue for the run that reads the digest.
@@ -536,6 +537,24 @@ except Exception: pass
 _T = lambda s_: L("  - TOP OF THE REPORT - " + s_)
 _pat_ok = lambda c_: c_ if isinstance(c_, str) and re.fullmatch(r"pat[0-9]+", c_) else ""
 _fid_ok = lambda i_: i_ if isinstance(i_, str) and re.fullmatch(r"[0-9A-Fa-f]{24}", i_) else "(an id that is not 24 hex characters)"
+# feed messages that could not be read (feed_parse_dft_1028.py, 11/25/2026: one broken message no longer stops the feed - it is passed over and counted in
+# registers/feed_unreadable_<stamp>.json). Said at the top: nothing of such a message was entered. Only a file date (8 digits), a message number and the
+# parse's two fixed sentences are printed; a row that is anything else is counted and not copied.
+_unf = "registers/feed_unreadable_%s.json" % STAMP
+if os.path.exists(_unf):
+    try:
+        _unr_ = json.load(open(_unf)); _um = _unr_.get("messages") if isinstance(_unr_, dict) else None
+        if not isinstance(_um, list): raise ValueError("no list of messages")
+        _UW = ("no patient line", "a line of the message is cut short")
+        _uok = ["%s message %d (%s)" % (u_["file"], u_["message"], u_["why"]) for u_ in _um if isinstance(u_, dict) and isinstance(u_.get("file"), str) and re.fullmatch(r"\d{8}|\?", u_["file"])
+                and isinstance(u_.get("message"), int) and not isinstance(u_.get("message"), bool) and u_.get("why") in _UW]
+        if _um:
+            L(""); L("## Feed messages that could not be read")
+            _T("%d feed message(s) could not be read and their visits are NOT entered%s%s - ask Claimocity to send the file again; the next ingest reads it when it arrives (the register: %s)." % (
+                len(_um), (": file " + "; file ".join(_uok[:20]) + (" +%d more" % (len(_uok) - 20) if len(_uok) > 20 else "")) if _uok else "",
+                (" (%d row(s) of the register are not a file date, a message number and the fixed words - not shown)" % (len(_um) - len(_uok))) if len(_um) > len(_uok) else "", _unf))
+    except Exception as _e:
+        L(""); L("## Feed messages that could not be read"); _T("%s could not be read (%s) - the parse step counted feed messages it could not read; see logs/claimocity_%s_parse.log" % (_unf, type(_e).__name__, STAMP))
 _idf = "registers/feed_identity_%s.json" % STAMP; _chart_section = False      # the birth-date line stands under 'Which chart' when that section is there, else under a heading of its own
 if os.path.exists(_idf):
     try:

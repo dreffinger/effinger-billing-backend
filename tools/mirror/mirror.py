@@ -251,7 +251,7 @@ def sync_helpers():
 # Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror: it never raises. (Only the
 # subcommand `feed-registers` ends non-zero, AFTER the step, while a standing file on main is no longer JSON - feed_standing_unreadable.)
 # The sweep's stamp carries seconds and, when two runs start in one second, "_2", "_3" ... behind it (feed_order_sweep.py).
-FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon|identity)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
+FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon|identity|unreadable)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
 FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json", "feed_in1_intake.json", "feed_dx_needed.json", "pos61_monitor.json")
 def _merge_ingest(main, ws):
     out = dict(main); files = dict(main.get("files") or {})

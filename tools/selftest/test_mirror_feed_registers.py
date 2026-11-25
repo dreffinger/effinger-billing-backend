@@ -663,6 +663,10 @@ check("12a the feed's identity register (which chart each new feed patient went 
 put(reg, IDENT[0], {"stamp": "invented", "patients": rows(1, "main")}); put(reg, IDENT[1], {"stamp": "invented", "patients": rows(3, "main")}); n, out = run()
 check("12b ... and by the same rule as the others: a FULLER workspace copy (its rows are its patients) replaces main's shorter one, a shorter one never replaces main's fuller one",
       side(reg, IDENT[0]) == "workspace" and side(reg, IDENT[1]) == "main" and n == 1 and "1 fuller workspace copy replaced main's shorter one: %s (1 -> 2 rows)" % IDENT[0] in line(out), (n, out))
+UNR = "feed_unreadable_20261126T1240Z.json"      # the parse step's register of feed messages it could not read (11/25/2026: one broken message no longer stops the feed)
+ws, reg = setup("parse_unreadable"); wr = os.path.join(ws, "registers"); put(wr, UNR, {"stamp": "invented", "messages": rows(2, "workspace")}); put(wr, "feed_unreadable.json", {"stamp": "invented", "messages": rows(1, "workspace")}); n, out = run()
+check("12b2 the register of the feed messages the parse step could not read (file date, message number and fixed words only) travels to main like every other batch register; a name without a stamp does not",
+      os.path.exists(os.path.join(reg, UNR)) and not os.path.exists(os.path.join(reg, "feed_unreadable.json")) and n == 1, (n, out, sorted(os.listdir(reg))))
 MONF = "pos61_monitor.json"
 def mon(at, tag, k=1): return {"version": "2026-11-25.1", "at": at, "lines": ["REHAB AT 61: %d visit(s) entered" % k], "top": [], "visits": rows(k, tag)}
 ws, reg = setup("pos61"); wr = os.path.join(ws, "registers")
