@@ -119,7 +119,8 @@ PHYSICIAN = "prof13"                                                 # the physi
 INITIAL_WHY = "initial nursing-facility visit: always the physician (William 11/10/2026)"
 FAC = {"HCA Florida Capital Hospital": ("fac29", "21"), "BRYNWOOD OPERATIONS LLC": ("fac34", "31"), "Aspire of Tallahassee": ("fac32", "31"),
        "Centre Pointe Health And Rehab Center": ("fac33", "31"), "Westminster Oaks-Bertrand Health Center": ("fac58", "31"),
-       "Oakes Southwood": ("fac1350", "31"), "Azalea Gardens ALF": ("fac37", "13"), "Tapestry Senior Living Lakeshore": ("fac55", "13"),
+       "Oakes Southwood": ("fac1350", "31"), "Pruitt Southwood": ("fac1350", "31"),      # (11/25/2026: the November care-management file names the Southwood building 'Pruitt Southwood' - the same building: 15 visits had gone in with no facility)
+       "Azalea Gardens ALF": ("fac37", "13"), "Tapestry Senior Living Lakeshore": ("fac55", "13"),
        "Opal Hermitage Boulevard ALF": ("fac53", "13"), "Capital Square at Tallahassee": ("fac54", "13"), "Canterfield of Tallahassee ALF": ("fac38", "13"),
        "Sodalis Senior Living ALF": ("fac65", "13"), "Allegro Senior Living ALF": ("fac57", "13")}
 HOSP = {"99221", "99222", "99223", "99231", "99232", "99233", "99238", "99239"}

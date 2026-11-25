@@ -80,7 +80,7 @@ os.environ.update(FEED_STAMP="SELFTEST", FEED_HL7_DIR=os.path.join(tmp, "hl7"), 
 # the import's date-of-death guard reads DECEASED_CACHE first: this test names its OWN empty cache, so a cache the calling shell exports never decides a visit here (11/10/2026)
 DECEASED_OWN = os.path.join(tmp, "deceased_cache_selftest.json"); open(DECEASED_OWN, "w").write("{}"); os.environ["DECEASED_CACHE"] = DECEASED_OWN
 NPI = "1225327380"                                                     # the practice's own rendering NPI, already in the helper's PROFILE table
-BUILDING = {"n1": "BRYNWOOD OPERATIONS LLC", "n2": "Aspire of Tallahassee", "n3": "Oakes Southwood", "a1": "Azalea Gardens ALF",
+BUILDING = {"n1": "BRYNWOOD OPERATIONS LLC", "n2": "Aspire of Tallahassee", "n3": "Oakes Southwood", "n4": "Pruitt Southwood", "a1": "Azalea Gardens ALF",
             "h1": "HCA Florida Capital Hospital", "u1": "A Building The Table Does Not Know"}
 NP_NPI = "1235128869"                                                  # the nurse practitioner's, also in the PROFILE table (prof15)
 def ft1(cpt, dos):
@@ -363,6 +363,10 @@ body, info, pp = built("h1", [("99232", "20261031")])
 check("build: hospital visit still 21 with its admission date", [p for _, p in pp] == ["21"] and 'hospitalizationfrom="10/30/2026"' in body and info["pos"] == "21", (pp, info))
 body, info, pp = built("h1", [("99487", "20261031")])
 check("build: CCM that arrives from the hospital is NOT touched (21)", [p for _, p in pp] == ["21"], pp)
+body, info, pp = built("n4", [("99487", "20261031"), ("99489", "20261031")])
+check("build (11/25/2026): the Southwood building under the name the November care-management file used for it ('Pruitt Southwood' - 15 visits went in with NO facility, $4,507, and a run set the facility by hand) is the SAME building as 'Oakes Southwood': facility fac1350, both care-management lines at 32 by the nursing-building rule, no 'unknown building'",
+      [p for _, p in pp] == ["32", "32"] and info["fac"] == "fac1350" and info["pos_lines"] == ["32", "32"] and info["pos_kind"] == ["ccm", "ccm"] and info["pos_err"] == "" and "feed_building" not in info
+      and ci.FAC.get("Pruitt Southwood") == ci.FAC.get("Oakes Southwood") == ("fac1350", "31"), (pp, {k: info.get(k) for k in ("fac", "pos_lines", "pos_kind", "pos_err", "feed_building")}))
 body, info, pp = built("u1", [("99487", "20261031")])
 check("build: a CCM line from an unknown building goes out as 32 (William 11/25/2026: never 31), with no facility, the register keeps the default 31 beside it, and it is not a rule failure",
       [p for _, p in pp] == ["32"] and info["fac"] == "" and info["pos_lines"] == ["32"] and info["pos_feed"] == "31" and info["pos_kind"] == ["ccm-unknown-building"] and info["pos_err"] == "", (pp, info))
