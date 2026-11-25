@@ -169,6 +169,21 @@ check("1e the rehab monitor's register: the repository's copy is taken, whole, w
 check("1f ... the workspace's own copy stays when it is the later one, or as late; and a copy on main that cannot be read, carries no time or is no register changes nothing - no line, the ingest goes on",
       lambda: all(mon_case("mon_keep%d" % i, "2026-11-26T00:41:10Z", a, t) == ("", [], ["REHAB AT 61: ws"]) for i, (a, t) in enumerate([("2026-11-25T06:40:00Z", None), ("2026-11-26T00:41:10Z", None), (None, "{ half"), (None, json.dumps({"lines": ["x"]})), (None, json.dumps(["at"])), (None, json.dumps({"at": "tomorrow"})), (None, None)])))
 
+# William's standing word that a chart is a feed patient (registers/feed_same_person.json - the insurance check and the intake read it): its home is the
+# repository; the ingest copies main's file into the workspace, whole, at every start - a workspace copy restored from the state bundle is only a copy.
+def yes_case(label, ws_doc, main_doc):
+    w_, r_, mreg_ = sandbox(label, ["20261126a.hl7"], ws_map={FID(1): "pat9001"})
+    if ws_doc is not None: json.dump(ws_doc, open(os.path.join(w_, "registers", "feed_same_person.json"), "w"))
+    if main_doc is not None: open(os.path.join(mreg_, "feed_same_person.json"), "w").write(main_doc if isinstance(main_doc, str) else json.dumps(main_doc))
+    o_, calls_, e_ = driver_run(w_, r_, ARGS(S1), steps(w_, S1, [msg(1, "20261126")], {}))
+    return e_, [l for l in o_.splitlines() if l.startswith("SAME PERSON FILE:")], rd(w_, "registers", "feed_same_person.json")
+YES_M = {"pat9001": {"feed_ids": [FID(1)], "approved_by": "William 11/26/2026 (board)"}}; YES_W = {"pat9777": {"feed_ids": [FID(2)], "approved_by": "William 11/20/2026"}}
+check("1g William's standing word 'same person' (registers/feed_same_person.json): the repository's file is copied into the workspace, whole, at every start - an entry taken out on main does not come back from a restored workspace; with no file on main the workspace's is left as it is",
+      lambda: yes_case("yes_main", YES_W, YES_M) == ("", [], YES_M) and yes_case("yes_new", None, YES_M) == ("", [], YES_M) and yes_case("yes_empty", YES_W, {}) == ("", [], {}) and yes_case("yes_nomain", YES_W, None) == ("", [], YES_W),
+      lambda: (yes_case("yes_main_x", YES_W, YES_M), yes_case("yes_empty_x", YES_W, {})))
+check("1h ... a file on main that cannot be read, or is no JSON object, is not copied: the workspace's copy stays, one line says so for the top of the report, and the ingest goes on",
+      lambda: all((lambda c: c[0] == "" and len(c[1]) == 1 and c[1][0].endswith("TOP OF THE REPORT") and c[2] == YES_W)(yes_case("yes_bad%d" % i, YES_W, t)) for i, t in enumerate(["{ half", json.dumps(["pat1"]), json.dumps("x")])))
+
 # ---- 2. the identity register ------------------------------------------------------------------------------------------------------------------
 S2 = "20261126T1840Z"
 DEC = {KEY(1, DOB(1)[:7] + "9"): answer(5, "pat9101", flags=[FI.FLAG_DATE + FI.SLIP_DIGIT], cands=["pat9101", "pat9102"], ev=["slip:" + FI.SLIP_DIGIT], ids=[FID(1)]),      # the 11/17 shape: one digit off

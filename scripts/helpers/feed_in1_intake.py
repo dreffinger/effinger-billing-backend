@@ -42,6 +42,7 @@ CAR = json.load(open("carriers_rich.json")); CODE2CAR = {v[0]: k for k, v in CAR
 PMAP = json.load(open("registers/claimocity_patient_map.json"))
 REGF = "registers/feed_in1_intake.json"; REG = json.load(open(REGF)) if os.path.exists(REGF) else {}
 SAME = {re.sub(r"\D", "", x) for x in (opt("--same-person", "") or "").split(",")} - {""}      # 11/25/2026 (review): William's word for THIS run - these charts are their feed patients (lookup_hold's sure)
+SAME_YES = {}      # ... and his STANDING word (registers/feed_same_person.json: this chart AND this Claimocity id) - read once, below, where the helper's functions exist
 STATE_PLAN = [(r"FLORIDA COMMUNITY", "FLO99"), (r"SUNSHINE", "SUN01"), (r"SIMPLY", "SIM01"), (r"HUMANA", "HUM01"), (r"MOLINA", "MOL10"), (r"STAYWELL|WELLCARE", "STA03")]
 norm = lambda s: re.sub(r"[^A-Z0-9]", "", (s or "").upper())
 def medicaid_answer(first, last, dob8, medicaid_id, pid):
@@ -135,6 +136,24 @@ def _same_id(a, b):
     old integration write the id there; an empty or short value is never one). (The evidence 'mrn' of feed_identity.py.)"""
     x, y = (re.sub(r"[^A-Z0-9]", "", str(v if v is not None else "").upper()) for v in (a, b))
     return len(x) >= 8 and x == y
+def same_person_yes(path="registers/feed_same_person.json"):
+    """William's STANDING word that a chart is a feed patient (11/25/2026): {"pat123": {"feed_ids": [the Claimocity ids his yes is about], "approved_by": his word and its
+    date}}. The file's home is the repository (practices/ehpa/registers/); it is written only on his word, and the ingest copies it into the workspace. His yes counts for
+    that chart AND that Claimocity id only. -> ({chart number: {Claimocity ids}}, a line to print or ""). An entry without his word, or of another shape, counts for nobody;
+    a file that cannot be read counts for nobody and is said. It never raises."""
+    try:
+        if not os.path.exists(path): return {}, ""
+        with open(path) as fh: d = json.load(fh)
+        if not isinstance(d, dict): raise ValueError("no JSON object")
+    except Exception as e:
+        return {}, "SAME PERSON FILE: %s could not be read (%s) - nobody's standing word counts in this run; a chart held 'same person?' stays held" % (path, type(e).__name__)
+    out = {}
+    for k, v in d.items():
+        num = re.sub(r"\D", "", str(k))
+        if num and isinstance(v, dict) and isinstance(v.get("approved_by"), str) and v["approved_by"].strip() and isinstance(v.get("feed_ids"), list):
+            ids = {i for i in v["feed_ids"] if isinstance(i, str) and i}
+            if ids: out.setdefault(num, set()).update(ids)
+    return out, ""
 def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False):
     """Why a paid look-up of a chart is NOT asked - (key, words) - or ("", words) when it is asked (lookup_who says with what). pa = the chart's own patient attributes
     (name "LAST,FIRST ...", dob MM/DD/YYYY, additionalmrn when the answer carries it); first, last, dob8 = what the feed carries (first = the whole first name or its
@@ -191,6 +210,8 @@ for r in recs:
     fid = r["patient"].get("id"); who[fid] = r["patient"]
     for b in r["insurance"]:
         if not b["skip"] and b["member"]: feed[fid][(b["name"], b["member"])] = b
+SAME_YES, _syl = same_person_yes()
+if _syl: print(_syl)
 amd.login_cached(); done = 0; tally = collections.Counter()
 print("feed files in %s: %d messages, %d patients with a usable insurance block%s" % (DIR, len(recs), len(feed), "" if LIVE else "  (DRY RUN - nothing is written)"))
 for fid, blocks in feed.items():
@@ -219,7 +240,7 @@ for fid, blocks in feed.items():
             p = who.get(fid, {}); asked_medicaid = True
             # 11/25/2026 (the review, WHEN NOTHING IS ENTERED above): a chart nobody knows to be this feed patient's is not asked about and gets no plan on this step's
             # own word - one line for William, no check bought, no register entry (the next run judges it again; William's word for a run: --same-person)
-            _hold = _hold or lookup_hold(cpat, p.get("first", ""), p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), fid, sure=pid in SAME)
+            _hold = _hold or lookup_hold(cpat, p.get("first", ""), p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), fid, sure=pid in SAME or fid in SAME_YES.get(re.sub(r"\D", "", str(pid)), ()))
             if _hold[0] == "same_person": _said = not_entered(pid, _hold[1], _said); continue
             done += 1
             # 11/25/2026 (William, WHOM MEDICAID IS ASKED ABOUT above): the chart's own name and birth date when the chart's birth date is a real one, else the feed's as before
@@ -235,7 +256,7 @@ for fid, blocks in feed.items():
         else:
             use = code; text = "feed block '%s'" % name[:30]; fin = "CC"
             if done >= MAX: tally["over this run's limit (next run)"] += 1; continue
-            p = who.get(fid, {}); _hold = _hold or lookup_hold(cpat, p.get("first", ""), p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), fid, sure=pid in SAME)      # 11/25/2026 (review): the same judgement for a plan the feed names
+            p = who.get(fid, {}); _hold = _hold or lookup_hold(cpat, p.get("first", ""), p.get("last", ""), re.sub(r"\D", "", p.get("dob", "")), fid, sure=pid in SAME or fid in SAME_YES.get(re.sub(r"\D", "", str(pid)), ()))      # 11/25/2026 (review): the same judgement for a plan the feed names
             if _hold[0] == "same_person": _said = not_entered(pid, _hold[1], _said); continue
             if _hold[1] and not _hold[0]: text += " - " + _hold[1]      # the Claimocity id on the chart, or William's word, let it be entered: said in the register entry
             done += 1

@@ -100,6 +100,7 @@ BATCH = ["feed_import_20261124T1241Z.json", "feed_newcharts_20261124T1241Z.json"
 for b in BATCH: put(wr, b, {"created": [{"pid": "pat9", "visit": "vst1"}], "from": "workspace"})
 put(wr, "feed_order_approved.json", {"approved_by": "invented", "from": "workspace", "visits": ["vstA", "vstB", "vstC"]})      # home is main: never from the workspace, however much more it holds
 put(wr, "quality_exceptions.json", {"from": "workspace"})                                    # home is main
+put(wr, "feed_same_person.json", {"pat9": {"feed_ids": ["x"], "approved_by": "invented", "from": "workspace"}})      # home is main (William's standing word 'same person', 11/25/2026): the workspace holds only a copy the ingest made
 put(wr, "era_checks_before_20261124.json", {"from": "workspace"})                            # not a feed register: another step mirrors it
 put(wr, "feed_import_SELFTEST.json", {"from": "workspace"})                                  # not a batch stamp
 put(reg, "feed_order_approved.json", {"approved_by": "the owner", "from": "main"})
@@ -110,7 +111,7 @@ check("1a2 a copied register is the workspace's file byte for byte", all(open(os
 check("1b the step says what it did in ONE line that starts 'feed registers: N file(s) carried into practices/ehpa/registers/' (the start other texts quote) and counts the files",
       n == len(BATCH) and len(lines(out)) == 1 and line(out).startswith(START % len(BATCH)) and len(out.splitlines()) == 1, (n, out))
 check("1c files whose home is main are never taken from the workspace (the owner's approved file, the quality exceptions), nor files that are not feed registers",
-      get(reg, "feed_order_approved.json")["from"] == "main" and not os.path.exists(os.path.join(reg, "quality_exceptions.json"))
+      get(reg, "feed_order_approved.json")["from"] == "main" and not os.path.exists(os.path.join(reg, "quality_exceptions.json")) and not os.path.exists(os.path.join(reg, "feed_same_person.json"))
       and not os.path.exists(os.path.join(reg, "era_checks_before_20261124.json")) and not os.path.exists(os.path.join(reg, "feed_import_SELFTEST.json")), sorted(os.listdir(reg)))
 n2, out2 = run()
 check("1d a second run copies nothing (main's copies now hold what the workspace's hold) and says 0", n2 == 0 and "feed registers: 0 file(s)" in out2, (n2, out2))

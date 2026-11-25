@@ -3647,6 +3647,29 @@ _lr, _lo, _le = lk_run(LK_XL + ", " + LK_XF, bd_d8(*LK_XFD), lk_xpa(), LK_XANS, 
 check("insurance check step: ... his word for OTHER charts frees nothing here", _le == "" and LK["calls"] == [] and LK["added"] == [] and lk_held(_lr, LK_W["far"]), (_le, len(LK["calls"]), _lr.get("hold")))
 _lr, _lo, _le = lk_run(LK_XL + ", " + LK_XF, bd_d8(*LK_XFD), lk_xpa(), LK_XANS, argv=("--same-person", "11, 1"))
 check("insurance check step: ... the option takes a chart number with or without 'pat' in front (the intake's takes both too)", _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE", (_le, len(LK["calls"]), LK["added"], _lr.get("decision")))
+# William's STANDING word (11/25/2026, the integration): his yes to a 'same person?' hold is kept in registers/feed_same_person.json - {chart: {"feed_ids": [the Claimocity
+# ids his yes is about], "approved_by": his word and its date}}, home on main (practices/ehpa/registers/), copied into the workspace by the ingest - so the same chart is not
+# asked about again by the next batch. It counts for that chart AND that Claimocity id only; an entry without his word, or a file that cannot be read, counts for nobody.
+def lk_yes(doc_):
+    f_ = os.path.join(lkd, "registers", "feed_same_person.json")
+    if doc_ is None:
+        if os.path.exists(f_): os.remove(f_)
+    else: open(f_, "w").write(doc_ if isinstance(doc_, str) else json.dumps(doc_))
+lk_yes({"pat1": {"feed_ids": ["f1"], "approved_by": "William 11/26/2026 (board)"}})
+_lr, _lo, _le = lk_run(LK_XL + ", " + LK_XF, bd_d8(*LK_XFD), lk_xpa(), LK_XANS)
+check("insurance check step: William's STANDING word (registers/feed_same_person.json names this chart and this Claimocity id) frees the same FAR chart without the option - asked with the chart's name and date, the plan added, and the plan line says it was his word",
+      _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "same_person" not in _lr
+      and any(x_.endswith("William's word: same person") for x_ in (_lr.get("fixes") or [])), (_le, len(LK["calls"]), LK["added"], (_lr.get("fixes") or [])[:1]))
+lk_yes({"pat1": {"feed_ids": ["f9"], "approved_by": "William 11/26/2026 (board)"}, "pat2": {"feed_ids": ["f1"], "approved_by": "William 11/26/2026"}})
+_lr, _lo, _le = lk_run(LK_XL + ", " + LK_XF, bd_d8(*LK_XFD), lk_xpa(), LK_XANS)
+check("insurance check step: ... his standing word is for ONE chart and ONE Claimocity id: another id on this chart, or this id on another chart, frees nothing", _le == "" and LK["calls"] == [] and LK["added"] == [] and lk_held(_lr, LK_W["far"]), (_le, len(LK["calls"]), _lr.get("hold")))
+_yes_bad = [{"pat1": {"feed_ids": ["f1"], "approved_by": ""}}, {"pat1": {"feed_ids": ["f1"]}}, {"pat1": {"feed_ids": "f1", "approved_by": "William 11/26/2026"}}, {"pat1": ["f1"]}, ["pat1"], "{ half written"]
+_yes_out = []
+for _d in _yes_bad:
+    lk_yes(_d); _lr, _lo, _le = lk_run(LK_XL + ", " + LK_XF, bd_d8(*LK_XFD), lk_xpa(), LK_XANS); _yes_out.append((_le, len(LK["calls"]), LK["added"], lk_held(_lr, LK_W["far"]), "SAME PERSON FILE:" in _lo))
+lk_yes(None)
+check("insurance check step: ... an entry without his word (approved_by), with ids that are no list, an entry or a file of another shape, or a file that cannot be read frees nobody - the chart is held as before, and a file that is no register is said in one line",
+      all(o_[:4] == ("", 0, [], True) for o_ in _yes_out) and [o_[4] for o_ in _yes_out] == [False, False, False, False, True, True], _yes_out)
 _lr, _lo, _le = lk_run(bd_lf(LK_XL, LK_XC), bd_d8(*LK_XCD), lk_xpa(), LK_XANS, more=[("f2", LK_XL + ", " + LK_XF, bd_d8(*LK_XFD))])
 check("insurance check step: TWO feed patients on one chart - the first is the chart's own person, the second carries a FAR date: the chart is held (its visits are released together), nothing is bought, and both visits are named",
       _le == "" and LK["calls"] == [] and LK["added"] == [] and lk_held(_lr, LK_W["far"]) and _lr.get("same_person") == ["vst1", "vst2"], (_le, len(LK["calls"]), _lr.get("same_person"), _lr.get("hold")))
@@ -3740,6 +3763,22 @@ check("insurance intake, live: on William's word for this run (--same-person pat
       _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")]
       and ((_lg or {}).get("901|MCAD") or {}).get("outcome") == "added MCAD as ins77 seq 2 (Medicaid active; no managed medical plan named (fee-for-service) - Medicaid asked with the chart's birth date; Claimocity's differs: far; William's word: same person)"
       and lki_leaks(_lo, json.dumps(_lg or {})) == [], (_le, len(LKI["asked"]), LKI["added"], lki_leaks(_lo, json.dumps(_lg or {}))))
+def lki_yes(doc_):
+    f_ = os.path.join(lki, "registers", "feed_same_person.json")
+    if doc_ is None:
+        if os.path.exists(f_): os.remove(f_)
+    else: open(f_, "w").write(doc_ if isinstance(doc_, str) else json.dumps(doc_))
+lki_yes({"pat901": {"feed_ids": ["lkfeed1"], "approved_by": "William 11/26/2026 (board)"}})
+_lo, _le, _lg = lki_run("1952-11-" + "03", lk_pa(1940, 2, 15), live=True)
+check("insurance intake, live: William's STANDING word (registers/feed_same_person.json names this chart and this Claimocity id) frees the same chart without the option - Medicaid is asked with the chart's name and birth date and the plan is added; the entry says it was his word",
+      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and str(((_lg or {}).get("901|MCAD") or {}).get("outcome") or "").endswith("William's word: same person)")
+      and lki_leaks(_lo, json.dumps(_lg or {})) == [], (_le, len(LKI["asked"]), LKI["added"], ((_lg or {}).get("901|MCAD") or {}).get("outcome")))
+_lki_bad = []
+for _d in ({"pat901": {"feed_ids": ["another"], "approved_by": "William 11/26/2026"}}, {"pat902": {"feed_ids": ["lkfeed1"], "approved_by": "William 11/26/2026"}}, {"pat901": {"feed_ids": ["lkfeed1"], "approved_by": " "}}, "{ half"):
+    lki_yes(_d); _lo, _le, _lg = lki_run("1952-11-" + "03", lk_pa(1940, 2, 15), live=True); _lki_bad.append((_le, LKI["asked"], LKI["added"], "same person?" in _lo))
+lki_yes(None)
+check("insurance intake: ... his standing word for another Claimocity id or another chart, an entry without his word, or a file that cannot be read frees nothing - nothing is asked, nothing is added, the line for William is printed as before",
+      all(o_ == ("", [], [], True) for o_ in _lki_bad), _lki_bad)
 _lo, _le, _lg = lki_run("1952-11-" + "03", lk_pid(1940, 2, 15), fid=LK_ID)
 check("insurance intake: a chart that carries this patient's Claimocity id is asked whatever the feed's date - and the line says the date was far and why it was asked all the same",
       _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and "Medicaid asked with the chart's birth date; Claimocity's differs: far; the chart carries this patient's Claimocity id" in _lo and lki_leaks(_lo) == [], (_le, len(LKI["asked"]), lki_leaks(_lo)))

@@ -247,7 +247,8 @@ def sync_helpers():
 #   - feed_identity_<stamp>.json (11/25/2026: which chart each new feed patient went to and by which rule - chart ids, rule numbers and
 #     fixed words only; claimocity_ingest.py writes it from the match file, which itself never leaves the workspace) is a batch register
 #     like the others.
-# Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word - and quality_exceptions.json).
+# Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word -, quality_exceptions.json and, since
+# 11/25/2026, feed_same_person.json - William's standing word that a chart is a feed patient; the ingest copies main's file into the workspace).
 # Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror: it never raises. (Only the
 # subcommand `feed-registers` ends non-zero, AFTER the step, while a standing file on main is no longer JSON - feed_standing_unreadable.)
 # The sweep's stamp carries seconds and, when two runs start in one second, "_2", "_3" ... behind it (feed_order_sweep.py).

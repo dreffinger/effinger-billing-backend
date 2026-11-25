@@ -148,6 +148,23 @@ def _main_monitor():
             print("REHAB MONITOR REGISTER: the repository's copy (%s) is later than this workspace's (%s) - taken, whole" % (a, b or "none"))
         except Exception as e: print("REHAB MONITOR REGISTER: the repository's later copy could not be copied (%s) - the monitor starts from this workspace's" % type(e).__name__)
 _main_monitor()
+# ---- William's standing word 'same person' (registers/feed_same_person.json): main's file, whole (11/25/2026) -----------------------------------
+# The insurance check and the intake buy a look-up, or add a plan, only for a chart that is KNOWN to be the feed's patient; a chart held
+# 'same person?' is freed by William's yes. So that the next batch does not ask him again, his yes is kept in the repository's
+# practices/ehpa/registers/feed_same_person.json - {chart: {"feed_ids": [Claimocity ids], "approved_by": his word and its date}} - written only
+# on his word (a chat session, or the run that works his answer on the board card, which commits the file). Its home is main: the workspace's
+# copy is only a copy, replaced at every start, so an entry taken out on main never comes back from a restored workspace. A file on main that
+# cannot be read is not copied and is said.
+def _main_same_person():
+    src = os.path.join(os.path.dirname(REPO_MAP), "feed_same_person.json"); dst = os.path.join("registers", "feed_same_person.json")
+    if not os.path.exists(src): return
+    try:
+        with open(src) as fh: doc = json.load(fh)
+        if not isinstance(doc, dict): raise ValueError("no JSON object")
+        json.dump(doc, open(dst + ".tmp", "w"), indent=1, sort_keys=True); os.replace(dst + ".tmp", dst)
+    except Exception as e:
+        print("SAME PERSON FILE: the repository's feed_same_person.json could not be read or copied (%s) - this workspace's copy is used as it is; William's newest word may be missing from it - TOP OF THE REPORT" % type(e).__name__)
+_main_same_person()
 # ---- the identity rule's own words (feed_identity.py - the copy here, else the clone's) -------------------------------------------------------
 # Loaded only for its fixed words and for problems(), the proof that an entry holds nothing but fixed words, chart ids and rule numbers.
 # Without it (a workspace and a clone that both lack the file) nothing of an entry is copied to the register: every field is withheld.

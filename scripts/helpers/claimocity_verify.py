@@ -528,6 +528,24 @@ def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False):
         return "", ("" if not why else "the chart carries this patient's Claimocity id" if known else "William's word: same person")
     except Exception:
         return "same_person", "same person? the chart's name and birth date could not be compared with Claimocity's"
+def same_person_yes(path="registers/feed_same_person.json"):
+    """William's STANDING word that a chart is a feed patient (11/25/2026): {"pat123": {"feed_ids": [the Claimocity ids his yes is about], "approved_by": his word and its
+    date}}. The file's home is the repository (practices/ehpa/registers/); it is written only on his word, and the ingest copies it into the workspace. His yes counts for
+    that chart AND that Claimocity id only. -> ({chart number: {Claimocity ids}}, a line to print or ""). An entry without his word, or of another shape, counts for nobody;
+    a file that cannot be read counts for nobody and is said. It never raises."""
+    try:
+        if not os.path.exists(path): return {}, ""
+        with open(path) as fh: d = json.load(fh)
+        if not isinstance(d, dict): raise ValueError("no JSON object")
+    except Exception as e:
+        return {}, "SAME PERSON FILE: %s could not be read (%s) - nobody's standing word counts in this run; a chart held 'same person?' stays held" % (path, type(e).__name__)
+    out = {}
+    for k, v in d.items():
+        num = re.sub(r"\D", "", str(k))
+        if num and isinstance(v, dict) and isinstance(v.get("approved_by"), str) and v["approved_by"].strip() and isinstance(v.get("feed_ids"), list):
+            ids = {i for i in v["feed_ids"] if isinstance(i, str) and i}
+            if ids: out.setdefault(num, set()).update(ids)
+    return out, ""
 def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
     """Whom a paid look-up of a chart is asked about: (first name, last name, birth date YYYYMMDD, words). pa = the chart's own patient attributes as AdvancedMD's
     getdemographic answer gives them (name "LAST,FIRST ...", dob MM/DD/YYYY) - the answer the caller already holds, so this costs no call. first, last, dob8 = what the
@@ -553,6 +571,8 @@ def main():
     a = sys.argv[1:]; use_stedi = "--no-stedi" not in a; limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
     only = set(a[a.index("--only") + 1].split(",")) if "--only" in a else None
     same = ({re.sub(r"\D", "", x) for x in a[a.index("--same-person") + 1].split(",")} - {""}) if "--same-person" in a else set()      # 11/25/2026 (review): William's word for THIS run - these charts (patNNN or NNN) are their feed patients (lookup_hold's sure)
+    same_yes, _syl = same_person_yes()      # ... and his STANDING word: registers/feed_same_person.json (this chart AND this Claimocity id)
+    if _syl: print(_syl)
     amd.login_cached()
     by_chart = collections.defaultdict(list)
     for r in REG["created"]: by_chart[r["pid"]].append(r)
@@ -654,7 +674,7 @@ def main():
                 _lkj = []
                 for _f in dict.fromkeys(v["feed_id"] for v in visits):
                     _m = PARSED.get(_f, {}); _ml, _, _mf = (_m.get("name") or "").partition(",")
-                    _lkj.append((lookup_hold(pa, _mf.strip(), _ml.strip(), (_m.get("dob") or "")[:8], _f, sure=num in same), _m))
+                    _lkj.append((lookup_hold(pa, _mf.strip(), _ml.strip(), (_m.get("dob") or "")[:8], _f, sure=num in same or _f in same_yes.get(num, ())), _m))
                 _lkh = next((h for h, _m in _lkj if h[0] == "same_person"), None) or (None if any(not h[0] for h, _m in _lkj) else _lkj[0][0])
                 if _lkh:
                     rec["lookup_asked"] = "look-up not asked: " + _lkh[1]; rec[_lkh[0]] = list(rec["visits"])      # same_person / no_birth_date: the chart's visits, for ONE line at the top of the digest
