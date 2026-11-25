@@ -1,0 +1,298 @@
+{
+ "created": [],
+ "skipped": [
+  {
+   "feed_id": "6a6f8a15dde66f45e6ff187f",
+   "pid": "pat17477311",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a6f8a15dde66f45e6ff187f",
+   "pid": "pat17477311",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a6f8a15dde66f45e6ff187f",
+   "pid": "pat17477311",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a6f8a15dde66f45e6ff187f",
+   "pid": "pat17477311",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "69501d3d2aee8e051ae7cea4",
+   "pid": "pat17476358",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "69d282a0f1610f19d2a18f0c",
+   "pid": "pat17476042",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "69d282a0f1610f19d2a18f0c",
+   "pid": "pat17476042",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "69d282a0f1610f19d2a18f0c",
+   "pid": "pat17476042",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6ae94ba0a0e552e64deaf124",
+   "pid": "pat17472228",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a6fae686e3c815954f72728",
+   "pid": "pat17477310",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6ab6f367e2c808b010c25970",
+   "pid": "pat17477945",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "64eed8c3e9abd1e559917c0c",
+   "pid": "pat17469476",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "62a89604a4ea93d62b490434",
+   "pid": "pat25541",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "68074b247da49c456a5ae036",
+   "pid": "pat17473197",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "669ad9a71d003b595a81631c",
+   "pid": "pat17473090",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6aa81af1483c042382312fb8",
+   "pid": "pat17477774",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "67994d49fde1f815791b4594",
+   "pid": "pat17472826",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a0772e8dbd2a23f6bc38ff3",
+   "pid": "pat17476583",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "698d0f960a760cb970c279a9",
+   "pid": "pat17475638",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6afb721a7e1a661134648f8d",
+   "pid": "pat17478455",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6a7bb16984e4e2e2720c4a8b",
+   "pid": "pat17477405",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6422b24a9f164d322725a97c",
+   "pid": "pat12182947",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "6aee0d33813a9039cc51ebc8",
+   "pid": "pat17478349",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "651e40e8e9abd1e559c2cfc9",
+   "pid": "pat17469549",
+   "why": "all lines already in AMD"
+  },
+  {
+   "feed_id": "667576c11f601b81217df953",
+   "pid": "pat17471778",
+   "why": "all lines already in AMD"
+  }
+ ],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.01",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [
+   "charge23373645",
+   "charge23373648",
+   "charge23373650",
+   "charge23373913",
+   "charge23373928",
+   "charge23374160",
+   "charge23374348",
+   "charge23375086",
+   "charge23375196"
+  ],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 2,
+   "fee": "0.01",
+   "since": "feed_import_20261113T0135Z.json",
+   "lines": 5,
+   "void": 5,
+   "open": 0
+  },
+  "budget": 1,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [
+   [
+    "pat17470875",
+    "2026"
+   ],
+   [
+    "pat17473571",
+    "2026"
+   ],
+   [
+    "pat17473962",
+    "2026"
+   ],
+   [
+    "pat17475778",
+    "2026"
+   ],
+   [
+    "pat17478210",
+    "2026"
+   ],
+   [
+    "pat21915",
+    "2026"
+   ],
+   [
+    "pat24368",
+    "2026"
+   ],
+   [
+    "pat25994",
+    "2026"
+   ],
+   [
+    "pat45010",
+    "2026"
+   ]
+  ],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [
+   "charge23374160",
+   "charge23374348",
+   "charge23375086"
+  ],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 0,
+  "unread": [],
+  "unread_prev": [],
+  "probe": "AdvancedMD held visit vst19462152 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261122T1240Z.json) - William looks",
+  "probe_kind": "claim_check",
+  "probe_since": "feed_inspector_20261111T1239Z.json",
+  "probe_words": "[Pattern 2049] Per Medicare guidelines the...",
+  "probe_tries": 7,
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "taken_lines": [],
+  "wrong_code_charge": "",
+  "n620_seen": "",
+  "left_off_cent": [],
+  "proof_aside": null,
+  "notes": [
+   "AdvancedMD held visit vst19460833 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T1239Z.json) - new lines carry $0.01, one line a run until one is billed",
+   "feed_inspector_20261121T1240Z.json names quality charge charge23375086, which no import register row carries - passed over"
+  ]
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "probe": "",
+  "probe_since": "",
+  "probe_words": "",
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "wrong_code_charge": "",
+  "notes": []
+ }
+}
