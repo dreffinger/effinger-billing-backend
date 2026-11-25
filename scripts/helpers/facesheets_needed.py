@@ -15,9 +15,18 @@
 # Rules it uses: the board page's apply rules (board_apply.py); board files pass through board_ops.clean_file; no name, birth
 #   date or member number in the register it writes (chart numbers, kinds and dollars only) - the email text and the board
 #   file hold patient data and stay in the workspace / Drive / Gmail.
+#   THE BOARD READ MUST BE THE WHOLE BOARD (11/25/2026, four defects an audit found before the first evening run used this helper):
+#     - the tool that saves a board read writes <folder>/items/<card id>.json; --items-dir takes that folder OR its items/ folder;
+#     - a read that found NO card writes no email text at all and ends "BOARD NOT READ" (exit 4) - 'none needed today' is only
+#       ever said about a board that was read;
+#     - the one-file form (--items) is {card id: card}; a card without an id is refused, never dropped (most cards carry no id
+#       field of their own);
+#     - a read far shorter than the run before it (a page of 100 out of 561) is named as CHECK short read - not to be sent.
+#   The register is registers/board_turn_<stamp>.json (its first name, facesheets_needed_<stamp>.json, was one the privacy gate
+#   deletes before every commit - Drive-only by name - so it never reached the repository).
 # Never touches: AMD, the board, Drive, Gmail. The run uploads the file and sends the email text it wrote.
 # Usage:
-#   python3 facesheets_needed.py build --items-dir <dir of <card id>.json> | --items <items.json> --file <board_updates_<stamp>.json>
+#   python3 facesheets_needed.py build --items-dir <the folder the board was saved to> | --items <items.json = {card id: card}> --file <board_updates_<stamp>.json>
 #        --stamp <run stamp> [--asof <iso time the board was read>] [--sweep <feed_order_sweep_*.json>]
 #        [--outstanding <outstanding_latest.json>] [--out-dir outbox] [--register-dir registers] [--when "7:39 PM ET 11/25"]
 #   python3 facesheets_needed.py handback --file <board_updates_<stamp>.json> --card <card id> --need "<what is needed now>"
@@ -77,17 +86,52 @@ def charts_of(row):
     return [n for n in re.findall(r"\d+", str(row.get("amdid") or "")) if 4 <= len(n) <= 9]
 
 
+class BoardNotRead(Exception):
+    """The board as handed over cannot stand for the board: nothing in it, or a card nobody can name."""
+
+
 def load_items(items_dir=None, items_file=None):
+    """The board as this run read it -> {card id: card}. Raises BoardNotRead rather than return a board with cards missing."""
     rows = {}
     if items_dir:
-        for p in sorted(glob.glob(os.path.join(items_dir, "*.json"))):
-            rows[os.path.basename(p)[:-5]] = json.load(open(p))
+        d = items_dir
+        # 11/25/2026: a saved board read is <the folder the run named>/items/<card id>.json. The first command line named the folder,
+        # this function looked for the cards in it, found none and the run would have mailed 'none needed today' beside 38 on his turn.
+        # An items/ folder with cards in it IS the board, whatever else lies beside it (another collection's read, a sweep file).
+        if glob.glob(os.path.join(d, "items", "*.json")):
+            d = os.path.join(d, "items")
+        for p in sorted(glob.glob(os.path.join(d, "*.json"))):
+            r = json.load(open(p))
+            if isinstance(r, dict):
+                rows[os.path.basename(p)[:-5]] = r
     if items_file:
         data = json.load(open(items_file))
-        for r in (data if isinstance(data, list) else data.get("items") or list(data.values())):
-            if isinstance(r, dict) and r.get("id"):
-                rows[str(r["id"])] = r
+        if isinstance(data, dict) and isinstance(data.get("items"), (dict, list)):
+            data = data["items"]
+        # {card id: card} is the form to write: most cards carry no id field of their own (465 of 561 on 11/25/2026), and the
+        # first version read only cards that did - it dropped the rest without a word
+        pairs = list(data.items()) if isinstance(data, dict) else [((r.get("id") if isinstance(r, dict) else None), r) for r in data]
+        bad = sum(1 for k, r in pairs if not (isinstance(r, dict) and str(k or "").strip()))
+        if bad:
+            raise BoardNotRead("%d of the %d cards in %s have no id - write the file as {\"<card id>\": {card}, ...} (the id is the document's name on the board)"
+                               % (bad, len(pairs), items_file))
+        for k, r in pairs:
+            rows[str(k)] = r
     return rows
+
+
+def last_read(register_dir, stamp):
+    """(stamp, cards read) of the newest earlier run's register, or None - what this run's read is measured against."""
+    best = None
+    for p in glob.glob(os.path.join(register_dir or "", "board_turn_*.json")):
+        try:
+            d = json.load(open(p))
+        except Exception:
+            continue
+        st = str(d.get("stamp") or "")
+        if isinstance(d, dict) and isinstance(d.get("cards_read"), int) and st and st != str(stamp) and (best is None or st > best[0]):
+            best = (st, d["cards_read"])
+    return best
 
 
 def sweep_blocked(sweep):
@@ -111,7 +155,7 @@ def outstanding_by_chart(outstanding):
     return out
 
 
-def build(rows_before, body, asof=None, sweep=None, outstanding=None, stamp="", when="", now=None):
+def build(rows_before, body, asof=None, sweep=None, outstanding=None, stamp="", when="", now=None, prev_read=None):
     """Returns {'email': text, 'subject': SUBJECT, 'rows': [...], 'checks': {...}, 'register': {...}}. Changes nothing."""
     now = now or now_iso()
     before = {k: dict(v) for k, v in rows_before.items()}
@@ -146,7 +190,10 @@ def build(rows_before, body, asof=None, sweep=None, outstanding=None, stamp="", 
     fs_total = sum(x["amount"] for x in reg_rows if x["kind"] == "facesheet")
     dc_total = sum(x["amount"] for x in reg_rows if x["kind"] == "decision")
     # ---- what the run still has to settle before the email goes out
-    checks = {"unanswered": [], "sweep_missing": [], "nothing_waiting": []}
+    checks = {"unanswered": [], "sweep_missing": [], "nothing_waiting": [], "short_read": []}
+    # the board only grows (a card is closed, not removed): a read well under the run before it is a page, not the board
+    if prev_read and len(rows_before) < 0.8 * prev_read[1]:
+        checks["short_read"].append({"read": len(rows_before), "last": prev_read[1], "last_stamp": prev_read[0]})
     for rid, r in after.items():
         if ba.turn_of(r) == "claude" and ba.tms(ba.last_william_at(r)) > ba.tms(ba.last_other_at(r)):
             checks["unanswered"].append({"card": rid, "charts": charts_of(r), "answered": ba.last_william_at(r)})
@@ -189,14 +236,15 @@ def build(rows_before, body, asof=None, sweep=None, outstanding=None, stamp="", 
                    "the next run adds the plan and sends the claims.")
         email = "\n".join(out)
     register = {"what": "face sheets needed (facesheets_needed.py %s) - chart numbers, kinds and dollars only" % FACESHEETS_NEEDED_VERSION,
-                "stamp": stamp, "at": now, "asof": body.get("asof") or "", "your_turn": n, "dollars": round(total, 2),
+                "stamp": stamp, "at": now, "asof": body.get("asof") or "", "cards_read": len(rows_before), "your_turn": n, "dollars": round(total, 2),
                 "facesheet": {"n": len(lines["facesheet"]), "dollars": round(fs_total, 2)},
                 "decision": {"n": len(lines["decision"]), "dollars": round(dc_total, 2)},
                 "rows": reg_rows,
                 "file": {k: res[k] for k in ("ops", "kept", "stale", "new", "failed")},
                 "checks": {"unanswered": [{"charts": x["charts"], "answered": x["answered"]} for x in checks["unanswered"]],
                            "sweep_missing": [{"chart": x["chart"], "visits": x["visits"]} for x in checks["sweep_missing"]],
-                           "nothing_waiting": [{"charts": x["charts"]} for x in checks["nothing_waiting"]]}}
+                           "nothing_waiting": [{"charts": x["charts"]} for x in checks["nothing_waiting"]],
+                           "short_read": [dict(x) for x in checks["short_read"]]}}
     return {"subject": SUBJECT, "email": email, "rows": reg_rows, "checks": checks, "register": register, "after": after, "file": res}
 
 
@@ -246,6 +294,8 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.cmd == "handback":
         doc = _load_file(a.file, a.source, a.asof)
+        if a.asof and not doc.get("asof"):                # 11/25/2026: also on a file an earlier step of the run already began
+            doc["asof"] = a.asof
         op = handback_op(a.card, a.need, a.note, a.why, a.amount, a.ask)
         doc["ops"] = [o for o in doc.get("ops") or [] if not (o.get("id") == a.card and (o.get("set") or {}).get("status") == "william")] + [op]
         _save_file(a.file, doc)
@@ -253,7 +303,17 @@ def main(argv=None):
         return 0
     if not (a.items_dir or a.items):
         ap.error("build needs --items-dir or --items (the board as this run read it)")
-    rows = load_items(a.items_dir, a.items)
+    src = a.items_dir or a.items
+    try:
+        rows = load_items(a.items_dir, a.items)
+        if not rows:
+            raise BoardNotRead("0 cards in %s (a saved board read is <folder>/items/<card id>.json - name that folder; the one-file form is {card id: card})" % src)
+    except BoardNotRead as e:
+        # no email text, no register: 'none needed today' may only be said about a board that was read
+        print("RESULT facesheets_needed %s: BOARD NOT READ - %s. No email text was written - do NOT send 'none needed today' or any list from this; "
+              "read the whole board again (ArtifactData list, collection items, query.limit 1000, every page) and run build again. If it cannot be read, "
+              "send no email this run and put BOARD NOT READ at the TOP of the report." % (a.stamp, e))
+        return 4
     doc = _load_file(a.file, a.source, a.asof)
     if a.asof:
         doc["asof"] = a.asof
@@ -261,16 +321,19 @@ def main(argv=None):
         print("NOTE: the file has no asof (the time the board was read) - pass --asof; without it the board measures this file by its upload time")
     sweep = json.load(open(a.sweep)) if a.sweep else None
     outstanding = json.load(open(a.outstanding)) if a.outstanding else None
-    r = build(rows, doc, sweep=sweep, outstanding=outstanding, stamp=a.stamp, when=a.when)
+    r = build(rows, doc, sweep=sweep, outstanding=outstanding, stamp=a.stamp, when=a.when, prev_read=last_read(a.register_dir, a.stamp))
     _save_file(a.file, doc)                               # the file as it will be uploaded: asof on it, through the gate
     os.makedirs(a.out_dir, exist_ok=True); os.makedirs(a.register_dir, exist_ok=True)
     ep = os.path.join(a.out_dir, "facesheets_email_%s.txt" % a.stamp)
     open(ep, "w").write(r["email"] + "\n")
-    rp = os.path.join(a.register_dir, "facesheets_needed_%s.json" % a.stamp)
+    rp = os.path.join(a.register_dir, "board_turn_%s.json" % a.stamp)   # not facesheets_needed_*: the privacy gate deletes that name (Drive-only)
     json.dump(r["register"], open(rp, "w"), indent=1)
     reg = r["register"]; ck = r["checks"]
     print("board read: %d cards | file: %d ops (%d change, %d already there, %d held back for his newer word, %d new cards, %d failed)"
           % (len(rows), len(doc.get("ops") or []), r["file"]["ops"], r["file"]["kept"], r["file"]["stale"], r["file"]["new"], r["file"]["failed"]))
+    for x in ck["short_read"]:
+        print("CHECK short read: this run read %d cards, the run before it (%s) read %d - that is a page, not the board. Do not send this email text: read every page "
+              "(next_cursor) into the same folder and run build again" % (x["read"], x["last_stamp"], x["last"]))
     for x in ck["unanswered"]:
         print("CHECK unanswered: card %s - William answered %s and nothing replied; act on it, then reply (and hand it back if something is still needed)" % (x["card"], x["answered"]))
     for x in ck["sweep_missing"]:
