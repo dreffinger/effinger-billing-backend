@@ -1,12 +1,18 @@
 # PLAIN ENGLISH: compiles the 10/28 Claimocity backlog import into one digest (counts, dollars, holds) from the registers.
 # Also writes a PHI-light copy of the verify register for the repo (no addresses / member ids in the 271 result strings).
+# Diagnosis codes AdvancedMD's own list does not have (William 11/25/2026: "for any diagnosis not in the master file yet change it to i10 and send me an
+#   email with the codes needed to be added"): when created rows of the batch name such codes (missing_dx; dx_instead = what the import put in their place)
+#   the digest gets ONE line - the visits, each code with its number of visits, 'EMAIL WILLIAM: <file>' - and this helper WRITES the text of that email to
+#   outbox/dx_codes_needed_<STAMP>.txt: the codes, their visits, chart numbers and dates of service, no patient name. A row whose code was left off (an import
+#   from before that day) is said to be entered WITHOUT the code, never with I10. No such code in the batch: no line, no file.
+# Decides nothing and changes nothing in AdvancedMD; it sends no email itself - the line 'EMAIL WILLIAM: <file>' is the cue for the run that reads the digest.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
 HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8133-5488-ad3a-bd2fb16f50f8/scratchpad/hl7/claimocity_oct")
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-10.8"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-25.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -48,12 +54,14 @@ _st8 = re.sub(r"[^0-9TZ]", "", STAMP)                                           
 _rule_stamp = bool(re.match(r"^2\d{7}T", _st8)) and _st8[:8] >= "20261110"          # batches from the day the rule began
 _who = collections.defaultdict(list)                                                  # what kind of line -> the charts (chart number, date, codes - no name)
 def _tag(x): return "%s %s %s" % (x.get("pid") or "?", x.get("dos") or "?", "+".join(str(c) for c in (x.get("cpts") or [])))
-def _names(key, lead):
+def _names(key, lead, cap=30):      # cap=None names EVERY chart (11/25/2026: the two CCM lists below); the other lists show the first 30 and say how many more the import register holds
     v = _who.get(key) or []
-    if v: L("  - %s: %s%s" % (lead, "; ".join(v[:30]), (" (+%d more - see the import register)" % (len(v) - 30)) if len(v) > 30 else ""))
+    if v: L("  - %s: %s%s" % (lead, "; ".join(v if cap is None else v[:cap]), (" (+%d more - see the import register)" % (len(v) - cap)) if (cap is not None and len(v) > cap) else ""))
+_bld = collections.Counter()                                                           # the feed's own name of a building the facility table does not know -> visits (11/25/2026)
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
+        if not x.get("fac") and isinstance(x.get("feed_building"), str) and x["feed_building"].strip(): _bld[x["feed_building"].strip()] += 1
         if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x) + ((" (%s)" % str(x["msg_fallback"])[:120]) if x.get("msg_fallback") else ""))      # msg_fallback: where each value its copies did not agree on came from
         if x.get("prof_default") is True: _ps["profdef"] += 1; _who["profdef"].append(_tag(x))
         if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
@@ -61,7 +69,16 @@ try:
             _ps["readback"] += 1
             _qdiff = bool(x.get("quality_pos_stored")) and bool(x.get("quality_pos")) and str(x["quality_pos_stored"]) != str(x["quality_pos"])      # the quality line's own place of service
             if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]) or _qdiff: _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s%s" % (_tag(x), x["pos_lines"], x["pos_stored"], (" (quality line sent %s stored %s)" % (x["quality_pos"], x["quality_pos_stored"])) if _qdiff else ""))
-        if x.get("pos_err"): _ps["err"] += 1; _who["err"].append("%s (%s)" % (_tag(x), str(x["pos_err"])[:70])); continue
+        # 11/25/2026 (review of the CCM rule): a CCM line that stands AT 31 is looked for in EVERY row, before any row leaves this loop. A visit whose rule failed
+        # (pos_err) and a visit with no facility used to leave before a CCM line was looked at, and fixed words then said "a CCM line at 32" about them - so of
+        # the three ways an older copy of the rule put a CCM line in at 31 (its exception, a rule failure, an unknown building) only the first was shouted.
+        _pl = x.get("pos_lines") if isinstance(x.get("pos_lines"), list) else []
+        _cv = [str(_p) for _cpt, _p in zip(_c, _pl) if _cpt in _CCM]      # where each CCM line of this visit was entered
+        if "31" in _cv:
+            _ps["ccm31"] += _cv.count("31")
+            if _tag(x) not in _who["ccm31"]: _who["ccm31"].append(_tag(x))
+        if x.get("pos_err"):
+            _ps["err"] += 1; _who["err"].append("%s (%s)" % (_tag(x), str(x["pos_err"])[:70])); _ps["err_ccm31"] += _cv.count("31"); _ps["err_ccm32"] += _cv.count("32"); continue
         if not x.get("pos_lines"):
             if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1; _who["norule"].append(_tag(x))
             continue
@@ -69,31 +86,44 @@ try:
         if not x.get("fac"):
             _n = sum(1 for c in _c if c in _NFV or c in _CCM); _ps["nofac"] += _n
             if _n: _who["nofac"].append(_tag(x))
+            _ps["nofac_ccm31"] += _cv.count("31"); _ps["nofac_ccm32"] += _cv.count("32"); _ps["nofac_nf31"] += sum(1 for _cpt, _p in zip(_c, _pl) if _cpt in _NFV and str(_p) == "31")
             continue
         _k = x.get("pos_kind") or []
         for _i, (_cpt, _p) in enumerate(zip(_c, x.get("pos_lines") or [])):
             _kind = _k[_i] if _i < len(_k) else ""
-            if _cpt in _CCM:
+            if _cpt in _CCM:      # William 11/25/2026: every CCM line is 32. pos_kind ccm-skilled-month = a 32 line LISTED for him; a CCM line at 31 = an older copy of the rule ran (or a batch from before that day)
+                if str(_p) == "31": continue      # counted and named above, in whatever row it stands
                 _ps["ccm%s" % _p] += 1
-                if _kind == "ccm-skilled-month" and _tag(x) not in _who["ccm31"]: _who["ccm31"].append(_tag(x))
+                if _kind == "ccm-skilled-month":
+                    _ps["ccmlisted"] += 1
+                    if _tag(x) not in _who["ccmlisted"]: _who["ccmlisted"].append(_tag(x))
             elif _cpt in _NFV:
                 _ps["nf%s" % _p] += 1
                 if _kind in ("extra", "between"): _ps["nfleft"] += 1; _who["nfleft"].append(_tag(x))
                 if _kind == "moved": _ps["nfmoved"] += 1
     if any(_ps[k] for k in _ps if k not in ("readback", "notown", "profdef", "nofacother")):
-        L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
+        # 11/25/2026 (review): what the line says about the CCM lines of a rule-failed visit, or of a building the table does not know, is READ from the register - "at 32"
+        # only when such a visit has a CCM line at 32 and none at 31; a CCM line at 31 there is pointed to the CCM ENTERED AT 31 list; no CCM line, no words about one
+        _e_ccm = " (a CCM line among them AT 31 - see CCM ENTERED AT 31)" if _ps["err_ccm31"] else " (a CCM line among them at 32)" if _ps["err_ccm32"] else ""
+        _n_ccm = [w_ for w_ in ("a nursing visit at the default 31" if _ps["nofac_nf31"] else "", "a CCM line AT 31 - see CCM ENTERED AT 31" if _ps["nofac_ccm31"] else "a CCM line at 32" if _ps["nofac_ccm32"] else "") if w_]
+        L("- Place of service in the nursing buildings (11/10/2026 rule; CCM since 11/25/2026: every line 32): CCM lines entered as 32: %d%s%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
-            (" (and %d kept at 31 by the back end's exception for that month - see pos_why - not held: they go out at 31 with the next claim run unless William changes them first)" % _ps["ccm31"]) if _ps["ccm31"] else "",
+            (" (%d of them listed for William - the chart shows a skilled-looking month, see pos_why - not held and not changed)" % _ps["ccmlisted"]) if _ps["ccmlisted"] else "",
+            (" - AND %d CCM LINE(S) ENTERED AT 31, which is not William's rule (11/25/2026: every CCM line is 32): an older copy of the rule ran, or the batch is from before that day - not held: they go out at 31 with the next claim run unless they are changed first" % _ps["ccm31"]) if _ps["ccm31"] else "",
             _ps["nf32"], _ps["nf31"],
             (" (%d of them kept at 31 because the chart shows neither pattern - see pos_why)" % _ps["nfleft"]) if _ps["nfleft"] else "",
             (" (%d of them because the previous nursing visit was in another building)" % _ps["nfmoved"]) if _ps["nfmoved"] else "",
-            ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's place of service, see pos_err in the import register and rules.md 11/10/2026" % _ps["err"]) if _ps["err"] else "",
-            ("; %d CCM / nursing-visit line(s) came from a building the facility table does not know - entered at 31 with no facility" % _ps["nofac"]) if _ps["nofac"] else "",
+            ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's place of service%s, see pos_err in the import register and rules.md 11/10/2026" % (_ps["err"], _e_ccm)) if _ps["err"] else "",
+            ("; %d CCM / nursing-visit line(s) came from a building the facility table does not know - entered with no facility%s" % (_ps["nofac"], (" (%s)" % ", ".join(_n_ccm)) if _n_ccm else "")) if _ps["nofac"] else "",
             ("; PLACE OF SERVICE RULE DID NOT RUN on %d visit(s) in the nursing buildings - the import helper in this workspace is an old copy (rules.md 11/10/2026)" % _ps["norule"]) if _ps["norule"] else ""))
         _names("err", "TOP OF THE REPORT - rule not applied, for William before the claim run; a routine changes nothing on these visits")
         _names("norule", "TOP OF THE REPORT - rule did not run (old helper)")
         _names("nofac", "TOP OF THE REPORT - building the facility table does not know")
-        _names("ccm31", "for William, not held - CCM kept at 31 (pos_kind ccm-skilled-month)")
+        # 11/25/2026 (review): these two lists name EVERY chart, with no cut at 30. Since that day a CCM line of a skilled-looking month goes out at 32 the same day,
+        # so the list is William's only cue for it (rules.md part 1: "he does not bill CCM on skilled residents, so a chart on that list is one for him to look at"); and a
+        # CCM line at 31 goes out at 31 unless someone changes it first.
+        _names("ccm31", "TOP OF THE REPORT - CCM ENTERED AT 31 (William 11/25/2026: every CCM line is 32) - for William before the claim run; a routine changes nothing on these visits", cap=None)
+        _names("ccmlisted", "for William, not held - CCM entered at 32, the chart shows a skilled-looking month (pos_kind ccm-skilled-month)", cap=None)
         _names("nfleft", "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between)")
         if _ps["notkept"]:
             L("  - TOP OF THE REPORT - ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on %d of %d visit(s) read back:" % (_ps["notkept"], _ps["readback"])); _names("notkept", "sent / stored")
@@ -105,6 +135,9 @@ try:
         L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["profdef"]); _names("profdef", "charts")
     if _ps["nofacother"]:
         L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["nofacother"]); _names("nofacother", "charts")
+    # 11/25/2026: the building is NAMED, in the feed's own words (the import writes them into the row as feed_building), whatever codes its visits carry - with the name
+    # in hand the building can be added to the table (claimocity_import.py FAC: the feed's name -> AdvancedMD facility id and place of service) and its next visits go in with a facility
+    if _bld: L("  - TOP OF THE REPORT - add to the facility table (claimocity_import.py FAC), the feed's own building name: %s" % "; ".join("'%s' x%d" % (n_, c_) for n_, c_ in sorted(_bld.items(), key=lambda t_: (-t_[1], t_[0]))))
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 # initial nursing-facility visits (William 11/10/2026, rules.md): every one goes in under the physician whatever clinician the feed names - one plain line, not for the top
@@ -114,6 +147,48 @@ try:
         len(_ini), ", ".join("%s %s" % (x.get("pid") or "?", x.get("visit") or "?") for x in _ini[:30]) + (" +%d more" % (len(_ini) - 30) if len(_ini) > 30 else "")))
 except Exception as _e:
     L("- Initial visits under the physician: this line could not be built (%s) - read prof_feed in the import register." % type(_e).__name__)
+# diagnosis codes AdvancedMD's own list does not have (William 11/25/2026, STANDING: "for any diagnosis not in the master file yet change it to i10 and send me an email
+# with the codes needed to be added"). The import names such codes in each created row (missing_dx) and, since that day, what it put in their place (dx_instead). ONE
+# line here says how many visits, each code with its number of visits (most first) and where the text of William's email is; the text is written to
+# outbox/dx_codes_needed_<STAMP>.txt - the codes, their visits, chart numbers and dates of service, never a name (a register row holds none; only pid and dos are read).
+# A row with missing_dx and NO dx_instead had the code LEFT OFF (an import from before 11/25/2026, or a run in which I10 itself was not in the list): it is said to be
+# entered WITHOUT the code, never with I10. No row with such a code: no line and no file. This block never stops the digest.
+try:
+    _dxc = {}; _dxn = [0, 0]; _dxi = set()      # code -> (its visits entered with the stand-in code, its visits entered without the code), each "chart date"; the visits of each kind; the stand-in code the rows name
+    for x in reg["created"]:
+        _m = x.get("missing_dx") if isinstance(x, dict) else None
+        _m = sorted({c_.strip() for c_ in _m if isinstance(c_, str) and c_.strip()}) if isinstance(_m, list) else []
+        if not _m: continue
+        _in = isinstance(x.get("dx_instead"), str) and bool(x["dx_instead"].strip())
+        _dxn[0 if _in else 1] += 1
+        if _in: _dxi.add(x["dx_instead"].strip())
+        for c_ in _m: _dxc.setdefault(c_, ([], []))[0 if _in else 1].append((str(x.get("pid") or "?"), str(x.get("dos") or "?")))
+    if _dxc:
+        _dkey = lambda t_: (t_[0], (t_[1][6:] + t_[1][:5]) if re.match(r"^\d\d/\d\d/\d{4}$", t_[1]) else t_[1])      # by chart, then by date of service
+        _dxc = {c_: tuple(["%s %s" % t_ for t_ in sorted(v_, key=_dkey)] for v_ in pair_) for c_, pair_ in _dxc.items()}
+        _i10 = "/".join(sorted(_dxi)) or "I10"
+        _before = (bool(re.match(r"^2\d{7}T", _st8)) and _st8[:8] < "20261125") or STAMP == "1028"      # a batch from before William's word: its codes were left off by the import of that day
+        _win = "entered with %s in its place" % _i10
+        _wout = "entered without that code (before 11/25/2026)" if _before else "entered without that code (%s was not put in its place: an older copy of the import ran, or %s itself is not in AdvancedMD's list)" % (_i10, _i10)
+        _nv = lambda c_: len(_dxc[c_][0]) + len(_dxc[c_][1])
+        _order = sorted(_dxc, key=lambda c_: (-_nv(c_), c_))
+        _kinds = "" if not _dxn[1] else (", all %s" % _wout) if not _dxn[0] else ", %d %s and %d %s" % (_dxn[0], _win, _dxn[1], _wout)
+        _vis = lambda c_: "; ".join(_dxc[c_][0]) if not _dxn[1] else " - ".join(w_ for w_ in (("%s: %s" % (_win, "; ".join(_dxc[c_][0]))) if _dxc[c_][0] else "", ("%s: %s" % (_wout, "; ".join(_dxc[c_][1]))) if _dxc[c_][1] else "") if w_)
+        _kept = "once a code is in the list, later visits use it; the visits already entered keep %s unless you say otherwise." % _i10
+        _end = (("Each of these visits was entered with %s in the code's place on your word of 11/25/2026; " % _i10) + _kept) if not _dxn[1] else \
+               (("The visits listed as %s went in with %s in the code's place on your word of 11/25/2026; " % (_win, _i10)) + _kept + " The visits listed as entered without that code went in with their other codes only: nothing stands in the code's place on them.") if _dxn[0] else \
+               ("These visits were entered without that code: it was left off the charge and nothing stands in its place. Since 11/25/2026 a visit goes in with %s in the code's place on your word; once a code is in the list, later visits use it." % _i10) if _before else \
+               ("These visits were entered without that code: it was left off the charge and nothing stands in its place - %s was not put there as your word of 11/25/2026 asks (an older copy of the import ran, or %s itself is not in AdvancedMD's list). Once a code is in the list, later visits use it." % (_i10, _i10))
+        _file = "outbox/dx_codes_needed_%s.txt" % STAMP
+        _mail = ["These diagnosis codes are not in AdvancedMD's diagnosis list (Master Files > Diagnosis Codes) and need to be added:", ""] + ["%s - %d visit(s): %s" % (c_, _nv(c_), _vis(c_)) for c_ in _order] + ["", _end]
+        try:
+            os.makedirs("outbox", exist_ok=True); open(_file, "w").write("\n".join(_mail) + "\n"); _where = _file
+        except Exception as _ef:                           # the line is still said: the codes are in it and in the register
+            _where = "the file %s could not be written (%s) - the codes are in this line and in missing_dx of the import register" % (_file, type(_ef).__name__)
+        L("- Diagnosis codes not in AdvancedMD's list (William 11/25/2026: the visit goes in with %s in its place; he adds the codes): %d visit(s)%s - %s - EMAIL WILLIAM: %s" % (
+            _i10, sum(_dxn), _kinds, ", ".join("%s x%d" % (c_, _nv(c_)) for c_ in _order), _where))
+except Exception as _e:                                    # never stops the digest
+    L("- Diagnosis codes not in AdvancedMD's list: this line could not be built (%s) - read missing_dx / dx_instead in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 # quality code (William 11/10/2026, rules.md): the advance-care-plan code 1123F that rides, at no charge, with Medicare visits of patients 65 and older.
 # Everything that needs William is ONE line that starts "  - TOP OF THE REPORT - ", said in the run where it began; the state of the code is ONE
 # top line in every batch ("QUALITY CODE: ...") - the previous import register's gate tells what is new in this run.

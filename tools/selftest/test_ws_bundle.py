@@ -21,7 +21,14 @@
 #     - an intact set without its manifest still restores (it cannot be checked - that is unchanged), and so do parts saved with
 #       Windows line ends;
 #     - the command lines the routine prompts name (pack --out DIR, unpack DIR) do the same with the real part size;
-#     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder.
+#     - secrets/, the credential, session and lock files and old bundle files never travel, wherever they sit in the folder;
+#     - the size cap is never silent, and what stays behind under it is what GitHub main already holds (11/25/2026). From 11/24/2026
+#       13:01 UTC every bundle stopped at the 40 MB default: files were skipped without a word, and registers/ - the folder walked last -
+#       lost the registers of the run that had just entered the Claimocity feed's visits, so the next fresh container read the same feed
+#       file again. Now tools/ and the 271 / ERA caches travel first (they live nowhere else), then the registers main does not hold as
+#       they are, newest first, then the registers that are byte for byte on main - decided by comparing with the clone, never by file
+#       time (a register restored from a fresh clone looks brand new). The pack says what it left out and, when any of it lives nowhere
+#       else, asks for a second pack with a cap that is enough (the manifest records it).
 # Run: python3 tools/selftest/test_ws_bundle.py   (exit 1 on any failure)
 import os, sys, io, re, json, glob, shutil, random, hashlib, tempfile, subprocess, contextlib, atexit
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -236,5 +243,89 @@ for x in part_names(i2):
     t = open(os.path.join(i2, x)).read(); open(os.path.join(i2, x), "wb").write(t.replace("\n", "\r\n").encode() + b"\r\n")
 comes_back("I2 parts saved with Windows line ends and a trailing empty line still restore", i2, BIG_FILES)
 
+# ---- J. the size cap (11/25/2026): never silent, and what stays behind is what GitHub main already holds ---------------------------------
+# The order under --max-mb: (1) tools/ and the 271 / ERA caches - they live nowhere else and always travelled first; (2) the registers GitHub
+# main does NOT hold as they are (this run's, an unmirrored one, a raw copy main only has scrubbed), newest first; (3) the registers that are
+# byte for byte on main, newest first. "On main" is decided by comparing with the clone's practices/ehpa/registers - NEVER by file time: in a
+# fresh container every register restored from the clone carries the clone's time (review of 11/25/2026: the first version went by "the last
+# 72 hours", packed 1,964 freshly restored registers ahead of the caches and left 467 cache files out).
+_t = __import__("time"); _now = _t.time()
+def _age(path, seconds): os.utime(path, (_now - seconds, _now - seconds))
+J, _j_unused = make_workspace("j_cap_ws", 0, 0, "cap")
+JM = fresh("j_clone_registers")                                                               # what GitHub main holds: the clone's registers folder
+for i in range(6): put(J, "era_details/old_%d.json" % i, junk(200000))                        # 1.2 MB of ERA cache
+for i in range(4): put(J, "patient_db/chart_%04d/old.json" % i, junk(200000))                 # 0.8 MB of 271 answers
+put(J, "tools/big_tool.bin.json", junk(120000))                                               # a tool file too big to slip in at the end
+for _root, _dirs, _fs in os.walk(J):
+    for _f in _fs: _age(os.path.join(_root, _f), 6 * 86400)                                   # everything so far is six days old
+MAIN_AGE = {3: 10, 0: 20, 4: 30, 1: 40, 2: 50}                                                # seconds: ALL look brand new (a fresh clone's time) and the time order is not the name order
+for i in range(5):
+    put(JM, "feed_import_MAIN%d.json" % i, junk(100000)); shutil.copy2(os.path.join(JM, "feed_import_MAIN%d.json" % i), os.path.join(J, "registers", "feed_import_MAIN%d.json" % i))
+    _age(os.path.join(J, "registers", "feed_import_MAIN%d.json" % i), MAIN_AGE[i])            # restored from the clone a moment ago: byte for byte main's copy
+put(J, "registers/feed_newcharts_RAW.json", junk(80000)); put(JM, "feed_newcharts_RAW.json", junk(80000)); _age(os.path.join(J, "registers", "feed_newcharts_RAW.json"), 9 * 86400)   # main holds another (scrubbed) form: the raw one lives nowhere else
+put(J, "registers/unmirrored_OLD.json", junk(50000)); _age(os.path.join(J, "registers", "unmirrored_OLD.json"), 20 * 86400)                                              # the OLDEST file of all - and main never got it
+put(J, "registers/feed_import_NEW.json", junk(150000)); put(J, "registers/claimocity_ingest.json", json.dumps({"files": {"invented": 1}}))                                # THIS run's registers
+J_TRAVELS = {rel for rel in tree(J) if not any(x in rel for x in NEVER)}
+MAINS = {"registers/feed_import_MAIN%d.json" % i for i in range(5)}
+ONLY_HERE = {"registers/feed_newcharts_RAW.json", "registers/unmirrored_OLD.json", "registers/feed_import_NEW.json", "registers/claimocity_ingest.json"}
+CACHE = {r for r in J_TRAVELS if r.split(os.sep)[0] in ("patient_db", "era_details")}
+def pack_capped(src, out, mb, clone=JM):
+    keep = (ws_bundle.WS, ws_bundle.REPO_REGISTERS); ws_bundle.WS = src; ws_bundle.REPO_REGISTERS = clone; buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf): m = ws_bundle.pack(out, mb)
+    finally: ws_bundle.WS, ws_bundle.REPO_REGISTERS = keep
+    return m, buf.getvalue()
+def restored(out):
+    dst = fresh("j_restore"); rc, _o = unpack(out, dst); return rc, set(tree(dst))
+# -- 2.5 MB: everything that lives nowhere else fits; three registers main already holds do not
+j_out = fresh("j_cap_out"); mj, jo = pack_capped(J, j_out, 2.5); rc, got = restored(j_out); lo = mj.get("left_out") or {}
+LEFT_25 = {"registers/feed_import_MAIN4.json", "registers/feed_import_MAIN1.json", "registers/feed_import_MAIN2.json"}
+check("J1 over the cap the pack SAYS so in a line that STARTS 'BUNDLE INCOMPLETE:' - how many files and megabytes stayed behind, by folder",
+      any(l.startswith("BUNDLE INCOMPLETE: 3 file(s), ") for l in jo.splitlines()) and "MB" in jo and "registers 3" in jo, jo[-600:])
+check("J2 a register restored from the clone a moment ago is NOT 'new': byte for byte on GitHub main, it goes last whatever its file time - every cache file, the big tool file and all four registers that live only here travel",
+      rc == 0 and CACHE <= got and ONLY_HERE <= got and "tools/big_tool.bin.json" in got and (J_TRAVELS - got) == LEFT_25, sorted(J_TRAVELS - got))
+check("J3 among the registers main holds the NEWEST travel first - what stays behind is the three oldest by file time (not by name), and the manifest names the newest of them",
+      (J_TRAVELS - got) == LEFT_25 and lo.get("files") == 3 and lo.get("newest") == "registers/feed_import_MAIN4.json" and lo.get("by_dir") == {"registers": 3} and lo.get("on_main") == 3 and lo.get("nowhere_else") == 0, lo)
+check("J4 when everything left out is on GitHub main the line says nothing is lost and does NOT ask for a second pack", "GitHub main already holds" in jo and "PACK AGAIN" not in jo, jo[-600:])
+# -- 1 MB: not even the caches fit - things that live nowhere else stay behind, and the line asks for a second pack with a cap that is enough
+j_out1 = fresh("j_cap_tight"); mj1, jo1 = pack_capped(J, j_out1, 1); rc1, got1 = restored(j_out1); lo1 = mj1.get("left_out") or {}
+_left1 = J_TRAVELS - got1; _need = re.search(r"PACK AGAIN: python3 tools/ws_bundle\.py pack --out \S+ --max-mb (\d+)", jo1)
+check("J5 when a file that lives nowhere else stays behind (a cache file, a register main does not hold) the line says PACK AGAIN with the command and a cap that is large enough, and counts those files",
+      rc1 == 0 and bool(_left1 & (CACHE | ONLY_HERE)) and _need is not None and lo1.get("nowhere_else") == len(_left1 - MAINS) and lo1.get("on_main") == len(_left1 & MAINS) and MAINS <= _left1
+      and lo1.get("names", [None])[0] in (CACHE | ONLY_HERE | {"tools/big_tool.bin.json"}), (jo1[-700:], lo1))
+if _need:
+    j_out1b = fresh("j_cap_again"); mj1b, jo1b = pack_capped(J, j_out1b, int(_need.group(1))); rc1b, got1b = restored(j_out1b)
+    check("J5b ... and packing again with the cap the line names carries every file that lives nowhere else", rc1b == 0 and (CACHE | ONLY_HERE) <= got1b and not (((mj1b.get("left_out") or {}).get("nowhere_else")) or 0), (sorted(J_TRAVELS - got1b), mj1b.get("left_out")))
+# -- no clone to compare with (a GitHub-less run): nothing can be called "on main"
+j_out2 = fresh("j_cap_noclone"); mj2, jo2 = pack_capped(J, j_out2, 2.5, clone=os.path.join(TMP, "no_such_clone")); rc2, got2 = restored(j_out2); lo2 = mj2.get("left_out") or {}
+check("J6 without a clone to compare with, the registers travel newest first, the ones left out are counted as living nowhere else, and the line says so and asks for a second pack",
+      rc2 == 0 and CACHE <= got2 and "registers/feed_import_NEW.json" in got2 and (J_TRAVELS - got2) == {"registers/feed_import_MAIN1.json", "registers/feed_import_MAIN2.json", "registers/feed_newcharts_RAW.json"}
+      and lo2.get("on_main") == 0 and lo2.get("nowhere_else") == lo2.get("files") == 3
+      and "no repository copy" in jo2 and "PACK AGAIN" in jo2, (sorted(J_TRAVELS - got2), lo2, jo2[-400:]))
+# -- under the cap
+j_out3 = fresh("j_cap_roomy"); mj3, jo3 = pack_capped(J, j_out3, 40); rc3, got3 = restored(j_out3)
+check("J7 under the cap nothing is left out, nothing is said and the manifest carries no left_out - every file travels",
+      "BUNDLE INCOMPLETE" not in jo3 and "left_out" not in mj3 and rc3 == 0 and got3 == J_TRAVELS, (jo3[-200:], sorted(J_TRAVELS - got3)[:6]))
+pj = subprocess.run([sys.executable, TOOL, "pack", "--out", fresh("j_cli_out"), "--max-mb", "1"], env=dict(os.environ, WS=J, REPO_REGISTERS=JM), capture_output=True, text=True)
+check("J8 the command line says it too (the clone's folder comes from REPO_REGISTERS) and still exits 0 - a bundle that is not complete is better than none, and the run reads the line",
+      pj.returncode == 0 and any(l.startswith("BUNDLE INCOMPLETE:") for l in pj.stdout.splitlines()) and "PACK AGAIN" in pj.stdout, (pj.returncode, pj.stdout[-300:], pj.stderr[-200:]))
+
+# -- a second pack in the same minute (the PACK AGAIN rule makes one likely): one stamp, and its parts must be the ONLY parts of that stamp
+def pack_at(src, out, part_chars, stamp):
+    keep = (ws_bundle.WS, ws_bundle.PART, ws_bundle.time.strftime); ws_bundle.WS = src; ws_bundle.PART = part_chars
+    ws_bundle.time.strftime = lambda fmt, t=None: stamp
+    try:
+        with contextlib.redirect_stdout(io.StringIO()): return ws_bundle.pack(out, 40)
+    finally: ws_bundle.WS, ws_bundle.PART, ws_bundle.time.strftime = keep
+j9 = fresh("j_same_minute"); S9 = "2026-11-25_0412UTC"
+m9a = pack_at(J, j9, 20000, S9); first = set(part_names(j9))
+m9b = pack_at(J, j9, 400000, S9); now9 = set(part_names(j9)); rc9, got9 = restored(j9)
+check("J9 a second pack in the same minute leaves ONE set under that stamp - the first pack's parts are gone (they had other part numbers and another width), the manifest lists exactly the files in the folder, and the folder restores whole",
+      len(first) >= 100 and len(m9b["parts"]) < 100 and digits(sorted(first)) != digits(sorted(now9)) and now9 == set(m9b["parts"]) and not (first & now9)
+      and len(glob.glob(os.path.join(j9, "workspace_state_*.manifest.json"))) == 1 and rc9 == 0 and got9 == J_TRAVELS,
+      (len(first), len(m9b.get("parts") or []), len(now9), rc9, sorted(J_TRAVELS - got9)[:4]))
+other = os.path.join(j9, "workspace_state_2026-11-24_0655UTC.part01.b64"); open(other, "w").write("AAAA")
+pack_at(J, j9, 400000, S9)
+check("J9b ...and a set of ANOTHER stamp in the same folder is left alone", os.path.exists(other))
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

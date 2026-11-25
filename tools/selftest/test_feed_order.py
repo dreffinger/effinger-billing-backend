@@ -15,7 +15,7 @@
 #     - (sections 8 and 9, step 2) feed_order_sweep.py, run INSIDE this process with stand-ins: the read-only listing (TOP lines with the clinician
 #       and admission-date problems), the eligibility checks dated to the service date (one per chart, date and plan; capped; no name, birth date
 #       or member id written), the clinician moves of the owner's file, the save through set_insorder only for the approved and standing-word
-#       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version 2026-11-10.8, the mirror's markers,
+#       visits whose checks all pass, the pilot first, the stop at the first unexpected read-back; the version 2026-11-25.1, the mirror's markers,
 #       the owner's approved file unchanged, and the words of the runbook, the rulebook, the lessons and the captured calls.
 #   The import's new register fields (section 7) are proved in tools/selftest/test_pos_rule.py, where the import runs with its stand-ins.
 #   11/11/2026 (round 8, the echo guard) - section R8: the sweep's own read before its own save (--resave) and its own clinician move
@@ -517,9 +517,9 @@ check("mirror.py protects resave.py and the sweep with sentences only their roun
       all(('"%s": "%s"' % (f_, m_) in MIR or "\"%s\": '%s'" % (f_, m_) in MIR) and m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()) and not any(x_ in MIR for x_ in _mk7)
       and '"claimocity_verify.py": "the save is skipped only when the visit\'s insurance-order LIST"' in HCS and "def set_insorder" not in MIR, {f_: m_ in open(os.path.join(HELPERS, f_)).read() for f_, m_ in _mk.items()})
 _vc = {p_: open(os.path.join(ROOT, p_)).read() for p_ in ("scripts/helpers/claimocity_import.py", "scripts/helpers/claimocity_ingest.py", "scripts/helpers/claimocity_retry_dx.py", "scripts/helpers/claimocity_report.py", "scripts/helpers/claimocity_helpers_current.py", "tools/mirror/mirror.py", "nightly/claimocity_feed_step.md")}
-check("the rule version is 2026-11-10.8 in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and 2026-11-10.7 in none of them (11/12/2026: the quality code never switches itself off)",
-      all('VERSION = "2026-11-10.8"' in s_ and '"2026-11-10.7"' not in s_ and '"2026-11-10.6"' not in s_ for s_ in _vc.values()) and MIR.count('POS_RULE_VERSION = "2026-11-10.8"') == 3
-      and "grep -c 'POS_RULE_VERSION = \"2026-11-10.8\"' /home/claude/unbilled/claimocity_import.py" in _vc["nightly/claimocity_feed_step.md"], [p_ for p_, s_ in _vc.items() if 'VERSION = "2026-11-10.8"' not in s_ or '"2026-11-10.7"' in s_])
+check("the rule version is 2026-11-25.1 in every place that carries it (import, ingest, retry, report, the shared helper, the mirror's markers, the runbook's grep) and 2026-11-10.8 / .7 / .6 in none of them (11/25/2026, William: every CCM line is 32 - never the skilled-nursing 31)",
+      all('VERSION = "2026-11-25.1"' in s_ and '"2026-11-10.8"' not in s_ and '"2026-11-10.7"' not in s_ and '"2026-11-10.6"' not in s_ for s_ in _vc.values()) and MIR.count('POS_RULE_VERSION = "2026-11-25.1"') == 3
+      and "grep -c 'POS_RULE_VERSION = \"2026-11-25.1\"' /home/claude/unbilled/claimocity_import.py" in _vc["nightly/claimocity_feed_step.md"], [p_ for p_, s_ in _vc.items() if 'VERSION = "2026-11-25.1"' not in s_ or '"2026-11-10.8"' in s_])
 _apf = os.path.join(ROOT, "practices", "ehpa", "registers", "feed_order_approved.json")
 check("8.8 the owner's approved file is in the repository unchanged (the very bytes of 11/10/2026): 84 visits, his answers, no 'william' visit left after his second answer",
       __import__("hashlib").sha256(open(_apf, "rb").read()).hexdigest() == "cb96a8d0ee76af6e4ffc20dba1efe051e5baa71bf38f6e7e4ff668e4ddbee3dc" and len(json.load(open(_apf))["visits"]) == 84
@@ -1122,6 +1122,32 @@ check("A/B words: captured calls, rulebook and lessons say the re-route helpers 
       and "only the re-route of a billed visit after a wrong-payer denial passes allow_billed=True" in _ls and "billed_ok" not in _cc + _rl + _ls)
 _own = open(os.path.abspath(__file__)).read()
 check("OPS-10 no invented member id here is 5 characters or more: the privacy gate's tree mode (mirror.py sync) would rewrite it and break this test", not re.findall(r'"(?:member|subscribernum|memberid|member_id)"\s*:\s*"[A-Za-z0-9][A-Za-z0-9\-]{4,}"', _own))
+
+# ---- INGEST-1 (11/25/2026, independent review): a second LIVE start under the SAME stamp is refused before anything is touched --------------
+# The import resumes a stamp's register and then passes over every message of a patient that register lists as skipped - also one the first
+# start never reached (reproduced by the review: a CCM 99487 in no row, the file registered, the charge never entered). The driver is run here
+# for real, with only its workspace folder pointed at a throw-away one.
+import subprocess as _sp, shutil as _sh
+def _ingest_at(tmp, stamp, live=True, register=True):
+    src = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
+    assert src.count('WS = "/home/claude/unbilled"') == 1
+    open(os.path.join(tmp, "claimocity_ingest.py"), "w").write(src.replace('WS = "/home/claude/unbilled"', "WS = %r" % tmp))
+    os.makedirs(os.path.join(tmp, "inbox"), exist_ok=True); os.makedirs(os.path.join(tmp, "registers"), exist_ok=True)
+    open(os.path.join(tmp, "inbox", "20261125.hl7"), "w").write("MSH|^~\\&|X\r")
+    if register: json.dump({"created": [], "skipped": [{"feed_id": "F1", "pid": "pat1", "why": "all lines already in AMD"}], "failed": []}, open(os.path.join(tmp, "registers", "feed_import_%s.json" % stamp), "w"))
+    return _sp.run([sys.executable, os.path.join(tmp, "claimocity_ingest.py"), "--hl7-dir", os.path.join(tmp, "inbox"), "--stamp", stamp] + (["--live"] if live else []), capture_output=True, text=True)
+_t1 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r1 = _ingest_at(_t1, "20261125T1239Z")
+check("INGEST-1 a second live start under a stamp that already has an import register is refused: 'STEP FAILED: stamp ... already has an import register', exit 2, a NEW stamp named - and no step ran (no parse, no log of a step)",
+      _r1.returncode == 2 and "STEP FAILED: stamp 20261125T1239Z already has an import register" in _r1.stdout and "NEW stamp" in _r1.stdout
+      and not glob.glob(os.path.join(_t1, "logs", "claimocity_*")) and not glob.glob(os.path.join(_t1, "feed_parsed_*")), (_r1.returncode, _r1.stdout[-400:], _r1.stderr[-300:]))
+_run1 = (json.load(open(os.path.join(_t1, "registers", "claimocity_ingest.json"))).get("runs") or [{}])[-1] if os.path.exists(os.path.join(_t1, "registers", "claimocity_ingest.json")) else {}
+check("INGEST-1 the refused start is on record (exit 2) and the file is NOT registered - the start under the new stamp reads it again", _run1.get("exit") == 2 and not json.load(open(os.path.join(_t1, "registers", "claimocity_ingest.json"))).get("files"), _run1)
+_t2 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r2 = _ingest_at(_t2, "20261125T1239Z", register=False)
+check("INGEST-1 a first start under a stamp is not refused (it goes on to its first step)", "already has an import register" not in _r2.stdout and bool(glob.glob(os.path.join(_t2, "logs", "claimocity_20261125T1239Z_parse.log"))), (_r2.returncode, _r2.stdout[-300:], _r2.stderr[-200:]))
+_t3 = tempfile.mkdtemp(prefix="ingest_same_stamp_"); _r3 = _ingest_at(_t3, "20261125T1239Z", live=False)
+check("INGEST-1 a dry look under the same stamp is not refused (it writes nothing)", "already has an import register" not in _r3.stdout, (_r3.returncode, _r3.stdout[-300:]))
+for _t in (_t1, _t2, _t3): _sh.rmtree(_t, ignore_errors=True)
+check("INGEST-1 the driver's header no longer promises that a re-run inside a batch is a no-op", "make a re-run a no-op" not in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read())
 
 time.sleep = _sleep0
 print("\n" + ("all checks passed" if not FAILS else "%d check(s) FAILED: %s" % (len(FAILS), "; ".join(FAILS))))

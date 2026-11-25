@@ -29,3 +29,6 @@ node_modules/
 !apps/ehpadb/tsconfig.json
 apps/ehpadb/src/generated/
 *.tmp
+# run digests name patients: Drive "chat history" only (11/25/2026 - thirty had been committed past the privacy gate)
+chat_history/*
+!chat_history/README.md

@@ -13,7 +13,9 @@
 #   7 inspector   claimocity_inspector (facility/POS fixes, admission dates, advisory bypasses)                               [--live]
 #   8 report      claimocity_report -> feed_digest_<stamp>.md + PHI-light registers/feed_verify_<stamp>.json
 # Idempotent: registers/claimocity_ingest.json remembers every file (sha256) already ingested; a file is never processed twice unless
-#   --reprocess; inside a batch the import's own register + live-charge check make a re-run a no-op.
+#   --reprocess. A file whose ingest did not finish is read again by the next start under a NEW stamp: what is in AdvancedMD answers
+#   'all lines already in AMD', what is missing is entered. A second LIVE start under the SAME stamp is REFUSED (11/25/2026): the import
+#   resumes that stamp's register and passes over every message of a patient it lists as skipped - also one the first start never reached.
 # Never deletes or moves anything on Claimocity or Drive. Dry mode (default) parses, matches against the map, and lists what WOULD be
 #   created (the import's --dry reads AMD; it writes nothing). Exit 0 = done, 2 = a step failed (see logs/claimocity_<stamp>_<step>.log).
 # Usage: python3 claimocity_ingest.py --hl7-dir <folder of *.hl7> [--stamp <UTC stamp>] [--live] [--limit N]
@@ -69,7 +71,7 @@ print("stamp %s | %d new file(s) of %d in %s | mode %s" % (stamp, len(files), le
 # nothing is new, so the retry of the same routine runs current helpers too - every feed helper here is compared with the repository clone's copy
 # and replaced when it differs (claimocity_helpers_current.make_current, the one function this driver and claimocity_retry_dx.py share). Without a
 # clone each helper is checked by its version line. An old helper is said at the end of the RESULT line, never a reason to hold a visit (rules.md part 6).
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.8"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-25.1"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
     for _p in (os.path.join(HERE, "claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py")):
@@ -84,6 +86,18 @@ _hl, pos_warn = _helpers_current()
 for _l in _hl: print(_l)
 if not files:
     print("nothing new - done"); finish(0)
+# ---- a second LIVE start under the SAME stamp is refused, before anything is touched (11/25/2026, independent review) ----------------------
+# claimocity_import.py resumes a stamp's register (no created row is lost) and, on that resume, counts every patient the register lists as
+# skipped as done - every message of that patient, also one the first start never reached. Such a message is then in no created / skipped /
+# failed row, this driver registers the file, and the charge is never entered and never retried (the review reproduced it with the real
+# import: a CCM 99487 lost that way; main's registers show a patient with a skipped and an entered message in one batch in 2 of 26).
+# A start under a NEW stamp has no register to resume: it reads the file from the top and the chart's live charges decide each line.
+_prior_reg = "registers/feed_import_%s.json" % stamp
+if live and os.path.exists(_prior_reg):
+    print("STEP FAILED: stamp %s already has an import register (%s) from an earlier start. A second start under the SAME stamp would pass over whole patients - "
+          "start the ingest again under a NEW stamp (this stamp plus one minute), with a log of that name: it reads the same file again, enters what is missing "
+          "and answers 'all lines already in AMD' for the rest." % (stamp, _prior_reg))
+    finish(2)
 env["FEED_HL7_DIR"] = os.path.abspath(batch)
 # ---- 1 parse, 2 dx -----------------------------------------------------------------------------------------------------------
 step("parse", [sys.executable, "-I", os.path.join(WS, "feed_parse_dft_1028.py"), env["FEED_HL7_DIR"], "feed_parsed_%s.json" % stamp])

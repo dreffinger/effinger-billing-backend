@@ -32,6 +32,23 @@ not carry over to the next fresh container, whichever mode had packed it. Bundle
   - a copy of a part under a decorated name ("...part07 (1).b64", a second download) is left out when the plainly named part is
     there and used when it is the only one; a file with no part number in its name is left out; unpack says each time.
 Unchanged: a set WITHOUT its manifest cannot be checked - unpack extracts what it can read, as it always did.
+
+The size cap (11/25/2026): --max-mb (40 by default) used to skip, WITHOUT A WORD, every file that no longer fitted - and registers/
+was the folder walked last. From 11/24/2026 13:01 UTC the workspace no longer fitted (2,864 of about 4,330 files travelled), so the
+registers of the run that had just entered the Claimocity feed's visits stayed behind and the next fresh container read the same
+feed file again. Now:
+  - the files of the walked folders are packed in this order: (1) tools/, patient_db/ and era_details/, as always - the 271 and ERA
+    caches live nowhere else; (2) the registers GitHub main does NOT hold as they are - this run's, one a run never mirrored, a raw
+    copy main only has in scrubbed form - newest first; (3) the registers that are byte for byte on main, newest first. "On main" is
+    decided by comparing each register with the clone's practices/ehpa/registers (REPO_REGISTERS), never by file time: in a fresh
+    container every register restored from the clone carries the clone's time (the first version of this change went by "the last 72
+    hours" and so packed every freshly restored register ahead of the caches - review of 11/25/2026). Without a clone (a GitHub-less
+    run) every register counts as living nowhere else;
+  - a pack that leaves anything out says so in a line that starts 'BUNDLE INCOMPLETE:' - how many files and megabytes, by folder -
+    and the manifest records it under left_out. When everything left out is on GitHub main the line says nothing is lost. When
+    anything left out lives nowhere else the line says PACK AGAIN and gives the command with a --max-mb that is enough; the run puts
+    the line at the top of its report, packs again and uploads that set. The pack still exits 0: an incomplete bundle is better
+    than none.
 Self-test (offline, throwaway folders, no patient data): python3 tools/selftest/test_ws_bundle.py
 """
 import os, sys, io, re, tarfile, base64, json, time, glob, hashlib
@@ -63,6 +80,31 @@ def _want(path, rel):
     return True
 
 
+# 11/25/2026: the clone of GitHub main, when the run has one - under the size cap a register that is byte for byte in there goes LAST
+REPO_REGISTERS = os.environ.get("REPO_REGISTERS", "/home/claude/effinger-billing-backend/practices/ehpa/registers")
+
+
+def _on_main(fp, rel):
+    """True when GitHub main holds this workspace register exactly as it is (same path under registers/, same bytes in the clone);
+    False when it does not; None when there is no clone to compare with. Never by file time: a register restored from a fresh clone
+    looks brand new, and a raw register main only has in scrubbed form looks old."""
+    if not os.path.isdir(REPO_REGISTERS):
+        return None
+    twin = os.path.join(REPO_REGISTERS, os.path.relpath(rel, 'registers'))
+    try:
+        if not os.path.isfile(twin) or os.path.getsize(twin) != os.path.getsize(fp):
+            return False
+        with open(twin, 'rb') as x, open(fp, 'rb') as y:
+            while True:
+                bx = x.read(1 << 16); by = y.read(1 << 16)
+                if bx != by:
+                    return False
+                if not bx:
+                    return True
+    except OSError:
+        return False
+
+
 PHI_TOP = {'needs_facesheet_list.md', 'laterality_flag_log.md', 'precheck_cache.json'}   # --phi-only: the top-level files that live nowhere else
 
 
@@ -71,6 +113,7 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
     buf = io.BytesIO()
     total = 0
     names = []
+    cand = []; left = []      # the files of the walked folders (mtime, name, path, size, folder); those the cap left out
     with tarfile.open(fileobj=buf, mode='w:gz') as tar:
         for entry in sorted(os.listdir(WS)):
             p = os.path.join(WS, entry)
@@ -97,12 +140,33 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
                     if phi_only and (f.endswith(('.py', '.sh')) or (d == 'registers' and (time.time() - os.path.getmtime(fp) > 6 * 3600 or os.path.getsize(fp) > 400 * 1024))):   # only this run's registers (the rest are on main), none over 400 KB
                         continue
                     if _want(fp, rel):
-                        if total + os.path.getsize(fp) > max_mb * 1024 * 1024:
-                            continue
-                        tar.add(fp, arcname=rel); names.append(rel); total += os.path.getsize(fp)
+                        try: cand.append((os.path.getmtime(fp), rel, fp, os.path.getsize(fp), d))
+                        except OSError: continue
+        # 11/25/2026: under the cap the order is (0) tools / the 271 and ERA caches, as always - they live nowhere else; (1) the registers GitHub
+        # main does not hold as they are; (2) the registers that are byte for byte on main - newest first inside each. What does not fit is SAID.
+        have_clone = os.path.isdir(REPO_REGISTERS)
+        def _tier(c):
+            if c[4] != 'registers':
+                return 0
+            return 2 if _on_main(c[2], c[1]) is True else 1
+        ranked = sorted(((_tier(c),) + c for c in cand), key=lambda c: (c[0], -c[1], c[2]))
+        for tier, mt, rel, fp, sz, d in ranked:
+            if total + sz > max_mb * 1024 * 1024:
+                left.append((mt, rel, sz, d, tier)); continue
+            try:
+                tar.add(fp, arcname=rel)
+            except OSError:                                    # the file went away between the walk and the pack
+                continue
+            names.append(rel); total += sz
     raw = buf.getvalue()
     b64 = base64.b64encode(raw).decode()
     os.makedirs(out_dir, exist_ok=True)
+    # 11/25/2026: a second pack in the same UTC minute (the PACK AGAIN rule below makes one likely) writes under the SAME stamp, and its
+    # parts must be the only parts of that stamp in the folder. A first pack of 59 parts (part01 ..) followed by one of 168 (part001 ..)
+    # left 227 files under one manifest; the next container's unpack refused the set whole (sha mismatch) and restored nothing.
+    for stale in glob.glob(os.path.join(out_dir, f'workspace_state_{stamp}.*')):
+        try: os.remove(stale)
+        except OSError: pass
     parts = []; part_sha = {}
     for k, name in enumerate(_part_names(stamp, len(b64))):
         fn = os.path.join(out_dir, name)
@@ -112,10 +176,32 @@ def pack(out_dir, max_mb, state_only=False, phi_only=False):
         parts.append(name); part_sha[name] = hashlib.sha256(chunk.encode()).hexdigest()
     manifest = {'stamp': stamp, 'files': len(names), 'raw_bytes': total, 'tar_gz_bytes': len(raw),
                 'sha256': hashlib.sha256(raw).hexdigest(), 'parts': parts, 'part_sha256': part_sha, 'members': names[:400]}
+    if left:
+        by = {}
+        for mt, rel, sz, d, tier in left: by[d] = by.get(d, 0) + 1
+        only_here = [x for x in left if x[4] != 2]            # live nowhere else: tools, the caches, registers GitHub main does not hold as they are
+        newest = max(left)                                    # the newest file that stayed behind
+        need_mb = int((total + sum(x[2] for x in only_here)) / 1048576.0) + 2
+        manifest['left_out'] = {'files': len(left), 'bytes': sum(x[2] for x in left), 'by_dir': by, 'cap_mb': max_mb, 'compared_with_main': have_clone,
+                                'nowhere_else': len(only_here), 'nowhere_else_bytes': sum(x[2] for x in only_here), 'on_main': len(left) - len(only_here),
+                                'pack_again_mb': need_mb if only_here else None, 'newest': newest[1], 'newest_at': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime(newest[0])),
+                                'names': [x[1] for x in sorted(only_here, reverse=True)[:40]] + [x[1] for x in sorted((y for y in left if y[4] == 2), reverse=True)][:max(0, 40 - len(only_here))]}
     mf = os.path.join(out_dir, f'workspace_state_{stamp}.manifest.json')
     json.dump(manifest, open(mf, 'w'), indent=1)
     print(f'packed {len(names)} files ({total/1024:.0f} KB raw -> {len(raw)/1024:.0f} KB gz) into {len(parts)} part(s): {parts[0]} .. {parts[-1]}')
     print('manifest:', mf)
+    if left:
+        lo = manifest['left_out']
+        head = 'BUNDLE INCOMPLETE: %d file(s), %.1f MB did not fit under the --max-mb cap of %s MB and are NOT in this bundle (%s).' % (
+            lo['files'], lo['bytes'] / 1048576.0, max_mb, ', '.join('%s %d' % kv for kv in sorted(lo['by_dir'].items())))
+        if not lo['nowhere_else']:
+            print(head + ' All of them are registers GitHub main already holds byte for byte - nothing is lost, nothing to do.')
+        else:
+            only = {}
+            for x in only_here: only[x[3] if x[3] != 'registers' else ('registers not on GitHub main' if have_clone else 'registers')] = only.get(x[3] if x[3] != 'registers' else ('registers not on GitHub main' if have_clone else 'registers'), 0) + 1
+            print(head + ' %d of them live nowhere else (%s)%s - top of the report, and PACK AGAIN: python3 tools/ws_bundle.py pack --out %s --max-mb %d   then upload THAT set instead of this one. The newest file left out is %s (written %s).' % (
+                lo['nowhere_else'], ', '.join('%s %d' % kv for kv in sorted(only.items())), '' if have_clone else '; there was no repository copy to compare the registers with, so every register counts',
+                out_dir, need_mb, lo['newest'], lo['newest_at']))
     return manifest
 
 

@@ -17,9 +17,11 @@
 #   under the PHYSICIAN's profile whatever clinician it names - every line of that visit, its 99497 included (INITIAL_NF, build()).
 # Place of service (William 11/10/2026, STANDING - practices/ehpa/rules.md): Claimocity can only send 31 for the nursing buildings, so the
 #   place of service is set here per charge line BY WILLIAM'S FREQUENCY RULE (nobody has checked the building's Part A list): CCM
-#   99487/99489 -> 32; a nursing facility visit -> 32 for the monthly visit, 31 when the resident is seen once or twice a week or the
-#   chart shows a new stay; whatever the chart does not show stays 31.
-#   ALF / home (13), hospital (21) and unknown-building lines are entered exactly as before. See NF_KINDS / nf_visit_kind / pos_lines below.
+#   99487/99489 -> 32, EVERY line (William 11/25/2026: never the skilled-nursing 31 - also when the chart shows a skilled-looking
+#   month, when the rule fails or when the building is not in the facility table); a nursing facility visit -> 32 for the monthly
+#   visit, 31 when the resident is seen once or twice a week or the chart shows a new stay; whatever the chart does not show stays 31.
+#   ALF / home (13) and hospital (21) lines, and every other line from an unknown building, are entered exactly as before. See NF_KINDS /
+#   nf_visit_kind / pos_lines / ccm_never_31 below.
 # Quality code (William 11/10/2026, STANDING - practices/ehpa/rules.md): the advance-care-plan code 1123F goes on as a no-charge line, once
 #   per patient per year, with the next nursing-facility, home or assisted-living visit of every patient 65 or older whose first plan is
 #   Medicare Part B and whose last insurance check showed Medicare first (hospital visits are not coded in this version). A pilot first;
@@ -28,6 +30,18 @@
 # 11/12/2026 (William 11/11/2026: "dont stop this dont let it stop make sure this suceeds"): the code never switches itself off. Where it
 #   used to go off it probes - one line a run until one is billed - or pauses for one run; only William's own QUALITY_CODE=stop lasts. See
 #   THE CODE NEVER SWITCHES ITSELF OFF below.
+# Diagnosis codes (William 11/25/2026, STANDING: "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes
+#   needed to be added"): AdvancedMD only takes a diagnosis code that is in the practice's own list (Master Files > Diagnosis Codes; the cache DXCACHE
+#   holds each feed code's id there, null = not in the list). A code of a charge line that is not in the list goes in as I10 IN ITS PLACE in the
+#   line's order - as long as I10 itself is in the list - and I10 never stands twice on such a line; at most 12 codes a line, as before. The register
+#   row still names every such code (missing_dx) and says what stands in its place (dx_instead); claimocity_report.py puts them into the digest and
+#   writes the text of William's email. A charge line with NO code at all is still skipped ("no usable dx for <CPT>" - there is nothing to change),
+#   and without I10 in the list everything is as before that day: the code is left off, and a line with no usable code skips the visit. See DX_INSTEAD.
+# CCM and a patient who has passed away - William's word of 11/25/2026: before a CCM message (99487 / 99489) is entered, Medicare is asked for a date of death (the deceased guard's own
+#   check; a kept answer younger than 30 days and asked on or after the CCM date is used as it is). A death before the CCM date = the message is never entered, in the
+#   month it is found and in every month after. Until that day only a death an earlier look-up had cached kept a CCM charge out. A look-up that fails keeps nothing out.
+# A feed message with no charge line, or with no patient id (11/25/2026): passed over and counted - it never stops the import. Where it has a feed id
+#   it leaves ONE skipped row with that plain reason; that row never makes a second start of the same batch pass the patient over.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -40,7 +54,11 @@ import xml.etree.ElementTree as ET
 PARSED = json.load(open(("feed_parsed_%s.json" % STAMP)))
 MATCH = json.load(open(("feed_match_%s.json" % STAMP)))
 DX = json.load(open(DXCACHE))
+DX_INSTEAD = "I10"      # William 11/25/2026 (STANDING): "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to be added" - said right after "Add diagnosis S82.843D in AMD Master Files change this diagnosis to i10". The code build() puts in the place of a feed diagnosis code AdvancedMD's list does not have; claimocity_retry_dx.py carries the same line
 REG = ("registers/feed_import_%s.json" % STAMP)
+# 11/25/2026 (feed review): why a message that carries nothing to enter is passed over - the counters of the DONE line, and the reason in its skipped row
+NO_LINES_WHY = "feed message without a charge line - passed over"
+NO_PID_WHY = "feed message without a patient id - passed over"
 # 11/12/2026 (William: "fix everything billable to put them in advanced md"): 99349, the established-patient home / assisted-living visit, was
 #   not in these two tables, so three feed visits (9/1, 9/2 and 11/3/2026) were skipped as "unknown CPT 99349". It goes in under pcode65142
 #   (the id the 10/15 recode and the 10/20 GV rebill used) at the practice's $198.00 (the fee of every natively entered 99349 on the ERA
@@ -75,10 +93,16 @@ def mdy(yyyymmdd):
 # an operating rule read from the chart's visit pattern, not a check of the building's Part A list. How the code reads Medicare's line: 31 is
 # what was billed before; 32 is for a resident who is not in a Part A stay, and Medicare can match a 32 line to the facility's Part A claim. So 32 is
 # given only where the chart SHOWS the long-term pattern, and everything unclear keeps the feed's 31 - exactly what was billed before.
-#   CCM 99487 / 99489          -> 32: "all the ccm services performed in the nursing facility setting by us are done on our long term
-#                                 residents that are not being actively skilled". ALF / home CCM keeps its home location (13).
-#                                 Exception: the chart shows the resident seen at skilled frequency, admitted or readmitted in the CCM's
-#                                 own calendar month -> the line stays at the feed's 31 and is listed for William.
+#   CCM 99487 / 99489          -> 32, EVERY line: "all the ccm services performed in the nursing facility setting by us are done on our long
+#                                 term residents that are not being actively skilled" (11/10/2026) and "make sure they bill with the place
+#                                 of service ltc which pays more ... not the skilled snf location of service ... for all ccm charges going
+#                                 forward" (11/25/2026). ALF / home CCM keeps its home location (13); a CCM line whose own message names
+#                                 the hospital keeps 21. A CCM line is NEVER entered at 31. The back end's exception of 11/10/2026 (the
+#                                 chart shows the resident seen at skilled frequency, admitted or readmitted in the CCM's own calendar
+#                                 month -> the feed's 31) is REMOVED by William's word of 11/25/2026: such a line is 32 like every other
+#                                 and its chart is only LISTED for William (pos_kind ccm-skilled-month) - not held, not changed. The same
+#                                 when the rule fails for the message (ccm_never_31) and when the building is not in the facility table
+#                                 (the old default 31 - pos_kind ccm-unknown-building; the chart goes to the top of the report as before).
 #   nursing facility visit     -> 32 for "the snf residents that are being billed monthly face to face visits": the previous nursing visit
 #   99304-99310, 99315, 99316     was MONTHLY_MIN_DAYS to MONTHLY_MAX_DAYS earlier, was not a discharge, and none of our hospital visits
 #                                 falls in between.
@@ -90,10 +114,10 @@ def mdy(yyyymmdd):
 # Only a line in a KNOWN nursing building (FAC says 31) is ever changed, and each message is read with ITS OWN building: a feed patient
 # whose messages come from two buildings is handled message by message. Only when a message's own building cannot be read and the
 # patient shows two buildings does the rule step aside for that visit - and says so (POS RULE NOT APPLIED).
-# Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
-# in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
-# never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.8"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+# Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before - except
+# that a CCM line of an unknown building is 32, not the default 31. Any error in the rule falls back to the feed's place of service for
+# the whole message - its CCM lines 32 all the same - and is counted as "POS RULE NOT APPLIED" - the import never stops for this rule.
+POS_RULE_VERSION = "2026-11-25.1"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -114,7 +138,7 @@ SKILLED_GAP_DAYS = 14      # weekly / twice-weekly visits (feed 9/1-11/5/2026: 1
 MONTHLY_MIN_DAYS = 21      # 32 needs the monthly pattern actually shown: previous nursing visit 21 ...
 MONTHLY_MAX_DAYS = 92      # ... to 92 days back (the 60-day schedule fits; longer than that is a new stay, not a monthly visit)
 BATCH_NF = {}              # chart -> {(cpt, DOS) or (cpt, DOS, building)}: nursing, hospital and home visits of THIS feed batch and the visits earlier batches could not enter (main() fills it); read with the chart's history
-BATCH_NF_ERR = [""]        # why the batch list could not be built (then no nursing-building line is 32 in this run) - reaches the DONE line
+BATCH_NF_ERR = [""]        # why the batch list could not be built (then no nursing VISIT line is 32 in this run; a CCM line is 32 without the list - William 11/25/2026) - reaches the DONE line
 FACS = {}                  # feed patient id -> every building name its messages carry in this batch
 MSGOF = {}                 # one feed message (see msg_key) -> {(building name, clinician NPI, admission date)} read from the raw files
 MSGLAST = {}               # one feed message -> the LAST raw copy read of it: where its copies differ in the admission date, the message's own last copy answers (11/10/2026, review W2) - never another message of the patient
@@ -437,7 +461,8 @@ NF_KINDS = {
     "between":      ("31", "31 by rule: %d days since the previous nursing visit, between weekly and monthly"),
     "monthly":      ("32", "32 by rule: %d days since the previous nursing visit (the monthly visit)"),
 }
-# a visit of one of these kinds in the CCM's month (or one of our hospital or home / assisted-living visits that month) keeps the CCM at the feed's 31, for William
+# a visit of one of these kinds in the CCM's month (or one of our hospital or home / assisted-living visits that month) is what LISTS that month's CCM for William
+# (pos_kind ccm-skilled-month). Until 11/25/2026 it also kept the line at the feed's 31; since William's word of that day the line is 32 like every CCM line.
 SKILLED_KINDS = ("initial", "dischargeday", "first", "hospital", "away", "discharge", "moved", "preadmission", "skilled", "extra", "stale")
 def _day(mdy_s):
     return datetime.datetime.strptime(mdy_s, "%m/%d/%Y").date()
@@ -509,7 +534,8 @@ def seen_at_skilled_frequency(dos_mdy, nf_history, here=None):
     resident was out of the building that month) or a nursing visit the rule reads as weekly, an admission, a discharge or a new stay (any
     kind in SKILLED_KINDS) - or, when the CCM's own building is known (here), that the resident's latest nursing visit up to the CCM's date, or
     a nursing visit of the CCM's month, is known to be in ANOTHER building (11/10/2026, second reviewers: the resident came to this building that
-    month or the buildings disagree). Then a CCM line of that month stays at the feed's 31, for William."""
+    month or the buildings disagree). Then the CCM line of that month - 32 like every CCM line since 11/25/2026 - is listed for William; it is not held
+    and never moved to 31."""
     day = _day(dos_mdy); hist = _history(nf_history); visits, where, hosp, home = hist
     same = lambda d: (d.year, d.month) == (day.year, day.month)
     if any(same(h) for h in hosp) or any(same(a) for a in home): return True      # the resident was in the hospital or out of the building that month
@@ -520,11 +546,33 @@ def seen_at_skilled_frequency(dos_mdy, nf_history, here=None):
     for d in sorted(visits):
         if same(d) and _kind_at(d, visits[d], hist)[0] in SKILLED_KINDS: return True
     return False
+# William 11/25/2026 ("make sure they bill with the place of service ltc ... not the skilled snf location of service ... for all ccm charges going
+# forward"): a CCM line is never entered at place of service 31. The reasons below go into the import register (pos_why) and carry no date.
+CCM_LISTED_WHY = ("32 by William's order (every CCM line) - listed for him, not held: the chart shows a hospital visit, a home / assisted-living visit, nursing visits "
+                  "in this CCM month that the rule reads as weekly, an admission or a new stay, or the resident's nursing visits in another building")
+CCM_NEVER_31_WHY = "32 by William's order (every CCM line): a CCM line is never entered at 31"
+def ccm_never_31(cpts, lpos, lwhy=None, lkind=None, why=CCM_NEVER_31_WHY, kind="ccm-forced"):
+    """William 11/25/2026: wherever a CCM line would go in at 31 - the rule failed for its message, or its building is not in the facility table
+    (the old default) - it goes in at 32. cpts = the codes in line order; lpos / lwhy / lkind = the lists build() keeps per line, changed IN PLACE.
+    Only a CCM line that stands at 31 is touched: 13, 21 and every other code stay as they are. Returns how many lines were changed."""
+    n = 0
+    for i, cpt in enumerate(cpts):
+        if cpt in CCM and i < len(lpos) and str(lpos[i]) == "31":
+            lpos[i] = "32"; n += 1
+            if lwhy is not None and i < len(lwhy): lwhy[i] = why
+            if lkind is not None and i < len(lkind): lkind[i] = kind
+    return n
 def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
     """Place of service for every line of ONE feed message. cpt_dos = [(cpt, 'MM/DD/YYYY')] in line order; nursing = the message comes from
-    one of the practice's nursing buildings; here = that building's key. Returns ([pos per line], [why per line], [kind per line])."""
+    one of the practice's nursing buildings; here = that building's key. Returns ([pos per line], [why per line], [kind per line]).
+    A CCM line is never 31 (William 11/25/2026): 32 in a nursing building whatever the chart shows, and 32 where a building the facility table
+    does not know would have given the default 31. A message from the hospital (21) or an ALF / home (13) is not touched."""
     n = len(cpt_dos)
-    if not nursing: return [feed_pos] * n, [""] * n, [""] * n
+    if not nursing:
+        out = [feed_pos] * n; why = [""] * n; kinds = [""] * n
+        if str(feed_pos) == "31":      # not one of the practice's nursing buildings and yet 31 = the default of a building the facility table does not know
+            ccm_never_31([c for c, _d in cpt_dos], out, why, kinds, CCM_NEVER_31_WHY + " (its building is not in the facility table - William checks the building)", "ccm-unknown-building")
+        return out, why, kinds
     hist = []
     for row in nf_history:
         try: hist.append((row[0], row[1], row[2] if len(row) > 2 else None))
@@ -533,8 +581,8 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
         if cpt in NF_VISIT: hist.append((cpt, d, None))   # the message's own visit lines count as history for each other
     out = []; why = []; kinds = []; by_day = {}
     for cpt, d in cpt_dos:
-        if cpt in CCM:
-            if seen_at_skilled_frequency(d, hist, here): p, w, k = feed_pos, "31 kept: the chart shows a hospital visit, a home / assisted-living visit, nursing visits in this CCM month that the rule reads as weekly, an admission or a new stay, or the resident's nursing visits in another building - for William", "ccm-skilled-month"
+        if cpt in CCM:      # 32, every line (William 11/25/2026); the chart only decides whether the line is LISTED for him
+            if seen_at_skilled_frequency(d, hist, here): p, w, k = "32", CCM_LISTED_WHY, "ccm-skilled-month"
             else: p, w, k = "32", "32 by rule: CCM in a nursing building", "ccm"
         elif cpt in NF_VISIT:
             k, gap = nf_visit_kind(cpt, d, hist, here); p, text = NF_KINDS[k]; w = text % gap if "%d" in text else text
@@ -1495,8 +1543,9 @@ def msg_building(msg):
     except Exception: return ""
 def msg_buildings(msg):
     """Every building name the raw copies of a message carry (11/10/2026, review C1): one for nearly every message; two or more when the feed sent
-    the same lines from several buildings - then that day is named under two buildings, and the resident's next visit and that month's CCM read
-    it as a move (31), exactly like a day the chart and the feed name under two buildings."""
+    the same lines from several buildings - then that day is named under two buildings: the resident's next visit reads it as a move (31), and
+    that month's CCM - 32 like every CCM line since 11/25/2026 - is listed for William, exactly like a day the chart and the feed name under two
+    buildings."""
     try:
         own = MSGOF.get(msg_key(msg.get("pid"), [(c.get("cpt"), c.get("dos")) for c in msg.get("FT1") or []])) or ()
         names = sorted({o[0] for o in own if o[0]})
@@ -1517,13 +1566,21 @@ def count_pos(info, stats):
     if info.get("msg_own") is False: stats["feed message not matched to its own raw message - where its copies differ: the patient's last-read building / clinician, the admission date of its own last copy"] += 1
     if info.get("prof_default"): stats["clinician id of the feed message is not one of the practice's two - entered under the physician profile"] += 1
     if info.get("prof_feed"): stats["initial nursing-facility visit entered under the physician although the feed named another clinician (William 11/10/2026)"] += 1
+    if info.get("dx_instead"): stats["diagnosis code not in AdvancedMD's list - visit entered with %s in its place (William 11/25/2026); the digest names the codes for his email" % info["dx_instead"]] += 1
     if not info.get("fac"): stats["visit entered with NO facility - its building is not in the facility table"] += 1      # every code, not only CCM / nursing lines
+    # 11/25/2026 (review of the CCM rule): the VALUE is tested first. A CCM line that stands at 31 is counted as not William's rule whatever its kind says and
+    # whatever visit it is in - also a visit whose rule failed (pos_err), which used to leave this count before any line was looked at, and a visit with no
+    # facility. 'CCM 31 xN' of the short log line is the sum of this counter, so it says what was sent, never how the line was labelled.
+    _at31 = [cpt in CCM and str(p) == "31" for cpt, p in zip(info["cpts"], info["pos_lines"])]
+    if any(_at31): stats["POS 31 CCM - NOT WILLIAM'S RULE (11/25/2026: every CCM line is 32) - an old copy of the rule ran"] += sum(_at31)
     if info.get("pos_err"):
-        stats["POS RULE NOT APPLIED (entered at the feed's place of service)"] += 1; return
+        stats["POS RULE NOT APPLIED (entered at the feed's place of service; %s)" % ("ITS CCM LINE AT 31, not William's rule" if any(_at31) else "a CCM line at 32")] += 1; return
     for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
-        if info.get("pos_feed") == "31" and not info.get("fac") and (cpt in CCM or cpt in NF_VISIT): stats["POS RULE: building not in the facility table - entered at the feed's 31"] += 1
+        _c31 = cpt in CCM and str(p) == "31"                # counted above, under the value: never again under a kind or under words that say 32
+        if info.get("pos_feed") == "31" and not info.get("fac") and (cpt in CCM or cpt in NF_VISIT): stats["POS RULE: building not in the facility table - %s" % ("a CCM line AT 31, not William's rule" if _c31 else "a nursing visit at the default 31, a CCM line at 32")] += 1
+        elif _c31: pass
         elif k == "ccm": stats["POS 32 CCM (nursing building)"] += 1
-        elif k == "ccm-skilled-month": stats["POS 31 CCM kept for William (the back end's exception for that month - see pos_why)"] += 1
+        elif k == "ccm-skilled-month": stats["POS 32 CCM listed for William (the chart shows a skilled-looking month - see pos_why; William 11/25/2026: every CCM line is 32)"] += 1
         elif k == "monthly": stats["POS 32 nursing visit (monthly)"] += 1
         elif k in ("extra", "between"): stats["POS 31 nursing visit (kept at 31: neither pattern shown)"] += 1
         elif k == "moved": stats["POS 31 nursing visit (previous nursing visit in another building)"] += 1
@@ -1644,28 +1701,46 @@ def build(msg, ctx):
     chg = ""
     cpts = [c["cpt"] for c in lines]
     missing_dx = set()
-    # place of service per line (11/10/2026 rule); any failure = the feed's place of service for every line, exactly as before the rule
+    # place of service per line (11/10/2026 rule); any failure = the feed's place of service for every line, exactly as before the rule - except a CCM
+    # line, which is 32 all the same (William 11/25/2026: never the skilled-nursing 31)
     pos_err = ""; lkind = [""] * len(lines)
     try:
-        if nursing and BATCH_NF_ERR[0]:
-            raise ValueError("the visits of this batch could not be listed (%s), so nothing shows this resident's pattern - kept at the feed's place of service" % BATCH_NF_ERR[0])
+        if nursing and BATCH_NF_ERR[0] and any(c["cpt"] in NF_VISIT for c in lines):      # only a nursing VISIT line needs the pattern; a CCM line is 32 without it (William 11/25/2026)
+            raise ValueError("the visits of this batch could not be listed (%s), so nothing shows this resident's pattern - kept at the feed's place of service (a CCM line: 32)" % BATCH_NF_ERR[0])
         if _ag[0] is None and len(FACS.get(fid, ())) > 1 and (nursing or any(FAC.get(_n, ("", ""))[1] == "31" for _n in FACS[fid])):
             raise ValueError("this feed patient has messages from %d buildings in this batch and its own building cannot be read - "
                              "facility, clinician and place of service are for William; a routine changes nothing on this visit" % len(FACS[fid]))
         hist = (list(ctx.get("nfrows") or ctx.get("live") or ()) + list(BATCH_NF.get(ctx.get("pid"), ()))) if nursing else ()   # the history is only read for a nursing building
-        lpos, lwhy, lkind = pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist, fac if nursing else None)
+        lpos, lwhy, lkind = (list(_x) for _x in pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist, fac if nursing else None))      # three lists of this message's own (the second look below changes them in place)
         if len(lpos) != len(lines) or any(p not in ("31", "32", pos) for p in lpos): raise ValueError("unexpected place of service %r" % (lpos,))
     except Exception as e:
         lpos = [pos] * len(lines); lwhy = ["rule error"] * len(lines); lkind = [""] * len(lines); pos_err = str(e)[:200] or type(e).__name__
+        ccm_never_31([c["cpt"] for c in lines], lpos, lwhy, lkind)      # William 11/25/2026: also when the rule fails, a CCM line goes in at 32 - never 31
+    # 11/25/2026 (review of the CCM rule, defence in depth): "a CCM line is never entered at 31" must not rest on what pos_lines answers. Whatever came out
+    # above - the rule's own lists or the fallback - is looked at once more: a CCM line that still stands at 31 goes in at 32 (kind ccm-forced, the reason in
+    # William's name). Nothing else of the message is touched: 13, 21, every other code and every line that is not at 31 stay as they are.
+    ccm_never_31([c["cpt"] for c in lines], lpos, lwhy, lkind)
     _qwhy = []                                            # "hospital" when the visit met every condition but its visit lines are hospital lines
     try: qi = quality_due(msg, ctx, lines, lpos, _qwhy)   # the visit line the advance-care-plan quality code rides with (None = no code)
     except Exception: qi = None; _qwhy = []
     qchg = ""
+    # DIAGNOSIS CODES (William 11/25/2026, STANDING: "for any diagnosis not in the master file yet change it to i10 and send me an email with the codes needed to
+    # be added"). Until that day a code AdvancedMD's list does not have was left off the charge, and a line with no usable code skipped the whole visit (68 of
+    # 1,480 entered visits had a code left off; two 99309 visits waited on S82.843D since 11/13 and 11/22/2026). Now such a code goes in as I10 IN ITS PLACE in
+    # the line's own order, as long as I10 itself is in the list; missing_dx still names the code and dx_instead says what stands for it - the digest and
+    # William's email are built from them (claimocity_report.py). I10 never stands twice on a line that had a code replaced. A line with no code at all is
+    # skipped as before: there is nothing to change. When I10 is not in the list (_instead is empty) every line is built exactly as before 11/25/2026.
+    _instead = DX.get(DX_INSTEAD); dx_replaced = False
     for _k, (c, cpos) in enumerate(zip(lines, lpos)):
-        dcodes = []
+        dcodes = []; _rep = False
         for code in c["dx"].split("^"):
+            if _instead: code = code.strip()                  # 11/25/2026: under the rule a code is read as claimocity_dx.py caches it and the retry driver reads it - with a blank around it a code the list HAS would not be found, and would be replaced by I10 and asked for in the email. Without I10 in the list the field is read exactly as before.
             if DX.get(code): dcodes.append(DX[code])
-            elif code: missing_dx.add(code)
+            elif code:
+                missing_dx.add(code)
+                if _instead: dcodes.append(_instead); _rep = True
+        if _rep:                                              # ONCE, at its first position: the feed's own I10 beside a replaced code, or two replaced codes, never give I10 twice
+            dcodes = [x for i, x in enumerate(dcodes) if x != _instead or i == dcodes.index(_instead)]; dx_replaced = True
         if not dcodes: return None, "no usable dx for %s" % c["cpt"]
         mod = "mcode7" if c["cpt"] in MOD25 and len(cpts) > 1 else ""
         fee = FEE[c["cpt"]]; d = mdy(c["dos"][:8])
@@ -1713,8 +1788,14 @@ def build(msg, ctx):
     # prof_feed / prof_why: an initial nursing-facility visit entered under the physician although its message named another clinician (William 11/10/2026);
     # msg_fallback: for a message not matched to exactly one raw copy, where each value came from; tie_lines: the visit lines once per building when the
     # feed sent the message from two or more buildings - a later batch reads that day as named under two buildings (review C1)
+    # missing_dx: the feed's diagnosis codes AdvancedMD's list does not have; dx_instead (11/25/2026): the code that stands in their place on this visit - the
+    # key is there only when a code was replaced (a row with missing_dx and no dx_instead had the code left off: an import from before that day, or I10 not in the list)
     return (create, body, plain), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
                             "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE and not initial, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx),
+                            **({"dx_instead": DX_INSTEAD} if dx_replaced else {}),
+                            # feed_building (11/25/2026): the feed's own name of a building the facility table does not know. Until then that name was in no register and no
+                            # digest - only in the raw feed files - so nobody could add the building (ten 11/17/2026 visits went in with no facility); the digest names it now
+                            **({"feed_building": " ".join(str(facname).split())[:80]} if (not fac and str(facname or "").strip()) else {}),
                             **({"prof_feed": prof_feed, "prof_why": INITIAL_WHY} if prof_feed else {"prof_why": INITIAL_WHY} if (initial and npi not in PROFILE) else {}),
                             **({"msg_fallback": _fbw} if (own is None and _fbw) else {}), **({"tie_lines": visit_lines(msg, _tb)} if len(_tb) > 1 else {}),
                             **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8]), "quality_pos": lpos[qi]} if qchg else
@@ -1739,7 +1820,7 @@ def main():
         if isinstance(prior, dict): prior_regs.append((rf, prior))
         done |= {(r["feed_id"], r["dos"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id")}
         done |= {(r["feed_id"], r["dos_feed"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id") and r.get("dos_feed")}   # re-dated visits keep their feed DOS here
-        if rf == REG: done |= {(r["feed_id"], None, None) for r in prior.get("skipped", [])}
+        if rf == REG: done |= {(r["feed_id"], None, None) for r in prior.get("skipped", []) if r.get("why") != NO_LINES_WHY}      # 11/25/2026: the row of a message WITHOUT a charge line names no visit - it never passes the patient's real messages over on a second start
         for _k in ("skipped", "failed", "created"):      # row by row and line by line: an odd row or line is skipped, the rows after it are still read
             _rows = prior.get(_k) if isinstance(prior, dict) else None
             for r in (_rows if isinstance(_rows, list) else []):
@@ -1757,10 +1838,38 @@ def main():
         v = _dc.get(re.sub(r"\D", "", pid)) or {}
         d = v.get("dod") or ""
         return d if re.match(r"\d{4}-\d{2}-\d{2}$", d) else None
+    # CCM AND A PATIENT WHO HAS PASSED AWAY - William's word of 11/25/2026: ("run a death check on all ccm charges to make sure there is no date of death prior to billing the ccm charges, there
+    # already is a date of death check in the billing runs but verify that no patient dies and a new set of ccm charges go in month after month after the patient has died").
+    # The check above reads only the cache: a death an EARLIER look-up found. A patient who died since had the month's CCM entered; the insurance check after the import
+    # (claimocity_verify.py) then asked Medicare, found the death and wrote a hold - which stops nothing in AdvancedMD - so the charge went out with the claim run and was
+    # written off afterwards (four charts, August 2026: the 'after-death' cards on the board). From 11/25/2026 Medicare is asked BEFORE a CCM message is entered, with the
+    # deceased guard's own check (deceased_guard.check as a care-management claim: a fresh Medicare answer when the kept one is older than 30 days or was asked before the
+    # CCM date; the answer is kept, so the insurance check after the import pays for no second one). A date of death before the CCM date = the message is not entered,
+    # this month and every month after (a death stays in the cache for good). A look-up that fails never keeps a charge out - the guard's rule: only a date of death
+    # blocks - the message is entered, the DONE line says so, and the insurance check asks again. A dry run asks nothing new (cache only).
+    _ccm_asked = set()
+    def _ccm_dod(pid, msg):
+        num = re.sub(r"\D", "", pid)
+        try:
+            __import__("os").environ.setdefault("DECEASED_CACHE", __import__("os").path.abspath("deceased_cache_local.json"))      # the file the insurance check uses, as above
+            import deceased_guard as _dg
+            _d8 = max(c["dos"][:8] for c in msg["FT1"] if c["cpt"] in CCM)
+            if (num, _d8) not in _ccm_asked:
+                _ccm_asked.add((num, _d8)); stats["CCM: date of death looked up before the entry (William 11/25/2026)"] += 1
+                _dg.check(num, mdy(_d8), None, "99487", allow_lookup=not dry)
+            v = (_dg._load() or {}).get(num) or {}
+            d = v.get("dod") or ""
+            if re.match(r"\d{4}-\d{2}-\d{2}$", str(d)):
+                _dc[num] = v; return d
+            return None
+        except Exception as e:
+            stats["CCM death check could not be made before the entry (%s) - entered; the insurance check asks again" % type(e).__name__] += 1
+            return None
     # nursing and hospital visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
     # so the result does not depend on the order the messages are entered in
     try:
         for _m in PARSED:
+            if not isinstance(_m, dict) or _m.get("pid") is None: continue      # 11/25/2026: a message without a patient id (no PID line - no name, no date of birth) is nobody's visit; passed over here too, so it cannot switch the visit rule off for the whole batch
             _p = MATCH.get(_m["name"].upper().strip() + "|" + _m["dob"][:8], {}).get("resolved")
             if not _p: continue
             for _bn in msg_buildings(_m):                        # the message's own building - every building its copies name (review C1): a visit in another building is then seen as a move
@@ -1774,7 +1883,7 @@ def main():
             except Exception: continue
     except Exception as e:
         BATCH_NF.clear(); BATCH_NF_ERR[0] = str(e)[:120] or type(e).__name__
-        print("POS RULE: batch visit list not built (%s) - nursing-building lines stay at the feed's 31 this run (POS RULE NOT APPLIED)" % BATCH_NF_ERR[0])
+        print("POS RULE: batch visit list not built (%s) - nursing VISIT lines stay at the feed's 31 this run (POS RULE NOT APPLIED); CCM lines are 32 without it" % BATCH_NF_ERR[0])
     _qenv = (__import__("os").environ.get("QUALITY_CODE") or "").strip().lower()      # William's switches: off / stop / reset (the SWITCHES comment above); case and spaces do not matter
     # an import register of THIS year that is there but cannot be read (cut off, empty): the quality lines it holds are not known - no line
     # this run, and the report says so at the top from the second run in a row. A register whose stamp names no date counts as this year's.
@@ -1808,7 +1917,7 @@ def main():
     if MVP.get("reset"): MVP["reset_after"] = [len(reg["created"]), len(reg["failed"])]
     elif _mg0.get("reset") is True: MVP["reset"] = True; MVP["reset_after"] = _mg0.get("reset_after")
     n = 0; stats = collections.Counter()
-    if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31"] += 1
+    if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing visit lines kept at the feed's 31 (CCM lines 32)"] += 1
     # A PROVISIONAL ROW (confirm review F5): before the call that carries the quality line, a failed row {quality_unknown, provisional} is written to
     # the register. When the answer comes and the visit's outcome is recorded, that row goes again (_unprov). When the run is cut while the call is
     # out (or an error stops the visit's handling after it), the row stays: the next start knows a line may exist that no row records - that visit is
@@ -1818,17 +1927,33 @@ def main():
     def _unprov():
         if _prov[0] is not None: reg["failed"][:] = [x for x in reg["failed"] if x is not _prov[0]]; _prov[0] = None
     for msg in PARSED:
-        fid = msg["pid"]; _prov[0] = None
+        # 11/25/2026 (feed review, finding 6 - older than the CCM change): the parser keeps every MSH block, so a message with no FT1 line arrives with an empty
+        # FT1 list and one with no PID line with no patient id at all. Both used to stop the whole import step right here (IndexError / KeyError, outside the
+        # per-message guard below): the ingest ended 'STEP FAILED: import', the file was not registered, and every later run read it again and stopped at the same
+        # message. There is nothing to enter in such a message: it is passed over and counted, and the messages after it go in. Where a feed id exists ONE skipped
+        # row with the plain reason is kept (never twice; never a reason to pass the patient over - see the same-stamp rule above).
+        fid = msg.get("pid") if isinstance(msg, dict) else None; _prov[0] = None
         if one and fid != one: continue
+        if fid is None: stats[NO_PID_WHY] += 1; continue
+        if not msg.get("FT1"):
+            stats[NO_LINES_WHY] += 1
+            if fid:
+                try: _p0 = MATCH.get(str(msg.get("name") or "").upper().strip() + "|" + str(msg.get("dob") or "")[:8], {}).get("resolved")
+                except Exception: _p0 = None
+                _row = {"feed_id": fid, "pid": _p0 if isinstance(_p0, str) else None, "why": NO_LINES_WHY}
+                if _row not in reg["skipped"]: reg["skipped"].append(_row)      # reaches the file with the next write, as every skipped row does (a dry run writes nothing)
+            continue
         mkey = (fid, mdy(msg["FT1"][0]["dos"][:8]), tuple(sorted(c["cpt"] for c in msg["FT1"])))
         if mkey in done or (fid, None, None) in done: stats["already created"] += 1; continue
         k = msg["name"].upper().strip() + "|" + msg["dob"][:8]; pid = MATCH.get(k, {}).get("resolved")
         if not pid: stats["no chart"] += 1; continue
         if n >= limit: break
         try:
-            dod = _dod(pid)
+            dod = _dod(pid); _dod_src = "deceased cache"
+            if not dod and any(c["cpt"] in CCM for c in msg["FT1"]):      # a CCM message: Medicare is asked before the entry (William 11/25/2026 - _ccm_dod above)
+                dod = _ccm_dod(pid, msg); _dod_src = "Medicare, asked before this CCM charge was entered - William 11/25/2026"
             if dod and any(c["dos"][:8] > dod.replace("-", "") for c in msg["FT1"]):
-                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (deceased cache) - never billed" % dod})
+                stats["DOS after date of death - not entered"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "DOS after date of death %s (%s) - never billed" % (dod, _dod_src)})
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)      # a dry run writes nothing (11/10/2026, challenge review): its register would make the live run of the same stamp skip whole patients
                 continue
             ctx = chart_ctx(pid); ctx["pid"] = pid
@@ -1843,7 +1968,10 @@ def main():
             if info.get("msg_own") is False and not info.get("pos_err"): print("POS CHECK not own message", pid, info["dos"], info["cpts"], "the raw files gave no single answer for this message - where its copies differ: %s; for William" % (info.get("msg_fallback") or "the patient's last-read values"))
             if info.get("prof_default"): print("POS CHECK clinician not known", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile; for William")
             if info.get("prof_feed"): print("INITIAL VISIT under the physician", pid, info["dos"], "- the feed named", info["prof_feed"])      # William 11/10/2026: every initial nursing-facility visit is his
-            if not info.get("fac"): print("POS CHECK no facility", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service; for William")
+            if not info.get("fac"):      # 11/25/2026 (review): the words follow what was sent - a CCM line of such a message is at 32, not "at the feed's place of service" (the run copies this line to the top of the report)
+                _cc = sorted({str(p_) for c_, p_ in zip(info["cpts"], info["pos_lines"]) if c_ in CCM}); _oth = any(c_ not in CCM for c_ in info["cpts"])
+                print("POS CHECK no facility", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility%s; for William" % (
+                    (": its CCM line(s) at %s (William 11/25/2026: a CCM line is never 31)%s" % ("/".join(_cc), ", every other line at the feed's place of service" if _oth else "")) if _cc else " at the feed's place of service"))
             if dry:
                 print("DRY", pid, info); stats["dry"] += 1; stats["dry quality"] += 1 if info.get("quality_codes") else 0; stats["dry mvp"] += 1 if info.get("mvp_codes") else 0; count_pos(info, stats)
                 if info.get("quality_skipped") == "hospital": stats["quality code not added: hospital visit (hospital visits are not coded in this version)"] += 1
@@ -2056,6 +2184,6 @@ def main():
             _pk("ADVANCEDMD DID NOT KEEP"), _pk("feed message not matched"), _pk("clinician id of the feed message"), _pk("visit entered with NO facility")))
     # one SHORTALL line (the ingest shows 110 characters of each of the last three log lines): 91 characters with one-digit counts
     print("POS RULE: CCM 32 x%d, CCM 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown bldg x%d" % (
-        _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))
+        _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))      # "CCM 31" is 0 since 11/25/2026 - anything else is an old copy of the rule
     print("DONE", dict(stats))
 if __name__ == "__main__": main()

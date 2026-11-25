@@ -6,6 +6,18 @@
 #   2. helpers   - every *.py / carriers.json / facilities.json in the workspace that is newer than
 #                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore);
 #                  a stale Drive-overlaid copy of a protected helper (the PROTECTED table below) never overwrites the repo's
+#   2a. feed registers (11/25/2026) - the Claimocity feed's registers in the workspace -> practices/ehpa/registers/. The batch registers
+#                  (feed_import / feed_newcharts / feed_verify / feed_inspector / feed_fixholds / feed_recon and the order sweep's
+#                  feed_order_sweep / _coverage / _resave / _fixclin) are copied - one main already has only by a FULLER copy (more
+#                  rows), never by a shorter one, whatever the file times say, and not while the ingest of their stamp is still
+#                  running (the step reads this machine's process list for that, nothing else). The standing files are MERGED with
+#                  main's: the file register claimocity_ingest.json, the patient map (main's chart stays where the two disagree), the
+#                  diagnosis cache (from the workspace ROOT, where the feed helpers keep it), the insurance-intake register
+#                  feed_in1_intake.json and, when a run wrote it, feed_dx_needed.json.
+#                  Until then a run had to copy them by hand (feed runbook step e); three runs did not, and the next run read the
+#                  same feed file again. `sync` scrubs them in place with the tree gate like every other register; `feed-registers`
+#                  (this step alone, for a run that commits by hand) runs the tree gate over the registers folder itself before it
+#                  returns, and exits non-zero when the gate fails.
 #   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
 #                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
@@ -18,7 +30,7 @@
 #   this script prints exactly which files to upload and to which Drive folder.
 # Rules it uses: no PHI on GitHub (phi_gate on every file that crosses); Drive is the PHI-OK copy;
 #   the vocabulary is the source of the Postman collection; one commit per run, dated message.
-# Never touches: AMD, Stedi, Drive, Postman. Only files and git.
+# Never touches: AMD, Stedi, Drive, Postman. Only files and git (step 2a also reads, and only reads, the list of running processes).
 # ---
 import os, re, sys, glob, json, shutil, subprocess, datetime
 
@@ -110,9 +122,11 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.8"',
+             # 11/25/2026 (rule version 2026-11-25.1, William: every CCM line is 32, never the skilled-nursing 31): a copy of the 11/10 version
+             # still keeps a CCM line at 31 in a 'skilled-looking month' - it must not come back over the new one
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.1"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.1"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.8"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.1"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.1"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
@@ -137,7 +151,13 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/10/2026 look-ups part A: the copies from before ONE Medicare answer / claim status by need must never go back on main
              "stedi.py": "def medicare(", "deceased_guard.py": "stedi.medicare(", "precheck.py": "max_age_days=_month_age(dos)",
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
-             "sweep_full.py": "claim_status_sweep.main("}
+             "sweep_full.py": "claim_status_sweep.main(",
+             # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the
+             # 'current face sheets needed' email and the board rules it is worked out with. A workspace copy of an earlier version must
+             # never go back on main - the markers are the helpers' own version lines (tools/selftest/test_facesheets_needed.py checks
+             # that they agree with this table; when a rule changes, change the line in the helper and here together, and in
+             # boards/templates/tracker.html when it is a board rule)
+             "facesheets_needed.py": 'FACESHEETS_NEEDED_VERSION = "2026-11-25.1"', "board_apply.py": 'BOARD_APPLY_VERSION = "2026-11-25.1"'}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
@@ -157,16 +177,222 @@ def sync_helpers():
             gate(src, dst); n += 1
     print("helpers: %d file(s) refreshed into scripts/helpers/" % n)
 
-def gate_tree():
+# ---- 2a. the Claimocity feed's registers (11/25/2026) ---------------------------------------------
+# The feed's registers are written in the run's throw-away workspace. Until 11/25/2026 they reached main only when the run copied them by
+# hand (nightly/claimocity_feed_step.md step e - prose). On 11/10, 11/21 and 11/24/2026 the morning run entered 60 / 84 / 26 visits in
+# AdvancedMD and committed no feed register: the next fresh container took main's older file register, saw the same feed file as new and
+# read it again (no visit was entered twice - the import checks the chart's live charges - but the batch records of 11/21 and 11/24 exist
+# nowhere, and the feed page shows $0 for those files). Now every `sync` carries them. The rules below are the first version's as an
+# independent review corrected them the same day, 11/25/2026 (each says what the review found):
+#   - a batch register main does not have is copied. One BOTH sides have and that differs is decided by CONTENT, never by file time: the
+#     copy with MORE rows is the one main gets (feed_import: created + skipped + failed; feed_recon: rows; any other family: the total of
+#     its top-level lists - or its entries when it is keyed by chart and has no list at all, as feed_verify is; a document that is a list:
+#     its length); with equal rows main's stays, because the tree gate may have scrubbed it. (Review: the first rule was "the newer file
+#     wins". After a clone every file of main is newer than every restored one, so a short copy on main - a batch that was still being
+#     entered when a run mirrored - could never be replaced by the full restored one, and main kept the short register for good.)
+#   - the batch registers of a stamp whose ingest is STILL RUNNING are not carried this time: they are half written, and what the ingest
+#     writes after this mirror would not follow them. The line says so for the top of the report; the next mirror carries them.
+#   - the standing files are MERGED, so nothing either side knows is lost:
+#       the file register (every file and run; for a file both know with the same content the EARLIEST registration stays - the run that
+#         really entered its visits);
+#       the patient map (a patient only the workspace knows is added; where the two disagree MAIN's chart stays and the line names the
+#         feed patient, so that a person decides. Review: "the workspace answers" let a days-old restored map undo a correction made on
+#         main, in every sync, also by a run that never ran the feed - and the ingest takes a known patient from the map as it is, so the
+#         workspace's chart is never this run's fresher knowledge);
+#       the diagnosis cache (a known code is never replaced by "not in AdvancedMD"), read from the workspace ROOT, where every feed helper
+#         keeps it (claimocity_ingest.py and claimocity_dx.py: dx_cache_feed.json beside the helpers). The copy in the workspace's
+#         registers/ is only the bootstrap's snapshot of main and is used only when the root file is missing. (Review: the first version
+#         merged that snapshot - main with an older copy of itself - so no code a run learned ever reached main.);
+#       the insurance-intake register feed_in1_intake.json and, when a run wrote it, feed_dx_needed.json - entry by entry, see
+#         _merge_intake and _merge_dx_needed. (Review: the intake register and the order sweep's coverage / resave / fixclin registers
+#         hold state - a Medicaid check or a dated check is bought again, a visit saved again, when a fresh workspace lacks them - and the
+#         first version left them to the runbook's prose.)
+# Never taken from the workspace: files whose home is main (feed_order_approved.json - the owner's word - and quality_exceptions.json).
+# Nothing is deleted. A file that cannot be read is named and skipped - this step never stops the mirror: it never raises.
+# The sweep's stamp carries seconds and, when two runs start in one second, "_2", "_3" ... behind it (feed_order_sweep.py).
+FEED_BATCH = re.compile(r"^(feed_(import|newcharts|verify|inspector|fixholds|recon)_\d{8}T\d{4}ZR?|feed_order_(sweep|coverage|resave|fixclin)_\d{8}T\d{4,6}Z(_\d+)?)\.json$")
+FEED_MERGED = ("claimocity_ingest.json", "claimocity_patient_map.json", "dx_cache_feed.json", "feed_in1_intake.json", "feed_dx_needed.json")
+def _merge_ingest(main, ws):
+    out = dict(main); files = dict(main.get("files") or {})
+    for k, v in (ws.get("files") or {}).items():
+        cur = files.get(k)
+        if not isinstance(v, dict): continue
+        if not isinstance(cur, dict): files[k] = v
+        elif cur.get("sha256") != v.get("sha256"):                       # another content under the same name: the later registration answers
+            if str(v.get("at") or "") > str(cur.get("at") or ""): files[k] = v
+        elif str(v.get("at") or "~") < str(cur.get("at") or "~"): files[k] = v      # the same content: the first registration is the run that entered it
+    runs = []; seen = set()
+    for r in list(main.get("runs") or []) + list(ws.get("runs") or []):
+        key = json.dumps(r, sort_keys=True)
+        if key not in seen: seen.add(key); runs.append(r)
+    runs.sort(key=lambda r: (str(r.get("at") or ""), str(r.get("stamp") or "")) if isinstance(r, dict) else ("", ""))
+    for k, v in ws.items():
+        if k not in out: out[k] = v
+    out["files"] = files; out["runs"] = runs
+    return out
+def _merge_map(main, ws):
+    out = dict(ws); out.update(main); return out                         # main's chart stays where the two disagree; a patient only the workspace knows is added
+def _merge_dx(main, ws):
+    out = dict(main)
+    for k, v in ws.items():
+        if v or k not in out: out[k] = v                                 # "not in AdvancedMD" (null) never replaces a code main knows
+    return out
+def _stamp_key(s):
+    """A stamp in any form the helpers write (20261122T1240Z, 2026-11-22T1240Z, 2026-11-22T12:55:00Z, a plain date) as a text that sorts by
+    time: its digits, filled up to seconds. "" = no stamp - an empty text, a placeholder, a value of another kind."""
+    d = re.sub(r"\D", "", s) if isinstance(s, str) else ""
+    return d.ljust(14, "0") if len(d) >= 8 else ""
+def _merge_intake(main, ws):
+    """feed_in1_intake.json - {"<chart>|<carrier>": {outcome, stamp of the run, ins}}: one entry per chart and carrier, written by the ONE run
+    that settled it (feed_in1_intake.py never asks again about a key it holds). Every key either side has stays. For a key both have the
+    entry of the NEWER stamp stays, whole: an entry is one run's finding, and a mix of two entries would record an outcome no run saw. The
+    same stamp on both sides is the same run's entry - main's stays (the tree gate may have scrubbed it, and a second mirror then changes
+    nothing). No stamp on either side: nothing says which is newer, and the workspace's - this run's - stays. (11/25/2026)"""
+    out = dict(main)
+    for k, v in ws.items():
+        if k not in out: out[k] = v; continue
+        a = _stamp_key(v.get("stamp")) if isinstance(v, dict) else ""; b = _stamp_key(out[k].get("stamp")) if isinstance(out[k], dict) else ""
+        if a > b or not (a or b): out[k] = v
+    return out
+def _merge_dx_needed(main, ws):
+    """feed_dx_needed.json - {code: {first, last: the stamps of the first and of the latest batch that carried the code, visits: how many
+    visits, emailed: the stamp of the email that named it, or ""}}. A code only one side knows stays as it is. For a code both know:
+    first = the EARLIER stamp that is set, last = the LATER, visits = the LARGER, emailed = the LATER one that is set - so the first
+    sighting is never lost and a code already written about is never taken for a new one. Any other field: main's, else the workspace's.
+    A value that is no stamp (an empty text, a placeholder) counts as not set. A field whose name only BEGINS with first / last / emailed
+    (first_seen, last_seen ...) follows the same rule: under the two bare names the privacy gate takes a stamp that holds a letter for a
+    name part and writes its placeholder over it on main, so the helper that writes this register may have to name them otherwise. (11/25/2026)"""
+    out = dict(main)
+    for code, w in ws.items():
+        m = out.get(code)
+        if not (isinstance(m, dict) and isinstance(w, dict)):
+            if code not in out or (isinstance(w, dict) and not isinstance(m, dict)): out[code] = w      # an entry beats what is no entry; otherwise main's stays
+            continue
+        e = dict(w); e.update(m)
+        for k in e:
+            both = (m.get(k), w.get(k))
+            if k == "visits":
+                counts = [x for x in both if isinstance(x, int) and not isinstance(x, bool)]
+                if counts: e[k] = max(counts)
+            elif isinstance(k, str) and k.startswith(("first", "last", "emailed")):
+                given = [x for x in both if _stamp_key(x)]
+                if given: e[k] = (min if k.startswith("first") else max)(given, key=_stamp_key)        # on a tie the first of the two: main's
+        out[code] = e
+    return out
+# every merged file is written the way its helper writes it, so that a diff on main shows only the entries that changed
+# (feed_dx_needed.json has no writer in the repository yet: one field a line, keys in order)
+_FEED_MERGE = {"claimocity_ingest.json": (_merge_ingest, {"indent": 1}), "claimocity_patient_map.json": (_merge_map, {"indent": 0, "sort_keys": True}),
+               "dx_cache_feed.json": (_merge_dx, {"indent": 0, "sort_keys": True}), "feed_in1_intake.json": (_merge_intake, {"indent": 1}),
+               "feed_dx_needed.json": (_merge_dx_needed, {"indent": 1, "sort_keys": True})}
+def _feed_rows(name, doc):
+    """How many rows a batch register holds - what "fuller" means when both sides have one (the rules above, 11/25/2026)."""
+    if isinstance(doc, list): return len(doc)
+    if not isinstance(doc, dict): return 0
+    only = ("created", "skipped", "failed") if name.startswith("feed_import_") else ("rows",) if name.startswith("feed_recon_") else None
+    lists = {k: v for k, v in doc.items() if isinstance(v, list)}
+    if only is None and not lists: return len(doc)                       # keyed by chart, no list at all (feed_verify): its entries are its rows
+    return sum(len(v) for k, v in lists.items() if only is None or k in only)
+def _running_ingest_stamps():
+    """The stamp of every claimocity_ingest.py that is running on this machine right now ("" for one started without --stamp), read from
+    /proc/<pid>/cmdline - no outside command. The stamp is made the way the ingest makes it: digits, T and Z only. (11/25/2026, review:
+    the runbook lets a run go on while its ingest still writes; the register carried then was a short one that stayed on main.)
+    Only a Python process whose SCRIPT is the helper counts - not one that merely names it in an argument (a tail of its log, a grep, a
+    commit message, a prompt text): a false 'still running' would hold registers back for nothing. The self-test replaces this function."""
+    out = []
+    try: pids = [p for p in os.listdir("/proc") if p.isdigit() and int(p) != os.getpid()]
+    except OSError: return out                                           # no /proc on this machine: nothing can be seen
+    for p in pids:
+        try: argv = [x.decode("utf-8", "replace") for x in open("/proc/%s/cmdline" % p, "rb").read().split(b"\0") if x]
+        except OSError: continue                                         # it ended meanwhile, or is not ours to read
+        if not argv or not os.path.basename(argv[0]).startswith("python"): continue
+        rest = argv[1:]
+        while rest and rest[0].startswith("-"): rest = rest[1:]          # the interpreter's own switches (-u, -I)
+        if not rest or os.path.basename(rest[0]) != "claimocity_ingest.py": continue
+        args = rest[1:]; i = args.index("--stamp") if "--stamp" in args else -1
+        out.append(re.sub(r"[^0-9TZ]", "", args[i + 1]) if 0 <= i < len(args) - 1 else "")
+    return out
+def sync_feed_registers():
+    """Copy / merge the feed's registers from the workspace into practices/ehpa/registers/. Returns the number of files written. Prints ONE
+    line that starts "feed registers: N file(s) carried into practices/ehpa/registers/" (the runbook, the prompts and the lessons quote that
+    start); whatever a person has to see is said behind it, and the line then ends "TOP OF THE REPORT". Never raises."""
+    src_dir = os.path.join(WS, "registers"); dst_dir = os.path.join(ROOT, "practices", "ehpa", "registers"); live_dx = os.path.join(WS, "dx_cache_feed.json")
+    if not os.path.isdir(src_dir) and not os.path.lexists(live_dx):
+        print("feed registers: no %s in the workspace - nothing to carry" % src_dir); return 0
+    copied = merged = 0; bad = []; fuller = []; differ = []; held = {}; running = []; notes = []
+    try:
+        os.makedirs(dst_dir, exist_ok=True)
+        items = {name: os.path.join(src_dir, name) for name in os.listdir(src_dir)} if os.path.isdir(src_dir) else {}
+        if os.path.lexists(live_dx): items["dx_cache_feed.json"] = live_dx       # the LIVE cache; the snapshot in registers/ only when there is none at the root
+        try: running = sorted({s for s in (_running_ingest_stamps() or []) if isinstance(s, str)})
+        except Exception as e: notes.append("the look for a running ingest failed (%s), so no register was held back" % type(e).__name__)
+        for name in sorted(items):
+            src = items[name]; dst = os.path.join(dst_dir, name)
+            try:
+                if FEED_BATCH.match(name):
+                    if not os.path.isfile(src): continue
+                    st = next((s for s in running if s and name.endswith("_%s.json" % s)), None)
+                    if st: held[st] = held.get(st, 0) + 1; continue      # its ingest is still writing it
+                    raw = open(src, "rb").read()
+                    if os.path.lexists(dst):
+                        cur = open(dst, "rb").read()
+                        if cur == raw: continue
+                        try: main_rows = _feed_rows(name, json.loads(cur.decode("utf-8")))
+                        except Exception: main_rows = -1                  # main's copy cannot be read: any copy that can is the fuller one
+                        try: ws_rows = _feed_rows(name, json.loads(raw.decode("utf-8")))
+                        except Exception:
+                            if main_rows >= 0: continue                   # the workspace copy cannot be read and main holds one that can: nothing to carry, nothing to say
+                            raise
+                        if ws_rows <= main_rows: continue                 # never a shorter copy over a fuller one; equal rows: main's stays
+                        fuller.append("%s (%s -> %d rows)" % (name, main_rows if main_rows >= 0 else "unreadable", ws_rows))
+                    else: json.loads(raw.decode("utf-8"))                 # a half-written register never goes to main
+                    with open(dst, "wb") as fh: fh.write(raw)             # the bytes that were just read and checked - not a second read of a file a background helper (the sweep) may be writing
+                    copied += 1
+                elif name in _FEED_MERGE:
+                    if not os.path.isfile(src): raise ValueError("not a file")
+                    fn, fmt = _FEED_MERGE[name]
+                    ws_obj = json.loads(open(src, "rb").read().decode("utf-8"))
+                    if not isinstance(ws_obj, dict): raise ValueError("not a JSON object")
+                    cur = open(dst, "rb").read().decode("utf-8") if os.path.lexists(dst) else ""
+                    main_obj = json.loads(cur) if cur.strip() else {}     # an EMPTY file on main knows nothing; a broken one is named and left for a person
+                    base = main_obj if isinstance(main_obj, dict) else {}
+                    new = fn(base, ws_obj)
+                    if name == "claimocity_patient_map.json":
+                        differ = ["%s (main %s, workspace %s)" % (k, str(base[k])[:24], str(ws_obj[k])[:24]) for k in sorted(ws_obj) if k in base and base[k] != ws_obj[k]]
+                    if new != main_obj:
+                        text = json.dumps(new, **fmt)                     # made into text BEFORE the file is opened: a value that cannot be written leaves main's copy whole
+                        with open(dst, "w", encoding="utf-8") as fh: fh.write(text)
+                        merged += 1
+            except Exception as e:
+                bad.append("%s (%s)" % (name, type(e).__name__))
+    except Exception as e:
+        notes.append("the step stopped early (%s: %s)" % (type(e).__name__, str(e)[:160]))
+    tail = []
+    if fuller: tail.append("%d fuller workspace cop%s replaced main's shorter one: %s%s" % (len(fuller), "y" if len(fuller) == 1 else "ies", ", ".join(fuller[:10]), " (+%d more)" % (len(fuller) - 10) if len(fuller) > 10 else ""))
+    if differ: tail.append("patient map: %d feed patient(s) differ - main's chart kept: %s%s (this workspace's map still names its own chart for them - a person decides which chart is right and corrects the other side)" % (
+        len(differ), ", ".join(differ[:20]), " (+%d more)" % (len(differ) - 20) if len(differ) > 20 else ""))
+    if bad: tail.append("could not be read and left as they are on main: " + ", ".join(bad))
+    tail += notes
+    for s in running:      # last, so that the line ends the way the runbook quotes it
+        tail.append(("an ingest is still running (stamp %s): its %d register(s) are not carried this time" % (s, held.get(s, 0))) if s else
+                    "an ingest is still running (its stamp cannot be read from its command line, so no register is held back): a register it is still writing may be on main unfinished until the next mirror")
+    line = "feed registers: %d file(s) carried into practices/ehpa/registers/ (%d batch register(s) copied, %d standing file(s) merged)%s%s" % (
+        copied + merged, copied, merged, "".join(" - " + t for t in tail), " - TOP OF THE REPORT" if (differ or bad or notes or running) else "")
+    try: print(line)
+    except UnicodeError: print(line.encode("ascii", "replace").decode("ascii"))      # an odd character in a path never costs the line
+    return copied + merged
+
+def gate_tree(path=".", failed="nothing committed; fix the source and rerun"):
     """10/6/2026: everything `git add -A` would commit passes through phi_gate's tree mode first - registers,
     scan summaries and run artifacts under practices/ and nightly/runs/ were reaching GitHub with patient
     names in them. Names -> pseudonym or [name]; identifiers -> [MBI]/[SSN]/[member id]; a run digest, needs
-    list / needs section or run report never enters the tree (Drive carries those)."""
-    r = subprocess.run([sys.executable, GATE, "tree", "."], capture_output=True, text=True, cwd=ROOT)
+    list / needs section or run report never enters the tree (Drive carries those).
+    11/25/2026: `path` and `failed` - `mirror.py feed-registers` runs this same gate over practices/ehpa/registers alone and says in its own
+    words what a failure means there (nothing is committed by that subcommand, so "nothing committed" would tell the run nothing)."""
+    r = subprocess.run([sys.executable, GATE, "tree", path], capture_output=True, text=True, cwd=ROOT)
     sys.stdout.write(r.stdout)
     if r.returncode:
         sys.stdout.write(r.stderr)
-        raise SystemExit("phi_gate tree FAILED - nothing committed; fix the source and rerun")
+        raise SystemExit("phi_gate tree FAILED - %s" % failed)
 
 # ---- 3. postman ---------------------------------------------------------------------------------
 def build_postman():
@@ -330,6 +556,7 @@ def main():
         msg = sys.argv[2] if len(sys.argv) > 2 else "mirror %s" % TODAY
         merge_registry()
         sync_helpers()
+        sync_feed_registers()
         build_postman()
         ok = commit_and_push(msg)
         print("\nNEXT (connector legs, in this order):")
@@ -342,7 +569,14 @@ def main():
         return
     if cmd == "postman":
         return build_postman()
-    sys.exit("usage: mirror.py [status|sync \"message\"|postman]")
+    if cmd == "feed-registers":      # 11/25/2026: only step 2a - for a run that commits by hand (the daily feed task): copies / merges the feed registers, commits nothing
+        sync_feed_registers()
+        # ... and scrubs what it carried before it returns (review of 11/25/2026). `sync` scrubs at its commit; this subcommand has no commit, so the
+        # registers went raw from the workspace into the run's hand commit - the import writes the day a patient passed away beside the chart number of
+        # a visit it skips, and this subcommand carries every batch register main lacks, older stamps restored from the state bundle included.
+        gate_tree("practices/ehpa/registers", "the feed registers carried into practices/ehpa/registers/ are NOT scrubbed: commit nothing from that folder, fix the cause and run `mirror.py feed-registers` again")
+        return
+    sys.exit("usage: mirror.py [status|sync \"message\"|postman|feed-registers]")
 
 if __name__ == "__main__":
     main()
