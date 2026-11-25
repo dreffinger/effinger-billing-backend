@@ -1,0 +1,1483 @@
+{
+ "fixed": [
+  {
+   "visit": "19462423",
+   "pid": "pat17477870",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462443",
+   "pid": "pat17475392",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462445",
+   "pid": "pat17477353",
+   "patterns": [
+    "11256",
+    "68065080"
+   ],
+   "note": [
+    "bypassed 2 advisories"
+   ]
+  },
+  {
+   "visit": "19462447",
+   "pid": "pat17474862",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462453",
+   "pid": "pat17478315",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462456",
+   "pid": "pat17476748",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462458",
+   "pid": "pat17478320",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462459",
+   "pid": "pat17476942",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462461",
+   "pid": "pat21491",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462462",
+   "pid": "pat23969",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462470",
+   "pid": "pat17478332",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462472",
+   "pid": "pat17475312",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462473",
+   "pid": "pat17476749",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462478",
+   "pid": "pat17478413",
+   "patterns": [
+    "28158"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462490",
+   "pid": "pat45496",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462492",
+   "pid": "pat12182506",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462493",
+   "pid": "pat17473065",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462495",
+   "pid": "pat17473062",
+   "patterns": [
+    "20389"
+   ],
+   "note": [
+    "charge23375644: delete ['F02.80', 'E78.5', 'R74.8'] -> ['E78.5', 'R74.8', 'D51.9']",
+    "saved: 1 live charges (was 1)",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19462500",
+   "pid": "pat17476928",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462501",
+   "pid": "pat17472829",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462504",
+   "pid": "pat17473347",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462506",
+   "pid": "pat12232248",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462519",
+   "pid": "pat44944",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462521",
+   "pid": "pat17475536",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462523",
+   "pid": "pat17473346",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462524",
+   "pid": "pat17476680",
+   "patterns": [
+    "20389",
+    "68065080"
+   ],
+   "note": [
+    "charge23375690: delete ['Z16.12', 'N39.0', 'I69.354'] -> ['N39.0', 'I69.354', 'I10']",
+    "charge23375691: delete ['Z16.12', 'N39.0', 'I69.354'] -> ['N39.0', 'I69.354', 'I10']",
+    "saved: 2 live charges (was 2)",
+    "resave ok",
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462526",
+   "pid": "pat46973",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462527",
+   "pid": "pat17472922",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462528",
+   "pid": "pat21411",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462531",
+   "pid": "pat17478318",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462532",
+   "pid": "pat17475993",
+   "patterns": [
+    "11256",
+    "68065080"
+   ],
+   "note": [
+    "bypassed 2 advisories"
+   ]
+  },
+  {
+   "visit": "19462547",
+   "pid": "pat23204",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462548",
+   "pid": "pat23204",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462551",
+   "pid": "pat20452",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462552",
+   "pid": "pat23171",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462554",
+   "pid": "pat17472491",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462555",
+   "pid": "pat20625",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462557",
+   "pid": "pat12181827",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462560",
+   "pid": "pat44935",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462561",
+   "pid": "pat24139",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462563",
+   "pid": "pat17478395",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462564",
+   "pid": "pat17472741",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462577",
+   "pid": "pat17469645",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462578",
+   "pid": "pat17477134",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462579",
+   "pid": "pat17477190",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462581",
+   "pid": "pat17478361",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462586",
+   "pid": "pat20514",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462589",
+   "pid": "pat23617",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462590",
+   "pid": "pat17472397",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462594",
+   "pid": "pat23161",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462599",
+   "pid": "pat17477183",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462601",
+   "pid": "pat17473460",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462605",
+   "pid": "pat17472854",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462606",
+   "pid": "pat17471688",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462609",
+   "pid": "pat12183340",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462611",
+   "pid": "pat17473245",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462612",
+   "pid": "pat17472396",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462615",
+   "pid": "pat21772",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462616",
+   "pid": "pat20728",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462619",
+   "pid": "pat21378",
+   "patterns": [
+    "7011"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462622",
+   "pid": "pat17471673",
+   "patterns": [
+    "11256",
+    "68065080"
+   ],
+   "note": [
+    "bypassed 2 advisories"
+   ]
+  },
+  {
+   "visit": "19462625",
+   "pid": "pat17471792",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462628",
+   "pid": "pat20729",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462629",
+   "pid": "pat17478343",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462632",
+   "pid": "pat17476739",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462636",
+   "pid": "pat20060",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462637",
+   "pid": "pat17475713",
+   "patterns": [
+    "11256",
+    "68065080"
+   ],
+   "note": [
+    "bypassed 2 advisories"
+   ]
+  },
+  {
+   "visit": "19462641",
+   "pid": "pat17475697",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462650",
+   "pid": "pat17478019",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462654",
+   "pid": "pat17475198",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462655",
+   "pid": "pat17476681",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462656",
+   "pid": "pat25266",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462660",
+   "pid": "pat17471384",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462662",
+   "pid": "pat17478414",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462663",
+   "pid": "pat17469541",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462665",
+   "pid": "pat46048",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462669",
+   "pid": "pat17474046",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462671",
+   "pid": "pat17472285",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462675",
+   "pid": "pat17473748",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462678",
+   "pid": "pat12232512",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462679",
+   "pid": "pat22758",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462682",
+   "pid": "pat17477827",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462685",
+   "pid": "pat45003",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462687",
+   "pid": "pat22546",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19462423",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462443",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462445",
+   "patterns": [
+    "11256",
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462447",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462453",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462456",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462458",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462459",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462461",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462462",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462470",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462472",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462473",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462478",
+   "patterns": [
+    "28158"
+   ]
+  },
+  {
+   "visit": "19462490",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462492",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462493",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462500",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462501",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462504",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462506",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462519",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462521",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462523",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462524",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462526",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462527",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462528",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462531",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462532",
+   "patterns": [
+    "11256",
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462547",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462548",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462551",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462552",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462554",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462555",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462557",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462560",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462561",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462563",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462564",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462577",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462578",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462579",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462581",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462586",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462589",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462590",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462594",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462599",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462601",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462605",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462606",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462609",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462611",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462612",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462615",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462616",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462619",
+   "patterns": [
+    "7011"
+   ]
+  },
+  {
+   "visit": "19462622",
+   "patterns": [
+    "11256",
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462625",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462628",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462629",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462632",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462636",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462637",
+   "patterns": [
+    "11256",
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462641",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462650",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462654",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462655",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462656",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462660",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462662",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462663",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462665",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462669",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462671",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462675",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462678",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462679",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19462682",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462685",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19462687",
+   "patterns": [
+    "68065080"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19462445",
+   "pid": "pat17477353",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19462447",
+   "pid": "pat17474862",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M25559..."
+  },
+  {
+   "visit": "19462462",
+   "pid": "pat23969",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19462473",
+   "pid": "pat17476749",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19462490",
+   "pid": "pat45496",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S51819A..."
+  },
+  {
+   "visit": "19462521",
+   "pid": "pat17475536",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H6120..."
+  },
+  {
+   "visit": "19462523",
+   "pid": "pat17473346",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C6990..."
+  },
+  {
+   "visit": "19462528",
+   "pid": "pat21411",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H6120..."
+  },
+  {
+   "visit": "19462532",
+   "pid": "pat17475993",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H8120..."
+  },
+  {
+   "visit": "19462547",
+   "pid": "pat23204",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19462551",
+   "pid": "pat20452",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462579",
+   "pid": "pat17477190",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19462589",
+   "pid": "pat23617",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19462606",
+   "pid": "pat17471688",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462611",
+   "pid": "pat17473245",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M169..."
+  },
+  {
+   "visit": "19462616",
+   "pid": "pat20728",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) Z9010..."
+  },
+  {
+   "visit": "19462622",
+   "pid": "pat17471673",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462628",
+   "pid": "pat20729",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I82409..."
+  },
+  {
+   "visit": "19462637",
+   "pid": "pat17475713",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M24559..."
+  },
+  {
+   "visit": "19462641",
+   "pid": "pat17475697",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462655",
+   "pid": "pat17476681",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S7000XA..."
+  },
+  {
+   "visit": "19462656",
+   "pid": "pat25266",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19462671",
+   "pid": "pat17472285",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19462679",
+   "pid": "pat22758",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  }
+ ],
+ "quality_removed": []
+}

@@ -1,0 +1,71 @@
+{
+ "created": [
+  {
+   "pid": "pat17478515",
+   "chart": "F261125-01",
+   "feed_ids": [
+    "6b0435107ee8570556817f72",
+    "6b0435107ee8570556817f72"
+   ],
+   "plans": [],
+   "respparty": "resp21480070",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478516",
+   "chart": "F261125-02",
+   "feed_ids": [
+    "6b044edaeb50e0563e81f49e",
+    "6b044edaeb50e0563e81f49e"
+   ],
+   "plans": [],
+   "respparty": "resp21480071",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478517",
+   "chart": "F261125-03",
+   "feed_ids": [
+    "6b0432b85fad2c52fb81ce35",
+    "6b0432b85fad2c52fb81ce35"
+   ],
+   "plans": [],
+   "respparty": "resp21480072",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478518",
+   "chart": "F261125-04",
+   "feed_ids": [
+    "6b044ed8eb50e0563e81f49a",
+    "6b044ed8eb50e0563e81f49a"
+   ],
+   "plans": [],
+   "respparty": "resp21480073",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478519",
+   "chart": "F261125-05",
+   "feed_ids": [
+    "6b04732fda2e30f7f48163e9",
+    "6b04732fda2e30f7f48163e9"
+   ],
+   "plans": [],
+   "respparty": "resp21480074",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478520",
+   "chart": "F261125-06",
+   "feed_ids": [
+    "6b047201161bcc210e81c79f",
+    "6b047201161bcc210e81c79f"
+   ],
+   "plans": [],
+   "respparty": "resp21480075",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}
