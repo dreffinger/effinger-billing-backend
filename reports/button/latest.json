@@ -1,92 +1,175 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-25T0535Z",
+ "stamp": "2026-11-25T0435Z",
  "mode": "live",
- "status": "warn",
- "headline": "ERA 0 checks $0.00 -> 0 checks $0.00",
+ "status": "ok",
+ "headline": "Columns 0/5/0/1 -> 0/5/0/1; ERA 2 checks $2,433.94 -> 0 checks $0.00; posted $2,433.94; re-sent 42",
  "note": "",
- "run_url": "",
- "started": "2026-11-25T05:37:26Z",
- "ended": "2026-11-25T05:37:29Z",
+ "run_url": "https://claude.ai/code/session_01HHfWRC8rLfzUzE72JBZhWM",
+ "started": "2026-11-25T04:35:00Z",
+ "ended": "2026-11-25T05:47:07Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
+  "denials": {
+   "visits": 7886,
+   "actionable": 46,
+   "actionable_amt": 8631.0,
+   "asof": "2026-11-25 05:36 UTC"
+  },
   "columns": {
-   "before": {},
-   "after": {}
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 5,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 5,
+    "unbilled": 0,
+    "exclusions": 1
+   }
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 2,
+    "unposted": 2433.94
    },
    "after": {
     "checks": 0,
-    "unposted": 0
+    "unposted": 0.0
    }
   },
   "posted": {
-   "pay": 0.0,
-   "woins": 0.0,
+   "pay": 2433.94,
+   "woins": 284.3,
    "wocaid2nd": 0.0,
    "wolate": 0.0
   },
   "resent": {
-   "visits": 0,
-   "dollars": 0.0
+   "visits": 42,
+   "dollars": 7571.16
   },
   "written_off": {
-   "count": 0,
-   "dollars": 0.0
+   "count": 11,
+   "dollars": 2047.0
   },
   "packages": {
    "applied": 0,
    "refused": 0,
    "skipped": 0
+  },
+  "outstanding": {
+   "total": 324365.46,
+   "visits": 2800,
+   "charts": 485,
+   "over_365": {
+    "n": 584,
+    "dollars": 28749.88
+   }
   }
  },
  "steps": [
   {
-   "name": "bootstrap",
-   "title": "Workspace from the repository",
-   "status": "warn",
-   "summary": "1489 helpers into /home/claude/unbilled",
+   "name": "board",
+   "title": "Board input",
+   "status": "ok",
+   "summary": "19 cards worked from William's 11/25 answers (16 closed, 3 handed back); 0 drops, 0 denials commands queued",
    "counts": {
-    "helpers copied": 1489,
-    "registers": 3,
-    "python": "/usr/local/bin/python3"
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-25T05:37:26Z",
-   "ended": "2026-11-25T05:37:26Z"
+    "cards": 19,
+    "handed_back": 3,
+    "drops": 0,
+    "commands": 0
+   }
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 5->5, Unbilled 0->0 (29 prior-payor rows released mid-run), Exclusions 1->1",
+   "counts": {
+    "unbilled_released": 29
+   }
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
-   "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
-    "fallback posted": 0,
-    "checks dismissed": 0,
-    "checks held": 0,
-    "denial lines recorded": 0
-   },
+   "summary": "2 checks / $2,433.94 -> 0 checks / $0.00",
    "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
+    "posted_post_button": 2088.24,
+    "posted_fallback": 345.7,
+    "woins_fallback": 284.3
    },
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-25T05:37:26Z",
-   "ended": "2026-11-25T05:37:29Z"
+   "lines": [
+    {
+     "check": "1053637",
+     "payer": "HUM01",
+     "amount": 83.13,
+     "action": "Post button 1 visit; dismissed (3 denial / $0 lines recorded)"
+    },
+    {
+     "check": "1053638",
+     "payer": "UNI20",
+     "amount": 2350.81,
+     "action": "Post button 15 visits $2,005.11; 11/04 write-offs voided on v19458938 + v19459138, 4 UHC lines posted ERA-linked $345.70 (WOINS $284.30); dismissed"
+    }
+   ]
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check",
+   "status": "ok",
+   "summary": "precheck 19 patient/payer pairs (2 new lookups), 2 flagged ADVANTAGE PLAN -> both 11/22 visits re-pointed to the chart's MA plan; void rules: 0 voided (1 open)",
+   "lines": [
+    {
+     "chart": "17472826",
+     "visit": "19462327",
+     "action": "re-pointed to BCBS MA"
+    },
+    {
+     "chart": "17473090",
+     "visit": "19462325",
+     "action": "re-pointed to BCBS MA"
+    }
+   ]
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "ok",
+   "summary": "no approved package (register 94 done; page 0 approved)"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; LEIE 0 matches; no reminders due"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims",
+   "status": "ok",
+   "summary": "2800 visits on 485 charts, $324365.46 open"
+  },
+  {
+   "name": "denials",
+   "title": "Denials refresh",
+   "status": "ok",
+   "summary": "7886 denied visits on 884 charts; 46 actionable $8,631.00 (45 inside 12 months $8,425.00); WRITTEN-OFF 3015, RESOLVED 4572, RESUBMITTED 183, OPEN 116"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "Claim Inspector: 5 visit(s) with Pattern 692 / 4531 / 28158 holds - chat session or William",
+  "Exclusions: AET12 PREF0288 carrier record (board row aet12-carrier-cpid) - left by rule",
+  "Chart 17478013: this run's referral-plan probe left a blank plan with the third referring provider as the chart's MAIN plan (rplan18462897) - in AMD set rplan18462365 (Effinger, carries the auth) as main or delete the blank one",
+  "Chart 17475970: the main referral plan now carries the 11/04-stay auth; the unpaid 6/20-6/28 and 9/7-9/14 visits point to it - repoint them to their own stay's plan before any re-send",
+  "Chart 17473431: Railroad Medicare (RET01) answers 51 'provider not on file' - Palmetto RRB enrollment",
+  "Feed: CPT G0439 is not in claimocity_import.py's PCODE/FEE tables - a retry waits on it",
+  "Board inbox: 3 registered files not trashed - the session's permission check blocked the trash call (1KrCVQGeFUVKgju_YrAOXQlNgst690LmA, 1HHD8giMIcdkKMzusQj2u3gRQ__1XMQ_y, 19J-WNLEIzfp74NqKtLSWgBwCzEfL1y8c) - trash by hand in Drive 'board inbox'; 528 others trashed",
+  "Board: catalano 20752 Medicare number, cowling first-admission VA auth, karnes April decision - on William's turn"
+ ],
  "errors": []
 }
