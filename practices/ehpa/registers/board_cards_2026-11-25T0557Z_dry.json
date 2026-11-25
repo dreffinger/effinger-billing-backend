@@ -1,0 +1,66 @@
+{
+ "stamp": "2026-11-25T0557Z",
+ "live": false,
+ "cards": {
+  "[name]-17476021-medicare-number": {
+   "visits": {},
+   "number": "no other number found (feed, look-up) - listed for a person",
+   "facesheet_same_as_chart": false,
+   "source": "William's facesheet paste 11/25"
+  },
+  "[name]-48458-medicare-number": {
+   "visits": {},
+   "number": "no other number found (feed, look-up) - listed for a person",
+   "facesheet_same_as_chart": false,
+   "source": "William's facesheet paste 11/25"
+  },
+  "[name]-21839-medicare-number": {
+   "writeoffs": [
+    {
+     "visit": "19423852",
+     "charge": "23329586",
+     "cpt": "pcode65119",
+     "dos": "11/07/2025",
+     "insbalance": 141.0,
+     "result": "DRY DRY bal 141.00 prof prof15 pid 21839 -> pay 0.00 wo 141.00",
+     "ok": true
+    },
+    {
+     "visit": "19423656",
+     "charge": "23329314",
+     "cpt": "pcode492676",
+     "dos": "11/15/2025",
+     "insbalance": 206.0,
+     "result": "DRY DRY bal 206.00 prof prof13 pid 21839 -> pay 0.00 wo 206.00",
+     "ok": true
+    },
+    {
+     "visit": "19423656",
+     "charge": "23329315",
+     "cpt": "pcode492677",
+     "dos": "11/15/2025",
+     "insbalance": 109.0,
+     "result": "DRY DRY bal 109.00 prof prof13 pid 21839 -> pay 0.00 wo 109.00",
+     "ok": true
+    }
+   ]
+  },
+  "[name]-17473749": {
+   "restore": [
+    "DRY 19440501 04/29/2026 99349 pay 24563710",
+    "DRY 19442537 05/17/2026 99487 pay 24561099",
+    "DRY 19442537 05/17/2026 99489 pay 24561100",
+    "DRY 19448611 07/16/2026 G0439 pay 24587131",
+    "DRY 19448758 07/17/2026 99487 pay 24587132",
+    "DRY 19448758 07/17/2026 99489 pay 24587133",
+    "DRY 19450214 07/22/2026 99349 pay 24589361",
+    "DRY 19452603 08/23/2026 99487 pay 24593615",
+    "DRY 19452603 08/23/2026 99489 pay 24593616",
+    "DRY 19455642 09/20/2026 99487 pay 24656659"
+   ]
+  },
+  "[name]-17474537-medicare-number": {
+   "dob_on_chart": "1934-10-26T00:00:00"
+  }
+ }
+}
