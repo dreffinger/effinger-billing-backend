@@ -1,0 +1,95 @@
+{
+ "stamp": "2026-11-25T1032Z",
+ "live": true,
+ "dod": "[DOB]",
+ "lines": [
+  {
+   "pid": "48458",
+   "cid": "23334063",
+   "vid": "19427558",
+   "dos": "12/28/2025",
+   "cpt": "99487",
+   "fee": "206.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "live_wos": [
+    [
+     "22390409",
+     "-206.00",
+     "WOINS"
+    ]
+   ],
+   "live_zero_pays": [
+    [
+     "24566080",
+     "0.00"
+    ]
+   ],
+   "real_pays": [],
+   "steps": [
+    [
+     "void wo",
+     "22390409",
+     true,
+     "c-zv9p9\" lst=\"11/25/2026 02:32:26\"><Results success=\"1\" /><Error /></PPMDResults"
+    ],
+    [
+     "void pay",
+     "24566080",
+     true,
+     "c-8bbfq\" lst=\"11/25/2026 02:32:27\"><Results success=\"1\" /><Error /></PPMDResults"
+    ],
+    [
+     "void charge",
+     true,
+     "c-zv9p9\" lst=\"11/25/2026 02:32:28\"><Results success=\"1\" /><Error /></PPMDResults"
+    ]
+   ],
+   "result": "after: void=1 insbal=206.00 patbal=0.00"
+  },
+  {
+   "pid": "48458",
+   "cid": "23334064",
+   "vid": "19427558",
+   "dos": "12/28/2025",
+   "cpt": "99489",
+   "fee": "109.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "live_wos": [
+    [
+     "22390410",
+     "-109.00",
+     "WOINS"
+    ]
+   ],
+   "live_zero_pays": [
+    [
+     "24566081",
+     "0.00"
+    ]
+   ],
+   "real_pays": [],
+   "steps": [
+    [
+     "void wo",
+     "22390410",
+     true,
+     "c-zv9p9\" lst=\"11/25/2026 02:32:29\"><Results success=\"1\" /><Error /></PPMDResults"
+    ],
+    [
+     "void pay",
+     "24566081",
+     true,
+     "c-zv9p9\" lst=\"11/25/2026 02:32:30\"><Results success=\"1\" /><Error /></PPMDResults"
+    ],
+    [
+     "void charge",
+     true,
+     "c-zv9p9\" lst=\"11/25/2026 02:32:30\"><Results success=\"1\" /><Error /></PPMDResults"
+    ]
+   ],
+   "result": "after: void=1 insbal=109.00 patbal=0.00"
+  }
+ ]
+}

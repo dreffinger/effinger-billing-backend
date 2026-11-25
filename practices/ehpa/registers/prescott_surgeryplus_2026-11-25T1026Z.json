@@ -1,0 +1,63 @@
+{
+ "stamp": "2026-11-25T1026Z",
+ "live": true,
+ "pid": "17477648",
+ "carrier": "car307813",
+ "steps": [
+  {
+   "plan": "added",
+   "ins": "ins9521413",
+   "seq": "2"
+  },
+  {
+   "order": "(True, \"insorder 2 via ins9521413 -> '2'\")"
+  },
+  {
+   "visit": "19453782",
+   "charge": "23364678",
+   "reroute": "resave vst19453782 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  },
+  {
+   "visit": "19453773",
+   "charge": "23364668",
+   "reroute": "resave vst19453773 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  },
+  {
+   "visit": "19453753",
+   "charge": "23364646",
+   "reroute": "resave vst19453753 insorder 1 -> 2, list [1] -> [2], 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+  }
+ ],
+ "before": {
+  "order": "1",
+  "plans": [
+   [
+    "ins9519242",
+    "1",
+    "car303242",
+    ""
+   ]
+  ]
+ },
+ "after_order": "2",
+ "readback": [
+  {
+   "charge": "23364646",
+   "carrier": "UMR",
+   "billdate": "09/06/2026",
+   "insbal": "160.00"
+  },
+  {
+   "charge": "23364668",
+   "carrier": "UMR",
+   "billdate": "09/06/2026",
+   "insbal": "160.00"
+  },
+  {
+   "charge": "23364678",
+   "carrier": "UMR",
+   "billdate": "09/06/2026",
+   "insbal": "310.00"
+  }
+ ]
+}

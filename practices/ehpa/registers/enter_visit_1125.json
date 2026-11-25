@@ -90,5 +90,97 @@
    "resp": "resp21424159"
   },
   "why": "William 11/25/2026 - card garland-g-mercy-[first]-17478434"
+ },
+ {
+  "pid": "17471238",
+  "dos": "11/10/2026",
+  "visit": "vst19462738",
+  "charges": [
+   {
+    "id": "23376065",
+    "description": "NURSING FAC CARE SUBSEQ",
+    "patientid": "17471238",
+    "patient": "GARLAND-G,MERCY",
+    "proccode": "99309",
+    "proccodetype": "2",
+    "b": "0",
+    "i": "1",
+    "createtime": "2026-11-25T02:29:47.230",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "faccode": "C",
+    "facname": "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT",
+    "visit": "19462738",
+    "fee": "141.00",
+    "paid": "0.00",
+    "patbal": "0.00",
+    "insbal": "141.00",
+    "totbal": "141.00",
+    "carrier": "",
+    "resppartyid": "21424159",
+    "resppartyname": "GARLAND-G,MERCY",
+    "dos": "11/10/2026",
+    "agingdate": "11/10/2026",
+    "totalvisitcharge": "141.00",
+    "provinvnumber": "",
+    "provinvamount": "",
+    "provinvdate": "",
+    "provinvuser": "",
+    "provchknumber": "",
+    "provchkdate": "",
+    "provchkuser": "",
+    "paymentplan": "0",
+    "void": "0",
+    "display": "1",
+    "protected": "0",
+    "seq": "202611100019462738",
+    "chargeseq": "20261110",
+    "approvedat": "11/25/2026",
+    "approvedby": "POI0712",
+    "isinstitutional": "0",
+    "referenceid": "",
+    "customdatatooltip": "",
+    "subcarriercode": "99309",
+    "displaypendingera": "0",
+    "isinvoicecharge": "0",
+    "modifiers": "",
+    "taxid": "",
+    "npi": "",
+    "billprofile": "",
+    "billgroup": "",
+    "partner": "",
+    "payerinfo": "",
+    "taxonomy": ""
+   }
+  ],
+  "procs": [
+   [
+    "pcode65119",
+    "99309",
+    "141.00"
+   ]
+  ],
+  "dx": [
+   "E11.9",
+   "F03.90",
+   "I63.9",
+   "R54",
+   "R62.7",
+   "R63.0"
+  ],
+  "pos": "31",
+  "pos_back": [
+   "31"
+  ],
+  "ctx": {
+   "episode": "eps17432966",
+   "profile": "prof15",
+   "facility": "fac33",
+   "refplan": "rplan18455355",
+   "insorder": "2,4,3",
+   "onhcfa": "0",
+   "resp": "resp21424159"
+  },
+  "why": "William 11/25/2026 - card garland-g-mercy-[first]-17478434"
  }
 ]

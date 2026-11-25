@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-11-25T1018Z",
+ "why": "William 11/25/2026 on card danvers-carlotta-48458 (hospice GV resend, timely advisory)",
+ "live": true,
+ "items": [
+  {
+   "visit": "19422680",
+   "pattern": "20657",
+   "batch": "125618",
+   "errorid": "398878",
+   "desc": "Pattern 20657 The beginning date of service occurred more than 12 months from the entry date 11/25/2026, this exceeds Me",
+   "result": "ok"
+  }
+ ]
+}

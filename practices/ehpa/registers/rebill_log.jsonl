@@ -498,3 +498,10 @@
 {"at": "2026-11-25T08:26:23Z", "visit": "19457519", "charge": "23369447", "seq": 1, "status": 204, "by": "cowley_stay1_1125.py"}
 {"at": "2026-11-25T08:27:09Z", "visit": "19457647", "charge": "23369559", "seq": 1, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-11-25T08:33:29Z", "visit": "19449331", "charge": "23358926", "seq": 1, "status": 204, "by": "-"}
+{"at": "2026-11-25T10:26:20Z", "visit": "19453782", "charge": "23364678", "seq": 2, "status": 204, "by": "prescot_surgeryplus_1018.py"}
+{"at": "2026-11-25T10:26:33Z", "visit": "19453773", "charge": "23364668", "seq": 2, "status": 204, "by": "prescot_surgeryplus_1018.py"}
+{"at": "2026-11-25T10:26:45Z", "visit": "19453753", "charge": "23364646", "seq": 2, "status": 204, "by": "prescot_surgeryplus_1018.py"}
+{"at": "2026-11-25T10:27:38Z", "visit": "19422192", "charge": "23327550", "seq": 3, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-25T10:28:29Z", "visit": "19428155", "charge": "23334619", "seq": 1, "status": 204, "by": "gv_visit.py"}
+{"at": "2026-11-25T10:28:51Z", "visit": "19428346", "charge": "23334807", "seq": 1, "status": 204, "by": "gv_visit.py"}
+{"at": "2026-11-25T10:29:20Z", "visit": "19422680", "charge": "23328009", "seq": 1, "status": 204, "by": "gv_visit.py"}
