@@ -2,9 +2,12 @@
 # PLAIN ENGLISH (offline self-test of the place-of-service rule, 11/10/2026)
 # Decides: nothing. Loads scripts/helpers/claimocity_import.py with stand-in amd / resave / txh modules in a throwaway folder
 #   (no AMD, no network, no patient data - every id, building message and chart here is invented) and proves William's rule:
-#     - CCM 99487/99489 in one of the five nursing buildings is entered as place of service 32 - except that it stays at the feed's 31,
-#       listed for William, when the chart shows the resident seen at skilled frequency, admitted or readmitted in that calendar month;
-#     - ALF / home CCM keeps 13, hospital lines keep 21, an unknown building keeps the old default - nothing else changes;
+#     - CCM 99487/99489 is entered as place of service 32 on EVERY line and never at 31 (William 11/25/2026: "make sure they bill with the
+#       place of service ltc ... not the skilled snf location of service ... for all ccm charges going forward"): in the five nursing buildings
+#       whatever the chart shows (a chart that shows the resident seen at skilled frequency, admitted or readmitted in that calendar month is
+#       only LISTED for William - the back end's 31 exception of 11/10 is gone), when the rule fails for the message, and from a building the
+#       facility table does not know (the old default 31);
+#     - ALF / home CCM keeps 13, hospital lines keep 21, every other line of an unknown building keeps the old default - nothing else changes;
 #     - a nursing facility visit is 32 only for the monthly visit (previous nursing visit 21 to 92 days earlier, not a discharge, no
 #       hospital visit of ours in between); it is 31 when the resident is seen once or twice a week, for an initial visit, the first
 #       nursing visit on the chart, the first visit of a new stay, and whenever the chart shows neither pattern;
@@ -220,22 +223,45 @@ check("hospital lines keep 21", L([("99232", "10/31/2026")], "21", False) == ["2
 check("nursing-building CCM is 32 on both lines", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "31", True) == ["32", "32"])
 check("nursing-building CCM is 32 after ONE monthly visit that month", L([("99487", "10/31/2026")], "31", True, [("99309", "10/29/2026"), ("99309", "09/30/2026")]) == ["32"])
 check("CCM with no nursing visit on the chart is 32", L([("99487", "10/31/2026")], "31", True, []) == ["32"])
-check("CCM stays 31 when the resident had an admission visit that month", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "31", True, [("99306", "10/12/2026")]) == ["31", "31"])
-check("CCM stays 31 when the resident was seen twice within 14 days that month", L([("99487", "10/31/2026")], "31", True, [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")]) == ["31"])
-check("CCM stays 31 when the resident came back from the hospital that month", L([("99487", "10/31/2026")], "31", True, HOSP_BETWEEN + [("99309", "10/20/2026")]) == ["31"])
-check("CCM stays 31 when one of our hospital visits falls in that month, even with no nursing visit after it", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99232", "10/25/2026")]) == ["31"])
+check("CCM is 32 on both lines also when the resident had an admission visit that month (William 11/25/2026: every CCM line is 32)", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "31", True, [("99306", "10/12/2026")]) == ["32", "32"])
+check("CCM is 32 also when the resident was seen twice within 14 days that month", L([("99487", "10/31/2026")], "31", True, [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")]) == ["32"])
+check("CCM is 32 also when the resident came back from the hospital that month", L([("99487", "10/31/2026")], "31", True, HOSP_BETWEEN + [("99309", "10/20/2026")]) == ["32"])
+check("CCM is 32 also when one of our hospital visits falls in that month, even with no nursing visit after it", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99232", "10/25/2026")]) == ["32"])
 check("CCM is 32 when our hospital visits were in ANOTHER month and the month's visit is monthly", L([("99487", "10/31/2026")], "31", True, [("99232", "08/10/2026"), ("99306", "08/14/2026"), ("99309", "09/01/2026"), ("99309", "10/01/2026")]) == ["32"])
-check("CCM stays 31 in a month in which the practice saw the resident at home or in an assisted-living facility (out of the building that month)",
-      L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")]) == ["31"]
+check("CCM is 32 also in a month in which the practice saw the resident at home or in an assisted-living facility (out of the building that month) - the chart is listed for William",
+      L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")]) == ["32"]
       and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")])[2] == ["ccm-skilled-month"])
 check("CCM is 32 when the home / ALF visit was in ANOTHER month and this month's visit is monthly", L([("99487", "10/31/2026")], "31", True, [("99349", "07/10/2026"), ("99306", "08/01/2026"), ("99309", "09/01/2026"), ("99309", "10/01/2026")]) == ["32"])
-check("CCM stays 31 in a month with a discharge visit", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99316", "10/12/2026")]) == ["31"])
+check("CCM is 32 also in a month with a discharge visit", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99316", "10/12/2026")]) == ["32"])
 check("two visit lines on ONE day in a message: any 31 keeps the whole day, and its 99497, at 31", L([("99309", "11/02/2026"), ("99306", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["31", "31", "31"] and L([("99497", "11/02/2026"), ("99306", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["31", "31", "31"])
-check("CCM stays 31 when a visit that month followed one late the month before by 14 days or less", L([("99487", "10/31/2026")], "31", True, [("99309", "08/30/2026"), ("99309", "09/28/2026"), ("99309", "10/02/2026")]) == ["31"])
+check("CCM is 32 also when a visit that month followed one late the month before by 14 days or less", L([("99487", "10/31/2026")], "31", True, [("99309", "08/30/2026"), ("99309", "09/28/2026"), ("99309", "10/02/2026")]) == ["32"])
 check("CCM is 32 when the close visits were in ANOTHER month", L([("99487", "10/31/2026")], "31", True, [("99306", "08/03/2026"), ("99309", "08/06/2026"), ("99309", "10/05/2026")]) == ["32"])
 check("CCM is 32 when that month's visits are monthly or 15-20 days apart", L([("99487", "10/31/2026")], "31", True, [("99309", "09/01/2026"), ("99309", "10/01/2026"), ("99309", "10/17/2026")]) == ["32"])
 _w = ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99306", "10/12/2026")])
-check("a CCM line left at 31 names William, carries no date, and its kind says why", "William" in _w[1][0] and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", _w[1][0]) and _w[2] == ["ccm-skilled-month"])
+check("a CCM line whose chart shows a skilled-looking month is 32, names William, carries no date, and its kind says why it is listed", _w[0] == ["32"] and "William" in _w[1][0] and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", _w[1][0]) and _w[2] == ["ccm-skilled-month"])
+# ---- William 11/25/2026: "make sure they bill with the place of service ltc which pays more per prior work not the skilled snf location of service
+#      for these charges ... for all ccm charges going forward" - a CCM line is NEVER entered at 31 -----------------------------------------------
+_CCM2 = [("99487", "10/31/2026"), ("99489", "10/31/2026")]
+_SHOWN = {"an admission visit that month": [("99306", "10/12/2026")], "seen twice within 14 days": [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")],
+          "back from the hospital": HOSP_BETWEEN + [("99309", "10/20/2026")], "one of our hospital visits that month": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99232", "10/25/2026")],
+          "a home / assisted-living visit that month": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")], "a discharge visit": [("99309", "09/05/2026"), ("99316", "10/12/2026")],
+          "the first nursing visit on the chart": [("99309", "10/12/2026")], "a visit after more than 92 days": [("99309", "05/01/2026"), ("99309", "10/12/2026")],
+          "the visits in another building": [("99309", "09/05/2026", "BRYNWOOD OPERATIONS LLC"), ("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC")]}
+_r1125 = {k_: ci.pos_lines(_CCM2, "31", True, h_, "fac32") for k_, h_ in _SHOWN.items()}
+check("11/25/2026: whatever the chart shows, a nursing-building CCM is 32 on both lines - never the feed's 31 (the back end's exception of 11/10 is gone)",
+      all(r_[0] == ["32", "32"] for r_ in _r1125.values()), {k_: r_[0] for k_, r_ in _r1125.items() if r_[0] != ["32", "32"]})
+check("11/25/2026: ... and each such chart is still LISTED for William (pos_kind ccm-skilled-month), in words that name him, say 32 and carry no date",
+      all(r_[2] == ["ccm-skilled-month"] * 2 and all("William" in w_ and w_.startswith("32 ") and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", w_) for w_ in r_[1]) for r_ in _r1125.values()), {k_: (r_[2], r_[1][0][:60]) for k_, r_ in _r1125.items()})
+_u1125 = ci.pos_lines(_CCM2 + [("99309", "10/31/2026"), ("99497", "10/31/2026")], "31", False, ())
+check("11/25/2026: a CCM line from a building the facility table does not know (the old default 31) is 32 too; the other lines of that message keep the default",
+      _u1125[0] == ["32", "32", "31", "31"] and _u1125[2] == ["ccm-unknown-building"] * 2 + ["", ""] and all("William" in w_ and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", w_) for w_ in _u1125[1][:2]) and _u1125[1][2:] == ["", ""], _u1125)
+check("11/25/2026: hospital (21) and ALF / home (13) CCM are not touched", ci.pos_lines(_CCM2, "21", False, ()) == (["21", "21"], ["", ""], ["", ""]) and ci.pos_lines(_CCM2, "13", False, [("99306", "10/12/2026")]) == (["13", "13"], ["", ""], ["", ""]))
+_p25, _w25, _k25 = ["31", "31", "31", "13"], ["rule error"] * 4, [""] * 4
+check("11/25/2026: ccm_never_31 - where a failed rule leaves every line at the feed's 31, the CCM lines become 32 and no other line is touched",
+      ci.ccm_never_31(["99309", "99487", "99489", "99487"], _p25, _w25, _k25) == 2 and _p25 == ["31", "32", "32", "13"] and _k25 == ["", "ccm-forced", "ccm-forced", ""] and _w25[0] == "rule error" and "William" in _w25[1] and _w25[3] == "rule error", (_p25, _w25, _k25))
+_CCM_FAMILY = {"99487", "99489", "99490", "99439", "99491", "99437"}
+check("11/25/2026: every chronic-care-management code the import can enter is in the rule's CCM set (a code added to the code table without the rule would go out at the feed's 31)",
+      {c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY} <= ci.CCM and ci.CCM <= set(ci.PCODE) and ci.CCM <= _CCM_FAMILY, (sorted(ci.CCM), sorted(c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY)))
 check("monthly visit + 99497: both 32", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
 check("weekly visit + 99497: both 31", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/29/2026")]) == ["31", "31"])
 check("99497 listed BEFORE its visit still follows the visit", L([("99497", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
@@ -274,7 +300,10 @@ check("build: hospital visit still 21 with its admission date", [p for _, p in p
 body, info, pp = built("h1", [("99487", "20261031")])
 check("build: CCM that arrives from the hospital is NOT touched (21)", [p for _, p in pp] == ["21"], pp)
 body, info, pp = built("u1", [("99487", "20261031")])
-check("build: unknown building keeps the old default 31 and no facility", [p for _, p in pp] == ["31"] and info["fac"] == "" and info["pos_lines"] == ["31"] and info["pos_err"] == "", (pp, info))
+check("build: a CCM line from an unknown building goes out as 32 (William 11/25/2026: never 31), with no facility, the register keeps the default 31 beside it, and it is not a rule failure",
+      [p for _, p in pp] == ["32"] and info["fac"] == "" and info["pos_lines"] == ["32"] and info["pos_feed"] == "31" and info["pos_kind"] == ["ccm-unknown-building"] and info["pos_err"] == "", (pp, info))
+body, info, pp = built("u1", [("99309", "20261102")])
+check("build: a nursing VISIT from an unknown building keeps the old default 31 and no facility", [p for _, p in pp] == ["31"] and info["fac"] == "" and info["pos_lines"] == ["31"] and info["pos_kind"] == [""] and info["pos_err"] == "", (pp, info))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026"), ("99487", "10/31/2026")])
 check("build: Aspire monthly 99309 goes out as 32", [p for _, p in pp] == ["32"] and info["pos"] == "32" and info["pos_why"][0].startswith("32 by rule") and info["pos_kind"] == ["monthly"], (pp, info))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99306", "10/26/2026"), ("99309", "10/29/2026")])
@@ -292,7 +321,15 @@ check("build: Oakes Southwood 99306 goes out as 31", [p for _, p in pp] == ["31"
 body, info, pp = built("n2", [("99309", "20261102"), ("99497", "20261102")], live=[("99309", "10/03/2026")])
 check("build: monthly visit + 99497 -> 32 / 32, modifier 25 on 99497", [p for _, p in pp] == ["32", "32"] and body.count('modcodes="mcode7"') == 1, pp)
 body, info, pp = built("n2", [("99487", "20261031")], live=[("99306", "10/12/2026"), ("99309", "10/15/2026")])
-check("build: CCM for a resident admitted that month stays 31 and is marked for William", [p for _, p in pp] == ["31"] and info["pos_kind"] == ["ccm-skilled-month"] and info["pos_err"] == "", (pp, info))
+check("build: CCM for a resident admitted that month goes out as 32 (William 11/25/2026) and is listed for William", [p for _, p in pp] == ["32"] and info["pos"] == "32" and info["pos_kind"] == ["ccm-skilled-month"] and info["pos_err"] == "", (pp, info))
+ci.BATCH_NF_ERR[0] = "selftest: the list was not built"
+body, info, pp = built("n1", [("99487", "20261031"), ("99489", "20261031")], live=[("99306", "10/12/2026")])
+check("11/25/2026 build: when the batch's own visits could not be listed, a message with no nursing VISIT line needs no pattern - its CCM lines are 32 / 32 and it is not reported as a rule failure",
+      [p for _, p in pp] == ["32", "32"] and info["pos_err"] == "" and info["pos_kind"] == ["ccm-skilled-month"] * 2, (pp, info))
+body, info, pp = built("n1", [("99309", "20261102"), ("99487", "20261102")], live=[("99309", "10/03/2026")])
+check("11/25/2026 build: ... a message WITH a nursing visit line is reported as before - the visit at the feed's 31 - and its CCM line is 32 all the same",
+      [p for _, p in pp] == ["31", "32"] and "could not be listed" in info["pos_err"] and info["pos_kind"] == ["", "ccm-forced"] and info["pos_why"][0] == "rule error" and "William" in info["pos_why"][1], (pp, info))
+ci.BATCH_NF_ERR[0] = ""
 ci.BATCH_NF.clear(); ci.BATCH_NF["pat9"] = {("99306", "10/30/2026")}
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
 check("build: a visit elsewhere in the SAME batch counts as history (31)", [p for _, p in pp] == ["31"], (pp, info))
@@ -303,7 +340,7 @@ out, why, pp = built("n2", [("99999", "20261102")])
 check("build: unknown CPT is refused as before", out is None and why.startswith("unknown CPT"), why)
 ci.FACS["n2"] = {"Aspire of Tallahassee", "HCA Florida Capital Hospital"}
 body, info, pp = built("n2", [("99487", "20261031")])
-check("build: two buildings and a message the raw files cannot answer: entered as before (31) and reported", [p for _, p in pp] == ["31"] and "2 buildings" in info["pos_err"] and info["pos_lines"] == ["31"] and info["msg_own"] is False, (pp, info))
+check("build: two buildings and a message the raw files cannot answer: the last-read building as before, reported - and its CCM line is 32, never 31 (William 11/25/2026)", [p for _, p in pp] == ["32"] and "2 buildings" in info["pos_err"] and info["pos_lines"] == ["32"] and info["pos_kind"] == ["ccm-forced"] and info["msg_own"] is False, (pp, info))
 ci.FACS["n2"] = {"Aspire of Tallahassee"}
 ci.FACS["a1"] = {"Azalea Gardens ALF", "Aspire of Tallahassee"}
 body, info, pp = built("a1", [("99487", "20261031")])
@@ -395,8 +432,10 @@ check("main --dry: no import register is written", not os.path.exists(os.path.jo
 ci.PARSED.append({"pid": "n3", "name": NAME("six"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99309", "dos": "20261104", "dx": "I10", "units": "1"}]})
 ci.MATCH[NAME("six").upper().strip() + "|" + DOBK] = {"resolved": ["not", "a", "chart"]}      # a match row the batch list cannot use
 out, dry = run_dry(); ci.PARSED.pop(); del ci.MATCH[NAME("six").upper().strip() + "|" + DOBK]
-check("main --dry: when the batch visit list cannot be built it is emptied, said and counted - and the run goes on", "batch visit list not built" in out and "POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31" in out and ci.BATCH_NF == {} and "DONE" in out, out[-400:])
-check("main --dry: ... and then NO nursing-building line is 32: each is kept at the feed's 31 and reported", all(d["pos_lines"] == ["31"] * len(d["cpts"]) and d["pos_err"] for k in ("pat101", "pat102", "pat103") for d in dry.get(k, [])) and "not applied x4" in out and dry.get("pat104", [{}])[0].get("pos_lines") == ["13"], dry)
+check("main --dry: when the batch visit list cannot be built it is emptied, said and counted - and the run goes on", "batch visit list not built" in out and "POS RULE: batch visit list not built - nursing visit lines kept at the feed's 31 (CCM lines 32)" in out and ci.BATCH_NF == {} and "DONE" in out, out[-400:])
+check("main --dry: ... and then NO nursing VISIT line is 32: each is kept at the feed's 31 and reported - while the CCM message, which needs no pattern, is 32 / 32 and is not reported (William 11/25/2026)",
+      all(d["pos_lines"] == ["31"] * len(d["cpts"]) and d["pos_err"] for k in ("pat102", "pat103") for d in dry.get(k, [])) and "not applied x3" in out and dry.get("pat104", [{}])[0].get("pos_lines") == ["13"]
+      and [(d["pos_lines"], d["pos_err"], d["pos_kind"]) for d in dry.get("pat101", [])] == [(["32", "32"], "", ["ccm", "ccm"])] and "CCM 32 x2, CCM 31 x0" in out, dry)
 ci.BATCH_NF_ERR[0] = ""
 _regp = os.path.join(tmp, "registers", "feed_import_SELFTEST.json")
 check("main --dry: the broken match row is a failed message - and a dry run that meets one writes NO register (11/10/2026, challenge review: that register made the live run of the same stamp skip whole patients)",
@@ -515,9 +554,9 @@ s4c1 = s4_fresh({"20260905.hl7": hl7("t1", WO, "", [("99309", "20260905")], NPI)
 CHART["801"] = [("99309", "08/03/2026", BRY_AMD)]
 S4_C1A = [P_("t1", "t1", [("99309", "20260905")]), P_("t1", "t1", [("99309", "20260905")]), P_("t1", "t1", [("99308", "20261008")]), P_("t1", "t1", [("99487", "20261031")])]
 s4o, s4r = s4_run(s4c1, S4_C1A, {"t1": "pat801"}); s4x = s4_rows(s4r, "pat801")
-check("C1 (exact input): the 09/05 visit the feed sent from Westminster AND from Brynwood is entered once, at the feed's 31 and reported; the next visit (10/08, 33 days later) and the October CCM stay at 31 - that day reads as a move, as a day the chart and the feed name under two buildings does (1478f14: 32 monthly / 32 CCM, named nowhere)",
+check("C1 (exact input): the 09/05 visit the feed sent from Westminster AND from Brynwood is entered once, at the feed's 31 and reported; the next visit (10/08, 33 days later) stays at 31 - that day reads as a move, as a day the chart and the feed name under two buildings does - and the October CCM is 32 and LISTED for William (11/25/2026: every CCM line is 32; 1478f14: 32 monthly / 32 CCM, named nowhere)",
       [x_["dos"] for x_ in s4x] == ["09/05/2026", "10/08/2026", "10/31/2026"] and "2 buildings" in s4x[0]["pos_err"] and s4x[0]["pos_lines"] == ["31"]
-      and s4x[1]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["moved"] and s4x[2]["pos_lines"] == ["31"] and s4x[2]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+      and s4x[1]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["moved"] and s4x[2]["pos_lines"] == ["32"] and s4x[2]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
 check("C1: the visit's created row keeps every building its copies named (tie_lines), so a later batch still sees that day under two buildings; one-building visits carry none",
       s4x and s4x[0].get("tie_lines") == [["99309", "09/05/2026", B["n1"]], ["99309", "09/05/2026", WO]] and "tie_lines" not in s4x[1] and "tie_lines" not in s4x[2], s4x[0].get("tie_lines"))
 check("C1: a message sent from two buildings that is NOT entered (a code the table lacks, a diagnosis AdvancedMD does not know) keeps its visit lines once per building in the register, so a later batch reads that day the same way",
@@ -528,7 +567,7 @@ check("C1: the batch list carries that day once per building (msg_buildings), an
 s4c1b = s4_fresh({"20261002.hl7": hl7("t2", B["n2"], "", [("99309", "20261002")], NP_NPI) + hl7("t2", WO, "", [("99309", "20261002")], NPI) + hl7("t2", B["n2"], "", [("99487", "20261031")], NPI)})
 CHART["802"] = [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE")]
 s4o, s4r = s4_run(s4c1b, [P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99487", "20261031")])], {"t2": "pat802"}); s4x = s4_rows(s4r, "pat802")
-check("C1b (exact input): the October CCM of a resident whose 10/02 visit the feed sent from Aspire AND Westminster stays at 31 (1478f14: 32)", [x_["dos"] for x_ in s4x] == ["10/02/2026", "10/31/2026"] and s4x[1]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+check("C1b (exact input): the October CCM of a resident whose 10/02 visit the feed sent from Aspire AND Westminster is LISTED for William - at 32 since 11/25/2026 (1478f14: 32, named nowhere)", [x_["dos"] for x_ in s4x] == ["10/02/2026", "10/31/2026"] and s4x[1]["pos_lines"] == ["32"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
 check("C1b: the CCM-month check reads a visit whose OWN day is named under two buildings as a move even with no building for the CCM itself (the review's last hunk)",
       ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE"), ("99309", "10/02/2026", B["n2"]), ("99309", "10/02/2026", WO)])[2] == ["ccm-skilled-month"]
       and ci.nf_visit_kind("99309", "10/02/2026", [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE"), ("99309", "10/02/2026", B["n2"]), ("99309", "10/02/2026", WO)])[0] == "moved"
@@ -578,24 +617,25 @@ check("cross-check (b): this self-test names its OWN empty deceased cache - what
 s4l = s4_fresh({"a.hl7": hl7("q1", B["n1"], "", [("99309", "20261003")], NP_NPI) + hl7("q1", B["n2"], "", [("99487", "20261031"), ("99489", "20261031")], NPI)})
 CHART["811"] = [("99309", "09/05/2026", BRY_AMD)]
 s4o, s4r = s4_run(s4l, [P_("q1", "q1", [("99309", "20261003")]), P_("q1", "q1", [("99487", "20261031"), ("99489", "20261031")])], {"q1": "pat811"}); s4x = s4_rows(s4r, "pat811")
-check("second reviewers (logic M1, exact input): the CCM from Aspire of a resident whose nursing visits are at Brynwood that month stays at the feed's 31 and is listed for William (was 32 / 32 with nothing named); the Brynwood visit itself is still the monthly 32",
-      [x_["cpts"] for x_ in s4x] == [["99309"], ["99487", "99489"]] and s4x[0]["pos_lines"] == ["32"] and s4x[1]["pos_lines"] == ["31", "31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2, s4_brief(s4x))
+check("second reviewers (logic M1, exact input): the CCM from Aspire of a resident whose nursing visits are at Brynwood that month is listed for William (was 32 / 32 with nothing named) - at 32 / 32 since 11/25/2026; the Brynwood visit itself is still the monthly 32",
+      [x_["cpts"] for x_ in s4x] == [["99309"], ["99487", "99489"]] and s4x[0]["pos_lines"] == ["32"] and s4x[1]["pos_lines"] == ["32", "32"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2, s4_brief(s4x))
 s4l2 = s4_fresh({"a.hl7": hl7("q2", B["n2"], "", [("99487", "20261031")], NPI)})
 CHART["812"] = [("99309", "09/05/2026", BRY_AMD), ("99309", "10/03/2026", BRY_AMD)]
 s4o, s4r = s4_run(s4l2, [P_("q2", "q2", [("99487", "20261031")])], {"q2": "pat812"}); s4x = s4_rows(s4r, "pat812")
-check("second reviewers (logic M1, variant X2): both Brynwood visits already on the chart and only the Aspire CCM in the batch - 31, listed for William", s4x and s4x[0]["pos_lines"] == ["31"] and s4x[0]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+check("second reviewers (logic M1, variant X2): both Brynwood visits already on the chart and only the Aspire CCM in the batch - listed for William, at 32 since 11/25/2026", s4x and s4x[0]["pos_lines"] == ["32"] and s4x[0]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
 s4m = s4_fresh({"a.hl7": hl7("m7x", B["n1"], "", [("99309", "20261005")], NP_NPI) + hl7("m7x", B["n2"], "", [("99487", "20261031"), ("99489", "20261031")], NPI)
                 + hl7("m8x", B["a1"], "", [("99344", "20261010")], NP_NPI) + hl7("m8x", B["n2"], "", [("99487", "20261031")], NPI)})
 CHART["813"] = [("99309", "09/05/2026", BRY_AMD)]; CHART["814"] = []
 s4o, s4r = s4_run(s4m, [P_("m7x", "m7x", [("99309", "20261005")]), P_("m7x", "m7x", [("99487", "20261031"), ("99489", "20261031")]), P_("m8x", "m8x", [("99344", "20261010")]), P_("m8x", "m8x", [("99487", "20261031")])],
                   {"m7x": "pat813", "m8x": "pat814"})
 s4x = s4_rows(s4r, "pat813"); s4z = s4_rows(s4r, "pat814")
-check("second reviewers (message-identity X2, exact input): M7 - Brynwood visit 10/05, then the physician's Aspire CCM of 10/31: 31 / 31 for William (was 32 / 32); M8 - an assisted-living visit, then an Aspire CCM: 31 (already so since round 5's F2)",
-      s4x[1]["pos_lines"] == ["31", "31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2 and s4x[0]["pos_lines"] == ["32"] and s4z[1]["pos_lines"] == ["31"] and s4z[1]["pos_kind"] == ["ccm-skilled-month"], (s4_brief(s4x), s4_brief(s4z)))
+check("second reviewers (message-identity X2, exact input): M7 - Brynwood visit 10/05, then the physician's Aspire CCM of 10/31: listed for William (was 32 / 32 with nothing named); M8 - an assisted-living visit, then an Aspire CCM: listed too - both at 32 since 11/25/2026",
+      s4x[1]["pos_lines"] == ["32", "32"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2 and s4x[0]["pos_lines"] == ["32"] and s4z[1]["pos_lines"] == ["32"] and s4z[1]["pos_kind"] == ["ccm-skilled-month"], (s4_brief(s4x), s4_brief(s4z)))
 _ccm2 = [("99309", "09/05/2026", BRY_AMD), ("99309", "10/03/2026", BRY_AMD)]
-check("CCM in another building: the pure rule - a CCM entered at Aspire reads the residents' Brynwood visits as another building (31); entered at Brynwood itself it stays the long-term 32; a visit with no building name changes nothing",
-      ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac32")[0] == ["31"] and ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac34")[0] == ["32"]
-      and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026")], "fac32")[0] == ["32"] and ci.seen_at_skilled_frequency("10/31/2026", _ccm2, "fac34") is False)
+check("CCM in another building: the pure rule - a CCM entered at Aspire reads the residents' Brynwood visits as another building (LISTED - 32 since 11/25/2026); entered at Brynwood itself it is the plain long-term 32; a visit with no building name changes nothing",
+      ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac32")[0] == ["32"] and ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac32")[2] == ["ccm-skilled-month"] and ci.seen_at_skilled_frequency("10/31/2026", _ccm2, "fac32") is True
+      and ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac34")[0] == ["32"] and ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac34")[2] == ["ccm"]
+      and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026")], "fac32")[2] == ["ccm"] and ci.seen_at_skilled_frequency("10/31/2026", _ccm2, "fac34") is False)
 # a dry run writes nothing (challenge review, gap 2, exact shape): a dry run that meets a fault no longer makes the live run of the same stamp drop a visit
 s4g = s4_fresh({"a.hl7": hl7("pa", B["n1"], "", [("99309", "20261005")], NP_NPI) + hl7("pa", B["n1"], "", [("99309", "20261104")], NP_NPI) + hl7("pb", B["n2"], "", [("99309", "20261103")], NP_NPI)})
 CHART["711"] = [("99309", "10/05/2026", BRY_AMD)]; CHART["712"] = []
@@ -2092,9 +2132,15 @@ r, line = digest(rows)
 check("digest: the report still runs with the new register fields", r.returncode == 0, r.stderr[-300:])
 check("digest: one line - CCM 32 x2, visits 32 x1, visits 31 x2, nothing else", "CCM lines entered as 32: 2;" in line and "nursing visits 32 (monthly): 1;" in line and line.rstrip().endswith("nursing visits 31: 2."), line)
 r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["31", "31"], ["ccm-skilled-month"] * 2), reg_row(["99309"], "fac32", "31", ["31"], ["extra"])])
-check("digest: CCM lines and visits left at 31 are counted and explained", "CCM lines entered as 32: 2 (and 2 kept at 31 by the back end's exception for that month - see pos_why - not held" in line and "nursing visits 31: 3 (1 of them kept at 31 because the chart shows neither pattern" in line, line)
-check("digest: ... it says they go out at 31 unless William acts, and names the charts", "not held: they go out at 31 with the next claim run unless William changes them first" in line and "for William, not held - CCM kept at 31 (pos_kind ccm-skilled-month): pat9 11/02/2026 99487+99489" in r.stdout
+check("digest: a CCM line AT 31 is shouted - it is not William's rule since 11/25/2026 (an older copy of the rule, or a batch from before that day) - and visits left at 31 are counted and explained",
+      "CCM lines entered as 32: 2 - AND 2 CCM LINE(S) ENTERED AT 31, which is not William's rule (11/25/2026: every CCM line is 32)" in line and "nursing visits 31: 3 (1 of them kept at 31 because the chart shows neither pattern" in line, line)
+check("digest: ... it says they go out at 31 unless they are changed first, and names the charts for the TOP of the report", "not held: they go out at 31 with the next claim run unless they are changed first" in line
+      and "  - TOP OF THE REPORT - CCM ENTERED AT 31 (William 11/25/2026: every CCM line is 32) - for William before the claim run; a routine changes nothing on these visits: pat9 11/02/2026 99487+99489" in r.stdout
       and "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between): pat9 11/02/2026 99309" in r.stdout, r.stdout[-900:])
+r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["32", "32"], ["ccm-skilled-month"] * 2), reg_row(["99487"], "fac33", "31", ["32"], ["ccm-skilled-month"])])
+check("digest (11/25/2026): CCM lines the chart shows a skilled-looking month for are 32, counted with the others, and LISTED for William by chart - not at the top, nothing held",
+      "CCM lines entered as 32: 5 (3 of them listed for William - the chart shows a skilled-looking month, see pos_why - not held and not changed);" in line and "ENTERED AT 31" not in r.stdout
+      and "  - for William, not held - CCM entered at 32, the chart shows a skilled-looking month (pos_kind ccm-skilled-month): pat9 11/02/2026 99487+99489; pat9 11/02/2026 99487" in r.stdout, r.stdout[-900:])
 r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["31"], err="boom"), reg_row(["99487", "99309"], "", "31", ["31", "31"])])
 check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named", "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service" in line and "2 CCM / nursing-visit line(s) came from a building the facility table does not know" in line, line)
 check("digest: ... with their chart numbers for the top of the report", "TOP OF THE REPORT - rule not applied, for William before the claim run; a routine changes nothing on these visits: pat9 11/02/2026 99487 (boom)" in r.stdout and "TOP OF THE REPORT - building the facility table does not know: pat9 11/02/2026 99487+99309" in r.stdout, r.stdout[-900:])
@@ -2562,8 +2608,8 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps rule version .8 (and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
-      "grep -c 'POS_RULE_VERSION = \"2026-11-10.8\"'" in _STEP1 and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
+check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.1 since William's CCM word; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+      ("grep -c '%s'" % ver) in _STEP1 and '2026-11-10.8"' not in step and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
       all(x_ in _QR for x_ in ('THE CODE NEVER SWITCHES ITSELF OFF - William 11/11/2026: "%s" (in force since November 12, 2026). No state of the code waits for William. The digest carries ONE line that starts "TOP OF THE REPORT - QUALITY CODE:" in every batch; copy it to the top of the report word for word, every run:' % _W1112,
@@ -3507,7 +3553,7 @@ check("C9: rulebook part 6 and the runbook name the visit the import flagged tha
       "and a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location (Pattern 4531" in _rules and "a CCM visit or a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location" in _step and "nor for a visit the import flagged as POS RULE NOT APPLIED" in _step)
 check("W6 (1): the bypass loop has an upper bound - at most three passes, then stop and report - in the rulebook, the runbook and the lessons line",
       "at most three passes in all - still listed after the third, stop" in _rules and "at most three passes in all (it clears ONE" in _step and "still listed after the third pass: stop" in _step and "at most three passes; still listed after the third: stop" in _less)
-check("W5 / W6: the comma of part 6, the lessons line's exception (part 4), what msg_own false means, what N counts, the second one-liner, every '32' of the read-back, and the CCM exception as part 1 words it",
+check("W5 / W6: the comma of part 6, the lessons line's exception (part 4), what msg_own false means, what N counts, the second one-liner, every '32' of the read-back, and what LISTS a CCM line for William as part 1 words it (11/25/2026: listed, no longer kept at 31)",
       "pos_stored in the register), visits that" in _rules and "a wrong building the Claim Inspector flags on a charge that has not gone out yet is still corrected as before - rules.md part 4" in _less
       and "false means the message could not be matched to exactly one raw copy: for whatever its copies do not agree on" in _rules and "(N = the number of charts this run names at the top of the report" in _step
       and "print(' '.join(p for p,n in sorted(c.items()) if n>1))" in _step and "every entry '32' (a CCM visit: ['32', '32'])" in _step and "for any reason except a gap of 15 to 20 days (weekly or more" in _step

@@ -110,9 +110,11 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
              # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
              # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-10.8"',
+             # 11/25/2026 (rule version 2026-11-25.1, William: every CCM line is 32, never the skilled-nursing 31): a copy of the 11/10 version
+             # still keeps a CCM line at 31 in a 'skilled-looking month' - it must not come back over the new one
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.1"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.1"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.8"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.8"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.1"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.1"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
