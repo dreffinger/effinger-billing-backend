@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-26T05:53:34Z",
+ "at": "2026-11-26T05:36:00Z",
+ "changed": 8,
+ "checked": 161,
+ "commit": "45a50de",
+ "date": "2026-11-26",
+ "dollars": 1726,
+ "done": "8 visits re-pointed to the charts' Medicare Advantage plans as originals (1726 dollars): charts 17472826 x2, 17473090 x2 (BCBS MA), 17475777 x2, 17475837 (UHC MA), 25558 (UHC Dual Complete); chart 17478516 Anthem member number to William",
+ "era_posted": 83.13,
+ "finished": "2026-11-26T05:53:34Z",
+ "flagged": 6,
+ "kind": "nightly cascade",
+ "lookups": 122,
+ "note": "161 visit-and-plan pairs checked (120 new Stedi lookups, 122 paid calls), 6 flagged (all Medicare Advantage); ERA 83.13 dollars posted",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-26T0536Z.json",
+ "stamp": "2026-11-26T0536Z",
+ "stedi_cost": 37.8,
+ "writeoffs": 0.0
+}

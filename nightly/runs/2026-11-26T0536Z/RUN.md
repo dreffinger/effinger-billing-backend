@@ -1,0 +1,16 @@
+# nightly cascade 2026-11-26T0536Z (Thursday)
+- precheck --days 3 --max 120: 161 pairs, 120 new Stedi lookups (the 11/24 monthly CCM batch), 6 flagged - all ADVANTAGE PLAN on DOS.
+- chart 17472826: v19462724 11/23 + v19462701 11/24 (99233) insorder 2,1 -> 1 (BCBS / BCBS-MI MA), freq 1, rebill seq 1 -> 204.
+- chart 17473090: v19462722 11/23 + v19462699 11/24 (99233) insorder 2,1 -> 1 (BCBS / HCSC MA) -> 204.
+- chart 17475777: v19462075 11/17 99309 + v19462602 11/24 CCM insorder 2,1 -> 1 (UNI20 UHC MA) -> 204.
+- chart 17475837: v19462494 11/24 CCM insorder 1,2 -> 2 (UNI20 AARP MA Patriot) -> 204.
+- chart 25558: v19462580 11/24 CCM insorder 1,5 -> 4,5 (UHCMA Dual Complete) -> 204.
+- read back: all 8 insbilled 0 at the new order; primary dx acceptable (dx_primary_fix --dry). 1726 dollars re-sent.
+- chart 17478516 (new admit): Medicare names Anthem (H4036, GA) MA; AMD 271 agrees; discovery found no Anthem member id -> new board card on William's turn; 2 visits (470 dollars) left at Medicare.
+- Step 2/2a skipped (Thursday). void_rules: 1 open rule, no VOID lines.
+- ERA step: Humana check 1053664, 171.41 -> 88.28 dollars on the list; 83.13 posted (already-posted line); 88.28 orphan = chart 17469446 v19460489 11/05 99309 (visit voided; re-entered as v19461790 c23374772, never billed) - for William.
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; overdue reminders already on William's turn -> no cred file.
+- board: 6 ops (5 append + 1 new card) -> Drive board inbox; no drops; 5 files from 11/25 (8-22 h) still awaiting board sync, none in the applied map.
+- money ledger rebuilt (unpaid 388,765 dollars) and republished.
+- Stedi: 122 calls 37.80 dollars (plain Medicare 99, eligibility 22, discovery 1).
+- practice_db: 7 documents committed (billing_runs 1, cascade_runs 1, era_runs 1, snapshots 4), 0 swept; Neon 7 new, run logged ok.
