@@ -368,7 +368,7 @@ def reset():
         elif os.path.exists(p): os.remove(p)
     ST.WHO = "test_lookup_rules.py"
     if hasattr(ST, "_PLAIN_OFF"): del ST._PLAIN_OFF[:]           # a refusal of our provider number holds for one run (one process) - each case is a new run
-    if DG is not None: del DG.LOG[:]; DG._ASKED.clear(); getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_REASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # ... and the charts asked about for a lost day or after a reset (one question per chart per start), and what a start kept in memory because it could not write it
+    if DG is not None: del DG.LOG[:]; DG._ASKED.clear(); getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # ... and the charts asked about for a lost day (one question per chart per start), and what a start kept in memory because it could not write it
     del FREE_ASKED[:]; FREE.clear(); os.environ.pop("DEATH_CHECK_FREE", None)      # 11/25/2026: the free check - each case is a new run: nothing said about any plan, the switch not set,
     if DG is not None:                                                             # COUNTS at zero and no failure in a row behind it
         for k in getattr(DG, "COUNTS", {}): DG.COUNTS[k] = 0
@@ -1288,13 +1288,21 @@ def death_shapes():
     death = [PLACEHOLDER, " " + PLACEHOLDER + " ", PLACEHOLDER + " 00:00:00", PLACEHOLDER + " 12:00 AM", PLACEHOLDER + "Z", "[" + "MBI" + "]", "day not known", "  day not known ",
              "%d-02-31" % y, "%d0231" % y, "02/31/%d" % y, "13/45/%d" % y, str(y), "%d-11" % y, "0000-00-00", "0" * 8, ymd(D) + "T000000", iso(D)[:8] + "x1", "1/1/26", "x" + iso(D), "a 1 b 2 c 3 d 4"] + death_shapes_s3()
     none = [None, "", " ", "   ", "None", "null", "unknown", "0", "n/a", "no", "N", "false", "x1y2z3", "123", "[]", "[ ]", "[12]", "<>", "< >", "<1>", "DOB", "day unknown", "X", "x", "XX", "XXX", "X/X", "x-x.x", "/", "--", "ye", "yess", "yes?", "dead?", "the deceased",
+            "x-ray: fax to exton, box 6", "x-ray, fax, exit, box"] + death_nothing() + [
             "not deceased", "deceased?", "true", "t", "d", "1", "on", 0, 1, y, int("%d0231" % y), 1.5, float(ymd(D)), True, False, [], [PLACEHOLDER], (PLACEHOLDER,), {"a": PLACEHOLDER}, b"1234 bytes", b"deceased", ["deceased"]]
     days = [iso(D), ymd(D), mdy(D), iso(D) + "T00:00:00", mdy(D) + " 12:00:00 AM", "  " + iso(D) + " ", int(ymd(D))]
     return death, none, days
+def death_nothing():
+    """F8 of the fifth round (the fourth independent check, finding 8): a bracketed text that plainly means NOTHING - none, null, n/a, na, unknown, no, empty, in any
+    letter case, in square or angle brackets - is NO death on record (each of these held a living patient's chart after the fourth round); a blank inside the
+    brackets or around them changes nothing, and neither does a text beside them that is no death by itself"""
+    return ["[none]", "[None]", "[NONE]", "<none>", "[null]", "<NULL>", "[n/a]", "[N/A]", "<n/a>", "[na]", "[NA]", "[unknown]", "[UNKNOWN]", "<Unknown>", "[no]", "<NO>", "[empty]", "<EMPTY>", "[ none ]", "< null >", " [none] ", "see [none]",
+            "[none] [null]", "[no] <empty>"]
 def death_shapes_s3():
     """S3 (b) of the fourth round (the third independent check, finding 5): what ALSO stands for a death with no day in a cache's day place - sixteen such texts
     read 'no dod' after the third round, and another payer's claim passed with nobody asked"""
     return ["[dob]", "[Dob]", "[name]", "[D0B]", "[redacted]", "[REDACTED]", "[DATE OF DEATH]", "[date of death]", "<DOB>", "<dob>", "< redacted >", "see [dob]", "[x] 00:00:00",
+            "[unknown date]", "[nobody]", "[nay]", "[none] [dob]", "[dob] [none]", "<null> <redacted>",
             "XX/XX/XXXX", "xx/xx/xxxx", "XXXX-XX-XX", "XXXXXXXX", "XX.XX.XXXX", "XX XX XXXX", "XXXX", " XX/XX/XXXX ", "deceased", "Deceased", "DECEASED", " deceased ", "dead", "Dead", "died", "DIED", "expired", "Expired", "redacted", "REDACTED",
             "y", "Y", "yes", "Yes", "YES", " y "]
 def t_death_on_record_shapes():
@@ -1303,13 +1311,13 @@ def t_death_on_record_shapes():
     good. Now: a dod value that is no day is a death on record only when it is the privacy gate's placeholder (an upper-case word in square brackets), the
     guard's own 'day not known', or a text with at least four digits (a damaged date). Every other value is NO dod: the entry is one without an answer - asked
     about again when the claim needs it - never a death on record. ONE reading for the guard, the import and dg_drive.py, held together here."""
-    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); F = lift("scripts/helpers/claimocity_import.py", "death_day", "death_unread", "DEATH_NO_DAY", "DEATH_WORDS")
+    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); F = lift("scripts/helpers/claimocity_import.py", "death_day", "death_unread", "DEATH_NO_DAY", "DEATH_WORDS", "DEATH_NOTHING")
     death, none, days = death_shapes(); guard = getattr(DG, "_unread", None); feed = F.get("death_unread"); drive = getattr(DD, "unread", None)
     got = [(repr(x)[:30], _try(lambda: guard(x)), _try(lambda: feed(x)), _try(lambda: drive(x))) for x in death + none + days]
     check("death on record (R2a): the guard's _unread, the import's death_unread and dg_drive.py's unread give the SAME answer for every shape - and the words they know 'day not known' by are one word in three places",
           lambda: all(g is f is d and g in (True, False) for _x, g, f, d in got) and F.get("DEATH_NO_DAY") == getattr(DD, "NO_DAY", None) == DG.NO_DAY and F.get("DEATH_WORDS") == getattr(DD, "DEATH_WORDS", None) == DG.DEATH_WORDS
           == {"deceased", "dead", "died", "expired", "redacted", "y", "yes"}, [r for r in got if not (r[1] is r[2] is r[3])][:6])
-    check("death on record (R2a; S3 b of the fourth round): ... it is True for the privacy gate's placeholder (also with a time left behind it), the guard's own 'day not known', a text with at least four digits (a damaged date) - and, since the fourth round, for ANY text in square or angle brackets in any letter case, a masked date (only X and separators, four X or more) and the words deceased, dead, died, expired, redacted, y, yes in any letter case; False for None, '', blanks, the words None / null / unknown, '0', a number, a list, empty brackets, fewer than four X, a word beside those words ('not deceased', 'the deceased', 'true'), and for every value that IS a day",
+    check("death on record (R2a; S3 b of the fourth round): ... it is True for the privacy gate's placeholder (also with a time left behind it), the guard's own 'day not known', a text with at least four digits (a damaged date) - and, since the fourth round, for ANY text in square or angle brackets in any letter case, a masked date (only X and separators, four X or more) and the words deceased, dead, died, expired, redacted, y, yes in any letter case; False for None, '', blanks, the words None / null / unknown, '0', a number, a list, empty brackets, fewer than four X, a word beside those words ('not deceased', 'the deceased', 'true'), and for every value that IS a day. The fifth round (F8; g36): False too for a bracketed text that plainly means nothing ('[none]', '<null>', '[n/a]', '[unknown]', '[no]', '[empty]' - every other bracketed text is still True: '[unknown date]', '[none] [dob]'), and for a text that only STARTS like a masked date ('x-ray: fax to exton, box 6' - the masked date must be the whole value)",
           lambda: [guard(x) for x in death] == [True] * len(death) and [guard(x) for x in none + days] == [False] * len(none + days) and [DG._day(x) for x in death + none] == [None] * len(death + none),
           [(repr(x), _try(lambda: guard(x))) for x in death if _try(lambda: guard(x)) is not True][:5] + [(repr(x), _try(lambda: guard(x))) for x in none + days if _try(lambda: guard(x)) is not False][:5])
     res = []
@@ -1389,11 +1397,11 @@ def t_guard_lost_words_and_two_days():
         except DG.DayLost as e: return str(e)
         return ""
     w = words(lambda: DG.check(pid, iso(ago(5)), "car6404", "99349", allow_lookup=False))
-    check("guard (R7a, the words of a lost day): the error says what is true also when NOBODY was asked - 'its day cannot be read here, and nobody named it' (it said 'and Medicare named none' for a question from the cache only) - and names the two ways on and the one way out: the cache copy from Drive or a look-up; a chart the owner says is alive: death_off_record.py, on his word only",
-          lambda: w == DG.LOST_WORDS == "a date of death is on record for this chart but its day cannot be read here, and nobody named it - the claim is not cleared (merge the cache copy from Drive, or look the chart up; a chart the owner says is alive: death_off_record.py, on his word only)"
+    check("guard (R7a, the words of a lost day): the error says what is true also when NOBODY was asked - 'its day cannot be read here, and nobody named it' (it said 'and Medicare named none' for a question from the cache only) - and names the two ways on, the cache copy from Drive or a look-up, and what happens with a chart the owner says is alive: it goes to the top of the report and is taken off by hand in a chat session, on his word (the fifth round: the words named a helper that is gone)",
+          lambda: w == DG.LOST_WORDS == "a date of death is on record for this chart but its day cannot be read here, and nobody named it - the claim is not cleared (merge the cache copy from Drive, or look the chart up; a chart the owner says is alive goes to the top of the report and is taken off by hand in a chat session, on his word)"
           and "Medicare named none" not in _read("scripts/helpers/deceased_guard.py").split("\nimport os, re, json")[1], (w, getattr(DG, "LOST_WORDS", None)))
     check("guard (R7a): ... those words name no chart, no date and no number, and their first hundred characters - what amd.rebill_charge puts into its 409 answer - say that a death is on record, that its day cannot be read and that nobody named it",
-          lambda: not re.search(r"\d", DG.LOST_WORDS) and pid not in DG.LOST_WORDS and DG.LOST_WORDS[:100].endswith("its day cannot be read here, and nobody named it - t") and "death_off_record.py" in DG.LOST_WORDS, DG.LOST_WORDS[:100])
+          lambda: not re.search(r"\d", DG.LOST_WORDS) and pid not in DG.LOST_WORDS and DG.LOST_WORDS[:100].endswith("its day cannot be read here, and nobody named it - t") and ".py" not in DG.LOST_WORDS and "by hand in a chat session, on his word" in DG.LOST_WORDS, DG.LOST_WORDS[:100])
     reset(); a, b, c = cid(), cid(), cid(); early, late = iso(ago(40)), iso(ago(10)); held = {"dod": early, "checked": iso(ago(30)), "src": "amd-271", "name": "kept as it was"}
     put_cache({a: dict(held), b: {"dod": late, "checked": iso(ago(9)), "src": "x", "name": "kept"}, c: {"dod": ymd(ago(40)), "checked": iso(ago(30)), "src": "x"}})
     ga = DG.record(a, {"dateOfDeath": ymd(ago(10))}); gb = DG.record(b, {"dateOfDeath": ymd(ago(40))}, "amd-271"); gc = DG.record(c, {"dateOfDeath": ymd(ago(40))}, "amd-271"); got = cache_json()
@@ -1421,289 +1429,376 @@ def t_guard_asked_once():
     DG._LOST_ASKED.clear(); fourth = _raises(lambda: guard_check(pid, iso(ago(2))), DG.DayLost)
     check("guard (R6): ... and a NEW process asks once more (the chart is read again), still not cleared", lambda: fourth and reads() == 2, (fourth, reads()))
 LONG_AGO = "2000-01-" + "01"      # the check date of an entry that must be asked about again (the guard's own LONG_AGO, put together here)
-REASK_SRC = "off the record on the owner's word - Medicare is asked again"
-RESET_WORDS = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - the claim is not cleared"
-def reask_rec(d=None, checked=None, **more):
-    """The RE-ASK entry death_off_record.py writes when the record of a death is reset on the owner's word: no death, a check date long ago, the fixed source, the day
-    the helper ran (d - by default ten days ago) and the approval text"""
-    d = d or ago(10); e = {"dod": None, "checked": checked or LONG_AGO, "src": REASK_SRC, "reask": iso(d), "approved_by": "William %d/%d/%d (board)" % (d.month, d.day, d.year)}; e.update(more); return e
 def says(f):
-    """What a guard call ends in: its answer - or, when it raises, the KIND of the error (NotAnswered, DayLost ...)"""
+    """What a guard call ends in: its answer - or, when it raises, the KIND of the error (DayLost ...)"""
     try: return f()
     except Exception as e: return type(e).__name__
+OLD_FIELDS = ("re" + "ask", "off" + "_record", "approved" + "_by")      # the fields rounds three and four wrote into an entry for the owner's word - put together here: the names are gone from every file of the guard
+def old_word_rec(d=None, **more):
+    """An entry as the helper of the fourth round left it where the owner had said a patient is alive: no death, a check date long ago, and that round's own fields.
+    To this round's guard, to dg_drive.py and to the import it is an entry like any other - the fields mean nothing."""
+    d = d or ago(10); e = {"dod": None, "checked": LONG_AGO, "src": "an entry the round before wrote", OLD_FIELDS[0]: iso(d), OLD_FIELDS[2]: "William %d/%d/%d (board)" % (d.month, d.day, d.year)}; e.update(more); return e
 def nobody_answers(pid, p):
     """AdvancedMD's free check, the vendor's plain check and its look-up all fail for this chart"""
     FREE[ins(pid)] = ("timeout",); OVERRIDE[("CMS", p["number"])] = ("timeout",); OVERRIDE[("MBILUNOSSN", p["last"])] = ("timeout",)
-def t_guard_reask():
-    """S1 (the fourth round, 11/25/2026 - the third independent check, its findings 1, 2, 6, 7 and 9): THE OWNER'S WORD RESETS THE RECORD AND MEDICARE IS ASKED AFRESH.
-    The third round had given his word a rule of its own (his word 'beat' every day reported up to its date): a word given for the wrong chart had no way back, a
-    chart off the record was no longer asked about while the old answer was at hand, and nobody could explain the boundary. That rule is gone. death_off_record.py
-    writes the RE-ASK entry (no death, a check date long ago, 'reask' = the day the helper ran); to the guard such a chart is asked about for ANY claim, with a FRESH
-    question - no kept answer of the answer store may answer it - and it is cleared ONLY when Medicare's fresh answer names no death. A day that comes is the day;
-    until somebody answers the claim is NOT cleared (NotAnswered). Shown with the REAL client (stedi.py) and the REAL answer store over this file's wire stand-in."""
-    base = reask_rec(name="kept"); day_of_reset = ago(10); other = dict(carrier="car6404", proc="99349")      # other: a claim to another payer with an ordinary code - one the guard answers from its cache alone for any other chart
-    reset(); a, b, c, d, e, f = (cid() for _ in range(6))
-    put_cache({a: dict(base), b: dict(base, dod=iso(ago(40))), c: dict(base, dod=PLACEHOLDER), d: {"dod": None, "checked": iso(TODAY), "src": "stedi: no death on record"}, e: dict(base, reask="soon"), f: dict(base, reask="")})
-    check("guard (S1, the record reset): NotAnswered is a kind of DayLost - every caller that fails closed on a lost day (the rebill answers 409, the check before approvals says NOT CHECKED, the feed enters no visit) fails closed on it too - with fixed words of its own that name no chart, no date and no number",
-          lambda: issubclass(DG.NotAnswered, DG.DayLost) and DG.NotAnswered is not DG.DayLost and DG.RESET_WORDS == RESET_WORDS and not re.search(r"\d", DG.RESET_WORDS) and DG.REASK_SRC == REASK_SRC and DG.LONG_AGO == LONG_AGO,
-          (getattr(DG, "RESET_WORDS", None), getattr(DG, "REASK_SRC", None)))
-    check("guard (S1): the RE-ASK entry is the entry that carries 'reask' and holds NO death (_reask gives the day the record was reset): an entry that holds a day or a death with no day beside that field is a death, an ordinary 'no death on record' is none, an empty 'reask' is none; a 'reask' that is no date still makes the entry one - its day then reads as later than any check date (nothing is brought into it from another file)",
-          lambda: DG._reask(cache_json()[a]) == iso(day_of_reset) and DG._reask(cache_json()[b]) is None and DG._reask(cache_json()[c]) is None and DG._reask(cache_json()[d]) is None and DG._reask(cache_json()[f]) is None
-          and DG._reask(cache_json()[e]) == DG.REASK_UNDATED > iso(TODAY + datetime.timedelta(days=36500)) and DG._reask("no entry") is None and DG._reask(None) is None, [_try(lambda k=k: DG._reask(cache_json()[k])) for k in (a, b, c, d, e, f)])
-    quiet = {k: says(lambda k=k: DG.check(k, iso(ago(2)), "car6404", "99349", allow_lookup=False)) for k in (a, b, c, d, e, f)}
-    check("guard (S1): a question from the cache only (a dry run, a second look) is NOT cleared for a RE-ASK chart - NotAnswered, whatever the payer and the code: it is not cleared before Medicare has answered; nobody is asked and the entry stays as it is. An entry that holds a day beside those fields blocks by the day, one that holds a death with no day is lost (DayLost itself), an ordinary 'no death on record' is clear",
-          lambda: quiet[a] == quiet[e] == "NotAnswered" and quiet[b] != "NotAnswered" and quiet[b][0] is True and quiet[c] == "DayLost" and quiet[d] == quiet[f] == (False, "") and SENT == [] and FREE_ASKED == [] and BILLING == [] and cache_json()[a] == base, quiet)
-    words = ""
-    try: DG.check(a, iso(ago(2)), "car6085", "99487", allow_lookup=False)
-    except DG.NotAnswered as x: words = str(x)
-    check("guard (S1): ... the error carries those fixed words, also for a straight-Medicare care-management claim", lambda: words == RESET_WORDS, words)
-    cov = [DG.covered(a, iso(ago(20))), DG.cache_state()]; put_cache({a: dict(base, checked=iso(TODAY))}); cov += [DG.covered(a, iso(ago(20))), says(lambda: DG.check(a, iso(ago(20)), "car6404", "99349", allow_lookup=False))]
-    check("guard (S1): covered() is False for a RE-ASK entry - also when its check date says 'today' (a hand edit): it is the field that makes the entry, not the date - and the cache's counts hold it neither as a day nor as a lost day",
-          lambda: cov[0] is False and cov[1]["days"] == 1 and cov[1]["lost"] == 1 and cov[1]["charts"] == 6 and cov[2] is False and cov[3] == "NotAnswered", cov)
-    # the hook that keeps every Medicare answer (record): no comparison with any date
-    reset(); a, b, c, d, e, f = (cid() for _ in range(6)); put_cache({k: dict(base) for k in (a, b, c, d, e, f)})
-    ra = DG.record(a, {"dateOfDeath": ymd(ago(40))}); rb = DG.record(b, {"dateOfDeath": ymd(ago(3))}, "amd-271"); DG.record(c, json.loads(json.dumps(ALIVE_271))); DG.record(d, err_answer("72"))
-    DG.record(e, {"errors": [], "benefitsInformation": [], "subscriber": {}}); ST._dod_hook(f, err_answer("72", {"memberId": "x"}), plain=True); got = cache_json() or {}
-    after = {k: says(lambda k=k: DG.check(k, iso(ago(1)), "car6404", "99349", allow_lookup=False)) for k in (a, b, c, d, e, f)}
-    check("guard (S1, the hook): for a RE-ASK entry an answer WITH a day is taken - a day long before the reset or after it, there is no comparison with any date: the entry holds the day (checked today, its name kept, the fields of the reset gone) and the claim after it is blocked",
-          lambda: ra == iso(ago(40)) and rb == iso(ago(3)) and got[a] == {"dod": iso(ago(40)), "checked": iso(TODAY), "name": "kept", "src": "stedi-medicare-271"} and got[b] == {"dod": iso(ago(3)), "checked": iso(TODAY), "name": "kept", "src": "amd-271"}
-          and after[a] != "NotAnswered" and after[a][0] is True and after[b][0] is True, (ra, rb, got.get(a), got.get(b), after))
-    check("guard (S1, the hook): ... a REAL answer without a day - Part A / Part B lines, or a look-up's lone 72 - writes the ordinary 'no death on record' entry of today (the fields of the reset gone) and the chart is clear from then on; an empty reply and a plain 'not found' are no answer: the entry stays exactly as it is, not cleared",
-          lambda: got[c] == {"dod": None, "checked": iso(TODAY), "name": "kept", "src": "stedi: no death on record"} and got[d] == {"dod": None, "checked": iso(TODAY), "name": "kept", "src": "stedi: not a Medicare beneficiary"}
-          and after[c] == after[d] == (False, "") and got[e] == got[f] == base and after[e] == after[f] == "NotAnswered", (got.get(c), got.get(d), got.get(e), got.get(f), after))
-    # check() and its look-up: ANY claim is asked about, fresh
-    res = {}
-    for name, death, claim, medicare_plan in (("no death, a straight-Medicare claim", None, dict(carrier="car6085", proc="99309"), True), ("no death, another payer's claim", None, other, True), ("no death, no Medicare plan on the chart", None, other, False),
-                                              ("a day long before the reset", ago(40), other, True), ("a day after the reset", ago(3), dict(carrier="car6085", proc="99487"), True)):
-        reset(); p = newp(death=death); pid = chart(cid(), p, plans=[("car6085", "", p["number"])] if medicare_plan else [("car6404", "", "M" + "7" * 9)]); put_cache({pid: dict(base)})
-        r = says(lambda: guard_check(pid, iso(ago(1)), **claim)); k = kinds(); n = len(SENT) + len(FREE_ASKED); e1 = dict((cache_json() or {}).get(pid) or {})
-        r2 = says(lambda: guard_check(pid, iso(ago(1)), **claim)); res[name] = (r, k, e1, r2, len(SENT) + len(FREE_ASKED) - n, list(DG.LOG))
-    none = ("no death, a straight-Medicare claim", "no death, another payer's claim", "no death, no Medicare plan on the chart")
-    check("guard (S1): a RE-ASK chart is asked about for ANY claim - straight Medicare, another payer with an ordinary code, a chart with no Medicare plan at all (the look-up by name) - and when Medicare's fresh answer names NO death the claim is not blocked and the entry is the ordinary 'no death on record' of today, the fields of the reset gone; the chart's next claim that day asks nobody",
-          lambda: all(res[k][0] == (False, "") and res[k][2].get("dod") is None and res[k][2].get("checked") == iso(TODAY) and res[k][2].get("src") == "stedi: no death on record" and not {"reask", "approved_by"} & set(res[k][2])
-                      and res[k][3] == (False, "") and res[k][4] == 0 and res[k][5] == [] for k in none) and res[none[0]][1] == res[none[1]][1] == ["CMS"] and res[none[2]][1] == ["MBILUNOSSN"], {k: res[k] for k in none})
-    days = ("a day long before the reset", "a day after the reset")
-    check("guard (S1): ... and when the fresh answer names a DAY it is the day - whichever day: one long before the reset (the same day again: the chart stays blocked, and then the chart's number or birth date, or Medicare's own record, is what is wrong) or one after it - the claim after it is blocked, the entry holds the day, the fields of the reset are gone, and the next claim is blocked from the cache with nobody asked",
-          lambda: all(res[k][0] != "NotAnswered" and res[k][0][0] is True and res[k][1] == ["CMS"] and not {"reask", "approved_by"} & set(res[k][2]) and res[k][3][0] is True and res[k][4] == 0 for k in days)
-          and res[days[0]][2].get("dod") == iso(ago(40)) and iso(ago(40)) in res[days[0]][0][1] and res[days[1]][2].get("dod") == iso(ago(3)), {k: res[k] for k in days})
-    reset(); p = newp(death=ago(40)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base)}); nobody_answers(pid, p); reads = lambda: BILLING.count("getdemographic " + pid)
-    r1 = says(lambda: guard_check(pid, iso(ago(1)), **other)); n1 = (len(SENT), len(FREE_ASKED), reads()); e1 = dict(cache_json()[pid]); log1 = list(DG.LOG)
-    r2 = says(lambda: guard_check(pid, iso(ago(1)))); r3 = says(lambda: guard_check(pid, iso(ago(3)), carrier="car6085", proc="99487")); n2 = (len(SENT), len(FREE_ASKED), reads()); asked = pid in getattr(DG, "_REASKED", ())
-    getattr(DG, "_REASKED", set()).clear(); r4 = says(lambda: guard_check(pid, iso(ago(1)))); n3 = (len(SENT), len(FREE_ASKED), reads())
-    check("guard (S1): NOBODY answers - AdvancedMD's free check, the plain check and the look-up all fail: the claim is NOT cleared (NotAnswered; it is never 'unverified, the charge goes on'), and the entry stays EXACTLY as it is - its check date too: nobody answered, so nothing is stamped today (g37) - and no 'unverified' line is logged",
-          lambda: r1 == "NotAnswered" and e1 == base and cache_json()[pid] == base and log1 == [] and DG.LOG == [] and n1 == (1, 1, 1), (r1, e1, log1, n1))
-    check("guard (S1): ... ONE fresh question per chart per process: a second and a third question of the same start - another payer, another date, a care-management code - ask nobody again (the chart is not even read again) and are not cleared either; a new process asks once more",
-          lambda: r2 == r3 == r4 == "NotAnswered" and n2 == n1 and asked and n3 == (2, 2, 2), (r2, r3, r4, n1, n2, n3, asked))
-    # FRESH: no kept answer of the answer store may answer
-    reset(); p = newp(death=ago(40)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); askp(p, dos=ymd(ago(1)), pid=pid, who="pre-claim check", max_age_days=0)      # the answer the wrong day came from, bought before the reset
-    store_edit(lambda s: s["charts"][pid]["answers"][0].update(asked=iso(ago(5)))); kept = _try(lambda: MS.death(pid)); p["death8"] = None      # ... five days ago; asked TODAY, Medicare names no death
-    q = newp(death=ago(40)); pid_q = chart(cid(), q, plans=[("car6085", "", q["number"])]); askp(q, dos=ymd(ago(1)), pid=pid_q, who="pre-claim check", max_age_days=0); store_edit(lambda s: s["charts"][pid_q]["answers"][0].update(asked=iso(ago(5)))); q["death8"] = None
-    put_cache({pid: dict(base), pid_q: {"dod": None, "checked": iso(ago(6)), "src": "stedi: no death on record"}}); del SENT[:]; del FREE_ASKED[:]
-    r = says(lambda: guard_check(pid, iso(ago(1)), **other)); k = kinds(); e = dict(cache_json()[pid]); del SENT[:]
-    rq = says(lambda: guard_check(pid_q, iso(ago(1)))); kq = kinds()
-    check("guard (S1, FRESH): the answer store still holds the answer the wrong day came from, bought five days ago (the client hands such an answer over 'as it is, with no call') - for a RE-ASK chart NO kept answer may answer: Medicare is asked on the wire, its fresh answer names no death, and the chart is clear, checked TODAY - the day somebody really answered (g37)",
-          lambda: kept == ymd(ago(40)) and r == (False, "") and k == ["CMS"] and e.get("dod") is None and e.get("checked") == iso(TODAY) and not {"reask", "approved_by"} & set(e), (kept, r, k, e))
-    check("guard (S1, FRESH): ... the control - for a chart nobody reset the same kept answer IS used with no call, as before, and its day blocks", lambda: rq != "NotAnswered" and rq[0] is True and kq == [], (rq, kq))
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); askp(p, dos=ymd(ago(1)), pid=pid, who="pre-claim check", max_age_days=0); p["death8"] = ymd(ago(3)); put_cache({pid: dict(base)}); del SENT[:]      # the other way round: a kept 'no death' answer of TODAY, and Medicare names a day now
-    r = says(lambda: guard_check(pid, iso(ago(1)))); k = kinds()
-    check("guard (S1, FRESH): ... a kept answer of TODAY that shows no death does not answer either - Medicare is asked on the wire, names a day, and the claim after it is blocked", lambda: r != "NotAnswered" and r[0] is True and iso(ago(3)) in r[1] and k == ["CMS"], (r, k))
-    reset(); p = newp(death=ago(40)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); askp(p, dos=ymd(ago(1)), pid=pid, who="pre-claim check", max_age_days=0); store_edit(lambda s: s["charts"][pid]["answers"][0].update(asked=iso(ago(5))))
-    put_cache({pid: dict(base)}); FREE[ins(pid)] = ("timeout",); OVERRIDE[("CMS", p["number"])] = ("answer", err_answer("42")); OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("42")); del SENT[:]
-    r = says(lambda: guard_check(pid, iso(ago(1)))); k = kinds()
-    check("guard (S1, FRESH): ... and when the fresh call FAILS, the day an older kept answer shows does NOT come back from the store (for any other chart that fallback blocks): NotAnswered, the entry as it was - the older record must not come back before Medicare was asked; the store itself still holds that answer",
-          lambda: r == "NotAnswered" and k == ["CMS"] and cache_json()[pid] == base and _try(lambda: MS.death(pid)) == ymd(ago(40)) and DG.LOG == [], (r, k, cache_json().get(pid)))
-    # AdvancedMD's free check first, as always - a free answer of today is fresh
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base)}); free_is(pid, p=p); r1 = says(lambda: guard_check(pid, iso(ago(1)), **other)); f1 = (len(FREE_ASKED), len(SENT), dict(cache_json()[pid]))
-    reset(); p = newp(death=ago(40)); pid2 = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid2: dict(base)}); free_death(pid2, p); r2 = says(lambda: guard_check(pid2, iso(ago(1)), **other)); f2 = (len(FREE_ASKED), len(SENT), dict(cache_json()[pid2]))
-    check("guard (S1, free first): AdvancedMD's free check is asked first for a RE-ASK chart too, and a free answer of today is fresh: 'no death on Medicare's record' clears the chart and a day in it blocks - nothing is bought either way, and the entry is the ordinary one (the fields of the reset gone)",
-          lambda: r1 == (False, "") and f1 == (1, 0, {"dod": None, "checked": iso(TODAY), "src": "amd: no death on record"}) and r2 != "NotAnswered" and r2[0] is True and f2[:2] == (1, 0) and f2[2] == {"dod": iso(ago(40)), "checked": iso(TODAY), "src": "amd-medicare-271"}, (r1, f1, r2, f2))
-    reset(); p = newp(death=ago(40)); pid3 = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid3: dict(base)}); free_death(pid3, p, stamp=3); p["death8"] = None      # AdvancedMD hands back the answer it kept from three days ago - it shows the day; Medicare itself names none today
-    r3 = says(lambda: guard_check(pid3, iso(ago(1)), **other)); f3 = (len(FREE_ASKED), kinds(), dict(cache_json()[pid3]))
-    reset(); q = newp(death=ago(40)); pid4 = chart(cid(), q, plans=[("car6085", "", q["number"])]); free_death(pid4, q, stamp=3); r4 = says(lambda: guard_check(pid4, iso(ago(1)))); f4 = (len(FREE_ASKED), kinds())
-    check("guard (S1, free first): ... but a free answer AdvancedMD kept from an EARLIER day is not fresh - also when it shows a day (for any other chart such a day is taken, as before: the control): the vendor is asked, and its fresh answer decides - here Medicare names no death and the chart is clear",
-          lambda: r3 == (False, "") and f3[0] == 1 and f3[1] == ["CMS"] and f3[2].get("dod") is None and f3[2].get("src") == "stedi: no death on record" and r4 != "NotAnswered" and r4[0] is True and f4 == (1, []), (r3, f3, r4, f4))
-    # the chart's own record
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(ago(40))); put_cache({pid: dict(base)}); r = says(lambda: guard_check(pid, iso(ago(1)), **other)); e = dict(cache_json()[pid])
-    check("guard (S1, the chart's own record): a DATE on the chart's own 'deceased' attribute is the day for a RE-ASK chart as for any chart - nobody is asked, the claim after it is blocked, the entry holds the day and the fields of the reset are gone (that date has to come off the chart in AdvancedMD)",
-          lambda: r != "NotAnswered" and r[0] is True and iso(ago(40)) in r[1] and SENT == [] and FREE_ASKED == [] and e.get("dod") == iso(ago(40)) and not {"reask", "approved_by"} & set(e), (r, e))
-    out = {}
-    for name, death, down in (("Medicare names none", None, False), ("Medicare names the day", ago(40), False), ("nobody answers", None, True)):
-        reset(); p = newp(death=death); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased="Y"); put_cache({pid: dict(base)})
-        if down: nobody_answers(pid, p)
-        out[name] = (says(lambda: guard_check(pid, iso(ago(1)), **other)), dict(cache_json()[pid]), kinds())
-    check("guard (S1, the chart's own record): the chart's MARK with no date on a RE-ASK chart - Medicare is asked; when it names none the chart is a death on record with no day again ('day not known', DayLost itself: the mark has to come off the chart in AdvancedMD); when it names a day that is the day; and when NOBODY answers the entry stays the RE-ASK entry and the claim is not cleared (NotAnswered)",
-          lambda: out["Medicare names none"][0] == "DayLost" and out["Medicare names none"][1] == {"dod": DG.NO_DAY, "checked": iso(TODAY), "src": DG.NO_DAY_SRC} and out["Medicare names none"][2] == ["CMS"]
-          and out["Medicare names the day"][0] != "NotAnswered" and out["Medicare names the day"][0][0] is True and out["Medicare names the day"][1].get("dod") == iso(ago(40)) and "reask" not in out["Medicare names the day"][1]
-          and out["nobody answers"][0] == "NotAnswered" and out["nobody answers"][1] == base, out)
-    # the answers of round 3's own cases
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base)}); OVERRIDE[("CMS", p["number"])] = ("answer", answer_61(p, ago(40))); OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("72"))
-    r61 = says(lambda: guard_check(pid, iso(ago(1)))); k61 = kinds(); e61 = dict(cache_json()[pid])
-    reset(); p = newp(); pid2 = chart(cid(), p, plans=[("car6085", "", WRONG[3])]); put_cache({pid2: dict(base)}); OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("72")); r72 = says(lambda: guard_check(pid2, iso(ago(1)))); k72 = kinds(); e72 = dict(cache_json()[pid2])
-    reset(); p = newp(); pid3 = chart(cid(), p, plans=[("car6085", "", WRONG[3])]); put_cache({pid3: dict(base)}); OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("75")); r75 = says(lambda: guard_check(pid3, iso(ago(1)))); k75 = kinds(); e75 = dict(cache_json()[pid3])
-    check("guard (S1): the plain answer 61 WITH a day and then a look-up that names nobody (the case of R1): the day is taken and blocks - the hook kept it; a look-up's lone 72 after a plain 'not found' is Medicare's answer 'not a beneficiary': no death, the chart is clear; a look-up that only says the name was not found is NO answer: not cleared, the entry as it was",
-          lambda: r61 != "NotAnswered" and r61[0] is True and iso(ago(40)) in r61[1] and k61 == ["CMS", "MBILUNOSSN"] and e61.get("dod") == iso(ago(40)) and "reask" not in e61
-          and r72 == (False, "") and k72 == ["CMS", "MBILUNOSSN"] and e72.get("dod") is None and "reask" not in e72 and r75 == "NotAnswered" and k75 == ["CMS", "MBILUNOSSN"] and e75 == base, (r61, k61, e61, r72, k72, e72, r75, k75, e75))
-    reset(); p = newp(death=ago(40)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); askp(p, dos=ymd(ago(1)), pid=pid, who="pre-claim check", max_age_days=0); store_edit(lambda s: s["charts"][pid]["answers"][0].update(asked=iso(ago(5))))
-    p["death8"] = None; put_cache({pid: dict(base)}); free_is(pid, p=p); del SENT[:]; del FREE_ASKED[:]; r = says(lambda: guard_check(pid, iso(ago(1)), **other)); f = (len(FREE_ASKED), len(SENT), dict(cache_json()[pid]).get("src"))
-    check("guard (S1, FRESH and free first): the answer store holds an answer for the chart AND AdvancedMD's free check has a usable answer of today - for any other chart a kept answer means 'nobody is asked, free or paid'; for a RE-ASK chart what the store keeps is not looked at: the free check IS asked, it answers, and nothing is bought",
-          lambda: r == (False, "") and f == (1, 0, "amd: no death on record"), (r, f))
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base, checked=iso(TODAY))}); r = says(lambda: guard_check(pid, iso(ago(1)), **other)); e = dict(cache_json()[pid])
-    check("guard (S1): a RE-ASK entry whose check date says 'today' (a hand edit) is asked about all the same - the field makes the entry, not its check date: Medicare's fresh answer names no death and the chart is clear (it would otherwise wait for an answer nobody asks for)",
-          lambda: r == (False, "") and kinds() == ["CMS"] and e.get("dod") is None and "reask" not in e and e.get("src") == "stedi: no death on record", (r, kinds(), e))
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base)}); nobody_answers(pid, p); meanwhile = {"dod": None, "checked": iso(TODAY), "src": "stedi: no death on record", "name": "another helper, meanwhile"}
-    ON_SEND.append(lambda url, body, pid=pid: put_cache({pid: dict(meanwhile)})); r = says(lambda: guard_check(pid, iso(ago(1)))); del ON_SEND[:]
-    check("guard (S1): another helper's REAL answer is written into the entry while the guard's own look-up is on its way, and that look-up then fails: Medicare HAS answered - the entry is no RE-ASK entry any more, so the claim is not held as unanswered: it goes on as for any chart whose own look-up failed (one 'unverified' line), and the entry stays as that helper wrote it",
-          lambda: r == (False, "") and cache_json()[pid] == meanwhile and len(DG.LOG) == 1 and "UNVERIFIED" in DG.LOG[0] and pid not in DG._REASKED, (r, cache_json().get(pid), list(DG.LOG)))
-    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: dict(base)}); FREE[ins(pid)] = ("timeout",)
-    OVERRIDE[("CMS", p["number"])] = ("answer", dict(err_answer("42"), dateOfDeath=ymd(ago(40)))); hook = ST._dod_hook; ST._dod_hook = lambda *a_, **k_: None      # ... and a client whose hook keeps nothing of it
-    try: r = says(lambda: guard_check(pid, iso(ago(1)), **other))
-    finally: ST._dod_hook = hook
-    e = dict(cache_json()[pid])
-    check("guard (S1): a DAY that comes in a reply that is otherwise no answer (Medicare cannot respond now - and the reply names a day) is the day for a RE-ASK chart as for any chart, also when the client's hook kept nothing of it: the entry holds the day, the fields of the reset are gone and the claim after it is blocked - it is never left 'not answered' with the day in hand",
-          lambda: r != "NotAnswered" and r[0] is True and iso(ago(40)) in r[1] and e.get("dod") == iso(ago(40)) and not {"reask", "approved_by"} & set(e), (r, e))
-    GONE_NAMES = ["_o" + "ff(", "_be" + "ats", "OFF" + "_SRC", "OFF" + "_KEYS", "OFF" + "_AGAIN_SRC"]; GONE_NAMES = [n.rstrip("(") for n in GONE_NAMES[:1]] + GONE_NAMES[1:]      # the names of the third round's rule, put together here
-    check("guard (S1): nothing of the third round's rule is left in the guard - no function and no field that compares a death with the date of his word (they made the rule nobody could explain)",
-          lambda: not any(hasattr(DG, n) for n in GONE_NAMES) and not any(n in _read("scripts/helpers/deceased_guard.py").replace("death_off" + "_record", "") for n in GONE_NAMES + ["off_" + "record"]), [n for n in GONE_NAMES if hasattr(DG, n)])
-def t_drive_reask():
-    """S1 for the Drive copy (the fourth round), and what stays of the third round's finding 5. The copy is 'deceased_cache_drive v2' with THREE lists - dated,
-    nodeath, noday - chart ids and dates only: the list that carried the owner's word (and his approval text) is gone. A RE-ASK entry travels as a 'no death' note
-    with its check date as it stands - long ago, so the chart is asked about on every machine. ONE narrow rule is all the merge knows of his word: while the entry of
-    a cache carries 'reask', a death of the copy whose check date is on or before the day of the reset, or that has no check date, is NOT brought into it (the older
-    record must not come back before Medicare was asked); a death checked after that day is taken as for any chart."""
+def t_no_way_out():
+    """D1 (the fifth round, 11/26/2026): THE TOOL FOR A DEATH THAT IS ON RECORD WRONGLY IS OUT AGAIN, WHOLE. Rounds three and four had each built a way out on the
+    owner's word - an entry that outweighed every day reported up to the date of his word, then an entry that made the guard put a new question to Medicare for any
+    claim. The independent check of each round found it wanting, and a review on paper found that any such tool reaches far beyond the guard. So nothing a run starts
+    takes a death off: the guard keeps a death for good, and a chart William says is alive is taken off by hand in a chat session, on his word. Shown here: no name
+    of either way out is left in the guard, the Drive copy helper, the import, the retry, the digest or the tables that keep helpers current; the helper and its
+    self-test are gone; the two look-ups take no argument for a new question; and an entry that still carries those rounds' fields is an entry like any other."""
+    import inspect
+    R = OLD_FIELDS[0]
+    names = ["_" + R, "_af" + "ter", R.upper() + "_SRC", R.upper() + "_KEYS", R.upper() + "_UNDATED", "_" + R.upper() + "ED", "Not" + "Answered", "RES" + "ET_WORDS", "_o" + "ff", "_be" + "ats", "OFF" + "_SRC", "OFF" + "_KEYS", "OFF" + "_AGAIN_SRC"]
+    words = [R, "RE-" + "ASK", "Not" + "Answered", "death_off" + "_record", OLD_FIELDS[1], "DEATH_RES" + "ET_WHY", "DEATH RECORD " + "RESET", "_dc_res" + "et", "_dr_" + "held", "death_res" + "et", "RES" + "ET_WORDS"]
+    files = ["scripts/helpers/deceased_guard.py", "core/deceased_guard.py", "scripts/helpers/dg_drive.py", "scripts/helpers/claimocity_import.py", "scripts/helpers/claimocity_retry_dx.py", "scripts/helpers/claimocity_report.py",
+             "scripts/helpers/death_check_review.py", "scripts/helpers/claimocity_void_deceased.py", "scripts/helpers/claimocity_helpers_current.py", "tools/mirror/mirror.py", "tools/bootstrap/bootstrap_workspace.sh"]
+    left = [(f, w) for f in files for w in words if w.lower() in _read(f).lower()]
+    still = [f for f in ("scripts/helpers/death_off" + "_record.py", "core/death_off" + "_record.py", "tools/selftest/test_death_off" + "_record.py") if os.path.exists(os.path.join(ROOT, f))]
+    check("no way out (D1 of the fifth round): nothing of rounds three and four's way out for a wrongly recorded death is left - no function, class or constant of it in the guard, none of its words in the guard (both copies), the Drive copy helper, the import, the retry, the digest, the check before approvals, the void helper, the two tables that keep helpers current or the bootstrap's list; and the helper and its self-test are not in the tree",
+          lambda: not any(hasattr(DG, n) for n in names) and left == [] and still == [], ([n for n in names if hasattr(DG, n)], left, still))
+    sig = [list(inspect.signature(f).parameters) for f in (DG.stedi_lookup, DG.free_lookup, DG.check, DG.check_charge, DG.record, DG.covered)]
+    errors = sorted(n for n, v in vars(DG).items() if isinstance(v, type) and issubclass(v, BaseException))
+    check("no way out (D1): ... the two look-ups take no argument for a 'new' question any more (the chart and the date of service; the chart and its plan), the guard has its two errors and no third - DayLost and Unreadable - and DayLost has no kind of its own beneath it",
+          lambda: sig == [["pid", "dos_iso"], ["pid", "plan"], ["pid", "dos", "carrier", "proc", "allow_lookup"], ["chargeid", "sequencenumber", "allow_lookup"], ["pid", "j", "src"], ["pid", "dos"]]
+          and errors == ["DayLost", "Unreadable"] and DG.DayLost.__subclasses__() == [] and DG.LONG_AGO == LONG_AGO, (sig, errors))
+    reset(); a, b, c, d = (cid() for _ in range(4))
+    put_cache({a: old_word_rec(name="kept"), b: old_word_rec(checked=iso(TODAY)), c: old_word_rec(dod=iso(ago(40))), d: {"dod": None, "checked": iso(TODAY), "src": "x", OLD_FIELDS[1]: iso(ago(1)), OLD_FIELDS[2]: "the owner"}})
+    quiet = {k: says(lambda k=k: DG.check(k, iso(ago(2)), "car6404", "99349", allow_lookup=False)) for k in (a, b, c, d)}
+    cov = [DG.covered(k, iso(ago(2))) for k in (a, b, c, d)]; st = DG.cache_state()
+    check("no way out (D1): an entry that still carries the fields rounds three and four wrote for the owner's word is an entry LIKE ANY OTHER - the fields mean nothing. With no death in it a claim to another payer is answered 'not blocked' from the cache (the fourth round raised an error of its own there and held the chart), it covers a claim by its check date alone, and with a day in it the day blocks; nobody is asked and nothing is written",
+          lambda: quiet[a] == quiet[b] == quiet[d] == (False, "") and quiet[c] not in ("DayLost", "raised") and quiet[c][0] is True and cov == [False, True, True, True] and st["days"] == 1 and st["lost"] == 0
+          and SENT == [] and FREE_ASKED == [] and BILLING == [] and cache_json()[a] == old_word_rec(name="kept"), (quiet, cov, st))
+    reset(); p = newp(death=ago(40)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); askp(p, dos=ymd(ago(1)), pid=pid, who="pre-claim check", max_age_days=0)      # the answer a wrong day would have come from, kept in the answer store
+    store_edit(lambda s: s["charts"][pid]["answers"][0].update(asked=iso(ago(5)))); kept = _try(lambda: MS.death(pid)); p["death8"] = None      # ... five days ago; asked TODAY, Medicare would name no death
+    put_cache({pid: old_word_rec()}); del SENT[:]; del FREE_ASKED[:]
+    r = says(lambda: guard_check(pid, iso(ago(1)))); k = kinds(); fa = len(FREE_ASKED); e = dict(cache_json()[pid])
+    check("no way out (D1): ... and a straight-Medicare claim of such a chart is asked about by the ORDINARY rules: the answer the store keeps - bought five days ago, it shows the day - is used as it is, with no call, free or paid, and its day blocks. A death is never undone, and no question goes round the answer store (the fourth round asked on the wire here and cleared the chart when Medicare named none)",
+          lambda: kept == ymd(ago(40)) and r not in ("DayLost", "raised") and r[0] is True and iso(ago(40)) in r[1] and k == [] and fa == 0 and e.get("dod") == iso(ago(40)), (kept, r, k, fa, e))
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); put_cache({pid: old_word_rec()}); nobody_answers(pid, p)
+    r1 = says(lambda: guard_check(pid, iso(ago(1)))); log1 = list(DG.LOG); n1 = len(SENT); r2 = says(lambda: guard_check(pid, iso(ago(1)), carrier="car6404", proc="99349")); n2 = len(SENT)
+    check("no way out (D1): ... when nobody answers, that claim goes on as 'unverified' like any chart's - one line in the guard's log: a failed check blocks nothing, only a day does - and a claim to another payer is not asked about at all; the entry stays as it was. No error of its own is left for such a chart",
+          lambda: r1 == (False, "") and len(log1) == 1 and "UNVERIFIED" in log1[0] and n1 >= 1 and r2 == (False, "") and n2 == n1 and cache_json()[pid] == old_word_rec(), (r1, log1, n1, r2, n2))
+def t_drive_copy_v2():
+    """The Drive copy as it stands after the fifth round - what the third and the fourth round's checks left (their finding 5 among it; d08 and d15 are one-line
+    changes the checks made that no test had noticed). The copy is 'deceased_cache_drive v2' with THREE lists - dated, nodeath, noday - chart ids and dates only.
+    The third round's copy carried a fourth list for the owner's words, with his approval text; the fourth round took the list out and gave the merge a rule for an
+    entry of its own; the fifth round took that rule out too: pack and unpack know a day, a 'no death' note and a death with no day - nothing else."""
     reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); D = ago(10); a, b, c, d, e, f, g = (cid() for _ in range(7)); out = os.path.join(TMP, "drive_v2.json")
-    put_cache({a: {"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x"}, b: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, c: {"dod": PLACEHOLDER, "checked": iso(ago(50))},
-               d: {"dod": "day not known", "checked": iso(ago(3)), "src": "amd: deceased on the chart, no date"}, e: reask_rec(D, name="kept"), f: {"dod": "unknown", "checked": iso(TODAY)}, g: "a line that is no entry"})
+    put_cache({a: {"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x", "name": "kept"}, b: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, c: {"dod": PLACEHOLDER, "checked": iso(ago(50))},
+               d: {"dod": "day not known", "checked": iso(ago(3)), "src": "amd: deceased on the chart, no date"}, e: old_word_rec(D, name="kept"), f: {"dod": "unknown", "checked": iso(TODAY)}, g: "a line that is no entry"})
     n = _try(lambda: DD.pack(DCACHE, out)); pk = json.load(open(out)) if os.path.exists(out) else {}; flat = json.dumps(pk)
-    check("drive copy (S1): pack writes THREE lists - the days, the 'no death' notes and 'noday' = {chart: its check date} for a death on record with no day that can be read - and no list of the owner's words: a RE-ASK entry is a 'no death' note with its check date as it stands (long ago: stale on every machine, so the chart is asked about there); the format line says v2 and names the three lists",
+    check("drive copy: pack writes THREE lists - the days, the 'no death' notes and 'noday' = {chart: its check date} for a death on record with no day that can be read - and no list of the owner's words; an entry that still carries the fields of the rounds before is a 'no death' note like any other, by its own check date; the format line says v2 and names the three lists",
           lambda: sorted(k for k in pk if k != "format") == ["dated", "noday", "nodeath"] and pk["noday"] == {c: iso(ago(50)), d: iso(ago(3))} and sorted(pk["dated"]) == [a] and pk["nodeath"] == {b: iso(ago(2)), e: LONG_AGO}
           and str(pk.get("format", "")).startswith("deceased_cache_drive v2") and all(w in pk["format"] for w in ("dated", "nodeath", "noday")) and n == (1, 2, 2) and f not in flat, (n, pk))
-    check("drive copy (S1): ... the copy holds chart ids and dates only again - no approval text, no name and nothing else of an entry travels in it (the third round's copy carried 'William M/D/YYYY (board)' for every chart taken off the record)",
-          lambda: "William" not in flat and "kept" not in flat and "approved" not in flat and "reask" not in flat and "word" not in pk.get("format", "")
+    check("drive copy: ... the copy holds chart ids and dates only - no approval text, no name and nothing else of an entry travels in it (the third round's copy carried 'William M/D/YYYY (board)' for every chart his word was given for)",
+          lambda: "William" not in flat and "kept" not in flat and "approved" not in flat and OLD_FIELDS[0] not in flat and "word" not in pk.get("format", "")
           and all(isinstance(v, list) and len(v) == 2 and all(x is None or re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(x)) for x in v) for v in pk["dated"].values())
           and all(v is None or re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(v)) for k in ("nodeath", "noday") for v in pk[k].values()), flat[:400])
-    # unpack: what each note of a Drive copy does to a cache entry that carries 'reask' (reset on day D), and to the entries beside it
-    L = {k: cid() for k in ("day, checked before", "day, checked on the day", "day, no check date", "day, a check date that is no date", "day, checked after", "mark, checked before", "mark, checked on the day", "mark, no check date", "mark, checked after",
-                            "no death note, older", "no death note, newer", "nothing in the copy", "mark on nothing", "mark on old no death", "mark on new no death", "mark on same-day no death", "mark on a day", "mark on a placeholder")}
-    RE = reask_rec(D, name="kept"); local = {L[k]: dict(RE) for k in list(L)[:12]}; local[L["no death note, older"]] = dict(RE, checked=iso(ago(1)))      # (that one: a RE-ASK entry whose check date somebody wrote another date into)
+    # unpack: what each note of a Drive copy does to the entries of a cache
+    L = {k: cid() for k in ("old fields, a day checked long before", "old fields, a mark checked long before", "old fields, a newer no-death note", "old fields, nothing in the copy",
+                            "mark on nothing", "mark on old no death", "mark on new no death", "mark on same-day no death", "mark on a day", "mark on a placeholder")}
+    OF = old_word_rec(D, name="kept"); local = {L[k]: dict(OF) for k in list(L)[:4]}
     local.update({L["mark on old no death"]: {"dod": None, "checked": iso(ago(20)), "src": "stedi: no death on record"}, L["mark on new no death"]: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"},
                   L["mark on same-day no death"]: {"dod": None, "checked": iso(ago(7)), "src": "stedi: no death on record"}, L["mark on a day"]: {"dod": iso(ago(40)), "checked": iso(ago(30))}, L["mark on a placeholder"]: {"dod": PLACEHOLDER, "checked": iso(ago(50))}})
-    notes = {"format": "deceased_cache_drive v2", "dated": {L["day, checked before"]: [iso(ago(40)), iso(ago(30))], L["day, checked on the day"]: [iso(ago(3)), iso(D)], L["day, no check date"]: [iso(ago(40)), None], L["day, a check date that is no date"]: [iso(ago(40)), "soon"],
-                                                           L["day, checked after"]: [iso(ago(40)), iso(ago(4))]},
-             "nodeath": {L["no death note, older"]: iso(ago(5)), L["no death note, newer"]: iso(ago(1))},
-             "noday": {L["mark, checked before"]: iso(ago(15)), L["mark, checked on the day"]: iso(D), L["mark, no check date"]: None, L["mark, checked after"]: iso(ago(3)), L["mark on nothing"]: iso(ago(7)), L["mark on old no death"]: iso(ago(7)),
-                       L["mark on new no death"]: iso(ago(7)), L["mark on same-day no death"]: iso(ago(7)), L["mark on a day"]: iso(ago(7)), L["mark on a placeholder"]: iso(ago(7))}}
-    put_cache(local); drive = os.path.join(TMP, "drive_v2_notes.json"); json.dump(notes, open(drive, "w")); m = _try(lambda: DD.unpack(drive, [DCACHE])); got = cache_json() or {}; G_ = lambda k: got.get(L[k])
-    stay = ("day, checked before", "day, checked on the day", "day, no check date", "day, a check date that is no date", "mark, checked before", "mark, checked on the day", "mark, no check date", "nothing in the copy")
-    check("drive merge (S1, the ONE rule): the cache entry carries 'reask' (the record was reset on a day). A day of the copy whose check date is that day or an earlier one - the old record, the copy of a run from before the reset - or that has no check date (or one that is no date) is NOT brought into it, and neither is a 'noday' note of such a date: the entry stays exactly as the helper wrote it",
-          lambda: m != "raised" and all(G_(k) == RE for k in stay), (m, {k: G_(k) for k in stay if G_(k) != RE}))
-    check("drive merge (S1): ... a death checked AFTER that day is taken as for any chart - the day (whichever day it names) and the 'noday' note alike: the entry holds the death, its name stays, the fields of the reset are gone",
-          lambda: G_("day, checked after") == {"dod": iso(ago(40)), "checked": iso(ago(4)), "src": "stedi-medicare-271 (drive copy)", "name": "kept"}
-          and G_("mark, checked after") == {"dod": DD.NO_DAY, "checked": iso(ago(3)), "src": "a death on record, its day not known (drive copy)", "name": "kept"}, (G_("day, checked after"), G_("mark, checked after")))
-    check("drive merge (S1): ... and a 'no death' note of the copy is NO answer to the fresh question: it leaves an entry that carries 'reask' exactly as it is - an older note and a newer one alike, the check date too: such an entry is no 'no death on record' whose check date a newer note could bring up to date, it waits for Medicare",
-          lambda: G_("no death note, older") == dict(RE, checked=iso(ago(1))) and G_("no death note, newer") == RE and DG._reask(G_("no death note, newer")) == iso(D) and DD.reask(G_("no death note, newer")) == iso(D),
-          (G_("no death note, older"), G_("no death note, newer")))
-    out2 = os.path.join(TMP, "drive_v2_again.json"); n2 = _try(lambda: DD.pack(DCACHE, out2)); pk2 = json.load(open(out2)) if os.path.exists(out2) else {}
-    check("drive copy (S1): ... so the copy packed from that cache afterwards still carries a chart that waits for Medicare's answer as a 'no death' note of LONG AGO - stale on every machine, so it is asked about there (with the note's newer check date written into the entry, the copy told the next machine 'no death on record, checked yesterday': clear, with nobody asked)",
-          lambda: n2 != "raised" and pk2.get("nodeath", {}).get(L["no death note, newer"]) == LONG_AGO and pk2["nodeath"].get(L["nothing in the copy"]) == LONG_AGO and not any(L["no death note, newer"] in pk2.get(k, {}) for k in ("dated", "noday")),
-          (n2, {k: v for k, v in pk2.get("nodeath", {}).items() if k in (L["no death note, newer"], L["nothing in the copy"])}))
-    asked = {k: says(lambda k=k: DG.check(L[k], iso(ago(1)), "car6404", "99349", allow_lookup=False)) for k in L}
-    check("drive merge (S1): ... and the guard reads the merged cache so: every chart whose entry still carries 'reask' is NOT cleared before Medicare has answered (NotAnswered - also the two a 'no death' note of the copy names), the day that was taken blocks, the 'noday' note that was taken leaves the chart not cleared (DayLost itself)",
-          lambda: all(asked[k] == "NotAnswered" for k in stay + ("no death note, older", "no death note, newer")) and asked["day, checked after"] != "NotAnswered" and asked["day, checked after"][0] is True and asked["mark, checked after"] == "DayLost", asked)
+    notes = {"format": "deceased_cache_drive v2", "dated": {L["old fields, a day checked long before"]: [iso(ago(40)), iso(ago(30))]}, "nodeath": {L["old fields, a newer no-death note"]: iso(ago(1))},
+             "noday": {L["old fields, a mark checked long before"]: iso(ago(15)), L["mark on nothing"]: iso(ago(7)), L["mark on old no death"]: iso(ago(7)), L["mark on new no death"]: iso(ago(7)), L["mark on same-day no death"]: iso(ago(7)),
+                       L["mark on a day"]: iso(ago(7)), L["mark on a placeholder"]: iso(ago(7))}}
+    put_cache(local); drive = os.path.join(TMP, "drive_v2_notes.json"); json.dump(notes, open(drive, "w")); m = _try(lambda: DD.unpack(drive, [DCACHE])); got = cache_json() or {}; G_ = lambda k: got.get(L[k]) or {}
+    check("drive merge (D1 of the fifth round): an entry that still carries the fields of the rounds before is merged like any 'no death on record' entry of its check date - a day of the copy is brought into it whatever the day's own check date (the fourth round kept a day checked before the entry's date OUT of it), a 'noday' note too, a newer 'no death' note brings its check date up to date, and with nothing in the copy it stays as it is; the entry's name stays as any entry's does",
+          lambda: m != "raised" and G_("old fields, a day checked long before").get("dod") == iso(ago(40)) and G_("old fields, a day checked long before").get("checked") == iso(ago(30)) and G_("old fields, a day checked long before").get("name") == "kept"
+          and G_("old fields, a mark checked long before").get("dod") == DD.NO_DAY and G_("old fields, a mark checked long before").get("checked") == iso(ago(15))
+          and G_("old fields, a newer no-death note").get("dod", "x") is None and G_("old fields, a newer no-death note").get("checked") == iso(ago(1)) and G_("old fields, nothing in the copy") == OF, (m, {k: G_(k) for k in list(L)[:4]}))
+    asked = {k: says(lambda k=k: DG.check(L[k], iso(ago(1)), "car6404", "99349", allow_lookup=False)) for k in list(L)[:4]}
+    check("drive merge (D1): ... and the guard reads that merged cache as any cache: the day blocks, the 'noday' note leaves the chart not cleared (DayLost), and the two entries with no death in them answer 'not blocked' from the cache",
+          lambda: asked["old fields, a day checked long before"] not in ("DayLost", "raised") and asked["old fields, a day checked long before"][0] is True and asked["old fields, a mark checked long before"] == "DayLost"
+          and asked["old fields, a newer no-death note"] == asked["old fields, nothing in the copy"] == (False, ""), asked)
     check("drive merge (finding 5 of the second check, d08): a 'noday' note makes a chart the cache holds NO death for - no entry, or 'no death on record' checked BEFORE the note - a death on record with no day ('day not known', the note's check date); a 'no death on record' checked on the SAME day as the note or after it, a day and a placeholder of the cache's own stay as they are",
           lambda: G_("mark on nothing") == {"dod": DD.NO_DAY, "checked": iso(ago(7)), "src": "a death on record, its day not known (drive copy)"} and DD.NO_DAY == DG.NO_DAY and G_("mark on old no death").get("dod") == DD.NO_DAY
           and G_("mark on new no death") == local[L["mark on new no death"]] and G_("mark on same-day no death") == local[L["mark on same-day no death"]] and G_("mark on a day") == local[L["mark on a day"]]
           and G_("mark on a placeholder") == local[L["mark on a placeholder"]], {k: G_(k) for k in ("mark on nothing", "mark on old no death", "mark on new no death", "mark on same-day no death", "mark on a day", "mark on a placeholder")})
-    # a note whose date is no date (d15), in every list that is left - and a copy of the third round that still carries the list of his words
-    reset(); x, y, z, u, v, w, s, t = (cid() for _ in range(8)); odd = os.path.join(TMP, "drive_v2_odd.json"); gone = "off" + "_record"
-    start = {x: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, y: reask_rec(D), z: {"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x"}, u: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, s: reask_rec(D), t: {"dod": PLACEHOLDER, "checked": iso(ago(9))}}
-    json.dump({"format": "deceased_cache_drive v2", "dated": {}, "nodeath": {x: 20261101, w: ["a", "list"]}, "noday": {x: 7, y: {"no": "date"}, v: None, s: 20261124},
+    # a note whose date is no date (d15), in every list - and a copy of the third round that still carries the list of his words
+    reset(); x, z, u, v, w, s, t = (cid() for _ in range(7)); odd = os.path.join(TMP, "drive_v2_odd.json"); gone = OLD_FIELDS[1]
+    start = {x: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, z: {"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x"}, u: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"},
+             s: {"dod": None, "checked": iso(ago(2)), "src": "stedi: no death on record"}, t: {"dod": PLACEHOLDER, "checked": iso(ago(9))}}
+    json.dump({"format": "deceased_cache_drive v2", "dated": {}, "nodeath": {x: 20261101, w: ["a", "list"]}, "noday": {x: 7, s: {"no": "date"}, v: None},
                gone: {z: [iso(TODAY), "William said so"], u: [iso(TODAY), "William said so"], t: "not even a pair", cid(): [None, None]}}, open(odd, "w"))
     put_cache(json.loads(json.dumps(start))); m2 = _try(lambda: DD.unpack(odd, [DCACHE])); got2 = cache_json() or {}
-    check("drive merge (d15): a note whose date is no date - a number, a list, a table, nothing - never ends the merge on an error: a 'no death' note without a date changes no entry that has a check date, a 'noday' note without a date is taken only where the cache has NO entry for the chart - never into an entry that carries 'reask' (it has no check date: it is not brought in)",
-          lambda: m2 != "raised" and got2[x] == start[x] and got2[y] == start[y] and got2[s] == start[s] and got2[v] == {"dod": DD.NO_DAY, "checked": None, "src": "a death on record, its day not known (drive copy)"}
-          and got2[w].get("dod") is None and sorted(got2) == sorted([x, y, z, u, s, t, v, w]), (m2, got2))
-    check("drive merge (S1): a copy that still carries the third round's list of his words: the list is IGNORED - a day and a placeholder the cache holds stay on record (that list took them off), a chart with no death stays as it is, no entry is made for a chart only that list names, nothing of its text reaches the cache, and nothing raises",
+    check("drive merge (d15): a note whose date is no date - a number, a list, a table, nothing - never ends the merge on an error: a 'no death' note without a date changes no entry that has a check date, and a 'noday' note without a date is taken only where the cache has NO entry for the chart",
+          lambda: m2 != "raised" and got2[x] == start[x] and got2[s] == start[s] and got2[v] == {"dod": DD.NO_DAY, "checked": None, "src": "a death on record, its day not known (drive copy)"}
+          and got2[w].get("dod") is None and sorted(got2) == sorted([x, z, u, s, t, v, w]), (m2, got2))
+    check("drive merge: a copy that still carries the third round's list of his words: the list is IGNORED - a day and a placeholder the cache holds stay on record (that list took them off), a chart with no death stays as it is, no entry is made for a chart only that list names, nothing of its text reaches the cache, and nothing raises",
           lambda: m2 != "raised" and got2[z] == start[z] and got2[t] == start[t] and got2[u] == start[u] and "William said so" not in json.dumps(got2) and gone not in json.dumps(got2), (m2, got2.get(z), got2.get(t), got2.get(u)))
-    # the road of one reset: the workspace where the helper ran packs; an OLDER copy that still lists the day is merged again afterwards (the pack of that run did not reach Drive) - and what the copy does NOT do
-    reset(); x = cid(); put_cache({x: reask_rec(TODAY, name="kept")}); copy = os.path.join(TMP, "drive_v2_road.json"); DD.pack(DCACHE, copy); road = json.load(open(copy))
-    v1 = os.path.join(TMP, "drive_v2_older.json"); json.dump({"format": "deceased_cache_drive v2", "dated": {x: [iso(ago(40)), iso(ago(30))]}, "nodeath": {}, "noday": {}}, open(v1, "w"))
-    code1, said1, err1 = drive_tool("unpack", v1, DCACHE); mine = dict(cache_json()[x]); code2, said2, err2 = drive_tool("unpack", copy, DCACHE); mine2 = dict(cache_json()[x])
-    b1, b2 = os.path.join(TMP, "road_b1.json"), os.path.join(TMP, "road_b2.json"); json.dump({x: {"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "stedi-medicare-271"}}, open(b1, "w")); json.dump({}, open(b2, "w"))
-    code3, said3, err3 = drive_tool("unpack", copy, b1, b2); B1, B2 = json.load(open(b1)), json.load(open(b2))
-    check("drive copy (S1), the road of one reset: in the workspace where the helper ran, an OLDER copy that still lists the day does not bring it back at the next step 0c (its check date lies before the reset), and the workspace's own newer copy changes nothing: the entry stays the RE-ASK entry until Medicare has answered",
-          lambda: (code1, err1, code2, err2) == (0, "", 0, "") and mine == mine2 == reask_rec(TODAY, name="kept") and road["nodeath"] == {x: LONG_AGO} and x not in road["dated"], (code1, said1, err1[-200:], mine, mine2, road))
-    check("drive copy (S1): ... and the copy carries NO word to another machine: a cache there that still holds the day keeps it (a 'no death' note never undoes a death - that chart stays blocked there until his word is given in that workspace), and a cache that knows nothing of the chart gets a 'no death' note of long ago - the chart is asked about there as one nobody has answered for",
-          lambda: code3 == 0 and err3 == "" and B1[x]["dod"] == iso(ago(40)) and B2[x] == {"dod": None, "checked": LONG_AGO, "src": "stedi: no death on record (drive copy)"} and "reask" not in B2[x], (code3, said3, B1, B2))
+CHART_SRC = "amd: deceased on the chart"      # the source of a day taken from the chart's own 'deceased' field (the guard's own CHART_SRC, put together here)
+def t_round5_small():
+    """D3 of the fifth round - two small things the fourth independent check found (its findings 6 and 8), each shown before it was changed.
+    F6: a day taken from the chart's OWN 'deceased' field was written with the source 'stedi-medicare-271' - Medicare had not been asked at all - and whatever source
+    an entry carried, the next step 0c wrote it back as '... (drive copy)' whenever the Drive copy's check date was the same or the newer one. Now the guard writes
+    'amd: deceased on the chart', and dg_drive.py unpack keeps an entry's own source whenever the day does not change.
+    F8: 'any text in square or angle brackets' made '[none]', '[unknown]', '<null>' and '[n/a]' in a cache's day place a death on record - a living patient's chart
+    was held, for good. A bracketed text that plainly means NOTHING - none, null, n/a, na, unknown, no, empty, in any letter case - is no death on record; every other
+    bracketed text still is."""
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(ago(30)))
+    r = guard_check(pid, iso(ago(5))); e = dict((cache_json() or {}).get(pid) or {}); n = (len(SENT), len(FREE_ASKED))
+    check("small things (F6): a day taken from the chart's OWN 'deceased' field is written with a source of its own - 'amd: deceased on the chart' - and the block names it; nobody was asked, so the entry no longer reads 'stedi-medicare-271' (it did: the entry said Medicare had named the day)",
+          lambda: r[0] is True and ("after date of death %s (%s)" % (iso(ago(30)), CHART_SRC)) in r[1] and e == {"dod": iso(ago(30)), "checked": iso(TODAY), "src": CHART_SRC} and n == (0, 0)
+          and getattr(DG, "CHART_SRC", None) == CHART_SRC and DG.NO_DAY_SRC == CHART_SRC + ", no date", (r, e, n, getattr(DG, "CHART_SRC", None)))
+    r2 = guard_check(pid, iso(ago(4)), carrier="car6404", proc="99349"); e2 = dict(cache_json()[pid])
+    q = newp(); pid2 = chart(cid(), q, plans=[("car6085", "", q["number"])], deceased=mdy(ago(30))); put_cache({pid: e2, pid2: {"dod": None, "checked": iso(ago(40)), "src": "stedi: no death on record"}})
+    r3 = guard_check(pid2, iso(ago(5))); e3 = dict(cache_json()[pid2])
+    check("small things (F6): ... the chart's next claim is blocked from the cache and the entry stays as it is; and a chart whose entry was an old 'no death on record' gets the day and that source written over it",
+          lambda: r2[0] is True and e2 == e and r3[0] is True and e3 == {"dod": iso(ago(30)), "checked": iso(TODAY), "src": CHART_SRC}, (r2, e2, r3, e3))
+    reset(); p = newp(death=ago(12)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(ago(30))); r4 = guard_check(pid, iso(ago(5)))      # the chart's field names a day - and then the field is emptied, the entry lost, and Medicare names another
+    CHARTS[pid]["deceased"] = ""; os.remove(DCACHE); r5 = guard_check(pid, iso(ago(5))); e5 = dict(cache_json()[pid])
+    q = newp(death=ago(12)); pid3 = chart(cid(), q, plans=[("car6085", "", q["number"])]); r6 = guard_check(pid3, iso(ago(5))); e6 = dict(cache_json()[pid3])
+    check("small things (F6): ... that source is the chart's field's alone: once the field is empty and Medicare names the day, the entry says 'stedi-medicare-271' again (nothing is remembered from the look-up before), and a chart that never had the field filled reads as before",
+          lambda: r4[0] is True and r5[0] is True and e5.get("dod") == iso(ago(12)) and e5.get("src") == "stedi-medicare-271" and r6[0] is True and e6.get("src") == "stedi-medicare-271" and kinds() == ["CMS", "CMS"], (r4, r5, e5, r6, e6, kinds()))
+    reset(); p = newp(death=ago(12)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(ago(30))); real_post = fake_amd.post; theirs = {"dod": iso(ago(30)), "checked": iso(ago(1)), "src": "amd-271"}
+    def post_while_another_helper_writes(body, timeout=0):      # while the guard reads the chart, another helper writes that very day into the cache (the insurance check's hook does so)
+        t_ = real_post(body, timeout); put_cache({pid: dict(theirs)}); return t_
+    fake_amd.post = post_while_another_helper_writes
+    try: r7 = guard_check(pid, iso(ago(5)))
+    finally: fake_amd.post = real_post
+    e7 = dict(cache_json()[pid]); CHARTS[pid]["deceased"] = ""; os.remove(DCACHE); free_death(pid, p); r8 = guard_check(pid, iso(ago(5))); e8 = dict(cache_json()[pid])      # later in the same start: the field is empty, the cache another one, and AdvancedMD's free check names the day
+    check("small things (F6): ... and the same when the entry already HELD the chart's day by the time the look-up came back (another helper had written it meanwhile: that entry stays exactly as it is, its own source with it) - at the chart's next look-up, the field empty by then and AdvancedMD's free check naming the day, the source is that answer's ('amd-medicare-271'), not the chart's field's: every look-up starts by taking the mark of the one before off",
+          lambda: r7[0] is True and e7 == theirs and r8[0] is True and e8 == {"dod": iso(ago(12)), "checked": iso(TODAY), "src": "amd-medicare-271"} and SENT == [], (r7, e7, r8, e8, kinds()))
+    # ... and the merge of the Drive copy keeps an entry's own source whenever the day does not change
+    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); D = ago(30); ids = [cid() for _ in range(9)]; c1, c2, c3, c4, c5, c6, c7, c8, c9 = ids
+    mine = {c1: {"dod": iso(D), "checked": iso(ago(3)), "src": CHART_SRC, "name": "kept"}, c2: {"dod": iso(D), "checked": iso(ago(3)), "src": "amd-271"}, c3: {"dod": ymd(D), "checked": iso(ago(3)), "src": "carried from another cache file of this workspace"},
+            c4: {"dod": iso(D), "checked": iso(ago(3))}, c5: {"dod": iso(D), "checked": iso(ago(3)), "src": ""}, c6: {"dod": iso(D), "checked": iso(ago(3)), "src": CHART_SRC},
+            c7: {"dod": PLACEHOLDER, "checked": iso(ago(3)), "src": "the register's own"}, c8: {"dod": None, "checked": iso(ago(3)), "src": "stedi: no death on record"}, c9: {"dod": iso(D), "checked": iso(ago(3)), "src": "stedi-medicare-271"}}
+    put_cache(json.loads(json.dumps(mine))); copy = os.path.join(TMP, "drive_f6.json")
+    json.dump({"format": "deceased_cache_drive v2", "dated": {c1: [iso(D), iso(ago(1))], c2: [iso(D), iso(ago(3))], c3: [iso(D), iso(TODAY)], c4: [iso(D), iso(ago(1))], c5: [iso(D), iso(ago(1))], c6: [iso(ago(31)), iso(ago(1))],
+                                                           c7: [iso(D), iso(ago(1))], c8: [iso(D), iso(ago(1))], c9: [iso(ago(31)), iso(ago(1))]}, "nodeath": {}, "noday": {}}, open(copy, "w"))
+    m = _try(lambda: DD.unpack(copy, [DCACHE])); got = cache_json() or {}
+    check("small things (F6, the merge): the Drive copy names the SAME day an entry already holds, with the same or a newer check date - the entry keeps its OWN source, whatever it is (the chart's field, a plan's eligibility answer, the carry's), and takes the copy's check date; its name stays (each of them read 'stedi-medicare-271 (drive copy)' after the next step 0c)",
+          lambda: m != "raised" and got[c1] == {"dod": iso(D), "checked": iso(ago(1)), "src": CHART_SRC, "name": "kept"} and got[c2] == {"dod": iso(D), "checked": iso(ago(3)), "src": "amd-271"}
+          and got[c3] == {"dod": iso(D), "checked": iso(TODAY), "src": "carried from another cache file of this workspace"}, (m, got.get(c1), got.get(c2), got.get(c3)))
+    check("small things (F6, the merge): ... an entry that names NO source gets the Drive copy's, as before; and where the day CHANGES - an earlier day of the copy, a day over a placeholder or over 'no death on record' - the source is the copy's as before, unless the entry's own names one of the two Medicare answers",
+          lambda: got[c4].get("src") == got[c5].get("src") == "stedi-medicare-271 (drive copy)" and got[c6] == {"dod": iso(ago(31)), "checked": iso(ago(1)), "src": "stedi-medicare-271 (drive copy)"}
+          and got[c7].get("dod") == iso(D) and got[c7].get("src") == "stedi-medicare-271 (drive copy)" and got[c8].get("dod") == iso(D) and got[c8].get("src") == "stedi-medicare-271 (drive copy)"
+          and got[c9] == {"dod": iso(ago(31)), "checked": iso(ago(1)), "src": "stedi-medicare-271"}, {k: got.get(k) for k in (c4, c5, c6, c7, c8, c9)})
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])], deceased=mdy(D)); guard_check(pid, iso(ago(5))); first = dict(cache_json()[pid]); road = os.path.join(TMP, "drive_f6_road.json")
+    c_p, o_p, e_p = drive_tool("pack", DCACHE, road); c_u, o_u, e_u = drive_tool("unpack", road, DCACHE); again = dict(cache_json()[pid])
+    check("small things (F6): the road of one such day - the guard writes it from the chart's field, the run packs the cache for Drive, the next step 0c merges that copy back: the entry reads exactly as the guard wrote it, source and all",
+          lambda: (c_p, e_p, c_u, e_u) == (0, "", 0, "") and first == again == {"dod": iso(D), "checked": iso(TODAY), "src": CHART_SRC}, (c_p, c_u, first, again))
+    # F8: a bracketed text that plainly means 'nothing' is no death on record
+    F = lift("scripts/helpers/claimocity_import.py", "death_day", "death_unread", "death_read", "DEATH_NO_DAY", "DEATH_WORDS", "DEATH_NOTHING"); res = []
+    for v in ("[none]", "[NONE]", "<null>", "[n/a]", "[NA]", "[unknown]", "<Unknown>", "[no]", "[empty]", "[ none ]"):      # each of these held every claim of the chart (DayLost) after the fourth round
+        reset(); pid = cid(); entry = {"dod": v, "checked": iso(ago(9)), "src": "x"}; put_cache({pid: dict(entry)})
+        quiet = says(lambda: DG.check(pid, iso(ago(5)), "car6404", "99349", allow_lookup=False)); lost = DG.cache_state()["lost"]; cov = DG.covered(pid, iso(ago(5)))
+        feed = _try(lambda: F["death_read"]([{pid: dict(entry)}])); out = os.path.join(TMP, "drive_f8.json"); pk = _try(lambda: DD.pack(DCACHE, out))
+        res.append((v, quiet, lost, cov, feed, pk))
+    check("small things (F8): a cache entry whose day place holds a bracketed text that plainly means NOTHING - none, null, n/a, na, unknown, no, empty, in any letter case, in square or angle brackets - is NO death on record: another payer's claim is answered 'not blocked' from the cache (each of them raised DayLost and held a living patient's chart), the entry is not counted as lost and covers nothing (it is one without an answer), the import holds no visit for it, and it goes into no list of the Drive copy",
+          lambda: len(res) == 10 and all(r[1] == (False, "") and r[2] == 0 and r[3] is False and r[4] == ({}, set()) and r[5] == (0, 0, 0) for r in res), res)
+    res = []
+    for v in ("[dob]", "[unknown date]", "[no day]", "[none] [dob]", "<null> <redacted>", "[nobody]"):      # every OTHER bracketed text still stands for a death with no day
+        reset(); pid = cid(); entry = {"dod": v, "checked": iso(ago(9)), "src": "x"}; put_cache({pid: dict(entry)})
+        res.append((v, says(lambda: DG.check(pid, iso(ago(5)), "car6404", "99349", allow_lookup=False)), DG.cache_state()["lost"], _try(lambda: F["death_read"]([{pid: dict(entry)}])) == ({}, {pid})))
+    check("small things (F8): ... while every OTHER bracketed text is still a death on record with no day - the placeholder, a text that says the DATE is unknown or missing, a value with one bracketed text that means nothing and one that does not: the claim is not cleared (DayLost), the entry counts as lost and the import holds the chart's visits",
+          lambda: len(res) == 6 and all(r[1] == "DayLost" and r[2] == 1 and r[3] is True for r in res), res)
+    nothing = {"none", "null", "n/a", "na", "unknown", "no", "empty"}
+    check("small things (F8): the words that mean 'nothing' are ONE set in three places - the guard's NOTHING_WORDS, the import's DEATH_NOTHING and dg_drive.py's NOTHING_WORDS - and none of them is one of the words that stand for a death",
+          lambda: getattr(DG, "NOTHING_WORDS", None) == F.get("DEATH_NOTHING") == getattr(DD, "NOTHING_WORDS", None) == nothing and not (nothing & DG.DEATH_WORDS), (getattr(DG, "NOTHING_WORDS", None), F.get("DEATH_NOTHING"), getattr(DD, "NOTHING_WORDS", None)))
+def t_round5_markers():
+    """D4 of the fifth round: the markers the mirror (tools/mirror/mirror.py PROTECTED) and the feed's helper check (claimocity_helpers_current.py VERSION_LINES) know
+    this round's helpers by. A marker is a line ONLY this round's file has: a workspace copy from before must never come back over the repository's. The guard's
+    was the line that defined the fourth round's error - gone with it; dg_drive.py's ('deceased_cache_drive v2') stood in the third round's file too; and the void
+    helper of the feed had none at all - an older copy in a workspace reads the feed's old cache file, and the mirror would have put it back over the repository's."""
+    mir = _read("tools/mirror/mirror.py"); hcur = _read("scripts/helpers/claimocity_helpers_current.py"); gsrc = _read("scripts/helpers/deceased_guard.py"); dsrc = _read("scripts/helpers/dg_drive.py"); vsrc = _read("scripts/helpers/claimocity_void_deceased.py")
+    def marker(table, name):
+        m = re.search(r'"%s":\s*(\'[^\'\n]*\'|"[^"\n]*")' % re.escape(name), table); return m.group(1)[1:-1] if m else None
+    G = 'DEATH_GUARD_RULE = "2026-11-26.1"'; DR = 'DG_DRIVE_RULE = "2026-11-26.1"'
+    check("markers (D4): the guard's marker - in the mirror's table and in the feed helpers' own list - is the line of ITS round, 'DEATH_GUARD_RULE = \"2026-11-26.1\"': it stands exactly once in each copy of the guard, as a line of its own, the guard reads it as its constant, and the marker of the round before is in neither table",
+          lambda: marker(mir, "deceased_guard.py") == marker(hcur, "deceased_guard.py") == G and gsrc.count(G) == 1 and _read("core/deceased_guard.py").count(G) == 1 and len(re.findall(r"(?m)^" + re.escape(G), gsrc)) == 1
+          and getattr(DG, "DEATH_GUARD_RULE", None) == "2026-11-26.1" and ("class Not" + "Answered") not in mir + hcur, (marker(mir, "deceased_guard.py"), marker(hcur, "deceased_guard.py"), gsrc.count(G)))
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive")
+    check("markers (D4): dg_drive.py's marker is a line only this round's file has, 'DG_DRIVE_RULE = \"2026-11-26.1\"' (the words 'deceased_cache_drive v2' stand in the third round's file too: the mirror took such a copy for current) - once in the file, as a line of its own; the FORMAT line of the Drive copy itself stays v2 with its three lists",
+          lambda: marker(mir, "dg_drive.py") == DR and dsrc.count(DR) == 1 and len(re.findall(r"(?m)^" + re.escape(DR), dsrc)) == 1 and getattr(DD, "DG_DRIVE_RULE", None) == "2026-11-26.1"
+          and DD.FORMAT.startswith("deceased_cache_drive v2: dated = ") and all(w in DD.FORMAT for w in ("nodeath", "noday")) and '"dg_drive.py": "deceased_cache_drive v2"' not in mir, (marker(mir, "dg_drive.py"), dsrc.count(DR)))
+    V = marker(mir, "claimocity_void_deceased.py"); hlines = [l for l in vsrc.split("\nimport os as _os")[0].splitlines() if l.startswith("#")]
+    HC5 = types.ModuleType("claimocity_helpers_current_r5"); exec(compile(hcur, "claimocity_helpers_current.py", "exec"), HC5.__dict__)
+    check("markers (D3, the void helper): claimocity_void_deceased.py - the helper that VOIDS a visit dated after the day on record - has a marker now: ONE sentence in its header that only this version has. The mirror's table and the feed helpers' list hold that very sentence, and the helper is on the list of helpers the feed's driver makes the repository's before anything runs (FEED_HELPERS): an older copy in a workspace - it read the feed's own cache file of before - is replaced, and never comes back over the repository's",
+          lambda: bool(V) and len(V) > 40 and V == HC5.VERSION_LINES.get("claimocity_void_deceased.py") and vsrc.count(V) == 1 and sum(1 for l in hlines if V in l) == 1 and "claimocity_void_deceased.py" in HC5.FEED_HELPERS
+          and "deceased_guard.py" in HC5.FEED_HELPERS and len(HC5.FEED_HELPERS) == len(set(HC5.FEED_HELPERS)) == 18, (V, HC5.VERSION_LINES.get("claimocity_void_deceased.py"), len(HC5.FEED_HELPERS)))
+    check("markers (D3, the void helper): ... and nothing else of that helper changed: below its header it reads the guard's ONE cache through the guard, as before (deceased_guard._load) - never a cache file of its own",
+          lambda: "cache = deceased_guard._load()" in vsrc and "deceased_cache_local" not in vsrc and 'void_tx.void_charge(num, c.get("id"))' in vsrc and "DECEASED_CACHE" not in vsrc, vsrc[:300])
 def drive_tool(*argv):
     """dg_drive.py started as the prompts start it (a program, inside this process) -> (its exit code, what it printed, its error output)"""
     return run_main("scripts/helpers/dg_drive.py", [str(x) for x in argv], TMP)
+KEEP_NAME = "deceased_cache_unreadable"      # the folder dg_drive.py keeps an unreadable cache file in, under the system's temporary folder
+REPLACED_LINE = ("DECEASED CACHE REPLACED: %s could not be read - kept as %s; the Drive copy's table stands in its place - the kept file holds days of death: upload it to Drive \"workspace mirror\" under its own name"
+                 " in this run and never copy it into registers/ or the repository - TOP OF THE REPORT")
+@contextlib.contextmanager
+def kept_in(folder=None, system_tmp=None):
+    """While the block runs: DG_UNREADABLE_DIR names `folder` (None = the environment names none) and the system's temporary folder is `system_tmp` (None = as it
+    is). dg_drive.py reads both at the moment it keeps a file."""
+    old_env, old_tmp = os.environ.pop("DG_UNREADABLE_DIR", None), tempfile.tempdir
+    try:
+        if folder is not None: os.environ["DG_UNREADABLE_DIR"] = folder
+        if system_tmp is not None: tempfile.tempdir = system_tmp
+        yield
+    finally:
+        os.environ.pop("DG_UNREADABLE_DIR", None); tempfile.tempdir = old_tmp
+        if old_env is not None: os.environ["DG_UNREADABLE_DIR"] = old_env
+def files_under(root):
+    """every file under a folder, as paths relative to it (a folder that is not there holds none)"""
+    return sorted(os.path.relpath(os.path.join(d_, f_), root) for d_, _s, fs_ in os.walk(root) for f_ in fs_)
 def t_drive_unreadable_cache():
-    """S2 (the fourth round - the third independent check, finding 3), over R7c of the round before. Until the third round step 0c's merge wrote over a cache file
-    it could not read - whatever day only that file held was gone. The third round then never wrote over such a file: the path was passed over - and a workspace
-    cache that is cut off was never repaired: the run went on, and a claim the Drive copy's day would have blocked was approved. Now the file is MOVED ASIDE in its
-    own folder (its name + '.unreadable-<UTC stamp>') and the merged table is written in its place: nothing is lost, and the run knows the days again. ONE line
-    'DECEASED CACHE REPLACED: ...' for the top of the report; exit 0 when every path was merged. A path that cannot be WRITTEN keeps the line 'DECEASED CACHE NOT
-    MERGED: ...' and exit 1. And pack on a cache that cannot be read ends with one plain line and exit 2 - never a traceback."""
-    reset(); a, b = cid(), cid(); d = os.path.join(TMP, "s2"); os.makedirs(os.path.join(d, "there")); drive = os.path.join(d, "drive.json")
+    """S2 (the fourth round - the third independent check, finding 3) as D2 of the fifth round changed it (the fourth check's finding 1, HIGH). Until the third round
+    step 0c's merge wrote over a cache file it could not read; the third round passed such a file over and it was never repaired; the fourth round kept it under
+    another name IN ITS OWN FOLDER and wrote the merged table in its place - and from registers/ the run's own mirror step copied the kept file into the clone, where
+    the privacy gate passed it over for its ending and `git add -A` staged it: real days of death beside chart numbers, bound for a public repository. Now the kept
+    file NEVER lies in a registers folder and NEVER inside a git checkout: it goes to <the system's temporary folder>/deceased_cache_unreadable/ (DG_UNREADABLE_DIR
+    names another folder; one inside a checkout or under a registers folder is refused). The bytes are COPIED there and checked before the new table takes the
+    file's place - so it works across devices, and the file never leaves its path unless it is kept. ONE line 'DECEASED CACHE REPLACED: ...' names the kept file by
+    its full path and says what a run does with it; exit 0 when every path was merged. What cannot be kept anywhere is left as it is: 'DECEASED CACHE NOT MERGED:
+    ...', exit 1. And pack on a cache that cannot be read ends with one plain line and exit 2 - never a traceback."""
+    reset(); a, b = cid(), cid(); d = os.path.join(TMP, "s2"); os.makedirs(os.path.join(d, "there")); drive = os.path.join(d, "drive.json"); keep = os.path.join(TMP, "s2_kept")
     json.dump({"dated": {a: [iso(ago(50)), iso(ago(9))]}, "nodeath": {b: iso(ago(3))}}, open(drive, "w"))
     cut, lst, good, new, empty, nodir = (os.path.join(d, n) for n in ("cut_off.json", "a_list.json", "good.json", os.path.join("there", "not_yet.json"), "empty.json", os.path.join("no_such_folder", "x.json")))
     texts = {cut: '{"%s": {"dod": "20' % a, lst: "[1, 2, 3]", good: json.dumps({a: {"dod": PLACEHOLDER, "checked": iso(ago(30)), "src": "x"}}), empty: "  \n"}
     for p, t in texts.items(): open(p, "w").write(t)
-    code, out, err = drive_tool("unpack", drive, cut, good, lst, new, empty); lines = out.splitlines(); said = [l for l in lines if l.startswith("DECEASED CACHE REPLACED: ")]
-    aside = {p: sorted(n for n in os.listdir(d) if n.startswith(os.path.basename(p) + ".unreadable-")) for p in (cut, lst)}
+    with kept_in(keep): code, out, err = drive_tool("unpack", drive, cut, good, lst, new, empty)
+    lines = out.splitlines(); said = [l for l in lines if l.startswith("DECEASED CACHE REPLACED: ")]
+    aside = {p: sorted(n for n in (os.listdir(keep) if os.path.isdir(keep) else []) if n.startswith(os.path.basename(p) + ".unreadable-")) for p in (cut, lst)}
     merged = {p: _try(lambda p=p: json.load(open(p))) for p in (cut, lst, good, new, empty)}
-    check("drive merge (S2): a cache file that is there but cannot be read - cut off in the middle, or no table at all (a JSON list) - is MOVED ASIDE in its own folder under its own name + '.unreadable-<UTC stamp>', byte for byte as it was: nothing it may hold is lost",
-          lambda: all(len(v) == 1 and re.fullmatch(re.escape(os.path.basename(p)) + r"\.unreadable-\d{8}T\d{6}Z", v[0]) for p, v in aside.items()) and text_of(os.path.join(d, aside[cut][0])) == texts[cut] and text_of(os.path.join(d, aside[lst][0])) == texts[lst] and err == "",
-          (aside, err[-300:]))
+    check("drive merge (S2, D2): a cache file that is there but cannot be read - cut off in the middle, or no table at all (a JSON list) - is KEPT byte for byte under its own name + '.unreadable-<UTC stamp>' in the folder for such files, and NOT in its own folder any more: nothing it may hold is lost, and nothing with a day in it lies beside the cache",
+          lambda: all(len(v) == 1 and re.fullmatch(re.escape(os.path.basename(p)) + r"\.unreadable-\d{8}T\d{6}Z", v[0]) for p, v in aside.items()) and text_of(os.path.join(keep, aside[cut][0])) == texts[cut] and text_of(os.path.join(keep, aside[lst][0])) == texts[lst] and err == ""
+          and not any(".unreadable-" in n for n in files_under(d)) and sorted(os.listdir(keep)) == sorted(aside[cut] + aside[lst]), (aside, files_under(d), err[-300:]))
     check("drive merge (S2): ... and the merged table - what the Drive copy gives - is written in its place, so the run knows the days again (the third round left the file as it was: every later run started with a guard that knew nothing of it); the other paths are merged as always - a file that holds a table, a file that is not there yet, an empty file",
           lambda: all(m != "raised" and m[a]["dod"] == iso(ago(50)) and m[b]["dod"] is None for m in merged.values()) and any(l.startswith("dated entries merged: 5") for l in lines), (merged, lines))
-    check("drive merge (S2): ... each such path is said in ONE line for the top of the report - 'DECEASED CACHE REPLACED: <path> could not be read - kept as <name>; the Drive copy's table stands in its place - TOP OF THE REPORT' - that names no chart; and the command ends 0: every path was merged",
-          lambda: code == 0 and said == ["DECEASED CACHE REPLACED: %s could not be read - kept as %s; the Drive copy's table stands in its place - TOP OF THE REPORT" % (p, aside[p][0]) for p in (cut, lst)]
+    check("drive merge (S2, D2): ... each such path is said in ONE line for the top of the report that names the kept file by its FULL path and says what a run does with it - upload it to Drive under its own name in this run, never copy it into registers/ or the repository - and names no chart; the command ends 0: every path was merged",
+          lambda: code == 0 and said == [REPLACED_LINE % (p, os.path.join(keep, aside[p][0])) for p in (cut, lst)]
           and not any(l.startswith("DECEASED CACHE NOT MERGED") for l in lines) and not any(a in l or b in l for l in lines), (code, lines))
-    code2, out2, err2 = drive_tool("unpack", drive, good, new)
+    with kept_in(keep): code2, out2, err2 = drive_tool("unpack", drive, good, new)
     check("drive merge (S2): ... with every path readable the command ends 0 and says no such line, as before", lambda: code2 == 0 and "DECEASED CACHE" not in out2 and err2 == "" and out2.strip().startswith("dated entries merged: "), (code2, out2, err2[-200:]))
-    before = text_of(good); code3, out3, err3 = drive_tool("unpack", drive, nodir, good); said3 = [l for l in out3.splitlines() if l.startswith("DECEASED CACHE NOT MERGED: ")]
+    before = text_of(good)
+    with kept_in(keep): code3, out3, err3 = drive_tool("unpack", drive, nodir, good)
+    said3 = [l for l in out3.splitlines() if l.startswith("DECEASED CACHE NOT MERGED: ")]
     check("drive merge (S2): a path that cannot be WRITTEN (its folder is not there) keeps the line 'DECEASED CACHE NOT MERGED: ...' and ends the command 1 - the path behind it is still merged; no half-written file and no temporary file is left anywhere",
           lambda: code3 == 1 and len(said3) == 1 and nodir in said3[0] and said3[0].endswith(" - TOP OF THE REPORT") and err3 == "" and json.load(open(good))[a]["dod"] == iso(ago(50)) and not os.path.exists(os.path.dirname(nodir))
-          and sorted(n for n in os.listdir(d) if ".unreadable-" not in n) == ["a_list.json", "cut_off.json", "drive.json", "empty.json", "good.json", "there"] and os.listdir(os.path.join(d, "there")) == ["not_yet.json"]
+          and sorted(os.listdir(d)) == ["a_list.json", "cut_off.json", "drive.json", "empty.json", "good.json", "there"] and os.listdir(os.path.join(d, "there")) == ["not_yet.json"]
           and not any(".tmp" in n for n in os.listdir(d)), (code3, out3, err3[-300:], sorted(os.listdir(d))))
-    # an unreadable file in a folder that takes no new file: it can be neither moved aside nor replaced - left as it is, said, exit 1 (shown with the tool's own two file steps refused for that folder)
-    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); ro = os.path.join(d, "read_only"); os.makedirs(ro); stuck = os.path.join(ro, "stuck.json"); open(stuck, "w").write(texts[cut]); real = (DD.os.replace, DD.tempfile.mkstemp)
+    # ---- D2: WHERE the kept file lies. Days of death are real patient data: never in a registers folder (the mirror step copies that folder into the clone), never inside a git checkout
+    sys_tmp = os.path.join(TMP, "s2_system_tmp"); os.makedirs(sys_tmp); ws = os.path.join(TMP, "s2_ws", "home", "claude", "unbilled"); os.makedirs(os.path.join(ws, "registers"))
+    clone = os.path.join(TMP, "s2_ws", "home", "claude", "clone"); os.makedirs(os.path.join(clone, ".git")); os.makedirs(os.path.join(clone, "practices", "ehpa", "registers"))
+    wsc = os.path.join(ws, "registers", "deceased_cache.json"); clc = os.path.join(clone, "practices", "ehpa", "registers", "deceased_cache.json"); open(wsc, "w").write(texts[cut]); open(clc, "w").write(texts[cut] + " ")
+    with kept_in(None, sys_tmp): code4, out4, err4 = drive_tool("unpack", drive, wsc, clc)
+    kd = os.path.join(sys_tmp, KEEP_NAME); kept4 = sorted(os.listdir(kd)) if os.path.isdir(kd) else []; said4 = [l for l in out4.splitlines() if l.startswith("DECEASED CACHE REPLACED: ")]
+    check("drive merge (D2, the place): the workspace's cut-off cache in registers/ and the clone's cut-off register inside a git checkout, merged by ONE command as step 0c does, with no folder named in the environment - BOTH are kept under <the system's temporary folder>/deceased_cache_unreadable/, each under a name of its own with its own bytes, and each line names its own kept file",
+          lambda: code4 == 0 and err4 == "" and len(kept4) == 2 and sorted(text_of(os.path.join(kd, n)) for n in kept4) == sorted([texts[cut], texts[cut] + " "]) and len(said4) == 2
+          and all(any(l == REPLACED_LINE % (p, os.path.join(kd, n)) and text_of(os.path.join(kd, n)) == t for n in kept4) for p, t, l in ((wsc, texts[cut], said4[0]), (clc, texts[cut] + " ", said4[1]))), (code4, out4, err4[-300:], kept4))
+    check("drive merge (D2, the place): ... NOTHING is left in the workspace's registers folder but the cache itself, and nothing new anywhere inside the checkout - the kept file never lies where the mirror step, the state bundle or `git add -A` picks it up; both caches hold the merged table",
+          lambda: os.listdir(os.path.join(ws, "registers")) == ["deceased_cache.json"] and files_under(clone) == [os.path.join("practices", "ehpa", "registers", "deceased_cache.json")]
+          and json.load(open(wsc))[a]["dod"] == json.load(open(clc))[a]["dod"] == iso(ago(50)), (files_under(os.path.dirname(ws)), files_under(clone)))
+    res = {}
+    for name, folder in (("a folder inside a git checkout", os.path.join(clone, "kept_here")), ("the checkout's own top folder", clone), ("a folder named registers", os.path.join(TMP, "s2_other", "registers")),
+                         ("a folder under a registers folder", os.path.join(ws, "registers", "kept")), ("a folder named REGISTERS", os.path.join(TMP, "s2_other", "REGISTERS")), ("a good folder", os.path.join(TMP, "s2_good_place"))):
+        stmp = os.path.join(TMP, "s2_tmp_" + str(len(res))); os.makedirs(stmp); one = os.path.join(TMP, "s2_case_%d.json" % len(res)); open(one, "w").write(texts[cut])
+        with kept_in(folder, stmp): c_, o_, e_ = drive_tool("unpack", drive, one)
+        res[name] = (c_, e_, files_under(os.path.join(stmp, KEEP_NAME)), [n for n in files_under(folder) if ".unreadable-" in n] if os.path.isdir(folder) else [], _try(lambda: json.load(open(one))[a]["dod"]), [l for l in o_.splitlines() if l.startswith("DECEASED CACHE")])
+    refused = ("a folder inside a git checkout", "the checkout's own top folder", "a folder named registers", "a folder under a registers folder", "a folder named REGISTERS")
+    check("drive merge (D2, the place): DG_UNREADABLE_DIR names the folder - but a folder that lies inside a git checkout, or is a registers folder or lies under one (in any letter case), is REFUSED: the system's temporary folder is used instead and nothing is written into the refused folder; a good folder is used as named, and nothing goes to the temporary folder then",
+          lambda: all(res[k][0] == 0 and res[k][1] == "" and len(res[k][2]) == 1 and res[k][3] == [] and res[k][4] == iso(ago(50)) and len(res[k][5]) == 1 and res[k][5][0].startswith("DECEASED CACHE REPLACED: ") for k in refused)
+          and res["a good folder"][0] == 0 and res["a good folder"][2] == [] and len(res["a good folder"][3]) == 1 and res["a good folder"][4] == iso(ago(50)), res)
+    # ... a move across devices: every step that would RENAME a file from one folder into another is refused, as between two file systems (the fourth round moved the file with one such step)
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); far = os.path.join(d, "far_away"); os.makedirs(far); x1 = os.path.join(far, "x.json"); open(x1, "w").write(texts[cut]); keep_far = os.path.join(TMP, "s2_kept_far")
+    def other_device(s_, t_, real):
+        if os.path.dirname(os.path.abspath(s_)) != os.path.dirname(os.path.abspath(t_)): raise OSError(18, "Invalid cross-device link (stand-in)")
+        return real(s_, t_)
+    DD.os = types.SimpleNamespace(**{k: getattr(os, k) for k in dir(os) if not k.startswith("__")}); DD.os.replace = lambda s_, t_: other_device(s_, t_, os.replace); DD.os.rename = lambda s_, t_: other_device(s_, t_, os.rename)
+    DD.shutil = types.SimpleNamespace(move=lambda s_, t_, *a_, **k_: other_device(s_, t_, shutil.move))
+    bad = []; buf = io.StringIO()
+    with kept_in(keep_far), contextlib.redirect_stdout(buf): n9 = _try(lambda: DD.unpack(drive, [x1], bad))
+    k9 = sorted(os.listdir(keep_far)) if os.path.isdir(keep_far) else []
+    check("drive merge (D2, across devices): the folder for kept files lies on another file system - no file can be renamed from one folder into the other: the unreadable file is kept all the same, byte for byte (its bytes are copied and read back before anything takes its place), the merged table stands at its path, one REPLACED line, nothing counted as not merged",
+          lambda: n9 != "raised" and bad == [] and len(k9) == 1 and text_of(os.path.join(keep_far, k9[0])) == texts[cut] and json.load(open(x1))[a]["dod"] == iso(ago(50)) and os.listdir(far) == ["x.json"]
+          and [l for l in buf.getvalue().splitlines() if l.startswith("DECEASED CACHE")] == [REPLACED_LINE % (x1, os.path.join(keep_far, k9[0]))], (n9, bad, k9, buf.getvalue()[-400:]))
+    # ... a folder for kept files that cannot be written
+    wall = os.path.join(TMP, "s2_a_file_in_the_way"); open(wall, "w").write("a file where a folder would have to be"); x2, x3 = os.path.join(d, "kept_elsewhere.json"), os.path.join(d, "nowhere_to_keep.json")
+    open(x2, "w").write(texts[cut]); open(x3, "w").write(texts[cut]); stmp2 = os.path.join(TMP, "s2_tmp_second"); os.makedirs(stmp2)
+    with kept_in(os.path.join(wall, "kept"), stmp2): c10, o10, e10 = drive_tool("unpack", drive, x2)
+    k10 = files_under(os.path.join(stmp2, KEEP_NAME))
+    with kept_in(os.path.join(wall, "kept"), os.path.join(wall, "tmp")): c11, o11, e11 = drive_tool("unpack", drive, x3, good)
+    said11 = [l for l in o11.splitlines() if l.startswith("DECEASED CACHE")]
+    check("drive merge (D2, a folder that cannot be written): the folder the environment names cannot be made - the system's temporary folder takes the file instead (kept, replaced, exit 0). And when NO folder can take it, the merged table is NOT written: the file is left EXACTLY as it is - it may hold a day only it knows - with the line 'DECEASED CACHE NOT MERGED: ...', exit 1, no temporary file, and the path behind it is still merged",
+          lambda: c10 == 0 and e10 == "" and len(k10) == 1 and text_of(os.path.join(stmp2, KEEP_NAME, k10[0])) == texts[cut] and json.load(open(x2))[a]["dod"] == iso(ago(50))
+          and c11 == 1 and e11 == "" and text_of(x3) == texts[cut] and len(said11) == 1 and said11[0].startswith("DECEASED CACHE NOT MERGED: " + x3) and said11[0].endswith(" - TOP OF THE REPORT")
+          and "its bytes could be kept in no folder outside the registers folders and the git checkouts - it was left exactly as it is, never written over" in said11[0]      # (the line says WHY: nothing took the file's bytes - not 'could not be written')
+          and "nowhere_to_keep.json.unreadable" not in " ".join(files_under(TMP)) and not any(".tmp" in n for n in os.listdir(d)) and text_of(wall) == "a file where a folder would have to be", (c10, k10, c11, o11[-500:], e11[-300:]))
+    x4 = os.path.join(d, "tmp_in_a_checkout.json"); open(x4, "w").write(texts[cut]); in_tree = os.path.join(clone, "tmp")
+    with kept_in(None, in_tree): c12, o12, e12 = drive_tool("unpack", drive, x4)
+    check("drive merge (D2): ... and when the system's temporary folder ITSELF lies inside a git checkout and the environment names no other, there is no place for the file that is safe: it is left exactly as it is, NOT MERGED, exit 1 - never kept inside the checkout",
+          lambda: c12 == 1 and e12 == "" and text_of(x4) == texts[cut] and not os.path.exists(in_tree) and files_under(clone) == [os.path.join("practices", "ehpa", "registers", "deceased_cache.json")]
+          and [l.startswith("DECEASED CACHE NOT MERGED: " + x4) for l in o12.splitlines() if l.startswith("DECEASED CACHE")] == [True], (c12, o12[-400:], e12[-200:], files_under(clone)))
+    # an unreadable file in a folder that takes no new file: the new table cannot be written beside it - left as it is, said, exit 1, and no copy of it is kept anywhere (shown with the tool's own two file steps refused for that folder)
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); ro = os.path.join(d, "read_only"); os.makedirs(ro); stuck = os.path.join(ro, "stuck.json"); open(stuck, "w").write(texts[cut]); real = (DD.os.replace, DD.tempfile.mkstemp); keep_ro = os.path.join(TMP, "s2_kept_ro")
     def no_file(*a_, **k_): raise PermissionError(13, "the stand-in folder takes no new file")
     DD.os = types.SimpleNamespace(**{k: getattr(os, k) for k in dir(os) if not k.startswith("__")}); DD.os.replace = lambda s_, t_: no_file() if os.path.dirname(os.path.abspath(t_)) == ro else real[0](s_, t_)
-    DD.tempfile = types.SimpleNamespace(mkstemp=lambda *a_, **k_: no_file() if os.path.abspath(k_.get("dir") or "") == ro else real[1](*a_, **k_))
+    DD.tempfile = types.SimpleNamespace(mkstemp=lambda *a_, **k_: no_file() if os.path.abspath(k_.get("dir") or "") == ro else real[1](*a_, **k_), gettempdir=tempfile.gettempdir)
     bad = []; buf = io.StringIO()
-    with contextlib.redirect_stdout(buf): n4 = _try(lambda: DD.unpack(drive, [stuck, good], bad))
+    with kept_in(keep_ro), contextlib.redirect_stdout(buf): n4 = _try(lambda: DD.unpack(drive, [stuck, good], bad))
     said4 = [l for l in buf.getvalue().splitlines() if l.startswith("DECEASED CACHE")]
-    check("drive merge (S2): ... and an unreadable file that can be neither moved aside nor replaced (its folder takes no new file) is left EXACTLY as it is and said 'NOT MERGED' - never half replaced, never lost; the path counts as not merged (exit 1) and the path behind it is merged",
-          lambda: n4 != "raised" and bad == [stuck] and text_of(stuck) == texts[cut] and os.listdir(ro) == ["stuck.json"] and len(said4) == 1 and said4[0].startswith("DECEASED CACHE NOT MERGED: " + stuck) and said4[0].endswith(" - TOP OF THE REPORT"),
-          (n4, bad, said4, os.listdir(ro)))
-    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); half = os.path.join(d, "half_way"); os.makedirs(half); stuck2 = os.path.join(half, "stuck.json"); open(stuck2, "w").write(texts[cut])
-    DD.os = types.SimpleNamespace(**{k: getattr(os, k) for k in dir(os) if not k.startswith("__")})      # the LAST step fails: the new table cannot be put in the file's place (the file is moved aside by then)
+    check("drive merge (S2): ... and an unreadable file whose own folder takes no new file - the new table cannot be written there - is left EXACTLY as it is and said 'NOT MERGED': never half replaced, never lost, and no copy of it is left in the folder for kept files (nothing was replaced, so nothing is kept); the path counts as not merged (exit 1) and the path behind it is merged",
+          lambda: n4 != "raised" and bad == [stuck] and text_of(stuck) == texts[cut] and os.listdir(ro) == ["stuck.json"] and len(said4) == 1 and said4[0].startswith("DECEASED CACHE NOT MERGED: " + stuck) and said4[0].endswith(" - TOP OF THE REPORT")
+          and files_under(keep_ro) == [], (n4, bad, said4, os.listdir(ro), files_under(keep_ro)))
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); half = os.path.join(d, "half_way"); os.makedirs(half); stuck2 = os.path.join(half, "stuck.json"); open(stuck2, "w").write(texts[cut]); keep_half = os.path.join(TMP, "s2_kept_half")
+    DD.os = types.SimpleNamespace(**{k: getattr(os, k) for k in dir(os) if not k.startswith("__")})      # the LAST step fails: the new table cannot be put in the file's place (its bytes are kept by then)
     DD.os.replace = lambda s_, t_: no_file() if os.path.basename(s_).startswith(".deceased_cache.") and os.path.abspath(t_) == stuck2 else os.replace(s_, t_)
     bad2 = []; buf2 = io.StringIO()
-    with contextlib.redirect_stdout(buf2): n5 = _try(lambda: DD.unpack(drive, [stuck2], bad2))
+    with kept_in(keep_half), contextlib.redirect_stdout(buf2): n5 = _try(lambda: DD.unpack(drive, [stuck2], bad2))
     said5 = [l for l in buf2.getvalue().splitlines() if l.startswith("DECEASED CACHE")]
-    check("drive merge (S2): ... and when the LAST step fails - the unreadable file is moved aside already and the new table cannot be put in its place - the file is PUT BACK: it is either kept AND replaced, or left exactly as it is, never gone from its path; no copy under another name and no temporary file stays behind",
-          lambda: n5 != "raised" and bad2 == [stuck2] and text_of(stuck2) == texts[cut] and os.listdir(half) == ["stuck.json"] and len(said5) == 1 and said5[0].startswith("DECEASED CACHE NOT MERGED: " + stuck2), (n5, bad2, said5, os.listdir(half)))
-    folder = os.path.join(d, "a_folder.json"); os.makedirs(folder); code7, out7, err7 = drive_tool("unpack", drive, folder, good); said7 = [l for l in out7.splitlines() if l.startswith("DECEASED CACHE")]
-    check("drive merge (S2): ... a path that is no file at all (a folder of that name) is not moved anywhere: left as it is, said 'NOT MERGED', the command ends 1 and the path behind it is merged",
-          lambda: code7 == 1 and err7 == "" and os.path.isdir(folder) and os.listdir(folder) == [] and len(said7) == 1 and said7[0].startswith("DECEASED CACHE NOT MERGED: " + folder) and not any(n.startswith("a_folder.json.unreadable-") for n in os.listdir(d)), (code7, out7, err7[-200:]))
-    twice = os.path.join(d, "twice.json"); open(twice, "w").write(texts[cut]); now_ = datetime.datetime.now(datetime.timezone.utc)
-    taken = [twice + ".unreadable-" + (now_ + datetime.timedelta(seconds=s_)).strftime("%Y%m%dT%H%M%SZ") for s_ in range(5)]      # the names the tool would choose in these seconds are TAKEN: files an earlier merge kept
+    check("drive merge (S2, D2): ... and when the LAST step fails - the file's bytes are kept already and the new table cannot be put in its place - the file still stands at its path exactly as it was (it never left it), and the copy that was kept is taken away again: the file is either kept AND replaced, or left exactly as it is; no second copy with days in it and no temporary file stays behind",
+          lambda: n5 != "raised" and bad2 == [stuck2] and text_of(stuck2) == texts[cut] and os.listdir(half) == ["stuck.json"] and len(said5) == 1 and said5[0].startswith("DECEASED CACHE NOT MERGED: " + stuck2)
+          and files_under(keep_half) == [], (n5, bad2, said5, os.listdir(half), files_under(keep_half)))
+    folder = os.path.join(d, "a_folder.json"); os.makedirs(folder)
+    with kept_in(keep): code7, out7, err7 = drive_tool("unpack", drive, folder, good)
+    said7 = [l for l in out7.splitlines() if l.startswith("DECEASED CACHE")]
+    check("drive merge (S2): ... a path that is no file at all (a folder of that name) is not kept anywhere: left as it is, said 'NOT MERGED', the command ends 1 and the path behind it is merged",
+          lambda: code7 == 1 and err7 == "" and os.path.isdir(folder) and os.listdir(folder) == [] and len(said7) == 1 and said7[0].startswith("DECEASED CACHE NOT MERGED: " + folder) and not any(n.startswith("a_folder.json.unreadable-") for n in os.listdir(keep)), (code7, out7, err7[-200:]))
+    twice = os.path.join(d, "twice.json"); open(twice, "w").write(texts[cut]); now_ = datetime.datetime.now(datetime.timezone.utc); keep2 = os.path.join(TMP, "s2_kept_twice"); os.makedirs(keep2)
+    taken = [os.path.join(keep2, "twice.json.unreadable-" + (now_ + datetime.timedelta(seconds=s_)).strftime("%Y%m%dT%H%M%SZ")) for s_ in range(5)]      # the names the tool would choose in these seconds are TAKEN: files an earlier merge kept
     for n_ in taken: open(n_, "w").write("kept by an earlier merge")
-    code8, out8, err8 = drive_tool("unpack", drive, twice); kept8 = sorted(os.path.join(d, n_) for n_ in os.listdir(d) if n_.startswith("twice.json.unreadable-")); new8 = [n_ for n_ in kept8 if n_ not in taken]
+    with kept_in(keep2): code8, out8, err8 = drive_tool("unpack", drive, twice)
+    kept8 = sorted(os.path.join(keep2, n_) for n_ in os.listdir(keep2) if n_.startswith("twice.json.unreadable-")); new8 = [n_ for n_ in kept8 if n_ not in taken]
     check("drive merge (S2): ... and a name that is taken already - a file an earlier merge kept in the same second - is never used again: the unreadable file gets a name of its own, and the file kept before stays byte for byte",
-          lambda: code8 == 0 and err8 == "" and all(text_of(n_) == "kept by an earlier merge" for n_ in taken) and len(new8) == 1 and text_of(new8[0]) == texts[cut] and ("kept as %s;" % os.path.basename(new8[0])) in out8
+          lambda: code8 == 0 and err8 == "" and all(text_of(n_) == "kept by an earlier merge" for n_ in taken) and len(new8) == 1 and text_of(new8[0]) == texts[cut] and ("kept as %s;" % new8[0]) in out8
           and _try(lambda: json.load(open(twice))[a]["dod"]) == iso(ago(50)), (code8, out8, err8[-200:], [os.path.basename(n_) for n_ in kept8]))
-    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); full = os.path.join(d, "disk_full"); os.makedirs(full); stuck3 = os.path.join(full, "stuck.json"); open(stuck3, "w").write(texts[cut])
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); full = os.path.join(d, "disk_full"); os.makedirs(full); stuck3 = os.path.join(full, "stuck.json"); open(stuck3, "w").write(texts[cut]); keep_full = os.path.join(TMP, "s2_kept_full")
     def no_room(*a_, **k_): raise OSError(28, "No space left on device (stand-in)")
     DD.json = types.SimpleNamespace(load=json.load, loads=json.loads, dumps=json.dumps, dump=no_room)      # the new table cannot be written to its temporary file
     bad3 = []; buf3 = io.StringIO()
-    with contextlib.redirect_stdout(buf3): n6 = _try(lambda: DD.unpack(drive, [stuck3], bad3))
+    with kept_in(keep_full), contextlib.redirect_stdout(buf3): n6 = _try(lambda: DD.unpack(drive, [stuck3], bad3))
     said6 = [l for l in buf3.getvalue().splitlines() if l.startswith("DECEASED CACHE")]
-    check("drive merge (S2): ... the unreadable file is moved aside only when the new table is safely written beside it: when that table cannot be written (the disk is full) the file is never moved - it stands at its path exactly as it was, under no other name, said 'NOT MERGED', and no temporary file is left",
-          lambda: n6 != "raised" and bad3 == [stuck3] and text_of(stuck3) == texts[cut] and os.listdir(full) == ["stuck.json"] and len(said6) == 1 and said6[0].startswith("DECEASED CACHE NOT MERGED: " + stuck3), (n6, bad3, said6, os.listdir(full)))
+    check("drive merge (S2): ... the unreadable file's bytes are kept only when the new table is safely written beside it: when that table cannot be written (the disk is full) nothing is kept anywhere - the file stands at its path exactly as it was, said 'NOT MERGED', and no temporary file is left",
+          lambda: n6 != "raised" and bad3 == [stuck3] and text_of(stuck3) == texts[cut] and os.listdir(full) == ["stuck.json"] and len(said6) == 1 and said6[0].startswith("DECEASED CACHE NOT MERGED: " + stuck3) and files_under(keep_full) == [], (n6, bad3, said6, os.listdir(full)))
+    # ---- what the fifth round's own mutation pass let through at first (each now with its check): a link, a copy nobody read back, who may read the kept file
+    link_c, link_r = os.path.join(TMP, "s2_link_into_the_checkout"), os.path.join(TMP, "s2_link_to_a_registers_folder"); os.makedirs(os.path.join(clone, "by_link")); os.symlink(os.path.join(clone, "by_link"), link_c); os.symlink(os.path.join(ws, "registers"), link_r)
+    lres = {}
+    for name, folder in (("a link into a git checkout", link_c), ("a link to a registers folder", link_r)):
+        stmp = os.path.join(TMP, "s2_tmp_link_%d" % len(lres)); os.makedirs(stmp); one = os.path.join(TMP, "s2_link_case_%d.json" % len(lres)); open(one, "w").write(texts[cut])
+        with kept_in(folder, stmp): c_, o_, e_ = drive_tool("unpack", drive, one)
+        lres[name] = (c_, e_, files_under(os.path.join(stmp, KEEP_NAME)), [n for n in files_under(os.path.realpath(folder)) if ".unreadable-" in n], _try(lambda: json.load(open(one))[a]["dod"]))
+    check("drive merge (D2, the place): a LINK is judged by where it LEADS - DG_UNREADABLE_DIR names a link whose own path looks harmless and that points into a git checkout, or at a registers folder: it is refused as the folder itself is, the system's temporary folder takes the file and nothing is written through the link",
+          lambda: all(v[0] == 0 and v[1] == "" and len(v[2]) == 1 and v[3] == [] and v[4] == iso(ago(50)) for v in lres.values()), lres)
+    DD = load("scripts/helpers/dg_drive.py", "dg_drive"); x5 = os.path.join(d, "short_copy.json"); open(x5, "w").write(texts[cut]); keep_sw, tmp_sw = os.path.join(TMP, "s2_kept_short"), os.path.join(TMP, "s2_tmp_short"); os.makedirs(tmp_sw)
+    class Short:      # a file that takes fewer bytes than it is given and says nothing (a full disk on some file systems, a mount that drops out)
+        def __init__(self, fh): self.fh = fh
+        def write(self, data): return self.fh.write(data[:len(data) // 2])
+        def __enter__(self): return self
+        def __exit__(self, *a_): self.fh.close()
+    DD.os = types.SimpleNamespace(**{k: getattr(os, k) for k in dir(os) if not k.startswith("__")}); DD.os.fdopen = lambda fd_, mode_="r", *a_, **k_: Short(os.fdopen(fd_, mode_, *a_, **k_)) if "b" in mode_ else os.fdopen(fd_, mode_, *a_, **k_)
+    bad7 = []; buf7 = io.StringIO()
+    with kept_in(keep_sw, tmp_sw), contextlib.redirect_stdout(buf7): n7 = _try(lambda: DD.unpack(drive, [x5], bad7))
+    said8 = [l for l in buf7.getvalue().splitlines() if l.startswith("DECEASED CACHE")]
+    check("drive merge (D2): the kept copy is READ BACK and compared before anything takes the file's place - a copy that came out short (the folder took fewer bytes than it was given and said nothing) is no copy: it is taken away again in every folder that was tried, and the file is left exactly as it is, NOT MERGED - never replaced on the strength of a copy nobody checked",
+          lambda: n7 != "raised" and bad7 == [x5] and text_of(x5) == texts[cut] and files_under(keep_sw) == [] and files_under(os.path.join(tmp_sw, KEEP_NAME)) == [] and len(said8) == 1
+          and said8[0].startswith("DECEASED CACHE NOT MERGED: " + x5) and "its bytes could be kept in no folder outside the registers folders and the git checkouts" in said8[0] and not any(".tmp" in n for n in os.listdir(d)),
+          (n7, bad7, said8, files_under(keep_sw), files_under(tmp_sw)))
+    m_file, m_dir = os.stat(os.path.join(keep, aside[cut][0])).st_mode & 0o777, os.stat(keep).st_mode & 0o777
+    check("drive merge (D2): the kept file holds days of death - only the user the run works as can read it (mode 600), and the folder the tool made for it is that user's alone (mode 700)", lambda: m_file == 0o600 and m_dir == 0o700, (oct(m_file), oct(m_dir)))
     # pack on a cache that cannot be read: one plain line, exit 2, never a traceback - and nothing is written for Drive
     outp = os.path.join(d, "for_drive.json"); res = []; pcut, plst = os.path.join(d, "pack_cut_off.json"), os.path.join(d, "pack_a_list.json"); open(pcut, "w").write(texts[cut]); open(plst, "w").write(texts[lst])
     for src in (pcut, plst, os.path.join(d, "no_such_cache.json")):
@@ -1712,14 +1807,26 @@ def t_drive_unreadable_cache():
           lambda: all(r[0] == 2 and len(r[1]) == 1 and r[1][0].startswith("DECEASED CACHE NOT PACKED: ") and r[1][0].endswith(" - TOP OF THE REPORT") and r[2] == "" and r[3] is False for r in res) and "Traceback" not in json.dumps(res), res)
     c6, o6, e6 = drive_tool("pack", good, outp)
     check("drive copy (S2): ... and a cache that can be read is packed as always: exit 0, the counts of the three lists in one line", lambda: c6 == 0 and e6 == "" and o6.strip().startswith("packed dated/nodeath/noday: (") and os.path.exists(outp), (c6, o6, e6))
-    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); same, reset_one = cid(), cid(); odd = os.path.join(TMP, "drive_odd.json")
-    mine = {same: {"dod": iso(ago(45)), "checked": iso(ago(20)), "src": "stedi-medicare-271"}, reset_one: reask_rec()}; put_cache(json.loads(json.dumps(mine)))
-    json.dump({"dated": {a: iso(ago(50)), b: [iso(ago(40)), 20261101], same: [iso(ago(45)), 20261101], reset_one: [iso(ago(45)), {"no": "date"}], cid(): [iso(ago(30))], "x": None}, "nodeath": {cid(): 7, cid(): None}}, open(odd, "w"))
+    reset(); DD = load("scripts/helpers/dg_drive.py", "dg_drive"); same = cid(); odd = os.path.join(TMP, "drive_odd.json")
+    mine = {same: {"dod": iso(ago(45)), "checked": iso(ago(20)), "src": "stedi-medicare-271"}}; put_cache(json.loads(json.dumps(mine)))
+    json.dump({"dated": {a: iso(ago(50)), b: [iso(ago(40)), 20261101], same: [iso(ago(45)), 20261101], cid(): [iso(ago(30))], "x": None}, "nodeath": {cid(): 7, cid(): None}}, open(odd, "w"))
     n = _try(lambda: DD.unpack(odd, [DCACHE])); got = cache_json() or {}
     check("drive merge: a hand-made Drive copy whose entries are not in the tool's own shape - a bare day where [day, checked] belongs, a check date that is a number, a list of one - does not end the merge on an error (it did): what can be read is taken, the rest is passed over",
           lambda: n != "raised" and got.get(b, {}).get("dod") == iso(ago(40)) and all(isinstance(v, dict) for v in got.values()), (n, got))
-    check("drive merge (d15, the 'dated' list): ... a day whose check date is no text - a number, a table - is a day with NO check date: written so for a chart the cache does not know, compared as such with an entry that holds the same day (that entry stays as it is - the merge ended on an error there), and never brought into an entry that carries 'reask'",
-          lambda: n != "raised" and got.get(b) == {"dod": iso(ago(40)), "checked": None, "src": "stedi-medicare-271 (drive copy)"} and got.get(same) == mine[same] and got.get(reset_one) == mine[reset_one], (n, got.get(b), got.get(same), got.get(reset_one)))
+    check("drive merge (d15, the 'dated' list): ... a day whose check date is no text - a number, a table - is a day with NO check date: written so for a chart the cache does not know, and compared as such with an entry that holds the same day (that entry stays as it is - the merge ended on an error there)",
+          lambda: n != "raised" and got.get(b) == {"dod": iso(ago(40)), "checked": None, "src": "stedi-medicare-271 (drive copy)"} and got.get(same) == mine[same], (n, got.get(b), got.get(same)))
+    # d17 (a one-line change the fourth check made that no check noticed): a hand-made copy whose LISTS are not tables
+    res = []
+    for name, copy in (("'dated' is a list", {"dated": [a, iso(ago(50))], "nodeath": {b: iso(ago(3))}, "noday": {}}), ("'nodeath' is a list", {"dated": {a: [iso(ago(50)), iso(ago(9))]}, "nodeath": [b], "noday": {}}),
+                       ("'noday' is a text", {"dated": {a: [iso(ago(50)), iso(ago(9))]}, "nodeath": {b: iso(ago(3))}, "noday": "none"}), ("'dated' is a number", {"dated": 7, "nodeath": {b: iso(ago(3))}}),
+                       ("the copy is a list", [1, 2, 3]), ("the copy is a text", "nothing")):
+        f17 = os.path.join(TMP, "drive_d17_%d.json" % len(res)); json.dump(copy, open(f17, "w")); c17 = os.path.join(TMP, "cache_d17_%d.json" % len(res)); json.dump({same: mine[same]}, open(c17, "w"))
+        cc, oo, ee = _try(lambda: drive_tool("unpack", f17, c17), ("raised", "", "")); res.append((name, cc, ee[-200:], "Traceback" in oo + ee, _try(lambda: json.load(open(c17)))))
+    by = {r[0]: r for r in res}
+    check("drive merge (d17): a hand-made Drive copy whose 'dated', 'nodeath' or 'noday' is no table - a list, a number, a text - or that is no table itself merges with exit 0 and never ends on a traceback: such a list counts as an empty one, the lists that ARE tables are still merged, and what the cache held stays",
+          lambda: all(r[1] == 0 and r[2] == "" and r[3] is False and r[4] != "raised" and r[4].get(same) == mine[same] for r in res)
+          and by["'dated' is a list"][4].get(b, {}).get("dod", "x") is None and a not in by["'dated' is a list"][4] and by["'nodeath' is a list"][4].get(a, {}).get("dod") == iso(ago(50)) and b not in by["'nodeath' is a list"][4]
+          and by["'noday' is a text"][4].get(a, {}).get("dod") == iso(ago(50)) and by["'dated' is a number"][4].get(b, {}).get("dod", "x") is None and sorted(by["the copy is a list"][4]) == sorted(by["the copy is a text"][4]) == [same], res)
 # ==== 4b. the guard asks AdvancedMD's FREE check first (William 11/25/2026 - rules A1 to A11 of his order) ======================
 BLOCK = "pat%s DOS %s is after date of death %s (%s) - claim must not be submitted; void the charge"
 UNVERIFIED = "pat%s DOS %s: date of death UNVERIFIED (lookup failed)"
@@ -2207,8 +2314,8 @@ def t_free_texts():
     check("texts (review finding 2): whatever marker the mirror's table of protected helpers holds for deceased_guard.py is a string BOTH copies of the guard carry - the mirror never refuses the repository's own guard as stale; and the line only the free-first guard has, the one that table can tell an older workspace copy by, stands in each copy exactly once",
           lambda: bool(marker) and marker in src and marker in _read("core/deceased_guard.py") and src.count(line) == 1 and _read("core/deceased_guard.py").count(line) == 1, marker)
     hk = re.search(r'"deceased_guard\.py":\s*(\'[^\'\n]*\'|"[^"\n]*")', _read("scripts/helpers/claimocity_helpers_current.py")); helper_marker = hk.group(1)[1:-1] if hk else None
-    check("texts (S7 of the fourth round): the guard's marker - in the mirror's table and in the feed helpers' own list (claimocity_helpers_current.py) - is ONE line only THIS round's guard has, the line that defines NotAnswered: a workspace copy of the round before (it knows no record that was reset, and would clear such a chart before Medicare has answered) is told by it and never comes back over the repository's guard",
-          lambda: marker == helper_marker == "class NotAnswered(DayLost):" and src.count(marker) == 1 and _read("core/deceased_guard.py").count(marker) == 1, (marker, helper_marker))
+    check("texts: ... and the feed helpers' own list (claimocity_helpers_current.py) holds that very marker for the guard - one line, once in each copy (which line it is: t_round5_markers)",
+          lambda: bool(marker) and marker == helper_marker and src.count(marker) == 1 and _read("core/deceased_guard.py").count(marker) == 1, (marker, helper_marker))
     GATE = load("tools/mirror/phi_gate.py", "phi_gate_under_test")                  # the gate's text transform only: pure, no file, no network
     moved = [n for n in ("scripts/helpers/deceased_guard.py", "core/deceased_guard.py") if GATE.redact(_read(n), {}, code=True) != _read(n)]
     check("texts: the privacy gate's tree rules (what mirror.py runs on changed files) leave the guard exactly as it is - no date in its header sits where the gate would take it for a date of birth or of death", lambda: moved == [], moved)
@@ -2404,7 +2511,7 @@ GUARD_TESTS = [t_guard_death, t_guard_not_found_failed, t_guard_shared, t_guard_
                t_guard_day_shapes, t_guard_day_lost, t_guard_charge_unreadable, t_guard_cache_state, t_drive_copy,      # the second verification's findings (section 4a2)
                t_guard_record_keeps, t_drive_merge_keeps, t_guard_flag_no_day, t_guard_covered, t_one_reading_of_a_day, t_guard_odd_entry,      # the independent check of the second round (11/25/2026): its findings, each named in its check
                t_guard_lookup_keeps_day, t_death_on_record_shapes, t_guard_cannot_write, t_guard_lost_words_and_two_days, t_drive_unreadable_cache, t_guard_asked_once,      # the third round (11/25/2026, the second independent check - section 4a3)
-               t_guard_reask, t_drive_reask,      # the fourth round (the third independent check): the owner's word resets the record and Medicare is asked afresh
+               t_no_way_out, t_drive_copy_v2, t_round5_small, t_round5_markers,      # the fifth round (11/26/2026): the tool for a wrongly recorded death is out again; the kept cache file; the small things; the markers
                t_precheck_args, t_precheck_words, t_precheck_store, t_ten_charts]
 FREE_TESTS = [t_free_was_on, t_free_death, t_free_alive, t_free_unusable, t_free_plan, t_free_order, t_free_switch, t_free_down, t_free_counts, t_free_store, t_free_charge,
               t_free_missing, t_free_privacy, t_free_death_unreadable, t_free_failed_mark, t_free_pins, t_free_texts]      # 11/25/2026: AdvancedMD's free check first (section 4b) and its review the same day (4c)
@@ -2615,95 +2722,68 @@ with no_write(_g11):
 check("guard (carry, R5): the cache in use can be read but not WRITTEN - what the carry could not write is kept in memory for the rest of the process: the other file's day blocks the claim (it answered 'not blocked'), its placeholder is not cleared, a visit before the day passes; the file is as it was and nothing is left beside it",
       lambda: _a11[0] != "raised" and _a11[0][0] is True and iso(ago(40)) in _a11[0][1] and _a11[1] is True and _a11[2] == (False, "") and sorted(_g11._UNSAVED) == ["7250", "7251"]
       and open(os.path.join(_ws11, "registers", "deceased_cache.json")).read() == _t11 and os.listdir(os.path.join(_ws11, "registers")) == ["deceased_cache.json"], (_a11, sorted(_g11._UNSAVED)))
-# S1 (the fourth round, 11/25/2026 - the third independent check): THE OWNER'S WORD RESETS THE RECORD (death_off_record.py writes the RE-ASK entry into the cache in use).
-# ONE narrow rule is all the carry knows of it: while the entry of the cache in use carries 'reask', a death ANOTHER cache file holds is brought into it only when that
-# file's entry was checked AFTER the day of the reset - the older record must not come back before Medicare was asked. Nothing else: a RE-ASK entry in another file is
-# not carried anywhere, and nothing is compared with the date of his word.
-_D12 = ago(10); _re12 = reask_rec(_D12, name="kept")
-_k12 = ("the old day, checked long before the reset", "a day checked ON the day of the reset", "a day with no check date", "a day whose check date is no date", "a day checked AFTER the reset", "the old day, checked after the reset",
-        "no day, checked before", "no day, no check date", "no day, checked after", "no death", "an odd value")
-_o12 = [{"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x"}, {"dod": ymd(ago(3)), "checked": iso(_D12)}, {"dod": iso(ago(40))}, {"dod": iso(ago(40)), "checked": "not a day"}, {"dod": iso(ago(5)), "checked": iso(ago(4)), "src": "stedi-medicare-271"},
-        {"dod": mdy(ago(40)), "checked": iso(ago(2)) + "T08:00:00", "src": "y"}, {"dod": PLACEHOLDER, "checked": iso(ago(20)), "src": "x"}, {"dod": PLACEHOLDER}, {"dod": "day not known", "checked": iso(ago(3)), "src": "amd: deceased on the chart, no date"},
-        {"dod": None, "checked": iso(TODAY), "src": "stedi: no death on record"}, {"dod": "unknown", "checked": iso(TODAY)}, {"dod": iso(ago(6)), "checked": iso(ago(1))}]      # (the last: a day checked after the reset whose entry names no source)
-_ws12 = _cache_files("s1_carry", {str(7300 + i): dict(_re12) for i in range(len(_o12))}, local={str(7300 + i): e for i, e in enumerate(_o12)}); _g12 = _guard_at(os.path.join(_ws12, "deceased_guard.py"))
+# D1 of the fifth round (11/26/2026): the carry knows a day and a death on record with no day - NOTHING of the owner's word. Rounds three and four had each given
+# it a part (c): an entry that kept another file's older record out. An entry that still carries those rounds' fields is an entry like any other: what another
+# cache file holds for the chart is carried into it by the two rules the carry has.
+_D12 = ago(10); _of12 = old_word_rec(_D12, name="kept")
+_k12 = ("the old day, checked long before", "a day with no check date", "a day whose check date is no date", "a day checked lately", "no day, checked long before", "no day, no check date", "the guard's own 'day not known'", "no death", "an odd value")
+_o12 = [{"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x"}, {"dod": iso(ago(40))}, {"dod": iso(ago(40)), "checked": "not a day"}, {"dod": mdy(ago(5)), "checked": iso(ago(4)) + "T08:00:00", "src": "stedi-medicare-271"},
+        {"dod": PLACEHOLDER, "checked": iso(ago(20)), "src": "x"}, {"dod": PLACEHOLDER}, {"dod": "day not known", "checked": iso(ago(3)), "src": "amd: deceased on the chart, no date"},
+        {"dod": None, "checked": iso(TODAY), "src": "stedi: no death on record"}, {"dod": "unknown", "checked": iso(TODAY)}]
+_ws12 = _cache_files("r5_carry_old_fields", {str(7300 + i): dict(_of12) for i in range(len(_o12))}, local={str(7300 + i): e for i, e in enumerate(_o12)}); _g12 = _guard_at(os.path.join(_ws12, "deceased_guard.py"))
 _a12 = [says(lambda i=i: _g12.check(str(7300 + i), iso(ago(1)), "car6404", "99349", allow_lookup=False)) for i in range(len(_o12))]
 _c12 = json.load(open(os.path.join(_ws12, "registers", "deceased_cache.json")))
-check("guard (carry, S1 - the ONE rule): the cache in use holds the RE-ASK entry for a chart. A death ANOTHER cache file holds whose entry was checked ON OR BEFORE the day of the reset - the old record - or that has no check date (or one that is no date) is NOT brought into it, day or no day; neither is 'no death' or an odd value: the entry stays exactly as the helper wrote it, and the claim is not cleared before Medicare has answered (NotAnswered)",
-      lambda: all(_c12[str(7300 + i)] == _re12 and _a12[i] == "NotAnswered" for i in (0, 1, 2, 3, 6, 7, 9, 10)), [(_k12[i], _a12[i], _c12[str(7300 + i)]) for i in (0, 1, 2, 3, 6, 7, 9, 10) if not (_c12[str(7300 + i)] == _re12 and _a12[i] == "NotAnswered")])
-check("guard (carry, S1): ... a death checked AFTER that day is taken as for any chart - a day (whichever day it names, a time behind its check date or not) blocks the claim, a death with no day leaves the chart not cleared (DayLost itself); the entry's name stays and the fields of the reset are gone",
-      lambda: _a12[4] != "NotAnswered" and _a12[4][0] is True and _c12["7304"] == {"dod": iso(ago(5)), "checked": iso(ago(4)), "src": "stedi-medicare-271", "name": "kept"} and _a12[5][0] is True
-      and _c12["7305"] == {"dod": iso(ago(40)), "checked": iso(ago(2)) + "T08:00:00", "src": "y", "name": "kept"} and _a12[8] == "DayLost" and _c12["7308"] == {"dod": "day not known", "checked": iso(ago(3)), "src": "amd: deceased on the chart, no date", "name": "kept"},
-      (_a12[4], _c12["7304"], _a12[5], _c12["7305"], _a12[8], _c12["7308"]))
-check("guard (carry, S1): ... and a death that is taken into the entry never keeps the RESET's source or check date: an entry of the other file that names no source is written with the carry's own ('carried from another cache file of this workspace') - not as 'off the record on the owner's word'",
-      lambda: _a12[11] != "NotAnswered" and _a12[11][0] is True and _c12["7311"] == {"dod": iso(ago(6)), "checked": iso(ago(1)), "src": "carried from another cache file of this workspace", "name": "kept"}, (_a12[11], _c12.get("7311")))
-# ... a RE-ASK entry that stands in ANOTHER cache file means nothing to the carry: only the cache the guard answers from says that a chart is to be asked about afresh
-_in13 = [{"dod": iso(ago(40)), "checked": iso(ago(30)), "src": "x", "name": "kept"}, {"dod": PLACEHOLDER, "checked": iso(ago(20))}, {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record", "name": "kept"}, None]
-_ws13 = _cache_files("s1_carry_elsewhere", {str(7320 + i): e for i, e in enumerate(_in13) if e is not None}, local={str(7320 + i): reask_rec(_D12) for i in range(len(_in13))}); _g13 = _guard_at(os.path.join(_ws13, "deceased_guard.py"))
-_a13 = [says(lambda i=i: _g13.check(str(7320 + i), iso(ago(1)), "car6404", "99349", allow_lookup=False)) for i in range(len(_in13))]
-_c13 = json.load(open(os.path.join(_ws13, "registers", "deceased_cache.json")))
-check("guard (carry, S1): nothing else about his word is carried - a RE-ASK entry in ANOTHER cache file changes nothing in the cache in use: its day still blocks, its death with no day is still not cleared, its 'no death on record' stays, and a chart it does not know gets no entry (the helper itself writes the RE-ASK entry into the cache in use whenever any file held a death)",
-      lambda: _c13 == {str(7320 + i): e for i, e in enumerate(_in13) if e is not None} and _a13[0] != "NotAnswered" and _a13[0][0] is True and _a13[1] == "DayLost" and _a13[2] == _a13[3] == (False, ""), (_a13, _c13))
-# ONE reading for the guard and the import. The import reads the cache files itself (it asks the guard only about care-management charts, charts whose day is lost and
-# charts whose record was reset) - its death_read and the guard after its carry must come to the SAME answer for every set of entries the files can hold for one
-# chart: blocked by which day, held for a lost day, reset (to be asked afresh), or clear. The first table death_read gets is the cache the guard answers from.
-_F14 = lift("scripts/helpers/claimocity_import.py", "death_day", "death_unread", "death_reask", "death_after", "death_read", "DEATH_NO_DAY", "DEATH_WORDS", "DEATH_REASK_UNDATED")
-_e14 = {"no entry": None, "no death": {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record"}, "old day": {"dod": iso(ago(40)), "checked": iso(ago(30))}, "a day checked on the day of the reset": {"dod": mdy(ago(12)), "checked": iso(_D12)},
-        "a day checked after": {"dod": iso(ago(5)), "checked": iso(ago(4))}, "no day, before": {"dod": PLACEHOLDER, "checked": iso(ago(20))}, "no day, after": {"dod": "day not known", "checked": iso(ago(3))}, "reset": reask_rec(_D12),
-        "reset, its day not readable": dict(reask_rec(_D12), reask=PLACEHOLDER), "odd": {"dod": "unknown", "checked": iso(TODAY)}}
+check("guard (carry, D1 of the fifth round): the cache in use holds, for a chart, an entry that still carries the fields rounds three and four wrote for the owner's word. A day ANOTHER cache file holds is carried into it whatever that file's check date - checked long before, with no check date, with one that is no date, or lately - and blocks the claim after it (the fourth round kept every one of the first three OUT, and the claim was held or passed by other rules); the entry's name stays",
+      lambda: all(_a12[i] not in ("DayLost", "raised") and _a12[i][0] is True and _c12[str(7300 + i)].get("name") == "kept" for i in (0, 1, 2, 3)) and [_c12[str(7300 + i)]["dod"] for i in (0, 1, 2, 3)] == [iso(ago(40))] * 3 + [iso(ago(5))]
+      and _c12["7300"]["checked"] == iso(ago(30)) and _c12["7300"]["src"] == "x" and _c12["7303"]["src"] == "stedi-medicare-271", [(_k12[i], _a12[i], _c12[str(7300 + i)]) for i in (0, 1, 2, 3)])
+check("guard (carry, D1): ... a death with no day another file holds is carried too - the placeholder with a check date or with none, the guard's own 'day not known' - and the chart is not cleared (DayLost); another file's 'no death' and an odd value change nothing: the entry stays as it was and the claim is answered 'not blocked' from the cache, as for any chart with no death on record",
+      lambda: [_a12[i] for i in (4, 5, 6)] == ["DayLost"] * 3 and [_c12[str(7300 + i)]["dod"] for i in (4, 5, 6)] == [PLACEHOLDER, PLACEHOLDER, "day not known"] and _a12[7] == _a12[8] == (False, "") and _c12["7307"] == _c12["7308"] == _of12,
+      [(_k12[i], _a12[i], _c12[str(7300 + i)]) for i in (4, 5, 6, 7, 8)])
+# ONE reading for the guard and the import. The import reads the cache files itself (it asks the guard only about care-management charts and charts whose day is
+# lost) - its death_read and the guard after its carry must come to the SAME answer for every set of entries the files can hold for one chart: blocked by which
+# day, held for a lost day, or clear. An entry with the fields of the rounds before is among the kinds: it must read as 'no death' everywhere.
+_F14 = lift("scripts/helpers/claimocity_import.py", "death_day", "death_unread", "death_read", "DEATH_NO_DAY", "DEATH_WORDS", "DEATH_NOTHING")
+_e14 = {"no entry": None, "no death": {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record"}, "old day": {"dod": iso(ago(40)), "checked": iso(ago(30))}, "a day in another shape": {"dod": mdy(ago(12)), "checked": iso(_D12)},
+        "a later day": {"dod": iso(ago(5)), "checked": iso(ago(4))}, "no day, the placeholder": {"dod": PLACEHOLDER, "checked": iso(ago(20))}, "no day, the guard's own": {"dod": "day not known", "checked": iso(ago(3))},
+        "old fields": old_word_rec(_D12), "odd": {"dod": "unknown", "checked": iso(TODAY)}, "nothing in brackets": {"dod": "[none]", "checked": iso(ago(2))}}
 def _says14(g, chart):
     try: r = g.check(chart, iso(TODAY), "car6404", "99349", allow_lookup=False)
-    except g.NotAnswered: return "reset"
     except g.DayLost: return "lost"
     return ("blocked " + re.search(r"after date of death (\S+)", r[1]).group(1)) if r[0] else "clear"
 def _reads14(tables, chart):
-    try: d = _F14["death_read"](json.loads(json.dumps(tables))); return ("blocked " + d[0][chart]["dod"]) if chart in d[0] else "lost" if chart in d[1] else "reset" if chart in d[2] else "clear"
+    try: d = _F14["death_read"](json.loads(json.dumps(tables))); return "death_read gave %d values" % len(d) if len(d) != 2 else ("blocked " + d[0][chart]["dod"]) if chart in d[0] else "lost" if chart in d[1] else "clear"
     except Exception as e: return "death_read raised " + type(e).__name__
 _p14 = [(x, y) for x in _e14 for y in _e14]; _n14 = {p: str(7400 + i) for i, p in enumerate(_p14)}
 _t14 = ({_n14[p]: _e14[p[0]] for p in _p14 if _e14[p[0]] is not None}, {_n14[p]: _e14[p[1]] for p in _p14 if _e14[p[1]] is not None})
-_ws14 = _cache_files("s1_one_reading", json.loads(json.dumps(_t14[0])), local=json.loads(json.dumps(_t14[1]))); _g14 = _guard_at(os.path.join(_ws14, "deceased_guard.py"))
+_ws14 = _cache_files("r5_one_reading", json.loads(json.dumps(_t14[0])), local=json.loads(json.dumps(_t14[1]))); _g14 = _guard_at(os.path.join(_ws14, "deceased_guard.py"))
 _r14 = [(p, _try(lambda p=p: _says14(_g14, _n14[p])), _reads14(_t14, _n14[p])) for p in _p14]
-check("ONE reading (S1): for every pair of entries the cache in use and another cache file can hold for one chart - no entry, 'no death', the old day, a day checked on the day of the reset, a day checked after it, a death with no day checked before or after it, the RE-ASK entry, one whose day cannot be read, an odd value: %d pairs - the guard (after its carry) and the import's death_read (the cache in use first) give the SAME answer: blocked by the same day, held for a lost day, reset, or clear" % len(_p14),
-      lambda: len(_r14) == 100 and all(g == f for _p, g, f in _r14) and {f.split()[0] for _p, g, f in _r14} == {"blocked", "lost", "reset", "clear"}, [r for r in _r14 if r[1] != r[2]][:8])
-check("ONE reading (S1): ... and that answer is the rule's: with the RE-ASK entry in the cache in use the other file's old day, a day checked on the day of the reset and a death with no day checked before it are NOT brought in (reset); a day and a death with no day checked after it are (blocked / lost); the RE-ASK entry in the OTHER file means nothing (the cache in use decides: blocked by its day, lost, or clear)",
-      lambda: all(dict(((x, y), g) for (x, y), g, f in _r14)[k] == v for k, v in {("reset", "old day"): "reset", ("reset", "a day checked on the day of the reset"): "reset", ("reset", "no day, before"): "reset", ("reset", "no death"): "reset", ("reset", "no entry"): "reset",
-              ("reset", "reset"): "reset", ("reset", "a day checked after"): "blocked " + iso(ago(5)), ("reset", "no day, after"): "lost", ("reset, its day not readable", "a day checked after"): "reset", ("reset, its day not readable", "no day, after"): "reset",
-              ("old day", "reset"): "blocked " + iso(ago(40)), ("no day, before", "reset"): "lost", ("no death", "reset"): "clear", ("no entry", "reset"): "clear", ("old day", "a day checked after"): "blocked " + iso(ago(40)),
-              ("a day checked after", "old day"): "blocked " + iso(ago(40)), ("no day, before", "old day"): "blocked " + iso(ago(40)), ("odd", "no death"): "clear", ("no entry", "no day, before"): "lost"}.items()),
-      [r for r in _r14 if r[0][0].startswith("reset") or r[0][1].startswith("reset")][:12])
-# THREE files (finding 4 of the third check: the third round's carry read them in a fixed order and could end 'off the record' although one of them held a later
-# day; the grid above held pairs only). Every triple of six kinds of entry - the cache in use, the feed helpers' file of before (read first), the copy at the old path
-# (read second): the guard's answer must not depend on the order of the two other files, and it must be the import's.
-_e15 = {k: _e14[k] for k in ("no entry", "no death", "old day", "a day checked after", "no day, after", "reset")}; _e15["another day checked after"] = {"dod": iso(ago(8)), "checked": iso(ago(2))}
+check("ONE reading: for every pair of entries the cache in use and another cache file can hold for one chart - no entry, 'no death', an old day, a day in another shape, a later day, a death with no day (the placeholder, the guard's own word), an entry with the fields of the rounds before, an odd value, a bracketed text that means nothing: %d pairs - the guard (after its carry) and the import's death_read give the SAME answer: blocked by the same day, held for a lost day, or clear; death_read gives two values, no third" % len(_p14),
+      lambda: len(_r14) == 100 and all(g == f for _p, g, f in _r14) and {f.split()[0] for _p, g, f in _r14} == {"blocked", "lost", "clear"}, [r for r in _r14 if r[1] != r[2]][:8])
+check("ONE reading: ... and that answer is the two rules': of the days the two files hold the EARLIEST blocks, whichever file holds it; a death with no day holds the chart unless a file names a day; and an entry with the fields of the rounds before, an odd value and a bracketed 'nothing' are no death - whatever the other file holds decides",
+      lambda: all(dict(((x, y), g) for (x, y), g, f in _r14)[k] == v for k, v in {("old day", "a later day"): "blocked " + iso(ago(40)), ("a later day", "old day"): "blocked " + iso(ago(40)), ("a later day", "a day in another shape"): "blocked " + iso(ago(12)),
+              ("no day, the placeholder", "old day"): "blocked " + iso(ago(40)), ("old day", "no day, the guard's own"): "blocked " + iso(ago(40)), ("no entry", "no day, the placeholder"): "lost", ("no death", "no day, the guard's own"): "lost",
+              ("no day, the placeholder", "no death"): "lost", ("old fields", "old day"): "blocked " + iso(ago(40)), ("old fields", "a later day"): "blocked " + iso(ago(5)), ("old fields", "no day, the placeholder"): "lost",
+              ("old fields", "no death"): "clear", ("old fields", "no entry"): "clear", ("old fields", "old fields"): "clear", ("old day", "old fields"): "blocked " + iso(ago(40)), ("no day, the placeholder", "old fields"): "lost",
+              ("no entry", "old fields"): "clear", ("odd", "no death"): "clear", ("nothing in brackets", "no death"): "clear", ("nothing in brackets", "old day"): "blocked " + iso(ago(40)), ("no entry", "nothing in brackets"): "clear",
+              ("no entry", "no entry"): "clear"}.items()),
+      [r for r in _r14 if r[0][0] in ("old fields", "nothing in brackets") or r[0][1] in ("old fields", "nothing in brackets")][:12])
+# THREE files (finding 4 of the third check: the third round's carry read them in a fixed order and its answer could depend on it; the grid above holds pairs
+# only). Every triple of seven kinds of entry - the cache in use, the feed helpers' file of before (read first), the copy at the old path (read second): the
+# guard's answer must not depend on the order of the two other files, and it must be the import's.
+_e15 = {k: _e14[k] for k in ("no entry", "no death", "old day", "a later day", "no day, the guard's own", "old fields")}; _e15["another later day"] = {"dod": iso(ago(8)), "checked": iso(ago(2))}
 _p15 = [(x, y, z) for x in _e15 for y in _e15 for z in _e15]; _n15 = {p: str(10000 + i) for i, p in enumerate(_p15)}
 _t15 = tuple({_n15[p]: _e15[p[j]] for p in _p15 if _e15[p[j]] is not None} for j in range(3))
-_ws15 = _cache_files("s1_three_files", json.loads(json.dumps(_t15[0])), local=json.loads(json.dumps(_t15[1])), old=json.loads(json.dumps(_t15[2]))); _g15 = _guard_at(os.path.join(_ws15, "deceased_guard.py"))
+_ws15 = _cache_files("r5_three_files", json.loads(json.dumps(_t15[0])), local=json.loads(json.dumps(_t15[1])), old=json.loads(json.dumps(_t15[2]))); _g15 = _guard_at(os.path.join(_ws15, "deceased_guard.py"))
 _r15 = {p: (_try(lambda p=p: _says14(_g15, _n15[p])), _reads14(_t15, _n15[p])) for p in _p15}
-check("THREE files (S1, finding 4): for every triple of entries the cache in use and TWO other cache files can hold for one chart (%d triples) the guard after its carry and the import's death_read give the same answer - and the guard's answer does not depend on which of the two other files is read first" % len(_p15),
-      lambda: len(_r15) == 343 and len(_g15._others()) == 2 and all(g == f for g, f in _r15.values()) and all(_r15[(x, y, z)][0] == _r15[(x, z, y)][0] for x, y, z in _p15),
+check("THREE files (finding 4 of the third check): for every triple of entries the cache in use and TWO other cache files can hold for one chart (%d triples) the guard after its carry and the import's death_read give the same answer - and neither depends on the order of the three files: every way of laying the same three entries into the three files ends in the same answer" % len(_p15),
+      lambda: len(_r15) == 343 and len(_g15._others()) == 2 and all(g == f for g, f in _r15.values()) and all(len({_r15[q][0] for q in ((x, y, z), (x, z, y), (y, x, z), (y, z, x), (z, x, y), (z, y, x))}) == 1 for x, y, z in _p15),
       [(p, r) for p, r in _r15.items() if r[0] != r[1]][:5] + [(p, _r15[p][0], _r15[(p[0], p[2], p[1])][0]) for p in _p15 if _r15[p][0] != _r15[(p[0], p[2], p[1])][0]][:5])
-check("THREE files (S1): ... and it is the rule's: the RE-ASK entry in the cache in use, a day checked after the reset in one file and the OLD day in the other - blocked by the day checked after, in both orders (the old day is not brought in behind it: it lies before the reset whichever file is read first); two days checked after: the earlier of them; the RE-ASK entry in one of the OTHER files and a day in each of the two others: the earlier day, as for any chart",
-      lambda: _r15[("reset", "a day checked after", "old day")][0] == _r15[("reset", "old day", "a day checked after")][0] == "blocked " + iso(ago(5)) and _r15[("reset", "no day, after", "old day")][0] == _r15[("reset", "old day", "no day, after")][0] == "lost"
-      and _r15[("reset", "a day checked after", "another day checked after")][0] == _r15[("reset", "another day checked after", "a day checked after")][0] == "blocked " + iso(ago(8)) and _r15[("reset", "old day", "no death")][0] == "reset"
-      and _r15[("old day", "a day checked after", "reset")][0] == _r15[("old day", "reset", "a day checked after")][0] == "blocked " + iso(ago(40)) and _r15[("no entry", "reset", "old day")][0] == "blocked " + iso(ago(40)) and _r15[("no entry", "reset", "no death")][0] == "clear",
-      {p: _r15[p] for p in (("reset", "a day checked after", "old day"), ("reset", "old day", "a day checked after"), ("old day", "a day checked after", "reset"), ("no entry", "reset", "old day"))})
-# ONE reading of the two small questions the rule asks - 'is this the RE-ASK entry, and since when' and 'was this entry checked after that day' - in the guard, in the
-# import and in dg_drive.py (the three are written out in their own files and held together here, as the reading of a day is)
-_DD16 = load("scripts/helpers/dg_drive.py", "dg_drive"); _y = TODAY.year
-_recs16 = [reask_rec(_D12), dict(reask_rec(_D12), dod=iso(ago(40))), dict(reask_rec(_D12), dod=PLACEHOLDER), dict(reask_rec(_D12), dod="unknown"), dict(reask_rec(_D12), reask=ymd(_D12)), dict(reask_rec(_D12), reask=mdy(_D12)), dict(reask_rec(_D12), reask=PLACEHOLDER),
-           dict(reask_rec(_D12), reask="soon"), dict(reask_rec(_D12), reask=True), dict(reask_rec(_D12), reask=7), dict(reask_rec(_D12), reask=""), dict(reask_rec(_D12), reask=None), dict(reask_rec(_D12), reask=0), dict(reask_rec(_D12), reask=[]),
-           {"dod": None, "checked": iso(TODAY)}, {"dod": None}, {}, "no entry", None, ["a", "list"], 7]
-_since16 = [iso(_D12), iso(ago(4)), "9999-12-" + "31"]
-_at16 = [iso(ago(4)), iso(_D12), iso(ago(11)), iso(ago(9)), iso(ago(9)) + "T23:59:59", iso(ago(9)) + " 08:00", ymd(ago(4)), mdy(ago(4)), "%d-02-31" % _y, "soon", "", None, 0, 7, int(ymd(ago(4))), True, ["x"], iso(TODAY + datetime.timedelta(days=1)),
-         iso(TODAY)[:8] + "32", iso(TODAY + datetime.timedelta(days=400))[:5] + "13-01"]      # (the last two: texts in the shape of a day that are no calendar day and would sort AFTER every day asked about - never 'after')
-_g16 = [(repr(r)[:50], _try(lambda r=r: DG._reask(r)), _try(lambda r=r: _F14["death_reask"](r)), _try(lambda r=r: _DD16.reask(r))) for r in _recs16]
-_h16 = [((repr(a), s), _try(lambda a=a, s=s: DG._after({"checked": a}, s)), _try(lambda a=a, s=s: _F14["death_after"]({"checked": a}, s)), _try(lambda a=a, s=s: _DD16.after(a, s))) for a in _at16 for s in _since16]
-check("ONE reading (S1): 'is this the RE-ASK entry, and since which day' is ONE answer in the guard (_reask), the import (death_reask) and dg_drive.py (reask) for every shape: the day, also written in eight digits or as MM/DD/YYYY; the far day when the field is there and names no date; None when the entry holds a death, when the field is empty or missing, and for whatever is no entry",
-      lambda: all(g == f == d and g != "raised" for _x, g, f, d in _g16) and [g for _x, g, f, d in _g16[:4]] == [iso(_D12), None, None, iso(_D12)] and [g for _x, g, f, d in _g16[4:10]] == [iso(_D12), iso(_D12)] + [DG.REASK_UNDATED] * 4
-      and [g for _x, g, f, d in _g16[10:]] == [None] * 11 and _F14.get("DEATH_REASK_UNDATED") == _DD16.REASK_UNDATED == DG.REASK_UNDATED, [r for r in _g16 if not (r[1] == r[2] == r[3])][:6] + [[g for _x, g, f, d in _g16]])
-check("ONE reading (S1): 'was this entry checked AFTER that day' is ONE answer in the three too: True only for a check date that can be read as YYYY-MM-DD (a time behind it or not) and is later than the day - never for the day itself, an earlier day, a date in another shape, a date that is none, a word, a number or nothing: an entry with no check date is NOT brought in",
-      lambda: all(g is f is d and g in (True, False) for _x, g, f, d in _h16) and [x[0] for x in _h16 if x[1]] == [(repr(iso(ago(4))), iso(_D12)), (repr(iso(ago(9))), iso(_D12)), (repr(iso(ago(9)) + "T23:59:59"), iso(_D12)), (repr(iso(ago(9)) + " 08:00"), iso(_D12)),
-                                                                                                       (repr(iso(TODAY + datetime.timedelta(days=1))), iso(_D12)), (repr(iso(TODAY + datetime.timedelta(days=1))), iso(ago(4)))],
-      [r for r in _h16 if not (r[1] is r[2] is r[3])][:6] + [[x[0] for x in _h16 if x[1] is True]])
+check("THREE files: ... and it is the two rules': the earliest of the days the three files hold blocks, wherever it stands; with no day in any of them a death with no day in one holds the chart; an entry with the fields of the rounds before keeps nothing out, wherever it stands - an old day in another file blocks behind it, in both orders",
+      lambda: _r15[("a later day", "another later day", "old day")][0] == _r15[("old day", "a later day", "another later day")][0] == "blocked " + iso(ago(40)) and _r15[("no entry", "a later day", "another later day")][0] == "blocked " + iso(ago(8))
+      and _r15[("no death", "no day, the guard's own", "no entry")][0] == _r15[("no entry", "no death", "no day, the guard's own")][0] == "lost" and _r15[("no day, the guard's own", "no death", "a later day")][0] == "blocked " + iso(ago(5))
+      and _r15[("old fields", "a later day", "old day")][0] == _r15[("old fields", "old day", "a later day")][0] == "blocked " + iso(ago(40)) and _r15[("old fields", "old day", "no death")][0] == "blocked " + iso(ago(40))
+      and _r15[("old fields", "no death", "no entry")][0] == "clear" and _r15[("no entry", "old fields", "old day")][0] == "blocked " + iso(ago(40)) and _r15[("no entry", "old fields", "no death")][0] == "clear",
+      {p: _r15[p] for p in (("old fields", "a later day", "old day"), ("old fields", "old day", "a later day"), ("old day", "a later day", "old fields"), ("no entry", "old fields", "old day"))})
 check("nothing was written in the checkout", lambda: _snapshot() == BEFORE, sorted(set(_snapshot().items()) ^ set(BEFORE.items()))[:5])
 print("test_lookup_rules: %d checks, %d failed%s" % (COUNT[0], len(FAILS), "" if not FAILS else " - " + "; ".join(FAILS)[:300]))
 sys.exit(1 if FAILS else 0)

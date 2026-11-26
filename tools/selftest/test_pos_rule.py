@@ -942,10 +942,6 @@ def _dg_check(pid, dos, carrier=None, proc=None, allow_lookup=True):      # the 
     if _DG.fail: raise RuntimeError("the look-up is down")
     if pid in getattr(_DG, "unverified", ()):      # unverified: charts whose look-up nobody answers - the real guard's answer: not blocked, and one line in its LOG
         _DG.LOG.append("pat%s DOS %s: date of death UNVERIFIED (lookup failed)" % (pid, dos)); return False, ""
-    _r0 = _dg_load().get(pid) or {}
-    if _r0.get("reask") and not _r0.get("dod") and not getattr(_DG, "before", False):      # the real guard's rule of 11/25/2026 (the fourth round): the record of a death was reset on the owner's word - Medicare is asked AFRESH for any claim; fresh: what it answers per chart (None = no death, else the day); nobody answers, or nobody may be asked: NotAnswered
-        if not allow_lookup or pid not in getattr(_DG, "fresh", {}): raise _DG.NotAnswered("the record was reset on the owner's word and Medicare has not answered")
-        c_ = _dg_load(); c_[pid] = {"dod": _DG.fresh[pid], "checked": "today", "src": "stand-in Medicare, a fresh answer"}; json.dump(c_, open(os.environ["DECEASED_CACHE"], "w"))
     if allow_lookup and pid in _DG.deaths:
         c_ = _dg_load(); c_[pid] = {"dod": _DG.deaths[pid], "src": "stand-in Medicare"}; json.dump(c_, open(os.environ["DECEASED_CACHE"], "w"))
     _r = _dg_load().get(pid) or {}
@@ -953,7 +949,7 @@ def _dg_check(pid, dos, carrier=None, proc=None, allow_lookup=True):      # the 
         if getattr(_DG, "before", False): return False, "stand-in"      # before: a guard from before the second verification - a day it cannot read is 'unknown' to it: it answers 'not blocked' and raises nothing
         raise _DG.DayLost("a death is on record, its day cannot be read, nobody named one")      # the real guard's rule of 11/25/2026 (the second verification)
     return bool(_r.get("dod")), "stand-in"
-_DG._load = _dg_load; _DG.check = _dg_check; _DG.DayLost = type("DayLost", (RuntimeError,), {}); _DG.NotAnswered = type("NotAnswered", (_DG.DayLost,), {})
+_DG._load = _dg_load; _DG.check = _dg_check; _DG.DayLost = type("DayLost", (RuntimeError,), {})
 _dg_old = sys.modules.get("deceased_guard"); sys.modules["deceased_guard"] = _DG
 CHART["721"] = []; CHART["722"] = []; CHART["723"] = []
 s4d = s4_fresh({"a.hl7": hl7("pc", B["n1"], "", [("99487", "20261122"), ("99489", "20261122")], NPI) + hl7("pd", B["n1"], "", [("99487", "20261122")], NPI) + hl7("pe", B["n1"], "", [("99309", "20261120")], NP_NPI)})
@@ -1127,79 +1123,16 @@ try:
             o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": _bad}}); _r2a.append((_bad, _made(r_), [x_["why"] for x_ in _why(r_, "pat723")] == [s4d.DEATH_DAY_WHY]))
         check("death on record (R2a, the import): ... while a damaged date (a text with four digits or more that is no calendar date), the guard's own 'day not known' and a placeholder with a time left behind it ARE a death on record - the visit is held as before",
               all(r_[1:] == (["pat721", "pat722"], True) for r_ in _r2a), _r2a)
-        # ---- the fourth round (11/25/2026, the third independent check), S1 on the import's side: THE RECORD OF A DEATH WAS RESET ON THE OWNER'S WORD
-        # (death_off_record.py writes the RE-ASK entry: no death, a check date long ago, reask = the day the helper ran). His word resets the record and Medicare is
-        # asked afresh: the import treats such a chart like one whose day is lost - it asks through the guard before ANY message of the chart is entered - and
-        # when the guard raises (nobody answered; nobody may be asked) the message is NOT entered: its skip row carries a second fixed why, DEATH_RESET_WHY, with
-        # the visit's codes and dates of service. The retry step hands it over again as it does for DEATH_DAY_WHY. The visit here is dated 11/20.
-        _rsk = lambda d_="15", **m_: dict({"dod": None, "checked": "2000-01-" + "01", "src": "off the record on the owner's word - Medicare is asked again", "reask": "2026-11-" + d_, "approved_by": "William 11/" + d_ + "/2026 (board)"}, **m_)
-        _DRW = getattr(s4d, "DEATH_RESET_WHY", "the import has no such why")
-        o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()}); _sk = _why(r_, "pat723"); _rl = [l_ for l_ in o_.splitlines() if l_.startswith("DEATH RECORD RESET: ")]
-        check("record reset (S1, the import): a chart whose record of a death was reset on the owner's word has NO visit entered before Medicare has answered - also an ordinary nursing visit: the guard is asked for it as an ordinary claim (the look-up allowed), nobody answers, and the message is skipped with the second fixed why, its codes and its dates of service; the other charts go in",
-              _made(r_) == ["pat721", "pat722"] and len(_sk) == 1 and _sk[0]["why"] == _DRW == "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - not entered"
-              and _sk[0].get("cpts") == ["99309"] and _sk[0].get("dos_lines") == ["11/20/2026"] and ("723", "11/20/2026", None, None, True) in c_ and s4d.DEATH_DAY_WHY not in o_, (r_, c_, o_[-400:]))
-        check("record reset (S1, the import): ... and the run says so in ONE line of its own for the top of the report - the count, the chart, what happens next - while nothing says that a day could not be read (it is another thing: no death is on record, Medicare has not answered yet)",
-              _rl == ["DEATH RECORD RESET: 1 visit(s) on 1 chart(s) - %s - TOP OF THE REPORT: Medicare is asked again at the chart's next claim and its answer decides; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: pat723" % _DRW]
-              and not any(l_.startswith("DEATH DAY UNKNOWN") for l_ in o_.splitlines()) and ('"%s": 1' % _DRW) in o_.splitlines()[-1] and o_.splitlines()[-1].startswith("DONE "), (_rl, o_[-500:]))
-        _fr = {}
-        for _nm, _ans in (("Medicare names no death", None), ("Medicare names a day before the visit", D_BEFORE), ("Medicare names a day after the visit", D_AFTER)):
-            _DG.fresh = {"723": _ans}
-            try: o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()})
-            finally: del _DG.fresh
-            _fr[_nm] = (_made(r_), [x_["why"] for x_ in _why(r_, "pat723")], ("723", "11/20/2026", None, None, True) in c_, _DRW in o_)
-        check("record reset (S1, the import): Medicare's FRESH answer decides - it names no death: the visit is entered; it names a day before the visit: the visit is kept out for good ('never billed'), and its row says where the day came from - Medicare, asked afresh because the record was reset; it names a day after the visit: the visit is entered",
-              _fr["Medicare names no death"] == (["pat721", "pat722", "pat723"], [], True, False)
-              and _fr["Medicare names a day before the visit"] == (["pat721", "pat722"], ["DOS after date of death %s (Medicare, asked afresh because the record of a death was reset on the owner's word) - never billed" % D_BEFORE], True, False)
-              and _fr["Medicare names a day after the visit"] == (["pat721", "pat722", "pat723"], [], True, False), _fr)
-        o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()}, argv=("--dry",)); _dry = (r_ is None, ("723", "11/20/2026", None, None, False) in c_, _DRW in o_)
-        _DG.before = True
-        try: o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk(), "721": _rsk()})
-        finally: del _DG.before
-        check("record reset (S1, the import): a dry run asks from the cache only, enters nothing for the chart and writes no register; and the hold does NOT rest on the guard raising - with a guard from before (it knows no such entry: it answers 'not blocked' and raises nothing) the chart's visits are held all the same, the ordinary visit and the care-management message with both its codes: the entry still waits for Medicare's answer",
-              _dry == (True, True, True) and _made(r_) == ["pat722"] and [x_["why"] for x_ in _why(r_, "pat723") + _why(r_, "pat721")] == [_DRW] * 2 and sorted((_why(r_, "pat721") or [{}])[0].get("cpts") or []) == ["99487", "99489"]
-              and "CCM death check could not be made" not in o_, (_dry, r_, o_[-300:]))
-        o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()}, fail=True)
-        check("record reset (S1, the import): a guard call that ends on another error is no answer either - the reset chart's visit is NOT entered (for any other care-management chart a check that could not be made keeps nothing out, as before)",
-              _made(r_) == ["pat721", "pat722"] and [x_["why"] for x_ in _why(r_, "pat723")] == [_DRW] and "CCM death check could not be made before the entry" in o_, (r_, o_[-300:]))
-        o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()}, msgs=[S4_CCM[2], P_("pe", "pe", [("99309", "20261121")]), dict(S4_CCM[2]), S4_CCM[1]])
-        check("record reset (S1, the import): every message of such a chart is held - a second visit on another date, the same visit sent twice - each with its own row; the guard is asked once per chart, date and kind",
-              _made(r_) == ["pat722"] and [(x_["why"], x_.get("dos_lines")) for x_ in _why(r_, "pat723")] == [(_DRW, ["11/20/2026"]), (_DRW, ["11/21/2026"]), (_DRW, ["11/20/2026"])]
-              and [x_[:2] for x_ in c_ if x_[0] == "723"] == [("723", "11/20/2026"), ("723", "11/21/2026")] and "DEATH RECORD RESET: 3 visit(s) on 1 chart(s) - " in o_, (r_, c_))
-        _DG.fresh = {"723": None}
-        try: o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()}, msgs=[S4_CCM[2], P_("pe", "pe", [("99309", "20261121")]), S4_CCM[1]])
-        finally: del _DG.fresh
-        check("record reset (S1, the import): once Medicare has answered and named no death the chart is an ordinary chart again for the rest of the run - its second visit, on another date, goes in with no further question",
-              _made(r_) == ["pat723", "pat723", "pat722"] and [x_[:2] for x_ in c_ if x_[0] == "723"] == [("723", "11/20/2026")] and _DRW not in o_, (r_, c_, o_[-300:]))
-        _DG.more = {"721": _rsk()}
-        try: o_, r_, c_ = ccm_death_run({})
-        finally: del _DG.more
-        check("record reset (S1, the import): the RE-ASK entry stands only in the GUARD's cache (no file the import reads itself holds the chart): the care-management message is asked about as always, the guard answers NotAnswered - and the message is NOT entered: held with the reset's own why (never 'the check could not be made - entered', which is for a check that broke, not for a record that waits)",
-              _made(r_) == ["pat722", "pat723"] and [x_["why"] for x_ in _why(r_, "pat721")] == [_DRW] and ("721", "11/22/2026", None, "99487", True) in c_ and "CCM death check could not be made" not in o_, (r_, c_, o_[-300:]))
-        _DG.CACHE = os.path.join(tmp, "no_such_cache_in_use.json")
-        try: o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()})
-        finally: del _DG.CACHE
-        check("record reset (S1, the import's read): the cache the guard answers from keeps its place as the FIRST file also when it is not there - the RE-ASK entry in the file read behind it is then an entry in ANOTHER file and means nothing: the visit is entered with no question (the guard, whose own cache knows nothing of the chart, would not hold it either)",
-              _made(r_) == ["pat721", "pat722", "pat723"] and "723" not in [x_[0] for x_ in c_], (r_, c_))
-        # the ONE narrow rule in the import's own read of several files (the guard's carry holds the same - tools/selftest/test_lookup_rules.py keeps the two together
-        # over every pair and triple of entries): while the cache in use carries the RE-ASK entry, a death ANOTHER file holds whose entry was checked on or before
-        # the day of the reset, or has no check date, does not stand - the chart is asked afresh; a death checked after that day stands as for any chart
-        _r2d = {}
-        for _nm, _other, _carried in (("the old day in another file", {"dod": D_BEFORE, "checked": "2026-11-" + "11"}, False), ("a day checked ON the day of the reset", {"dod": D_BEFORE, "checked": "2026-11-" + "15"}, False), ("a day with no check date", {"dod": D_BEFORE}, False),
-                                      ("a day checked after the reset", {"dod": "2026-11-" + "17", "checked": "2026-11-" + "18"}, True), ("no day, checked before the reset", {"dod": LOSTD, "checked": "2026-10-" + "01"}, False),
-                                      ("no day, checked after the reset", {"dod": "day not known", "checked": "2026-11-" + "18"}, True)):
-            json.dump({"723": _other}, open(_f1, "w"))
-            if _carried: _DG.more = {"723": dict(_other)}      # what the REAL guard's carry brings into its cache from that file (the stand-in reads the one file the environment names)
-            try: o_, r_, c_ = ccm_death_run({}, cache={"723": _rsk()})
-            finally:
-                if _carried: del _DG.more
-            _r2d[_nm] = (_made(r_), [x_["why"] for x_ in _why(r_, "pat723")], "723" in [x_[0] for x_ in c_])
-        json.dump({"723": _rsk()}, open(_f1, "w")); o_, r_, c_ = ccm_death_run({}, cache={"722": {"dod": None}}); _r2d["the entry in ANOTHER file only"] = (_made(r_), [x_["why"] for x_ in _why(r_, "pat723")], "723" in [x_[0] for x_ in c_])
-        os.remove(_f1)
-        check("record reset (S1, the import's read): the cache in use holds the RE-ASK entry and ANOTHER cache file still holds the old record - a day (or a death with no day) that file's entry was checked on or before the day of the reset, or with no check date: it does NOT stand - the chart is asked afresh through the guard and, with nobody answering, the visit is held with the reset's own why (the other file's day kept it out 'never billed' with nobody asked)",
-              all(_r2d[k_] == (["pat721", "pat722"], [_DRW], True) for k_ in ("the old day in another file", "a day checked ON the day of the reset", "a day with no check date", "no day, checked before the reset")), _r2d)
-        check("record reset (S1, the import's read): ... a death checked AFTER the day of the reset stands as for any chart - the day keeps the later visit out with no question ('never billed', from the cache), the death with no day holds the visit as a lost day; and a RE-ASK entry that stands only in ANOTHER file means nothing (the cache the guard answers from says which charts are asked afresh): the visit is entered with no question",
-              _r2d["a day checked after the reset"][0] == ["pat721", "pat722"] and [w_.startswith("DOS after date of death 2026-11-" + "17") and "(deceased cache)" in w_ for w_ in _r2d["a day checked after the reset"][1]] == [True]
-              and _r2d["a day checked after the reset"][2] is False and _r2d["no day, checked after the reset"] == (["pat721", "pat722"], [s4d.DEATH_DAY_WHY], True) and _r2d["the entry in ANOTHER file only"] == (["pat721", "pat722", "pat723"], [], False), _r2d)
+        # ---- the fifth round (11/26/2026), D1 on the import's side: THE TOOL FOR A DEATH THAT IS ON RECORD WRONGLY IS OUT AGAIN. The fourth round had the import hold
+        # every visit of a chart whose cache entry carried that round's own fields (the owner's word), with a why of its own, until Medicare had answered a new
+        # question. Nothing of that is left: such an entry holds no death, so it is an entry like any other - the chart's ordinary visit is entered with no question,
+        # and its care-management message is asked about as any chart's.
+        _old5 = {"dod": None, "checked": "2000-01-" + "01", "src": "an entry the round before wrote", "re" + "ask": "2026-11-" + "15", "approved" + "_by": "William 11/" + "15/2026 (board)"}
+        o_, r_, c_ = ccm_death_run({}, cache={"723": dict(_old5), "721": dict(_old5)})
+        check("no way out (D1 of the fifth round, the import): a cache entry that still carries the fields the fourth round wrote for the owner's word holds NO visit - the chart's ordinary visit is entered with no question to the guard, its care-management message is asked about as any chart's and entered, and no line and no skip row speaks of a record that was reset (the import has one fixed why for a held visit again: the day that cannot be read)",
+              _made(r_) == ["pat721", "pat722", "pat723"] and "723" not in [x_[0] for x_ in c_] and ("721", "11/22/2026", None, "99487", True) in c_ and (r_ or {}).get("skipped") == []
+              and not any(w_ in o_ for w_ in ("DEATH RECORD", "reset on the owner", "has not answered yet")) and s4d.DEATH_DAY_WHY not in o_ and not hasattr(s4d, "DEATH_RES" + "ET_WHY")
+              and len(s4d.death_read([{"723": dict(_old5)}, {"723": {"dod": D_BEFORE}}])) == 2 and s4d.death_read([{"723": dict(_old5)}, {"723": {"dod": D_BEFORE}}])[0]["723"]["dod"] == D_BEFORE, (r_, c_, o_[-400:]))
     finally:
         for _f in (_f1, _f2):
             if os.path.exists(_f): os.remove(_f)
@@ -3724,7 +3657,8 @@ lk_dob8 = _ns.get("_dob8", bd_miss); lk_who = _ns.get("lookup_who", lambda *a_, 
 check("_dob8: a birth date as AdvancedMD writes it (with or without leading zeros, with a time behind it), as the feed writes it, or with dashes -> 8 digits; anything it cannot read -> ''",
       [lk_dob8(x_) for x_ in (bd_amd(1940, 2, 15), "2/15/" + "1940", bd_amd(1940, 2, 15) + " 00:00:00", BD_A, BD_A + "000000", "1940-02-" + "15", "", None, "not a date", "1940" + "021")] == [BD_A] * 6 + [""] * 4,
       [lk_dob8(x_) for x_ in (bd_amd(1940, 2, 15), "2/15/" + "1940", BD_A, "", None, "not a date")])
-LK_CL, LK_CF = "ZZCHARTLAST", "ZZCHARTFIRST"; LK_FL, LK_FF = LK_CL + " JR", LK_CF + "ANN"      # the chart's name and the feed's - invented: ONE person written two ways (a suffix behind the last name, a longer first name - a FULL-NAME candidate of the owner's rule) and two different strings, so a check shows which one was asked. 11/25/2026 (review): until then two unrelated names stood here; such a pair with two different dates is now held - 'same person?' below
+LK_CL, LK_CF = "ZZCHARTLAST", "ZZCHARTFIRST"; LK_FL, LK_FF = LK_CL[:7] + "-" + LK_CL[7:], LK_CF.title()      # the chart's name and the feed's - invented: ONE person written two ways (a hyphen inside the last name, the first name in another case - the SAME name, a FULL-NAME candidate of the owner's rule) and two different strings, so a check shows which one was asked. 11/25/2026 (review): until then two unrelated names stood here; such a pair with two different dates is now held - 'same person?' below. 11/26/2026 (identity rule .5): until then the feed's name here carried JR behind the last name and a LONGER first name - that pair is alike but no longer the same name; it stands below as LK_AL / LK_AF, held like any other name
+LK_AL, LK_AF = LK_CL + " JR", LK_CF + "ANN"      # ... a name that is ALIKE BUT NOT THE SAME as the chart's: the chart's last name with JR, a first name that only BEGINS with the chart's (a son, a wife, a daughter)
 def lk_pa(y_, m_, d_, name_=None): return {"name": bd_lf(LK_CL, LK_CF + " Q") if name_ is None else name_, "dob": bd_amd(y_, m_, d_), "insorder": "1", "deceased": ""}
 LK_CHART = (LK_CF, LK_CL, BD_A); LK_ONE = bd_d8(1940, 2, 16)                # the chart's patient as the look-up must be asked; a feed date one digit off
 check("lookup_who (11/25/2026): the chart's birth date is a real one - the look-up is asked with the CHART's first name, last name and birth date, whatever the feed carries (one digit off, far off, the 1900 placeholder, nothing, the same date)",
@@ -3823,12 +3757,29 @@ check("insurance check step: a look-up that fails - held 'no active plan; discov
 #      Every name, date and id below is invented and put together at run time. ---------------------------------------------------------------------------------------------
 lk_hold = _ns.get("lookup_hold", lambda *a_, **k_: (None, None)); lk_kind = _ns.get("_name_kind", bd_miss); lk_sameid = _ns.get("_same_id", bd_miss)
 LK_NL = "ZZQUILTFAKE"                                                       # an invented last name for the name table
-LK_NAMES = [(LK_NL, "PETRONELLA M", LK_NL, "PETRONELLA", "full"), (LK_NL + " JR", "PETRONELLA", LK_NL, "PETRONELLA ANN", "full"), ("ZZ-QUILT FAKE", "MARY", LK_NL, "MARYANN", "full"), (LK_NL + " III", "JOSÉ", LK_NL, "JOSE", "full"),
-            (LK_NL, "PET", LK_NL, "PETRONELLA", "name"), (LK_NL, "PETRUS", LK_NL, "PETRONELLA", "name"), (LK_NL, "GWENLLIAN", LK_NL, "PETRONELLA", "surname"), (LK_NL, "", LK_NL, "PETRONELLA", "surname"),
-            ("ZZOTHERFAKE", "PETRONELLA", LK_NL, "PETRONELLA", ""), ("", "PETRONELLA", LK_NL, "PETRONELLA", "")]      # (the feed's last and first name, the chart's last and first name, what the chart's name is to the feed's)
-check("_name_kind (the owner's rule for names): 'full' - the same last name (upper case, letters only, a trailing JR / SR / II / III / IV / V dropped) and the same first word of the first name, or the shorter first word has four letters or more and begins the longer one; 'name' - the first three letters are shared; 'surname' - another first name; '' - another last name, or none",
-      [lk_kind(*n_[:4]) for n_ in LK_NAMES] == [n_[4] for n_ in LK_NAMES], [(n_[1], n_[3], lk_kind(*n_[:4]), n_[4]) for n_ in LK_NAMES if lk_kind(*n_[:4]) != n_[4]])
+# 11/26/2026 (identity rule .5 - a relative is not the patient): THE SAME NAME IS THE SAME FIRST WORD AND NO OTHER SUFFIX. Until then 'full' was also a first name that only
+# BEGINS with the other (four letters or more: MARY / MARYANN) and a name that differs by its suffix alone - the rows marked (.5) below read 'full' then: a wife under a first
+# name that begins with her husband's, a son of his father's name with JR, were 'the chart's own name', and with a birth date missing on one side they were asked about under
+# the chart's person without a hold. The fifth value of a row is what the chart's name is to the feed's; the sixth what _name_kind says when asked for it (alike=True): 'alike'
+# for a name candidate whose name is alike but not the same - the first word of one first name begins the other's, or the two are one word and the suffixes differ.
+LK_NAMES = [(LK_NL, "PETRONELLA M", LK_NL, "PETRONELLA", "full"), (LK_NL + " JR", "PETRONELLA", LK_NL + " JR", "PETRONELLA ANN", "full"), ("ZZ-QUILT FAKE", "MARY ANN", LK_NL, "MARY A.", "full"), (LK_NL, "JOSÉ", LK_NL, "JOSE", "full"),
+            (LK_NL + " III", "JOSÉ", LK_NL, "JOSE K III", "full"), (LK_NL, "PETRONELLA A JR", LK_NL + " Jr.", "petronella", "full"),
+            (LK_NL + " JR", "PETRONELLA", LK_NL, "PETRONELLA ANN", "name", "alike"), ("ZZ-QUILT FAKE", "MARY", LK_NL, "MARYANN", "name", "alike"), (LK_NL + " III", "JOSÉ", LK_NL, "JOSE", "name", "alike"),      # (.5) a suffix on one side only; a first name that begins with the other
+            (LK_NL, "PETRONELLA SR", LK_NL, "PETRONELLA", "name", "alike"), (LK_NL + " JR", "PETRONELLA", LK_NL + " SR", "PETRONELLA", "name", "alike"), (LK_NL, "PETRONELLA V", LK_NL, "PETRONELLA K", "name", "alike"),      # (.5) the suffix behind the first name; two different suffixes; a middle initial V reads as the suffix V (the known limit)
+            ("V", "PETRONELLA V", "V", "PETRONELLA", "name", "alike"),      # (.5) a suffix word that is the WHOLE last name is the last name, no suffix: only the feed's name carries one here
+            (LK_NL, "PET", LK_NL, "PETRONELLA", "name", "alike"), (LK_NL, "PETRUS", LK_NL, "PETRONELLA", "name"), (LK_NL + " JR", "PETRUS", LK_NL, "PETRONELLA", "name"), (LK_NL, "GWENLLIAN", LK_NL, "PETRONELLA", "surname"), (LK_NL, "", LK_NL, "PETRONELLA", "surname"),
+            ("ZZOTHERFAKE", "PETRONELLA", LK_NL, "PETRONELLA", ""), ("", "PETRONELLA", LK_NL, "PETRONELLA", "")]      # (the feed's last and first name, the chart's last and first name, what the chart's name is to the feed's[, what it is when asked for 'alike'])
+check("_name_kind (the owner's rule for names, identity rule .5): 'full' - the same last name (upper case, letters only, a trailing JR / SR / II / III / IV / V dropped), the same first WORD of the first name (a middle initial or a second first name does not matter) and the same suffix or none, "
+      "wherever each side writes it; 'name' - the first three letters are shared, also where the first word of one only begins the other's or the suffixes differ (until then those were 'full'); 'surname' - another first name; '' - another last name, or none",
+      [lk_kind(*n_[:4]) for n_ in LK_NAMES] == [n_[4] for n_ in LK_NAMES] and len([n_ for n_ in LK_NAMES if n_[4] == "full"]) >= 6, [(n_[1], n_[3], lk_kind(*n_[:4]), n_[4]) for n_ in LK_NAMES if lk_kind(*n_[:4]) != n_[4]])
 check("_name_kind: ... the same answer whichever of the two names is the feed's", [lk_kind(n_[2], n_[3], n_[0], n_[1]) for n_ in LK_NAMES] == [n_[4] for n_ in LK_NAMES], [(n_[1], n_[3], lk_kind(n_[2], n_[3], n_[0], n_[1])) for n_ in LK_NAMES if lk_kind(n_[2], n_[3], n_[0], n_[1]) != n_[4]])
+def lk_alike(*a_):
+    try: return lk_kind(*a_, alike=True)
+    except Exception as e_: return "%s: %s" % (type(e_).__name__, e_)
+check("_name_kind (identity rule .5): asked for it (alike=True) it says 'alike' of a name candidate whose name is alike but not the same - a suffix on one side only or two different ones, a first name whose first word begins the other's - and 'name' of two first names that only share three letters; "
+      "'full', 'surname' and '' are as without it, and so is the answer whichever of the two names is the feed's (lookup_hold and lookup_who word what they say by it)",
+      [lk_alike(*n_[:4]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and [lk_alike(n_[2], n_[3], n_[0], n_[1]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and len([n_ for n_ in LK_NAMES if n_[-1] == "alike"]) == 8,
+      [(n_[1], n_[3], lk_alike(*n_[:4]), n_[-1]) for n_ in LK_NAMES if lk_alike(*n_[:4]) != n_[-1]])
 LK_ID = "5f3a" + "9c07" * 5                                                 # an invented Claimocity id: 24 hex digits
 check("_same_id: a chart's additional number is this Claimocity id when the two are equal as upper-case letters and digits and have eight characters or more - an empty or short value, or a value one character off, never is",
       lk_sameid(LK_ID, LK_ID.upper()) is True and lk_sameid(" " + LK_ID + " ", LK_ID) is True and [lk_sameid(a_, b_) for a_, b_ in ((LK_ID, LK_ID[:-1] + "0"), ("", ""), (None, LK_ID), (LK_ID, None), ("f1", "f1"), ("1234567", "1234567"))] == [False] * 6,
@@ -3886,6 +3837,8 @@ LK_NOID = ", and the chart's answer does not show this patient's Claimocity id"
 LK_W = {"far": "same person? Claimocity's birth date and this chart's are far apart" + LK_NOID, "slip": "same person? Claimocity's birth date is a slip from this chart's and the names differ" + LK_NOID,
         "one": "same person? one side carries no birth date and the names differ" + LK_NOID, "none": "same person? no birth date on either side and the names differ" + LK_NOID,
         "names": "same person? only the birth date is the same - both names differ" + LK_NOID, "error": "same person? the chart's name and birth date could not be compared with Claimocity's"}
+LK_ALIKE = " and the names are alike but not the same"      # 11/26/2026 (identity rule .5): what the hold says of a name that is alike but not the same as the chart's - never 'the names differ' of a father and his son of one name
+LK_W.update({k_ + "~": LK_W[k_].replace(" and the names differ", LK_ALIKE) for k_ in ("slip", "one", "none")})      # "slip~", "one~", "none~": the three holds above, said of an alike name
 lk_sp = lambda k_: ("same_person", LK_W[k_]); LK_ASK = ("", ""); LK_NODOB = ("no_birth_date", "neither Claimocity nor the chart carries a real birth date to ask with (face sheet needed)")
 check("lookup_hold (11/25/2026, review): the SAME real birth date on both sides - the look-up is asked when at least one of the two names is the same (the owner's rules 2 and 3); only when BOTH names are other names is it held: 'same person?'",
       [lk_h(lk_pa(1940, 2, 15), w_, BD_A) for w_ in LK_WHO4] == [LK_ASK, LK_ASK, LK_ASK, lk_sp("names")], [lk_h(lk_pa(1940, 2, 15), w_, BD_A) for w_ in LK_WHO4])
@@ -3918,6 +3871,42 @@ check("lookup_who (review): another first name under the same last name, or anot
       and lk_who(lk_pa(1900, 1, 1), LK_OF, LK_FL, LK_ONE, BD_T8) == (LK_OF, LK_FL, LK_ONE, "look-up asked with Claimocity's birth date; the chart has no birth date of its own; the first names differ")
       and lk_who(lk_pa(1940, 2, 15), LK_OF, LK_FL, LK_FAR, BD_T8, "Medicaid") == (LK_CF, LK_CL, BD_A, "Medicaid asked with the chart's birth date; Claimocity's differs: far; the first names differ"),
       [lk_who(lk_pa(1940, 2, 15), w_[0], w_[1], BD_A, BD_T8)[3] for w_ in LK_WHO4])
+# 11/26/2026, ROUND 3 (identity rule .5 - a relative is not the patient): N1 through the private copies. The feed's name is 'the chart's' only when it is the SAME name - the
+# same first word and no other suffix. A relative under a name that is alike but not the same - a wife or a daughter whose first name begins with the chart's, a son of the
+# chart's name with JR - was 'the chart's own name' until then: with a birth date missing on one side, or a slip between the two, the look-up was bought about the chart's
+# person without a hold (the round-2 look-up checker reproduced it: its cases E1 and O1). Now such a name is held 'same person?' like any other name, and the hold's words are
+# true of it: 'the names are alike but not the same' - not 'the names differ' / 'the first names differ' of a father and his son of one first name.
+LK_ALS = [(LK_AF, LK_CL), (LK_CF, LK_AL), (LK_AF, LK_AL), (LK_CF + " SR", LK_CL)]      # alike but not the same (first, last): a first name that begins with the chart's; the chart's name with JR; both; a suffix behind the first name
+check("lookup_hold (identity rule .5): a name that is ALIKE BUT NOT THE SAME as the chart's with a birth date MISSING on one side (the placeholder or nothing from Claimocity; no birth date on the chart) is HELD 'same person?' like any other name - "
+      "and the hold says the names are alike but not the same (until then each was asked about the chart's person without a hold)",
+      [lk_h(lk_pa(1940, 2, 15), w_, f_) for w_ in LK_ALS for f_ in (LK_P00, "")] == [lk_sp("one~")] * 8 and [lk_h(lk_pa(1900, 1, 1), w_, LK_ONE) for w_ in LK_ALS] == [lk_sp("one~")] * 4
+      and [lk_h({"name": bd_lf(LK_CL, LK_CF), "insorder": "1"}, w_, LK_ONE) for w_ in LK_ALS[:2]] == [lk_sp("one~")] * 2, [lk_h(lk_pa(1940, 2, 15), w_, LK_P00) for w_ in LK_ALS])
+check("lookup_hold (identity rule .5): ... a SLIP between the two birth dates is asked under the SAME name only - under an alike name it is held, in the same true words; and with no real birth date on either side such a name is 'same person?', not a face-sheet row",
+      [lk_h(lk_pa(1940, 2, 15), w_, LK_ONE) for w_ in LK_ALS] == [lk_sp("slip~")] * 4 and [lk_h(lk_pa(1900, 1, 1), w_, f_) for w_ in LK_ALS[:2] for f_ in (LK_P00, "")] == [lk_sp("none~")] * 4, [lk_h(lk_pa(1940, 2, 15), w_, LK_ONE) for w_ in LK_ALS])
+check("lookup_hold (identity rule .5): ... what stays - the SAME real birth date under an alike name is asked without a word (a name candidate with the same date: the owner's rule 2); FAR dates are held in the words they always had; "
+      "the same name written with a middle initial or a second first name, or with the same suffix on both sides, is still the chart's own name - asked with a slip and with a date missing (William's own case)",
+      [lk_h(lk_pa(1940, 2, 15), w_, BD_A) for w_ in LK_ALS] == [LK_ASK] * 4 and [lk_h(lk_pa(1940, 2, 15), w_, LK_FAR) for w_ in LK_ALS] == [lk_sp("far")] * 4
+      and [lk_h(lk_pa(1940, 2, 15), w_, f_) for w_ in ((LK_CF + " ANN", LK_CL), (LK_CF + " K.", LK_FL), (LK_FF, LK_FL)) for f_ in (LK_ONE, LK_P00, "")] == [LK_ASK] * 9
+      and [lk_h(lk_pa(1940, 2, 15, bd_lf(LK_AL, LK_CF + " Q")), w_, f_) for w_ in ((LK_CF, LK_AL), (LK_CF + " JR", LK_CL)) for f_ in (LK_ONE, LK_P00)] == [LK_ASK] * 4, [lk_h(lk_pa(1940, 2, 15), w_, BD_A) for w_ in LK_ALS])
+check("lookup_hold (identity rule .5): ... the Claimocity id on the chart, the same Social Security number and William's word free a chart held for an alike name, as they free any other - the words say which; a MEMBER number in common frees it only with birth dates that agree "
+      "(a slip: asked, the words say the number) - with a date missing it proves nothing: held, and the hold says both that the names are alike and that the number is there",
+      [lk_h(lk_pid(1940, 2, 15), w_, LK_P00, LK_ID) for w_ in LK_ALS[:2]] == [("", "the chart carries this patient's Claimocity id")] * 2 and [lk_h(lk_pa(1940, 2, 15), w_, LK_P00, sure=True) for w_ in LK_ALS[:2]] == [("", "William's word: same person")] * 2
+      and [lk_h(lk_pa(1940, 2, 15), w_, f_, proof="ssn") for w_ in LK_ALS[:2] for f_ in (LK_ONE, LK_P00)] == [("", "the chart and Claimocity carry the same Social Security number")] * 4
+      and [lk_h(lk_pa(1940, 2, 15), w_, LK_ONE, proof="member") for w_ in LK_ALS[:2]] == [("", "a plan of the chart carries a member number Claimocity sent")] * 2
+      and [lk_h(lk_pa(1940, 2, 15), w_, LK_P00, proof="member") for w_ in LK_ALS[:2]] == [("same_person", LK_W["one~"] + "; a plan of the chart carries a member number Claimocity sent")] * 2,
+      [lk_h(lk_pa(1940, 2, 15), w_, LK_P00, proof="member") for w_ in LK_ALS[:2]])
+check("lookup_hold (identity rule .5): ... only the birth date the same and BOTH names others is held as before - and a first name that is only ALIKE, under another last name, is no longer 'one of the two names the same' (until then a first name that begins with the chart's passed there); "
+      "the same first name written with a second first name or in another case still is",
+      lk_h(lk_pa(1940, 2, 15), (LK_AF, LK_OL), BD_A) == lk_sp("names") and lk_h(lk_pa(1940, 2, 15), (LK_CF + " JR", LK_OL), BD_A) == lk_sp("names") and lk_h(lk_pa(1940, 2, 15), (LK_CF + " ANN", LK_OL), BD_A) == LK_ASK and lk_h(lk_pa(1940, 2, 15), (LK_FF, LK_OL), BD_A) == LK_ASK,
+      [lk_h(lk_pa(1940, 2, 15), (LK_AF, LK_OL), BD_A), lk_h(lk_pa(1940, 2, 15), (LK_CF + " JR", LK_OL), BD_A)])
+check("lookup_hold (identity rule .5): none of the new words carries a digit or a phrase the hand step acts on, and the nine holds are nine different texts", not any(re.search(r"\d", LK_W[k_]) or LK_TRIG.search(LK_W[k_]) for k_ in ("slip~", "one~", "none~")) and len({LK_W[k_] for k_ in LK_W}) == 9)
+check("lookup_who (identity rule .5): the words behind what was asked say 'the names are alike but not the same' of an alike name - a father and his son of ONE first name are not 'the first names differ' - and 'the first names differ' of two first names that only share three letters, as before; "
+      "the same name written another way still says nothing",
+      [lk_who(lk_pa(1940, 2, 15), w_[0], w_[1], BD_A, BD_T8)[3] for w_ in LK_ALS] == ["look-up asked with the chart's birth date; Claimocity's is the same; the names are alike but not the same"] * 4
+      and lk_who(lk_pa(1940, 2, 15), "ZZC" + "OTHER", LK_FL, BD_A, BD_T8)[3] == "look-up asked with the chart's birth date; Claimocity's is the same; the first names differ" and lk_who(lk_pa(1940, 2, 15), LK_CF + " ANN", LK_FL, BD_A, BD_T8)[3] == "look-up asked with the chart's birth date; Claimocity's is the same"
+      and lk_who(lk_pa(1900, 1, 1), LK_AF, LK_CL, LK_ONE, BD_T8) == (LK_AF, LK_CL, LK_ONE, "look-up asked with Claimocity's birth date; the chart has no birth date of its own; the names are alike but not the same")
+      and lk_who(lk_pa(1940, 2, 15), LK_CF, LK_AL, LK_FAR, BD_T8, "Medicaid") == (LK_CF, LK_CL, BD_A, "Medicaid asked with the chart's birth date; Claimocity's differs: far; the names are alike but not the same"),
+      [lk_who(lk_pa(1940, 2, 15), w_[0], w_[1], BD_A, BD_T8)[3] for w_ in LK_ALS])
 # the shared module of the identity rule (scripts/helpers/feed_identity.py - another change of the same day; it is not in every tree): where it IS in the tree, the private
 # copies above must answer as it does - date by date and name by name. Its words for a slip are longer than these helpers' (the registers and the digest's own list carry the
 # short ones), and its answer for two dates far apart is the empty one: LK_FI_WORDS is that map, and whoever points the helpers at the module points them through it.
@@ -3929,8 +3918,21 @@ if os.path.exists(_fi_path):
         _fi_dates = [x_ for x_ in list(BD_NOT) + [BD_A, BD_T8, bd_d8(1906, 11, 20), bd_d8(1960, 2, 29), bd_d8(1901, 1, 1)]]
         _fi_bad = ([("slip", a_, b_) for a_, b_, w_ in BD_SLIPS if LK_FI.slip(a_, b_) != LK_FI_WORDS[w_] or LK_FI.slip(b_, a_) != LK_FI_WORDS[w_]] + [("real_dob", x_) for x_ in _fi_dates if bool(LK_FI.real_dob(x_, BD_T8)) is not _ns.get("_real_dob", bd_miss)(x_, BD_T8)]
                    + [("name_kind", n_[1], n_[3]) for n_ in LK_NAMES if LK_FI.name_kind(*n_[:4]) != lk_kind(*n_[:4]) or LK_FI.name_kind(*n_[:4]) != n_[4]])
+        # 11/26/2026 (identity rule .5): the name rule changed in the module AND in the private copies - they must still answer alike, name by name, with and without
+        # 'alike': the table above, and 4,000 pairs put together at random from invented words (suffixes on either side and in either place, middle initials, second
+        # first names, first names that begin with one another, punctuation and case)
+        _fi_bad += [("name_kind alike", n_[1], n_[3]) for n_ in LK_NAMES if LK_FI.name_kind(*n_[:4], alike=True) != lk_kind(*n_[:4], alike=True) or LK_FI.name_kind(*n_[:4], alike=True) != n_[-1]]
+        _fi_rnd = __import__("random").Random(1126); _fi_seen = __import__("collections").Counter()
+        _fi_last = [LK_NL, "ZZ-QUILT FAKE", "zz quilt'fake", LK_NL + " JR", LK_NL + " Sr.", LK_NL + " III", LK_NL + " V", "ZZOTHERFAKE", "V", ""]
+        _fi_first = ["PETRONELLA", "Petronella", "PETRONELLA M", "PETRONELLA ANN", "PETRONELLA JR", "PETRONELLA A Jr.", "PETRONELLA V", "PETRONELLANNE", "PET", "PETRUS", "PETRUS II", "PE", "P.", "GWENLLIAN", "GWEN", "JR", "", "PETRO-NELLA", "PETRO NELLA"]
+        for _fi_n in range(4000):
+            _fi_a = (_fi_rnd.choice(_fi_last), _fi_rnd.choice(_fi_first), _fi_rnd.choice(_fi_last[:7] if _fi_rnd.random() < 0.8 else _fi_last), _fi_rnd.choice(_fi_first))
+            _fi_k = (LK_FI.name_kind(*_fi_a), LK_FI.name_kind(*_fi_a, alike=True)); _fi_seen[_fi_k[1]] += 1
+            if _fi_k != (lk_kind(*_fi_a), lk_kind(*_fi_a, alike=True)) or (_fi_k[0] if _fi_k[0] != "name" else _fi_k[1]) not in ("full", "name", "alike", "surname", ""): _fi_bad.append(("name_kind at random",) + _fi_a + _fi_k)
+        if min(_fi_seen[k_] for k_ in ("full", "alike", "name", "surname", "")) < 60: _fi_bad.append(("too few of a kind among the random pairs", dict(_fi_seen)))
     except Exception as _fi_e: _fi_bad = [("the module could not be asked", type(_fi_e).__name__, str(_fi_e)[:120])]
-    check("the shared identity module is in this tree: the private copies answer as feed_identity.py does - every slip of 4e by its kind (through the word map), what is a real birth date, and what one name is to another",
+    check("the shared identity module is in this tree: the private copies answer as feed_identity.py does - every slip of 4e by its kind (through the word map), what is a real birth date, and what one name is to another "
+          "(identity rule .5: the same first word and no other suffix - the table, and 4,000 pairs of names at random, with and without 'alike')",
           _fi_bad == [] and len(BD_SLIPS) >= 19 and len(LK_NAMES) >= 10, _fi_bad[:4])
 else: print("skip the shared identity module: scripts/helpers/feed_identity.py is not in this tree - the private copies stand alone (the check runs where the module is)")
 # the whole step: a chart with no plan whose look-up WOULD find a medical plan for whoever is asked
@@ -4153,14 +4155,15 @@ check("lookup_hold (the second review): a patient who stands apart from another 
 # The nine-digit Social Security number, the Claimocity id on the chart and William's word free a chart as before.
 def lk3_pa(d8_): return lk_pa(int(d8_[:4]), int(d8_[4:6]), int(d8_[6:]))      # the chart of the checks above, carrying the birth date d8_ (YYYYMMDD)
 lk3_held = lambda k_: ("same_person", (LK_W[k_] if k_ in LK_W else k_) + "; " + LK2_MEMB)      # the hold in its own words - and behind them that the member number is there
-LK3_WIFE, LK3_SON, LK3_OWN = (LK_FF, LK_CL), (LK_CF, LK_CL + " JR"), (LK_CF, LK_CL)      # the feed's name (first, last): a first name that BEGINS with the chart's; the chart's own name with JR; the chart's very own name
+LK3_WIFE, LK3_SON, LK3_OWN = (LK_AF, LK_CL), (LK_CF, LK_CL + " JR"), (LK_CF, LK_CL)      # the feed's name (first, last): a first name that BEGINS with the chart's; the chart's own name with JR; the chart's very own name (11/26/2026, identity rule .5: the first two are alike but no longer the same name as the chart's)
 _lk3_slips = [(lk2_h(lk3_pa(a_), LK2_NC, b_, proof="member"), lk2_h(lk3_pa(b_), LK2_NC, a_, proof="member"), w_) for a_, b_, w_ in BD_SLIPS]
 check("lookup_hold (round 2): a MEMBER number in common proves the chart where BOTH sides carry a real birth date and the two are a slip apart - every slip of the owner's rule (one digit, two digits swapped, month and day swapped, one day apart), whichever of the two dates is the chart's; two dates that are FAR apart are no proof: held 'same person?' in the hold's own words, and the words say the member number is there",
       all(x_ == y_ == (("", LK2_MEMB) if w_ != "far" else lk3_held("far")) for x_, y_, w_ in _lk3_slips) and sum(1 for _x, _y, w_ in _lk3_slips if w_ == "far") >= 4 and len({w_ for _x, _y, w_ in _lk3_slips}) == 5,
       [(x_, y_, w_) for x_, y_, w_ in _lk3_slips if not x_ == y_ == (("", LK2_MEMB) if w_ != "far" else lk3_held("far"))][:3])
 _lk3_far = [lk2_h(lk_pa(1940, 2, 15), w_, LK_FAR, proof="member") for w_ in (LK3_WIFE, LK3_SON, LK3_OWN, LK2_NC)]
-check("lookup_hold (round 2): ... FAR dates under the chart's own name - the feed's first name begins with the chart's (a husband's chart for his wife), the same name with JR (a father's for his son), the very same name - or under a first name that shares three letters: a member number in common frees nobody (until then each was asked, and the look-up was bought about the CHART's person)",
-      _lk3_far == [lk3_held("far")] * 4 and [lk_kind(w_[1], w_[0], LK_CL, LK_CF + " Q") for w_ in (LK3_WIFE, LK3_SON, LK3_OWN, LK2_NC)] == ["full"] * 3 + ["name"], (_lk3_far, [lk_kind(w_[1], w_[0], LK_CL, LK_CF + " Q") for w_ in (LK3_WIFE, LK3_SON, LK3_OWN, LK2_NC)]))
+check("lookup_hold (round 2): ... FAR dates under a name like the chart's - the feed's first name begins with the chart's (a husband's chart for his wife), the same name with JR (a father's for his son), the very same name - or under a first name that shares three letters: a member number in common frees nobody (until then each was asked, and the look-up was bought about the CHART's person). "
+      "Since identity rule .5 only the very same name is still the chart's own (a full-name candidate); the wife's and the son's are name candidates like the fourth",
+      _lk3_far == [lk3_held("far")] * 4 and [lk_kind(w_[1], w_[0], LK_CL, LK_CF + " Q") for w_ in (LK3_WIFE, LK3_SON, LK3_OWN, LK2_NC)] == ["name", "name", "full", "name"], (_lk3_far, [lk_kind(w_[1], w_[0], LK_CL, LK_CF + " Q") for w_ in (LK3_WIFE, LK3_SON, LK3_OWN, LK2_NC)]))
 _lk3_miss = [lk2_h(pa_, LK2_NC, f_, proof="member") for pa_, f_ in ((lk_pa(1940, 2, 15), LK_P00), (lk_pa(1940, 2, 15), ""), (lk_pa(1900, 1, 1), LK_ONE), ({"name": bd_lf(LK_CL, LK_CF), "insorder": "1"}, LK_ONE))]
 check("lookup_hold (round 2): ... a birth date MISSING on either side - the placeholder or nothing from Claimocity, the placeholder or no date at all on the chart - under a first name that shares three letters: a member number in common is no proof (until then each was asked); and with no real date on EITHER side such a chart is 'same person?' - no longer a face-sheet row on the number's word",
       _lk3_miss == [lk3_held("one")] * 4 and [lk2_h(lk_pa(1900, 1, 1), LK2_NC, f_, proof="member") for f_ in (LK_P00, "")] == [lk3_held("none")] * 2, (_lk3_miss, [lk2_h(lk_pa(1900, 1, 1), LK2_NC, f_, proof="member") for f_ in (LK_P00, "")]))
@@ -4168,11 +4171,13 @@ _lk3_unreal = [(lk_pa(1900, 1, 1), bd_d8(1910, 1, 1)), (lk_pa(1910, 1, 1), LK_P0
 check("lookup_hold (round 2): ... 'a slip apart' is asked of two REAL birth dates only: a real date that is one digit from the other side's placeholder, from a date more than 120 years back or from a date in the future is no agreement - the date is MISSING on that side, and a member number in common proves nothing (each side tried as the one without a real date)",
       [lk2_h(pa_, LK2_NC, f_, proof="member") for pa_, f_ in _lk3_unreal] == [lk3_held("one")] * 6 and all(_ns.get("_slip", bd_miss)(lk_dob8(pa_["dob"]), f_) == "one digit" for pa_, f_ in _lk3_unreal)
       and [(bool(_ns.get("_real_dob", bd_miss)(lk_dob8(pa_["dob"]), BD_T8)), bool(_ns.get("_real_dob", bd_miss)(f_, BD_T8))) for pa_, f_ in _lk3_unreal] == [(False, True), (True, False)] * 3, [lk2_h(pa_, LK2_NC, f_, proof="member") for pa_, f_ in _lk3_unreal])
-check("lookup_hold (round 2): ... what proved the chart before still does: the nine-digit Social Security number - with far dates, a slip, a missing date, and a chart that is a face-sheet row because neither side has a date; the Claimocity id on the chart and William's word free a chart whose member number does not count, and the words say which; where nothing was in doubt (the same date; the chart's own name with a slip or with one date missing) a member number changes nothing and nothing is said",
-      [lk2_h(lk_pa(1940, 2, 15), w_, f_, proof="ssn") for w_ in (LK3_WIFE, LK3_SON, LK2_NC) for f_ in (LK_FAR, LK_ONE, LK_P00)] == [("", LK2_SAME), LK_ASK, LK_ASK] * 2 + [("", LK2_SAME)] * 3 and lk2_h(lk_pa(1900, 1, 1), LK2_NC, LK_P00, proof="ssn") == LK_NODOB
+check("lookup_hold (round 2): ... what proved the chart before still does: the nine-digit Social Security number - with far dates, a slip, a missing date, and a chart that is a face-sheet row because neither side has a date; the Claimocity id on the chart and William's word free a chart whose member number does not count, and the words say which; where nothing was in doubt (the same date; the chart's very own name with a slip or with one date missing) a member number changes nothing and nothing is said. "
+      "11/26/2026 (identity rule .5): the wife's and the son's names are alike but not the chart's own - with a slip the Social Security number, or the member number (the dates agree), is what lets them be asked and the words say so; with a date missing a member number proves nothing and they are HELD, the hold saying the names are alike and the number is there (until then both were asked without a word)",
+      [lk2_h(lk_pa(1940, 2, 15), w_, f_, proof="ssn") for w_ in (LK3_OWN, LK3_WIFE, LK3_SON, LK2_NC) for f_ in (LK_FAR, LK_ONE, LK_P00)] == [("", LK2_SAME), LK_ASK, LK_ASK] + [("", LK2_SAME)] * 9 and lk2_h(lk_pa(1900, 1, 1), LK2_NC, LK_P00, proof="ssn") == LK_NODOB
       and lk2_h(lk_pid(1940, 2, 15), LK3_WIFE, LK_FAR, LK_ID, proof="member") == ("", "the chart carries this patient's Claimocity id") and [lk2_h(lk_pa(1940, 2, 15), w_, LK_FAR, proof="member", sure=True) for w_ in (LK3_WIFE, LK3_SON, LK2_NC)] == [("", "William's word: same person")] * 3
-      and [lk2_h(lk_pa(1940, 2, 15), w_, f_, proof="member") for w_ in (LK3_WIFE, LK3_SON) for f_ in (BD_A, LK_ONE, LK_P00)] == [LK_ASK] * 6 and lk2_h(lk_pa(1940, 2, 15), LK2_NC, BD_A, proof="member") == LK_ASK,
-      ([lk2_h(lk_pa(1940, 2, 15), w_, LK_FAR, proof="ssn") for w_ in (LK3_WIFE, LK3_SON, LK2_NC)], [lk2_h(lk_pa(1940, 2, 15), w_, LK_FAR, proof="member", sure=True) for w_ in (LK3_WIFE, LK2_NC)]))
+      and [lk2_h(lk_pa(1940, 2, 15), LK3_OWN, f_, proof="member") for f_ in (BD_A, LK_ONE, LK_P00)] == [LK_ASK] * 3 and [lk2_h(lk_pa(1940, 2, 15), w_, f_, proof="member") for w_ in (LK3_WIFE, LK3_SON) for f_ in (BD_A, LK_ONE, LK_P00)] == [LK_ASK, ("", LK2_MEMB), lk3_held("one~")] * 2
+      and lk2_h(lk_pa(1940, 2, 15), LK2_NC, BD_A, proof="member") == LK_ASK,
+      ([lk2_h(lk_pa(1940, 2, 15), w_, LK_FAR, proof="ssn") for w_ in (LK3_WIFE, LK3_SON, LK2_NC)], [lk2_h(lk_pa(1940, 2, 15), w_, f_, proof="member") for w_ in (LK3_WIFE, LK3_SON) for f_ in (BD_A, LK_ONE, LK_P00)]))
 check("lookup_hold (round 2): ... on a chart with NO birth date of its own a member number ties nobody to it: a patient who stands apart from another feed patient of that chart is held 'same person?' and the words say the number is there (until then it was asked); the Social Security number still ties",
       lk2_h(lk_pa(1900, 1, 1), LK_WHO4[0], BD_A, apart=True, proof="member") == lk3_held(LK2_APART) and lk2_j(lk_pa(1900, 1, 1), [LK2_MS[0]], apart=True, proof="member") == lk3_held(LK2_APART) + (None,)
       and lk2_h(lk_pa(1900, 1, 1), LK_WHO4[0], BD_A, apart=True, proof="ssn") == ("", LK2_SAME), (lk2_h(lk_pa(1900, 1, 1), LK_WHO4[0], BD_A, apart=True, proof="member"), lk2_j(lk_pa(1900, 1, 1), [LK2_MS[0]], apart=True, proof="member")))
@@ -4337,7 +4342,7 @@ check("insurance check: its PLAIN ENGLISH header says what the SECOND review of 
       all(w_ in _lvh for w_ in LK2_HEAD) and "the paid look-up is bought only for a chart that is KNOWN to be the feed's patient" in _lvh and "the save is skipped only when the visit's insurance-order LIST" in _lvh, [w_ for w_ in LK2_HEAD if w_ not in _lvh])
 # ROUND 2 of the second review, the whole insurance-check step (the checkers' own inputs, with invented patients: a husband's chart for his wife, a father's for his son -
 # one family member number on a plan of the chart, birth dates far apart)
-LK3_XW, LK3_XS = bd_lf(LK_XL, LK_XC + "A"), bd_lf(LK_XL + " JR", LK_XC)      # the feed's name: a first name that BEGINS with the chart's (a full-name candidate of the owner's rule); the chart's own name with JR
+LK3_XW, LK3_XS = bd_lf(LK_XL, LK_XC + "A"), bd_lf(LK_XL + " JR", LK_XC)      # the feed's name: a first name that BEGINS with the chart's (a full-name candidate of the owner's rule until identity rule .5 - alike but not the same since); the chart's own name with JR (the same)
 _lk3_raw = lk2_raw([lk2_pid("f1"), lk2_in1(LK2_M)])      # the feed's own insurance row carries the member number that stands on a plan of the chart (_lk2_plan: an ended plan the feed's own steps did not add)
 _lk3_fam = []
 for _lw, _ln in (("a husband's chart, his wife", LK3_XW), ("a father's chart, his son of the same name", LK3_XS), ("the chart's very own name", bd_lf(LK_XL, LK_XC))):
@@ -4353,9 +4358,10 @@ for _lw, _lk in (("the placeholder from Claimocity", dict(dob=LK_P00, pa=lk_xpa(
 check("insurance check step (round 2): ... nor is it proof where a birth date is MISSING on either side (under a first name that shares three letters with the chart's): the placeholder or nothing from Claimocity, no birth date on the chart, none on either side - held 'same person?' with the member number said, nothing bought, nothing added (until then the first three were asked, and the last was a face-sheet row on the number's word)",
       [o_[1:] for o_ in _lk3_gone] == [("", 0, [], True, False, [])] * 4, _lk3_gone)
 lk_yes({"pat1": lk2_e(["f1"])}); _lr, _lo, _le = lk_run(LK3_XW, bd_d8(*LK_XFD), lk_xpa(), LK_XANS, plans=_lk2_plan, raw=_lk3_raw); lk_yes(None)
-check("insurance check step (round 2): ... William's yes, kept in his standing file, frees such a chart - so he is asked once per chart: the look-up is asked with the chart's name and date, the plan is added, and the plan line says it was HIS word (a member number that proves nothing is not named as what let it be asked)",
+check("insurance check step (round 2): ... William's yes, kept in his standing file, frees such a chart - so he is asked once per chart: the look-up is asked with the chart's name and date, the plan is added, and the plan line says it was HIS word (a member number that proves nothing is not named as what let it be asked) "
+      "- and, since identity rule .5, that the wife's name is alike but not the same as the chart's (until then it said nothing of a first name that begins with the chart's)",
       _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "same_person" not in _lr
-      and "discovery: added UNI20 plan -> ins9 seq 1 - look-up asked with the chart's birth date; Claimocity's differs: far; William's word: same person" in (_lr.get("fixes") or []) and lk_leaks(_lo, lk_repo(_lr)) == [], (_le, len(LK["calls"]), LK["added"], _lr.get("decision"), (_lr.get("fixes") or [])[:1] if not lk_leaks(lk_repo(_lr)) else "the record carries an invented name, date or number"))
+      and "discovery: added UNI20 plan -> ins9 seq 1 - look-up asked with the chart's birth date; Claimocity's differs: far; the names are alike but not the same; William's word: same person" in (_lr.get("fixes") or []) and lk_leaks(_lo, lk_repo(_lr)) == [], (_le, len(LK["calls"]), LK["added"], _lr.get("decision"), (_lr.get("fixes") or [])[:1] if not lk_leaks(lk_repo(_lr)) else "the record carries an invented name, date or number"))
 _lk3_far2 = (LK_XL + ", " + LK_XF, bd_d8(*LK_XFD)); _lk3_two_ids = []      # a feed patient under a first name that shares three letters, a date far from the chart's - and no number: in doubt on its own
 for _lw, _lk in (("the patient with the member number is listed SECOND", dict(first=_lk3_far2, more=[("f2", LK3_XW, bd_d8(*LK_XFD))], raw=lk2_raw([lk2_pid("f1")], [lk2_pid("f2"), lk2_in1(LK2_M)]), pa=lk_xpa())),
                  ("... is listed FIRST", dict(first=(LK3_XW, bd_d8(*LK_XFD)), more=[("f2",) + _lk3_far2], raw=lk2_raw([lk2_pid("f1"), lk2_in1(LK2_M)], [lk2_pid("f2")]), pa=lk_xpa())),
@@ -4367,9 +4373,41 @@ check("insurance check step (round 2): ... TWO feed patients in doubt on one cha
                                          ("", 0, [], ["vst1", "vst2"], "look-up not asked: " + lk3_held("far")[1], [lk3_held("far")[1] + LK_DOUBT + LK2_ODD + " (vst1); Claimocity id " + LK2_ODD + " (vst2)"], []),
                                          ("", 0, [], ["vst1", "vst2"], "look-up not asked: " + LK_W["far"], [LK_W["far"] + LK_DOUBT + LK2_ODD + " (vst1); Claimocity id " + LK2_ODD + " (vst2; " + LK2_SAME + ")"], [])], _lk3_two_ids)
 _lr, _lo, _le = lk_run(LK3_XW, bd_d8(*LK_XFD), lk_xpa(ssn=LK2_S1), LK_XANS, plans=_lk2_plan, raw=lk2_raw([lk2_pid("f1", LK2_DASH), lk2_in1(LK2_M)]))
-check("insurance check step (round 2): ... the nine-digit Social Security number proves as before - the same far dates and the same member number, and the chart and the feed's PID-19 carry the SAME Social Security number: asked with the chart's name and date, the plan is added, and the plan line says the number",
-      _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "same_person" not in _lr and _lr.get("lookup_asked") == "look-up asked with the chart's birth date; Claimocity's differs: far; " + LK2_SAME and lk_leaks(_lo, lk_repo(_lr)) == [],
+check("insurance check step (round 2): ... the nine-digit Social Security number proves as before - the same far dates and the same member number, and the chart and the feed's PID-19 carry the SAME Social Security number: asked with the chart's name and date, the plan is added, and the plan line says the number "
+      "(and, since identity rule .5, that the names are alike but not the same)",
+      _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "same_person" not in _lr and _lr.get("lookup_asked") == "look-up asked with the chart's birth date; Claimocity's differs: far; the names are alike but not the same; " + LK2_SAME and lk_leaks(_lo, lk_repo(_lr)) == [],
       (_le, len(LK["calls"]), LK["added"], _lr.get("decision"), _lr.get("lookup_asked")))
+# 11/26/2026, ROUND 3 (identity rule .5 - a relative is not the patient), the whole insurance-check step: the round-2 checker's own cases E1 and O1, with invented patients.
+# E1: a husband's chart, his wife under a first name that BEGINS with his, the family's member number on a plan of the chart, and Claimocity sends her with the year-1900
+# placeholder. Until then her name was 'the chart's own' (a full-name candidate): NOT held - the look-up was bought about the husband, his plan added, her visit released on
+# his chart, and nothing at the top asked William. O1, the owner's own case, must stay: the chart's very own name sent with the placeholder is asked about without a question.
+_lk4 = []
+for _lw, _ln, _lraw in (("E1 a husband's chart, his wife - the placeholder, the family's member number", LK3_XW, _lk3_raw), ("... the same without any number in common", LK3_XW, None),
+                        ("a father's chart, his son of the same name with JR - the placeholder, the family's number", LK3_XS, _lk3_raw)):
+    _lr, _lo, _le = lk_run(_ln, LK_P00, lk_xpa(), LK_XANS, plans=_lk2_plan, raw=_lraw)
+    _lk4.append((_lw, _le, len(LK["calls"]), LK["added"], lk_held(_lr, LK_W["one~"] + ("; " + LK2_MEMB if _lraw else "")), _lr.get("same_person"), [h_ for h_ in _lr.get("hold") or [] if LK_TRIG.search(h_)], lk_leaks(_lo, lk_repo(_lr))))
+check("insurance check step (identity rule .5): a relative under a name that is ALIKE but not the chart's - a wife whose first name begins with her husband's (with the family's member number on a plan of his chart, and without), a son of his father's name with JR - sent with the year-1900 PLACEHOLDER: "
+      "no look-up is bought about the chart's person and no plan is added (until then: bought, his plan added, the relative's visit released on his chart, nothing asked); the chart is held 'same person?' for William, the hold says the names are alike but not the same - and that the member number is there, where it is",
+      [o_[1:] for o_ in _lk4] == [("", 0, [], True, ["vst1"], [], [])] * 3, _lk4)
+_lr, _lo, _le = lk_run(LK3_XW, bd_d8(*LK_XSD), lk_xpa(), LK_XANS, plans=_lk2_plan)
+check("insurance check step (identity rule .5): ... a birth date one digit off under an alike name, no number in common - held too: a slip is read under the SAME name only (until then: asked, the plan added, the visit released)",
+      _le == "" and LK["calls"] == [] and LK["added"] == [] and lk_held(_lr, LK_W["slip~"]) and _lr.get("same_person") == ["vst1"], (_le, len(LK["calls"]), _lr.get("hold")))
+_lr, _lo, _le = lk_run(LK3_XW, bd_d8(*LK_XSD), lk_xpa(), LK_XANS, plans=_lk2_plan, raw=_lk3_raw)
+check("insurance check step (identity rule .5): ... with the family's member number the slip IS asked, as round 2 left it (both sides carry a real birth date and the two agree) - and the plan line says what let it: the number - and that the names are alike but not the same",
+      _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "same_person" not in _lr
+      and "discovery: added UNI20 plan -> ins9 seq 1 - look-up asked with the chart's birth date; Claimocity's differs: one digit; the names are alike but not the same; " + LK2_MEMB in (_lr.get("fixes") or []) and lk_leaks(_lo, lk_repo(_lr)) == [],
+      (_le, len(LK["calls"]), LK["added"], _lr.get("decision"), (_lr.get("fixes") or [])[:1]))
+_lr, _lo, _le = lk_run(LK3_XW, bd_d8(*LK_XCD), lk_xpa(), LK_XANS, plans=_lk2_plan)
+check("insurance check step (identity rule .5): ... and with the SAME real birth date an alike name is asked without a hold, as a name candidate always was - the plan line says the names are alike (until then it said nothing of a first name that begins with the chart's)",
+      _le == "" and LK["calls"] == LK_XASK and LK["added"] == [("1", "car300")] and _lr.get("decision") == "RELEASE" and "discovery: added UNI20 plan -> ins9 seq 1 - look-up asked with the chart's birth date; Claimocity's is the same; the names are alike but not the same" in (_lr.get("fixes") or []),
+      (_le, len(LK["calls"]), LK["added"], (_lr.get("fixes") or [])[:1]))
+_lk4o = []
+for _lw, _ln in (("O1 the chart's very own name", bd_lf(LK_XL, LK_XC)), ("... written with a second first name where the chart has a middle initial", bd_lf(LK_XL, LK_XC + " ANN")), ("... in another case, a hyphen inside the last name", bd_lf(LK_XL[:2] + "-" + LK_XL[2:], LK_XC.title()))):
+    _lr, _lo, _le = lk_run(_ln, LK_P00, lk_xpa(), LK_XANS, plans=_lk2_plan, raw=_lk3_raw)
+    _lk4o.append((_lw, _le, LK["calls"], LK["added"], _lr.get("decision"), "same_person" in _lr, _lr.get("lookup_asked"), lk_leaks(_lo, lk_repo(_lr))))
+check("insurance check step (identity rule .5): what must stay - O1, the owner's own case: the chart's very own name (also written with a second first name, in another case, with a hyphen inside the last name) sent with the placeholder is asked about with the chart's name and birth date - "
+      "no hold, no question: the plan is added and the visit released",
+      [o_[1:] for o_ in _lk4o] == [("", LK_XASK, [("1", "car300")], "RELEASE", False, "look-up asked with the chart's birth date; no birth date from Claimocity", [])] * 3, _lk4o)
 # ROUND 2, the other finding: THE RECORD SAYS WHICH 'NO BIRTH DATE' IT IS - the digest's sentence for the record key no_birth_date ('neither Claimocity nor the chart carries a real
 # birth date') was untrue where ONE feed patient came with two different real birth dates and the chart carries none. The record now carries a fixed word, no_birth_date_case:
 # 'neither side' or 'two dates' (tools/selftest/test_feed_driver.py holds the digest's own two sentences; a record without the word - an older one - reads there as before)
@@ -4410,6 +4448,10 @@ else: print("skip privacy gate (round 2): tools/mirror/phi_gate.py is not in thi
 LK3_HEAD = ("A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE", "THE RECORD SAYS WHICH 'NO BIRTH DATE' IT IS", "no_birth_date_case", "a husband's chart for his wife", "a father's for his son")
 check("insurance check: its PLAIN ENGLISH header says what ROUND 2 of the second review changed - the first of these a sentence only this version has, on one line (the mirror and the helpers' version table can protect the helper by it) - and still carries the marker sentences of the versions before",
       all(w_ in _lvh for w_ in LK3_HEAD) and all(any(w_ in l_ for l_ in _lvh.splitlines()) for w_ in LK3_HEAD[:2]) and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in _lvh and "the paid look-up is bought only for a chart that is KNOWN to be the feed's patient" in _lvh, [w_ for w_ in LK3_HEAD if w_ not in _lvh])
+LK4_HEAD = ("A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME", "the same first word and no other suffix", "the names are alike but not the same", "identity rule 2026-11-26.5")
+check("insurance check: its PLAIN ENGLISH header says what ROUND 3 changed (identity rule .5, 11/26/2026: the feed's name is the chart's only when it is the same name) - the first of these a sentence only this version has, ONCE and on one line (the mirror and the helpers' version table protect the helper by it) - "
+      "and still carries the marker sentences of the versions before",
+      all(w_ in _lvh.replace("\n#      ", " ") for w_ in LK4_HEAD) and _lvs.count(LK4_HEAD[0]) == 1 and any(LK4_HEAD[0] in l_ for l_ in _lvh.splitlines()) and all(w_ in _lvh for w_ in (LK3_HEAD[0], "KNOWN ALSO MEANS PROVEN BY A NUMBER")), [w_ for w_ in LK4_HEAD if w_ not in _lvh.replace("\n#      ", " ")])
 # the insurance intake (feed_in1_intake.py), run INSIDE this process with stand-ins: ONE Florida Medicaid check for a chart the patient map knows
 _lk_fsrc = open(os.path.join(ROOT, "scripts", "helpers", "feed_payer_map.py")).read()
 _lk_fsp = importlib.util.spec_from_file_location("feed_payer_map_t", os.path.join(ROOT, "scripts", "helpers", "feed_payer_map.py")); LK_FPM = importlib.util.module_from_spec(_lk_fsp); _lk_fsp.loader.exec_module(LK_FPM)
@@ -4621,7 +4663,7 @@ check("insurance intake: its PLAIN ENGLISH header says whom Medicaid is asked ab
 # and her plan went on his chart (with the shared plan OPEN on his chart the insurance check never comes to its hold, so there the intake's line was the only question)
 _lki3_raw = lk2_raw([lk2_pid("lkfeed1"), lk2_in1(LK2_M)]); _lki3_open = {"ins5": dict(_lki_plan["ins5"], enddate="")}      # the feed's own insurance row carries the member number of the chart's plan; and that plan OPEN on the chart
 _lki3 = []
-for _lw, _lk in (("a husband's chart, his wife - the shared plan ended", dict(name=(LK_FF, LK_CL), plans=_lki_plan)), ("... the shared plan open on the chart", dict(name=(LK_FF, LK_CL), plans=_lki3_open)),
+for _lw, _lk in (("a husband's chart, his wife - the shared plan ended", dict(name=(LK_AF, LK_CL), plans=_lki_plan)), ("... the shared plan open on the chart", dict(name=(LK_AF, LK_CL), plans=_lki3_open)),
                  ("a father's chart, his son of the same name", dict(name=(LK_CF, LK_CL + " JR"), plans=_lki_plan)), ("a first name that shares three letters", dict(name=LK2_NC, plans=_lki_plan))):
     _lo, _le, _lg = lki_run(_lki_far, lk_pa(1940, 2, 15), live=True, name=_lk["name"], raw=_lki3_raw, chartplans=_lk["plans"])
     _lki3.append((_lw, _le, LKI["asked"], LKI["added"], sorted(_lg or {}), _lo.count(LKI_NOT % lk3_held("far")[1]), lki_leaks(_lo)))
@@ -4633,17 +4675,45 @@ for _lw, _lk in (("the placeholder from Claimocity", dict(iso="1900-01-" + "01",
     _lo, _le, _lg = lki_run(_lk["iso"], _lk["pa"], live=True, name=LK2_NC, raw=_lki3_raw, chartplans=_lki_plan); _lki3m.append((_lw, _le, LKI["asked"], LKI["added"], sorted(_lg or {}), _lo.count(LKI_NOT % _lk["words"]), lki_leaks(_lo)))
 check("insurance intake, live (round 2): ... nor where a birth date is MISSING on either side (under a first name that shares three letters): the placeholder from Claimocity, no real birth date on the chart, none on either side - the line 'same person?' with the member number said, nothing asked, nothing added, nothing registered (until then Medicaid was asked each time - with no date on either side, with what Claimocity sent)",
       [o_[1:] for o_ in _lki3m] == [("", [], [], [], 1, [])] * 3, [o_ for o_ in _lki3m if o_[1:] != ("", [], [], [], 1, [])])
-lki_yes({"pat901": lk2_e(["lkfeed1"])}); _lo, _le, _lg = lki_run(_lki_far, lk_pa(1940, 2, 15), live=True, name=(LK_FF, LK_CL), raw=_lki3_raw, chartplans=_lki_plan); lki_yes(None)
-check("insurance intake, live (round 2): ... William's yes, kept in his standing file, lets it be asked - with the chart's name and birth date - and the register entry says it was HIS word (a member number that proves nothing is not named as what let it be asked)",
-      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and ((_lg or {}).get("901|MCAD") or {}).get("outcome") == _lki_added + "Claimocity's differs: far; William's word: same person)"
+lki_yes({"pat901": lk2_e(["lkfeed1"])}); _lo, _le, _lg = lki_run(_lki_far, lk_pa(1940, 2, 15), live=True, name=(LK_AF, LK_CL), raw=_lki3_raw, chartplans=_lki_plan); lki_yes(None)
+check("insurance intake, live (round 2): ... William's yes, kept in his standing file, lets it be asked - with the chart's name and birth date - and the register entry says it was HIS word (a member number that proves nothing is not named as what let it be asked); "
+      "since identity rule .5 the entry also says that the wife's name is alike but not the same as the chart's (until then it said nothing of a first name that begins with the chart's)",
+      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and ((_lg or {}).get("901|MCAD") or {}).get("outcome") == _lki_added + "Claimocity's differs: far; the names are alike but not the same; William's word: same person)"
       and "same person?" not in _lo and lki_leaks(_lo, json.dumps(_lg or {})) == [], (_le, len(LKI["asked"]), LKI["added"], ((_lg or {}).get("901|MCAD") or {}).get("outcome") if not lki_leaks(json.dumps(_lg or {})) else "the register carries an invented name, date or number"))
-_lo, _le, _lg = lki_run(_lki_far, dict(lk_pa(1940, 2, 15), ssn=LK2_S1), live=True, name=(LK_FF, LK_CL), raw=lk2_raw([lk2_pid("lkfeed1", LK2_DASH), lk2_in1(LK2_M)]), chartplans=_lki_plan)
-check("insurance intake, live (round 2): ... the nine-digit Social Security number proves as before - the same far dates, the same member number, and the chart and the feed's PID-19 carry the SAME Social Security number: Medicaid is asked with the chart's name and birth date, the plan is added, and the entry says the number",
-      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and ((_lg or {}).get("901|MCAD") or {}).get("outcome") == _lki_added + "Claimocity's differs: far; " + LK2_SAME + ")" and lki_leaks(_lo, json.dumps(_lg or {})) == [],
+_lo, _le, _lg = lki_run(_lki_far, dict(lk_pa(1940, 2, 15), ssn=LK2_S1), live=True, name=(LK_AF, LK_CL), raw=lk2_raw([lk2_pid("lkfeed1", LK2_DASH), lk2_in1(LK2_M)]), chartplans=_lki_plan)
+check("insurance intake, live (round 2): ... the nine-digit Social Security number proves as before - the same far dates, the same member number, and the chart and the feed's PID-19 carry the SAME Social Security number: Medicaid is asked with the chart's name and birth date, the plan is added, and the entry says the number "
+      "(and, since identity rule .5, that the names are alike but not the same)",
+      _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and ((_lg or {}).get("901|MCAD") or {}).get("outcome") == _lki_added + "Claimocity's differs: far; the names are alike but not the same; " + LK2_SAME + ")" and lki_leaks(_lo, json.dumps(_lg or {})) == [],
       (_le, len(LKI["asked"]), LKI["added"], lki_leaks(_lo, json.dumps(_lg or {}))))
+# 11/26/2026, ROUND 3 (identity rule .5), in the intake - the same judgement, through the same text: the round-2 checker's E1 and O1. A husband's chart, his wife under a first
+# name that begins with his, Claimocity sends her with the year-1900 placeholder: until then her name was 'the chart's own' and Florida Medicaid was asked with HIS name and
+# birth date and HER Medicaid number - and her plan went on his chart, with no line for William. The owner's own case (the chart's very own name, the placeholder) stays.
+_lki4 = []
+for _lw, _lk in (("E1 a husband's chart, his wife - the placeholder, the family's member number", dict(name=(LK_AF, LK_CL), raw=_lki3_raw, words=lk3_held("one~")[1])), ("... the same without any number in common", dict(name=(LK_AF, LK_CL), raw=None, words=LK_W["one~"])),
+                 ("a father's chart, his son of the same name with JR - the placeholder, the family's number", dict(name=(LK_CF, LK_AL), raw=_lki3_raw, words=lk3_held("one~")[1])),
+                 ("a birth date one digit off under the wife's name, no number in common", dict(name=(LK_AF, LK_CL), raw=None, words=LK_W["slip~"], iso="1940-02-" + "16"))):
+    _lo, _le, _lg = lki_run(_lk.get("iso", "1900-01-" + "01"), lk_pa(1940, 2, 15), live=True, name=_lk["name"], raw=_lk["raw"], chartplans=_lki_plan); _lki4.append((_lw, _le, LKI["asked"], LKI["added"], sorted(_lg or {}), _lo.count(LKI_NOT % _lk["words"]), lki_leaks(_lo)))
+check("insurance intake, live (identity rule .5): a relative under a name that is ALIKE but not the chart's - a wife whose first name begins with her husband's (with the family's member number, and without), a son of his father's name with JR - sent with the year-1900 PLACEHOLDER, "
+      "or with a birth date one digit off: Florida Medicaid is NOT asked with the chart person's name and the relative's number, and no plan is added (until then: asked, and the plan went on the chart); ONE line 'same person?' for William says the names are alike but not the same - "
+      "and that the member number is there, where it is - and nothing is registered",
+      [o_[1:] for o_ in _lki4] == [("", [], [], [], 1, [])] * 4, [o_ for o_ in _lki4 if o_[1:] != ("", [], [], [], 1, [])])
+_lki4o = []
+for _lw, _ln in (("O1 the chart's very own name", (LK_CF, LK_CL)), ("... with a second first name, a hyphen inside the last name", (LK_CF + " ANN", LK_FL))):
+    _lo, _le, _lg = lki_run("1900-01-" + "01", lk_pa(1940, 2, 15), live=True, name=_ln, raw=_lki3_raw, chartplans=_lki_plan)
+    _lki4o.append((_lw, _le, LKI["asked"], LKI["added"], ((_lg or {}).get("901|MCAD") or {}).get("outcome"), "same person?" in _lo, lki_leaks(_lo, json.dumps(_lg or {}))))
+check("insurance intake, live (identity rule .5): what must stay - O1, the owner's own case: the chart's very own name (also with a second first name and a hyphen inside the last name) sent with the placeholder - Medicaid is asked with the chart's name and birth date, the plan is added, no line 'same person?'",
+      [o_[1:] for o_ in _lki4o] == [("", [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")], [("901", "car9")], _lki_added + "no birth date from Claimocity)", False, [])] * 2, _lki4o)
 LK3_IHEAD = ("A MEMBER NUMBER IN COMMON COUNTS ONLY WITH BIRTH DATES THAT AGREE", "a husband's chart", "a father's", "his standing file")
 check("insurance intake: its PLAIN ENGLISH header says what ROUND 2 of the second review changed - the first of these a sentence only this version has, on one line (the mirror and the helpers' version table can protect the helper by it) - and still carries the marker sentence of the version before",
       any(LK3_IHEAD[0] in l_ for l_ in _lih.splitlines()) and all(w_ in _lih.replace("\n#      ", " ") for w_ in LK3_IHEAD) and LK2_IHEAD[0] in _lih, [w_ for w_ in LK3_IHEAD if w_ not in _lih.replace("\n#      ", " ")])
+LK4_IHEAD = ("THE SAME NAME IS THE SAME FIRST WORD AND NO OTHER SUFFIX", "alike but not the same", "identity rule 2026-11-26.5")
+check("insurance intake: its PLAIN ENGLISH header says what ROUND 3 changed (identity rule .5, 11/26/2026) - the first of these a sentence only this version has, ONCE and on one line (the mirror and the helpers' version table protect the helper by it) - and still carries the marker sentences of the versions before",
+      all(w_ in _lih.replace("\n#      ", " ") for w_ in LK4_IHEAD) and open(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py")).read().count(LK4_IHEAD[0]) == 1 and any(LK4_IHEAD[0] in l_ for l_ in _lih.splitlines()) and LK3_IHEAD[0] in _lih and LK2_IHEAD[0] in _lih,
+      [w_ for w_ in LK4_IHEAD if w_ not in _lih.replace("\n#      ", " ")])
+_lk4_tab = {f_: (m_.group(1) if m_ else None) for f_ in ("claimocity_verify.py", "feed_in1_intake.py") for m_ in [re.search(r'"%s":\s*"([^"]+)"' % re.escape(f_), mir)]}
+check("the mirror and the helpers' version table know the two look-up helpers by the sentences of THIS round (identity rule .5): a copy from before - which holds no relative under an alike name - never goes back over the repository's, and the driver's helper check names it",
+      _lk4_tab == {"claimocity_verify.py": LK4_HEAD[0], "feed_in1_intake.py": LK4_IHEAD[0]} and all(('"%s": "%s"' % (f_, m_)) in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_helpers_current.py")).read() for f_, m_ in _lk4_tab.items() if m_)
+      and LK3_HEAD[0] not in mir and LK3_IHEAD[0] not in mir, _lk4_tab)
 check("the stand-ins of these runs are gone again (the import helper's own are back, no look-up module is left loaded)", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and not any(m_ in sys.modules for m_ in ("stedi", "elig_amd", "add_ins", "ins_update", "adt_ingest", "feed_payer_map", "deceased_guard")))
 # 11.1: the Claim Inspector step takes the quality line off a held visit by itself (run INSIDE this process with stand-ins)
 isd = tempfile.mkdtemp(prefix="posrule_ins_"); os.makedirs(os.path.join(isd, "registers")); json.dump({}, open(os.path.join(isd, "dx.json"), "w"))
@@ -5957,16 +6027,6 @@ _r0, _d0 = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s4", "pid": "pat6", "
 check("... and with no held visit that count is every skip row, as before", "; 2 encounters skipped as already in AMD; 0 faults." in _d0 and "DEATH DAY UNKNOWN" not in _d0, _d0[:400])
 _r, _d = mdig([_mrow], dict(_MG0))
 check("... and nothing is said when no visit was kept out so", _r.returncode == 0 and "DEATH DAY UNKNOWN" not in _d, _d[:300])
-# 11/25/2026 (the fourth round, S1): the visits the import kept out because the record of a death was reset on the owner's word and Medicare has not answered yet - a line of their own
-_DRW5 = getattr(ci, "DEATH_RESET_WHY", "the import has no such why")
-_r, _d = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s1", "pid": "pat5", "why": _DRW5, "cpts": ["99309"]}, {"feed_id": "s2", "pid": "pat8", "why": _DRW5, "cpts": ["99487"]}, {"feed_id": "s3", "pid": "Somebody Else", "why": _DRW5},
-                                              {"feed_id": "s4", "pid": "pat6", "why": ci.DEATH_DAY_WHY, "cpts": ["99309"]}, {"feed_id": "s5", "pid": "pat7", "why": "unknown CPT 99999"}])
-_dl3 = [l_ for l_ in _d.splitlines() if "DEATH RECORD RESET" in l_]; _il3 = [l_ for l_ in _d.splitlines() if l_.startswith("- 1 visits / ")]
-check("digest (the fourth round, S1): the visits the import kept out because the record of a death was reset on the owner's word and Medicare has not answered yet are ONE line of their own for the top of the report - counts and chart ids only (a 'chart' that is no chart id is not printed) - beside the line about a day nobody could read; neither kind is counted as 'skipped as already in AMD'",
-      _r.returncode == 0 and len(_dl3) == 1 and _dl3[0].startswith("  - TOP OF THE REPORT - DEATH RECORD RESET: 3 visit(s) on 2 chart(s) were NOT entered") and _dl3[0].endswith(": pat5, pat8") and "Somebody" not in _d and "Medicare has not answered yet" in _dl3[0]
-      and len([l_ for l_ in _d.splitlines() if "DEATH DAY UNKNOWN: 1 visit(s) on 1 chart(s)" in l_]) == 1 and len(_il3) == 1 and "; 1 encounters skipped as already in AMD; 0 faults." in _il3[0], (_r.returncode, _dl3, _il3, _r.stderr[-300:]))
-_r, _d = mdig([_mrow], dict(_MG0), skipped=[{"feed_id": "s4", "pid": "pat6", "why": ci.DEATH_DAY_WHY, "cpts": ["99309"]}])
-check("... and that line is not said when no visit was kept out so", _r.returncode == 0 and "DEATH RECORD RESET" not in _d and "DEATH DAY UNKNOWN: 1 visit(s)" in _d, _d[:300])
 _MW = dict(_MG0, added=["prof13"], clinicians={"prof13": {"state": "waiting", "year": "2026", "visit": "vst1", "charge": "charge78"}, "prof15": {"state": "not yet", "year": "2026"}})
 r, o = mdig([_mrow], _MW, prev_m=dict(_MG0))
 check("digest (8.6): the option code has its own line - on how many visits, per clinician billed / waiting / not yet; the visit that carries it is named; M0004 lines are not counted as charge lines",
@@ -6368,7 +6428,7 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
-      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE"' in mir and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below)
+      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME"' in mir and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below). 11/26/2026 (identity rule .5): the insurance check's marker moved on again - to the sentence only the version that holds an alike name has
       and "the paid look-up is asked with the CHART's own name and birth date" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 
@@ -6411,8 +6471,9 @@ if os.path.exists(_gate):      # (a throwaway tree that holds only the files the
                       | {"%s asked with the chart's birth date; Claimocity's differs: %s" % (w_, k_) for w_ in ("look-up", "Medicaid") for k_ in getattr(ci, "SLIP_KINDS", ())}
                       | {str(lk_who(pa_, n_[0], n_[1], f_, BD_T8, w_)[3]) for pa_ in (lk_pa(1940, 2, 15), lk_pa(1900, 1, 1), {}) for n_ in LK_WHO4 for f_ in (LK_ONE, BD_A, "", LK_FAR) for w_ in ("look-up", "Medicaid")}
                       | {s_ + "; " + n_ for s_ in ("look-up asked with the chart's birth date; Claimocity's differs: far", "Medicaid asked with the chart's birth date; Claimocity's differs: far; the first names differ") for n_ in ("the chart carries this patient's Claimocity id", "William's word: same person")}
+                      | {str(lk_who(pa_, n_[0], n_[1], f_, BD_T8, w_)[3]) for pa_ in (lk_pa(1940, 2, 15), lk_pa(1900, 1, 1)) for n_ in LK_ALS[:2] for f_ in (LK_ONE, BD_A, "", LK_FAR) for w_ in ("look-up", "Medicaid")}      # 11/26/2026 (identity rule .5): a name that is alike but not the same, behind each sentence that can carry it
                       | {"look-up not asked: " + w_ for w_ in list(LK_W.values()) + [LK_NODOB[1]]} | {w_ + LK_NOT for w_ in LK_W.values()} | {LK_FACE} | {LKI_NOT % w_ for w_ in LK_W.values()})      # 11/25/2026 (review): every new sentence - the names, the id, William's word, and why a look-up was not asked
-    LK_SAID = 70      # counted, so that a sentence dropped from the set is seen: the 20 of the first version and the one for a chart that could not be read (2: look-up, Medicaid); another first name / another last name behind each sentence that can carry it (24); the id and William's word (4); why a look-up was not asked (7); the two holds (6 + 1); the intake's line (6)
+    LK_SAID = 91      # counted, so that a sentence dropped from the set is seen: the 20 of the first version and the one for a chart that could not be read (2: look-up, Medicaid); another first name / another last name behind each sentence that can carry it (24); the id and William's word (4); why a look-up was not asked (7); the two holds (6 + 1); the intake's line (6). 11/26/2026 (identity rule .5), 21 more: the three holds said of a name that is alike but not the same - why a look-up was not asked (3), the hold (3), the intake's line (3) - and 'the names are alike but not the same' behind each sentence about whom was asked that can carry it (12)
     _bd_one = [json.dumps({"901|MCAD": {"outcome": "not active - Medicaid: no active coverage - " + s_, "stamp": _bd_stamp}}) for s_ in _bd_said] + [json.dumps({"lookup_asked": s_, "at": _bd_stamp}) for s_ in _bd_said]
     check("privacy gate: no sentence about whom a look-up was asked ends on such a word - with a run stamp right behind it on the same line (an entry written on one line) the gate still leaves the entry whole",
           len(_bd_said) == LK_SAID and all(_pgm.redact(t_, {}, code=None) == t_ for t_ in _bd_one), (len(_bd_said), [t_ for t_ in _bd_one if _pgm.redact(t_, {}, code=None) != t_][:2]))
@@ -6468,7 +6529,7 @@ check("a helper that cannot be copied is named: the import helper as PLACE OF SE
 _pm = {f_: (m_.group(1) or m_.group(2)) for f_ in HC.VERSION_LINES for m_ in [re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(f_), mir)] if m_}
 check("the shared helper's version lines are mirror.py's PROTECTED markers, word for word (so they cannot drift apart), and the drivers pass their own POS_RULE line",
       _pm == HC.VERSION_LINES and HC.RULE_HELPERS == ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py") and set(HC.FEED_HELPERS) == {"claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py",
-                                                                                                                                              "claimocity_match.py", "claimocity_resolve.py", "claimocity_newcharts.py", "feed_identity.py", "claimocity_dx.py", "claimocity_recon.py", "feed_in1_intake.py", "pos61_monitor.py", "deceased_guard.py"}      # 11/25/2026: the identity rule's steps, the cache step, the reconciliation, the intake, the monitor - and the deceased guard the import and the insurance check load - travel with the others
+                                                                                                                                              "claimocity_match.py", "claimocity_resolve.py", "claimocity_newcharts.py", "feed_identity.py", "claimocity_dx.py", "claimocity_recon.py", "feed_in1_intake.py", "pos61_monitor.py", "claimocity_void_deceased.py", "deceased_guard.py"}      # 11/25/2026: the identity rule's steps, the cache step, the reconciliation, the intake, the monitor - and the deceased guard the import and the insurance check load - travel with the others; 11/26/2026: and the helper that voids a visit dated after the day on record (it had no marker and nothing kept it current)
       and all(m_ in open(os.path.join(ROOT, "scripts", "helpers", f_)).read() for f_, m_ in HC.VERSION_LINES.items()), (_pm, HC.VERSION_LINES, [f_ for f_, m_ in HC.VERSION_LINES.items() if m_ not in open(os.path.join(ROOT, "scripts", "helpers", f_)).read()]))
 # the two drivers themselves, run INSIDE this process over a sandbox workspace and clone: their WS and REPO_HELPERS lines are pointed there, and every
 # program they would start (parse, dx, import, verify, inspector, report, recon) is answered by a stand-in that starts nothing
@@ -6569,15 +6630,6 @@ check("retry (the second verification of the death check): a visit kept out beca
       _e4 == "" and "Y4" in _p4 and "Y5" not in _p4 and "Y6" not in _p4 and "retry-dx: 1 chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (pat9204) - handed to the import again" in _o4, (_e4, _p4, _o4[:400]))
 check("... the words of that skip are ONE line in the import, the retry step and the digest (the three read each other's rows by them)",
       all(('DEATH_DAY_WHY = "%s"' % _DDW) in open(os.path.join(ROOT, "scripts", "helpers", n_)).read() for n_ in ("claimocity_import.py", "claimocity_retry_dx.py", "claimocity_report.py")) and _DDW.endswith("- not entered"))
-# 11/25/2026 (the fourth round, S1): the second fixed why - the record of a death was reset on the owner's word and Medicare has not answered yet. Such a visit is handed to the import again exactly as one held for a lost day
-_DRW6 = getattr(ci, "DEATH_RESET_WHY", "the import has no such why")
-_o7, _c7, _e7, _w7 = dx_retry(_DXC, extra=(("Y7", "pat9207", [("99309", "20261030", "I10")]), ("Y8", "pat9208", [("99309", "20261030", "I10")])), rows={"Y7": {"why": _DRW6, "cpts": ["99309"]}, "Y8": {"why": _DDW, "cpts": ["99309"]}})
-_p7 = [m_["pid"] for m_ in (_rd(_w7, "feed_parsed_20261126T1400ZR.json") or [])]
-check("retry (the fourth round, S1): a visit kept out because the record of a death was reset on the owner's word and Medicare had not answered is handed to the import again exactly as one kept out for a day nobody could read - and the step says so in a line of its own that names that chart only (the line about a lost day names the other chart)",
-      _e7 == "" and "Y7" in _p7 and "Y8" in _p7 and "retry-dx: 1 chart(s) have a visit that was kept out because the record of a death was reset on the owner's word and Medicare had not answered (pat9207) - handed to the import again" in _o7
-      and "retry-dx: 1 chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (pat9208) - handed to the import again" in _o7, (_e7, _p7, _o7[:700]))
-check("... the words of that second skip are ONE line in the import, the retry step and the digest too",
-      all(('DEATH_RESET_WHY = "%s"' % _DRW6) in open(os.path.join(ROOT, "scripts", "helpers", n_)).read() for n_ in ("claimocity_import.py", "claimocity_retry_dx.py", "claimocity_report.py")) and _DRW6.endswith("- not entered") and _DRW6 != _DDW)
 # ---- the independent check of the second round, new finding 3 (D3): the retry of a visit held for a lost day must CONVERGE. Every live retry wrote the held row again into
 # its OWN register (stamp ...R) and kept its own batch file; the next run read that register as a batch of its own and handed the visit over once more for each - 1, 2, 4,
 # 8, 16 messages per run in one workspace; in a fresh container one more stale line 'batch(es) <stamp>R ... the feed files are not on hand' per run; and once the day was
@@ -6699,7 +6751,7 @@ check("R6 (m49): a 'DOS after date of death' row ends the retry of THAT visit on
       _h7 == ("", 1, [_vis(_V1)]), _h7)
 _hw8, _hr8 = held_ws(); held_reg(_hw8, "20261124T0600Z", skipped=[_row(_AFTER, _V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw8, _hr8, "2026-11-25T1840Z"); _h8 = (_e, _n, list(_HANDED))
 _hw9, _hr9 = held_ws(); held_reg(_hw9, "20261124T0600Z", skipped=[_row(_ALR, _V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw9, _hr9, "2026-11-25T1840Z"); _h9 = (_e, _n, list(_HANDED))
-check("R6 (m50): only a LATER register ends the retry of a held visit - a 'DOS after date of death' row of an EARLIER register (the day it went by was taken off the record since, the visit was held anew) leaves it to be handed over; the same for an 'all lines already in AMD' row of an earlier register (charges can be voided between the two)",
+check("R6 (m50): only a LATER register ends the retry of a held visit - a 'DOS after date of death' row of an EARLIER register (the day it went by was taken off by hand since, the visit was held anew) leaves it to be handed over; the same for an 'all lines already in AMD' row of an earlier register (charges can be voided between the two)",
       _h8 == ("", 1, [_vis(_V1)]) and _h9 == ("", 1, [_vis(_V1)]), (_h8, _h9))
 _hw10, _hr10 = held_ws(); held_reg(_hw10, "20261124T0600ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw10, _hr10, "2026-11-25T1840Z"); _h10 = (_e, _n, list(_HANDED))
 _hw10b, _hr10b = held_ws(); held_reg(_hw10b, "20261125T1300ZR", skipped=[_row(_ALR)], msgs=[_msg(_V1)]); _o, _e, _n, _rs, _io, _rg = held_retry(_hw10b, _hr10b, "2026-11-25T1840Z"); _h10b = (_e, _n, list(_HANDED))

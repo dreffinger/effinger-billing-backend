@@ -77,14 +77,14 @@
 # 11/25/2026 (the independent check of that second round - each rule is shown by tools/selftest/test_lookup_rules.py, where each check names its finding):
 #          THE GUARD KEEPS A DEATH FOR GOOD, ALSO AGAINST ITS OWN HOOK: record() no longer writes an answer WITHOUT a day over an entry that holds a dod - a day that
 #          can be read, or one that cannot (it still wrote 'no death on record' over a readable day, and the chart's next claim passed with nobody asked). A death is
-#          taken off the record on the owner's word only (the fourth round, below). THE CHART'S OWN 'deceased' MARK WITHOUT A DATE is a death on record with no day: Medicare is asked for the day as for any
+#          taken off by hand only (the fifth round, below). THE CHART'S OWN 'deceased' MARK WITHOUT A DATE is a death on record with no day: Medicare is asked for the day as for any
 #          chart; a day that comes is the day; when none comes the entry says so (NO_DAY) and check() raises DayLost - the claim's own date of service used to be
 #          taken for the day, and the claim cleared itself. THE DEFAULT CACHE GOES BY WHERE THIS FILE STANDS (_default_cache): a stray registers folder beside the
 #          helpers of the repository's own layout no longer hides the repository's register. THE CARRY (_carry) also takes a placeholder that stands only in another
 #          cache file, and with a cache in use that cannot be read it keeps in memory what the other files hold. cache_state() carries first; covered(pid, dos) says
 #          whether the cache holds an answer that covers a claim (death_check_review.py asks it before it lets an 'unverified' line go); and no 'UNVERIFIED' line
 #          is logged for a chart whose day is lost - that claim is not cleared, it does not 'go on'.
-# 11/25/2026 (THE THIRD ROUND - the second independent check of that day; each rule is shown by tools/selftest/test_lookup_rules.py and test_death_off_record.py):
+# 11/25/2026 (THE THIRD ROUND - the second independent check of that day; each rule is shown by tools/selftest/test_lookup_rules.py):
 #          THE GUARD KEEPS A DEATH FOR GOOD, ALSO AGAINST ITS OWN LOOK-UP: check() reads the entry again after EVERY look-up - a day that stands there by then (the
 #          hook kept the day of a plain answer 61; another helper wrote one) is the day, and an answer without a day is never written over a death on record. Until
 #          then the entry was read again only when the look-up had FAILED: a look-up that named nobody, or hit another person, wrote 'no death on record' over the
@@ -94,40 +94,26 @@
 #          when the claim needs it, never held as a death (one word in a stray cache file held a living patient's chart). THE CHART'S MARK COUNTS ONLY FOR A VALUE
 #          KNOWN TO MEAN YES (YES_MARKS; the fourth round adds a value with four or more digits - below); N, no, false and any other text is no mark. A CACHE THAT CANNOT BE WRITTEN no longer ends a call: _put answers False, and
 #          what the carry, check() or record() could not write is kept in memory for the rest of the process. The words of DayLost say 'nobody named it'.
-#          (That round also gave the owner's word a rule of its own - it 'beat' every day reported up to its date. The fourth round took that rule out again:
-#          a word given for the wrong chart had no way back, a chart was no longer asked about, and nobody could explain its boundary.)
-# 11/25/2026 (THE FOURTH ROUND - the third independent check of that day; each rule is shown by tools/selftest/test_lookup_rules.py and test_death_off_record.py):
-#          THE ONE WAY OUT of a death that is WRONG (an answer for another person, a stale placeholder in a stray file) is the owner's word, written down by
-#          death_off_record.py - and his word does ONE plain thing: IT RESETS THE RECORD, AND MEDICARE IS ASKED AFRESH. The chart is cleared only when Medicare's
-#          FRESH answer names no death; until Medicare has answered it is not cleared. The helper puts the RE-ASK entry in the place of every death on record
-#          for the chart, in every cache file this guard knows: no death, a check date long ago, reask = the day the helper ran, approved_by = his approval.
-#          To check() an entry that carries reask and holds no death (_reask) is asked about for ANY claim, whatever the payer and the code, and with a FRESH
-#          question: AdvancedMD's free check first as always (only an answer stamped today counts for it, also one that shows a day), then the vendor ON THE
-#          WIRE - no answer kept in the answer store may answer, and a day the store keeps is no fallback when the call fails. One fresh question per chart per
-#          process. A DAY THAT COMES - Medicare's, or a date on the chart's own record - is the day: written as for any chart, and the claim is decided by it. So
-#          a word given for the wrong chart cannot let a claim out; and when the same day comes again, the chart's Medicare number or birth date - or Medicare's
-#          own record - is what is wrong: a second word does not settle that. MEDICARE ANSWERS AND NAMES NO DEATH: the ordinary 'no death on record' of today,
-#          the claim is not blocked. NOBODY ANSWERS: the entry stays exactly as it is and check() raises NotAnswered - a kind of DayLost, so every caller that
-#          fails closed on a lost day fails closed on it; a question from the cache only raises it too. THE CHART'S OWN MARK with no date on such a chart:
-#          Medicare is asked, and when it names none the chart is a death on record with no day again (DayLost) - the mark has to come off the chart in
-#          AdvancedMD. The hook (record) needs no rule of its own for such an entry: an answer with a day is taken, a real answer without a day writes 'no death
-#          on record' - nothing is compared with any date. THE CARRY (and the merge of the Drive copy, dg_drive.py) keep ONE narrow rule: while the entry of
-#          the cache in use carries reask, a death another cache file (or the Drive copy) holds whose check date is on or before that day, or that has no check
-#          date, is NOT brought into it - the older record must not come back before Medicare was asked; a death checked after that day is taken as for any
-#          chart. Nothing else about his word is carried or merged - but that a 'no death' note of the Drive copy, which is no answer to the fresh question,
-#          leaves such an entry exactly as it is (dg_drive.py: its check date stays long ago, so the next copy for Drive says so to every machine).
-#          WHAT COUNTS AS A DEATH ON RECORD WITH NO DAY, a little wider (the same check, its finding 5). In a cache's day place (_unread) besides the three of
+# 11/25/2026 (THE FOURTH ROUND - the third independent check of that day; each rule is shown by tools/selftest/test_lookup_rules.py):
+#          WHAT COUNTS AS A DEATH ON RECORD WITH NO DAY, a little wider (that check's finding 5). In a cache's day place (_unread) besides the three of
 #          the round before: any text in square or angle brackets in any letter case, a masked date (only X and separators), and the words deceased, dead,
 #          died, expired, redacted, y, yes. On the chart's own 'deceased' attribute besides the values known to mean yes: a value with four or more digits that
 #          is no date this guard can read (a date in another shape). N, no, false, 0 and any other text stay no mark.
-#          HIS WORD RESETS THIS GUARD'S RECORD - AND NOTHING ELSE. Two other holds of the feed do not go by it: the import holds a chart whose AdvancedMD record
-#          carries any 'deceased' value ('deceased flag on chart - William'), and the insurance check after the import holds when a plan's eligibility answer
-#          names a date of death. For those the chart's record and its plans have to be right in AdvancedMD.
-#          WHAT THIS ROUND DOES NOT REACH (seen while it was tested; medicare_store.py is not a file of this round): the answer store keeps the Medicare answer a
-#          wrong day came from for up to 92 days. After his word and Medicare's fresh 'no death' that kept answer can name the day again with nobody asked anew:
-#          when a later look-up for the chart fails (_stored_death reads every kept answer), or at a later claim of that answer's month of service when the
-#          fresh question was about an earlier month (the store hands out its newest answer for a month of service). The chart is then blocked by the old day
-#          again and needs his word again; the store drops that answer by itself only once it is older than 92 days.
+# 11/26/2026 (THE FIFTH ROUND - DEATH_GUARD_RULE below; each rule is shown by tools/selftest/test_lookup_rules.py):
+#          NOTHING HERE TAKES A DEATH OFF. Rounds three and four had each built a way out for a death that is on record WRONGLY (an answer for another person, a
+#          stale placeholder in a stray file) - on the owner's word, first as an entry that outweighed every day reported up to the date of his word, then as an
+#          entry that made this guard put a new question to Medicare for any claim of the chart. An independent check found each of them wanting (a word for the
+#          wrong chart with no way back; a wrong day that came back with nobody asked; a living patient's chart held for good), and a review on paper found that
+#          any such way out reaches far beyond this guard. So both are out again, whole - no entry, no function, no error and no argument of them is left - and
+#          the way out waits for the owner's decisions. What stands: THE GUARD KEEPS A DEATH FOR GOOD, also against a later answer that names no day. A chart
+#          William says is alive goes to the top of the report, and its record is taken off by hand in a chat session, on his word. Whoever does that: the record
+#          stands in up to FIVE places - this cache, the workspace's other cache files (_others), the copy on Drive, the answer store (medicare_store.py keeps a
+#          Medicare answer up to 92 days, and _stored_death reads every kept one when a look-up fails) and the repository's scrubbed register - and two other
+#          steps void on Medicare's own answer whatever this guard holds: the pre-claim check's rule (e) and the Sunday Medicare-number scan.
+#          TWO SMALL THINGS of that round's check (its findings 6 and 8). A day taken from the chart's OWN 'deceased' field is written with a source of its own
+#          (CHART_SRC) - it read 'stedi-medicare-271' although Medicare had not been asked at all. And in a cache's day place a bracketed text that plainly means
+#          NOTHING - none, null, n/a, na, unknown, no, empty, in any letter case, in square or angle brackets - is no death on record (NOTHING_WORDS, _unread):
+#          by the fourth round's letter it would have held a living patient's chart; every other bracketed text still is one.
 # CCM in the month of death: the DOS must be on/before the date of death; a month-end CCM date after the death is blocked.
 import os, re, json, time, datetime, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(HERE)
@@ -163,31 +149,28 @@ MEDICARE = {"FLO02", "car6085"}
 CCM = {"99487", "99489", "99490", "99491", "99439", "99437", "G0556", "G0557", "G0558", "G2058",
        "pcode492674", "pcode492675", "pcode492676", "pcode492677"}
 MAX_AGE_DAYS = 30
+# the round this guard is of (the fifth, 11/26/2026: nothing here takes a death off - the header) - the line tools/mirror/mirror.py and claimocity_helpers_current.py know this file by
+DEATH_GUARD_RULE = "2026-11-26.1"
 LOG = []
 class DayLost(RuntimeError):
     """A date of death is on record for the chart, its day cannot be read here, and nobody named it: the claim is NOT cleared."""
-class NotAnswered(DayLost):
-    """The record of a death for the chart was reset on the owner's word and Medicare has not answered yet: the claim is NOT cleared. A kind of DayLost: every
-    caller that fails closed on a lost day fails closed on this one (11/25/2026, the fourth round)."""
 class Unreadable(RuntimeError):
     """The charge's own read shows nothing to compare (no chart, no visit date, no row of the charge): the charge is NOT cleared."""
-LOST_WORDS = "a date of death is on record for this chart but its day cannot be read here, and nobody named it - the claim is not cleared (merge the cache copy from Drive, or look the chart up; a chart the owner says is alive: death_off_record.py, on his word only)"      # (the third round: it said that Medicare had named none - untrue whenever nobody was asked: a question from the cache only, a second question in one start)
+LOST_WORDS = "a date of death is on record for this chart but its day cannot be read here, and nobody named it - the claim is not cleared (merge the cache copy from Drive, or look the chart up; a chart the owner says is alive goes to the top of the report and is taken off by hand in a chat session, on his word)"      # (the third round: it said that Medicare had named none - untrue whenever nobody was asked: a question from the cache only, a second question in one start. The fifth round: its last words named a helper that is gone - nothing a run starts takes a death off)
 UNREADABLE_WORDS = "the charge's own detail shows no chart, no visit date or no row of this charge - there is nothing to compare, so the charge is not cleared"
-RESET_WORDS = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - the claim is not cleared"      # the fixed words of NotAnswered: no chart, no date, no number
 _CARRIED = [False]       # whether the days of the workspace's other cache files were carried into the cache in use (once per process - _carry)
 _LOST_ASKED = set()      # charts with a death on record whose day cannot be read, asked about in this process without a day coming back: a second question about one asks nobody again
-_REASKED = set()         # charts whose record was reset on the owner's word (a RE-ASK entry), asked about afresh in this process while nobody answered: ONE fresh question per chart per process
 _UNSAVED = {}            # chart -> the entry this process learned but could NOT write (the cache file cannot be read, so it is never written over - or, the third round, it cannot be written): every later answer of the process still sees it; an entry that IS written takes the chart out of here (_put)
 _ASKED = {}          # pid -> the day Medicare was asked for the answer stedi_lookup just used (a shared answer can be older than today)
 _NODAY = {}          # pid -> True when the chart's own record says deceased and names NO day that can be read (stedi_lookup notes it, check() takes it) - see NO_DAY
 NO_DAY = "day not known"                                # what check() writes in the day's place for such a chart: a death ON RECORD whose day is not known - never a day (_day reads it as none)
 NO_DAY_SRC = "amd: deceased on the chart, no date"      # ... and the source of that entry
+CHART_SRC = "amd: deceased on the chart"                # the source of an entry whose DAY came from the chart's own 'deceased' field (the fifth round: it read 'stedi-medicare-271' - Medicare had not been asked at all)
+_CHART = {}          # pid -> True when the day stedi_lookup just returned is the chart's own (check() names the source by it; every look-up starts by taking the mark off)
 YES_MARKS = {"1", "y", "yes", "true", "t", "d", "deceased"}      # what the chart's own 'deceased' attribute must carry (any letter case) to be such a mark when it names no date - or (the fourth round) four or more digits that are no date this guard can read; every other value is no mark (stedi_lookup)
 LONG_AGO = "2000-01-01"                                 # the check date check() gives an entry it must ask about again: older than any answer that counts (_checked gives the same day to an entry that names none)
 DEATH_WORDS = {"deceased", "dead", "died", "expired", "redacted", "y", "yes"}      # the words that stand for a death with no day in a cache's day place, in any letter case (_unread - the fourth round)
-REASK_SRC = "off the record on the owner's word - Medicare is asked again"      # the source of a RE-ASK entry: death_off_record.py reset the record of a death on William's word - no death, checked LONG_AGO, and reask holds the day the helper ran (_reask)
-REASK_KEYS = ("reask", "approved_by")                   # the fields of the reset: they stay while the entry waits for Medicare's fresh answer, and go when a day or an answer is written
-REASK_UNDATED = "9999-12-31"                            # the day a RE-ASK entry reads as reset on when its reask field names no date: later than any check date, so nothing is brought into it from another file
+NOTHING_WORDS = {"none", "null", "n/a", "na", "unknown", "no", "empty"}      # a text in square or angle brackets that is one of these, in any letter case, plainly means 'nothing': NO death on record (_unread - the fifth round)
 # 11/25/2026 (William: "is stedi able to do that for free?" - it is not; AdvancedMD's own eligibility check is): the free check comes before
 #   the paid one (the header says when, and what counts as an answer). COUNTS is for the caller's one line - the guard itself prints nothing.
 COUNTS = {"free asked": 0, "free answered": 0, "paid asked": 0}
@@ -225,17 +208,14 @@ def _carry():
         file held was unknown for the whole process. Now what would have been carried is kept in memory (_UNSAVED): every answer of the
         process sees it; the file stays as it was. The third round (11/25/2026): the same for a cache in use that cannot be WRITTEN - the folder
         refuses a new file - where the carry gave up without a word; and only a value that stood where a day stood is a placeholder (_unread).
-    (c) THE OWNER'S WORD (the fourth round; death_off_record.py writes it - the RE-ASK entry, _reask). ONE narrow rule is all the carry knows of it:
-        while the entry of the cache in use carries reask, a death another file holds is brought into it only when that file's entry was checked
-        AFTER the day of the reset (_after) - the older record must not come back before Medicare was asked; one checked on or before that day, or
-        with no check date, stays out. The day of the reset is read ONCE for a chart, from the entry as the cache in use held it before anything was
-        carried: so the answer does not depend on the order the other files are read in (the third round's carry could end either way with three
-        files). A death checked after that day is taken as for any chart, and the fields of the reset go. A RE-ASK entry that stands in ANOTHER file
-        is not carried anywhere: only the cache the guard answers from says that a chart is to be asked about afresh."""
+    The fifth round (11/26/2026): rounds three and four had each added a part (c) for the owner's word - both are gone. The carry knows two things only:
+    a day, and a death on record with no day. So the DEATH it leaves in the cache in use does not depend on the order the other files are read in: the
+    EARLIEST day any file holds, else a death with no day when one stands anywhere, else none. (Its check date and its source are those of the entry
+    that brought it - of two files that hold the same death, the one read first.)"""
     if _CARRIED[0]: return
     _CARRIED[0] = True
     try:
-        mine = None; unreadable = False; reset = {}; today = datetime.date.today().isoformat()
+        mine = None; unreadable = False; today = datetime.date.today().isoformat()
         for path in _others():
             try:
                 with open(path) as fh: other = json.load(fh)
@@ -253,15 +233,12 @@ def _carry():
                 pid = str(pid); day = _day(rec.get("dod"))
                 if day is None and not _unread(rec.get("dod")): continue      # neither a day nor a death on record whose day cannot be read (_unread): nothing to carry
                 cur = mine.get(pid) if isinstance(mine.get(pid), dict) else {}
-                since = reset.setdefault(pid, _reask(cur))      # (c) the day the record of this chart was reset on the owner's word - read once, from the entry as it stood before anything was carried into it
-                if since and not _after(rec, since): continue      # (c) THE ONE RULE: the older record - checked on or before that day, or with no check date - does not come back before Medicare was asked
                 have = _day(cur.get("dod"))
                 if day:
                     if have and have <= day: continue
                 elif have or _unread(cur.get("dod")): continue      # (a): a placeholder is carried only where the cache in use holds no dod at all for the chart (a day, or a death on record of its own, stays)
-                new = {k: v for k, v in cur.items() if k not in REASK_KEYS}; waits = _reask(cur) is not None      # waits: the entry is still the RE-ASK entry - its check date and its source are the reset's, not an answer's
-                new.update({"dod": day or str(rec.get("dod")), "checked": str(rec.get("checked") or (None if waits else cur.get("checked")) or today),
-                            "src": str(rec.get("src") or (None if waits else cur.get("src")) or "carried from another cache file of this workspace")})
+                new = dict(cur); new.update({"dod": day or str(rec.get("dod")), "checked": str(rec.get("checked") or cur.get("checked") or today),
+                                             "src": str(rec.get("src") or cur.get("src") or "carried from another cache file of this workspace")})
                 if unreadable or not _put(pid, new): _UNSAVED[pid] = new      # (b), and - the third round - a cache in use that cannot be WRITTEN: kept in memory all the same
                 mine[pid] = new
     except Exception: pass
@@ -327,26 +304,15 @@ def _unread(v):
     The fourth round (the third independent check, finding 5 - that narrow reading let values through that plainly stand for a death): also (iv) ANY text in
     square or angle brackets, in any letter case - what another scrubber or a person leaves where a day stood; empty brackets hold no text; (v) a masked date -
     nothing but the letter X and separators, at least four X; (vi) the words of DEATH_WORDS - deceased, dead, died, expired, redacted, y, yes - as the whole
-    value, in any letter case."""
+    value, in any letter case.
+    The fifth round (11/26/2026, the fourth independent check, finding 8 - (iv) reached too far): a bracketed text that plainly means NOTHING - one of
+    NOTHING_WORDS: none, null, n/a, na, unknown, no, empty, in any letter case, blanks around it or not - is NOT a death on record. By the fourth round's
+    letter '[none]', '[unknown]', '<null>' and '[n/a]' would have held a living patient's chart. Every other bracketed text still is one ('[unknown date]'),
+    and so is a value with two bracketed texts of which one does not mean nothing ('[none] [dob]')."""
     if not isinstance(v, str) or _day(v) is not None: return False
-    s = v.strip()
-    return (s == NO_DAY or len(re.findall(r"\d", s)) >= 4 or bool(re.search(r"\[[^\[\]]*[A-Za-z][^\[\]]*\]|<[^<>]*[A-Za-z][^<>]*>", s))
+    s = v.strip(); bracketed = [(a or b).strip().lower() for a, b in re.findall(r"\[([^\[\]]*[A-Za-z][^\[\]]*)\]|<([^<>]*[A-Za-z][^<>]*)>", s)]
+    return (s == NO_DAY or len(re.findall(r"\d", s)) >= 4 or any(w not in NOTHING_WORDS for w in bracketed)
             or s.lower() in DEATH_WORDS or (bool(re.fullmatch(r"[Xx/. -]+", s)) and len(re.findall(r"[Xx]", s)) >= 4))
-def _reask(rec):
-    """THE RE-ASK ENTRY (11/25/2026, the fourth round): what death_off_record.py writes where the record of a death is reset on the owner's word - an entry that
-    carries reask and holds NO death (neither a day nor a death on record whose day cannot be read). -> the day the record was reset, YYYY-MM-DD (the day the
-    helper ran); REASK_UNDATED when the field is there and names no date - that reads as later than any check date, so nothing is brought into the entry from
-    another file; None for every other entry - one that holds a death beside the field is a death, one whose field is empty is an ordinary entry. check() asks
-    about such a chart for ANY claim with a FRESH question and does not clear it before Medicare has answered; the carry keeps the older record out of it
-    (_after). The import's death_reask and dg_drive.py's reask are the same reading written out there (the self-test holds the three together)."""
-    if not isinstance(rec, dict) or not rec.get("reask") or _day(rec.get("dod")) or _unread(rec.get("dod")): return None
-    return _day(rec.get("reask")) or REASK_UNDATED
-def _after(rec, since):
-    """True when the entry's check date can be read - YYYY-MM-DD, a time behind it or not - and lies AFTER that day (YYYY-MM-DD). Never for the day itself, for
-    a check date in another shape or one that is no date, or for an entry with no check date: such a death is the older record and is not brought into a
-    RE-ASK entry (the ONE rule of the carry). The import's death_after and dg_drive.py's after are the same reading."""
-    s = str((rec.get("checked") if isinstance(rec, dict) else "") or "")[:10]
-    return bool(re.match(r"\d{4}-\d{2}-\d{2}$", s)) and _day(s) is not None and s > since
 def _checked(rec):
     """The day an entry was checked, as a date; 1/1/2000 for an entry that names none or names it in another shape (the copy from Drive can
     carry null there) - such an entry is stale, and it raises nothing."""
@@ -362,14 +328,14 @@ def covered(pid, dos):
     """True when the cache holds an answer that COVERS a claim of this chart and date of service: a day that can be read (the claim is decided by that
     day), or an entry that is not stale for that date by check()'s own rule (_stale: checked within MAX_AGE_DAYS and not before the date of service, or
     today for a date to come). False for everything else - no entry, an older answer, a death on record whose day cannot be read, an entry whose dod is
-    any other value that is no day, and (the fourth round) a RE-ASK entry - the record was reset on the owner's word and Medicare has not answered. So
-    an answer checked TODAY covers a date of service still to come, and an answer older than MAX_AGE_DAYS covers nothing. It asks nobody and never raises; its first call in a process carries the other cache files in, like every guard call (_carry - that can
+    any other value that is no day. So an answer checked TODAY covers a date of service still to come, and an answer older than MAX_AGE_DAYS covers
+    nothing. It asks nobody and never raises; its first call in a process carries the other cache files in, like every guard call (_carry - that can
     write the cache file), and it writes nothing else. (11/25/2026, the independent check of the second round, finding 5:
     death_check_review.py asks it before it lets a 'date of death unverified' line go - the line was dropped although nobody had answered for that
     charge. The third round: this text said 'changes nothing' - untrue of a process's first guard call.)"""
     try:
         rec = _load().get(re.sub(r"\D", "", str(pid)))
-        if not isinstance(rec, dict) or _reask(rec) is not None: return False      # (the fourth round) a RE-ASK entry covers nothing, whatever its check date says: the chart is not cleared before Medicare has answered
+        if not isinstance(rec, dict): return False
         if rec.get("dod") not in (None, ""): return _day(rec.get("dod")) is not None      # a day covers; a death on record whose day cannot be read does not - and neither does any other value: an entry without an answer (_unread)
         return not _stale(rec, _iso(dos))
     except Exception: return False
@@ -484,13 +450,11 @@ def _note_death(pid, d8):
 def free_down():
     """True once the free check is off for the rest of this process: FREE_DOWN_AFTER free checks in a row failed (the caller's line can say so)."""
     return _FREE_FAILS[0] >= FREE_DOWN_AFTER
-def free_lookup(pid, plan, fresh=False):
+def free_lookup(pid, plan):
     """11/25/2026: ONE free check - AdvancedMD's own eligibility check on the chart's Medicare plan (plan = _medicare_plan's attributes) - and
     what it says about a death -> (dod YYYY-MM-DD, True) for a date of death, (None, True) for 'no death on Medicare's record' as of today,
     (None, False) when it gives no usable answer or was not asked: the caller then buys the vendor's answer exactly as before. The header
-    says what is usable. Never raises, prints nothing, keeps nothing of the answer but the date.
-    fresh (the fourth round - a chart whose record was reset on the owner's word): only an answer stamped TODAY is one, also when it shows a
-    date of death - an answer AdvancedMD kept from an earlier day is the older record, and the vendor is asked instead."""
+    says what is usable. Never raises, prints nothing, keeps nothing of the answer but the date."""
     insid = re.sub(r"\D", "", str((plan or {}).get("id") or ""))               # AdvancedMD's check takes the digits of id="ins123"
     if not insid or free_down() or str(os.environ.get("DEATH_CHECK_FREE") or "").strip().lower() in ("off", "0", "no", "false"): return None, False
     try:
@@ -511,20 +475,15 @@ def free_lookup(pid, plan, fresh=False):
         # 11/25/2026 (review): 'no death on record' is taken only from an answer with NO date-of-death segment - summarize() sets the key whenever the answer
         # carries one (DTP 442), and a segment whose date is empty, missing or no date is never read as 'no death' (the paid check is then made, as before)
         alive = "date_of_death" not in s and not s.get("aaa") and s.get("status") == "ACTIVE" and bool(s.get("partA") or s.get("partB")) and _free_today(s)
-        if fresh and d8 and not _free_today(s): d8 = ""                         # a FRESH question (the fourth round): a date of death in an answer of an earlier day is not taken - no usable answer, the vendor is asked
     except Exception: return None, False                                        # 11/25/2026 (review): an answer that came but cannot be read is an unusable answer, not 'down' - neither counted nor a new start of the count
     if not (_real_d8(d8) or alive): return None, False                          # no answer (a rejection, INACTIVE with no date, an earlier day's answer, a date that is none): neither counted as down nor as answered
     _FREE_FAILS[0] = 0; COUNTS["free answered"] += 1
     if d8: _note_death(pid, d8)
     return (_iso(d8) if d8 else None), True
-def stedi_lookup(pid, dos_iso, fresh=False):
-    """Medicare record for pid as of dos -> (dod or None, ok). Since 11/25/2026 AdvancedMD's free check is asked before the vendor (free_lookup).
-    fresh (11/25/2026, the fourth round - a chart whose record of a death was reset on the owner's word): the question must be FRESH. The answer
-    store is not looked into - neither to skip the free check nor to answer: the vendor client is asked with no age rule, and so makes the
-    call (stedi.medicare reads medicare_store.py only when max_age_days is given; it still keeps the new answer there). A date on the chart's
-    own record is the day as for any chart."""
+def stedi_lookup(pid, dos_iso):
+    """Medicare record for pid as of dos -> (dod or None, ok). Since 11/25/2026 AdvancedMD's free check is asked before the vendor (free_lookup)."""
     import amd, stedi
-    _ASKED.pop(pid, None); _FREE.pop(pid, None); _NODAY.pop(pid, None)
+    _ASKED.pop(pid, None); _FREE.pop(pid, None); _NODAY.pop(pid, None); _CHART.pop(pid, None)
     t = amd.post(amd.msg("getdemographic", "demographics", {"patientid": pid, "nocookie": "1"}), timeout=60)
     m = re.search(r'<patient [^>]*>', t); a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(0))) if m else {}
     # The chart's own 'deceased' attribute. With a DATE in it (any shape _day reads) that date is the day, as before - nothing is asked. WITHOUT a date that can be
@@ -538,10 +497,12 @@ def stedi_lookup(pid, dos_iso, fresh=False):
     # 11/25/2026 (the fourth round - the third independent check, finding 5): a value with FOUR OR MORE DIGITS that is no date this guard can read is a mark
     # too - it is a date in another shape (MM-DD-YYYY, a two-digit year, a month's name, a year alone), 'a damaged date' by the third round's own word for a
     # cache entry. The round before read it as nothing, and Medicare's 'no death on record' then cleared the claim. N, no, false, 0 and any other text: no mark.
+    # 11/26/2026 (the fifth round - the fourth check's finding 6): a DATE in the attribute is the day, and check() is told that it is the CHART's own (_CHART) -
+    # the entry's source then says so (CHART_SRC). It read 'stedi-medicare-271', as if Medicare had named the day; nobody had been asked.
     mark = str(a.get("deceased") or "").strip()
     if mark:
         flagged = _day(mark)
-        if flagged: return flagged, True
+        if flagged: _CHART[pid] = True; return flagged, True
         if mark.lower() in YES_MARKS or len(re.findall(r"\d", mark)) >= 4: _NODAY[pid] = True
     last, first = (a.get("name", "").split(",") + [""])[:2]; first = first.strip().split(" ")[0]
     mm = re.match(r"(\d\d)/(\d\d)/(\d{4})", a.get("dob", "")); dob8 = f"{mm.group(3)}{mm.group(1)}{mm.group(2)}" if mm else ""
@@ -549,16 +510,14 @@ def stedi_lookup(pid, dos_iso, fresh=False):
     number = _medicare_member(t, dos_iso)
     # 11/25/2026 (William): AdvancedMD's FREE check first, on that same plan - unless the answer store already holds an answer the client
     # hands over with no call (then nothing is asked at all, as before). A usable free answer ends the look-up here: nothing is bought.
-    if fresh or not (hasattr(stedi, "medicare") and _kept(pid, dos_iso)):      # (fresh: what the answer store keeps is not asked about at all)
-        dod, ok = free_lookup(pid, _medicare_plan(t, dos_iso), fresh)
+    if not (hasattr(stedi, "medicare") and _kept(pid, dos_iso)):
+        dod, ok = free_lookup(pid, _medicare_plan(t, dos_iso))
         if ok: _FREE[pid] = True; return dod, True
     ask = dict(member_id=number or None, dos=dos_iso.replace("-", ""), state="FL", pid=pid,
                who="guard" if number is not None else "guard, no Medicare plan on the chart")
     paid = 1                        # 11/25/2026, COUNTS: the vendor is asked now - unless the answer below is one read back from the answer store
     try:
-        if hasattr(stedi, "medicare") and fresh:
-            j, how = stedi.medicare(first, last.strip(), dob8, **ask)                # FRESH (the fourth round): no age rule, so the client makes the call - no kept answer answers, and no 'asked and failed today' mark holds it back
-        elif hasattr(stedi, "medicare"):
+        if hasattr(stedi, "medicare"):
             j, how = stedi.medicare(first, last.strip(), dob8, **ask, max_age_days=MAX_AGE_DAYS)
             if how != "failed" and not dod_from_271(j) and _asked_before(j, dos_iso):   # a shared answer asked BEFORE this date of service: asked again, fresh
                 j, how = stedi.medicare(first, last.strip(), dob8, **ask)            # (re-check fix: one that already shows a death is used as it is - a death is never undone)
@@ -577,13 +536,6 @@ def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
     """-> (blocked: bool, reason: str). Blocks only on a known date of death earlier than the DOS."""
     pid = re.sub(r"\D", "", str(pid)); dos = _iso(dos); c = _load(); rec = c.get(pid); lost = False
     if not isinstance(rec, dict): rec = None      # an entry of another shape (a text, a list) is no entry: the chart is asked about as one the cache does not know
-    # THE OWNER'S WORD RESETS THE RECORD, AND MEDICARE IS ASKED AFRESH (11/25/2026, the fourth round - death_off_record.py wrote the RE-ASK entry: it carries reask
-    # and holds no death, _reask). Such a chart is asked about for ANY claim - whatever the payer, the code and the entry's check date - with a FRESH question
-    # (stedi_lookup's fresh), once per process. A day that comes is the day, written as for any chart; Medicare answers and names no death: the ordinary 'no death
-    # on record' of today; NOBODY answers: the entry stays exactly as it is and the claim is NOT cleared (NotAnswered, below) - with allow_lookup False too. Nothing
-    # is compared with the date of his word. (The third round's rule - his word 'beat' every day reported up to its date - is gone: a word given for the wrong
-    # chart had no way back, such a chart was no longer asked about while the old answer was at hand, and nobody could explain the boundary.)
-    reset = _reask(rec) is not None
     # 10/14/2026: a cache restored from GitHub carries the PHI gate's placeholder in place of the day (35 charts) - a day that cannot be read
     # is UNKNOWN (asked again), never compared as a string (which silently let every DOS through). 11/25/2026 (the second verification): a
     # day in eight digits or MM/DD/YYYY IS a day (two helpers wrote it so, and the claim passed); and a day that cannot be read is asked
@@ -595,10 +547,10 @@ def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
         was = rec.get("dod"); day = _day(was); rec = dict(rec); c[pid] = rec
         if day is None: rec["dod"] = None; rec["checked"] = LONG_AGO; lost = _unread(was)
         else: rec["dod"] = day
-    stale = _stale(rec, dos) or reset
-    needs = (carrier in MEDICARE) or ((proc or "") in CCM) or lost or reset
-    if allow_lookup and needs and stale and not (rec and rec.get("dod")) and not (lost and pid in _LOST_ASKED) and not (reset and pid in _REASKED):
-        dod, ok = stedi_lookup(pid, dos, fresh=reset); noday = bool(_NODAY.pop(pid, None))      # noday: the chart's own record says deceased and names no day (stedi_lookup)
+    stale = _stale(rec, dos)
+    needs = (carrier in MEDICARE) or ((proc or "") in CCM) or lost
+    if allow_lookup and needs and stale and not (rec and rec.get("dod")) and not (lost and pid in _LOST_ASKED):
+        dod, ok = stedi_lookup(pid, dos); noday = bool(_NODAY.pop(pid, None))      # noday: the chart's own record says deceased and names no day (stedi_lookup)
         # THE ENTRY IS READ AGAIN, WHATEVER THE LOOK-UP SAYS (11/10/2026, review fix: a date of death the hook wrote during THIS check - a plain answer with 61 -
         # counts now. Until 11/25/2026, the third round, that was done only when the look-up had FAILED: when the look-up bought after the 61 answered a lone 72 or
         # another person's Part A / Part B, 'no death on record' was written over the day the hook had kept a moment before, and the claim after it passed.) A day
@@ -609,37 +561,29 @@ def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
         seen = seen if isinstance(seen, dict) else {}; kept = _day(seen.get("dod")); today = datetime.date.today().isoformat()
         if kept and (not dod or kept <= dod): dod = kept
         elif not dod and _unread(seen.get("dod")) and not lost: lost = True; rec = dict(seen, dod=None, checked=LONG_AGO); c[pid] = rec
-        if not ok and not dod and not reset: dod = _stored_death(pid)     # 11/10/2026 (re-check fix): a death an answer in the store already shows still blocks - but not for a chart whose record was reset (the fourth round): there no kept answer may answer, and the older record must not come back before Medicare was asked
-        # NOBODY ANSWERED the fresh question about a chart whose record was reset: no day came, no real answer came, and the entry still is the RE-ASK entry (the
-        # hook or another helper did not write an answer into it meanwhile). It stays exactly as it is - its check date too: nobody answered, so nothing is stamped
-        # today - and the claim is not cleared (NotAnswered below). The chart is not asked about again in this process.
-        waiting = reset and not dod and not ok and _reask(seen) is not None
+        if not ok and not dod: dod = _stored_death(pid)     # 11/10/2026 (re-check fix): a death an answer in the store already shows still blocks
         # 11/25/2026 (the second verification): for a chart with a death ON RECORD whose day cannot be read, only a DAY is an answer. Medicare's
         # 'no death on record' does not undo it: a death the practice learned from the facility or the chart is not in Medicare's answer for
         # weeks, and the placeholder stands where such a day stood. The entry stays as it is and the claim is not cleared (DayLost below).
         if (lost or noday) and not dod: _LOST_ASKED.add(pid)
-        if waiting: _REASKED.add(pid)
-        elif noday and not dod and not lost:      # the chart says deceased, names no day, and nobody named one: a death ON RECORD whose day is not known - written so, and not cleared (DayLost below). An entry that already says so (lost) stays as it was. (For a chart whose record was reset this is reached only when Medicare ANSWERED and named none: the mark has to come off the chart in AdvancedMD.)
+        if noday and not dod and not lost:      # the chart says deceased, names no day, and nobody named one: a death ON RECORD whose day is not known - written so, and not cleared (DayLost below). An entry that already says so (lost) stays as it was.
             rec = {"dod": NO_DAY, "checked": today, "src": NO_DAY_SRC}; c[pid] = rec; lost = True
             if not _put(pid, rec): _UNSAVED[pid] = rec
         elif dod and dod == kept:           # the entry holds the day that stands (see above): it stays exactly as it is - nothing is written
             rec = dict(seen, dod=kept); c[pid] = rec; lost = False; _FREE.pop(pid, None); _ASKED.pop(pid, None)
         elif dod or (ok and not lost):
             free = _FREE.pop(pid, None)         # 11/25/2026: the answer is AdvancedMD's free one - the source says so; the block wording and the staleness rule are the same
-            asked = _ASKED.pop(pid, None)       # the day somebody really answered: a shared answer can be older than today (never for a fresh question - that one is of today)
+            asked = _ASKED.pop(pid, None)       # the day somebody really answered: a shared answer can be older than today
+            own = _CHART.pop(pid, None)         # 11/26/2026: the day is the one on the chart's own 'deceased' field - nobody was asked, and the source says where it came from
             rec = {"dod": dod, "checked": asked or today,
-                   "src": ("amd-medicare-271" if free else "stedi-medicare-271") if dod else ("amd: no death on record" if free else "stedi: no death on record")}      # a new entry: the fields of a reset (reask, approved_by) are gone with the answer
+                   "src": CHART_SRC if own and dod else ("amd-medicare-271" if free else "stedi-medicare-271") if dod else ("amd: no death on record" if free else "stedi: no death on record")}
             c[pid] = rec; lost = False
             if not _put(pid, rec): _UNSAVED[pid] = rec
         elif not ok and not lost: LOG.append(f"pat{pid} DOS {dos}: date of death UNVERIFIED (lookup failed)")      # never for a chart whose day is lost (the independent check of 11/25/2026, finding 13): 'unverified' means 'not a block - the charge goes on', and that claim does not - DayLost below; the caller says NOT CHECKED or holds the visit. A count of these lines (the feed's 'date of death UNVERIFIED xN') is so of charges that went on
-        reset = waiting
     # 11/25/2026 (the second verification): a death IS on record for this chart, its day cannot be read here, and nobody answered (or nobody
     # was asked: a question from the cache only). That is not 'no death on record' - the claim is not cleared: the caller fails closed on this
     # error (amd.rebill_charge answers 409 and sends nothing; death_check_review.py says NOT CHECKED). The entry stays as it was.
     if lost: raise DayLost(LOST_WORDS)
-    # 11/25/2026 (the fourth round): the record of a death for this chart was reset on the owner's word, and Medicare has not answered - nobody answered the fresh
-    # question, or nobody was asked (a question from the cache only, a second question in this process). Until Medicare has answered the chart is NOT cleared.
-    if reset: raise NotAnswered(RESET_WORDS)
     dod = (rec or {}).get("dod")
     if dod and dos and dos > dod:
         return True, f"pat{pid} DOS {dos} is after date of death {dod} ({(rec or {}).get('src')}) - claim must not be submitted" + \
@@ -671,15 +615,12 @@ def record(pid, j, src="stedi-medicare-271"):
         # THE GUARD KEEPS A DEATH FOR GOOD - also against this hook. An answer WITHOUT a day never writes over an entry that holds a dod: a day that can be read, or
         # a death on record whose day cannot be read here. (The second verification of 11/25/2026 closed that for the unreadable day only; the independent check of
         # that round found the other half: a readable day was still written over by another helper's 'no death on record' - or by 'not a Medicare beneficiary', or by
-        # a look-up that hit another person - and the chart's next claim passed with nobody asked.) A death goes off the record on the owner's word only
-        # (death_off_record.py): his word resets the record, and Medicare's fresh answer decides.
+        # a look-up that hit another person - and the chart's next claim passed with nobody asked.) A death is taken off by hand only - in a chat session,
+        # on the owner's word (the fifth round: nothing a run starts takes one off).
         if not dod and (_day(old.get("dod")) or _unread(old.get("dod"))): return dod      # (a day, or a death on record whose day cannot be read - _unread; any other value in the day's place is no dod and is written over)
         # ONE RULE FOR TWO DAYS (the third round): of two days for one chart the EARLIER stays - as in the carry and in the Drive merge. This hook wrote the LATER
         # day over the earlier one, and a visit between the two passed. An answer that names a later day leaves the entry exactly as it is.
         if dod and (_day(old.get("dod")) or dod) < dod: return dod
-        # A RE-ASK ENTRY (the fourth round: the record of a death was reset on the owner's word) needs no rule here - it holds no death, so it is an entry like
-        # any other: an answer with a day is taken, a real answer without a day writes 'no death on record', and the fields of the reset go with the entry that
-        # is written. Nothing is compared with any date. (This hook is handed answers that came over the wire - never one read back from the answer store.)
         new = {"dod": dod, "checked": datetime.date.today().isoformat(), "name": old.get("name"),
                "src": src if dod else ("stedi: not a Medicare beneficiary" if errs == ["72"] else "stedi: no death on record")}
         if not _put(pid, new): _UNSAVED[pid] = new      # (the third round) what cannot be written - a cache file that cannot be read, a folder that takes no file - is kept in memory: check() reads it again after its look-up

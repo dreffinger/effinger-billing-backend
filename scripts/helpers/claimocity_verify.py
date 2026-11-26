@@ -88,6 +88,17 @@
 #      birth date) or "two dates" (Claimocity sent two different real birth dates for a patient of the chart and the chart carries none of its own - (b) above).
 #      The digest's line for the record key no_birth_date said 'neither Claimocity nor the chart carries a real birth date' of both; of the second that was untrue,
 #      and it has a line of its own now. On a chart with a patient of each kind the record, the hold and lookup_asked say "two dates".
+#      11/26/2026, ROUND 3 (identity rule 2026-11-26.5 - a relative is not the patient; reproduced by the round-2 checker, and here, before it was changed):
+#      A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME. 'The feed's name is the chart's' meant a full-name candidate of the identity rule, and that
+#      was also a first name that only BEGINS with the chart's (four letters or more) and the chart's name with another suffix: a wife under a first name that begins
+#      with her husband's, a son of his father's name with JR. With a birth date missing on one side - the year-1900 placeholder - or a slip between the two, such a
+#      relative was asked about under the CHART's person without a hold: a look-up bought about him, his plan added, her visit released on his chart. Now the same name
+#      is the same first word and no other suffix (the suffix: JR, SR, II, III, IV or V as the last word of the last name or as any word after the first word of the
+#      first name); a middle initial or a second first name does not matter. A name that is only alike is held 'same person?' - the hold says "... and the names are
+#      alike but not the same", never 'the names differ' of a father and his son of one first name - and the words about whom was asked say "the names are alike but
+#      not the same" in the place of 'the first names differ'. With the same real birth date such a name is asked as before (a name candidate with the same date);
+#      the Claimocity id on the chart, the Social Security number, a member number with birth dates that agree, and William's word free it as they free any other
+#      chart. William's own case - the chart's very own name sent with the placeholder - is asked about without a question, as before. See _name_kind, lookup_hold.
 #   6. the feed's IN1 payers are mapped and reported next to the chart (the 271 decides, the feed only informs).
 # Writes feed_verify_1028.json (+ registers copy). AMD writes: visit insorder resaves; addinsurance only from discovery; updextrainsinfo only to put
 # back an admission date a resave wiped (11/10/2026). Never: a save on a billed visit, a rebill, a void (except the no-charge line left out above).
@@ -541,21 +552,29 @@ def _dob8(s):
     if m: return "".join(m.groups())
     x = re.sub(r"\D", "", s)
     return x[:8] if len(x) >= 8 else ""
-def _name_kind(feed_last, feed_first, chart_last, chart_first):
-    """What a chart's name is to the feed's (the owner's rule for names): "full" - the same last name, and the first word of the first name is the same or the shorter of the
-    two first words has four letters or more and begins the longer one (MARY / MARYANN); "name" - the same last name and the first names share their first three letters;
-    "surname" - the same last name under another first name (or none); "" - another last name, or none. Last names are compared in upper case, letters only, without a
-    trailing suffix word (JR, SR, II, III, IV, V); an accent is not a difference. (The rule of name_kind in feed_identity.py.)"""
+def _name_kind(feed_last, feed_first, chart_last, chart_first, alike=False):
+    """What a chart's name is to the feed's (the owner's rule for names, identity rule 2026-11-26.5): "full" - the SAME name: the same last name, the same first WORD of the
+    first name (a middle initial or a second first name behind it does not matter) and the same suffix, or none; "name" - the same last name and the first names share their
+    first three letters; "surname" - the same last name under another first name (or none); "" - another last name, or none. Last names are compared in upper case, letters
+    only, without a trailing suffix word (JR, SR, II, III, IV, V); an accent is not a difference. The suffix of a name is one of those six words as the last word of the last
+    name or as any word after the first word of the first name. A name that is ALIKE BUT NOT THE SAME - the first word of one first name only begins the other's, or the two
+    are one word and the suffixes differ (also when only one side carries one) - is "name" (until that version it was "full": a wife under a first name that begins with her
+    husband's, a son of his father's name with JR); asked for it (alike=True) such a name is "alike", so that a hold can say what is true of it. (The rule of name_kind in
+    feed_identity.py.)"""
     ud = __import__("unicodedata"); up = lambda s: "".join(c for c in ud.normalize("NFKD", str(s if s is not None else "")) if not ud.combining(c)).upper()
+    sfx = ("JR", "SR", "II", "III", "IV", "V"); words = lambda s: re.findall(r"[A-Z]+", up(s))
     def key(s):
-        w = re.findall(r"[A-Z]+", up(s))
-        return "".join(w[:-1] if len(w) > 1 and w[-1] in ("JR", "SR", "II", "III", "IV", "V") else w)
+        w = words(s)
+        return "".join(w[:-1] if len(w) > 1 and w[-1] in sfx else w)
+    def suffix(last, first):      # the suffix words a name carries: the last word of the last name, any word after the first word of the first name
+        return {w for w in (words(last)[-1:] if len(words(last)) > 1 else []) + [re.sub(r"[^A-Z]", "", x) for x in up(first).split()[1:]] if w in sfx}
     k = key(feed_last)
     if not k or k != key(chart_last): return ""
     a, b = re.sub(r"[^A-Z]", "", up(feed_first)), re.sub(r"[^A-Z]", "", up(chart_first))
     if not a or not b or a[:3] != b[:3]: return "surname"
     wa, wb = (re.sub(r"[^A-Z]", "", (up(x).split() or [""])[0]) for x in (feed_first, chart_first))
-    return "full" if wa and wb and (wa == wb or (min(len(wa), len(wb)) >= 4 and (wa.startswith(wb) or wb.startswith(wa)))) else "name"
+    if wa and wb and wa == wb and suffix(feed_last, feed_first) == suffix(chart_last, chart_first): return "full"
+    return "alike" if alike and wa and wb and (wa.startswith(wb) or wb.startswith(wa)) else "name"
 def _same_id(a, b):
     """True when a chart's additional number is this patient's Claimocity id: equal as upper-case letters and digits, and eight characters or more (the feed step and the
     old integration write the id there; an empty or short value is never one). (The evidence 'mrn' of feed_identity.py.)"""
@@ -658,6 +677,10 @@ def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False, proof=""
           of the same name - a family shares member numbers): BOTH sides carry a real birth date and the two are the same or a slip apart. With the dates far
           apart, or a date missing on either side, it proves nothing: the hold stands and says the number is there. The Social Security number proves as before.
           Two DIFFERENT Social Security numbers (proof "contra") free nobody and are said behind the words, held or asked.
+          Identity rule 2026-11-26.5 (a relative is not the patient): 'the chart's name' is the SAME name only - the same first word, no other suffix. A name that is
+          ALIKE BUT NOT THE SAME (a first name that begins with the chart's, the chart's name with JR) is held like any other name, and the words say what is true of
+          it: "... and the names are alike but not the same" - until then such a relative was asked about under the chart's person whenever a birth date was missing
+          on one side or the two were a slip apart.
       "no_birth_date" - the chart is the patient, but neither side carries a real birth date: there is nothing to ask with (face sheet needed).
     A chart answer that shows no patient at all (neither a name nor a birth-date attribute - a read that failed) is not judged: ("", ""), the look-up is asked as before.
     The words are fixed - no name, no date, no number. It never raises: a comparison that cannot be made is held ("same_person")."""
@@ -665,14 +688,15 @@ def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False, proof=""
         today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
         if "name" not in a and "dob" not in a: return "", ""
         cl, _, cf = __import__("html").unescape(str(a.get("name") or "")).partition(",")
-        c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); cr = _real_dob(c8, today8); fr = _real_dob(f8, today8); kind = _name_kind(last, first, cl, cf)
+        c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); cr = _real_dob(c8, today8); fr = _real_dob(f8, today8); kind = _name_kind(last, first, cl, cf, alike=True)
+        names = " and the names are alike but not the same" if kind == "alike" else " and the names differ"      # (identity rule .5) what is true of the two names: a father and his son of one first name do not 'differ' by it
         if cr and fr and c8 == f8: why = "" if (kind or _name_kind("X", first, "X", cf) == "full") else "only the birth date is the same - both names differ"
         elif cr and fr and _slip(f8, c8) == "far": why = "Claimocity's birth date and this chart's are far apart"
         elif kind == "full": why = ""
-        else: why = ("Claimocity's birth date is a slip from this chart's" if cr and fr else "one side carries no birth date" if cr or fr else "no birth date on either side") + " and the names differ"
+        else: why = ("Claimocity's birth date is a slip from this chart's" if cr and fr else "one side carries no birth date" if cr or fr else "no birth date on either side") + names
         if apart and not why: why = "another Claimocity patient on this chart carries a birth date far from this one's and the chart carries none"
         known = _same_id(a.get("additionalmrn"), fid)
-        proven = kind in ("name", "full") and (proof == "ssn" or (proof == "member" and cr and fr and _slip(f8, c8) != "far"))      # (round 2) a member number: only where both birth dates are real and the same or a slip apart
+        proven = kind in ("name", "alike", "full") and (proof == "ssn" or (proof == "member" and cr and fr and _slip(f8, c8) != "far"))      # (round 2) a member number: only where both birth dates are real and the same or a slip apart
         num = "the chart and Claimocity carry the same Social Security number" if proof == "ssn" else "a plan of the chart carries a member number Claimocity sent" if proof == "member" else ""
         two = "the chart and Claimocity carry two different Social Security numbers" if proof == "contra" else ""
         if why and not (known or proven or sure): return "same_person", "same person? %s, and the chart's answer does not show this patient's Claimocity id%s" % (why, ("; " + (num or two)) if (num or two) else "")
@@ -816,7 +840,7 @@ def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
     feed carries. When the chart's birth date is a REAL one (_real_dob) and its name can be read, the answer is the CHART's first name (its first word), last name and
     birth date; else it is the feed's three values exactly as they were passed - never a mix of the two. words = which one was asked and how the other differs, in fixed
     words that carry no name and no date (a slip is named by its kind; another first name under the same last name, or another last name, is said behind them - 11/25/2026,
-    the review); they begin with `what` ("look-up", "Medicaid") and go into registers and reports. A chart answer that shows no patient at all (a read that failed) leaves
+    the review; a name that is alike but not the same as the chart's says so, in the place of 'the first names differ' - identity rule 2026-11-26.5); they begin with `what` ("look-up", "Medicaid") and go into registers and reports. A chart answer that shows no patient at all (a read that failed) leaves
     the feed's values and says the chart could not be read - never that it has no birth date. Whether the look-up is asked at all is lookup_hold's.
     It never raises: whatever cannot be compared leaves the feed's values, and the words say so."""
     try:
@@ -824,7 +848,8 @@ def lookup_who(pa, first, last, dob8, today8=None, what="look-up"):
         if "name" not in a and "dob" not in a: return first, last, dob8, "%s asked with what Claimocity sent; the chart's name and birth date could not be read" % what
         cl, _, cn = __import__("html").unescape(str(a.get("name") or "")).partition(","); cl = cl.strip(); cf = cn.strip().split(" ")[0]
         c8 = _dob8(a.get("dob")); f8 = _dob8(dob8); fr = _real_dob(f8, today8)
-        kind = _name_kind(last, first, cl, cn) if (cl and cf) else "full"; names = "" if kind == "full" else "; the first names differ" if kind else "; the last names differ"
+        kind = _name_kind(last, first, cl, cn, alike=True) if (cl and cf) else "full"
+        names = "" if kind == "full" else "; the names are alike but not the same" if kind == "alike" else "; the first names differ" if kind else "; the last names differ"
         if _real_dob(c8, today8):
             if not (cl and cf): return first, last, dob8, "%s asked with Claimocity's name and birth date; the chart's name could not be read" % what
             return cf, cl, c8, "%s asked with the chart's birth date; %s%s" % (what, ("Claimocity's is the same" if f8 == c8 else "Claimocity's differs: " + _slip(f8, c8)) if fr else "no birth date from Claimocity", names)

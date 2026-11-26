@@ -148,14 +148,14 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # building to HCA REHAB at 31 - his word of 10/31: wrong) and never bypasses a place-of-service edit on a visit entered at 61; a copy from before moves visits again - its
              # marker is now a sentence only that version has (it still carries the Pattern 692 rule and the retry pass). The insurance check asks its paid look-up with the CHART's own
              # name and birth date (a feed patient with a wrong birth date): a copy from before asks with Claimocity's - its marker is now that sentence (it still carries the list rule)
-             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE",
+             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME",
              # the same word for the insurance intake of existing charts, and the three steps of the identity rule with the rule itself (feed_identity.py): they only work together -
              # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
-             "feed_in1_intake.py": "A MEMBER NUMBER IN COMMON COUNTS ONLY WITH BIRTH DATES THAT AGREE",
+             "feed_in1_intake.py": "THE SAME NAME IS THE SAME FIRST WORD AND NO OTHER SUFFIX",
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
              "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"',
+             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-26.5"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
              "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it
@@ -190,8 +190,9 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (the rounds after the independent checks of the date-of-death work): the guard's marker is a line only the guard of those rounds has (it
              # keeps a death for good, reads a day in every shape, raises DayLost) - the line of before also stood in older guards; the Drive copy helper keeps the
              # earlier of two days and never lets a 'no death' note replace a death on record; the modifier-25 helper leaves the 99489 add-on alone for Humana
-             "dg_drive.py": "deceased_cache_drive v2", "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
-             "deceased_guard.py": 'class NotAnswered(DayLost):', "death_off_record.py": 'DEATH_OFF_RECORD_VERSION = "2026-11-25.2"', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"',
+             "dg_drive.py": 'DG_DRIVE_RULE = "2026-11-26.1"', "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
+             "deceased_guard.py": 'DEATH_GUARD_RULE = "2026-11-26.1"', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"',
+             "claimocity_void_deceased.py": "THE DAYS IT GOES BY ARE THE GUARD'S ONE CACHE, READ THROUGH THE GUARD - NEVER A CACHE FILE OF THE FEED'S OWN",
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the

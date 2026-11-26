@@ -39,6 +39,16 @@
 #      id's in the map, and one person under two new ids, the second without a date, ends on ONE chart with BOTH visits; a slip in the
 #      date (rule 5) does not wait for ANOTHER patient's new chart - only an answer by the name alone (rules 6 to 8) and a patient that
 #      would get a new chart do; and the rule's version line changed with the rule, in the helper and in the two tables that pin it.
+#      11/26/2026 (identity rule .5 - A RELATIVE IS NOT THE PATIENT; the cases of its faults were seen failing here before the rule was changed):
+#      a wife sent with her own birth date, or with none, and the family's member number does not go on her husband's chart by rule 4 - a
+#      member number counts only where it can prove one person (the shape of a Medicare number, birth dates that agree, the same name);
+#      a first name that only BEGINS with the chart's, and the same name with another suffix (JR, SR, II ...), are alike but not the same:
+#      name candidates only - never taken by the name alone (rules 5 to 8) - and still beside the charts of the same name where those
+#      rules ask whether the same-name charts agree (a son sent without his suffix and without a birth date is not put on his father's
+#      chart while his own stands beside it: a question, as before); the same name with a family's number and far-apart birth
+#      dates is still chosen and is said to William once; and what must stay: a middle initial or a second first name is the same name,
+#      the same real birth date still decides by rule 2 whatever the suffix or the ending of the first name, and William's own case
+#      (the same name, no birth date from Claimocity, one date on the chart) still goes to that chart by rule 7 without a question.
 #   The stand-in AdvancedMD refuses every action a step is not supposed to send (a stray write fails the test) and counts addpatient.
 # Every name, birth date, Social Security number and member number here is invented, and each is put together at run time (lf, ymd, the
 #   + signs) so that no such value sits in this file as a literal: tools/mirror/phi_gate.py scrubs this file like any other before a
@@ -108,6 +118,7 @@ P8 = ymd(1900, 1, 1); P_MDY = "01/01/" + "1900"            # the placeholder Cla
 ZO, QU, WE, TH, YA = "ZORNDIKE", "QUAGGLEBY", "WEXLOWE", "THRUMBLECK", "YARROWBIE"
 S1 = "517" + "20" + "3391"; S2 = "517" + "20" + "3392"; S3 = "448" + "61" + "9027"
 M1 = "ZQ" + "81726354"; M2 = "HK" + "40917733"; PFX = "XJB"
+MC1 = "3TQ" + "7WH" + "4PM" + "82"; MC2 = "5KR" + "2NA" + "9XD" + "31"      # two invented numbers in the SHAPE of a Medicare number (eleven characters: digit, letter, letter or digit, digit, letter, letter or digit, digit, two letters, two digits)
 FID = "5f0" + "0" * 18 + "a17"; FID2 = "5f0" + "0" * 18 + "b28"; FID3 = "5f0" + "0" * 18 + "c39"; FID4 = "5f0" + "0" * 18 + "d40"; FID5 = "5f0" + "0" * 18 + "e51"
 B = ymd(1941, 3, 12); B_DIGIT = ymd(1941, 3, 13); B_SWAP = ymd(1941, 3, 21); B_MD = ymd(1941, 12, 3); FARD = ymd(1952, 9, 27); B2 = ymd(1938, 7, 4)
 NONE_DATES = ("", P8, "00000000", ymd(1941, 2, 30))
@@ -148,15 +159,57 @@ T("... but not a suffix that is the whole name, the first word, or the end of a 
 T("split_name: AdvancedMD's form and the feed's form; a name without a comma has no first name", lambda: (FI.split_name(lf(ZO, "MARY K")), FI.split_name(cf(ZO, "MARY")), FI.split_name(" " + ZO + " ")) == ((ZO, "MARY K"), (ZO, "MARY"), (ZO, "")))
 NK = lambda fl, ff, cl, cf_: FI.name_kind(fl, ff, cl, cf_)
 T("NAME CANDIDATE: the same last name and the first three letters of the first name", lambda: NK(ZO, "MARTHA", ZO, "MARY") == "name" and NK(ZO, "Mar", ZO, "MARIGOLD") == "name")
-T("FULL-NAME candidate: the first word of the first name is the same (a middle name or initial does not matter)", lambda: NK(ZO, "MARY", ZO, "MARY K") == "full" and NK(ZO, "Mary Ann", ZO, "MARY") == "full" and NK(ZO, "MARY", ZO, "mary") == "full")
-T("FULL-NAME candidate: the shorter first word has four letters or more and begins the longer one (MARY / MARYANN)", lambda: NK(ZO, "MARY", ZO, "MARYANN") == "full" and NK(ZO, "MARYANN", ZO, "MARY") == "full")
-T("... three letters do not make that (ANN / ANNABEL is a name candidate only)", lambda: NK(ZO, "ANN", ZO, "ANNABEL") == "name" and NK(ZO, "ANNABEL", ZO, "ANN") == "name")
+T("FULL-NAME candidate - the SAME name: the first word of the first name is the same word; a middle initial or a second first name behind it does not matter (MARY / MARY A / MARY ANN), nor do case and a period",
+  lambda: [NK(ZO, a, ZO, b) for a, b in (("MARY", "MARY K"), ("Mary Ann", "MARY"), ("MARY", "mary"), ("MARY A", "MARY ANN"), ("MARY A.", "MARY"), ("MARY", "MARY ANN"))] == ["full"] * 6)
+# identity rule .5 (11/26/2026 - a relative is not the patient). Until then a FULL-NAME candidate was also a first name that only BEGINS with the other (four letters or
+# more: MARY / MARYANN) and a name that differs by its suffix alone (the suffix was dropped with the last name's). A wife or a daughter whose first name begins with the
+# husband's or the father's, and a son of the father's name with JR, were 'the same name': sent with no birth date they went on HIS chart by rule 7, no question asked.
+# N1: the same name is the same first WORD and no other suffix; a chart that is alike but not the same is a NAME candidate only, like two first names that share three letters:
+# never taken by the name alone. Which charts have to AGREE before the name alone decides did not change: what was a full-name candidate until .5 still STANDS BESIDE the
+# charts of the same name (stands_beside) where rules 5, 7 and 8 ask for ONE date, no date, no proven namesake - by N1 those rules take a chart only where they took one before.
+ALIKE_FIRST = [("MARY", "MARYANN"), ("QUILLAR", "QUILLARA"), ("XANT", "XANTHIA"), ("XANTHIA", "XANTHIANNE"), ("ZEBEDIAH", "ZEBEDIAHINE"), ("ANN", "ANNABEL"), ("JOA", "JOANN")]      # invented pairs: the first word of one first name only begins the other's
+SUF_WORDS = ("JR", "SR", "II", "III", "IV", "V")
+T("N1 (identity rule .5): a first name that only BEGINS with the other is ALIKE BUT NOT THE SAME - a NAME candidate only, whatever its length and whichever of the two is the feed's (until then four letters made it a full-name candidate: MARY / MARYANN)",
+  lambda: (lambda got: (got == ["name"] * (2 * len(ALIKE_FIRST)), got))([NK(ZO, x, ZO, y) for a, b in ALIKE_FIRST for x, y in ((a, b), (b, a))]))
 T("... JO ANN / JOANN: the first words are JO and JOANN - a name candidate only", lambda: NK(ZO, "JO ANN", ZO, "JOANN") == "name")
 T("another first name under the same last name is 'surname' (rule 3 only); another last name is nothing", lambda: NK(ZO, "MARY", ZO, "ELSPETH") == "surname" and NK(ZO, "MARY", QU, "MARY") == "" and NK(ZO, "MARY", ZO + "SON", "MARY") == "")
 T("a first name of two letters is a candidate only of the same two letters (JO / JOSEPHINE share no three letters)", lambda: NK(ZO, "JO", ZO, "JO") == "full" and NK(ZO, "JO", ZO, "JOSEPHINE") == "surname")
-T("the suffix and the punctuation of the last name do not matter on either side", lambda: NK(ZO + " JR", "MARY", ZO, "MARY") == "full" and NK("O'" + ZO, "MARY", "O " + ZO + " III", "MARY") == "full")
+T("N1: the suffix of a name - the word JR, SR, II, III, IV or V as the LAST word of the last name or as ANY word after the first word of the first name (behind the first name, behind a middle initial), in any case, with or without its period; "
+  "a name carries none where there is none, where the word is the whole last name, the FIRST word of either name, a word in the MIDDLE of the last name, or only the end of a longer word",
+  lambda: ([FI.name_suffix(ZO + " " + s, "QUILLAR") for s in SUF_WORDS] == [(s,) for s in SUF_WORDS] and [FI.name_suffix(ZO, "QUILLAR " + s) for s in SUF_WORDS] == [(s,) for s in SUF_WORDS]
+           and FI.name_suffix(ZO + " jr.", "QUILLAR") == ("JR",) and FI.name_suffix(ZO, "Quillar A Jr.") == ("JR",) and FI.name_suffix(ZO + " JR", "QUILLAR JR") == ("JR",) and FI.name_suffix(ZO + " SR", "QUILLAR JR") == ("JR", "SR")
+           and [FI.name_suffix(l, f) for l, f in ((ZO, "QUILLAR"), ("V", "QUILLAR"), (ZO, "V"), (ZO, "JR QUILLAR"), (ZO + "JR", "QUILLAR"), (ZO, "QUILLARJR"), (ZO + " VI", "QUILLAR"), ("JR " + ZO, "QUILLAR"), ("", ""), (None, None), (ZO + " V " + QU, "QUILLAR"))] == [()] * 11,
+           [FI.name_suffix(l, f) for l, f in ((ZO + " SR", "QUILLAR JR"), (ZO, "Quillar A Jr."), ("V", "QUILLAR"), (ZO, "V"))]))
+T("N1: the same suffix on both sides is the SAME name - wherever each side writes it (behind the last name, behind the first name, behind a middle initial)",
+  lambda: (lambda got: (got == ["full"] * 5, got))([NK(fl, ff, cl, cf_) for fl, ff, cl, cf_ in ((ZO + " JR", "QUILLAR", ZO + " JR", "QUILLAR"), (ZO + " JR", "QUILLAR", ZO, "QUILLAR JR"), (ZO, "QUILLAR A JR", ZO + " Jr.", "QUILLAR"),
+                                                                                                    (ZO + " III", "QUILLAR", ZO, "QUILLAR K III"), (ZO + " JR", "QUILLAR JR", ZO, "QUILLAR JR"))]))
+T("N1: two names that differ by the suffix - one side carries one and the other none, or the two carry different ones - are ALIKE BUT NOT THE SAME: a NAME candidate only, for each of the six suffix words, in both places and whichever side is the feed's "
+  "(until then the suffix did not matter: a son of his father's name went on the father's chart)",
+  lambda: (lambda bad: (bad == [], bad[:4]))([(s, n, w) for s in SUF_WORDS for n, w in enumerate((NK(ZO + " " + s, "QUILLAR", ZO, "QUILLAR"), NK(ZO, "QUILLAR", ZO + " " + s, "QUILLAR"), NK(ZO, "QUILLAR " + s, ZO, "QUILLAR"), NK(ZO, "QUILLAR A", ZO, "QUILLAR A " + s),
+                                                                                                         NK(ZO + " " + s, "QUILLAR", ZO + " " + SUF_WORDS[(SUF_WORDS.index(s) + 1) % 6], "QUILLAR"))) if w != "name"]))
+T("N1: the punctuation and the case of the last name still do not matter (an apostrophe, a space, a hyphen); and a suffix leaves the LAST name the same - such a chart is still a name candidate (and the same person by rule 2 when the birth date is the same)",
+  lambda: NK("O'" + ZO, "MARY", "O " + ZO, "MARY") == "full" and NK("O'" + ZO, "MARY", "o-" + ZO.lower() + " III", "MARY") == "name" and FI.last_key(ZO + " JR") == FI.last_key(ZO) == ZO)
+T("N1, a known limit: a middle initial V reads as the suffix V - such a name is alike but not the same as the name without it (a new chart and a question, never the wrong chart); every other single letter is a middle initial",
+  lambda: NK(ZO, "MARY V", ZO, "MARY") == "name" and NK(ZO, "MARY V", ZO, "MARY V.") == "full" and [NK(ZO, "MARY " + c, ZO, "MARY") for c in "ABIKX"] == ["full"] * 5)
+T("N1: asked for it (alike=True) name_kind says 'alike' of a name candidate that is alike but not the same - the first word of one first name begins the other's, or the two are one word and the suffixes differ - and 'name' of two first names "
+  "that only share three letters; 'full', 'surname' and '' as without it (the look-up helpers word their hold by it)",
+  lambda: ([FI.name_kind(ZO, x, ZO, y, alike=True) for a, b in ALIKE_FIRST for x, y in ((a, b), (b, a))] == ["alike"] * (2 * len(ALIKE_FIRST))
+           and [FI.name_kind(fl, ff, cl, cf_, alike=True) for fl, ff, cl, cf_ in ((ZO + " JR", "QUILLAR", ZO, "QUILLAR"), (ZO, "QUILLAR", ZO, "QUILLAR SR"), (ZO + " JR", "QUILLARA", ZO, "QUILLAR"), (ZO, "JO ANN", ZO, "JOANN"))] == ["alike"] * 4
+           and [FI.name_kind(ZO, a, ZO, b, alike=True) for a, b in (("MARTHA", "MARY"), ("XANDER", "XANTHIA"), ("ZEBEDIAH", "ZEBULON"), ("XANDER JR", "XANTHIA"))] == ["name"] * 4
+           and (FI.name_kind(ZO, "MARY", ZO, "MARY K", alike=True), FI.name_kind(ZO + " JR", "MARY", ZO, "MARY A JR", alike=True), FI.name_kind(ZO, "MARY", ZO, "ELSPETH", alike=True), FI.name_kind(ZO, "MARY", QU, "MARY", alike=True)) == ("full", "full", "surname", "")))
+SB = lambda fl, ff, cl, cf_: FI.stands_beside(fl, ff, cl, cf_)
+T("N1: which charts STAND BESIDE the same name (never taken by the name alone, still read with the charts of the same name by rules 5, 7 and 8) - exactly what was a full-name candidate until identity rule .5 and is none now: the same first word under another "
+  "suffix (whatever its length), and a first word of FOUR letters or more that begins the other's or is begun by it - whichever side is the feed's",
+  lambda: (lambda got: (got == [True] * 12, got))([SB(ZO + " JR", "ZEBEDIAH", ZO, "ZEBEDIAH"), SB(ZO, "ZEBEDIAH", ZO + " III", "ZEBEDIAH"), SB(ZO, "ZEBEDIAH SR", ZO, "ZEBEDIAH K"), SB(ZO + " JR", "ZEBEDIAH", ZO + " SR", "ZEBEDIAH"), SB(ZO + " JR", "JO", ZO, "JO"),
+                                                   SB(ZO, "QUILLAR", ZO, "QUILLARA"), SB(ZO, "QUILLARA", ZO, "QUILLAR"), SB(ZO, "XANT", ZO, "XANTHIA"), SB(ZO, "XANTHIA", ZO, "XANT"), SB(ZO, "QUILLARA K", ZO + " JR", "QUILLAR"),
+                                                   SB("O'" + ZO, "Quillar", "o " + ZO.lower(), "QUILLARA"), SB(ZO, "MARY V", ZO, "MARY")]))
+T("N1: ... and nothing else: not the SAME name (a full-name candidate is no chart beside itself), not a first word of THREE letters that begins the other's (ANN / ANNABEL never was a full-name candidate), not two first names that only share "
+  "three letters, not another first name, not another last name, not a name with no first name",
+  lambda: (lambda got: (got == [False] * 12, got))([SB(ZO, "ZEBEDIAH", ZO, "ZEBEDIAH"), SB(ZO, "ZEBEDIAH", ZO, "ZEBEDIAH K"), SB(ZO + " JR", "ZEBEDIAH", ZO, "ZEBEDIAH JR"), SB(ZO, "ANN", ZO, "ANNABEL"), SB(ZO, "ANNABEL", ZO, "ANN"), SB(ZO, "JOA", ZO, "JOANN"),
+                                                    SB(ZO, "XANDER", ZO, "XANTHIA"), SB(ZO, "XANDER JR", ZO, "XANTHIA"), SB(ZO, "ZEBEDIAH", ZO, "ELSPETH"), SB(ZO, "ZEBEDIAH", QU, "ZEBEDIAH JR"), SB(ZO, "", ZO, "ZEBEDIAH"), SB("", "ZEBEDIAH", "", "ZEBEDIAH JR")]))
 T("name_candidate / full_name_candidate say the same in two words", lambda: (FI.name_candidate(ZO, "MARTHA", ZO, "MARY"), FI.full_name_candidate(ZO, "MARTHA", ZO, "MARY"), FI.name_candidate(ZO, "MARY", ZO, "MARYANN"), FI.full_name_candidate(ZO, "MARY", ZO, "MARYANN"),
-                                                                                  FI.name_candidate(ZO, "MARY", ZO, "ELSPETH"), FI.name_candidate(ZO, "MARY", QU, "MARY")) == (True, False, True, True, False, False))
+                                                                                  FI.name_candidate(ZO, "MARY", ZO, "ELSPETH"), FI.name_candidate(ZO, "MARY", QU, "MARY"), FI.full_name_candidate(ZO, "MARY", ZO, "MARY ANN"),
+                                                                                  FI.name_candidate(ZO + " JR", "MARY", ZO, "MARY"), FI.full_name_candidate(ZO + " JR", "MARY", ZO, "MARY")) == (True, False, True, False, False, False, True, True, False))
 T("no last name, or no first name, on either side is never a name candidate", lambda: NK("", "MARY", "", "MARY") == "" and NK(ZO, "", ZO, "MARY") == "surname" and NK(ZO, "MARY", ZO, "") == "surname")
 
 T("Social Security number: nine digits, with or without the dashes", lambda: FI.ssn_key(dash(S1)) == S1 and FI.ssn_key(S1) == S1 and FI.ssn_key(" " + S1 + " ") == S1)
@@ -199,6 +252,32 @@ T("evidence member: a feed member number equals a subscriber number of one of th
 T("evidence mrn: the chart's additional number is this Claimocity id, in either case", lambda: EV({"id": FID}, {"mrn": FID.upper()}) == (["mrn"], False) and EV({"ids": [FID2, FID]}, {"mrn": FID}) == (["mrn"], False))
 T("... not another id, not an empty one, not a short number that is no Claimocity id", lambda: EV({"id": FID}, {"mrn": FID2}) == ([], False) and EV({"id": FID}, {"mrn": ""}) == ([], False) and EV({"id": "1234"}, {"mrn": "1234"}) == ([], False) and EV({"id": ""}, {"mrn": ""}) == ([], False))
 T("all the evidence of one chart, strongest first: mrn, ssn, member (ssn4 only where a side shows four digits)", lambda: EV({"id": FID, "ssn": S1, "members": [M1]}, {"mrn": FID, "ssn": S1, "members": [M1]}) == (["mrn", "ssn", "member"], False))
+# identity rule .5 (11/26/2026), N2: A MEMBER NUMBER PROVES ONE PERSON ONLY WHERE IT CAN. A family shares member numbers (federal and military retirees, employer plans);
+# rule 4 took one in common for proof under any first name that shares three letters - a wife on her husband's chart, her own real birth date far from his, nobody asked.
+# The evidence 'member' now counts for a chart only (a) where the number has the shape of a Medicare number (one person, one number), (b) where both sides carry a real
+# birth date and the two are the same or a slip apart, or (c) where the chart is a full-name candidate. The shape is judged where the numbers are - evidence(), the one
+# function the rule and the match step both ask - and travels as a WORD; (b) and (c) are the rule's own (member_counts), for each name and date of the feed.
+def _mc_bad():      # MC1 with ONE character of the wrong kind, in each of its eleven places in turn
+    return [MC1[:i] + {"D": "Q", "L": "7", "A": "-"}[k] + MC1[i + 1:] for i, k in enumerate("DLADLADLLDD")]      # D a digit, L a letter, A a letter or digit
+T("N2 (a): the shape of a Medicare number - eleven characters: a digit 1 to 9, a letter, a letter or digit, a digit, a letter, a letter or digit, a digit, two letters, two digits - read as member numbers are compared (case, dashes and blanks aside); "
+  "one character more or less, a leading zero, or a character of the other kind in any place is another shape",
+  lambda: (all(FI.medicare_shape(x) for x in (MC1, MC2, MC1.lower(), MC1[:4] + "-" + MC1[4:7] + "-" + MC1[7:], " " + MC1 + " ", "1SB" + "2LO" + "3ZZ" + "45", MC1[:2] + "5" + MC1[3:5] + "8" + MC1[6:]))
+           and not any(FI.medicare_shape(x) for x in [MC1[:-1], MC1 + "0", "0" + MC1[1:], M1, M2, PFX + MC1, "", None, S1] + _mc_bad()) and len(set(_mc_bad())) == 11, [x for x in _mc_bad() if FI.medicare_shape(x)]))
+T("N2: evidence still says 'member' for a member number in common - and beside it 'member:medicare' when the number in common has the shape of a Medicare number, whichever side writes it with dashes, in lower case or behind a three-letter prefix; "
+  "a number of another shape in common beside it changes nothing; two DIFFERENT Medicare numbers are nothing in common",
+  lambda: (EV({"members": [MC1]}, {"members": [MC1[:4] + "-" + MC1[4:7].lower() + "-" + MC1[7:]]}) == (["member", FI.MEDICARE], False) and EV({"members": [M2, PFX + MC1]}, {"members": [MC1]}) == (["member", FI.MEDICARE], False)
+           and EV({"members": [M1, MC1]}, {"members": [MC1, M1]}) == (["member", FI.MEDICARE], False) and EV({"members": [M1]}, {"members": [M1]}) == (["member"], False) and EV({"members": [M1, MC1]}, {"members": [M1, MC2]}) == (["member"], False)
+           and EV({"members": [MC1]}, {"members": [MC2]}) == ([], False) and EV({"id": FID, "ssn": S1, "members": [MC1]}, {"mrn": FID, "ssn": "xxx-xx-" + S1[5:], "members": [MC1]}) == (["mrn", "member", FI.MEDICARE, "ssn4"], False)))
+T("N2: the new evidence word is one of the fixed words, has no digit in it and stands behind 'member' in the order of the evidence (the match step keeps the words of a chart in that order)",
+  lambda: FI.MEDICARE in FI.EVIDENCE_WORDS and not re.search(r"\d", FI.MEDICARE) and tuple(FI.EVIDENCE) == ("mrn", "ssn", "member", FI.MEDICARE, "ssn4"))
+MCNT = lambda *a: FI.member_counts(*a)
+T("N2: whether a member number in common counts for a chart - only where it can prove one person: (a) it has the shape of a Medicare number, or (b) both sides carry a real birth date and the two are the same or a slip apart (each of the four kinds, in either order), "
+  "or (c) the chart is a full-name candidate; with none of the three it does not count - the two dates far apart, or no birth date on one side or on both",
+  lambda: ([MCNT(True, False, B, FARD), MCNT(True, False, "", ""), MCNT(False, True, B, FARD), MCNT(False, True, "", B), MCNT(False, True, "", ""), MCNT(False, False, B, B)] == [True] * 6
+           and all(MCNT(False, False, a, b) is True and MCNT(False, False, b, a) is True for a, b in ((B, B_DIGIT), (B, B_SWAP), (B, B_MD), (ymd(1941, 1, 31), ymd(1941, 2, 1))))
+           and [MCNT(False, False, B, FARD), MCNT(False, False, FARD, B), MCNT(False, False, "", B), MCNT(False, False, B, ""), MCNT(False, False, "", "")] == [False] * 5))
+T("N2 (b): ... a slip is read from the chart's OWN date only; the date of a chart it stands in the place of (a chart William called a duplicate) counts where it is EXACTLY the feed's - as for rule 2 - never as a slip",
+  lambda: MCNT(False, False, FARD, B, {B, FARD}) is True and MCNT(False, False, ymd(1952, 9, 28), B, {B, FARD}) is False and MCNT(False, False, B_DIGIT, B, {B, FARD}) is True and MCNT(False, False, "", B, {B, ""}) is False)
 T("AdvancedMD's date forms: month/day/year with or without the leading zeros, and the ISO form", lambda: (FI.amd_dob(mdy(B)), FI.amd_dob("3/12/" + B[:4]), FI.amd_dob(iso(B) + "T00:00:00"), FI.amd_dob(""), FI.amd_dob(None), FI.amd_dob("//")) == (B, B, B, "", "", ""))
 
 def ch(n, d8="", last="", n_chg=0): return {"id": "pat%d" % n, "dob": d8, "last_dos": last, "charges": n_chg}
@@ -275,6 +354,130 @@ X("rule 4: the member number beats the last four", F(ZO, "XANTHIA", B, ssn=S1, m
 X("rule 4: a junk number equal on both sides is no evidence", F(ZO, "XANTHIA", B, ssn="1" * 9), [C(1, ZO, "XANTHIA", FARD, ssn="1" * 9)], None, 9, NOT_USED, william=True)
 X("rule 4 is for name candidates only: the number on a chart under another first name is not used", F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "ELSPETH", FARD, ssn=S1)], None, 9, [], william=False)
 X("rule 4: a member number shared with a chart whose Social Security number DIFFERS proves nothing (one plan, two people) - no chart by it", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, ssn=S2, members=[M1])], None, 9, NOT_USED, william=True)
+# ---- identity rule .5 (11/26/2026): A RELATIVE IS NOT THE PATIENT ------------------------------------------------------------------------------------
+# N2 in the rule. The wife: her first name shares three letters with her husband's (a name candidate of his chart), her own real birth date is far from his - or
+# Claimocity sent none - and a plan of HIS chart carries the family's member number she came with. Rule 4 put her visit on his chart: flag 'birth date differs: far',
+# not for William, nobody asked and nobody told. The cases of that fault were seen failing here before the rule was changed; those that say 'as before' pin what must not change.
+_MOFF = getattr(FI, "FLAG_MEMBER", "(no such flag in feed_identity.py)"); _MED = getattr(FI, "MEDICARE", "(no such word in feed_identity.py)")
+X("N2 (the wife): her own real birth date, far from her husband's, and the family's member number on HIS chart - the first names share three letters: NOT his chart by rule 4 (until identity rule .5: his chart, 'birth date differs: far', nobody asked) - "
+  "a new chart beside his, for William, no evidence, and the answer says that a member number in common was not counted", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[PFX + M1])], None, 9, NOT_USED + [_MOFF], william=True, evidence=[], candidates=["pat1"], feed_dob="real")
+for nd in NONE_DATES:
+    X("N2 (the wife): ... sent with NO birth date (%r) and the family's number - not his chart either (until then: rule 4, 'no birth date from Claimocity', nobody asked): a new chart beside his, for William, the missing date and the number not counted both said" % (nd if nd != P8 else "placeholder"),
+      F(ZO, "XANTHIA", nd, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1])], None, 9, ["same-name charts not used", "no birth date from Claimocity", _MOFF], william=True, evidence=[], feed_dob="none")
+X("N2: ... nor when HIS chart carries no birth date (the date is missing on that side)", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", P8, members=[M1])], None, 9, NOT_USED + [_MOFF], william=True, evidence=[])
+X("N2 (a): a number in common that has the SHAPE OF A MEDICARE NUMBER is one person's, never a family's - it counts under a first name that only shares three letters, far dates and all: rule 4 as before, not for William, and the evidence says which kind of number it is",
+  F(ZO, "XANTHIA", B, members=[MC1]), [C(1, ZO, "XANDER", FARD, members=[MC1[:4] + "-" + MC1[4:7] + "-" + MC1[7:]])], "pat1", 4, ["birth date differs: far"], william=False, evidence=["member", _MED])
+X("N2 (a): ... also with no birth date from Claimocity, and with none on the chart", F(ZO, "XANTHIA", P8, members=[MC1]), [C(1, ZO, "XANDER", "", members=[MC1])], "pat1", 4, ["no birth date on either side"], william=False, evidence=["member", _MED])
+for _n, (_a, _b, _k) in enumerate(((B, B_DIGIT, "SLIP_DIGIT"), (B, B_SWAP, "SLIP_SWAP"), (B, B_MD, "SLIP_MONTH_DAY"), (ymd(1941, 1, 31), ymd(1941, 2, 1), "SLIP_DAY"))):
+    X("N2 (b): both sides carry a real birth date and the two are a slip apart (%s) - a member number in common counts under a first name that shares three letters: rule 4 as before, the kind of slip as flag and evidence, not for William" % _k,
+      F(ZO, "XANTHIA", _b, members=[M1]), [C(1, ZO, "XANDER", _a, members=[M1])], "pat1", 4, ["birth date differs: " + getattr(FI, _k)] if not FI_ERR else [], william=False, evidence=["member", "slip:" + getattr(FI, _k)] if not FI_ERR else [])
+X("N2 (b): the SAME real date is rule 2 before any number is asked - and the member number is still said as evidence of the chosen chart: it counts, the dates agree", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", B, members=[M1])], "pat1", 2, [], william=False, evidence=["member"])
+X("N2 (b): ... the same for a chart that stands in the place of a chart William called a duplicate, when the DUPLICATE carries exactly the feed's date: rule 2 as before, and the member number is said as evidence - the date the chart is known under agrees",
+  F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1], also=[{"name": lf(ZO, "XANDER"), "dob": B}])], "pat1", 2, [FI.FLAG_DUPLICATE] if not FI_ERR else [], william=False, evidence=["member"])
+X("N2 (b): ... and where it counts through the same date it still shows that a chart is proven ANOTHER person's (her Social Security number differs): the number the two share stops rule 4 as before - the last four on a second chart are not asked",
+  F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANDER", B, ssn=S2, members=[M1]), C(2, ZO, "XANTHIA", FARD, ssn="xxx-xx-" + S1[5:])], None, 9, NOT_USED, william=True, candidates=["pat1", "pat2"])
+X("N2 (b): 'a slip apart' is asked of two REAL birth dates - a real date one digit from the other side's placeholder is no agreement: not counted", F(ZO, "XANTHIA", ymd(1910, 1, 1), members=[M1]), [C(1, ZO, "XANDER", P8, members=[M1])], None, 9, NOT_USED + [_MOFF], william=True)
+X("N2 (c): the SAME name - a member number in common counts whatever the dates: Claimocity sent NO birth date (William's own case with the placeholder) - rule 4 as before, not for William", F(ZO, "XANTHIA", P8, members=[M1]), [C(1, ZO, "XANTHIA K", FARD, members=[PFX + M1])], "pat1", 4,
+  ["birth date differs: no birth date from Claimocity"], william=False, evidence=["member"], feed_dob="none")
+X("N2 (c): ... the chart carries no birth date - rule 4 as before, not for William", F(ZO, "XANTHIA A", B, members=[M1]), [C(1, ZO, "XANTHIA", "", members=[M1])], "pat1", 4, ["birth date differs: chart has no birth date"], william=False, evidence=["member"])
+X("N2 (c): ... but a name that is ALIKE and not the same is not the same name (N1): a first name that begins with the chart's, the family's number, far dates - not counted, a new chart for William", F(QU, "QUILLARA", B, members=[M1]), [C(1, QU, "QUILLAR", FARD, members=[M1])], None, 9, NOT_USED + [_MOFF], william=True, evidence=[])
+X("N2 (c): ... nor is the father's name with JR (the son on the family's plan), sent with no birth date", F(QU + " JR", "ZEBEDIAH", P8, members=[M1]), [C(1, QU, "ZEBEDIAH", B2, members=[M1])], None, 9, ["same-name charts not used", "no birth date from Claimocity", _MOFF], william=True, evidence=[])
+X("N3: the SAME name, a member number in common that is no Medicare number, and two real birth dates FAR apart (William's own case of a wrong birth date - or a parent and a child of one name on a family plan): the chart is chosen by rule 4 as before, "
+  "the visit goes in - and the answer is FOR WILLIAM (until then it was not: nobody was told)", F(ZO, "XANTHIA", B, members=[M2, M1]), [C(1, ZO, "XANTHIA", FARD, members=[PFX + M1]), C(2, ZO, "XANTHIA", B2, members=[M1[:7]])], "pat1", 4, ["birth date differs: far"], william=True, evidence=["member"], group=["pat1"])
+X("N3: ... also when the last four of the Social Security number agree beside it (the weakest evidence): rule 4 chose on the member number", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, ssn="xxx-xx-" + S1[5:], members=[M1])], "pat1", 4, ["birth date differs: far"], william=True, evidence=["member", "ssn4"])
+X("N3: not when the number in common has the shape of a Medicare number (one person's): not for William, as before", F(ZO, "XANTHIA", B, members=[MC1]), [C(1, ZO, "XANTHIA", FARD, members=[MC1])], "pat1", 4, ["birth date differs: far"], william=False, evidence=["member", _MED])
+X("N3: not when the two dates are a slip apart", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANTHIA", B_DIGIT, members=[M1])], "pat1", 4, ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False)
+X("N3: not when rule 4 chose on the Social Security number - the member number beside it changes nothing: not for William, as before", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, ssn=dash(S1), members=[M1])], "pat1", 4, ["birth date differs: far"], william=False, evidence=["ssn", "member"])
+X("N3: not on the last four alone (no member number in common) - as before", F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "XANTHIA", FARD, ssn="***-**-" + S1[5:])], "pat1", 4, ["birth date differs: far"], william=False, evidence=["ssn4"])
+T("N3: what goes to William is ONE line - the chart, the rule's words, the Claimocity id, and why it is said: the birth dates are far apart and a family can share the number; no question mark (the visit is entered), and no line for a rule 4 that is not for William",
+  lambda: (lambda d, d2: (lambda ls: (d["rule"] == 4 and d["for_william"] is True and len(ls) == 1 and ls[0].startswith("pat1 " + FI.WHY[4]) and FID in ls[0] and "far apart" in ls[0] and "member number" in ls[0] and "(FYI)" in ls[0] and "?" not in ls[0]
+                                      and not re.search(r"\d{3}", ls[0].replace(FID, "").replace("pat1", "")) and FI.william_lines(d2, "pat1", FID) == [] and FI.problems(d) == [], (d, ls)))(FI.william_lines(d, "pat1", FID)))(
+      D(F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANTHIA", FARD, members=[M1])]), D(F(ZO, "XANTHIA", B, members=[MC1]), [C(1, ZO, "XANTHIA", FARD, members=[MC1])])))
+X("N2: a member number that does not count is not 'the strongest evidence' of a group either - the family's number on the patient's own chart (the same name) and on a relative's (three letters shared), the relative's the livelier: the patient's own chart alone is the group "
+  "(until then the live chart of the two - the relative's)", F(ZO, "XANTHIA", P8, members=[M1]), [C(1, ZO, "XANTHIA", B, members=[M1], last_dos=ymd(2026, 1, 9), charges=1), C(2, ZO, "XANDER", B2, members=[M1], last_dos=ymd(2026, 11, 9), charges=9)],
+  "pat1", 4, ["birth date differs: no birth date from Claimocity", _MOFF], william=False, group=["pat1"], evidence=["member"], candidates=["pat1", "pat2"])
+X("N2: the later rules decide as if the number were not there - the wife sent with no birth date, HER OWN chart (her name, one date) beside her husband's with the family's number: her own chart by rule 7 (until then his, by rule 4), and the answer says the number was not counted",
+  F(ZO, "XANTHIA", P8, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, ZO, "XANTHIA", B)], "pat2", 7, ["no birth date from Claimocity", _MOFF], william=False, group=["pat2"], evidence=[])
+X("N2: ... the weaker evidence is asked next - the last four of her Social Security number on her own chart (until then the family's number on his chart won)", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]),
+  [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, ZO, "XANTHIA", B2, ssn="xxx-xx-" + S1[5:])], "pat2", 4, ["birth date differs: far", _MOFF], william=False, evidence=["ssn4"], group=["pat2"])
+X("N2: ... and a slip under her own name is read (rule 5) although his chart carries the number", F(ZO, "XANTHIA", B_DIGIT, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, ZO, "XANTHIA", B)], "pat2", 5,
+  ["birth date differs: " + FI.SLIP_DIGIT, _MOFF] if not FI_ERR else [], william=False, group=["pat2"])
+X("N2: ... and with no birth date anywhere her own chart is taken by rule 8 - its FYI for William as always, and the number not counted said", F(ZO, "XANTHIA", "", members=[M1]), [C(1, ZO, "XANDER", "", members=[M1]), C(2, ZO, "XANTHIA", "")], "pat2", 8,
+  ["no birth date on either side", _MOFF], william=True, group=["pat2"], evidence=[])
+X("N2: ... sent with TWO real birth dates, neither of which agrees with his: the one answer - a new chart, written with neither date - still says that the number was not counted", dict(F(ZO, "XANTHIA", members=[M1]), dobs=[B, B2]), [C(1, ZO, "XANDER", FARD, members=[M1])], None, 9,
+  ["same-name charts not used", _MOFF, "Claimocity sent two birth dates"], william=True, feed_dob="none")
+X("N2: a member number in common with a chart under ANOTHER first name was never asked by rule 4 (rule 4 is for name candidates), so nothing is said of it: a plain new chart, as before", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "ELSPETH", FARD, members=[M1])], None, 9, [], william=False, candidates=[])
+X("N2: the number is said as 'not counted' only where it would have been asked - not when the Claimocity id on the chart decides first (rule 1; the evidence of that chart no longer lists the number)",
+  F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", FARD, mrn=FID, members=[M1])], "pat1", 1, [], william=False, evidence=["mrn"])
+X("N2: ... nor when a Social Security number decides before it (rule 4 on another chart, as before)", F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, ZO, "XANTHIA", B2, ssn=S1)], "pat2", 4, ["birth date differs: far"], william=False, evidence=["ssn"])
+X("N2: ... nor when the same last name and date under ANOTHER first name decides (rule 3 - the number on that chart counts: the dates agree)", F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "ELSPETH", B, members=[M1]), C(2, ZO, "XANDER", FARD)], "pat1", 3, ["first name differs"], william=True, evidence=["member"])
+T("N2: for William - the question about a new chart beside same-name charts no longer says 'no number in common' where a member number in common was not counted: it says so (and that a family shares member numbers); without such a number the line reads as before",
+  lambda: (lambda a, b: (len(a) == 1 and "and no number in common - same person or not?" in a[0] and "member number" not in a[0] and len(b) == 1 and "no number in common" not in b[0] and "a member number in common" in b[0] and "not counted" in b[0]
+                         and b[0].endswith(" - same person or not?") and b[0].startswith("new chart pat900 was made beside 1 same-name chart(s) (pat1)") and not re.search(r"\d{3}", b[0].replace("pat900", "")), (a, b)))(
+      FI.william_lines(D(F(ZO, "XANTHIA", B), [C(1, ZO, "XANDER", FARD)]), "pat900", FID), FI.william_lines(D(F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1])]), "pat900", FID)))
+T("N2: the flag is one of the fixed words and has no digit in it", lambda: _MOFF in FI.FLAG_WORDS and not re.search(r"\d", _MOFF))
+# N1 in the rule: a chart under a name that is alike but not the same is never taken by the name alone (rules 5 to 8)
+for nd in NONE_DATES:
+    X("N1 (identity rule .5): a first name that only BEGINS with the chart's - a wife or a daughter sent with NO birth date (%r) beside the ONE chart of the husband or the father: not his chart by rule 7 (until then: his chart, no question, not for William) - "
+      "a new chart beside it, for William" % (nd if nd != P8 else "placeholder"), F(QU, "QUILLARA", nd), [C(1, QU, "QUILLAR", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, feed_dob="none", candidates=["pat1"])
+X("N1: ... the other way round - the chart's first name is the longer one", F(QU, "QUILLAR", P8), [C(1, QU, "QUILLARA", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1: the son - his father's name with JR behind the last name - sent with NO birth date beside his father's chart: not that chart by rule 7 (until then: no question)", F(QU + " JR", "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, candidates=["pat1"])
+X("N1: ... JR behind the first name", F(QU, "ZEBEDIAH JR", ""), [C(1, QU, "ZEBEDIAH", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1: ... the father, sent with no birth date, beside the chart of his son (the chart carries the JR)", F(QU, "ZEBEDIAH", P8), [C(1, QU + " JR", "ZEBEDIAH", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1: a slip in the date is read under the SAME name only (rule 5): a first name that begins with the chart's and a birth date one digit off - a new chart beside it, for William", F(QU, "QUILLARA", B_DIGIT), [C(1, QU, "QUILLAR", B)], None, 9, NOT_USED, william=True)
+X("N1: ... the same name with another suffix and a birth date one digit off: not rule 5 either", F(ZO + " JR", "XANTHIA", B_DIGIT), [C(1, ZO, "XANTHIA", B)], None, 9, NOT_USED, william=True)
+X("N1: rule 6 says 'the only name candidates are FULL-name candidates': a chart with no birth date under an alike name is not taken - a new chart, for William", F(QU, "QUILLARA", B), [C(1, QU, "QUILLAR", P8)], None, 9, NOT_USED, william=True)
+X("N1: rule 8 - no birth date on either side - needs the same name too", F(QU, "QUILLARA", ""), [C(1, QU, "QUILLAR", "")], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+# N1, the other half: a chart under an alike name is never TAKEN by the name alone - and where it was a full-name candidate until .5 it still STANDS BESIDE the charts of
+# the same name: rules 5, 7 and 8 ask all of them for ONE date, no date, no proven namesake, as before. (The letter of the round's decision - such a chart weighed like any
+# three-letter name candidate - took the father's chart for a son sent without his suffix and without a birth date, where the rule had asked William until then.)
+for _sl, _sf in ((" JR", ""), (" III", ""), ("", " JR"), ("", " K SR")):
+    X("N1: a father and a son - the feed sends the name WITHOUT a suffix and without a birth date (the father, or the son as the feed may write him); the father's chart and the son's (the suffix %r %s, another date) are both there: "
+      "two dates among the charts that have to agree - nobody is matched by the name alone, a new chart and a question, as before identity rule .5" % ((_sl + _sf).split()[-1], "behind the last name" if _sl else "behind the first name" + (" and a middle initial" if len(_sf.split()) > 1 else "")),
+      F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2), C(2, QU + _sl, "ZEBEDIAH" + _sf, B)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, candidates=["pat1", "pat2"], feed_dob="none")
+X("N1: ... the same with a first name that begins the other's (four letters or more): the patient's own chart and the chart of the longer first name under another date - a new chart and a question, as before",
+  F(QU, "QUILLAR", ""), [C(1, QU, "QUILLAR", B2), C(2, QU, "QUILLARA", B)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, candidates=["pat1", "pat2"])
+X("N1: ... and the other way round - the feed carries the longer first name", F(QU, "QUILLARA", ""), [C(1, QU, "QUILLARA", B2), C(2, QU, "QUILLAR", B)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1: what stands beside is what WAS a full-name candidate - a first word of THREE letters that begins the other's never was one, and is not in the way of rule 7 (as before)", F(QU, "ANN", P8), [C(1, QU, "ANN", B2), C(2, QU, "ANNABEL", B)], "pat1", 7,
+  ["no birth date from Claimocity"], william=False, group=["pat1"], candidates=["pat1", "pat2"])
+X("N1: ... nor the other way round", F(QU, "ANNABEL", P8), [C(1, QU, "ANNABEL", B2), C(2, QU, "ANN", B)], "pat1", 7, ["no birth date from Claimocity"], william=False, group=["pat1"])
+X("N1: ... from FOUR letters on it was one, and stands beside", F(QU, "ANNA", P8), [C(1, QU, "ANNA", B2), C(2, QU, "ANNABEL", B)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1 (rule 7): the chart beside the same name carries the SAME date - the charts that have to agree carry ONE date, and the chart is taken from the SAME name alone, however lively the one beside it (until then the live chart of the two: the son's)",
+  F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, 1, 9), charges=1), C(2, QU + " JR", "ZEBEDIAH", B2, last_dos=ymd(2026, 11, 9), charges=9)], "pat1", 7, ["no birth date from Claimocity"], william=False, group=["pat1"], candidates=["pat1", "pat2"])
+X("N1 (rule 7): a chart beside the same name WITHOUT a date is not in the way (a same-name chart without a date never was)", F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2), C(2, QU + " JR", "ZEBEDIAH", "", last_dos=ymd(2026, 11, 20), charges=50)], "pat1", 7,
+  ["no birth date from Claimocity"], william=False, group=["pat1"])
+X("N1 (rule 7): the only DATED chart is the one beside the same name, and the chart of the same name carries none: the dated one is not taken (until then it was, by rule 7) and 'no birth date on either side' is not true of the charts that have to agree - "
+  "a new chart and a question", F(QU, "QUILLARA", ""), [C(1, QU, "QUILLARA", ""), C(2, QU, "QUILLAR", B2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, candidates=["pat1", "pat2"])
+X("N1 (rule 7): a chart beside the same name that is proven ANOTHER person (another Social Security number) stops the name alone, as a full-name chart did before", F(QU, "ZEBEDIAH", "", ssn=S1), [C(1, QU, "ZEBEDIAH", B2), C(2, QU + " JR", "ZEBEDIAH", B2, ssn=S2)], None, 9,
+  ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1 (rule 8): no birth date anywhere - the chart of the same name is taken, never the one beside it, however lively (until then the live chart of the two)", F(QU, "ZEBEDIAH", ""),
+  [C(1, QU, "ZEBEDIAH", "", last_dos=ymd(2026, 1, 1), charges=1), C(2, QU + " JR", "ZEBEDIAH", "", last_dos=ymd(2026, 11, 1), charges=9)], "pat1", 8, ["no birth date on either side"], william=True, group=["pat1"], candidates=["pat1", "pat2"])
+X("N1 (rule 8): ... and a proven other person beside the same name stops it", F(QU, "ZEBEDIAH", "", ssn=S1), [C(1, QU, "ZEBEDIAH", ""), C(2, QU, "ZEBEDIAH JR", "", ssn=S2)], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True)
+X("N1 (rule 5): the chart of the same name and the one beside it carry two DIFFERENT dates that are both a slip from the feed's - nobody can say which: a new chart, for William, as before", F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B_DIGIT), C(2, ZO + " JR", "XANTHIA", B_SWAP)], None, 9, NOT_USED, william=True,
+  candidates=["pat1", "pat2"])
+X("N1 (rule 5): ... they carry the SAME date, a slip from the feed's: rule 5, the chart taken from the same name alone (until then the live chart of the two)", F(ZO, "XANTHIA", B_DIGIT),
+  [C(1, ZO, "XANTHIA", B, last_dos=ymd(2026, 1, 9), charges=1), C(2, ZO, "XANTHIANNE", B, last_dos=ymd(2026, 11, 9), charges=9)], "pat1", 5, ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False, group=["pat1"], candidates=["pat1", "pat2"])
+X("N1 (rule 5): ... a chart beside the same name with a FAR date does not stop the slip (a same-name chart with a far date never did)", F(ZO, "XANTHIA", B_DIGIT), [C(1, ZO, "XANTHIA", B), C(2, ZO + " JR", "XANTHIA", FARD)], "pat1", 5,
+  ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False, group=["pat1"])
+X("N1 (rule 5): ... and one a slip away that is proven ANOTHER person stops it, as before", F(ZO, "XANTHIA", B_DIGIT, ssn=S1), [C(1, ZO, "XANTHIA", B), C(2, ZO + " JR", "XANTHIA", B, ssn=S2)], None, 9, NOT_USED, william=True)
+X("N1: the name of a chart William called a duplicate speaks for the proper chart as before - the proper chart carries the JR, its duplicate was written without: to the feed's name without a suffix that chart is the same name (rule 7; it stood in a duplicate's place)",
+  F(QU, "ZEBEDIAH", P8), [C(1, QU + " JR", "ZEBEDIAH", B2, also=[{"name": lf(QU, "ZEBEDIAH"), "dob": B2}])], "pat1", 7, ["no birth date from Claimocity", FI.FLAG_DUPLICATE], william=False)
+X("N1: ... and a chart stands BESIDE the same name when the name of a duplicate it stands in the place of does (its own first name only shares three letters): with its own date it is one of the charts that have to agree - two dates, a new chart and a question",
+  F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2), C(2, QU, "ZEBULON", B, also=[{"name": lf(QU + " JR", "ZEBEDIAH"), "dob": FARD}])], None, 9, ["same-name charts not used", "no birth date from Claimocity"], william=True, candidates=["pat1", "pat2"])
+X("N1 and the patient map (rules without proof, b): an answer is held back for a chart of the group the rule chooses FROM - no birth date anywhere, the chart of the same name is another Claimocity id's in the map: no chart, none made, for William, that chart named (as before)",
+  F(QU, "ZEBEDIAH", ""), [C(1, QU, "ZEBEDIAH", "", owned=True), C(2, QU + " JR", "ZEBEDIAH", "")], None, 0, [], william=True, candidates=["pat1"])
+X("N1 and the patient map: ... a chart that only stands BESIDE the same name is not one of the charts the rule chooses from - when IT is another Claimocity id's and the chart of the same name is nobody's, rule 8 takes the chart of the same name, with its FYI for William "
+  "(until then the two were 'one person's charts' and the answer was held back)", F(QU, "ZEBEDIAH", ""), [C(1, QU, "ZEBEDIAH", ""), C(2, QU + " JR", "ZEBEDIAH", "", owned=True)], "pat1", 8, ["no birth date on either side"], william=True, group=["pat1"], candidates=["pat1", "pat2"])
+for _a, _b in (("MARY", "MARY A"), ("MARY A", "MARY ANN"), ("MARY ANN", "MARY"), ("Mary", "MARY K.")):
+    X("what must still hold (N1): the same person written with a middle initial or a second first name (%s / %s) is the SAME name - William's own case, no birth date from Claimocity and one date on the chart: rule 7, no question" % (_a, _b),
+      F(QU, _a, P8), [C(1, QU, _b, B2)], "pat1", 7, ["no birth date from Claimocity"], william=False, feed_dob="none")
+X("what must still hold (N1): ... also under a NEW Claimocity id - the chart is an earlier id's in the patient map", F(QU, "MARY A", P8), [C(1, QU, "MARY ANN", B2, owned=True)], "pat1", 7, ["no birth date from Claimocity"], william=False)
+X("what must still hold (N1): ... and with the same suffix on both sides, wherever each side writes it", F(QU + " JR", "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH JR", B2)], "pat1", 7, ["no birth date from Claimocity"], william=False)
+X("what must still hold (N1): with the same REAL birth date a name candidate is taken by rule 2 whatever the ending of the first name", F(QU, "QUILLARA", B2), [C(1, QU, "QUILLAR", B2)], "pat1", 2, [], william=False)
+for _fs, _cs in ((" JR", ""), ("", " III"), (" JR", " SR")):
+    X("what must still hold (N1): ... and whatever the suffix (the feed's %r, the chart's %r) - also beside a chart of that name with another suffix and a far date" % (_fs.strip(), _cs.strip()),
+      F(QU + _fs, "ZEBEDIAH", B2), [C(1, QU + _cs, "ZEBEDIAH", B2), C(2, QU + " IV", "ZEBEDIAH", FARD)], "pat1", 2, [], william=False, group=["pat1"])
+X("what must still hold (N1): a slip under the same name written with a middle initial is still read (rule 5)", F(QU, "MARY A", B_DIGIT), [C(1, QU, "MARY", B)], "pat1", 5, ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False)
 # rule 5
 X("rule 5: a full-name candidate whose date is a SLIP from the feed's (one digit) - that chart, the kind of slip as flag and evidence, not for William", F(ZO, "XANTHIA", B_DIGIT), [C(1, ZO, "XANTHIA", B)], "pat1", 5, ["birth date differs: " + FI.SLIP_DIGIT] if not FI_ERR else [], william=False, evidence=["slip:" + FI.SLIP_DIGIT] if not FI_ERR else [])
 for _n, (_a, _b, _k) in enumerate(((B, B_SWAP, "SLIP_SWAP"), (B, B_MD, "SLIP_MONTH_DAY"), (ymd(1941, 1, 31), ymd(1941, 2, 1), "SLIP_DAY"))):
@@ -424,11 +627,28 @@ def _pre(feed, cands):      # the same charts with the evidence worked out befor
 _CASES = [(F(ZO, "XANTHIA", B, ssn=S1, members=[M1]), [C(1, ZO, "XANTHIA", FARD, ssn=S2, members=[M1]), C(2, ZO, "XANTHIA", B2, ssn=S1), C(3, ZO, "XANTHIA", B_DIGIT, mrn=FID)]),
           (F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "XANTHIA", B, ssn=S2), C(2, ZO, "XANTHIA", B)]), (F(ZO, "XANTHIA", "", members=[M1]), [C(1, ZO, "XANTHIA", B, members=[PFX + M1])])]
 T("the evidence worked out beforehand (words only) gives the same answer as the numbers themselves", lambda: all(D(f, c) == D({k: v for k, v in f.items() if k not in ("ssn", "members")}, _pre(f, c)) for f, c in _CASES))
+# identity rule .5 (N2): what the match step hands over is still WORDS - 'member', and 'member:medicare' where the number in common has the shape of a Medicare number.
+# Whether a member number of another shape counts is the rule's to say, for each name and date of the feed, and it says the same from the words as from the numbers.
+_CASES5 = [(F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[PFX + M1])]), (F(ZO, "XANTHIA", P8, members=[M1]), [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, ZO, "XANTHIA", B)]),
+           (F(ZO, "XANTHIA", B, members=[MC1]), [C(1, ZO, "XANDER", FARD, members=[MC1])]), (F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANTHIA", FARD, members=[M1])]),
+           (F(ZO, "XANTHIA", B, members=[M1]), [C(1, ZO, "XANDER", B_SWAP, members=[M1])]), (F(QU + " JR", "ZEBEDIAH", P8, members=[M1, MC1]), [C(1, QU, "ZEBEDIAH", B2, members=[M1]), C(2, QU, "ZEBULON", B, members=[MC1])]),
+           (dict(F(ZO, "XANTHIA", members=[M1]), dobs=[B, FARD]), [C(1, ZO, "XANDER", B_DIGIT, members=[M1])]), ({"id": FID, "names": [(ZO, "XANTHIA"), (ZO, "XANDER")], "dob": B, "members": [M1]}, [C(1, ZO, "XANDER", FARD, members=[M1])])]
+T("N2: the words the match step hands over - 'member', and 'member:medicare' for a number in the shape of a Medicare number - give the same answer as the numbers themselves, whichever of the three conditions lets the number count or none does; "
+  "the eight cases are not all one answer (a new chart, rule 7, rule 4 with and without the line for William)",
+  lambda: (lambda pairs: (all(a == b for a, b in pairs) and len({(a["rule"], a["for_william"], tuple(a["flags"])) for a, _b in pairs}) >= 5 and all("ev" in c and "members" not in c for f, cs in _CASES5 for c in _pre(f, cs)),
+                          [(a["rule"], a["chart"], a["flags"], b["rule"], b["chart"], b["flags"]) for a, b in pairs if a != b][:2] or [(a["rule"], a["for_william"]) for a, _b in pairs]))(
+      [(D(f, c), D({k: v for k, v in f.items() if k not in ("ssn", "members")}, _pre(f, c))) for f, c in _CASES5]))
+T("N2: one Claimocity id that came under two first names in one batch - under the chart's own name the family's number counts, under the other it does not: each name is weighed on its own and the chart the one names is the answer (rule 4; the dates are far apart: for William)",
+  lambda: (lambda d: (d["chart"] == "pat1" and d["rule"] == 4 and d["for_william"] is True and d["flags"] == ["birth date differs: far"], d))(D({"id": FID, "names": [(ZO, "XANTHIA"), (ZO, "XANDER")], "dob": B, "members": [M1]}, [C(1, ZO, "XANDER", FARD, members=[M1])])))
+T("N2: ... one Claimocity id under two NAMES - under one a relative's chart carries the family's number (asked by rule 4, not counted: by itself a new chart, flagged), under the other the patient's own chart is taken by rule 7: the ONE answer is that chart "
+  "(until then the two names named two charts - his by rule 4, hers by rule 7 - and nobody was matched); as always the answer carries the flags of the name that chose",
+  lambda: (lambda d: (d["chart"] == "pat2" and d["rule"] == 7 and d["flags"] == ["no birth date from Claimocity"] and d["for_william"] is False and d["candidates"] == ["pat1", "pat2"] and FI.problems(d) == [], d))(
+      D({"id": FID, "names": [(ZO, "XANTHIA"), (QU, "ZEBEDIAH")], "dob": P8, "members": [M1]}, [C(1, ZO, "XANDER", FARD, members=[M1]), C(2, QU, "ZEBEDIAH", B2)])))
 def _random_cases(n):
     """n feed patients and their charts, put together at random from the invented values: what decide() answers must hold the rule's own lines whatever comes."""
     rnd = random.Random(1125); lasts = [ZO, ZO + " JR", "O'" + ZO, QU, ZO[:4] + "-" + ZO[4:]]; firsts = ["XANTHIA", "XANTHIA K", "XANDER", "XAN", "XANTHIANNE", "ELSPETH", "", "XANT"]
     dates = [B, B_DIGIT, B_SWAP, B_MD, FARD, P8, "", "00000000", ymd(1941, 2, 30), B2]; ssns = ["", S1, dash(S2), "***-**-" + S1[5:], "xxx-xx-" + S3[5:], "1" * 9, S3]
-    mems = [[], [M1], [PFX + M1], [M2], [M1[:7]]]; bad = []; seen = set()
+    mems = [[], [M1], [PFX + M1], [M2], [M1[:7]], [MC1], [M1, MC1]]; bad = []; seen = set(); n3s = 0      # (identity rule .5: a number in the shape of a Medicare number among them)
     for i in range(n):
         f = {"id": FID, "ssn": rnd.choice(ssns), "members": rnd.choice(mems)}
         if rnd.random() < 0.8: f["name"] = cf(rnd.choice(lasts), rnd.choice(firsts))
@@ -453,13 +673,29 @@ def _random_cases(n):
             if (r in (1, 2, 4) and not kinds & {"name", "full"}) or (r in (5, 6, 7, 8) and "full" not in kinds) or (r == 3 and "surname" not in kinds): why.append("rule %d on a chart whose name does not fit it" % r)
             if r in (2, 3) and not FI.real_dob(c["dob"], TODAY): why.append("rule %d on a chart without a real date" % r)
             if (r in (5, 7, 8) and f.get("cut") == "full") or (r == 6 and f.get("cut") in ("name", "full")): why.append("rule %d on a list that may be cut short" % r)
-            if d["for_william"] != (r in (3, 6, 8)): why.append("for_william of a chosen chart")
+            # identity rule .5 (N1): the charts that have to AGREE before the name alone decides are those of the same name AND those that stand beside it (one name, one date of the feed)
+            fd1 = [x for x in ([f["dob"]] if "dob" in f else f["dobs"]) if FI.real_dob(x, TODAY)]
+            if len(names) == 1 and len(set(fd1)) <= 1 and r in (5, 7, 8):
+                near = [x for x in cs if FI.name_kind(names[0][0], names[0][1], *FI.split_name(x["name"])) == "full" or FI.stands_beside(names[0][0], names[0][1], *FI.split_name(x["name"]))]; seen.add("beside" if len(near) > 1 and any(FI.stands_beside(names[0][0], names[0][1], *FI.split_name(x["name"])) for x in near) else r)
+                nd = {x["dob"] for x in near if FI.real_dob(x["dob"], TODAY) and (r != 5 or FI.slip(fd1[0], x["dob"]))}
+                if nd != ({c["dob"]} if r in (5, 7) else set()) or any(FI.evidence(f, x)[1] for x in near if r != 5 or x["dob"] in nd): why.append("rule %d although the charts of the same name and beside it do not agree" % r)
+            # identity rule .5 (N2, N3): a member number counts only where it can prove one person - for at least one name and date of the feed; and rule 4 on a member number
+            # that is no Medicare number, with the two real dates far apart, is for William (the one rule-4 answer that is)
+            fd = [x for x in ([f["dob"]] if "dob" in f else f["dobs"]) if FI.real_dob(x, TODAY)]; cd = c["dob"] if FI.real_dob(c["dob"], TODAY) else ""
+            counts = FI.MEDICARE in ev or "full" in kinds or any(cd and (x == cd or FI.slip(x, cd)) for x in fd)
+            if "member" in d["evidence"] and not ("member" in ev and counts): why.append("a member number listed as evidence where it does not count")
+            if r == 4 and not set(d["evidence"]) & {"ssn", "member", "ssn4"}: why.append("rule 4 on a member number that does not count")
+            n3 = r == 4 and "ssn" not in d["evidence"] and "member" in d["evidence"] and FI.MEDICARE not in d["evidence"] and (FI.FLAG_DATE + FI.FAR) in d["flags"]; n3s += 1 if n3 else 0
+            if d["for_william"] != (r in (3, 6, 8) or n3): why.append("for_william of a chosen chart")
         elif not d["for_william"] and not (d["rule"] == 9 and d["flags"] == [] and d["feed_dob"] == "real"): why.append("a flagged new chart, or no decision, that is not for William")
+        if FI.FLAG_MEMBER in d["flags"] and (d["rule"] in (0, 1, 2, 3) or not any("member" in FI.evidence(f, x)[0] for x in cs)): why.append("'a member number in common was not counted' where none was asked or none is in common")
         if (len(FI.william_lines(d, "pat900", FID)) >= 1) != d["for_william"]: why.append("the lines for William")
         if why: bad.append((why, f, cs, d))
-    return bad, seen
+    return bad, seen | ({"N3"} if n3s else set())
 T("3,000 feed patients put together at random: decide() never fails, answers the same in every order of the charts, and keeps its own lines - no chart with another Social Security number but by rule 1, no rule without its evidence, "
-  "no name-alone rule on a list that may be cut short, every answer that is flagged is for William; all ten outcomes (rules 0 to 9) come up", lambda: (lambda bad, seen: (bad == [] and seen == set(range(10)), (bad[:1], sorted(seen))))(*_random_cases(3000)))
+  "no name-alone rule on a list that may be cut short, every answer that is flagged is for William; a member number is evidence only where it counts, and the one rule-4 answer that is for William is the one of N3; rules 5, 7 and 8 only where the charts of the same name "
+  "AND those beside it agree; all ten outcomes (rules 0 to 9), N3 and a name-alone answer with a chart beside the same name come up",
+  lambda: (lambda bad, seen: (bad == [] and seen == set(range(10)) | {"N3", "beside"}, (bad[:1], sorted(seen, key=str))))(*_random_cases(3000)))
 T("a chart id that does not look like one, or the same chart twice, is an error (chart ids go into the registers)", lambda: _raises(lambda: D(F(ZO, "XANTHIA", B), [dict(C(1, ZO, "XANTHIA", B), id=lf(ZO, "XANTHIA"))])) is True and _raises(lambda: D(F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B), C(1, ZO, "XANTHIA", B)])) is True)
 # the feed patients of one batch
 K = lambda last, first, d8: (last + ", " + first).upper().strip() + "|" + d8[:8]
@@ -805,9 +1041,12 @@ T("... but not a chart that has one where the feed has NONE (the lookups the ste
 T("the first name's forms: three letters, four letters of its first word (none when that word has fewer - every full-name candidate begins with them), the whole first word when it has more than four",
   lambda: ([(LK(ZO, f)["first3"], LK(ZO, f)["first4"], LK(ZO, f)["first_word"]) for f in ("Xanthia", "ANN K", "MARY ANN", "A.J.", "Jo Ann", "X'ORWEN")]
            == [("X%A%N", "X%A%N%T", "%".join("XANTHIA")), ("A%N%N", None, ""), ("M%A%R", "M%A%R%Y", ""), ("A%J", None, ""), ("J%O%A", None, ""), ("X%O%R", "X%O%R%W", "X%O%R%W%E%N")]))
-T("... every full-name candidate answers to the four letters (a middle name, a longer form, a hyphen written as a space)",
-  lambda: [(a, b) for a, b in (("XANTHIA", "XANTHIA K"), ("XANTHIA", "XANT"), ("XANT", "XANTHIANNE"), ("MARY", "MARYANN"), ("MARY-ANN", "MARY ANN"), ("X'ORWEN", "XORWEN"))
-           if FI.name_kind(ZO, a, ZO, b) != "full" or not like("%s%%, %s%%" % (LK(ZO, a)["letters"], LK(ZO, a)["first4"]), lf(ZO, b))] == [])
+T("... every full-name candidate answers to the four letters (a middle initial, a second first name, an apostrophe the chart does not write, the same suffix behind the first name)",
+  lambda: [(a, b) for a, b in (("XANTHIA", "XANTHIA K"), ("XANTHIA K", "Xanthia"), ("MARY ANN", "MARY A"), ("X'ORWEN", "XORWEN"), ("XANTHIA", "XANTHIA Q.")) if FI.name_kind(ZO, a, ZO, b) != "full" or not like("%s%%, %s%%" % (LK(ZO, a)["letters"], LK(ZO, a)["first4"]), lf(ZO, b))] == []
+          and FI.name_kind(ZO + " JR", "XANTHIA", ZO, "XANTHIA JR") == "full" and like("%s%%, %s%%" % (LK(ZO + " JR", "XANTHIA")["letters"], LK(ZO + " JR", "XANTHIA")["first4"]), lf(ZO, "XANTHIA JR")))
+T("... and what was a full-name candidate until identity rule .5 - a longer form of the first name, a hyphen written as a space - is a name candidate now and is still found: by the three letters, and by the four of the shorter name too (the lookups ask no less than before)",
+  lambda: [(a, b) for a, b in (("XANTHIA", "XANT"), ("XANT", "XANTHIANNE"), ("MARY", "MARYANN"), ("MARY-ANN", "MARY ANN")) if FI.name_kind(ZO, a, ZO, b) != "name" or not like("%s%%, %s%%" % (LK(ZO, a)["letters"], LK(ZO, a)["first3"]), lf(ZO, b))
+           or not like("%s%%, %s%%" % (LK(ZO, min(a, b, key=len))["letters"], LK(ZO, min(a, b, key=len))["first4"]), lf(ZO, max(a, b, key=len)))] == [])
 _ENYE = ZO[:2] + "Ñ" + ZO[2:]      # an accented letter inside the invented name
 T("a letter that carries an accent is left out of the forms (a gap: AdvancedMD may hold it with or without) - the chart answers either way, and the two ways of writing the accent give the same forms",
   lambda: (LK(_ENYE)["letters"] == "%".join(ZO) and LK(_ENYE)["words"] == ZO[:2] + "%" + ZO[2:] and like(LK(_ENYE)["letters"] + "%", lf(_ENYE, "X")) and like(LK(_ENYE)["words"] + "%", lf(ZO[:2] + "N" + ZO[2:], "X"))
@@ -827,6 +1066,9 @@ def _forms_hold(n):
     cores = [ZO, QU, WE, TH, YA, "O" + ZO, "MC" + QU, "DELA" + YA, TH + YA, "NG", "LI"]; sufs = ["", "", "", " JR", " SR.", " III", " V"]; firsts = ["XANTHIA", "XANT", "XANTHIANNE", "XANDRA", "XAN", "AJ", "JOANN", "MARYANN", "MARY", "ELSPETHA"]
     for i in range(n):
         core = rnd.choice(cores); fl = _sprinkle(rnd, core) + rnd.choice(sufs); cl = _sprinkle(rnd, core) + rnd.choice(sufs); ff = _sprinkle(rnd, rnd.choice(firsts), 0.1); cfirst = _sprinkle(rnd, rnd.choice(firsts), 0.1) + rnd.choice(["", "", " K", " Q."])
+        if rnd.random() < 0.25:      # (identity rule .5: the same name is the same first word and no other suffix) one pair in four is the feed's OWN name written another way - a middle initial behind the first name, the feed's suffix behind the chart's last name or behind its first name
+            suf = " ".join(FI.name_suffix(fl, "")); behind = bool(suf) and rnd.random() < 0.5
+            cl = _sprinkle(rnd, core) + (" " + suf if suf and not behind else ""); cfirst = ff + rnd.choice(["", " K", " Q."]) + (" " + suf if behind else "")
         if rnd.random() < 0.3: cl = cl.title(); cfirst = cfirst.lower()
         kind = FI.name_kind(fl, ff, cl, cfirst); f = FI.lookup_forms(fl, ff); name = lf(cl, cfirst); kinds[kind] += 1
         ok = kind == "" or like(f["letters"] + "%", name)                                                             # the same last name under any first name
@@ -1045,6 +1287,61 @@ wo.ingest()
 eo = wo.match().get(K(ZO, A_FIRST, BD), {})
 step("a message without a PID line (nobody's visit) never lends its insurance rows to the patient of the message before it: its member number is no evidence for that patient, and it is not put on that patient's new chart",
      lambda: (wo.clean() and len(wo.match()) == 1 and ok_field(eo, rule=9, evidence=[], flags=["same-name charts not used"], resolved="pat9001") and wo.ins == [] and (wo.reg()["created"] or [{}])[0].get("plans") == [], (wo.err, eo, wo.ins, wo.reg())))
+# ---- identity rule .5 (11/26/2026) through the steps: A RELATIVE IS NOT THE PATIENT ----------------------------------------------------------
+# The match step reads the numbers (the chart's plans, the feed's insurance rows) and writes WORDS; the resolve step decides; the new-chart
+# step makes the chart the rule asks for. The scenarios of the faults were seen failing here before the rule was changed: the wife's visit
+# was entered on her husband's chart by rule 4 - 'matched by name and a number in common', not for William - and a daughter's or a son's
+# by rule 7. Those that say 'as before' and 'must still hold' pin what the change must leave alone.
+HUSBAND, WIFE = "XANDER", A_FIRST      # two first names that share three letters: a name candidate, not the same name
+FATHER, DAUGHTER = "QUILLAR", E_FIRST      # the daughter's first name begins with her father's (alike, not the same)
+_CHG = [(ymd(Y - 1, 10, 3), 0)]
+def _ev_of(w, key, pid): return next((c.get("ev") for c in (w.match().get(key, {}).get("lookup") or []) if c.get("pid") == pid), None)      # the evidence WORDS the match step wrote for one chart
+fw1 = Feed([chart(101, ZO, HUSBAND, BD, members=[PFX + M1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, BD_FAR, in1=[("Humana Gold", M1)])); fw1.run(); efw1 = _first(fw1, K(ZO, WIFE, BD_FAR))
+step("N2 through the steps (the wife): her own real birth date, far from her husband's, and the family's member number, which a plan of HIS chart carries - her visit is NOT entered on his chart (until identity rule .5: rule 4, his chart, nobody asked): "
+     "a new chart is made for her with her own date, and William is asked 'same person or not?' in a line that says a member number in common was not counted",
+     lambda: (fw1.clean() and len(fw1.made) == 1 and fw1.on(FID) == fw1.made and fw1.born(fw1.made[0]) == BD_FAR and ok_field(efw1, rule=9, flags=["same-name charts not used", _MOFF], candidates=["pat101"], for_william=True, evidence=[], status="MISSING")
+              and len([l for l in fw1.said() if fw1.made[0] in l and "beside 1 same-name chart(s) (pat101)" in l and "a member number in common" in l and "not counted" in l and l.endswith("same person or not?")]) == 1 and not any("no number in common" in l for l in fw1.said()),
+              (fw1.worlds[0].err, fw1.entered, fw1.made, brief(efw1), fw1.said())))
+step("N2 through the steps: ... what the match step wrote for his chart is a WORD - 'member' - never the number; and the register row of her new chart carries the flag",
+     lambda: (_ev_of(fw1.worlds[0], K(ZO, WIFE, BD_FAR), "pat101") == ["member"] and M1 not in open(os.path.join(fw1.worlds[0].dir, "feed_match_%s.json" % STAMP)).read()
+              and [r_.get("flags") for r_ in fw1.worlds[0].reg()["created"]] == [["same-name charts not used", _MOFF]] and FI.problems(efw1) == [], (_ev_of(fw1.worlds[0], K(ZO, WIFE, BD_FAR), "pat101"), fw1.worlds[0].reg())))
+fw2 = Feed([chart(101, ZO, HUSBAND, BD, members=[M1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, P8, in1=[("Humana Gold", PFX + M1)])); fw2.run(); efw2 = _first(fw2, K(ZO, WIFE, P8))
+step("N2 through the steps (the wife): ... sent with the placeholder - not his chart either (until then rule 4, 'no birth date from Claimocity', not for William): a new chart with the placeholder date, the question and the face sheet for William",
+     lambda: (fw2.clean() and len(fw2.made) == 1 and fw2.on(FID) == fw2.made and fw2.born(fw2.made[0]) == P8 and ok_field(efw2, rule=9, flags=["same-name charts not used", "no birth date from Claimocity", _MOFF], for_william=True, feed_dob="none", evidence=[])
+              and any(fw2.made[0] in l and "a member number in common" in l and "same person or not?" in l for l in fw2.said()) and any(fw2.made[0] in l and "face sheet needed" in l for l in fw2.said()), (fw2.entered, fw2.made, brief(efw2), fw2.said())))
+fw3 = Feed([chart(101, ZO, HUSBAND, BD, members=[MC1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, BD_FAR, in1=[("Medicare Part B", MC1[:4] + "-" + MC1[4:7] + "-" + MC1[7:])])); fw3.run(); efw3 = _first(fw3, K(ZO, WIFE, BD_FAR))
+step("N2 (a) through the steps: the number in common has the shape of a Medicare number (one person's) - under a first name that shares three letters and with far dates the visit goes to that chart by rule 4 as before, not for William; "
+     "the match step wrote two words for the chart - 'member' and 'member:medicare' - and no number",
+     lambda: (fw3.clean() and fw3.entered == [(FID, "pat101")] and fw3.made == [] and ok_field(efw3, rule=4, resolved="pat101", flags=["birth date differs: far"], for_william=False, evidence=["member", _MED]) and fw3.said() == []
+              and _ev_of(fw3.worlds[0], K(ZO, WIFE, BD_FAR), "pat101") == ["member", _MED] and MC1 not in open(os.path.join(fw3.worlds[0].dir, "feed_match_%s.json" % STAMP)).read(), (fw3.entered, brief(efw3), fw3.said(), _ev_of(fw3.worlds[0], K(ZO, WIFE, BD_FAR), "pat101"))))
+fw4 = Feed([chart(101, ZO, HUSBAND, BD, members=[M1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, BD_OFF, in1=[("Humana Gold", M1)])); fw4.run(); efw4 = _first(fw4, K(ZO, WIFE, BD_OFF))
+step("N2 (b) through the steps: both sides carry a real birth date and the two are one digit apart - the member number counts under a first name that shares three letters: rule 4 as before, the slip as flag, not for William",
+     lambda: (fw4.clean() and fw4.entered == [(FID, "pat101")] and fw4.made == [] and ok_field(efw4, rule=4, resolved="pat101", flags=[FI.FLAG_DATE + FI.SLIP_DIGIT], for_william=False) and fw4.said() == [], (fw4.entered, brief(efw4), fw4.said())))
+fw5 = Feed([chart(101, ZO, WIFE + " K", BD, members=[M1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, BD_FAR, in1=[("Humana Gold", M1)])); fw5.run(); efw5 = _first(fw5, K(ZO, WIFE, BD_FAR))
+step("N2 (c) and N3 through the steps: the SAME name, the family's member number and two real birth dates far apart (William's own case of a wrong birth date - or a parent and a child of one name): the chart is chosen by rule 4 and the visit goes in as before - "
+     "and it is said to William ONCE, in a line that names the chart and the Claimocity id (until then: not for William, no line)",
+     lambda: (fw5.clean() and fw5.entered == [(FID, "pat101")] and fw5.made == [] and ok_field(efw5, rule=4, resolved="pat101", status="FOUND", flags=["birth date differs: far"], for_william=True, evidence=["member"])
+              and len(fw5.said()) == 1 and fw5.said()[0].startswith("FOR WILLIAM: pat101 %s" % FI.WHY[4]) and FID in fw5.said()[0] and "far apart" in fw5.said()[0] and "(FYI)" in fw5.said()[0] and FI.problems(efw5) == [],
+              (fw5.entered, brief(efw5), fw5.said())))
+fw6 = Feed([chart(101, ZO, WIFE, BD, members=[M1], charges=_CHG)]).drop(msg(FID, ZO, WIFE, P8, in1=[("Humana Gold", M1)])); fw6.run(); efw6 = _first(fw6, K(ZO, WIFE, P8))
+step("N2 (c) through the steps: the same name with the placeholder - William's own case - goes to the chart by rule 4 as before, without a line for him",
+     lambda: (fw6.clean() and fw6.entered == [(FID, "pat101")] and ok_field(efw6, rule=4, resolved="pat101", flags=["birth date differs: no birth date from Claimocity"], for_william=False, evidence=["member"]) and fw6.said() == [], (fw6.entered, brief(efw6), fw6.said())))
+fd1 = Feed([chart(101, QU, FATHER, BD2, charges=_CHG)]).drop(msg(FID, QU, DAUGHTER, P8)); fd1.run(); efd1 = _first(fd1, K(QU, DAUGHTER, P8))
+step("N1 through the steps (the daughter): her first name begins with her father's and Claimocity sent the placeholder - her visit is NOT entered on his chart by rule 7 (until identity rule .5: his chart, 'matched by full name', no question): a new chart beside his, "
+     "the question and the face sheet for William",
+     lambda: (fd1.clean() and len(fd1.made) == 1 and fd1.on(FID) == fd1.made and "pat101" not in fd1.on(FID) and ok_field(efd1, rule=9, flags=["same-name charts not used", "no birth date from Claimocity"], candidates=["pat101"], for_william=True)
+              and any(fd1.made[0] in l and "beside 1 same-name chart(s) (pat101)" in l and "same person or not?" in l for l in fd1.said()), (fd1.entered, fd1.made, brief(efd1), fd1.said())))
+fd2 = Feed([chart(101, QU, B_FIRST, BD2, charges=_CHG)]).drop(msg(FID, QU + " JR", B_FIRST, P8)); fd2.run(); efd2 = _first(fd2, K(QU + " JR", B_FIRST, P8))
+step("N1 through the steps (the son): his father's name with JR, the placeholder - not his father's chart by rule 7 (until then: no question): a new chart beside it, for William",
+     lambda: (fd2.clean() and len(fd2.made) == 1 and fd2.on(FID) == fd2.made and "pat101" not in fd2.on(FID) and ok_field(efd2, rule=9, flags=["same-name charts not used", "no birth date from Claimocity"], candidates=["pat101"], for_william=True), (fd2.entered, fd2.made, brief(efd2), fd2.said())))
+fd3 = Feed([chart(101, QU, FATHER, BD2, charges=_CHG)]).drop(msg(FID, QU, DAUGHTER, BD2), msg(FID2, QU + " JR", FATHER, BD2)); fd3.run()
+step("what must still hold through the steps (N1): with the same REAL birth date a name candidate is taken by rule 2 whatever the ending of the first name or the suffix - both visits on the one chart, no chart made, nothing for William",
+     lambda: (fd3.clean() and sorted(fd3.entered) == [(FID, "pat101"), (FID2, "pat101")] and fd3.made == [] and fd3.said() == [] and [v.get("rule") for v in fd3.worlds[0].match().values()] == [2, 2], (fd3.entered, fd3.made, fd3.said())))
+fd4 = Feed([chart(101, QU, B_FIRST + " K", BD2, charges=_CHG)], pmap={FID5: "pat101"}).drop(msg(FID, QU, B_FIRST, P8), msg(FID2, QU, B_FIRST + " ANN", "")); fd4.run()
+step("what must still hold through the steps (N1): William's own case - the SAME name (a middle initial on the chart, a second first name in the feed), the placeholder or no date from Claimocity, one date on the chart, the chart an earlier Claimocity id's in the patient map: "
+     "each visit goes to that chart by rule 7 in the first run, without a question",
+     lambda: (fd4.clean() and sorted(fd4.entered) == [(FID, "pat101"), (FID2, "pat101")] and fd4.made == [] and fd4.said() == [] and fd4.files == [] and [v.get("rule") for v in fd4.worlds[0].match().values()] == [7, 7]
+              and all(v.get("for_william") is False for v in fd4.worlds[0].match().values()), (fd4.entered, fd4.made, fd4.said(), {k: brief(v) for k, v in fd4.worlds[0].match().items()})))
 # ---- the lookup lessons: apostrophe, two words, hyphen, a suffix on the chart ---------------------------------------------------------
 AP = "O'" + ZO; TW = "VAN " + QU; HY = TH + "-" + YA
 wl = World([msg(FID, AP, A_FIRST, BD), msg(FID2, TW, B_FIRST, BD), msg(FID3, HY, C_FIRST, BD), msg(FID4, WE, D_FIRST, BD), msg(FID5, YA + " JR", E_FIRST, BD)],
@@ -1373,11 +1670,14 @@ sp4 = _steps([msg(FID, ZO, A_FIRST, BD_OFF), msg(FID, ZO, "YOLANDRA", BD_OFF)], 
 step("one Claimocity id under two first names in one batch, the list of same-name charts cut short for ONE of them: the worst of the two counts for the patient - no chart by the slip alone; one new chart, flagged, for William",
      lambda: (sp4.clean() and len(ms4) == 2 and all(ok_field(v, rule=9, cut="full", for_william=True, resolved="pat9001") and v.get("flags") == ["same-name charts not used", FI.FLAG_CUT] for v in ms4.values()) and len(sp4.amd.added) == 1,
               (sp4.err, {k.split("|")[0][-8:]: brief(v) for k, v in ms4.items()})))
-def _differential(n, seed, spellings=None, **opts):
+_DIFF5 = collections.Counter()      # what the runs with the pools of identity rule .5 came across: answers that say a member number was not counted, and rule 4 for William (N3)
+def _differential(n, seed, spellings=None, pools=None, **opts):
     """n feed patients put together at random - the last name in one of its spellings, up to five charts of that name in others (now and then a chart of another name) - go through the match and
-    resolve steps, and each must come out as the rule itself answers when it is given EVERY chart of the stand-in. A difference means a chart was not weighed that the rule calls the same name."""
+    resolve steps, and each must come out as the rule itself answers when it is given EVERY chart of the stand-in. A difference means a chart was not weighed that the rule calls the same name.
+    pools (identity rule .5): other first names and member numbers to draw from - names that are alike, a family's number, a number in the shape of a Medicare number."""
     rnd = random.Random(seed); bad = []; rules = collections.Counter(); t8 = datetime.date.today().strftime("%Y%m%d")
     firsts = [A_FIRST, A_FIRST + " K", "XANDRA", "XAN", A_FIRST + "NNE", D_FIRST, B_FIRST[:3], B_FIRST]; dates = [BD, BD_OFF, ymd(Y - 85, 4, 15), BD_FAR, P8, "", BD2]; ssns = ["", "", "", S1, S2]; mems = [[], [], [], [M1], [M2]]
+    if pools: firsts, mems = pools
     for i in range(n):
         f = rnd.randrange(len(FAMILIES)); fam = FAMILIES[f]; fl = spellings[f] if spellings else rnd.choice(fam); ff = rnd.choice(firsts); fd = rnd.choice(dates); fs = rnd.choice(ssns); fm = rnd.choice(mems)
         charts = [chart(nn, rnd.choice(rnd.choice(FAMILIES) if rnd.random() < 0.1 else fam), rnd.choice(firsts), rnd.choice(dates), ssn=rnd.choice(ssns), members=rnd.choice(mems), mrn=rnd.choice(["", "", "", FID.upper()]),
@@ -1389,12 +1689,17 @@ def _differential(n, seed, spellings=None, **opts):
         e = w.match().get(K(fl, ff, fd), {})
         all_charts = [{"id": c["id"], "name": lf(c["last"], c["first"]), "dob": c["dob"], "mrn": c["mrn"], "ssn": c["ssn"], "members": c["members"], "last_dos": max([d for d, v in c["charges"] if not v] or [""]), "charges": len([d for d, v in c["charges"] if not v])} for c in charts]
         want = FI.decide({"id": FID, "name": cf(fl, ff), "dob": fd, "ssn": fs, "members": fm}, all_charts, t8); rules[want["rule"]] += 1
+        if pools: _DIFF5.update(["not counted"] * (FI.FLAG_MEMBER in want["flags"]) + ["rule 4 for William"] * (want["rule"] == 4 and want["for_william"]) + ["a Medicare number"] * (FI.MEDICARE in want["evidence"]))
         if not w.clean() or [e.get(x) for x in ("rule", "resolved", "flags", "candidates", "for_william")] != [want["rule"], want["chart"], want["flags"], want["candidates"], want["for_william"]]:
             bad.append({"steps": [e.get(x) for x in ("rule", "resolved", "flags", "candidates", "for_william", "cut")], "the rule given every chart": [want[x] for x in ("rule", "chart", "flags", "candidates", "for_william")], "errors": {k: v for k, v in w.err.items() if v}, "asked": len(w.amd.asked)})
     return bad, rules
 step("300 feed patients put together at random, the last name spelled one way in the feed and other ways on the charts: the match and resolve steps answer for every one of them what the rule answers when it is given EVERY chart of the stand-in - "
      "no chart the rule calls the same name goes unweighed (until then 60 of these 300 came out otherwise: a chart missed, a namesake taken, a second chart made)",
      lambda: (lambda bad, rules: (bad == [] and len(rules) >= 8, (len(bad), bad[:2], dict(rules))))(*_differential(300, 1125)))
+step("identity rule .5: 200 more patients at random with the names and numbers this round is about - first names that only begin with one another, a suffix on either side, a family's member number, a number in the shape of a Medicare number: "
+     "the match and resolve steps answer for every one of them what the rule answers from the NUMBERS themselves (the words the match step writes carry all the rule needs) - among them answers that say a member number was not counted, rule 4 for William, and a Medicare number in common",
+     lambda: (lambda bad, rules: (bad == [] and len(rules) >= 6 and min(_DIFF5[k_] for k_ in ("not counted", "rule 4 for William", "a Medicare number")) >= 3, (len(bad), bad[:2], dict(rules), dict(_DIFF5))))(
+         *_differential(200, 2626, pools=([A_FIRST, A_FIRST + " K", "XANDER", "XANT", A_FIRST + " JR", E_FIRST, "QUILLAR"], [[], [M1], [M1], [PFX + M1], [MC1], [M1, MC1]]))))
 wk = World([msg(FID, ZO, A_FIRST, BD)], [chart(100 + n, ZO, "A%02dLMA" % n, BD_FAR) for n in range(1, 56)] + [chart(190, ZO, A_FIRST, BD)]).ingest()
 step("a last name with more charts than AdvancedMD answers at once (50): the narrow lookup still finds the patient's own chart", lambda: (wk.clean() and wk.match().get(K(ZO, A_FIRST, BD), {}).get("resolved") == "pat190", (wk.err, wk.match().get(K(ZO, A_FIRST, BD)))))
 wk2 = World([msg(FID, ZO, A_FIRST, BD)], [chart(100 + n, ZO, "XANA%02dQ" % n, BD_FAR) for n in range(1, 56)] + [chart(190, ZO, A_FIRST, BD)]).ingest()
@@ -1599,12 +1904,12 @@ check("feed_identity.py starts with its PLAIN ENGLISH header and carries the rul
 # the rule under the old line: a copy of the helpers from before passed as current (the mirror let it go back over the repository's, the
 # driver's helper check called it current). The line changes with EVERY revision of the rule, in all three places together.
 import shutil
-_VNOW, _VOLD = ("2026-11-25." + n_ for n_ in ("4", "3")); _VLINE = 'IDENTITY_RULE_VERSION = "%s"' % _VNOW; _VLINE_OLD = 'IDENTITY_RULE_VERSION = "%s"' % _VOLD
+_VNOW, _VOLD = "2026-11-26.5", "2026-11-25.4"; _VLINE = 'IDENTITY_RULE_VERSION = "%s"' % _VNOW; _VLINE_OLD = 'IDENTITY_RULE_VERSION = "%s"' % _VOLD      # identity rule .5 (11/26/2026): a relative is not the patient - N1 the same name, N2 a member number, N3 what William is told
 _mirror_src = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
 try: HCUR = load("claimocity_helpers_current"); HCUR_ERR = ""
 except Exception as e: HCUR = None; HCUR_ERR = "%s: %s" % (type(e).__name__, e)
-T("the rule's version line is 2026-11-25.4 - the round in which rule 7 is no longer held back by the patient map and a slip no longer waits: it stands ONCE in feed_identity.py, the mirror's marker for feed_identity.py and the helper check's "
-  "version line are that very line, and the line of the round before stands in none of the three (a copy of the round before never passes as current)",
+T("the rule's version line is 2026-11-26.5 - the round in which a relative is no longer taken for the patient (the same name is the same first word and no other suffix; a member number proves one person only where it can): it stands ONCE in feed_identity.py, "
+  "the mirror's marker for feed_identity.py and the helper check's version line are that very line, and the line of the round before (2026-11-25.4) stands in none of the three (a copy of the round before never passes as current)",
   lambda: (FI.IDENTITY_RULE_VERSION == _VNOW and len(re.findall(r'(?m)^' + re.escape(_VLINE), read("feed_identity.py"))) == 1 and ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src and HCUR.VERSION_LINES.get("feed_identity.py") == _VLINE
            and not [f_ for f_, t_ in (("feed_identity.py", read("feed_identity.py")), ("mirror.py", _mirror_src), ("claimocity_helpers_current.py", read("claimocity_helpers_current.py"))) if _VLINE_OLD in t_],
            (getattr(FI, "IDENTITY_RULE_VERSION", None), HCUR_ERR or HCUR.VERSION_LINES.get("feed_identity.py"), ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src)))

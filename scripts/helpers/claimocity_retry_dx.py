@@ -41,12 +41,8 @@
 #   Until then the 'already' row named the feed patient only, and it ended the retry only where the retry's own batch file was on hand and named that one
 #   visit, or the reconciliation register named it: in a new container, and after a retry that had handed over two visits of the chart, the visit was handed
 #   over again in every run. A row of a register from before still counts the old way. Only a register LATER than the one that held the visit ends its retry -
-#   never an earlier one (a death can be taken off the record, a charge voided, in between). The line this step prints about such charts
+#   never an earlier one (a death can be taken off by hand, a charge voided, in between). The line this step prints about such charts
 #   names only the charts whose visit this run really hands over. Nothing here reads the cache of dates of death: the import decides, every run, from what it reads.
-# 11/25/2026 (the fourth round of the death check): the import has a SECOND fixed why for a visit it holds - "the record of a death for this chart was reset on
-#   the owner's word and Medicare has not answered yet - not entered" (death_off_record.py reset the record; Medicare is asked afresh and its answer decides).
-#   Such a visit is handed to the import again exactly as one held for a day nobody could read - the same three rules, row for row - and this step says it in a
-#   line of its own.
 import os, sys, re, json, glob, subprocess, datetime, collections
 WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(WS)
@@ -89,12 +85,10 @@ def _known_cpts():
     return set()
 KNOWN_CPTS = _known_cpts(); unknown_cpts = set()
 DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"      # the same line as in claimocity_import.py (the self-test holds the two together)
-DEATH_RESET_WHY = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - not entered"      # the import's second fixed why (11/25/2026, the fourth round - the same line there): handed over again exactly as a visit held with DEATH_DAY_WHY
 DEATH_AFTER_WHY = "DOS after date of death"      # how the import's row starts for a visit it keeps out FOR GOOD (a day is known and lies before the visit)
 ALREADY_WHY = "all lines already in AMD"         # the import's answer for a visit the chart already carries
 death_day = set()  # the charts of the held visits THIS run hands over (chart ids only - for the one line this step prints about them)
-death_reset = set()  # ... and of the visits held because the record of a death was reset on the owner's word and Medicare had not answered (a line of its own)
-held = {}          # stamp -> {feed patient id: [(the row's codes, the visit's lines {(code, MM/DD/YYYY)} - None for a row that names no dates, the chart id, True for a row with DEATH_RESET_WHY)]}: the visits kept out with DEATH_DAY_WHY or DEATH_RESET_WHY - from registers that are NOT a retry's own
+held = {}          # stamp -> {feed patient id: [(the row's codes, the visit's lines {(code, MM/DD/YYYY)} - None for a row that names no dates, the chart id)]}: the visits kept out with DEATH_DAY_WHY - from registers that are NOT a retry's own
 ended = []         # (stamp, feed patient id, the visit's lines) of every 'DOS after date of death' row that names its visit: kept out for good
 answered = []      # (stamp, feed patient id, the visit's lines) of every 'all lines already in AMD' row that names its visit - the import writes the visit's codes and dates of service into that row since 11/25/2026 (the third round): the chart carries the visit
 already_r = []     # (a retry's own stamp, feed patient id) of every 'all lines already in AMD' row in a retry's own register that names NO visit (a register from before that day) - _kept_out reads which one from that retry's batch file
@@ -126,17 +120,15 @@ for rf in sorted(glob.glob("registers/feed_import_*.json")):
             if not mc: nocpt.add(str(row.get("feed_id") or "?"))
             elif mc.group(1) in KNOWN_CPTS: want.setdefault(stamp, {}).setdefault(row["feed_id"], set()).add(mc.group(1))
             else: unknown_cpts.add(mc.group(1))
-        elif why.startswith((DEATH_DAY_WHY, DEATH_RESET_WHY)):                # 11/25/2026 (the second verification of the death check): the import kept the visit out because a
+        elif why.startswith(DEATH_DAY_WHY):                                   # 11/25/2026 (the second verification of the death check): the import kept the visit out because a
             # death is on record for the chart and nobody could name its day - it is handed to the import again, which asks again and enters it, keeps it out for good (a
             # day before the visit), or keeps it waiting. THE RETRY MUST CONVERGE (the independent check of that round, finding 3): every live retry writes this row again
             # into its OWN register (stamp ...R) and keeps its own batch file - read as a batch of their own, the visit was handed over once more for each: 1, 2, 4, 8
             # messages per run. So the row is taken only from a register that is NOT a retry's own; the visit goes to the import at most once per run; and it is left
             # alone for good once a LATER register shows it entered, answered 'already', or kept out with 'DOS after date of death' (_kept_out, below).
-            # (11/25/2026, the fourth round: the same, row for row, for a visit kept out with DEATH_RESET_WHY - the record of a death was reset on the owner's word
-            # and Medicare had not answered: the import asks afresh.)
             if stamp.endswith("R"): continue
             _c = {c_ for c_ in (row.get("cpts") or []) if isinstance(c_, str) and c_}
-            if row.get("feed_id") and _c: held.setdefault(stamp, {}).setdefault(row["feed_id"], []).append((_c, _lines(row), str(row.get("pid") or "?"), why.startswith(DEATH_RESET_WHY)))
+            if row.get("feed_id") and _c: held.setdefault(stamp, {}).setdefault(row["feed_id"], []).append((_c, _lines(row), str(row.get("pid") or "?")))
         elif why.startswith(DEATH_AFTER_WHY):                                 # kept out for good - of ANY register, a retry's own included (the row names its visit since 11/25/2026)
             if row.get("feed_id") and _lines(row): ended.append((_norm(stamp), row["feed_id"], _lines(row)))
         elif why == ALREADY_WHY and row.get("feed_id"):                       # the chart already carries the visit: of ANY register when the row names its visit; a row that names none counts from a retry's own register only (its batch file says which visit)
@@ -157,7 +149,7 @@ def unknown_note():
     return s + ((" | a feed line without a CPT code (feed ids %s) - for William: Claimocity sent the visit with no code" % ", ".join(sorted(nocpt))) if nocpt else "")
 UNKNOWN_NOTE = unknown_note()
 if not want and not held:
-    print("retry-dx: nothing to retry (no 'no usable dx' skip, no 'unknown CPT' skip the import can enter now and no visit kept out for a date of death nobody could read - or for a record of a death that was reset - in the registers)" + UNKNOWN_NOTE); sys.exit(0)
+    print("retry-dx: nothing to retry (no 'no usable dx' skip, no 'unknown CPT' skip the import can enter now and no visit kept out for a date of death nobody could read in the registers)" + UNKNOWN_NOTE); sys.exit(0)
 
 # ---- 2 the messages behind those skips ------------------------------------------------------------------------------------------
 def parsed_for(stamp):
@@ -207,13 +199,12 @@ for stamp in sorted(set(want) | set(held)):
         if all(c["cpt"] in covered.get((m["pid"], mdy(c["dos"][:8])), set()) for c in m["FT1"]): continue   # every line, under its own date, is in AdvancedMD
         if not by_skip:                                                          # a visit held for a lost day (and for nothing else): once per run, and not once a later register settled it
             if (fid, lines) in handed or _kept_out(stamp, fid, lines): continue
-            handed.add((fid, lines)); (death_reset if why_held[3] else death_day).add(why_held[2])
+            handed.add((fid, lines)); death_day.add(why_held[2])
         m = dict(m); m["_batch"] = stamp; msgs.append(m)
 UNKNOWN_NOTE = unknown_note()
 if not msgs:
     print("retry-dx: nothing to retry (every skipped visit that can be retried has been entered or kept out for good since)" + UNKNOWN_NOTE); sys.exit(0)
 if death_day: print("retry-dx: %d chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (%s) - handed to the import again: it asks again and enters the visit, keeps it out for good, or keeps it waiting" % (len(death_day), ", ".join(sorted(death_day))))
-if death_reset: print("retry-dx: %d chart(s) have a visit that was kept out because the record of a death was reset on the owner's word and Medicare had not answered (%s) - handed to the import again: it asks Medicare afresh and enters the visit, keeps it out for good, or keeps it waiting" % (len(death_reset), ", ".join(sorted(death_reset))))
 
 # ---- 3 re-check the codes in AMD (null cache entries are looked up again) ---------------------------------------------------------
 env = dict(os.environ, FEED_STAMP=rstamp, FEED_DX_CACHE=os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json"), PYTHONPATH=WS + ":" + HERE)

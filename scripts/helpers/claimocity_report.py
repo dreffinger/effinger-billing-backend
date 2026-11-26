@@ -77,10 +77,7 @@ _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
 # (The independent check of that round, finding 13: the count below called those visits 'skipped as already in AMD' - they are NOT in AdvancedMD, they are held. They
 # are taken out of that count; the line for the top of the report, a few lines down, says what they are. The sentence's words are as they were.)
 DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
-# 11/25/2026 (the fourth round of the death check): the import's second fixed why (the same line there) - the record of a death for the chart was reset on the
-# owner's word and Medicare has not answered the fresh question yet. Those visits are held too, not 'already in AMD': a line of their own for the top, below.
-DEATH_RESET_WHY = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - not entered"
-_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith((DEATH_DAY_WHY, DEATH_RESET_WHY)))
+_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY))
 L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]) - _ddheld,
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
@@ -119,12 +116,6 @@ try:      # (the register cannot say who was asked - a dry run asks nobody, a wo
     if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
 except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
-try:      # (the fourth round) the visits held because the record of a death was reset on the owner's word and Medicare has not answered - chart ids and counts only
-    _drr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_RESET_WHY)]
-    _drc = sorted({x.get("pid") for x in _drr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
-    if _drr: L("  - TOP OF THE REPORT - DEATH RECORD RESET: %d visit(s) on %d chart(s) were NOT entered - the record of a death for the chart was reset on the owner's word (death_off_record.py) and Medicare has not answered yet. Medicare is asked again at the chart's next claim and its answer decides; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
-        len(_drr), len(_drc), ", ".join(_drc) or "(no chart id in the rows)"))
-except Exception: L("  - TOP OF THE REPORT - the line about visits kept out because the record of a death was reset could not be built - read the skipped rows of the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood

@@ -487,7 +487,7 @@ def _earlier_new_charts():
             if not c_["for_william"]: continue
             if bad or not FI or not hasattr(FI, "william_lines") or not hasattr(FI, "FLAG_NOT_USED"): said = ["new chart %s was made - what the identity rule said about it is in registers/feed_newcharts_%s.json" % (c_["pid"], st)]
             elif FI.FLAG_NOT_USED in e["flags"] and not e["candidates"]:      # the charts it stood beside are not known here: the question without the list
-                said = ["new chart %s was made beside same-name charts with other birth dates and no number in common - same person or not? (the charts are named in logs/claimocity_%s_resolve.log of the workspace that made it)" % (c_["pid"], st)] \
+                said = ["new chart %s was made beside same-name charts with other birth dates and %s - same person or not? (the charts are named in logs/claimocity_%s_resolve.log of the workspace that made it)" % (c_["pid"], FI.number_words(e["flags"]) if hasattr(FI, "number_words") else "no number in common", st)] \
                        + FI.william_lines(dict(e, flags=[x for x in e["flags"] if x != FI.FLAG_NOT_USED]), c_["pid"], ids or "")
             else: said = FI.william_lines(e, c_["pid"], ids or "")      # (every id of the row is named - the rule's lines take a list since 11/25/2026)
             for line in said: top("from the run of stamp %s, which ended before its digest: %s" % (st, line))

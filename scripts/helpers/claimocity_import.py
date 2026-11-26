@@ -118,10 +118,6 @@ NO_PID_WHY = "feed message without a patient id - passed over"
 # and hands the visit to the import again - once a run, until a later register shows the visit entered or kept out for good; claimocity_report.py says it in the digest,
 # in a line for the top of the report.
 DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
-# 11/25/2026 (the fourth round of the death check): the second fixed why - the visit of a chart whose record of a death was reset on the owner's word
-# (death_off_record.py) is NOT entered before Medicare has answered the fresh question. claimocity_retry_dx.py hands such a visit to the import again exactly as it
-# does for DEATH_DAY_WHY, and claimocity_report.py says it at the top in a line of its own.
-DEATH_RESET_WHY = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - not entered"
 def death_day(v):
     """A cached date of death as YYYY-MM-DD when it is a real calendar date in a shape a helper has written it in (YYYY-MM-DD, eight digits, MM/DD/YYYY - the
     first and the last may carry a time behind the day, as AdvancedMD stamps its dates); None for anything else - the placeholder of the repository's copy, a
@@ -139,53 +135,37 @@ def death_day(v):
     except ValueError: return None
 DEATH_NO_DAY = "day not known"      # the guard's own NO_DAY: what stands in the day's place for a chart whose own record says deceased while nobody named a day (the self-test holds the two together)
 DEATH_WORDS = {"deceased", "dead", "died", "expired", "redacted", "y", "yes"}      # the guard's own DEATH_WORDS: the words that stand for a death with no day in a cache's day place
+DEATH_NOTHING = {"none", "null", "n/a", "na", "unknown", "no", "empty"}      # the guard's own NOTHING_WORDS: a bracketed text that is one of these (any letter case) plainly means 'nothing' - no death on record
 def death_unread(v):
     """True for a cached dod value that is a death ON RECORD whose day cannot be read: no day, and the guard's 'day not known', a text with at least four digits
-    in it (a damaged date), any text in square or angle brackets in any letter case (the privacy gate's placeholder is one), a masked date (nothing but the
-    letter X and separators, at least four X), or one of DEATH_WORDS as the whole value in any letter case. False for a day and for every other value - None,
-    '', blanks, the words None / null / unknown, '0', a number: that is NO dod, and the chart is held for nothing. THE GUARD'S OWN READING
-    (deceased_guard._unread), written out here as death_day is; tools/selftest/test_lookup_rules.py holds it, dg_drive.py's and the guard's together over
-    every shape. (11/25/2026, the third round: until then ANY value in a dod field that was no day held every visit of the chart - one word in a stray file.
-    The fourth round: the bracketed texts, the masked date and the words.)"""
+    in it (a damaged date), a text in square or angle brackets in any letter case (the privacy gate's placeholder is one) unless it plainly means nothing, a
+    masked date (nothing but the letter X and separators, at least four X), or one of DEATH_WORDS as the whole value in any letter case. False for a day and
+    for every other value - None, '', blanks, the words None / null / unknown, '0', a number: that is NO dod, and the chart is held for nothing. THE GUARD'S
+    OWN READING (deceased_guard._unread), written out here as death_day is; tools/selftest/test_lookup_rules.py holds it, dg_drive.py's and the guard's
+    together over every shape. (11/25/2026, the third round: until then ANY value in a dod field that was no day held every visit of the chart - one word in a
+    stray file. The fourth round: the bracketed texts, the masked date and the words. The fifth round, 11/26/2026: a bracketed text that is one of
+    DEATH_NOTHING - '[none]', '<null>', '[n/a]' - is no death on record: by the fourth round's letter it would have held every visit of a living patient's chart.)"""
     if not isinstance(v, str) or death_day(v) is not None: return False
-    s = v.strip()
-    return (s == DEATH_NO_DAY or len(re.findall(r"\d", s)) >= 4 or bool(re.search(r"\[[^\[\]]*[A-Za-z][^\[\]]*\]|<[^<>]*[A-Za-z][^<>]*>", s))
+    s = v.strip(); bracketed = [(a or b).strip().lower() for a, b in re.findall(r"\[([^\[\]]*[A-Za-z][^\[\]]*)\]|<([^<>]*[A-Za-z][^<>]*)>", s)]
+    return (s == DEATH_NO_DAY or len(re.findall(r"\d", s)) >= 4 or any(w not in DEATH_NOTHING for w in bracketed)
             or s.lower() in DEATH_WORDS or (bool(re.fullmatch(r"[Xx/. -]+", s)) and len(re.findall(r"[Xx]", s)) >= 4))
-DEATH_REASK_UNDATED = "9999-12-31"      # the guard's own REASK_UNDATED: the day a RE-ASK entry reads as reset on when its reask field names no date - later than any check date
-def death_reask(v):
-    """The day the record of a death was reset on the owner's word (YYYY-MM-DD) when the entry is a RE-ASK entry - death_off_record.py writes it: it carries reask
-    and holds NO death - DEATH_REASK_UNDATED when that field names no date, None for every other entry. THE GUARD'S OWN READING (deceased_guard._reask)."""
-    if not isinstance(v, dict) or not v.get("reask") or death_day(v.get("dod")) or death_unread(v.get("dod")): return None
-    return death_day(v.get("reask")) or DEATH_REASK_UNDATED
-def death_after(v, since):
-    """True when an entry's check date can be read - YYYY-MM-DD, a time behind it or not - and lies AFTER that day. Never for the day itself, a check date in
-    another shape, one that is no date, or none: such a death is the older record. THE GUARD'S OWN READING (deceased_guard._after)."""
-    s = str((v.get("checked") if isinstance(v, dict) else "") or "")[:10]
-    return bool(re.match(r"\d{4}-\d{2}-\d{2}$", s)) and death_day(s) is not None and s > since
 def death_read(tables):
-    """What the cache files say, read TOGETHER -> ({chart number: its entry, its dod the EARLIEST day that stands for the chart}, {the charts with a death on
-    record whose day is in no file}, {the charts whose record of a death was reset on the owner's word and that no death stands for: asked afresh}). tables = what
-    each file holds, in the order the files were read - THE FIRST IS THE CACHE THE GUARD ANSWERS FROM (an empty table when that file is not there or cannot be
-    read); whatever is no table, and a line that is no entry, is passed over. A day (death_day) beats a death on record whose day cannot be read (death_unread);
-    every other value in the day's place is NO dod. Nothing is asked and nothing is written here.
-    THE OWNER'S WORD (11/25/2026, the fourth round): his word resets the record and Medicare is asked afresh - death_off_record.py writes the RE-ASK entry
-    (death_reask) into the cache in use. ONE narrow rule, the guard's own (its carry - tools/selftest/test_lookup_rules.py holds this function and the guard
-    after its carry together over every pair and triple of entries the files can hold): while the cache in use carries that entry for a chart, a death ANOTHER
-    file holds whose entry was checked on or before the day of the reset, or has no check date, does NOT stand (death_after) - the older record must not come
-    back before Medicare was asked; a death checked after that day stands as for any chart. A RE-ASK entry in another file means nothing. Nothing is compared
-    with the date of his word. (The third round's rule - his word 'beat' every day reported up to its date - is gone.)"""
-    since = {}; days = {}; lost = set()
-    for n, c in enumerate(tables):
+    """What the cache files say, read TOGETHER -> ({chart number: its entry, its dod the EARLIEST day any file holds for the chart}, {the charts with a death on
+    record whose day is in no file}). tables = what each file holds, in the order the files were read; whatever is no table, and a line that is no entry, is
+    passed over. A day (death_day) beats a death on record whose day cannot be read (death_unread); every other value in the day's place is NO dod. Nothing is
+    asked and nothing is written here. The guard after its carry comes to the same answer for every set of entries the files can hold for one chart
+    (tools/selftest/test_lookup_rules.py holds this function and the guard together over every pair and triple of them).
+    (11/26/2026, the fifth round: rounds three and four had each given the owner's word a rule in here - and the fourth a third value, the charts to ask about
+    afresh. Both rules are gone: no file's entry outweighs another's but by the two readings above, and the order of the files means nothing.)"""
+    days = {}; lost = set()
+    for c in tables:
         for k, v in (c.items() if isinstance(c, dict) else ()):
             if not isinstance(v, dict): continue
             k = re.sub(r"\D", "", str(k)); d = death_day(v.get("dod"))
-            if n == 0 and death_reask(v) is not None: since[k] = death_reask(v); continue      # the cache in use: the record of this chart was reset on that day
-            if d is None and not death_unread(v.get("dod")): continue                           # no death in this entry
-            if n and k in since and not death_after(v, since[k]): continue                      # THE ONE RULE: the older record does not stand against a reset
             if d is not None: days.setdefault(k, []).append(dict(v, dod=d))
-            else: lost.add(k)
-    out = {k: min(rows, key=lambda r: r["dod"]) for k, rows in days.items()}      # of the days that stand the EARLIEST counts
-    return out, {k for k in lost if k not in out}, {k for k in since if k not in out and k not in lost}
+            elif death_unread(v.get("dod")): lost.add(k)
+    out = {k: min(rows, key=lambda r: r["dod"]) for k, rows in days.items()}      # of the days the files hold the EARLIEST counts
+    return out, {k for k in lost if k not in out}
 # 11/12/2026 (William: "fix everything billable to put them in advanced md"): 99349, the established-patient home / assisted-living visit, was
 #   not in these two tables, so three feed visits (9/1, 9/2 and 11/3/2026) were skipped as "unknown CPT 99349". It goes in under pcode65142
 #   (the id the 10/15 recode and the 10/20 GV rebill used) at the practice's $198.00 (the fee of every natively entered 99349 on the ERA
@@ -2576,11 +2556,8 @@ def main():
     # environment names, the guard's own (CACHE), every file on the guard's own list of other cache files (_others - it only looks whether each is a file) when
     # the guard can be loaded, the two relative names of before, and the old path seen from this helper's own folder. Nothing here writes: the guard's _load, which
     # carries, is not called for this - a dry run still writes nothing.
-    # 11/25/2026 (the third round): what the files say TOGETHER is worked out by ONE function, death_read (above) - it holds the rules: which value is a death on
-    # record whose day cannot be read (death_unread), and - the fourth round - what a record that was reset on the owner's word means for the other files' entries.
-    # For that rule the FIRST table death_read gets is the cache the guard answers from: the guard's own CACHE, read first; with no guard beside the import, the
-    # file the environment names. It keeps its place also when its file is not there or cannot be read (an empty table then). When nobody names a cache in use
-    # - no guard, no name in the environment - the first file found stands first.
+    # 11/25/2026 (the third round): what the files say TOGETHER is worked out by ONE function, death_read (above) - it holds the two readings: which value is a
+    # day, and which a death on record whose day cannot be read (death_unread). The order the files are read in means nothing to it.
     _dcf = set(); _osm = __import__("os"); _dcg = ""; _dco = []; _dct = []
     try:
         _dgm = __import__("deceased_guard"); _dcg = getattr(_dgm, "CACHE", "") or ""
@@ -2588,16 +2565,12 @@ def main():
     except Exception: pass
     try: _dcold = _osm.path.join(_osm.path.dirname(_osm.path.dirname(_osm.path.abspath(__file__))), "practices", "ehpa", "registers", "deceased_cache.json")
     except Exception: _dcold = ""
-    _dcu = _dcg if isinstance(_dcg, str) and _dcg else _osm.environ.get("DECEASED_CACHE", "")      # the cache in use
-    for _n, _p in enumerate([_dcu, _osm.environ.get("DECEASED_CACHE", "")] + _dco + ["deceased_cache_local.json", "registers/deceased_cache.json", _dcold]):
-        _t = None
-        if isinstance(_p, str) and _p and _osm.path.isfile(_p) and _osm.path.realpath(_p) not in _dcf:
-            _dcf.add(_osm.path.realpath(_p))
-            try: _t = json.load(open(_p))
-            except Exception: _t = None
-        if _n == 0 and _dcu: _dct.append(_t if isinstance(_t, dict) else {})
-        elif _t is not None: _dct.append(_t)
-    _dc, _dc_lost, _dc_reset = death_read(_dct)
+    for _p in [_osm.environ.get("DECEASED_CACHE", ""), _dcg] + _dco + ["deceased_cache_local.json", "registers/deceased_cache.json", _dcold]:
+        if not isinstance(_p, str) or not _p or not _osm.path.isfile(_p) or _osm.path.realpath(_p) in _dcf: continue
+        _dcf.add(_osm.path.realpath(_p))
+        try: _dct.append(json.load(open(_p)))
+        except Exception: continue
+    _dc, _dc_lost = death_read(_dct)
     def _dod(pid):
         return (_dc.get(re.sub(r"\D", "", pid)) or {}).get("dod") or None
     # CCM AND A PATIENT WHO HAS PASSED AWAY - William's word of 11/25/2026: ("run a death check on all ccm charges to make sure there is no date of death prior to billing the ccm charges, there
@@ -2615,20 +2588,13 @@ def main():
     # when neither AdvancedMD nor the vendor names one, and Medicare's 'no death on record' does not undo a death another source put on record. A held message is not
     # entered; its row carries DEATH_DAY_WHY, its codes and its dates of service, and the retry step hands it to the import again - once a run, until a register
     # shows it entered or kept out for good (claimocity_retry_dx.py; the independent check of that round, finding 3).
-    # 11/25/2026 (the fourth round): THE RECORD OF A DEATH WAS RESET ON THE OWNER'S WORD (death_off_record.py - the RE-ASK entry in the cache in use; _dc_reset
-    # holds those charts). His word resets the record and Medicare is asked afresh: such a chart is asked about through the guard before ANY message of it is
-    # entered, like a chart whose day is lost - the guard asks a FRESH question. Medicare names no death: the message is entered. A day comes: it decides, as
-    # for any chart. The guard raises - nobody answered (NotAnswered), or nobody may be asked (a dry run) - or the entry still waits afterwards (a guard from
-    # before knows no such entry and raises nothing): the message is NOT entered, and its row carries DEATH_RESET_WHY, its codes and its dates of service.
-    _ccm_asked = set(); _dd_held = set(); _dr_held = set()
-    def _asked_dod(pid, msg, kind=""):
-        """-> (the day or None, why the message is held - "" when it is not). kind: "lost" = a death is on record for the chart and its day is in no cache file;
-        "reset" = the record of a death for the chart was reset on the owner's word and Medicare is asked afresh; "" = a care-management message of any other
-        chart."""
+    _ccm_asked = set(); _dd_held = set()
+    def _asked_dod(pid, msg, lost=False):
+        """-> (the day or None, held). lost: a death is on record for the chart and its day is in no cache file."""
         num = re.sub(r"\D", "", pid); _ccm = any(c["cpt"] in CCM for c in msg["FT1"])
         try:
             import deceased_guard as _dg
-            _d8 = max(c["dos"][:8] for c in msg["FT1"] if kind or c["cpt"] in CCM); _proc = "99487" if _ccm else None
+            _d8 = max(c["dos"][:8] for c in msg["FT1"] if lost or c["cpt"] in CCM); _proc = "99487" if _ccm else None
             _lg = getattr(_dg, "LOG", None); _n0 = len(_lg) if isinstance(_lg, list) else 0
             if (num, _d8, _proc) not in _ccm_asked:
                 _ccm_asked.add((num, _d8, _proc))
@@ -2637,22 +2603,17 @@ def main():
             v = (_dg._load() or {}).get(num); v = v if isinstance(v, dict) else {}
             d = death_day(v.get("dod"))
             if d:
-                _dc[num] = dict(v, dod=d); _dc_lost.discard(num); _dc_reset.discard(num); return d, ""
-            if kind == "lost" or death_unread(v.get("dod")): return None, DEATH_DAY_WHY      # a death on record without a day that can be read is never 'no death' (death_unread says what such a value is; any other value in the day's place is no dod)
-            if death_reask(v) is not None: return None, DEATH_RESET_WHY      # the entry still waits for Medicare's fresh answer - also with a guard that raised nothing for it (a guard from before): not entered
-            _dc_reset.discard(num)      # Medicare answered and named no death: the chart is clear, and its other messages of this run need no question
+                _dc[num] = dict(v, dod=d); _dc_lost.discard(num); return d, False
+            if lost or death_unread(v.get("dod")): return None, True      # a death on record without a day that can be read is never 'no death' (death_unread says what such a value is; any other value in the day's place is no dod)
             # the guard answered 'not blocked' and its own log says nobody answered the look-up: the charge goes in (only a date of death keeps one out) and the
             # run SAYS so - until 11/25/2026 (the second verification) only a look-up that raised was counted, and this one went in with no word
             if isinstance(_lg, list) and any(isinstance(x, str) and "UNVERIFIED" in x for x in _lg[_n0:]):
                 stats["CCM entered with the date of death UNVERIFIED (nobody answered the look-up) - the insurance check asks again"] += 1
-            return None, ""
+            return None, False
         except Exception as e:
-            _ek = type(e).__name__
-            if _ek == "NotAnswered": return None, DEATH_RESET_WHY      # the guard's own word for it: the record was reset and Medicare has not answered
-            if kind == "lost" or _ek == "DayLost": return None, DEATH_DAY_WHY
-            if kind == "reset": return None, DEATH_RESET_WHY      # any other error is no answer either: a chart whose record was reset is not entered before Medicare has answered
-            stats["CCM death check could not be made before the entry (%s) - entered; the insurance check asks again" % _ek] += 1
-            return None, ""
+            if lost or type(e).__name__ == "DayLost": return None, True
+            stats["CCM death check could not be made before the entry (%s) - entered; the insurance check asks again" % type(e).__name__] += 1
+            return None, False
     # nursing and hospital visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
     # so the result does not depend on the order the messages are entered in
     try:
@@ -2737,17 +2698,17 @@ def main():
         if not pid: stats["no chart"] += 1; continue
         if n >= limit: break
         try:
-            dod = _dod(pid); _dod_src = "deceased cache"; _lost = re.sub(r"\D", "", pid) in _dc_lost; _reset = re.sub(r"\D", "", pid) in _dc_reset; _held = ""
-            if not dod and (_lost or _reset or any(c["cpt"] in CCM for c in msg["FT1"])):      # a CCM message, a chart whose day of death is lost, or one whose record was reset on the owner's word: asked before the entry (_asked_dod above)
-                dod, _held = _asked_dod(pid, msg, "lost" if _lost else "reset" if _reset else "")
-                _dod_src = "Medicare, asked because the day on record could not be read" if _lost else "Medicare, asked afresh because the record of a death was reset on the owner's word" if _reset else "Medicare, asked before this CCM charge was entered - William 11/25/2026"
+            dod = _dod(pid); _dod_src = "deceased cache"; _lost = re.sub(r"\D", "", pid) in _dc_lost; _held = False
+            if not dod and (_lost or any(c["cpt"] in CCM for c in msg["FT1"])):      # a CCM message, or a chart whose day of death is lost: asked before the entry (_asked_dod above)
+                dod, _held = _asked_dod(pid, msg, _lost)
+                _dod_src = "Medicare, asked because the day on record could not be read" if _lost else "Medicare, asked before this CCM charge was entered - William 11/25/2026"
             # (11/25/2026, the independent check of the second round, finding 3: both rows below name the VISIT - its codes and, under dos_lines, each line's own date of
             #  service as MM/DD/YYYY, the way the created rows do. claimocity_retry_dx.py matches them by that: it hands a held visit over once a run, and leaves it alone
             #  for good once a later register shows the same visit kept out 'DOS after date of death'. The second row used to name the feed patient only.)
             _vis = {"cpts": [c["cpt"] for c in msg["FT1"]], "dos_lines": [mdy(c["dos"][:8]) for c in msg["FT1"]]}
-            if _held:      # (_held is the row's why: DEATH_DAY_WHY, or - the fourth round - DEATH_RESET_WHY)
-                stats[_held] += 1; (_dr_held if _held == DEATH_RESET_WHY else _dd_held).add(pid)
-                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": _held}, **dict(_vis, lines=seen_lines(msg))))
+            if _held:
+                stats[DEATH_DAY_WHY] += 1; _dd_held.add(pid)
+                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": DEATH_DAY_WHY}, **dict(_vis, lines=seen_lines(msg))))
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)
                 continue
             if dod and any(c["dos"][:8] > dod.replace("-", "") for c in msg["FT1"]):
@@ -3003,10 +2964,6 @@ def main():
     # stops once a register shows the visit entered or kept out for good.)
     if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         stats[DEATH_DAY_WHY], len(_dd_held), DEATH_DAY_WHY, ", ".join(sorted(_dd_held))))
-    # 11/25/2026 (the fourth round): the visits kept out because the record of a death for the chart was reset on the owner's word and Medicare has not answered
-    # the fresh question yet - a line of its own (it is another thing than a day nobody can read: no death is on record). Chart ids and counts only.
-    if _dr_held: print("DEATH RECORD RESET: %d visit(s) on %d chart(s) - %s - TOP OF THE REPORT: Medicare is asked again at the chart's next claim and its answer decides; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
-        stats[DEATH_RESET_WHY], len(_dr_held), DEATH_RESET_WHY, ", ".join(sorted(_dr_held))))
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
         # one SHORTALL line, like the next one (90 characters with one-digit counts, 110 with six-digit counts in all four places)

@@ -37,6 +37,12 @@
 #  3 each kept chart is read ONCE (getdemographic: additionalmrn, ssn, the plans' subscribernum) and weighed against the feed's own
 #    Claimocity id, PID-19 and insurance numbers (IN1-49, else IN1-36) from the raw .hl7 files. The numbers stay in memory: the match
 #    file gets the chart id, its name and date, and the evidence WORDS (mrn / ssn / member / ssn4, and whether a number contradicts).
+#    Identity rule 2026-11-26.5 (a relative is not the patient): a member number in common proves one person only where it can, and
+#    one of the three things that let it count needs the number itself - its SHAPE. That is judged here, by the one function the rule
+#    itself asks (feed_identity.evidence): beside "member" a chart's row carries the word "member:medicare" when the number in common
+#    has the shape of a Medicare number - one person's, never a family's. The number never leaves this step. Whether a member number
+#    of another shape counts (birth dates that agree, the same name) the rule says from the row's own name and date, for each name
+#    and date of the feed (feed_identity.member_counts) - the same from these words as from the numbers themselves.
 #  4 what this workspace already knows about a chart (11/25/2026, the independent verification - two files this step only READS):
 #    - registers/claimocity_patient_map.json, the feed's patient map ({Claimocity id: chart} - every id the feed has put on a chart):
 #      a chart it gives to ANOTHER Claimocity id than this patient's is marked "owned". The rule does not take such a chart on the
@@ -269,7 +275,7 @@ for p in PATIENTS:
     by_number = lambda c: (FI.chart_number(c), c); row_of = collections.OrderedDict()      # the chart a row is weighed under -> the row
     for cid in sorted(found, key=lambda c: (proper(c) is not None, by_number(c))):      # the charts that stand for themselves first, then the listed duplicates
         r = found[cid]; c = chart(cid); stands = proper(cid)
-        ev, contra = FI.evidence(feed, {"mrn": c["mrn"], "ssn": [r.get("ssn") or "", c["ssn"]], "members": c["members"]})
+        ev, contra = FI.evidence(feed, {"mrn": c["mrn"], "ssn": [r.get("ssn") or "", c["ssn"]], "members": c["members"]})      # (identity rule .5, N2) the words - "member", and "member:medicare" where the number in common has the shape of a Medicare number: the shape is judged HERE, where the numbers are, by the function decide() asks too
         row = {"pid": stands or cid, "name": r.get("name") or "", "dob": FI.amd_dob(r.get("dob")), "ev": ev, "contra": contra}
         if stands is None: row_of[cid] = row; continue
         # 11/25/2026 (the independent verification): a chart William called a duplicate is never offered as a candidate - the proper chart stands in its

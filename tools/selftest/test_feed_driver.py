@@ -437,6 +437,25 @@ check("7c2 with the 'Which chart' section in the digest the birth-date line stan
       and L7r.index(next(l for l in L7r if l.startswith("## Which chart"))) < L7r.index(next(l for l in L7r if l.startswith("- Birth dates:"))) < L7r.index(next(l for l in L7r if l.startswith("## Next"))), lambda: (e7r, [l[:60] for l in L7r if l.startswith(("##", "- Birth"))]))
 check("7d the files that stay unregistered are named at the top (the next start reads them again), and a feed patient re-pointed to the repository's chart in the body with both charts",
       lambda: len(has(top(_sec), "NOT REGISTERED", "20261130a.hl7", "the next start reads")) == 1 and len(has(_sec, "Patient map", FID(9), "pat9002", "pat9902")) == 1, lambda: _sec)
+# identity rule 2026-11-26.5 (a relative is not the patient): what the digest says of the rule's two new answers. (1) Rule 4 on a member number that is no Medicare number,
+# under the same name, while the two real birth dates are far apart, is FOR WILLIAM: the chart is chosen and the visit entered as before, and the digest names it at the top -
+# once. (2) A member number in common that was NOT counted (a family shares member numbers) stands in the answer as a fixed flag: the question about the new chart says so -
+# not 'no number in common' - and a match beside such a chart shows the flag in the body.
+_F5 = getattr(FI, "FLAG_MEMBER", "(no such flag in feed_identity.py)"); _M5 = getattr(FI, "MEDICARE", "(no such word in feed_identity.py)")
+IDENT75 = dict(IDENT7, counts={"known from the patient map": 0, "looked up": 4, "new charts": 1, "for William": 2, "no chart": 0}, repointed=[], not_registered=[],
+               patients=[dict(feed_ids=[FID(1)], chart="pat9101", status="FOUND", new_chart=False, rule=4, why=FI.WHY[4], flags=[FI.FLAG_DATE + FI.FAR], candidates=["pat9101"], evidence=["member"], feed_dob="real", for_william=True),
+                         dict(feed_ids=[FID(2)], chart="pat9201", status="FOUND", new_chart=False, rule=4, why=FI.WHY[4], flags=[FI.FLAG_DATE + FI.FAR], candidates=["pat9201"], evidence=["member", _M5], feed_dob="real", for_william=False),
+                         dict(feed_ids=[FID(3)], chart="pat9301", status="MISSING", new_chart=True, rule=9, why=FI.WHY_NEW_BESIDE, flags=[FI.FLAG_NOT_USED, _F5], candidates=["pat9311"], evidence=[], feed_dob="real", for_william=True),
+                         dict(feed_ids=[FID(4)], chart="pat9401", status="FOUND", new_chart=False, rule=7, why=FI.WHY[7], flags=[FI.FLAG_NO_FEED_DOB, _F5], candidates=["pat9401", "pat9411"], evidence=[], feed_dob="none", for_william=False)])
+L75, e75 = report_run("identity5", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])], identity=IDENT75)
+_sec5 = L75[L75.index(next((l for l in L75 if l.startswith("## Which chart")), "")):] if any(l.startswith("## Which chart") for l in L75) else []
+check("7f (identity rule .5, N3) a chart chosen by rule 4 on a family's member number while the two birth dates are far apart is named at the TOP OF THE REPORT - ONCE, with the chart, the Claimocity id and why (until then: a line in the body like any rule 4); "
+      "the same rule on a number in the shape of a Medicare number is no line at the top - the body says it, as before",
+      lambda: e75 == "" and len(has(top(_sec5), "pat9101", FID(1), FI.WHY[4], "far apart", "member number")) == 1 and len(has(_sec5, "pat9101")) == 1 and not has(top(_sec5), "pat9201") and len(has(_sec5, "pat9201", FI.WHY[4], FI.FLAG_DATE + FI.FAR)) == 1
+      and FI.problems(IDENT75["patients"][0]) == [] and FI.problems(IDENT75["patients"][1]) == [], lambda: (e75, _sec5))
+check("7g (identity rule .5, N2) a new chart beside a same-name chart that carries a member number in common which was NOT counted: the question at the top says so - never 'no number in common' - and a match made beside such a chart (rule 7 here) shows the flag in the body, not at the top",
+      lambda: e75 == "" and len(has(top(_sec5), "pat9301", "pat9311", "a member number in common", "not counted", "same person or not?")) == 1 and not has(_sec5, "no number in common") and len(has(_sec5, "pat9401", _F5)) == 1 and not has(top(_sec5), "pat9401")
+      and not any(x_ in "\n".join(L75) for x_ in secrets(1) + secrets(3)) and FI.problems(IDENT75["patients"][2]) == [] and FI.problems(IDENT75["patients"][3]) == [], lambda: (e75, _sec5))
 BAD7 = json.loads(json.dumps(IDENT7)); BAD7["patients"] = [dict(feed_ids=[FID(2)], chart="pat9201", status="FOUND", new_chart=False, withheld=["flags", "why"], rule=5, candidates=[], evidence=[], feed_dob="real", for_william=False),
                                                            dict(feed_ids=[FID(3)], chart="pat9301", status="FOUND", new_chart=False, rule=5, why="matched to " + NAME(3), flags=[], candidates=[], evidence=[], feed_dob="real", for_william=False)]
 L7b, e7b = report_run("identity_bad", S7, [vrow("pat9101", "vst7001", "11/29/2026", ["99308"])], identity=BAD7)
@@ -967,6 +986,15 @@ w2, r2, _q1, _q2, _n2 = cut_then_next("cut_run_fresh", keep_match=False); D14f =
 check("14d in a fresh container the cut run's match file is gone (it never leaves its workspace) and with it the list of the same-name charts: the question is still asked at the top - it says where the charts are named - and the face sheet is still asked for",
       lambda: _q2[1] == "" and len(has(top(D14f), S14a, "new chart pat9402 was made beside same-name charts", "same person or not?")) == 1 and len(has(top(D14f), S14a, "new chart pat9301 was made", "face sheet needed")) == 1 and not has(top(D14f), "beside 0 same-name"),
       lambda: (_q2[1], top(D14f)))
+# identity rule 2026-11-26.5 (N2): the cut run's new chart stood beside a same-name chart that carries a member number in common which was NOT counted - its row in the
+# new-chart register says so (the flag). The recovered question at the top said 'no number in common' of every such chart (one line of the driver, written before there
+# was such a flag): untrue here. It says what the row says now - the identity rule's own words (feed_identity.number_words).
+MADE14m = [dict(MADE14[0], flags=[FI.FLAG_NOT_USED, _F5])] + MADE14[1:]
+w5, r5, _m1, _m2, _n5 = cut_then_next("cut_run_fresh_member", keep_match=False, made=MADE14m); D14m = digest(w5, S14b)
+check("14d2 (identity rule .5, N2) ... the cut run's new chart stood beside a chart with a member number in common that was not counted (its row of the new-chart register carries the flag): the recovered question says so - never 'no number in common' - "
+      "and the question of a chart without that flag reads as before (14d)",
+      lambda: _m2[1] == "" and len(has(top(D14m), S14a, "new chart pat9402 was made beside same-name charts", "a member number in common", "not counted", "same person or not?")) == 1 and not has(D14m, "no number in common")
+      and len(has(top(D14f), S14a, "new chart pat9402 was made beside same-name charts", "and no number in common - same person or not?")) == 1 and not has(D14f, "not counted"), lambda: (_m2[1], top(D14m), top(D14f)))
 OLD14 = [{"pid": "pat9402", "chart": "F261207-01", "feed_ids": [FID(4)], "plans": []}, {"pid": "pat9301", "chart": "F261207-02", "feed_ids": [FID(3)], "plans": [], "respparty_named": True}]
 w3, r3, _o1, _o2, _n3 = cut_then_next("cut_run_old", made=OLD14)
 check("14e the new-chart registers written before 11/25/2026 (18 on main, none with an identity register beside it) carry no rule and no word for William: nothing is said for them and no identity register is written for their stamp",

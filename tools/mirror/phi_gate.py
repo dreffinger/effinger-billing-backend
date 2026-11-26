@@ -8,9 +8,10 @@
 # Rules it uses: no PHI on GitHub (William 9/7). Names: pseudonymize. Numbers: never publish.
 #   Fail closed: with no map at all it still runs the pattern checks but warns loudly.
 # Never touches: AMD, Stedi, the workspace copies. It writes only the destination file you name -
-#   except in `tree` mode (10/6/2026), which scrubs the changed files of a checkout in place before a commit.
+#   except in `tree` mode (10/6/2026), which scrubs the changed files of a checkout in place before a commit - and
+#   (11/26/2026) MOVES a file whose name carries '.unreadable-' out of the tree, to a folder outside every checkout.
 # ---
-import json, os, re, sys, hashlib
+import json, os, re, sys, hashlib, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MAP_CANDIDATES = [os.path.join(ROOT, "secrets", "pseudonyms.json"),
@@ -329,6 +330,65 @@ def redact(text, names, code=None):
     t = ADDR_PROSE.sub("[address]", t)
     return t
 
+# ---- 11/26/2026: ONE rule before every other in tree mode - a file whose NAME carries '.unreadable-' never stays in a tree ----
+# scripts/helpers/dg_drive.py keeps a deceased cache it cannot read under its own name + '.unreadable-<UTC stamp>': real days of death beside chart
+# numbers. That ending is no text kind this gate knows, so the file was passed over unseen - and `git add -A` staged it for a public repository (the run's
+# own mirror step had copied it from the workspace's registers folder into the clone). dg_drive.py keeps such a file outside every registers folder and
+# every checkout now, and .gitignore names the pattern; this rule is for whatever reaches a tree all the same. The file is MOVED out - never deleted,
+# never scrubbed in place - whatever its ending, with and without --all, tracked or not, ignored or not (the gate looks for the NAME under the paths, not
+# only at what git reports). It goes where dg_drive.py keeps such files: the folder DG_UNREADABLE_DIR names when that is a safe place - not inside a git
+# checkout, not a registers folder or under one - else <the system's temporary folder>/deceased_cache_unreadable. One line names it: 'KEPT OUT OF THE TREE
+# (holds days of death - Drive only): <its path in the tree> -> <where it lies now>'. A file no folder takes stays exactly where it is, is said in a line
+# 'NOT KEPT OUT OF THE TREE: ...', and tree mode ends 2 - mirror.py then commits nothing.
+UNREADABLE_MARK = ".unreadable-"
+KEEP_NAME = "deceased_cache_unreadable"
+def _safe_place(folder):
+    """True for a folder such a file may lie in: no registers folder and not under one (any letter case), and not inside a git checkout (a .git entry in
+    the folder or in any folder above it) - read as the folder is written and as it resolves (a link). dg_drive.py holds the same test."""
+    for p in {os.path.abspath(folder), os.path.realpath(folder)}:
+        if any(part.lower() == "registers" for part in p.split(os.sep)): return False
+        while True:
+            if os.path.lexists(os.path.join(p, ".git")): return False
+            up = os.path.dirname(p)
+            if up == p: break
+            p = up
+    return True
+def _keep_folders():
+    """The folders such a file may be moved to, in the order they are tried: the one DG_UNREADABLE_DIR names, then <the system's temporary
+    folder>/deceased_cache_unreadable - each only when it is a safe place. It makes no folder."""
+    named = (os.environ.get("DG_UNREADABLE_DIR") or "").strip(); out = []
+    try: system = os.path.join(tempfile.gettempdir(), KEEP_NAME)
+    except Exception: system = None
+    for f in ([os.path.abspath(named)] if named else []) + ([system] if system else []):
+        if f not in out and _safe_place(f): out.append(f)
+    return out
+def _out_of_tree(path):
+    """MOVE one file out of the tree -> the full path it lies at now, or None when no folder took it (it then stays where it is, byte for byte). Its bytes
+    are written under a name that is not taken yet - its own name, then name-2, name-3 - read back and compared, and only then is the file taken out of the
+    tree: it is never deleted without a checked copy, and the move works across devices. It never raises."""
+    try:
+        with open(path, "rb") as fh: data = fh.read()
+    except Exception: return None
+    for folder in _keep_folders():
+        made = None
+        try:
+            os.makedirs(folder, mode=0o700, exist_ok=True)
+            base = os.path.join(folder, os.path.basename(path)); name = base; n = 1
+            while True:
+                try: fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600); break
+                except FileExistsError: n += 1; name = "%s-%d" % (base, n)
+            made = name
+            with os.fdopen(fd, "wb") as fh: fh.write(data)
+            with open(name, "rb") as fh: same = fh.read() == data
+            if same:
+                os.remove(path); return name
+            os.remove(name)
+        except Exception:
+            try:
+                if made and os.path.lexists(made) and os.path.lexists(path): os.remove(made)      # the file is still in the tree: no second copy of it stays behind
+            except Exception: pass
+    return None
+
 def _git(args, cwd):
     import subprocess
     r = subprocess.run(["git"] + args, capture_output=True, text=True, cwd=cwd)
@@ -366,13 +426,22 @@ def tree(paths, all_files=False, root=None):
     names, mpath = load_map()
     if mpath is None:
         print("WARN: no pseudonym map found - names NOT scrubbed beyond the LAST,FIRST / identifier rules")
-    files = _all_files(root, paths) if all_files else _changed_files(root, paths)
+    files = _all_files(root, paths) if all_files else _changed_files(root, paths); every = all_files
     if files is None:
         print("tree: not a git checkout - gating every file under the paths instead")
-        files = _all_files(root, paths)
+        files = _all_files(root, paths); every = True
+    # 11/26/2026, the ONE rule that comes before every other: a file whose NAME carries '.unreadable-' never stays in the tree (the paragraph above
+    # _safe_place). It is looked for by its name under the paths - git does not report a file it ignores, nor a tracked one nobody changed.
+    kept_out, stuck = [], []
+    for rel in sorted(set(files if every else files + _all_files(root, paths))):
+        if UNREADABLE_MARK not in os.path.basename(rel) or any(part in SKIP_DIRS for part in rel.split(os.sep)) or not os.path.isfile(os.path.join(root, rel)):
+            continue
+        where = _out_of_tree(os.path.join(root, rel))
+        (kept_out if where else stuck).append((rel, where))
+    taken = {rel for rel, _where in kept_out + stuck}
     removed, changed, warned, seen = [], [], [], 0
     for rel in files:
-        if any(part in SKIP_DIRS for part in rel.split(os.sep)):
+        if rel in taken or any(part in SKIP_DIRS for part in rel.split(os.sep)):
             continue
         path = os.path.join(root, rel)
         if not os.path.isfile(path):
@@ -402,14 +471,18 @@ def tree(paths, all_files=False, root=None):
             changed.append(rel)
         for w in warn_names(new, names):
             warned.append((rel, w))
+    for rel, where in kept_out:
+        print("KEPT OUT OF THE TREE (holds days of death - Drive only): %s -> %s" % (rel, where))
+    for rel, _where in stuck:
+        print("NOT KEPT OUT OF THE TREE: %s holds days of death and could be moved to no folder outside the tree - it was left as it is, never deleted: commit NOTHING until it is moved out by hand" % rel)
     for rel in removed:
         print("DRIVE ONLY (not committed): %s" % rel)
     for rel in changed:
         print("scrubbed in place: %s" % rel)
     for rel, w in warned:
         print("possible patient name (add to the map if it is one): %s  [%s]" % (w, rel))
-    print("tree: %d text file(s) checked, %d scrubbed, %d kept out of the tree, %d name warning(s)" % (seen, len(changed), len(removed), len(warned)))
-    return 0
+    print("tree: %d text file(s) checked, %d scrubbed, %d kept out of the tree, %d name warning(s)" % (seen, len(changed), len(removed) + len(kept_out), len(warned)))
+    return 2 if stuck else 0
 
 def main():
     if len(sys.argv) >= 2 and sys.argv[1] == "tree":

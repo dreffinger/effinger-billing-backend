@@ -2,6 +2,7 @@
 # For every imported visit whose DOS is AFTER the chart's date of death (deceased guard / Medicare 271), VOID the visit's charges:
 #   with void_tx.void_charge (action=void class=void, proven 9/4/2026); the empty-chargelist resave is refused ("Missing element: <charge/>"). Only charges this import created an hour ago (unpaid, unbilled) are touched; verified by re-reading
 #   gettxhistory (void=1). Writes registers/feed_void_deceased_1028.json.
+# THE DAYS IT GOES BY ARE THE GUARD'S ONE CACHE, READ THROUGH THE GUARD - NEVER A CACHE FILE OF THE FEED'S OWN (11/25/2026, the second verification of the death check - and the sentence tools/mirror/mirror.py and claimocity_helpers_current.py know this version by: an older copy named the feed's own file).
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
 HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8133-5488-ad3a-bd2fb16f50f8/scratchpad/hl7/claimocity_oct")

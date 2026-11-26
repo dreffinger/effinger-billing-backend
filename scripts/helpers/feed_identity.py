@@ -11,13 +11,22 @@
 #     120 years ago; anything else (empty, the placeholder, zeros, a day that does not exist) is NO BIRTH DATE. A SLIP between two real
 #     dates is exactly one of: one digit differs, two neighbouring digits swapped, month and day swapped, one day apart; anything else
 #     is FAR. Last names are compared in upper case, letters only, without a trailing JR / SR / II / III / IV / V. A chart is a NAME
-#     CANDIDATE when the last name is the same and the first name shares its first three letters; a FULL-NAME candidate when in
-#     addition the first word of the first name is the same, or the shorter of the two has four letters or more and begins the longer
-#     one (MARY / MARYANN).
+#     CANDIDATE when the last name is the same and the first name shares its first three letters; a FULL-NAME candidate - the SAME
+#     NAME - when in addition the first WORD of the first name is the same word (a middle initial or a second first name behind it
+#     does not matter: MARY / MARY A / MARY ANN) and the two names carry the same suffix, or none. The suffix of a name is the word
+#     JR, SR, II, III, IV or V that stands as the last word of the last name or as any word after the first word of the first name.
+#     A chart that is ALIKE BUT NOT THE SAME - the first word of one first name only begins the other's (MARY / MARYANN, ROBERT /
+#     ROBERTA), or the suffixes differ (also when only one side carries one) - is a name candidate only, like two first names that
+#     share three letters, and is never taken by the name alone: A RELATIVE IS NOT THE PATIENT (version .5, below).
 #   evidence that two records are one person, strongest first - mrn: the chart's additional number is this Claimocity id; ssn: nine
 #     digits on both sides, equal, never a junk value (all one digit, one to nine in a row, starting 000 / 666 / 9); member: a member
 #     number of the feed's insurance rows equals a subscriber number of one of the chart's plans (letters and digits only, a leading
-#     three-letter prefix dropped from either side, eight characters or more); ssn4: a side shows only four digits and the last four
+#     three-letter prefix dropped from either side, eight characters or more) - and it COUNTS for a chart only where it can prove one
+#     person (version .5: a family shares member numbers): the number has the shape of a Medicare number (eleven characters - one
+#     person, one number), or both sides carry a real birth date and the two are the same or a slip apart, or the chart is a
+#     full-name candidate. Otherwise it is a family's until shown otherwise: no evidence of that chart and no proof of two people
+#     either - the later rules decide as if it were not there, and the answer says so where rule 4 would have asked it ("a member
+#     number in common was not counted ..."); ssn4: a side shows only four digits and the last four
 #     are equal - the weakest. A Social Security number that DIFFERS (nine digits on both sides - or the last four, where a side shows
 #     only four) is proof of two people: such a chart is never chosen by name, slip or birth date, and neither is another chart of the
 #     group it stands in (it may be that other person's duplicate; a member number the two share proves nothing) - only rule 1 still
@@ -25,11 +34,15 @@
 #   1 a name candidate carries this Claimocity id -> that chart.
 #   2 real date, name candidates carry exactly that date -> the live one of them.
 #   3 real date, no name candidate carries it, charts of the same last name under ANOTHER first name do -> the live one; "first name differs".
-#   4 ssn / member / ssn4 points to name candidates -> the live chart of the strongest evidence; "birth date differs: ..." unless equal.
+#   4 ssn / member / ssn4 points to name candidates -> the live chart of the strongest evidence; "birth date differs: ..." unless equal
+#     (a member number only where it counts - the words above; chosen on a member number that is no Medicare number while the two
+#     real dates are FAR apart, the chart is still taken and it is said to William: an FYI - version .5).
 #   5 real date, full-name candidates carry ONE date that is a slip from it -> the live one; "birth date differs: <the kind of slip>".
 #   6 real date, the only name candidates are full-name candidates with no real date -> the live one; "chart has no birth date".
 #   7 no birth date from the feed, the full-name candidates with a real date all carry ONE date -> the live one; "no birth date from Claimocity".
 #   8 no birth date from the feed, no full-name candidate has a real one -> the live one; "no birth date on either side".
+#     (rules 5, 7 and 8, version .5: a chart that only stands BESIDE the same name - N1 below - is read with the full-name candidates where
+#     these rules say "ONE date", "no ... real one" and where a namesake is proven; the chart is taken from the full-name candidates alone.)
 #   9 anything else -> NEW CHART (when name candidates stood beside it: "same-name charts not used", for William).
 #   0 not decided (a chart that could not be read; two dates or two spellings that point to two charts; no name; no Claimocity id; a
 #     name-and-date key that several Claimocity ids share without a real date to tie them - unless the rule gives every one of them,
@@ -69,6 +82,39 @@
 #        that MAY be one person - equal dates, a slip between them, no date on one side or on both - still take a chart together in
 #        one batch, as before (shared_answer); when they come in two runs, b) asks William about the second where that chart has
 #        no date of its own.
+#   A RELATIVE IS NOT THE PATIENT (11/26/2026 - version .5). William never said that another person's visit may go on a relative's
+#   chart: a visit on the wrong chart is billed under the wrong name and the wrong insurance - the worst this rule can do. What a
+#   reproduction with invented patients showed, and what the rule is now:
+#     N1 THE SAME NAME. A first name that only begins with the chart's was 'the same name' from four letters on, and a suffix did
+#        not count: a wife or a daughter sent with no birth date went on the husband's or the father's chart by rule 7, and so did
+#        a son of his father's name with JR - no question, not for William. Now the same name is the same first WORD and no other
+#        suffix (the words above). A chart that is only alike is a name candidate: NEVER TAKEN by the name alone (rules 5 to 8).
+#        With the same real birth date such a chart is still that patient's by rule 2, whatever the suffix or the ending of the
+#        first name. WHAT DID NOT CHANGE is which charts have to AGREE before the name alone decides: a chart that was a
+#        full-name candidate until version .5 (the same first word under another suffix; a first word of four letters or more
+#        that begins the other's, or is begun by it) still STANDS BESIDE the charts of the same name where rules 5, 7 and 8 say
+#        "ONE date", "no date" and "no proven namesake" - nobody can say that it is not this patient written another way. So a
+#        son Claimocity sends WITHOUT his suffix and without a birth date is not put on his father's chart while his own chart,
+#        under another date, stands beside it: a new chart and a question, as before (the letter of that round's decision -
+#        such a chart weighed like any three-letter name candidate - would have let the name alone decide there, where the rule
+#        asked William until then: a relative's visit on a chart, the very fault of this round). By N1 rules 5 to 8 take a
+#        chart only where they took one before, and only a chart of the same name out of the group they took it from. (The
+#        patient map - b) above - holds an answer back for a chart of the group the rule chooses FROM: a chart that only stands
+#        beside the same name is no longer one of those, so with no birth date anywhere the same-name chart nobody else owns is
+#        taken by rule 8, with its FYI, also when the chart beside it is another Claimocity id's.)
+#     N2 A MEMBER NUMBER PROVES ONE PERSON ONLY WHERE IT CAN. Rule 4 took a member number in common for proof under any first name
+#        that shares three letters, and a family shares member numbers (federal and military retirees, employer plans): a wife with
+#        her own real birth date, far from her husband's, and the family's number went on HIS chart - "birth date differs: far",
+#        nobody asked and nobody told. Now the number counts only as the words above say (member_counts: the shape of a Medicare
+#        number, birth dates that agree, the same name). The SHAPE is judged where the numbers are - by evidence(), which this rule
+#        and the match step both ask - and travels as a word ("member:medicare"), never as a number; the two other conditions are
+#        asked here, for each name and each date of the feed, the same whether the evidence came as numbers or as words.
+#     N3 Rule 4 on a member number that is no Medicare number while the two real birth dates are far apart can only be the same
+#        name: William's own case of a wrong birth date - or a parent and a child of one name on one plan. The chart is chosen and
+#        the visit goes in as before, and the answer is for William (one FYI line: william_lines). Nothing else is for William
+#        that was not before.
+#     Known limits: a middle initial V reads as the suffix V (such a patient is asked about, never put on a chart by the name
+#     alone); twins and other name-alikes of ONE birth date are one person to rule 2, as before.
 #   A CHART WILLIAM CALLED A DUPLICATE (his word of 11/9/2026; registers/feed_duplicate_charts.json, read by claimocity_match.py) is
 #   never the chart a visit goes to: the PROPER chart stands in its place. What speaks for the duplicate - its name, its date, its
 #   numbers: what Claimocity knows that person by - speaks for the proper chart ("also"), and for rules 5 to 8 the two are ONE chart
@@ -89,16 +135,18 @@
 #   When a batch carries one Claimocity id with a real date and with
 #   none, the real one is used for every message; with two different real dates each is tried, they must not point to two charts, and
 #   a NEW chart is written with neither of them (which is right nobody knows: the placeholder date, face sheet needed).
-#   To William (top of the report, chart ids and Claimocity ids only): rule 9 beside same-name charts (a question), a new chart with
-#   no birth date (face sheet needed), rules 3, 6 and 8 (an FYI - it names the Claimocity id it is about, since two feed patients on
-#   one chart gave the same line twice), rule 0 - with the chart in question where the patient map or a second patient of the batch
-#   held the answer back; but not a wait and not a key whose ids each went to the chart their own proof names (PLAIN_WORDS: said in
-#   the body). Rules 1, 2, 4, 5 and 7 are said in the digest's body.
+#   To William (top of the report, chart ids and Claimocity ids only): rule 9 beside same-name charts (a question - it says so when
+#   a member number in common was not counted), a new chart with no birth date (face sheet needed), rules 3, 6 and 8 (an FYI - it
+#   names the Claimocity id it is about, since two feed patients on one chart gave the same line twice), rule 4 where it chose on a
+#   member number that is no Medicare number while the two real birth dates are far apart (an FYI - version .5, N3 above), rule 0 -
+#   with the chart in question where the patient map or a second patient of the batch held the answer back; but not a wait and not
+#   a key whose ids each went to the chart their own proof names (PLAIN_WORDS: said in the body). Rules 1, 2, 5 and 7, and every
+#   other rule 4, are said in the digest's body.
 # Never touches: anything. Pure functions - no AdvancedMD call, no file, no network, no clock (today's date is handed in), nothing
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
 import re, datetime, unicodedata
-IDENTITY_RULE_VERSION = "2026-11-25.4"      # change this line with EVERY revision of the rule, here and in the two tables that name it - tools/mirror/mirror.py PROTECTED and claimocity_helpers_current.py VERSION_LINES (a copy of an earlier version must never pass as current). (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number. .3 - the independent verification: RULES WITHOUT PROOF above, a chart William called a duplicate, an id with proof on a key several ids share. .4 - its checkers: rule 7 is not held back by the patient map; a slip, rule 5, does not wait.) The match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
+IDENTITY_RULE_VERSION = "2026-11-26.5"      # change this line with EVERY revision of the rule, here and in the two tables that name it - tools/mirror/mirror.py PROTECTED and claimocity_helpers_current.py VERSION_LINES (a copy of an earlier version must never pass as current). (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number. .3 - the independent verification: RULES WITHOUT PROOF above, a chart William called a duplicate, an id with proof on a key several ids share. .4 - its checkers: rule 7 is not held back by the patient map; a slip, rule 5, does not wait. .5, 11/26/2026 - A RELATIVE IS NOT THE PATIENT above: the same name is the same first word and no other suffix; a member number counts only where it can prove one person; rule 4 on a family's number with far-apart dates is said to William.) The match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
 NO_DOB_MDY = "01/01/1900"                   # what a NEW chart is written with when Claimocity sent no usable date - never an empty one
 CHART_TRIES = 200                           # how many chart numbers the new-chart step may take for one patient
 SUFFIXES = ("JR", "SR", "II", "III", "IV", "V")
@@ -116,13 +164,15 @@ FLAG_TWO_DATES = "Claimocity sent two birth dates"
 FLAG_NO_CHART_MADE = "new chart not made"
 FLAG_CUT = "list of same-name charts may be incomplete"      # a page of a lookup came back full (AdvancedMD lists 50 charts at most) and no narrower lookup brought the rest - or a lookup AdvancedMD answers went unanswered for this patient
 FLAG_DUPLICATE = "in the place of a chart William called a duplicate"      # the chosen chart stood in the place of a listed duplicate: that chart still stands in AdvancedMD (11/25/2026)
-FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT, FLAG_DUPLICATE]
+FLAG_MEMBER = "a member number in common was not counted: not the full name and no birth dates that agree"      # (version .5, N2) a name candidate carries a member number the feed came with, and it can be a family's: said in the answer wherever rule 4 would have asked that number - never the number itself
+FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT, FLAG_DUPLICATE, FLAG_MEMBER]
                        + [FLAG_DATE + k for k in SLIP_KINDS + (FAR, FLAG_NO_FEED_DOB, FLAG_CHART_NO_DOB)])
 RULES_BY_PROOF = (1, 2, 3, 4)               # the rules that choose by what a chart itself shows: such an answer never waits, and the patient map never holds it back
 RULES_BY_CHARTS = (5, 6, 7, 8)              # the rules that choose by what the same-name charts LOOK LIKE ("ONE date", "the only name candidates", "no date")
 RULES_NAME_ALONE = (6, 7, 8)                # ... of those the ones with nothing but the name: such an answer WAITS while the same batch makes a same-name chart (not 5 - version .4: the slip is evidence of its own, a patient with her own chart a slip away does not wait for another patient's)
 RULES_CHART_NO_DOB = (6, 8)                 # ... and of those the ones that take a chart WITHOUT a date of its own: held back where the patient map gives that chart to another Claimocity id (not 7 - version .4: the chart carries a date and Claimocity sent none, the patient the feed already knows under a new Claimocity id)
-EVIDENCE = ("mrn", "ssn", "member", "ssn4")                                   # strongest first
+MEDICARE = "member:medicare"                                                  # (version .5, N2) said BESIDE "member": the member number in common has the shape of a Medicare number - one person's, never a family's (medicare_shape). A word, so that no number travels
+EVIDENCE = ("mrn", "ssn", "member", MEDICARE, "ssn4")                         # strongest first (the order the words of a chart are kept in)
 EVIDENCE_WORDS = frozenset(EVIDENCE + tuple("slip:" + k for k in SLIP_KINDS))
 WHY_NEW = "new chart - no chart with this name"
 WHY_NEW_BESIDE = "new chart - same-name charts not used"
@@ -222,18 +272,38 @@ def split_name(name):
 def _first_word(first):
     w = _up(first).split()
     return re.sub(r"[^A-Z]", "", w[0]) if w else ""
-def name_kind(feed_last, feed_first, chart_last, chart_first):
-    """What a chart's name is to the feed's: "full" (a FULL-NAME candidate), "name" (a NAME CANDIDATE only), "surname" (the same last name under
-    another first name - rule 3 only), "" (another last name, or no last name)."""
+def name_suffix(last, first):
+    """The suffix of a name (version .5): the word JR, SR, II, III, IV or V that stands as the LAST word of the last name (the word last_key drops) or as ANY
+    word after the first word of the first name (behind the first name, behind a middle initial) - the words found, in SUFFIXES' order; () when the name
+    carries none. Two names differ by suffix when the two answers are not equal - also when only one side carries one."""
+    lw = re.findall(r"[A-Z]+", _up(last)); fw = [re.sub(r"[^A-Z]", "", w) for w in _up(first).split()[1:]]
+    found = set(lw[-1:] if len(lw) > 1 else []) | set(fw)
+    return tuple(s for s in SUFFIXES if s in found)
+def name_kind(feed_last, feed_first, chart_last, chart_first, alike=False):
+    """What a chart's name is to the feed's: "full" (a FULL-NAME candidate - the SAME name: the same last name, the same first word of the first name, no
+    other suffix), "name" (a NAME CANDIDATE only), "surname" (the same last name under another first name - rule 3 only), "" (another last name, or no
+    last name). alike=True: "alike" in the place of "name" for a name candidate whose name is ALIKE BUT NOT THE SAME - the first word of one first name
+    begins the other's, or the two are one word and the suffixes differ. Such a chart is a name candidate and no full-name candidate (version .5: a
+    relative is not the patient - never taken by the name alone; which of them still stand beside the same name: stands_beside); the look-up helpers
+    word their hold by it."""
     k = last_key(feed_last)
     if not k or k != last_key(chart_last): return ""
     a, b = _letters(feed_first), _letters(chart_first)
     if not a or not b or a[:3] != b[:3]: return "surname"
     wa, wb = _first_word(feed_first), _first_word(chart_first)
-    if wa and wb and (wa == wb or (min(len(wa), len(wb)) >= 4 and (wa.startswith(wb) or wb.startswith(wa)))): return "full"
-    return "name"
+    if wa and wb and wa == wb and name_suffix(feed_last, feed_first) == name_suffix(chart_last, chart_first): return "full"
+    return "alike" if alike and wa and wb and (wa.startswith(wb) or wb.startswith(wa)) else "name"
 def name_candidate(feed_last, feed_first, chart_last, chart_first): return name_kind(feed_last, feed_first, chart_last, chart_first) in ("name", "full")
 def full_name_candidate(feed_last, feed_first, chart_last, chart_first): return name_kind(feed_last, feed_first, chart_last, chart_first) == "full"
+def stands_beside(feed_last, feed_first, chart_last, chart_first):
+    """(version .5, N1) Whether a chart STANDS BESIDE the charts of the feed's name although its own is not the same name: a name candidate that was a
+    FULL-NAME candidate until version .5 - the same first word under another suffix, or a first word of four letters or more that begins the other's or is
+    begun by it (MARY / MARYANN, ROBERT / ROBERTA; not ANN / ANNABEL: three letters never made a full-name candidate). Such a chart is never taken by the
+    name alone - but nobody can say that it is not this patient written another way, so it is still read with the charts of the same name where rules 5,
+    7 and 8 ask whether they carry ONE date, no date, or a proven namesake (see _one): by N1 those rules take a chart only where they took one before."""
+    if name_kind(feed_last, feed_first, chart_last, chart_first) != "name": return False
+    wa, wb = _first_word(feed_first), _first_word(chart_first)
+    return bool(wa and wb and (wa == wb or (min(len(wa), len(wb)) >= 4 and (wa.startswith(wb) or wb.startswith(wa)))))
 # 11/25/2026 (review of the identity rule): the rule above compares last names by their LETTERS, but the lookups asked AdvancedMD for the name as the
 # feed writes it - a chart with an apostrophe, a space, a period or a hyphen the feed does not have (O'x for Ox, MC x for MCx, DE LA x for DELAx) was
 # never listed: a namesake's chart was then taken by the name alone, or a second chart made, without a word. What is asked for must be as wide as
@@ -302,11 +372,29 @@ def _ssn_side(v):
 def member_key(s): return re.sub(r"[^A-Z0-9]", "", _up(s))
 def _member_ok(k): return len(k) >= 8 and re.search(r"[0-9]", k) is not None and len(set(k)) > 1      # letters only, or one character over and over, is no number
 def _no_prefix(k): return k[3:] if re.match(r"[A-Z]{3}.", k) else None
-def member_equal(a, b):
-    """Two member numbers are the same: equal as letters and digits, or equal once a leading three-letter prefix is dropped from ONE of them -
-    and what is equal has eight characters or more."""
+def member_common(a, b):
+    """What two member numbers have IN COMMON - the number as it is compared: equal as letters and digits, or equal once a leading three-letter prefix is
+    dropped from ONE of them, and what is equal has eight characters or more; "" when they have nothing in common."""
     x, y = member_key(a), member_key(b)
-    return any(p is not None and p == q and _member_ok(p) for p, q in ((x, y), (_no_prefix(x), y), (x, _no_prefix(y))))
+    return next((p for p, q in ((x, y), (_no_prefix(x), y), (x, _no_prefix(y))) if p is not None and p == q and _member_ok(p)), "")
+def member_equal(a, b):
+    """Two member numbers are the same: they have a number in common (member_common)."""
+    return member_common(a, b) != ""
+def medicare_shape(s):
+    """A number in the SHAPE of a Medicare number (version .5, N2: one person, one number - never a family's): eleven characters - a digit 1 to 9, a letter,
+    a letter or digit, a digit, a letter, a letter or digit, a digit, two letters, two digits - read as member numbers are compared (case, dashes and
+    blanks aside). The shape only: whether Medicare ever issued the number nobody asks here."""
+    return re.fullmatch(r"[1-9][A-Z][A-Z0-9][0-9][A-Z][A-Z0-9][0-9][A-Z][A-Z][0-9][0-9]", member_key(s)) is not None
+def member_counts(medicare, full, d, dob, dates=()):
+    """(version .5, N2) Whether a member number in common is EVIDENCE that a chart is the feed patient's - only where it can prove one person:
+      (a) medicare - the number in common has the shape of a Medicare number;
+      (b) both sides carry a REAL birth date and the two are the same or a slip apart - d: the feed's real date, dob: the chart's own real date ("" = none
+          on that side; which dates are real is the caller's to say - this file has no clock), dates: every real date the chart is known under (its own, and
+          those of the charts William called its duplicates): one of those counts where it is EXACTLY the feed's, as for rule 2 - a slip is read from the
+          chart's own date only;
+      (c) full - the chart is a FULL-NAME candidate of the feed's name (the same first word, no other suffix).
+    With none of the three the number is a family's until shown otherwise: no evidence of that chart - and no proof of two people either."""
+    return bool(medicare or full or (d and (d == dob or d in dates or slip(d, dob))))
 def in1_member(s):
     """The member number of one IN1 row (its fields), the rule claimocity_newcharts.py has had since 10/28/2026: IN1-49, else IN1-36; a value
     shaped like a Social Security number or junk ('+', 1-5 characters) is never one."""
@@ -324,14 +412,20 @@ def show_id(i):
     return i if re.fullmatch(r"[0-9A-Fa-f]{24}", str(i if i is not None else "")) else "(an id that is not 24 hex characters)"
 def evidence(feed, chart):
     """(the evidence that feed and chart are one person, strongest first; whether a Social Security number proves they are two).
-    feed: id / ids, ssn, members - chart: mrn, ssn, members (a value or a list each). Works on the numbers and gives back WORDS only."""
+    feed: id / ids, ssn, members - chart: mrn, ssn, members (a value or a list each). Works on the numbers and gives back WORDS only.
+    Version .5 (N2): "member" still says that a member number is in common - and "member:medicare" beside it says that the number in common has the SHAPE
+    of a Medicare number. The shape is judged HERE, where the numbers are (the match step asks this function and hands the words on; decide() asks it
+    for charts that come with their numbers); whether a member number of another shape COUNTS for a chart is member_counts', asked by the rule for each
+    name and date of the feed. (The look-up helpers read "member" and judge it by their own rule: birth dates that agree.)"""
     ids = [i for i in _list(feed.get("ids") if feed.get("ids") is not None else feed.get("id")) if i]; ev = []; contra = False
     if any(mrn_equal(i, m) for i in ids for m in _list(chart.get("mrn"))): ev.append("mrn")
     fn, f4 = _ssn_side(feed.get("ssn")); cn, c4 = _ssn_side(chart.get("ssn"))
     if fn and cn:
         if fn == cn: ev.append("ssn")
         else: contra = True
-    if any(member_equal(a, b) for a in _list(feed.get("members")) for b in _list(chart.get("members"))): ev.append("member")
+    common = [k for a in _list(feed.get("members")) for b in _list(chart.get("members")) for k in (member_common(a, b),) if k]      # the numbers the two sides have in common
+    if common: ev.append("member")
+    if any(medicare_shape(k) for k in common): ev.append(MEDICARE)
     fl, cl = (fn[-4:] if fn else f4), (cn[-4:] if cn else c4)
     if fl and cl and not (fn and cn):                 # a side shows only four digits
         if fl == cl: ev.append("ssn4")
@@ -477,17 +571,18 @@ def _date_flags(d, cd):
     if cd: return [FLAG_DATE + FLAG_NO_FEED_DOB]
     if d: return [FLAG_DATE + FLAG_CHART_NO_DOB]
     return [FLAG_NO_DOB_EITHER]
-def _chosen(rule, group, flags, considered, d, today8):
+def _chosen(rule, group, flags, considered, d, today8, note=()):
     live = live_chart(group, today8); ev = list(live["ev"]); k = slip(d, live["dob"]) if d and live["dob"] else ""
     if k: ev.append("slip:" + k)
-    a = _answer(rule, WHY[rule], live["id"], _date_flags(d, live["dob"]) if flags is None else flags, ev, considered, group, rule in (3, 6, 8))
+    a = _answer(rule, WHY[rule], live["id"], (_date_flags(d, live["dob"]) if flags is None else list(flags)) + list(note), ev, considered, group, rule in (3, 6, 8))
     if live["dup"]: a["flags"].append(FLAG_DUPLICATE)      # the chosen chart stood in the place of a chart William called a duplicate
     a["needs_activity"] = _ids([c for c in group if not c["act"]]) if len(group) > 1 else []      # the live chart of several needs their activity
     return a
 def _kind(last, first, c):
-    """What a chart is to one name of the feed: by its own name - or by the name of a chart William called its duplicate, where that says more."""
-    ks = {name_kind(last, first, l, f) for l, f in c["names"]}
-    return next((k for k in ("full", "name", "surname") if k in ks), "")
+    """What a chart is to one name of the feed: by its own name - or by the name of a chart William called its duplicate, where that says more.
+    "beside" (version .5): a name candidate that is not of the same name but stands beside the charts that are (stands_beside)."""
+    ks = {"beside" if k == "name" and stands_beside(last, first, l, f) else k for l, f in c["names"] for k in (name_kind(last, first, l, f),)}
+    return next((k for k in ("full", "beside", "name", "surname") if k in ks), "")
 def _one(last, first, d, cs, today8, cut=""):
     """Rules 1 to 9 for ONE name and ONE date of the feed (d = its real birth date, "" when it has none). cut: AdvancedMD's list of same-name charts
     may be cut short - "first": only charts under ANOTHER first name may be missing (rule 3 may not have seen them all: every rule is still asked, but
@@ -498,9 +593,21 @@ def _one(last, first, d, cs, today8, cut=""):
     Rules 1 to 4 choose by what a chart itself shows and stay.
     A chart that stands in the place of charts William called its duplicates (decide: "also") is to the rules that go by PROOF every name and
     every date it is known under - the feed's date on the duplicate is 'the same birth date' (rules 2 and 3) - and to the rules that go by what
-    the charts look like (5 to 8) ONE chart with its own date."""
+    the charts look like (5 to 8) ONE chart with its own date.
+    Version .5 (N1): rules 5 to 8 take a chart of the SAME name only (name_kind "full"). A chart that stands BESIDE the same name (stands_beside: what
+    was a full-name candidate until then) is never taken by them, and is still read with the charts of the same name where rules 5, 7 and 8 ask for ONE
+    date, no date, no proven namesake - so by N1 these rules take a chart only where they took one before, and from the same group; to rule 6 it is
+    a name candidate that is no full-name candidate, and rule 6 is not asked.
+    Version .5 (N2): a member number in common is evidence of a chart only where it can prove one person (member_counts) - asked here, for THIS name and
+    THIS date of the feed. Where it does not count the chart is weighed as if the number were not there (no rule 4 by it, not 'the strongest evidence' of
+    a group, not listed as evidence, and no proof of two people either), and every answer from rule 4 on says so (FLAG_MEMBER) when rule 4 would have
+    asked that number - when no Social Security number went before it. (N3) Rule 4 on a member number that is no Medicare number while the two real
+    dates are FAR apart is for William: the chart is chosen all the same."""
     kind = {c["id"]: _kind(last, first, c) for c in cs}
-    name_c = [c for c in cs if kind[c["id"]] in ("name", "full")]; full_c = [c for c in name_c if kind[c["id"]] == "full"]
+    family = {c["id"] for c in cs if "member" in c["ev"] and not member_counts(MEDICARE in c["ev"], kind[c["id"]] == "full", d, c["dob"], c["dates"])}      # the charts whose member number in common does NOT count
+    cs = [dict(c, ev=[e for e in c["ev"] if e not in ("member", MEDICARE)]) if c["id"] in family else c for c in cs]
+    name_c = [c for c in cs if kind[c["id"]] in ("name", "beside", "full")]; full_c = [c for c in name_c if kind[c["id"]] == "full"]
+    near_c = [c for c in name_c if kind[c["id"]] != "name"]      # (version .5, N1) the charts of the same name AND those that stand beside them - what 'the full-name candidates' were until then: rules 5, 7 and 8 still ask all of THEM for ONE date, no date, no proven namesake - and take a chart of the same name only
     sur_c = [c for c in cs if kind[c["id"]] == "surname" and d and d in c["dates"]]      # the same last name and exactly the date, under another first name
     exact = [c for c in name_c if d and d in c["dates"]]
     if any(not c["read"] for c in name_c + sur_c): return _answer(0, WHY_UNREAD, considered=name_c + sur_c, william=True)
@@ -508,21 +615,26 @@ def _one(last, first, d, cs, today8, cut=""):
     if g: return _chosen(1, g, [], name_c, d, today8)
     if exact and not _contra(exact): return _chosen(2, exact, [], name_c, d, today8)
     if d and not exact and sur_c and not _contra(sur_c): return _chosen(3, sur_c, [FLAG_FIRST_NAME], name_c + sur_c, d, today8)
+    note = []                                          # (version .5) [FLAG_MEMBER] once rule 4 has come to a member number that does not count
     for e in ("ssn", "member", "ssn4"):
+        if e == "member" and any(c["id"] in family for c in name_c): note = [FLAG_MEMBER]      # rule 4 would have asked this number: every answer from here on says that it was not counted
         g = [c for c in name_c if e in c["ev"]]
         if g:
-            if not _contra(g): return _chosen(4, g, None, name_c, d, today8)
+            if not _contra(g):
+                a = _chosen(4, g, None, name_c, d, today8, note)
+                if e == "member" and MEDICARE not in live_chart(g, today8)["ev"] and FLAG_DATE + FAR in a["flags"]: a["for_william"] = True      # (N3) the same name, a number a family can share, two real dates far apart: chosen - and said to William
+                return a
             break                                      # the number is shared with a chart that is proven another person: it proves nothing here
     if d and not exact and cut != "full":              # (a name candidate WITH the date that rule 2 could not take is a namesake: no slip is read then)
-        g = [c for c in full_c if c["dob"] and slip(d, c["dob"])]
-        if g and len({c["dob"] for c in g}) == 1 and not _contra(g): return _chosen(5, g, [FLAG_DATE + slip(d, g[0]["dob"])], name_c, d, today8)
-    if d and cut in ("", "first", "spelling") and name_c and len(full_c) == len(name_c) and not any(c["dob"] for c in name_c) and not _contra(name_c): return _chosen(6, name_c, [FLAG_CHART_NO_DOB], name_c, d, today8)
-    if not d and cut != "full" and full_c and not _contra(full_c):       # no date to go by at all: a proven namesake among the full-name charts stops both rules
-        dated = [c for c in full_c if c["dob"]]
-        if dated and len({c["dob"] for c in dated}) == 1: return _chosen(7, dated, [FLAG_NO_FEED_DOB], name_c, d, today8)
-        if not dated: return _chosen(8, full_c, [FLAG_NO_DOB_EITHER], name_c, d, today8)
+        n = [c for c in near_c if c["dob"] and slip(d, c["dob"])]; g = [c for c in n if kind[c["id"]] == "full"]      # every chart a slip away - of the same name or beside it - must carry the ONE date; the chart is taken from the same name
+        if g and len({c["dob"] for c in n}) == 1 and not _contra(n): return _chosen(5, g, [FLAG_DATE + slip(d, g[0]["dob"])], name_c, d, today8, note)
+    if d and cut in ("", "first", "spelling") and name_c and len(full_c) == len(name_c) and not any(c["dob"] for c in name_c) and not _contra(name_c): return _chosen(6, name_c, [FLAG_CHART_NO_DOB], name_c, d, today8, note)
+    if not d and cut != "full" and full_c and not _contra(near_c):       # no date to go by at all: a proven namesake among the full-name charts - or beside them - stops both rules
+        dated = [c for c in near_c if c["dob"]]; g = [c for c in dated if kind[c["id"]] == "full"]      # the dated charts of the same name and beside it must all carry ONE date; the chart is taken from the same name
+        if g and len({c["dob"] for c in dated}) == 1: return _chosen(7, g, [FLAG_NO_FEED_DOB], name_c, d, today8, note)
+        if not dated: return _chosen(8, full_c, [FLAG_NO_DOB_EITHER], name_c, d, today8, note)
     short = bool(cut) and (cut != "first" or bool(d))      # (a list cut only for other first names matters to rule 3 alone, and rule 3 is never asked without a real date)
-    flags = ([FLAG_NOT_USED] if name_c else []) + ([] if d else [FLAG_NO_FEED_DOB]) + ([FLAG_CUT] if short else [])
+    flags = ([FLAG_NOT_USED] if name_c else []) + ([] if d else [FLAG_NO_FEED_DOB]) + ([FLAG_CUT] if short else []) + note
     return _answer(9, WHY_NEW_BESIDE if name_c else WHY_NEW, flags=flags, considered=name_c, william=bool(name_c) or short)      # (a new chart with no date is for William too: decide() says so)
 def _combine(rs):
     """One answer from the answers of every name and date the feed carries for the patient: a chart only when all that chose one chose the same."""
@@ -532,7 +644,7 @@ def _combine(rs):
     elif chose and len({r["chart"] for r in chose}) == 1: a = dict(min(chose, key=lambda r: r["rule"]))
     elif chose: a = _answer(0, WHY_DISAGREE, william=True)
     else:
-        flags = [x for x in (FLAG_NOT_USED, FLAG_NO_FEED_DOB, FLAG_CUT) if any(x in r["flags"] for r in rs)]
+        flags = [x for x in (FLAG_NOT_USED, FLAG_NO_FEED_DOB, FLAG_CUT, FLAG_MEMBER) if any(x in r["flags"] for r in rs)]
         a = dict(rs[0], flags=flags, why=WHY_NEW_BESIDE if FLAG_NOT_USED in flags else WHY_NEW, for_william=any(r["for_william"] for r in rs))
     a["flags"] = list(a["flags"]); a["candidates"] = cands; a["needs_activity"] = needs
     return a
@@ -542,7 +654,8 @@ def decide(feed, candidates, today8):
            carries (YYYYMMDD), "ssn": value(s), "members": [member numbers], "cut": "" | "first" | "spelling" | "name" | "full" - how far the list
            of same-name charts may fall short (AdvancedMD answers 50 at most, and may not answer a lookup): see _one}
     candidates: the charts found by name, each {"id": "pat123", "name": "LAST,FIRST", "dob": YYYYMMDD or "", and EITHER the chart's own "mrn" / "ssn" /
-           "members" OR the words worked out beforehand "ev" [...] / "contra" bool, "read": False when the chart could not be read, "last_dos" (YYYYMMDD)
+           "members" OR the words worked out beforehand "ev" [...] / "contra" bool (what evidence() answers for the chart - since version .5 with
+           "member:medicare" beside "member" where the number in common has the shape of a Medicare number), "read": False when the chart could not be read, "last_dos" (YYYYMMDD)
            and "charges" (how many) once its activity was read, "owned": True when the feed's patient map gives this chart to ANOTHER Claimocity id
            (claimocity_match.py says it), "also": [{"name", "dob"} of each chart William called a duplicate of this one - it stands in their place]}
     Answers {"chart": the chart id or None, "rule": 1..9 (0 = not decided: no chart and no new chart), "why": fixed words, "flags": [...], "evidence": [...]
@@ -600,12 +713,21 @@ def problems(d):
     if d.get("feed_dob") not in ("real", "none"): out.append("feed_dob")
     if not isinstance(d.get("for_william"), bool): out.append("for_william")
     return out
+def number_words(flags):
+    """What the question about a new chart beside same-name charts says of the NUMBERS (version .5): 'no number in common' - or, where the answer carries
+    FLAG_MEMBER, that a member number in common was not counted, and why. Fixed words; one text for william_lines and for the driver's own line about a
+    new chart whose same-name charts it cannot list (claimocity_ingest.py - until then it said 'no number in common' of every such chart)."""
+    return ("a member number in common that was not counted (a family shares member numbers: not the full name and no birth dates that agree)" if FLAG_MEMBER in (flags if isinstance(flags, (list, tuple)) else [])
+            else "no number in common")
 def william_lines(d, chart="", feed_id=""):
     """What goes to William for one patient - the top of the report, one line each, chart ids and Claimocity ids only (a run turns it into a board
     card with the names). d: an answer or a match-file entry; chart: the chart chosen, or the new chart once it is made ("" = not made yet);
     feed_id: the Claimocity id the line is about - or the list of them, when one answer stands for several ids.
     11/25/2026 (the independent verification): the FYI of rules 3, 6 and 8 names the Claimocity id (two feed patients on one chart gave the same
-    line twice, and nobody could tell which id each was about); an answer held back for a chart (ASKS) names that chart and asks the question."""
+    line twice, and nobody could tell which id each was about); an answer held back for a chart (ASKS) names that chart and asks the question.
+    Version .5 (11/26/2026): rule 4 that is for William - the same name, a member number that is no Medicare number, two real birth dates far apart
+    (N3) - is ONE FYI line of its own; and the question about a new chart beside same-name charts says that a member number in common was not counted
+    where the answer carries that flag (until then it said 'no number in common' of every such chart)."""
     rule = d.get("rule"); flags = d.get("flags") or []; cands = [c for c in (d.get("candidates") or []) if isinstance(c, str) and re.fullmatch(r"pat[0-9]+", c)]; out = []
     why = d.get("why") if d.get("why") in WHY_WORDS else ""; chart = chart if re.fullmatch(r"pat[0-9]+", str(chart or "")) else ""      # a chart id or nothing: these lines are printed
     ids = [i for i in _list(feed_id) if i] or [""]; who = "Claimocity id%s %s" % ("s" if len(ids) > 1 else "", ", ".join(show_id(i) for i in ids))
@@ -614,8 +736,11 @@ def william_lines(d, chart="", feed_id=""):
         if why not in PLAIN_WORDS:      # (a wait for the next run is no question for William; nor is a key whose ids each went to the chart of their own proof)
             out.append("no chart chosen and none made for %s: %s%s" % (who, why, " (chart%s %s) - %s" % ("s" if len(cands) > 1 else "", ", ".join(cands), ASKS[why]) if why in ASKS and cands else ""))
     elif rule in (3, 6, 8): out.append("%s %s (FYI) - %s" % (chart or "a chart", why, who))
+    elif rule == 4 and d.get("for_william") is True:      # (version .5, N3) the one rule-4 answer that is for William: the visit is entered, and he is told once
+        out.append("%s %s (FYI) - %s - the two birth dates are far apart and the number in common is a member number, which a family can share (it is no Medicare number): chosen because the name is the same - "
+                   "if this is another person of that name, a parent or a child on one plan, the visit is on the wrong chart" % (chart or "a chart", why, who))
     elif rule == 9:
-        if FLAG_NOT_USED in flags: out.append("%s beside %d same-name chart(s) (%s) with other birth dates and no number in common - same person or not?" % (made, len(cands), ", ".join(cands)))
+        if FLAG_NOT_USED in flags: out.append("%s beside %d same-name chart(s) (%s) with other birth dates and %s - same person or not?" % (made, len(cands), ", ".join(cands), number_words(flags)))
         if FLAG_CUT in flags and FLAG_NOT_USED not in flags: out.append("%s although AdvancedMD's list of same-name charts may be incomplete - is there a chart of this patient already?" % made)
         if d.get("feed_dob") == "none": out.append("%s: Claimocity sent %s - face sheet needed" % (made, "two different birth dates" if FLAG_TWO_DATES in flags else "no birth date"))
         if FLAG_NO_CHART_MADE in flags: out.append("the new chart for %s could NOT be made - its visits are not entered" % who)

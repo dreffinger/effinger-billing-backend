@@ -130,7 +130,7 @@ PY
 
   check)
     hdr "workspace manifest $WS ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-    REQ="amd.py stedi.py elig271.py elig_amd.py resave.py precheck.py inspector_0907.py columns_scan.py unbilled_repair.py payreasons.py dx_primary_fix.py era_upload.py era_post.py era_fallback_0913b.py era_clear.py claimocity_in1.py add_ins.py ins_update.py freq1_visit.py patient_patch.py move_to_ins.py void_scan.py void_tx.py txh.py deceased_guard.py death_check_review.py death_off_record.py"
+    REQ="amd.py stedi.py elig271.py elig_amd.py resave.py precheck.py inspector_0907.py columns_scan.py unbilled_repair.py payreasons.py dx_primary_fix.py era_upload.py era_post.py era_fallback_0913b.py era_clear.py claimocity_in1.py add_ins.py ins_update.py freq1_visit.py patient_patch.py move_to_ins.py void_scan.py void_tx.py txh.py deceased_guard.py death_check_review.py"
     OPT="amdw.py manual_post.py restore_charge.py era_manual_post.py era_details_pull.py columns_inspector2_0908.py working_denials.py working_denials_act.py availity_pdf.py availity_remits.py github_sync.py carriers.json facilities.json api_vocabulary.json"
     missing=0
     for f in $REQ; do if [ -f "$WS/$f" ]; then printf '  ok       %s\n' "$f"; else printf '  MISSING  %s   (required by the standing prompt)\n' "$f"; missing=$((missing+1)); fi; done
