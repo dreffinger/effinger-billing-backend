@@ -6090,3 +6090,6 @@ Postman: unchanged.
 ## 2026-11-25 (Billing Button 0809Z) - REST referral plan re-provider
 - The 10/5 REST referral-plan calls (list / read / PUT / statuscodes) were missing from main's vocabulary and helper set; `core/refplan_rest.py` and its 4 entries were recovered from the 10/5 bundle and are now in `scripts/helpers/refplan_rest.py` + docs/api_vocabulary.json.
 - NEW USE of `PUT /api/referral/inboundreferrals` (pat17478013, rplan18462897): the same whole-plan PUT also changes `byreferringproviderid` / `toreferringproviderid` (14 -> 13) and sets `authorizations[].authorizationnumber` on a blank plan AMD made - the way to give a second stay its own plan when addreferralplan get-or-returns the existing plan for that referring provider. The visit resave with `preauth=` still writes onto the previous plan; `refplan_rest.set_preauth` restores it. Helper: cowley_stay1_1125.py.
+
+# captured_calls additions - nightly cascade 2026-11-26T0536Z
+No new AMD or Stedi call shapes learned tonight. Helpers used: precheck.py, chart_read_1125.py, open_visits_1126.py (read-only gettxhistory + getchargedetail), dx_primary_fix.py --dry, freq1_visit.py reroute, elig_amd.py, disc_lookup_1016_1510.py, tools/button/run_all.py --steps era, void_rules.py, cred_check.py, build_money.py.
