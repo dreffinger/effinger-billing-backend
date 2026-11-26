@@ -148,10 +148,10 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # building to HCA REHAB at 31 - his word of 10/31: wrong) and never bypasses a place-of-service edit on a visit entered at 61; a copy from before moves visits again - its
              # marker is now a sentence only that version has (it still carries the Pattern 692 rule and the retry pass). The insurance check asks its paid look-up with the CHART's own
              # name and birth date (a feed patient with a wrong birth date): a copy from before asks with Claimocity's - its marker is now that sentence (it still carries the list rule)
-             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "KNOWN ALSO MEANS PROVEN BY A NUMBER",
+             "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP", "claimocity_verify.py": "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE",
              # the same word for the insurance intake of existing charts, and the three steps of the identity rule with the rule itself (feed_identity.py): they only work together -
              # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
-             "feed_in1_intake.py": "A NUMBER IN COMMON MAKES THE CHART KNOWN TOO",
+             "feed_in1_intake.py": "A MEMBER NUMBER IN COMMON COUNTS ONLY WITH BIRTH DATES THAT AGREE",
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
              "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",

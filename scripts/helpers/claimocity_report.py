@@ -19,7 +19,7 @@
 #   - a name-and-date key several Claimocity ids share: EVERY id is named, with the chart it has through a key of its own (the line named the first id
 #     alone - the one whose visit had gone in), and the count line counts patients, not rows.
 #   - the driver's own lines (the identity register's notes), and what is for William about a new chart the identity register does not list.
-#   The two lines from the insurance check's file (SAME PERSON? / NO BIRTH DATE ON EITHER SIDE) print a record only when its key is a chart id, and of
+#   The three lines from the insurance check's file (SAME PERSON? / NO BIRTH DATE ON EITHER SIDE / TWO BIRTH DATES FROM CLAIMOCITY, NONE ON THE CHART) print a record only when its key is a chart id, and of
 #   its list only what is a visit id.
 #   'Inpatient rehab': the visits entered at HCA REHAB / place of service 61, the ones kept at 21, each new rehab stay by chart and date, and at the top
 #   every rehab visit the Claim Inspector questions (the inspector step's own sentence, whole).
