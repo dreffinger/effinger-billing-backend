@@ -1,0 +1,208 @@
+{
+ "pat17476358": {
+  "v": 4,
+  "visits": [
+   "vst19462768"
+  ],
+  "dos": [
+   "11/23/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517899",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9517900",
+    "car": "SUN01",
+    "seq": "3",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [
+   "vst19462768 insorder 2,3: already 2,3, list [2,3] - nothing sent"
+  ],
+  "hold": [],
+  "insorder": "2,3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517629",
+    "car": "UNI20",
+    "seq": "1",
+    "end": "05/01/2026"
+   },
+   {
+    "id": "ins9517899",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9517900",
+    "car": "SUN01",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "SUN01"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": true
+  },
+  "order": "2,3",
+  "applied": {
+   "vst19462768": "2,3"
+  },
+  "note": "feed IN1 says ['SUN01'], chart bills FLO02 first (traditional Medicare ACTIVE, no MA replacement on the CMS 271)",
+  "decision": "RELEASE"
+ },
+ "pat17469549": {
+  "v": 4,
+  "visits": [
+   "vst19462769"
+  ],
+  "dos": [
+   "11/23/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520829",
+    "car": "MCAD",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9520833",
+    "car": "FLO99",
+    "seq": "2",
+    "status": "REJECTED  "
+   }
+  ],
+  "fixes": [
+   "vst19462769 insorder 2: insorder 1,2 -> 2, list [1,2] -> [2], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520829",
+    "car": "MCAD",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9520833",
+    "car": "FLO99",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO99"
+  ],
+  "lead": {
+   "code": "FLO99",
+   "seq": "2",
+   "why": "Medicaid 271: SMMC MMA plan is FLO99 - physician claims go to the MMA plan",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19462769": "2"
+  },
+  "saved": [
+   "vst19462769"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478524": {
+  "v": 4,
+  "visits": [
+   "vst19462770"
+  ],
+  "dos": [
+   "11/24/2026"
+  ],
+  "cpts": [
+   "99223"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521419 seq 1",
+   "chart order -> 1: insorder 1 via ins9521419 -> '1'",
+   "vst19462770 insorder 1: insorder 1 -> 1, list [] -> [1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lookup_asked": "look-up asked with the chart's birth date; Claimocity's is the same",
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19462770": "1"
+  },
+  "saved": [
+   "vst19462770"
+  ],
+  "decision": "RELEASE"
+ },
+ "pat17478523": {
+  "v": 4,
+  "visits": [
+   "vst19462771"
+  ],
+  "dos": [
+   "11/24/2026"
+  ],
+  "cpts": [
+   "99223"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521420 seq 1",
+   "chart order -> 1: insorder 1 via ins9521420 -> '1'",
+   "vst19462771 insorder 1: insorder 1 -> 1, list [] -> [1], 1 of 1 echoed charges live"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lookup_asked": "look-up asked with the chart's birth date; Claimocity's is the same",
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19462771": "1"
+  },
+  "saved": [
+   "vst19462771"
+  ],
+  "decision": "RELEASE"
+ }
+}
