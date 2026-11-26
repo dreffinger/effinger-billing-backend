@@ -40,7 +40,7 @@
 #   payer; the action is the step its RULE names; each write-off code is the one its rule names; AdvancedMD's answers go only into
 #   logs/work_queue_act_<stamp>.log (workspace), never into a register; a dry start buys no look-up and asks no eligibility; the deceased
 #   guard is asked before any helper edits a visit it will send - not cleared = no edit, a HOLD-DEATH line, outbox/work_queue_death_<stamp>.json.
-#   python3 work_queue_act.py [--stamp <run stamp>] [--queue registers/work_queue.json] [--max 25] [--max-cards 50] [--max-cascade 10]
+#   python3 work_queue_act.py [--stamp <run stamp>] [--queue registers/work_queue.json] [--max 25] [--max-cards 50] [--max-cards-day 15] [--max-cascade 10]
 #       [--treasury work/deposits_ledger.csv[,availity_remit_recon_<stamp>.csv]] [--board-file outbox/board_updates_<stamp>.json
 #        --items-dir <the board read>] [--reroute <visit>=<order> ...] [--no-plan <visit>[,...]] [--only <visit>[,...]] [--live]
 import argparse, collections, datetime, glob, json, os, re, sys, time
@@ -207,6 +207,10 @@ class Actor:
         dirs = [d for d in (self.regs, os.path.join(a.repo, "practices", "ehpa", "registers") if a.repo else None) if d and os.path.isdir(d)]
         self.dirs = dirs
         self.acted = wq.last_actions(wq.act_lines(dirs))
+        # William 11/26/2026 (his answer): at most 15 NEW cards a day across all runs, biggest dollars first (the run's order puts the largest
+        # first). A card counts once it went into a board file (last_actions), so the day's runs share the 15; --max-cards still caps one run.
+        self.cards_today = sum(1 for s_ in self.acted.values() for d_ in (s_.get("card") or {}).values() if d_ == self.today)
+        self.card_room = max(0, min(a.max_cards, a.max_cards_day - self.cards_today))
         self.deaths = []      # this start's HOLD-DEATH visits: the date-of-death rule's list (outbox/work_queue_death_<stamp>.json, ids only)
         # AdvancedMD's own answers (fault texts can name a patient) go ONLY into this workspace log - never into a register (the independent review of
         # 11/26/2026, finding 9): logs/ is not copied to the repository by any step
@@ -709,8 +713,8 @@ class Actor:
         vid = str(row["visitid"])
         if row["rule"] in ((self.acted.get(vid) or {}).get("card") or {}):
             return self.skip(row, "the card is already on William's turn")
-        if len(self.cards) >= self.a.max_cards:
-            self.skips["the run's card cap"] += 1; return None
+        if len(self.cards) >= self.card_room:
+            self.skips["the day's card cap (William 11/26/2026: 15 a day, biggest first)"] += 1; return None
         if row["step"] == "FOLLOW_UP":
             v = v or self.precheck_soft(row)
             if v is not None and v.payments_since(wq._date(row.get("appeal_sent"))):
@@ -856,7 +860,8 @@ def parse(argv=None):
     ap.add_argument("--outbox", default="outbox")
     ap.add_argument("--today", default=None)
     ap.add_argument("--max", type=int, default=25, help="at most N AdvancedMD actions this run (default 25)")
-    ap.add_argument("--max-cards", type=int, default=50)
+    ap.add_argument("--max-cards", type=int, default=50, help="at most N cards this run")
+    ap.add_argument("--max-cards-day", type=int, default=15, help="at most N new cards a day across all runs (William 11/26/2026: 15 a day, biggest first)")
     ap.add_argument("--max-cascade", type=int, default=10, help="charts listed for the RULE C cascade this run (each costs look-ups)")
     ap.add_argument("--treasury", default="", help="the Treasury ledger (deposits_ledger.csv) and/or availity_remit_recon_*.csv, comma separated")
     ap.add_argument("--board-file", default=None, help="this run's board_updates_<stamp>.json (live only)")

@@ -416,5 +416,18 @@ for f in ("billing_button.txt", "columns.txt"):
     t = open(os.path.join(ROOT, "nightly", "live", f)).read()
     check("X2 %s runs the planner, then the actor live" % f, "python3 work_queue.py" in t and "work_queue_act.py --live" in t)
 
+# ------------------------------------------------------------------ C. William 11/26/2026: at most 15 new cards a day across all runs, biggest dollars first
+_cwd_c = os.getcwd(); os.chdir(tempfile.mkdtemp(dir=os.environ.get("TMPDIR") or None))      # registers of their own: the cards of the checks above do not count today
+os.makedirs("registers", exist_ok=True); os.makedirs("outbox", exist_ok=True)
+cap_rows = [qrow(str(9900 + i), str(9900 + i), "OWNER-NO-RULE", amount=float(100 + 10 * i)) for i in range(20)]
+o1 = run(cap_rows, "--live", "--board-file", "outbox/board_cap1.json")
+c1 = "\n".join(l for l in o1 if l.startswith("CARD v99"))
+o2 = run(cap_rows, "--live", "--board-file", "outbox/board_cap2.json")
+c2 = [l for l in o2 if l.startswith("CARD v99")]
+os.chdir(_cwd_c)
+check("C1 at most 15 new cards a day across all runs, the largest dollars first (William 11/26/2026); a second run the same day adds none",
+      c1.count("CARD v99") == 15 and all(("CARD v%d " % (9900 + i)) in c1 for i in range(5, 20)) and not any(("CARD v%d " % (9900 + i)) in c1 for i in range(5)) and not c2,
+      (c1.count("CARD v99"), len(c2), o2[-1:]))
+
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)
