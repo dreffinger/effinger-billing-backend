@@ -5,6 +5,24 @@
 #   the digest gets ONE line - the visits, each code with its number of visits, 'EMAIL WILLIAM: <file>' - and this helper WRITES the text of that email to
 #   outbox/dx_codes_needed_<STAMP>.txt: the codes, their visits, chart numbers and dates of service, no patient name. A row whose code was left off (an import
 #   from before that day) is said to be entered WITHOUT the code, never with I10. No such code in the batch: no line, no file.
+# Which chart, birth dates, the rehab unit (William 11/25/2026) - three parts near the end, each from a register, each chart ids and fixed words only:
+#   'Which chart' from registers/feed_identity_<STAMP>.json (the ingest writes it): how many feed patients the map knew, how many were looked up and by
+#   which rule, and - at the TOP OF THE REPORT - every line that is for William (a new chart beside same-name charts, a new chart with no birth date, a
+#   patient nobody could decide, a new chart that could not be made, a file that stays unregistered). A word in that register that is not one of the
+#   identity rule's fixed words is never printed. 'Birth dates': ONE line from the import's rows (dob_note) - where the feed's date and the chart's differ.
+#   'Feed messages that could not be read': the parse step's register (feed_unreadable_<stamp>.json) - at the top, with what to do.
+# No visit of the feed is lost without a word (11/25/2026, the independent verification - each line below was missing, or was wrong, at the top):
+#   - every FAILED row of the import: a visit AdvancedMD refused at entry (nothing was made - its file stays unregistered and is tried again) and a visit
+#     whose entry did not finish (for William; no routine sends it again). Until then a failed visit stood in a body line only.
+#   - a message that could not be read: the file is NOT REGISTERED and every start reads it again - what ends it is said (the whole file in the bucket,
+#     or William's word). The line no longer says 'the next ingest reads it when it arrives': a file sent again under its own name was never read.
+#   - a name-and-date key several Claimocity ids share: EVERY id is named, with the chart it has through a key of its own (the line named the first id
+#     alone - the one whose visit had gone in), and the count line counts patients, not rows.
+#   - the driver's own lines (the identity register's notes), and what is for William about a new chart the identity register does not list.
+#   The three lines from the insurance check's file (SAME PERSON? / NO BIRTH DATE ON EITHER SIDE / TWO BIRTH DATES FROM CLAIMOCITY, NONE ON THE CHART) print a record only when its key is a chart id, and of
+#   its list only what is a visit id.
+#   'Inpatient rehab': the visits entered at HCA REHAB / place of service 61, the ones kept at 21, each new rehab stay by chart and date, and at the top
+#   every rehab visit the Claim Inspector questions (the inspector step's own sentence, whole).
 # Decides nothing and changes nothing in AdvancedMD; it sends no email itself - the line 'EMAIL WILLIAM: <file>' is the cue for the run that reads the digest.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
@@ -12,7 +30,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-25.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-25.5"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -36,6 +54,17 @@ release_visits = sum(len(v["visits"]) for v in ver.values() if v.get("decision")
 hold_visits = sum(len(v["visits"]) for v in ver.values() if v.get("decision") == "HOLD")
 lines = []
 L = lines.append
+_T = lambda s_: L("  - TOP OF THE REPORT - " + s_)
+_pat_ok = lambda c_: c_ if isinstance(c_, str) and re.fullmatch(r"pat[0-9]+", c_) else ""
+_fid_ok = lambda i_: i_ if isinstance(i_, str) and re.fullmatch(r"[0-9A-Fa-f]{24}", i_) else "(an id that is not 24 hex characters)"
+_idf = "registers/feed_identity_%s.json" % STAMP      # the ingest's identity register: which chart, and the files it keeps unregistered
+try:
+    _IDR = json.load(open(_idf)) if os.path.isfile(_idf) else {}
+    if not isinstance(_IDR, dict): _IDR = {}
+except Exception: _IDR = {}      # (the 'Which chart' part below says when it cannot be read)
+def _held(key):      # the file names of one of the register's lists - a name of another shape is never printed
+    return [f_ for f_ in (_IDR.get(key) if isinstance(_IDR.get(key), list) else []) if isinstance(f_, str) and re.fullmatch(r"[0-9A-Za-z_.\-]{1,80}", f_)]
+_fnames = lambda fs_: ", ".join(fs_[:20]) + ((" +%d more" % (len(fs_) - 20)) if len(fs_) > 20 else "")
 L("# Claimocity backlog import - digest %s UTC (chat session, William 10/28 02:23 ET: enter all encounters and bill them out)" % datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
 L("")
 L("## Import")
@@ -43,10 +72,58 @@ _qlines = sum(1 for x in reg["created"] if isinstance(x.get("quality_codes"), li
 _qlines += sum(1 for x in reg["created"] if isinstance(x.get("mvp_codes"), list) and x.get("mvp_codes") and x.get("mvp_charge"))           # ... nor are the option code's (M0004) no-charge lines
 _failed = [x for x in (reg.get("failed") or []) if isinstance(x, dict)]                      # 11/10/2026 (operations review N3): failed visits are counted and named, never "0 faults"
 _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
-L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]),
+# 11/25/2026 (the second verification of the death check): the visits the import kept out because a date of death is on record for the chart and nobody could name
+# its day (claimocity_import.DEATH_DAY_WHY - the same line here; the self-test holds the two together). Chart ids and counts only.
+# (The independent check of that round, finding 13: the count below called those visits 'skipped as already in AMD' - they are NOT in AdvancedMD, they are held. They
+# are taken out of that count; the line for the top of the report, a few lines down, says what they are. The sentence's words are as they were.)
+DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
+_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY))
+L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]) - _ddheld,
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
+# 11/25/2026 (the verification): every failed row stands at the TOP too. It was named in the line above only, its file was registered as done and the visit
+# was never tried again. A visit AdvancedMD REFUSED at its first call (the import's row 'addvisit: ...' - no visit was made) keeps its file unregistered - the
+# ingest says which in the identity register - and the next start tries again. Every other failed row (a visit was made and its charges were refused, an error,
+# a call nobody saw the end of) is for William: no routine sends it again. Chart ids, dates of service, codes and visit ids only - AdvancedMD's own words stay
+# in the import register.
+try:
+    if _failed:
+        _dos_ok = lambda d_: d_ if isinstance(d_, str) and re.fullmatch(r"[0-9]{2}/[0-9]{2}/[0-9]{4}", d_) else ""
+        _cpt_ok = lambda c_: [x_ for x_ in (c_ if isinstance(c_, list) else []) if isinstance(x_, str) and re.fullmatch(r"[A-Za-z0-9]{5}", x_)]
+        def _fwhat(x):      # chart, date of service and codes of a failed row: from its info, else from the lines the feed showed
+            _ln = [l_ for l_ in (x.get("lines") if isinstance(x.get("lines"), list) else []) if isinstance(l_, list) and len(l_) >= 2]
+            _d = _dos_ok(_finfo(x).get("dos")) or next((_dos_ok(l_[1]) for l_ in _ln if _dos_ok(l_[1])), "") or "date ?"
+            return "%s %s %s" % (_pat_ok(x.get("pid")) or "chart ?", _d, "+".join(_cpt_ok(_finfo(x).get("cpts")) or _cpt_ok([l_[0] for l_ in _ln])) or "code ?")
+        _nomade = lambda x: isinstance(x.get("err"), str) and x["err"].startswith("addvisit:") and not x.get("empty_visit")
+        _fa = [x for x in _failed if _nomade(x)]; _fo = [x for x in _failed if not _nomade(x)]
+        _fsome = lambda it_: "; ".join(it_[:15]) + ((" +%d more" % (len(it_) - 15)) if len(it_) > 15 else "")
+        if _fa:
+            _hr, _ha = _held("not_registered_refused"), _held("registered_anyway_refused")      # the files kept back, and the files registered on William's word, FOR A REFUSED VISIT (the ingest keeps the two causes apart)
+            _again = "the next start reads it again and the import tries once more (a visit entered by hand meanwhile answers 'already')"
+            _T("%d visit(s) AdvancedMD REFUSED at entry are NOT on the chart: %s - nothing of them was made in AdvancedMD%s" % (len(_fa), _fsome([_fwhat(x) for x in _fa]),
+               ("; of their files, NOT REGISTERED: %s - %s; REGISTERED ON WILLIAM'S WORD: %s - its refused visit is given up and not tried again" % (_fnames(_hr), _again, _fnames(_ha))) if _hr and _ha else
+               ("; their file is NOT REGISTERED (%s): %s" % (_fnames(_hr), _again)) if _hr else
+               ("; their file was REGISTERED ON WILLIAM'S WORD (%s): they are given up and not tried again" % _fnames(_ha)) if _ha else " (AdvancedMD's answer is in the failed rows of the import register)"))
+        if _fo:
+            _vmade = lambda x: ("visit vst%s was made" % re.sub(r"\D", "", str(x.get("empty_visit")))) if re.sub(r"\D", "", str(x.get("empty_visit") or "")) else "an error while it was entered"
+            _T("%d visit(s) whose entry did NOT FINISH - for William, to look at in AdvancedMD (nobody knows what AdvancedMD kept of them; no routine sends them again): %s" % (len(_fo), _fsome(["%s (%s)" % (_fwhat(x), _vmade(x)) for x in _fo])))
+except Exception as _e:                                    # never stops the digest
+    L("  - TOP OF THE REPORT - the failed visits of this batch could not be listed (%s) - read the failed rows of registers/feed_import_%s.json" % (type(_e).__name__, STAMP))
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
+try:      # (the register cannot say who was asked - a dry run asks nobody, a workspace may hold no guard - so the line says 'nobody named the day', as the import's own does)
+    _ddr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY)]
+    _ddc = sorted({x.get("pid") for x in _ddr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
+    if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
+        len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
+except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
+# 11/26/2026 (the deceased guard's sixth round - William: "Medicare decides: bill", "Bill it, flag it"): the charts the guard named for the top of the report in this
+# run - a chart AdvancedMD marks deceased with no date, or one whose recorded death has a day that cannot be read, that Medicare showed no death for (billed), or
+# such a mark that could not be put to Medicare (billed, flagged). The guard's own words, as the import register keeps them (death_top): chart ids and fixed words
+# only - a line of another shape is not printed.
+try:
+    for _x in [x for x in (reg.get("death_top") if isinstance(reg.get("death_top"), list) else []) if isinstance(x, str) and re.fullmatch(r"TOP OF REPORT: pat[0-9]{1,12}: [^\r\n]{1,300}", x) and not re.search(r"[0-9]", x.split(": ", 2)[-1].replace("11/26/2026", ""))]:
+        _T(_x[len("TOP OF REPORT: "):])
+except Exception: L("  - TOP OF THE REPORT - the lines the deceased guard named for the top of the report could not be built - read death_top in the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood
@@ -169,7 +246,7 @@ try:
         _i10 = "/".join(sorted(_dxi)) or "I10"
         _before = (bool(re.match(r"^2\d{7}T", _st8)) and _st8[:8] < "20261125") or STAMP == "1028"      # a batch from before William's word: its codes were left off by the import of that day
         _win = "entered with %s in its place" % _i10
-        _wout = "entered without that code (before 11/25/2026)" if _before else "entered without that code (%s was not put in its place: an older copy of the import ran, or %s itself is not in AdvancedMD's list)" % (_i10, _i10)
+        _wout = "entered without that code (before 11/25/2026)" if _before else "entered without that code (%s was not put in its place: an older copy of the import ran, %s itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries)" % (_i10, _i10)
         _nv = lambda c_: len(_dxc[c_][0]) + len(_dxc[c_][1])
         _order = sorted(_dxc, key=lambda c_: (-_nv(c_), c_))
         _kinds = "" if not _dxn[1] else (", all %s" % _wout) if not _dxn[0] else ", %d %s and %d %s" % (_dxn[0], _win, _dxn[1], _wout)
@@ -178,7 +255,7 @@ try:
         _end = (("Each of these visits was entered with %s in the code's place on your word of 11/25/2026; " % _i10) + _kept) if not _dxn[1] else \
                (("The visits listed as %s went in with %s in the code's place on your word of 11/25/2026; " % (_win, _i10)) + _kept + " The visits listed as entered without that code went in with their other codes only: nothing stands in the code's place on them.") if _dxn[0] else \
                ("These visits were entered without that code: it was left off the charge and nothing stands in its place. Since 11/25/2026 a visit goes in with %s in the code's place on your word; once a code is in the list, later visits use it." % _i10) if _before else \
-               ("These visits were entered without that code: it was left off the charge and nothing stands in its place - %s was not put there as your word of 11/25/2026 asks (an older copy of the import ran, or %s itself is not in AdvancedMD's list). Once a code is in the list, later visits use it." % (_i10, _i10))
+               ("These visits were entered without that code: it was left off the charge and nothing stands in its place - %s was not put there as your word of 11/25/2026 asks (an older copy of the import ran, %s itself is not in AdvancedMD's list, or the code stood past the 12 codes a charge line carries). Once a code is in the list, later visits use it." % (_i10, _i10))
         _file = "outbox/dx_codes_needed_%s.txt" % STAMP
         _mail = ["These diagnosis codes are not in AdvancedMD's diagnosis list (Master Files > Diagnosis Codes) and need to be added:", ""] + ["%s - %d visit(s): %s" % (c_, _nv(c_), _vis(c_)) for c_ in _order] + ["", _end]
         try:
@@ -482,9 +559,32 @@ try:
         len(_nop), ", ".join("%s (%s)" % (p_, " ".join(v_.get("visits") or [])) for p_, v_ in _nop[:20]) + (" +%d more" % (len(_nop) - 20) if len(_nop) > 20 else "")))
     if _dif: L("  - TOP OF THE REPORT - OLD INSURANCE ORDER: %d visit(s) on %d chart(s) still bill to their old insurance order (or are already billed) - %s: %s" % (len(_dif), len({p_ for p_, _x in _dif}), _HELD, _who2(_dif)))
     if _unr: L("  - TOP OF THE REPORT - INSURANCE ORDER NOT READ: %d visit(s) on %d chart(s) - %s: %s" % (len(_unr), len({p_ for p_, _x in _unr}), _HELD, _who2(_unr)))
+    # 11/25/2026 (review of the birth-date change): the two holds the insurance check sets BEFORE it buys a look-up (claimocity_verify.py lookup_hold) -
+    # record keys same_person / no_birth_date, each the chart's visits. Chart ids and visit ids only; the hold line in the list below has the fixed words.
+    # (11/25/2026, the verification: the record's key and every string of its list were printed as they were - a hand-made or odd record with a name in it
+    # reached the top of the report. Now a record is printed only when its key is a chart id, and of its list only what is a visit id; what is left out is counted.)
+    def _byc(key):
+        rows = []; odd = 0
+        for p_, v_ in ver.items():
+            if not (isinstance(v_, dict) and isinstance(v_.get(key), list) and v_.get(key)): continue
+            vis = [x_ for x_ in v_[key] if isinstance(x_, str) and re.fullmatch(r"(?:vst)?[0-9]+", x_)]
+            if _pat_ok(p_) and vis: rows.append((p_, vis))
+            else: odd += 1
+        return rows, odd
+    _whoc = lambda rows, odd: (", ".join("%s (%s)" % (p_, " ".join(x_)) for p_, x_ in rows[:20]) + (" +%d more" % (len(rows) - 20) if len(rows) > 20 else "")
+                               + ((" (+%d record(s) not shown: its key is no chart id, or its list holds no visit id - see the insurance-check register)" % odd) if odd else ""))
+    (_sam, _samx), (_nbd, _nbdx) = _byc("same_person"), _byc("no_birth_date")
+    # 11/25/2026 (round 2 of the second review): the insurance check holds under no_birth_date also a chart whose feed patient came with two DIFFERENT real birth dates
+    # while the chart carries none - and the sentence below, 'neither Claimocity nor the chart carries a real birth date', was untrue of it: Claimocity had sent two. The
+    # record now says which case it is (no_birth_date_case, a fixed word) and such a chart has a sentence of its own. A record without the word - an older one - or with
+    # anything else in its place reads as before; the word is only compared, never printed.
+    _nbt = [r_ for r_ in _nbd if ver[r_[0]].get("no_birth_date_case") == "two dates"]; _nbd = [r_ for r_ in _nbd if r_ not in _nbt]
+    if _sam or _samx: L("  - TOP OF THE REPORT - SAME PERSON? %d chart(s) whose name or birth date is not what Claimocity sent for the visits on it: no paid look-up was bought and no plan was added (the look-up would be asked about the CHART's person) - for William: is the visit on the right chart? On his yes the insurance check is run again for that chart with --same-person; on his no the visit belongs on the proper chart (William 11/9/2026): %s" % (len(_sam), _whoc(_sam, _samx)))
+    if _nbd or _nbdx: L("  - TOP OF THE REPORT - NO BIRTH DATE ON EITHER SIDE: %d chart(s) with no active plan where neither Claimocity nor the chart carries a real birth date - no paid look-up can be asked without one; a face sheet is needed: %s" % (len(_nbd), _whoc(_nbd, _nbdx)))
+    if _nbt: L("  - TOP OF THE REPORT - TWO BIRTH DATES FROM CLAIMOCITY, NONE ON THE CHART: %d chart(s) with no active plan where Claimocity sent two different real birth dates for one patient and the chart carries none of its own - nobody knows which of the two to ask with, so no paid look-up was bought; a face sheet is needed: %s" % (len(_nbt), _whoc(_nbt, 0)))
     if _svp: L("  - TOP OF THE REPORT - SAVE NOT AS ASKED: %d visit(s) on %d chart(s) - the order reads right but the save lost a charge or the admission date (see the hold line): %s" % (len(_svp), len({p_ for p_, _x in _svp}), _who2(_svp)))
 except Exception as _e:                                    # never stops the digest
-    L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem in the insurance-check register." % type(_e).__name__)
+    L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem / same_person / no_birth_date in the insurance-check register." % type(_e).__name__)
 L("- Lead payer on released charts: " + ", ".join("%s %d" % (k, v) for k, v in leads.most_common()))
 L("- Visit insurance orders changed (saves sent and accepted by AdvancedMD): %d; plans added from discovery / feed IN1: %d" % (orders_changed, len(plans_added)))
 for pid, f in plans_added: L("  - %s: %s" % (pid, f))
@@ -522,6 +622,184 @@ try:
             len(_okv), (" - %s: not held, nothing for William" % ", ".join(_nm(v) for v in _free)) if _free else "", ("%s %s: on the held list above for another edit" % (";" if _free else " -", ", ".join(_nm(v) for v in _also))) if _also else ""))
     if _refv: L("- New admission: AdvancedMD did not accept the bypass of the Pattern 692 edit on %s - the edit is still listed; the next columns pass bypasses it again." % ", ".join("vst" + v for v in _refv))
 except Exception: pass
+# ---- which chart, birth dates, the rehab unit (William 11/25/2026) ---------------------------------------------------------------------------------------
+# Each part reads ONE register and stands alone: a part that cannot be built says so in one line and the digest goes on. Nothing here is taken from the match
+# file (names and dates - it never leaves the workspace); the identity register holds chart ids, Claimocity ids, rule numbers and the fixed words of
+# feed_identity.py, and a value that is NOT one of those words is not printed (this digest goes to Drive).
+# (_T, _pat_ok and _fid_ok - a top line, a chart id or nothing, a Claimocity id or a word in its place - stand at the top of this file since 11/25/2026)
+# feed messages that could not be read (feed_parse_dft_1028.py, 11/25/2026: one broken message no longer stops the feed - it is passed over and counted in
+# registers/feed_unreadable_<stamp>.json). Said at the top: nothing of such a message was entered. Only a file date (8 digits), a message number and the
+# parse's two fixed sentences are printed; a row that is anything else is counted and not copied.
+# 11/25/2026 (the verification): the line said 'ask Claimocity to send the file again; the next ingest reads it when it arrives' - but the file had been
+# registered as done, every feed file is named by its day, and the copy job never copies a name the bucket already holds: the file sent again was never
+# read. The ingest now keeps such a file UNREGISTERED and says which in the identity register; this line says so, and what ends it.
+_UW = ("no patient line", "a line of the message is cut short", "a charge line carries no whole procedure code", "no charge line", "the patient line carries no Claimocity id")      # the parse step's five fixed sentences (the self-test holds the two lists together)
+_unf = "registers/feed_unreadable_%s.json" % STAMP
+_hu, _hw = _held("not_registered_unreadable"), _held("registered_anyway_unreadable")      # the files kept back, and the files registered on William's word, FOR A MESSAGE THAT COULD NOT BE READ (a file registered on his word for a refused visit is not one of them)
+_kept_ = ("every start reads it again (a visit already in AdvancedMD is not entered twice), enters what is missing as soon as the file it reads carries these messages whole, and says this again until then. What ends it: "
+          "Claimocity's whole file in the bucket - the copy job does not replace a file the bucket already holds, so the object download__<file name> has to be deleted there first (a run's key cannot) - "
+          "or William's word that the message is lost, and then ONE ingest with --register-anyway <file name>")
+_ends = ("of their files, NOT REGISTERED: %s - %s; REGISTERED ON WILLIAM'S WORD: %s - its messages are given up and it is not read again" % (_fnames(_hu), _kept_, _fnames(_hw))) if _hu and _hw else \
+        ("their file is NOT REGISTERED (%s): %s" % (_fnames(_hu), _kept_)) if _hu else \
+        ("their file was REGISTERED ON WILLIAM'S WORD (%s): the messages are given up and not read again" % _fnames(_hw)) if _hw else \
+        "whether their file was registered is in the ingest's own log (this batch has no identity register that says so) - ask Claimocity whether its file is whole"
+if os.path.exists(_unf):
+    try:
+        _unr_ = json.load(open(_unf)); _um = _unr_.get("messages") if isinstance(_unr_, dict) else None
+        if not isinstance(_um, list): raise ValueError("no list of messages")
+        _uok = ["%s message %d (%s)" % (u_["file"], u_["message"], u_["why"]) for u_ in _um if isinstance(u_, dict) and isinstance(u_.get("file"), str) and re.fullmatch(r"\d{8}|\?", u_["file"])
+                and isinstance(u_.get("message"), int) and not isinstance(u_.get("message"), bool) and u_.get("why") in _UW]
+        if _um:
+            L(""); L("## Feed messages that could not be read")
+            _T("%d feed message(s) could not be read and their visits are NOT entered%s%s - %s (the register: %s)." % (
+                len(_um), (": file " + "; file ".join(_uok[:20]) + (" +%d more" % (len(_uok) - 20) if len(_uok) > 20 else "")) if _uok else "",
+                (" (%d row(s) of the register are not a file date, a message number and the fixed words - not shown)" % (len(_um) - len(_uok))) if len(_um) > len(_uok) else "", _ends, _unf))
+    except Exception as _e:
+        L(""); L("## Feed messages that could not be read"); _T("%s could not be read (%s) - the parse step counted feed messages it could not read; see logs/claimocity_%s_parse.log%s" % (
+            _unf, type(_e).__name__, STAMP, (" - every file of the batch is kept unregistered and read again by the next start (%s)" % _fnames(_hu)) if _hu else ""))
+elif _hu or _hw:      # the ingest itself counted a message with a charge line and no Claimocity id (the parse step that ran did not): its log names it
+    L(""); L("## Feed messages that could not be read"); _T("a feed message carries a charge line and no Claimocity id and its visit is NOT entered - %s (the ingest's log names the file date)." % _ends)
+_chart_section = False      # the birth-date line stands under 'Which chart' when that section is there, else under a heading of its own
+if os.path.exists(_idf):
+    try:
+        _idr = json.load(open(_idf))
+        if not isinstance(_idr, dict): raise ValueError("no JSON object")
+        try: import feed_identity as _FI
+        except Exception: _FI = None
+        _pats = [p_ for p_ in (_idr.get("patients") if isinstance(_idr.get("patients"), list) else []) if isinstance(p_, dict)]
+        _cn = _idr.get("counts") if isinstance(_idr.get("counts"), dict) else {}
+        _num = lambda k_: _cn.get(k_) if isinstance(_cn.get(k_), int) and not isinstance(_cn.get(k_), bool) else "?"
+        _rules = collections.Counter(p_.get("rule") for p_ in _pats if isinstance(p_.get("rule"), int) and not isinstance(p_.get("rule"), bool) and 0 <= p_.get("rule") <= 9)
+        # 11/25/2026 (the verification): a key several Claimocity ids share that got no chart is ONE row with every id (the resolve step's answer 'several Claimocity ids under
+        # one name are not known to be one person'). The line named the first id alone - which can be the id that HAS a chart through a key of its own, its visit entered - and the
+        # id without a chart stood nowhere in the digest; two patients waited where the count said one. Now every id of such a row is named, each with the chart it has through a
+        # row of its own, the count line counts patients, and - when the driver carried it ("each") - the line says what the rule gives each id on its own.
+        _own = {}      # Claimocity id -> the chart it has through a row of its own
+        for p_ in _pats:
+            for i_ in (p_.get("feed_ids") if isinstance(p_.get("feed_ids"), list) else []):
+                if isinstance(i_, str) and _pat_ok(p_.get("chart")): _own.setdefault(i_, p_["chart"])
+        _WSH = getattr(_FI, "WHY_SHARED", "several Claimocity ids under one name are not known to be one person")
+        def _sharers(p_):      # the ids of a shared key that got no chart, else []
+            _i = [i_ for i_ in (p_.get("feed_ids") if isinstance(p_.get("feed_ids"), list) else []) if isinstance(i_, str)]
+            return _i if (len(_i) > 1 and not _pat_ok(p_.get("chart")) and p_.get("rule") == 0 and p_.get("why") == _WSH) else []
+        _waits = [i_ for p_ in _pats for i_ in _sharers(p_) if i_ not in _own]      # each id of a shared key that has no chart anywhere is a patient of its own
+        _single = [p_ for p_ in _pats if not _sharers(p_)]
+        L(""); L("## Which chart (William 11/25/2026: a feed patient goes to the chart that patient already has - also when Claimocity sends a wrong birth date or none)"); _chart_section = True
+        L("- %s feed patient(s) known from the patient map; %d looked up%s; %d new chart(s) made; %d with NO chart." % (
+            _num("known from the patient map"), len(_single) + len(_waits), (" - " + ", ".join("rule %d x%d" % (k_, _rules[k_]) for k_ in sorted(_rules, key=lambda r_: (r_ == 0, r_)))) if _rules else "",
+            sum(1 for p_ in _pats if p_.get("new_chart") is True and _pat_ok(p_.get("chart"))), sum(1 for p_ in _single if not _pat_ok(p_.get("chart"))) + len(_waits)))
+        for p_ in _pats:
+            _ids = [i_ for i_ in (p_.get("feed_ids") if isinstance(p_.get("feed_ids"), list) else []) if isinstance(i_, str)]; _fid = _fid_ok(_ids[0] if _ids else ""); _ch = _pat_ok(p_.get("chart"))
+            _left = sorted(str(x_) for x_ in p_["withheld"] if x_ in ("rule", "why", "flags", "candidates", "evidence", "feed_dob", "for_william")) if isinstance(p_.get("withheld"), list) else []
+            _badw = _left or (_FI.problems(p_) if _FI else ["why", "flags"])       # words that are not the rule's own are never printed
+            if _badw:
+                _T("Claimocity id %s -> %s: what the identity rule said was NOT copied to the register (%s not in its fixed words) - read logs/claimocity_%s_resolve.log in the workspace" % (_fid, _ch or "no chart", ", ".join(_badw), STAMP))
+                continue
+            if _sharers(p_):      # ONE line that names every id of the row
+                _each = p_.get("each") if isinstance(p_.get("each"), list) else []
+                _each = _each if _each and all(isinstance(e_, list) and len(e_) == 2 and e_[0] in _ids and re.fullmatch(r"[0-9A-Fa-f]{24}", str(e_[0])) and isinstance(e_[1], str) and re.fullmatch(r"pat[0-9]+|a new chart|no chart", e_[1]) for e_ in _each) else []
+                _T("no chart chosen and none made for Claimocity id(s) %s: %s (%s)%s" % (", ".join(_fid_ok(i_) for i_ in _ids), p_["why"],
+                   "; ".join(["%s has %s through a name-and-date key of its own" % (_fid_ok(i_), _own[i_]) for i_ in _ids if i_ in _own] + ["%s has no chart" % _fid_ok(i_) for i_ in _ids if i_ not in _own]) if any(i_ in _own for i_ in _ids) else "none of them has a chart",
+                   (" - each on its own: %s" % "; ".join("%s -> %s" % (e_[0], e_[1]) for e_ in _each)) if _each else ""))
+                continue
+            _tops = _FI.william_lines(p_, _ch, [i_ for i_ in _ids if re.fullmatch(r"[0-9A-Fa-f]{24}", i_)] or "")      # every Claimocity id of the row is named (the rule's lines take a list since 11/25/2026 - a row can stand for several ids)
+            for t_ in _tops: _T(t_)
+            if not _tops and not _ch and p_.get("rule") == 0: L("  - no chart yet for Claimocity id %s: %s" % (_fid, p_["why"]))      # a wait for the next run (feed_identity.new_chart_waits): said, no question for William
+            elif not _tops and p_.get("flags"): L("  - %s: %s (%s)" % (_ch or "no chart", p_["why"], "; ".join(p_["flags"])))      # a match the rule had to explain (a slip in the date, no date from Claimocity): said here, not at the top
+        for n_ in (_idr.get("notes") if isinstance(_idr.get("notes"), list) else []):      # the driver's own lines (11/25/2026: the ingest fills them now) - Claimocity ids, chart ids and fixed words
+            # a line that looks like it holds a date or a LAST, FIRST name is left out - looked for with the Claimocity ids and chart ids taken out (an id that begins with capital letters behind a comma was taken for a name)
+            if isinstance(n_, str) and not re.search(r"[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}|,\s*[A-Z]{2,}", re.sub(r"\b[0-9A-Fa-f]{24}\b|\bpat[0-9]+\b", " ", n_)): _T(n_[:700])
+        _nr = [f_ for f_ in (_idr.get("not_registered") if isinstance(_idr.get("not_registered"), list) else []) if isinstance(f_, str) and re.fullmatch(r"[0-9A-Za-z_.\-]{1,80}", f_)]
+        if _nr: _T("NOT REGISTERED: %d feed file(s) hold a patient with no chart (%s) - the next start reads them again; a visit already in AdvancedMD is not entered twice" % (len(_nr), ", ".join(_nr[:20]) + (" +%d more" % (len(_nr) - 20) if len(_nr) > 20 else "")))
+        _rp = [(r_.get("feed_id"), _pat_ok(r_.get("was")), _pat_ok(r_.get("now"))) for r_ in (_idr.get("repointed") if isinstance(_idr.get("repointed"), list) else []) if isinstance(r_, dict) and _pat_ok(r_.get("now"))]
+        if _rp: L("- Patient map: %d feed patient(s) now go to the repository's chart - %s. Visits the feed entered on the earlier chart belong on the new one (William 11/9/2026)." % (
+            len(_rp), ", ".join("%s (was %s, now %s)" % (_fid_ok(f_), w_ or "?", n2_) for f_, w_, n2_ in _rp[:20]) + (" +%d more" % (len(_rp) - 20) if len(_rp) > 20 else "")))
+    except Exception as _e:
+        _T("the which-chart lines could not be built (%s) - read registers/feed_identity_%s.json and logs/claimocity_%s_resolve.log" % (type(_e).__name__, STAMP, STAMP))
+# the new-chart step's failed rows (a patient who got no chart): said once here when the identity register did not already say it
+try:
+    _nf = [f_ for f_ in (newc.get("failed") if isinstance(newc, dict) and isinstance(newc.get("failed"), list) else []) if isinstance(f_, dict)]
+    if _nf and not os.path.exists(_idf): _T("NEW CHART NOT MADE for %d feed patient(s) (Claimocity id %s) - their visits are not entered; see registers/feed_newcharts_%s.json" % (len(_nf), ", ".join(_fid_ok(f_.get("feed_id")) for f_ in _nf[:10]), STAMP))
+except Exception: pass
+# 11/25/2026 (the verification): what is for William about a NEW CHART of this batch that the identity register does not list - the register could not be written
+# (the ingest says 'IDENTITY REGISTER NOT WRITTEN') or holds no row for it. Until then the question about a possible duplicate chart, and the face sheet for a chart
+# made with no birth date, stood in no digest. From the new-chart register's own rows: rule 9, the identity rule's fixed flags, real / none - chart ids only.
+try:
+    _listed = {p_.get("chart") for p_ in (_IDR.get("patients") if isinstance(_IDR.get("patients"), list) else []) if isinstance(p_, dict)}
+    _nfrom = " (from the new-chart register - the identity register of this batch does not list this chart)"
+    # (identity rule 2026-11-26.6 - the identity check's finding B4) what the question says of the NUMBERS is the identity rule's own words, read from the row's flags
+    # (feed_identity.number_words, as the ingest's twin line reads them): it said 'no number in common' also beside a member number in common that was not counted
+    try: import feed_identity as _FIW
+    except Exception: _FIW = None
+    _nw = _FIW.number_words if _FIW is not None and callable(getattr(_FIW, "number_words", None)) else (lambda f_: "no number in common")
+    for c_ in (newc.get("created") if isinstance(newc, dict) and isinstance(newc.get("created"), list) else []):
+        if not (isinstance(c_, dict) and c_.get("rule") == 9 and c_.get("for_william") is True and _pat_ok(c_.get("pid")) and c_["pid"] not in _listed): continue
+        _fl = [f_ for f_ in (c_.get("flags") if isinstance(c_.get("flags"), list) else []) if isinstance(f_, str)]
+        if "same-name charts not used" in _fl: _T("new chart %s was made beside same-name charts with other birth dates and %s - same person or not? The charts are named in logs/claimocity_%s_resolve.log%s" % (c_["pid"], _nw(_fl), STAMP, _nfrom))
+        elif "list of same-name charts may be incomplete" in _fl: _T("new chart %s was made although AdvancedMD's list of same-name charts may be incomplete - is there a chart of this patient already?%s" % (c_["pid"], _nfrom))
+        if c_.get("dob") == "none": _T("new chart %s was made: Claimocity sent %s - face sheet needed%s" % (c_["pid"], "two different birth dates" if "Claimocity sent two birth dates" in _fl else "no birth date", _nfrom))
+except Exception as _e: _T("what is for William about this batch's new charts could not be read from registers/feed_newcharts_%s.json (%s)" % (STAMP, type(_e).__name__))
+# birth dates: what the import's rows say about the feed's date and the chart's (dob_note - fixed words, never a date). The words are the import's own line
+# 'BIRTH DATES:' (claimocity_import.py birth_dates_line), built here from the register so that the digest has it without a run copying a log line.
+try:
+    _dn = collections.defaultdict(set)
+    for x in reg["created"]:
+        if isinstance(x, dict) and isinstance(x.get("dob_note"), str) and _pat_ok(x.get("pid")): _dn[x["pid"]].add(x["dob_note"])
+    _ord = lambda p_: (int(re.sub(r"\D", "", p_) or 0), p_); _charts = sorted(_dn, key=_ord)
+    _some = lambda it_: ", ".join(it_[:12]) + ((" +%d more" % (len(it_) - 12)) if len(it_) > 12 else "")
+    _KINDS = ("one digit", "two digits swapped", "month and day swapped", "one day apart", "far")
+    _differ = ["%s %s" % (p_, " / ".join(k_ for k_ in _KINDS if "differs: " + k_ in _dn[p_])) for p_ in _charts if any("differs: " + k_ in _dn[p_] for k_ in _KINDS)]
+    _grp = lambda w_: [p_ for p_ in _charts if w_ in _dn[p_]]
+    _nofeed, _nochart, _neither = _grp("no birth date from Claimocity"), _grp("chart has no birth date"), _grp("no birth date on either side"); _unread = _grp("chart not read")      # (11/25/2026, review: not read is not 'no birth date' - until then such a row fell out of this line)
+    _parts = (["feed and chart differ on %d chart(s) (%s)" % (len(_differ), _some(_differ))] if _differ else []) + (["Claimocity sent no birth date for %d chart(s) (%s)" % (len(_nofeed), _some(_nofeed))] if _nofeed else []) \
+        + (["%d chart(s) carry no birth date themselves (%s)" % (len(_nochart), _some(_nochart))] if _nochart else []) + (["no birth date on either side for %d chart(s) (%s)" % (len(_neither), _some(_neither))] if _neither else []) \
+        + (["%d chart(s) could not be read (%s) - nobody knows their birth date for this batch" % (len(_unread), _some(_unread))] if _unread else [])
+    if _parts:
+        if not _chart_section: L(""); L("## Birth dates (Claimocity's and the chart's)")
+        L("- Birth dates: %s. Each visit went on the chart as it stands; the chart's own date is the one used for the quality code and for every insurance look-up (William 11/25/2026: where the chart's date is right and Claimocity's is wrong, the chart's stays)." % "; ".join(_parts))
+except Exception as _e: L("- Birth dates: the line could not be built (%s) - the import register's rows carry dob_note." % type(_e).__name__)
+# inpatient rehab (William 11/25/2026: the visits of the hospital's rehab unit go out at place of service 61; a rehab stay whose first visit went in at 21
+# keeps 21 - no look-back, no mixing). The import's rows say it: stay.kind 'rehab', pos '61' (HCA REHAB) or kept at 21 (pos_kind 'rehab-stay-kept-21').
+# 11/25/2026 (the second round of the verification - its finding about the counters, the digest's side): WHERE A VISIT STANDS is what AdvancedMD STORED where the import
+# read it back (the row's pos_stored, one per charge line), read as pos61_monitor.py reads it (group_of): the stored places count when the read-back holds one for every
+# line that was sent; with no read-back - none, an empty one, one of another length - what was sent counts. Until then the lines below went by what was SENT: a rehab visit
+# AdvancedMD stored at 21 stood here as 'entered at HCA REHAB, place of service 61' and its stay was named as a new rehab stay at 61, while the import ('rehab 61 x0', POS
+# NOT KEPT) and the monitor of the same run said that no visit is at 61. Such a visit now has its own words - 'sent at 61, stored at <place>', at the top of the report -
+# is not counted as entered at 61 and names no new rehab stay.
+try:
+    _stay = lambda x: x.get("stay") if isinstance(x.get("stay"), dict) else {}
+    _rh = [x for x in reg["created"] if isinstance(x, dict) and _stay(x).get("kind") == "rehab"]
+    def _r61_sent(x):      # the place of service of every charge line as it was SENT
+        _pl = x.get("pos_lines"); return [str(v_) for v_ in (_pl if isinstance(_pl, list) and _pl else [x.get("pos")]) if v_ not in (None, "")]
+    def _r61_at(x):        # ... and where the visit STANDS: what AdvancedMD stored where the import read it back, else what was sent
+        _ps = x.get("pos_stored"); _sn = _r61_sent(x)
+        return [str(v_) for v_ in _ps] if isinstance(_ps, list) and _ps and len(_ps) == len(_sn) and all(v_ not in (None, "") for v_ in _ps) else _sn
+    _a61 = [x for x in _rh if "61" in _r61_at(x)]                                      # a line of the visit stands at 61
+    _n61 = [x for x in _rh if "61" in _r61_sent(x) and "61" not in _r61_at(x)]         # sent at 61, stored at another place: NOT at 61
+    _k21 = [x for x in _rh if "61" not in _r61_sent(x) and "61" not in _r61_at(x)]     # a visit of a rehab stay that was kept at 21
+    _held = [h for h in (insp.get("held") if isinstance(insp, dict) and isinstance(insp.get("held"), list) else []) if isinstance(h, dict)]
+    _q61 = [h for h in _held if h.get("pos61") is True]; _qnf = [h for h in _held if str(h.get("why") or "").startswith("nursing-facility code under the hospital building")]
+    if _rh or _q61:
+        L(""); L("## Inpatient rehab (William 11/25/2026: the rehab unit's visits go out at place of service 61 and are watched until they are paid)")
+        L("- %d visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (%d chart(s)); %d visit(s) of a rehab stay that began at 21 kept at 21 - the comparison group (%d chart(s))%s." % (
+            len(_a61), len({x.get("pid") for x in _a61}), len(_k21), len({x.get("pid") for x in _k21}),
+            ("; %d visit(s) sent at 61 and stored at another place of service - NOT at 61, see the line at the top" % len(_n61)) if _n61 else ""))
+        if _n61:      # chart, date of service, codes, visit and the stored place of each - ids, codes and dates of service only
+            _r61_vst = lambda x: ("vst" + re.sub(r"\D", "", str(x.get("visit")))) if re.sub(r"\D", "", str(x.get("visit") or "")) else "visit ?"
+            _r61_day = lambda x: x.get("dos") if isinstance(x.get("dos"), str) and re.fullmatch(r"[0-9]{2}/[0-9]{2}/[0-9]{4}", x.get("dos")) else "date ?"
+            _r61_cds = lambda x: "+".join(c_ for c_ in (x.get("cpts") if isinstance(x.get("cpts"), list) else []) if isinstance(c_, str) and re.fullmatch(r"[A-Za-z0-9]{5}", c_)) or "code ?"
+            _r61_plc = lambda x: "/".join(sorted({v_ for v_ in _r61_at(x) if re.fullmatch(r"[0-9]{1,2}", v_)})) or "?"
+            _T("PLACE OF SERVICE 61 NOT KEPT: %d visit(s) of a rehab stay were sent at 61 and AdvancedMD stored another place of service - they are NOT at place of service 61, are not counted above as entered at HCA REHAB and name no new rehab stay: %s. For William before the claim run; a routine changes nothing on these visits (the import says the same in its line POS NOT KEPT; the payment monitor goes by what was stored too - a visit stored at 21 stands in its comparison group with the visits kept at 21, never among the visits at 61)" % (
+                len(_n61), "; ".join("%s %s %s (%s) sent at 61, stored at %s" % (_pat_ok(x.get("pid")) or "chart ?", _r61_day(x), _r61_cds(x), _r61_vst(x), _r61_plc(x)) for x in _n61[:30]) + ((" +%d more - see the import register" % (len(_n61) - 30)) if len(_n61) > 30 else "")))
+        _INIT = {"99221", "99222", "99223"}; _SIGNS = ("facility number", "new admission 1-2 days after an acute stay")
+        _new = []
+        for x in _a61:
+            if _INIT & {str(c_) for c_ in (x.get("cpts") or [])} and _pat_ok(x.get("pid")):
+                _sg = _stay(x).get("sign"); _d = str(x.get("dos") or ""); _new.append("%s %s (%s)" % (x["pid"], _d if re.fullmatch(r"[0-9]{2}/[0-9]{2}/[0-9]{4}", _d) else "date ?", _sg if _sg in _SIGNS else "its stay began at HCA REHAB"))
+        if _new: L("- New rehab stay(s) at 61, by chart and date of the first visit: %s. A patient who went HOME and came back to the ACUTE hospital one or two days later reads the same way - say so on the board and that stay's visits go back to 21." % "; ".join(_new))
+        for h in _q61: _T(str(h.get("why") or "")[:600] if str(h.get("why") or "").startswith("PLACE OF SERVICE 61:") else "PLACE OF SERVICE 61: AdvancedMD's Claim Inspector questions rehab visit vst%s (%s) - for William; nothing was changed" % (re.sub(r"\D", "", str(h.get("visit") or "")), _pat_ok(h.get("pid")) or "chart ?"))
+    for h in _qnf: _T("vst%s %s: nursing-facility code under the hospital building - which building was the patient in? The visit is held, not moved (William 10/31/2026: such a visit was not in the rehab unit)" % (re.sub(r"\D", "", str(h.get("visit") or "")), _pat_ok(h.get("pid")) or "chart ?"))
+except Exception as _e: _T("the inpatient-rehab lines could not be built (%s) - read stay / pos_kind in the import register and the held rows of the inspector register" % type(_e).__name__)
 L("")
 L("## Next")
 L("- AMD's automatic claim run (~17:00 ET) sends every clean approved claim; the submission wizard sends sooner.")

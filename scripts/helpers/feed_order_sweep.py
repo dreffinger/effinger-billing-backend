@@ -62,6 +62,12 @@
 #   same command again later - never again and again in a loop. The daily listing is unchanged, and so is every other path.
 #   This helper does not start with a resave.py from before 11/11/2026 (one that leaves no such note): 'FEED ORDER SWEEP DID NOT RUN'.
 #   A known, older gap, not closed here: the OTHER helpers that call visit_charges do not look at that note yet and still save what they read.
+#   A GUARD CALL THAT ENDS IN AN ERROR REFUSES ONE VISIT, NOT THE RUN (11/25/2026, found by the independent check of that day's guard change). The guard now raises
+#   when a chart carries a mark that the patient has passed away and nobody can name the day (DayLost); it can also fail on reading the chart. Such an error used
+#   to end the whole run at that visit ('DID NOT FINISH'), so the visits of other charts behind it were never saved or moved - run after run. Now that ONE visit is
+#   refused like any failed check ('FEED ORDER SAVE - not saved' / 'FEED ORDER CLINICIAN - not moved', its row says refused and not sent, its TOP line says so) with
+#   the words 'for William: the date of death could not be checked (<the error's kind>) - nothing is sent for this visit on this run' - never the error's own words -
+#   and the sweep goes on with the next visit. The next run asks the guard again.
 # Never: resets a chart's default order, adds or ends a plan, rebills (chargerebill answers HTTP 500 on these visits), saves a billed or
 #   paid visit, touches a visit the approved file keeps for William, takes the free 271 as proof for a date of service (it answers for
 #   today) or a plan begin date in AdvancedMD as proof (68 of the 84 carry the add-plan default: one year before the day the plan was
@@ -75,7 +81,7 @@
 #   The flags combine; one run does the listing, then the dated checks, then the moves, then the saves.
 import os, re, sys, json, glob, time, datetime
 import xml.etree.ElementTree as ET
-os.environ.setdefault("DECEASED_CACHE", "/home/claude/unbilled/deceased_cache_local.json")      # the real dates live in the workspace (as claimocity_verify.py)
+# (11/25/2026: no cache file is named here any more - the deceased guard keeps ONE cache, the workspace's registers/deceased_cache.json, as claimocity_verify.py)
 import amd, resave
 REG = "registers"; APPROVED = os.path.join(REG, "feed_order_approved.json")
 PHYSICIAN, NP = "prof13", "prof15"
@@ -105,6 +111,7 @@ LIMITED = r"FAMILY PLANNING|LIMITED TO|EMERGENCY (?:SERVICES )?ONLY|QMB ONLY|\bS
 MA_TYPES = {"HN", "HM", "PR", "PS", "IN", "MD"}      # a Medicare Advantage / other primary plan on a Medicare answer (precheck.py's list; Medicaid never leads over Medicare)
 DECISIONS = {"send", "send_if_active_on_dos", "order_by_dated_check", "william"}
 STANDING = "standing word, William 11/10/2026"
+DEATH_UNCHECKED = "for William: the date of death could not be checked (%s) - nothing is sent for this visit on this run"      # 11/25/2026: the words of a visit whose deceased-guard call ended in an error (%s = the error's kind - DayLost: a death is on record for the chart and nobody can name its day)
 class NotAllRead(Exception):
     """11/11/2026 (round 8): AdvancedMD did not return all of a visit's charges, so NOTHING was sent for that visit. It is raised and caught
     inside main() only - it never leaves this helper: it ends the run by the very path an error at the same read takes (the top of the
@@ -501,9 +508,16 @@ def main():
         bad += [("admission", "for William: " + w_) for w_ in info.get("admission") or []]
         return bad
     def deceased(info, order):
+        """[] when the deceased guard clears the visit, else the one failed check. 11/25/2026 (the independent check of the death check's second round - a
+        regression): the guard RAISES since that day when a death is on record for the chart and nobody can name its day (DayLost), and any guard call can end
+        in an error (the chart could not be read, a time-out). The error went out of here and ended the whole run 'DID NOT FINISH' at the first such visit: the
+        visits of OTHER charts behind it were never saved, run after run. Now it is caught HERE, per visit: that one visit is refused in fixed words - the error
+        by its kind, never by its own words (they can name a patient) - like any other failed check, and the sweep goes on with the next visit. A stop from
+        outside (SystemExit) is no such error and still ends the run."""
         import deceased_guard
         p = next((x for x in chart(info["chart"])["open"] if x["seq"] == order.split(",")[0]), {})
-        blocked, why = deceased_guard.check(num(info["chart"]), info["dos"], p.get("code"), next((c for c in info["cpts"] if c in CCM), None), allow_lookup=LIVE)
+        try: blocked, why = deceased_guard.check(num(info["chart"]), info["dos"], p.get("code"), next((c for c in info["cpts"] if c in CCM), None), allow_lookup=LIVE)
+        except Exception as e: return [("deceased", DEATH_UNCHECKED % (re.sub(r"[^A-Za-z]", "", type(e).__name__)[:40] or "error"))]
         return [("deceased", "for William: " + why)] if blocked else []
     stopped = []; MOVED = set()
     def reread(info):

@@ -2,8 +2,20 @@
 # Decides, per visit the inspector flagged (the standing rules of the billing-easy-task skill):
 #   117065068 Hospitalization From Date empty -> admission = the feed's PV1 admit date, else the visit's own 99223 DOS, else the
 #              most recent 99223 within 45 days on the chart (gettxhistory); updextrainsinfo per CPT, then full-echo resave to reinspect.
-#   Pattern 4531 (99309 at the hospital location) -> the HCA SNF unit: facility fac67 (HCA REHAB), charge POS 31, resave.
-#              (11/10/2026: never for a CCM visit - CCM at the hospital location is a wrong building and is held for William.)
+#   Pattern 4531 (a nursing-facility code under the hospital building) -> HELD for William, NEVER MOVED: "nursing-facility code under the hospital building - which building was the patient in?".
+#              Until 11/25/2026 this step moved such a visit to HCA REHAB (fac67) at place of service 31. William 10/31/2026: that was wrong - those patients were not in the
+#              rehab unit, the Claimocity location was wrong ("99309 would be wrong - not HCA rehab"). This step changes no facility and no place of service on any visit: its
+#              re-save is a full echo. (A CCM visit at the hospital location is a wrong building too: held for William with the edit's own words, as since 11/10/2026.)
+#   INPATIENT REHAB STAY (William 11/25/2026: the rehab visits go in at place of service 61 - claimocity_import.py enters them at HCA REHAB, fac67):
+#              A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP. When the Claim Inspector
+#              lists such a visit with an edit that names the place of service or the facility (Pattern 4531 or any other - also one whose number is on the bypass list),
+#              the step holds it, changes NOTHING on it and prints "PLACE OF SERVICE 61: AdvancedMD's Claim Inspector questions rehab visit <visit> (<pattern and its
+#              text>) - for William; nothing was changed". The held row carries the same sentence and "pos61": true; the digest puts it at the top of the report. Every
+#              other edit on such a visit is handled as on any hospital visit (the admission date, the advisories), and the re-save echoes the visit's own facility and
+#              place of service. A visit of a rehab stay that was KEPT at 21 (pos_kind rehab-stay-kept-21) is a hospital visit like any other for this step.
+#              11/25/2026 (review): BOTH listings are read for it. An edit about the place that shows only on the second listing - the Claim Inspector listed the visit
+#              with no edit a second earlier, or the step's own re-save brought it - is held the same way and never bypassed, whatever its number; the row then also
+#              says what the step had already done to the visit before the edit showed ("(before this edit showed, this step had: ...)").
 #   Pattern 20389 / primary-position dx (sequela, external cause, Z secondary-only, 'code first' manifestation) -> William's
 #              9/14 cascade (dx_primary_fix.plan): delete the code, else move it behind the condition code, else I10 first; full-echo
 #              dx save; the visit is re-listed and the leftover advisories bypassed with fresh ids.
@@ -72,6 +84,12 @@ MINE = {c["visit"].replace("vst", ""): c for c in REG["created"]}
 DX = json.load(open(DXCACHE)); DCODE2ICD = {v: k for k, v in DX.items()}
 ADVISORY = ("68065080", "35790", "7011", "3429", "33799", "35777", "4426", "4310", "4311", "20657", "23400", "4564", "28158", "27261", "20657", "692")      # 692 = a 99223 after follow-up hospital visits: a new admission (William 11/25/2026 - the header)
 HOSP = {"99221", "99222", "99223", "99231", "99232", "99233", "99238", "99239"}
+NF_VISIT = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}      # the nursing-facility visit codes (claimocity_import.py NF_VISIT - the self-test compares the two, code for code)
+ACP = {"99497", "99498"}                                              # advance care planning: it rides with a visit
+WHICH_BUILDING = "nursing-facility code under the hospital building - which building was the patient in?"      # William 10/31/2026 ("99309 would be wrong - not HCA rehab"): such a visit is held for him with this question, never moved (the header)
+REHAB_POS = "61"                                                      # the place of service of a visit the import entered as an inpatient rehab stay (claimocity_import.py REHAB_POS; its register row says pos_kind rehab)
+PLACE_WORDS = re.compile(r"place of service|\bpos\b|facilit|\blocation\b", re.I)      # the words of an edit that is about WHERE the visit was
+POS61_LINE = "PLACE OF SERVICE 61: AdvancedMD's Claim Inspector questions rehab visit vst%s (%s) - for William; nothing was changed"      # William 11/25/2026 ("let us monitor them"): printed, and the held row's reason - the digest puts it at the TOP OF THE REPORT
 OUT = {"fixed": [], "bypassed": [], "held": [], "laterality": [], "quality_removed": []}
 QUALITY_CODE = "1123F"; QUALITY_PCODE = "pcode65441"                  # the import's quality line (claimocity_import.py QUALITY_CODE / QUALITY_PCODE)
 MVP_CODE = "M0004"; MVP_PCODE = "pcode692183"                         # the import's option-code line (claimocity_import.py MVP_CODE / MVP_PCODE)
@@ -94,6 +112,23 @@ def names_lines(words, qcharge="", mcharge=""):
     q = named(QUALITY_CODE, QUALITY_PCODE, qcharge); m = named(MVP_CODE, MVP_PCODE, mcharge)
     zero = bool(re.search(r"zero|\$0", low)) and bool(re.search(r"charge|amount", low))
     return (q or (zero and not m)), (m or (zero and not q))
+def rehab_visit(c):
+    """Did the import enter this visit as an inpatient rehab stay - at HCA REHAB, place of service 61 (its register row: pos_kind rehab on its lines, pos 61)? A visit of a
+    rehab stay that was KEPT at 21 (pos_kind rehab-stay-kept-21) is not: for this step it is a hospital visit like any other."""
+    k = c.get("pos_kind"); k = k if isinstance(k, list) else [k]
+    return "rehab" in k or str(c.get("pos") or "") == REHAB_POS
+def names_place(e):
+    """Is this Claim Inspector edit about WHERE the visit was - Pattern 4531 (a code not typical for the place of service), or words that name the place of service, the
+    facility or the location?"""
+    return pattern(e) == "4531" or bool(PLACE_WORDS.search(e["text"] or ""))
+def pos61_words(vid, place):
+    """The ONE sentence for a visit entered at 61 that the Claim Inspector questions for its place of service or its facility (POS61_LINE) - the held row's reason and the
+    printed line, on the first listing and (11/25/2026, review) on the listing after it alike."""
+    return POS61_LINE % (vid, "; ".join(e["text"] if re.search(r"Pattern \d+", e["text"]) else "edit %s: %s" % (e["number"], e["text"]) for e in place)[:300])
+def hold_words(data, ask=""):
+    """The reason of a hold: the edits' own words - behind William's question when the hold has one (a nursing-facility code under the hospital building)."""
+    w = "; ".join(e["text"][:80] for e in data)
+    return "%s (%s)" % (ask, w) if ask else w
 def split_errors(errors, qline, mline=""):
     """(advisories this step bypasses, the rest). On a visit that carries the quality line an edit whose words name the line is never bypassed - nor,
     on a visit that carries the M0004 line, an edit whose words name that line."""
@@ -131,8 +166,9 @@ def no_charge_lines(c):
         except Exception: pcs[x] = None
     if pcs.get(rec[0]) == MVP_PCODE and pcs.get(rec[1]) == QUALITY_PCODE: return [(QUALITY_CODE, rec[1]), (MVP_CODE, rec[0])]
     return [(QUALITY_CODE, rec[0]), (MVP_CODE, rec[1])]
-def held(vid, c, why, quality=False, names=False, mvp=False, mnames=False):
+def held(vid, c, why, quality=False, names=False, mvp=False, mnames=False, pos61=False):
     row = {"visit": vid, "pid": c["pid"], "why": why}
+    if pos61: row["pos61"] = True              # an edit about the place of service or the facility of a visit entered at 61: the row's sentence goes to the top of the report (11/25/2026)
     if quality: row["quality"] = True          # the visit still carries the quality line
     if names: row["names_line"] = True         # the words name the line
     if mvp: row["mvp"] = True                  # the visit still carries the M0004 line
@@ -175,17 +211,16 @@ def anchor_99223(pid, dos_mdy):
         except Exception: continue
         if d <= dos and (dos - d).days <= 45 and (best is None or d > best): best = d
     return best.strftime("%m/%d/%Y") if best else None
-def resave_visit(cid, hospfrom=None, facility=None, pos=None):
-    """Full-echo resave (reinspect) with optional facility / POS override."""
+def resave_visit(cid, hospfrom=None):
+    """Full-echo resave (reinspect): the visit and every charge go back exactly as AdvancedMD returned them. 11/25/2026: this step changes no facility and no place of
+    service on any visit - the override this function had (it moved a nursing-facility code under the hospital building to HCA REHAB at 31) is gone."""
     vis, pat, allc = resave.visit_charges(cid); chg = ""
     for c in allc:
         a = {"id": c.get("id")}
         for f in resave.CHG_FIELDS:
             if c.get(f) is not None: a[f] = c.get(f)
-        if pos: a["pos"] = pos
         chg += "<charge %s/>" % " ".join('%s="%s"' % (k, v) for k, v in a.items())
     va = dict(vis.attrib); va["force"] = "1"
-    if facility: va["facility"] = facility
     if hospfrom: va["onhcfa"] = "1"
     ext = resave._extins_xml(vis, hospfrom) if hospfrom else ""
     r = amd.post(amd.msg("updvisitwithnewcharges", "chargeentry", {"patientid": pat.get("id"), "episodeid": vis.get("episode"), "approval": "1", "inspectorenabled": "1",
@@ -507,6 +542,13 @@ def main():
         cid = re.sub(r"\D", "", next((x for x in c["charges"] if x not in (qline, mline)), c["charges"][0]))   # the visit's own first charge (never a no-charge line)
         note = []
         try:
+            # 0. INPATIENT REHAB STAY (William 11/25/2026 - the header): a visit the import entered at place of service 61 that the Claim Inspector lists with an edit about its
+            # place of service or its facility is held for William with NOTHING changed - no bypass, no admission date, no dx fix, no re-save - and said in ONE line for the top
+            # of the report. The register is written at once: this visit leaves the loop here.
+            _place = [e for e in info["errors"] if names_place(e)] if rehab_visit(c) else []
+            if _place:
+                _w = pos61_words(vid, _place)
+                held(vid, c, _w, quality=bool(qline), mvp=bool(mline), pos61=True); print(_w); write_register(); continue
             # 1. hospitalization date
             if "117065068" in pats:
                 admit = c.get("admit") and "%s/%s/%s" % (c["admit"][4:6], c["admit"][6:8], c["admit"][:4])
@@ -515,16 +557,15 @@ def main():
                 if admit and any(x in HOSP for x in c["cpts"]):
                     ok = set_hosp(vid, c["cpts"], admit); note.append("admit %s %s" % (admit, "written" if ok else "WRITE FAILED"))
                 elif not any(x in HOSP for x in c["cpts"]):
-                    note.append("non-hospital CPT at a hospital facility - see location fix")
+                    note.append("non-hospital CPT at a hospital facility - no admission date applies; held for William with the edit that names it")
                 else:
-                    held(vid, c, "no admission anchor (no PV1 admit, no 99223 within 45 days)", quality=bool(qline), mvp=bool(mline)); print("HOLD", vid, "no admit anchor"); continue
-            # 2. location: SNF codes sent by HCA -> HCA REHAB unit
-            fac = pos = None
-            # 11/10/2026 (William's place-of-service rule): CCM at the hospital location is a wrong building, never an HCA REHAB stay -
-            # it is not moved to fac67 / POS 31; the 4531 error stays and the visit is held for William like any other data error
-            # 11/10/2026 (review): a visit the import itself flagged (pos_err - its building is in doubt) is never moved to HCA REHAB either; it is held
-            if "4531" in pats and c.get("fac") == "fac29" and all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):
-                fac, pos = "fac67", "31"; note.append("facility fac29 -> fac67 (HCA REHAB), POS 31")
+                    held(vid, c, "no admission anchor (no PV1 admit, no 99223 within 45 days)", quality=bool(qline), mvp=bool(mline)); print("HOLD", vid, "no admit anchor"); write_register(); continue      # 11/25/2026: written before the loop goes on - this hold skipped the write below, so the held row of the LAST visit listed never reached the register
+            # 2. location: NO visit is moved (11/25/2026). Until then a nursing-facility code under the hospital building (Pattern 4531 at the hospital facility) was moved to
+            # the HCA REHAB facility at place of service 31. William 10/31/2026: wrong - those patients were not in the rehab unit, the Claimocity location was wrong. The 4531
+            # edit stays and the visit is HELD for William with the question which building the patient was in (step 5) - as a CCM visit at the hospital location is held
+            # (11/10/2026: a wrong building; the edit's own words) and a visit the import itself flagged (pos_err). Nothing here changes a facility or a place of service.
+            ask = WHICH_BUILDING if ("4531" in pats and c.get("fac") == "fac29" and any(x in NF_VISIT for x in c["cpts"]) and all(x in NF_VISIT or x in ACP for x in c["cpts"])) else ""
+            if ask: note.append("nursing-facility code under the hospital building: not moved - held for William (which building?)")
             # 3. dx cascade on primary-position problems
             dx_notes = []
             if "20389" in pats or any("primary" in e["text"].lower() and "position" in e["text"].lower() for e in info["errors"]):
@@ -539,14 +580,23 @@ def main():
                     msg, det = dx_primary_fix.save_visit_dx(cid, new_by_charge); dx_notes.append(msg)
             if dx_notes: note.extend(dx_notes)
             # 4. resave to reinspect when something changed (or a stale hospitalization error)
-            if "117065068" in pats or fac or dx_notes:
+            if "117065068" in pats or dx_notes:
                 hosp = None
                 if "117065068" in pats and any(x in HOSP for x in c["cpts"]):
                     hosp = (c.get("admit") and "%s/%s/%s" % (c["admit"][4:6], c["admit"][6:8], c["admit"][:4])) or (c["dos"] if "99223" in c["cpts"] else None) or anchor_99223(re.sub(r"\D", "", c["pid"]), c["dos"])
-                ok, r = resave_visit(cid, hosp, fac, pos); note.append("resave %s" % ("ok" if ok else r[:120]))
+                ok, r = resave_visit(cid, hosp); note.append("resave %s" % ("ok" if ok else r[:120]))
             # 5. re-list and bypass the advisories that remain - never an edit that names the quality line (11/10/2026)
             time.sleep(1.0)
             again = list_batch().get(vid)
+            # 11/25/2026 (review): the edit about the place of service or the facility of a visit entered at 61 can show only on THIS listing - the first one came back without it (3 of
+            # 68 visits in the committed inspector registers were listed with no edit at first) or the step's own re-save brought it. Step 0 read the first listing only: such an edit
+            # was held as an ordinary hold, with no line for the top of the report, and BYPASSED when its number is on the bypass list. It is held here the same way as there: no
+            # bypass of ANY edit of the visit, nothing more changed, the same sentence - and, when the step had already done something to the visit before the edit showed (the
+            # admission date, a re-save that echoes the visit's own facility and 61), the row says what
+            _place = [e for e in again["errors"] if names_place(e)] if (again and rehab_visit(c)) else []
+            if _place:
+                _w = pos61_words(vid, _place) + ((" (before this edit showed, this step had: %s)" % "; ".join(note)[:200]) if note else "")
+                held(vid, c, _w, quality=bool(qline), mvp=bool(mline), pos61=True); print(_w); note.append("HELD: place of service 61 - " + "; ".join(pattern(e) for e in _place)); again = None
             if again:
                 if mline:      # the visit carries the M0004 line too: the lines known by their own procedure (the import may have recorded them the other way round)
                     _nl = dict(no_charge_lines(c)); qline = _nl.get(QUALITY_CODE, ""); mline = _nl.get(MVP_CODE, "")
@@ -555,14 +605,14 @@ def main():
                 note.extend(advisories(vid, c, adv))
                 if data and mline:      # 11.6: both no-charge lines come off when the edits name neither or both; only the M0004 line when they name M0004 alone. The 1123F
                     # line never leaves the M0004 line behind (8.2: M0004 rides only with 1123F; confirm review NH2-1): words that name 1123F take both off
-                    words = "; ".join(e["text"][:80] for e in data)
+                    words = hold_words(data, ask)
                     nq = bool(qline) and any(names_lines(e["text"], qline, mline)[0] for e in data); nm = any(names_lines(e["text"], qline, mline)[1] for e in data)
                     if not QUALITY_PROVEN or nq or nm:
                         which = [(k, x) for k, x in ((QUALITY_CODE, qline), (MVP_CODE, mline)) if x and (nq or not nm or k == MVP_CODE)]
                         note.append(take_line_off(vid, c, cid, words, nq, which, nm))
                     else: held(vid, c, words, quality=bool(qline), mvp=True); note.append("HELD: " + "; ".join(pattern(e) for e in data))
                 elif data:
-                    words = "; ".join(e["text"][:80] for e in data); named = bool(qline) and any(names_line(e["text"], qline) for e in data)
+                    words = hold_words(data, ask); named = bool(qline) and any(names_line(e["text"], qline) for e in data)
                     if qline and (not QUALITY_PROVEN or named): note.append(take_line_off(vid, c, cid, words, named))      # William 11/10/2026: the routine takes the line off by itself
                     else: held(vid, c, words, quality=bool(qline), names=named); note.append("HELD: " + "; ".join(pattern(e) for e in data))
             OUT["fixed"].append({"visit": vid, "pid": c["pid"], "patterns": sorted(pats), "note": note})

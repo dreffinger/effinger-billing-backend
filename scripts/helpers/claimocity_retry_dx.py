@@ -28,6 +28,21 @@
 #   Codes > New, ICD-10 code + description).
 # Dry by default (prints what would be entered, writes nothing in AMD); --live enters. Exit 0 done (also when nothing to retry), 2 a step failed.
 # Usage: cd /home/claude/unbilled && python3 claimocity_retry_dx.py [--live] [--stamp <UTC stamp>] [--no-stedi]
+# 11/25/2026 (the second verification of the death check): the same for a visit the import kept out with "a date of death is on record for this chart but its
+#   day cannot be read - not entered" (the workspace's cache carried the privacy gate's placeholder and nobody named the day): it is handed to the import again,
+#   which asks again - it is entered once a day AFTER the visit is known, kept out for good once a day before it is, and waits until then.
+#   THIS KIND MUST CONVERGE BY ITS OWN RULES (the independent check of that round, the same day). A held visit is NOT entered by the retry, so 'a no-op the second
+#   time' did not hold for it: every live retry wrote the held row again into its own register (stamp ...R) and kept its own batch file, and the next run read
+#   both as one more batch - 1, 2, 4, 8 messages per run in one workspace, one more stale 'batch(es) <stamp>R ... not on hand' line per run in a fresh container,
+#   and no end once the visit was 'kept out for good'. So: (1) a held row is taken only from a register that is NOT a retry's own; (2) each visit - the feed
+#   patient, its codes, its dates of service - goes to the import at most ONCE per run; (3) it is left alone for good once a LATER register, a retry's own included,
+#   shows that visit entered (a created row), kept out for good ('DOS after date of death ...'), or answered 'all lines already in AMD' - the import writes
+#   the visit's codes and dates of service into all three rows: the held row, the 'DOS after' row and (since the third round of 11/25/2026) the 'already' row.
+#   Until then the 'already' row named the feed patient only, and it ended the retry only where the retry's own batch file was on hand and named that one
+#   visit, or the reconciliation register named it: in a new container, and after a retry that had handed over two visits of the chart, the visit was handed
+#   over again in every run. A row of a register from before still counts the old way. Only a register LATER than the one that held the visit ends its retry -
+#   never an earlier one (a charge can be voided in between). The line this step prints about such charts
+#   names only the charts whose visit this run really hands over. Nothing here reads the cache of dates of death: the import decides, every run, from what it reads.
 import os, sys, re, json, glob, subprocess, datetime, collections
 WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(WS)
@@ -40,7 +55,7 @@ def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0
 # helpers here the repository's copies exactly as the ingest does - the one shared function claimocity_helpers_current.make_current: with the clone
 # there, every helper that differs is replaced by the clone's copy; without one, each is checked by its version line. It never holds a visit for
 # this (rules.md part 6): what could not be made current is said at the end of the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-25.1"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
+POS_RULE = 'POS_RULE_VERSION = "2026-11-25.5"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"
 REPO_REGS = os.path.join(os.path.dirname(os.path.dirname(REPO_HELPERS)), "practices", "ehpa", "registers")   # the recon registers on main (the workspace copies come first); derived, so the selftest sandbox moves it too
 def _helpers_current():
     """(console lines, RESULT warning) from make_current in claimocity_helpers_current.py - the copy here, else the clone's."""
@@ -69,6 +84,20 @@ def _known_cpts():
         if mp and mf: return set(re.findall(r'"([0-9A-Z]{5})"\s*:\s*"pcode\d+"', mp.group(1))) & set(re.findall(r'"([0-9A-Z]{5})"\s*:\s*"[0-9.]+"', mf.group(1)))
     return set()
 KNOWN_CPTS = _known_cpts(); unknown_cpts = set()
+DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"      # the same line as in claimocity_import.py (the self-test holds the two together)
+DEATH_AFTER_WHY = "DOS after date of death"      # how the import's row starts for a visit it keeps out FOR GOOD (a day is known and lies before the visit)
+ALREADY_WHY = "all lines already in AMD"         # the import's answer for a visit the chart already carries
+death_day = set()  # the charts of the held visits THIS run hands over (chart ids only - for the one line this step prints about them)
+held = {}          # stamp -> {feed patient id: [(the row's codes, the visit's lines {(code, MM/DD/YYYY)} - None for a row that names no dates, the chart id)]}: the visits kept out with DEATH_DAY_WHY - from registers that are NOT a retry's own
+ended = []         # (stamp, feed patient id, the visit's lines) of every 'DOS after date of death' row that names its visit: kept out for good
+answered = []      # (stamp, feed patient id, the visit's lines) of every 'all lines already in AMD' row that names its visit - the import writes the visit's codes and dates of service into that row since 11/25/2026 (the third round): the chart carries the visit
+already_r = []     # (a retry's own stamp, feed patient id) of every 'all lines already in AMD' row in a retry's own register that names NO visit (a register from before that day) - _kept_out reads which one from that retry's batch file
+def _norm(stamp): return re.sub(r"[^0-9TZR]", "", str(stamp))      # 2026-11-10T1319Z and 20261110T1319Z are the same batch; a retry's stamp ends with R and sorts behind the batch of its minute
+def _lines(row):
+    """The visit a skip row names - {(code, its date of service MM/DD/YYYY)} from its cpts and dos_lines - or None when the row does not name it line by line."""
+    cp, dl = row.get("cpts"), row.get("dos_lines")
+    if not (isinstance(cp, list) and isinstance(dl, list) and cp and len(cp) == len(dl) and all(isinstance(x, str) and x for x in cp + dl)): return None
+    return frozenset(zip(cp, dl))
 want = {}          # stamp -> {feed patient id: the CPT codes its skips name} - review round 2: a visit is retried only when it carries one of them
 nocpt = set()      # review round 3: feed ids whose skip named no code at all (a feed line without a CPT) - for William; the import itself keeps out a
                    # visit after a recorded date of death or on a chart flagged deceased, reading both fresh on every run (no guard here can go stale)
@@ -91,6 +120,20 @@ for rf in sorted(glob.glob("registers/feed_import_*.json")):
             if not mc: nocpt.add(str(row.get("feed_id") or "?"))
             elif mc.group(1) in KNOWN_CPTS: want.setdefault(stamp, {}).setdefault(row["feed_id"], set()).add(mc.group(1))
             else: unknown_cpts.add(mc.group(1))
+        elif why.startswith(DEATH_DAY_WHY):                                   # 11/25/2026 (the second verification of the death check): the import kept the visit out because a
+            # death is on record for the chart and nobody could name its day - it is handed to the import again, which asks again and enters it, keeps it out for good (a
+            # day before the visit), or keeps it waiting. THE RETRY MUST CONVERGE (the independent check of that round, finding 3): every live retry writes this row again
+            # into its OWN register (stamp ...R) and keeps its own batch file - read as a batch of their own, the visit was handed over once more for each: 1, 2, 4, 8
+            # messages per run. So the row is taken only from a register that is NOT a retry's own; the visit goes to the import at most once per run; and it is left
+            # alone for good once a LATER register shows it entered, answered 'already', or kept out with 'DOS after date of death' (_kept_out, below).
+            if stamp.endswith("R"): continue
+            _c = {c_ for c_ in (row.get("cpts") or []) if isinstance(c_, str) and c_}
+            if row.get("feed_id") and _c: held.setdefault(stamp, {}).setdefault(row["feed_id"], []).append((_c, _lines(row), str(row.get("pid") or "?")))
+        elif why.startswith(DEATH_AFTER_WHY):                                 # kept out for good - of ANY register, a retry's own included (the row names its visit since 11/25/2026)
+            if row.get("feed_id") and _lines(row): ended.append((_norm(stamp), row["feed_id"], _lines(row)))
+        elif why == ALREADY_WHY and row.get("feed_id"):                       # the chart already carries the visit: of ANY register when the row names its visit; a row that names none counts from a retry's own register only (its batch file says which visit)
+            if _lines(row): answered.append((_norm(stamp), row["feed_id"], _lines(row)))
+            elif stamp.endswith("R"): already_r.append((stamp, row["feed_id"]))
 # review round 1: what AdvancedMD got, from the recon registers - a visit the import answered "already" (the chart carries it) has no created row,
 # and its skip row stays in the old batch for good; without this it was fetched, imported and reconciled again on every run
 for rf in sorted(set(glob.glob("registers/feed_recon_*.json")) | set(glob.glob(os.path.join(REPO_REGS, "feed_recon_*.json")))):
@@ -105,8 +148,8 @@ def unknown_note():
     s = (" | still waiting on CPT codes the import does not know: " + ", ".join(sorted(unknown_cpts)) + " (add them to PCODE and FEE in claimocity_import.py)") if unknown_cpts else ""
     return s + ((" | a feed line without a CPT code (feed ids %s) - for William: Claimocity sent the visit with no code" % ", ".join(sorted(nocpt))) if nocpt else "")
 UNKNOWN_NOTE = unknown_note()
-if not want:
-    print("retry-dx: nothing to retry (no 'no usable dx' skip and no 'unknown CPT' skip the import can enter now in the registers)" + UNKNOWN_NOTE); sys.exit(0)
+if not want and not held:
+    print("retry-dx: nothing to retry (no 'no usable dx' skip, no 'unknown CPT' skip the import can enter now and no visit kept out for a date of death nobody could read in the registers)" + UNKNOWN_NOTE); sys.exit(0)
 
 # ---- 2 the messages behind those skips ------------------------------------------------------------------------------------------
 def parsed_for(stamp):
@@ -125,18 +168,43 @@ def parsed_for(stamp):
     if c.returncode or not os.path.exists(pf): print("retry-dx: parse of batch %s failed: %s" % (stamp, (c.stdout + c.stderr)[-200:])); return []
     return json.load(open(pf))
 
-msgs = []
-for stamp, ids in sorted(want.items()):
+def _visit(m): return frozenset((c["cpt"], mdy(c["dos"][:8])) for c in m["FT1"])      # a message's lines: each code under its own date of service
+def _kept_out(stamp, fid, lines):
+    """True when a register LATER than the one that held the visit (stamp) - a retry's own included - shows that very visit kept out for good ('DOS after date of
+    death') or answered 'all lines already in AMD': a row that names the visit's lines (the import writes them into both rows; into the 'already' row since
+    11/25/2026, the third round - so that answer ends the retry also in a new container, where the retry's batch file did not travel, and in a retry that handed
+    over two visits of the patient). An 'already' row of a register from before names the feed patient only: it counts when the row is a retry's own and that
+    retry's batch file is on hand and shows that it handed over this visit and no other of the patient. (A visit a later register shows ENTERED, or the
+    reconciliation register shows entered or answered 'already', is in `covered` like every retried visit.) Nothing here reads the cache: the import decides,
+    this only reads rows."""
+    s0 = _norm(stamp)
+    if any(st > s0 and f == fid and ln == lines for st, f, ln in ended + answered): return True
+    for st, f in already_r:
+        if f != fid or _norm(st) <= s0: continue
+        try: mine = [x for x in json.load(open("feed_parsed_%s.json" % st)) if isinstance(x, dict) and x.get("pid") == fid]
+        except Exception: continue
+        if mine and all(_visit(x) == lines for x in mine): return True
+    return False
+msgs = []; handed = set()
+for stamp in sorted(set(want) | set(held)):
+    ids = want.get(stamp, {}); hd = held.get(stamp, {})
     for m in parsed_for(stamp):
-        if m.get("pid") not in ids: continue                                    # 11/25/2026: a message with no patient id (no PID line) is nobody's skip - passed over, it never stops the retry
-        cpts = {c["cpt"] for c in m["FT1"]}
-        if not cpts & ids[m["pid"]]: continue                                    # another visit of that patient - not the one the skip names
+        fid = m.get("pid")
+        if fid not in ids and fid not in hd: continue                           # 11/25/2026: a message with no patient id (no PID line) is nobody's skip - passed over, it never stops the retry
+        cpts = {c["cpt"] for c in m["FT1"]}; lines = _visit(m)
+        by_skip = bool(cpts & ids.get(fid, set()))                               # a 'no usable dx' / 'unknown CPT' skip names one of its codes
+        why_held = next((x for x in hd.get(fid, []) if (x[1] == lines if x[1] is not None else bool(cpts & x[0]))), None)      # a held row names this visit (line by line; a row without dates: by one of its codes)
+        if not by_skip and why_held is None: continue                            # another visit of that patient - not the one a skip names
         if cpts - KNOWN_CPTS: unknown_cpts.update(c for c in cpts - KNOWN_CPTS if c); continue   # review round 3: a second code the import does not know yet
         if all(c["cpt"] in covered.get((m["pid"], mdy(c["dos"][:8])), set()) for c in m["FT1"]): continue   # every line, under its own date, is in AdvancedMD
+        if not by_skip:                                                          # a visit held for a lost day (and for nothing else): once per run, and not once a later register settled it
+            if (fid, lines) in handed or _kept_out(stamp, fid, lines): continue
+            handed.add((fid, lines)); death_day.add(why_held[2])
         m = dict(m); m["_batch"] = stamp; msgs.append(m)
 UNKNOWN_NOTE = unknown_note()
 if not msgs:
-    print("retry-dx: nothing to retry (every skipped visit that can be retried has been entered since)" + UNKNOWN_NOTE); sys.exit(0)
+    print("retry-dx: nothing to retry (every skipped visit that can be retried has been entered or kept out for good since)" + UNKNOWN_NOTE); sys.exit(0)
+if death_day: print("retry-dx: %d chart(s) have a visit that was kept out because a date of death is on record and its day could not be read (%s) - handed to the import again: it asks again and enters the visit, keeps it out for good, or keeps it waiting" % (len(death_day), ", ".join(sorted(death_day))))
 
 # ---- 3 re-check the codes in AMD (null cache entries are looked up again) ---------------------------------------------------------
 env = dict(os.environ, FEED_STAMP=rstamp, FEED_DX_CACHE=os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json"), PYTHONPATH=WS + ":" + HERE)
@@ -146,7 +214,7 @@ def step(name, cmd, must=True):
     log = "logs/claimocity_%s_%s.log" % (rstamp, name)
     with open(log, "w") as fh: r = subprocess.run(cmd, cwd=WS, env=env, stdout=fh, stderr=subprocess.STDOUT, text=True)
     tail = open(log).read().strip().splitlines()[-3:]
-    print("[%s] exit %d  %s" % (name, r.returncode, " | ".join(t[:110] for t in tail)))
+    print("[%s] exit %d  %s" % (name, r.returncode, " | ".join(t[:160] for t in tail)))
     if r.returncode and must: print("STEP FAILED:", name, "- see", log); sys.exit(2)
     return r.returncode
 step("dx", [sys.executable, os.path.join(HERE, "claimocity_dx.py")])
@@ -189,8 +257,9 @@ match = {}
 for m in ready:
     key = m["name"].upper().strip() + "|" + m["dob"][:8]; pid = pmap.get(m["pid"])
     if not pid: print("retry-dx: feed patient %s has no chart in the patient map - skipped" % m["pid"]); continue
-    e = match.setdefault(key, {"status": "FOUND", "pids": [pid], "amd_names": [], "feed_ids": [], "resolved": pid, "via": "patient map (retry)"})
+    e = match.setdefault(key, {"status": "FOUND", "pids": [pid], "amd_names": [], "feed_ids": [], "resolved": pid, "via": "patient map (retry)", "by_id": {}})
     if m["pid"] not in e["feed_ids"]: e["feed_ids"].append(m["pid"])
+    e["by_id"][m["pid"]] = pid      # 11/25/2026: each Claimocity id keeps the chart the map names for it (the import asks by the message's own id) - of two ids under one name and birth date the first one's chart is no longer used for both
 json.dump(match, open("feed_match_%s.json" % rstamp, "w"), indent=1)
 batches = sorted({m["_batch"] for m in ready})
 # 11/10/2026: the import reads the building (and with it the place of service), the provider and the admission date from the raw files.

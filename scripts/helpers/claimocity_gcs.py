@@ -5,6 +5,15 @@
 #   registers/claimocity_ingest.json (keyed by the SFTP name) and downloads the unknown non-empty ones into <dest> (default
 #   inbox/claimocity) for claimocity_ingest.py. Never deletes or moves anything in the bucket. Prints one summary line:
 #   "gcs: N objects, K new downloaded, newest <yyyymmdd>" and, when the newest object is older than 2 days, "copy job stale".
+# A REGISTERED FILE WHOSE COPY IN THE BUCKET HAS ANOTHER SIZE IS FETCHED AGAIN (11/25/2026, the verification of the feed part). Until then only a
+#   name the file register did not know was taken - and every feed file is named by its day. A file that was read while Claimocity was still
+#   writing it (cut between two messages, so that nothing in it was broken) was registered, and the rest of that day's visits was never read; a
+#   file sent again under its own name was never read either. claimocity_ingest.py now records the size of each file it registers ("bytes"); an
+#   object of another size counts as new here - the summary line counts it, a line 'changed: ...' names it - and is downloaded, the ingest reads
+#   it as new by its content, and the import enters only what is missing. An entry without a recorded size (the 44 files registered before that
+#   day) is never fetched again for its size. A file the ingest keeps UNREGISTERED (a message of it could not be read, a patient of it has no
+#   chart) is unknown to the register and so is new to every run, as before. The bucket's copy itself is only replaced by whoever fills the
+#   bucket: the copy job (claimocity/cloud_run/main.py) skips a name the bucket already holds.
 # The key: secrets/claimocity_gcs_key.json (chmod 600), the read-only service account claimocity-reader@ehpa-project-50717
 #   (roles/storage.objectViewer only). The routine installs it once per container with `--install-key <file>`: the file is the
 #   plaintext body of the newest message in the Gmail thread "claimocity gcs key", written as returned - either the whole key JSON
@@ -114,8 +123,14 @@ for line in r.stdout.splitlines():
 reg = json.load(open(REG)) if os.path.exists(REG) else {"files": {}, "runs": []}
 known = set(reg.get("files", {}))
 def sftp_name(n): return re.sub(r"^(download__)+", "", n)
+def read_size(n):
+    """The size the ingest recorded when it registered this file - None when the register does not know the file or recorded no size."""
+    e = (reg.get("files") or {}).get(sftp_name(n))
+    b = e.get("bytes") if isinstance(e, dict) else None
+    return b if isinstance(b, int) and not isinstance(b, bool) else None
 dates = sorted({d.group(0) for n, _, _ in objects for d in [re.search(r"20\d{6}", sftp_name(n))] if d})
-new = [(n, size) for n, size, _ in objects if size > 0 and sftp_name(n) not in known and n.endswith(".hl7")]
+changed = {n: read_size(n) for n, size, _ in objects if size > 0 and n.endswith(".hl7") and sftp_name(n) in known and read_size(n) is not None and read_size(n) != size}      # registered, and the bucket's copy has another size now
+new = [(n, size) for n, size, _ in objects if size > 0 and n.endswith(".hl7") and (sftp_name(n) not in known or n in changed)]
 if FETCH:   # named files regardless of the register (claimocity_retry_dx.py re-reads a batch's files in a fresh container)
     want = {sftp_name(x.strip()) for x in FETCH.split(",") if x.strip()}
     new = [(n, size) for n, size, _ in objects if sftp_name(n) in want]
@@ -138,4 +153,6 @@ if newest:
     age = (datetime.date.today() - datetime.date(int(newest[:4]), int(newest[4:6]), int(newest[6:8]))).days
     if age > 2: stale = " - copy job stale: newest file is %d days old (claimocity/cloud_run/DEPLOY.md)" % age
 print("gcs: %d objects in gs://%s, %d new%s, newest %s%s" % (len(objects), BUCKET, len(new), "" if LIST_ONLY else " (%d downloaded to %s)" % (got, DEST), newest, stale))
-for n, size in new: print("   new:", n, size, "bytes")
+for n, size in new:
+    if n in changed and not FETCH: print("   changed:", n, size, "bytes - the file register recorded %d bytes when this file was read: the bucket's copy is another one now, and the ingest reads it again (it enters only what is missing)" % changed[n])
+    else: print("   new:", n, size, "bytes")

@@ -4,6 +4,20 @@
 #   AdvancedMD got: entered (visit + charge ids + fees), already in AMD (the dedupe found the visit on the chart), skipped (why:
 #   date of death / diagnosis code not in AMD's list / unknown CPT), failed, or no chart (the patient could not be matched and no
 #   chart was made - William's identity hold). Entered rows also carry the insurance cascade's verdict (RELEASE / HOLD + why).
+#   A feed message with NO charge line is no patient-day and has no row here; the import's skipped row for it ('feed message without a
+#   charge line - passed over') stays in the import register and is never handed to another message of that patient (11/25/2026).
+#   THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S (11/25/2026): where the match file names a chart per Claimocity id (by_id - the
+#   ingest writes it) that chart is taken, so two feed patients under one name and one birth date are not reconciled as one.
+#   ... AND ITS OWN NAME-AND-DATE KEY'S (11/25/2026, the verification): the import takes a message's chart from the entry of the message's
+#   OWN key; this helper took it from any entry that named the Claimocity id, and from the patient map - which has learned the batch by
+#   then - and called a message without a created or skipped row 'already'. An id with a chart through one key whose other message stood
+#   under a key with no chart was recorded as 'visit already on the chart' although no such visit was on any chart. Now the message's own
+#   entry answers: no chart there for its id = 'nochart' (not entered - the ingest keeps such a file unregistered and reads it again), never
+#   'already'. A message without a Claimocity id has no chart (its reason says so - it said 'patient not found by name and date of birth',
+#   which nobody had looked up). The reason of a row says what is true of the visit; what happens to its file is said by the digest.
+#   Only a message whose key the match file does not hold, or an entry from before the charts were named per id, is read as before.
+#   The messages of the batch that could not be read have no row; the register counts them ("unreadable", from the parse step's own
+#   register) and the printed line says how many.
 # Writes registers/feed_recon_<stamp>.json - PHI-LIGHT: Claimocity patient id, AMD chart id, DOS, CPTs, dx codes, fees, visit and
 #   charge ids, facility id, clinician key, file date. Never a name, DOB, member id or SSN (the parsed file that has them stays in
 #   the workspace). The file is mirrored to main with the other registers and copied into the Claimocity Feed Monitoring page's
@@ -44,7 +58,9 @@ def clin(p):
     if not p: return "Clinician on file"
     k = re.sub(r"[^A-Z ]", "", str(p).upper()).strip()
     if k in CLIN: return CLIN[k]
-    parts = k.split(); return (parts[-1].title() + " " + parts[0][0] + ".") if len(parts) > 1 else parts[0].title()
+    parts = k.split()
+    if not parts: return "Clinician on file"      # a number and no name (11/25/2026: this ended the helper with an error, and the register of that batch was not written at all)
+    return (parts[-1].title() + " " + parts[0][0] + ".") if len(parts) > 1 else parts[0].title()
 def money(x):
     try: return round(float(str(x).replace("$", "").replace(",", "") or 0), 2)
     except Exception: return 0.0
@@ -77,12 +93,21 @@ created_by_key = {}
 for c in imp.get("created", []):
     created_by_key.setdefault((c.get("feed_id"), c.get("dos"), tuple(sorted(c.get("cpts") or []))), []).append(c)
 skipped_by_fid = collections.defaultdict(list)
-for s in imp.get("skipped", []): skipped_by_fid[s.get("feed_id")].append(s)
+NO_LINES_WHY = "feed message without a charge line - passed over"      # the same line as in claimocity_import.py (the reason of its skipped row for such a message); the self-test holds the two together
+for s in imp.get("skipped", []):
+    # 11/25/2026 (independent review of the feed import): that row belongs to a message with NO charge line, which the loop below never reaches (`if not ft: continue`). Handed
+    # out with the patient's other rows it landed on ANOTHER message of that patient: a visit an earlier batch had entered read 'skipped' instead of 'already', the visit of a
+    # patient with no chart read 'skipped' instead of 'nochart' (off William's no-chart list), and a real skip beside it showed the empty message's reason while its own was
+    # shown nowhere. No charge was entered or lost by it - the record that goes to main and to the monitoring page was wrong. The row stays in the import register.
+    if s.get("why") != NO_LINES_WHY: skipped_by_fid[s.get("feed_id")].append(s)
 failed_by_fid = collections.defaultdict(list)
 for f in imp.get("failed", []): failed_by_fid[f.get("feed_id")].append(f)
 resolved = {}
 for k, v in match.items():
-    if v.get("resolved"):
+    if isinstance(v.get("by_id"), dict):      # 11/25/2026: the driver names the chart of EACH Claimocity id of the entry - two feed patients under one name and birth date keep their own charts, and an id the entry does not name has no chart
+        for fid, chart in v["by_id"].items():
+            if chart: resolved[fid] = chart
+    elif v.get("resolved"):
         for fid in v.get("feed_ids", []): resolved[fid] = v["resolved"]
 # every OTHER batch's created visits: a batch whose own import register is missing (10/29 05:49Z - the first daily run, its
 # container's registers never reached main) is still accounted for when the 10/28 backlog or another batch entered the same visit
@@ -95,6 +120,13 @@ if not HAVE_IMPORT:
             for d in {c.get("dos"), c.get("dos_feed")} - {None}:
                 other_created.setdefault((c.get("feed_id"), d, tuple(sorted(c.get("cpts") or []))), (ost, c))
 
+def own_chart(m):
+    """(the message's own name-and-date key is in the match file with a chart per Claimocity id, the chart it names for THIS message's id or None, the entry) -
+    the import's own reading (claimocity_import.py chart_of). False = nothing to go by there: the caller reads the chart as it always did."""
+    e = match.get(str(m.get("name") or "").upper().strip() + "|" + str(m.get("dob") or "")[:8])
+    if not isinstance(e, dict) or not isinstance(e.get("by_id"), dict): return False, None, e if isinstance(e, dict) else {}
+    c = e["by_id"].get(m.get("pid"))
+    return True, (c if isinstance(c, str) and c else None), e
 def skip_kind(why):
     w = (why or "").lower()
     if "death" in w or "deceased" in w: return "deceased"
@@ -111,7 +143,8 @@ for m in parsed:
     dx = sorted({x.strip() for l in ft for x in (l.get("dx") or "").split("^") if x.strip()})
     key = (fid, mdy(dos), tuple(sorted(cpts)))
     row = {"f": fid, "d": iso(dos), "c": cpts, "dx": dx, "file": str(m.get("file") or "")[:8], "prov": clin(m.get("provider")), "u": sum(int(l.get("units") or 1) for l in ft)}
-    pid = resolved.get(fid) or pmap.get(fid)
+    own, mine, entry = own_chart(m)
+    pid = mine if own else (resolved.get(fid) or pmap.get(fid))      # the chart of the message's OWN key and id; only without such an entry as before
     hit = created_by_key.get(key)
     if hit:
         c = hit.pop(0)
@@ -147,12 +180,19 @@ for m in parsed:
         row.update({"s": "failed", "p": f.get("pid") or pid, "why": re.sub(r"\s+", " ", (f.get("err") or f.get("why") or ""))[:200]})
     elif pid:
         row.update({"s": "already", "p": pid, "why": "visit already on the chart (same CPT and date) - not entered twice"})
+    elif not str(fid or "").strip():      # nobody can say by id whose visit it is, and no step enters a visit by the name alone
+        row.update({"s": "nochart", "p": None, "why": "not entered: the feed message carries no Claimocity id - no step enters a visit by the name alone"})
+    elif own:      # its own name-and-date key names no chart for this Claimocity id - whatever chart the id has through another key
+        res = entry.get("resolution") if isinstance(entry.get("resolution"), str) else ""
+        row.update({"s": "nochart", "p": None, "why": ("not entered: no chart under this message's own name-and-date key" + ((": " + res) if res else ""))[:240]})
     else:
         res = next((v.get("resolution") for v in match.values() if fid in (v.get("feed_ids") or [])), None)
         row.update({"s": "nochart", "p": None, "why": ("no AdvancedMD chart matched: " + (res or "patient not found by name and date of birth"))[:200]})
     rows.append(row)
 
 counts = collections.Counter(r["s"] for r in rows)
+_unr = load("registers/feed_unreadable_%s.json" % STAMP, {})      # the parse step's count of the messages of this batch that could not be read (they have no row above)
+unreadable = len(_unr.get("messages")) if isinstance(_unr, dict) and isinstance(_unr.get("messages"), list) else 0
 files = [{"name": k, "date": (re.match(r"\d{8}", k) or re.match(r"", k)).group(0), "messages": v.get("messages")} for k, v in reg.get("files", {}).items() if v.get("stamp") == STAMP]
 if not files:
     files = [{"name": d, "date": d, "messages": n} for d, n in sorted(collections.Counter(r["file"] for r in rows).items())]
@@ -162,11 +202,12 @@ out = {"schema": "feed-recon/1", "stamp": STAMP, "built": datetime.datetime.now(
        "at": run.get("at"), "live": run.get("live"), "files": files, "dmin": dates[0] if dates else None, "dmax": dates[-1] if dates else None,
        "counts": {"messages": len(rows), "entered": counts["entered"], "lines": sum(len(r["c"]) for r in rows if r["s"] == "entered"),
                   "dollars": round(sum(r.get("fee") or 0 for r in rows if r["s"] == "entered"), 2), "already": counts["already"], "deceased": counts["deceased"],
-                  "dx": counts["dx"], "cpt": counts["cpt"], "skipped": counts["skipped"], "failed": counts["failed"], "nochart": counts["nochart"], "voided": counts["voided"], "unrecorded": counts["unrecorded"],
+                  "dx": counts["dx"], "cpt": counts["cpt"], "skipped": counts["skipped"], "failed": counts["failed"], "nochart": counts["nochart"], "voided": counts["voided"], "unrecorded": counts["unrecorded"], "unreadable": unreadable,
                   "new_charts": len(newcharts), "holds": sum(1 for r in rows if r.get("hold"))},
        "rows": rows}
 os.makedirs("registers", exist_ok=True)
 json.dump(out, open("registers/feed_recon_%s.json" % STAMP, "w"), indent=0, separators=(",", ":"))
 c = out["counts"]
-print("recon %s: %d messages -> %d entered ($%.2f, %d lines), %d already in AMD, %d not entered (deceased %d, dx %d, cpt %d, other %d, failed %d), %d no chart, %d insurance holds -> registers/feed_recon_%s.json" % (
-    STAMP, c["messages"], c["entered"], c["dollars"], c["lines"], c["already"], c["deceased"] + c["dx"] + c["cpt"] + c["skipped"] + c["failed"], c["deceased"], c["dx"], c["cpt"], c["skipped"], c["failed"], c["nochart"], c["holds"], STAMP))
+print("recon %s: %d messages -> %d entered ($%.2f, %d lines), %d already in AMD, %d not entered (deceased %d, dx %d, cpt %d, other %d, failed %d), %d no chart, %d insurance holds%s -> registers/feed_recon_%s.json" % (
+    STAMP, c["messages"], c["entered"], c["dollars"], c["lines"], c["already"], c["deceased"] + c["dx"] + c["cpt"] + c["skipped"] + c["failed"], c["deceased"], c["dx"], c["cpt"], c["skipped"], c["failed"], c["nochart"], c["holds"],
+    (", %d message(s) could not be read (no row here)" % c["unreadable"]) if c["unreadable"] else "", STAMP))

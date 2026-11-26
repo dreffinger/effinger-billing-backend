@@ -130,9 +130,10 @@ def comes_back(label, bundle_dir, travels):
 SMALL, SMALL_FILES = make_workspace("small_ws", 4, 3700, "small")       # 15 KB that will not shrink = about 20,000 base64 characters = 3 parts at the real part size
 BIG, BIG_FILES = make_workspace("big_ws", 24, 800, "big")                # 19 KB that will not shrink = about 27,000 base64 characters
 
-# ---- A. three parts, real part size --------------------------------------------------------------------------------------------
-a_out = fresh("a_three_parts"); a_man = pack(SMALL, a_out)
-check("A1 the small folder packs into exactly 3 parts at the real part size", len(a_man["parts"]) == 3, a_man["parts"])
+# ---- A. three parts, at the part size of before 11/25/2026 (8,000 characters; the tool's own is 993,800 since - section K) -------
+OLD_PART = 8000
+a_out = fresh("a_three_parts"); a_man = pack(SMALL, a_out, part_chars=OLD_PART)
+check("A1 the small folder packs into exactly 3 parts at 8,000 characters a part", len(a_man["parts"]) == 3, a_man["parts"])
 check("A2 a small set keeps its two-digit names (part01 .. part03)", [n.split(".part")[1] for n in part_names(a_out)] == ["01.b64", "02.b64", "03.b64"], part_names(a_out))
 a_got = comes_back("A3 a 3-part bundle comes back whole", a_out, SMALL_FILES)
 check("A4 secrets/, credential, session and lock files and old bundle files never travel", a_got and not any(any(x in rel for x in NEVER) for rel in a_got), sorted(a_got))
@@ -208,12 +209,12 @@ comes_back("F1 an older 100+ part set and a newer 3-part set: the newer one is r
 f2 = fresh("f_old_small_new_big"); copy_set(a_out, "", None, "2026-01-05_2301UTC", into=f2); copy_set(b_out, "", "%02d", "2026-01-06_0102UTC", into=f2)
 comes_back("F2 an older 3-part set and a newer 100+ part set: the newer one is restored", f2, BIG_FILES)
 
-# ---- G. the command lines the routine prompts name, with the real part size -------------------------------------------------------
+# ---- G. the command lines the routine prompts name - with --part-chars 8000, the part size of before 11/25/2026, so the set is a large one ----
 REAL, REAL_FILES = make_workspace("real_size_ws", 30, 24000, "real size")     # 720 KB that will not shrink -> about 120 parts of 8,000 characters
 g_out = fresh("g_cli_out"); g_dst = fresh("g_cli_restore")
 def cli(args, ws): return subprocess.run([sys.executable, TOOL] + args, env=dict(os.environ, WS=ws), capture_output=True, text=True)
-p = cli(["pack", "--out", g_out], REAL); n_g = len(part_names(g_out))
-check("G1 `ws_bundle.py pack --out DIR` at the real part size makes more than 100 parts (%d)" % n_g, p.returncode == 0 and n_g > 100, p.stdout[-300:] + p.stderr[-300:])
+p = cli(["pack", "--out", g_out, "--part-chars", str(OLD_PART)], REAL); n_g = len(part_names(g_out))
+check("G1 `ws_bundle.py pack --out DIR --part-chars 8000` makes more than 100 parts (%d)" % n_g, p.returncode == 0 and n_g > 100, p.stdout[-300:] + p.stderr[-300:])
 u = cli(["unpack", g_out], g_dst)
 check("G2 `ws_bundle.py unpack DIR` restores them (exit 0)", u.returncode == 0, (u.returncode, u.stdout[-300:], u.stderr[-300:]))
 check("G3 ... every file byte for byte", tree(g_dst) == REAL_FILES, "restored %d of %d" % (len(tree(g_dst)), len(REAL_FILES)))
@@ -327,5 +328,22 @@ check("J9 a second pack in the same minute leaves ONE set under that stamp - the
 other = os.path.join(j9, "workspace_state_2026-11-24_0655UTC.part01.b64"); open(other, "w").write("AAAA")
 pack_at(J, j9, 400000, S9)
 check("J9b ...and a set of ANOTHER stamp in the same folder is left alone", os.path.exists(other))
+# ---- K. the part size and the cap a run gets WITHOUT naming them (11/25/2026, the runs' note of that day) ----------------------------------------
+# The tool's own part size was 8,000 characters and its cap 40 MB: the state of that day needs 64 MB, which is about 1,000 Drive uploads at 8,000
+# characters. Two runs packed by setting the part size in the tool's memory for the call (993,800 characters: 8 parts) and said so in their
+# digests. Now those are the tool's own: 993,800 characters and 64 MB, and --part-chars makes smaller parts for an upload path that needs them.
+k_src = fresh("k_ws"); os.makedirs(os.path.join(k_src, "registers"))
+for i_ in range(6): open(os.path.join(k_src, "registers", "invented_%d.json" % i_), "w").write(json.dumps({"n": list(range(400))}))
+def k_cli(*more):
+    out_ = fresh("k_out_%d" % len(more)); r_ = subprocess.run([sys.executable, TOOL, "pack", "--out", out_] + list(more), env=dict(os.environ, WS=k_src), capture_output=True, text=True)
+    return r_, part_names(out_), out_
+r_k0, parts_k0, out_k0 = k_cli(); r_k1, parts_k1, out_k1 = k_cli("--part-chars", "100")
+check("K1 the tool's own part size is 993,800 characters and its own cap 64 MB - what the runs of 11/25/2026 had to set by hand - and its usage line says so",
+      ws_bundle.PART == 993800 and "[--max-mb 64]" in (ws_bundle.__doc__ or "") and "[--part-chars 993800]" in (ws_bundle.__doc__ or "") and "else 64" in open(TOOL).read(), (ws_bundle.PART,))
+k_back = fresh("k_back")
+check("K2 a small state is ONE part by default; --part-chars makes smaller parts for that one call, and the set of smaller parts restores to the same files",
+      r_k0.returncode == 0 and len(parts_k0) == 1 and r_k1.returncode == 0 and len(parts_k1) > 3 and unpack(out_k1, k_back)[0] == 0 and tree(k_back) == tree(k_src),
+      (r_k0.returncode, len(parts_k0), r_k1.returncode, len(parts_k1), (r_k1.stdout + r_k1.stderr)[-200:]))
+check("K3 a part size that is no positive number is refused with one line and nothing is packed", (lambda r_: r_[0].returncode == 2 and r_[1] == [] and "--part-chars" in (r_[0].stdout + r_[0].stderr))(k_cli("--part-chars", "zero", "--x")), "")
 print("\n%d failure(s)" % len(FAILS) + (" - all guarantees hold" if not FAILS else ": " + "; ".join(FAILS)))
 sys.exit(1 if FAILS else 0)

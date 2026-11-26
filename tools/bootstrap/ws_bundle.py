@@ -7,7 +7,7 @@ run STATE - needs_facesheet_list.md, laterality_flag_log.md, precheck_cache.json
 271 archive), era_details/ (the ERA cache), audit/checkpoint json - was lost between runs. This tool
 turns that state into text parts small enough for the Google Drive connector, and back.
 
-  python3 tools/ws_bundle.py pack   [--out DIR] [--max-mb 40] [--state-only] [--phi-only]   # writes DIR/workspace_state_<UTC>.partNN.b64 (+ .manifest.json)
+  python3 tools/ws_bundle.py pack   [--out DIR] [--max-mb 64] [--part-chars 993800] [--state-only] [--phi-only]   # writes DIR/workspace_state_<UTC>.partNN.b64 (+ .manifest.json)
                                                                   #   --phi-only (10/6/2026, William: 'ws_bundle.py needs a --phi-only mode') keeps ONLY what lives nowhere else: patient_db/, era_details/,
                                                                   #   needs_facesheet_list.md, laterality_flag_log.md, precheck_cache.json and this run's registers (last 6 h, under 400 KB) - small enough for the connector
                                                                   #   --state-only skips *.py/*.sh and the registry/vocabulary/carrier files the repo + Drive restore (keeps the bundle small enough to survive the connector)
@@ -33,7 +33,7 @@ not carry over to the next fresh container, whichever mode had packed it. Bundle
     there and used when it is the only one; a file with no part number in its name is left out; unpack says each time.
 Unchanged: a set WITHOUT its manifest cannot be checked - unpack extracts what it can read, as it always did.
 
-The size cap (11/25/2026): --max-mb (40 by default) used to skip, WITHOUT A WORD, every file that no longer fitted - and registers/
+The size cap (11/25/2026): --max-mb (64 by default since that day's runs needed it; 40 before) used to skip, WITHOUT A WORD, every file that no longer fitted - and registers/
 was the folder walked last. From 11/24/2026 13:01 UTC the workspace no longer fitted (2,864 of about 4,330 files travelled), so the
 registers of the run that had just entered the Claimocity feed's visits stayed behind and the next fresh container read the same
 feed file again. Now:
@@ -54,7 +54,11 @@ Self-test (offline, throwaway folders, no patient data): python3 tools/selftest/
 import os, sys, io, re, tarfile, base64, json, time, glob, hashlib
 
 WS = os.environ.get("WS", "/home/claude/unbilled")
-PART = 8000             # chars per part (80 lines x 100) - the size the Drive connector has round-tripped cleanly; 150k parts did not survive
+# chars per part. 11/25/2026: 993,800 - the size the runs of that day packed with (they set it by hand for the call, twice, and said so in their
+# digests: the whole state is 8 parts; at the 8,000 characters of before - the size the Drive connector round-tripped in September, when 150k
+# parts did not survive - the same state is about 1,000 uploads). unpack only joins the parts and checks the overall sha256, so a set restores
+# the same whatever its part size. An upload path that needs smaller parts: `pack --part-chars N`.
+PART = 993800
 TOP_EXT = ('.py', '.sh', '.md', '.json', '.jsonl', '.csv', '.txt')
 DIRS = ('tools', 'patient_db', 'era_details', 'registers')
 EXCLUDE_NAMES = {'.amd_cred.json', '.session.json', '.amd_login_lock', '.columns_run.lock', '.unpaid_audit.lock'}
@@ -304,7 +308,12 @@ if __name__ == '__main__':
         print(__doc__); sys.exit(2)
     if args[0] == 'pack':
         out = args[args.index('--out') + 1] if '--out' in args else os.path.join(WS, 'outbox')
-        mb = int(args[args.index('--max-mb') + 1]) if '--max-mb' in args else 40
+        mb = int(args[args.index('--max-mb') + 1]) if '--max-mb' in args else 64
+        if '--part-chars' in args:      # smaller (or larger) parts for this one call
+            try: PART = int(args[args.index('--part-chars') + 1])
+            except (ValueError, IndexError): PART = 0
+            if PART < 1:
+                print('pack: --part-chars needs a positive number of characters - nothing packed'); sys.exit(2)
         pack(out, mb, state_only='--state-only' in args, phi_only='--phi-only' in args)
     else:
         if len(args) < 2:
