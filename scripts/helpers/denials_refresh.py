@@ -52,6 +52,46 @@ def mdy(s):
     m = re.match(r"(\d{4})-(\d{2})-(\d{2})", s)
     return m.group(0) if m else ""
 
+# ---- posted_last_7d (the Monday scorecard - William's choice of 11/26/2026): a block of its own, apart from every other field of this output ----
+# Totals only. Of the chart histories this refresh reads anyway (no extra AdvancedMD read): every payment line whose POSTING date (createtime,
+# else date) falls in the 7 full days before today - insurance vs patient (AdvancedMD marks a patient line source 1; with no source, a line with
+# no carrier; a line that carries a reason code is the payer's - the pos61_monitor.patient_line test), net of take-backs (negative lines),
+# insurance by carrier - and the $0 denial lines posted in those days (a reason code that is not cost-share 1/2/3 and not contractual or
+# informational 45/23/253/94/246), counted by visit, the wrong-payer ones (27/26/200/31) among them. A MINIMUM: a chart with no open balance and
+# no board row is not read. scripts/helpers/weekly_scorecard.py reads it for the scorecard's 'collected' and 'denials'.
+WK_FROM, WK_TO = (TODAY - datetime.timedelta(days=7)).isoformat(), (TODAY - datetime.timedelta(days=1)).isoformat()
+WK_SKIP = {"1", "2", "3", "45", "23", "253", "94", "246"}; WK_WRONG = {"27", "26", "200", "31"}
+week = []
+def week_lines(root):
+    """this chart's payment lines posted inside the window: (kind ins|pat|den|zero, carrier, dollars, visit, wrong payer?)"""
+    out = []
+    for c in root.iter("charge"):
+        if c.get("void") == "1": continue
+        vid = str(c.get("visit") or c.get("visitid") or "")
+        for p in c.iter("payment"):
+            if p.get("void") == "1": continue
+            d = mdy(p.get("createtime")) or mdy(p.get("date"))
+            if not (WK_FROM <= d <= WK_TO): continue
+            codes = [x for x in ((norm(r.get("code", "")), abs(f(r.get("amount")))) for r in p.iter("payreason")) if x[0]]
+            amt = f(p.get("amount")); car = (p.get("carrier") or "").strip(); src = str(p.get("source") or "").strip()
+            if abs(amt) > 0.005:
+                out.append(("pat" if not codes and (src == "1" if src else not car) else "ins", car, amt, vid, False))
+            else:
+                den = [x for x in codes if x[0] not in WK_SKIP]
+                if den: out.append(("den", car, sum(x[1] for x in den), vid, any(x[0] in WK_WRONG for x in den)))
+                elif codes: out.append(("zero", car, 0.0, vid, False))
+    return out
+def week_summary(rows):
+    ins = [r for r in rows if r[0] == "ins"]; pat = [r for r in rows if r[0] == "pat"]; den = [r for r in rows if r[0] == "den"]
+    bycar = collections.defaultdict(float)
+    for r in ins: bycar[r[1] or "NONE"] += r[2]
+    return {"from": WK_FROM, "to": WK_TO, "basis": "payment lines by posting date (createtime, else date) on the charts this refresh read - a minimum; totals only",
+            "insurance": round(sum(r[2] for r in ins), 2), "patient": round(sum(r[2] for r in pat), 2), "takebacks": round(-sum(r[2] for r in ins + pat if r[2] < 0), 2),
+            "insurance_lines": len(ins), "patient_lines": len(pat), "adjudicated_lines": len(ins) + len(den) + sum(1 for r in rows if r[0] == "zero"),
+            "by_carrier": {k: round(v, 2) for k, v in sorted(bycar.items(), key=lambda kv: -kv[1])},
+            "denials": {"visits": len({r[3] for r in den}), "lines": len(den), "dollars": round(sum(r[2] for r in den), 2), "wrong_payer_visits": len({r[3] for r in den if r[4]})}}
+# ---- end of posted_last_7d's definitions
+
 prior = {}
 if os.path.exists(PRIOR):
     try: prior = json.load(open(PRIOR))
@@ -96,6 +136,8 @@ def scan(pid):
                                   "check": p.get("checknumber", ""), "amt": abs(ramt), "paid_on": pd})
         for w in c.iter("writeoff"):
             if w.get("void") != "1" and f(w.get("amount")) != 0: s["wos"] += 1
+    wk = week_lines(root)                     # posted_last_7d: this chart's lines posted in the window - the same history, no extra read
+    with lock: week.extend(wk)
     # board visits this chart's page-1 history did not show (long charts): read them one by one
     for vid, row in prior_rows.items():
         if str(row.get("pid")) == pid and vid not in seen:
@@ -177,6 +219,7 @@ out = {"schema": "working-denials-snapshot/1", "asof": datetime.datetime.now(dat
        "resub_amt": round(sum(v["amt"] for v in visits if v.get("status") == "RESUBMITTED"), 2), "resolved_amt": round(sum(v["amt"] for v in visits if v.get("status") == "RESOLVED"), 2),
        "summary": summary, "capped": {}, "errors": errors[:50],
        "visits": sorted(visits, key=lambda v: (DISPO_ORDER.index(v["dispo"]) if v["dispo"] in DISPO_ORDER else 99, -v["amt"]))}
+out["posted_last_7d"] = week_summary(week)    # the Monday scorecard's block (11/26/2026) - totals only, apart from every other field
 for v in out["visits"]:   # keep the file small: the board shortens the reason text anyway
     if v.get("reason"): v["reason"] = str(v["reason"])[:160]
 json.dump(out, open(OUT, "w"), separators=(",", ":"))
