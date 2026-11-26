@@ -22,6 +22,10 @@
 import collections, datetime, json, os, re, sys, threading, time
 import xml.etree.ElementTree as ET
 sys.path.insert(0, "/home/claude/unbilled")
+# 11/26/2026: the denial-code sets come from the ONE table both engines read - TABLE in boards/working_denials.py (the workspace copy
+#   beside this helper) - so the board and these sets can no longer disagree. Every set is what it was, plus the codes the table added
+#   (wrong payer 32/177/140/20/21/B11, correctable 146, credentialing 170/147/256/299); CO-151 on a CCM claim is a re-date.
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "boards"))
 
 WS = "/home/claude/unbilled"
 a = sys.argv
@@ -33,7 +37,19 @@ if not OFFLINE:
     import amd, era_post, requests, txh
 TODAY = datetime.date.fromisoformat(a[a.index("--today") + 1]) if "--today" in a else datetime.date.today()
 CCM = {"99490", "99491", "99487", "99489", "99439", "99437", "G0506", "G0511", "99424", "99425", "99426", "99427"}
-WRONG_PAYER = {"27", "26", "200", "31", "109", "22", "24", "204", "49"}
+try:
+    from working_denials import family as _family
+    WRONG_PAYER = _family("WRONG_PAYER")      # 27 26 200 31 109 22 24 204 49 (+ 32 177 140 20 21 B11, 11/26/2026)
+    BUNDLED = _family("BUNDLED")              # 97 234 B15 236
+    CORRECTABLE = _family("CORRECT")          # 4 16 125 11 181 MA130 5 (+ 146)
+    CRED_CODES = _family("CRED")              # 242 243 185 B7 (+ 170 147 256 299)
+    REDATE = _family("REDATE")                # 151 - on a CCM claim: re-date to the last day of its month (rules.md 10/4/2026)
+    NONCOVERED = _family("NONCOVERED") | REDATE   # 96 50 A1 151 119
+except ImportError:                          # a copy run without the board's file beside it (a self-test's throwaway copy): the sets of 11/25/2026
+    sys.stderr.write("aging_refresh: working_denials.py (the denial-code table) not found - the code sets of 11/25/2026 are used\n")
+    WRONG_PAYER = {"27", "26", "200", "31", "109", "22", "24", "204", "49"}; BUNDLED = {"97", "234", "B15", "236"}
+    CORRECTABLE = {"4", "16", "125", "11", "181", "MA130", "5"}; CRED_CODES = {"242", "243", "185", "B7"}
+    REDATE = {"151"}; NONCOVERED = {"96", "50", "A1", "151", "119"}
 BACKLOG = {"UNI20", "BCBS"}
 MEDICAID_FAMILY = {"MCAD", "SUN01", "FLO99", "SIM01", "WEL04", "UHCMA", "HUM07"}
 # REPORTING LINES (11/10/2026, second no-harm review): a no-charge quality code (1123F / 1124F) or option code (M0004) rides at $0.00 or
@@ -171,10 +187,11 @@ def decide(r, charges, plans, dod):
             else: rec_, rule, why = "WRITE OFF", "hospice CO-B9 and DOS > 12 months -> untimely write-off", ["hospice CO-B9 and DOS > 12 months -> untimely write-off"]
         elif set(denial_codes) & WRONG_PAYER: rec_, rule, why = "CORRECT & RESEND", "wrong-payer denial (PR27/26/200/22/204...) -> insurance cascade, re-route, never patient balance", ["wrong-payer denial (%s) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance" % ",".join(sorted(set(denial_codes) & WRONG_PAYER))]
         elif "18" in denial_codes and len(denial_codes) == 1: rec_, rule, why = "WAIT", "CO-18 duplicate - the original is in play; confirm it paid, then close", ["CO-18 duplicate - the original is in play; confirm it paid, then close (no rebill)"]
-        elif set(denial_codes) & {"97", "234", "B15", "236"}: rec_, rule, why = "WRITE OFF", "bundled / not paid separately (97/234/B15/236) -> contractual write-off", ["bundled / not paid separately (%s) -> contractual write-off" % dc]
-        elif set(denial_codes) & {"4", "16", "125", "11", "181", "MA130", "5"}: rec_, rule, why = "CORRECT & RESEND", "correctable denial (CO-16/4/11/125/181) -> fix the flagged data, rebill as an original", ["correctable denial (%s): fix the flagged data, rebill as an original" % dc]
-        elif set(denial_codes) & {"242", "243", "185", "B7"}: rec_, rule, why = "CORRECT & RESEND", "credentialing / enrollment denial (242/243/185/B7) -> fix enrollment or write off", ["credentialing/enrollment denial (%s) - fix enrollment or write off" % dc]
-        elif set(denial_codes) & {"96", "50", "A1", "151", "119"}:
+        elif is_ccm and set(denial_codes) & REDATE and days_dos is not None and days_dos <= 365: rec_, rule, why = "CORRECT & RESEND", "CO-151 frequency denial on CCM -> re-date the claim to the last day of its month, send it as an original (10/4 rule)", ["CO-151 frequency denial on CCM (%s): re-date the claim to the last day of its month and send it as an original (rules.md 10/4/2026)" % dc]
+        elif set(denial_codes) & BUNDLED: rec_, rule, why = "WRITE OFF", "bundled / not paid separately (97/234/B15/236) -> contractual write-off", ["bundled / not paid separately (%s) -> contractual write-off" % dc]
+        elif set(denial_codes) & CORRECTABLE: rec_, rule, why = "CORRECT & RESEND", "correctable denial (CO-16/4/11/125/181) -> fix the flagged data, rebill as an original", ["correctable denial (%s): fix the flagged data, rebill as an original" % dc]
+        elif set(denial_codes) & CRED_CODES: rec_, rule, why = "CORRECT & RESEND", "credentialing / enrollment denial (242/243/185/B7) -> fix enrollment or write off", ["credentialing/enrollment denial (%s) - fix enrollment or write off" % dc]
+        elif set(denial_codes) & NONCOVERED:
             rec_ = "WRITE OFF" if days_dos and days_dos > 365 else "CORRECT & RESEND"
             rule = "non-covered / medical-necessity / frequency denial (96/50/A1/151/119) -> read the RARC; appeal or write off" + (" (DOS > 12 months)" if rec_ == "WRITE OFF" else "")
             why = ["non-covered / medical-necessity / frequency denial (%s): review the RARC; appeal or write off" % dc]

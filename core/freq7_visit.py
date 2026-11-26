@@ -6,6 +6,8 @@
 """Usage: python3 freq7_visit.py <visitid> <chargeid> <seq> <payer claim number>"""
 import amd, resave, sys, time
 def run(vid, cid, seq, icn):
+    if not str(icn or "").strip(): return "REFUSED freq7: no payer claim number"      # 11/26/2026: a corrected claim never goes out without the ICN (never a blank one)
+    icn = str(icn).strip()
     vis, pat, allc = resave.visit_charges(cid); e = vis.find("extins"); base = dict(e.attrib) if e is not None else {}; base.pop("id", None)
     base.update({"resubmissioncode": "7", "origrefnum": icn})
     for k, val in {"patsignature": "1", "emergency": "0", "epsdt": "0", "payprov": "1", "employment": "0", "autoaccident": "0", "otheraccident": "0", "pregnant": "0", "outsidelab": "0"}.items(): base.setdefault(k, val)
