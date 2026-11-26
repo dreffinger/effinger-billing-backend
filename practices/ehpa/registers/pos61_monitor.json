@@ -1,7 +1,7 @@
 {
  "what": "read-only payment monitor of the inpatient-rehab visits at place of service 61 (pos61_monitor.py): chart ids, visit ids, dates of service, codes, carrier codes, reason codes and dollars - no name, no birth date and no member number is ever written here",
  "version": "2026-11-25.4",
- "at": "2026-11-26T12:46:30Z",
+ "at": "2026-11-26T18:43:23Z",
  "today": "11/26/2026",
  "mode": "read only - nothing is ever sent to AdvancedMD; --dry and --live are the same run",
  "baseline_21": {
@@ -101,7 +101,7 @@
  "by_code": {},
  "reads": 1,
  "ended": "",
- "memory": "",
+ "memory": "11/26/2026",
  "unreadable_registers": [],
  "lines": [
   "REHAB AT 61: no inpatient-rehab visit has been entered at place of service 61 yet (at 21 the average was $138.67 on 95 paid of 121 sent)",
