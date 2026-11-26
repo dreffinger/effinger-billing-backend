@@ -52,7 +52,8 @@
 #      subscriber numbers, from the chart answer this step already holds, against PID-19 and the member number of each IN1 row in the feed's RAW files (FEED_HL7_DIR,
 #      else hl7/<stamp>/). The parsed message carries neither number; they are read into memory only, never written, never printed. The same nine-digit Social Security
 #      number, or a member number in common, frees the chart as its Claimocity id does - where the chart's name is a name candidate of the feed's (the same last name,
-#      the first three letters of the first name: the rule's rule 4 goes no further). Under any other name a number in common frees nobody - a member number can be a
+#      the first three letters of the first name: the rule's rule 4 goes no further) and, for a member number since round 2 of this review (below), only where the two
+#      birth dates agree. Under any other name a number in common frees nobody - a member number can be a
 #      whole family's - and the hold says it is there. The last four alone free nobody; two DIFFERENT Social Security numbers free nobody whatever else is in common,
 #      and are said. A plan the feed's OWN steps put on the chart - the intake, this step's look-up, the hand step: the registers say which - is never weighed: its
 #      number came from the feed itself and proves nothing about whose chart it is. Without feed_identity.py beside this helper, or without the raw files, no number
@@ -73,6 +74,20 @@
 #      approved_by only in his own form (William, the day, alone or with (board) or (chat) behind it); an id in another case or with a blank beside it is still his
 #      id, two ids in one text are two ids, a chart named twice keeps both lists - and ONE printed line, which begins SAME PERSON FILE:, names every entry that does
 #      not count. See same_person_yes, same_person_gaps, said_yes.
+#      11/25/2026, ROUND 2 of that review (what the independent checkers of its fixes found; each was reproduced before it was changed):
+#      A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE. A family shares member numbers, and the identity rule's rule 4 puts a relative's visit on
+#      the chart that carries the number - a husband's chart for his wife (her first name begins with his), a father's for his son of the same name. The 'same
+#      person?' hold was the one place William was asked; with (a) it no longer fired: a look-up was bought about the CHART's person, his plan was added and her
+#      visit was released on his chart. Now a member number in common proves the chart only where BOTH sides carry a real birth date and the two are the same or a
+#      slip apart (the identity rule's own slips: one digit, two digits swapped, month and day swapped, one day apart). With the dates far apart, or a date missing
+#      on either side, it proves nothing: the hold stays, SAYS that a plan of the chart carries a member number Claimocity sent, and William is asked - once per
+#      chart, his yes is kept in his standing file. The nine-digit Social Security number, the Claimocity id on the chart and his word free a chart as before.
+#      Where several feed patients of one chart are in doubt the hold's words are the first one's; what the numbers say about each further one is said behind
+#      that one's visits ("Claimocity id <id> (<visits>; a plan of the chart carries a member number Claimocity sent)"). See lookup_hold.
+#      THE RECORD SAYS WHICH 'NO BIRTH DATE' IT IS - record key no_birth_date_case, a fixed word: "neither side" (neither Claimocity nor the chart carries a real
+#      birth date) or "two dates" (Claimocity sent two different real birth dates for a patient of the chart and the chart carries none of its own - (b) above).
+#      The digest's line for the record key no_birth_date said 'neither Claimocity nor the chart carries a real birth date' of both; of the second that was untrue,
+#      and it has a line of its own now. On a chart with a patient of each kind the record, the hold and lookup_asked say "two dates".
 #   6. the feed's IN1 payers are mapped and reported next to the chart (the 271 decides, the feed only informs).
 # Writes feed_verify_1028.json (+ registers copy). AMD writes: visit insorder resaves; addinsurance only from discovery; updextrainsinfo only to put
 # back an admission date a resave wiped (11/10/2026). Never: a save on a billed visit, a rebill, a void (except the no-charge line left out above).
@@ -490,6 +505,9 @@ def order_hold(visit, order, m, info, qtag=None):
 # with each other (lookup_apart). William's standing word is asked through said_yes; what does not count in his file is named by same_person_gaps. All of these - with
 # _show_id, _yes_entries and same_person_yes - stand, the same text, in feed_in1_intake.py, and tools/selftest/test_pos_rule.py holds the two copies together letter
 # for letter.
+# SINCE ROUND 2 OF THAT REVIEW (11/25/2026): a MEMBER number in common is such a proof only where both sides carry a real birth date and the two are the same or a slip
+# apart (_slip) - a family shares member numbers, and the chart that carries the number may be the husband's or the father's. With the dates far apart, or a date
+# missing on either side, the hold stands and its words say the number is there (lookup_hold). The Social Security number is weighed as before.
 def _real_dob(d8, today8):
     """True when d8 is a REAL birth date (the owner's rule): 8 digits, a real calendar date, the year 1901 or later, not after today8 and not more than 120 years before
     it. Anything else - empty, the year-1900 placeholder, zeros, a day that does not exist - is NO BIRTH DATE. (The rule of real_dob in feed_identity.py.)"""
@@ -636,6 +654,9 @@ def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False, proof=""
           way the identity rule's rule 4 does (the second review: William was asked about a chart the rule itself had matched by the number): proof "ssn" or "member"
           AND a chart whose name is a name candidate of the feed's - the same last name and the first three letters of the first name ("name" or "full" by
           _name_kind). Under any other name a number in common frees nobody (a member number can be a whole family's) - the hold says it is there, for William.
+          A MEMBER number proves it only with birth dates that AGREE (round 2 of that review: a husband's chart was freed for his wife and a father's for his son
+          of the same name - a family shares member numbers): BOTH sides carry a real birth date and the two are the same or a slip apart. With the dates far
+          apart, or a date missing on either side, it proves nothing: the hold stands and says the number is there. The Social Security number proves as before.
           Two DIFFERENT Social Security numbers (proof "contra") free nobody and are said behind the words, held or asked.
       "no_birth_date" - the chart is the patient, but neither side carries a real birth date: there is nothing to ask with (face sheet needed).
     A chart answer that shows no patient at all (neither a name nor a birth-date attribute - a read that failed) is not judged: ("", ""), the look-up is asked as before.
@@ -650,7 +671,8 @@ def lookup_hold(pa, first, last, dob8, fid="", today8=None, sure=False, proof=""
         elif kind == "full": why = ""
         else: why = ("Claimocity's birth date is a slip from this chart's" if cr and fr else "one side carries no birth date" if cr or fr else "no birth date on either side") + " and the names differ"
         if apart and not why: why = "another Claimocity patient on this chart carries a birth date far from this one's and the chart carries none"
-        known = _same_id(a.get("additionalmrn"), fid); proven = proof in ("ssn", "member") and kind in ("name", "full")
+        known = _same_id(a.get("additionalmrn"), fid)
+        proven = kind in ("name", "full") and (proof == "ssn" or (proof == "member" and cr and fr and _slip(f8, c8) != "far"))      # (round 2) a member number: only where both birth dates are real and the same or a slip apart
         num = "the chart and Claimocity carry the same Social Security number" if proof == "ssn" else "a plan of the chart carries a member number Claimocity sent" if proof == "member" else ""
         two = "the chart and Claimocity carry two different Social Security numbers" if proof == "contra" else ""
         if why and not (known or proven or sure): return "same_person", "same person? %s, and the chart's answer does not show this patient's Claimocity id%s" % (why, ("; " + (num or two)) if (num or two) else "")
@@ -691,9 +713,9 @@ def lookup_apart(pa, pats, today8=None):
     ONE look-up with the first one's date, added that plan and released both visits. Apart is a patient who carries a real birth date beside another feed patient of
     the chart whose real birth date is FAR from it - neither the same nor a slip. Only a chart that shows a patient and carries NO real birth date of its own is looked
     at: where the chart has one, lookup_hold has judged every patient against it. What it means is lookup_hold's (its apart): a patient who stands apart and is tied to
-    the chart by no more than the name is held 'same person?'; one the chart is tied to - its Claimocity id, a number, William's word - is asked, and the words say
-    which. So two such patients are both held, and one beside a patient the chart is tied to is held alone. It never raises: when the comparison cannot be made every
-    patient stands apart."""
+    the chart by no more than the name is held 'same person?'; one the chart is tied to - its Claimocity id, the same Social Security number, William's word - is
+    asked, and the words say which (a member number ties nobody to a chart that carries no birth date: round 2 of that review). So two such patients are both held,
+    and one beside a patient the chart is tied to is held alone. It never raises: when the comparison cannot be made every patient stands apart."""
     try:
         today8 = today8 or __import__("datetime").date.today().strftime("%Y%m%d"); a = pa if isinstance(pa, dict) else {}
         if ("name" not in a and "dob" not in a) or _real_dob(_dob8(a.get("dob")), today8): return set()
@@ -931,18 +953,25 @@ def main():
                 _lka = lookup_apart(pa, [_ms for _f, _ms, _s, _p in _pats]); _lkj = [lookup_judge(pa, _ms, _f, sure=_s, proof=_p, apart=_n in _lka) for _n, (_f, _ms, _s, _p) in enumerate(_pats)]
                 _dbt = [_n for _n, _j in enumerate(_lkj) if _j[0] == "same_person"]
                 if _dbt:      # same_person: the visits and the Claimocity ids IN DOUBT (an id is written only in its own shape), for ONE line at the top of the digest; the hold names both
-                    _dv = [(_fids[_n], [v["visit"] for v in visits if v["feed_id"] == _fids[_n]]) for _n in _dbt]
-                    rec["lookup_asked"] = "look-up not asked: " + _lkj[_dbt[0]][1]; rec["same_person"] = [x for _f, _vs in _dv for x in _vs]; rec["same_person_ids"] = [_show_id(_f) for _f, _vs in _dv]
+                    # (round 2 of the second review) The hold's words are those of the FIRST patient in doubt. What the NUMBERS say about a further one - a member number in
+                    # common that proves nothing, the same Social Security number under another name, two different ones: the fixed words lookup_hold puts behind its own -
+                    # is said behind that patient's visits, so that the hold says it for EVERY patient in doubt (until then only when that patient was listed first)
+                    _dv = [(_fids[_n], [v["visit"] for v in visits if v["feed_id"] == _fids[_n]], _lkj[_n][1].partition("does not show this patient's Claimocity id; ")[2] if _n != _dbt[0] else "") for _n in _dbt]
+                    rec["lookup_asked"] = "look-up not asked: " + _lkj[_dbt[0]][1]; rec["same_person"] = [x for _f, _vs, _nm in _dv for x in _vs]; rec["same_person_ids"] = [_show_id(_f) for _f, _vs, _nm in _dv]
                     _gap = _syb.get(num.lstrip("0") or "0")      # his standing file names this chart in an entry that does not count: said where William reads the hold
                     rec["hold"].append("%s - in doubt: %s%s%s - for William: no paid look-up was bought and no plan was added on this step's own word" % (
-                        _lkj[_dbt[0]][1], "; ".join("Claimocity id %s (%s)" % (_show_id(_f), " ".join(_vs)) for _f, _vs in _dv[:3]), (" and %d more" % (len(_dv) - 3)) if len(_dv) > 3 else "",
+                        _lkj[_dbt[0]][1], "; ".join("Claimocity id %s (%s%s)" % (_show_id(_f), " ".join(_vs), ("; " + _nm) if _nm else "") for _f, _vs, _nm in _dv[:3]), (" and %d more" % (len(_dv) - 3)) if len(_dv) > 3 else "",
                         (" - his standing file has an entry for this chart that does not count: %s" % _gap) if _gap else ""))
                 elif any(not _j[0] for _j in _lkj):
                     _n0 = next(_n for _n, _j in enumerate(_lkj) if not _j[0]); _lkn = _lkj[_n0][1]; _lkm = _lkj[_n0][2]
                     _lko = list(dict.fromkeys(_j[1] for _n, _j in enumerate(_lkj) if _n != _n0 and not _j[0] and _j[1]))      # what let ANOTHER feed patient of this chart be asked (his word, a number, the id): said too
-                else:      # no_birth_date: the chart's visits, for ONE line at the top of the digest
-                    rec["lookup_asked"] = "look-up not asked: " + _lkj[0][1]; rec["no_birth_date"] = list(rec["visits"])
-                    rec["hold"].append("no active plan: no paid look-up was bought - %s" % _lkj[0][1])
+                else:      # no_birth_date: the chart's visits, for ONE line at the top of the digest - and (round 2 of the second review) WHICH case it is, in a fixed
+                    # word: "two dates" when Claimocity sent two different real birth dates for a feed patient of this chart, which carries none of its own - then the
+                    # hold says so too, whichever of the chart's feed patients is listed first; else "neither side". The digest has a true sentence for each (until
+                    # then it said 'neither Claimocity nor the chart carries a real birth date' of both)
+                    _two = [_j[1] for _j in _lkj if _j[1].startswith("Claimocity sent two different birth dates")]; _nbw = (_two or [_lkj[0][1]])[0]
+                    rec["lookup_asked"] = "look-up not asked: " + _nbw; rec["no_birth_date"] = list(rec["visits"]); rec["no_birth_date_case"] = "two dates" if _two else "neither side"
+                    rec["hold"].append("no active plan: no paid look-up was bought - %s" % _nbw)
             if lead is None and not rec["hold"]:
                 if use_stedi:
                     _mf, _ml, _md = _lkm if _lkm is not None else who3(PARSED.get(visits[0]["feed_id"], {}))

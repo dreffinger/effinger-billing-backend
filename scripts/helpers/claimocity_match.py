@@ -40,7 +40,10 @@
 #  4 what this workspace already knows about a chart (11/25/2026, the independent verification - two files this step only READS):
 #    - registers/claimocity_patient_map.json, the feed's patient map ({Claimocity id: chart} - every id the feed has put on a chart):
 #      a chart it gives to ANOTHER Claimocity id than this patient's is marked "owned". The rule does not take such a chart on the
-#      name alone (rules 6 to 8: a chart with no birth date took every same-name patient that came) - feed_identity.decide.
+#      name alone when the chart has no date of its own (rules 6 and 8: a chart with no birth date took every same-name patient
+#      that came) - feed_identity.decide. A chart that carries a date is still taken when Claimocity sent none (rule 7 - identity
+#      rule .4, the checkers of that verification: the patient the feed already knows, sent under a new Claimocity id with the
+#      placeholder, goes to her own chart without a question; the first fix held that back as well).
 #    - registers/feed_duplicate_charts.json, the charts William called duplicates ({"pat<duplicate>": {"proper": "pat<proper>",
 #      "approved_by": his word and its date}} - its home is the repository, the ingest copies it here; his word of 11/9/2026: "if a
 #      duplicate chart shows up with visits in it just put the visits in the proper chart"). A listed duplicate is never offered as
@@ -103,7 +106,7 @@ def register(path):
     except Exception as e: return None, type(e).__name__
 MAPF = "registers/claimocity_patient_map.json"; DUPF = "registers/feed_duplicate_charts.json"; CHART_ID = re.compile(r"pat[0-9]+")
 _doc, _why = register(MAPF)
-if _doc is None: print("MATCH: %s could not be read (%s) - which chart the feed already uses for another Claimocity id is not known in this run: nothing is held back for it, and a chart is chosen by the name alone as before (rules 6 to 8)." % (MAPF, _why))
+if _doc is None: print("MATCH: %s could not be read (%s) - which chart the feed already uses for another Claimocity id is not known in this run: nothing is held back for it, and a chart without a date of its own is taken by the name alone as before (rules 6 and 8)." % (MAPF, _why))
 OWNERS = collections.defaultdict(set)      # chart id -> the Claimocity ids the feed's patient map gives that chart to
 for _f, _c in (_doc or {}).items():
     if isinstance(_f, str) and _f and isinstance(_c, str) and CHART_ID.fullmatch(_c): OWNERS[_c].add(_f)
@@ -277,7 +280,7 @@ for p in PATIENTS:
         print("  %s: %s is a chart William called a duplicate - it is not offered; the proper chart %s stands in its place" % (who, cid, stands))
     look = []
     for cid in sorted(row_of, key=by_number):
-        row_of[cid]["owned"] = owned(cid, ids); look.append(row_of[cid])      # owned: the feed's patient map gives this chart to ANOTHER Claimocity id - the rule does not take it on the name alone
+        row_of[cid]["owned"] = owned(cid, ids); look.append(row_of[cid])      # owned: the feed's patient map gives this chart to ANOTHER Claimocity id - the rule does not take it on the name alone when it has no date of its own (rules 6 and 8)
     gathered = {"lookup": look, "cut": cut, "every_spelling": bool(spelt) and all(spelt)}      # every_spelling False: this patient was weighed with the lookups the step has always made only
     mine = []      # where what was gathered for this patient is written: under its own keys, and among the "sharers" of a key it shares
     for k in p["decide_keys"]:

@@ -475,6 +475,24 @@ check("7j ... and a chart with no real birth date on either side in another: not
       lambda: len(_nb) == 1 and "1 chart(s)" in _nb[0] and "pat9401 (vst7005 vst7008)" in _nb[0] and "face sheet" in _nb[0] and "pat9301" not in _nb[0], lambda: top(L8v))
 L8w, e8w = report_run("verify_holds_none", S7, ROWS8, verify={"pat9101": dict(vrec(["vst7001"]), decision="RELEASE"), "pat9301": vrec(["vst7004"], same_person="yes", no_birth_date=None), "pat9401": vrec(["vst7005"], same_person=[])})
 check("7k neither line when no chart carries such a hold (a value that is no list of visits, or an empty one, is none)", lambda: e8w == "" and not has(L8w, "SAME PERSON?") and not has(L8w, "NO BIRTH DATE ON EITHER SIDE"), lambda: (e8w, top(L8w)))
+# 11/25/2026 (round 2 of the second review): the sentence 'neither Claimocity nor the chart carries a real birth date' was untrue of a chart whose feed patient came with two DIFFERENT real
+# birth dates (the insurance check holds that chart under the same record key). The record now says which case it is - no_birth_date_case, a fixed word - and the digest has a true sentence
+# for each; a record without the word (an older one), or with anything else in its place, reads as before, and what stands in that field is never printed
+VER7c = {"pat9401": vrec(["vst7005", "vst7008"], no_birth_date=["vst7005", "vst7008"], no_birth_date_case="neither side"), "pat9402": vrec(["vst7009", "vst7010"], no_birth_date=["vst7009", "vst7010"], no_birth_date_case="two dates"),
+         "pat9403": vrec(["vst7011"], no_birth_date=["vst7011"]), "pat9404": vrec(["vst7012"], no_birth_date=["vst7012"], no_birth_date_case=NAME(3)), "pat9405": vrec(["vst7013"], no_birth_date=["vst7013"], no_birth_date_case=["two dates"]),
+         NAME(2).replace(", ", ","): vrec(["vst7014"], no_birth_date=["vst7014"], no_birth_date_case="two dates")}
+L8x, e8x = report_run("verify_holds_case", S7, ROWS8, verify=VER7c); _nb = has(top(L8x), "NO BIRTH DATE ON EITHER SIDE"); _tw = has(top(L8x), "TWO BIRTH DATES FROM CLAIMOCITY")
+check("7k2 a chart whose feed patient came with TWO different real birth dates while the chart carries none (the record's word 'two dates') has a line of its own at the top - it says Claimocity sent two and nobody knows which to ask with, never "
+      "'neither Claimocity nor the chart carries a real birth date' - and is not counted in the other line",
+      lambda: e8x == "" and len(_tw) == 1 and "1 chart(s)" in _tw[0] and "pat9402 (vst7009 vst7010)" in _tw[0] and "two different real birth dates" in _tw[0] and "face sheet" in _tw[0] and "no paid look-up was bought" in _tw[0]
+      and "neither Claimocity nor the chart" not in _tw[0] and not any(p_ in _tw[0] for p_ in ("pat9401", "pat9403", "pat9404", "pat9405")) and len(_nb) == 1 and "pat9402" not in _nb[0], lambda: (e8x, _tw, _nb))
+check("7k3 ... a record that says 'neither side', one without the word (an older record) and one with anything else in its place (a text that is not the fixed word, a list) read as before - the line NO BIRTH DATE ON EITHER SIDE; "
+      "a record whose key is no chart id is counted there as not shown, whatever its word; and nothing that stands in that field reaches a line at the top",
+      lambda: len(_nb) == 1 and "4 chart(s)" in _nb[0] and all(p_ in _nb[0] for p_ in ("pat9401 (vst7005 vst7008)", "pat9403 (vst7011)", "pat9404 (vst7012)", "pat9405 (vst7013)")) and "neither Claimocity nor the chart carries a real birth date" in _nb[0]
+      and "1 record(s) not shown" in _nb[0] and "not shown" not in _tw[0] and not any(s_ in "\n".join(top(L8x)) for s_ in secrets(2, 3)) and not any(s_ in "\n".join(L8x) for s_ in secrets(3)), lambda: (e8x, _nb, _tw))
+L8y, e8y = report_run("verify_holds_case_only", S7, ROWS8, verify={"pat9402": vrec(["vst7009"], no_birth_date=["vst7009"], no_birth_date_case="two dates")})
+check("7k4 ... and when every such chart is of the 'two dates' kind the line NO BIRTH DATE ON EITHER SIDE is not printed at all",
+      lambda: e8y == "" and len(has(top(L8y), "TWO BIRTH DATES FROM CLAIMOCITY", "1 chart(s)", "pat9402 (vst7009)")) == 1 and not has(L8y, "NO BIRTH DATE ON EITHER SIDE") and not has(L8y, "neither Claimocity nor the chart"), lambda: (e8y, top(L8y)))
 # a patient whose new chart waits for the next run (feed_identity.new_chart_waits): said in a plain line under 'Which chart' - no question for William
 WAIT7 = {"stamp": S7, "identity_rule": FI.IDENTITY_RULE_VERSION, "counts": {"known from the patient map": 0, "looked up": 2, "new charts": 1, "for William": 0, "no chart": 1}, "repointed": [], "notes": [], "not_registered": ["20261129a.hl7"],
          "patients": [{"feed_ids": [FID(3)], "chart": "pat9301", "status": "MISSING", "new_chart": True, "rule": 9, "why": FI.WHY_NEW, "flags": [], "candidates": [], "evidence": [], "feed_dob": "real", "for_william": False},

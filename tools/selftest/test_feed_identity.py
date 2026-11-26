@@ -33,6 +33,12 @@
 #      proper chart stands in its place; the new-chart register keeps none of the feed's payer text. And what must stay: one person
 #      under two new ids ends on one chart, a patient with proof never waits, a batch in which nobody gets a new chart is decided as
 #      before, a chart nobody in the map owns is chosen as on 11/8.
+#      11/25/2026 (the checkers of those fixes - identity rule .4; each case below was seen failing here before the rule was changed):
+#      the patient map holds back only a chart WITHOUT a date of its own (rules 6 and 8) - a patient the feed already knows, sent under
+#      a NEW Claimocity id with the placeholder, goes to her own chart by rule 7 without a question, also when that chart is another
+#      id's in the map, and one person under two new ids, the second without a date, ends on ONE chart with BOTH visits; a slip in the
+#      date (rule 5) does not wait for ANOTHER patient's new chart - only an answer by the name alone (rules 6 to 8) and a patient that
+#      would get a new chart do; and the rule's version line changed with the rule, in the helper and in the two tables that pin it.
 #   The stand-in AdvancedMD refuses every action a step is not supposed to send (a stray write fails the test) and counts addpatient.
 # Every name, birth date, Social Security number and member number here is invented, and each is put together at run time (lf, ymd, the
 #   + signs) so that no such value sits in this file as a literal: tools/mirror/phi_gate.py scrubs this file like any other before a
@@ -348,18 +354,30 @@ T("... what goes to William for it: the question, and - with no date - the face 
 # Rules 6, 7 and 8 choose a chart by the name alone. A chart with no birth date took every same-name patient that came, one run after the other:
 # a patient with a real date by rule 6, the next one without a date by rule 8 - two people on one chart, the second one's visit on the first one's
 # plan. The feed's patient map knows which Claimocity id every chart the feed has used belongs to ("owned": the match step says it of each chart):
-# a chart that belongs there to ANOTHER Claimocity id is not taken on the name alone - no chart, none made, for William. A chart nobody in the map
-# owns (it was there before the feed: the 11/8 patient's own case) is chosen as before, and so is every chart a rule WITH proof chooses.
+# a chart WITHOUT a date of its own that belongs there to ANOTHER Claimocity id is not taken on the name alone (rules 6 and 8) - no chart, none
+# made, for William. A chart nobody in the map owns (it was there before the feed: the 11/8 patient's own case) is chosen as before, and so is
+# every chart a rule WITH proof chooses.
+# Identity rule .4 (the checkers of that verification): rule 7 is NOT among the rules the map holds back. Claimocity sent no date and every
+# same-name chart carries ONE date - that is William's written rule for the very case: a patient the feed already knows, sent under a NEW
+# Claimocity id with the placeholder, goes to her own chart without a question. Round 1 held rule 7 back with the two others: such a patient
+# was not entered and the same question stood at the top run after run - about ten right placements lost for each wrong one avoided.
 _OWNED = getattr(FI, "WHY_OWNED", "?")
 X("rule 6 on a chart the patient map gives to ANOTHER Claimocity id: not taken on the name alone - no chart, none made, for William; the chart in question is the one named",
   F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", P8, owned=True)], None, 0, [], william=True, candidates=["pat1"], feed_dob="real")
 X("rule 8 on such a chart: the same", F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", "", owned=True)], None, 0, [], william=True, candidates=["pat1"], feed_dob="none")
-X("rule 7 on such a chart: the same (Claimocity sent no birth date - nothing but the name ties this id to the other one's chart)", F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, owned=True)], None, 0, [], william=True, candidates=["pat1"], feed_dob="none")
-T("... the answer says why in fixed words of its own, and what goes to William is ONE line that names the Claimocity id, the chart and the question",
+for nd in NONE_DATES:
+    X("rule 7 is NOT held back by the map (identity rule .4): Claimocity sent no date (%r) and the same-name chart carries one - the patient the feed already knows, sent under a NEW Claimocity id, goes to her own chart although that chart "
+      "is another Claimocity id's in the map; no flag but the missing date, not for William (round 1 held it back like rules 6 and 8: no chart, the same question run after run)" % (nd if nd != P8 else "placeholder"),
+      F(QU, "ZEBEDIAH", nd), [C(1, QU, "ZEBEDIAH", B2, owned=True)], "pat1", 7, ["no birth date from Claimocity"], william=False, candidates=["pat1"], feed_dob="none", group=["pat1"])
+X("... rule 7 with several same-name charts of ONE date, one of them the map's (and not the live one): the live chart of the group, as on 11/8 - the map holds nothing back where the charts carry a date", F(QU, "ZEBEDIAH", P8),
+  [C(1, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, 1, 1), charges=1, owned=True), C(2, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, 9, 1), charges=3)], "pat2", 7, ["no birth date from Claimocity"], william=False, group=["pat1", "pat2"])
+T("... the answer of a chart that IS held back (no date of its own - rule 8 here) says why in fixed words of its own, and what goes to William is ONE line that names the Claimocity id, the chart and the question",
   lambda: (lambda d, ls: (d["why"] == _OWNED and _OWNED in FI.WHY_WORDS and FI.problems(d) == [] and d["new_chart"] is False and len(ls) == 1 and FID in ls[0] and "pat1" in ls[0] and "same person or not?" in ls[0], (d, ls)))(
-      D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, owned=True)]), FI.william_lines(D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, owned=True)]), "", FID)))
-X("... also when the chart the map gives to another Claimocity id is not the live one of the group but another chart of it: the rule takes the live chart of a GROUP it calls one person's - that person has another Claimocity id",
-  F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, 1, 1), charges=1, owned=True), C(2, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, 9, 1), charges=3)], None, 0, [], william=True, candidates=["pat1"])
+      D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", "", owned=True)]), FI.william_lines(D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", "", owned=True)]), "", FID)))
+X("... also when the chart the map gives to another Claimocity id is not the live one of the group but another chart of it: the rule takes the live chart of a GROUP it calls one person's - that person has another Claimocity id (rule 8: two charts, neither with a date)",
+  F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", "", last_dos=ymd(2026, 1, 1), charges=1, owned=True), C(2, QU, "ZEBEDIAH", "", last_dos=ymd(2026, 9, 1), charges=3)], None, 0, [], william=True, candidates=["pat1"])
+X("... and the same for rule 6 (the feed has a date, neither chart has one)",
+  F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", "", last_dos=ymd(2026, 1, 1), charges=1, owned=True), C(2, ZO, "XANTHIA", P8, last_dos=ymd(2026, 9, 1), charges=3)], None, 0, [], william=True, candidates=["pat1"], feed_dob="real")
 X("a chart NOBODY in the map owns is chosen as before - rule 7, the 11/8 patient's own case (the six charts were there before the feed)", F(QU, "ZEBEDIAH", P8),
   [C(n, QU, "ZEBEDIAH", B2, last_dos=ymd(2026, n - 10, 3), charges=20 - n, owned=False) for n in range(11, 17)], "pat16", 7, ["no birth date from Claimocity"], william=False)
 X("... rule 6 and rule 8 as well", F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", P8, owned=False)], "pat1", 6, ["chart has no birth date"], william=True)
@@ -369,9 +387,10 @@ X("rules 1 to 4 are not held back either: the Claimocity id on the chart", F(ZO,
 X("... the same name and birth date", F(ZO, "XANTHIA", B), [C(1, ZO, "XANTHIA", B, owned=True)], "pat1", 2, [])
 X("... the same last name and birth date under another first name", F(ZO, "XANTHIA", B), [C(1, ZO, "ELSPETH", B, owned=True)], "pat1", 3, ["first name differs"])
 X("... a number in common", F(ZO, "XANTHIA", B, ssn=S1), [C(1, ZO, "XANTHIA", P8, ssn=S1, owned=True)], "pat1", 4, ["birth date differs: chart has no birth date"])
-X("one Claimocity id under two dates in one batch, one of them the chart's own: the proof of the one date stands (rule 2) although without it the name alone would have been held back", dict(F(ZO, "XANTHIA"), dobs=[B, P8]), [C(1, ZO, "XANTHIA", B, owned=True)], "pat1", 2, [])
-T("which rules those are is said once, in the rule itself: 1 to 4 choose by proof, 5 to 8 by what the same-name charts look like, and 6 to 8 have nothing but the name",
-  lambda: (tuple(FI.RULES_BY_PROOF), tuple(FI.RULES_BY_CHARTS), tuple(FI.RULES_NAME_ALONE)) == ((1, 2, 3, 4), (5, 6, 7, 8), (6, 7, 8)))
+X("one Claimocity id under its real date and the placeholder in one batch, the real one the chart's own: decided once, by the date (rule 2) - that the chart is another Claimocity id's in the map plays no part", dict(F(ZO, "XANTHIA"), dobs=[B, P8]), [C(1, ZO, "XANTHIA", B, owned=True)], "pat1", 2, [])
+T("which rules those are is said once, in the rule itself: 1 to 4 choose by proof, 5 to 8 by what the same-name charts look like; 6 to 8 have nothing but the name (such an answer waits for a chart the batch is making), "
+  "and of those 6 and 8 take a chart WITHOUT a date of its own (the patient map holds such a chart back; identity rule .4: not rule 7)",
+  lambda: (tuple(FI.RULES_BY_PROOF), tuple(FI.RULES_BY_CHARTS), tuple(FI.RULES_NAME_ALONE), tuple(FI.RULES_CHART_NO_DOB)) == ((1, 2, 3, 4), (5, 6, 7, 8), (6, 7, 8), (6, 8)))
 # ---- a chart William called a duplicate (11/25/2026, the independent verification; his word of 11/9/2026) -----------------------------------
 # After his 'duplicate' the feed patient was re-pointed in the map, but the duplicate chart stood in AdvancedMD and caught that patient's NEXT
 # Claimocity id by rule 2 without a word. A listed duplicate is never the chart a visit goes to: the PROPER chart stands in its place. What
@@ -485,8 +504,11 @@ T("... what goes to William then is one line that names the Claimocity id; a cha
 T("... one of them WAITS for a new chart of this batch: the key waits with it - no chart, none made, the plain words of the wait, NOT for William (the next run decides it)",
   lambda: (lambda c: (lambda s: (s["chart"] is None and s["rule"] == 0 and s["why"] == FI.WHY_SAME_RUN and s["for_william"] is False and s["new_chart"] is False and FI.problems(s) == [] and FI.william_lines(s, "", FID) == []
                                  and s == FI.shared_answer([FI.waits(c["new"]), c["r7"]]), s))(FI.shared_answer([c["r7"], FI.waits(c["new"])])))(_shared_cases()))
-T("... every one of them was held back for the SAME reason (the chart belongs to another Claimocity id in the patient map): the key says that reason and names that chart - not 'several ids ... not known to be one person'",
-  lambda: (lambda o_: (lambda s: (s["rule"] == 0 and s["why"] == FI.WHY_OWNED and s["candidates"] == ["pat1"] and s["for_william"] is True and FI.problems(s) == [], s))(FI.shared_answer([o_, dict(o_)])))(
+T("... every one of them was held back for the SAME reason (the chart, which has no date of its own, belongs to another Claimocity id in the patient map): the key says that reason and names that chart - not 'several ids ... not known to be one person'",
+  lambda: (lambda o_: (lambda s: (o_["why"] == FI.WHY_OWNED and s["rule"] == 0 and s["why"] == FI.WHY_OWNED and s["candidates"] == ["pat1"] and s["for_william"] is True and FI.problems(s) == [], s))(FI.shared_answer([o_, dict(o_)])))(
+      D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", "", owned=True)])))
+T("... and when the chart carries a date (rule 7 for each of them - the map holds nothing back, identity rule .4) the key carries that chart: both ids of the 11/8 kind are entered",
+  lambda: (lambda o_: (lambda s: (o_["rule"] == 7 and s["chart"] == "pat1" and s["rule"] == 7 and s["for_william"] is False and FI.problems(s) == [], s))(FI.shared_answer([o_, dict(o_)])))(
       D(F(QU, "ZEBEDIAH", P8), [C(1, QU, "ZEBEDIAH", B2, owned=True)])))
 T("... a key whose ids the feed itself shows to be two people ('apart') never gets ONE chart, also when the rule gives each of them the same one",
   lambda: (lambda s: (s["chart"] is None and s["rule"] == 0 and s["why"] == FI.WHY_SHARED and s["for_william"] is True and s["candidates"] == ["pat1"], s))(FI.shared_answer([_shared_cases()["r7"], _shared_cases()["r7"]], apart=True)))
@@ -1114,7 +1136,7 @@ def _three_ok(f):
     own = f.on(FID3); ls = f.said()
     return (f.clean() and f.files == [] and len(f.made) == 3 and len(own) == 1 and own != f.on(FID) and own != f.on(FID2) and f.on(FID) != f.on(FID2) and f.born(own[0]) == P8
             and any(own[0] in l and "beside 2 same-name chart(s)" in l and "same person or not?" in l for l in ls) and any(own[0] in l and "face sheet needed" in l for l in ls)
-            and len(f.worlds) == 3 and not any(FID3 in l for n in (0, 1) for l in f.said(n))      # while it waits William is asked nothing about it - not even whether it is the first id's person (the patient map's question), which the next chart may settle
+            and len(f.worlds) == 3 and not any(FID3 in l for n in (0, 1) for l in f.said(n))      # while it waits William is asked nothing about it. In the second run its own answer is rule 7 on the FIRST id's chart (since identity rule .4 the map does not hold that back): it is the WAIT that keeps it off that chart - the run is making the second id's
             and (f.worlds[1].match().get(K(ZO, A_FIRST, P8), {}).get("why"), f.worlds[1].match().get(K(ZO, A_FIRST, P8), {}).get("waits_for")) == (FI.WHY_SAME_RUN, [FID2]),
             ([w.err for w in f.worlds if w], f.entered, f.made, ls, f.log(1)[-900:]))
 t3a, t3b = _three(BD, BD_FAR), _three(BD_FAR, BD)
@@ -1127,6 +1149,12 @@ step("a long-time patient's chart, and in ONE batch a newcomer of the same name 
      lambda: (o1.clean() and o1.files == [] and len(o1.made) == 2 and len(o1.on(FID3)) == 1 and "pat101" not in o1.on(FID3) and o1.on(FID3) != o1.on(FID2) and [i_ for i_, _c in o1.entered[:1]] == [FID2] and len(o1.worlds[0].amd.added) == 1
               and any(FID3 in l and "waits" in l for l in o1.log(0).splitlines()) and not any(FID3 in l for l in o1.said(0))
               and any(o1.on(FID3)[0] in l and "beside 2 same-name chart(s) (pat101, " in l for l in o1.said()), (o1.entered, o1.made, o1.said(), o1.log(0)[-700:])))
+o1m = Feed([chart(101, ZO, A_FIRST, BD, charges=[(ymd(Y - 1, 10, 3), 0)])], pmap={FID5: "pat101"}).drop(msg(FID2, ZO, A_FIRST, BD_FAR), msg(FID3, ZO, A_FIRST, P8)).runs(5)
+step("... the same when the feed already KNOWS the long-time patient (her chart is an earlier Claimocity id's in the patient map): since identity rule .4 the map does not hold rule 7 back - it is the WAIT that keeps the id without a date "
+     "off the long-time chart in the run that makes the newcomer's chart; it ends on a chart of its own beside both, with the question",
+     lambda: (o1m.clean() and o1m.files == [] and len(o1m.made) == 2 and len(o1m.on(FID3)) == 1 and "pat101" not in o1m.on(FID3) and o1m.on(FID3) != o1m.on(FID2) and [i_ for i_, _c in o1m.entered[:1]] == [FID2]
+              and ok_field(_first(o1m, K(ZO, A_FIRST, P8)), rule=0, why=FI.WHY_SAME_RUN, for_william=False, waits_for=[FID2]) and not any(FID3 in l for l in o1m.said(0))
+              and any(o1m.on(FID3)[0] in l and "beside 2 same-name chart(s) (pat101, " in l for l in o1m.said()), (o1m.entered, o1m.made, o1m.said(), o1m.log(0)[-700:])))
 c1 = Feed([chart(101, ZO, A_FIRST, BD)]).drop(msg(FID3, ZO, A_FIRST, P8), msg(FID2, QU, B_FIRST, BD2)).runs(3)
 step("what must stay - the patient without a birth date beside a NEW patient of ANOTHER last name in the batch: nobody waits - rule 7 at once, one new chart for the other",
      lambda: (c1.clean() and len(c1.worlds) == 1 and c1.files == [] and c1.on(FID3) == ["pat101"] and len(c1.made) == 1 and c1.on(FID2) == c1.made and c1.said() == [], (c1.entered, c1.made, c1.said())))
@@ -1140,14 +1168,24 @@ step("... a patient with PROOF never waits: beside a same-name patient who gets 
 k2 = Feed().drop(msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, A_FIRST, BD_OFF)).runs(4)
 step("... ONE person under two new ids, the second birth date a digit off: ONE chart, the second id on it after the next run - by the slip (rule 5), which the patient map does not hold back although that chart is the first id's there by then",
      lambda: (k2.clean() and k2.files == [] and len(k2.made) == 1 and k2.on(FID) == k2.on(FID2) == k2.made and len(k2.worlds) == 2 and k2.worlds[1].match()[K(ZO, A_FIRST, BD_OFF)]["rule"] == 5 and k2.said() == [], (k2.entered, k2.made, k2.said())))
-k1 = Feed().drop(msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, A_FIRST, P8)).runs(3); ek1 = k1.worlds[1].match().get(K(ZO, A_FIRST, P8), {}) if len(k1.worlds) > 1 and k1.worlds[1] is not None else {}
-step("... the second id comes with NO birth date: still ONE chart and never a second one. The id without a date waits a run; then nothing but the name ties it to the chart the feed made for the other id "
-     "(rule 7 on a chart that is another Claimocity id's in the patient map): it is not entered there on the name alone - ONE line for William with the id, the chart and the question",
-     lambda: (k1.clean() and len(k1.made) == 1 and k1.on(FID) == k1.made and k1.on(FID2) == [] and len(k1.files) == 1 and ok_field(ek1, rule=0, why=_W_OWNED, candidates=k1.made, for_william=True, status="AMBIGUOUS") and "resolved" not in ek1
-              and k1.said(1) == ["FOR WILLIAM: no chart chosen and none made for Claimocity id %s: %s (chart %s) - same person or not?" % (FID2, _W_OWNED, k1.made[0])], (k1.entered, k1.made, brief(ek1), k1.said())))
+k1 = Feed().drop(msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, A_FIRST, P8)).runs(4); ek1 = k1.worlds[1].match().get(K(ZO, A_FIRST, P8), {}) if len(k1.worlds) > 1 and k1.worlds[1] is not None else {}
+step("... the second id comes with NO birth date: ONE chart, and BOTH visits on it after the next run. The id without a date waits a run - for the chart that run is making; then Claimocity's missing date and the ONE date the same-name chart "
+     "carries are rule 7. By then that chart is the first id's in the patient map, and since identity rule .4 that does not hold rule 7 back (round 1 held it: the second id was never entered - the same question at the top, run after run)",
+     lambda: (k1.clean() and len(k1.made) == 1 and k1.on(FID) == k1.on(FID2) == k1.made and k1.files == [] and len(k1.worlds) == 2 and ok_field(_first(k1, K(ZO, A_FIRST, P8)), rule=0, why=FI.WHY_SAME_RUN, for_william=False, waits_for=[FID])
+              and ok_field(ek1, rule=7, resolved=k1.made[0], status="FOUND", flags=["no birth date from Claimocity"], for_william=False) and k1.said() == [], (k1.entered, k1.made, brief(ek1), k1.said())))
+n7 = Feed([chart(101, ZO, A_FIRST, BD, charges=[(ymd(Y - 1, 10, 3), 0)])], pmap={FID5: "pat101"}).drop(msg(FID, ZO, A_FIRST, P8)).runs(3)
+step("William's own case, through the runs: a patient the feed already KNOWS - her chart carries her date and is an earlier Claimocity id's in the patient map - is sent under a NEW Claimocity id with the placeholder: "
+     "her visit is entered on her own chart in the first run by rule 7, nothing is asked, the file is done and the map learns the new id (round 1: no chart, the same question at the top of every run, the file never done)",
+     lambda: (n7.clean() and len(n7.worlds) == 1 and n7.files == [] and n7.entered == [(FID, "pat101")] and n7.made == [] and n7.said() == [] and n7.pmap.get(FID) == "pat101"
+              and ok_field(_first(n7, K(ZO, A_FIRST, P8)), rule=7, resolved="pat101", status="FOUND", flags=["no birth date from Claimocity"], for_william=False, feed_dob="none"), (n7.entered, n7.files, n7.said(), brief(_first(n7, K(ZO, A_FIRST, P8))))))
+y1 = Feed().drop(msg(FID, ZO, A_FIRST, P8)); y1.run(); y1.drop(msg(FID2, ZO, A_FIRST, BD)); y1.run(); ey1 = y1.worlds[1].match().get(K(ZO, A_FIRST, BD), {}) if len(y1.worlds) > 1 and y1.worlds[1] is not None else {}
+step("what the map still holds back - a chart WITHOUT a date of its own: the feed made a chart with the placeholder for an id sent without a date; the next id of that name, sent with a real date, is not entered on it by rule 6 "
+     "(nothing but the name ties the two) - ONE line for William with the id, the chart and the question; no second chart, the file kept",
+     lambda: (y1.clean() and len(y1.made) == 1 and y1.entered == [(FID, y1.made[0])] and len(y1.files) == 1 and ok_field(ey1, rule=0, why=_W_OWNED, candidates=y1.made, for_william=True, status="AMBIGUOUS") and "resolved" not in ey1
+              and y1.said(1) == ["FOR WILLIAM: no chart chosen and none made for Claimocity id %s: %s (chart %s) - same person or not?" % (FID2, _W_OWNED, y1.made[0])], (y1.entered, y1.made, brief(ey1), y1.said())))
 def _yes(f, fid): f.pmap[fid] = f.made[0]; f.run(); return f      # William's yes, written into the patient map (the repository's map, which the ingest takes at its start)
 step("... and William's yes, written into the patient map, enters the visit on that chart at the next run - no lookup, no second chart",
-     lambda: (lambda f: (f.clean() and f.on(FID2) == f.made and f.files == [] and len(f.made) == 1 and f.worlds[-1] is None, (f.entered, f.made)))(_yes(k1, FID2)))
+     lambda: (lambda f: (f.clean() and f.on(FID2) == f.made and f.files == [] and len(f.made) == 1 and f.worlds[-1] is None, (f.entered, f.made)))(_yes(y1, FID2)))
 r3 = Feed().drop(msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, D_FIRST, BD)).runs(4)
 step("two NEW Claimocity ids of one last name and ONE real birth date under two first names - rule 3's own relation - in one batch: ONE chart is made and the other id waits (until then two charts and not a word, where the same two "
      "messages in two batches gave one chart); the next run weighs it against that chart and takes it by rule 3, with the FYI for William that names the Claimocity id",
@@ -1200,6 +1238,39 @@ step("... and when AdvancedMD takes the chart again it is made, the other id wai
      "here a namesake with a far-apart birth date: a chart of its own beside it, with the question",
      lambda: (rf.clean() and rf.files == [] and len(rf.made) == 2 and ok_field(_rf(2), rule=0, why=FI.WHY_SAME_RUN, for_william=False) and not any(FID2 in l for l in rf.said(2)) and rf.on(FID) == rf.made[:1] and rf.on(FID2) == rf.made[1:]
               and any("beside 1 same-name chart(s)" in l and rf.made[1] in l for l in rf.said(3)), ([w.err for w in rf.worlds if w], rf.entered, rf.made, rf.said(2), rf.said(3))))
+# ---- a slip in the date does not wait (identity rule .4 - the checkers of round 1) -----------------------------------------------------------------
+# Round 1 let EVERY answer by rules 5 to 8 wait while the batch makes a same-name chart. A patient whose own chart carries a date one keystroke
+# from the feed's (rule 5) has evidence of her own - the full name and the slip: she does not wait for ANOTHER patient's new chart. Round 1 made
+# her wait, and while AdvancedMD refused that other chart neither visit was entered, run after run ('no chart until that chart is made'). Only an
+# answer by the name alone (rules 6, 7 and 8) and a patient that would get a new chart still wait.
+SLIPPED = [chart(101, ZO, A_FIRST, BD, charges=[(ymd(Y - 1, 10, 3), 0)])]      # her own chart; the feed sends her date one digit off
+s2 = Feed(SLIPPED, addfault="the chart could not be saved (test)").drop(msg(FID, ZO, "XANDER", BD_FAR), msg(FID2, ZO, A_FIRST, BD_OFF)); s2.run(); s2.run(); es2 = _first(s2, K(ZO, A_FIRST, BD_OFF))
+step("a patient whose OWN chart carries a date one digit off the feed's (rule 5) beside a NEW patient of the same last name whose first name shares three letters, AdvancedMD refusing the new patient's chart run after run: her visit is entered "
+     "on her own chart in the FIRST run - she does not wait for another patient's chart (round 1: she waited behind it and neither visit was entered, run after run); of the two ids only the new patient's stands at the top, and the next run looks up him alone",
+     lambda: (s2.clean() and s2.entered == [(FID2, "pat101")] and s2.made == [] and len(s2.files) == 1 and ok_field(es2, rule=5, resolved="pat101", status="FOUND", for_william=False, flags=[FI.FLAG_DATE + FI.SLIP_DIGIT]) and "waits_for" not in es2
+              and all(len([l for l in s2.said(n) if FID in l and "could NOT be made" in l]) == 1 and not any(FID2 in l for l in s2.said(n)) for n in (0, 1)) and set(s2.worlds[1].match()) == {K(ZO, "XANDER", BD_FAR)},
+              ([w.err for w in s2.worlds if w], s2.entered, brief(es2), s2.said(0), s2.said(1))))
+s1 = Feed(SLIPPED).drop(msg(FID, ZO, "XANDER", BD_FAR), msg(FID2, ZO, A_FIRST, BD_OFF)).runs(3)
+step("... and when AdvancedMD takes the new chart: ONE run - her visit on her own chart by the slip, his on his new chart (with the question about it for William); nobody waits and the file is done",
+     lambda: (s1.clean() and len(s1.worlds) == 1 and s1.files == [] and len(s1.made) == 1 and sorted(s1.entered) == sorted([(FID, s1.made[0]), (FID2, "pat101")]) and _first(s1, K(ZO, A_FIRST, BD_OFF)).get("rule") == 5
+              and not any(v.get("why") == FI.WHY_SAME_RUN for v in s1.worlds[0].match().values()) and not any(FID2 in l for l in s1.said()), (s1.entered, s1.made, s1.said())))
+NODOB = [chart(101, ZO, A_FIRST, "", charges=[(ymd(Y - 1, 10, 3), 0)])]      # the same chart without a date of its own
+for _rule, _d in ((6, BD), (8, P8)):
+    def _still(_rule=_rule, _d=_d):
+        alone = World([msg(FID2, ZO, A_FIRST, _d)], NODOB).ingest().match().get(K(ZO, A_FIRST, _d), {})
+        f = Feed(NODOB).drop(msg(FID, ZO, "XANDER", BD_FAR), msg(FID2, ZO, A_FIRST, _d)); f.run(); e = _first(f, K(ZO, A_FIRST, _d))
+        return (f.clean() and (alone.get("rule"), alone.get("resolved")) == (_rule, "pat101") and len(f.made) == 1 and f.entered == [(FID, f.made[0])] and ok_field(e, rule=0, why=FI.WHY_SAME_RUN, for_william=False, waits_for=[FID])
+                and "resolved" not in e and not any(FID2 in l for l in f.said(0)), (alone.get("rule"), f.entered, brief(e), f.said(0)))
+    step("what still waits beside such a new patient - an answer by the NAME ALONE, rule %d (alone in a batch it takes the chart at once; here: no chart in this run, the plain words of the wait, the id it waits for named, nothing for William; "
+         "rule 7 waits the same way - the long-time chart above)" % _rule, _still)
+def _held_waits():      # the same chart without a date, now an earlier Claimocity id's in the patient map: alone, the id is asked about at once; beside a new patient of the batch it waits first
+    alone = World([msg(FID2, ZO, A_FIRST, BD)], NODOB, pmap={FID5: "pat101"}).ingest(); ea = alone.match().get(K(ZO, A_FIRST, BD), {})
+    f = Feed(NODOB, pmap={FID5: "pat101"}).drop(msg(FID, ZO, "XANDER", BD_FAR), msg(FID2, ZO, A_FIRST, BD)); f.run(); e = _first(f, K(ZO, A_FIRST, BD)); f.run()
+    return (f.clean() and alone.clean() and ok_field(ea, rule=0, why=_W_OWNED, for_william=True) and len([l for l in _william(alone) if FID2 in l and "same person or not?" in l]) == 1
+            and ok_field(e, rule=0, why=FI.WHY_SAME_RUN, for_william=False, waits_for=[FID]) and not any(FID2 in l for l in f.said(0)) and len(f.worlds) == 2 and len(f.made) == 2 and f.on(FID2) == f.made[1:] and "pat101" not in f.on(FID2)
+            and any(f.made[1] in l and "beside 2 same-name chart(s) (pat101, %s)" % f.made[0] in l for l in f.said(1)), (brief(ea), brief(e), f.entered, f.made, f.said()))
+step("... and so does an answer the patient map HELD BACK (rule 6 on a chart without a date that is another Claimocity id's): alone in a batch William is asked about it at once; beside a new patient of the batch it waits first - "
+     "no question in that run, because the next run weighs it against the chart that run made (here: no longer the only same-name chart - a chart of its own beside both, with the question)", _held_waits)
 # ---- rules without proof: two of one batch on one chart, and the patient map (11/25/2026, the independent verification) ---------------------------
 NODATE = [chart(101, ZO, A_FIRST, "")]
 d1 = Feed(NODATE).drop(msg(FID, ZO, A_FIRST, BD), msg(FID2, ZO, A_FIRST, BD_FAR)); d1.run(); md1 = d1.worlds[0].match()
@@ -1225,16 +1296,22 @@ step("the same over three runs: a new patient sent with no birth date gets a cha
               and sk.said(1) == ["FOR WILLIAM: no chart chosen and none made for Claimocity id %s: %s (chart %s) - same person or not?" % (FID2, _W_OWNED, sk.made[0])]
               and len([l for l in sk.said(2) if FID3 in l and sk.made[0] in l and "same person or not?" in l]) == 1, ([w.err for w in sk.worlds if w], sk.entered, sk.said())))
 o7 = World([msg(FID, QU, B_FIRST, P8)], SIX, pmap={FID5: "pat113", FID4: "pat999"}).ingest(); e7o = o7.match().get(K(QU, B_FIRST, P8), {})
-step("the 11/8 patient under a NEW Claimocity id when the feed's patient map already gives one of the six charts to ANOTHER Claimocity id: no birth date from Claimocity, nothing but the name - no chart on the rule's own word; "
-     "William is asked, the chart named is the one the map knows (his answer goes into the repository's map), and no chart's activity is read for it",
-     lambda: (o7.clean() and ok_field(e7o, rule=0, why=_W_OWNED, candidates=["pat113"], for_william=True, status="AMBIGUOUS", pids=[]) and "resolved" not in e7o and o7.amd.added == [] and o7.txh_calls == []
-              and _william(o7) == ["FOR WILLIAM: no chart chosen and none made for Claimocity id %s: %s (chart pat113) - same person or not?" % (FID, _W_OWNED)], (o7.err, brief(e7o), _william(o7))))
-u7 = World([msg(FID, QU, B_FIRST, P8)], SIX, pmap={FID5: "pat999", FID: "pat113"}).ingest(); e7u = u7.match().get(K(QU, B_FIRST, P8), {})
-step("... a map that gives those charts to nobody else (another chart is another patient's; an entry under this patient's OWN Claimocity id is not 'another id'): rule 7, the live chart, as on 11/8",
-     lambda: (u7.clean() and ok_field(e7u, resolved="pat116", rule=7, for_william=False) and u7.amd.added == [], (u7.err, brief(e7u))))
-b7 = World([msg(FID, QU, B_FIRST, P8)], SIX, pmap="{ this is no JSON").ingest(); e7b = b7.match().get(K(QU, B_FIRST, P8), {})
+step("the 11/8 patient under a NEW Claimocity id when the feed's patient map already gives one of the six charts to ANOTHER Claimocity id (the feed knows this patient): Claimocity sent no date and the six charts carry ONE - rule 7, the live chart, "
+     "at once and without a question, exactly as when nobody in the map owns a chart (identity rule .4; round 1 asked William 'same person or not?' and entered nothing, run after run)",
+     lambda: (o7.clean() and ok_field(e7o, resolved="pat116", rule=7, status="AMBIGUOUS", flags=["no birth date from Claimocity"], pids=["pat%d" % n for n in range(111, 117)], feed_dob="none", for_william=False) and o7.amd.added == []
+              and sorted(o7.txh_calls) == ["pat%d" % n for n in range(111, 117)] and _william(o7) == [], (o7.err, brief(e7o), _william(o7))))
+SIX0 = [dict(c, dob="") for c in SIX]      # the same six charts WITHOUT a date of their own
+o8 = World([msg(FID, QU, B_FIRST, P8)], SIX0, pmap={FID5: "pat113", FID4: "pat999"}).ingest(); e8o = o8.match().get(K(QU, B_FIRST, P8), {})
+step("... but six same-name charts WITHOUT a date, one of them another Claimocity id's in the map: no date on either side, nothing but the name (rule 8) - no chart on the rule's own word; William is asked, "
+     "the chart named is the one the map knows (his answer goes into the repository's map), and no chart's activity is read for it",
+     lambda: (o8.clean() and ok_field(e8o, rule=0, why=_W_OWNED, candidates=["pat113"], for_william=True, status="AMBIGUOUS", pids=[]) and "resolved" not in e8o and o8.amd.added == [] and o8.txh_calls == []
+              and _william(o8) == ["FOR WILLIAM: no chart chosen and none made for Claimocity id %s: %s (chart pat113) - same person or not?" % (FID, _W_OWNED)], (o8.err, brief(e8o), _william(o8))))
+u7 = World([msg(FID, QU, B_FIRST, P8)], SIX0, pmap={FID5: "pat999", FID: "pat113"}).ingest(); e7u = u7.match().get(K(QU, B_FIRST, P8), {})
+step("... a map that gives those charts to nobody else (another chart is another patient's; an entry under this patient's OWN Claimocity id is not 'another id'): rule 8, the live chart, with its FYI",
+     lambda: (u7.clean() and ok_field(e7u, resolved="pat116", rule=8, for_william=True) and u7.amd.added == [], (u7.err, brief(e7u))))
+b7 = World([msg(FID, QU, B_FIRST, P8)], SIX0, pmap="{ this is no JSON").ingest(); e7b = b7.match().get(K(QU, B_FIRST, P8), {})
 step("... a patient map that cannot be read is said in ONE line and nothing is held back on it (the driver itself stops on such a file before any step runs)",
-     lambda: (b7.clean() and ok_field(e7b, resolved="pat116", rule=7) and len([l for l in b7.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: registers/claimocity_patient_map.json could not be read")]) == 1,
+     lambda: (b7.clean() and ok_field(e7b, resolved="pat116", rule=8) and len([l for l in b7.out["claimocity_match.py"].splitlines() if l.startswith("MATCH: registers/claimocity_patient_map.json could not be read")]) == 1,
               (b7.err, brief(e7b), b7.out.get("claimocity_match.py"))))
 s5 = World([msg(FID, ZO, A_FIRST, BD_OFF)], [chart(101, ZO, A_FIRST, BD)], pmap={FID5: "pat101"}).ingest(); e5s = s5.match().get(K(ZO, A_FIRST, BD_OFF), {})
 step("... and a slip in the birth date (rule 5) is not held back by the map - nor is a rule with proof (here rule 2, the same date)",
@@ -1261,7 +1338,15 @@ g2, eg2 = _dup([msg(FID3, ZO, A_FIRST, P8)], TWO, K(ZO, A_FIRST, P8), dups=DUPS)
 step("... the next id comes with NO birth date: the two are ONE chart with one date, the proper chart's - rule 7 (as two charts their two dates would have made a THIRD chart for this patient)",
      lambda: (g2.clean() and ok_field(eg2, resolved="pat101", rule=7, candidates=["pat101"], flags=["no birth date from Claimocity", _F_DUP]) and g2.amd.added == [], (g2.err, brief(eg2))))
 g2m, eg2m = _dup([msg(FID3, ZO, A_FIRST, P8)], TWO, K(ZO, A_FIRST, P8), pmap={FID4: "pat102"}, dups=DUPS)
-step("... and a Claimocity id the map still gives to the DUPLICATE counts as the proper chart's: the name alone is held back there too", lambda: (g2m.clean() and ok_field(eg2m, rule=0, why=_W_OWNED, candidates=["pat101"], for_william=True), (g2m.err, brief(eg2m))))
+step("... also when the map still gives another Claimocity id to the DUPLICATE: the proper chart carries a date, and rule 7 is not held back by the map (identity rule .4)",
+     lambda: (g2m.clean() and ok_field(eg2m, resolved="pat101", rule=7, candidates=["pat101"], flags=["no birth date from Claimocity", _F_DUP], for_william=False) and g2m.amd.added == [], (g2m.err, brief(eg2m))))
+TWO0 = [dict(TWO[0], dob=""), TWO[1]]      # the proper chart WITHOUT a date of its own, and its listed duplicate (which carries one)
+g2n, eg2n = _dup([msg(FID3, ZO, A_FIRST, BD2)], TWO0, K(ZO, A_FIRST, BD2), pmap={FID4: "pat102"}, dups=DUPS)
+step("... and a Claimocity id the map still gives to the DUPLICATE counts as the proper chart's: a proper chart WITHOUT a date of its own is not taken on the name alone by a third id (rule 6) - held back there too, for William, the proper chart named",
+     lambda: (g2n.clean() and ok_field(eg2n, rule=0, why=_W_OWNED, candidates=["pat101"], for_william=True) and "resolved" not in eg2n and g2n.amd.added == [], (g2n.err, brief(eg2n))))
+g2o, eg2o = _dup([msg(FID3, ZO, A_FIRST, BD2)], TWO0, K(ZO, A_FIRST, BD2), dups=DUPS)
+step("... (the same two charts when the map gives neither to anybody: rule 6, the proper chart - the flag says a duplicate stood behind it)",
+     lambda: (g2o.clean() and ok_field(eg2o, resolved="pat101", rule=6, candidates=["pat101"], for_william=True) and _F_DUP in (eg2o.get("flags") or []) and g2o.amd.added == [], (g2o.err, brief(eg2o))))
 g3, eg3 = _dup([msg(FID3, ZO, A_FIRST, BD_FAR)], [chart(101, WE, C_FIRST, BD), TWO[1]], K(ZO, A_FIRST, BD_FAR), dups=DUPS)
 step("... the proper chart stands under ANOTHER name (the lookups for this name do not list it): it still stands in the duplicate's place - what speaks for the duplicate is weighed under the proper chart's id",
      lambda: (g3.clean() and ok_field(eg3, resolved="pat101", rule=2, candidates=["pat101"], flags=[_F_DUP]) and g3.amd.added == [], (g3.err, brief(eg3))))
@@ -1509,6 +1594,32 @@ for _f, _s in SENTENCES.items():
     check("%s: its PLAIN ENGLISH header carries the one sentence only this version has (the mirror will know the file by it), and the step loads feed_identity" % _f,
           read(_f).startswith("# PLAIN ENGLISH (") and _s in _header(read(_f)) and "feed_identity" in loads(read(_f)), _header(read(_f))[:200])
 check("feed_identity.py starts with its PLAIN ENGLISH header and carries the rule's version line", read("feed_identity.py").startswith("# PLAIN ENGLISH (") and re.search(r'(?m)^IDENTITY_RULE_VERSION = "\d{4}-\d\d-\d\d\.\d+"', read("feed_identity.py")) is not None)
+# Identity rule .4: the rule changed again, so its version line changes with it - in the helper and in the two tables that name it
+# (tools/mirror/mirror.py PROTECTED, claimocity_helpers_current.VERSION_LINES). The checkers of round 1 had found that round's patch changing
+# the rule under the old line: a copy of the helpers from before passed as current (the mirror let it go back over the repository's, the
+# driver's helper check called it current). The line changes with EVERY revision of the rule, in all three places together.
+import shutil
+_VNOW, _VOLD = ("2026-11-25." + n_ for n_ in ("4", "3")); _VLINE = 'IDENTITY_RULE_VERSION = "%s"' % _VNOW; _VLINE_OLD = 'IDENTITY_RULE_VERSION = "%s"' % _VOLD
+_mirror_src = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
+try: HCUR = load("claimocity_helpers_current"); HCUR_ERR = ""
+except Exception as e: HCUR = None; HCUR_ERR = "%s: %s" % (type(e).__name__, e)
+T("the rule's version line is 2026-11-25.4 - the round in which rule 7 is no longer held back by the patient map and a slip no longer waits: it stands ONCE in feed_identity.py, the mirror's marker for feed_identity.py and the helper check's "
+  "version line are that very line, and the line of the round before stands in none of the three (a copy of the round before never passes as current)",
+  lambda: (FI.IDENTITY_RULE_VERSION == _VNOW and len(re.findall(r'(?m)^' + re.escape(_VLINE), read("feed_identity.py"))) == 1 and ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src and HCUR.VERSION_LINES.get("feed_identity.py") == _VLINE
+           and not [f_ for f_, t_ in (("feed_identity.py", read("feed_identity.py")), ("mirror.py", _mirror_src), ("claimocity_helpers_current.py", read("claimocity_helpers_current.py"))) if _VLINE_OLD in t_],
+           (getattr(FI, "IDENTITY_RULE_VERSION", None), HCUR_ERR or HCUR.VERSION_LINES.get("feed_identity.py"), ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src)))
+def _stale_copy_named():
+    """The driver's helper check, with no repository clone, over a workspace that holds the current helpers - and again with a copy of feed_identity.py from the round before in it (the same rule file under that round's version line)."""
+    rule = re.search(r"POS_RULE = '([^']+)'", read("claimocity_ingest.py")).group(1); d = tempfile.mkdtemp(prefix="feedid_hc_")
+    try:
+        for f_ in HCUR.FEED_HELPERS: shutil.copy(os.path.join(H, f_), os.path.join(d, f_))
+        now = HCUR.make_current(d, repo=os.path.join(d, "no clone here"), rule=rule)[1]
+        open(os.path.join(d, "feed_identity.py"), "w").write(read("feed_identity.py").replace(_VLINE, _VLINE_OLD))
+        old = HCUR.make_current(d, repo=os.path.join(d, "no clone here"), rule=rule)[1]
+        return ("feed_identity.py" not in now and "FEED HELPERS NOT ALL CURRENT" in old and "feed_identity.py" in old, (now, old))
+    finally: shutil.rmtree(d, ignore_errors=True)
+T("... and it bites: the driver's helper check (claimocity_helpers_current.make_current, no repository clone) calls the current feed_identity.py current and names a copy of the round before - the same rule file under that round's version line - "
+  "in its warning for the top of the report", _stale_copy_named)
 check("the old rule is gone from the steps: no 'single same-name chart', no first letters of a name in a printed line or a register row",
       not re.search(r"single same-name chart\"|last\[:5\]|k\[:6\]|\[:12\] \+ \"\*\"", read("claimocity_match.py") + read("claimocity_resolve.py") + read("claimocity_newcharts.py")))
 sys.path.insert(0, os.path.join(ROOT, "tools", "mirror"))

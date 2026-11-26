@@ -33,7 +33,7 @@ VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.4"', 
                  "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
                  "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
                  "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-                 "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.3"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
+                 "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
                  "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
                  "feed_parse_dft_1028.py": "EVERY MESSAGE THAT CANNOT BE ENTERED AS IT CAME IS COUNTED BY FILE DATE AND MESSAGE NUMBER",      # 11/25/2026 (the verification): the sentence only the parser that counts every message it cannot hand on to be entered has
                  "deceased_guard.py": 'def _unread(v):'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has

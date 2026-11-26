@@ -155,7 +155,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
              "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.3"',
+             "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision
              "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
              "insp_bypass_advisories.py": "692 added 11/25/2026 (a new admission - the header)",      # the advisory sweep of the same rule: a copy without 692 in its list never comes back over it

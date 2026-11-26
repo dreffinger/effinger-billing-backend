@@ -21,13 +21,17 @@
 #  key the Claimocity id came with", below, means every key of its OWN.)
 #  SINCE THE INDEPENDENT VERIFICATION OF 11/25/2026 (a rule without proof could put a visit on ANOTHER person's chart):
 #  - THE WAIT covers every patient the same run would decide blind to a chart it is making. Until then only a patient the rule
-#    gives a NEW chart waited for the new chart of the one before it. Now a patient whose own answer rests on what the same-name
-#    charts look like (rules 5 to 8 - also where the patient map held that answer back) waits as well while a patient of the batch
+#    gives a NEW chart waited for the new chart of the one before it. Now a patient whose own answer is a chart by the NAME ALONE
+#    (rules 6 to 8 - also where the patient map held that answer back) waits as well while a patient of the batch
 #    it is related to (feed_identity.related: a name candidate, or rule 3's relation) gets a new chart in this run or waits for
 #    one: no chart in this run, a plain line, its file is read again and the next run weighs it against every chart of the batch.
 #    So does a patient that comes only under a key it shares - a chart is never made for such a patient, and it never counts as
 #    the one whose chart is made. A patient with proof (rules 1 to 4) never waits, and a batch in which nobody gets a new chart
-#    is decided as before. Each entry that waits names the Claimocity ids whose new chart it waits for ("waits_for" - the
+#    is decided as before. NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY (rule 5 - identity rule .4, the checkers of that
+#    verification): the full name and a date one keystroke from the chart's are evidence of their own, and such a patient does
+#    not wait for ANOTHER patient's new chart. The first fix let every answer by rules 5 to 8 wait: a patient who had her own
+#    chart stood behind a new chart AdvancedMD refused, and neither visit was entered, run after run.
+#    Each entry that waits names the Claimocity ids whose new chart it waits for ("waits_for" - the
 #    new-chart step reads it and says so, for William, when that chart could not be made).
 #  - TWO OF ONE BATCH ON ONE CHART: two patients of the batch whose real dates are far apart never both take one chart by the name
 #    alone (feed_identity.same_chart_far: rule 6 twice put two people on one chart with no birth date) - none of them takes it,
@@ -113,16 +117,19 @@ def put(ids, d):      # an answer that takes the place of a patient's own (a wai
 # new charts - the same two messages in two batches got one. Of the patients rule 9 gives a new chart, one the rule would weigh against another's
 # new chart waits (feed_identity.new_chart_waits): no chart in this run, its file is read again, and the next run weighs it against the chart made now.
 # 11/25/2026 (the independent verification): the same holds for every patient this run would otherwise decide BLIND to such a chart - one whose own
-# answer rests on what the same-name charts look like (rules 5 to 8; also where the patient map held that answer back), and one that comes only
+# answer is a chart by the name alone (rules 6 to 8: FI.RULES_NAME_ALONE; also where the patient map held that answer back), and one that comes only
 # under a key it shares (a chart is never made for it). Of three new ids of one name the one without a birth date went, by rule 7, on the chart of
 # whichever dated id sorted first; a newcomer's second id went on a long-time namesake's chart in the run that made the newcomer a chart of her own.
+# Identity rule .4 (the checkers of that verification): NOT an answer by rule 5. The slip between the two dates is evidence of its own, and a
+# patient who has her own chart does not wait for ANOTHER patient's new chart (the first fix let rules 5 to 8 wait: while AdvancedMD refused that
+# other chart she was not entered either, run after run - 'no chart until that chart is made').
 def who(i): return {"names": names_of[i], "dobs": real_of[i], "real": answer[i]["feed_dob"] == "real"}
 _new = [ids for ids, p in groups.items() if p["keys"] and answer[ids]["new_chart"]]      # a chart is made only for a patient with a key of its own: one that comes only under a shared key never counts as the one whose chart is made
 _late = {_new[n] for n in FI.new_chart_waits([who(i) for i in _new])}; _made = [i for i in _new if i not in _late]
 behind = collections.OrderedDict((i, [m for m in _made if FI.related(who(i), who(m))]) for i in _new if i in _late)      # a patient that waits -> the patients whose new chart it waits for (charts of this run)
 for ids, p in groups.items():
     d = answer[ids]
-    if ids in _new or not ((d["chart"] and d["rule"] in FI.RULES_BY_CHARTS) or d["why"] == FI.WHY_OWNED or (d["new_chart"] and not p["keys"])): continue      # (a patient with proof never waits)
+    if ids in _new or not ((d["chart"] and d["rule"] in FI.RULES_NAME_ALONE) or d["why"] == FI.WHY_OWNED or (d["new_chart"] and not p["keys"])): continue      # (a patient with proof never waits - nor one whose own chart is a slip away, rule 5)
     near = [j for j in _new if FI.related(who(ids), who(j))]      # the patients of the batch that get a new chart, or wait for one, and whose chart the rule would weigh this one against
     if near: behind[ids] = [m for m in _made if m in near or any(m in behind[j] for j in near if j in _late)]
 for ids in behind: put(ids, FI.waits(answer[ids]))

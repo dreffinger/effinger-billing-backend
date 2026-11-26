@@ -566,8 +566,14 @@ try:
     _whoc = lambda rows, odd: (", ".join("%s (%s)" % (p_, " ".join(x_)) for p_, x_ in rows[:20]) + (" +%d more" % (len(rows) - 20) if len(rows) > 20 else "")
                                + ((" (+%d record(s) not shown: its key is no chart id, or its list holds no visit id - see the insurance-check register)" % odd) if odd else ""))
     (_sam, _samx), (_nbd, _nbdx) = _byc("same_person"), _byc("no_birth_date")
+    # 11/25/2026 (round 2 of the second review): the insurance check holds under no_birth_date also a chart whose feed patient came with two DIFFERENT real birth dates
+    # while the chart carries none - and the sentence below, 'neither Claimocity nor the chart carries a real birth date', was untrue of it: Claimocity had sent two. The
+    # record now says which case it is (no_birth_date_case, a fixed word) and such a chart has a sentence of its own. A record without the word - an older one - or with
+    # anything else in its place reads as before; the word is only compared, never printed.
+    _nbt = [r_ for r_ in _nbd if ver[r_[0]].get("no_birth_date_case") == "two dates"]; _nbd = [r_ for r_ in _nbd if r_ not in _nbt]
     if _sam or _samx: L("  - TOP OF THE REPORT - SAME PERSON? %d chart(s) whose name or birth date is not what Claimocity sent for the visits on it: no paid look-up was bought and no plan was added (the look-up would be asked about the CHART's person) - for William: is the visit on the right chart? On his yes the insurance check is run again for that chart with --same-person; on his no the visit belongs on the proper chart (William 11/9/2026): %s" % (len(_sam), _whoc(_sam, _samx)))
     if _nbd or _nbdx: L("  - TOP OF THE REPORT - NO BIRTH DATE ON EITHER SIDE: %d chart(s) with no active plan where neither Claimocity nor the chart carries a real birth date - no paid look-up can be asked without one; a face sheet is needed: %s" % (len(_nbd), _whoc(_nbd, _nbdx)))
+    if _nbt: L("  - TOP OF THE REPORT - TWO BIRTH DATES FROM CLAIMOCITY, NONE ON THE CHART: %d chart(s) with no active plan where Claimocity sent two different real birth dates for one patient and the chart carries none of its own - nobody knows which of the two to ask with, so no paid look-up was bought; a face sheet is needed: %s" % (len(_nbt), _whoc(_nbt, 0)))
     if _svp: L("  - TOP OF THE REPORT - SAVE NOT AS ASKED: %d visit(s) on %d chart(s) - the order reads right but the save lost a charge or the admission date (see the hold line): %s" % (len(_svp), len({p_ for p_, _x in _svp}), _who2(_svp)))
 except Exception as _e:                                    # never stops the digest
     L("  - TOP OF THE REPORT - the insurance-order lines could not be built (%s) - read no_order_list / order_differs / order_unread / save_problem / same_person / no_birth_date in the insurance-check register." % type(_e).__name__)

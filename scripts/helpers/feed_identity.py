@@ -39,25 +39,36 @@
 #   chart). Rules 1 to 4 choose by what a chart itself shows - the Claimocity id, the same date, a number. Rules 5 to 8 choose by what
 #   the same-name charts LOOK LIKE ("ONE date", "the only name candidates", "no date"), and rules 6, 7 and 8 have nothing but the name:
 #     a) THE WAIT. While the same batch makes a new chart for another Claimocity id of this last name - a name candidate, or rule 3's
-#        relation: another first name under one real date (related) - the charts an answer by rules 5 to 8 rests on are about to
-#        change. Such a patient gets no chart in that run, its file is read again, and the next run weighs it against every chart of
-#        the batch (until then: of three new ids of one name the one without a date went, by rule 7, on the chart of whichever dated
-#        id sorted first). A NEW patient waits the same way for the new chart of the one before it (new_chart_waits: one person
-#        under two new ids got two charts - also two ids of rule 3's relation, which now wait too: two charts in one batch and one
-#        chart in two was the fault the wait was built for, and one chart with the FYI of rule 3 at the top is what William can
-#        still correct; two charts nobody looks at he cannot). A patient with proof never waits. A wait is no question for William;
-#        the chart it waits for that could NOT be made is one (claimocity_newcharts.py says it: WHY_WAIT_FAILED).
-#     b) THE PATIENT MAP. A chart of the group rule 6, 7 or 8 chooses from that the feed's patient map gives to ANOTHER Claimocity id
-#        is not taken on the name alone: nothing shows the two ids are one person (a chart with no birth date took every same-name
-#        patient that came, one run after the other - with a real date by rule 6, without one by rule 8). No chart, none made, for
-#        William; his answer goes into the repository's map. A chart nobody in the map owns - it was there before the feed, the
-#        patient of 11/8/2026 - is chosen as before. Rule 5 is NOT held back: the slip is evidence of its own (the full name and a
-#        date one keystroke from the chart's; it stands in the answer's evidence), and it is the case William's word is about -
-#        "where we know the correct dob but claimocity sends the wrong one".
+#        relation: another first name under one real date (related) - the charts an answer by the name alone (rules 6 to 8) rests
+#        on are about to change. Such a patient gets no chart in that run, its file is read again, and the next run weighs it
+#        against every chart of the batch (until then: of three new ids of one name the one without a date went, by rule 7, on the
+#        chart of whichever dated id sorted first). A NEW patient waits the same way for the new chart of the one before it
+#        (new_chart_waits: one person under two new ids got two charts - also two ids of rule 3's relation, which now wait too: two
+#        charts in one batch and one chart in two was the fault the wait was built for, and one chart with the FYI of rule 3 at the
+#        top is what William can still correct; two charts nobody looks at he cannot). A patient with proof never waits. NOR DOES
+#        ONE WHOSE OWN CHART IS A SLIP AWAY (rule 5 - version .4, the checkers of that verification): the full name and a date one
+#        keystroke from the chart's are evidence of their own, and such a patient does not wait for ANOTHER patient's new chart
+#        (the first fix let rules 5 to 8 wait: she stood behind a chart AdvancedMD refused, and neither visit was entered, run
+#        after run). A wait is no question for William; the chart it waits for that could NOT be made is one
+#        (claimocity_newcharts.py says it: WHY_WAIT_FAILED).
+#     b) THE PATIENT MAP. A chart WITHOUT a date of its own - a chart of the group rule 6 or 8 chooses from - that the feed's
+#        patient map gives to ANOTHER Claimocity id is not taken on the name alone: nothing shows the two ids are one person (a
+#        chart with no birth date took every same-name patient that came, one run after the other - with a real date by rule 6,
+#        without one by rule 8). No chart, none made, for William; his answer goes into the repository's map. A chart nobody in
+#        the map owns - it was there before the feed, the patient of 11/8/2026 - is chosen as before. RULE 7 IS NOT HELD BACK
+#        (version .4, the checkers of that verification; the first fix held it with the two others): Claimocity sent no date and
+#        every same-name chart carries ONE date - William's written rule for the very case. A patient the feed already knows, sent
+#        under a NEW Claimocity id with the placeholder, goes to her own chart without a question, also when the map gives that
+#        chart to her earlier Claimocity id; held back, she was not entered at all and the same question stood at the top of every
+#        run. (What keeps an id without a date off the chart of ANOTHER patient of its batch is the wait of a), not the map.)
+#        Rule 5 is NOT held back either: the slip is evidence of its own (the full name and a date one keystroke from the
+#        chart's; it stands in the answer's evidence), and it is the case William's word is about - "where we know the correct
+#        dob but claimocity sends the wrong one".
 #     c) TWO OF ONE BATCH. Two feed patients of one batch whose real dates are FAR apart never both take one chart by rule 6, 7 or 8
 #        (that chart has no date to tell them apart): none of them takes it - William. One with proof of the chart keeps it. Two
 #        that MAY be one person - equal dates, a slip between them, no date on one side or on both - still take a chart together in
-#        one batch, as before (shared_answer); when they come in two runs, b) asks William about the second.
+#        one batch, as before (shared_answer); when they come in two runs, b) asks William about the second where that chart has
+#        no date of its own.
 #   A CHART WILLIAM CALLED A DUPLICATE (his word of 11/9/2026; registers/feed_duplicate_charts.json, read by claimocity_match.py) is
 #   never the chart a visit goes to: the PROPER chart stands in its place. What speaks for the duplicate - its name, its date, its
 #   numbers: what Claimocity knows that person by - speaks for the proper chart ("also"), and for rules 5 to 8 the two are ONE chart
@@ -87,7 +98,7 @@
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
 import re, datetime, unicodedata
-IDENTITY_RULE_VERSION = "2026-11-25.3"      # (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number) the match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
+IDENTITY_RULE_VERSION = "2026-11-25.4"      # change this line with EVERY revision of the rule, here and in the two tables that name it - tools/mirror/mirror.py PROTECTED and claimocity_helpers_current.py VERSION_LINES (a copy of an earlier version must never pass as current). (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number. .3 - the independent verification: RULES WITHOUT PROOF above, a chart William called a duplicate, an id with proof on a key several ids share. .4 - its checkers: rule 7 is not held back by the patient map; a slip, rule 5, does not wait.) The match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
 NO_DOB_MDY = "01/01/1900"                   # what a NEW chart is written with when Claimocity sent no usable date - never an empty one
 CHART_TRIES = 200                           # how many chart numbers the new-chart step may take for one patient
 SUFFIXES = ("JR", "SR", "II", "III", "IV", "V")
@@ -108,8 +119,9 @@ FLAG_DUPLICATE = "in the place of a chart William called a duplicate"      # the
 FLAG_WORDS = frozenset([FLAG_FIRST_NAME, FLAG_CHART_NO_DOB, FLAG_NO_FEED_DOB, FLAG_NO_DOB_EITHER, FLAG_NOT_USED, FLAG_TWO_DATES, FLAG_NO_CHART_MADE, FLAG_CUT, FLAG_DUPLICATE]
                        + [FLAG_DATE + k for k in SLIP_KINDS + (FAR, FLAG_NO_FEED_DOB, FLAG_CHART_NO_DOB)])
 RULES_BY_PROOF = (1, 2, 3, 4)               # the rules that choose by what a chart itself shows: such an answer never waits, and the patient map never holds it back
-RULES_BY_CHARTS = (5, 6, 7, 8)              # the rules that choose by what the same-name charts LOOK LIKE: such an answer waits while the same batch makes a same-name chart
-RULES_NAME_ALONE = (6, 7, 8)                # ... and of those the ones with nothing but the name: held back where the patient map gives the chart to another Claimocity id (not 5: the slip is evidence of its own)
+RULES_BY_CHARTS = (5, 6, 7, 8)              # the rules that choose by what the same-name charts LOOK LIKE ("ONE date", "the only name candidates", "no date")
+RULES_NAME_ALONE = (6, 7, 8)                # ... of those the ones with nothing but the name: such an answer WAITS while the same batch makes a same-name chart (not 5 - version .4: the slip is evidence of its own, a patient with her own chart a slip away does not wait for another patient's)
+RULES_CHART_NO_DOB = (6, 8)                 # ... and of those the ones that take a chart WITHOUT a date of its own: held back where the patient map gives that chart to another Claimocity id (not 7 - version .4: the chart carries a date and Claimocity sent none, the patient the feed already knows under a new Claimocity id)
 EVIDENCE = ("mrn", "ssn", "member", "ssn4")                                   # strongest first
 EVIDENCE_WORDS = frozenset(EVIDENCE + tuple("slip:" + k for k in SLIP_KINDS))
 WHY_NEW = "new chart - no chart with this name"
@@ -537,9 +549,12 @@ def decide(feed, candidates, today8):
            of the chosen chart, "candidates": [chart ids considered - for an answer held back for a chart (ASKS) the chart(s) in question], "group": [the
            charts the live one was taken from], "needs_activity": [charts of a group of several whose activity was not given - read it and ask again;
            until then the chart is not final], "feed_dob": "real" | "none", "for_william": bool, "new_chart": bool}.
-    11/25/2026 (the independent verification): an answer by the name alone (RULES_NAME_ALONE) whose group holds a chart that is "owned" is held back -
-           rule 0, WHY_OWNED, for William, those charts named: nothing shows the two Claimocity ids are one person. The whole group counts, not
-           only its live chart: the rule takes the live one of charts it calls ONE person's, and that person has another Claimocity id."""
+    11/25/2026 (the independent verification): an answer by the name alone on a chart WITHOUT a date of its own (RULES_CHART_NO_DOB - rules 6 and 8)
+           whose group holds a chart that is "owned" is held back - rule 0, WHY_OWNED, for William, those charts named: nothing shows the two
+           Claimocity ids are one person. The whole group counts, not only its live chart: the rule takes the live one of charts it calls ONE
+           person's, and that person has another Claimocity id. Version .4 (the checkers of that verification): NOT rule 7 - the chart carries a
+           date and Claimocity sent none, which is the patient the feed already knows under a new Claimocity id (the first fix held it back too,
+           and that patient was not entered, run after run)."""
     ids = [i for i in _list(feed.get("ids") if feed.get("ids") is not None else feed.get("id")) if i]
     if feed.get("names") is not None: names = [tuple(n) for n in feed["names"]]
     elif feed.get("name") is not None: names = [split_name(feed["name"])]
@@ -565,8 +580,8 @@ def decide(feed, candidates, today8):
     if not names: a = _answer(0, WHY_NO_NAME, william=True)
     else:
         a = _combine([_one(l, f, d, cs, today8, cut or "") for l, f in names for d in (real or [""])])
-        theirs = [c for c in cs if c["id"] in a["group"] and c["owned"]] if a["chart"] and a["rule"] in RULES_NAME_ALONE else []
-        if theirs: a = _answer(0, WHY_OWNED, considered=theirs, william=True)      # the name alone, and the patient map gives a chart of that group to another Claimocity id: not taken on the rule's own word
+        theirs = [c for c in cs if c["id"] in a["group"] and c["owned"]] if a["chart"] and a["rule"] in RULES_CHART_NO_DOB else []
+        if theirs: a = _answer(0, WHY_OWNED, considered=theirs, william=True)      # the name alone on a chart without a date, and the patient map gives a chart of that group to another Claimocity id: not taken on the rule's own word (rule 7 - the chart carries a date - is taken: version .4)
         if two and FLAG_TWO_DATES not in a["flags"]: a["flags"].append(FLAG_TWO_DATES)
     a["feed_dob"] = "real" if real and not (a["rule"] == 9 and two) else "none"      # a NEW chart of a patient with two real dates is written with none of them
     if a["rule"] == 9 and a["feed_dob"] == "none": a["for_william"] = True               # face sheet needed
