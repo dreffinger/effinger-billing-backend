@@ -979,6 +979,11 @@ class Run:
             j.get("total_visits"), j.get("charts_read"), j.get("actionable_visits"), j.get("actionable_amt", 0), j.get("timely_visits"), j.get("timely_amt", 0),
             ", ".join("%s %s" % (k, v) for k, v in (j.get("bystatus") or {}).items()))
         self.summary["denials"] = {"visits": j.get("total_visits"), "actionable": j.get("actionable_visits"), "actionable_amt": j.get("actionable_amt"), "asof": j.get("asof")}
+        rec = j.get("recovered") or {}
+        if rec:      # 11/26/2026 (William's answers - the work queue): what it recovered this week, re-sent and wrote off, by code
+            s["dollars"]["recovered this week"] = rec.get("recovered", 0); s["counts"]["recovered claims"] = rec.get("claims", 0)
+            s["summary"] += "; " + str(rec.get("line") or "")
+            self.summary["denials"]["recovered"] = {k: rec.get(k) for k in ("week", "recovered", "claims", "resent", "written_off", "written_off_total", "line")}
         os.makedirs(self.out, exist_ok=True)
         gate = os.path.join(REPO, "tools", "mirror", "phi_gate.py")
         dst = os.path.join(self.out, "working_denials_latest.json")
@@ -1068,6 +1073,9 @@ class Run:
             br = ag.get("by_rec") or {}
             parts.append("Aging %s visits $%.2f open: wait $%.2f / resend $%.2f / write off $%.2f" % (ag["visits"], ag.get("total", 0),
                          (br.get("WAIT") or {}).get("amt", 0), (br.get("CORRECT & RESEND") or {}).get("amt", 0), (br.get("WRITE OFF") or {}).get("amt", 0)))
+        rv = (self.summary.get("denials") or {}).get("recovered") or {}
+        if rv:
+            parts.append("recovered this week $%.2f on %s claims" % (rv.get("recovered") or 0, rv.get("claims") or 0))
         headline = ("; ".join(parts) or "nothing ran") + ("" if self.live else " (dry run - nothing written)")
         return self.report(status, headline)
 

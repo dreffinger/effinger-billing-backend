@@ -6,7 +6,8 @@
 #        enough diagnoses - CCM 99487/99489/99490/99491/99439/99437/G0511 needs at least two);
 #     2. otherwise MOVE it out of the primary slot (to the end) so an acceptable code leads;
 #     3. otherwise ADD I10 (essential hypertension, dcode1034543883) in front of it;
-#   then RESUBMIT as an original claim (freq 1 + rebill).
+#   then RESUBMIT as an original claim (freq 1 + rebill). 11/26/2026: fix_visit(..., icn=<the payer's claim number>) resends a claim the
+#   payer already ADJUDICATED as a corrected claim instead (frequency 7, freq7_visit.run) - the work queue's rule FIX-DX-0914.
 # Rules it uses: full-visit resave (every live charge echoed - the void trap), never a visit with a real payment
 #   posted, verify the saved diagnosis list before rebilling, one register line per visit.
 # Never touches: the chart's problem list, carrier masters, charges outside the visits it is given.
@@ -122,8 +123,13 @@ def save_visit_dx(cid, new_dcodes_by_charge, dry=False):
     det = {x.get("id"): (x.get("proccode"), (x.get("diagcodes") or "").split(), x.get("insbalance")) for x in c2}
     return "saved: %d live charges (was %d)" % (len(c2), len(allc)), det
 
-def fix_visit(pid, vid, cid, seq="1", dry=False, bad=None):
-    """Apply the cascade to one visit and rebill it as an original claim. Returns a result string."""
+def fix_visit(pid, vid, cid, seq="1", dry=False, bad=None, icn=None):
+    """Apply the cascade to one visit and rebill it as an original claim. Returns a result string.
+    icn (11/26/2026, the work queue): the payer's claim number of a claim the payer already ADJUDICATED - the resend then goes out as a
+    CORRECTED claim (freq7_visit.run, frequency 7 with that number) instead of frequency 1 (frequency 1 into an adjudicated claim = the
+    OA-18 duplicate trap, billing_button.txt step 5(d)). Without icn nothing changes. An icn that is given but blank is refused BEFORE anything is
+    saved (the work queue's review of 11/26/2026: a blank claim number went out on a frequency-7 claim; freq7_visit.run refuses one too)."""
+    if icn is not None and not str(icn).strip(): return "REFUSED v%s: a blank payer claim number - nothing saved, nothing sent" % vid
     st = live_state(pid, vid)
     if not st: return "SKIP v%s: no live charges" % vid
     if any(s["pays"] for s in st): return "SKIP-PAID v%s: a payment is posted - never rebill a paid visit" % vid
@@ -150,7 +156,12 @@ def fix_visit(pid, vid, cid, seq="1", dry=False, bad=None):
     if r.startswith("FAULT"): return r
     for chid, newd in plans.items():
         if det.get(chid, (None, None))[1] != newd: return "VERIFY-FAILED v%s %s saved %s wanted %s" % (vid, chid, det.get(chid), newd)
-    r2 = freq1_visit.run(str(vid), str(cid).replace("charge", ""), seq); L("  " + r2); time.sleep(0.4)
+    if icn:
+        import freq7_visit
+        r2 = freq7_visit.run(str(vid), str(cid).replace("charge", ""), seq, icn)
+    else:
+        r2 = freq1_visit.run(str(vid), str(cid).replace("charge", ""), seq)
+    L("  " + r2); time.sleep(0.4)
     os.makedirs("registers", exist_ok=True)
     reg = json.load(open(REGISTER)) if os.path.exists(REGISTER) else []
     reg.append({"pid": str(pid), "vid": str(vid), "cid": str(cid), "action": "/".join(sorted(actions)),

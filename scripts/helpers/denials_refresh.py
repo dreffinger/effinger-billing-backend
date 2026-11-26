@@ -8,8 +8,14 @@
 #   visit ids only - no names - so the Billing Button runner can commit it to GitHub and the board can pull it.
 # Rules it uses: read-only calls only (massrebillsearch, gettxhistory). Contractual / informational reasons (45, 23, 253, 94) and
 #   the PR cost-sharing codes (1, 2, 3) are kept as rows but never counted as actionable, exactly as the board does.
+# 11/26/2026 (William's answers - the work queue): it also reads the queue actor's registers (registers/work_queue_act_*.jsonl), reads the
+#   charts of the visits the queue worked, writes `paid_since` per worked visit (insurance payments dated after the queue's first action) and a
+#   'recovered' block (work_queue.recovered_block): "Recovered this week: $X on N claims (insurance payments posted Mon-Sun on claims the
+#   queue worked, after the action); re-sent $Y; written off $Z by code", with the baseline of registers/work_queue_baseline.json - the 507
+#   rebills of registers/rebill_log.jsonl joined to the payments after them, read once with --baseline (it reads one visit per rebill).
 # Never touches: AMD writes, balances, claims, the board's command queue.
-"""Usage: python3 denials_refresh.py [--prior working_denials_latest.json] [--out working_denials_latest.json] [--threads 3] [--max N]"""
+"""Usage: python3 denials_refresh.py [--prior working_denials_latest.json] [--out working_denials_latest.json] [--threads 3] [--max N]
+                                  [--registers registers] [--baseline]"""
 import json, sys, os, re, datetime, collections, threading, queue, time
 import amd, txh, era_post, requests
 
@@ -17,6 +23,7 @@ a = sys.argv[1:]
 def opt(n, d=None): return a[a.index(n) + 1] if n in a else d
 PRIOR = opt("--prior", "working_denials_latest.json"); OUT = opt("--out", "working_denials_latest.json")
 NT = int(opt("--threads", 3)); MX = int(opt("--max", 10**9)); TODAY = datetime.date.today()
+REGS = opt("--registers", "registers"); BASELINE = "--baseline" in a
 
 # the board's CARC table lives in boards/working_denials.py (repo) or the workspace copy
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "boards"))
@@ -37,6 +44,14 @@ except ImportError:
     def triage(c): return ("UNCLASSIFIED", "No rule yet for CARC %s" % norm(c))
     def triage_line(c, cpt="", mods=""): return triage(c)
 NOACTION = {"45", "23", "253", "94"}
+# 11/26/2026: the work queue (scripts/helpers/work_queue.py) - the visits it worked and the recovered block
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "scripts", "helpers"))
+try:
+    import work_queue as _wq
+except Exception:
+    _wq = None
+_act = _wq.act_lines([REGS]) if _wq else []
+worked = _wq.worked_visits(_act) if _wq else {}
 
 def f(x):
     try: return float(x or 0)
@@ -99,7 +114,8 @@ if os.path.exists(PRIOR):
 prior_rows = {str(v["visitid"]): v for v in prior.get("visits", [])}
 amd.login_cached()
 unp = requests.post(era_post.API + "/claim/massrebillsearch", headers=era_post.H(), json={}, timeout=180).json()
-pids = sorted({str(v["patientid"]) for v in unp} | {str(v["pid"]) for v in prior.get("visits", []) if v.get("pid")}, key=int)
+pids = sorted({str(v["patientid"]) for v in unp} | {str(v["pid"]) for v in prior.get("visits", []) if v.get("pid")}
+              | {str(w["pid"]) for w in worked.values() if str(w.get("pid") or "").isdigit()}, key=int)      # 11/26/2026: the charts the queue worked
 pids = pids[:MX]
 print("refresh: %d patients (%d on the unpaid list, %d board rows carried in)" % (len(pids), len({str(v["patientid"]) for v in unp}), len(prior_rows)), flush=True)
 unp_by_visit = {str(v["visitid"]): v for v in unp}
@@ -124,7 +140,10 @@ def scan(pid):
         for p in c.iter("payment"):
             if p.get("void") == "1": continue
             amt = abs(f(p.get("amount")))
-            if amt > 0: s["pays"] += 1; s["paid"] += amt; continue
+            if amt > 0:
+                s["pays"] += 1; s["paid"] += amt
+                if p.get("carrier") or "carrier" not in p.attrib: s.setdefault("paylist", []).append((mdy(p.get("date")), amt))   # insurance money, dated (11/26/2026)
+                continue
             reasons = [(r.get("code", ""), f(r.get("amount")), r.get("description", "") or r.get("reasontext", "")) for r in p.iter("payreason")]
             for code, ramt, desc in reasons:
                 carc = norm(code); grp = str(code or "")[:2].upper() if str(code or "")[:2].upper() in ("CO", "PR", "OA", "PI", "CR") else ""
@@ -139,7 +158,7 @@ def scan(pid):
     wk = week_lines(root)                     # posted_last_7d: this chart's lines posted in the window - the same history, no extra read
     with lock: week.extend(wk)
     # board visits this chart's page-1 history did not show (long charts): read them one by one
-    for vid, row in prior_rows.items():
+    for vid, row in list(prior_rows.items()) + [(k, w) for k, w in worked.items() if k not in prior_rows]:      # + the visits the queue worked (11/26/2026)
         if str(row.get("pid")) == pid and vid not in seen:
             try:
                 r2 = txh.fetch_visit(pid, vid)
@@ -151,7 +170,9 @@ def scan(pid):
                     for p in c.iter("payment"):
                         if p.get("void") == "1": continue
                         amt = abs(f(p.get("amount")))
-                        if amt > 0: s["pays"] += 1; s["paid"] += amt
+                        if amt > 0:
+                            s["pays"] += 1; s["paid"] += amt
+                            if p.get("carrier") or "carrier" not in p.attrib: s.setdefault("paylist", []).append((mdy(p.get("date")), amt))
                         else:
                             for r in p.iter("payreason"):
                                 carc = norm(r.get("code", ""))
@@ -162,6 +183,42 @@ def scan(pid):
                 errors.append("v%s pat%s: %s" % (vid, pid, str(e)[:80]))
     with lock:
         lines.extend(out_lines); status.update({(pid, k): v for k, v in vstat.items()})
+
+def rebill_baseline(path, pay_by_visit, pid_of, prior_rows):
+    """The baseline before the queue (11/26/2026): every rebill in registers/rebill_log.jsonl joined to the insurance payments of its visit dated
+    after it. A visit whose chart this refresh did not read is read here (its chart from the unpaid list, the board rows, else its charge detail)."""
+    rows = []
+    for l in (open(path).read().splitlines() if os.path.exists(path) else []):
+        try: e = json.loads(l)
+        except ValueError: continue
+        if e.get("visit"): rows.append(e)
+    first = {}
+    for e in rows:
+        v = str(e["visit"]); d = str(e.get("at") or "")[:10]
+        if v not in first or d < first[v][0]: first[v] = (d, str(e.get("charge") or ""))
+    pays = {}; unread = 0
+    for v, (d, cid) in first.items():
+        if v in pay_by_visit: pays[v] = pay_by_visit[v]; continue
+        pid = pid_of.get(v) or str((prior_rows.get(v) or {}).get("pid") or "")
+        try:
+            if not pid and cid:
+                m = re.search(r'<patient\s(?:[^>]*?\s)?id="(?:pat)?(\d+)"', amd.post(amd.msg("getchargedetaildataicd10", "demographics", {"chargeid": cid, "nocookie": "1"})))
+                pid = m.group(1) if m else ""
+            if not pid: unread += 1; continue
+            got = []
+            for c in txh.fetch_visit(pid, v).iter("charge"):
+                if c.get("void") == "1" or str(c.get("visit") or "") != v: continue
+                for p in c.iter("payment"):
+                    amt = abs(f(p.get("amount")))
+                    if p.get("void") != "1" and amt > 0 and (p.get("carrier") or "carrier" not in p.attrib): got.append((mdy(p.get("date")), amt))
+            pays[v] = got; time.sleep(0.2)
+        except Exception:
+            unread += 1
+    after = {v: _wq.paid_since(pays.get(v, []), first[v][0]) for v in pays}
+    return {"what": "baseline before the work queue (11/26/2026): the rebills of registers/rebill_log.jsonl joined to the insurance payments of their visits dated after the rebill - visit ids and dollars only",
+            "asof": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "rebills": len(rows), "visits": len(first),
+            "since": min((d for d, _ in first.values()), default=""), "until": max((d for d, _ in first.values()), default=""), "read": len(pays), "unread": unread,
+            "paid_visits": sum(1 for x in after.values() if x > 0), "paid_after": round(sum(after.values()), 2)}
 
 q = queue.Queue(); [q.put(p) for p in pids]; n = [0]
 def worker():
@@ -220,8 +277,25 @@ out = {"schema": "working-denials-snapshot/1", "asof": datetime.datetime.now(dat
        "summary": summary, "capped": {}, "errors": errors[:50],
        "visits": sorted(visits, key=lambda v: (DISPO_ORDER.index(v["dispo"]) if v["dispo"] in DISPO_ORDER else 99, -v["amt"]))}
 out["posted_last_7d"] = week_summary(week)    # the Monday scorecard's block (11/26/2026) - totals only, apart from every other field
+# 11/26/2026 (B4): what the work queue recovered - paid_since per worked visit, the week's line, the baseline of the rebills before the queue
+pay_by_visit = {vid: s.get("paylist", []) for (pid_, vid), s in status.items()}
+if _wq:
+    for v in out["visits"]:
+        w = worked.get(str(v["visitid"]))
+        if w: v["paid_since"] = _wq.paid_since(pay_by_visit.get(str(v["visitid"]), []), w["at"])
+    out["worked"] = [{"visitid": k, "pid": w.get("pid"), "at": w["at"], "actions": w["actions"], "paid_since": _wq.paid_since(pay_by_visit.get(k, []), w["at"])}
+                     for k, w in sorted(worked.items())]
+    bpath = os.path.join(REGS, "work_queue_baseline.json"); baseline = None
+    if BASELINE:
+        baseline = rebill_baseline(os.path.join(REGS, "rebill_log.jsonl"), pay_by_visit, {str(v["visitid"]): str(v["patientid"]) for v in unp}, prior_rows)
+        os.makedirs(REGS, exist_ok=True); json.dump(baseline, open(bpath, "w"), indent=1)
+    elif os.path.exists(bpath):
+        try: baseline = json.load(open(bpath))
+        except ValueError: baseline = None
+    out["recovered"] = _wq.recovered_block(worked, pay_by_visit, _act, TODAY, {k: baseline.get(k) for k in ("rebills", "visits", "since", "until", "paid_visits", "paid_after", "unread")} if baseline else None)
 for v in out["visits"]:   # keep the file small: the board shortens the reason text anyway
     if v.get("reason"): v["reason"] = str(v["reason"])[:160]
 json.dump(out, open(OUT, "w"), separators=(",", ":"))
 print("done: %d charts, %d denial lines, %d visits (%d actionable $%.2f; %d inside 12 months $%.2f); status %s; %d errors -> %s" % (
     n[0], len(lines), len(visits), len(act), out["actionable_amt"], len(timely), out["timely_amt"], dict(bystatus), len(errors), OUT), flush=True)
+if out.get("recovered"): print(out["recovered"]["line"], flush=True)
