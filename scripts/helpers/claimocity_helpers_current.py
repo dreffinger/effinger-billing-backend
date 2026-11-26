@@ -31,7 +31,7 @@ VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.5"', 
                  "claimocity_verify.py": "KNOWN ALSO MEANS PROVEN BY A NUMBER",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
                  "feed_in1_intake.py": "A NUMBER IN COMMON MAKES THE CHART KNOWN TOO",
                  "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
-                 "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
+                 "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
                  "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
                  "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
                  "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",

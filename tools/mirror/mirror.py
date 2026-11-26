@@ -153,7 +153,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # the resolve step refuses a match file of another version - and a copy of the match or new-chart step from before the rule makes the second charts again
              "feed_in1_intake.py": "A NUMBER IN COMMON MAKES THE CHART KNOWN TOO",
              "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
-             "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
+             "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
              "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"',
              # the payment monitor of the rehab visits at 61 (new 11/25/2026): its own version line, changed with every revision

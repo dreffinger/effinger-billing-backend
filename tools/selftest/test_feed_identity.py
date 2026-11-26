@@ -1587,7 +1587,7 @@ def _files(w):
 T("privacy: the Social Security numbers and member numbers the steps read (the feed's and the charts') are in NO file of any workspace - only in the feed files they came from", lambda: (len(NUMBERS) >= 6 and _hits("\n".join(_files(w) for w in WORLDS), NUMBERS) == [], _hits("\n".join(_files(w) for w in WORLDS), NUMBERS)))
 # ---- the files themselves --------------------------------------------------------------------------------------------------------------
 SENTENCES = {"claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
-             "claimocity_resolve.py": "THE CHART IS CHOSEN BY THE IDENTITY RULE (feed_identity.decide), ONCE PER CLAIMOCITY ID - NEVER BY A SINGLE SAME-NAME CHART ALONE",
+             "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
              "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE"}
 def _header(src): return "\n".join(itertools.takewhile(lambda l: l.startswith("#"), src.splitlines()))
 for _f, _s in SENTENCES.items():
@@ -1620,6 +1620,19 @@ def _stale_copy_named():
     finally: shutil.rmtree(d, ignore_errors=True)
 T("... and it bites: the driver's helper check (claimocity_helpers_current.make_current, no repository clone) calls the current feed_identity.py current and names a copy of the round before - the same rule file under that round's version line - "
   "in its warning for the top of the report", _stale_copy_named)
+def _stale_resolve_named():
+    """The same check over a workspace whose claimocity_resolve.py lacks the one sentence only the file of identity rule .4 carries - what a copy of the round before looks like to the check (that round's file decided otherwise: a patient whose own chart is a slip away waited for another patient's new chart)."""
+    rule = re.search(r"POS_RULE = '([^']+)'", read("claimocity_ingest.py")).group(1); d = tempfile.mkdtemp(prefix="feedid_hc_"); s_ = SENTENCES["claimocity_resolve.py"]
+    try:
+        for f_ in HCUR.FEED_HELPERS: shutil.copy(os.path.join(H, f_), os.path.join(d, f_))
+        now = HCUR.make_current(d, repo=os.path.join(d, "no clone here"), rule=rule)[1]
+        open(os.path.join(d, "claimocity_resolve.py"), "w").write(read("claimocity_resolve.py").replace(s_, s_.lower()))
+        old = HCUR.make_current(d, repo=os.path.join(d, "no clone here"), rule=rule)[1]
+        return ("claimocity_resolve.py" not in now and "FEED HELPERS NOT ALL CURRENT" in old and "claimocity_resolve.py" in old and read("claimocity_resolve.py").count(s_) == 1
+                and HCUR.VERSION_LINES.get("claimocity_resolve.py") == s_ and ('"claimocity_resolve.py": "%s"' % s_) in _mirror_src, (now, old))
+    finally: shutil.rmtree(d, ignore_errors=True)
+T("the resolve step's sentence is the one only the file of rule .4 has ('a slip away' does not wait): the helper check and the mirror know the file by it, and a copy without it - the round before - is named in the warning for the top of the report",
+  _stale_resolve_named)
 check("the old rule is gone from the steps: no 'single same-name chart', no first letters of a name in a printed line or a register row",
       not re.search(r"single same-name chart\"|last\[:5\]|k\[:6\]|\[:12\] \+ \"\*\"", read("claimocity_match.py") + read("claimocity_resolve.py") + read("claimocity_newcharts.py")))
 sys.path.insert(0, os.path.join(ROOT, "tools", "mirror"))
