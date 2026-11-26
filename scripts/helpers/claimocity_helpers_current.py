@@ -26,7 +26,7 @@ FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_insp
 # that day's change made it survive a broken message - without a clone an old parser was not noticed, and the mirror let an older workspace copy
 # of it go back over the repository's. The same for this file: its own marker in mirror.py also stood in the copy from before, so the mirror
 # now asks a workspace copy of it for the sentence above as well (mirror.py PROTECTED_ALSO).
-VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.4"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
+VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.5"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
                 
                  "claimocity_verify.py": "KNOWN ALSO MEANS PROVEN BY A NUMBER",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
                  "feed_in1_intake.py": "A NUMBER IN COMMON MAKES THE CHART KNOWN TOO",
@@ -36,7 +36,7 @@ VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.4"', 
                  "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-25.4"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
                  "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
                  "feed_parse_dft_1028.py": "EVERY MESSAGE THAT CANNOT BE ENTERED AS IT CAME IS COUNTED BY FILE DATE AND MESSAGE NUMBER",      # 11/25/2026 (the verification): the sentence only the parser that counts every message it cannot hand on to be entered has
-                 "deceased_guard.py": 'def _unread(v):'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has
+                 "deceased_guard.py": 'class NotAnswered(DayLost):'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):
     try: return open(p, "rb").read()

@@ -131,9 +131,9 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # 11/25/2026 (.3 - William the same day: inpatient rehab goes out at place of service 61; a feed patient with a wrong birth date goes to the chart he already has): the
              # import enters a rehab stay at HCA REHAB / 61, notes the feed's birth date against the chart's and asks for a message's chart by its own Claimocity id; the report says
              # all three - a copy from before must not come back over either
-             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.4"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.4"',
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-25.5"', "claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.5"',
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
-             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.4"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.4"',
+             "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-25.5"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-25.5"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
              # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
              # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has.
@@ -191,7 +191,7 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "set_insorder never sends a sav
              # keeps a death for good, reads a day in every shape, raises DayLost) - the line of before also stood in older guards; the Drive copy helper keeps the
              # earlier of two days and never lets a 'no death' note replace a death on record; the modifier-25 helper leaves the 99489 add-on alone for Humana
              "dg_drive.py": "deceased_cache_drive v2", "mod25_addon.py": "NO MODIFIER 25 - HUMANA",
-             "deceased_guard.py": 'def _unread(v):', "death_off_record.py": 'DEATH_OFF_RECORD_VERSION = "2026-11-25.1"', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"',
+             "deceased_guard.py": 'class NotAnswered(DayLost):', "death_off_record.py": 'DEATH_OFF_RECORD_VERSION = "2026-11-25.2"', "death_check_review.py": 'DEATH_CHECK_REVIEW_VERSION = "2026-11-25.7"',
              "claim_status_sweep.py": "cs_rules.Ledger.open(", "claim_status_exact.py": "claim_status_sweep.run(",
              "sweep_full.py": "claim_status_sweep.main(",
              # 11/25/2026 (William: the board showed 0 on his turn while the evening email listed 18 charts): the one source of the

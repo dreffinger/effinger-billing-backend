@@ -30,7 +30,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-25.4"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-25.5"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -77,7 +77,10 @@ _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
 # (The independent check of that round, finding 13: the count below called those visits 'skipped as already in AMD' - they are NOT in AdvancedMD, they are held. They
 # are taken out of that count; the line for the top of the report, a few lines down, says what they are. The sentence's words are as they were.)
 DEATH_DAY_WHY = "a date of death is on record for this chart but its day cannot be read - not entered"
-_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_DAY_WHY))
+# 11/25/2026 (the fourth round of the death check): the import's second fixed why (the same line there) - the record of a death for the chart was reset on the
+# owner's word and Medicare has not answered the fresh question yet. Those visits are held too, not 'already in AMD': a line of their own for the top, below.
+DEATH_RESET_WHY = "the record of a death for this chart was reset on the owner's word and Medicare has not answered yet - not entered"
+_ddheld = sum(1 for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith((DEATH_DAY_WHY, DEATH_RESET_WHY)))
 L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]) - _ddheld,
   ("%d visit(s) FAILED - not entered or not finished, see the import register's failed rows: %s" % (len(_failed), "; ".join("%s %s %s" % (x.get("pid") or "?", _finfo(x).get("dos") or "?", "+".join(str(c) for c in (_finfo(x).get("cpts") or [])))
    for x in _failed[:10]))) if _failed else "0 faults"))
@@ -116,6 +119,12 @@ try:      # (the register cannot say who was asked - a dry run asks nobody, a wo
     if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
 except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
+try:      # (the fourth round) the visits held because the record of a death was reset on the owner's word and Medicare has not answered - chart ids and counts only
+    _drr = [x for x in (reg.get("skipped") or []) if isinstance(x, dict) and str(x.get("why") or "").startswith(DEATH_RESET_WHY)]
+    _drc = sorted({x.get("pid") for x in _drr if isinstance(x.get("pid"), str) and re.fullmatch(r"pat[0-9]+", x.get("pid"))})
+    if _drr: L("  - TOP OF THE REPORT - DEATH RECORD RESET: %d visit(s) on %d chart(s) were NOT entered - the record of a death for the chart was reset on the owner's word (death_off_record.py) and Medicare has not answered yet. Medicare is asked again at the chart's next claim and its answer decides; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
+        len(_drr), len(_drc), ", ".join(_drc) or "(no chart id in the rows)"))
+except Exception: L("  - TOP OF THE REPORT - the line about visits kept out because the record of a death was reset could not be built - read the skipped rows of the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood
@@ -747,16 +756,37 @@ try:
 except Exception as _e: L("- Birth dates: the line could not be built (%s) - the import register's rows carry dob_note." % type(_e).__name__)
 # inpatient rehab (William 11/25/2026: the visits of the hospital's rehab unit go out at place of service 61; a rehab stay whose first visit went in at 21
 # keeps 21 - no look-back, no mixing). The import's rows say it: stay.kind 'rehab', pos '61' (HCA REHAB) or kept at 21 (pos_kind 'rehab-stay-kept-21').
+# 11/25/2026 (the second round of the verification - its finding about the counters, the digest's side): WHERE A VISIT STANDS is what AdvancedMD STORED where the import
+# read it back (the row's pos_stored, one per charge line), read as pos61_monitor.py reads it (group_of): the stored places count when the read-back holds one for every
+# line that was sent; with no read-back - none, an empty one, one of another length - what was sent counts. Until then the lines below went by what was SENT: a rehab visit
+# AdvancedMD stored at 21 stood here as 'entered at HCA REHAB, place of service 61' and its stay was named as a new rehab stay at 61, while the import ('rehab 61 x0', POS
+# NOT KEPT) and the monitor of the same run said that no visit is at 61. Such a visit now has its own words - 'sent at 61, stored at <place>', at the top of the report -
+# is not counted as entered at 61 and names no new rehab stay.
 try:
     _stay = lambda x: x.get("stay") if isinstance(x.get("stay"), dict) else {}
     _rh = [x for x in reg["created"] if isinstance(x, dict) and _stay(x).get("kind") == "rehab"]
-    _a61 = [x for x in _rh if str(x.get("pos")) == "61"]; _k21 = [x for x in _rh if str(x.get("pos")) != "61"]
+    def _r61_sent(x):      # the place of service of every charge line as it was SENT
+        _pl = x.get("pos_lines"); return [str(v_) for v_ in (_pl if isinstance(_pl, list) and _pl else [x.get("pos")]) if v_ not in (None, "")]
+    def _r61_at(x):        # ... and where the visit STANDS: what AdvancedMD stored where the import read it back, else what was sent
+        _ps = x.get("pos_stored"); _sn = _r61_sent(x)
+        return [str(v_) for v_ in _ps] if isinstance(_ps, list) and _ps and len(_ps) == len(_sn) and all(v_ not in (None, "") for v_ in _ps) else _sn
+    _a61 = [x for x in _rh if "61" in _r61_at(x)]                                      # a line of the visit stands at 61
+    _n61 = [x for x in _rh if "61" in _r61_sent(x) and "61" not in _r61_at(x)]         # sent at 61, stored at another place: NOT at 61
+    _k21 = [x for x in _rh if "61" not in _r61_sent(x) and "61" not in _r61_at(x)]     # a visit of a rehab stay that was kept at 21
     _held = [h for h in (insp.get("held") if isinstance(insp, dict) and isinstance(insp.get("held"), list) else []) if isinstance(h, dict)]
     _q61 = [h for h in _held if h.get("pos61") is True]; _qnf = [h for h in _held if str(h.get("why") or "").startswith("nursing-facility code under the hospital building")]
     if _rh or _q61:
         L(""); L("## Inpatient rehab (William 11/25/2026: the rehab unit's visits go out at place of service 61 and are watched until they are paid)")
-        L("- %d visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (%d chart(s)); %d visit(s) of a rehab stay that began at 21 kept at 21 - the comparison group (%d chart(s))." % (
-            len(_a61), len({x.get("pid") for x in _a61}), len(_k21), len({x.get("pid") for x in _k21})))
+        L("- %d visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (%d chart(s)); %d visit(s) of a rehab stay that began at 21 kept at 21 - the comparison group (%d chart(s))%s." % (
+            len(_a61), len({x.get("pid") for x in _a61}), len(_k21), len({x.get("pid") for x in _k21}),
+            ("; %d visit(s) sent at 61 and stored at another place of service - NOT at 61, see the line at the top" % len(_n61)) if _n61 else ""))
+        if _n61:      # chart, date of service, codes, visit and the stored place of each - ids, codes and dates of service only
+            _r61_vst = lambda x: ("vst" + re.sub(r"\D", "", str(x.get("visit")))) if re.sub(r"\D", "", str(x.get("visit") or "")) else "visit ?"
+            _r61_day = lambda x: x.get("dos") if isinstance(x.get("dos"), str) and re.fullmatch(r"[0-9]{2}/[0-9]{2}/[0-9]{4}", x.get("dos")) else "date ?"
+            _r61_cds = lambda x: "+".join(c_ for c_ in (x.get("cpts") if isinstance(x.get("cpts"), list) else []) if isinstance(c_, str) and re.fullmatch(r"[A-Za-z0-9]{5}", c_)) or "code ?"
+            _r61_plc = lambda x: "/".join(sorted({v_ for v_ in _r61_at(x) if re.fullmatch(r"[0-9]{1,2}", v_)})) or "?"
+            _T("PLACE OF SERVICE 61 NOT KEPT: %d visit(s) of a rehab stay were sent at 61 and AdvancedMD stored another place of service - they are NOT at place of service 61, are not counted above as entered at HCA REHAB and name no new rehab stay: %s. For William before the claim run; a routine changes nothing on these visits (the import says the same in its line POS NOT KEPT; the payment monitor goes by what was stored too - a visit stored at 21 stands in its comparison group with the visits kept at 21, never among the visits at 61)" % (
+                len(_n61), "; ".join("%s %s %s (%s) sent at 61, stored at %s" % (_pat_ok(x.get("pid")) or "chart ?", _r61_day(x), _r61_cds(x), _r61_vst(x), _r61_plc(x)) for x in _n61[:30]) + ((" +%d more - see the import register" % (len(_n61) - 30)) if len(_n61) > 30 else "")))
         _INIT = {"99221", "99222", "99223"}; _SIGNS = ("facility number", "new admission 1-2 days after an acute stay")
         _new = []
         for x in _a61:

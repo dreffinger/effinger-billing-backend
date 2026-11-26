@@ -519,6 +519,25 @@ check("7k a rehab visit the Claim Inspector questions stands at the top with the
       lambda: len(has(top(L9), "PLACE OF SERVICE 61", "vst7102", "nothing was changed")) == 1 and len(has(top(L9), "vst7200", "pat9700", "which building was the patient in?")) == 1 and not has(top(L9), "vst7201"), lambda: top(L9))
 L9b, e9b = report_run("rehab_none", S7, [vrow("pat9604", "vst7105", "11/29/2026", ["99223"], stay={"kind": "acute", "initial": "11/29/2026", "sign": ""})])
 check("7l a batch without a rehab visit gets no such section", lambda: e9b == "" and not any(l.startswith("## Inpatient rehab") for l in L9b), lambda: (e9b, [l for l in L9b if l.startswith("##")]))
+# 11/25/2026 (the second round of the verification - its finding about the digest): the rehab lines go by what AdvancedMD STORED where the import read it back (the row's
+# pos_stored, one per charge line, read as pos61_monitor.py reads it). Until then they went by what was sent: a rehab visit stored at 21 stood here as 'entered at HCA REHAB,
+# place of service 61' and its stay was named as a new rehab stay, while the import and the monitor of the same run said that no visit is at 61.
+ROWS9S = [dict(rehab("pat9611", "vst7111", "11/28/2026", ["99223"], "11/28/2026"), pos_stored=["21"]), dict(rehab("pat9611", "vst7112", "11/29/2026", ["99233"], "11/28/2026"), pos_stored=["61"]),
+          dict(rehab("pat9612", "vst7113", "11/29/2026", ["99223", "99497"], "11/29/2026"), pos_stored=["61", "21"]), rehab("pat9613", "vst7114", "11/29/2026", ["99223"], "11/29/2026"),
+          dict(rehab("pat9614", "vst7115", "11/29/2026", ["99223"], "11/29/2026"), pos_stored=["31"]), dict(rehab("pat9615", "vst7116", "11/29/2026", ["99223"], "11/29/2026"), pos_stored=[]),
+          rehab("pat9617", "vst7118", "11/29/2026", ["99232"], "11/20/2026", kept=True)]
+L9s, e9s = report_run("rehab_stored", S7, ROWS9S)
+_rs9 = L9s[L9s.index(next((l for l in L9s if l.startswith("## Inpatient rehab")), "")):] if any(l.startswith("## Inpatient rehab") for l in L9s) else []
+check("7m a rehab visit counts as entered at HCA REHAB / 61 by what AdvancedMD STORED: the read-back holds 61 on one of its lines, or there is no read-back (none, or an empty one - then what was sent counts); a visit sent at 61 and stored elsewhere is NOT one of them - the line counts it apart",
+      lambda: e9s == "" and len(has(_rs9, "- 4 visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (4 chart(s)); 1 visit(s) of a rehab stay that began at 21 kept at 21 - the comparison group (1 chart(s))", "2 visit(s) sent at 61")) == 1, lambda: (e9s, _rs9[:5]))
+check("7n ... such a visit stands at the TOP OF THE REPORT with its chart, day, code and visit and the place that was stored ('sent at 61, stored at 21') - once, in one line for all of them - and it names no new rehab stay: a stay is named only from an initial visit that stands at 61",
+      lambda: len(has(top(_rs9), "sent at 61, stored at")) == 1 and len(has(top(_rs9), "pat9611 11/28/2026 99223 (vst7111) sent at 61, stored at 21", "pat9614 11/29/2026 99223 (vst7115) sent at 61, stored at 31", "NOT at place of service 61")) == 1
+      and not has(top(_rs9), "vst7112") and not has(top(_rs9), "vst7113") and len(has(_rs9, "New rehab stay", "pat9612 11/29/2026", "pat9613 11/29/2026", "pat9615 11/29/2026")) == 1
+      and "pat9611" not in " ".join(has(_rs9, "New rehab stay")) and "pat9614" not in " ".join(has(_rs9, "New rehab stay")), lambda: _rs9)
+L9t, e9t = report_run("rehab_stored_only", S7, [dict(rehab("pat9611", "vst7111", "11/28/2026", ["99223"], "11/28/2026"), pos_stored=["21"])])
+check("7o a batch whose only rehab visit was sent at 61 and stored at 21 still gets the section - 0 visits entered at 61, the line at the top, no new rehab stay; and a batch whose visits were read back as sent says nothing of the kind (the lines of 7i and 7j are word for word what they were)",
+      lambda: e9t == "" and len(has(L9t, "- 0 visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (0 chart(s)); 0 visit(s)", "1 visit(s) sent at 61")) == 1 and len(has(top(L9t), "pat9611 11/28/2026 99223 (vst7111) sent at 61, stored at 21")) == 1
+      and not has(L9t, "New rehab stay") and not has(L9, "sent at 61, stored at") and len(has(_rs, "- 3 visit(s) of a rehab stay entered at HCA REHAB, place of service 61 (2 chart(s)); 1 visit(s) of a rehab stay that began at 21 kept at 21 - the comparison group (1 chart(s)).")) == 1, lambda: (e9t, [l for l in L9t if "rehab" in l.lower()], _rs[:3]))
 
 # ---- 8. one broken message never stops the feed (feed_parse_dft_1028.py as its own program, over invented files) ---------------------------------
 import subprocess

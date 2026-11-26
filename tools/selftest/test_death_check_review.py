@@ -812,6 +812,8 @@ check("10y4b the second look RAISES for a charge that came out clear (a scripted
       lambda: RS1.code == 3 and kind(RS1, "NOT CHECKED") == ["NOT CHECKED: pat7301 visit 9301 charge 5301 (the guard raised LostLater) - %s" % UNCHECKED] and row(RS1, "5301").get("result") == "could not be checked"
       and row(RS1, "5301").get("why") == "the guard raised LostLater" and row(RS1, "5301").get("words") == UNCHECKED and row(RS1, "5303").get("result") == "clear" and leaks(RS1.out + RS1.raw) == []
       and GS1.checks == [("7301", iso(DOS_B), None, None, False)], lambda: (RS1.code, RS1.err, RS1.lines, rows(RS1), GS1.checks))
+check("10y4b2 (the fourth round, S6 - the one-line change c02 of the third check, which no check noticed) ... and that row is marked in the register as one decided at the second look - 'late' - like a charge that is BLOCKED there (10y2): a reader of the register can tell the answer of the walk from the answer the start came to at its end; the charge beside it, and a charge whose second look answers, carry no such mark",
+      lambda: row(RS1, "5301").get("late") is True and "late" not in row(RS1, "5303") and "late" not in row(RS2, "5301") and "late" not in row(RS2, "5303") and row(RS2, "5301").get("result") == "clear", lambda: (rows(RS1), rows(RS2)))
 check("10y4c ... it is COUNTED as every NOT CHECKED row: the summary says 2 listed, 1 checked, 1 could not be checked (the checked charges and the NOT CHECKED lines about a charge still add up to the charges listed), and the register's numbers are the same; with a second look that answers, both charges stay clear and the start ends 0",
       lambda: summary(RS1, 2, 2, 1, 0, NOT_COUNTED, 0, 1, 0) and (RS1.reg or {}).get("checked") == 1 and (RS1.reg or {}).get("unchecked") == 1 and (RS1.reg or {}).get("exit") == 3
       and RS2.code == 0 and summary(RS2, 2, 2, 2, 0, NOT_COUNTED, 0, 0, 0) and kind(RS2, "NOT CHECKED") == [], lambda: (RS1.lines[-1:], RS1.reg and {k: RS1.reg.get(k) for k in ("checked", "unchecked", "exit")}, RS2.code, RS2.lines[-1:]))
@@ -894,6 +896,36 @@ check("10y9 with the REAL guard: nobody answers for the first charge, then Medic
       lambda: kind(RV3, "UNVERIFIED") == [] and (RV3.reg or {}).get("unverified") == 0 and row(RV3, "5311").get("answered_later") is True and RV3.vendor == ["7301", "7301"] and RV3.code == 0
       and _v4 == ["7301"] and len(kind(RV4, "UNVERIFIED")) == 1, lambda: (RV3.lines, RV3.vendor, rows(RV3), RV4.lines))
 
+# ---- 10y10. a chart whose record of a death was RESET on the owner's word (the fourth round, 11/25/2026 - S1), with the REAL guard ------------------------------
+# death_off_record.py wrote the RE-ASK entry: no death, a check date long ago, 'reask' = the day it ran. His word resets the record and Medicare is asked afresh:
+# the guard asks about such a chart for ANY charge - also one that goes to another payer first - and until Medicare has answered NO charge of it is cleared
+# (the guard raises NotAnswered, a kind of DayLost). This helper is as it was: it says NOT CHECKED with the error's kind, and the prompts' clause reads that line.
+REASK_E = {"dod": None, "checked": "2000-01-" + "01", "src": "off the record on the owner's word - Medicare is asked again", "reask": iso(ago(1)), "approved_by": "William %d/%d/%d (board)" % (ago(1).month, ago(1).day, ago(1).year)}
+def two_reset(first, second, medicare, argv=()):
+    shutil.rmtree(os.path.dirname(DCACHE), True); os.makedirs(os.path.dirname(DCACHE))
+    with open(DCACHE, "w") as fh: json.dump({"7331": dict(REASK_E), "7399": {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record"}}, fh, indent=1, sort_keys=True)
+    scene([("9331", "7331", [first]), ("9332", "7331", [second])]); STATE["charts"] = {"7331": [("car6404", MEM_S), ("car6085", MBI_S)]}; STATE["medicare"] = {"7331": medicare}; STATE["free"] = {}
+    del DG.LOG[:]; getattr(DG, "_REASKED", set()).clear(); getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # each start is a process of its own
+    return run(list(argv), guard=DG), dict(cache().get("7331") or {})
+RR1 = RR2 = RR3 = RR4 = RR5 = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded"); ER1 = ER2 = ER3 = ER4 = ER5 = {}
+if DG is not None:
+    (RR1, ER1) = two_reset(OTHER_M, MEDIC_M, "failed"); (RR2, ER2) = two_reset(MEDIC_M, OTHER_M, "failed")      # nobody answers, in both orders of the listing
+    (RR3, ER3) = two_reset(OTHER_M, MEDIC_M, "alive"); (RR4, ER4) = two_reset(OTHER_M, MEDIC_M, GONE)             # Medicare's fresh answer: no death / the day again
+    (RR5, ER5) = two_reset(OTHER_M, MEDIC_M, "alive", ["--dry"])                                                   # a dry start asks nobody
+R_LINES = sorted("NOT CHECKED: pat7331 visit %s charge %s (the guard raised NotAnswered) - %s" % (v, c, UNCHECKED) for v, c in (("9331", "5321"), ("9332", "5322")))
+check("10y10a with the REAL guard, a chart whose record of a death was reset on the owner's word and NOBODY answers the fresh question: BOTH its charges are NOT CHECKED - '(the guard raised NotAnswered)', the line the prompts' clause reads - also the one that goes to another payer first; exit 3, no UNVERIFIED line (it is never 'not a block'), Medicare is asked ONCE, and the entry stays the reset's",
+      lambda: RR1.code == 3 and sorted(kind(RR1, "NOT CHECKED")) == R_LINES and kind(RR1, "UNVERIFIED") == [] and kind(RR1, "BLOCKED") == [] and [x.get("result") for x in rows(RR1)] == ["could not be checked"] * 2
+      and real_summary(RR1, 2, 2, 0, 0, 0, 2, 0) and RR1.vendor == ["7331"] and ER1 == REASK_E and leaks(RR1.out + RR1.raw) == [], lambda: (RR1.code, RR1.err, RR1.lines, rows(RR1), RR1.vendor, ER1))
+check("10y10b ... the same two charges listed the other way round give the same answer: both NOT CHECKED, exit 3, Medicare asked once",
+      lambda: RR2.code == 3 and sorted(kind(RR2, "NOT CHECKED")) == sorted(l.replace("visit 9331 charge 5321", "visit 9332 charge 5321").replace("visit 9332 charge 5322", "visit 9331 charge 5322") for l in R_LINES)
+      and real_summary(RR2, 2, 2, 0, 0, 0, 2, 0) and RR2.vendor == ["7331"] and ER2 == REASK_E, lambda: (RR2.code, RR2.lines, rows(RR2), RR2.vendor, ER2))
+check("10y10c ... Medicare's FRESH answer decides. It names no death: both charges are clear, exit 0, the entry is the ordinary 'no death on record' of today (the fields of the reset gone) - asked once, for the first charge, whatever its payer. It names the day again: both charges are BLOCKED, exit 3 - a word given for the wrong chart lets no charge through",
+      lambda: RR3.code == 0 and [x.get("result") for x in rows(RR3)] == ["clear", "clear"] and kind(RR3, "NOT CHECKED") == [] and RR3.vendor == ["7331"] and ER3.get("dod", "x") is None and ER3.get("checked") == iso(TODAY) and "reask" not in ER3
+      and RR4.code == 3 and len(kind(RR4, "BLOCKED")) == 2 and [x.get("result") for x in rows(RR4)] == ["BLOCKED", "BLOCKED"] and RR4.vendor == ["7331"] and ER4.get("dod") == iso(GONE) and "reask" not in ER4 and leaks(RR4.out + RR4.raw) == [],
+      lambda: (RR3.code, RR3.lines, rows(RR3), RR3.vendor, ER3, RR4.code, RR4.lines, rows(RR4), RR4.vendor))
+check("10y10d ... and --dry (the guard's cache only) clears nothing for such a chart either: both charges NOT CHECKED with the same words, nobody is asked, the entry stays the reset's",
+      lambda: sorted(kind(RR5, "NOT CHECKED")) == R_LINES and RR5.vendor == [] and posts(RR5, "getdemographic") == [] and ER5 == REASK_E and [x.get("result") for x in rows(RR5)] == ["could not be checked"] * 2,
+      lambda: (RR5.code, RR5.lines, rows(RR5), RR5.vendor, ER5))
 # ---- 10z. the guard's cache file is not there: said, at the top (11/25/2026, the integration; the review's finding on the cache) -----------------
 # A guard that finds no cache file starts with nothing: a day the practice already holds is unknown to it until Medicare answers again, and
 # for a charge that needs no Medicare answer (another plan, no care-management code) nothing is asked at all. The helper cannot know what a
