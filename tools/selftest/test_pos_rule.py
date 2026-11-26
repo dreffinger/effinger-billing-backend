@@ -947,6 +947,8 @@ def _dg_check(pid, dos, carrier=None, proc=None, allow_lookup=True):      # the 
     _r = _dg_load().get(pid) or {}
     if _r.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(_r.get("dod"))):
         if getattr(_DG, "before", False): return False, "stand-in"      # before: a guard from before the second verification - a day it cannot read is 'unknown' to it: it answers 'not blocked' and raises nothing
+        if pid in getattr(_DG, "medicare_none", ()):      # (the guard's sixth round, 11/26/2026) Medicare shows no death: the real guard bills it, notes the chart (_NONE_SAID) and names it for the top of the report - the entry stays as it is
+            _DG._NONE_SAID.add(pid); _DG.LOG.append("TOP OF REPORT: pat%s: a recorded death whose day cannot be read here, and Medicare shows none - billed (William, 11/26/2026); look the chart up." % pid); return False, ""
         raise _DG.DayLost("a death is on record, its day cannot be read, nobody named one")      # the real guard's rule of 11/25/2026 (the second verification)
     return bool(_r.get("dod")), "stand-in"
 _DG._load = _dg_load; _DG.check = _dg_check; _DG.DayLost = type("DayLost", (RuntimeError,), {})
@@ -1007,6 +1009,16 @@ try:
     o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}}, argv=("--dry",))
     check("death day lost: a dry run asks from the cache only, enters nothing for the chart and writes no register - and its line says no more than is true of it (nobody was asked: 'nobody named the day')",
           r_ is None and ("723", "11/20/2026", None, None, False) in c_ and s4d.DEATH_DAY_WHY in o_ and "(nobody named the day)" in o_ and "Medicare named none" not in o_, (r_, c_, o_[-300:]))
+    # ---- the guard's sixth round (11/26/2026 - William: "Medicare decides: bill"): a message of such a chart is HELD only when the guard raises DayLost, or the entry still holds a
+    # death whose day cannot be read and Medicare did not say 'no death' in this process. When Medicare shows no death (the stand-in answers as the real guard does: not blocked, the
+    # chart in _NONE_SAID, ONE line for the top of the report) the visit is ENTERED, and that line reaches the import's log, its DONE line and its register (death_top).
+    _DG.LOG = []; _DG._NONE_SAID = set(); _DG.medicare_none = {"723"}
+    try: o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}})
+    finally: TOP6 = list(_DG.LOG); del _DG.LOG; del _DG._NONE_SAID; del _DG.medicare_none
+    _done = next((l_ for l_ in o_.splitlines() if l_.startswith("DONE ")), "")
+    check("death day lost, the guard's sixth round (A5 - William 11/26/2026, 'Medicare decides: bill'): Medicare shows NO death for a chart whose recorded day cannot be read - the visit is ENTERED (never held, no 'DEATH DAY UNKNOWN'), and the guard's line 'TOP OF REPORT: pat<chart>: ...' is printed by the import, counted in its DONE line and kept in its register (death_top), from which the digest says it at the top",
+          [x_["pid"] for x_ in (r_ or {}).get("created", [])] == ["pat721", "pat722", "pat723"] and _why(r_, "pat723") == [] and "DEATH DAY UNKNOWN" not in o_ and TOP6 == ["TOP OF REPORT: pat%s: a recorded death whose day cannot be read here, and Medicare shows none - billed (William, 11/26/2026); look the chart up." % "723"]
+          and (r_ or {}).get("death_top") == TOP6 and TOP6[0] in o_.splitlines() and "date of death: chart(s) for the TOP OF THE REPORT" in _done, ((r_ or {}).get("death_top"), TOP6, _done[-300:], o_[-400:]))
     # ---- the independent check of the second round: changes of ONE line in the import that passed every check (its list of surviving mutations). Each has its check now.
     _DG.before = True
     try: o_, r_, c_ = ccm_death_run({}, cache={"723": {"dod": LOSTD}, "721": {"dod": LOSTD}})
@@ -2841,6 +2853,13 @@ def digest(rows, stamp="20261110T1319Z"):
     return r, next((l for l in r.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
 r, line = digest(rows)
 check("digest: the report still runs with the new register fields", r.returncode == 0, r.stderr[-300:])
+# the guard's sixth round (11/26/2026): the lines the deceased guard named for the top of the report, as the import register keeps them (death_top), stand at the top of the digest -
+# the guard's own words behind the digest's own start; a line of another shape (digits beyond the date of William's answer) is not printed
+_T6 = list(globals().get("TOP6") or [])
+json.dump({"created": rows, "skipped": [], "failed": [], "death_top": _T6 + ["TOP OF REPORT: pat9: a line with a day in it 0" + "4/0" + "5/1" + "940"]}, open(os.path.join(rep_dir, "registers", "feed_import_20261126T0730Z.json"), "w"))
+_r6 = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP="20261126T0730Z"), capture_output=True, text=True)
+check("digest, the guard's sixth round (A5): each line the deceased guard named for the top of the report stands at the TOP of the digest ('  - TOP OF THE REPORT - pat<chart>: ...', the guard's own words) - and a line of another shape is not printed",
+      _r6.returncode == 0 and len(_T6) == 1 and [l_ for l_ in _r6.stdout.splitlines() if "Medicare shows none - billed" in l_] == ["  - TOP OF THE REPORT - " + _T6[0][len("TOP OF REPORT: "):]] and "a line with a day in it" not in _r6.stdout, (_r6.stderr[-300:], [l_ for l_ in _r6.stdout.splitlines() if "TOP OF THE REPORT" in l_][:6]))
 check("digest: one line - CCM 32 x2, visits 32 x1, visits 31 x2, nothing else", "CCM lines entered as 32: 2;" in line and "nursing visits 32 (monthly): 1;" in line and line.rstrip().endswith("nursing visits 31: 2."), line)
 r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["31", "31"], ["ccm-skilled-month"] * 2), reg_row(["99309"], "fac32", "31", ["31"], ["extra"])])
 check("digest: a CCM line AT 31 is shouted - it is not William's rule since 11/25/2026 (an older copy of the rule, or a batch from before that day) - and visits left at 31 are counted and explained",
@@ -3765,8 +3784,8 @@ LK_NL = "ZZQUILTFAKE"                                                       # an
 LK_NAMES = [(LK_NL, "PETRONELLA M", LK_NL, "PETRONELLA", "full"), (LK_NL + " JR", "PETRONELLA", LK_NL + " JR", "PETRONELLA ANN", "full"), ("ZZ-QUILT FAKE", "MARY ANN", LK_NL, "MARY A.", "full"), (LK_NL, "JOSÉ", LK_NL, "JOSE", "full"),
             (LK_NL + " III", "JOSÉ", LK_NL, "JOSE K III", "full"), (LK_NL, "PETRONELLA A JR", LK_NL + " Jr.", "petronella", "full"),
             (LK_NL + " JR", "PETRONELLA", LK_NL, "PETRONELLA ANN", "name", "alike"), ("ZZ-QUILT FAKE", "MARY", LK_NL, "MARYANN", "name", "alike"), (LK_NL + " III", "JOSÉ", LK_NL, "JOSE", "name", "alike"),      # (.5) a suffix on one side only; a first name that begins with the other
-            (LK_NL, "PETRONELLA SR", LK_NL, "PETRONELLA", "name", "alike"), (LK_NL + " JR", "PETRONELLA", LK_NL + " SR", "PETRONELLA", "name", "alike"), (LK_NL, "PETRONELLA V", LK_NL, "PETRONELLA K", "name", "alike"),      # (.5) the suffix behind the first name; two different suffixes; a middle initial V reads as the suffix V (the known limit)
-            ("V", "PETRONELLA V", "V", "PETRONELLA", "name", "alike"),      # (.5) a suffix word that is the WHOLE last name is the last name, no suffix: only the feed's name carries one here
+            (LK_NL, "PETRONELLA SR", LK_NL, "PETRONELLA", "name", "alike"), (LK_NL + " JR", "PETRONELLA", LK_NL + " SR", "PETRONELLA", "name", "alike"), (LK_NL, "PETRONELLA V", LK_NL, "PETRONELLA K", "full"),      # (.5) the suffix behind the first name; two different suffixes; (.6) a lone V right behind the first word is a middle initial - the same name (until then the suffix V: the known limit)
+            ("V", "PETRONELLA A V", "V", "PETRONELLA", "name", "alike"),      # (.5) a suffix word that is the WHOLE last name is the last name, no suffix: only the feed's name carries one here (.6: behind a middle initial V is still the suffix)
             (LK_NL, "PET", LK_NL, "PETRONELLA", "name", "alike"), (LK_NL, "PETRUS", LK_NL, "PETRONELLA", "name"), (LK_NL + " JR", "PETRUS", LK_NL, "PETRONELLA", "name"), (LK_NL, "GWENLLIAN", LK_NL, "PETRONELLA", "surname"), (LK_NL, "", LK_NL, "PETRONELLA", "surname"),
             ("ZZOTHERFAKE", "PETRONELLA", LK_NL, "PETRONELLA", ""), ("", "PETRONELLA", LK_NL, "PETRONELLA", "")]      # (the feed's last and first name, the chart's last and first name, what the chart's name is to the feed's[, what it is when asked for 'alike'])
 check("_name_kind (the owner's rule for names, identity rule .5): 'full' - the same last name (upper case, letters only, a trailing JR / SR / II / III / IV / V dropped), the same first WORD of the first name (a middle initial or a second first name does not matter) and the same suffix or none, "
@@ -3778,7 +3797,7 @@ def lk_alike(*a_):
     except Exception as e_: return "%s: %s" % (type(e_).__name__, e_)
 check("_name_kind (identity rule .5): asked for it (alike=True) it says 'alike' of a name candidate whose name is alike but not the same - a suffix on one side only or two different ones, a first name whose first word begins the other's - and 'name' of two first names that only share three letters; "
       "'full', 'surname' and '' are as without it, and so is the answer whichever of the two names is the feed's (lookup_hold and lookup_who word what they say by it)",
-      [lk_alike(*n_[:4]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and [lk_alike(n_[2], n_[3], n_[0], n_[1]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and len([n_ for n_ in LK_NAMES if n_[-1] == "alike"]) == 8,
+      [lk_alike(*n_[:4]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and [lk_alike(n_[2], n_[3], n_[0], n_[1]) for n_ in LK_NAMES] == [n_[-1] for n_ in LK_NAMES] and len([n_ for n_ in LK_NAMES if n_[-1] == "alike"]) == 7,
       [(n_[1], n_[3], lk_alike(*n_[:4]), n_[-1]) for n_ in LK_NAMES if lk_alike(*n_[:4]) != n_[-1]])
 LK_ID = "5f3a" + "9c07" * 5                                                 # an invented Claimocity id: 24 hex digits
 check("_same_id: a chart's additional number is this Claimocity id when the two are equal as upper-case letters and digits and have eight characters or more - an empty or short value, or a value one character off, never is",
@@ -4495,6 +4514,23 @@ check("insurance intake, live: the plan is added as before and the register entr
       _le == "" and LKI["asked"] == [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")] and LKI["added"] == [("901", "car9")] and isinstance(_lg, dict) and list(_lg) == ["901|MCAD"]
       and _lg["901|MCAD"].get("outcome") == "added MCAD as ins77 seq 2 (Medicaid active; no managed medical plan named (fee-for-service) - Medicaid asked with the chart's birth date; Claimocity's differs: one digit)" and lki_leaks(_lo, json.dumps(_lg)) == [],
       (_le, len(LKI["asked"]), LKI["added"], lki_leaks(_lo, json.dumps(_lg or {}))))
+# identity rule .6 (11/26/2026 - the identity check's finding B1): the insurance check and the intake hand lookup_who the WHOLE first name. Until then they handed over its first
+# word only: the SAME name with JR behind the first name on both sides read 'alike but not the same', and a JR on the feed's side only read as nothing. Both callers, the same real
+# birth date on both sides (so the look-up is asked either way and only the words differ).
+_b1 = []
+for _bw, _bf, _bc in (("on both sides", LK_CF + " JR", LK_CF + " JR"), ("on the feed only", LK_CF + " JR", LK_CF), ("on the chart only", LK_CF, LK_CF + " JR")):
+    _lr, _lo, _le = lk_run(bd_lf(LK_CL, _bf), BD_A, lk_pa(1940, 2, 15, bd_lf(LK_CL, _bc))); _k1 = list(LK["calls"])
+    _io, _ie, _ig = lki_run("1940-02-" + "15", lk_pa(1940, 2, 15, bd_lf(LK_CL, _bc)), name=(_bf, LK_CL))
+    _b1.append((_bw, _le, _lr.get("lookup_asked"), _k1, _ie, "the names are alike but not the same" in _io, list(LKI["asked"])))
+_B1_SAME, _B1_ALIKE = "look-up asked with the chart's birth date; Claimocity's is the same", "look-up asked with the chart's birth date; Claimocity's is the same; the names are alike but not the same"
+_B1_K, _B1_I = [(LK_CF, LK_CL, BD_A, "FL", "20261110")], [("77027", LK_CF, LK_CL, BD_A, LK_NUM, "901")]
+check("identity rule .6 (finding B1), through BOTH callers: a suffix behind the first name ON BOTH SIDES is the same name - nothing about the names in the insurance check's lookup_asked, nothing in the intake's line; ON THE FEED ONLY or ON THE CHART ONLY it is 'the names are alike but not the same' in both; each look-up is asked with the chart's own first word",
+      [b_[1:] for b_ in _b1] == [("", _B1_SAME, _B1_K, "", False, _B1_I), ("", _B1_ALIKE, _B1_K, "", True, _B1_I), ("", _B1_ALIKE, _B1_K, "", True, _B1_I)], _b1)
+# identity rule .6 (finding B2): a lone V right behind the first word of the first name is a MIDDLE INITIAL - MARY and MARY V are one name, both ways (with the year-1900
+# placeholder on one side such a pair was held 'same person? ... alike but not the same'); behind a middle initial V is still the suffix V
+_b2 = [lk_h(lk_pa(1940, 2, 15, bd_lf(LK_CL, a_)), (b_, LK_CL), LK_P00)[0] for a_, b_ in ((LK_CF + " V", LK_CF), (LK_CF, LK_CF + " V"), (LK_CF + " A V", LK_CF))]
+check("identity rule .6 (finding B2), lookup_hold: MARY / MARY V both ways - the chart's name with a lone V right behind the first name, or the feed's - is the same name: with the placeholder on the feed's side the look-up is asked, never held (it was 'same person? ... alike but not the same'); V behind a middle initial (MARY A V) is still the suffix V: held",
+      _b2 == ["", "", "same_person"], _b2)
 _lo, _le, _lg = lki_run("1940-02-" + "16", lk_pa(1940, 2, 15), live=True, answer={"benefitsInformation": [{"code": "6"}]})
 check("insurance intake, live: Medicaid answers 'no active coverage' to the chart's name and birth date - nothing is added, and the entry that settles the chart and carrier says how it was asked",
       _le == "" and LKI["added"] == [] and isinstance(_lg, dict) and (_lg.get("901|MCAD") or {}).get("outcome") == "not active - Medicaid: no active coverage - Medicaid asked with the chart's birth date; Claimocity's differs: one digit" and lki_leaks(_lo, json.dumps(_lg)) == [],
@@ -4710,10 +4746,13 @@ LK4_IHEAD = ("THE SAME NAME IS THE SAME FIRST WORD AND NO OTHER SUFFIX", "alike 
 check("insurance intake: its PLAIN ENGLISH header says what ROUND 3 changed (identity rule .5, 11/26/2026) - the first of these a sentence only this version has, ONCE and on one line (the mirror and the helpers' version table protect the helper by it) - and still carries the marker sentences of the versions before",
       all(w_ in _lih.replace("\n#      ", " ") for w_ in LK4_IHEAD) and open(os.path.join(ROOT, "scripts", "helpers", "feed_in1_intake.py")).read().count(LK4_IHEAD[0]) == 1 and any(LK4_IHEAD[0] in l_ for l_ in _lih.splitlines()) and LK3_IHEAD[0] in _lih and LK2_IHEAD[0] in _lih,
       [w_ for w_ in LK4_IHEAD if w_ not in _lih.replace("\n#      ", " ")])
+LK5_HEAD = "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL"      # (identity rule .6, 11/26/2026) the sentence of ROUND 4 in the headers of both look-up helpers: their marker since that round
 _lk4_tab = {f_: (m_.group(1) if m_ else None) for f_ in ("claimocity_verify.py", "feed_in1_intake.py") for m_ in [re.search(r'"%s":\s*"([^"]+)"' % re.escape(f_), mir)]}
-check("the mirror and the helpers' version table know the two look-up helpers by the sentences of THIS round (identity rule .5): a copy from before - which holds no relative under an alike name - never goes back over the repository's, and the driver's helper check names it",
-      _lk4_tab == {"claimocity_verify.py": LK4_HEAD[0], "feed_in1_intake.py": LK4_IHEAD[0]} and all(('"%s": "%s"' % (f_, m_)) in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_helpers_current.py")).read() for f_, m_ in _lk4_tab.items() if m_)
-      and LK3_HEAD[0] not in mir and LK3_IHEAD[0] not in mir, _lk4_tab)
+_lk5_src = {f_: open(os.path.join(ROOT, "scripts", "helpers", f_)).read() for f_ in ("claimocity_verify.py", "feed_in1_intake.py")}
+check("the mirror and the helpers' version table know the two look-up helpers by the sentence of THIS round (identity rule .6 - round 4 of their headers: the whole first name is compared, a lone V behind the first name is a middle initial): it stands ONCE, on one line, in each helper's header; a copy from before - which holds MARY / MARY V 'alike' - never goes back over the repository's, and the driver's helper check names it; the sentences of rounds 2 and 3 are in neither table",
+      _lk4_tab == {"claimocity_verify.py": LK5_HEAD, "feed_in1_intake.py": LK5_HEAD} and all(('"%s": "%s"' % (f_, m_)) in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_helpers_current.py")).read() for f_, m_ in _lk4_tab.items() if m_)
+      and all(s_.count(LK5_HEAD) == 1 and any(LK5_HEAD in l_ for l_ in s_.split("\nimport ", 1)[0].splitlines()) for s_ in _lk5_src.values())
+      and LK3_HEAD[0] not in mir and LK3_IHEAD[0] not in mir and LK4_HEAD[0] not in mir and LK4_IHEAD[0] not in mir, _lk4_tab)
 check("the stand-ins of these runs are gone again (the import helper's own are back, no look-up module is left loaded)", sys.modules.get("amd") is amd and sys.modules.get("resave") is resave and not any(m_ in sys.modules for m_ in ("stedi", "elig_amd", "add_ins", "ins_update", "adt_ingest", "feed_payer_map", "deceased_guard")))
 # 11.1: the Claim Inspector step takes the quality line off a held visit by itself (run INSIDE this process with stand-ins)
 isd = tempfile.mkdtemp(prefix="posrule_ins_"); os.makedirs(os.path.join(isd, "registers")); json.dump({}, open(os.path.join(isd, "dx.json"), "w"))
@@ -6428,7 +6467,7 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
       and "this version adds 1123F only" not in step)
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6; round 7; 11/12/2026): the inspector's marker is a sentence only the version with the retry pass has (it still takes BOTH no-charge lines off); since round 7 (11/10/2026) the insurance check's is a sentence only the list-aware version has - and that version still sends the echo once more without BOTH lines",
-      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME"' in mir and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below). 11/26/2026 (identity rule .5): the insurance check's marker moved on again - to the sentence only the version that holds an alike name has
+      '"claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP"' in mir and "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP" in insp and "every run tries the void and the re-save again for a visit stuck with its no-charge line" in insp and "the step takes BOTH no-charge lines off" in insp and '"claimocity_verify.py": "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL"' in mir and "KNOWN ALSO MEANS PROVEN BY A NUMBER" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "A MEMBER NUMBER PROVES THE CHART ONLY WITH BIRTH DATES THAT AGREE" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read()      # 11/25/2026: both markers moved on to a sentence only the version of that day has; the older sentences are still in the two steps (below). 11/26/2026 (identity rule .5): the insurance check's marker moved on again - to the sentence only the version that holds an alike name has
       and "the paid look-up is asked with the CHART's own name and birth date" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "Pattern 692 (initial hospital care reported after subsequent hospital care" in insp
       and "the save is skipped only when the visit's insurance-order LIST" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read() and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
 

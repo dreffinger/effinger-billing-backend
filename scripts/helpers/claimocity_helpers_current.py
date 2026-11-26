@@ -28,15 +28,15 @@ FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_insp
 # now asks a workspace copy of it for the sentence above as well (mirror.py PROTECTED_ALSO).
 VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.5"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
                 
-                 "claimocity_verify.py": "A NAME THAT IS ALIKE BUT NOT THE SAME IS HELD LIKE ANY OTHER NAME",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
-                 "feed_in1_intake.py": "THE SAME NAME IS THE SAME FIRST WORD AND NO OTHER SUFFIX",
+                 "claimocity_verify.py": "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
+                 "feed_in1_intake.py": "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL",
                  "claimocity_match.py": "THE MATCH STEP ONLY GATHERS: EVERY ENTRY IT WRITES IS UNDECIDED UNTIL claimocity_resolve.py APPLIES THE IDENTITY RULE",
                  "claimocity_resolve.py": "NOR DOES A PATIENT WHOSE OWN CHART IS A SLIP AWAY",
                  "claimocity_newcharts.py": "A NEW CHART IS MADE ONLY ON RULE 9 OF THE IDENTITY RULE, ONE PER CLAIMOCITY ID, NEVER WITH AN EMPTY BIRTH DATE",
-                 "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-26.5"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
+                 "feed_identity.py": 'IDENTITY_RULE_VERSION = "2026-11-26.6"', "pos61_monitor.py": 'POS61_MONITOR_VERSION = "2026-11-25.4"',
                  "claimocity_dx.py": "no lookup answer in two tries", "claimocity_recon.py": "THE CHART OF A MESSAGE IS ITS OWN CLAIMOCITY ID'S",
                  "feed_parse_dft_1028.py": "EVERY MESSAGE THAT CANNOT BE ENTERED AS IT CAME IS COUNTED BY FILE DATE AND MESSAGE NUMBER",      # 11/25/2026 (the verification): the sentence only the parser that counts every message it cannot hand on to be entered has
-                 "claimocity_void_deceased.py": "THE DAYS IT GOES BY ARE THE GUARD'S ONE CACHE, READ THROUGH THE GUARD - NEVER A CACHE FILE OF THE FEED'S OWN", "deceased_guard.py": 'DEATH_GUARD_RULE = "2026-11-26.1"'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has
+                 "claimocity_void_deceased.py": "THE DAYS IT GOES BY ARE THE GUARD'S ONE CACHE, READ THROUGH THE GUARD - NEVER A CACHE FILE OF THE FEED'S OWN", "deceased_guard.py": 'DEATH_GUARD_RULE = "2026-11-26.2"'}      # 11/25/2026: the line only the guard that asks AdvancedMD's free check first has
 RULE_HELPERS = ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py")
 def _read(p):
     try: return open(p, "rb").read()

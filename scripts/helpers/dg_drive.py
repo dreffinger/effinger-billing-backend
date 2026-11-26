@@ -18,7 +18,7 @@
 #   was cleared with nobody asked, by the very step that runs before the first guard call; and a LATER day from Drive replaced an EARLIER
 #   day in the cache when Drive's check date was newer, so a visit between the two passed. Now: a note never replaces an entry whose dod is
 #   set - a day that can be read OR one that cannot; of two days the EARLIER stays, whatever the check dates (it blocks more - the guard's
-#   own rule for two cache files); a real day still beats a '[DOB]'. A death is taken off by hand only (the fifth round, below).
+#   own rule for two cache files); a real day still beats a '[DOB]'. A death is never taken off (the fifth round, below).
 #   The reading of a day is the guard's own (deceased_guard._day - tools/selftest/test_lookup_rules.py holds the two together).
 # 11/25/2026 (the third round - the second independent check of that day; each rule has its check in tools/selftest/test_lookup_rules.py):
 #   THE COPY IS v2 - a third list beside 'dated' and 'nodeath'. 'noday' = {pid: checked}: a death on record whose day is not known (the chart's
@@ -53,8 +53,8 @@
 #   TOP OF THE REPORT'. (.gitignore names '*.unreadable-*', and the privacy gate's tree mode moves such a file out of a tree.)
 #   NOTHING OF THE OWNER'S WORD. Rounds three and four had each put a rule for it into pack and unpack (a fourth list of the copy; an entry that
 #   kept an older record out). Both are gone: the copy has its three lists, and unpack knows a day, a 'no death' note and a death with no day. A
-#   copy of the third round that still carries that fourth list is merged as before - the list is ignored. A death is taken off by hand, in a
-#   chat session, on William's word - and the copy on Drive is one of the places it then has to come off.
+#   copy of the third round that still carries that fourth list is merged as before - the list is ignored. Since 11/26/2026 nothing takes a
+#   death off: William never overrides Medicare's date of death (deceased_guard.py, the sixth round).
 #   TWO SMALL THINGS (the fourth check's findings 6 and 8). unpack keeps an entry's OWN source whenever the day does not change (the next step
 #   0c wrote '... (drive copy)' over it). And a bracketed text that plainly means nothing ('[none]', '<null>', '[n/a]' - NOTHING_WORDS) is no
 #   death on record, as in the guard.

@@ -69,7 +69,7 @@ check("bare LAST,FIRST: pseudonym last + unknown first -> LAST,[first] (mixed ca
       == "note SIMCOE,[first] (pat 3) and %s D, [name]; SIMCOE,[first]" % lf("SIMCOE", "ANNIKA"))
 check("board slugs in code strings: unknown last -> [name]-id, pseudonym last + unknown first -> last-[first]-id, an initial is kept",
       r('import x\nrow("xanther-mira-' + '10000001"); row("simcoe-mira-' + '10000002"); row("simcoe-annika-l-' + '10000003")\n', names)
-      == 'import x\nrow("[name]-10000001"); row("simcoe-[first]-10000002"); row("simcoe-annika-l-10000003")\n')
+      == 'import x\nrow("[name]-10000001"); row("simcoe-[first]-10000002"); row("simcoe-annika-l-' + '10000003")\n')
 check("member / subscriber / policy ids in JSON fields and prose; payer ids untouched",
       r('"subscribernum": "%s", member %s and policy %s, "member": "%s", payer 87726, Medicaid 77027 ACTIVE' % (MEM_A, MEM_H, POL, MEM_W), names, code=False)
       == '"subscribernum": "[member id]", member [member id] and policy [member id], "member": "[member id]", payer 87726, Medicaid 77027 ACTIVE')

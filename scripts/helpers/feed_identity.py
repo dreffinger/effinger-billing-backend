@@ -14,7 +14,8 @@
 #     CANDIDATE when the last name is the same and the first name shares its first three letters; a FULL-NAME candidate - the SAME
 #     NAME - when in addition the first WORD of the first name is the same word (a middle initial or a second first name behind it
 #     does not matter: MARY / MARY A / MARY ANN) and the two names carry the same suffix, or none. The suffix of a name is the word
-#     JR, SR, II, III, IV or V that stands as the last word of the last name or as any word after the first word of the first name.
+#     JR, SR, II, III, IV or V that stands as the last word of the last name or as any word after the first word of the first name -
+#     but a lone V right behind the first word of the first name is a middle initial (version .6: MARY V is MARY with an initial).
 #     A chart that is ALIKE BUT NOT THE SAME - the first word of one first name only begins the other's (MARY / MARYANN, ROBERT /
 #     ROBERTA), or the suffixes differ (also when only one side carries one) - is a name candidate only, like two first names that
 #     share three letters, and is never taken by the name alone: A RELATIVE IS NOT THE PATIENT (version .5, below).
@@ -113,8 +114,15 @@
 #        name: William's own case of a wrong birth date - or a parent and a child of one name on one plan. The chart is chosen and
 #        the visit goes in as before, and the answer is for William (one FYI line: william_lines). Nothing else is for William
 #        that was not before.
-#     Known limits: a middle initial V reads as the suffix V (such a patient is asked about, never put on a chart by the name
-#     alone); twins and other name-alikes of ONE birth date are one person to rule 2, as before.
+#     Known limit: twins and other name-alikes of ONE birth date are one person to rule 2, as before. (Until version .6 a middle
+#     initial V read as the suffix V; since then a lone V right behind the first word of the first name is a middle initial.)
+#   VERSION .6 (11/26/2026 - the identity check's findings on version .5): (B2) a lone V directly behind the first word of the first name
+#     is a MIDDLE INITIAL, not the suffix V - V stays a suffix behind the last name and behind a middle name or initial ('ROBERT A V');
+#     the same in the private copies of the insurance check and the intake. (B3) Rule 4 asks member:medicare before member (ssn,
+#     member:medicare, member, ssn4): the chart that carries her Medicare number wins over a chart that only shares the family's.
+#     (B1) The insurance check and the intake hand lookup_who the WHOLE first name, so the same name with a suffix behind the first
+#     name on both sides is the same name in what William reads; (B4) the digest's fallback question about a new chart says what
+#     the row's flags say of the numbers (number_words).
 #   A CHART WILLIAM CALLED A DUPLICATE (his word of 11/9/2026; registers/feed_duplicate_charts.json, read by claimocity_match.py) is
 #   never the chart a visit goes to: the PROPER chart stands in its place. What speaks for the duplicate - its name, its date, its
 #   numbers: what Claimocity knows that person by - speaks for the proper chart ("also"), and for rules 5 to 8 the two are ONE chart
@@ -146,7 +154,7 @@
 #   printed. Every why, flag and evidence word is a constant of this file, so no name, date or number of a patient can reach a register
 #   through them; problems() proves it for any answer. Used by claimocity_match.py, claimocity_resolve.py and claimocity_newcharts.py.
 import re, datetime, unicodedata
-IDENTITY_RULE_VERSION = "2026-11-26.5"      # change this line with EVERY revision of the rule, here and in the two tables that name it - tools/mirror/mirror.py PROTECTED and claimocity_helpers_current.py VERSION_LINES (a copy of an earlier version must never pass as current). (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number. .3 - the independent verification: RULES WITHOUT PROOF above, a chart William called a duplicate, an id with proof on a key several ids share. .4 - its checkers: rule 7 is not held back by the patient map; a slip, rule 5, does not wait. .5, 11/26/2026 - A RELATIVE IS NOT THE PATIENT above: the same name is the same first word and no other suffix; a member number counts only where it can prove one person; rule 4 on a family's number with far-apart dates is said to William.) The match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
+IDENTITY_RULE_VERSION = "2026-11-26.6"      # change this line with EVERY revision of the rule, here and in the two tables that name it - tools/mirror/mirror.py PROTECTED and claimocity_helpers_current.py VERSION_LINES (a copy of an earlier version must never pass as current). (.2, 11/25/2026 - the review: every spelling of the last name is asked for; several ids under one name with no birth date are weighed each on its own; a second new id of one name waits a run; a masked placeholder number is no number. .3 - the independent verification: RULES WITHOUT PROOF above, a chart William called a duplicate, an id with proof on a key several ids share. .4 - its checkers: rule 7 is not held back by the patient map; a slip, rule 5, does not wait. .5, 11/26/2026 - A RELATIVE IS NOT THE PATIENT above: the same name is the same first word and no other suffix; a member number counts only where it can prove one person; rule 4 on a family's number with far-apart dates is said to William. .6, the same day - VERSION .6 above: a lone V right behind the first name is a middle initial; rule 4 asks the Medicare-shaped number before a family's.) The match step stamps every entry with it; the resolve and new-chart steps refuse an entry of another version
 NO_DOB_MDY = "01/01/1900"                   # what a NEW chart is written with when Claimocity sent no usable date - never an empty one
 CHART_TRIES = 200                           # how many chart numbers the new-chart step may take for one patient
 SUFFIXES = ("JR", "SR", "II", "III", "IV", "V")
@@ -275,8 +283,11 @@ def _first_word(first):
 def name_suffix(last, first):
     """The suffix of a name (version .5): the word JR, SR, II, III, IV or V that stands as the LAST word of the last name (the word last_key drops) or as ANY
     word after the first word of the first name (behind the first name, behind a middle initial) - the words found, in SUFFIXES' order; () when the name
-    carries none. Two names differ by suffix when the two answers are not equal - also when only one side carries one."""
+    carries none. Two names differ by suffix when the two answers are not equal - also when only one side carries one. Version .6: a lone V DIRECTLY
+    behind the first word of the first name is a middle initial, not the suffix V (MARY V is MARY with an initial); V stays a suffix behind the last name
+    and behind a middle name or initial (ROBERT A V)."""
     lw = re.findall(r"[A-Z]+", _up(last)); fw = [re.sub(r"[^A-Z]", "", w) for w in _up(first).split()[1:]]
+    fw = fw[1:] if fw[:1] == ["V"] else fw      # (version .6) a lone V right behind the first word is a middle initial
     found = set(lw[-1:] if len(lw) > 1 else []) | set(fw)
     return tuple(s for s in SUFFIXES if s in found)
 def name_kind(feed_last, feed_first, chart_last, chart_first, alike=False):
@@ -602,7 +613,9 @@ def _one(last, first, d, cs, today8, cut=""):
     THIS date of the feed. Where it does not count the chart is weighed as if the number were not there (no rule 4 by it, not 'the strongest evidence' of
     a group, not listed as evidence, and no proof of two people either), and every answer from rule 4 on says so (FLAG_MEMBER) when rule 4 would have
     asked that number - when no Social Security number went before it. (N3) Rule 4 on a member number that is no Medicare number while the two real
-    dates are FAR apart is for William: the chart is chosen all the same."""
+    dates are FAR apart is for William: the chart is chosen all the same.
+    Version .6: rule 4 asks its words in the order ssn, member:medicare, member, ssn4 - the chart that carries the patient's MEDICARE number wins over a
+    chart that only shares a family's member number with the feed (until then both were one group, and its live chart - a relative's - was taken)."""
     kind = {c["id"]: _kind(last, first, c) for c in cs}
     family = {c["id"] for c in cs if "member" in c["ev"] and not member_counts(MEDICARE in c["ev"], kind[c["id"]] == "full", d, c["dob"], c["dates"])}      # the charts whose member number in common does NOT count
     cs = [dict(c, ev=[e for e in c["ev"] if e not in ("member", MEDICARE)]) if c["id"] in family else c for c in cs]
@@ -616,7 +629,7 @@ def _one(last, first, d, cs, today8, cut=""):
     if exact and not _contra(exact): return _chosen(2, exact, [], name_c, d, today8)
     if d and not exact and sur_c and not _contra(sur_c): return _chosen(3, sur_c, [FLAG_FIRST_NAME], name_c + sur_c, d, today8)
     note = []                                          # (version .5) [FLAG_MEMBER] once rule 4 has come to a member number that does not count
-    for e in ("ssn", "member", "ssn4"):
+    for e in ("ssn", MEDICARE, "member", "ssn4"):      # (version .6) a Medicare-shaped number in common - one person's - is asked before a member number a family can share
         if e == "member" and any(c["id"] in family for c in name_c): note = [FLAG_MEMBER]      # rule 4 would have asked this number: every answer from here on says that it was not counted
         g = [c for c in name_c if e in c["ev"]]
         if g:

@@ -2588,7 +2588,21 @@ def main():
     # when neither AdvancedMD nor the vendor names one, and Medicare's 'no death on record' does not undo a death another source put on record. A held message is not
     # entered; its row carries DEATH_DAY_WHY, its codes and its dates of service, and the retry step hands it to the import again - once a run, until a register
     # shows it entered or kept out for good (claimocity_retry_dx.py; the independent check of that round, finding 3).
+    # 11/26/2026 (the guard's sixth round - William: "Medicare decides: bill"; "Bill it, flag it"): MEDICARE'S ANSWER DECIDES. A message of such a chart is HELD only
+    # when the guard raised DayLost (Medicare could not be asked and no day is known - the one wait left) or the entry still holds a death whose day cannot be read
+    # and Medicare did not say 'no death' in this process (the guard's _NONE_SAID; a guard from before has none: held, as before). When Medicare shows no death the
+    # message is ENTERED, and the guard's own line for the top of the report ('TOP OF REPORT: pat<chart>: ...') goes into the DONE line's counts, the import's log
+    # and the register, from which the digest says it at the top. The same for a chart AdvancedMD marks deceased with no date that the guard named so: its
+    # 'deceased' mark no longer holds the message below (_dg_named).
     _ccm_asked = set(); _dd_held = set()
+    def _dg_named(pid):
+        """(11/26/2026) True when the deceased guard named this chart for the top of the report in this process: Medicare's answer decided for a chart marked
+        deceased with no date, or for one whose recorded death has a day that cannot be read (billed), or such a mark could not be put to Medicare (billed,
+        flagged). It never raises: what cannot be read is no."""
+        try:
+            _l = getattr(__import__("sys").modules.get("deceased_guard"), "LOG", None)
+            return isinstance(_l, list) and any(isinstance(x, str) and x.startswith("TOP OF REPORT: pat%s: " % re.sub(r"\D", "", pid)) for x in _l)
+        except Exception: return False
     def _asked_dod(pid, msg, lost=False):
         """-> (the day or None, held). lost: a death is on record for the chart and its day is in no cache file."""
         num = re.sub(r"\D", "", pid); _ccm = any(c["cpt"] in CCM for c in msg["FT1"])
@@ -2604,7 +2618,8 @@ def main():
             d = death_day(v.get("dod"))
             if d:
                 _dc[num] = dict(v, dod=d); _dc_lost.discard(num); return d, False
-            if lost or death_unread(v.get("dod")): return None, True      # a death on record without a day that can be read is never 'no death' (death_unread says what such a value is; any other value in the day's place is no dod)
+            _none = getattr(_dg, "_NONE_SAID", None)      # (11/26/2026) the charts Medicare named no death for in this process
+            if (lost or death_unread(v.get("dod"))) and not (isinstance(_none, set) and num in _none): return None, True      # a death on record without a day that can be read, and Medicare did not say 'no death' in this process (death_unread says what such a value is; any other value in the day's place is no dod)
             # the guard answered 'not blocked' and its own log says nobody answered the look-up: the charge goes in (only a date of death keeps one out) and the
             # run SAYS so - until 11/25/2026 (the second verification) only a look-up that raised was counted, and this one went in with no word
             if isinstance(_lg, list) and any(isinstance(x, str) and "UNVERIFIED" in x for x in _lg[_n0:]):
@@ -2716,7 +2731,9 @@ def main():
                 if not dry: json.dump(reg, open(REG, "w"), indent=1)      # a dry run writes nothing (11/10/2026, challenge review): its register would make the live run of the same stamp skip whole patients
                 continue
             ctx = chart_ctx(pid); ctx["pid"] = pid
-            if ctx.get("deceased"):
+            if ctx.get("deceased") and death_day(ctx.get("deceased")) is None and _dg_named(pid):      # (11/26/2026, William: "Medicare decides: bill") a mark with no date the guard put to Medicare's answer - or could not, "Bill it, flag it" - and named for the top of the report: entered
+                stats["deceased mark with no date - Medicare decided, entered (William 11/26/2026)"] += 1
+            elif ctx.get("deceased"):
                 stats["deceased chart - held"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "deceased flag on chart - William"}); continue
             body, info = build(msg, ctx)
             if body is None:
@@ -2942,6 +2959,14 @@ def main():
         reg["mvp_gate"] = mvp_gate(); json.dumps(reg["mvp_gate"])
     except Exception as e:
         reg["mvp_gate"] = {"code": MVP_CODE, "off": "this run: the state of the option code M0004 could not be written (%s)" % type(e).__name__, "reset": bool(MVP.get("reset")), "notes": []}
+    # 11/26/2026 (the guard's sixth round - William: "Medicare decides: bill", "Bill it, flag it"): the charts the deceased guard named for the top of the report in
+    # this run - its own lines, word for word: chart ids and fixed words only. Into the register (the digest says each at the top), into the DONE line's counts and,
+    # below, into the import's log. The key is there only when there is such a line.
+    try:
+        _dtl = getattr(__import__("sys").modules.get("deceased_guard"), "LOG", None)
+        _dtop = list(dict.fromkeys(x for x in (_dtl if isinstance(_dtl, list) else []) if isinstance(x, str) and re.fullmatch(r"TOP OF REPORT: pat[0-9]{1,12}: [^\r\n]{1,300}", x)))
+    except Exception: _dtop = []
+    if _dtop: reg["death_top"] = _dtop; stats["date of death: chart(s) for the TOP OF THE REPORT (Medicare decided, or could not be asked - entered)"] = len(_dtop)
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
     try: print(quality_log(_qn, dry))
     except Exception as e: print("QUALITY 1123F: this line could not be built (%s) - read quality_gate in the import register" % type(e).__name__)
@@ -2964,6 +2989,7 @@ def main():
     # stops once a register shows the visit entered or kept out for good.)
     if _dd_held: print("DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) - %s (nobody named the day) - TOP OF THE REPORT: merge the deceased cache from Drive; the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         stats[DEATH_DAY_WHY], len(_dd_held), DEATH_DAY_WHY, ", ".join(sorted(_dd_held))))
+    for _x in _dtop: print(_x)      # 11/26/2026: the guard's own lines for the top of the report, word for word (above)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
         # one SHORTALL line, like the next one (90 characters with one-digit counts, 110 with six-digit counts in all four places)

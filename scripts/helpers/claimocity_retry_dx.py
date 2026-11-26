@@ -41,7 +41,7 @@
 #   Until then the 'already' row named the feed patient only, and it ended the retry only where the retry's own batch file was on hand and named that one
 #   visit, or the reconciliation register named it: in a new container, and after a retry that had handed over two visits of the chart, the visit was handed
 #   over again in every run. A row of a register from before still counts the old way. Only a register LATER than the one that held the visit ends its retry -
-#   never an earlier one (a death can be taken off by hand, a charge voided, in between). The line this step prints about such charts
+#   never an earlier one (a charge can be voided in between). The line this step prints about such charts
 #   names only the charts whose visit this run really hands over. Nothing here reads the cache of dates of death: the import decides, every run, from what it reads.
 import os, sys, re, json, glob, subprocess, datetime, collections
 WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))

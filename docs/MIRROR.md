@@ -91,7 +91,7 @@ The register `practices/ehpa/registers/practice_db_copies.json` (ids, counts, sh
 content did not change is not copied again, and `--prune-plan 30` (1st of the month) deletes old copies that are no longer the newest
 of their collection. The saved out_dir files carry patient names and stay under /home/claude/unbilled - never a commit, never Drive.
 
-`phi_gate.py` exits 2 and the sync stops if an MBI, SSN, ICN, DOB, member number, token or key would leave the workspace. A "possible patient name" warning means add the name to `secrets/pseudonyms.json` (then upload that file to `workspace mirror`) and rerun. **New registry entries should not carry patient names at all** — write the AMD chart id (`patNNN`) instead; the gate is the backstop, not the plan.
+`phi_gate.py` exits 2 and the sync stops if an MBI, SSN, ICN, DOB, member number, token or key would leave the workspace. A file whose name carries `.unreadable-` (a deceased cache that could not be read, kept by dg_drive.py) is moved out of the tree before anything else: the line `KEPT OUT OF THE TREE (holds days of death - Drive only): <file> -> <where it lies now>` means upload that file to `workspace mirror` under its own name at once (its folder does not outlive the run) and say the line at the top of the report; `NOT KEPT OUT OF THE TREE: ...` means the gate ended 2 and nothing was committed. A "possible patient name" warning means add the name to `secrets/pseudonyms.json` (then upload that file to `workspace mirror`) and rerun. **New registry entries should not carry patient names at all** — write the AMD chart id (`patNNN`) instead; the gate is the backstop, not the plan.
 
 ## When GitHub push is blocked — leave a PACKAGE; the routine applies it (William 9/23/2026)
 

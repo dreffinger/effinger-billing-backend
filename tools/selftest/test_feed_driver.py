@@ -1007,11 +1007,18 @@ check("14h ... and it is said UNTIL a digest stands: a next run whose report ste
       and (ident(w4, S14a) or {}).get("recovered_by") == S14c, lambda: (_d2[1], _d2[0][-600:], _i4, top(digest(w4, S14c)), (ident(w4, S14a) or {}).get("recovered_by")))
 w, r, mreg = sandbox("no_identity", ["20261207a.hl7"], ws_map={}); os.makedirs(os.path.join(w, "registers", "feed_identity_%s.json" % S14a))      # a folder where the register belongs: it cannot be written
 o, calls, e = driver_run(w, r, ARGS(S14a), pipe(w, S14a, decided=DEC14, newcharts=NEW14, made=MADE14, parsed=P14)); D14n = digest(w, S14a)
+# (identity rule .6 - the identity check's finding B4) the same run with a new-chart row that carries the flag 'a member number in common was not counted': the digest's fallback
+# question said 'no number in common' whatever the row's flags said; it says what the row says now - the identity rule's own words (feed_identity.number_words), as the ingest's twin line
+w6, r6, mreg6 = sandbox("no_identity_member", ["20261207a.hl7"], ws_map={}); os.makedirs(os.path.join(w6, "registers", "feed_identity_%s.json" % S14a))
+o6, calls6, e6 = driver_run(w6, r6, ARGS(S14a), pipe(w6, S14a, decided=DEC14, newcharts=NEW14, made=MADE14m, parsed=P14)); D14n6 = digest(w6, S14a)
 check("14f a run whose identity register cannot be written: the driver says so for the top of the report and goes on, and the digest - which has no 'Which chart' section then - still asks at the top what is for William about this batch's new charts, "
-      "from the new-chart register, and each line says that the identity register does not list the chart (until then the question stood in no digest)",
+      "from the new-chart register, and each line says that the identity register does not list the chart (until then the question stood in no digest); (identity rule .6, finding B4) a row that carries the flag 'a member number in common was not counted' "
+      "is asked about in the identity rule's own words for it - never 'no number in common'",
       lambda: e == "" and len(said(o, "IDENTITY REGISTER NOT WRITTEN")) == 1 and said(o, "IDENTITY REGISTER NOT WRITTEN")[0].endswith("TOP OF THE REPORT") and "RESULT stamp" in o
       and len(has(top(D14n), "new chart pat9402 was made beside same-name charts", "same person or not?", "identity register")) == 1 and len(has(top(D14n), "new chart pat9301 was made", "face sheet needed", "identity register")) == 1
-      and not has(D14n, "pat9601 was made"), lambda: (e, said(o, "IDENTITY"), top(D14n)))
+      and not has(D14n, "pat9601 was made") and len(has(top(D14n), "new chart pat9402 was made beside same-name charts with other birth dates and no number in common - same person or not?")) == 1
+      and e6 == "" and len(has(top(D14n6), "new chart pat9402 was made beside same-name charts with other birth dates and " + FI.number_words([_F5]) + " - same person or not?", "identity register")) == 1
+      and not has(D14n6, "no number in common") and "not counted" in FI.number_words([_F5]), lambda: (e, said(o, "IDENTITY"), top(D14n), e6, top(D14n6)))
 w, r, mreg = sandbox("identity_no_rows", ["20261207a.hl7"], ws_map={})
 _odd14 = {KEY(5): dict(answer(0, "", status="AMBIGUOUS", will=True, ids=[FID(5)], why=FI.WHY_DISAGREE), decided_for=[[FID(5)]])}      # an entry whose list of ids holds a list: the rows of the register cannot be built from it
 o, calls, e = driver_run(w, r, ARGS(S14a), pipe(w, S14a, decided=_odd14, parsed=[msg(5, "20261207")])); I14r = ident(w, S14a) or {}; D14r = digest(w, S14a)

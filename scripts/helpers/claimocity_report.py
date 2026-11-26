@@ -116,6 +116,14 @@ try:      # (the register cannot say who was asked - a dry run asks nobody, a wo
     if _ddr: L("  - TOP OF THE REPORT - DEATH DAY UNKNOWN: %d visit(s) on %d chart(s) were NOT entered - a date of death is on record for the chart, its day cannot be read in this workspace and nobody named the day. Merge the deceased cache from Drive (the Button's step 0c); the retry step hands each visit to the import again once a run, until a register shows it entered or kept out for good: %s" % (
         len(_ddr), len(_ddc), ", ".join(_ddc) or "(no chart id in the rows)"))
 except Exception: L("  - TOP OF THE REPORT - the line about visits kept out for a date of death nobody could read could not be built - read the skipped rows of the import register.")
+# 11/26/2026 (the deceased guard's sixth round - William: "Medicare decides: bill", "Bill it, flag it"): the charts the guard named for the top of the report in this
+# run - a chart AdvancedMD marks deceased with no date, or one whose recorded death has a day that cannot be read, that Medicare showed no death for (billed), or
+# such a mark that could not be put to Medicare (billed, flagged). The guard's own words, as the import register keeps them (death_top): chart ids and fixed words
+# only - a line of another shape is not printed.
+try:
+    for _x in [x for x in (reg.get("death_top") if isinstance(reg.get("death_top"), list) else []) if isinstance(x, str) and re.fullmatch(r"TOP OF REPORT: pat[0-9]{1,12}: [^\r\n]{1,300}", x) and not re.search(r"[0-9]", x.split(": ", 2)[-1].replace("11/26/2026", ""))]:
+        _T(_x[len("TOP OF REPORT: "):])
+except Exception: L("  - TOP OF THE REPORT - the lines the deceased guard named for the top of the report could not be built - read death_top in the import register.")
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood
@@ -719,10 +727,15 @@ except Exception: pass
 try:
     _listed = {p_.get("chart") for p_ in (_IDR.get("patients") if isinstance(_IDR.get("patients"), list) else []) if isinstance(p_, dict)}
     _nfrom = " (from the new-chart register - the identity register of this batch does not list this chart)"
+    # (identity rule 2026-11-26.6 - the identity check's finding B4) what the question says of the NUMBERS is the identity rule's own words, read from the row's flags
+    # (feed_identity.number_words, as the ingest's twin line reads them): it said 'no number in common' also beside a member number in common that was not counted
+    try: import feed_identity as _FIW
+    except Exception: _FIW = None
+    _nw = _FIW.number_words if _FIW is not None and callable(getattr(_FIW, "number_words", None)) else (lambda f_: "no number in common")
     for c_ in (newc.get("created") if isinstance(newc, dict) and isinstance(newc.get("created"), list) else []):
         if not (isinstance(c_, dict) and c_.get("rule") == 9 and c_.get("for_william") is True and _pat_ok(c_.get("pid")) and c_["pid"] not in _listed): continue
         _fl = [f_ for f_ in (c_.get("flags") if isinstance(c_.get("flags"), list) else []) if isinstance(f_, str)]
-        if "same-name charts not used" in _fl: _T("new chart %s was made beside same-name charts with other birth dates and no number in common - same person or not? The charts are named in logs/claimocity_%s_resolve.log%s" % (c_["pid"], STAMP, _nfrom))
+        if "same-name charts not used" in _fl: _T("new chart %s was made beside same-name charts with other birth dates and %s - same person or not? The charts are named in logs/claimocity_%s_resolve.log%s" % (c_["pid"], _nw(_fl), STAMP, _nfrom))
         elif "list of same-name charts may be incomplete" in _fl: _T("new chart %s was made although AdvancedMD's list of same-name charts may be incomplete - is there a chart of this patient already?%s" % (c_["pid"], _nfrom))
         if c_.get("dob") == "none": _T("new chart %s was made: Claimocity sent %s - face sheet needed%s" % (c_["pid"], "two different birth dates" if "Claimocity sent two birth dates" in _fl else "no birth date", _nfrom))
 except Exception as _e: _T("what is for William about this batch's new charts could not be read from registers/feed_newcharts_%s.json (%s)" % (STAMP, type(_e).__name__))

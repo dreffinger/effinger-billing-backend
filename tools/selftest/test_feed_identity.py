@@ -174,9 +174,10 @@ T("N1 (identity rule .5): a first name that only BEGINS with the other is ALIKE 
 T("... JO ANN / JOANN: the first words are JO and JOANN - a name candidate only", lambda: NK(ZO, "JO ANN", ZO, "JOANN") == "name")
 T("another first name under the same last name is 'surname' (rule 3 only); another last name is nothing", lambda: NK(ZO, "MARY", ZO, "ELSPETH") == "surname" and NK(ZO, "MARY", QU, "MARY") == "" and NK(ZO, "MARY", ZO + "SON", "MARY") == "")
 T("a first name of two letters is a candidate only of the same two letters (JO / JOSEPHINE share no three letters)", lambda: NK(ZO, "JO", ZO, "JO") == "full" and NK(ZO, "JO", ZO, "JOSEPHINE") == "surname")
-T("N1: the suffix of a name - the word JR, SR, II, III, IV or V as the LAST word of the last name or as ANY word after the first word of the first name (behind the first name, behind a middle initial), in any case, with or without its period; "
+T("N1: the suffix of a name - the word JR, SR, II, III, IV or V as the LAST word of the last name or as ANY word after the first word of the first name (behind the first name, behind a middle initial) - but a lone V right behind the first word of the first name is a middle initial (identity rule .6), V behind a middle initial is the suffix - in any case, with or without its period; "
   "a name carries none where there is none, where the word is the whole last name, the FIRST word of either name, a word in the MIDDLE of the last name, or only the end of a longer word",
-  lambda: ([FI.name_suffix(ZO + " " + s, "QUILLAR") for s in SUF_WORDS] == [(s,) for s in SUF_WORDS] and [FI.name_suffix(ZO, "QUILLAR " + s) for s in SUF_WORDS] == [(s,) for s in SUF_WORDS]
+  lambda: ([FI.name_suffix(ZO + " " + s, "QUILLAR") for s in SUF_WORDS] == [(s,) for s in SUF_WORDS] and [FI.name_suffix(ZO, "QUILLAR " + s) for s in SUF_WORDS] == [(s,) for s in SUF_WORDS[:-1]] + [()]
+           and FI.name_suffix(ZO, "QUILLAR A V") == ("V",) and FI.name_suffix(ZO, "QUILLAR V JR") == ("JR",)
            and FI.name_suffix(ZO + " jr.", "QUILLAR") == ("JR",) and FI.name_suffix(ZO, "Quillar A Jr.") == ("JR",) and FI.name_suffix(ZO + " JR", "QUILLAR JR") == ("JR",) and FI.name_suffix(ZO + " SR", "QUILLAR JR") == ("JR", "SR")
            and [FI.name_suffix(l, f) for l, f in ((ZO, "QUILLAR"), ("V", "QUILLAR"), (ZO, "V"), (ZO, "JR QUILLAR"), (ZO + "JR", "QUILLAR"), (ZO, "QUILLARJR"), (ZO + " VI", "QUILLAR"), ("JR " + ZO, "QUILLAR"), ("", ""), (None, None), (ZO + " V " + QU, "QUILLAR"))] == [()] * 11,
            [FI.name_suffix(l, f) for l, f in ((ZO + " SR", "QUILLAR JR"), (ZO, "Quillar A Jr."), ("V", "QUILLAR"), (ZO, "V"))]))
@@ -185,12 +186,12 @@ T("N1: the same suffix on both sides is the SAME name - wherever each side write
                                                                                                     (ZO + " III", "QUILLAR", ZO, "QUILLAR K III"), (ZO + " JR", "QUILLAR JR", ZO, "QUILLAR JR"))]))
 T("N1: two names that differ by the suffix - one side carries one and the other none, or the two carry different ones - are ALIKE BUT NOT THE SAME: a NAME candidate only, for each of the six suffix words, in both places and whichever side is the feed's "
   "(until then the suffix did not matter: a son of his father's name went on the father's chart)",
-  lambda: (lambda bad: (bad == [], bad[:4]))([(s, n, w) for s in SUF_WORDS for n, w in enumerate((NK(ZO + " " + s, "QUILLAR", ZO, "QUILLAR"), NK(ZO, "QUILLAR", ZO + " " + s, "QUILLAR"), NK(ZO, "QUILLAR " + s, ZO, "QUILLAR"), NK(ZO, "QUILLAR A", ZO, "QUILLAR A " + s),
+  lambda: (lambda bad: (bad == [], bad[:4]))([(s, n, w) for s in SUF_WORDS for n, w in enumerate((NK(ZO + " " + s, "QUILLAR", ZO, "QUILLAR"), NK(ZO, "QUILLAR", ZO + " " + s, "QUILLAR"), NK(ZO, "QUILLAR " + s, ZO, "QUILLAR") if s != "V" else NK(ZO, "QUILLAR B V", ZO, "QUILLAR B"), NK(ZO, "QUILLAR A", ZO, "QUILLAR A " + s),
                                                                                                          NK(ZO + " " + s, "QUILLAR", ZO + " " + SUF_WORDS[(SUF_WORDS.index(s) + 1) % 6], "QUILLAR"))) if w != "name"]))
 T("N1: the punctuation and the case of the last name still do not matter (an apostrophe, a space, a hyphen); and a suffix leaves the LAST name the same - such a chart is still a name candidate (and the same person by rule 2 when the birth date is the same)",
   lambda: NK("O'" + ZO, "MARY", "O " + ZO, "MARY") == "full" and NK("O'" + ZO, "MARY", "o-" + ZO.lower() + " III", "MARY") == "name" and FI.last_key(ZO + " JR") == FI.last_key(ZO) == ZO)
-T("N1, a known limit: a middle initial V reads as the suffix V - such a name is alike but not the same as the name without it (a new chart and a question, never the wrong chart); every other single letter is a middle initial",
-  lambda: NK(ZO, "MARY V", ZO, "MARY") == "name" and NK(ZO, "MARY V", ZO, "MARY V.") == "full" and [NK(ZO, "MARY " + c, ZO, "MARY") for c in "ABIKX"] == ["full"] * 5)
+T("identity rule .6 (finding B2): a lone V right behind the first word of the first name is a MIDDLE INITIAL - MARY V is MARY, both ways (until .6 it read as the suffix V: a known limit); V behind a middle name or initial is still the suffix V; every other single letter is a middle initial",
+  lambda: NK(ZO, "MARY V", ZO, "MARY") == NK(ZO, "MARY", ZO, "MARY V") == "full" and NK(ZO, "MARY V", ZO, "MARY V.") == "full" and NK(ZO, "MARY A V", ZO, "MARY") == "name" and [NK(ZO, "MARY " + c, ZO, "MARY") for c in "ABIKX"] == ["full"] * 5)
 T("N1: asked for it (alike=True) name_kind says 'alike' of a name candidate that is alike but not the same - the first word of one first name begins the other's, or the two are one word and the suffixes differ - and 'name' of two first names "
   "that only share three letters; 'full', 'surname' and '' as without it (the look-up helpers word their hold by it)",
   lambda: ([FI.name_kind(ZO, x, ZO, y, alike=True) for a, b in ALIKE_FIRST for x, y in ((a, b), (b, a))] == ["alike"] * (2 * len(ALIKE_FIRST))
@@ -202,7 +203,7 @@ T("N1: which charts STAND BESIDE the same name (never taken by the name alone, s
   "suffix (whatever its length), and a first word of FOUR letters or more that begins the other's or is begun by it - whichever side is the feed's",
   lambda: (lambda got: (got == [True] * 12, got))([SB(ZO + " JR", "ZEBEDIAH", ZO, "ZEBEDIAH"), SB(ZO, "ZEBEDIAH", ZO + " III", "ZEBEDIAH"), SB(ZO, "ZEBEDIAH SR", ZO, "ZEBEDIAH K"), SB(ZO + " JR", "ZEBEDIAH", ZO + " SR", "ZEBEDIAH"), SB(ZO + " JR", "JO", ZO, "JO"),
                                                    SB(ZO, "QUILLAR", ZO, "QUILLARA"), SB(ZO, "QUILLARA", ZO, "QUILLAR"), SB(ZO, "XANT", ZO, "XANTHIA"), SB(ZO, "XANTHIA", ZO, "XANT"), SB(ZO, "QUILLARA K", ZO + " JR", "QUILLAR"),
-                                                   SB("O'" + ZO, "Quillar", "o " + ZO.lower(), "QUILLARA"), SB(ZO, "MARY V", ZO, "MARY")]))
+                                                   SB("O'" + ZO, "Quillar", "o " + ZO.lower(), "QUILLARA"), SB(ZO, "MARY A V", ZO, "MARY")]))
 T("N1: ... and nothing else: not the SAME name (a full-name candidate is no chart beside itself), not a first word of THREE letters that begins the other's (ANN / ANNABEL never was a full-name candidate), not two first names that only share "
   "three letters, not another first name, not another last name, not a name with no first name",
   lambda: (lambda got: (got == [False] * 12, got))([SB(ZO, "ZEBEDIAH", ZO, "ZEBEDIAH"), SB(ZO, "ZEBEDIAH", ZO, "ZEBEDIAH K"), SB(ZO + " JR", "ZEBEDIAH", ZO, "ZEBEDIAH JR"), SB(ZO, "ANN", ZO, "ANNABEL"), SB(ZO, "ANNABEL", ZO, "ANN"), SB(ZO, "JOA", ZO, "JOANN"),
@@ -292,6 +293,14 @@ T("... then the lowest chart id - by its number (pat9 before pat10), so the answ
 def C(n, last, first, d8="", **k): return dict({"id": "pat%d" % n, "name": lf(last, first), "dob": d8}, **k)
 def F(last, first, d8="", **k): return dict({"id": FID, "name": cf(last, first), "dob": d8}, **k)
 def D(feed, cands): return FI.decide(feed, cands, TODAY)
+# identity rule .6 (11/26/2026 - the identity check's findings B2 and B3), through decide(): (B2) MARY and MARY V are one name, both ways - sent with the placeholder the patient
+# goes to her chart by rule 7 (with .5 a second chart and a question); V behind a middle initial is still the suffix: a new chart beside it. (B3) rule 4 asks member:medicare
+# before member - her own chart, which carries her Medicare number, wins over a chart of the same name that only shares the family's number and has the more recent charge.
+T("identity rule .6 (finding B2), decide(): MARY sent with the placeholder and her chart MARY V - or MARY V sent and the chart MARY - is the patient's own chart by rule 7 (until .6 a second chart and 'same person or not?'); against MARY A V (V behind a middle initial: the suffix) a new chart is made beside it",
+  lambda: (lambda got: (got == [("pat1", 7), ("pat1", 7), (None, 9)], got))([(a_["chart"], a_["rule"]) for a_ in (D(F(ZO, "MARY", P8), [C(1, ZO, "MARY V", B)]), D(F(ZO, "MARY V", P8), [C(1, ZO, "MARY", B)]), D(F(ZO, "MARY", P8), [C(1, ZO, "MARY A V", B)]))]))
+_B3 = [C(1, ZO, "MARY", B, ev=["member", FI.MEDICARE], last_dos=ymd(2026, 3, 1), charges=2), C(2, ZO, "MARY", B2, ev=["member"], last_dos=ymd(2026, 11, 1), charges=9)]
+T("identity rule .6 (finding B3), decide(): rule 4 asks its words in the order ssn, member:medicare, member, ssn4 - the chart that carries the patient's MEDICARE number wins over a chart of the same name that only shares a family's member number and has the more recent charge (until .6 both were one group and its live chart, the relative's, was taken); without the Medicare word on her chart the group of the member number decides as before",
+  lambda: (lambda a, b: ((a["chart"], a["rule"], b["chart"], b["rule"]) == ("pat1", 4, "pat2", 4), (a["chart"], a["rule"], b["chart"], b["rule"])))(D(F(ZO, "MARY", P8), _B3), D(F(ZO, "MARY", P8), [dict(_B3[0], ev=["member"]), _B3[1]])))
 SEEN = []
 def X(name, feed, cands, chart, rule, flags=(), william=None, evidence=None, group=None, feed_dob=None, candidates=None):
     def run():
@@ -1904,12 +1913,12 @@ check("feed_identity.py starts with its PLAIN ENGLISH header and carries the rul
 # the rule under the old line: a copy of the helpers from before passed as current (the mirror let it go back over the repository's, the
 # driver's helper check called it current). The line changes with EVERY revision of the rule, in all three places together.
 import shutil
-_VNOW, _VOLD = "2026-11-26.5", "2026-11-25.4"; _VLINE = 'IDENTITY_RULE_VERSION = "%s"' % _VNOW; _VLINE_OLD = 'IDENTITY_RULE_VERSION = "%s"' % _VOLD      # identity rule .5 (11/26/2026): a relative is not the patient - N1 the same name, N2 a member number, N3 what William is told
+_VNOW, _VOLD = "2026-11-26.6", "2026-11-26.5"; _VLINE = 'IDENTITY_RULE_VERSION = "%s"' % _VNOW; _VLINE_OLD = 'IDENTITY_RULE_VERSION = "%s"' % _VOLD      # identity rule .5 (11/26/2026): a relative is not the patient - N1 the same name, N2 a member number, N3 what William is told
 _mirror_src = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
 try: HCUR = load("claimocity_helpers_current"); HCUR_ERR = ""
 except Exception as e: HCUR = None; HCUR_ERR = "%s: %s" % (type(e).__name__, e)
-T("the rule's version line is 2026-11-26.5 - the round in which a relative is no longer taken for the patient (the same name is the same first word and no other suffix; a member number proves one person only where it can): it stands ONCE in feed_identity.py, "
-  "the mirror's marker for feed_identity.py and the helper check's version line are that very line, and the line of the round before (2026-11-25.4) stands in none of the three (a copy of the round before never passes as current)",
+T("the rule's version line is 2026-11-26.6 - the round of the identity check's findings on .5 (a lone V right behind the first name is a middle initial; rule 4 asks the Medicare-shaped number before a family's): it stands ONCE in feed_identity.py, "
+  "the mirror's marker for feed_identity.py and the helper check's version line are that very line, and the line of the round before (2026-11-26.5) stands in none of the three (a copy of the round before never passes as current)",
   lambda: (FI.IDENTITY_RULE_VERSION == _VNOW and len(re.findall(r'(?m)^' + re.escape(_VLINE), read("feed_identity.py"))) == 1 and ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src and HCUR.VERSION_LINES.get("feed_identity.py") == _VLINE
            and not [f_ for f_, t_ in (("feed_identity.py", read("feed_identity.py")), ("mirror.py", _mirror_src), ("claimocity_helpers_current.py", read("claimocity_helpers_current.py"))) if _VLINE_OLD in t_],
            (getattr(FI, "IDENTITY_RULE_VERSION", None), HCUR_ERR or HCUR.VERSION_LINES.get("feed_identity.py"), ('"feed_identity.py": \'%s\'' % _VLINE) in _mirror_src)))

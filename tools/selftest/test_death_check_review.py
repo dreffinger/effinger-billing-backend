@@ -308,10 +308,10 @@ def scene(visits, bare=False, tail=""):
     """visits: [(visit, chart, [(charge, procedure id, code, carrier at sequence 1, carrier at sequence 2, date of service)])] - sets the stand-in up"""
     STATE.update(listing=listing_xml([(v, p, [c[0] for c in cs]) for v, p, cs in visits], bare=bare, tail=tail), login=None,
                  details={c[0]: detail_xml(c[0], p, v, c[5], c[1], c[2], [(1, c[3]), (2, c[4])]) for v, p, cs in visits for c in cs})
-SUMMARY = r"^DEATH CHECK - Charge Review: %d charge\(s\) on %d visit\(s\) listed, %d checked; %d needed a Medicare answer \(CCM or straight Medicare\)%s; %d BLOCKED; %d could not be checked; %d unverified - register registers/death_check_review_\d{4}-\d{2}-\d{2}T\d{6}Z%s\.json$"
+SUMMARY = r"^DEATH CHECK - Charge Review: %d charge\(s\) on %d visit\(s\) listed, %d checked; %d needed a Medicare answer \(CCM or straight Medicare\)%s; %d BLOCKED; %d could not be checked; %d unverified; %d for the top of the report - register registers/death_check_review_\d{4}-\d{2}-\d{2}T\d{6}Z%s\.json$"
 NOT_COUNTED = " - free / vendor checks not counted by this guard"
-def summary(r, charges, visits, checked, needed, how, blocked, unchecked, unverified, dry=""):
-    return bool(r.lines) and re.match(SUMMARY % (charges, visits, checked, needed, re.escape(how), blocked, unchecked, unverified, dry), r.lines[-1]) is not None
+def summary(r, charges, visits, checked, needed, how, blocked, unchecked, unverified, dry="", top=0):
+    return bool(r.lines) and re.match(SUMMARY % (charges, visits, checked, needed, re.escape(how), blocked, unchecked, unverified, top, dry), r.lines[-1]) is not None
 
 # ---- 0. the safety block holds -------------------------------------------------------------------------------------------------------------------
 check("0a safety: the real `requests`, a live helper and any module of the checkout are refused by the import blocker",
@@ -600,21 +600,21 @@ def real_scene():
     STATE["charts"] = {"7101": [("car6085", MBI_S)], "7102": [("car6404", MEM_S)], "7103": [("car6085", MBI_S)], "7104": [("car6085", MBI_S)], "7105": [("car6404", MEM_S), ("car6085", MBI_S)]}
     STATE["medicare"] = {"7101": GONE, "7102": GONE2, "7103": "alive", "7104": "failed"}
 COUNTED = r" - AdvancedMD's free check answered \d+ of \d+ asked, \d+ went to the vendor"
-def real_summary(r, charges, visits, checked, needed, blocked, unchecked, unverified, how=None, dry=""):
+def real_summary(r, charges, visits, checked, needed, blocked, unchecked, unverified, how=None, dry="", top=0):
     """the summary line with the real guard: the part about free and bought answers is the guard's own count when it has one"""
     how = how if how is not None else (COUNTED if isinstance(getattr(DG, "COUNTS", None), dict) else re.escape(NOT_COUNTED))
-    return bool(r.lines) and re.match(SUMMARY % (charges, visits, checked, needed, how, blocked, unchecked, unverified, dry), r.lines[-1]) is not None
+    return bool(r.lines) and re.match(SUMMARY % (charges, visits, checked, needed, how, blocked, unchecked, unverified, top, dry), r.lines[-1]) is not None
 RA = RB = RC = RD = RE = RF = RG = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded")
 if DG is not None:
     real_scene(); RA = run(guard=DG)
-check("10b a day on Medicare's record before the date of service blocks the straight-Medicare charge AND the care-management charge on another plan: two BLOCKED lines, exit 3",
-      lambda: RA.code == 3 and kind(RA, "BLOCKED") == ["BLOCKED: pat7101 visit 9101 charge 5101 DOS %s code 99232 - %s" % (iso(DOS_A), BLOCK), "BLOCKED: pat7102 visit 9102 charge 5102 DOS %s code 99487 - %s" % (iso(DOS_A), BLOCK)],
+check("10b a day on Medicare's record before the date of service blocks the straight-Medicare charge: one BLOCKED line, exit 3 - and the care-management charge billed to another plan is NOT asked about and not blocked (the guard's sixth round, William 11/26/2026: 'only straight medicare is where i really dont want the charges after death to go'; until then it was asked and blocked too)",
+      lambda: RA.code == 3 and kind(RA, "BLOCKED") == ["BLOCKED: pat7101 visit 9101 charge 5101 DOS %s code 99232 - %s" % (iso(DOS_A), BLOCK)] and row(RA, "5102").get("result") == "clear",
       lambda: (RA.code, RA.err, RA.lines))
 check("10c a look-up that fails blocks nothing and is said: ONE UNVERIFIED line for that charge (the guard's own LOG line is its source), and the charge counts as checked",
       lambda: kind(RA, "UNVERIFIED") == ["UNVERIFIED: pat7104 visit 9104 charge 5104 DOS %s code 99232 - %s" % (iso(DOS_B), UNVERIFIED)] and sum(1 for x in DG.LOG if "UNVERIFIED" in str(x)) == 1 and row(RA, "5104").get("result") == "clear",
       lambda: (RA.lines, getattr(DG, "LOG", None)))
-check("10d the summary line: 5 charges on 5 visits listed, 5 checked, 4 needed a Medicare answer, 2 BLOCKED, 0 not checked, 1 unverified - and no line of the helper's for the two clear charges",
-      lambda: real_summary(RA, 5, 5, 5, 4, 2, 0, 1) and len([l for l in RA.lines if l.startswith(("BLOCKED", "NOT CHECKED", "UNVERIFIED", "DEATH CHECK"))]) == 4, lambda: RA.lines)
+check("10d the summary line: 5 charges on 5 visits listed, 5 checked, 4 needed a Medicare answer (the helper's own count: care management or straight Medicare), 1 BLOCKED, 0 not checked, 1 unverified - and no line of the helper's for the three clear charges",
+      lambda: real_summary(RA, 5, 5, 5, 4, 1, 0, 1) and len([l for l in RA.lines if l.startswith(("BLOCKED", "NOT CHECKED", "UNVERIFIED", "DEATH CHECK"))]) == 3, lambda: RA.lines)
 def charts_read(r):
     """the charts the guard read (getdemographic), each once, in order - how often a guard reads one chart is the guard's own business"""
     out = []
@@ -622,14 +622,14 @@ def charts_read(r):
         p = re.search(r'patientid="(?:pat)?(\d+)"', c[3]).group(1)
         if p not in out: out.append(p)
     return out
-check("10e Medicare is asked about the four charts whose charge is care management or goes to straight Medicare at sequence 1 - and about nothing for the fifth (its Medicare plan is at sequence 2)",
-      lambda: RA.vendor == ["7101", "7102", "7103", "7104"] and charts_read(RA) == ["7101", "7102", "7103", "7104"], lambda: (RA.vendor, [c[1] for c in RA.calls]))
+check("10e Medicare is asked about the three charts whose charge goes to straight Medicare at sequence 1 - about nothing for the care-management charge billed to another plan (the sixth round) and nothing for the fifth (its Medicare plan is at sequence 2)",
+      lambda: RA.vendor == ["7101", "7103", "7104"] and charts_read(RA) == ["7101", "7103", "7104"], lambda: (RA.vendor, [c[1] for c in RA.calls]))
 check("10f the day itself is in the GUARD's cache (where it belongs) and nowhere in what the helper printed or wrote",
-      lambda: cache()["7101"]["dod"] == iso(GONE) and cache()["7102"]["dod"] == iso(GONE2) and leaks(RA.out + RA.raw) == [], lambda: (cache(), leaks(RA.out + RA.raw)))
+      lambda: cache()["7101"]["dod"] == iso(GONE) and "7102" not in cache() and leaks(RA.out + RA.raw) == [], lambda: (cache(), leaks(RA.out + RA.raw)))
 if DG is not None:
     real_scene(); RB = run(guard=DG)
 check("10g a second start: a day already in the guard's cache blocks with NO call at all - no chart read, no free check, nothing bought - and a chart with a fresh 'nothing on record' is not asked about again",
-      lambda: RB.code == 3 and len(kind(RB, "BLOCKED")) == 2 and RB.vendor == ["7104"] and charts_read(RB) == ["7104"]
+      lambda: RB.code == 3 and len(kind(RB, "BLOCKED")) == 1 and RB.vendor == ["7104"] and charts_read(RB) == ["7104"]
       and not any(c[0] == "elig" and c[1].startswith(("ins7101", "ins7102", "ins7103", "7101", "7102", "7103")) for c in RB.calls), lambda: (RB.code, RB.vendor, [c[:2] for c in RB.calls]))
 if DG is not None:
     real_scene(); shutil.rmtree(os.path.dirname(DCACHE), True); RC = run(["--dry"], guard=DG)
@@ -646,7 +646,7 @@ if DG is not None:
     real_scene(); shutil.rmtree(os.path.dirname(DCACHE), True); STATE["details"]["5103"] = FAULT_X; RE = run(guard=DG)
 check("10j with the REAL guard, a charge whose detail answer carries no chart and no date of service (a Fault) is NOT CHECKED - whether the guard raises on such an answer or passes it - and Medicare is asked nothing about it",
       lambda: len(kind(RE, "NOT CHECKED")) == 1 and kind(RE, "NOT CHECKED")[0].startswith("NOT CHECKED: pat7103 visit 9103 charge 5103 (") and kind(RE, "NOT CHECKED")[0].endswith(") - " + UNCHECKED) and RE.code == 3
-      and row(RE, "5103").get("result") == "could not be checked" and RE.vendor == ["7101", "7102", "7104"] and real_summary(RE, 5, 5, 4, 3, 2, 1, 1) and leaks(RE.out + RE.raw) == [], lambda: (RE.code, RE.lines, RE.vendor))
+      and row(RE, "5103").get("result") == "could not be checked" and RE.vendor == ["7101", "7104"] and real_summary(RE, 5, 5, 4, 3, 1, 1, 1) and leaks(RE.out + RE.raw) == [], lambda: (RE.code, RE.lines, RE.vendor))
 if DG is not None:
     shutil.rmtree(os.path.dirname(DCACHE), True); del DG.LOG[:]
     one("5106", "2,1", [(1, "car6404"), (2, "car6085")], pid="7106", vid="9106")
@@ -656,10 +656,10 @@ check("10k with the REAL guard, a straight-Medicare claim whose Medicare plan st
       lambda: RF.vendor == ["7106"] and kind(RF, "BLOCKED") == ["BLOCKED: pat7106 visit 9106 charge 5106 DOS %s code 99349 - %s" % (iso(DOS_A), BLOCK)] and RF.code == 3 and leaks(RF.out + RF.raw) == [], lambda: (RF.code, RF.lines, RF.vendor))
 if DG is not None:
     shutil.rmtree(os.path.dirname(DCACHE), True); del DG.LOG[:]
-    one("5107", "1", [(1, "car6404")], proc="pcode555555", code="99490", pid="7107", vid="9107")
+    one("5107", "1", [], proc="pcode555555", code="99490", pid="7107", vid="9107")      # (the sixth round: the charge's detail shows no plan element - the guard is told no payer; billed to another plan it is never asked about)
     STATE["charts"] = {"7107": [("car6404", MEM_S)]}; STATE["medicare"] = {"7107": GONE2}
     RG = run(guard=DG)
-check("10l with the REAL guard, a care-management code (99490) on a plan that is not Medicare, entered under a procedure id the guard's list does not hold: Medicare is asked by the code itself (asked by the id alone it is not) and the day on its record blocks the charge",
+check("10l with the REAL guard, a care-management code (99490) whose payer the charge's detail does not show, entered under a procedure id the guard's list does not hold: Medicare is asked by the code itself (asked by the id alone it is not) and the day on its record blocks the charge",
       lambda: "99490" in DG.CCM and "pcode555555" not in DG.CCM and RG.vendor == ["7107"] and kind(RG, "BLOCKED") == ["BLOCKED: pat7107 visit 9107 charge 5107 DOS %s code 99490 - %s" % (iso(DOS_A), BLOCK)] and RG.code == 3
       and leaks(RG.out + RG.raw) == [], lambda: (RG.code, RG.lines, RG.vendor))
 check("10m with the REAL guard each charge is read ONCE: the guard, which reads the charge it checks itself (resave.detail), is handed the answer the helper has just read",
@@ -709,7 +709,7 @@ def said_number(text):
     m = re.search(r"the number of charges its summary line says it (\w+)", step1(text)); return m.group(1).lower() if m else "(the step names none)"
 def numbers(r):
     """the numbers of a start's summary line, by their names; {} for a start that ended without one"""
-    m = re.match(r"DEATH CHECK - Charge Review: (\d+) charge\(s\) on \d+ visit\(s\) listed, (\d+) checked; .*; (\d+) could not be checked; \d+ unverified - register ", r.lines[-1]) if r.lines else None
+    m = re.match(r"DEATH CHECK - Charge Review: (\d+) charge\(s\) on \d+ visit\(s\) listed, (\d+) checked; .*; (\d+) could not be checked; \d+ unverified(?:; \d+ for the top of the report)? - register ", r.lines[-1]) if r.lines else None
     return {"listed": int(m.group(1)), "checked": int(m.group(2)), "could not be checked": int(m.group(3))} if m else {}
 def about_a_charge(r):
     """the NOT CHECKED lines of a start that are about a charge - every one but the line about a visit the listing shows without any charge"""
@@ -742,10 +742,10 @@ if DG is not None:
     shutil.rmtree(os.path.dirname(DCACHE), True); del DG.LOG[:]
     STATE["details"]["5113"] = FAULT_X                             # a charge whose own detail is a Fault: no chart, no date of service in it
     _v, _c = len(VENDOR), len(CALLS); A_FAULT = own_call(lambda: DG.check_charge("5113", 1)); V_FAULT = (VENDOR[_v:], [c[:2] for c in CALLS[_c:] if c[0] in ("post", "elig")])
-    one("5114", "1", [(1, "car6404")], proc="pcode555555", code="99490", pid="7114", vid="9114")      # a care-management code under a procedure id the guard's list does not hold
+    one("5114", "1", [], proc="pcode555555", code="99490", pid="7114", vid="9114")      # a care-management code under a procedure id the guard's list does not hold, the payer not shown (the sixth round)
     STATE["charts"] = {"7114": [("car6404", MEM_S)]}; STATE["medicare"] = {"7114": GONE2}
     _v, _c = len(VENDOR), len(CALLS); A_CCM = own_call(lambda: DG.check_charge("5114", 1)); V_CCM = (VENDOR[_v:], [c[:2] for c in CALLS[_c:] if c[0] in ("post", "elig")])
-    _v = len(VENDOR); A_CCM2 = own_call(lambda: DG.check("7114", iso(DOS_A), "car6404", "99490")); V_CCM2 = VENDOR[_v:]
+    _v = len(VENDOR); A_CCM2 = own_call(lambda: DG.check("7114", iso(DOS_A), None, "99490")); V_CCM2 = VENDOR[_v:]
 scene(FOUR); GO1 = scripted({"5003": True}); RO1 = run(guard=GO1)                                  # the helper FIRST: the visit of charge 5003 is still waiting in Charge Review
 scene([v for v in FOUR if v[0] != "9002"]); GO2 = scripted({"5003": True}); RO2 = run(guard=GO2)    # the helper AFTER a gate's save (a full-visit save that carries approval 1): that visit has left Charge Review
 WITH_LINE = [r for r in STARTS if numbers(r) and r.own is not None]
@@ -762,7 +762,7 @@ check("10x3 with the REAL guard, WHY a NOT CHECKED charge stays unapproved whate
       lambda: kind(RK, "NOT CHECKED") == ["NOT CHECKED: pat7112 visit 9112 charge 5112 (the guard raised KeyError) - %s" % UNCHECKED] and RK.code == 3 and numbers(RK) == {"listed": 1, "checked": 0, "could not be checked": 1}
       and isinstance(A_CHARGE, tuple) and A_CHARGE[0] is False and V_CHARGE == ([], []) and isinstance(A_CHECK, tuple) and A_CHECK[0] is True and V_CHECK == ["7112"] and leaks(RK.out + RK.raw) == [],
       lambda: (RK.code, RK.lines, type(A_CHARGE).__name__ if isinstance(A_CHARGE, Exception) else A_CHARGE, V_CHARGE, type(A_CHECK).__name__ if isinstance(A_CHECK, Exception) else (A_CHECK or [None])[0], V_CHECK))
-check("10x4 with the REAL guard, the texts' other words about check_charge: on a charge whose own detail is a Fault (no chart, no date of service in it) it clears NOTHING since the second verification of 11/25/2026 - it raises Unreadable and asks nothing (until then it answered 'not blocked', and a rebill went out on it); and a care-management code (99490) on a plan that is not Medicare, under a procedure id the guard's list does not hold, it passes having asked Medicare nothing, where check(<chart>, <date of service>, <that carrier>, <the code>) asks Medicare and blocks",
+check("10x4 with the REAL guard, the texts' other words about check_charge: on a charge whose own detail is a Fault (no chart, no date of service in it) it clears NOTHING since the second verification of 11/25/2026 - it raises Unreadable and asks nothing (until then it answered 'not blocked', and a rebill went out on it); and a care-management code (99490) whose payer the detail does not show, under a procedure id the guard's list does not hold, it passes having asked Medicare nothing, where check(<chart>, <date of service>, <the carrier - here none known>, <the code>) asks Medicare and blocks (since the guard's sixth round a care-management charge billed to another plan is asked about by neither)",
       lambda: isinstance(A_FAULT, Exception) and type(A_FAULT).__name__ == "Unreadable" and V_FAULT == ([], []) and "99490" in DG.CCM and "pcode555555" not in DG.CCM and isinstance(A_CCM, tuple) and A_CCM[0] is False and V_CCM == ([], [])
       and isinstance(A_CCM2, tuple) and A_CCM2[0] is True and V_CCM2 == ["7114"],
       lambda: (type(A_FAULT).__name__ if isinstance(A_FAULT, Exception) else A_FAULT, V_FAULT, type(A_CCM).__name__ if isinstance(A_CCM, Exception) else (A_CCM or [None])[0], V_CCM,
@@ -777,7 +777,7 @@ check("10x5 WHY the helper is started before ANY save of the step: it lists only
 # Medicare nothing for it and its cache knows no day yet - clear), then a care-management visit of the SAME chart (the guard asks and learns a
 # day before both dates of service - blocked). The first charge came out clear, with no line. Now every charge that came out clear is put to
 # the guard's cache once more at the end of the start (nothing is asked, nothing is bought): a day learned later in the start blocks it too.
-ORD_Y = ("5301", "pcode65142", "99349", "car6404", "car6113", DOS_B); CCM_Y = ("5302", "pcode492676", "99487", "car6404", "car6113", DOS_A)
+ORD_Y = ("5301", "pcode65142", "99349", "car6404", "car6113", DOS_B); CCM_Y = ("5302", "pcode492676", "99487", "car6085", "car6113", DOS_A)      # (the guard's sixth round, 11/26/2026: the care-management visit goes to straight Medicare - billed to another plan it is never asked about)
 def two_y(first, second):
     shutil.rmtree(os.path.dirname(DCACHE), True); scene([("9301", "7301", [first]), ("9302", "7301", [second])])
     STATE["charts"] = {"7301": [("car6404", MEM_S)]}; STATE["medicare"] = {"7301": GONE}; STATE["free"] = {}; del DG.LOG[:]
@@ -829,19 +829,19 @@ def two_mark(first, second, mark="Y"):
     shutil.rmtree(os.path.dirname(DCACHE), True); os.makedirs(os.path.dirname(DCACHE))
     with open(DCACHE, "w") as fh: json.dump({"7399": {"dod": None, "checked": iso(ago(1)), "src": "stedi: no death on record"}}, fh)      # the cache knows another chart only (no line about the cache)
     scene([("9321", "7321", [first]), ("9322", "7321", [second])]); STATE["charts"] = {"7321": [("car6404", MEM_S), ("car6085", MBI_S)]}; STATE["medicare"] = {}; STATE["free"] = {}; STATE["marks"] = {"7321": mark}
-    del DG.LOG[:]; getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # each start is a process of its own
+    del DG.LOG[:]; getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_UNSAVED", {}).clear(); getattr(DG, "_NONE_SAID", set()).clear()      # each start is a process of its own
     try: return run(guard=DG), dict(cache().get("7321") or {})
     finally: STATE["marks"] = {}
 RM1 = RM2 = RM3 = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded"); EM1 = EM2 = EM3 = {}
 if DG is not None:
     (RM1, EM1) = two_mark(OTHER_M, MEDIC_M); (RM2, EM2) = two_mark(MEDIC_M, OTHER_M); (RM3, EM3) = two_mark(OTHER_M, MEDIC_M, mark="N")
 M_LINES = sorted("NOT CHECKED: pat7321 visit %s charge %s (the guard raised DayLost) - %s" % (v, c, UNCHECKED) for v, c in (("9321", "5321"), ("9322", "5322")))
-check("10y4e with the REAL guard, a chart that BECOMES 'a death on record with no day' during the start (its AdvancedMD record says deceased with no date, Medicare names no day): the other-payer charge listed FIRST and the straight-Medicare charge behind it are BOTH NOT CHECKED, exit 3 (the first came out clear and counted as checked) - the guard's entry says 'day not known'",
-      lambda: RM1.code == 3 and sorted(kind(RM1, "NOT CHECKED")) == M_LINES and [x.get("result") for x in rows(RM1)] == ["could not be checked"] * 2 and real_summary(RM1, 2, 2, 0, 0, 0, 2, 0)
-      and EM1.get("dod") == getattr(DG, "NO_DAY", "?") and RM1.vendor == ["7321"] and leaks(RM1.out + RM1.raw) == [], lambda: (RM1.code, RM1.err, RM1.lines, rows(RM1), EM1, RM1.vendor))
-check("10y4f ... the same two charges listed the OTHER way round give the SAME answer - both NOT CHECKED, the same lines but for the visit each stands under, the same numbers in the summary - and Medicare is asked once in either order",
-      lambda: RM2.code == 3 and sorted(kind(RM2, "NOT CHECKED")) == sorted(l.replace("visit 9321 charge 5321", "visit 9322 charge 5321").replace("visit 9322 charge 5322", "visit 9321 charge 5322") for l in M_LINES)
-      and real_summary(RM2, 2, 2, 0, 0, 0, 2, 0) and RM2.vendor == ["7321"] and EM2.get("dod") == EM1.get("dod"), lambda: (RM2.code, RM2.lines, rows(RM2), RM2.vendor))
+M_TOP = ["TOP OF REPORT: pat7321: " + str(getattr(DG, "TOP_NODAY", "?"))]      # the guard's own line for the top of the report (the sixth round)
+check("10y4e (the guard's sixth round - William 11/26/2026, 'Medicare decides: bill') with the REAL guard, a chart AdvancedMD marks deceased with no date, and Medicare names no death: the other-payer charge listed FIRST and the straight-Medicare charge behind it are BOTH clear, exit 0 (until then both were NOT CHECKED, exit 3) - and the guard's line 'TOP OF REPORT: pat7321: ...' is said ONCE, when the listing is through (right before the summary line), counted in the summary line and the register; the guard's entry is Medicare's own 'no death on record'",
+      lambda: RM1.code == 0 and kind(RM1, "NOT CHECKED") == [] and [x.get("result") for x in rows(RM1)] == ["clear"] * 2 and kind(RM1, "TOP OF REPORT") == M_TOP and RM1.lines[-2] == M_TOP[0] and real_summary(RM1, 2, 2, 2, 1, 0, 0, 0, top=1)
+      and (RM1.reg or {}).get("top") == 1 and M_TOP[0] in ((RM1.reg or {}).get("lines") or []) and EM1.get("dod", "x") is None and RM1.vendor == ["7321"] and leaks(RM1.out + RM1.raw) == [], lambda: (RM1.code, RM1.err, RM1.lines, rows(RM1), EM1, RM1.vendor))
+check("10y4f ... the same two charges listed the OTHER way round give the SAME answer - both clear, the same ONE line for the top of the report, the same numbers in the summary - and Medicare is asked once in either order",
+      lambda: RM2.code == 0 and kind(RM2, "NOT CHECKED") == [] and kind(RM2, "TOP OF REPORT") == M_TOP and real_summary(RM2, 2, 2, 2, 1, 0, 0, 0, top=1) and RM2.vendor == ["7321"] and EM2.get("dod", "x") is None, lambda: (RM2.code, RM2.lines, rows(RM2), RM2.vendor))
 check("10y4g ... and a mark that does not mean yes (N) is no mark: Medicare's 'no death on record' clears the straight-Medicare charge, both charges are checked and the start ends 0",
       lambda: RM3.code == 0 and kind(RM3, "NOT CHECKED") == [] and [x.get("result") for x in rows(RM3)] == ["clear", "clear"] and real_summary(RM3, 2, 2, 2, 1, 0, 0, 0) and EM3.get("dod", "x") is None, lambda: (RM3.code, RM3.lines, rows(RM3), EM3))
 # ---- 10y5. an UNVERIFIED line is dropped only when an answer that COVERS the charge really came (the independent check of the second round, finding 5) ----------
@@ -914,11 +914,12 @@ check("10z2 ... with the cache file there no such line is printed, and a guard t
 # After the bootstrap the file is always there: the repository's register is copied in when the state bundle brought none, and that copy holds
 # no day anyone can read (the privacy gate scrubs them). The helper said nothing in that state. Now it says, in counts only: a file that
 # cannot be read, a file with no chart at all, and how many charts carry a day that cannot be read here.
+MED_Z = ("5301", "pcode65089", "99232", "car6085", "car6404", DOS_B)      # a straight-Medicare charge (the guard's sixth round: a death on record whose day cannot be read holds a charge to straight Medicare, or one whose payer the guard is not told, only while Medicare cannot be asked)
 def cache_scene(text):
     shutil.rmtree(os.path.dirname(DCACHE), True); os.makedirs(os.path.dirname(DCACHE))
     with open(DCACHE, "w") as fh: fh.write(text if isinstance(text, str) else json.dumps(text))
-    scene([("9301", "7301", [ORD_Y]), ("9302", "7302", [("5304", "pcode65142", "99349", "car6404", "car6113", DOS_B)])])
-    STATE["charts"] = {"7301": [("car6404", MEM_S), ("car6085", MBI_S)], "7302": [("car6404", MEM_S)]}; STATE["medicare"] = {}; STATE["free"] = {}; del DG.LOG[:]; getattr(DG, "_LOST_ASKED", set()).clear()      # each start is a process of its own: nothing asked yet
+    scene([("9301", "7301", [MED_Z]), ("9302", "7302", [("5304", "pcode65142", "99349", "car6404", "car6113", DOS_B)])])
+    STATE["charts"] = {"7301": [("car6404", MEM_S), ("car6085", MBI_S)], "7302": [("car6404", MEM_S)]}; STATE["medicare"] = {}; STATE["free"] = {}; del DG.LOG[:]; getattr(DG, "_LOST_ASKED", set()).clear(); getattr(DG, "_NONE_SAID", set()).clear(); getattr(DG, "_UNSAVED", {}).clear()      # each start is a process of its own: nothing asked yet
 RC1 = RC2 = RC3 = RC4 = RC5 = types.SimpleNamespace(code=None, out="", lines=[], reg=None, raw="", regs=[], ws="", calls=[], vendor=[], err="the real guard could not be loaded")
 if DG is not None:
     cache_scene("{ this file cannot be read"); RC1 = run(guard=DG)
@@ -930,12 +931,12 @@ if DG is not None:
 check("10z3 a cache file that is there but cannot be read: ONE line says so for the top of the report (the guard knows nothing the practice holds and keeps nothing it learns), and one for a cache that holds no chart at all",
       lambda: kind(RC1, "CACHE UNREADABLE:") and RC1.lines[0].startswith("CACHE UNREADABLE:") and RC1.lines[0].endswith("TOP OF THE REPORT") and (RC1.reg or {}).get("cache") == {"file": True, "readable": False, "charts": 0, "days": 0, "lost": 0}
       and kind(RC2, "CACHE EMPTY:") and RC2.lines[0].endswith("TOP OF THE REPORT") and not kind(RC2, "CACHE UNREADABLE:"), lambda: (RC1.lines[:2], (RC1.reg or {}).get("cache"), RC2.lines[:2]))
-check("10z4 charts whose day cannot be read here (the scrubbed copy): ONE line counts them for the top of the report; a charge of such a chart is asked about whatever its payer, and when nobody answers it is NOT CHECKED (the guard raised DayLost) - never clear; the other chart's charge is clear",
+check("10z4 charts whose day cannot be read here (the scrubbed copy): ONE line counts them for the top of the report; a straight-Medicare charge of such a chart is asked about, and when nobody answers it is NOT CHECKED (the guard raised DayLost - the one wait left since the sixth round) - never clear; the other chart's charge is clear",
       lambda: len(kind(RC3, "CACHE:")) == 1 and "2 chart(s)" in kind(RC3, "CACHE:")[0] and kind(RC3, "CACHE:")[0].endswith("TOP OF THE REPORT") and RC3.code == 3
       and kind(RC3, "NOT CHECKED") == ["NOT CHECKED: pat7301 visit 9301 charge 5301 (the guard raised DayLost) - %s" % UNCHECKED] and row(RC3, "5304").get("result") == "clear" and leaks(RC3.out + RC3.raw) == [],
       lambda: (RC3.code, RC3.lines, rows(RC3)))
-check("10z5 ... when Medicare does answer for such a chart the day blocks the charge (BLOCKED, exit 3) although its plan is not Medicare; and a cache whose days can all be read prints no line about the cache",
-      lambda: RC4.code == 3 and kind(RC4, "BLOCKED") == ["BLOCKED: pat7301 visit 9301 charge 5301 DOS %s code 99349 - %s" % (iso(DOS_B), BLOCK)] and len(kind(RC4, "CACHE:")) == 1
+check("10z5 ... when Medicare does answer for such a chart the day it names blocks the charge (BLOCKED, exit 3); and a cache whose days can all be read prints no line about the cache",
+      lambda: RC4.code == 3 and kind(RC4, "BLOCKED") == ["BLOCKED: pat7301 visit 9301 charge 5301 DOS %s code 99232 - %s" % (iso(DOS_B), BLOCK)] and len(kind(RC4, "CACHE:")) == 1
       and not any(l.startswith("CACHE") for l in RC5.lines) and (RC5.reg or {}).get("cache", {}).get("days") == 1, lambda: (RC4.code, RC4.lines, RC5.lines[:1]))
 # a cache that cannot be written (the unreadable file is never written over): what the guard learns in this start must still reach the second look
 if DG is not None:
