@@ -6093,3 +6093,6 @@ Postman: unchanged.
 
 # captured_calls additions - nightly cascade 2026-11-26T0536Z
 No new AMD or Stedi call shapes learned tonight. Helpers used: precheck.py, chart_read_1125.py, open_visits_1126.py (read-only gettxhistory + getchargedetail), dx_primary_fix.py --dry, freq1_visit.py reroute, elig_amd.py, disc_lookup_1016_1510.py, tools/button/run_all.py --steps era, void_rules.py, cred_check.py, build_money.py.
+
+# captured_calls additions 2026-11-27T0535Z (nightly cascade)
+No new AMD call shapes. One Stedi usage note: Humana (61101) eligibility answers with memberId = the Humana H-number when the request's memberId is the patient's MBI (chart 17478224, 11/27). Helper: nightly/runs/2026-11-27T0535Z/hum_member_1127.py.
