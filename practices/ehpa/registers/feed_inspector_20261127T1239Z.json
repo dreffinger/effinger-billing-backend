@@ -1,0 +1,74 @@
+{
+ "fixed": [
+  {
+   "visit": "19462781",
+   "pid": "pat17477190",
+   "patterns": [
+    "11256",
+    "2049"
+   ],
+   "note": [
+    "bypassed 1 advisories",
+    "quality line charge23376130 taken off (void), visit re-saved: released"
+   ]
+  },
+  {
+   "visit": "19462785",
+   "pid": "pat23159",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/25/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19462817",
+   "pid": "pat17473090",
+   "patterns": [],
+   "note": []
+  },
+  {
+   "visit": "19462824",
+   "pid": "pat17478350",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/14/2026 written",
+    "resave ok"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19462781",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19462781",
+   "pid": "pat17477190",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  }
+ ],
+ "quality_removed": [
+  {
+   "visit": "19462781",
+   "pid": "pat17477190",
+   "charge": "charge23376130",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-27T12:56:12.721835",
+   "resave_ok": true
+  }
+ ]
+}

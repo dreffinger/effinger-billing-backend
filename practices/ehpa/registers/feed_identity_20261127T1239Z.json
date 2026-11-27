@@ -1,0 +1,57 @@
+{
+ "stamp": "20261127T1239Z",
+ "at": "2026-11-27T12:48:18.133147Z",
+ "identity_rule": "2026-11-26.6",
+ "counts": {
+  "known from the patient map": 27,
+  "looked up": 2,
+  "new charts": 1,
+  "for William": 0,
+  "no chart": 0
+ },
+ "repointed": [],
+ "patients": [
+  {
+   "feed_ids": [
+    "6a7b446cd9b03861866cc572"
+   ],
+   "chart": "pat17477403",
+   "status": "FOUND",
+   "new_chart": false,
+   "rule": 1,
+   "why": "matched by the Claimocity id on the chart",
+   "flags": [],
+   "candidates": [
+    "pat17477403"
+   ],
+   "evidence": [
+    "mrn",
+    "ssn"
+   ],
+   "feed_dob": "real",
+   "for_william": false
+  },
+  {
+   "feed_ids": [
+    "6b0581e18e94cc03357ad8b6"
+   ],
+   "chart": "pat17478525",
+   "status": "MISSING",
+   "new_chart": true,
+   "rule": 9,
+   "why": "new chart - no chart with this name",
+   "flags": [],
+   "candidates": [],
+   "evidence": [],
+   "feed_dob": "real",
+   "for_william": false
+  }
+ ],
+ "notes": [],
+ "not_registered": [],
+ "not_registered_unreadable": [],
+ "not_registered_refused": [],
+ "registered_anyway": [],
+ "registered_anyway_unreadable": [],
+ "registered_anyway_refused": []
+}
