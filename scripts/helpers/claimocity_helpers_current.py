@@ -26,7 +26,7 @@ FEED_HELPERS = ("claimocity_import.py", "claimocity_report.py", "claimocity_insp
 # that day's change made it survive a broken message - without a clone an old parser was not noticed, and the mirror let an older workspace copy
 # of it go back over the repository's. The same for this file: its own marker in mirror.py also stood in the copy from before, so the mirror
 # now asks a workspace copy of it for the sentence above as well (mirror.py PROTECTED_ALSO).
-VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-25.5"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
+VERSION_LINES = {"claimocity_report.py": 'POS_REPORT_VERSION = "2026-11-26.1"', "claimocity_inspector.py": "A VISIT THE IMPORT ENTERED AT PLACE OF SERVICE 61 IS NEVER MOVED AND ITS PLACE-OF-SERVICE EDITS ARE NEVER BYPASSED BY THIS STEP",      # 11/25/2026: a sentence only the version that moves no visit has (William: rehab at 61; it still bypasses Pattern 692)
                 
                  "claimocity_verify.py": "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL",      # a sentence only the version that asks with the chart's own date has (it still carries round 7's list rule) - the marker since 11/25/2026
                  "feed_in1_intake.py": "THE WHOLE FIRST NAME IS COMPARED AND A LONE V BEHIND THE FIRST NAME IS A MIDDLE INITIAL",

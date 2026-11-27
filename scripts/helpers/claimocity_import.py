@@ -23,8 +23,9 @@
 #   under the PHYSICIAN's profile whatever clinician it names - every line of that visit, its 99497 included (INITIAL_NF, build()).
 # Place of service (William 11/10/2026, STANDING - practices/ehpa/rules.md): Claimocity can only send 31 for the nursing buildings, so the
 #   place of service is set here per charge line BY WILLIAM'S FREQUENCY RULE (nobody has checked the building's Part A list): CCM
-#   99487/99489 -> 32, EVERY line (William 11/25/2026: never the skilled-nursing 31 - also when the chart shows a skilled-looking
-#   month, when the rule fails or when the building is not in the facility table); a nursing facility visit -> 32 for the monthly
+#   99487/99489 -> 32 (William 11/25/2026: the long-term place of service - also when the chart shows a skilled-looking month, when the
+#   rule fails or when the building is not in the facility table), except a resident the chart shows in a SKILLED STAY that month
+#   (William 11/26/2026: "Skilled ones at 31" - in_skilled_stay, pos_kind ccm-skilled -> 31); a nursing facility visit -> 32 for the monthly
 #   visit, 31 when the resident is seen once or twice a week or the chart shows a new stay; whatever the chart does not show stays 31.
 #   ALF / home (13) and hospital (21) lines, and every other line from an unknown building, are entered exactly as before. See NF_KINDS /
 #   nf_visit_kind / pos_lines / ccm_never_31 below.
@@ -228,7 +229,11 @@ def mdy(yyyymmdd):
 #                                 term residents that are not being actively skilled" (11/10/2026) and "make sure they bill with the place
 #                                 of service ltc which pays more ... not the skilled snf location of service ... for all ccm charges going
 #                                 forward" (11/25/2026). ALF / home CCM keeps its home location (13); a CCM line whose own message names
-#                                 the hospital keeps 21. A CCM line is NEVER entered at 31. The back end's exception of 11/10/2026 (the
+#                                 the hospital keeps 21. 11/26/2026, William: "The skilled ones just bill the ccm at the skilled location of
+#                                 service" and "Skilled ones at 31": the ONE exception - the chart shows the resident in a skilled stay in the
+#                                 CCM's own calendar month (in_skilled_stay: a nursing visit of that month, on or before the CCM's date and in the
+#                                 CCM's own building, that the rule reads as an initial visit or as part of a weekly run that began with an
+#                                 admission or a new stay) -> 31, pos_kind ccm-skilled. Every other CCM line is NEVER entered at 31. The back end's exception of 11/10/2026 (the
 #                                 chart shows the resident seen at skilled frequency, admitted or readmitted in the CCM's own calendar
 #                                 month -> the feed's 31) is REMOVED by William's word of 11/25/2026: such a line is 32 like every other
 #                                 and its chart is only LISTED for William (pos_kind ccm-skilled-month) - not held, not changed. The same
@@ -250,7 +255,7 @@ def mdy(yyyymmdd):
 # the whole message - its CCM lines 32 all the same - and is counted as "POS RULE NOT APPLIED" - the import never stops for this rule.
 # 11/25/2026: a hospital visit of an INPATIENT REHAB STAY goes in at HCA REHAB (fac67) with every line at 61 - INPATIENT REHAB STAYS below. (Until that
 # day the inspector step moved a nursing-facility code under the hospital building to HCA REHAB at 31; it moves no visit any more.)
-POS_RULE_VERSION = "2026-11-25.5"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it (.3, 11/25/2026: inpatient rehab at 61; the chart's own birth date - dob_note on every row, the 1123F age from the chart, the BIRTH DATES line; the chart of each Claimocity id - chart_of; no modifier 25 on the 99489 add-on of a Humana chart - NO_MOD25; .4 the fixes after the independent verification; .5 the second round: a nursing or home visit counts for the stay rule only in a nursing or home building, a stay is over with its discharge visit, an entered admission is not taken back by a skipped copy)
+POS_RULE_VERSION = "2026-11-26.1"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it (.1, 11/26/2026: William "Skilled ones at 31" - the CCM line of a resident the chart shows in a skilled stay that month goes in at 31, pos_kind ccm-skilled - in_skilled_stay; .3, 11/25/2026: inpatient rehab at 61; the chart's own birth date - dob_note on every row, the 1123F age from the chart, the BIRTH DATES line; the chart of each Claimocity id - chart_of; no modifier 25 on the 99489 add-on of a Humana chart - NO_MOD25; .4 the fixes after the independent verification; .5 the second round: a nursing or home visit counts for the stay rule only in a nursing or home building, a stay is over with its discharge visit, an entered admission is not taken back by a skipped copy)
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -768,8 +773,25 @@ def seen_at_skilled_frequency(dos_mdy, nf_history, here=None):
     for d in sorted(visits):
         if same(d) and _kind_at(d, visits[d], hist)[0] in SKILLED_KINDS: return True
     return False
+# William 11/26/2026 ("The skilled ones just bill the ccm at the skilled location of service"; asked whether every CCM line should be 32: "Skilled
+# ones at 31"): the CCM line of a resident in a skilled stay goes in at 31. Narrower than seen_at_skilled_frequency on purpose: November's 48
+# listed charts held 20 skilled residents, and these two kinds are what all but one of them showed (the 15 long-term and 13 unclear charts showed
+# none). A month with only a hospital stay, a home visit, an 'extra' visit on a monthly resident, a move or a discharge stays at 32 and is listed.
+CCM_SKILLED_KINDS = ("initial", "skilled")
+def in_skilled_stay(dos_mdy, nf_history, here=None):
+    """True when the chart shows, in the calendar month of dos_mdy and on or before that day, a nursing visit in the CCM's own building (here; a
+    visit whose building is not known counts) that the rule reads as an initial visit 99304-99306 or as part of a weekly run that began with an
+    admission or a new stay (kind 'initial' or 'skilled'). Pure: no AMD call, no file."""
+    day = _day(dos_mdy); hist = _history(nf_history); visits, where, hosp, home = hist
+    for d in sorted(visits):
+        if (d.year, d.month) != (day.year, day.month) or d > day: continue
+        if here and where.get(d) and where[d] != {here}: continue
+        if _kind_at(d, visits[d], hist, here)[0] in CCM_SKILLED_KINDS: return True
+    return False
+CCM_SKILLED_WHY = ("31 by William's order (a resident in a skilled stay): the chart shows, in this CCM month and in this building, "
+                   "an initial nursing visit or a weekly run of visits that began with an admission or a new stay")
 # William 11/25/2026 ("make sure they bill with the place of service ltc ... not the skilled snf location of service ... for all ccm charges going
-# forward"): a CCM line is never entered at place of service 31. The reasons below go into the import register (pos_why) and carry no date.
+# forward"): a CCM line is never entered at place of service 31 - except, since 11/26/2026, a resident in a skilled stay (CCM_SKILLED_WHY above). The reasons below go into the import register (pos_why) and carry no date.
 CCM_LISTED_WHY = ("32 by William's order (every CCM line) - listed for him, not held: the chart shows a hospital visit, a home / assisted-living visit, nursing visits "
                   "in this CCM month that the rule reads as weekly, an admission or a new stay, or the resident's nursing visits in another building")
 CCM_NEVER_31_WHY = "32 by William's order (every CCM line): a CCM line is never entered at 31"
@@ -779,6 +801,7 @@ def ccm_never_31(cpts, lpos, lwhy=None, lkind=None, why=CCM_NEVER_31_WHY, kind="
     Only a CCM line that stands at 31 is touched: 13, 21 and every other code stay as they are. Returns how many lines were changed."""
     n = 0
     for i, cpt in enumerate(cpts):
+        if lkind is not None and i < len(lkind) and lkind[i] == "ccm-skilled" and lwhy is not None and i < len(lwhy) and lwhy[i] == CCM_SKILLED_WHY: continue      # William 11/26/2026: a skilled resident's CCM line, as pos_lines set it
         if cpt in CCM and i < len(lpos) and str(lpos[i]) == "31":
             lpos[i] = "32"; n += 1
             if lwhy is not None and i < len(lwhy): lwhy[i] = why
@@ -787,7 +810,8 @@ def ccm_never_31(cpts, lpos, lwhy=None, lkind=None, why=CCM_NEVER_31_WHY, kind="
 def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
     """Place of service for every line of ONE feed message. cpt_dos = [(cpt, 'MM/DD/YYYY')] in line order; nursing = the message comes from
     one of the practice's nursing buildings; here = that building's key. Returns ([pos per line], [why per line], [kind per line]).
-    A CCM line is never 31 (William 11/25/2026): 32 in a nursing building whatever the chart shows, and 32 where a building the facility table
+    A CCM line is 31 only for a resident the chart shows in a skilled stay that month (William 11/26/2026, in_skilled_stay); otherwise 32 in a
+    nursing building (William 11/25/2026), and 32 where a building the facility table
     does not know would have given the default 31. A message from the hospital (21) or an ALF / home (13) is not touched."""
     n = len(cpt_dos)
     if not nursing:
@@ -804,7 +828,8 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
     out = []; why = []; kinds = []; by_day = {}
     for cpt, d in cpt_dos:
         if cpt in CCM:      # 32, every line (William 11/25/2026); the chart only decides whether the line is LISTED for him
-            if seen_at_skilled_frequency(d, hist, here): p, w, k = "32", CCM_LISTED_WHY, "ccm-skilled-month"
+            if here and in_skilled_stay(d, hist, here): p, w, k = "31", CCM_SKILLED_WHY, "ccm-skilled"      # William 11/26/2026: "Skilled ones at 31"
+            elif seen_at_skilled_frequency(d, hist, here): p, w, k = "32", CCM_LISTED_WHY, "ccm-skilled-month"
             else: p, w, k = "32", "32 by rule: CCM in a nursing building", "ccm"
         elif cpt in NF_VISIT:
             k, gap = nf_visit_kind(cpt, d, hist, here); p, text = NF_KINDS[k]; w = text % gap if "%d" in text else text
@@ -2221,7 +2246,8 @@ def count_pos(info, stats):
     # 11/25/2026 (review of the CCM rule): the VALUE is tested first. A CCM line that stands at 31 is counted as not William's rule whatever its kind says and
     # whatever visit it is in - also a visit whose rule failed (pos_err), which used to leave this count before any line was looked at, and a visit with no
     # facility. 'CCM 31 xN' of the short log line is the sum of this counter, so it says what was sent, never how the line was labelled.
-    _at31 = [cpt in CCM and str(p) == "31" for cpt, p in zip(info["cpts"], info["pos_lines"])]
+    _sk = info.get("pos_kind") if isinstance(info.get("pos_kind"), list) else []
+    _at31 = [cpt in CCM and str(p) == "31" and not (i < len(_sk) and _sk[i] == "ccm-skilled" and not info.get("pos_err") and info.get("fac")) for i, (cpt, p) in enumerate(zip(info["cpts"], info["pos_lines"]))]      # 11/26/2026: a skilled resident's CCM line at 31 is William's rule
     if any(_at31): stats["POS 31 CCM - NOT WILLIAM'S RULE (11/25/2026: every CCM line is 32) - an old copy of the rule ran"] += sum(_at31)
     if info.get("pos_err"):
         stats["POS RULE NOT APPLIED (entered at the feed's place of service; %s)" % ("ITS CCM LINE AT 31, not William's rule" if any(_at31) else "a CCM line at 32")] += 1; return
@@ -2233,9 +2259,10 @@ def count_pos(info, stats):
     elif "rehab" in _kinds: stats[REHAB_61_COUNT] += 1
     elif REHAB_KEPT in _kinds: stats[REHAB_21_COUNT] += 1
     for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
-        _c31 = cpt in CCM and str(p) == "31"                # counted above, under the value: never again under a kind or under words that say 32
+        _c31 = cpt in CCM and str(p) == "31" and not (k == "ccm-skilled" and info.get("fac"))      # counted above, under the value: never again under a kind or under words that say 32
         if info.get("pos_feed") == "31" and not info.get("fac") and (cpt in CCM or cpt in NF_VISIT): stats["POS RULE: building not in the facility table - %s" % ("a CCM line AT 31, not William's rule" if _c31 else "a nursing visit at the default 31, a CCM line at 32")] += 1
         elif _c31: pass
+        elif k == "ccm-skilled" and cpt in CCM and str(p) == "31": stats["POS 31 skilled-stay CCM (William 11/26/2026: a resident in a skilled stay - see pos_why)"] += 1
         elif k == "ccm": stats["POS 32 CCM (nursing building)"] += 1
         elif k == "ccm-skilled-month": stats["POS 32 CCM listed for William (the chart shows a skilled-looking month - see pos_why; William 11/25/2026: every CCM line is 32)"] += 1
         elif k == "monthly": stats["POS 32 nursing visit (monthly)"] += 1
@@ -2383,6 +2410,9 @@ def build(msg, ctx):
         hist = (list(ctx.get("nfrows") or ctx.get("live") or ()) + list(BATCH_NF.get(ctx.get("pid"), ()))) if nursing else ()   # the history is only read for a nursing building
         lpos, lwhy, lkind = (list(_x) for _x in pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist, fac if nursing else None))      # three lists of this message's own (the second look below changes them in place)
         if len(lpos) != len(lines) or any(p not in ("31", "32", pos) for p in lpos): raise ValueError("unexpected place of service %r" % (lpos,))
+        if BATCH_NF_ERR[0]:      # 11/26/2026: without this batch's visits the chart may not show the whole month - a skilled resident's CCM line is not given 31 on half a history; 32 and listed, as before that day
+            for _i, _k in enumerate(lkind):
+                if _k == "ccm-skilled": lpos[_i], lwhy[_i], lkind[_i] = "32", CCM_LISTED_WHY, "ccm-skilled-month"
     except Exception as e:
         lpos = [pos] * len(lines); lwhy = ["rule error"] * len(lines); lkind = [""] * len(lines); pos_err = str(e)[:200] or type(e).__name__
         ccm_never_31([c["cpt"] for c in lines], lpos, lwhy, lkind)      # William 11/25/2026: also when the rule fails, a CCM line goes in at 32 - never 31

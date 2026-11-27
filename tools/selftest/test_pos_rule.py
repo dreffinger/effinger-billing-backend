@@ -278,13 +278,13 @@ check("a CCM line whose chart shows a skilled-looking month is 32, names William
 # ---- William 11/25/2026: "make sure they bill with the place of service ltc which pays more per prior work not the skilled snf location of service
 #      for these charges ... for all ccm charges going forward" - a CCM line is NEVER entered at 31 -----------------------------------------------
 _CCM2 = [("99487", "10/31/2026"), ("99489", "10/31/2026")]
-_SHOWN = {"an admission visit that month": [("99306", "10/12/2026")], "seen twice within 14 days": [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")],
+_SHOWN = {"seen twice within 14 days": [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")],
           "back from the hospital": HOSP_BETWEEN + [("99309", "10/20/2026")], "one of our hospital visits that month": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99232", "10/25/2026")],
           "a home / assisted-living visit that month": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")], "a discharge visit": [("99309", "09/05/2026"), ("99316", "10/12/2026")],
           "the first nursing visit on the chart": [("99309", "10/12/2026")], "a visit after more than 92 days": [("99309", "05/01/2026"), ("99309", "10/12/2026")],
           "the visits in another building": [("99309", "09/05/2026", "BRYNWOOD OPERATIONS LLC"), ("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC")]}
 _r1125 = {k_: ci.pos_lines(_CCM2, "31", True, h_, "fac32") for k_, h_ in _SHOWN.items()}
-check("11/25/2026: whatever the chart shows, a nursing-building CCM is 32 on both lines - never the feed's 31 (the back end's exception of 11/10 is gone)",
+check("11/25/2026: whatever the chart shows short of a skilled stay (11/26/2026 below), a nursing-building CCM is 32 on both lines - never the feed's 31",
       all(r_[0] == ["32", "32"] for r_ in _r1125.values()), {k_: r_[0] for k_, r_ in _r1125.items() if r_[0] != ["32", "32"]})
 check("11/25/2026: ... and each such chart is still LISTED for William (pos_kind ccm-skilled-month), in words that name him, say 32 and carry no date",
       all(r_[2] == ["ccm-skilled-month"] * 2 and all("William" in w_ and w_.startswith("32 ") and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", w_) for w_ in r_[1]) for r_ in _r1125.values()), {k_: (r_[2], r_[1][0][:60]) for k_, r_ in _r1125.items()})
@@ -295,6 +295,39 @@ check("11/25/2026: hospital (21) and ALF / home (13) CCM are not touched", ci.po
 _p25, _w25, _k25 = ["31", "31", "31", "13"], ["rule error"] * 4, [""] * 4
 check("11/25/2026: ccm_never_31 - where a failed rule leaves every line at the feed's 31, the CCM lines become 32 and no other line is touched",
       ci.ccm_never_31(["99309", "99487", "99489", "99487"], _p25, _w25, _k25) == 2 and _p25 == ["31", "32", "32", "13"] and _k25 == ["", "ccm-forced", "ccm-forced", ""] and _w25[0] == "rule error" and "William" in _w25[1] and _w25[3] == "rule error", (_p25, _w25, _k25))
+# ---- William 11/26/2026: "The skilled ones just bill the ccm at the skilled location of service"; asked whether every CCM line goes out at 32:
+#      "Skilled ones at 31". A resident the chart shows in a skilled stay in the CCM's month (in_skilled_stay) -> 31, kind ccm-skilled ----------
+_SKS = {"an admission visit that month": [("99306", "10/12/2026")],
+       "an admission visit, then weekly visits": [("99306", "10/02/2026"), ("99309", "10/09/2026"), ("99309", "10/16/2026")],
+       "a weekly run that began with last month's admission": [("99306", "09/20/2026"), ("99309", "09/27/2026"), ("99309", "10/03/2026"), ("99309", "10/10/2026")],
+       "a weekly run that began after one of our hospital stays": HOSP_BETWEEN + [("99309", "10/19/2026"), ("99309", "10/26/2026")],
+       "the admission visit in this building": [("99306", "10/12/2026", "ASPIRE AT TALLAHASSEE")]}
+_NOTS = {"monthly visits": [("99309", "09/01/2026"), ("99309", "10/01/2026")],
+        "an extra visit on a monthly resident": [("99309", "08/01/2026"), ("99309", "09/01/2026"), ("99309", "10/01/2026"), ("99308", "10/08/2026")],
+        "only one of our hospital stays that month": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99223", "10/20/2026"), ("99232", "10/22/2026")],
+        "the first visit back from the hospital, alone": HOSP_BETWEEN + [("99309", "10/20/2026")],
+        "the admission visit last month only": [("99306", "09/12/2026"), ("99309", "10/12/2026")],
+        "the admission visit after the CCM's date": [("99309", "09/05/2026"), ("99306", "10/28/2026")],
+        "the admission visit in another building": [("99306", "10/12/2026", "BRYNWOOD OPERATIONS LLC")],
+        "a discharge visit": [("99309", "09/05/2026"), ("99316", "10/12/2026")],
+        "a home / assisted-living visit": [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")]}
+_CCMD = [("99487", "10/27/2026"), ("99489", "10/27/2026")]
+_rsk = {k_: ci.pos_lines(_CCMD, "31", True, h_, "fac32") for k_, h_ in _SKS.items()}
+_rno = {k_: ci.pos_lines(_CCMD, "31", True, h_, "fac32") for k_, h_ in _NOTS.items()}
+check("11/26/2026: a resident the chart shows in a skilled stay that month (an admission visit, or a weekly run that began with an admission or a new stay, in the CCM's building, on or before its date) - both CCM lines 31, kind ccm-skilled",
+      all(r_[0] == ["31", "31"] and r_[2] == ["ccm-skilled"] * 2 for r_ in _rsk.values()), {k_: (r_[0], r_[2]) for k_, r_ in _rsk.items() if r_[0] != ["31", "31"]})
+check("11/26/2026: ... its reason names William and the skilled stay, says 31 and carries no date", all(r_[1] == [ci.CCM_SKILLED_WHY] * 2 for r_ in _rsk.values()) and ci.CCM_SKILLED_WHY.startswith("31 ") and "William" in ci.CCM_SKILLED_WHY and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", ci.CCM_SKILLED_WHY))
+check("11/26/2026: monthly visits, an extra visit on a monthly resident, a month with only a hospital stay, a first visit back alone, last month's admission, an admission after the CCM's date, an admission in another building, a discharge or a home visit is NOT a skilled stay - 32",
+      all(r_[0] == ["32", "32"] and "ccm-skilled" not in r_[2] for r_ in _rno.values()), {k_: (r_[0], r_[2]) for k_, r_ in _rno.items() if r_[0] != ["32", "32"]})
+check("11/26/2026: the narrow test and the broad listing - every skilled-stay chart above would also have been listed; the not-skilled charts that show a skilled-looking month are still listed for William at 32",
+      all(ci.seen_at_skilled_frequency("10/27/2026", h_, "fac32") for h_ in _SKS.values())
+      and all(r_[2] == ["ccm-skilled-month"] * 2 for k_, r_ in _rno.items() if k_ not in ("monthly visits", "the admission visit last month only")), {k_: r_[2] for k_, r_ in _rno.items()})
+check("11/26/2026: with no building for the CCM (here unknown) a CCM line is never 31 - the skilled test needs the CCM's own building", ci.pos_lines(_CCMD, "31", True, _SKS["an admission visit that month"])[0] == ["32", "32"])
+check("11/26/2026: in_skilled_stay is pure and answers for the exact day: the admission visit on the CCM's own date counts, the day after does not",
+      ci.in_skilled_stay("10/27/2026", [("99306", "10/27/2026")], "fac32") is True and ci.in_skilled_stay("10/26/2026", [("99306", "10/27/2026")], "fac32") is False)
+_p26, _w26, _k26 = ["31", "31", "31"], [ci.CCM_SKILLED_WHY, "made up", ci.CCM_SKILLED_WHY], ["ccm-skilled", "ccm-skilled", "ccm"]
+check("11/26/2026: ccm_never_31 leaves a CCM line at 31 only when pos_lines set it for a skilled stay (kind ccm-skilled AND its reason) - any other CCM line at 31 still goes to 32",
+      ci.ccm_never_31(["99487", "99489", "99487"], _p26, _w26, _k26) == 2 and _p26 == ["31", "32", "32"] and _k26 == ["ccm-skilled", "ccm-forced", "ccm-forced"], (_p26, _k26))
 _CCM_FAMILY = {"99487", "99489", "99490", "99439", "99491", "99437"}
 check("11/25/2026: every chronic-care-management code the import can enter is in the rule's CCM set (a code added to the code table without the rule would go out at the feed's 31)",
       {c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY} <= ci.CCM and ci.CCM <= set(ci.PCODE) and ci.CCM <= _CCM_FAMILY, (sorted(ci.CCM), sorted(c_ for c_ in ci.PCODE if c_ in _CCM_FAMILY)))
@@ -425,7 +458,11 @@ check("build: Oakes Southwood 99306 goes out as 31", [p for _, p in pp] == ["31"
 body, info, pp = built("n2", [("99309", "20261102"), ("99497", "20261102")], live=[("99309", "10/03/2026")])
 check("build: monthly visit + 99497 -> 32 / 32, modifier 25 on 99497", [p for _, p in pp] == ["32", "32"] and body.count('modcodes="mcode7"') == 1, pp)
 body, info, pp = built("n2", [("99487", "20261031")], live=[("99306", "10/12/2026"), ("99309", "10/15/2026")])
-check("build: CCM for a resident admitted that month goes out as 32 (William 11/25/2026) and is listed for William", [p for _, p in pp] == ["32"] and info["pos"] == "32" and info["pos_kind"] == ["ccm-skilled-month"] and info["pos_err"] == "", (pp, info))
+_cnt_s = lambda info_: (lambda s_: (ci.count_pos(info_, s_), dict(s_))[1])(__import__("collections").Counter())
+check("build (William 11/26/2026: 'Skilled ones at 31'): CCM for a resident admitted that month, in the same building, goes out as 31 under the kind ccm-skilled - the second look (ccm_never_31) leaves it", [p for _, p in pp] == ["31"] and info["pos"] == "31" and info["pos_kind"] == ["ccm-skilled"] and info["pos_why"] == [ci.CCM_SKILLED_WHY] and info["pos_err"] == "", (pp, info))
+_c9s = {k_: v_ for k_, v_ in _cnt_s(info).items() if k_.startswith("POS ")}
+check("build -> count_pos (11/26/2026): that skilled resident's CCM line at 31 is counted as William's rule, never as 'POS 31 CCM - NOT WILLIAM'S RULE', so the short line's 'CCM 31 xN' stays 0",
+      list(_c9s) == ["POS 31 skilled-stay CCM (William 11/26/2026: a resident in a skilled stay - see pos_why)"] and not any(k_.startswith("POS 31 CCM") for k_ in _c9s), _c9s)
 ci.BATCH_NF_ERR[0] = "selftest: the list was not built"
 body, info, pp = built("n1", [("99487", "20261031"), ("99489", "20261031")], live=[("99306", "10/12/2026")])
 check("11/25/2026 build: when the batch's own visits could not be listed, a message with no nursing VISIT line needs no pattern - its CCM lines are 32 / 32 and it is not reported as a rule failure",
@@ -514,6 +551,9 @@ ci.pos_lines = _realpl
 _cnt = lambda info_: (lambda s_: (ci.count_pos(info_, s_), dict(s_))[1])(__import__("collections").Counter())
 _K31 = "POS 31 CCM - NOT WILLIAM'S RULE (11/25/2026: every CCM line is 32) - an old copy of the rule ran"
 _INFO = lambda cpts, lines, kinds, fac="fac34", err="": {"cpts": cpts, "pos_lines": lines, "pos_kind": kinds, "pos_feed": "31", "fac": fac, "pos_err": err}
+_c26a = _cnt(_INFO(["99487", "99489"], ["31", "31"], ["ccm-skilled", "ccm-skilled"])); _c26b = _cnt(_INFO(["99487"], ["31"], ["ccm-skilled"], err="boom")); _c26c = _cnt(_INFO(["99487"], ["31"], ["ccm-skilled"], fac=""))
+check("11/26/2026 count_pos: a skilled resident's CCM lines at 31 are counted as William's rule (not 'CCM 31'); the same kind in a visit whose rule failed, or with no facility, is still counted as not his rule",
+      _c26a == {"POS 31 skilled-stay CCM (William 11/26/2026: a resident in a skilled stay - see pos_why)": 2} and _c26b.get(_K31) == 1 and _c26c.get(_K31) == 1, (_c26a, _c26b, _c26c))
 _c1 = _cnt(_INFO(["99487", "99489"], ["31", "32"], ["ccm", "ccm"]))
 check("count_pos (11/25/2026, review): the VALUE decides, not the label - of two CCM lines called 'ccm', the one at 31 is counted as 'POS 31 CCM - NOT WILLIAM'S RULE' and only the one at 32 as a 32 line",
       _c1.get(_K31) == 1 and _c1.get("POS 32 CCM (nursing building)") == 1 and len(_c1) == 2, _c1)
@@ -3451,7 +3491,7 @@ check("rulebook (5.1): nothing in the line says any more that the code switches 
       not any(x_ in _qrb for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "switches the code off until William has looked", "at one cent the code goes off", "the code goes off", "(another code text switches the code off)", "a one-cent line left off switches the code off.",
                                     "switches M0004 off", "switches it off too", "a second left-off line switches M0004 off", "taken that way, M0004 is OFF - no second try", "a restart of 1123F does not restart it", "honoured only while the code is off")),
       [x_ for x_ in ("OFF UNTIL WILLIAM RESTARTS IT", "the code goes off", "switches M0004 off", "honoured only while the code is off") if x_ in _qrb])
-check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-25.5 - .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule, .3 rehab at 61 and the chart's own birth date, .4 the fixes after the independent verification, .5 the second round of them; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
+check("runbook (5.2, B1-B3): the version check greps the CURRENT rule version (2026-11-26.1 - 11/26 .1 William: skilled residents' CCM at 31; 11/25 .1 was William's CCM word, .2 the fixes after the independent review of the I10 rule, .3 rehab at 61 and the chart's own birth date, .4 the fixes after the independent verification, .5 the second round of them; .8 and .7 nowhere), and the import register is committed at once also while the code probes or is paused - the probe's memory is that register too",
       ("grep -c '%s'" % ver) in _STEP1 and '2026-11-10.8"' not in step and '2026-11-10.7"' not in step and 'The same when the line says "probing:" or "paused:".' in _STEP1
       and 'The same while the code probes or is paused (the QUALITY line says "probing:" or "paused:"): the probe\'s memory is that register too.' in _QR)
 check("runbook (5.2, B4-B7): THE CODE NEVER SWITCHES ITSELF OFF with William's sentence - ONE line 'TOP OF THE REPORT - QUALITY CODE:' in every batch, copied word for word, and what each of its forms means (probing: do nothing by hand, bypass nothing; paused; going; accepted, once; stopped on William's word); the stuck visit and the left-off line in the new words",
@@ -5057,8 +5097,8 @@ check("rehab: the rehab unit's facility numbers stand in ONE constant of the imp
 check("rehab: a stay starts at an initial hospital visit 99221-99223; the visits it holds are the same-day rule's hospital family (EM_FAMILY), for 45 days - the window the admission-date steps use; the two signs are named as the register names them",
       getattr(ci, "HOSP_INITIAL", None) == {"99221", "99222", "99223"} and ci.HOSP_VISIT == next(f_ for f_ in ci.EM_FAMILY if "99223" in f_) and getattr(ci, "STAY_MAX_DAYS", None) == 45
       and (getattr(ci, "SIGN_NUMBER", None), getattr(ci, "SIGN_ADMIT", None), getattr(ci, "REHAB_KEPT", None)) == (RH_NUM, RH_SIGN, RH_KEPT), (getattr(ci, "HOSP_INITIAL", None), getattr(ci, "STAY_MAX_DAYS", None), getattr(ci, "SIGN_ADMIT", None)))
-check("rehab: the rule's version line is 2026-11-25.5 in the import helper (and the versions before it stand nowhere in it as a version line); its PLAIN ENGLISH header states the rule in William's words",
-      ci.POS_RULE_VERSION == "2026-11-25.5" and len(re.findall(r'(?m)^POS_RULE_VERSION = "2026-11-25\.5"', _HNOW)) == 1 and '"2026-11-25.1"' not in _HNOW and 'POS_RULE_VERSION = "2026-11-25.3"' not in _HNOW and 'POS_RULE_VERSION = "2026-11-25.4"' not in _HNOW
+check("rehab: the rule's version line is 2026-11-26.1 in the import helper (and the versions before it stand nowhere in it as a version line); its PLAIN ENGLISH header states the rule in William's words",
+      ci.POS_RULE_VERSION == "2026-11-26.1" and len(re.findall(r'(?m)^POS_RULE_VERSION = "2026-11-26\.1"', _HNOW)) == 1 and '"2026-11-25.1"' not in _HNOW and 'POS_RULE_VERSION = "2026-11-25.3"' not in _HNOW and 'POS_RULE_VERSION = "2026-11-25.4"' not in _HNOW
       and all(w_ in _HNOW.split("\nimport os as _os")[0] for w_ in ("Inpatient rehab stays (William 11/25/2026", "dont deny the ones were already paying", "place of service 61", "HCA REHAB (fac67)", "rehab-stay-kept-21")), ci.POS_RULE_VERSION)
 # -- the stays of a chart, as a pure function --------------------------------------------------------------------------------------------------------------
 _rh_k = lambda rows_, **k_: _rt(lambda: [(ci._fmt_day(s_["initial"])[:5], s_["kind"], s_["sign"]) for s_ in ci.hospital_stays(rows_, **k_)[0]])
