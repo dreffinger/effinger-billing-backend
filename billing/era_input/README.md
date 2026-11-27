@@ -41,8 +41,10 @@ credentialing, "era"/"billing"/"remit"/"eob" = billing, else auto).
 Session steps (chat or routine; Drive connector + Neon):
 1. List each intake folder (`search_files`, `parentId = '<folder>'`), save the JSON, `scan_intake.py register <listing.json>`, then
    `scan_intake.py pending`.
-2. For each pending file: `download_file_content` (the connector saves the PDF to a local file; its limit is 10 MB - bigger batches
-   take the Zapier byte-range route above) → copy it into a new empty directory → `python3 -I scan_intake.py classify --pdf <file>
+2. For each pending file: `pending` prints its route. Up to 10 MB: `download_file_content` (the connector saves the PDF to a local file).
+   Over 10 MB (a ScanSnap batch of more than ~25 pages; William 11/27/2026 - coded, not a manual step): `scan_intake.py fetch-plan <id>`
+   prints the Zapier code-action calls (`google_drive_get_file_byte_range_base64`, 4 MB slices, one Zapier task each, 25 a night) and the
+   `fetch_scans.py chunks` command that joins the persisted slices and checks Drive's md5 → copy it into a new empty directory → `python3 -I scan_intake.py classify --pdf <file>
    --drive-id <id>`. It prints one entry per document found in the scan, with the vault folder and a document id for credentialing ones.
 3. Several documents in one scan: `scan_intake.py split <pdf> <dir> --groups <split_groups>` writes one PDF per document.
 4. Credentialing document: file it in the vault folder it names - `copy_file` (fileId, parentId = vault_folder_id, a plain title) for

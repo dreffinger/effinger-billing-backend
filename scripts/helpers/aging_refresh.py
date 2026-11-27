@@ -232,6 +232,35 @@ def read_chart_offline(pid, suffix):
     plans = [{"code": CAR.get(i.get("carrier"), i.get("carrier")), "seq": i.get("sequence"), "begin": mdy(i.get("begindate")), "end": mdy(i.get("enddate"))} for i in pl.get("plans", [])]
     return charges, plans, pl.get("deceased", "")
 
+def leftover_rows(seen):
+    """11/27/2026 (William: "find the problem that missed rebilling the secondaries and fix that for ongoing"): AdvancedMD's unpaid list
+    (massrebillsearch) drops a visit once ANY payer has paid on it, so the balance left on the SECONDARY after Medicare paid never reached
+    this file, the work queue or the claim status - 1,761 visits / $56K sat unseen (old_balances_dry.py, 11/27). The Mass Write-off search
+    lists every charge that still carries an INSURANCE balance; asked per carrier (one answer stops at 5,000 charges), every visit it holds
+    that the unpaid list lacks joins the rows, in the unpaid list's shape, under the carrier that HOLDS the balance - decide() then files it
+    by the standing rules (a secondary never sent -> bill it; sent and unanswered past 60 days -> status / resend; remit > 12 months ->
+    write-off) and the work queue's guards still refuse a second claim to a secondary that already holds the crossover.
+    -> (rows, one-line note). Read-only; a carrier that does not answer is skipped and counted."""
+    try: car = json.load(open(os.path.join(WS, "carriers.json")))
+    except (OSError, ValueError): return [], "leftovers skipped: carriers.json unreadable"
+    ids = sorted({int(d) for d in (re.sub(r"\D", "", str(k)) for k in car) if d})
+    by, failed = {}, 0
+    for cid in ids:
+        try:
+            j = requests.post(era_post.API + "/masswriteoff/masswriteoffsearch", headers=era_post.H(), timeout=240,
+                              json={"carrierids": [cid], "isinsbalance": True, "billstartdate": None, "billenddate": None}).json()
+        except Exception:
+            failed += 1; continue
+        for x in (j.get("chargedetails") or []) if isinstance(j, dict) else []:
+            vid = str(x.get("visitid") or ""); bal = f(x.get("insbalance"))
+            if not vid or vid in seen or bal <= 0.005: continue
+            r = by.setdefault(vid, {"patientid": x.get("patientid"), "visitid": x.get("visitid"), "carriercode": (x.get("carriercode") or "").strip(),
+                                    "insbalance": 0.0, "dateofservice": x.get("dateofservice"), "source": "masswriteoffsearch"})
+            r["insbalance"] = round(r["insbalance"] + bal, 2)
+        time.sleep(0.2)
+    return list(by.values()), "%d visits with an insurance balance the unpaid list leaves out (Mass Write-off search, %d of %d carriers answered)" % (
+        len(by), len(ids) - failed, len(ids))
+
 def main():
     if OFFLINE:
         unp = json.load(open(OFFLINE[0]))
@@ -240,6 +269,10 @@ def main():
         unp = requests.post(era_post.API + "/claim/massrebillsearch", headers=era_post.H(), json={}, timeout=240).json()
     rows = unp if isinstance(unp, list) else (unp.get("data") or unp.get("rows") or [])
     rows = [r for r in rows if isinstance(r, dict)]
+    leftover_note = ""
+    if not OFFLINE and "--no-leftovers" not in sys.argv:
+        extra, leftover_note = leftover_rows({str(r.get("visitid")) for r in rows})
+        rows += extra
     by_pid = collections.defaultdict(list)
     for r in rows: by_pid[str(r["patientid"])].append(str(r["visitid"]))
     pids = sorted(by_pid, key=int)[:MAXP]
@@ -277,7 +310,7 @@ def main():
     bk = lambda key, vals: {b: {"n": sum(1 for v in out if v[key] == b), "amt": round(sum(v["bal"] for v in out if v[key] == b), 2)} for b in vals}
     snap = {"schema": "ar-aging/1", "asof": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "today": TODAY.isoformat(),
             "source": ("saved AMD reads of %s (unpaid list + chart histories + plans)" % OFFLINE[1]) if OFFLINE else "AMD live (massrebillsearch + gettxhistory + getdemographic) - Billing Button aging step",
-            "visits": len(out), "patients": len(by_pid), "total": round(sum(v["bal"] for v in out), 2), "charts_read": len(charts), "errors": errors[:20],
+            "visits": len(out), "leftovers": leftover_note, "patients": len(by_pid), "total": round(sum(v["bal"] for v in out), 2), "charts_read": len(charts), "errors": errors[:20],
             "by_bucket_sent": bk("b_sent", ("0-30", "31-60", "61-90", "91-120", "over 120", "unknown")), "by_bucket_dos": bk("b_dos", ("0-30", "31-60", "61-90", "91-120", "over 120", "unknown")),
             "by_rec": bk("rec", ("WAIT", "CORRECT & RESEND", "WRITE OFF", "REVIEW")), "by_payer": tbl("payer"),
             "by_rec_reason": collections.OrderedDict(sorted(((k, {"n": v[0], "amt": round(v[1], 2)}) for k, v in reasons.items()), key=lambda kv: -kv[1]["amt"])),
@@ -285,6 +318,7 @@ def main():
     json.dump(snap, open(OUT, "w"))
     print("aging: %d visits / %d patients / $%.2f -> WAIT $%.2f / RESEND $%.2f / WRITE OFF $%.2f (charts read %d, errors %d) -> %s" % (
         snap["visits"], snap["patients"], snap["total"], snap["by_rec"]["WAIT"]["amt"], snap["by_rec"]["CORRECT & RESEND"]["amt"], snap["by_rec"]["WRITE OFF"]["amt"], len(charts), len(errors), OUT))
+    if leftover_note: print("aging: " + leftover_note)
 
 if __name__ == "__main__":
     main()

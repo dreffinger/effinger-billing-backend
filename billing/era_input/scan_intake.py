@@ -449,6 +449,18 @@ def split_pdf(path, out_dir, groups):
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # Database
+CONNECTOR_MAX = 10 * 1000 * 1000                         # the Google Drive connector's download limit (bytes)
+SLICE = 4000000                                         # the Zapier code action's largest slice
+ZAPIER_ACTION = "google_drive_get_file_byte_range_base64"   # Zapier code action (file_id, start, length) - one Zapier task per call
+ZAPIER_NIGHT_CAP = 25                                    # slices a night (~100 MB); every call is one Zapier task (the 10/5 pile hit the monthly limit)
+
+
+def fetch_plan(size):
+    """How a file of `size` bytes comes into the container: the connector (<= 10 MB) or Zapier byte-range slices of <= 4 MB."""
+    if size <= CONNECTOR_MAX: return {"route": "connector"}
+    return {"route": "zapier", "slices": [(s, min(SLICE, size - s)) for s in range(0, size, SLICE)]}
+
+
 def db():
     sys.path.insert(0, os.path.join(REPO, "credentialing"))
     saved = sys.argv[:]; sys.argv = sys.argv[:1]
@@ -541,8 +553,24 @@ def main():
     if cmd == "pending":
         rows = d.q("select drive_file_id, route, status, kind, size_bytes, first_seen from public.scan_intake where practice=%s "
                    "and status not in ('filed','routed','skipped') order by first_seen", [practice])
-        for r in rows: print("%-34s %-14s %-13s %-15s %s" % (r[0], r[1], r[2], r[3] or "-", r[4] or "?"))
+        for r in rows:
+            fp = fetch_plan(int(r[4] or 0))
+            print("%-34s %-14s %-13s %-15s %-10s %s" % (r[0], r[1], r[2], r[3] or "-", r[4] or "?",
+                  "fetch: connector" if fp["route"] == "connector" else "fetch: zapier x%d (fetch-plan %s)" % (len(fp["slices"]), r[0])))
         print("%d pending" % len(rows)); return
+    if cmd == "fetch-plan":
+        # William 11/27/2026: "there was a zapier connection once used for large files solidify that in the coding so im not limited to
+        #   25 page uploads". The Drive connector stops at 10 MB (a 25-page ScanSnap batch); a bigger file comes through the Zapier code
+        #   action in 4 MB slices that fetch_scans.py joins and checks against Drive's md5 (the 10/5/2026 route, billing/era_input/README.md).
+        size = int(opt("--size") or (rows_or_none(d, A[1]) or [[None] * 8])[0][6] or 0) if len(A) > 1 else 0
+        if not size: sys.exit("fetch-plan <drive-id> [--size <bytes>]: the size is not registered - pass --size from the folder listing")
+        fp = fetch_plan(size)
+        if fp["route"] == "connector":
+            print("connector: download_file_content fileId=%s (%d bytes <= %d)" % (A[1], size, CONNECTOR_MAX)); return
+        for i, (start, length) in enumerate(fp["slices"], 1):
+            print("zapier %d/%d: execute_zapier_write_action tool_name=%s params={file_id: %s, start: %d, length: %d}" % (i, len(fp["slices"]), ZAPIER_ACTION, A[1], start, length))
+        print("then: python3 billing/era_input/fetch_scans.py chunks <the %d persisted slice results>  (joins them, checks Drive's md5)" % len(fp["slices"]))
+        print("zapier tasks: %d (one per slice; nights cap at %d)" % (len(fp["slices"]), ZAPIER_NIGHT_CAP)); return
     if cmd == "classify":
         did = opt("--drive-id"); route = opt("--route")
         if did and not route:
@@ -619,6 +647,8 @@ def main():
 
 # ---------------------------------------------------------------------------------------------------------------------------
 def selftest():
+    assert fetch_plan(9_000_000) == {"route": "connector"} and len(fetch_plan(20_785_992)["slices"]) == 6
+    assert fetch_plan(8_000_001)["route"] == "connector" and fetch_plan(10_000_001)["slices"][-1] == (8_000_000, 2_000_001)
     """Synthetic samples only - no real person, number or document."""
     kinds = {"doe": "individual", "roe": "aprn-pa", "grp": "group", "grp2": "group"}
     cues = entity_cues([("doe", "John Doe, DO", "1000000001", "90000001", "OS99999", None),
