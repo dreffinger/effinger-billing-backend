@@ -1,7 +1,7 @@
 {
  "schema": "work-queue/1",
  "version": "2026-11-26.1",
- "planned": "2026-11-27T06:50:38Z",
+ "planned": "2026-11-27T13:03:06Z",
  "today": "2026-11-27",
  "rows": [
   {
@@ -312,29 +312,6 @@
    "aging_rule": "primary unpaid > 12 months from DOS, no adjudication -> WOINS untimely (dated note)"
   },
   {
-   "visitid": "19376198",
-   "pid": "17470824",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2024-01-22",
-   "cpts": "99344 99497",
-   "codes": [],
-   "rarc": [],
-   "amount": 300.0,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
    "visitid": "19420897",
    "pid": "17471968",
    "charge": "",
@@ -479,52 +456,6 @@
    ],
    "basis": "2026-11-22",
    "code": "WOINSBANK"
-  },
-  {
-   "visitid": "19390739",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-09-21",
-   "cpts": "99223 99497",
-   "codes": [],
-   "rarc": [],
-   "amount": 200.73,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19451897",
-   "pid": "17477472",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2026-08-17",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 184.8,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-11",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 77
   },
   {
    "visitid": "19461040",
@@ -1208,52 +1139,6 @@
    "days_silent": 171
   },
   {
-   "visitid": "19394124",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-11-04",
-   "cpts": "99349 99497",
-   "codes": [],
-   "rarc": [],
-   "amount": 99.73,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19400966",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-02-19",
-   "cpts": "99349 99497",
-   "codes": [],
-   "rarc": [],
-   "amount": 98.75,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
    "visitid": "19430550",
    "pid": "45052",
    "charge": "",
@@ -1452,29 +1337,6 @@
    "paid_on": "2026-09-09"
   },
   {
-   "visitid": "19394125",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-11-21",
-   "cpts": "99349",
-   "codes": [],
-   "rarc": [],
-   "amount": 65.0,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
    "visitid": "19430022",
    "pid": "17471333",
    "charge": "",
@@ -1544,29 +1406,6 @@
    "basis": "2026-11-16",
    "secondary": "UNI20",
    "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19452052",
-   "pid": "17477472",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2026-08-18",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 54.63,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-11",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 77
   },
   {
    "visitid": "19424291",
@@ -1736,237 +1575,6 @@
    "aging_rule": "primary paid, no secondary on the chart -> WOCLTREQ cost-share (10/13 rule: nothing stays on the patient)"
   },
   {
-   "visitid": "19401513",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-03-03",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 35.48,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19401514",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-03-02",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 35.48,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19401515",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-03-01",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 35.48,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19390674",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-09-24",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 34.07,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19390703",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-09-22",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 34.07,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19390704",
-   "pid": "17471982",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2024-09-23",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 34.07,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-10",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 78
-  },
-  {
-   "visitid": "19406334",
-   "pid": "17473302",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-19",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 33.75,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-23",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "BCBS",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19417779",
-   "pid": "17474140",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-09-22",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 33.75,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
-  },
-  {
-   "visitid": "19426118",
-   "pid": "17474913",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-12-11",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 33.75,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
-  },
-  {
-   "visitid": "19407771",
-   "pid": "17473400",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-06-11",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 33.75,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
-  },
-  {
    "visitid": "19423190",
    "pid": "17474646",
    "charge": "",
@@ -2013,54 +1621,6 @@
    "basis": "2026-11-16",
    "secondary": "CAP07",
    "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19458858",
-   "pid": "22880",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-14",
-   "cpts": "99309 99497",
-   "codes": [],
-   "rarc": [],
-   "amount": 33.27,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "AAR01",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19444459",
-   "pid": "17476789",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-06-08",
-   "cpts": "99223",
-   "codes": [],
-   "rarc": [],
-   "amount": 31.94,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-06-19",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "VACCN",
-   "paid_on": "2026-09-09"
   },
   {
    "visitid": "19372604",
@@ -2132,54 +1692,6 @@
    ],
    "basis": "2026-11-16",
    "secondary": "CIG09",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19459104",
-   "pid": "17475363",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487",
-   "codes": [],
-   "rarc": [],
-   "amount": 28.6,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UNI01",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19402238",
-   "pid": "17471333",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-03-11",
-   "cpts": "99308",
-   "codes": [],
-   "rarc": [],
-   "amount": 28.3,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-04-18",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
    "paid_on": "2026-09-09"
   },
   {
@@ -2255,54 +1767,6 @@
    "paid_on": "2026-09-09"
   },
   {
-   "visitid": "19459008",
-   "pid": "17477851",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UHCMA",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19459060",
-   "pid": "25561",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "SUN01",
-   "paid_on": "2026-11-10"
-  },
-  {
    "visitid": "19458919",
    "pid": "17471131",
    "charge": "",
@@ -2324,30 +1788,6 @@
    ],
    "basis": "2026-11-16",
    "secondary": "CAP07",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19458958",
-   "pid": "17478018",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UNI01",
    "paid_on": "2026-11-10"
   },
   {
@@ -2397,125 +1837,6 @@
    "basis": "2026-11-16",
    "secondary": "UNI20",
    "paid_on": "2026-10-15"
-  },
-  {
-   "visitid": "19458914",
-   "pid": "22880",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "AAR01",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19458976",
-   "pid": "17472594",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "WEL04",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19458732",
-   "pid": "17476917",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-22",
-   "cpts": "99487 99489",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.06,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "AAR01",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19459183",
-   "pid": "17477280",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-23",
-   "cpts": "99344",
-   "codes": [],
-   "rarc": [],
-   "amount": 25.04,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UNI20",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19426117",
-   "pid": "17474913",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-12-12",
-   "cpts": "99233",
-   "codes": [],
-   "rarc": [],
-   "amount": 22.92,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
   },
   {
    "visitid": "19423458",
@@ -2638,30 +1959,6 @@
    "paid_on": "2026-10-17"
   },
   {
-   "visitid": "19459152",
-   "pid": "17473747",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-25",
-   "cpts": "99233",
-   "codes": [],
-   "rarc": [],
-   "amount": 21.8,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "TRI05",
-   "paid_on": "2026-11-10"
-  },
-  {
    "visitid": "19459557",
    "pid": "17473747",
    "charge": "",
@@ -2758,30 +2055,6 @@
    "paid_on": "2026-11-13"
   },
   {
-   "visitid": "19369637",
-   "pid": "42200",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2023-11-15",
-   "cpts": "99349",
-   "codes": [],
-   "rarc": [],
-   "amount": 21.76,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2024-11-01",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "CIGFS",
-   "paid_on": "2026-09-09"
-  },
-  {
    "visitid": "19459749",
    "pid": "17473747",
    "charge": "",
@@ -2875,53 +2148,6 @@
    "basis": "2026-11-16",
    "secondary": "UHCMA",
    "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19458846",
-   "pid": "17472594",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-10-12",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 19.92,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-10-28",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "WEL04",
-   "paid_on": "2026-11-10"
-  },
-  {
-   "visitid": "19428605",
-   "pid": "23162",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2026-01-09",
-   "cpts": "99233",
-   "codes": [],
-   "rarc": [],
-   "amount": 19.13,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-11",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 77
   },
   {
    "visitid": "19397391",
@@ -3092,126 +2318,6 @@
    "paid_on": "2026-09-09"
   },
   {
-   "visitid": "19404184",
-   "pid": "17472396",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-04-09",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-04-18",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19405204",
-   "pid": "17471333",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-01",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-06",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19418040",
-   "pid": "17471333",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-09-19",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-09-29",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19419580",
-   "pid": "17471333",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-10-06",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-10-15",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19422661",
-   "pid": "20407",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-11-04",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-11-12",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
    "visitid": "19399590",
    "pid": "17471773",
    "charge": "",
@@ -3305,54 +2411,6 @@
    ],
    "basis": "2026-11-16",
    "secondary": "VACCN",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19405521",
-   "pid": "44997",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-05",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-12",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UNI20",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19422668",
-   "pid": "44997",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-11-03",
-   "cpts": "99309",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.65,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-11-12",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "UNI20",
    "paid_on": "2026-09-09"
   },
   {
@@ -3522,78 +2580,6 @@
    "basis": "2026-11-16",
    "code": "WOCLTREQ",
    "aging_rule": "primary paid, no secondary on the chart -> WOCLTREQ cost-share (10/13 rule: nothing stays on the patient)"
-  },
-  {
-   "visitid": "19405942",
-   "pid": "17472396",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-16",
-   "cpts": "99487",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.5,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-17",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19405966",
-   "pid": "17471333",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-16",
-   "cpts": "99487",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.5,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-17",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19406052",
-   "pid": "20407",
-   "charge": "",
-   "payer": "FLO02",
-   "dos": "2025-05-16",
-   "cpts": "99487",
-   "codes": [],
-   "rarc": [],
-   "amount": 17.5,
-   "step": "SECONDARY",
-   "rule": "BILL-SECONDARY-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2025-05-17",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "secondary": "HUM01",
-   "paid_on": "2026-09-09"
   },
   {
    "visitid": "19403923",
@@ -4649,52 +3635,6 @@
    "basis": "2026-11-16",
    "secondary": "BCBS",
    "paid_on": "2026-09-09"
-  },
-  {
-   "visitid": "19417777",
-   "pid": "17474140",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-09-23",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 15.41,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
-  },
-  {
-   "visitid": "19407698",
-   "pid": "17473400",
-   "charge": "",
-   "payer": "TRI05",
-   "dos": "2025-06-12",
-   "cpts": "99232",
-   "codes": [],
-   "rarc": [],
-   "amount": 15.41,
-   "step": "RESEND",
-   "rule": "RESEND-SILENT-NOROUTE-1015",
-   "turn": "claude",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-08-31",
-   "source": [
-    "aging"
-   ],
-   "basis": "2026-11-16",
-   "days_silent": 88
   },
   {
    "visitid": "19423457",
@@ -5827,106 +4767,484 @@
    "basis": "2026-11-26"
   },
   {
-   "visitid": "19443019",
-   "pid": "17475338",
+   "visitid": "19376198",
+   "pid": "17470824",
    "charge": "",
-   "payer": "BCBS",
-   "dos": "2026-05-22",
-   "cpts": "99223 99497",
-   "codes": [
-    "22",
-    "PR22"
-   ],
-   "rarc": [],
-   "amount": 443.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-04",
-   "source": [
-    "aging",
-    "denials"
-   ],
-   "basis": "2026-11-16"
-  },
-  {
-   "visitid": "19429263",
-   "pid": "17475209",
-   "charge": "",
-   "payer": "BCBS",
-   "dos": "2026-01-14",
-   "cpts": "99344",
-   "codes": [
-    "PR22"
-   ],
-   "rarc": [],
-   "amount": 433.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "",
-   "source": [
-    "denials"
-   ],
-   "basis": "2026-11-26"
-  },
-  {
-   "visitid": "19431393",
-   "pid": "17475362",
-   "charge": "",
-   "payer": "BCBS",
-   "dos": "2026-02-02",
+   "payer": "FLO02",
+   "dos": "2024-01-22",
    "cpts": "99344 99497",
-   "codes": [
-    "22",
-    "PR22"
-   ],
+   "codes": [],
    "rarc": [],
-   "amount": 433.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
+   "amount": 300.0,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
    "tries": 0,
    "icn": "",
-   "sent": "2026-09-04",
+   "sent": "2026-09-10",
    "source": [
-    "aging",
-    "denials"
+    "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "FLO02",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-06 - the secondary holds the claim"
   },
   {
-   "visitid": "19427050",
-   "pid": "17474516",
+   "visitid": "19390739",
+   "pid": "17471982",
    "charge": "",
-   "payer": "BCBS",
-   "dos": "2025-12-15",
-   "cpts": "99306 99497",
-   "codes": [
-    "27",
-    "PR27"
-   ],
+   "payer": "TRI05",
+   "dos": "2024-09-21",
+   "cpts": "99223 99497",
+   "codes": [],
    "rarc": [],
-   "amount": 389.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
+   "amount": 200.73,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
    "tries": 0,
    "icn": "",
-   "sent": "2026-09-04",
+   "sent": "2026-09-10",
    "source": [
-    "aging",
-    "denials"
+    "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19451897",
+   "pid": "17477472",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2026-08-17",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 184.8,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-11",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-11, on/after the primary's payment 2026-09-11 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19394124",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2024-11-04",
+   "cpts": "99349 99497",
+   "codes": [],
+   "rarc": [],
+   "amount": 99.73,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19400966",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-02-19",
+   "cpts": "99349 99497",
+   "codes": [],
+   "rarc": [],
+   "amount": 98.75,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19394125",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2024-11-21",
+   "cpts": "99349",
+   "codes": [],
+   "rarc": [],
+   "amount": 65.0,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19452052",
+   "pid": "17477472",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2026-08-18",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 54.63,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-11",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-11, on/after the primary's payment 2026-09-11 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19401513",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-03-03",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 35.48,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19401514",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-03-02",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 35.48,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19401515",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-03-01",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 35.48,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19390674",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2024-09-24",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 34.07,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19390703",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2024-09-22",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 34.07,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19390704",
+   "pid": "17471982",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2024-09-23",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 34.07,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-10",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-09-10, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19417779",
+   "pid": "17474140",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-09-22",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 33.75,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-06-01 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19426118",
+   "pid": "17474913",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-12-11",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 33.75,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-05-28 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19407771",
+   "pid": "17473400",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-06-11",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 33.75,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-06-02 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19426117",
+   "pid": "17474913",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-12-12",
+   "cpts": "99233",
+   "codes": [],
+   "rarc": [],
+   "amount": 22.92,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-05-28 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19428605",
+   "pid": "23162",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-01-09",
+   "cpts": "99233",
+   "codes": [],
+   "rarc": [],
+   "amount": 19.13,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-09-11",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "FLO02",
+   "why": "billed 2026-09-11, on/after the primary's payment 2026-05-28 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19417777",
+   "pid": "17474140",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-09-23",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 15.41,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-06-01 - the secondary holds the claim"
+  },
+  {
+   "visitid": "19407698",
+   "pid": "17473400",
+   "charge": "",
+   "payer": "TRI05",
+   "dos": "2025-06-12",
+   "cpts": "99232",
+   "codes": [],
+   "rarc": [],
+   "amount": 15.41,
+   "step": "WAIT",
+   "rule": "HOLD-CROSSOVER-1127",
+   "turn": "claude",
+   "due": "2026-12-04",
+   "tries": 0,
+   "icn": "",
+   "sent": "2026-08-31",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "secondary": "TRI05",
+   "why": "billed 2026-08-31, on/after the primary's payment 2026-06-02 - the secondary holds the claim"
   },
   {
    "visitid": "19456978",
@@ -5951,56 +5269,6 @@
     "denials"
    ],
    "basis": "2026-11-26"
-  },
-  {
-   "visitid": "19433842",
-   "pid": "17475209",
-   "charge": "",
-   "payer": "BCBS",
-   "dos": "2026-02-26",
-   "cpts": "99487",
-   "codes": [
-    "PR22"
-   ],
-   "rarc": [],
-   "amount": 315.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "",
-   "source": [
-    "denials"
-   ],
-   "basis": "2026-11-26"
-  },
-  {
-   "visitid": "19433863",
-   "pid": "17475362",
-   "charge": "",
-   "payer": "BCBS",
-   "dos": "2026-02-26",
-   "cpts": "99487 99489",
-   "codes": [
-    "22",
-    "PR22"
-   ],
-   "rarc": [],
-   "amount": 315.0,
-   "step": "CASCADE",
-   "rule": "COB-WRONG-PAYER",
-   "turn": "run",
-   "due": "2026-11-27",
-   "tries": 0,
-   "icn": "",
-   "sent": "2026-09-04",
-   "source": [
-    "aging",
-    "denials"
-   ],
-   "basis": "2026-11-16"
   },
   {
    "visitid": "19448753",
@@ -21960,7 +21228,7 @@
    "rarc": [],
    "amount": 46.45,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -21969,7 +21237,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-07-02, on/after the primary's payment 2026-07-01 - the secondary holds the claim"
   },
   {
    "visitid": "19452662",
@@ -21982,7 +21252,7 @@
    "rarc": [],
    "amount": 44.09,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -21991,7 +21261,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-09-09, on/after the primary's payment 2026-09-09 - the secondary holds the claim"
   },
   {
    "visitid": "19452969",
@@ -22004,7 +21276,7 @@
    "rarc": [],
    "amount": 22.6,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22013,7 +21285,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-09-11, on/after the primary's payment 2026-09-10 - the secondary holds the claim"
   },
   {
    "visitid": "19447705",
@@ -22026,7 +21300,7 @@
    "rarc": [],
    "amount": 21.59,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22035,7 +21309,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-08-01, on/after the primary's payment 2026-07-31 - the secondary holds the claim"
   },
   {
    "visitid": "19416056",
@@ -22048,7 +21324,7 @@
    "rarc": [],
    "amount": 17.5,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22057,7 +21333,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "HUM01",
+   "why": "billed 2026-07-22, on/after the primary's payment 2026-06-03 - the secondary holds the claim"
   },
   {
    "visitid": "19445471",
@@ -22070,7 +21348,7 @@
    "rarc": [],
    "amount": 16.93,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22079,7 +21357,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-07-08, on/after the primary's payment 2026-07-07 - the secondary holds the claim"
   },
   {
    "visitid": "19446128",
@@ -22092,7 +21372,7 @@
    "rarc": [],
    "amount": 16.93,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22101,7 +21381,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-07-11, on/after the primary's payment 2026-07-10 - the secondary holds the claim"
   },
   {
    "visitid": "19449457",
@@ -22114,7 +21396,7 @@
    "rarc": [],
    "amount": 16.93,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22123,7 +21405,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-08-07, on/after the primary's payment 2026-08-06 - the secondary holds the claim"
   },
   {
    "visitid": "19450190",
@@ -22136,7 +21420,7 @@
    "rarc": [],
    "amount": 16.93,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22145,7 +21429,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-08-15, on/after the primary's payment 2026-08-14 - the secondary holds the claim"
   },
   {
    "visitid": "19390988",
@@ -22356,7 +21642,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22365,7 +21651,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-09, on/after the primary's payment 2026-06-03 - the secondary holds the claim"
   },
   {
    "visitid": "19442741",
@@ -22378,7 +21666,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22387,7 +21675,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-09, on/after the primary's payment 2026-06-03 - the secondary holds the claim"
   },
   {
    "visitid": "19443637",
@@ -22400,7 +21690,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22409,7 +21699,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-13, on/after the primary's payment 2026-06-12 - the secondary holds the claim"
   },
   {
    "visitid": "19443641",
@@ -22422,7 +21714,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22431,7 +21723,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-13, on/after the primary's payment 2026-06-12 - the secondary holds the claim"
   },
   {
    "visitid": "19443816",
@@ -22444,7 +21738,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22453,7 +21747,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-17, on/after the primary's payment 2026-06-16 - the secondary holds the claim"
   },
   {
    "visitid": "19443840",
@@ -22466,7 +21762,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22475,7 +21771,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-17, on/after the primary's payment 2026-06-16 - the secondary holds the claim"
   },
   {
    "visitid": "19444003",
@@ -22488,7 +21786,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22497,7 +21795,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-19, on/after the primary's payment 2026-06-18 - the secondary holds the claim"
   },
   {
    "visitid": "19444036",
@@ -22510,7 +21810,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22519,7 +21819,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-19, on/after the primary's payment 2026-06-18 - the secondary holds the claim"
   },
   {
    "visitid": "19444123",
@@ -22532,7 +21834,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22541,7 +21843,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-19, on/after the primary's payment 2026-06-18 - the secondary holds the claim"
   },
   {
    "visitid": "19444162",
@@ -22554,7 +21858,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22563,7 +21867,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-06-19, on/after the primary's payment 2026-06-18 - the secondary holds the claim"
   },
   {
    "visitid": "19447129",
@@ -22576,7 +21882,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22585,7 +21891,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-07-25, on/after the primary's payment 2026-07-24 - the secondary holds the claim"
   },
   {
    "visitid": "19447142",
@@ -22598,7 +21906,7 @@
    "rarc": [],
    "amount": 14.38,
    "step": "WAIT",
-   "rule": "STATUS-BY-NEED-1110",
+   "rule": "STATUS-CROSSOVER-1127",
    "turn": "payer",
    "due": "2026-11-29",
    "tries": 0,
@@ -22607,7 +21915,9 @@
    "source": [
     "aging"
    ],
-   "basis": "2026-11-16"
+   "basis": "2026-11-16",
+   "secondary": "CHA03",
+   "why": "billed 2026-07-25, on/after the primary's payment 2026-07-24 - the secondary holds the claim"
   },
   {
    "visitid": "19450770",
@@ -25085,6 +24395,170 @@
    "last_action": "2026-11-25"
   },
   {
+   "visitid": "19443019",
+   "pid": "17475338",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2026-05-22",
+   "cpts": "99223 99497",
+   "codes": [
+    "22",
+    "PR22"
+   ],
+   "rarc": [],
+   "amount": 443.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-09-04",
+   "source": [
+    "aging",
+    "denials"
+   ],
+   "basis": "2026-11-16",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19429263",
+   "pid": "17475209",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2026-01-14",
+   "cpts": "99344",
+   "codes": [
+    "PR22"
+   ],
+   "rarc": [],
+   "amount": 433.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "",
+   "source": [
+    "denials"
+   ],
+   "basis": "2026-11-26",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19431393",
+   "pid": "17475362",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2026-02-02",
+   "cpts": "99344 99497",
+   "codes": [
+    "22",
+    "PR22"
+   ],
+   "rarc": [],
+   "amount": 433.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-09-04",
+   "source": [
+    "aging",
+    "denials"
+   ],
+   "basis": "2026-11-16",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19427050",
+   "pid": "17474516",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2025-12-15",
+   "cpts": "99306 99497",
+   "codes": [
+    "27",
+    "PR27"
+   ],
+   "rarc": [],
+   "amount": 389.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-09-04",
+   "source": [
+    "aging",
+    "denials"
+   ],
+   "basis": "2026-11-16",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19433842",
+   "pid": "17475209",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2026-02-26",
+   "cpts": "99487",
+   "codes": [
+    "PR22"
+   ],
+   "rarc": [],
+   "amount": 315.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "",
+   "source": [
+    "denials"
+   ],
+   "basis": "2026-11-26",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19433863",
+   "pid": "17475362",
+   "charge": "",
+   "payer": "BCBS",
+   "dos": "2026-02-26",
+   "cpts": "99487 99489",
+   "codes": [
+    "22",
+    "PR22"
+   ],
+   "rarc": [],
+   "amount": 315.0,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-09-04",
+   "source": [
+    "aging",
+    "denials"
+   ],
+   "basis": "2026-11-16",
+   "was": "COB-WRONG-PAYER",
+   "last_action": "2026-11-27"
+  },
+  {
    "visitid": "19453766",
    "pid": "20379",
    "charge": "",
@@ -25677,6 +25151,606 @@
    "tries": 1,
    "icn": "",
    "sent": "2025-06-04",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19406334",
+   "pid": "17473302",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-19",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 33.75,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-23",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458858",
+   "pid": "22880",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-14",
+   "cpts": "99309 99497",
+   "codes": [],
+   "rarc": [],
+   "amount": 33.27,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19444459",
+   "pid": "17476789",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-06-08",
+   "cpts": "99223",
+   "codes": [],
+   "rarc": [],
+   "amount": 31.94,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-06-19",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19459104",
+   "pid": "17475363",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487",
+   "codes": [],
+   "rarc": [],
+   "amount": 28.6,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19402238",
+   "pid": "17471333",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-03-11",
+   "cpts": "99308",
+   "codes": [],
+   "rarc": [],
+   "amount": 28.3,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-04-18",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19459008",
+   "pid": "17477851",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19459060",
+   "pid": "25561",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458958",
+   "pid": "17478018",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458914",
+   "pid": "22880",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458976",
+   "pid": "17472594",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458732",
+   "pid": "17476917",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-22",
+   "cpts": "99487 99489",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.06,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19459183",
+   "pid": "17477280",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-23",
+   "cpts": "99344",
+   "codes": [],
+   "rarc": [],
+   "amount": 25.04,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19459152",
+   "pid": "17473747",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-25",
+   "cpts": "99233",
+   "codes": [],
+   "rarc": [],
+   "amount": 21.8,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19369637",
+   "pid": "42200",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2023-11-15",
+   "cpts": "99349",
+   "codes": [],
+   "rarc": [],
+   "amount": 21.76,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2024-11-01",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19458846",
+   "pid": "17472594",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2026-10-12",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 19.92,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2026-10-28",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19404184",
+   "pid": "17472396",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-04-09",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-04-18",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19405204",
+   "pid": "17471333",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-01",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-06",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19418040",
+   "pid": "17471333",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-09-19",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-09-29",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19419580",
+   "pid": "17471333",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-10-06",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-10-15",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19422661",
+   "pid": "20407",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-11-04",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-11-12",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19405521",
+   "pid": "44997",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-05",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-12",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19422668",
+   "pid": "44997",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-11-03",
+   "cpts": "99309",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.65,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-11-12",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19405942",
+   "pid": "17472396",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-16",
+   "cpts": "99487",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.5,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-17",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19405966",
+   "pid": "17471333",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-16",
+   "cpts": "99487",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.5,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-17",
+   "source": [
+    "aging"
+   ],
+   "basis": "2026-11-16",
+   "was": "BILL-SECONDARY-1015",
+   "last_action": "2026-11-27"
+  },
+  {
+   "visitid": "19406052",
+   "pid": "20407",
+   "charge": "",
+   "payer": "FLO02",
+   "dos": "2025-05-16",
+   "cpts": "99487",
+   "codes": [],
+   "rarc": [],
+   "amount": 17.5,
+   "step": "WAIT",
+   "rule": "WAIT-ACTED-30D",
+   "turn": "wait",
+   "due": "2026-12-27",
+   "tries": 1,
+   "icn": "",
+   "sent": "2025-05-17",
    "source": [
     "aging"
    ],
@@ -31744,15 +31818,16 @@
   }
  ],
  "counts": {
-  "RESEND-SILENT-NOROUTE-1015": 43,
+  "RESEND-SILENT-NOROUTE-1015": 23,
   "WO-OLD-1102": 48,
   "WO-CCM-HOSPICE-1015": 2,
   "WO-PAID-NOT-POSTED-1102": 12,
-  "BILL-SECONDARY-1015": 128,
+  "BILL-SECONDARY-1015": 103,
   "WO-CROSSOVER-0911": 7,
   "WO-CCM-MEDICAID-0911": 2,
   "FIX-HOSPICE-0920": 1,
-  "COB-WRONG-PAYER": 66,
+  "HOLD-CROSSOVER-1127": 20,
+  "COB-WRONG-PAYER": 60,
   "OWNER-APPEAL": 5,
   "OWNER-AUTH": 11,
   "OWNER-CORRECT": 37,
@@ -31767,22 +31842,24 @@
   "HOLD-FLO99-0922": 61,
   "HOLD-AET12-0921": 81,
   "HOLD-TF-WATCH-1006": 26,
-  "STATUS-BY-NEED-1110": 45,
+  "STATUS-BY-NEED-1110": 24,
+  "STATUS-CROSSOVER-1127": 21,
   "WAIT-SILENT": 72,
-  "WAIT-ACTED-30D": 51,
+  "WAIT-ACTED-30D": 82,
   "WAIT-COSTSHARE-12M": 270,
   "WAIT-CROSSOVER-0921": 3
  },
  "dollars": {
-  "RESEND-SILENT-NOROUTE-1015": 4929.85,
+  "RESEND-SILENT-NOROUTE-1015": 3543.44,
   "WO-OLD-1102": 2845.07,
   "WO-CCM-HOSPICE-1015": 630.0,
   "WO-PAID-NOT-POSTED-1102": 1832.95,
-  "BILL-SECONDARY-1015": 3297.0,
+  "BILL-SECONDARY-1015": 2726.21,
   "WO-CROSSOVER-0911": 960.0,
   "WO-CCM-MEDICAID-0911": 65.39,
   "FIX-HOSPICE-0920": 0.0,
-  "COB-WRONG-PAYER": 12353.35,
+  "HOLD-CROSSOVER-1127": 1386.41,
+  "COB-WRONG-PAYER": 10025.35,
   "OWNER-APPEAL": 942.29,
   "OWNER-AUTH": 1913.0,
   "OWNER-CORRECT": 4714.57,
@@ -31797,30 +31874,31 @@
   "HOLD-FLO99-0922": 11446.86,
   "HOLD-AET12-0921": 4485.23,
   "HOLD-TF-WATCH-1006": 5417.67,
-  "STATUS-BY-NEED-1110": 2290.75,
+  "STATUS-BY-NEED-1110": 1898.24,
+  "STATUS-CROSSOVER-1127": 392.51,
   "WAIT-SILENT": 13987.67,
-  "WAIT-ACTED-30D": 7412.0,
+  "WAIT-ACTED-30D": 10310.79,
   "WAIT-COSTSHARE-12M": 11533.22,
   "WAIT-CROSSOVER-0921": 92.42
  },
  "by_step": {
-  "RESEND": 43,
+  "RESEND": 23,
   "WRITE_OFF": 59,
   "WOINSBANK": 12,
-  "SECONDARY": 128,
+  "SECONDARY": 103,
   "HOSPICE_GV": 1,
-  "CASCADE": 66,
+  "WAIT": 492,
+  "CASCADE": 60,
   "OWNER": 397,
-  "HOLD": 183,
-  "WAIT": 441
+  "HOLD": 183
  },
  "by_turn": {
-  "claude": 243,
-  "run": 66,
+  "claude": 218,
+  "run": 60,
   "william": 397,
   "hold": 183,
   "payer": 120,
-  "wait": 321
+  "wait": 352
  },
  "sources": {
   "denials": {
@@ -31839,7 +31917,7 @@
    "rows": 96
   },
   "claimstatus_files": 4,
-  "act_lines": 40,
+  "act_lines": 71,
   "board_turn": "board_turn_2026-11-27T0039Z.json",
   "watch_visits": 37,
   "appeals_sent": 0
