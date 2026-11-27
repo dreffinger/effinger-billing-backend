@@ -8,6 +8,23 @@ The clinician is the end user. Every channel below exists so that the informatio
 - What comes off the scanner (9/22/2026 pile, 13 batches, 502 pages): paper EOBs and EOPs (United American / Globe Life, Washington National–Bankers Life, Aetna Senior Supplemental, United of Omaha, Physicians Life via ECHO, USAA Life, CHAMPVA), Zelis virtual-card payment stubs, physical checks (Florida Community Care, United American, Mutual of Omaha) with their backs, Simply Healthcare LTSS/MMA remits (Zelis mailings), Florida Community Care $0 COB statements, Florida Blue paper RAs (already electronic), Medicare paper RAs, payer correspondence (Optum/WellCare record requests, UHC notices, Cigna/Evernorth recredentialing termination), blank backs.
 - Pipeline (`billing/paper_remits/`): `ocr.sh` (pdftoppm 300 dpi + tesseract) → `classify.py` (page types) → `extract.py` (structured claims per payer family) → `assemble.py` (one record per remittance; links stubs and physical checks) → `plan.py` (dedupe across mailings, best payment reference, one 835 per (payer, check)) → `build835.py` → `post_paper.py` (ERA Center import + ERA-linked posting under the payer's carrier).
 
+## 1b. ScanSnap → Drive upload folders, sorted by kind (William, 11/27/2026)
+- William scans straight into Drive "aa claude folders / scansnap uploads". Three folders, each a row of Neon `public.intake_folders`:
+
+| folder | route | what goes there |
+|---|---|---|
+| `scansnap uploads` | auto | anything; the sorter decides |
+| `scansnap eras and billing scans files` | billing | EOBs/EOPs/RAs, paper checks, Zelis/ECHO card stubs, face sheets, records requests |
+| `scanscnap credentialing files uploads` | credentialing | licenses, DEA, COIs, board/CAQH, Medicaid/Medicare/payer letters, ID cards, collaboration agreements |
+
+- `billing/era_input/scan_intake.py` keeps one register row per Drive file (Neon `public.scan_intake`), reads each scan page by page
+  (text layer, else tesseract), splits a scan that holds several documents, and labels each: remittance / face sheet / billing
+  letter go to billing (`billing/paper_remits/`, the Insurance Refresh Board); a credentialing document goes to the Credentialing
+  Vault folder for its person and category and is indexed with `credentialing/cred_vault.py add`; personal mail is skipped and left
+  where it is. The folder is a hint; the page decides, and a clash is flagged. Steps: `billing/era_input/README.md`.
+- The Drive connector cannot move or delete a file it did not create, so originals stay in the upload folders; the register is
+  what says a file is done.
+
 ## 2. Gmail attachments through Zapier (the routine's robust channel)
 - The Gmail connector's RAW message read fails above ~6 MB ("session expired"); the scanner's larger batches never come through it.
 - Zapier → Gmail (`gmail_get_attachment_by_filename`, params message_id + attachment_filename) returns a hydrate URL that downloads any size with curl. A routine that carries a Zapier connection can therefore fetch every scan batch unattended; the Gmail connector alone cannot.

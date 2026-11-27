@@ -429,5 +429,17 @@ check("C1 at most 15 new cards a day across all runs, the largest dollars first 
       c1.count("CARD v99") == 15 and all(("CARD v%d " % (9900 + i)) in c1 for i in range(5, 20)) and not any(("CARD v%d " % (9900 + i)) in c1 for i in range(5)) and not c2,
       (c1.count("CARD v99"), len(c2), o2[-1:]))
 
+# 11/27/2026: a secondary balance the unpaid list hid (aging_refresh's Mass Write-off source) that the secondary already holds - billed
+#   on/after the primary's payment, the crossover - is HELD (no resend, no card per visit); one billed before the primary paid keeps its rule.
+_x = lambda vid, sent, paid_on: dict(ag(vid, vid, "CORRECT & RESEND", "secondary unanswered > 60 days -> check status, resend as original (verify the plan first)",
+                                       payer="TRI05", sent=sent, paid_by="FLO02"), paid_on=paid_on)
+_xb = lambda vid, sent, paid_on: dict(_x(vid, sent, paid_on), payer="BCBS")
+qx = wq.build({"aging": {"asof": TODAY.isoformat(), "rows": [_x("9601", D(80), D(80)), _x("9602", D(150), D(120)), _xb("9603", D(80), D(80))]},
+               "wd": {"asof": TODAY.isoformat(), "visits": []}, "era": []}, TODAY)
+Rx = {r["visitid"]: r["rule"] for r in qx["rows"]}
+check("XC1 money first (William 11/27/2026): a crossover the secondary holds is never re-sent - no claim-status route (TRICARE For Life) = HOLD-CROSSOVER-1127, "
+      "a route (Florida Blue) = STATUS-CROSSOVER-1127; billed before the primary paid keeps its resend rule",
+      Rx.get("9601") == "HOLD-CROSSOVER-1127" and Rx.get("9603") == "STATUS-CROSSOVER-1127" and Rx.get("9602") == "RESEND-SILENT-NOROUTE-1015", Rx)
+
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)

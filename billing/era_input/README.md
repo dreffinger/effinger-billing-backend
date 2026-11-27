@@ -31,6 +31,33 @@ missing ranges. A batch is new when its message id is not there. `python3 fetch_
 5. Board rows for correspondence / holds / cards to key; mirror.
 
 
+## Drive upload folders (11/27/2026) - `scan_intake.py`
+
+William also scans straight into Drive "aa claude folders / scansnap uploads" and its two sub-folders: `scansnap eras and billing scans
+files` (route billing) and `scanscnap credentialing files uploads` (route credentialing). The parent folder is route auto. Routes live
+in Neon `public.intake_folders` (`scan_intake.py folders`); a new folder is added with `folders-sync` (a name with "credential" =
+credentialing, "era"/"billing"/"remit"/"eob" = billing, else auto).
+
+Session steps (chat or routine; Drive connector + Neon):
+1. List each intake folder (`search_files`, `parentId = '<folder>'`), save the JSON, `scan_intake.py register <listing.json>`, then
+   `scan_intake.py pending`.
+2. For each pending file: `pending` prints its route. Up to 10 MB: `download_file_content` (the connector saves the PDF to a local file).
+   Over 10 MB (a ScanSnap batch of more than ~25 pages; William 11/27/2026 - coded, not a manual step): `scan_intake.py fetch-plan <id>`
+   prints the Zapier code-action calls (`google_drive_get_file_byte_range_base64`, 4 MB slices, one Zapier task each, 25 a night) and the
+   `fetch_scans.py chunks` command that joins the persisted slices and checks Drive's md5 → copy it into a new empty directory → `python3 -I scan_intake.py classify --pdf <file>
+   --drive-id <id>`. It prints one entry per document found in the scan, with the vault folder and a document id for credentialing ones.
+3. Several documents in one scan: `scan_intake.py split <pdf> <dir> --groups <split_groups>` writes one PDF per document.
+4. Credentialing document: file it in the vault folder it names - `copy_file` (fileId, parentId = vault_folder_id, a plain title) for
+   a whole scan, or `create_file` with the split part - then `credentialing/cred_vault.py add --id <doc_id> --entity <entity>
+   --category <vault_category> --title "..." --drive-id <new id> --folder-id <vault_folder_id> [--expires ...] [--restricted]
+   --source "scansnap <date>" [--file <part.pdf>]` (`--file` stores a copy in Neon; refused for restricted rows).
+5. Remittance: the PDF goes to `SCANS_DIR/raw/drive_<id>.pdf` and the paper-remit pipeline below takes it from there; face sheet:
+   the patient's Insurance Refresh Board card; billing letter: a board card.
+6. `scan_intake.py mark <drive-id> --status filed|routed|skipped --vault-doc-id ... --routed-to ...`. Anything flagged (unknown,
+   whose-document-unclear, a clash between folder and page, a duplicate) is marked `needs_review` and goes to William as one line.
+The register, not the folder, says what is done (the connector cannot move or delete a file it did not create). Never commit a scan,
+its title or its text: the repository is public.
+
 ## 10/6 additions (parse + plan)
 - `llm_merge.py`: payer-NAME classifier (`PAYER_RULES`) overrides the agent's family hint; Florida Blue always held; card stubs with claims are remittances; LLM record beats a regex record with the same reference when it has more claims or a different amount; one card-keying row per (card, amount).
 - New family **TRI00** (TRICARE East paper checks, car6872) across post_paper / build835 / plan / llm_merge.

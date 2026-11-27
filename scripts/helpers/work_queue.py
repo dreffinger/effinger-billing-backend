@@ -67,6 +67,8 @@ RULES = {
  "STATUS-BY-NEED-1110": ("WAIT", "payer", "silent - the Sunday claim-status step asks it by need (cs_rules.py, caps unchanged)", "rules.md 11/10/2026"),
  "WAIT-PENDING-1110":   ("WAIT", "payer", "the payer says pending - wait", "rules.md 11/10/2026"),
  "WAIT-SILENT":         ("WAIT", "payer", "silent, not yet at the aging limit for a resend", "rules.md 10/15/2026"),
+ "HOLD-CROSSOVER-1127": ("WAIT", "claude", "a secondary balance the unpaid list hid (aging_refresh's Mass Write-off source) that the secondary already holds - crossed over or billed on/after the primary's payment - at a payer with no electronic claim status (TRICARE For Life, AARP): MONEY FIRST - matched against the remits, ERA files and deposits, then the payer's portal; never a resend or a second claim until the payer says it does not have it, and no card per visit", "rules.md 9/21/2026; William 11/27/2026: '1 money first'"),
+ "STATUS-CROSSOVER-1127": ("WAIT", "payer", "the same held crossover at a payer that answers claim status electronically: the Sunday claim status asks the SECONDARY - 'paid' goes to the paid-not-posted path, 'not found' to ONE resend (the payer does not have it), a denial to its rule", "rules.md 9/21/2026; William 11/27/2026: '1 money first'"),
  "WAIT-CROSSOVER-0921": ("WAIT", "payer", "the secondary already holds the claim (crossed over / billed after the primary paid) - its answer is awaited 61 days from that bill; never a second claim", "rules.md 9/21/2026; 10/15/2026 aging"),
  "WAIT-COSTSHARE-12M":  ("WAIT", "wait", "primary paid, no secondary on the chart, inside 12 months - written off WOCLTREQ by the 11/2 rule at 12 months (rules.md 9/11: cost-share inside the year is not a write-off)", "rules.md 9/11 and 11/2/2026"),
  "WAIT-ACTED-30D":      ("WAIT", "wait", "the queue (or another helper) acted on this visit in the last 30 days - the claim's answer is awaited", "William 11/26/2026; OA-18 duplicate trap"),
@@ -485,6 +487,13 @@ def _decide_step(ev, ctx, age, payer, secs, rule_txt, rec, is_secondary, is_ccm,
         if rule_txt.startswith("no bill date on the charges"): return _row(ev, "RESEND-NEVER-SENT", today)
         if rule_txt.startswith("wrong-payer denial"): return _row(ev, "COB-WRONG-PAYER", today)
         if rule_txt.startswith(("sent 61-90", "sent 91-120", "sent > 120", "secondary unanswered")):
+            if rule_txt.startswith("secondary unanswered") and is_secondary:       # 11/27/2026: the secondary holds the claim (crossover)
+                sent_, paid_ = _date(a.get("sent")), _date(a.get("paid_on"))
+                if sent_ and paid_ and sent_ >= paid_ and ans not in ("not found", "paid", "denied", "finalized at $0", "not eligible"):
+                    why = "billed %s, on/after the primary's payment %s - the secondary holds the claim" % (sent_.isoformat(), paid_.isoformat())
+                    if payer in NO_CS_ROUTE:
+                        return _row(ev, "HOLD-CROSSOVER-1127", today, due=today + datetime.timedelta(days=7), payer=payer, secondary=payer, why=why)
+                    return _row(ev, "STATUS-CROSSOVER-1127", today, due=today + datetime.timedelta(days=(6 - today.weekday()) % 7), payer=payer, secondary=payer, why=why)
             if ans == "pending":
                 return _row(ev, "WAIT-PENDING-1110", today, due=(_date(cs.get("asked")) or today) + datetime.timedelta(days=14))
             sent = _date(a.get("sent")); days = (today - sent).days if sent else None
