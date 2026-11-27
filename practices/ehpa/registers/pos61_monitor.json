@@ -1,7 +1,7 @@
 {
  "what": "read-only payment monitor of the inpatient-rehab visits at place of service 61 (pos61_monitor.py): chart ids, visit ids, dates of service, codes, carrier codes, reason codes and dollars - no name, no birth date and no member number is ever written here",
  "version": "2026-11-25.4",
- "at": "2026-11-27T00:44:47Z",
+ "at": "2026-11-27T06:44:03Z",
  "today": "11/27/2026",
  "mode": "read only - nothing is ever sent to AdvancedMD; --dry and --live are the same run",
  "baseline_21": {
@@ -47,7 +47,7 @@
   },
   "kept at 21": {
    "entered": 1,
-   "billed": 0,
+   "billed": 1,
    "paid": 0,
    "paid_dollars": 0,
    "initial_paid": 0,
@@ -60,8 +60,8 @@
    "paid_after_denial": 0,
    "paid_after_codes": {},
    "unanswered": 0,
-   "open": 0,
-   "not_billed": 1,
+   "open": 1,
+   "not_billed": 0,
    "paid_low": 0,
    "zero_answer": 0,
    "zero_codes": {},
@@ -105,7 +105,7 @@
  "unreadable_registers": [],
  "lines": [
   "REHAB AT 61: no inpatient-rehab visit has been entered at place of service 61 yet (at 21 the average was $138.67 on 95 paid of 121 sent)",
-  "REHAB STAYS KEPT AT 21 (the comparison group): 1 visit(s) entered; 0 billed; 0 paid ($0.00); 0 denied; 0 billed and unanswered for over 30 days; 1 not billed yet"
+  "REHAB STAYS KEPT AT 21 (the comparison group): 1 visit(s) entered; 1 billed; 0 paid ($0.00); 0 denied; 0 billed and unanswered for over 30 days"
  ],
  "top": [],
  "visits": [
@@ -120,10 +120,13 @@
    "batch": "20261126T1240Z",
    "initial": "11/22/2026",
    "sign": "new admission 1-2 days after an acute stay",
-   "state": "not billed",
+   "state": "open",
+   "days": 1,
    "read": "11/27/2026",
    "code": "99233",
    "fee": 160.0,
+   "carrier": "FLO99",
+   "billed": "11/26/2026",
    "paid": 0.0,
    "balance": 160.0,
    "ins_balance": 160.0,

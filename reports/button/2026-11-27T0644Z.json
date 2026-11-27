@@ -1,0 +1,201 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-27T0644Z",
+ "mode": "live",
+ "status": "warn",
+ "headline": "Columns 0/18/49/1 -> 0/0/18/1; ERA 1 checks $88.28 -> 1 checks $88.28",
+ "note": "",
+ "run_url": "",
+ "started": "2026-11-27T06:44:20Z",
+ "ended": "2026-11-27T06:48:32Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 18,
+    "unbilled": 49,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 18,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 88.28
+   },
+   "after": {
+    "checks": 1,
+    "unposted": 88.28
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "warn",
+   "summary": "1547 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1547,
+    "registers": 2119,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [
+    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
+   ],
+   "started": "2026-11-27T06:44:20Z",
+   "ended": "2026-11-27T06:44:21Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 18->0, Unbilled 49->18, Exclusions 1->1",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 18,
+    "unbilled": 49,
+    "exclusions": 1,
+    "inspector advisories to bypass": 18,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 18,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 29,
+    "unbilled rows left alone": 18,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "advisory",
+     "visits": 18,
+     "ids": "v19459239 v19398876 v19401792 v19404303 v19406723 v19406831 v19388440 v19388610 v19388611 v19388612 v19389101 v19389662 v19389758 v19390716 v19392348 v19392514 v19393295 v19398126"
+    },
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 29,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935 v19455951 v19461773"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Unresolved Claim Inspector errors",
+     "visits": 12,
+     "ids": "v19388440 v19388610 v19388611 v19388612 v19389101 v19389662 v19389758 v19392348 v19392514 v19393295 v19401792 v19406831"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Date of service is outside insurance coverage effective dates",
+     "visits": 3,
+     "ids": "v19390716 v19398126 v19406723"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "unbilled",
+     "kind": "One or more charges within this visit have errors. Charges with errors",
+     "visits": 2,
+     "ids": "v19398876 v19404303"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 1,
+     "ids": "v19462480"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-27T06:44:21Z",
+   "ended": "2026-11-27T06:48:21Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 checks / $88.28 -> 1 checks / $88.28",
+   "counts": {
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
+    "fallback orphan": 1,
+    "checks dismissed": 0,
+    "checks held": 1,
+    "denial lines recorded": 0
+   },
+   "dollars": {
+    "unposted before": 88.28,
+    "unposted after": 88.28,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053664,
+     "payer": "HUMANA",
+     "checknumber": "207771193261125",
+     "amount": 0.0,
+     "unposted": 88.28,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-27T06:48:21Z",
+   "ended": "2026-11-27T06:48:32Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-27T06:48:32Z",
+   "ended": "2026-11-27T06:48:32Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "ERA fallback: 1 money line(s) with no matching live charge ($88.28) - registers/era_fallback_2026-11-27T0644Z_live.json",
+  "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l"
+ ],
+ "errors": []
+}
