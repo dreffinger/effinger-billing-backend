@@ -335,30 +335,44 @@ def tracker(js=None, register=None):
     return out
 
 
+# the Credentialing Board card that already stands for a payer (11/27/2026 board); any other payer gets its own pay-alert-<code> card
+CARD_FOR = {"CIG09": "pay-cigna", "CIG13": "pay-cigna", "UMR": "pay-umr", "AET07": "pay-aetna", "AET12": "pay-aetna", "HIG04": "pay-highmark",
+            "HIG06": "pay-highmark", "WEL04": "pay-centene", "WEL07": "pay-centene", "SUN01": "pay-centene", "AMB03": "pay-centene",
+            "UNI20": "pay-uhc", "UHCMA": "pay-uhc", "CIPSC": "pay-uhc", "AAR01": "pay-uhc", "OPT08": "pay-optum", "VACCN": "pay-vaccn",
+            "BCBS": "pay-bcbs", "BCBS1": "pay-bcbs", "CAP07": "pay-chp", "FLO99": "pay-fcc", "HUM01": "pay-humana", "MCAD": "pay-medicaid",
+            "FLO02": "pay-medicare", "SIM01": "pay-simply", "TRI00": "pay-tricare", "TRI05": "pay-tricare"}
+
+
 def cred_ops(out, board_rows=None, today=None):
     """William 11/27/2026: "if a payer hasnt paid in some time it needs to go on the credentialing priority list ... a warning says go fix that
-    credentialing payer". -> Credentialing Board ops (collection cred, the BOARD ACCESS RULE's op format): one card per WARNING / NEVER PAID
-    payer, id pay-alert-<code>, on William's turn, due in 7 days, with the reason; a payer back to GREEN whose card is still open gets a
-    'paying again' note and turn done. board_rows: the cred collection as the run read it (cred_board_rows.json: [{id, turn, ...}])."""
+    credentialing payer". -> Credentialing Board ops (collection cred, the BOARD ACCESS RULE's op format). A WARNING / NEVER PAID payer puts its
+    reason in the card's `payment_alert` field and the card on William's turn (due in 7 days) with one note - on the payer's own card when the
+    board has one (CARD_FOR), else on a new pay-alert-<code> card; the same alert is never noted twice. A payer back to GREEN clears its
+    `payment_alert` with a 'paying again' note. board_rows: the cred collection as the run read it ([{id, turn, payment_alert, ...}])."""
     today = today or datetime.date.today(); at = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    open_cards = {r.get("id"): r for r in (board_rows or []) if str(r.get("id") or "").startswith("pay-alert-") and r.get("turn") != "done"}
+    rows = {r.get("id"): r for r in (board_rows or [])}
     ops = []
     for o in out:
-        cid = "pay-alert-" + re.sub(r"[^a-z0-9]", "", str(o["carrier_code"]).lower())
+        code = str(o["carrier_code"]); cid = CARD_FOR.get(code) or "pay-alert-" + re.sub(r"[^a-z0-9]", "", code.lower())
+        cur = rows.get(cid) or {}
+        alerts = dict(cur.get("payment_alert") or {}) if isinstance(cur.get("payment_alert"), dict) else {}
         if o["status"] in ("WARNING", "NEVER PAID"):
-            if cid in open_cards: continue                       # already on his list - one card per payer, no repeat note every night
-            ops.append({"op": "upsert", "collection": "cred", "id": cid,
-                        "set": {"name": "%s (%s) - %s" % (o["carrier_name"] or o["carrier_code"], o["carrier_code"],
-                                                          "never paid" if o["status"] == "NEVER PAID" else "no payment in 45+ days"),
-                                "turn": "william", "due": (today + datetime.timedelta(days=7)).isoformat(),
-                                "need": "%s. Check: is the group/clinician enrolled and in network with this payer, is its ERA/EFT set up "
-                                        "to this practice, and why its claims go unpaid (claim status)." % o["reason"]},
-                        "append": {"notes": [{"who": "Claude", "at": at, "text": "Run alerts %s: %s - %d claim run(s) unpaid 45+ days, oldest %s "
-                                              "(AdvancedMD Claims Center > Run Alerts)." % (today.isoformat(), o["reason"], int(float(o["runs_unpaid_due"] or 0)),
-                                                                                          o["oldest_unpaid_due"])}]}})
-        elif cid in open_cards and o["status"] == "GREEN":
-            ops.append({"op": "update", "collection": "cred", "id": cid, "set": {"turn": "done"},
-                        "append": {"notes": [{"who": "Claude", "at": at, "text": "Paying again: last paid %s (run alerts %s)." % (o["last_paid"], today.isoformat())}]}})
+            line = "%s %s" % (o["status"], o["reason"])
+            if alerts.get(code) == line: continue                         # already on his list with this reason
+            alerts[code] = line
+            note = {"who": "Claude", "at": at, "text": "Run alerts %s - %s (%s): %s; %d claim run(s) unpaid 45+ days, oldest %s (AdvancedMD Claims "
+                    "Center > Run Alerts). Check enrollment / network status, that its ERA and EFT come to this practice, and claim status." % (
+                        today.isoformat(), o["carrier_name"] or code, code, o["reason"], int(float(o["runs_unpaid_due"] or 0)), o["oldest_unpaid_due"])}
+            st = {"payment_alert": alerts, "turn": "william", "due": (today + datetime.timedelta(days=7)).isoformat()}
+            if not cur and cid.startswith("pay-alert-"):
+                st.update(name="%s (%s)" % (o["carrier_name"] or code, code), section="payer", holder="AMD carrier %s" % code,
+                          need="%s - find out why: enrolled and in network? ERA/EFT to this practice? claim status of the unpaid claims." % o["reason"])
+            ops.append({"op": "upsert", "collection": "cred", "id": cid, "set": st, "append": {"notes": [note]}})
+            rows[cid] = dict(cur, payment_alert=alerts)                 # a second payer of the same card keeps the first one's alert
+        elif code in alerts and o["status"] == "GREEN":
+            alerts.pop(code)
+            ops.append({"op": "update", "collection": "cred", "id": cid, "set": {"payment_alert": alerts},
+                        "append": {"notes": [{"who": "Claude", "at": at, "text": "%s paying again: last paid %s (run alerts %s)." % (code, o["last_paid"], today.isoformat())}]}})
     return {"schema": "cred-board-updates/1", "source": "run_alerts.py tracker %s" % at, "ops": ops}
 
 
@@ -392,10 +406,15 @@ def selftest():
              "last_paid": "2026-11-20"},
             {"carrier_code": "GEH04", "carrier_name": "GEHA", "status": "NEVER PAID", "reason": "no payment on record", "runs_unpaid_due": 2,
              "oldest_unpaid_due": "2026-09-01", "last_paid": None}]
-    doc = cred_ops(rows, [{"id": "pay-alert-bcbs", "turn": "william"}, {"id": "pay-alert-geh04", "turn": "william"}], t)
+    board = [{"id": "pay-cigna", "turn": "claude"}, {"id": "pay-bcbs", "turn": "william", "payment_alert": {"BCBS": "WARNING old"}},
+             {"id": "pay-alert-geh04", "turn": "william", "payment_alert": {"GEH04": "NEVER PAID no payment on record"}}]
+    doc = cred_ops(rows, board, t)
     ids = [(o["op"], o["id"]) for o in doc["ops"]]
-    assert ids == [("upsert", "pay-alert-cig09"), ("update", "pay-alert-bcbs")], ids          # GEHA already on his list: no repeat
-    assert doc["ops"][0]["set"]["turn"] == "william" and doc["ops"][0]["set"]["due"] == "2026-12-04" and doc["ops"][1]["set"] == {"turn": "done"}
+    assert ids == [("upsert", "pay-cigna"), ("update", "pay-bcbs")], ids          # Cigna's own card; GEHA already noted with this reason
+    assert doc["ops"][0]["set"]["turn"] == "william" and doc["ops"][0]["set"]["due"] == "2026-12-04" and "name" not in doc["ops"][0]["set"]
+    assert doc["ops"][0]["set"]["payment_alert"] == {"CIG09": "WARNING no payment since 2026-09-04"} and doc["ops"][1]["set"] == {"payment_alert": {}}
+    new = cred_ops([dict(rows[2], carrier_code="LAN", carrier_name="LANTERN")], [], t)["ops"][0]
+    assert new["id"] == "pay-alert-lan" and new["set"]["section"] == "payer" and new["set"]["name"] == "LANTERN (LAN)"
     print("run_alerts selftest: ok")
 
 
