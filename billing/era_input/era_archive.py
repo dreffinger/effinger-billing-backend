@@ -20,6 +20,7 @@
   python3 billing/era_input/era_archive.py pending [--kind x12|pdf|other]                            what is not read yet
   python3 -I billing/era_input/era_archive.py parse <file> --drive-id <id>                             one 835 -> the tables
   python3 -I billing/era_input/era_archive.py parse-dir <dir>      every <drive-id>.bin / .dat / .835 file in <dir> (named by Drive id)
+  python3 -I billing/era_input/era_archive.py load-pdf-json <dir>  the remit-pdf-archive JSON files (one per PDF: payments + claims)
   python3 billing/era_input/era_archive.py selftest"""
 import datetime, glob, hashlib, json, os, re, sys
 
@@ -211,10 +212,71 @@ def parse_file(d, path, drive_id):
     return ("read" if p else "not 835"), p, c
 
 
+METHOD_CODE = {"CHK": "CHK", "CHECK": "CHK", "PAPER CHECK": "CHK", "ACH": "ACH", "EFT": "ACH", "VCC": "VCC", "VIRTUAL CARD": "VCC", "CARD": "VCC",
+               "NON": "NON", "NONE": "NON"}
+
+
+def pdf_rows(j, did):
+    """One extracted PDF (the remit-pdf-archive JSON: payments[] + claims[]) -> (payments, claims, adjustments) rows for the tables."""
+    pays, keys = [], []
+    for p in j.get("payments") or []:
+        raw = str(p.get("method") or "").strip().upper()
+        meth = METHOD_CODE.get(raw) or METHOD_CODE.get(raw.split(" ")[0]) or (
+            "CHK" if "CHECK" in raw else "VCC" if "CARD" in raw else "ACH" if ("EFT" in raw or "ACH" in raw) else "NON" if "NO PAY" in raw else "unknown")
+        amt = p.get("amount"); amt = num(amt) if amt is not None else None
+        pk = "pdf|%s|%s|%s|%s" % (p.get("payer_id") or p.get("payer_name") or "?", p.get("number") or did, "%.2f" % amt if amt is not None else "?", p.get("date") or "?")
+        keys.append(pk)
+        pays.append(dict(payment_key=pk, drive_file_id=did, payer_name=p.get("payer_name"), payer_id=p.get("payer_id"), payee_name=p.get("payee_name"),
+                         payee_npi=p.get("payee_npi"), method=meth, amount=amt, payment_date=p.get("date") if re.match(r"^\d{4}-\d{2}-\d{2}$", str(p.get("date") or "")) else None,
+                         trace_number=p.get("number")))
+    claims, adj = [], []
+    for k, c in enumerate(j.get("claims") or []):
+        i = c.get("payment_index")
+        pk = keys[i] if isinstance(i, int) and 0 <= i < len(keys) else (keys[0] if len(keys) == 1 else "pdf|%s|no payment" % did)
+        pc = str(c.get("patient_control") or "").strip(); m = re.match(r"^(\d{7,9})([A-Z]{0,2})$", pc)
+        ck = "%s|%s|%s|%d" % (pk, pc or "?", c.get("payer_claim_no") or "?", k)
+        dt = lambda v: v if re.match(r"^\d{4}-\d{2}-\d{2}$", str(v or "")) else None
+        claims.append(dict(claim_key=ck, payment_key=pk, patient_control=pc or None, visit_id=int(m.group(1)) if m else None, status_code=c.get("status"),
+                           charge=num(c.get("charge")), paid=num(c.get("paid")), patient_resp=num(c.get("patient_resp")), filing=None,
+                           payer_claim_no=c.get("payer_claim_no"), dos_from=dt(c.get("dos_from")), dos_to=dt(c.get("dos_to")), patient_name=c.get("patient_name"),
+                           rendering_npi=None, lines=None))
+        seen = {}
+        for a in c.get("adjustments") or []:
+            if not a.get("carc"): continue
+            key = ("claim", 0, str(a.get("grp") or "").upper()[:2], str(a.get("carc")).upper())
+            if key in seen: seen[key]["amount"] = round(seen[key]["amount"] + num(a.get("amount")), 2); continue
+            seen[key] = dict(claim_key=ck, level="claim", line_no=0, cpt=a.get("cpt"), grp=key[2], carc=key[3], amount=num(a.get("amount")))
+        adj += list(seen.values())
+    return pays, claims, adj
+
+
+def load_pdf_json(d, path):
+    j = json.load(open(path)); did = j.get("drive_file_id") or os.path.basename(path).split(".")[0]
+    pays, claims, adj = pdf_rows(j, did)
+    d.q("insert into amd.era_files (drive_file_id, kind) values (%s,'pdf') on conflict (drive_file_id) do nothing", [did])
+    if pays:
+        d.q("""insert into amd.era_payments (payment_key, drive_file_id, payer_name, payer_id, payee_name, payee_npi, method, amount, payment_date,
+                 trace_number, claims, source) select payment_key, drive_file_id, payer_name, payer_id, payee_name, payee_npi, method, amount, payment_date,
+                 trace_number, 0, 'pdf' from jsonb_to_recordset(%s::jsonb) as x(payment_key text, drive_file_id text, payer_name text, payer_id text,
+                 payee_name text, payee_npi text, method text, amount numeric, payment_date date, trace_number text) on conflict (payment_key) do nothing""",
+            [json.dumps(pays)])
+    if claims:
+        d.q("""insert into amd.era_claims (claim_key, payment_key, patient_control, visit_id, status_code, charge, paid, patient_resp, filing, payer_claim_no,
+                 dos_from, dos_to, patient_name, rendering_npi, lines) select claim_key, payment_key, patient_control, visit_id, status_code, charge, paid,
+                 patient_resp, filing, payer_claim_no, dos_from, dos_to, patient_name, rendering_npi, lines
+               from jsonb_populate_recordset(null::amd.era_claims, %s::jsonb) on conflict (claim_key) do nothing""", [json.dumps(claims)])
+    if adj:
+        d.q("""insert into amd.era_adjustments select claim_key, level, line_no, cpt, grp, carc, amount
+               from jsonb_populate_recordset(null::amd.era_adjustments, %s::jsonb) on conflict do nothing""", [json.dumps(adj)])
+    d.q("update amd.era_files set status='read', kind='pdf', payments=%s, claims=%s, parsed_at=now(), note=%s where drive_file_id=%s",
+        [len(pays), len(claims), str(j.get("class") or "")[:40], did])
+    return len(pays), len(claims)
+
+
 def main():
     cmd = A[0] if A else "help"
     if cmd == "selftest": return selftest()
-    if cmd not in ("inventory", "pending", "parse", "parse-dir"): sys.exit(__doc__)
+    if cmd not in ("inventory", "pending", "parse", "parse-dir", "load-pdf-json"): sys.exit(__doc__)
     d = db(); ensure(d)
     if cmd == "inventory":
         files = []
@@ -222,6 +284,8 @@ def main():
             j = json.load(open(p)); files += j.get("files", j) if isinstance(j, dict) else j
         n = 0
         for f in files:
+            if "size" in f and "fileSize" not in f:     # the remit-pdf-archive inventory shape
+                f = dict(f, fileSize=f.get("size"), parentId=f.get("folder_id"), createdTime=f.get("created"), mimeType=f.get("mimeType") or "application/pdf")
             if f.get("mimeType") == "application/vnd.google-apps.folder" or f.get("trashed"): continue
             k = kind_of(f.get("title"), f.get("mimeType"))
             r = d.q("""insert into amd.era_files (drive_file_id, folder_id, folder, title, mime_type, size_bytes, created_in_drive, kind)
@@ -237,6 +301,11 @@ def main():
     if cmd == "parse":
         st, p, c = parse_file(d, A[1], opt("--drive-id") or sys.exit("--drive-id is required"))
         print("%s: %s - %d payment(s), %d claim(s)" % (opt("--drive-id"), st, p, c)); return
+    if cmd == "load-pdf-json":
+        tot = [0, 0, 0]
+        for path in sorted(glob.glob(os.path.join(A[1], "*.json"))):
+            p, c = load_pdf_json(d, path); tot[0] += 1; tot[1] += p; tot[2] += c
+        print("%d PDF file(s) filed: %d payment(s), %d claim(s)" % tuple(tot)); return
     if cmd == "parse-dir":
         tot = [0, 0, 0]
         for path in sorted(glob.glob(os.path.join(A[1], "*"))):
@@ -270,6 +339,11 @@ def selftest():
     assert payment_key(p) == "SHP01|EFT123|150.25|2026-11-20"
     assert kind_of("3009416512.dat", "application/octet-stream") == "x12" and kind_of("a.pdf", "application/pdf") == "pdf"
     assert kind_of("x.csv", "text/csv") == "table" and kind_of("setup.exe", "application/x-msdos-program") == "other"
+    pr, cl, ad = pdf_rows({"payments": [{"payer_name": "SAMPLE PLAN", "method": "paper check", "number": "C1", "date": "2026-10-01", "amount": 80}],
+                           "claims": [{"payment_index": 0, "patient_control": "19461428A", "paid": 80, "status": "paid",
+                                       "adjustments": [{"grp": "co", "carc": "45", "amount": 20}, {"grp": "CO", "carc": "45", "amount": 5}]}]}, "F1")
+    assert pr[0]["method"] == "CHK" and pr[0]["payment_key"] == "pdf|SAMPLE PLAN|C1|80.00|2026-10-01" and cl[0]["visit_id"] == 19461428
+    assert ad == [{"claim_key": cl[0]["claim_key"], "level": "claim", "line_no": 0, "cpt": None, "grp": "CO", "carc": "45", "amount": 25.0}]
     for s_ in DDL: assert not re.search(r"\b(drop|delete|truncate)\b", s_, re.I)
     print("era_archive selftest: ok")
 
