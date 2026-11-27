@@ -16,7 +16,8 @@
   python3 credentialing/cred_vault.py get <doc-id> [--out file.pdf]          bytes from Neon if stored, else the Drive link
   python3 credentialing/cred_vault.py add --id <doc-id> --entity <who> --category <cat> --title "<title>" [--drive-id <id>]
           [--folder-id <id>] [--status "<s>"] [--doc-date YYYY-MM-DD] [--expires YYYY-MM-DD] [--restricted] [--source "<s>"]
-          [--notes "<n>"] [--file <path>]                                    --file stores a copy in Neon (refused for restricted rows)
+          [--notes "<n>"] [--file <path>] [--replace]                        --file stores a copy in Neon (refused for restricted rows);
+                                                                             an id already used for another Drive file is refused unless --replace
   python3 credentialing/cred_vault.py store <doc-id> <path>                   attach a local copy to an existing non-restricted row
   python3 credentialing/cred_vault.py folders [--practice ehpa]               the Drive folder for every person and category
   python3 credentialing/cred_vault.py accounts [--practice ehpa]              portal usernames and help pages (no passwords)
@@ -125,6 +126,9 @@ def main():
         need = ["--id", "--entity", "--category", "--title"]
         if any(not opt(n) for n in need): sys.exit(__doc__)
         drive = opt("--drive-id")
+        clash = db.q("select drive_file_id from public.cred_documents where id = %s", [opt("--id")])
+        if clash and clash[0][0] and drive and clash[0][0] != drive and not flag("--replace"):
+            sys.exit("cred_vault: %s already indexes another Drive file - pick a new --id (or pass --replace to supersede it)" % opt("--id"))
         db.q("insert into public.cred_documents (id, practice, provider, category, doc_type, title, file_name, status, doc_date, expiration_date, sensitivity, "
              "drive_file_id, drive_folder_id, source, notes, uploaded_at, updated_at) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,now(),now()) "
              "on conflict (id) do update set provider=excluded.provider, category=excluded.category, doc_type=excluded.doc_type, title=excluded.title, status=excluded.status, "

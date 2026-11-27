@@ -48,9 +48,12 @@ CRED_RULES = [
     # such as 'Social Security', 'DEA' and 'License' - those are fields of the report, not the documents themselves)
     ("discipline", "Discipline or monitoring record", True,
      [(r"NATIONAL PRACTITIONER DATA BANK|\bNPDB\b", 6), (r"INTERVENTION PROJECT FOR NURSES|\bIPN\b", 3),
-      (r"SETTLEMENT AGREEMENT", 2.5), (r"FINAL ORDER", 2.5), (r"ADMINISTRATIVE COMPLAINT", 2.5),
+      (r"SETTLEMENT AGREEMENT", 2.5), (r"FINAL ORDER", 2.5), (r"ADMINISTRATIVE COMPLAINT", 2.5), (r"\bPETITIONER\b|\bRESPONDENT\b", 1.5),
+      (r"DEPARTMENT OF HEALTH,?\s+(PETITIONER,?\s+)?VS?\.?\s", 1.5),
       (r"EMERGENCY (SUSPENSION|RESTRICTION) ORDER", 3), (r"\bPROBATION\b", 1), (r"PROFESSIONALS RESOURCE NETWORK", 2),
-      (r"SELF-?QUERY", 2), (r"ADVERSE ACTION", 1.5)]),
+      (r"SELF-?QUERY", 2), (r"ADVERSE ACTION", 1.5),
+      (r"MONITORING (AGREEMENT|CONTRACT)|PARTICIPANT CONTRACT|DRUG SCREEN|TOXICOLOGY", 3),
+      (r"NOTICE OF INVESTIGATION|UNIFORM COMPLAINT|DOH CASE (NO|NUMBER)|PROBABLE CAUSE|CONSENT ORDER|LETTER OF (CONCERN|GUIDANCE)|REPRIMAND|DISCIPLINARY", 3)]),
     ("identity", "Social Security card", True,
      [(r"THIS NUMBER HAS BEEN ESTABLISHED FOR", 4), (r"SOCIAL SECURITY", 1.5), (r"\bSSA\b", 0.5)]),
     ("identity", "Driver license or state ID", True,
@@ -88,7 +91,8 @@ CRED_RULES = [
       (r"GAINWELL|FLMMIS", 2), (r"\bATN\b", 1), (r"PROVIDER ENROLLMENT", 1), (r"MEDICAID (ID|PROVIDER (ID|NUMBER))", 1.5)]),
     ("medicare-payers", "Medicare or payer enrollment", False,
      [(r"\bPECOS\b", 3), (r"CMS-? ?855", 3), (r"\bPTAN\b", 2), (r"MEDICARE (ENROLLMENT|APPROVAL|REVALIDATION)", 3),
-      (r"FIRST COAST|NOVITAS|PALMETTO GBA", 1.5), (r"WELCOME TO (THE|OUR) NETWORK", 2.5),
+      (r"FIRST COAST|NOVITAS|PALMETTO GBA", 1.5), (r"WELCOME TO (THE |OUR )?[A-Z0-9&'.\- ]{0,40}NETWORK|NOW (A )?PARTICIPATING|PLEASED TO (INFORM|WELCOME)", 3),
+      (r"NOTICE OF (TERMINATION|NON-?RENEWAL)|TERMINAT\w* (OF )?(YOUR )?(PARTICIPATION|NETWORK|AGREEMENT|CONTRACT)|(AGREEMENT|PARTICIPATION|CONTRACT) (WILL )?TERMINATE", 3),
       (r"PARTICIPATING PROVIDER|PARTICIPATION AGREEMENT", 2), (r"RE-?CREDENTIALING|CREDENTIALING COMMITTEE", 2),
       (r"NETWORK (PARTICIPATION|STATUS|TERMINATION)", 2), (r"EFFECTIVE DATE", 0.5)]),
     ("privileges", "Hospital privileges", False,
@@ -105,7 +109,7 @@ CRED_RULES = [
 # Categories each kind of entity has a vault folder for (public.cred_folders); anything else needs a person to decide.
 GROUP_ONLY = {"business", "permits-insurance", "correspondence", "payers", "medicare"}
 PERSON_ONLY = {"license", "dea", "board-caqh", "malpractice", "screening", "identity", "privileges", "collaboration",
-               "discipline", "medicare-payers"}
+               "discipline"}
 
 ERA_RULES = [(r"EXPLANATION OF (BENEFITS|PAYMENT)", 3), (r"REMITTANCE ADVICE|PROVIDER REMITTANCE|\bREMIT(TANCE)?\b", 2),
              (r"PATIENT ACC(OUN)?T", 1.5), (r"CLAIM (NUMBER|NO\b|#)", 1), (r"CHECK (NUMBER|NO\b|#|DATE|AMOUNT)", 1.5),
@@ -117,23 +121,25 @@ ERA_RULES = [(r"EXPLANATION OF (BENEFITS|PAYMENT)", 3), (r"REMITTANCE ADVICE|PRO
 FACESHEET_RULES = [(r"FACE ?SHEET", 3), (r"ADMISSION (RECORD|DATE)", 2), (r"RESIDENT (INFORMATION|NAME)", 2),
                    (r"POINTCLICKCARE|\bPCC\b", 1.5), (r"RESPONSIBLE PARTY|EMERGENCY CONTACT", 1.5),
                    (r"(PRIMARY|SECONDARY) (PAYER|PAYOR|INSURANCE)", 1.5), (r"\bMBI\b|MEDICARE (BENEFICIARY )?(ID|NUMBER)", 1),
-                   (r"ATTENDING PHYSICIAN", 1)]
+                   (r"ATTENDING PHYSICIAN", 1), (r"PATIENT (INFORMATION|DEMOGRAPHICS|REGISTRATION)|GUARANTOR|ADMIT(TING)? (DATE|DX|DIAGNOSIS)", 1.5)]
 BILLING_LETTER_RULES = [(r"ADDITIONAL DOCUMENTATION REQUEST|\bADR\b", 3), (r"MEDICAL RECORDS? REQUEST|REQUEST(ING)? (FOR )?(MEDICAL )?RECORDS", 3),
                         (r"OVERPAYMENT|REFUND REQUEST|RECOUP", 2.5), (r"RECONSIDERATION|REDETERMINATION|\bAPPEAL\b", 1.5),
                         (r"CLAIM (DENIAL|REJECT)", 1.5)]
-PERSONAL_RULES = [(r"PRE-?QUALIFIED|PRESCREEN(ED)?", 3), (r"OPT-?OUT NOTICE", 2.5), (r"HOME EQUITY|\bHELOC\b", 2.5), (r"\bAPR\b", 1),
-                  (r"LIMITED[- ]TIME OFFER|SPECIAL OFFER|ACT NOW", 2), (r"MEMBER FDIC|EQUAL HOUSING LENDER", 2),
+PERSONAL_RULES = [(r"PRE-?QUALIFIED|PRESCREEN(ED)?", 3), (r"OPT-?OUT NOTICE", 2.5), (r"HOME EQUITY|\bHELOC\b", 2.5), (r"\d(\.\d+)?%\s*APR\b|\bAPR\s*:?\s*\d{1,2}(\.\d+)?%", 1),
+                  (r"LIMITED[- ]TIME OFFER|SPECIAL OFFER", 2), (r"MEMBER FDIC|EQUAL HOUSING LENDER", 2),
                   (r"UNSUBSCRIBE|SWEEPSTAKES|YOU'?VE BEEN SELECTED", 2), (r"BALANCE TRANSFER|CREDIT CARD OFFER", 2)]
 # Generic role words (the practice's own names and numbers come from the database at run time).
 ROLE_CUES = {"aprn": [(r"\bAPRN\b|\bARNP\b|\bA\.R\.N\.P\b|\bA\.P\.R\.N\b|NURSE PRACTITIONER|ADVANCED PRACTICE REGISTERED NURSE", 1)],
              "physician": [(r"\bD\.? ?O\.?\b|OSTEOPATHIC PHYSICIAN|\bM\.? ?D\.?\b", 1)],
              "group": [(r"\b(P\.? ?A\.?|LLC|INC|PLLC)\b", 0.5)]}
-SSN_DASHED = re.compile(r"\b(?!000|666|9\d\d)\d{3}-(?!00)\d{2}-(?!0000)\d{4}\b")
+CARD_NO = re.compile(r"\b(?:\d{4}[ -]){3}\d{4}\b")
+SSN_DASHED = re.compile(r"\b(?!000|666|9\d\d)\d{3}[-\s.\u2013\u2014](?!00)\d{2}[-\s.\u2013\u2014](?!0000)\d{4}\b")
 MONTHS = "JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|SEPT|OCT|NOV|DEC|JANUARY|FEBRUARY|MARCH|APRIL|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER"
 DATE_RE = re.compile(r"\b(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})\b|\b(" + MONTHS + r")\.? (\d{1,2}),? (\d{4})\b|\b(\d{4})-(\d{2})-(\d{2})\b")
-EXPIRY_CUE = re.compile(r"EXPIR|\bEXP\b|VALID (THROUGH|THRU|UNTIL)|GOOD THROUGH|POLICY PERIOD|\bTO\b.{0,4}$")
+EXPIRY_CUE = re.compile(r"EXPIR|\bEXP\b|VALID (THROUGH|THRU|UNTIL)|GOOD THROUGH|POLICY PERIOD")
+RANGE_TO = re.compile(r"^\s*(TO|THROUGH|THRU|-|\u2013)\s*$")
 ISSUE_CUE = re.compile(r"ISSUE[D ]|DATE ISSUED|EFFECTIVE|DATE OF (ISSUE|NOTICE)|LETTER DATE|PRINTED|AS OF")
-NEVER_DATE = re.compile(r"BIRTH|\bDOB\b|\bBORN\b")
+NEVER_DATE = re.compile(r"B[I1]RTH|\bD\.?\s?[O0]\.?\s?B\b|\bBORN\b")
 
 
 def norm(text): return re.sub(r"\s+", " ", (text or "").upper())
@@ -165,27 +171,29 @@ def find_dates(text):
     """Issue and expiry dates by the words next to them; a line that speaks of a birth date is never read."""
     exp, iss = [], []
     for line in (text or "").splitlines():
-        u = line.upper(); prev_end = 0
+        u = line.upper(); prev_end = 0; prev_start = None
         for m in DATE_RE.finditer(u):
             # only the words between the previous date and this one count, so 'DOB' never lends its date to 'EXP' or back
             before = u[max(prev_end, m.start() - 60):m.start()]; prev_end = m.end()
+            first_on_line = prev_start is None; prev_start = m.start()
             if NEVER_DATE.search(before): continue
             iso = to_iso(m)
             if not iso or not ("1990" <= iso[:4] <= "2045"): continue
-            if EXPIRY_CUE.search(before): exp.append(iso)
+            if EXPIRY_CUE.search(before) or (not first_on_line and RANGE_TO.match(before)): exp.append(iso)
             elif ISSUE_CUE.search(before): iss.append(iso)
     return (max(exp) if exp else None), (max(iss) if iss else None)
 
 
-def entity_cues(providers):
+def entity_cues(providers, kinds=None):
     """providers: rows (id, name, npi, caqh_id, license_no, dea_no) from public.cred_providers -> {entity: [(regex, weight)]}.
     A clinician's last name that is also the first word of the practice's name ("Doe" in "Doe Health PA") does not count when
     the practice name follows it - otherwise every practice letter would read as the clinician's own paper."""
     def words_of(name):
-        return [w for w in re.findall(r"[A-Za-z]+", name or "") if len(w) > 2 and w.upper() not in ("ARNP", "APRN", "HEALTH", "INC", "LLC", "PLLC")]
+        return [w for w in re.findall(r"[A-Za-z]+", (name or "").split(",")[0]) if len(w) > 2 and w.upper() not in ("ARNP", "APRN", "HEALTH", "INC", "LLC", "PLLC")]
     group_follow = {}
+    is_group = lambda pid: (kinds or {}).get(pid) == "group" or pid == "group"
     for pid, name, *_ in providers:
-        if pid == "group":
+        if is_group(pid):
             ws = re.findall(r"[A-Za-z]+", name or "")
             if len(ws) >= 2: group_follow.setdefault(ws[0].upper(), []).append(ws[1].upper())
     cues = {}
@@ -193,7 +201,7 @@ def entity_cues(providers):
         c = []
         words = words_of(name)
         if words:
-            if pid == "group":
+            if is_group(pid):
                 ws = re.findall(r"[A-Za-z]+", name or "")
                 c.append((r"\b" + r"\s+".join(re.escape(w.upper()) for w in ws[:2]) + r"\b", 3))
             else:
@@ -204,7 +212,8 @@ def entity_cues(providers):
             if num: c.append((r"\b" + re.escape(str(num).upper()) + r"\b", w))
         if lic:
             digits = re.sub(r"\D", "", str(lic))
-            if digits: c.append((r"\b[A-Z]{0,4} ?" + digits + r"\b", 4))
+            pre = re.sub(r"[^A-Z]", "", str(lic).upper())
+            if digits: c.append(((r"\b" + re.escape(pre) + r"\s?#?\s?" if pre else r"\b") + digits + r"\b", 4 if pre or len(digits) >= 7 else 1))
         cues[pid] = c
     return cues
 
@@ -228,7 +237,7 @@ def pick_entity(u, category, cues, kinds):
     if category in GROUP_ONLY:
         return best_g, s
     aprn = [e for e, k in kinds.items() if k == "aprn-pa"]
-    if category in ("collaboration", "discipline") and aprn:
+    if category == "collaboration" and aprn:
         return max(aprn, key=lambda e: s.get(e, 0)), s
     # an APRN's own papers name the collaborating physician (who often signs the cover letter too): when the paper speaks
     # of the collaboration and the APRN is clearly named, it is the APRN's
@@ -238,7 +247,8 @@ def pick_entity(u, category, cues, kinds):
     # a category both the practice and the clinicians have (Medicaid): the practice when its own cues outweigh every clinician's
     if category not in PERSON_ONLY and best_g and (not best_p or groups[best_g] > people[best_p]):
         return (best_g if groups[best_g] >= 3 else None), s
-    if best_p and people[best_p] >= 2: return best_p, s
+    second = sorted(people.values(), reverse=True)[1] if len(people) > 1 else 0
+    if best_p and people[best_p] >= 2 and not (second >= 2 and people[best_p] - second < 4): return best_p, s
     return None, s
 
 
@@ -248,6 +258,12 @@ def classify_text(text, route="auto", cues=None, kinds=None):
     out = {"route": route, "kind": "unknown", "entity": None, "category": None, "doc_type": None, "restricted": False,
            "restricted_reason": None, "expires": None, "doc_date": None, "confidence": "low", "cues": [], "flags": []}
     if len(u.strip()) < 40:
+        if SSN_DASHED.search(u) and re.search(r"SOCIAL SECURITY|\bSSA\b|\bSSN\b", u):   # a short, badly read SS card is still one
+            out.update(kind="credentialing", category="identity", doc_type="Social Security card", restricted=True, confidence="medium",
+                       restricted_reason="shows a Social Security number")
+            out["flags"].append("SSN-bearing page - a person checks it")
+            out["entity"], s_ = pick_entity(u, "identity", cues, kinds)
+            return out
         out["flags"].append("no readable text - check the scan"); return out
     era, era_h = score(u, ERA_RULES)
     face, face_h = score(u, FACESHEET_RULES)
@@ -257,6 +273,13 @@ def classify_text(text, route="auto", cues=None, kinds=None):
     for cat, dtype, restr, rules in CRED_RULES:
         sc, h = score(u, rules)
         if sc > best_cred[0]: best_cred = (sc, (cat, dtype, restr, h))
+    # a restricted category (discipline, identity) wins when its own cues are real - at least 3 and half the best other
+    # category - so a monitoring agreement that names the board still files as discipline, while a Medicaid agreement whose
+    # fine print says "final order" stays a Medicaid agreement
+    top_open = max((score(u, rl)[0] for _, _, r_, rl in CRED_RULES if not r_), default=0.0)
+    restr_best = max(((sc2, (c2, d2, r2, h2)) for c2, d2, r2, rl2 in CRED_RULES if r2 for sc2, h2 in [score(u, rl2)]
+                      if sc2 >= 3 and sc2 >= 0.5 * top_open), default=None, key=lambda x: x[0])
+    if restr_best: best_cred = (max(best_cred[0], restr_best[0]), restr_best[1])
     cred = best_cred[0]
     bill = max(era, face, letter)
     # personal mail first: a prescreened offer is never practice paper, whatever folder it came in
@@ -265,23 +288,31 @@ def classify_text(text, route="auto", cues=None, kinds=None):
     # route bias: the folder is a hint worth +1.5 to its side; the text still decides
     bias_bill = 1.5 if route == "billing" else 0
     bias_cred = 1.5 if route == "credentialing" else 0
-    if bill + bias_bill >= 3 and bill + bias_bill > cred + bias_cred:
+    remit_veto = bool(re.search(r"REMITTANCE ADVICE|EXPLANATION OF (BENEFITS|PAYMENT)|PAY TO THE ORDER OF", u)) and bool(re.search(r"\bICN\b|CLAIM (NUMBER|NO\b|#)|PATIENT ACC|RECIPIENT (ID|NAME)", u))
+    if remit_veto or (bill + bias_bill >= 3 and bill + bias_bill > cred + bias_cred):
         kind = "era" if era >= max(face, letter) else ("facesheet" if face >= letter else "billing_letter")
         hits = era_h if kind == "era" else (face_h if kind == "facesheet" else letter_h)
         out.update(kind=kind, confidence="high" if bill >= 6 else "medium", cues=hits[:6])
-        if route == "credentialing": out["flags"].append("billing paper in the credentialing folder - routed to billing")
+        if route == "credentialing": out["flags"].append("note: billing paper in the credentialing folder - routed to billing")
         return out
     if cred + bias_cred >= 3 and best_cred[1]:
         cat, dtype, restr, hits = best_cred[1]
         out.update(kind="credentialing", category=cat, doc_type=dtype, restricted=restr, cues=hits[:6],
                    restricted_reason=("identity document" if cat == "identity" else "discipline record" if cat == "discipline" else None),
                    confidence="high" if cred >= 5 else "medium")
-        if route == "billing": out["flags"].append("credentialing paper in the billing folder - routed to credentialing")
+        if route == "billing": out["flags"].append("note: credentialing paper in the billing folder - routed to credentialing")
     elif route == "credentialing":
         out.update(kind="credentialing", confidence="low"); out["flags"].append("credentialing folder, but no category matched - a person decides")
     elif route == "billing" and bill >= 1.5:
         out.update(kind="era", confidence="low", cues=era_h[:6]); out["flags"].append("billing folder, weak remittance cues - check it")
+    if out["kind"] == "unknown" and SSN_DASHED.search(u) and re.search(r"SOCIAL SECURITY|\bSSA\b|\bSSN\b", u):
+        out.update(kind="credentialing", category="identity", doc_type="Social Security card", restricted=True, confidence="medium",
+                   restricted_reason="shows a Social Security number"); out["flags"].append("SSN-bearing page - a person checks it")
     if out["kind"] == "credentialing":
+        rr = [c for c, _, restr, rules in CRED_RULES if restr and score(u, rules)[0] >= 3 and score(u, rules)[0] >= 0.5 * top_open]
+        if rr and not out["restricted"]: out["restricted"] = True; out["restricted_reason"] = rr[0] + " cues on the page"
+        if CARD_NO.search(u):
+            out["restricted"] = True; out["restricted_reason"] = out["restricted_reason"] or "shows a card number"
         if SSN_DASHED.search(u) or re.search(r"SOCIAL SECURITY (NUMBER|NO\b|#)|\bSSN\b", u):
             out["restricted"] = True; out["restricted_reason"] = out["restricted_reason"] or "shows a Social Security number"
         ent, s = pick_entity(u, out["category"], cues, kinds)
@@ -292,12 +323,13 @@ def classify_text(text, route="auto", cues=None, kinds=None):
         top_person = max(people, key=people.get) if people else None
         if cat == "business" and top_person and people[top_person] >= s.get(ent, 0) + 2:
             ent = out["entity"] = top_person; cat = out["category"] = "medicare-payers"
-            out["flags"].append("an individual's NPI or tax record - filed with that person's Medicare and payers papers")
+            out["flags"].append("note: an individual's NPI or tax record - filed with that person's Medicare and payers papers")
         if ent and kinds.get(ent) == "group" and cat == "medicare-payers": out["category"] = "payers" if not re.search(r"MEDICARE|PECOS|PTAN|CMS", u) else "medicare"
         if ent and kinds.get(ent) != "group" and cat in GROUP_ONLY: out["flags"].append("a group category on a clinician's paper - check it")
         if ent and kinds.get(ent) == "group" and cat in PERSON_ONLY: out["flags"].append("a clinician category on group paper - check it")
         if ent is None and cat: out["flags"].append("whose document is unclear - a person decides")
         out["expires"], out["doc_date"] = find_dates(text)
+        if out["category"] == "identity": out["doc_date"] = None
     return out
 
 
@@ -339,6 +371,7 @@ def pdf_pages_text(path, dpi=200):
     return texts, ("tesseract" if len(need) == n else "text layer + tesseract (%d page(s))" % len(need))
 
 
+CONT = re.compile(r"\b(SECTION|ARTICLE)\s+[IVX\d]+\b|\bEXHIBIT\s+[A-Z\d]\b|\bPAGE\s+\d+\s+OF\s+\d+\b|WHEREAS|IN WITNESS WHEREOF|THIS (AGREEMENT|PROTOCOL|CONTRACT)")
 COARSE = {"era": "billing", "facesheet": "billing", "billing_letter": "billing", "credentialing": "credentialing", "personal": "personal"}
 
 
@@ -353,6 +386,7 @@ def segment(pages, route, cues, kinds):
     runs = []
     for i, r in enumerate(labels, 1):
         c = COARSE.get(r["kind"]) if r["confidence"] in ("high", "medium") else None
+        if c and runs and runs[-1]["coarse"] not in (None, c) and CONT.search(norm(pages[i - 1])): c = None
         if runs and (c is None or runs[-1]["coarse"] in (None, c)):
             if runs[-1]["coarse"] is None: runs[-1]["coarse"] = c
             runs[-1]["pages"].append(i); continue
@@ -364,9 +398,9 @@ def segment(pages, route, cues, kinds):
         cur, cur_cat = [], None
         for p in run["pages"]:
             r = labels[p - 1]
-            if cur and cur_cat and r["confidence"] == "high" and r["category"] and r["category"] != cur_cat:
+            if cur and cur_cat and r["confidence"] == "high" and r["category"] and not CONT.search(norm(pages[p - 1])) and (r["category"] != cur_cat or (r["entity"] and labels[cur[0] - 1]["entity"] not in (None, r["entity"]))):
                 before = classify_text(join(cur), route, cues, kinds)
-                if before["confidence"] == "high" and before["category"] == cur_cat:
+                if before["confidence"] == "high" and (before["category"] == cur_cat or r["category"] == cur_cat):
                     groups.append(cur); cur, cur_cat = [p], r["category"]; continue
             cur.append(p)
             if cur_cat is None and r["confidence"] in ("high", "medium"): cur_cat = r["category"]
@@ -376,13 +410,14 @@ def segment(pages, route, cues, kinds):
         a, b = groups[i], groups[i + 1]
         ra, rb, rab = (classify_text(join(x), route, cues, kinds) for x in (a, b, a + b))
         if (ra["kind"] == rb["kind"] == rab["kind"] == "credentialing" and rab["category"] == ra["category"]
-                and rb["confidence"] != "high" and rb["entity"] in (None, ra["entity"], rab["entity"])):
+                and rb["confidence"] != "high" and rb["entity"] in (None, ra["entity"]) and ra["entity"] in (None, rb["entity"], rab["entity"])):
             groups[i] = a + b; del groups[i + 1]; continue
         i += 1
     docs = []
     for g in groups:
         r = classify_text(join(g), route, cues, kinds)
         r["pages"] = page_ranges(g)
+        if any(labels[p - 1]["restricted"] for p in g) and not r["restricted"]: r["restricted"] = True; r["flags"].append("note: a page of it is restricted")
         docs.append(r)
     return docs
 
@@ -446,15 +481,29 @@ def route_for_title(title):
     return "auto"
 
 
+def rows_or_none(d, did):
+    return d.q("select 1 from public.scan_intake where drive_file_id=%s", [did])
+
+
+def outside_repo(path):
+    """Scans, their text and their split parts never sit in the repository's working tree (it is public and the PHI gate
+    reads text files only)."""
+    real = os.path.realpath(path)
+    if real == REPO or real.startswith(REPO + os.sep):
+        sys.exit("scan_intake: %s is inside the repository - keep scans in a scratch or /home/claude/scans folder" % path)
+    return path
+
+
 def load_listing(path):
     j = json.load(open(path))
-    return j.get("files") or j.get("items") or (j if isinstance(j, list) else [])
+    if isinstance(j, list): return j
+    return j.get("files") or j.get("items") or []
 
 
 def main():
     cmd = A[0] if A else "help"
     if cmd == "selftest": return selftest()
-    if cmd == "split": split_pdf(A[1], A[2], opt("--groups")); return
+    if cmd == "split": split_pdf(outside_repo(A[1]), outside_repo(A[2]), opt("--groups")); return
     if cmd not in ("ensure-tables", "folders-sync", "folders", "register", "pending", "classify", "mark"): sys.exit(__doc__)
     d, cv = db()
     practice = opt("--practice", "ehpa")
@@ -500,33 +549,43 @@ def main():
             r = d.q("select route from public.scan_intake where drive_file_id=%s", [did]); route = r[0][0] if r else "auto"
         route = route or "auto"
         prov = d.q("select id, name, npi, caqh_id, license_no, dea_no from public.cred_providers where coalesce(active::text,'true') <> 'false'")
-        cues, kinds = entity_cues(prov), dict(cv.ENTITY_KIND)
+        kinds = dict(cv.ENTITY_KIND); cues = entity_cues(prov, kinds)
         sha, npages, how = opt("--sha256"), None, "text"
         if opt("--pdf"):
-            pdf = opt("--pdf"); sha = hashlib.sha256(open(pdf, "rb").read()).hexdigest()
+            pdf = outside_repo(opt("--pdf")); sha = hashlib.sha256(open(pdf, "rb").read()).hexdigest()
             pages, how = pdf_pages_text(pdf); npages = len(pages)
+            if not npages:
+                if did: d.q("update public.scan_intake set status=%s, notes=%s, updated_at=now() where drive_file_id=%s", ["error", "PDF could not be read (0 pages)", did])
+                sys.exit("scan_intake: %s could not be read (0 pages) - a damaged or partial download" % pdf)
             docs = segment(pages, route, cues, kinds)
         else:
-            docs = [classify_text(open(opt("--text"), encoding="utf-8", errors="replace").read(), route, cues, kinds)]
+            docs = [classify_text(open(outside_repo(opt("--text")), encoding="utf-8", errors="replace").read(), route, cues, kinds)]
             npages = int(opt("--pages")) if opt("--pages") else None
         taken = set()
         for res in docs:
             if res["kind"] == "credentialing" and res["entity"] and res["category"]:
                 cat = res["category"]
+                if res["restricted"] and res["entity"] and kinds.get(res["entity"]) == "group":
+                    res["vault_folder_id"] = None; res["vault_category"] = cat; res["doc_id"] = None
+                    res["flags"].append("restricted practice paper (it shows an SSN or card number) - the practice has no restricted folder; a person files it")
+                    continue
                 if res["restricted"] and cat not in ("identity", "discipline") and res["entity"] != "group":
-                    cat = "identity"; res["flags"].append("shows an SSN - filed with the restricted identity documents")
+                    cat = "identity"; res["flags"].append("note: shows an SSN - filed with the restricted identity documents")
                 f = d.q("select drive_folder_id from public.cred_folders where practice=%s and entity=%s and category=%s",
                         [practice, res["entity"], cat])
                 res["vault_folder_id"] = f[0][0] if f else None
                 res["vault_category"] = cat
                 if not f: res["flags"].append("no vault folder for %s/%s - a person decides" % (res["entity"], cat))
                 taken |= {r[0] for r in d.q("select id from public.cred_documents where id like %s", ["%s-%s-%%" % (res["entity"], cat)])}
+                taken |= {r[0] for r in d.q("select jsonb_array_elements(detail->'documents')->>'doc_id' from public.scan_intake "
+                                            "where practice=%s and status not in ('filed','skipped') and drive_file_id <> %s and detail ? 'documents'",
+                                            [practice, did or ""]) if r[0]}
                 res["doc_id"] = doc_id_for(res["entity"], cat, res["doc_date"], res["expires"], taken); taken.add(res["doc_id"])
         out = {"drive_file_id": did, "route": route, "read_by": how, "pages": npages, "sha256": sha, "documents": docs, "flags": []}
         if len(docs) > 1:
             groups = ",".join((x.get("pages") or "?").replace(",", "+") for x in docs)
             out["split_groups"] = groups
-            out["flags"].append("%d documents in one scan - split with: split <pdf> <dir> --groups %s" % (len(docs), groups))
+            out["flags"].append("note: %d documents in one scan - split with: split <pdf> <dir> --groups %s" % (len(docs), groups))
         if sha:
             dup = d.q("select drive_file_id from public.scan_intake where sha256=%s and drive_file_id <> %s and status in ('filed','routed')",
                       [sha, did or ""])
@@ -535,7 +594,8 @@ def main():
         print(json.dumps(out, indent=1))
         if did:
             kinds_seen = sorted({x["kind"] for x in docs})
-            review = any(x["kind"] == "unknown" or (x["kind"] == "credentialing" and (x["flags"] or x["confidence"] == "low")) for x in docs)
+            held = lambda flags: [f for f in flags if not f.startswith("note: ")]
+            review = any(x["kind"] == "unknown" or held(x["flags"]) or (x["kind"] == "credentialing" and x["confidence"] == "low") for x in docs)
             first = docs[0] if docs else {}
             d.q("update public.scan_intake set route=%s, kind=%s, entity=%s, category=%s, restricted=%s, detail=%s::jsonb, sha256=coalesce(%s, sha256), "
                 "pages=coalesce(%s, pages), status=%s, classified_at=now(), updated_at=now() where drive_file_id=%s",
@@ -547,12 +607,13 @@ def main():
     if cmd == "split":
         split_pdf(A[1], A[2], opt("--groups")); return
     if cmd == "mark":
-        did = A[1]; st = opt("--status")
+        did = A[1] if len(A) > 1 else sys.exit(__doc__); st = opt("--status")
         if st not in ("filed", "routed", "skipped", "needs_review", "error", "new"): sys.exit("--status filed|routed|skipped|needs_review|error|new")
         d.q("update public.scan_intake set status=%s, routed_to=coalesce(%s, routed_to), vault_doc_id=coalesce(%s, vault_doc_id), "
             "notes=coalesce(%s, notes), processed_at=case when %s in ('filed','routed','skipped') then now() else processed_at end, "
-            "updated_at=now() where drive_file_id=%s",
+            "updated_at=now() where drive_file_id=%s returning drive_file_id",
             [st, opt("--routed-to"), opt("--vault-doc-id"), opt("--note"), st, did])
+        if not rows_or_none(d, did): sys.exit("scan_intake: no register row for %s - run register first" % did)
         print("marked %s %s" % (did, st))
 
 
@@ -599,6 +660,16 @@ def selftest():
          "Administration. Sincerely, John Doe, DO", "credentialing", ("credentialing", "roe", "medicaid")),
         ("DOE HEALTH LLC business tax receipt Local Business Tax", "credentialing", ("credentialing", "grp2", "permits-insurance")),
     ]
+    fake_spaced = " ".join(["123", "45", "6789"])
+    cases += [   # the 11/27/2026 adversarial review (synthetic)
+        ("FINAL ORDER Department of Health v. JOHN DOE, D.O. License No. OS99999 Board of Osteopathic Medicine", "credentialing",
+         ("credentialing", "doe", "discipline")),
+        ("SOCIAL SECURITY " + fake_spaced + " JANE ROE", "auto", ("credentialing", "roe", "identity")),
+        ("FLORIDA MEDICAID REMITTANCE ADVICE GAINWELL Medicaid provider ID ICN 1234567 Recipient ID Paid amt 45.00", "credentialing",
+         ("era", None, None)),
+        ("PROFESSIONALS RESOURCE NETWORK MONITORING AGREEMENT JOHN DOE Board of Osteopathic Medicine License No. OS 99999", "auto",
+         ("credentialing", "doe", "discipline")),
+    ]
     bad = 0
     for text, route, (k, e, c) in cases:
         r = classify_text(text, route, cues, kinds)
@@ -628,6 +699,12 @@ def selftest():
     two_ok = [(x["pages"], x["category"]) for x in docs] == [("1", "license"), ("2", "dea")]
     print("%s license + DEA in one scan split in two (%s)" % ("ok  " if two_ok else "FAIL", [(x["pages"], x["category"]) for x in docs]))
     bad += 0 if two_ok else 1
+    pages = ["U.S. DEPARTMENT OF JUSTICE DRUG ENFORCEMENT ADMINISTRATION CONTROLLED SUBSTANCE REGISTRATION CERTIFICATE JOHN DOE DO",
+             "U.S. DEPARTMENT OF JUSTICE DRUG ENFORCEMENT ADMINISTRATION CONTROLLED SUBSTANCE REGISTRATION CERTIFICATE JANE ROE APRN APRN7777777"]
+    docs = segment(pages, "credentialing", cues, kinds)
+    two_people_ok = [(x["pages"], x["entity"]) for x in docs] == [("1", "doe"), ("2", "roe")]
+    print("%s two people's DEA certificates stay apart (%s)" % ("ok  " if two_people_ok else "FAIL", [(x["pages"], x["entity"]) for x in docs]))
+    bad += 0 if two_people_ok else 1
     print("selftest: %d failure(s)" % bad)
     sys.exit(1 if bad else 0)
 
