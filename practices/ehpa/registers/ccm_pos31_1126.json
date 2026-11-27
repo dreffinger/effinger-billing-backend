@@ -1,0 +1,367 @@
+{
+ "what": "November CCM lines entered at 32 for residents in a skilled stay; William 11/26/2026 'Yes thx' to correcting the 20 to POS 31 (40 lines). The 13 unclear charts stay at 32 and are NOT here.",
+ "rule": "practices/ehpa/rules.md part 1, rule version 2026-11-26.1",
+ "script": "scripts/helpers/ccm_pos31_1126.py",
+ "items": [
+  {
+   "pid": "12181827",
+   "vid": "19462557",
+   "facility": "fac33",
+   "carrier": "CAP07",
+   "charges": [
+    "23375754",
+    "23375755"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17469446",
+   "vid": "19462639",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375915",
+    "23375916"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17471172",
+   "vid": "19462621",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375879",
+    "23375880"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17472491",
+   "vid": "19462554",
+   "facility": "fac33",
+   "carrier": "SIM01",
+   "charges": [
+    "23375748",
+    "23375749"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17472922",
+   "vid": "19462527",
+   "facility": "fac58",
+   "carrier": "CAP07",
+   "charges": [
+    "23375696",
+    "23375697"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17475778",
+   "vid": "19462630",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375897",
+    "23375898"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17476739",
+   "vid": "19462632",
+   "facility": "fac34",
+   "carrier": "WEL04",
+   "charges": [
+    "23375901",
+    "23375902"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17477128",
+   "vid": "19462674",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375983",
+    "23375984"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17477183",
+   "vid": "19462599",
+   "facility": "fac32",
+   "carrier": "SUN01",
+   "charges": [
+    "23375837",
+    "23375838"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17477830",
+   "vid": "19462638",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375913",
+    "23375914"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17477851",
+   "vid": "19462686",
+   "facility": "fac33",
+   "carrier": "FLO02",
+   "charges": [
+    "23376007",
+    "23376008"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478229",
+   "vid": "19462673",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375981",
+    "23375982"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478273",
+   "vid": "19462667",
+   "facility": "fac34",
+   "carrier": "FLO02",
+   "charges": [
+    "23375969",
+    "23375970"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478318",
+   "vid": "19462531",
+   "facility": "fac58",
+   "carrier": "CAP07",
+   "charges": [
+    "23375704",
+    "23375705"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478343",
+   "vid": "19462629",
+   "facility": "fac34",
+   "carrier": "CAP07",
+   "charges": [
+    "23375895",
+    "23375896"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478395",
+   "vid": "19462563",
+   "facility": "fac33",
+   "carrier": "CAP07",
+   "charges": [
+    "23375765",
+    "23375766"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "17478414",
+   "vid": "19462662",
+   "facility": "fac34",
+   "carrier": "CAP07",
+   "charges": [
+    "23375959",
+    "23375960"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "21772",
+   "vid": "19462615",
+   "facility": "fac34",
+   "carrier": "UNI20",
+   "charges": [
+    "23375867",
+    "23375868"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "23069",
+   "vid": "19462540",
+   "facility": "fac58",
+   "carrier": "FLO02",
+   "charges": [
+    "23375722",
+    "23375723"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  },
+  {
+   "pid": "23159",
+   "vid": "19462595",
+   "facility": "fac32",
+   "carrier": "FLO02",
+   "charges": [
+    "23375829",
+    "23375830"
+   ],
+   "dos": "11/24/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "icn": "",
+   "status": "waiting for the payer's answer",
+   "done": ""
+  }
+ ]
+}

@@ -30,7 +30,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-25.5"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-26.1"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -150,7 +150,13 @@ try:
         # (pos_err) and a visit with no facility used to leave before a CCM line was looked at, and fixed words then said "a CCM line at 32" about them - so of
         # the three ways an older copy of the rule put a CCM line in at 31 (its exception, a rule failure, an unknown building) only the first was shouted.
         _pl = x.get("pos_lines") if isinstance(x.get("pos_lines"), list) else []
-        _cv = [str(_p) for _cpt, _p in zip(_c, _pl) if _cpt in _CCM]      # where each CCM line of this visit was entered
+        _pk_ = x.get("pos_kind") if isinstance(x.get("pos_kind"), list) else []
+        # 11/26/2026 (William: "Skilled ones at 31"): a CCM line at 31 under pos_kind ccm-skilled, in a visit whose rule ran, is his rule - counted and named on its own, never as CCM ENTERED AT 31
+        _sk31 = [i for i, (_cpt, _p) in enumerate(zip(_c, _pl)) if _cpt in _CCM and str(_p) == "31" and i < len(_pk_) and _pk_[i] == "ccm-skilled" and not x.get("pos_err") and x.get("fac")]
+        if _sk31:
+            _ps["ccmskilled"] += len(_sk31)
+            if _tag(x) not in _who["ccmskilled"]: _who["ccmskilled"].append(_tag(x))
+        _cv = [str(_p) for i, (_cpt, _p) in enumerate(zip(_c, _pl)) if _cpt in _CCM and i not in _sk31]      # where each CCM line of this visit was entered (a skilled resident's 31 apart)
         if "31" in _cv:
             _ps["ccm31"] += _cv.count("31")
             if _tag(x) not in _who["ccm31"]: _who["ccm31"].append(_tag(x))
@@ -183,8 +189,9 @@ try:
         # only when such a visit has a CCM line at 32 and none at 31; a CCM line at 31 there is pointed to the CCM ENTERED AT 31 list; no CCM line, no words about one
         _e_ccm = " (a CCM line among them AT 31 - see CCM ENTERED AT 31)" if _ps["err_ccm31"] else " (a CCM line among them at 32)" if _ps["err_ccm32"] else ""
         _n_ccm = [w_ for w_ in ("a nursing visit at the default 31" if _ps["nofac_nf31"] else "", "a CCM line AT 31 - see CCM ENTERED AT 31" if _ps["nofac_ccm31"] else "a CCM line at 32" if _ps["nofac_ccm32"] else "") if w_]
-        L("- Place of service in the nursing buildings (11/10/2026 rule; CCM since 11/25/2026: every line 32): CCM lines entered as 32: %d%s%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
+        L("- Place of service in the nursing buildings (11/10/2026 rule; CCM since 11/25/2026: every line 32): CCM lines entered as 32: %d%s%s%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
+            ("; CCM lines entered as 31 for a resident in a skilled stay (William 11/26/2026): %d" % _ps["ccmskilled"]) if _ps["ccmskilled"] else "",
             (" (%d of them listed for William - the chart shows a skilled-looking month, see pos_why - not held and not changed)" % _ps["ccmlisted"]) if _ps["ccmlisted"] else "",
             (" - AND %d CCM LINE(S) ENTERED AT 31, which is not William's rule (11/25/2026: every CCM line is 32): an older copy of the rule ran, or the batch is from before that day - not held: they go out at 31 with the next claim run unless they are changed first" % _ps["ccm31"]) if _ps["ccm31"] else "",
             _ps["nf32"], _ps["nf31"],
@@ -200,6 +207,7 @@ try:
         # so the list is William's only cue for it (rules.md part 1: "he does not bill CCM on skilled residents, so a chart on that list is one for him to look at"); and a
         # CCM line at 31 goes out at 31 unless someone changes it first.
         _names("ccm31", "TOP OF THE REPORT - CCM ENTERED AT 31 (William 11/25/2026: every CCM line is 32) - for William before the claim run; a routine changes nothing on these visits", cap=None)
+        _names("ccmskilled", "for William, not held - CCM entered at 31, the chart shows a skilled stay that month (pos_kind ccm-skilled, William 11/26/2026)", cap=None)
         _names("ccmlisted", "for William, not held - CCM entered at 32, the chart shows a skilled-looking month (pos_kind ccm-skilled-month)", cap=None)
         _names("nfleft", "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between)")
         if _ps["notkept"]:
