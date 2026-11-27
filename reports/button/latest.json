@@ -1,40 +1,40 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-27T1259Z",
+ "stamp": "2026-11-27T1839Z",
  "mode": "live",
- "status": "warn",
- "headline": "Columns 0/14/6/1 -> 0/0/6/1; ERA 2 checks $283.46 -> 1 checks $88.28",
- "note": "",
+ "status": "ok",
+ "headline": "Columns 0/15/6/2 -> 0/0/6/2; ERA 2 checks $1614.28 -> 2 checks $306.28",
+ "note": "6-hourly backend billing run",
  "run_url": "",
- "started": "2026-11-27T12:59:08Z",
- "ended": "2026-11-27T13:02:52Z",
+ "started": "2026-11-27T18:47:06Z",
+ "ended": "2026-11-27T18:51:35Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 14,
+    "claim_inspector": 15,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 2
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 2
    }
   },
   "era": {
    "before": {
     "checks": 2,
-    "unposted": 283.46
+    "unposted": 1614.28
    },
    "after": {
-    "checks": 1,
-    "unposted": 88.28
+    "checks": 2,
+    "unposted": 306.28
    }
   },
   "posted": {
-   "pay": 195.18,
+   "pay": 1308.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -57,48 +57,48 @@
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
-   "summary": "1551 helpers into /home/claude/unbilled",
+   "status": "ok",
+   "summary": "1556 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1551,
-    "registers": 2126,
+    "helpers copied": 1556,
+    "registers": 2128,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
-   ],
-   "started": "2026-11-27T12:59:08Z",
-   "ended": "2026-11-27T12:59:09Z"
+   "errors": [],
+   "started": "2026-11-27T18:47:06Z",
+   "ended": "2026-11-27T18:47:07Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 14->0, Unbilled 6->6, Exclusions 1->1",
+   "summary": "CR 0->0, CI 15->0, Unbilled 6->6, Exclusions 2->2",
    "counts": {
     "charge review": 0,
-    "claim inspector": 14,
+    "claim inspector": 15,
     "unbilled": 6,
-    "exclusions": 1,
-    "inspector advisories to bypass": 14,
+    "exclusions": 2,
+    "inspector advisories to bypass": 15,
     "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 14,
+    "inspector bypasses sent": 15,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 6,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700413": 0,
+    "exclusions crossover run 1700413": "see log"
    },
    "dollars": {},
    "lines": [
     {
      "column": "claim inspector",
      "kind": "advisory",
-     "visits": 14,
-     "ids": "v19462781 v19402238 v19404184 v19405204 v19405521 v19405942 v19405966 v19406052 v19406334 v19418040 v19419580 v19422661 v19422668 v19369637"
+     "visits": 15,
+     "ids": "v19406040 v19388439 v19454394 v19390080 v19390081 v19390082 v19390159 v19390268 v19390339 v19390411 v19390630 v19390670 v19390959 v19391190 v19391289"
     },
     {
      "column": "unbilled",
@@ -123,31 +123,39 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700413",
+     "kind": "SUN01 PA CATEGORY: ACKNOWLEDGEMENT/RETURNED AS UNPROCESSABLE CLAIM",
+     "visits": 1,
+     "ids": "v19455295"
     }
    ],
    "errors": [],
-   "started": "2026-11-27T12:59:09Z",
-   "ended": "2026-11-27T13:02:34Z"
+   "started": "2026-11-27T18:47:07Z",
+   "ended": "2026-11-27T18:50:32Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $283.46 -> 1 checks / $88.28",
+   "summary": "2 checks / $1614.28 -> 2 checks / $306.28",
    "counts": {
     "era_post lines": 1,
     "checks the Post button posted or was offered": 1,
     "co45 lines corrected": 0,
-    "co45 lines for review": 0,
+    "co45 lines for review": 2,
     "fallback orphan": 1,
+    "fallback already-posted": 12,
+    "fallback unrecorded": 2,
     "checks dismissed": 0,
-    "checks held": 1,
+    "checks held": 2,
     "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 283.46,
-    "unposted after": 88.28,
-    "posted this run": 195.18
+    "unposted before": 1614.28,
+    "unposted after": 306.28,
+    "posted this run": 1308.0
    },
    "lines": [
     {
@@ -159,23 +167,25 @@
      "stage": "before"
     },
     {
-     "check": 1053679,
-     "payer": "UNITED HEALTHCARE",
-     "checknumber": "W3157613",
+     "check": 1053680,
+     "payer": "OPTUM VA CCN",
+     "checknumber": "3009828414",
      "amount": 0.0,
-     "unposted": 195.18,
+     "unposted": 1526.0,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-27T13:02:34Z",
-   "ended": "2026-11-27T13:02:52Z"
+   "started": "2026-11-27T18:50:32Z",
+   "ended": "2026-11-27T18:51:35Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "ERA fallback: 1 money line(s) with no matching live charge ($88.28) - registers/era_fallback_2026-11-27T1259Z_live.json",
-  "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l"
+  "ERA CO-45 pass after the Post button: 2 line(s) left for review (registers/era_co45_relink_*)",
+  "ERA fallback: 1 money line(s) with no matching live charge ($88.28) - registers/era_fallback_2026-11-27T1839Z_live.json",
+  "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l",
+  "ERA check 1053680 held by era_clear: VACCN 3009828414 $1526.0: 2 unrecorded payment (reversal pipeline) - left on the list"
  ],
  "errors": []
 }
