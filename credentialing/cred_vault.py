@@ -125,12 +125,13 @@ def main():
         need = ["--id", "--entity", "--category", "--title"]
         if any(not opt(n) for n in need): sys.exit(__doc__)
         drive = opt("--drive-id")
-        db.q("insert into public.cred_documents (id, practice, provider, category, title, file_name, status, doc_date, expiration_date, sensitivity, "
-             "drive_file_id, drive_folder_id, source, notes, uploaded_at, updated_at) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,now(),now()) "
-             "on conflict (id) do update set provider=excluded.provider, category=excluded.category, title=excluded.title, status=excluded.status, "
+        db.q("insert into public.cred_documents (id, practice, provider, category, doc_type, title, file_name, status, doc_date, expiration_date, sensitivity, "
+             "drive_file_id, drive_folder_id, source, notes, uploaded_at, updated_at) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,now(),now()) "
+             "on conflict (id) do update set provider=excluded.provider, category=excluded.category, doc_type=excluded.doc_type, title=excluded.title, status=excluded.status, "
              "doc_date=excluded.doc_date, expiration_date=excluded.expiration_date, sensitivity=excluded.sensitivity, drive_file_id=excluded.drive_file_id, "
              "drive_folder_id=excluded.drive_folder_id, source=excluded.source, notes=excluded.notes, updated_at=now()",
-             [opt("--id"), practice, opt("--entity"), opt("--category"), opt("--title"), opt("--file-name") or (os.path.basename(opt("--file")) if opt("--file") else None),
+             [opt("--id"), practice, opt("--entity"), opt("--category"), opt("--type") or opt("--category"), opt("--title"),
+              opt("--file-name") or (os.path.basename(opt("--file")) if opt("--file") else opt("--title")),
               opt("--status", "current"), opt("--doc-date"), opt("--expires"), "restricted" if flag("--restricted") else "normal", drive, opt("--folder-id"),
               opt("--source"), opt("--notes")])
         print("indexed %s" % opt("--id"))
