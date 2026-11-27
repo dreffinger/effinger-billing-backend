@@ -44,24 +44,29 @@ KINDS = ("era", "facesheet", "billing_letter", "credentialing", "personal", "unk
 # Classifier. Patterns run on the upper-cased text with runs of white space folded to one space. Weights add up per rule set.
 # Each credentialing rule: (category, doc_type, restricted, [(regex, weight), ...]).
 CRED_RULES = [
+    # discipline first: on a tie the more specific and more protective label wins (an NPDB report carries field labels
+    # such as 'Social Security', 'DEA' and 'License' - those are fields of the report, not the documents themselves)
+    ("discipline", "Discipline or monitoring record", True,
+     [(r"NATIONAL PRACTITIONER DATA BANK|\bNPDB\b", 6), (r"INTERVENTION PROJECT FOR NURSES|\bIPN\b", 3),
+      (r"SETTLEMENT AGREEMENT", 2.5), (r"FINAL ORDER", 2.5), (r"ADMINISTRATIVE COMPLAINT", 2.5),
+      (r"EMERGENCY (SUSPENSION|RESTRICTION) ORDER", 3), (r"\bPROBATION\b", 1), (r"PROFESSIONALS RESOURCE NETWORK", 2),
+      (r"SELF-?QUERY", 2), (r"ADVERSE ACTION", 1.5)]),
     ("identity", "Social Security card", True,
-     [(r"SOCIAL SECURITY", 3), (r"THIS NUMBER HAS BEEN ESTABLISHED", 3), (r"\bSSA\b", 1)]),
+     [(r"THIS NUMBER HAS BEEN ESTABLISHED FOR", 4), (r"SOCIAL SECURITY", 1.5), (r"\bSSA\b", 0.5)]),
     ("identity", "Driver license or state ID", True,
      [(r"DRIVER'?S? LICEN[CS]E", 3), (r"IDENTIFICATION CARD", 2.5), (r"\bCLASS\s+E\b", 1.5), (r"\bDOB\b|DATE OF BIRTH", 1),
       (r"\bSEX\b.{0,12}\b[MF]\b", 0.5), (r"\bHGT\b|\bHEIGHT\b", 0.5)]),
     ("identity", "Passport", True, [(r"\bPASSPORT\b", 3), (r"NATIONALITY", 1)]),
-    ("discipline", "Discipline or monitoring record", True,
-     [(r"INTERVENTION PROJECT FOR NURSES|\bIPN\b", 3), (r"SETTLEMENT AGREEMENT", 2.5), (r"FINAL ORDER", 2.5),
-      (r"ADMINISTRATIVE COMPLAINT", 2.5), (r"NATIONAL PRACTITIONER DATA BANK|\bNPDB\b", 3),
-      (r"EMERGENCY (SUSPENSION|RESTRICTION) ORDER", 3), (r"\bPROBATION\b", 1), (r"PROFESSIONALS RESOURCE NETWORK", 2)]),
     ("dea", "DEA registration", False,
-     [(r"DRUG ENFORCEMENT ADMINISTRATION", 3), (r"CONTROLLED SUBSTANCE REGISTRATION", 3),
-      (r"\bDEA\b.{0,30}(REGISTRATION|CERTIFICATE)", 2), (r"SCHEDULES?\b.{0,20}\b2N\b", 2)]),
+     [(r"CONTROLLED SUBSTANCE REGISTRATION", 3.5), (r"DRUG ENFORCEMENT ADMINISTRATION", 2),
+      (r"\bDEA\b.{0,30}(REGISTRATION|CERTIFICATE)", 1.5), (r"SCHEDULES?\b.{0,20}\b2N\b", 2)]),
+    # a license number appears on many forms (agreements, applications, reports): numbers count little; the licensing
+    # board's own page (verification, status, renewal) counts
     ("license", "License (verification or renewal)", False,
-     [(r"LICENSE VERIFICATION", 3), (r"BOARD OF OSTEOPATHIC MEDICINE", 3), (r"BOARD OF NURSING", 2.5),
-      (r"MEDICAL QUALITY ASSURANCE|\bMQA\b", 2), (r"DEPARTMENT OF HEALTH", 1), (r"LICENSE (NUMBER|NO\b|#)", 1.5),
-      (r"\bOS ?\d{4,6}\b", 1.5), (r"\b(APRN|ARNP|RN|ME) ?\d{5,8}\b", 1.5), (r"CLEAR/ACTIVE|STATUS:? ?CLEAR", 1.5),
-      (r"RENEWAL (CONFIRMATION|NOTICE|RECEIPT)", 1)]),
+     [(r"LICENSE VERIFICATION", 3), (r"BOARD OF OSTEOPATHIC MEDICINE", 2.5), (r"BOARD OF NURSING", 2),
+      (r"MEDICAL QUALITY ASSURANCE|\bMQA\b", 2), (r"CLEAR/ACTIVE|STATUS:? ?CLEAR|LICENSE STATUS", 2),
+      (r"RENEWAL (CONFIRMATION|NOTICE|RECEIPT)", 1.5), (r"LICENSE EXPIR", 1), (r"DEPARTMENT OF HEALTH", 0.5),
+      (r"LICENSE (NUMBER|NO\b|#)", 0.5), (r"\bOS ?\d{4,6}\b", 0.5), (r"\b(APRN|ARNP|RN|ME) ?\d{5,8}\b", 0.5)]),
     ("board-caqh", "Board certification", False,
      [(r"AMERICAN OSTEOPATHIC BOARD", 3), (r"\bAOBFP\b", 2.5), (r"\bDIPLOMATE\b", 2),
       (r"AMERICAN ACADEMY OF NURSE PRACTITIONERS|\bAANP\b", 3), (r"AMERICAN NURSES CREDENTIALING CENTER|\bANCC\b", 3),
@@ -75,14 +80,16 @@ CRED_RULES = [
       (r"RETAINED PRINTS?", 2), (r"FINGERPRINT", 1.5)]),
     ("collaboration", "Collaboration agreement or protocol", False,
      [(r"COLLABORATIVE (PRACTICE )?AGREEMENT", 3), (r"COLLABORATING PHYSICIAN|SUPERVISING PHYSICIAN", 2),
-      (r"\bPROTOCOL\b", 1), (r"464\.012", 2)]),
+      (r"(A\.? ?R\.? ?N\.? ?P\.?|A\.? ?P\.? ?R\.? ?N\.?|GENERAL|COLLABORATIVE|PRACTICE|WRITTEN) PROTOCOLS?|PROTOCOLS? (FOR|BETWEEN)|THIS PROTOCOL", 3),
+      (r"\bPROTOCOLS?\b", 1), (r"NURSE PRACTICE ACT", 1.5),
+      (r"464\.012", 2), (r"DELEGAT(ED|ION)|MEDICAL ACTS", 1)]),
     ("medicaid", "Medicaid enrollment", False,
      [(r"MEDICAID PROVIDER AGREEMENT", 3), (r"AGENCY FOR HEALTH CARE ADMINISTRATION|\bAHCA\b", 2), (r"FLORIDA MEDICAID", 2),
       (r"GAINWELL|FLMMIS", 2), (r"\bATN\b", 1), (r"PROVIDER ENROLLMENT", 1), (r"MEDICAID (ID|PROVIDER (ID|NUMBER))", 1.5)]),
     ("medicare-payers", "Medicare or payer enrollment", False,
      [(r"\bPECOS\b", 3), (r"CMS-? ?855", 3), (r"\bPTAN\b", 2), (r"MEDICARE (ENROLLMENT|APPROVAL|REVALIDATION)", 3),
       (r"FIRST COAST|NOVITAS|PALMETTO GBA", 1.5), (r"WELCOME TO (THE|OUR) NETWORK", 2.5),
-      (r"PARTICIPATING PROVIDER|PARTICIPATION AGREEMENT|PROVIDER AGREEMENT", 2), (r"RE-?CREDENTIALING|CREDENTIALING COMMITTEE", 2),
+      (r"PARTICIPATING PROVIDER|PARTICIPATION AGREEMENT", 2), (r"RE-?CREDENTIALING|CREDENTIALING COMMITTEE", 2),
       (r"NETWORK (PARTICIPATION|STATUS|TERMINATION)", 2), (r"EFFECTIVE DATE", 0.5)]),
     ("privileges", "Hospital privileges", False,
      [(r"MEDICAL STAFF", 2), (r"REAPPOINTMENT", 2), (r"CLINICAL PRIVILEGES", 2), (r"CREDENTIALS COMMITTEE", 2),
@@ -118,7 +125,7 @@ PERSONAL_RULES = [(r"PRE-?QUALIFIED|PRESCREEN(ED)?", 3), (r"OPT-?OUT NOTICE", 2.
                   (r"LIMITED[- ]TIME OFFER|SPECIAL OFFER|ACT NOW", 2), (r"MEMBER FDIC|EQUAL HOUSING LENDER", 2),
                   (r"UNSUBSCRIBE|SWEEPSTAKES|YOU'?VE BEEN SELECTED", 2), (r"BALANCE TRANSFER|CREDIT CARD OFFER", 2)]
 # Generic role words (the practice's own names and numbers come from the database at run time).
-ROLE_CUES = {"aprn": [(r"\bAPRN\b|\bARNP\b|NURSE PRACTITIONER|ADVANCED PRACTICE REGISTERED NURSE", 1)],
+ROLE_CUES = {"aprn": [(r"\bAPRN\b|\bARNP\b|\bA\.R\.N\.P\b|\bA\.P\.R\.N\b|NURSE PRACTITIONER|ADVANCED PRACTICE REGISTERED NURSE", 1)],
              "physician": [(r"\bD\.? ?O\.?\b|OSTEOPATHIC PHYSICIAN|\bM\.? ?D\.?\b", 1)],
              "group": [(r"\b(P\.? ?A\.?|LLC|INC|PLLC)\b", 0.5)]}
 SSN_DASHED = re.compile(r"\b(?!000|666|9\d\d)\d{3}-(?!00)\d{2}-(?!0000)\d{4}\b")
@@ -171,16 +178,28 @@ def find_dates(text):
 
 
 def entity_cues(providers):
-    """providers: rows (id, name, npi, caqh_id, license_no, dea_no) from public.cred_providers -> {entity: [(regex, weight)]}."""
+    """providers: rows (id, name, npi, caqh_id, license_no, dea_no) from public.cred_providers -> {entity: [(regex, weight)]}.
+    A clinician's last name that is also the first word of the practice's name ("Doe" in "Doe Health PA") does not count when
+    the practice name follows it - otherwise every practice letter would read as the clinician's own paper."""
+    def words_of(name):
+        return [w for w in re.findall(r"[A-Za-z]+", name or "") if len(w) > 2 and w.upper() not in ("ARNP", "APRN", "HEALTH", "INC", "LLC", "PLLC")]
+    group_follow = {}
+    for pid, name, *_ in providers:
+        if pid == "group":
+            ws = re.findall(r"[A-Za-z]+", name or "")
+            if len(ws) >= 2: group_follow.setdefault(ws[0].upper(), []).append(ws[1].upper())
     cues = {}
     for pid, name, npi, caqh, lic, dea in providers:
         c = []
-        words = [w for w in re.findall(r"[A-Za-z]+", name or "") if len(w) > 2 and w.upper() not in ("ARNP", "APRN", "HEALTH")]
+        words = words_of(name)
         if words:
-            last = words[-1] if pid != "group" else None
-            if pid == "group": c.append((r"\b" + r"\s+".join(re.escape(w.upper()) for w in words[:2]) + r"\b", 3))
+            if pid == "group":
+                ws = re.findall(r"[A-Za-z]+", name or "")
+                c.append((r"\b" + r"\s+".join(re.escape(w.upper()) for w in ws[:2]) + r"\b", 3))
             else:
-                c.append((r"\b" + re.escape(words[0].upper()) + r"\b", 1)); c.append((r"\b" + re.escape(last.upper()) + r"\b", 2))
+                first, last = words[0].upper(), words[-1].upper()
+                not_group = "".join(r"(?!\s+%s\b)" % re.escape(f) for f in group_follow.get(last, []))
+                c.append((r"\b" + re.escape(first) + r"\b", 1)); c.append((r"\b" + re.escape(last) + r"\b" + not_group, 2))
         for num, w in ((npi, 4), (caqh, 3), (dea, 4)):
             if num: c.append((r"\b" + re.escape(str(num).upper()) + r"\b", w))
         if lic:
@@ -190,24 +209,36 @@ def entity_cues(providers):
     return cues
 
 
+SUBJECT = re.compile(r"\b(RE|SUBJECT|REGARDING|APPLICANT|PROVIDER NAME|PRACTITIONER NAME|NAME OF (APPLICANT|PROVIDER|PRACTITIONER))\b\s*:?\s*(.{0,120})")
+COLLAB_CTX = re.compile(r"COLLABORATING PHYSICIAN|SUPERVISING PHYSICIAN|COLLABORATIVE (PRACTICE )?AGREEMENT|MEDICAL DIRECTOR")
+
+
 def pick_entity(u, category, cues, kinds):
     """Who the document belongs to. kinds: {entity: 'individual'|'aprn-pa'|'group'}."""
     s = {e: score(u, r)[0] for e, r in cues.items()}
+    for m in SUBJECT.finditer(u):                          # the name on the subject / applicant line is who the paper is about
+        for e, r in cues.items(): s[e] += score(m.group(3), r)[0]
     for e, k in kinds.items():
         if k == "aprn-pa": s[e] = s.get(e, 0) + score(u, ROLE_CUES["aprn"])[0]
         elif k == "individual": s[e] = s.get(e, 0) + score(u, ROLE_CUES["physician"])[0] * 0.5
     people = {e: v for e, v in s.items() if kinds.get(e) != "group"}
     groups = {e: v for e, v in s.items() if kinds.get(e) == "group"}
+    best_p = max(people, key=people.get) if people else None
+    best_g = max(groups, key=groups.get) if groups else None
     if category in GROUP_ONLY:
-        return (max(groups, key=groups.get) if groups else None), s
-    if category in ("collaboration", "discipline"):
-        aprn = [e for e, k in kinds.items() if k == "aprn-pa"]
-        if aprn: return max(aprn, key=lambda e: s.get(e, 0)), s
-    if people:
-        best = max(people, key=people.get)
-        # a clinician's own paper names the clinician; the physician's name on an APRN's paper is the collaborator
-        if people[best] >= 2: return best, s
-    if category in ("medicaid",) and groups and max(groups.values()) >= 3: return max(groups, key=groups.get), s
+        return best_g, s
+    aprn = [e for e, k in kinds.items() if k == "aprn-pa"]
+    if category in ("collaboration", "discipline") and aprn:
+        return max(aprn, key=lambda e: s.get(e, 0)), s
+    # an APRN's own papers name the collaborating physician (who often signs the cover letter too): when the paper speaks
+    # of the collaboration and the APRN is clearly named, it is the APRN's
+    if aprn and COLLAB_CTX.search(u):
+        a = max(aprn, key=lambda e: s.get(e, 0))
+        if s.get(a, 0) >= 4 and category != "privileges": return a, s
+    # a category both the practice and the clinicians have (Medicaid): the practice when its own cues outweigh every clinician's
+    if category not in PERSON_ONLY and best_g and (not best_p or groups[best_g] > people[best_p]):
+        return (best_g if groups[best_g] >= 3 else None), s
+    if best_p and people[best_p] >= 2: return best_p, s
     return None, s
 
 
@@ -257,6 +288,11 @@ def classify_text(text, route="auto", cues=None, kinds=None):
         out["entity"] = ent
         out["entity_scores"] = {e: round(v, 1) for e, v in s.items()}
         cat = out["category"]
+        people = {e: v for e, v in s.items() if kinds.get(e) != "group"}
+        top_person = max(people, key=people.get) if people else None
+        if cat == "business" and top_person and people[top_person] >= s.get(ent, 0) + 2:
+            ent = out["entity"] = top_person; cat = out["category"] = "medicare-payers"
+            out["flags"].append("an individual's NPI or tax record - filed with that person's Medicare and payers papers")
         if ent and kinds.get(ent) == "group" and cat == "medicare-payers": out["category"] = "payers" if not re.search(r"MEDICARE|PECOS|PTAN|CMS", u) else "medicare"
         if ent and kinds.get(ent) != "group" and cat in GROUP_ONLY: out["flags"].append("a group category on a clinician's paper - check it")
         if ent and kinds.get(ent) == "group" and cat in PERSON_ONLY: out["flags"].append("a clinician category on group paper - check it")
@@ -275,52 +311,78 @@ def doc_id_for(entity, category, doc_date, expires, taken):
 
 
 def pdf_pages_text(path, dpi=200):
-    """One text per page: the PDF's own text layer when it has one, else tesseract (300 dpi is the remit pipeline's; 200 is
-    enough to sort documents). ScanSnap duplex backs come out (nearly) empty and count as continuation pages."""
-    n = 0
+    """One text per page: the page's own text layer when it has one (80+ characters), else tesseract on that page alone - a
+    file can mix typed pages and scanned enclosures. ScanSnap duplex backs come out (nearly) empty and count as continuation pages."""
     info = subprocess.run(["pdfinfo", path], capture_output=True, text=True).stdout
     m = re.search(r"^Pages:\s+(\d+)", info, re.M)
     n = int(m.group(1)) if m else 0
-    texts = []
-    for i in range(1, n + 1):
-        t = subprocess.run(["pdftotext", "-layout", "-f", str(i), "-l", str(i), path, "-"], capture_output=True, text=True).stdout
-        texts.append(t)
-    if n and sum(len(re.sub(r"\s+", "", t)) for t in texts) >= 80 * n:
-        return texts, "text layer"
+    texts = [subprocess.run(["pdftotext", "-layout", "-f", str(i), "-l", str(i), path, "-"], capture_output=True, text=True).stdout
+             for i in range(1, n + 1)]
+    need = [i for i, t in enumerate(texts, 1) if len(re.sub(r"\s+", "", t)) < 80]
+    if not need: return texts, "text layer"
     if not shutil.which("tesseract"):
-        sys.exit("scan_intake: this scan has no text layer and tesseract is not installed (apt-get install -y tesseract-ocr), "
-                 "or pass Drive's OCR text with --text")
+        sys.exit("scan_intake: %d page(s) have no text layer and tesseract is not installed (apt-get install -y tesseract-ocr), "
+                 "or pass Drive's OCR text with --text" % len(need))
     tmp = tempfile.mkdtemp(prefix="scanocr_")
+    env = dict(os.environ, OMP_THREAD_LIMIT="1")
+    def one(i):
+        base = os.path.join(tmp, "p%04d" % i)
+        subprocess.run(["pdftoppm", "-r", str(dpi), "-gray", "-png", "-f", str(i), "-l", str(i), "-singlefile", path, base], capture_output=True)
+        img = base + ".png"
+        if not os.path.exists(img): return i, ""
+        return i, subprocess.run(["tesseract", img, "-", "--psm", "6"], capture_output=True, text=True, env=env).stdout
     try:
-        subprocess.run(["pdftoppm", "-r", str(dpi), "-gray", "-png", path, os.path.join(tmp, "p")], capture_output=True)
-        imgs = sorted(glob.glob(os.path.join(tmp, "p-*.png")), key=lambda f: int(re.findall(r"(\d+)\.png$", f)[0]))
-        env = dict(os.environ, OMP_THREAD_LIMIT="1")
-        def one(img):
-            return subprocess.run(["tesseract", img, "-", "--psm", "6"], capture_output=True, text=True, env=env).stdout
         with ThreadPoolExecutor(max(1, (os.cpu_count() or 2))) as ex:
-            texts = list(ex.map(one, imgs))
+            for i, t in ex.map(one, need): texts[i - 1] = t
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
-    return texts, "tesseract"
+    return texts, ("tesseract" if len(need) == n else "text layer + tesseract (%d page(s))" % len(need))
+
+
+COARSE = {"era": "billing", "facesheet": "billing", "billing_letter": "billing", "credentialing": "credentialing", "personal": "personal"}
 
 
 def segment(pages, route, cues, kinds):
-    """Pages -> documents. A page with a clear label of its own starts a new document when its label differs from the
-    current one; a page without a clear label (a back, a page of terms, page 3 of 5 of an agreement) continues the current one."""
+    """Pages -> documents. (1) Runs of one coarse kind (billing / credentialing / personal); a page without a clear label (a
+    duplex back, a page of terms, page 3 of a 5-page agreement) continues the run it is in. (2) Billing runs stay whole - the
+    paper-remit pipeline reads them page by page itself. (3) A credentialing run is cut only where a page is CLEARLY another
+    credential (high confidence, other category) and what came before is clearly a credential of its own. (4) Neighbours that
+    read as one document together are merged back."""
+    labels = [classify_text(t, route, cues, kinds) for t in pages]
+    join = lambda nums: "\n".join(pages[p - 1] for p in nums)
+    runs = []
+    for i, r in enumerate(labels, 1):
+        c = COARSE.get(r["kind"]) if r["confidence"] in ("high", "medium") else None
+        if runs and (c is None or runs[-1]["coarse"] in (None, c)):
+            if runs[-1]["coarse"] is None: runs[-1]["coarse"] = c
+            runs[-1]["pages"].append(i); continue
+        runs.append({"coarse": c, "pages": [i]})
     groups = []
-    for i, t in enumerate(pages, 1):
-        r = classify_text(t, route, cues, kinds)
-        clear = r["kind"] not in ("unknown",) and r["confidence"] in ("high", "medium")
-        key = (r["kind"], r["category"], r["entity"]) if clear else None
-        if groups and (key is None or key == groups[-1]["key"] or groups[-1]["key"] is None):
-            if groups[-1]["key"] is None and key is not None: groups[-1]["key"] = key
-            groups[-1]["pages"].append(i); continue
-        groups.append({"key": key, "pages": [i]})
+    for run in runs:
+        if run["coarse"] != "credentialing":
+            groups.append(run["pages"]); continue
+        cur, cur_cat = [], None
+        for p in run["pages"]:
+            r = labels[p - 1]
+            if cur and cur_cat and r["confidence"] == "high" and r["category"] and r["category"] != cur_cat:
+                before = classify_text(join(cur), route, cues, kinds)
+                if before["confidence"] == "high" and before["category"] == cur_cat:
+                    groups.append(cur); cur, cur_cat = [p], r["category"]; continue
+            cur.append(p)
+            if cur_cat is None and r["confidence"] in ("high", "medium"): cur_cat = r["category"]
+        if cur: groups.append(cur)
+    i = 0
+    while i < len(groups) - 1:
+        a, b = groups[i], groups[i + 1]
+        ra, rb, rab = (classify_text(join(x), route, cues, kinds) for x in (a, b, a + b))
+        if (ra["kind"] == rb["kind"] == rab["kind"] == "credentialing" and rab["category"] == ra["category"]
+                and rb["confidence"] != "high" and rb["entity"] in (None, ra["entity"], rab["entity"])):
+            groups[i] = a + b; del groups[i + 1]; continue
+        i += 1
     docs = []
     for g in groups:
-        text = "\n".join(pages[p - 1] for p in g["pages"])
-        r = classify_text(text, route, cues, kinds)
-        r["pages"] = page_ranges(g["pages"])
+        r = classify_text(join(g), route, cues, kinds)
+        r["pages"] = page_ranges(g)
         docs.append(r)
     return docs
 
@@ -497,10 +559,10 @@ def main():
 # ---------------------------------------------------------------------------------------------------------------------------
 def selftest():
     """Synthetic samples only - no real person, number or document."""
-    kinds = {"doe": "individual", "roe": "aprn-pa", "grp": "group"}
+    kinds = {"doe": "individual", "roe": "aprn-pa", "grp": "group", "grp2": "group"}
     cues = entity_cues([("doe", "John Doe, DO", "1000000001", "90000001", "OS99999", None),
                         ("roe", "Jane Roe, APRN", "1000000002", "90000002", "APRN7777777", None),
-                        ("grp", "Sample Clinic PA", "1000000003", None, None, None)])
+                        ("grp", "Sample Clinic PA", "1000000003", None, None, None), ("grp2", "Doe Health LLC", "1000000004", None, None, None)])
     cases = [
         ("PRESCREEN & OPT-OUT NOTICE. You're pre-qualified for a home equity line of credit (HELOC). APR 10.4%. Member FDIC. Equal Housing Lender.",
          "credentialing", ("personal", None, None)),
@@ -526,6 +588,17 @@ def selftest():
          "credentialing", ("credentialing", "grp", "business")),
         ("ADDITIONAL DOCUMENTATION REQUEST medical records request for claims", "billing", ("billing_letter", None, None)),
     ]
+    cases += [   # lessons from the 11/27/2026 run on real vault documents (synthetic stand-ins)
+        ("NATIONAL PRACTITIONER DATA BANK self-query response JANE ROE Social Security Number on file License Number APRN7777777 "
+         "DEA number field Adverse action report", "credentialing", ("credentialing", "roe", "discipline")),
+        ("A.R.N.P PROTOCOL JANE ROE, A.R.N.P. JOHN DOE, D.O. (MEDICAL DIRECTOR) Nurse Practice Act ... THIS PROTOCOL SHALL APPLY "
+         "Board of Nursing license number APRN7777777", "credentialing", ("credentialing", "roe", "collaboration")),
+        ("FLORIDA MEDICAID PROVIDER AGREEMENT Agency for Health Care Administration Provider: SAMPLE CLINIC PA NPI 1000000003 "
+         "signed JOHN DOE, President", "credentialing", ("credentialing", "grp", "medicaid")),
+        ("Re: Jane Roe, APRN - Florida Medicaid application ATN, collaborating physician John Doe, DO OS99999. Agency for Health Care "
+         "Administration. Sincerely, John Doe, DO", "credentialing", ("credentialing", "roe", "medicaid")),
+        ("DOE HEALTH LLC business tax receipt Local Business Tax", "credentialing", ("credentialing", "grp2", "permits-insurance")),
+    ]
     bad = 0
     for text, route, (k, e, c) in cases:
         r = classify_text(text, route, cues, kinds)
@@ -543,6 +616,18 @@ def selftest():
     ssn_ok = r["restricted"] and fake_ssn not in json.dumps(r)
     print("%s SSN page: restricted=%s, number never echoed" % ("ok  " if ssn_ok else "FAIL", r["restricted"]))
     bad += 0 if ssn_ok else 1
+    pages = ["FLORIDA MEDICAID PROVIDER AGREEMENT Agency for Health Care Administration", "terms and conditions of participation",
+             "Provider agrees ... participating provider ... effective date", "", "Signature page SAMPLE CLINIC PA NPI 1000000003 Florida Medicaid ID"]
+    docs = segment(pages, "credentialing", cues, kinds)
+    one_ok = len(docs) == 1 and docs[0]["category"] == "medicaid" and docs[0]["pages"] == "1-5"
+    print("%s 5-page agreement stays one document (%s)" % ("ok  " if one_ok else "FAIL", [(x["pages"], x["category"]) for x in docs]))
+    bad += 0 if one_ok else 1
+    pages = ["Florida Department of Health LICENSE VERIFICATION JOHN DOE OS99999 Status CLEAR/ACTIVE Board of Osteopathic Medicine",
+             "U.S. DEPARTMENT OF JUSTICE DRUG ENFORCEMENT ADMINISTRATION CONTROLLED SUBSTANCE REGISTRATION CERTIFICATE JOHN DOE DO"]
+    docs = segment(pages, "credentialing", cues, kinds)
+    two_ok = [(x["pages"], x["category"]) for x in docs] == [("1", "license"), ("2", "dea")]
+    print("%s license + DEA in one scan split in two (%s)" % ("ok  " if two_ok else "FAIL", [(x["pages"], x["category"]) for x in docs]))
+    bad += 0 if two_ok else 1
     print("selftest: %d failure(s)" % bad)
     sys.exit(1 if bad else 0)
 
