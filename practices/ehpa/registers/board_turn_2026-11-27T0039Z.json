@@ -1,0 +1,184 @@
+{
+ "what": "face sheets needed (facesheets_needed.py 2026-11-25.1) - chart numbers, kinds and dollars only",
+ "stamp": "2026-11-27T0039Z",
+ "at": "2026-11-27T00:59:23Z",
+ "asof": "2026-11-27T00:43:02Z",
+ "cards_read": 574,
+ "your_turn": 19,
+ "dollars": 7177.0,
+ "facesheet": {
+  "n": 3,
+  "dollars": 1512.0
+ },
+ "decision": {
+  "n": 16,
+  "dollars": 5665.0
+ },
+ "rows": [
+  {
+   "charts": [
+    "17475970"
+   ],
+   "kind": "decision",
+   "amount": 443.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17476912"
+   ],
+   "kind": "decision",
+   "amount": 389.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17476021"
+   ],
+   "kind": "decision",
+   "amount": 443.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17476021"
+   ],
+   "kind": "decision",
+   "amount": 389.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17472397"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "46048"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17478224"
+   ],
+   "kind": "facesheet",
+   "amount": 521.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17471384"
+   ],
+   "kind": "decision",
+   "amount": 389.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "20709"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "20709"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17478219"
+   ],
+   "kind": "facesheet",
+   "amount": 521.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17477498"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "24510"
+   ],
+   "kind": "decision",
+   "amount": 443.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "48449"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "48449"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17471832"
+   ],
+   "kind": "decision",
+   "amount": 443.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17478516"
+   ],
+   "kind": "facesheet",
+   "amount": 470.0,
+   "new": false
+  },
+  {
+   "charts": [
+    "17475392"
+   ],
+   "kind": "decision",
+   "amount": 315.0,
+   "new": true
+  },
+  {
+   "charts": [
+    "17476865"
+   ],
+   "kind": "decision",
+   "amount": 206.0,
+   "new": false
+  }
+ ],
+ "file": {
+  "ops": 41,
+  "kept": 0,
+  "stale": 0,
+  "new": 15,
+  "failed": 0
+ },
+ "checks": {
+  "unanswered": [],
+  "sweep_missing": [],
+  "nothing_waiting": [],
+  "short_read": []
+ }
+}
