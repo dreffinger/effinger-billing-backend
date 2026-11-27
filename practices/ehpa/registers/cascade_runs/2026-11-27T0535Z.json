@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-27T05:52:58Z",
+ "at": "2026-11-27T05:35:00Z",
+ "changed": 8,
+ "checked": 296,
+ "commit": "269ac7a",
+ "date": "2026-11-27",
+ "dollars": 1648,
+ "done": "8 visits re-pointed to Medicare Advantage plans and re-sent (1648 dollars): charts 17473199, 17472873, 17473233, 17473749, 12179690, 17471216; chart 17478224 Humana plan added from the payer 271, 2 visits to Humana",
+ "era_posted": 0.0,
+ "finished": "2026-11-27T05:52:58Z",
+ "flagged": 15,
+ "kind": "nightly cascade",
+ "lookups": 122,
+ "note": "296 visit-and-plan pairs checked (122 new Stedi lookups), 15 flagged: 8 Advantage plan, 6 no Stedi route (FLO99), 1 carrier not mapped (BCBS1)",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-27T0535Z.json",
+ "stamp": "2026-11-27T0535Z",
+ "stedi_cost": 37.8,
+ "writeoffs": 0.0
+}

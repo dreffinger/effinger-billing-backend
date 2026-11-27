@@ -1,0 +1,19 @@
+# nightly cascade 2026-11-27T0535Z (Friday)
+- precheck --days 3 --max 120: 296 pairs, 119 new Stedi lookups, 15 flagged - 8 ADVANTAGE PLAN on DOS, 6 FLO99 (no Stedi route), 1 BCBS1 (carrier not mapped in CAR2STEDI).
+- dx_primary_fix --dry on every visit before rebill: all acceptable.
+- chart 17473199: v19462474 11/24 CCM insorder 2,1 -> 1 (BCBS / BCBS-MI MA) -> 204.
+- chart 17472873: v19462514 11/24 CCM 1,2 -> 2 (UNI20 AARP MA Patriot) -> 204.
+- chart 17473233: v19462426 11/24 CCM 2,1 -> 1 (UNI20) -> 204.
+- chart 17473749: v19462463 11/24 CCM 1 -> 2 (UNI20) -> 204.
+- chart 12179690: v19462509 11/24 CCM 2,3 -> 3 (UNI20) -> 204.
+- chart 17471216: v19462418 11/24 CCM 1,2 -> 2 (UNI20) -> 204.
+- chart 17478224: Medicare names Humana H5216; AMD 271 agrees; discovery Medicare only; Humana 61101 asked with the MBI answered active (HumanaChoice Value 2021-2026) with its own member id -> add_ins car6285 (ins9521421 seq 2, no group); v19459239 10/22 + v19462482 11/24 -> insorder 2 -> 204 x2. Board card closed.
+- chart 17478516: still Anthem MA, card on William's turn (unchanged).
+- Total re-sent: 8 visits, 1648 dollars.
+- Step 2/2a skipped (Friday). void_rules: 1 open rule, no VOID lines.
+- ERA step: 2 checks (88.28 unposted) -> 1 check (88.28); 0 posted, one 0-dollar check cleared. Humana check 1053664 88.28 orphan (chart 17469446 v19460489 voided) still for William.
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; reminder hits already on William's turn -> no cred file.
+- board: 10 ops (5 appends, 3 new twinned cards, 2 twin links) -> Drive board inbox; applied files 11/26 1839Z + 11/27 0039Z trashed; no drops.
+- money ledger rebuilt (unpaid 378,647 dollars) and republished.
+- Stedi: 122 calls 37.80 dollars (plain Medicare 69, eligibility 52, discovery 1).
+- practice_db: 7 documents committed, 0 swept; Neon 7 new, run logged ok.

@@ -1,0 +1,112 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-27T0535Z",
+ "mode": "live",
+ "status": "warn",
+ "headline": "ERA 2 checks $88.28 -> 1 checks $88.28",
+ "note": "",
+ "run_url": "",
+ "started": "2026-11-27T05:48:02Z",
+ "ended": "2026-11-27T05:48:17Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {
+    "checks": 2,
+    "unposted": 88.28
+   },
+   "after": {
+    "checks": 1,
+    "unposted": 88.28
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "warn",
+   "summary": "1544 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1544,
+    "registers": 3,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [
+    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
+   ],
+   "started": "2026-11-27T05:48:02Z",
+   "ended": "2026-11-27T05:48:02Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "2 checks / $88.28 -> 1 checks / $88.28",
+   "counts": {
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
+    "fallback orphan": 1,
+    "checks dismissed": 1,
+    "checks held": 1,
+    "denial lines recorded": 8
+   },
+   "dollars": {
+    "unposted before": 88.28,
+    "unposted after": 88.28,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053664,
+     "payer": "HUMANA",
+     "checknumber": "207771193261125",
+     "amount": 0.0,
+     "unposted": 88.28,
+     "stage": "before"
+    },
+    {
+     "check": 1053678,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "NO-PAY-202611250007395",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-27T05:48:02Z",
+   "ended": "2026-11-27T05:48:17Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "ERA fallback: 1 money line(s) with no matching live charge ($88.28) - registers/era_fallback_2026-11-27T0535Z_live.json",
+  "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l"
+ ],
+ "errors": []
+}
