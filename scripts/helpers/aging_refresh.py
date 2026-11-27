@@ -232,6 +232,43 @@ def read_chart_offline(pid, suffix):
     plans = [{"code": CAR.get(i.get("carrier"), i.get("carrier")), "seq": i.get("sequence"), "begin": mdy(i.get("begindate")), "end": mdy(i.get("enddate"))} for i in pl.get("plans", [])]
     return charges, plans, pl.get("deceased", "")
 
+def save_payments(charts):
+    """11/27/2026: the payer tracker (run_alerts.py, amd.payer_tracker) counts only REAL insurance dollars - AdvancedMD logs a $0 write-off
+    post as 'Payment received' too. Every insurance payment on the charts read tonight (amount > 0, not void) is upserted into the practice
+    database (amd.insurance_payments: payment id, visit, charge, carrier, date, amount, check number - ids and dollars, no names), so the
+    tracker sees paper-check payers paying. Never fails the ageing run: a database that does not answer is reported in one line."""
+    rows = []
+    for pid, (charges, _pl, _d) in charges_by_chart(charts):
+        for c in charges:
+            for p_ in c.get("payments") or []:
+                amt = -f(p_.get("amount")); d_ = mdy(p_.get("date"))
+                if p_.get("void") == "1" or str(p_.get("source")) != "2" or amt <= 0.005 or not p_.get("id"): continue
+                rows.append({"payment_id": str(p_["id"]), "visit_id": num(c.get("visit") or c.get("visitid")) or None, "charge_id": str(c.get("id") or ""),
+                             "carrier": (p_.get("carrier") or "").strip() or None, "payment_date": d_.isoformat() if d_ else None,
+                             "posted_at": (p_.get("createtime") or None), "paid": round(amt, 2), "check_number": p_.get("checknumber") or None})
+    if not rows: return "payments: none to save"
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "credentialing"))
+        saved = sys.argv[:]; sys.argv = sys.argv[:1]
+        try: import cred_vault
+        finally: sys.argv = saved
+        d = cred_vault.DB()
+        for i in range(0, len(rows), 1500):
+            d.q("""insert into amd.insurance_payments (payment_id, visit_id, charge_id, carrier, payment_date, posted_at, paid, check_number, source_note)
+                   select payment_id, visit_id, charge_id, carrier, payment_date, posted_at, paid, check_number, 'aging refresh'
+                   from jsonb_to_recordset(%s::jsonb) as x(payment_id text, visit_id bigint, charge_id text, carrier text, payment_date date,
+                        posted_at timestamp, paid numeric, check_number text)
+                   on conflict (payment_id) do nothing""", [json.dumps(rows[i:i + 1500])])
+        return "payments: %d insurance payments on the charts read, saved to the practice database" % len(rows)
+    except BaseException as e:          # cred_vault exits on a refused statement - the ageing file still gets written
+        return "payments: not saved (%s)" % (str(e)[:120] or type(e).__name__)
+
+
+def charges_by_chart(charts):
+    for pid, v in charts.items():
+        if isinstance(v, tuple) and v: yield pid, (v[0], v[1] if len(v) > 1 else [], v[2] if len(v) > 2 else "")
+
+
 def leftover_rows(seen):
     """11/27/2026 (William: "find the problem that missed rebilling the secondaries and fix that for ongoing"): AdvancedMD's unpaid list
     (massrebillsearch) drops a visit once ANY payer has paid on it, so the balance left on the SECONDARY after Medicare paid never reached
@@ -287,6 +324,7 @@ def main():
                 with lock: errors.append("pat%s: %s" % (pid, str(e)[:80]))
             if not OFFLINE: time.sleep(0.2)
     ts = [threading.Thread(target=worker, daemon=True) for _ in range(NT)]; [t.start() for t in ts]; [t.join() for t in ts]
+    pay_note = save_payments(charts) if not OFFLINE else ""
     out = []
     for r in rows:
         pid = str(r["patientid"])
@@ -319,6 +357,7 @@ def main():
     print("aging: %d visits / %d patients / $%.2f -> WAIT $%.2f / RESEND $%.2f / WRITE OFF $%.2f (charts read %d, errors %d) -> %s" % (
         snap["visits"], snap["patients"], snap["total"], snap["by_rec"]["WAIT"]["amt"], snap["by_rec"]["CORRECT & RESEND"]["amt"], snap["by_rec"]["WRITE OFF"]["amt"], len(charts), len(errors), OUT))
     if leftover_note: print("aging: " + leftover_note)
+    if pay_note: print("aging: " + pay_note)
 
 if __name__ == "__main__":
     main()

@@ -19,7 +19,9 @@
 #   payment in 45+ days on claims that are due / NEVER PAID / WAITING, the reason, and whether it belongs on the credentialing priority
 #   list). The workspace keeps the raw answers (runalerts/) so a night that is cut off resumes where it stopped.
 # Rules it uses: AdvancedMD's own 45-day line; a payer is a WARNING only when claims sent to it 45+ days ago are unpaid AND nothing from it
-#   has been paid (a 'Payment received' event, an ERA check, a posted payment) in the last 45 days - a payer that pays but left an older
+#   has been paid in the last 45 days - real dollars only: an insurance payment posted in AdvancedMD (amd.insurance_payments), an ERA
+#   check with money, or an ERA-bot posting on a run AdvancedMD marks paid (a plain 'Payment received' event is not enough: AdvancedMD logs
+#   our $0 write-off posts the same way) - a payer that pays but left an older
 #   run unpaid stays GREEN (those claims are the work queue's, not credentialing's). Revenue totals never go into the public repository:
 #   the register it writes there (registers/payer_tracker_latest.json) holds payer codes, counts, dates and statuses only.
 # Never touches: claims, payments, charts, the boards (the run hands the credentialing rows to board_ops like every other board change).
@@ -191,16 +193,21 @@ DDL = [
          unposted numeric(12,2), claim_count int, dismissed_at timestamp, changed_by text, first_seen timestamptz default now(),
          last_seen timestamptz default now())""",
     "create table if not exists amd.era_payer_map (era_payer text primary key, carrier_code text, checks int, source text)",
+    # real insurance dollars posted in AdvancedMD (11/27/2026): AdvancedMD logs a $0 write-off post as 'Payment received' on the claim too,
+    #   so a payment EVENT is no proof the payer paid - the chart histories' payments are (seeded from the 11/9 copy, kept fresh by
+    #   aging_refresh.py, which reads every open chart on Sundays)
+    """create table if not exists amd.insurance_payments (payment_id text primary key, visit_id bigint, charge_id text, carrier text,
+         payment_date date, posted_at timestamp, paid numeric, check_number text, source_note text)""",
     # which payer has not paid since when: the newest of a 'Payment received' on a claim run, an ERA check with money, a posted payment
     """create or replace view amd.payer_last_paid as
-       with ev as (select carrier_code, max(event_at)::date last_payment_event from amd.claim_run_events
-                   where event_type = 7 and carrier_code is not null group by 1),
+       with ev as (select e.carrier_code, max(e.event_at)::date last_payment_event from amd.claim_run_events e
+                   join amd.claim_run_payers p on p.run_id = e.run_id and p.carrier_code = e.carrier_code and p.paid
+                   where e.event_type = 7 and e.note ilike '%%SYS_ERABOT%%' group by 1),
             era as (select coalesce(e.carrier_code, m.carrier_code) carrier_code, max(e.check_date) last_era_check,
                            count(*) filter (where e.check_date >= current_date - 90) era_checks_90d
                     from amd.era_checks e left join amd.era_payer_map m on m.era_payer = e.era_payer
                     where e.amount > 0 group by 1),
-            posted as (select carrier carrier_code, max(payment_date) last_posted_payment from amd.v_payments
-                       where not coalesce(void, false) and paid > 0 and source = '2' group by 1),
+            posted as (select carrier carrier_code, max(payment_date) last_posted_payment from amd.insurance_payments group by 1),
             codes as (select carrier_code from ev union select carrier_code from era union select carrier_code from posted
                       union select carrier_code from amd.claim_run_payers)
        select c.carrier_code, ev.last_payment_event, era.last_era_check, era.era_checks_90d, posted.last_posted_payment,
