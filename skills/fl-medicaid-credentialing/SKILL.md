@@ -10,6 +10,11 @@ lessons from 2026. The practice-specific profile (IDs, open items, account inven
 Drive folder; `practices/<code>/credentialing_medicaid.md` points to it. This repository is public: no SSNs, DOBs, home
 addresses, discipline details, usernames, passwords or signatures in it, ever.
 
+## Where documents go
+Every document is filed in the practice's Drive Credentialing Vault and indexed in Neon (`credentialing/README.md`, intake rule). Identity, SSN-bearing and discipline documents go only into the restricted folders and are indexed with `--restricted` (no bytes in Neon). For a new practice send `credentialing/medicaid/practice_kit.md` (List A: documents to send; List B: what only they can do).
+
+When giving William steps: exact links and click paths (button and panel names from the portal's own guides), no phone numbers unless he asks.
+
 ## Fix a returned (deficient) application
 1. `python3 credentialing/medicaid/fl_medicaid_status.py <ATN> <LAST-OR-BUSINESS-NAME>` gives the live document statuses
    and the deficiency text. No login needed. Closed or Denied means a new application.
