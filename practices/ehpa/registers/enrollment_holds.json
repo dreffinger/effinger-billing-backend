@@ -7,21 +7,10 @@
    "payer": "HUM01",
    "card": "pg-humana",
    "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-04-01",
+   "reason": "Humana Healthy Horizons (Florida Medicaid, secondary to Original Medicare) denies CO-185/N767 - her Florida Medicaid ID lapsed for dates of service from 1/2025; it pays only providers active on AHCA's list for the date of service",
+   "until": "2027-04-26",
+   "filing_note": "Humana's crossover filing limit is unconfirmed (2026 FL handbook p.126: Medicaid handbook timelines, up to 3 years; 2025 deck p.40: corrected claims 12 months from the original process date). Working rule: 12 months from Humana's original process date, earliest 5/26/2027 - the hold ends a month before.",
    "visits": [
-    {
-     "visitid": "19381973"
-    },
-    {
-     "visitid": "19382068"
-    },
-    {
-     "visitid": "19387240"
-    },
-    {
-     "visitid": "19395488"
-    },
     {
      "visitid": "19400082"
     },
@@ -180,17 +169,7 @@
     },
     {
      "visitid": "19461142"
-    }
-   ]
-  },
-  {
-   "clinician": "garcia",
-   "payer": "HUM01",
-   "card": "pg-humana",
-   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-05-01",
-   "visits": [
+    },
     {
      "visitid": "19442865"
     },
@@ -214,17 +193,7 @@
     },
     {
      "visitid": "19445435"
-    }
-   ]
-  },
-  {
-   "clinician": "garcia",
-   "payer": "HUM01",
-   "card": "pg-humana",
-   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-06-01",
-   "visits": [
+    },
     {
      "visitid": "19445477"
     },
@@ -248,17 +217,7 @@
     },
     {
      "visitid": "19448290"
-    }
-   ]
-  },
-  {
-   "clinician": "garcia",
-   "payer": "HUM01",
-   "card": "pg-humana",
-   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-07-01",
-   "visits": [
+    },
     {
      "visitid": "19449432"
     },
@@ -276,115 +235,6 @@
     },
     {
      "visitid": "19451954"
-    }
-   ]
-  },
-  {
-   "clinician": "garcia",
-   "payer": "HUM01",
-   "card": "pg-humana",
-   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-08-01",
-   "visits": [
-    {
-     "visitid": "19378406"
-    },
-    {
-     "visitid": "19380670"
-    },
-    {
-     "visitid": "19382812"
-    },
-    {
-     "visitid": "19383335"
-    },
-    {
-     "visitid": "19386057"
-    },
-    {
-     "visitid": "19387475"
-    },
-    {
-     "visitid": "19389371"
-    },
-    {
-     "visitid": "19389741"
-    },
-    {
-     "visitid": "19390369"
-    },
-    {
-     "visitid": "19392815"
-    },
-    {
-     "visitid": "19392816"
-    },
-    {
-     "visitid": "19392971"
-    },
-    {
-     "visitid": "19393055"
-    },
-    {
-     "visitid": "19393174"
-    },
-    {
-     "visitid": "19393194"
-    },
-    {
-     "visitid": "19393769"
-    },
-    {
-     "visitid": "19393949"
-    },
-    {
-     "visitid": "19394005"
-    },
-    {
-     "visitid": "19394212"
-    },
-    {
-     "visitid": "19395061"
-    },
-    {
-     "visitid": "19395378"
-    },
-    {
-     "visitid": "19395657"
-    },
-    {
-     "visitid": "19395988"
-    },
-    {
-     "visitid": "19396095"
-    },
-    {
-     "visitid": "19396285"
-    },
-    {
-     "visitid": "19396318"
-    },
-    {
-     "visitid": "19396347"
-    },
-    {
-     "visitid": "19397333"
-    },
-    {
-     "visitid": "19397342"
-    },
-    {
-     "visitid": "19397382"
-    },
-    {
-     "visitid": "19397798"
-    },
-    {
-     "visitid": "19398135"
-    },
-    {
-     "visitid": "19398261"
     },
     {
      "visitid": "19398515"
@@ -568,17 +418,7 @@
     },
     {
      "visitid": "19453793"
-    }
-   ]
-  },
-  {
-   "clinician": "garcia",
-   "payer": "HUM01",
-   "card": "pg-humana",
-   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
-   "reason": "Humana (secondary to Medicare) denied or will deny CO-185 - Pam not enrolled; Medicare paid first under her NPI",
-   "until": "2027-09-01",
-   "visits": [
+    },
     {
      "visitid": "19441616"
     },
@@ -596,5 +436,10 @@
     }
    ]
   }
- ]
+ ],
+ "released": {
+  "on": "2026-11-27",
+  "why": "dates of service in 2024 or earlier: Humana answered with other reasons (CO-45/CO-253, PR-1/PR-2, OA-B11, PI-252), not CO-185 - the Medicaid fix will not pay them; they go back to the standing rules",
+  "visits": 37
+ }
 }
