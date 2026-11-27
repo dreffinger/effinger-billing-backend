@@ -10,9 +10,12 @@
 #   method - ACH / CHK paper check / NON no money / VCC virtual card / BOP / FWT - amount, date, trace or check number, payee), amd.era_claims
 #   (one per claim: AdvancedMD claim number and visit, status, charge, paid, patient share, the payer's claim number, dates of service) and
 #   amd.era_adjustments (every CAS reason with its group and amount, claim, service-line and provider level). The views amd.payer_payment_methods
-#   (how each payer pays) and amd.era_denial_patterns (the most frequent denial reasons by payer) answer the questions.
+#   (how each payer pays), amd.era_denial_patterns (the most frequent denial reasons by payer) and amd.era_paid_not_posted (claims the payer's
+#   own remit shows paid that AdvancedMD never posted - still open, or written off) answer the questions.
 # Rules it uses: an 835 is read by its own separators (ISA); a file read before (same sha256) is not read twice; a payment is keyed by payer +
-#   trace number + amount + date, so the same remittance downloaded twice (Optum's "(1)" copies) is one payment.
+#   trace number + amount + date, so the same remittance downloaded twice (Optum's "(1)" copies) is one payment. A PDF payment is keyed by payer
+#   + payment number + date (one payment however many printouts show it); a PDF of a payment an 835 already holds is not filed twice; a check
+#   that is not from an insurer (a patient's bill-pay check) is kept but left out of "how each payer pays".
 # Never touches: AdvancedMD, the files themselves (read-only in Drive), the public repository - nothing it reads is written to git.
 # ---
 """Usage (NEON_DATABASE_URL, as for credentialing/cred_vault.py):
@@ -20,7 +23,8 @@
   python3 billing/era_input/era_archive.py pending [--kind x12|pdf|other]                            what is not read yet
   python3 -I billing/era_input/era_archive.py parse <file> --drive-id <id>                             one 835 -> the tables
   python3 -I billing/era_input/era_archive.py parse-dir <dir>      every <drive-id>.bin / .dat / .835 file in <dir> (named by Drive id)
-  python3 -I billing/era_input/era_archive.py load-pdf-json <dir>  the remit-pdf-archive JSON files (one per PDF: payments + claims)
+  python3 -I billing/era_input/era_archive.py load-pdf-json <dir> [--reload]  the remit-pdf-archive JSON files (one per PDF: payments + claims);
+                                                 --reload clears what earlier PDF loads filed (never the 835 rows) and files them again
   python3 billing/era_input/era_archive.py selftest"""
 import datetime, glob, hashlib, json, os, re, sys
 
@@ -132,15 +136,48 @@ DDL = [
          status_code text, charge numeric(12,2), paid numeric(12,2), patient_resp numeric(12,2), filing text, payer_claim_no text,
          dos_from date, dos_to date, patient_name text, rendering_npi text, lines int, loaded_at timestamptz default now())""",
     "create index if not exists era_claims_visit on amd.era_claims (visit_id)",
+    # the bank's ACH trace where a portal print shows it next to the payer's own payment number (Optum Pay), and payments that are not insurance
+    "alter table amd.era_payments add column if not exists ach_trace text",
+    "alter table amd.era_payments add column if not exists not_insurance boolean default false",
     """create table if not exists amd.era_adjustments (claim_key text, level text, line_no int, cpt text, grp text, carc text,
          amount numeric(12,2), primary key (claim_key, level, line_no, grp, carc))""",
     # how each payer pays: ERA files + the ERA Center's own check list (run_alerts.py fills amd.era_checks)
     """create or replace view amd.payer_payment_methods as
        select payer_name, method, count(*) payments, sum(amount) dollars, min(payment_date) first_payment, max(payment_date) last_payment,
-              'era file' source from amd.era_payments group by payer_name, method
+              'era file' source from amd.era_payments where not coalesce(not_insurance, false) group by payer_name, method
        union all
        select era_payer, payment_code, count(*), sum(amount), min(check_date), max(check_date), 'era center'
        from amd.era_checks group by era_payer, payment_code""",
+    # paid on the payer's own remit, never posted in AdvancedMD: every archived claim the payer paid, against AdvancedMD's payments (by check
+    # number, then by the payer's carrier on that visit near the payment date, then by the same amount on the visit) and its balance today
+    """create or replace view amd.era_paid_not_posted as
+       with c as (
+         select p.payer_name, p.method, p.trace_number, p.payment_date, p.source, c.visit_id, c.patient_control, c.paid, c.dos_from,
+                (select m.carrier_code from amd.era_payer_map m where upper(m.era_payer) = upper(p.payer_name) limit 1) carrier
+         from amd.era_claims c join amd.era_payments p using (payment_key)
+         where c.paid > 0 and c.visit_id is not null and not coalesce(p.not_insurance, false)),
+       m as (
+         select c.*,
+                exists (select 1 from amd.insurance_payments i where upper(i.check_number) = upper(c.trace_number)) by_check,
+                (select sum(i.paid) from amd.insurance_payments i where i.visit_id = c.visit_id and i.carrier = c.carrier
+                   and i.payment_date between c.payment_date - 10 and c.payment_date + 180) by_carrier,
+                exists (select 1 from amd.insurance_payments i where i.visit_id = c.visit_id and abs(i.paid - c.paid) < 0.02) by_amount,
+                (select sum(o.insurance_balance) from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_ins_balance,
+                (select sum(o.written_off) from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_written_off,
+                (select string_agg(distinct o.writeoff_codes, ' ') from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_writeoff_codes,
+                (select string_agg(distinct o.denial_codes, ' ') from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_denials,
+                (select string_agg(distinct o.current_carrier, ' ') from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_carrier,
+                (select string_agg(distinct o.paying_carriers, ' ') from amd.charge_outcomes o where o.visit_id = c.visit_id::text) amd_paying
+         from c)
+       select payer_name, carrier, method, trace_number, payment_date, source, visit_id, patient_control, dos_from, paid, amd_carrier, amd_ins_balance,
+              amd_written_off, amd_writeoff_codes, amd_denials,
+              case when by_check or coalesce(by_carrier, 0) >= paid - 0.02 or by_amount
+                     or (carrier is not null and coalesce(amd_paying, '') like '%' || carrier || '%') then 'posted'
+                   when amd_ins_balance is null then 'visit not in the AdvancedMD copy'
+                   when amd_ins_balance > 0 then 'paid - balance still open in AdvancedMD'
+                   when coalesce(amd_written_off, 0) > 0 then 'paid - written off in AdvancedMD'
+                   else 'paid - not posted' end status
+       from m""",
     # the denial reasons that repeat: every non-contractual, non-cost-share adjustment on the ERA files, by payer and reason
     """create or replace view amd.era_denial_patterns as
        select p.payer_name, a.grp || '-' || a.carc reason, count(distinct a.claim_key) claims, sum(a.amount) dollars,
@@ -216,29 +253,43 @@ METHOD_CODE = {"CHK": "CHK", "CHECK": "CHK", "PAPER CHECK": "CHK", "ACH": "ACH",
                "NON": "NON", "NONE": "NON"}
 
 
+def payer_key(name):
+    """FLORIDA BLUE / Florida Blue / "Health Options, Inc." -> one spelling for the payment key."""
+    return re.sub(r"[^A-Z0-9]+", " ", str(name or "").upper()).strip() or "?"
+
+
 def pdf_rows(j, did):
-    """One extracted PDF (the remit-pdf-archive JSON: payments[] + claims[]) -> (payments, claims, adjustments) rows for the tables."""
+    """One extracted PDF (the remit-pdf-archive JSON: payments[] + claims[]) -> (payments, claims, adjustments) rows for the tables.
+    A payment is keyed by payer + payment number + date when the number is printed, so the same payment read from a single-claim printout,
+    a check summary and a portal list is ONE payment (the amount and method fill in from whichever copy prints them). A claim is keyed by its
+    payment + claim number + paid amount, so the same claim on two printouts is one claim (a reversal pays the negative and stays apart)."""
     pays, keys = [], []
+    not_ins = "not an insurance payer" in str(j.get("notes") or "").lower()
     for p in j.get("payments") or []:
         raw = str(p.get("method") or "").strip().upper()
         meth = METHOD_CODE.get(raw) or METHOD_CODE.get(raw.split(" ")[0]) or (
+            "unknown" if ("CHECK" in raw and ("EFT" in raw or "ACH" in raw)) else      # Availity's "Check/EFT" label names no method
             "CHK" if "CHECK" in raw else "VCC" if "CARD" in raw else "ACH" if ("EFT" in raw or "ACH" in raw) else "NON" if "NO PAY" in raw else "unknown")
         amt = p.get("amount"); amt = num(amt) if amt is not None else None
-        pk = "pdf|%s|%s|%s|%s" % (p.get("payer_id") or p.get("payer_name") or "?", p.get("number") or did, "%.2f" % amt if amt is not None else "?", p.get("date") or "?")
+        date = p.get("date") if re.match(r"^\d{4}-\d{2}-\d{2}$", str(p.get("date") or "")) else None
+        num_ = str(p.get("number") or "").strip()
+        pk = ("pdf|%s|%s|%s" % (payer_key(p.get("payer_name")), num_, date or "?") if num_ else
+              "pdf|%s|%s|%s|%s" % (payer_key(p.get("payer_name")), did, "%.2f" % amt if amt is not None else "?", date or "?"))
         keys.append(pk)
         pays.append(dict(payment_key=pk, drive_file_id=did, payer_name=p.get("payer_name"), payer_id=p.get("payer_id"), payee_name=p.get("payee_name"),
-                         payee_npi=p.get("payee_npi"), method=meth, amount=amt, payment_date=p.get("date") if re.match(r"^\d{4}-\d{2}-\d{2}$", str(p.get("date") or "")) else None,
-                         trace_number=p.get("number")))
+                         payee_npi=p.get("payee_npi"), method=meth, amount=amt, payment_date=date, trace_number=num_ or None,
+                         ach_trace=str(p.get("ach_trace") or "").strip() or None, not_insurance=not_ins))
     claims, adj = [], []
     for k, c in enumerate(j.get("claims") or []):
         i = c.get("payment_index")
         pk = keys[i] if isinstance(i, int) and 0 <= i < len(keys) else (keys[0] if len(keys) == 1 else "pdf|%s|no payment" % did)
         pc = str(c.get("patient_control") or "").strip(); m = re.match(r"^(\d{7,9})([A-Z]{0,2})$", pc)
-        ck = "%s|%s|%s|%d" % (pk, pc or "?", c.get("payer_claim_no") or "?", k)
+        pcn = str(c.get("payer_claim_no") or "").strip()
+        ck = ("%s|%s|%s|%.2f" % (pk, pc or "?", pcn, num(c.get("paid"))) if (pc and pcn) else "%s|%s|%s|%d" % (pk, pc or "?", pcn or "?", k))
         dt = lambda v: v if re.match(r"^\d{4}-\d{2}-\d{2}$", str(v or "")) else None
         claims.append(dict(claim_key=ck, payment_key=pk, patient_control=pc or None, visit_id=int(m.group(1)) if m else None, status_code=c.get("status"),
                            charge=num(c.get("charge")), paid=num(c.get("paid")), patient_resp=num(c.get("patient_resp")), filing=None,
-                           payer_claim_no=c.get("payer_claim_no"), dos_from=dt(c.get("dos_from")), dos_to=dt(c.get("dos_to")), patient_name=c.get("patient_name"),
+                           payer_claim_no=pcn or None, dos_from=dt(c.get("dos_from")), dos_to=dt(c.get("dos_to")), patient_name=c.get("patient_name"),
                            rendering_npi=None, lines=None))
         seen = {}
         for a in c.get("adjustments") or []:
@@ -254,12 +305,25 @@ def load_pdf_json(d, path):
     j = json.load(open(path)); did = j.get("drive_file_id") or os.path.basename(path).split(".")[0]
     pays, claims, adj = pdf_rows(j, did)
     d.q("insert into amd.era_files (drive_file_id, kind) values (%s,'pdf') on conflict (drive_file_id) do nothing", [did])
-    if pays:
+    # a PDF of a payment the 835 files already hold (same payment number and amount): the 835 is the record, the PDF adds nothing
+    twins = {r[0] for r in d.q("""select x.payment_key from jsonb_to_recordset(%s::jsonb) as x(payment_key text, trace_number text, amount numeric)
+                                   join amd.era_payments e on e.source = '835' and e.trace_number = x.trace_number
+                                    and (x.amount is null or e.amount = x.amount)""", [json.dumps(pays)])} if pays else set()
+    keep = [p for p in pays if p["payment_key"] not in twins]
+    claims = [c for c in claims if c["payment_key"] not in twins]
+    keepc = {c["claim_key"] for c in claims}; adj = [a for a in adj if a["claim_key"] in keepc]
+    if keep:
         d.q("""insert into amd.era_payments (payment_key, drive_file_id, payer_name, payer_id, payee_name, payee_npi, method, amount, payment_date,
-                 trace_number, claims, source) select payment_key, drive_file_id, payer_name, payer_id, payee_name, payee_npi, method, amount, payment_date,
-                 trace_number, 0, 'pdf' from jsonb_to_recordset(%s::jsonb) as x(payment_key text, drive_file_id text, payer_name text, payer_id text,
-                 payee_name text, payee_npi text, method text, amount numeric, payment_date date, trace_number text) on conflict (payment_key) do nothing""",
-            [json.dumps(pays)])
+                 trace_number, ach_trace, not_insurance, claims, source)
+               select payment_key, drive_file_id, payer_name, payer_id, payee_name, payee_npi, method, amount, payment_date, trace_number, ach_trace,
+                 not_insurance, 0, 'pdf' from jsonb_to_recordset(%s::jsonb) as x(payment_key text, drive_file_id text, payer_name text, payer_id text,
+                 payee_name text, payee_npi text, method text, amount numeric, payment_date date, trace_number text, ach_trace text, not_insurance boolean)
+               on conflict (payment_key) do update set
+                 amount = coalesce(amd.era_payments.amount, excluded.amount),
+                 method = case when amd.era_payments.method = 'unknown' then excluded.method else amd.era_payments.method end,
+                 ach_trace = coalesce(amd.era_payments.ach_trace, excluded.ach_trace),
+                 payer_id = coalesce(amd.era_payments.payer_id, excluded.payer_id),
+                 payee_npi = coalesce(amd.era_payments.payee_npi, excluded.payee_npi)""", [json.dumps(keep)])
     if claims:
         d.q("""insert into amd.era_claims (claim_key, payment_key, patient_control, visit_id, status_code, charge, paid, patient_resp, filing, payer_claim_no,
                  dos_from, dos_to, patient_name, rendering_npi, lines) select claim_key, payment_key, patient_control, visit_id, status_code, charge, paid,
@@ -268,9 +332,16 @@ def load_pdf_json(d, path):
     if adj:
         d.q("""insert into amd.era_adjustments select claim_key, level, line_no, cpt, grp, carc, amount
                from jsonb_populate_recordset(null::amd.era_adjustments, %s::jsonb) on conflict do nothing""", [json.dumps(adj)])
+    note = str(j.get("class") or "")[:40] + ("; %d payment(s) already in the 835 files" % len(twins) if twins else "")
     d.q("update amd.era_files set status='read', kind='pdf', payments=%s, claims=%s, parsed_at=now(), note=%s where drive_file_id=%s",
-        [len(pays), len(claims), str(j.get("class") or "")[:40], did])
-    return len(pays), len(claims)
+        [len(keep), len(claims), note, did])
+    return len(keep), len(claims)
+
+
+def recount(d):
+    """Each payment's claim count, after every file is in (PDF copies of one payment add their claims to it)."""
+    d.q("""update amd.era_payments p set claims = c.n from (select payment_key, count(*) n from amd.era_claims group by 1) c
+           where c.payment_key = p.payment_key and p.source = 'pdf' and p.claims is distinct from c.n""")
 
 
 def main():
@@ -302,10 +373,16 @@ def main():
         st, p, c = parse_file(d, A[1], opt("--drive-id") or sys.exit("--drive-id is required"))
         print("%s: %s - %d payment(s), %d claim(s)" % (opt("--drive-id"), st, p, c)); return
     if cmd == "load-pdf-json":
+        if "--reload" in A:
+            d.q("""delete from amd.era_adjustments a using amd.era_claims c where c.claim_key = a.claim_key and c.payment_key like 'pdf|%%'""")
+            d.q("delete from amd.era_claims where payment_key like 'pdf|%%'")
+            d.q("delete from amd.era_payments where source = 'pdf'")
         tot = [0, 0, 0]
         for path in sorted(glob.glob(os.path.join(A[1], "*.json"))):
             p, c = load_pdf_json(d, path); tot[0] += 1; tot[1] += p; tot[2] += c
-        print("%d PDF file(s) filed: %d payment(s), %d claim(s)" % tuple(tot)); return
+        recount(d)
+        n = d.q("select count(*), (select count(*) from amd.era_claims where payment_key like 'pdf|%%') from amd.era_payments where source = 'pdf'")[0]
+        print("%d PDF file(s) read: %d payment row(s), %d claim row(s); after merging copies: %d payment(s), %d claim(s)" % tuple(tot + [int(x) for x in n])); return
     if cmd == "parse-dir":
         tot = [0, 0, 0]
         for path in sorted(glob.glob(os.path.join(A[1], "*"))):
@@ -342,8 +419,23 @@ def selftest():
     pr, cl, ad = pdf_rows({"payments": [{"payer_name": "SAMPLE PLAN", "method": "paper check", "number": "C1", "date": "2026-10-01", "amount": 80}],
                            "claims": [{"payment_index": 0, "patient_control": "19461428A", "paid": 80, "status": "paid",
                                        "adjustments": [{"grp": "co", "carc": "45", "amount": 20}, {"grp": "CO", "carc": "45", "amount": 5}]}]}, "F1")
-    assert pr[0]["method"] == "CHK" and pr[0]["payment_key"] == "pdf|SAMPLE PLAN|C1|80.00|2026-10-01" and cl[0]["visit_id"] == 19461428
+    assert pr[0]["method"] == "CHK" and pr[0]["payment_key"] == "pdf|SAMPLE PLAN|C1|2026-10-01" and cl[0]["visit_id"] == 19461428
     assert ad == [{"claim_key": cl[0]["claim_key"], "level": "claim", "line_no": 0, "cpt": None, "grp": "CO", "carc": "45", "amount": 25.0}]
+    # the same payment on a single-claim printout (no total, other spelling) and on the check summary: one payment key, one claim key
+    one = {"payments": [{"payer_name": "FLORIDA BLUE", "method": "ACH", "number": "423000001", "date": "2026-08-05", "amount": None}],
+           "claims": [{"payment_index": 0, "patient_control": "19461430A", "payer_claim_no": "P9", "paid": 33.86}]}
+    two = {"payments": [{"payer_name": "Florida Blue", "method": "Check/EFT", "number": "423000001", "date": "2026-08-05", "amount": 101.58}],
+           "claims": [{"payment_index": 0, "patient_control": "19461431A", "payer_claim_no": "P8", "paid": 67.72},
+                      {"payment_index": 0, "patient_control": "19461430A", "payer_claim_no": "P9", "paid": 33.86}]}
+    a, ac, _ = pdf_rows(one, "F2"); b, bc, _ = pdf_rows(two, "F3")
+    assert a[0]["payment_key"] == b[0]["payment_key"] and ac[0]["claim_key"] == bc[1]["claim_key"] and bc[0]["claim_key"] != bc[1]["claim_key"]
+    assert a[0]["method"] == "ACH" and b[0]["method"] == "unknown" and a[0]["amount"] is None and b[0]["amount"] == 101.58  # the load merges them
+    rev = {"payments": [{"payer_name": "X", "number": "N1", "date": "2026-08-05", "amount": 0}],
+           "claims": [{"payment_index": 0, "patient_control": "19461432A", "payer_claim_no": "P7", "paid": 50},
+                      {"payment_index": 0, "patient_control": "19461432A", "payer_claim_no": "P7", "paid": -50}]}
+    assert len({c["claim_key"] for c in pdf_rows(rev, "F4")[1]}) == 2          # a reversal and its original stay two claims
+    pt = {"notes": "Check image only. Not an insurance payer: a bill-pay check.", "payments": [{"payer_name": "Wealth Co", "method": "CHK", "number": "9", "amount": 4}]}
+    assert pdf_rows(pt, "F5")[0][0]["not_insurance"] is True and pdf_rows(one, "F2")[0][0]["not_insurance"] is False
     for s_ in DDL: assert not re.search(r"\b(drop|delete|truncate)\b", s_, re.I)
     print("era_archive selftest: ok")
 
