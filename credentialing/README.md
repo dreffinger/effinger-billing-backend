@@ -42,7 +42,10 @@ driver's licenses, passports), any page that shows an SSN, and discipline or mon
 
 ### Intake rule (how a new document gets filed)
 
-1. William uploads it in a chat, emails it to himself, or drops it in **00 Inbox**.
+1. William uploads it in a chat, emails it to himself, drops it in **00 Inbox**, or scans it into the ScanSnap folder
+   "aa claude folders / scansnap uploads / scanscnap credentialing files uploads" (sorted by `billing/era_input/scan_intake.py`,
+   which reads each page, splits a multi-document scan and names the vault folder and document id; steps in
+   `billing/era_input/README.md`, "Drive upload folders").
 2. Claude reads it and decides **who** (practice or which clinician), **category**, **title**, **dates** (issue and
    expiry) and **sensitivity** (anything with an SSN, DOB with photo, card number, or discipline record = restricted).
 3. Claude saves it into that Drive folder (restricted ones into the restricted folder), then indexes it:

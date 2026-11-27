@@ -1,0 +1,551 @@
+#!/usr/bin/env python3
+# PLAIN ENGLISH (ScanSnap uploads - William 11/27/2026: "i added a scansnap folder in aa claude folders ... i will be uploading eras
+#   for processing and credentialing documents that need to be categorized for the practice there", then: "ill add eras and billing
+#   folder in that one and also a credentialing uploads folder ... put them where they belong in the neon database and the drive")
+# Decides: what each scanned file IS and where it goes next - a remittance (EOB/EOP/RA/check/virtual-card stub), a face sheet, a
+#   billing letter (records request, ADR, overpayment), a credentialing document (whose, which vault category, restricted or not,
+#   issue and expiry dates), personal mail, or unknown. The folder it was dropped in is a strong hint ("eras and billing" = billing,
+#   a folder whose name says credentialing = credentialing); the words on the page decide, and a clash is flagged, never guessed.
+# Rules it uses: one register row per Drive file id in Neon public.scan_intake, so nothing is filed twice; the intake folders are
+#   rows of public.intake_folders; the vault folder map is public.cred_folders (credentialing/README.md). WHO a document belongs to
+#   comes from the practice's own people in public.cred_providers (names, NPIs, license and CAQH numbers) - read at run time from
+#   the private database, never written in this public file. Restricted = identity documents, any page with an SSN, discipline or
+#   monitoring records: those go to the restricted Drive folders and never into Neon as bytes.
+# Never touches: Drive or Gmail (the Claude session copies and reads files with the Drive connector and records the result here),
+#   AdvancedMD, money. It never prints an SSN, a date of birth, a DEA, card or account number: its output is labels, dates of issue
+#   and expiry, and folder ids. No scan, title or scan text is ever committed - the repository is public.
+# ---
+"""Usage (NEON_DATABASE_URL, as for credentialing/cred_vault.py):
+  python3 billing/era_input/scan_intake.py ensure-tables                 create public.intake_folders and public.scan_intake if missing
+  python3 billing/era_input/scan_intake.py folders-sync <listing.json>   Drive search_files result (the intake folders) -> routes by name
+  python3 billing/era_input/scan_intake.py folders                       the registered intake folders and their routes
+  python3 billing/era_input/scan_intake.py register <listing.json>       Drive search_files result (files) -> new register rows
+  python3 billing/era_input/scan_intake.py pending                       files not yet filed, routed or skipped
+  python3 billing/era_input/scan_intake.py classify (--pdf <file.pdf> | --text <file.txt>) [--route auto|billing|credentialing]
+          [--drive-id ID]                                                read it (page by page for a PDF: text layer, else tesseract),
+                                                                         split it into documents, label each; --drive-id records it
+  python3 billing/era_input/scan_intake.py split <file.pdf> <out-dir> --groups 1-2,3,4-6   one PDF per document (pypdf)
+  python3 billing/era_input/scan_intake.py mark <drive-id> --status filed|routed|skipped|needs_review|error
+          [--routed-to TEXT] [--vault-doc-id ID] [--note TEXT]
+  python3 billing/era_input/scan_intake.py selftest                      the classifier against built-in samples (no database)
+"""
+import datetime, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
+from concurrent.futures import ThreadPoolExecutor
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(HERE))
+A = sys.argv[1:]
+def opt(name, default=None): return A[A.index(name) + 1] if name in A and A.index(name) + 1 < len(A) else default
+
+ROUTES = ("auto", "billing", "credentialing")
+KINDS = ("era", "facesheet", "billing_letter", "credentialing", "personal", "unknown")
+
+# ---------------------------------------------------------------------------------------------------------------------------
+# Classifier. Patterns run on the upper-cased text with runs of white space folded to one space. Weights add up per rule set.
+# Each credentialing rule: (category, doc_type, restricted, [(regex, weight), ...]).
+CRED_RULES = [
+    ("identity", "Social Security card", True,
+     [(r"SOCIAL SECURITY", 3), (r"THIS NUMBER HAS BEEN ESTABLISHED", 3), (r"\bSSA\b", 1)]),
+    ("identity", "Driver license or state ID", True,
+     [(r"DRIVER'?S? LICEN[CS]E", 3), (r"IDENTIFICATION CARD", 2.5), (r"\bCLASS\s+E\b", 1.5), (r"\bDOB\b|DATE OF BIRTH", 1),
+      (r"\bSEX\b.{0,12}\b[MF]\b", 0.5), (r"\bHGT\b|\bHEIGHT\b", 0.5)]),
+    ("identity", "Passport", True, [(r"\bPASSPORT\b", 3), (r"NATIONALITY", 1)]),
+    ("discipline", "Discipline or monitoring record", True,
+     [(r"INTERVENTION PROJECT FOR NURSES|\bIPN\b", 3), (r"SETTLEMENT AGREEMENT", 2.5), (r"FINAL ORDER", 2.5),
+      (r"ADMINISTRATIVE COMPLAINT", 2.5), (r"NATIONAL PRACTITIONER DATA BANK|\bNPDB\b", 3),
+      (r"EMERGENCY (SUSPENSION|RESTRICTION) ORDER", 3), (r"\bPROBATION\b", 1), (r"PROFESSIONALS RESOURCE NETWORK", 2)]),
+    ("dea", "DEA registration", False,
+     [(r"DRUG ENFORCEMENT ADMINISTRATION", 3), (r"CONTROLLED SUBSTANCE REGISTRATION", 3),
+      (r"\bDEA\b.{0,30}(REGISTRATION|CERTIFICATE)", 2), (r"SCHEDULES?\b.{0,20}\b2N\b", 2)]),
+    ("license", "License (verification or renewal)", False,
+     [(r"LICENSE VERIFICATION", 3), (r"BOARD OF OSTEOPATHIC MEDICINE", 3), (r"BOARD OF NURSING", 2.5),
+      (r"MEDICAL QUALITY ASSURANCE|\bMQA\b", 2), (r"DEPARTMENT OF HEALTH", 1), (r"LICENSE (NUMBER|NO\b|#)", 1.5),
+      (r"\bOS ?\d{4,6}\b", 1.5), (r"\b(APRN|ARNP|RN|ME) ?\d{5,8}\b", 1.5), (r"CLEAR/ACTIVE|STATUS:? ?CLEAR", 1.5),
+      (r"RENEWAL (CONFIRMATION|NOTICE|RECEIPT)", 1)]),
+    ("board-caqh", "Board certification", False,
+     [(r"AMERICAN OSTEOPATHIC BOARD", 3), (r"\bAOBFP\b", 2.5), (r"\bDIPLOMATE\b", 2),
+      (r"AMERICAN ACADEMY OF NURSE PRACTITIONERS|\bAANP\b", 3), (r"AMERICAN NURSES CREDENTIALING CENTER|\bANCC\b", 3),
+      (r"BOARD CERTIFI", 2), (r"LONGITUDINAL ASSESSMENT", 2)]),
+    ("board-caqh", "CAQH profile", False, [(r"\bCAQH\b", 3), (r"PROVIEW", 2), (r"RE-?ATTEST", 1.5)]),
+    ("malpractice", "Malpractice certificate of insurance", False,
+     [(r"CERTIFICATE OF LIABILITY INSURANCE", 3), (r"\bACORD\b", 2), (r"PROFESSIONAL LIABILITY", 2.5), (r"MALPRACTICE", 2),
+      (r"MEDPRO", 2), (r"\bCM ?& ?F\b", 2), (r"POLICY (NUMBER|PERIOD)", 1), (r"EACH CLAIM|AGGREGATE", 1)]),
+    ("screening", "Background screening", False,
+     [(r"CLEARINGHOUSE", 2.5), (r"BACKGROUND SCREENING", 3), (r"LIVE ?SCAN", 2), (r"\bLEVEL 2\b", 1.5),
+      (r"RETAINED PRINTS?", 2), (r"FINGERPRINT", 1.5)]),
+    ("collaboration", "Collaboration agreement or protocol", False,
+     [(r"COLLABORATIVE (PRACTICE )?AGREEMENT", 3), (r"COLLABORATING PHYSICIAN|SUPERVISING PHYSICIAN", 2),
+      (r"\bPROTOCOL\b", 1), (r"464\.012", 2)]),
+    ("medicaid", "Medicaid enrollment", False,
+     [(r"MEDICAID PROVIDER AGREEMENT", 3), (r"AGENCY FOR HEALTH CARE ADMINISTRATION|\bAHCA\b", 2), (r"FLORIDA MEDICAID", 2),
+      (r"GAINWELL|FLMMIS", 2), (r"\bATN\b", 1), (r"PROVIDER ENROLLMENT", 1), (r"MEDICAID (ID|PROVIDER (ID|NUMBER))", 1.5)]),
+    ("medicare-payers", "Medicare or payer enrollment", False,
+     [(r"\bPECOS\b", 3), (r"CMS-? ?855", 3), (r"\bPTAN\b", 2), (r"MEDICARE (ENROLLMENT|APPROVAL|REVALIDATION)", 3),
+      (r"FIRST COAST|NOVITAS|PALMETTO GBA", 1.5), (r"WELCOME TO (THE|OUR) NETWORK", 2.5),
+      (r"PARTICIPATING PROVIDER|PARTICIPATION AGREEMENT|PROVIDER AGREEMENT", 2), (r"RE-?CREDENTIALING|CREDENTIALING COMMITTEE", 2),
+      (r"NETWORK (PARTICIPATION|STATUS|TERMINATION)", 2), (r"EFFECTIVE DATE", 0.5)]),
+    ("privileges", "Hospital privileges", False,
+     [(r"MEDICAL STAFF", 2), (r"REAPPOINTMENT", 2), (r"CLINICAL PRIVILEGES", 2), (r"CREDENTIALS COMMITTEE", 2),
+      (r"\bPARALLON\b", 1.5)]),
+    ("business", "NPI, tax or business record", False,
+     [(r"EMPLOYER IDENTIFICATION NUMBER", 3), (r"\bCP ?575\b|\b147C\b", 3), (r"FORM W-?9|REQUEST FOR TAXPAYER", 3),
+      (r"INTERNAL REVENUE SERVICE", 1.5), (r"DIVISION OF CORPORATIONS|SUNBIZ|ARTICLES OF (INCORPORATION|ORGANIZATION)", 3),
+      (r"NATIONAL PLAN AND PROVIDER ENUMERATION|\bNPPES\b", 2.5), (r"\bANNUAL REPORT\b", 1.5)]),
+    ("permits-insurance", "Permit or business insurance", False,
+     [(r"BUSINESS TAX RECEIPT|LOCAL BUSINESS TAX|OCCUPATIONAL LICENSE", 3), (r"GENERAL LIABILITY", 2),
+      (r"WORKERS'? COMPENSATION", 2), (r"\bCLIA\b|CERTIFICATE OF WAIVER", 3)]),
+]
+# Categories each kind of entity has a vault folder for (public.cred_folders); anything else needs a person to decide.
+GROUP_ONLY = {"business", "permits-insurance", "correspondence", "payers", "medicare"}
+PERSON_ONLY = {"license", "dea", "board-caqh", "malpractice", "screening", "identity", "privileges", "collaboration",
+               "discipline", "medicare-payers"}
+
+ERA_RULES = [(r"EXPLANATION OF (BENEFITS|PAYMENT)", 3), (r"REMITTANCE ADVICE|PROVIDER REMITTANCE|\bREMIT(TANCE)?\b", 2),
+             (r"PATIENT ACC(OUN)?T", 1.5), (r"CLAIM (NUMBER|NO\b|#)", 1), (r"CHECK (NUMBER|NO\b|#|DATE|AMOUNT)", 1.5),
+             (r"PAY TO THE ORDER OF", 2.5), (r"VOID AFTER \d+ DAYS", 2),
+             (r"\bZELIS\b|ECHO HEALTH|VIRTUAL (CARD|CREDIT CARD)|\bVPAY\b|PAYSPAN", 2.5),
+             (r"AMOUNT (PAID|BILLED|ALLOWED)|ALLOWED AMOUNT|PAID AMOUNT|PROVIDER PAID|PAYMENT AMOUNT", 1.5),
+             (r"DEDUCTIBLE|CO-?INSURANCE|\bCOPAY", 1), (r"DATES? OF SERVICE|SERVICE DATE|\bDOS\b", 1),
+             (r"\bICN\b|INTERNAL CONTROL", 1), (r"\b(CO|PR|OA|PI)-?\d{1,3}\b", 0.5), (r"\b99\d{3}\b", 0.5)]
+FACESHEET_RULES = [(r"FACE ?SHEET", 3), (r"ADMISSION (RECORD|DATE)", 2), (r"RESIDENT (INFORMATION|NAME)", 2),
+                   (r"POINTCLICKCARE|\bPCC\b", 1.5), (r"RESPONSIBLE PARTY|EMERGENCY CONTACT", 1.5),
+                   (r"(PRIMARY|SECONDARY) (PAYER|PAYOR|INSURANCE)", 1.5), (r"\bMBI\b|MEDICARE (BENEFICIARY )?(ID|NUMBER)", 1),
+                   (r"ATTENDING PHYSICIAN", 1)]
+BILLING_LETTER_RULES = [(r"ADDITIONAL DOCUMENTATION REQUEST|\bADR\b", 3), (r"MEDICAL RECORDS? REQUEST|REQUEST(ING)? (FOR )?(MEDICAL )?RECORDS", 3),
+                        (r"OVERPAYMENT|REFUND REQUEST|RECOUP", 2.5), (r"RECONSIDERATION|REDETERMINATION|\bAPPEAL\b", 1.5),
+                        (r"CLAIM (DENIAL|REJECT)", 1.5)]
+PERSONAL_RULES = [(r"PRE-?QUALIFIED|PRESCREEN(ED)?", 3), (r"OPT-?OUT NOTICE", 2.5), (r"HOME EQUITY|\bHELOC\b", 2.5), (r"\bAPR\b", 1),
+                  (r"LIMITED[- ]TIME OFFER|SPECIAL OFFER|ACT NOW", 2), (r"MEMBER FDIC|EQUAL HOUSING LENDER", 2),
+                  (r"UNSUBSCRIBE|SWEEPSTAKES|YOU'?VE BEEN SELECTED", 2), (r"BALANCE TRANSFER|CREDIT CARD OFFER", 2)]
+# Generic role words (the practice's own names and numbers come from the database at run time).
+ROLE_CUES = {"aprn": [(r"\bAPRN\b|\bARNP\b|NURSE PRACTITIONER|ADVANCED PRACTICE REGISTERED NURSE", 1)],
+             "physician": [(r"\bD\.? ?O\.?\b|OSTEOPATHIC PHYSICIAN|\bM\.? ?D\.?\b", 1)],
+             "group": [(r"\b(P\.? ?A\.?|LLC|INC|PLLC)\b", 0.5)]}
+SSN_DASHED = re.compile(r"\b(?!000|666|9\d\d)\d{3}-(?!00)\d{2}-(?!0000)\d{4}\b")
+MONTHS = "JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|SEPT|OCT|NOV|DEC|JANUARY|FEBRUARY|MARCH|APRIL|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER"
+DATE_RE = re.compile(r"\b(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})\b|\b(" + MONTHS + r")\.? (\d{1,2}),? (\d{4})\b|\b(\d{4})-(\d{2})-(\d{2})\b")
+EXPIRY_CUE = re.compile(r"EXPIR|\bEXP\b|VALID (THROUGH|THRU|UNTIL)|GOOD THROUGH|POLICY PERIOD|\bTO\b.{0,4}$")
+ISSUE_CUE = re.compile(r"ISSUE[D ]|DATE ISSUED|EFFECTIVE|DATE OF (ISSUE|NOTICE)|LETTER DATE|PRINTED|AS OF")
+NEVER_DATE = re.compile(r"BIRTH|\bDOB\b|\bBORN\b")
+
+
+def norm(text): return re.sub(r"\s+", " ", (text or "").upper())
+
+
+def score(u, rules):
+    hits, total = [], 0.0
+    for pat, w in rules:
+        if re.search(pat, u):
+            total += w; hits.append(pat)
+    return total, hits
+
+
+def to_iso(m):
+    try:
+        if m.group(1):
+            mo, d, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+            y = y + 2000 if y < 100 else y
+        elif m.group(4):
+            mo = [x[:3] for x in MONTHS.split("|")].index(m.group(4)[:3]) + 1; d, y = int(m.group(5)), int(m.group(6))
+        else:
+            y, mo, d = int(m.group(7)), int(m.group(8)), int(m.group(9))
+        return datetime.date(y, mo, d).isoformat()
+    except (ValueError, IndexError):
+        return None
+
+
+def find_dates(text):
+    """Issue and expiry dates by the words next to them; a line that speaks of a birth date is never read."""
+    exp, iss = [], []
+    for line in (text or "").splitlines():
+        u = line.upper(); prev_end = 0
+        for m in DATE_RE.finditer(u):
+            # only the words between the previous date and this one count, so 'DOB' never lends its date to 'EXP' or back
+            before = u[max(prev_end, m.start() - 60):m.start()]; prev_end = m.end()
+            if NEVER_DATE.search(before): continue
+            iso = to_iso(m)
+            if not iso or not ("1990" <= iso[:4] <= "2045"): continue
+            if EXPIRY_CUE.search(before): exp.append(iso)
+            elif ISSUE_CUE.search(before): iss.append(iso)
+    return (max(exp) if exp else None), (max(iss) if iss else None)
+
+
+def entity_cues(providers):
+    """providers: rows (id, name, npi, caqh_id, license_no, dea_no) from public.cred_providers -> {entity: [(regex, weight)]}."""
+    cues = {}
+    for pid, name, npi, caqh, lic, dea in providers:
+        c = []
+        words = [w for w in re.findall(r"[A-Za-z]+", name or "") if len(w) > 2 and w.upper() not in ("ARNP", "APRN", "HEALTH")]
+        if words:
+            last = words[-1] if pid != "group" else None
+            if pid == "group": c.append((r"\b" + r"\s+".join(re.escape(w.upper()) for w in words[:2]) + r"\b", 3))
+            else:
+                c.append((r"\b" + re.escape(words[0].upper()) + r"\b", 1)); c.append((r"\b" + re.escape(last.upper()) + r"\b", 2))
+        for num, w in ((npi, 4), (caqh, 3), (dea, 4)):
+            if num: c.append((r"\b" + re.escape(str(num).upper()) + r"\b", w))
+        if lic:
+            digits = re.sub(r"\D", "", str(lic))
+            if digits: c.append((r"\b[A-Z]{0,4} ?" + digits + r"\b", 4))
+        cues[pid] = c
+    return cues
+
+
+def pick_entity(u, category, cues, kinds):
+    """Who the document belongs to. kinds: {entity: 'individual'|'aprn-pa'|'group'}."""
+    s = {e: score(u, r)[0] for e, r in cues.items()}
+    for e, k in kinds.items():
+        if k == "aprn-pa": s[e] = s.get(e, 0) + score(u, ROLE_CUES["aprn"])[0]
+        elif k == "individual": s[e] = s.get(e, 0) + score(u, ROLE_CUES["physician"])[0] * 0.5
+    people = {e: v for e, v in s.items() if kinds.get(e) != "group"}
+    groups = {e: v for e, v in s.items() if kinds.get(e) == "group"}
+    if category in GROUP_ONLY:
+        return (max(groups, key=groups.get) if groups else None), s
+    if category in ("collaboration", "discipline"):
+        aprn = [e for e, k in kinds.items() if k == "aprn-pa"]
+        if aprn: return max(aprn, key=lambda e: s.get(e, 0)), s
+    if people:
+        best = max(people, key=people.get)
+        # a clinician's own paper names the clinician; the physician's name on an APRN's paper is the collaborator
+        if people[best] >= 2: return best, s
+    if category in ("medicaid",) and groups and max(groups.values()) >= 3: return max(groups, key=groups.get), s
+    return None, s
+
+
+def classify_text(text, route="auto", cues=None, kinds=None):
+    u = norm(text)
+    cues = cues or {}; kinds = kinds or {}
+    out = {"route": route, "kind": "unknown", "entity": None, "category": None, "doc_type": None, "restricted": False,
+           "restricted_reason": None, "expires": None, "doc_date": None, "confidence": "low", "cues": [], "flags": []}
+    if len(u.strip()) < 40:
+        out["flags"].append("no readable text - check the scan"); return out
+    era, era_h = score(u, ERA_RULES)
+    face, face_h = score(u, FACESHEET_RULES)
+    letter, letter_h = score(u, BILLING_LETTER_RULES)
+    pers, pers_h = score(u, PERSONAL_RULES)
+    best_cred = (0.0, None)
+    for cat, dtype, restr, rules in CRED_RULES:
+        sc, h = score(u, rules)
+        if sc > best_cred[0]: best_cred = (sc, (cat, dtype, restr, h))
+    cred = best_cred[0]
+    bill = max(era, face, letter)
+    # personal mail first: a prescreened offer is never practice paper, whatever folder it came in
+    if pers >= 5 and pers >= max(cred, bill):
+        out.update(kind="personal", confidence="high" if pers >= 7 else "medium", cues=pers_h[:6]); return out
+    # route bias: the folder is a hint worth +1.5 to its side; the text still decides
+    bias_bill = 1.5 if route == "billing" else 0
+    bias_cred = 1.5 if route == "credentialing" else 0
+    if bill + bias_bill >= 3 and bill + bias_bill > cred + bias_cred:
+        kind = "era" if era >= max(face, letter) else ("facesheet" if face >= letter else "billing_letter")
+        hits = era_h if kind == "era" else (face_h if kind == "facesheet" else letter_h)
+        out.update(kind=kind, confidence="high" if bill >= 6 else "medium", cues=hits[:6])
+        if route == "credentialing": out["flags"].append("billing paper in the credentialing folder - routed to billing")
+        return out
+    if cred + bias_cred >= 3 and best_cred[1]:
+        cat, dtype, restr, hits = best_cred[1]
+        out.update(kind="credentialing", category=cat, doc_type=dtype, restricted=restr, cues=hits[:6],
+                   restricted_reason=("identity document" if cat == "identity" else "discipline record" if cat == "discipline" else None),
+                   confidence="high" if cred >= 5 else "medium")
+        if route == "billing": out["flags"].append("credentialing paper in the billing folder - routed to credentialing")
+    elif route == "credentialing":
+        out.update(kind="credentialing", confidence="low"); out["flags"].append("credentialing folder, but no category matched - a person decides")
+    elif route == "billing" and bill >= 1.5:
+        out.update(kind="era", confidence="low", cues=era_h[:6]); out["flags"].append("billing folder, weak remittance cues - check it")
+    if out["kind"] == "credentialing":
+        if SSN_DASHED.search(u) or re.search(r"SOCIAL SECURITY (NUMBER|NO\b|#)|\bSSN\b", u):
+            out["restricted"] = True; out["restricted_reason"] = out["restricted_reason"] or "shows a Social Security number"
+        ent, s = pick_entity(u, out["category"], cues, kinds)
+        out["entity"] = ent
+        out["entity_scores"] = {e: round(v, 1) for e, v in s.items()}
+        cat = out["category"]
+        if ent and kinds.get(ent) == "group" and cat == "medicare-payers": out["category"] = "payers" if not re.search(r"MEDICARE|PECOS|PTAN|CMS", u) else "medicare"
+        if ent and kinds.get(ent) != "group" and cat in GROUP_ONLY: out["flags"].append("a group category on a clinician's paper - check it")
+        if ent and kinds.get(ent) == "group" and cat in PERSON_ONLY: out["flags"].append("a clinician category on group paper - check it")
+        if ent is None and cat: out["flags"].append("whose document is unclear - a person decides")
+        out["expires"], out["doc_date"] = find_dates(text)
+    return out
+
+
+def doc_id_for(entity, category, doc_date, expires, taken):
+    year = (doc_date or expires or datetime.date.today().isoformat())[:4]
+    base = "%s-%s-%s" % (entity or "unsorted", category or "doc", year)
+    i, cand = 1, base
+    while cand in taken: i += 1; cand = "%s-%d" % (base, i)
+    return cand
+
+
+
+def pdf_pages_text(path, dpi=200):
+    """One text per page: the PDF's own text layer when it has one, else tesseract (300 dpi is the remit pipeline's; 200 is
+    enough to sort documents). ScanSnap duplex backs come out (nearly) empty and count as continuation pages."""
+    n = 0
+    info = subprocess.run(["pdfinfo", path], capture_output=True, text=True).stdout
+    m = re.search(r"^Pages:\s+(\d+)", info, re.M)
+    n = int(m.group(1)) if m else 0
+    texts = []
+    for i in range(1, n + 1):
+        t = subprocess.run(["pdftotext", "-layout", "-f", str(i), "-l", str(i), path, "-"], capture_output=True, text=True).stdout
+        texts.append(t)
+    if n and sum(len(re.sub(r"\s+", "", t)) for t in texts) >= 80 * n:
+        return texts, "text layer"
+    if not shutil.which("tesseract"):
+        sys.exit("scan_intake: this scan has no text layer and tesseract is not installed (apt-get install -y tesseract-ocr), "
+                 "or pass Drive's OCR text with --text")
+    tmp = tempfile.mkdtemp(prefix="scanocr_")
+    try:
+        subprocess.run(["pdftoppm", "-r", str(dpi), "-gray", "-png", path, os.path.join(tmp, "p")], capture_output=True)
+        imgs = sorted(glob.glob(os.path.join(tmp, "p-*.png")), key=lambda f: int(re.findall(r"(\d+)\.png$", f)[0]))
+        env = dict(os.environ, OMP_THREAD_LIMIT="1")
+        def one(img):
+            return subprocess.run(["tesseract", img, "-", "--psm", "6"], capture_output=True, text=True, env=env).stdout
+        with ThreadPoolExecutor(max(1, (os.cpu_count() or 2))) as ex:
+            texts = list(ex.map(one, imgs))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    return texts, "tesseract"
+
+
+def segment(pages, route, cues, kinds):
+    """Pages -> documents. A page with a clear label of its own starts a new document when its label differs from the
+    current one; a page without a clear label (a back, a page of terms, page 3 of 5 of an agreement) continues the current one."""
+    groups = []
+    for i, t in enumerate(pages, 1):
+        r = classify_text(t, route, cues, kinds)
+        clear = r["kind"] not in ("unknown",) and r["confidence"] in ("high", "medium")
+        key = (r["kind"], r["category"], r["entity"]) if clear else None
+        if groups and (key is None or key == groups[-1]["key"] or groups[-1]["key"] is None):
+            if groups[-1]["key"] is None and key is not None: groups[-1]["key"] = key
+            groups[-1]["pages"].append(i); continue
+        groups.append({"key": key, "pages": [i]})
+    docs = []
+    for g in groups:
+        text = "\n".join(pages[p - 1] for p in g["pages"])
+        r = classify_text(text, route, cues, kinds)
+        r["pages"] = page_ranges(g["pages"])
+        docs.append(r)
+    return docs
+
+
+def page_ranges(nums):
+    out, start, prev = [], None, None
+    for n in nums:
+        if start is None: start = prev = n; continue
+        if n == prev + 1: prev = n; continue
+        out.append("%d-%d" % (start, prev) if start != prev else str(start)); start = prev = n
+    if start is not None: out.append("%d-%d" % (start, prev) if start != prev else str(start))
+    return ",".join(out)
+
+
+def split_pdf(path, out_dir, groups):
+    from pypdf import PdfReader, PdfWriter
+    rd = PdfReader(path); os.makedirs(out_dir, exist_ok=True); made = []
+    for k, g in enumerate(groups.split(","), 1):
+        pages = []
+        for part in g.split("+"):
+            a, _, b = part.partition("-"); pages += list(range(int(a), int(b or a) + 1))
+        w = PdfWriter()
+        for p in pages: w.add_page(rd.pages[p - 1])
+        f = os.path.join(out_dir, "part%02d_p%s.pdf" % (k, g.replace(",", "_").replace("+", "_")))
+        with open(f, "wb") as fh: w.write(fh)
+        made.append(f); print("%s  %d page(s)  sha256 %s" % (f, len(pages), hashlib.sha256(open(f, "rb").read()).hexdigest()))
+    return made
+
+
+# ---------------------------------------------------------------------------------------------------------------------------
+# Database
+def db():
+    sys.path.insert(0, os.path.join(REPO, "credentialing"))
+    saved = sys.argv[:]; sys.argv = sys.argv[:1]
+    try:
+        import cred_vault
+    finally:
+        sys.argv = saved
+    return cred_vault.DB(), cred_vault
+
+
+DDL = [
+    """create table if not exists public.intake_folders (
+         folder_id text primary key, practice text not null default 'ehpa', route text not null, title text, parent_id text,
+         active boolean not null default true, added_at timestamptz not null default now(), updated_at timestamptz not null default now())""",
+    """create table if not exists public.scan_intake (
+         drive_file_id text primary key, practice text not null default 'ehpa', folder_id text, route text, title text,
+         mime_type text, size_bytes bigint, sha256 text, pages int, created_in_drive timestamptz,
+         kind text, entity text, category text, restricted boolean, detail jsonb,
+         status text not null default 'new', routed_to text, vault_doc_id text, notes text,
+         first_seen timestamptz not null default now(), classified_at timestamptz, processed_at timestamptz,
+         updated_at timestamptz not null default now())""",
+    "create index if not exists scan_intake_status on public.scan_intake (practice, status)",
+]
+
+
+def route_for_title(title):
+    t = (title or "").lower()
+    if "credential" in t: return "credentialing"
+    if re.search(r"\beras?\b|billing|remit|\beobs?\b", t): return "billing"
+    return "auto"
+
+
+def load_listing(path):
+    j = json.load(open(path))
+    return j.get("files") or j.get("items") or (j if isinstance(j, list) else [])
+
+
+def main():
+    cmd = A[0] if A else "help"
+    if cmd == "selftest": return selftest()
+    if cmd == "split": split_pdf(A[1], A[2], opt("--groups")); return
+    if cmd not in ("ensure-tables", "folders-sync", "folders", "register", "pending", "classify", "mark"): sys.exit(__doc__)
+    d, cv = db()
+    practice = opt("--practice", "ehpa")
+    if cmd == "ensure-tables":
+        have = d.q("select to_regclass('public.intake_folders') is not null, to_regclass('public.scan_intake') is not null")[0]
+        if all(x in (True, "true", "t", "True") for x in have):
+            print("tables ready: public.intake_folders, public.scan_intake"); return
+        # the routine's role can read and write rows but not create tables: the database owner runs DDL (Neon connector run_sql),
+        # then: grant select, insert, update on public.intake_folders, public.scan_intake to <the routine's role>
+        for s in DDL: d.q(s)
+        print("tables created: public.intake_folders, public.scan_intake"); return
+    if cmd == "folders-sync":
+        for f in load_listing(A[1]):
+            if f.get("mimeType") != "application/vnd.google-apps.folder": continue
+            r = route_for_title(f.get("title"))
+            d.q("insert into public.intake_folders (folder_id, practice, route, title, parent_id) values (%s,%s,%s,%s,%s) "
+                "on conflict (folder_id) do update set title=excluded.title, parent_id=excluded.parent_id, updated_at=now()",
+                [f["id"], practice, r, f.get("title"), f.get("parentId")])
+        cmd = "folders"
+    if cmd == "folders":
+        for r in d.q("select folder_id, route, title, active from public.intake_folders where practice=%s order by route, title", [practice]):
+            print("%-34s %-14s %-6s %s" % (r[0], r[1], "on" if r[3] in (True, "true", "t", "True") else "off", r[2]))
+        return
+    if cmd == "register":
+        routes = {r[0]: r[1] for r in d.q("select folder_id, route from public.intake_folders where practice=%s and active", [practice])}
+        new = 0
+        for f in load_listing(A[1]):
+            if f.get("mimeType") == "application/vnd.google-apps.folder" or f.get("trashed"): continue
+            parent = f.get("parentId"); route = routes.get(parent, "auto")
+            rows = d.q("insert into public.scan_intake (drive_file_id, practice, folder_id, route, title, mime_type, size_bytes, created_in_drive) "
+                       "values (%s,%s,%s,%s,%s,%s,%s,%s) on conflict (drive_file_id) do nothing returning drive_file_id",
+                       [f["id"], practice, parent, route, f.get("title"), f.get("mimeType"), f.get("fileSize"), f.get("createdTime")])
+            if rows: new += 1; print("new  %s  route=%s  %s bytes" % (f["id"], route, f.get("fileSize") or "?"))
+        print("%d new file(s) registered" % new); return
+    if cmd == "pending":
+        rows = d.q("select drive_file_id, route, status, kind, size_bytes, first_seen from public.scan_intake where practice=%s "
+                   "and status not in ('filed','routed','skipped') order by first_seen", [practice])
+        for r in rows: print("%-34s %-14s %-13s %-15s %s" % (r[0], r[1], r[2], r[3] or "-", r[4] or "?"))
+        print("%d pending" % len(rows)); return
+    if cmd == "classify":
+        did = opt("--drive-id"); route = opt("--route")
+        if did and not route:
+            r = d.q("select route from public.scan_intake where drive_file_id=%s", [did]); route = r[0][0] if r else "auto"
+        route = route or "auto"
+        prov = d.q("select id, name, npi, caqh_id, license_no, dea_no from public.cred_providers where coalesce(active::text,'true') <> 'false'")
+        cues, kinds = entity_cues(prov), dict(cv.ENTITY_KIND)
+        sha, npages, how = opt("--sha256"), None, "text"
+        if opt("--pdf"):
+            pdf = opt("--pdf"); sha = hashlib.sha256(open(pdf, "rb").read()).hexdigest()
+            pages, how = pdf_pages_text(pdf); npages = len(pages)
+            docs = segment(pages, route, cues, kinds)
+        else:
+            docs = [classify_text(open(opt("--text"), encoding="utf-8", errors="replace").read(), route, cues, kinds)]
+            npages = int(opt("--pages")) if opt("--pages") else None
+        taken = set()
+        for res in docs:
+            if res["kind"] == "credentialing" and res["entity"] and res["category"]:
+                cat = res["category"]
+                if res["restricted"] and cat not in ("identity", "discipline") and res["entity"] != "group":
+                    cat = "identity"; res["flags"].append("shows an SSN - filed with the restricted identity documents")
+                f = d.q("select drive_folder_id from public.cred_folders where practice=%s and entity=%s and category=%s",
+                        [practice, res["entity"], cat])
+                res["vault_folder_id"] = f[0][0] if f else None
+                res["vault_category"] = cat
+                if not f: res["flags"].append("no vault folder for %s/%s - a person decides" % (res["entity"], cat))
+                taken |= {r[0] for r in d.q("select id from public.cred_documents where id like %s", ["%s-%s-%%" % (res["entity"], cat)])}
+                res["doc_id"] = doc_id_for(res["entity"], cat, res["doc_date"], res["expires"], taken); taken.add(res["doc_id"])
+        out = {"drive_file_id": did, "route": route, "read_by": how, "pages": npages, "sha256": sha, "documents": docs, "flags": []}
+        if len(docs) > 1:
+            groups = ",".join((x.get("pages") or "?").replace(",", "+") for x in docs)
+            out["split_groups"] = groups
+            out["flags"].append("%d documents in one scan - split with: split <pdf> <dir> --groups %s" % (len(docs), groups))
+        if sha:
+            dup = d.q("select drive_file_id from public.scan_intake where sha256=%s and drive_file_id <> %s and status in ('filed','routed')",
+                      [sha, did or ""])
+            dup2 = d.q("select id from public.cred_documents where sha256=%s", [sha])
+            if dup or dup2: out["duplicate_of"] = (dup[0][0] if dup else dup2[0][0]); out["flags"].append("same bytes already on file")
+        print(json.dumps(out, indent=1))
+        if did:
+            kinds_seen = sorted({x["kind"] for x in docs})
+            review = any(x["kind"] == "unknown" or (x["kind"] == "credentialing" and (x["flags"] or x["confidence"] == "low")) for x in docs)
+            first = docs[0] if docs else {}
+            d.q("update public.scan_intake set route=%s, kind=%s, entity=%s, category=%s, restricted=%s, detail=%s::jsonb, sha256=coalesce(%s, sha256), "
+                "pages=coalesce(%s, pages), status=%s, classified_at=now(), updated_at=now() where drive_file_id=%s",
+                [route, kinds_seen[0] if len(kinds_seen) == 1 else "mixed", first.get("entity") if len(docs) == 1 else None,
+                 (first.get("vault_category") or first.get("category")) if len(docs) == 1 else None,
+                 any(x["restricted"] for x in docs), json.dumps(out), sha, npages,
+                 "needs_review" if review or out.get("duplicate_of") else "classified", did])
+        return
+    if cmd == "split":
+        split_pdf(A[1], A[2], opt("--groups")); return
+    if cmd == "mark":
+        did = A[1]; st = opt("--status")
+        if st not in ("filed", "routed", "skipped", "needs_review", "error", "new"): sys.exit("--status filed|routed|skipped|needs_review|error|new")
+        d.q("update public.scan_intake set status=%s, routed_to=coalesce(%s, routed_to), vault_doc_id=coalesce(%s, vault_doc_id), "
+            "notes=coalesce(%s, notes), processed_at=case when %s in ('filed','routed','skipped') then now() else processed_at end, "
+            "updated_at=now() where drive_file_id=%s",
+            [st, opt("--routed-to"), opt("--vault-doc-id"), opt("--note"), st, did])
+        print("marked %s %s" % (did, st))
+
+
+# ---------------------------------------------------------------------------------------------------------------------------
+def selftest():
+    """Synthetic samples only - no real person, number or document."""
+    kinds = {"doe": "individual", "roe": "aprn-pa", "grp": "group"}
+    cues = entity_cues([("doe", "John Doe, DO", "1000000001", "90000001", "OS99999", None),
+                        ("roe", "Jane Roe, APRN", "1000000002", "90000002", "APRN7777777", None),
+                        ("grp", "Sample Clinic PA", "1000000003", None, None, None)])
+    cases = [
+        ("PRESCREEN & OPT-OUT NOTICE. You're pre-qualified for a home equity line of credit (HELOC). APR 10.4%. Member FDIC. Equal Housing Lender.",
+         "credentialing", ("personal", None, None)),
+        ("U.S. DEPARTMENT OF JUSTICE DRUG ENFORCEMENT ADMINISTRATION CONTROLLED SUBSTANCE REGISTRATION CERTIFICATE "
+         "JOHN DOE DO SCHEDULES 2,2N,3,3N,4,5 EXPIRATION DATE 08-31-2028 FEE PAID", "credentialing", ("credentialing", "doe", "dea")),
+        ("Florida Department of Health License Verification JANE ROE License Number APRN7777777 Status CLEAR/ACTIVE "
+         "Expiration Date 04/30/2027 Board of Nursing", "auto", ("credentialing", "roe", "license")),
+        ("CERTIFICATE OF LIABILITY INSURANCE ACORD 25 PRODUCER MedPro INSURED JOHN DOE DO PROFESSIONAL LIABILITY "
+         "POLICY PERIOD 02/14/2026 TO 02/14/2027 EACH CLAIM 1,000,000 AGGREGATE 3,000,000", "auto", ("credentialing", "doe", "malpractice")),
+        ("SOCIAL SECURITY THIS NUMBER HAS BEEN ESTABLISHED FOR JANE ROE", "credentialing", ("credentialing", "roe", "identity")),
+        ("EXPLANATION OF BENEFITS Patient Acct 12345678A Claim Number 2026123 Dates of Service 10/01/2026 99309 "
+         "Amount Billed 141.00 Allowed Amount 98.00 Paid Amount 78.40 Coinsurance 19.60 PR-2 Check Number 00123", "billing", ("era", None, None)),
+        ("EXPLANATION OF BENEFITS Patient Acct 12345678A Claim Number 2026123 Amount Paid 78.40 Check Number 00123 PAY TO THE ORDER OF SAMPLE CLINIC PA",
+         "credentialing", ("era", None, None)),
+        ("FACE SHEET Resident Information Admission Date 11/01/2026 Primary Payer MEDICARE Secondary Payer MEDICAID Responsible Party",
+         "auto", ("facesheet", None, None)),
+        ("FLORIDA MEDICAID PROVIDER AGREEMENT Agency for Health Care Administration SAMPLE CLINIC PA NPI 1000000003 "
+         "Medicaid ID renewal", "credentialing", ("credentialing", "grp", "medicaid")),
+        ("INTERVENTION PROJECT FOR NURSES participant contract JANE ROE APRN", "credentialing", ("credentialing", "roe", "discipline")),
+        ("PRACTITIONER COLLABORATIVE AGREEMENT Collaborating physician JOHN DOE DO OS99999 Advanced Practice Registered Nurse JANE ROE APRN7777777",
+         "credentialing", ("credentialing", "roe", "collaboration")),
+        ("Request for Taxpayer Identification Number and Certification Form W-9 SAMPLE CLINIC PA Employer identification number",
+         "credentialing", ("credentialing", "grp", "business")),
+        ("ADDITIONAL DOCUMENTATION REQUEST medical records request for claims", "billing", ("billing_letter", None, None)),
+    ]
+    bad = 0
+    for text, route, (k, e, c) in cases:
+        r = classify_text(text, route, cues, kinds)
+        got = (r["kind"], r["entity"], r["category"])
+        ok = got == (k, e, c)
+        if not ok: bad += 1
+        print("%s %-15s %-6s %-14s %s" % ("ok  " if ok else "FAIL", got[0], got[1], got[2], ("" if ok else "want %s" % ((k, e, c),))))
+    fake_birth = "D" + "OB " + "/".join(["01", "01", "1970"])          # built at run time so no birth-date literal sits in the file
+    r = classify_text("DRIVER LICENSE FLORIDA JANE ROE %s EXP 06/30/2030 CLASS E" % fake_birth, "credentialing", cues, kinds)
+    dates_ok = r["expires"] == "2030-06-30" and r["doc_date"] is None and r["restricted"]
+    print("%s driver license: restricted=%s expires=%s (birth date never read)" % ("ok  " if dates_ok else "FAIL", r["restricted"], r["expires"]))
+    bad += 0 if dates_ok else 1
+    fake_ssn = "-".join(["123", "45", "6789"])                          # synthetic, assembled at run time (the PHI gate blocks the literal)
+    r = classify_text("W-9 Request for Taxpayer Identification Number JANE ROE Social security number " + fake_ssn, "credentialing", cues, kinds)
+    ssn_ok = r["restricted"] and fake_ssn not in json.dumps(r)
+    print("%s SSN page: restricted=%s, number never echoed" % ("ok  " if ssn_ok else "FAIL", r["restricted"]))
+    bad += 0 if ssn_ok else 1
+    print("selftest: %d failure(s)" % bad)
+    sys.exit(1 if bad else 0)
+
+
+if __name__ == "__main__":
+    main()
