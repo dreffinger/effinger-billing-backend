@@ -58,7 +58,8 @@ password manager the owner controls.
 1. **Agreement title = Owners panel title.** The returned letter said "must be signed by the CEO, president, or all
    persons listed in the owners panel". The rejected copy was signed by the right person but titled "APRN", while the
    Owners panel lists her relationship as OWNER (the most likely reason it was judged incomplete). Print the name and
-   title exactly as the Owners panel shows them, and fill every line on
+   title exactly as the Owners panel shows them (the **Title** column, e.g. "SOLE PROPRIETOR", not the Affiliation column,
+   e.g. "OWNER"; read it at Providers > Demographic Maintenance > Ownership), and fill every line on
    page 5 (DBA "N/A", NPI, Medicaid ID or "N/A - new applicant, ATN ...", tax ID handwritten).
 2. **APRN/PA collaboration is a specific form.** FL wants form 0104. Uploading the practice's ARNP protocol was logged
    as "Practitioner Collaborative Agreement is missing".
