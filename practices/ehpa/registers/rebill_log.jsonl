@@ -611,3 +611,12 @@
 {"at": "2026-11-27T19:06:32Z", "visit": "19437729", "charge": "23344834", "seq": 1, "status": 204, "by": "work_queue_act.py"}
 {"at": "2026-11-27T19:06:52Z", "visit": "19452448", "charge": "23362728", "seq": 1, "status": 204, "by": "work_queue_act.py"}
 {"at": "2026-11-27T19:07:02Z", "visit": "19430681", "charge": "23337099", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:52:08Z", "visit": "19430596", "charge": "23336930", "seq": 3, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:52:21Z", "visit": "19430797", "charge": "23337332", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:52:31Z", "visit": "19430601", "charge": "23336940", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:52:39Z", "visit": "19439774", "charge": "23347418", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:52:50Z", "visit": "19440506", "charge": "23348195", "seq": 2, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:53:02Z", "visit": "19430550", "charge": "23336870", "seq": 3, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:53:14Z", "visit": "19432527", "charge": "23339089", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:53:19Z", "visit": "19430557", "charge": "23336877", "seq": 1, "status": 204, "by": "work_queue_act.py"}
+{"at": "2026-11-28T00:53:26Z", "visit": "19429006", "charge": "23335517", "seq": 1, "status": 204, "by": "work_queue_act.py"}
