@@ -1,0 +1,644 @@
+{
+ "created": [
+  {
+   "feed_id": "67103aa9858886344b981b1a",
+   "pid": "pat17472250",
+   "visit": "vst19462839",
+   "charges": [
+    "charge23376219"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-28T12:44:04.051460",
+   "dos": "11/23/2026",
+   "dos_lines": [
+    "11/23/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261123",
+   "missing_dx": [],
+   "dob_note": "same",
+   "stay": {
+    "kind": "acute",
+    "initial": "11/22/2026",
+    "sign": ""
+   },
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "62a895fca4ea93d62b48e249",
+   "pid": "pat23159",
+   "visit": "vst19462840",
+   "charges": [
+    "charge23376220"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-28T12:44:09.793392",
+   "dos": "11/26/2026",
+   "dos_lines": [
+    "11/26/2026"
+   ],
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21"
+   ],
+   "pos_why": [
+    ""
+   ],
+   "pos_kind": [
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261126",
+   "missing_dx": [],
+   "dob_note": "same",
+   "stay": {
+    "kind": "acute",
+    "initial": "11/25/2026",
+    "sign": ""
+   },
+   "pos_stored": [
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a7b446cd9b03861866cc572",
+   "pid": "pat17477403",
+   "visit": "vst19462841",
+   "charges": [
+    "charge23376221",
+    "charge23376222"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-28T12:44:15.159883",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026",
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21",
+    "21"
+   ],
+   "pos_why": [
+    "",
+    ""
+   ],
+   "pos_kind": [
+    "",
+    ""
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261125",
+   "missing_dx": [],
+   "dob_note": "same",
+   "stay": {
+    "kind": "acute",
+    "initial": "11/25/2026",
+    "sign": ""
+   },
+   "pos_stored": [
+    "21",
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6ae94ba0a0e552e64deaf124",
+   "pid": "pat17472228",
+   "visit": "vst19462842",
+   "charges": [
+    "charge23376223",
+    "charge23376224"
+   ],
+   "fees": [
+    "310.00",
+    "133.00"
+   ],
+   "at": "2026-11-28T12:44:20.026027",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026",
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "pos_feed": "21",
+   "pos_lines": [
+    "21",
+    "21"
+   ],
+   "pos_why": [
+    "inpatient rehab stay: new admission 1-2 days after an acute stay - kept at 21: another visit of this stay is already on the chart at the hospital - it reached the feed before the stay's initial visit - and a stay is never mixed",
+    "inpatient rehab stay: new admission 1-2 days after an acute stay - kept at 21: another visit of this stay is already on the chart at the hospital - it reached the feed before the stay's initial visit - and a stay is never mixed"
+   ],
+   "pos_kind": [
+    "rehab-stay-kept-21",
+    "rehab-stay-kept-21"
+   ],
+   "pos_err": "",
+   "prof": "prof13",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261125",
+   "missing_dx": [],
+   "dob_note": "same",
+   "stay": {
+    "kind": "rehab",
+    "initial": "11/25/2026",
+    "sign": "new admission 1-2 days after an acute stay"
+   },
+   "pos_stored": [
+    "21",
+    "21"
+   ],
+   "admit_written": true,
+   "chart_insorder": "3",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "3"
+   ]
+  },
+  {
+   "feed_id": "6a366e3914748189c3d3dd1f",
+   "pid": "pat17476874",
+   "visit": "vst19462843",
+   "charges": [
+    "charge23376225",
+    "charge23376226"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-28T12:44:25.092386",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac58",
+   "pos": "32",
+   "pos_feed": "31",
+   "pos_lines": [
+    "32"
+   ],
+   "pos_why": [
+    "32 by rule: 21 days since the previous nursing visit (the monthly visit)"
+   ],
+   "pos_kind": [
+    "monthly"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260713",
+   "missing_dx": [],
+   "dob_note": "same",
+   "quality_codes": [
+    "1123F"
+   ],
+   "quality_fee": "0.01",
+   "quality_dos": "11/25/2026",
+   "quality_pos": "32",
+   "quality_pos_stored": "32",
+   "pos_stored": [
+    "32"
+   ],
+   "quality_charge": "charge23376226",
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "feed_id": "6a1938394cc9bd8157a03619",
+   "pid": "pat17476680",
+   "visit": "vst19462844",
+   "charges": [
+    "charge23376227"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-28T12:44:29.127478",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac58",
+   "pos": "32",
+   "pos_feed": "31",
+   "pos_lines": [
+    "32"
+   ],
+   "pos_why": [
+    "32 by rule: 21 days since the previous nursing visit (the monthly visit)"
+   ],
+   "pos_kind": [
+    "monthly"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20260703",
+   "missing_dx": [],
+   "dob_note": "same",
+   "pos_stored": [
+    "32"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "67b3ba875a30dcc003c15e8a",
+   "pid": "pat17472922",
+   "visit": "vst19462845",
+   "charges": [
+    "charge23376228"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-28T12:44:33.176585",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac58",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261104",
+   "missing_dx": [],
+   "dob_note": "same",
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "1"
+   ]
+  },
+  {
+   "feed_id": "6aea178475d91711b303e95c",
+   "pid": "pat17478318",
+   "visit": "vst19462846",
+   "charges": [
+    "charge23376229"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-28T12:44:36.905151",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac58",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261110",
+   "missing_dx": [],
+   "dob_note": "same",
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "2",
+   "open_plans_at_entry": 1,
+   "open_plan_seqs_at_entry": [
+    "2"
+   ]
+  },
+  {
+   "feed_id": "63a5b5c3ae9cb63b263c5456",
+   "pid": "pat25710",
+   "visit": "vst19462847",
+   "charges": [
+    "charge23376230"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-28T12:44:41.073941",
+   "dos": "11/25/2026",
+   "dos_lines": [
+    "11/25/2026"
+   ],
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac58",
+   "pos": "31",
+   "pos_feed": "31",
+   "pos_lines": [
+    "31"
+   ],
+   "pos_why": [
+    "31 by rule: seen 7 days after the previous nursing visit (weekly or more)"
+   ],
+   "pos_kind": [
+    "skilled"
+   ],
+   "pos_err": "",
+   "prof": "prof15",
+   "prof_default": false,
+   "msg_own": true,
+   "admit": "20261116",
+   "missing_dx": [],
+   "dob_note": "same",
+   "pos_stored": [
+    "31"
+   ],
+   "chart_insorder": "1,2",
+   "open_plans_at_entry": 2,
+   "open_plan_seqs_at_entry": [
+    "1",
+    "2"
+   ]
+  }
+ ],
+ "skipped": [],
+ "failed": [],
+ "quality_gate": {
+  "code": "1123F",
+  "fee": "0.01",
+  "confirmed": false,
+  "proof": null,
+  "zero_not_billed": false,
+  "off": "",
+  "off_until_reset": "",
+  "wait": false,
+  "pending": [],
+  "pending_since": "",
+  "billed_lines": [],
+  "void_lines": [
+   "charge23373645",
+   "charge23373648",
+   "charge23373650",
+   "charge23373913",
+   "charge23373928",
+   "charge23374160",
+   "charge23374348",
+   "charge23375086",
+   "charge23375196",
+   "charge23375504",
+   "charge23376130"
+  ],
+  "left_off_lines": [],
+  "dead_zero_lines": [],
+  "reset": false,
+  "reset_after": null,
+  "round": {
+   "n": 2,
+   "fee": "0.01",
+   "since": "feed_import_20261113T0135Z.json",
+   "lines": 8,
+   "void": 7,
+   "open": 1
+  },
+  "budget": 1,
+  "pilot_cap": 3,
+  "n620": false,
+  "history_shows_line": null,
+  "refused_charts": [
+   [
+    "pat17470875",
+    "2026"
+   ],
+   [
+    "pat17473571",
+    "2026"
+   ],
+   [
+    "pat17473962",
+    "2026"
+   ],
+   [
+    "pat17475778",
+    "2026"
+   ],
+   [
+    "pat17477190",
+    "2026"
+   ],
+   [
+    "pat17478210",
+    "2026"
+   ],
+   [
+    "pat17478414",
+    "2026"
+   ],
+   [
+    "pat21915",
+    "2026"
+   ],
+   [
+    "pat24368",
+    "2026"
+   ],
+   [
+    "pat25994",
+    "2026"
+   ],
+   [
+    "pat45010",
+    "2026"
+   ]
+  ],
+  "not_renewed": {},
+  "billed_on": {},
+  "code_text_lines": [
+   "charge23374160",
+   "charge23374348",
+   "charge23375086"
+  ],
+  "left_off_seen": {},
+  "left_off_on": {},
+  "late_billed": {},
+  "late_rows": [],
+  "wrong_code_text": "",
+  "proof_wait": null,
+  "medicare_answer": null,
+  "medicare_wait": null,
+  "quality_skipped_hospital": 0,
+  "unread": [],
+  "unread_prev": [],
+  "probe": "AdvancedMD held visit vst19462781 because of its quality line (the routine took the line off and the visit went through) with a one-cent charge too (feed_inspector_20261127T1239Z.json) - William looks",
+  "probe_kind": "claim_check",
+  "probe_since": "feed_inspector_20261111T1239Z.json",
+  "probe_words": "[Pattern 2049] Per Medicare guidelines the...",
+  "probe_tries": 9,
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "taken_lines": [],
+  "wrong_code_charge": "",
+  "n620_seen": "",
+  "left_off_cent": [],
+  "proof_aside": null,
+  "notes": [
+   "AdvancedMD held visit vst19460833 because of its quality line (the routine took the line off and the visit went through) at $0.00 (feed_inspector_20261111T1239Z.json) - new lines carry $0.01, one line a run until one is billed",
+   "feed_inspector_20261121T1240Z.json names quality charge charge23375086, which no import register row carries - passed over"
+  ]
+ },
+ "mvp_gate": {
+  "code": "M0004",
+  "on": true,
+  "off": "",
+  "off_until_reset": "",
+  "reset": false,
+  "reset_after": null,
+  "added": [],
+  "clinicians": {
+   "prof13": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   },
+   "prof15": {
+    "state": "not yet",
+    "year": "2026",
+    "visit": "",
+    "charge": "",
+    "billed": "",
+    "since": ""
+   }
+  },
+  "billed_lines": [],
+  "void_lines": [],
+  "left_off_lines": [],
+  "billed_on": {},
+  "left_off_on": {},
+  "left_off_seen": {},
+  "late_billed": {},
+  "late_rows": [],
+  "swaps": {},
+  "wrong_code_text": "",
+  "answer": {},
+  "answer_wait": {},
+  "probe": "",
+  "probe_since": "",
+  "probe_words": "",
+  "paused": "",
+  "stuck": [],
+  "open_lines": [],
+  "standing_restart": null,
+  "wrong_code_charge": "",
+  "notes": []
+ }
+}

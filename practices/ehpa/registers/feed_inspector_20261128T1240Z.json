@@ -1,0 +1,48 @@
+{
+ "fixed": [
+  {
+   "visit": "19462842",
+   "pid": "pat17472228",
+   "patterns": [
+    "692"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19462843",
+   "pid": "pat17476874",
+   "patterns": [
+    "2049"
+   ],
+   "note": [
+    "quality line charge23376226 taken off (void), visit re-saved: released"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19462842",
+   "patterns": [
+    "692"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [],
+ "quality_removed": [
+  {
+   "visit": "19462843",
+   "pid": "pat17476874",
+   "charge": "charge23376226",
+   "code": "1123F",
+   "fee": "0.01",
+   "why": "[Pattern 2049] Per Medicare guidelines the...",
+   "void_ok": true,
+   "released": true,
+   "at": "2026-11-28T12:45:50.144507",
+   "resave_ok": true
+  }
+ ]
+}

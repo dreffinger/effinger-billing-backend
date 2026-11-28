@@ -1,0 +1,21 @@
+{
+ "stamp": "20261128T1240Z",
+ "at": "2026-11-28T12:44:41.715599Z",
+ "identity_rule": "2026-11-26.6",
+ "counts": {
+  "known from the patient map": 9,
+  "looked up": 0,
+  "new charts": 0,
+  "for William": 0,
+  "no chart": 0
+ },
+ "repointed": [],
+ "patients": [],
+ "notes": [],
+ "not_registered": [],
+ "not_registered_unreadable": [],
+ "not_registered_refused": [],
+ "registered_anyway": [],
+ "registered_anyway_unreadable": [],
+ "registered_anyway_refused": []
+}
