@@ -123,7 +123,7 @@ for c in CH:
     dos = ", ".join(l["dos"] for l in c["lines"]); cpts = ",".join(l["cpt"] for l in c["lines"]); billed = money(sum(l["billed"] for l in c["lines"]))
     if c.get("paid"):
         add("POST FROM PAPER (done 9/23)", "CHAMPVA (CHA03, EFT)", c["patient"], acct, pid, dos, cpts, billed, "CHAMPVA paid $%.2f by EFT (EOB %s) - the payment was not in AMD" % (c["paid"], c["eob_date"]), plans, "info-only EOB, payment by EFT",
-            "Posted through the ERA Center from the paper EOB on 9/23 (no CHAMPVA 835 ever reached AMD); Mulvihill's CHA03 plan added; six 2024 patient balances moved back to insurance first", "done", c["paid"], c["page"])
+            "Posted through the ERA Center from the paper EOB on 9/23 (no CHAMPVA 835 ever reached AMD); the patient's CHA03 plan added; six 2024 patient balances moved back to insurance first", "done", c["paid"], c["page"])
     else:
         codes = c.get("codes", "") + " " + " ".join(l.get("codes", "") for l in c["lines"])
         if "299" in codes:

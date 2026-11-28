@@ -1,0 +1,445 @@
+{
+ "schema": "enrollment-holds/1",
+ "about": "visits the work queue holds (HOLD-ENROLLMENT-1127) until the clinician's enrollment with the payer is effective - visit ids only",
+ "items": [
+  {
+   "clinician": "garcia",
+   "payer": "HUM01",
+   "card": "pg-humana",
+   "decided": "William 2026-11-27: enroll Pam with Humana with a backdated start, then resend the secondary claims under her",
+   "reason": "Humana Healthy Horizons (Florida Medicaid, secondary to Original Medicare) denies CO-185/N767 - her Florida Medicaid ID lapsed for dates of service from 1/2025; it pays only providers active on AHCA's list for the date of service",
+   "until": "2027-04-26",
+   "filing_note": "Humana's crossover filing limit is unconfirmed (2026 FL handbook p.126: Medicaid handbook timelines, up to 3 years; 2025 deck p.40: corrected claims 12 months from the original process date). Working rule: 12 months from Humana's original process date, earliest 5/26/2027 - the hold ends a month before.",
+   "visits": [
+    {
+     "visitid": "19400082"
+    },
+    {
+     "visitid": "19407284"
+    },
+    {
+     "visitid": "19407389"
+    },
+    {
+     "visitid": "19407422"
+    },
+    {
+     "visitid": "19407569"
+    },
+    {
+     "visitid": "19407661"
+    },
+    {
+     "visitid": "19408367"
+    },
+    {
+     "visitid": "19408385"
+    },
+    {
+     "visitid": "19408686"
+    },
+    {
+     "visitid": "19409518"
+    },
+    {
+     "visitid": "19411209"
+    },
+    {
+     "visitid": "19411231"
+    },
+    {
+     "visitid": "19412887"
+    },
+    {
+     "visitid": "19412893"
+    },
+    {
+     "visitid": "19413394"
+    },
+    {
+     "visitid": "19413415"
+    },
+    {
+     "visitid": "19413433"
+    },
+    {
+     "visitid": "19415110"
+    },
+    {
+     "visitid": "19416576"
+    },
+    {
+     "visitid": "19417093"
+    },
+    {
+     "visitid": "19417106"
+    },
+    {
+     "visitid": "19418288"
+    },
+    {
+     "visitid": "19421676"
+    },
+    {
+     "visitid": "19421677"
+    },
+    {
+     "visitid": "19423847"
+    },
+    {
+     "visitid": "19423855"
+    },
+    {
+     "visitid": "19424014"
+    },
+    {
+     "visitid": "19425612"
+    },
+    {
+     "visitid": "19425635"
+    },
+    {
+     "visitid": "19426933"
+    },
+    {
+     "visitid": "19426998"
+    },
+    {
+     "visitid": "19427513"
+    },
+    {
+     "visitid": "19427686"
+    },
+    {
+     "visitid": "19430036"
+    },
+    {
+     "visitid": "19433030"
+    },
+    {
+     "visitid": "19435851"
+    },
+    {
+     "visitid": "19438159"
+    },
+    {
+     "visitid": "19441037"
+    },
+    {
+     "visitid": "19441604"
+    },
+    {
+     "visitid": "19441902"
+    },
+    {
+     "visitid": "19441903"
+    },
+    {
+     "visitid": "19441905"
+    },
+    {
+     "visitid": "19442595"
+    },
+    {
+     "visitid": "19459650"
+    },
+    {
+     "visitid": "19459651"
+    },
+    {
+     "visitid": "19460490"
+    },
+    {
+     "visitid": "19460511"
+    },
+    {
+     "visitid": "19460512"
+    },
+    {
+     "visitid": "19460698"
+    },
+    {
+     "visitid": "19460699"
+    },
+    {
+     "visitid": "19460839"
+    },
+    {
+     "visitid": "19461108"
+    },
+    {
+     "visitid": "19461142"
+    },
+    {
+     "visitid": "19442865"
+    },
+    {
+     "visitid": "19444043"
+    },
+    {
+     "visitid": "19444330"
+    },
+    {
+     "visitid": "19444471"
+    },
+    {
+     "visitid": "19445141"
+    },
+    {
+     "visitid": "19445311"
+    },
+    {
+     "visitid": "19445312"
+    },
+    {
+     "visitid": "19445435"
+    },
+    {
+     "visitid": "19445477"
+    },
+    {
+     "visitid": "19445840"
+    },
+    {
+     "visitid": "19446742"
+    },
+    {
+     "visitid": "19447181"
+    },
+    {
+     "visitid": "19447324"
+    },
+    {
+     "visitid": "19447508"
+    },
+    {
+     "visitid": "19448281"
+    },
+    {
+     "visitid": "19448290"
+    },
+    {
+     "visitid": "19449432"
+    },
+    {
+     "visitid": "19450277"
+    },
+    {
+     "visitid": "19450688"
+    },
+    {
+     "visitid": "19450700"
+    },
+    {
+     "visitid": "19451014"
+    },
+    {
+     "visitid": "19451954"
+    },
+    {
+     "visitid": "19398515"
+    },
+    {
+     "visitid": "19399376"
+    },
+    {
+     "visitid": "19399384"
+    },
+    {
+     "visitid": "19402110"
+    },
+    {
+     "visitid": "19402376"
+    },
+    {
+     "visitid": "19402386"
+    },
+    {
+     "visitid": "19402389"
+    },
+    {
+     "visitid": "19403745"
+    },
+    {
+     "visitid": "19403749"
+    },
+    {
+     "visitid": "19403751"
+    },
+    {
+     "visitid": "19404462"
+    },
+    {
+     "visitid": "19404620"
+    },
+    {
+     "visitid": "19405348"
+    },
+    {
+     "visitid": "19405608"
+    },
+    {
+     "visitid": "19405768"
+    },
+    {
+     "visitid": "19405906"
+    },
+    {
+     "visitid": "19409532"
+    },
+    {
+     "visitid": "19413408"
+    },
+    {
+     "visitid": "19415634"
+    },
+    {
+     "visitid": "19418280"
+    },
+    {
+     "visitid": "19418997"
+    },
+    {
+     "visitid": "19418999"
+    },
+    {
+     "visitid": "19419256"
+    },
+    {
+     "visitid": "19419579"
+    },
+    {
+     "visitid": "19419584"
+    },
+    {
+     "visitid": "19419593"
+    },
+    {
+     "visitid": "19419594"
+    },
+    {
+     "visitid": "19419938"
+    },
+    {
+     "visitid": "19420271"
+    },
+    {
+     "visitid": "19422658"
+    },
+    {
+     "visitid": "19422670"
+    },
+    {
+     "visitid": "19422674"
+    },
+    {
+     "visitid": "19423862"
+    },
+    {
+     "visitid": "19426938"
+    },
+    {
+     "visitid": "19428128"
+    },
+    {
+     "visitid": "19430021"
+    },
+    {
+     "visitid": "19432961"
+    },
+    {
+     "visitid": "19432967"
+    },
+    {
+     "visitid": "19432988"
+    },
+    {
+     "visitid": "19433021"
+    },
+    {
+     "visitid": "19433027"
+    },
+    {
+     "visitid": "19434018"
+    },
+    {
+     "visitid": "19434243"
+    },
+    {
+     "visitid": "19434573"
+    },
+    {
+     "visitid": "19434937"
+    },
+    {
+     "visitid": "19435300"
+    },
+    {
+     "visitid": "19435324"
+    },
+    {
+     "visitid": "19435830"
+    },
+    {
+     "visitid": "19436000"
+    },
+    {
+     "visitid": "19436086"
+    },
+    {
+     "visitid": "19436088"
+    },
+    {
+     "visitid": "19436966"
+    },
+    {
+     "visitid": "19437169"
+    },
+    {
+     "visitid": "19438310"
+    },
+    {
+     "visitid": "19438687"
+    },
+    {
+     "visitid": "19438813"
+    },
+    {
+     "visitid": "19438959"
+    },
+    {
+     "visitid": "19438977"
+    },
+    {
+     "visitid": "19439405"
+    },
+    {
+     "visitid": "19442606"
+    },
+    {
+     "visitid": "19453793"
+    },
+    {
+     "visitid": "19441616"
+    },
+    {
+     "visitid": "19444342"
+    },
+    {
+     "visitid": "19447320"
+    },
+    {
+     "visitid": "19457336"
+    },
+    {
+     "visitid": "19457352"
+    }
+   ]
+  }
+ ],
+ "released": {
+  "on": "2026-11-27",
+  "why": "dates of service in 2024 or earlier: Humana answered with other reasons (CO-45/CO-253, PR-1/PR-2, OA-B11, PI-252), not CO-185 - the Medicaid fix will not pay them; they go back to the standing rules",
+  "visits": 37
+ }
+}
