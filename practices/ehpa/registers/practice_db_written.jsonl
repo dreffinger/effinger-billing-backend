@@ -7,19 +7,6 @@
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"artifact_index/outstanding_claims-20261102T0440Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"artifact_index/treasury_payments-20261102T0440Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"artifact_index/working_denials-20261102T0440Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0151Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0338Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0532Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0549Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0740Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T0934Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T1129Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T1338Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T1530Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T1727Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T1924Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T2123Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261013T2322Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261014T0131Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261014T0330Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"billing_runs/20261014T0526Z"}
@@ -662,6 +649,10 @@
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"billing_runs/20261126T1839Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"billing_runs/20261127T0039Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"billing_runs/20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"billing_runs/20261127T0644Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"billing_runs/20261127T1259Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"billing_runs/20261127T1839Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"billing_runs/20261128T0039Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-04T0535Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-05T0535Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-06T0535Z"}
@@ -686,36 +677,6 @@
 {"at":"2026-11-25T05:42:06Z","by":"2026-11-25T0535Z","k":"cascade_runs/2026-11-25T0535Z"}
 {"at":"2026-11-26T05:53:42Z","by":"2026-11-26T0536Z","k":"cascade_runs/2026-11-26T0536Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"cascade_runs/2026-11-27T0535Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T0110Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T0121Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0151Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T0319Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0338Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T0518Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0532Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0549Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0740Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T0910Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T0934Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1110Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1121Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1127Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T1129Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1310Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T1338Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1520Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1523Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T1530Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1720Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1723Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T1727Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1910Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T1921Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T1924Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T2110Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T2123Z"}
-{"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261013T2310Z"}
-{"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261013T2322Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261014T0110Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20261014T0118Z"}
 {"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"era_runs/20261014T0131Z"}
@@ -1010,6 +971,10 @@
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"era_runs/20261126T1839Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"era_runs/20261127T0039Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"era_runs/20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"era_runs/20261127T0644Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"era_runs/20261127T1259Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"era_runs/20261127T1839Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"era_runs/20261128T0039Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_batches/1028"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_batches/20261029T0549Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_batches/20261030T0034Z"}
@@ -1045,6 +1010,7 @@
 {"at":"2026-11-25T06:53:17Z","by":"2026-11-25T0635Z","k":"feed_batches/20261125T0635Z"}
 {"at":"2026-11-25T10:38:41Z","by":"2026-11-25T0900Z","k":"feed_batches/20261125T0900Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"feed_batches/20261126T1240Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"feed_batches/20261127T1239Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_checks/1028"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_checks/20261029T0549Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"feed_checks/20261030T0034Z"}
@@ -1137,6 +1103,8 @@
 {"at":"2026-11-26T06:55:48Z","by":"2026-11-26T0640Z","k":"feed_checks/20261126T0640Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"feed_checks/20261126T1240Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"feed_checks/20261127T0134Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"feed_checks/20261127T1239Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"feed_checks/20261128T0134Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"practice/carriers"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"practice/facilities"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"practice/practice"}
@@ -1239,6 +1207,7 @@
 {"at":"2026-11-26T06:55:48Z","by":"2026-11-26T0640Z","k":"snapshots/approvals-20261126T0640Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"snapshots/approvals-20261127T0134Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"snapshots/approvals-20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"snapshots/approvals-20261128T0134Z"}
 {"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"snapshots/neon-20261112T1553Z"}
 {"at":"2026-11-13T02:02:09Z","by":"2026-11-13T0135Z","k":"snapshots/neon-20261113T0135Z"}
 {"at":"2026-11-13T06:55:18Z","by":"2026-11-13T0640Z","k":"snapshots/neon-20261113T0640Z"}
@@ -1295,6 +1264,7 @@
 {"at":"2026-11-26T06:55:48Z","by":"2026-11-26T0640Z","k":"snapshots/neon-20261126T0640Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"snapshots/neon-20261127T0134Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"snapshots/neon-20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"snapshots/neon-20261128T0134Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T0414Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T0643Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T1244Z"}
@@ -1396,6 +1366,7 @@
 {"at":"2026-11-26T06:55:48Z","by":"2026-11-26T0640Z","k":"snapshots/repo-20261126T0640Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"snapshots/repo-20261127T0134Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"snapshots/repo-20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"snapshots/repo-20261128T0134Z"}
 {"at":"2026-11-12T15:53:19Z","by":"sweep 20261112T155319Z","k":"snapshots/webapp-20261112T1553Z"}
 {"at":"2026-11-13T02:02:09Z","by":"2026-11-13T0135Z","k":"snapshots/webapp-20261113T0135Z"}
 {"at":"2026-11-13T06:55:18Z","by":"2026-11-13T0640Z","k":"snapshots/webapp-20261113T0640Z"}
@@ -1452,3 +1423,4 @@
 {"at":"2026-11-26T06:55:48Z","by":"2026-11-26T0640Z","k":"snapshots/webapp-20261126T0640Z"}
 {"at":"2026-11-27T01:36:04Z","by":"2026-11-27T0134Z","k":"snapshots/webapp-20261127T0134Z"}
 {"at":"2026-11-27T05:53:04Z","by":"2026-11-27T0535Z","k":"snapshots/webapp-20261127T0535Z"}
+{"at":"2026-11-28T01:35:57Z","by":"2026-11-28T0134Z","k":"snapshots/webapp-20261128T0134Z"}
