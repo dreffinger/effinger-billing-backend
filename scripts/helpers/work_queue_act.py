@@ -217,6 +217,8 @@ class Actor:
         self.log_path = os.path.join(a.ws or ".", "logs", "work_queue_act_%s%s.log" % (self.stamp, "" if self.live else "_dry"))
         self.rebilled = wq.rebill_dates([os.path.join(d, "rebill_log.jsonl") for d in dirs])
         self.watch = set().union(*[wq.watch_visits(os.path.join(d, "tf_writeoff_watch.json")) for d in dirs]) if dirs else set()
+        for d in dirs or []:                                  # 11/27/2026: visits waiting for a clinician's enrollment are never acted on
+            self.watch |= {v for v, until in wq.enrollment_holds(os.path.join(d, "enrollment_holds.json")).items() if until is None or self.today <= until}
         self.board = wq.board_charts(dirs)[0] if dirs else set()
         self.treasury = wq.treasury_checks([p for p in (a.treasury or "").split(",") if p.strip()])
         self.reg_path = os.path.join(self.regs, "work_queue_act_%s%s.jsonl" % (self.stamp, "" if self.live else "_dry"))

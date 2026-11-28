@@ -441,5 +441,13 @@ check("XC1 money first (William 11/27/2026): a crossover the secondary holds is 
       "a route (Florida Blue) = STATUS-CROSSOVER-1127; billed before the primary paid keeps its resend rule",
       Rx.get("9601") == "HOLD-CROSSOVER-1127" and Rx.get("9603") == "STATUS-CROSSOVER-1127" and Rx.get("9602") == "RESEND-SILENT-NOROUTE-1015", Rx)
 
+# 11/27/2026: a visit on the enrollment-hold list (Pam's Humana enrollment) is held until its date - no resend, write-off or card
+qh = wq.build({"aging": {"asof": TODAY.isoformat(), "rows": [_x("9701", D(80), D(80)), _x("9702", D(80), D(80))]}, "wd": {"asof": TODAY.isoformat(), "visits": []}, "era": [],
+               "enroll_hold": {"9701": TODAY + datetime.timedelta(days=90), "9702": TODAY - datetime.timedelta(days=1)}}, TODAY)
+Rh = {r["visitid"]: r["rule"] for r in qh["rows"]}
+check("EH1 the enrollment-hold list holds a visit until its date (HOLD-ENROLLMENT-1127); past the date the visit's own rule applies again",
+      Rh.get("9701") == "HOLD-ENROLLMENT-1127" and Rh.get("9702") == "HOLD-CROSSOVER-1127", Rh)
+check("EH2 enrollment_holds reads the register shape", wq.enrollment_holds(os.devnull) == {})
+
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)

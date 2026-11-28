@@ -90,6 +90,7 @@ RULES = {
  "OWNER-NO-RULE":       ("OWNER", "william", "no standing rule covers it - William's turn", "William 11/26/2026 decision 1"),
  "LIST-PAID-NO-MATCH":  ("LIST", "william", "paid but never posted, no Treasury deposit matches the check yet - stays on his list", "William 11/26/2026 decision 2"),
  "HOLD-FLO99-0922":     ("HOLD", "hold", "FCC (FLO99) pays by paper check - every FLO99 write-off and re-route waits for the reconciliation", "rules.md 9/22/2026"),
+ "HOLD-ENROLLMENT-1127": ("HOLD", "hold", "waiting for the rendering clinician's enrollment with this payer (registers/enrollment_holds.json): resent under her once the enrollment is effective - never written off, re-rendered or carded meanwhile", "William 11/27/2026: enroll Pam with Humana with a backdated start, then resend the secondary claims under her"),
  "HOLD-TF-WATCH-1006":  ("HOLD", "hold", "on the timely-filing watch - the watch rule settles it, never re-sent on our own", "billing_button.txt TIMELY-FILING WATCH"),
  "HOLD-BOARD":          ("HOLD", "hold", "the chart waits on William's turn on the Insurance Refresh Board", "BOARD ACCESS RULE"),
  "HOLD-AET12-0921":     ("HOLD", "hold", "AET12 hold - do not rebill", "rules.md 9/21/2026"),
@@ -346,6 +347,18 @@ def watch_visits(path):
     w = _load(path, {}) or {}
     items = w if isinstance(w, list) else w.get("items", [])
     return {_digits(v.get("visitid") or v.get("visit") or v.get("vid")) for it in items if isinstance(it, dict) for v in it.get("visits", []) if isinstance(v, dict)}
+def enrollment_holds(path):
+    """registers/enrollment_holds.json: {"items": [{"clinician", "payer", "reason", "until": "YYYY-MM-DD", "card", "visits": [{"visitid"}]}]}
+    -> {visit id: until date} for the items still in force (11/27/2026, Pam's Humana enrollment)."""
+    w = _load(path, {}) or {}
+    out = {}
+    for it in (w if isinstance(w, list) else w.get("items", [])):
+        if not isinstance(it, dict): continue
+        until = _date(it.get("until"))
+        for v in it.get("visits", []):
+            vid = _digits((v or {}).get("visitid") or (v or {}).get("vid")) if isinstance(v, dict) else _digits(v)
+            if vid: out[vid] = until
+    return out
 def board_charts(dirs):
     """The charts waiting on William's turn for a FACE SHEET, a card or a number in the newest board_turn_<stamp>.json (facesheets_needed.py): their
     insurance is in question, so the board holds every visit of them. A 'decision' card holds only its own visit (the queue's own cards are
@@ -384,6 +397,9 @@ def decide(ev, ctx):
     # 1. holds
     if payer == "FLO99" or "FLO99" in secs: return _row(ev, "HOLD-FLO99-0922", today)
     if vid in ctx["watch"]: return _row(ev, "HOLD-TF-WATCH-1006", today)
+    hold_until = (ctx.get("enroll_hold") or {}).get(vid, False)
+    if hold_until is not False and (hold_until is None or today <= hold_until):
+        return _row(ev, "HOLD-ENROLLMENT-1127", today, due=hold_until or today + datetime.timedelta(days=30))
     if ev.get("pid") and ev["pid"] in ctx["board"]: return _row(ev, "HOLD-BOARD", today)
     if rule_txt.startswith("DOS after the Medicare date of death") or "13" in (ev.get("codes") or set()): return _row(ev, "HOLD-DEATH", today)
     held = (ctx["acted"].get(vid) or {}).get("death")      # the actor's deceased guard did not clear this visit (a HOLD-DEATH register line): held for good
@@ -590,7 +606,7 @@ def build(inputs, today):
     for vid, e in ev.items():
         e["pid"] = e["pid"] or aging_pid.get(vid, "")
         e["tries"] = ((acted.get(vid) or {}).get("tries")) or 0
-        r = decide(e, {"today": today, "watch": inputs.get("watch") or set(), "board": inputs.get("board") or set(), "acted": acted,
+        r = decide(e, {"today": today, "watch": inputs.get("watch") or set(), "enroll_hold": inputs.get("enroll_hold") or {}, "board": inputs.get("board") or set(), "acted": acted,
                        "rebilled": inputs.get("rebilled") or {}, "appeals": inputs.get("appeals") or {}})
         if r: rows.append(r)
     rows.sort(key=lambda r: ({"claude": 0, "run": 1, "william": 2}.get(r["turn"], 3), r["due"], -r["amount"]))
@@ -625,13 +641,14 @@ def gather(repo, regs, ws, today):
     for d in reversed(dirs):
         appeals.update({str(k): (v.get("sent") if isinstance(v, dict) else v) for k, v in ((_load(os.path.join(d, "work_queue_appeals.json"), {}) or {}).get("sent", {}) or {}).items()})
     board, bfile = board_charts(dirs)
-    watch = set()
+    watch = set(); enroll_hold = {}
     for d in dirs:
         watch |= watch_visits(os.path.join(d, "tf_writeoff_watch.json"))
+        enroll_hold.update(enrollment_holds(os.path.join(d, "enrollment_holds.json")))
     srcs.update({"era_denials": {"files": len(era_files), "lines": len(era)}, "ledger": {"rows": len((led or {}).get("rows") or {})}, "claimstatus_files": len(cs_files),
                  "act_lines": len(lines), "board_turn": bfile, "watch_visits": len(watch), "appeals_sent": len(appeals)})
     inputs = {"wd": wd, "era": era, "aging": ag, "ledger": (led or {}).get("rows") or {}, "cs": claimstatus_rows(cs_files), "acted": last_actions(lines),
-              "rebilled": rebill_dates([os.path.join(d, "rebill_log.jsonl") for d in dirs]), "watch": watch, "board": board, "appeals": appeals}
+              "rebilled": rebill_dates([os.path.join(d, "rebill_log.jsonl") for d in dirs]), "watch": watch, "enroll_hold": enroll_hold, "board": board, "appeals": appeals}
     return inputs, srcs
 
 
