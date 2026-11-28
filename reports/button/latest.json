@@ -1,40 +1,30 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-27T1839Z",
+ "stamp": "2026-11-28T0039Z",
  "mode": "live",
- "status": "ok",
- "headline": "Columns 0/15/6/2 -> 0/0/6/2; ERA 2 checks $1614.28 -> 2 checks $306.28",
- "note": "6-hourly backend billing run",
+ "status": "warn",
+ "headline": "ERA 2 checks $185.87 -> 2 checks $185.87",
+ "note": "",
  "run_url": "",
- "started": "2026-11-27T18:47:06Z",
- "ended": "2026-11-27T18:51:35Z",
+ "started": "2026-11-28T00:46:26Z",
+ "ended": "2026-11-28T00:46:45Z",
  "summary": {
   "columns": {
-   "before": {
-    "charge_review": 0,
-    "claim_inspector": 15,
-    "unbilled": 6,
-    "exclusions": 2
-   },
-   "after": {
-    "charge_review": 0,
-    "claim_inspector": 0,
-    "unbilled": 6,
-    "exclusions": 2
-   }
+   "before": {},
+   "after": {}
   },
   "era": {
    "before": {
     "checks": 2,
-    "unposted": 1614.28
+    "unposted": 185.87
    },
    "after": {
     "checks": 2,
-    "unposted": 306.28
+    "unposted": 185.87
    }
   },
   "posted": {
-   "pay": 1308.0,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -57,105 +47,38 @@
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "ok",
+   "status": "warn",
    "summary": "1556 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1556,
-    "registers": 2128,
+    "registers": 2130,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [],
-   "started": "2026-11-27T18:47:06Z",
-   "ended": "2026-11-27T18:47:07Z"
-  },
-  {
-   "name": "columns",
-   "title": "Claims Center columns",
-   "status": "ok",
-   "summary": "CR 0->0, CI 15->0, Unbilled 6->6, Exclusions 2->2",
-   "counts": {
-    "charge review": 0,
-    "claim inspector": 15,
-    "unbilled": 6,
-    "exclusions": 2,
-    "inspector advisories to bypass": 15,
-    "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 15,
-    "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 6,
-    "unbilled released": 0,
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log",
-    "exclusions dup run 1700413": 0,
-    "exclusions crossover run 1700413": "see log"
-   },
-   "dollars": {},
-   "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 15,
-     "ids": "v19406040 v19388439 v19454394 v19390080 v19390081 v19390082 v19390159 v19390268 v19390339 v19390411 v19390630 v19390670 v19390959 v19391190 v19391289"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Date of service is outside insurance coverage effective dates",
-     "visits": 3,
-     "ids": "v19390716 v19398126 v19406723"
-    },
-    {
-     "column": "unbilled",
-     "kind": "One or more charges within this visit have errors. Charges with errors",
-     "visits": 2,
-     "ids": "v19398876 v19404303"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Insurance order is missing on visit",
-     "visits": 1,
-     "ids": "v19462480"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    },
-    {
-     "column": "exclusions run 1700413",
-     "kind": "SUN01 PA CATEGORY: ACKNOWLEDGEMENT/RETURNED AS UNPROCESSABLE CLAIM",
-     "visits": 1,
-     "ids": "v19455295"
-    }
+   "errors": [
+    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
    ],
-   "errors": [],
-   "started": "2026-11-27T18:47:07Z",
-   "ended": "2026-11-27T18:50:32Z"
+   "started": "2026-11-28T00:46:26Z",
+   "ended": "2026-11-28T00:46:27Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $1614.28 -> 2 checks / $306.28",
+   "summary": "2 checks / $185.87 -> 2 checks / $185.87",
    "counts": {
-    "era_post lines": 1,
-    "checks the Post button posted or was offered": 1,
-    "co45 lines corrected": 0,
-    "co45 lines for review": 2,
-    "fallback orphan": 1,
-    "fallback already-posted": 12,
-    "fallback unrecorded": 2,
+    "era_post lines": 0,
+    "checks the Post button posted or was offered": 0,
+    "fallback orphan": 2,
     "checks dismissed": 0,
     "checks held": 2,
     "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 1614.28,
-    "unposted after": 306.28,
-    "posted this run": 1308.0
+    "unposted before": 185.87,
+    "unposted after": 185.87,
+    "posted this run": 0.0
    },
    "lines": [
     {
@@ -167,25 +90,24 @@
      "stage": "before"
     },
     {
-     "check": 1053680,
-     "payer": "OPTUM VA CCN",
-     "checknumber": "3009828414",
+     "check": 1053683,
+     "payer": "HUMANA",
+     "checknumber": "207971156261127",
      "amount": 0.0,
-     "unposted": 1526.0,
+     "unposted": 97.59,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-27T18:50:32Z",
-   "ended": "2026-11-27T18:51:35Z"
+   "started": "2026-11-28T00:46:27Z",
+   "ended": "2026-11-28T00:46:45Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "ERA CO-45 pass after the Post button: 2 line(s) left for review (registers/era_co45_relink_*)",
-  "ERA fallback: 1 money line(s) with no matching live charge ($88.28) - registers/era_fallback_2026-11-27T1839Z_live.json",
+  "ERA fallback: 2 money line(s) with no matching live charge ($185.87) - registers/era_fallback_2026-11-28T0039Z_live.json",
   "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l",
-  "ERA check 1053680 held by era_clear: VACCN 3009828414 $1526.0: 2 unrecorded payment (reversal pipeline) - left on the list"
+  "ERA check 1053683 held by era_clear: HUM01 207971156261127 $97.59: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the li"
  ],
  "errors": []
 }
