@@ -1,0 +1,15 @@
+# nightly cascade 2026-11-28T0536Z (Saturday)
+- precheck --days 3 --max 120: 27 pairs, 2 new Stedi lookups, 4 flagged - 3 ADVANTAGE PLAN on DOS, 1 FLO99 (no Stedi route).
+- dx_primary_fix plan on every visit before rebill: all acceptable.
+- chart 17472826: v19462819 11/25 + v19462796 11/26 99233 insorder 2,1 -> 1 (BCBS / BCBS-MI MA) -> 204 x2.
+- chart 17473090: v19462817 11/25 99233 insorder 2,1 -> 1 (BCBS / HCSC MA) -> 204.
+- read back: all 3 insbilled 0 at order 1. Total re-sent: 3 visits, 480 dollars.
+- chart 17478525 (new admit): Medicare + AMD 271 name Capital Health Plan MA (H5938) since 2018-07-01; no CHP member number anywhere -> new board card on William's turn; 3 visits (630 dollars) left at Medicare.
+- Step 2/2a skipped (Saturday). void_rules: 1 open rule, no VOID lines.
+- ERA step: 2 checks 185.87 -> 2 checks 185.87; 0 posted. Humana orphans: 1053664 (chart 17469446 v19460489, 88.28) and 1053683 (chart 17472396 v19462082, 97.59) - no live charge on either visit; for William.
+- cred_check: NPPES 0 changed, revalidation TBD x3, LEIE 84,224 rows 0 matches; reminder hits already on William's turn.
+- run alerts: 141 runs; payers 24 green, 8 warning, 11 never paid, 2 waiting; 1 cred op (AET07 warning on pay-aetna).
+- board: 3 ops (2 appends, 1 new card) -> Drive board inbox; 4 applied files trashed; no drops. Cred board inbox: 9 older cred/denials files still unapplied (registry lastCheck 11/16).
+- money ledger rebuilt (unpaid 385,148 dollars) and republished.
+- Stedi: 2 calls 0.60 dollars (plain Medicare 1, eligibility 1).
+- practice_db: 7 documents committed, 0 swept; Neon 7 new, run logged ok.

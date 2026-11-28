@@ -1,0 +1,35 @@
+[
+ {
+  "pid": "17472826",
+  "visit": "19462796",
+  "charge": "23376147",
+  "insorder_before": "2,1",
+  "dx_first": [
+   "L03.90"
+  ],
+  "dx_action": "ok",
+  "result": "resave vst19462796 insorder 2,1 -> 1, list [2,1] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+ },
+ {
+  "pid": "17472826",
+  "visit": "19462819",
+  "charge": "23376170",
+  "insorder_before": "2,1",
+  "dx_first": [
+   "L03.90"
+  ],
+  "dx_action": "ok",
+  "result": "resave vst19462819 insorder 2,1 -> 1, list [2,1] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+ },
+ {
+  "pid": "17473090",
+  "visit": "19462817",
+  "charge": "23376168",
+  "insorder_before": "2,1",
+  "dx_first": [
+   "R55"
+  ],
+  "dx_action": "ok",
+  "result": "resave vst19462817 insorder 2,1 -> 1, list [2,1] -> [1], 1 live charges (was 1) | freq1 + rebill seq 1 -> 204"
+ }
+]

@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-28T05:54:45Z",
+ "at": "2026-11-28T05:36:00Z",
+ "changed": 3,
+ "checked": 27,
+ "commit": "3c0c1b7",
+ "date": "2026-11-28",
+ "dollars": 480,
+ "done": "3 hospital visits re-pointed to the charts' Blue Cross Medicare Advantage plans (480 dollars, charts 17472826, 17473090); chart 17478525 Capital Health Plan MA number asked of William (630 dollars held)",
+ "era_posted": 0.0,
+ "finished": "2026-11-28T05:54:45Z",
+ "flagged": 4,
+ "kind": "nightly cascade",
+ "lookups": 2,
+ "note": "27 visit-and-plan pairs checked (2 new Stedi lookups), 4 flagged; ERA 2 Humana orphan checks unchanged",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-28T0536Z.json",
+ "stamp": "2026-11-28T0536Z",
+ "stedi_cost": 0.6,
+ "writeoffs": 0.0
+}

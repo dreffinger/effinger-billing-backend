@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-28T0039Z",
+ "stamp": "2026-11-28T0536Z",
  "mode": "live",
  "status": "warn",
  "headline": "ERA 2 checks $185.87 -> 2 checks $185.87",
  "note": "",
  "run_url": "",
- "started": "2026-11-28T00:46:26Z",
- "ended": "2026-11-28T00:46:45Z",
+ "started": "2026-11-28T05:40:35Z",
+ "ended": "2026-11-28T05:40:53Z",
  "summary": {
   "columns": {
    "before": {},
@@ -51,7 +51,7 @@
    "summary": "1556 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1556,
-    "registers": 2130,
+    "registers": 3,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
@@ -59,8 +59,8 @@
    "errors": [
     "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
    ],
-   "started": "2026-11-28T00:46:26Z",
-   "ended": "2026-11-28T00:46:27Z"
+   "started": "2026-11-28T05:40:35Z",
+   "ended": "2026-11-28T05:40:35Z"
   },
   {
    "name": "era",
@@ -99,13 +99,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-28T00:46:27Z",
-   "ended": "2026-11-28T00:46:45Z"
+   "started": "2026-11-28T05:40:35Z",
+   "ended": "2026-11-28T05:40:53Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "ERA fallback: 2 money line(s) with no matching live charge ($185.87) - registers/era_fallback_2026-11-28T0039Z_live.json",
+  "ERA fallback: 2 money line(s) with no matching live charge ($185.87) - registers/era_fallback_2026-11-28T0536Z_live.json",
   "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l",
   "ERA check 1053683 held by era_clear: HUM01 207971156261127 $97.59: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the li"
  ],
