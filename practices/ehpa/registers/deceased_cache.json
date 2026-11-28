@@ -546,7 +546,7 @@
   "src": "stedi: no death on record"
  },
  "17473004": {
-  "checked": "2026-09-22",
+  "checked": "2026-11-28",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -722,7 +722,7 @@
   "src": "stedi: no death on record"
  },
  "17473460": {
-  "checked": "2026-10-28",
+  "checked": "2026-11-25",
   "dod": null,
   "src": "stedi: not a Medicare beneficiary"
  },
@@ -807,7 +807,7 @@
   "src": "stedi: no death on record"
  },
  "17474080": {
-  "checked": "2026-09-22",
+  "checked": "2026-11-28",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -1785,7 +1785,7 @@
   "src": "stedi: no death on record"
  },
  "25592": {
-  "checked": "2026-09-22",
+  "checked": "2026-11-25",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -1880,7 +1880,7 @@
   "src": "stedi: no death on record"
  },
  "45052": {
-  "checked": "2026-10-28",
+  "checked": "2026-11-25",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -1923,6 +1923,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "src": "stedi: no death on record"
+ },
+ "46354": {
+  "checked": "2026-11-28",
+  "dod": null,
+  "src": "stedi: no death on record (drive copy)"
  },
  "46673": {
   "checked": "2026-10-28",

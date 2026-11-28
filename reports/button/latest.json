@@ -1,21 +1,31 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-28T0536Z",
+ "stamp": "2026-11-28T0639Z",
  "mode": "live",
- "status": "warn",
- "headline": "ERA 2 checks $185.87 -> 2 checks $185.87",
+ "status": "ok",
+ "headline": "Columns 0/0/53/23 -> 0/0/22/9; ERA 3 checks $185.87 -> 2 checks $185.87",
  "note": "",
  "run_url": "",
- "started": "2026-11-28T05:40:35Z",
- "ended": "2026-11-28T05:40:53Z",
+ "started": "2026-11-28T06:43:47Z",
+ "ended": "2026-11-28T06:47:45Z",
  "summary": {
   "columns": {
-   "before": {},
-   "after": {}
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 53,
+    "exclusions": 23
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 22,
+    "exclusions": 9
+   }
   },
   "era": {
    "before": {
-    "checks": 2,
+    "checks": 3,
     "unposted": 185.87
    },
    "after": {
@@ -47,33 +57,104 @@
   {
    "name": "bootstrap",
    "title": "Workspace from the repository",
-   "status": "warn",
-   "summary": "1556 helpers into /home/claude/unbilled",
+   "status": "ok",
+   "summary": "1557 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1556,
-    "registers": 3,
+    "helpers copied": 1557,
+    "registers": 2135,
     "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "no STEDI_API_KEY - the Stedi steps (precheck, sweep) are skipped"
+   "errors": [],
+   "started": "2026-11-28T06:43:47Z",
+   "ended": "2026-11-28T06:43:48Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 53->22, Exclusions 23->9",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 53,
+    "exclusions": 23,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 29,
+    "unbilled rows left alone": 22,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700413": 0,
+    "exclusions crossover run 1700413": "see log",
+    "exclusions dup run 1700415": 0,
+    "exclusions crossover run 1700415": 15
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 29,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935 v19455951 v19461773"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Date of service is outside insurance coverage effective dates",
+     "visits": 21,
+     "ids": "v19390716 v19395842 v19398126 v19402238 v19403545 v19404184 v19405204 v19405350 v19405942 v19405966 v19406723 v19406752 v19406828 v19406829 v19418040 v19419580 v19425343 v19429015 v19435210 v19453356 v19453498"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 1,
+     "ids": "v19462480"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700413",
+     "kind": "SUN01 PA CATEGORY: ACKNOWLEDGEMENT/RETURNED AS UNPROCESSABLE CLAIM",
+     "visits": 1,
+     "ids": "v19455295"
+    },
+    {
+     "column": "exclusions run 1700415",
+     "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+     "visits": 21,
+     "ids": "v19389101 v19389662 v19389758 v19390080 v19390081 v19390082 v19390159 v19390268 v19390339 v19390411 v19391190 v19391289 v19392348 v19392514 v19392977 v19393295 v19398876 v19398933 v19406333 v19406334 v19406379"
+    }
    ],
-   "started": "2026-11-28T05:40:35Z",
-   "ended": "2026-11-28T05:40:35Z"
+   "errors": [],
+   "started": "2026-11-28T06:43:48Z",
+   "ended": "2026-11-28T06:47:25Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $185.87 -> 2 checks / $185.87",
+   "summary": "3 checks / $185.87 -> 2 checks / $185.87",
    "counts": {
     "era_post lines": 0,
     "checks the Post button posted or was offered": 0,
     "fallback orphan": 2,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 2,
-    "denial lines recorded": 0
+    "denial lines recorded": 7
    },
    "dollars": {
     "unposted before": 185.87,
@@ -96,16 +177,36 @@
      "amount": 0.0,
      "unposted": 97.59,
      "stage": "before"
+    },
+    {
+     "check": 1053684,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350264139",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-28T05:40:35Z",
-   "ended": "2026-11-28T05:40:53Z"
+   "started": "2026-11-28T06:47:25Z",
+   "ended": "2026-11-28T06:47:45Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-28T06:47:45Z",
+   "ended": "2026-11-28T06:47:45Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "ERA fallback: 2 money line(s) with no matching live charge ($185.87) - registers/era_fallback_2026-11-28T0536Z_live.json",
+  "ERA fallback: 2 money line(s) with no matching live charge ($185.87) - registers/era_fallback_2026-11-28T0639Z_live.json",
   "ERA check 1053664 held by era_clear: HUM01 207771193261125 $171.41: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the l",
   "ERA check 1053683 held by era_clear: HUM01 207971156261127 $97.59: 1 not validated with money (the fallback era_fallback_0913b.py posts it ERA-linked; by hand: era_manual_post.py) - left on the li"
  ],
